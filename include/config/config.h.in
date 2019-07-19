@@ -48,9 +48,13 @@ namespace SDCLib
         const unsigned int SDC_DEFAULT_PORT_RANGE = @SDC_DEFAULT_PORT_RANGE@;
 
         const unsigned int SDC_DISCOVERY_TIMEOUT_MS = @SDC_DISCOVERY_TIMEOUT_MS@;
+        const unsigned int SDC_CONNECTION_TIMEOUT_MS = @SDC_CONNECTION_TIMEOUT_MS@;
 
         const bool SDC_IP_V4_ENABLED = @SDC_IP_V4_ENABLED@;
         const bool SDC_IP_V6_ENABLED = @SDC_IP_V6_ENABLED@;
+
+
+        const unsigned int SDC_MAX_KNOWN_MESSAGE_IDS = @SDC_MAX_KNOWN_MESSAGE_IDS@;
     }
 }
 

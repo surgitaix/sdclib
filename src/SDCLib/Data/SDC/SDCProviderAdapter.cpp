@@ -21,7 +21,6 @@
 #include "wsdd-discovery-1.1-schema-os.hxx"
 
 #include "SDCLib/SDCInstance.h"
-#include "SDCLib/SSLHandler.h"
 
 #include "SDCLib/Data/SDC/SDCProvider.h"
 #include "SDCLib/Data/SDC/SDCProviderAdapter.h"
@@ -392,7 +391,7 @@ bool SDCProviderAdapter::start() {
     const Poco::Net::SocketAddress socketAddress(t_bindingAddress, t_port);
 
     // Use SSL - HTTP'S'
-    if(_provider.getSDCInstance()->getSSLHandler()->isInit()) {
+    if(_provider.getSDCInstance()->getSSLConfig()->isInit()) {
         ts_PROTOCOL.append("s");
     }
 
@@ -410,7 +409,7 @@ bool SDCProviderAdapter::start() {
 			types,
 			xAddresses));
 
-    bool USE_SSL = _provider.getSDCInstance()->getSSLHandler()->isInit();
+    bool USE_SSL = _provider.getSDCInstance()->getSSLConfig()->isInit();
 
 	const std::vector<xml_schema::Uri> allowedSubscriptionEventActions {
 				OSELib::SDC::EpisodicAlertReportTraits::Action(),
@@ -427,7 +426,7 @@ bool SDCProviderAdapter::start() {
     if(USE_SSL)
     {
         // ServerSocket
-        Poco::Net::SecureServerSocket t_sslSocket(_provider.getSDCInstance()->getSSLHandler()->getServerContext());
+        Poco::Net::SecureServerSocket t_sslSocket(_provider.getSDCInstance()->getSSLConfig()->getServerContext());
         t_sslSocket.bind(socketAddress);
         t_sslSocket.listen();
         t_sslSocket.setKeepAlive(true);

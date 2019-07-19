@@ -16,6 +16,8 @@ NetworkConfig::NetworkConfig()
 
 bool NetworkConfig::bindToDefaultNetworkInterface(bool p_useAsMDPWS)
 {
+    assert(!isBound());
+
     // NOTE: Temporary Hack qnd
     // Bind to the first that is not the loopback device and matches our criteria
     auto tl_interfaces = Poco::Net::NetworkInterface::list(true, true);
@@ -90,18 +92,6 @@ bool NetworkConfig::bindToInterface(const std::string& ps_networkInterfaceName, 
 
             // Add
             ml_networkInterfaces.push_back(t_if);
-
-            std::cout << "\nSDCInstance bound to: " << t_if->m_name;
-
-            // Print additional information
-            std::cout << " (";
-            auto t_count = 0;
-            if(t_interface.supportsIPv4()) { std::cout << "IPv4: " << t_if->m_IPv4; t_count++; }
-            if(t_interface.supportsIPv6()) { if(t_count > 0) { std::cout <<","; }
-                std::cout << "IPv6: " << t_if->m_IPv6;
-            }
-
-            std::cout << ").\n";
             // This is the primary MDPWS Interface (only if none has been set yet!)
             if(p_useAsMDPWS && (m_MDPWSInterface == nullptr)) {
 
@@ -115,7 +105,6 @@ bool NetworkConfig::bindToInterface(const std::string& ps_networkInterfaceName, 
                 else {
                     throw std::runtime_error("NO FREE PORTS FOUND!");
                 }
-                std::cout << "MDPWS Interface set: " << t_if->m_name << " on Port " << m_MDPWSPort << std::endl;
             }
             else {
                 // Not set yet! - Emit a Warning
@@ -185,21 +174,26 @@ std::pair<bool, SDCPort> NetworkConfig::findFreePort() const
     Poco::Net::ServerSocket socket(socketAddress);
     unsigned short portNumber = socket.address().port();
     socket.close();
-    //std::cout << portNumber << std::endl;
     return {true, portNumber};
-/*
-    auto t_reserved = 1024;
-    // Seed
-    std::srand(std::chrono::system_clock::now().time_since_epoch().count());
-    auto t_mod = std::numeric_limits<SDCPort>::max() - t_reserved;
-    return {true, std::rand()%t_mod + t_reserved};*/
 }
 bool NetworkConfig::_shuffleMDPWSPort()
 {
-    auto t_result = findFreePort();
-    if(!t_result.first) {
-        return false;
+    std::size_t t_tries = 0;
+    std::size_t t_triesMax = 10000;
+
+    auto t_newPort = m_MDPWSPort;
+    while (t_newPort == m_MDPWSPort) {
+        auto t_result = findFreePort();
+        // Found one -> Set it
+        if(t_result.first) {
+            t_newPort = t_result.second;
+        }
+        // Dont loop forever!
+        if(t_tries++ >= t_triesMax) {
+            return false;
+        }
     }
-    m_MDPWSPort = t_result.second;
+    // Set it
+    m_MDPWSPort = t_newPort;
     return true;
 }

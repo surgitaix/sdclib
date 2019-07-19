@@ -29,35 +29,28 @@
 #include "config/config.h"
 
 #include "SDCLib/Config/NetworkConfig.h"
+#include "SDCLib/Config/SSLConfig.h"
 
 
 #include "OSELib/DPWS/PingManager.h"
 
-
-#include <Poco/Net/Context.h>
-
 namespace SDCLib
 {
 
-
     using SDCInstanceID = std::string;
-
-
 
     class SDCInstance
     {
     private:
 
         static std::atomic_uint s_IDcounter;
-        SDCInstanceID m_ID;
+        SDCInstanceID m_ID = "INVALID_ID";
 
         mutable std::mutex m_mutex;
 
         std::atomic<bool> m_init = ATOMIC_VAR_INIT(false);
 
         Config::SDCConfig_shared_ptr m_SDCConfig = nullptr;
-
-        SSL::SSLHandler_shared_ptr m_SSLHandler = nullptr;
 
         std::unique_ptr<OSELib::DPWS::PingManager> _latestPingManager;
 
@@ -79,8 +72,10 @@ namespace SDCLib
         bool init();
         bool isInit() const { return m_init; }
 
+        // Convenience Helper to get Config and Subconfig parts
         Config::SDCConfig_shared_ptr getSDCConfig() const;
         Config::NetworkConfig_shared_ptr getNetworkConfig() const;
+        Config::SSLConfig_shared_ptr getSSLConfig() const;
 
 
         bool bindToDefaultNetworkInterface(bool p_useAsMDPWS = true);
@@ -92,9 +87,8 @@ namespace SDCLib
         bool setDiscoveryConfigV6(std::string ps_IP_MC, SDCPort p_portMC, std::string ps_IP_Streaming, SDCPort p_portStreaming);
 
 
-        // WIP!
+        // SSL (optional) WIP!
         bool initSSL(Poco::Net::Context::VerificationMode p_modeClient = Poco::Net::Context::VERIFY_RELAXED, Poco::Net::Context::VerificationMode p_modeServer = Poco::Net::Context::VERIFY_RELAXED);
-        SSL::SSLHandler_shared_ptr getSSLHandler() { return m_SSLHandler; }
 
         // IP4 / IP6 - Forward to the Config
         bool getIP4enabled() const;

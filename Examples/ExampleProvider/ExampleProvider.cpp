@@ -14,7 +14,6 @@
 
 #include "SDCLib/SDCLibrary.h"
 #include "SDCLib/SDCInstance.h"
-#include "SDCLib/SSLHandler.h"
 
 #include "SDCLib/Data/SDC/SDCProviderComponentStateHandler.h"
 #include "SDCLib/Data/SDC/SDCProviderStateHandler.h"

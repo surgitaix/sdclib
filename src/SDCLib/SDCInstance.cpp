@@ -1,7 +1,6 @@
 #include "SDCLib/SDCInstance.h"
 
 #include "SDCLib/SDCLibrary.h"
-#include "SDCLib/SSLHandler.h"
 
 #include "SDCLib/Config/SDCConfig.h"
 #include "SDCLib/Config/NetworkConfig.h"
@@ -17,7 +16,6 @@ std::atomic_uint SDCInstance::s_IDcounter = ATOMIC_VAR_INIT(0);
 
 SDCInstance::SDCInstance(bool p_init)
  : m_SDCConfig([]() { return std::make_shared<Config::SDCConfig>(); } ())
- , m_SSLHandler([]() { return std::make_shared<SSL::SSLHandler>(); } ())
 {
     if(p_init) {
         init();
@@ -25,7 +23,6 @@ SDCInstance::SDCInstance(bool p_init)
 }
 SDCInstance::SDCInstance(Config::SDCConfig_shared_ptr p_config, bool p_init)
  : m_SDCConfig(p_config)
- , m_SSLHandler([]() { return std::make_shared<SSL::SSLHandler>(); } ())
 {
     if(p_init) {
         init();
@@ -33,9 +30,8 @@ SDCInstance::SDCInstance(Config::SDCConfig_shared_ptr p_config, bool p_init)
 }
 SDCInstance::SDCInstance(SDCPort, bool p_init)
  : m_SDCConfig([]() { return std::make_shared<Config::SDCConfig>(); } ())
- , m_SSLHandler([]() { return std::make_shared<SSL::SSLHandler>(); } ())
 {
-    std::cout << "SDCInstance(SDCPort, bool) Constructor will be removed in future versions. Please use SDCInstance(bool) Constructor." << std::endl;
+    std::cout << "SDCInstance(SDCPort, bool) Constructor will be removed in future versions." << std::endl;
     if(p_init) {
         init();
     }
@@ -74,6 +70,9 @@ bool SDCInstance::init()
         SDCLibrary::getInstance().startup();
     }
 
+    // Init Xerces
+    xercesc::XMLPlatformUtils::Initialize();
+
     // Just a simple name
     m_ID = "SDCInstance-" + std::to_string(s_IDcounter++);
 
@@ -83,15 +82,6 @@ bool SDCInstance::init()
     return true;
 }
 
-bool SDCInstance::initSSL(const Poco::Net::Context::VerificationMode p_modeClient, const Poco::Net::Context::VerificationMode p_modeServer)
-{
-    if(m_SSLHandler->isInit()) {
-        return false;
-    }
-    std::cout << "Init SSL..." << std::endl;
-    return m_SSLHandler->init(p_modeClient, p_modeServer);
-}
-
 Config::SDCConfig_shared_ptr SDCInstance::getSDCConfig() const
 {
     assert(m_SDCConfig != nullptr);
@@ -99,8 +89,18 @@ Config::SDCConfig_shared_ptr SDCInstance::getSDCConfig() const
 }
 Config::NetworkConfig_shared_ptr SDCInstance::getNetworkConfig() const
 {
-    assert(m_SDCConfig->getNetworkConfig() != nullptr);
+    assert(m_SDCConfig != nullptr);
     return m_SDCConfig->getNetworkConfig();
+}
+Config::SSLConfig_shared_ptr SDCInstance::getSSLConfig() const
+{
+    assert(m_SDCConfig != nullptr);
+    return m_SDCConfig->getSSLConfig();
+}
+bool SDCInstance::initSSL(const Poco::Net::Context::VerificationMode p_modeClient, const Poco::Net::Context::VerificationMode p_modeServer)
+{
+    assert(m_SDCConfig != nullptr);
+    return m_SDCConfig->getSSLConfig()->init(p_modeClient, p_modeServer);
 }
 
 bool SDCInstance::bindToDefaultNetworkInterface(bool p_useAsMDPWS)
@@ -108,7 +108,7 @@ bool SDCInstance::bindToDefaultNetworkInterface(bool p_useAsMDPWS)
     if (!isInit()) {
         return false;
     }
-    assert(m_SDCConfig->getNetworkConfig() != nullptr);
+    assert(m_SDCConfig != nullptr);
     return m_SDCConfig->getNetworkConfig()->bindToDefaultNetworkInterface(p_useAsMDPWS);
 }
 bool SDCInstance::bindToInterface(const std::string& ps_networkInterfaceName, bool p_useAsMDPWS)
@@ -116,7 +116,7 @@ bool SDCInstance::bindToInterface(const std::string& ps_networkInterfaceName, bo
     if (!isInit()) {
         return false;
     }
-    assert(m_SDCConfig->getNetworkConfig() != nullptr);
+    assert(m_SDCConfig != nullptr);
     return m_SDCConfig->getNetworkConfig()->bindToInterface(ps_networkInterfaceName, p_useAsMDPWS);
 }
 bool SDCInstance::_networkInterfaceBoundTo(std::string ps_adapterName) const
@@ -124,7 +124,7 @@ bool SDCInstance::_networkInterfaceBoundTo(std::string ps_adapterName) const
     if (!isInit()) {
         return false;
     }
-    assert(m_SDCConfig->getNetworkConfig() != nullptr);
+    assert(m_SDCConfig != nullptr);
     return m_SDCConfig->getNetworkConfig()->_networkInterfaceBoundTo(ps_adapterName);
 }
 
@@ -137,22 +137,22 @@ void SDCInstance::dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pin
 // IP4 / IP6 - Forward to the Config
 bool SDCInstance::getIP4enabled() const
 {
-    assert(m_SDCConfig->getNetworkConfig() != nullptr);
+    assert(m_SDCConfig != nullptr);
     return m_SDCConfig->getNetworkConfig()->getIP4enabled();
 }
 bool SDCInstance::getIP6enabled() const
 {
-    assert(m_SDCConfig->getNetworkConfig() != nullptr);
+    assert(m_SDCConfig != nullptr);
     return m_SDCConfig->getNetworkConfig()->getIP6enabled();
 }
 void SDCInstance::setIP4enabled(bool p_set)
 {
-    assert(m_SDCConfig->getNetworkConfig() != nullptr);
+    assert(m_SDCConfig != nullptr);
     m_SDCConfig->getNetworkConfig()->setIP4enabled(p_set);
 }
 void SDCInstance::setIP6enabled(bool p_set)
 {
-    assert(m_SDCConfig->getNetworkConfig() != nullptr);
+    assert(m_SDCConfig != nullptr);
     m_SDCConfig->getNetworkConfig()->setIP6enabled(p_set);
 }
 bool SDCInstance::setDiscoveryTime(std::chrono::milliseconds p_time)
@@ -168,6 +168,6 @@ bool SDCInstance::setDiscoveryTime(std::chrono::milliseconds p_time)
 }
 std::chrono::milliseconds SDCInstance::getDiscoveryTime() const
 {
-    assert(m_SDCConfig->getNetworkConfig() != nullptr);
+    assert(m_SDCConfig != nullptr);
     return m_SDCConfig->getNetworkConfig()->getDiscoveryTime();
 }

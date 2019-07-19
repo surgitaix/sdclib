@@ -17,7 +17,6 @@
 #include "Poco/Timestamp.h"
 #include "Poco/TimedNotificationQueue.h"
 #include "Poco/UnbufferedStreamBuf.h"
-#include "Poco/UUIDGenerator.h"
 
 #include <xercesc/util/PlatformUtils.hpp>
 

@@ -21,7 +21,6 @@
 #include "ws-addressing.hxx"
 
 #include "SDCLib/SDCInstance.h"
-#include "SDCLib/SSLHandler.h"
 
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 
@@ -382,12 +381,12 @@ bool SDCConsumerAdapter::start()
 
 	};
 
-    bool SSL_INIT = _consumer.getSDCInstance()->getSSLHandler()->isInit();
+    bool SSL_INIT = _consumer.getSDCInstance()->getSSLConfig()->isInit();
     // Use SSL
     if(SSL_INIT)
     {
         // ServerSocket
-        Poco::Net::SecureServerSocket t_sslSocket(_consumer.getSDCInstance()->getSSLHandler()->getServerContext());
+        Poco::Net::SecureServerSocket t_sslSocket(_consumer.getSDCInstance()->getSSLConfig()->getServerContext());
         t_sslSocket.bind(socketAddress);
         t_sslSocket.listen();
         t_sslSocket.setKeepAlive(true);
@@ -446,8 +445,8 @@ void SDCConsumerAdapter::subscribeEvents() {
 	auto t_port = _consumer.getSDCInstance()->getNetworkConfig()->getMDPWSPort();
 
     std::string ts_PROTOCOL = "http";
-    if(_consumer.getSDCInstance()->getSSLHandler()->isInit()) {
-        ts_PROTOCOL.append("s"); // FIXME
+    if(_consumer.getSDCInstance()->getSSLConfig()->isInit()) {
+        ts_PROTOCOL.append("s");
     }
 
 	std::vector<OSELib::DPWS::SubscriptionClient::SubscriptionInformation> subscriptions;
@@ -486,7 +485,7 @@ void SDCConsumerAdapter::subscribeEvents() {
 	// Note: Just passing Poco::Net::Context::Ptr means SSL has to be initialized when
 	//       the SubscriptionClient is created. Else nullptr is passed. Maybe rebuild
 	//       and pass SSLHandler if this causes errors.
-	_subscriptionClient = std::unique_ptr<OSELib::DPWS::SubscriptionClient>(new OSELib::DPWS::SubscriptionClient(subscriptions, _consumer.getSDCInstance()->getSSLHandler()->getClientContext()));
+	_subscriptionClient = std::unique_ptr<OSELib::DPWS::SubscriptionClient>(new OSELib::DPWS::SubscriptionClient(subscriptions, _consumer.getSDCInstance()->getSSLConfig()->getClientContext()));
 }
 
 void SDCConsumerAdapter::unsubscribeEvents() {

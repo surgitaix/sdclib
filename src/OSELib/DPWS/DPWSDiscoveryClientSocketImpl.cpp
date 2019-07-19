@@ -33,7 +33,7 @@ const MESSAGEMODEL::Envelope buildProbeMessage(const OSELib::DPWS::ProbeType & f
 	{
 		header.Action(probeUri);
 		header.To(discoveryUri);
-		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator().create().toString()));
+		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator::defaultGenerator().create().toString()));
 	}
 	MESSAGEMODEL::Envelope::BodyType body;
 	{
@@ -48,7 +48,7 @@ const MESSAGEMODEL::Envelope buildResolveMessage(const OSELib::DPWS::ResolveType
 	{
 		header.Action(resolveUri);
 		header.To(discoveryUri);
-		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator().create().toString()));
+		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator::defaultGenerator().create().toString()));
 	}
 	MESSAGEMODEL::Envelope::BodyType body;
 	{
@@ -194,8 +194,8 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
         // Add Ipv6 Socket EventHandler
         m_reactor.addEventHandler(m_ipv6DiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
     }
-	xercesc::XMLPlatformUtils::Initialize ();
 
+    // Start the Thread with the SocketReactor
 	m_reactorThread.start(m_reactor);
 }
 
@@ -223,14 +223,12 @@ DPWSDiscoveryClientSocketImpl::~DPWSDiscoveryClientSocketImpl() {
 
 	m_reactor.stop();
 	m_reactorThread.join();
-
-	xercesc::XMLPlatformUtils::Terminate ();
 }
 
 void DPWSDiscoveryClientSocketImpl::sendProbe(const ProbeType& filter) {
 	const MESSAGEMODEL::Envelope message(buildProbeMessage(filter));
 	if (message.Header().MessageID().present()) {
-		context.registerMessageId(message.Header().MessageID().get());
+		m_messagingContext.registerMessageId(message.Header().MessageID().get());
 	}
 	for (auto & socketQueue : m_socketSendMessageQueue) {
 		socketQueue.second.enqueueNotification(new SendMulticastMessage(serializeMessage(message)));
@@ -241,7 +239,7 @@ void DPWSDiscoveryClientSocketImpl::sendProbe(const ProbeType& filter) {
 void DPWSDiscoveryClientSocketImpl::sendResolve(const ResolveType& filter) {
 	const MESSAGEMODEL::Envelope message(buildResolveMessage(filter));
 	if (message.Header().MessageID().present()) {
-		context.registerMessageId(message.Header().MessageID().get());
+		m_messagingContext.registerMessageId(message.Header().MessageID().get());
 	}
 	for (auto & socketQueue : m_socketSendMessageQueue) {
 		socketQueue.second.enqueueNotification(new SendMulticastMessage(serializeMessage(message)));
@@ -277,13 +275,14 @@ void DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable(Poco::Net::Readabl
 	if (! message->Header().MessageID().present()) {
 		return;
 	}
-	if (! context.registerMessageId(message->Header().MessageID().get())) {
+	if (! m_messagingContext.registerMessageId(message->Header().MessageID().get())) {
+        log_debug([&] { return "DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable. registerMessageId failed!"; });
 		return;
 	}
 	if (! message->Header().AppSequence().present()) {
 		return;
 	}
-	if (! context.registerAppSequence(message->Header().AppSequence().get())) {
+	if (! m_messagingContext.registerAppSequence(message->Header().AppSequence().get())) {
 		return;
 	}
 	if (message->Body().Hello().present()) {
@@ -318,7 +317,8 @@ void DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable(Poco::Net::Readabl
 		return;
 	}
 	if (message->Header().MessageID().present()) {
-		if (! context.registerMessageId(message->Header().MessageID().get())) {
+		if (!m_messagingContext.registerMessageId(message->Header().MessageID().get())) {
+            log_debug([&] { return "DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable. registerMessageId failed!"; });
 			return;
 		}
 	}
@@ -393,7 +393,6 @@ bool DPWSDiscoveryClientSocketImpl::verifyBye(const MESSAGEMODEL::Envelope & mes
 		log_error([&] { return "Bye message: RelatesTo field should not be present."; });
 		return false;
 	}
-
 	return true;
 }
 

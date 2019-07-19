@@ -67,7 +67,7 @@ private:
 
 	std::map<Poco::Net::DatagramSocket, Poco::NotificationQueue> m_socketSendMessageQueue;
 
-	MessagingContext context;
+	MessagingContext m_messagingContext;
 
 	Poco::Thread m_reactorThread;
 	Poco::Net::SocketReactor m_reactor;

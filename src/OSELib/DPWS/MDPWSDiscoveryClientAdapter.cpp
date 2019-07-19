@@ -8,7 +8,6 @@
 #include <algorithm>
 
 #include "NormalizedMessageModel.hxx"
-#include "wsdd-discovery-1.1-schema-os.hxx"
 
 #include "OSELib/DPWS/MDPWSDiscoveryClientAdapter.h"
 #include "OSELib/DPWS/DPWSCommon.h"

@@ -1,3 +1,9 @@
+Update to version 4.2.1
+
+- Removed SSLHandler and moved functionality to SDCConfig->SSLConfig
+- Fixed UUID generation for MessageID. Discovery (in ConnectionLost and MultiSDC UnitTests) now works properly.
+- Reworked / Fixed some UnitTests
+
 Update to version 4.2.0
 
 - Introduces SDCConfig (NetworkConfig / SSLConfig) to SDCInstance

@@ -39,12 +39,10 @@ public:
     {
         // Init SDCInstance
         // Create a new SDCInstance (dont init yet) - give it a new port (just increment)
-        log_notice([]{ return "Creating new SDCInstance..."; });
         auto t_SDCInstance = std::make_shared<SDCInstance>(false);
         // Init
-        log_notice([]{ return "Init SDCInstance..."; });
         if(!t_SDCInstance->init()) {
-            log_notice([]{ return "CRITICAL: Failed to init SDCInstance"; });
+            log_notice([]{ return "Failed to init SDCInstance"; });
             return nullptr;
         }
         // Some restriction

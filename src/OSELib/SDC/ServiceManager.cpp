@@ -17,7 +17,6 @@
 #include "SDCLib/Config/SDCConfig.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 #include "SDCLib/Util/DebugOut.h"
-#include "SDCLib/SSLHandler.h"
 
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/DPWS/MDPWSDiscoveryClientAdapter.h"
@@ -348,7 +347,7 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 		Helper::XercesGrammarPoolProvider grammarPool;
 		std::unique_ptr<Invoker> invoker(new Invoker(deviceDescription.getDeviceURI(), grammarPool));
 
-		auto response(invoker->invoke(request, m_SDCInstance->getSSLHandler()->getClientContext()));
+		auto response(invoker->invoke(request, m_SDCInstance->getSSLConfig()->getClientContext()));
 
 		if (response != nullptr) {
 			for (const auto & metadata : response->MetadataSection()) {
@@ -370,7 +369,7 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 		using Invoker_metadata = OSELib::SOAP::GenericSoapInvoke<DPWS::GetMetadataTraits>;
 		std::unique_ptr<Invoker_metadata> invoker_metadata(new Invoker_metadata(deviceDescription.getWaveformEventReportURI(), grammarPool));
 
-		auto response_metadata(invoker_metadata->invoke(request_metadata, m_SDCInstance->getSSLHandler()->getClientContext()));
+		auto response_metadata(invoker_metadata->invoke(request_metadata, m_SDCInstance->getSSLConfig()->getClientContext()));
 
 		if (response_metadata != nullptr) {
 
@@ -404,11 +403,9 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
     // Create new SDCInstance with a NEW SDCConfiguration !
     auto t_config = SDCLib::Config::SDCConfig::randomMDPWSConfig(m_SDCInstance->getSDCConfig());
     if(!t_config) {
-        std::cout << "Failed to shuffle!" << std::endl;
         return nullptr;
     }
     auto t_SDCInstance = std::make_shared<SDCLib::SDCInstance>(t_config);
-    std::cout << "CREATE NEW SDCInstance: " << t_SDCInstance->getNetworkConfig()->getMDPWSPort() << std::endl;
 	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> result(new SDCLib::Data::SDC::SDCConsumer(t_SDCInstance, deviceDescription));
 
 	if (!result->isConnected()) {

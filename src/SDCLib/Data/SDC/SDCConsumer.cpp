@@ -30,7 +30,6 @@
 #include "osdm.hxx"
 
 #include "SDCLib/SDCLibrary.h"
-#include "SDCLib/SSLHandler.h"
 #include "SDCLib/Data/SDC/FutureInvocationState.h"
 #include "OSELib/SDC/SDCConstants.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
@@ -245,7 +244,7 @@ MdibContainer SDCConsumer::getMdib() {
 MdDescription SDCConsumer::getMdDescription()
 {
     const MDM::GetMdDescription request;
-    auto response(_adapter->invoke(request, getSDCInstance()->getSSLHandler()->getClientContext()));
+    auto response(_adapter->invoke(request, getSDCInstance()->getSSLConfig()->getClientContext()));
 	if (response == nullptr) {
         log_error([] { return "GetMdDescription request failed!"; });
 		onConnectionLost();
@@ -274,7 +273,7 @@ MdDescription SDCConsumer::getCachedMdDescription() {
 MdState SDCConsumer::getMdState()
 {
     const MDM::GetMdState request;
-    auto response(_adapter->invoke(request, getSDCInstance()->getSSLHandler()->getClientContext()));
+    auto response(_adapter->invoke(request, getSDCInstance()->getSSLConfig()->getClientContext()));
 
 	if (response == nullptr) {
 		log_error([] { return "GetMdState request failed!"; });
@@ -336,7 +335,7 @@ bool SDCConsumer::requestMdib()
 
 std::unique_ptr<MDM::GetMdibResponse> SDCConsumer::requestCDMMdib() {
     const MDM::GetMdib request;
-    auto response(_adapter->invoke(request, getSDCInstance()->getSSLHandler()->getClientContext()));
+    auto response(_adapter->invoke(request, getSDCInstance()->getSSLConfig()->getClientContext()));
     return response;
 }
 
@@ -515,7 +514,7 @@ InvocationState SDCConsumer::commitStateImpl(const StateType & state, FutureInvo
 	}
 
 	const typename OperationTraits::Request request(createRequestMessage(state, operationHandle));
-	std::unique_ptr<const typename OperationTraits::Response> response(_adapter->invoke(request, getSDCInstance()->getSSLHandler()->getClientContext()));
+	std::unique_ptr<const typename OperationTraits::Response> response(_adapter->invoke(request, getSDCInstance()->getSSLConfig()->getClientContext()));
 	if (response == nullptr) {
 		return InvocationState::Fail;
 	} else {
@@ -550,7 +549,7 @@ InvocationState SDCConsumer::activate(const std::string & handle, FutureInvocati
     const MdDescription mdd(getCachedMdDescription());
 
 	const MDM::Activate request(createRequestMessage(handle));
-	auto response(_adapter->invoke(request, getSDCInstance()->getSSLHandler()->getClientContext()));
+	auto response(_adapter->invoke(request, getSDCInstance()->getSSLConfig()->getClientContext()));
 	if (response == nullptr) {
 		return InvocationState::Fail;
 	} else {
@@ -584,7 +583,7 @@ std::unique_ptr<TStateType> SDCConsumer::requestState(const std::string & handle
     MDM::GetMdState request;
     request.HandleRef().push_back(handle);
 
-    auto response (_adapter->invoke(request, getSDCInstance()->getSSLHandler()->getClientContext()));
+    auto response (_adapter->invoke(request, getSDCInstance()->getSSLConfig()->getClientContext()));
     if (response == nullptr) {
     	log_error([&] { return "requestState failed: invoke of adapter returned nullptr for handle "  + handle; });
     	return nullptr;

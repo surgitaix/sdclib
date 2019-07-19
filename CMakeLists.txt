@@ -39,7 +39,7 @@ project(${PROJECT_NAME})
 # Version numbers -> Will be written to the config file
 set (SDCLibrary_VERSION_FIRST          4)
 set (SDCLibrary_VERSION_MIDDLE         2)
-set (SDCLibrary_VERSION_LAST           0)
+set (SDCLibrary_VERSION_LAST           1)
 set (SDCLibrary_C_YEAR              2019)
 set (SDCLibrary_SurgiTAIX "SurgiTAIX AG")
 
@@ -161,6 +161,13 @@ mark_as_advanced(SDC_DEFAULT_PORT_RANGE)
 
 set(SDC_DISCOVERY_TIMEOUT_MS 5000 CACHE STRING "Time in milliseconds a Discovery until timeout." FORCE)
 mark_as_advanced(SDC_DISCOVERY_TIMEOUT_MS)
+
+set(SDC_CONNECTION_TIMEOUT_MS 4000 CACHE STRING "Time in milliseconds the SDCLib will check if the connection is lost." FORCE)
+mark_as_advanced(SDC_CONNECTION_TIMEOUT_MS)
+
+
+set(SDC_MAX_KNOWN_MESSAGE_IDS 200 CACHE STRING "Limits the maximum number of MessageIDs a Messaging Context caches. Be careful with this value!" FORCE)
+mark_as_advanced(SDC_MAX_KNOWN_MESSAGE_IDS)
 
 set(SDC_IP_V4_ENABLED true  CACHE STRING "Enable IPv4 by default or not." FORCE)
 set(SDC_IP_V6_ENABLED false CACHE STRING "Enable IPv6 by default or not." FORCE)

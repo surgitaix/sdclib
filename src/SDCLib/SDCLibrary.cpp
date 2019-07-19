@@ -90,8 +90,6 @@ void SDCLibrary::shutdown()
     {
         initialized = false;
         _latestPingManager.reset();
-        // XercesC -> Obligatory
-        xercesc::XMLPlatformUtils::Terminate();
     }
 }
 

@@ -667,9 +667,11 @@ void SDCProvider::updateState(const AlertConditionState & object) {
 	//Evaluate Alert Conditions sources, based on changes to the AlertCoditionState
 	std::string handle = object.getDescriptorHandle();
 	MdDescription mdDescription = getMdDescription();
-	std::unique_ptr<AlertConditionDescriptor> alertConditionDescription(std::move(mdDescription.findDescriptor<AlertConditionDescriptor>(handle)));
-	for (auto source : alertConditionDescription->getSourceList())
-	{
+	auto t_descriptor(std::move(mdDescription.findDescriptor<AlertConditionDescriptor>(handle)));
+    if(t_descriptor == nullptr) {
+        return;
+    }
+	for (auto source : t_descriptor->getSourceList()) {
 		evaluateAlertConditions(source);
 	}
 	notifyAlertEventImpl(object);
@@ -686,9 +688,11 @@ void SDCProvider::updateState(const LimitAlertConditionState & object) {
 	//Evaluate Alert Conditions sources, based on changes to the AlertCoditionState
 	std::string handle = object.getDescriptorHandle();
 	MdDescription mdDescription = getMdDescription();
-	std::unique_ptr<AlertConditionDescriptor> alertConditionDescription(std::move(mdDescription.findDescriptor<AlertConditionDescriptor>(handle)));
-	for (auto source : alertConditionDescription->getSourceList())
-	{
+	auto t_descriptor(std::move(mdDescription.findDescriptor<LimitAlertConditionDescriptor>(handle)));
+    if(t_descriptor == nullptr) {
+        return;
+    }
+	for (auto source : t_descriptor->getSourceList()) {
 		evaluateAlertConditions(source);
 	}
 	notifyAlertEventImpl(object);
@@ -967,7 +971,6 @@ void SDCProvider::evaluateAlertConditions(const std::string & source) const
 	if (relevantDescriptors.empty()) {
         return;
 	}
-
 
     {   // LOCK
         std::lock_guard<std::mutex> t_lock{m_mutex_MdStateHandler};

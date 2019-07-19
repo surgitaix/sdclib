@@ -37,24 +37,24 @@ namespace SDCLib
         private:
 
             NetworkConfig_shared_ptr m_networkConfig = nullptr;
-
             SSLConfig_shared_ptr m_SSLConfig = nullptr;
 
         public:
 
-            // Special Member Functions
             SDCConfig();
             SDCConfig(NetworkConfig_shared_ptr p_networkConfig);
             SDCConfig(NetworkConfig_shared_ptr p_networkConfig, SSLConfig_shared_ptr p_SSLConfig);
 
+            // Special Member Functions
             SDCConfig(const SDCConfig& p_obj) = default;
             SDCConfig(SDCConfig&& p_obj) = default;
             SDCConfig& operator=(const SDCConfig& p_obj) = default;
             SDCConfig& operator=(SDCConfig&& p_obj) = default;
             ~SDCConfig() = default;
 
-
+            // Get the SubConfigs
             NetworkConfig_shared_ptr getNetworkConfig() const { return m_networkConfig; }
+            SSLConfig_shared_ptr getSSLConfig() const { return m_SSLConfig; }
 
             // Copy with random MDPWS Port
             static SDCConfig_shared_ptr randomMDPWSConfig(SDCConfig_shared_ptr p_config);

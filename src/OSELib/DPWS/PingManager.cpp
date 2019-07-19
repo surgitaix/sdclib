@@ -8,7 +8,6 @@
 #include "OSELib/DPWS/PingManager.h"
 
 #include "SDCLib/SDCInstance.h"
-#include "SDCLib/SSLHandler.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 
 #include "OSELib/DPWS/OperationTraits.h"
@@ -32,13 +31,13 @@ PingManager::~PingManager() {
 void PingManager::run()
 {
 	Helper::XercesGrammarPoolProvider grammarProvider;
-	while (Poco::Thread::trySleep(5000))
+	while (Poco::Thread::trySleep(SDCLib::Config::SDC_CONNECTION_TIMEOUT_MS))
     {
 		OSELib::DPWS::ProbeTraits::Request request;
 		using ProbeInvoke = OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::ProbeTraits>;
 		ProbeInvoke probeInvoke(_consumer._deviceDescription.getDeviceURI(), grammarProvider);
 		try {
-			auto response(probeInvoke.invoke(request, _consumer.getSDCInstance()->getSSLHandler()->getClientContext()));
+			auto response(probeInvoke.invoke(request, _consumer.getSDCInstance()->getSSLConfig()->getClientContext()));
 			if (!response) {
 				_consumer.onConnectionLost();
 				return;

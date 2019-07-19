@@ -117,10 +117,7 @@ TEST_FIXTURE(FixtureMultiSDC, MultiSDC)
 			providers.push_back(p);
             providerEPRs.push_back(p->getEndpointReference());
 			p->startup();
-            std::this_thread::sleep_for(std::chrono::milliseconds(500));
 		}
-        // Wait for startup...
-        std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Starting discovery test...";
 
@@ -155,7 +152,6 @@ TEST_FIXTURE(FixtureMultiSDC, MultiSDC)
         for (auto & next : providers) {
         	next->shutdown();
         }
-        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     } catch (char const* exc) {
 		DebugOut(DebugOut::Default, std::cerr, m_details.testName) << exc;
 	} catch (...) {

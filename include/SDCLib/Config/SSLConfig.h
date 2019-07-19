@@ -48,12 +48,12 @@ namespace SDCLib
         public:
 
             // Special Member Functions
-            SSLConfig();
+            SSLConfig() = default;
             SSLConfig(const SSLConfig& p_obj) = delete;
             SSLConfig(SSLConfig&& p_obj) = delete;
             SSLConfig& operator=(const SSLConfig& p_obj) = delete;
             SSLConfig& operator=(SSLConfig&& p_obj) = delete;
-            ~SSLConfig();
+            ~SSLConfig() = default;
 
             bool init(const Poco::Net::Context::VerificationMode p_modeClient = Poco::Net::Context::VERIFY_RELAXED, const Poco::Net::Context::VerificationMode p_modeServer = Poco::Net::Context::VERIFY_RELAXED);
             bool isInit() const { return m_init; }
@@ -71,8 +71,6 @@ namespace SDCLib
 
             bool _initClientSide(const Poco::Net::Context::VerificationMode p_mode);
             bool _initServerSide(const Poco::Net::Context::VerificationMode p_mode);
-
-            void _cleanup();
         };
     }
 }

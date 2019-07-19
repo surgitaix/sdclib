@@ -333,7 +333,7 @@ struct FixtureStreamSDC : Tests::AbstractSDCLibFixture {
 };
 
 SUITE(SDC) {
-TEST_FIXTURE(FixtureStreamSDC, streamsdc)
+TEST_FIXTURE(FixtureStreamSDC, StreamSDC)
 {
 	DebugOut::openLogFile("TestStream.log.txt", true);
 	try

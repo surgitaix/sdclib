@@ -1,16 +1,19 @@
 #include "SDCLib/Config/SDCConfig.h"
 
 #include "SDCLib/Config/NetworkConfig.h"
+#include "SDCLib/Config/SSLConfig.h"
 
 using namespace SDCLib;
 using namespace SDCLib::Config;
 
 SDCConfig::SDCConfig()
  : m_networkConfig([]() { return std::make_shared<Config::NetworkConfig>(); } ())
+ , m_SSLConfig([]() { return std::make_shared<Config::SSLConfig>(); } ())
 {
 }
 SDCConfig::SDCConfig(NetworkConfig_shared_ptr p_portConfig)
  : m_networkConfig(p_portConfig)
+ , m_SSLConfig([]() { return std::make_shared<Config::SSLConfig>(); } ())
 {
     assert(m_networkConfig != nullptr);
 }
@@ -21,6 +24,7 @@ SDCConfig::SDCConfig(NetworkConfig_shared_ptr p_portConfig, SSLConfig_shared_ptr
     assert(m_networkConfig != nullptr);
     assert(m_SSLConfig != nullptr);
 }
+
 SDCConfig_shared_ptr SDCConfig::randomMDPWSConfig(SDCConfig_shared_ptr p_config)
 {
     assert(p_config);

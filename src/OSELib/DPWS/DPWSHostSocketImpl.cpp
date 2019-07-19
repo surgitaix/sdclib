@@ -30,7 +30,7 @@ const MESSAGEMODEL::Envelope buildByeMessage(const ByeType & notification) {
 	{
 		header.Action(byeUri);
 		header.To(discoveryUri);
-		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator().create().toString()));
+		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator::defaultGenerator().create().toString()));
 	}
 	MESSAGEMODEL::Envelope::BodyType body;
 	{
@@ -44,7 +44,7 @@ const MESSAGEMODEL::Envelope buildHelloMessage(const HelloType & notification) {
 	{
 		header.Action(helloUri);
 		header.To(discoveryUri);
-		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator().create().toString()));
+		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator::defaultGenerator().create().toString()));
 	}
 	MESSAGEMODEL::Envelope::BodyType body;
 	{
@@ -58,7 +58,7 @@ const MESSAGEMODEL::Envelope buildStreamMessage(const MDM::WaveformStream  & not
 	MESSAGEMODEL::Envelope::HeaderType header;
 	{
 		header.Action(xml_schema::Uri(SDC::EVENT_ACTION_CDM_WAVEFORM_STREAM_REPORT));
-		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator().create().toString()));
+		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator::defaultGenerator().create().toString()));
 		header.From(epr);
 	}
 	MESSAGEMODEL::Envelope::BodyType body;
@@ -86,7 +86,7 @@ const MESSAGEMODEL::Envelope buildProbeMatchMessage(const std::vector<ProbeMatch
 		if (request.Header().MessageID().present()) {
 			header.RelatesTo(request.Header().MessageID().get());
 		}
-		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator().create().toString()));
+		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator::defaultGenerator().create().toString()));
 	}
 	MESSAGEMODEL::Envelope::BodyType body;
 	{
@@ -112,7 +112,7 @@ const MESSAGEMODEL::Envelope buildResolveMatchMessage(const ResolveMatchType & n
 		if (request.Header().MessageID().present()) {
 			header.RelatesTo(request.Header().MessageID().get());
 		}
-		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator().create().toString()));
+		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator::defaultGenerator().create().toString()));
 	}
 	MESSAGEMODEL::Envelope::BodyType body;
 	{
@@ -155,8 +155,6 @@ DPWSHostSocketImpl::DPWSHostSocketImpl(
 	generator(std::chrono::system_clock::now().time_since_epoch().count()),
 	distribution(0, OSELib::APP_MAX_DELAY)
 {
-	xercesc::XMLPlatformUtils::Initialize ();
-
     if (m_networkConfig->getIP4enabled())
     {
         // Create ListeningSocket
@@ -274,7 +272,7 @@ DPWSHostSocketImpl::DPWSHostSocketImpl(
         reactor.addEventHandler(m_ipv6MulticastListeningSocket, Poco::Observer<DPWSHostSocketImpl, Poco::Net::TimeoutNotification>(*this, &DPWSHostSocketImpl::onTimeOut));
     }
 
-
+    // Start the Thread with the SocketReactor
 	reactorThread.start(reactor);
 }
 
@@ -302,8 +300,6 @@ DPWSHostSocketImpl::~DPWSHostSocketImpl() {
 
 	reactor.stop();
 	reactorThread.join();
-
-	xercesc::XMLPlatformUtils::Terminate ();
 }
 
 void DPWSHostSocketImpl::sendBye(const ByeType & bye) {
@@ -390,8 +386,12 @@ void DPWSHostSocketImpl::onMulticastSocketReadable(Poco::Net::ReadableNotificati
 	processDelayedMessages();
 }
 
-void DPWSHostSocketImpl::onDatagrammSocketWritable(Poco::Net::WritableNotification * notification) {
+void DPWSHostSocketImpl::onDatagrammSocketWritable(Poco::Net::WritableNotification * notification)
+{
 	processDelayedMessages();
+
+    std::lock_guard<std::mutex> t_lock(m_mutex);
+
     const Poco::AutoPtr<Poco::Net::WritableNotification> pNf(notification);
     // By Sebastian TTL
     // Poco::Net::DatagramSocket socket(pNf->socket());
@@ -403,6 +403,7 @@ void DPWSHostSocketImpl::onDatagrammSocketWritable(Poco::Net::WritableNotificati
 		notification->source().removeEventHandler(socket, Poco::Observer<DPWSHostSocketImpl, Poco::Net::WritableNotification>(*this, &DPWSHostSocketImpl::onDatagrammSocketWritable));
 		return;
 	}
+
 	{ // send unicast
 		const Poco::AutoPtr<SendUnicastMessage> message(rawMessage.cast<SendUnicastMessage>());
 		if (! message.isNull()) {
@@ -431,11 +432,15 @@ void DPWSHostSocketImpl::onTimeOut(Poco::Net::TimeoutNotification * notification
 	processDelayedMessages();
 }
 
-Poco::Timestamp DPWSHostSocketImpl::createDelay() {
+Poco::Timestamp DPWSHostSocketImpl::createDelay()
+{
 	return Poco::Timestamp() + Poco::Timespan(0, 0, 0, 0, distribution(generator)*1000); // Microseconds!
 }
 
-void DPWSHostSocketImpl::processDelayedMessages() {
+void DPWSHostSocketImpl::processDelayedMessages()
+{
+
+    std::lock_guard<std::mutex> t_lock(m_mutex);
 
     // FIXME!
 	if (delayedMessages.empty()) {

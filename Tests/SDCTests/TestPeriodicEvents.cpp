@@ -421,7 +421,7 @@ struct FixturePeriodicEvents : Tests::AbstractSDCLibFixture {
 };
 
 SUITE(SDC) {
-TEST_FIXTURE(FixturePeriodicEvents, periodicevents)
+TEST_FIXTURE(FixturePeriodicEvents, PeriodicEvents)
 {
 	try
 	{

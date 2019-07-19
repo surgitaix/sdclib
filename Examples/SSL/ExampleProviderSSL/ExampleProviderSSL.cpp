@@ -14,7 +14,6 @@
 
 #include "SDCLib/SDCLibrary.h"
 #include "SDCLib/SDCInstance.h"
-#include "SDCLib/SSLHandler.h"
 
 #include "SDCLib/Data/SDC/SDCProviderComponentStateHandler.h"
 #include "SDCLib/Data/SDC/SDCProviderStateHandler.h"
@@ -389,11 +388,11 @@ int main()
         return -1;
     }
 
-    // Configure SSLHandler
-    auto t_SSLHandler = t_SDCInstance->getSSLHandler();
-    t_SSLHandler->addCertificateAuthority("rootCA.pem");
-    t_SSLHandler->useCertificate("leaf.pem");
-    t_SSLHandler->useKeyFiles(/*Public Key*/"", "leafkey.pem", ""/* Password for Private Keyfile */);
+    // Configure SSL
+    auto t_SSLConfig = t_SDCInstance->getSSLConfig();
+    t_SSLConfig->addCertificateAuthority("rootCA.pem");
+    t_SSLConfig->useCertificate("leaf.pem");
+    t_SSLConfig->useKeyFiles(/*Public Key*/"", "leafkey.pem", ""/* Password for Private Keyfile */);
 
 
 	SDCStreamProvider provider(t_SDCInstance);

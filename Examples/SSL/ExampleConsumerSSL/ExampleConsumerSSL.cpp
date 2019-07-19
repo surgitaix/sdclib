@@ -28,7 +28,6 @@
 
 
 #include "SDCLib/SDCLibrary.h"
-#include "SDCLib/SSLHandler.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 #include "SDCLib/Data/SDC/SDCConsumerConnectionLostHandler.h"
 #include "SDCLib/Data/SDC/SDCConsumerMDStateHandler.h"
@@ -155,11 +154,11 @@ int main() {
         return -1;
     }
 
-    // Configure SSLHandler
-    auto t_SSLHandler = t_SDCInstance->getSSLHandler();
-    t_SSLHandler->addCertificateAuthority("rootCA.pem");
-    t_SSLHandler->useCertificate("leaf.pem");
-    t_SSLHandler->useKeyFiles(/*Public Key*/"", "leafkey.pem", ""/* Password for Private Keyfile */);
+    // Configure SSL
+    auto t_SSLConfig = t_SDCInstance->getSSLConfig();
+    t_SSLConfig->addCertificateAuthority("rootCA.pem");
+    t_SSLConfig->useCertificate("leaf.pem");
+    t_SSLConfig->useKeyFiles(/*Public Key*/"", "leafkey.pem", ""/* Password for Private Keyfile */);
 
 	// Discovery
 	OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
@@ -194,7 +193,7 @@ int main() {
 			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested get metrics value: " << pGetMetricState->getMetricValue().getValue();
 
 			// set numeric metric
-			std::unique_ptr<NumericMetricState> pMetricState(consumer.requestState<NumericMetricState>(HANDLE_GET_METRIC));
+			std::unique_ptr<NumericMetricState> pMetricState(consumer.requestState<NumericMetricState>(HANDLE_SET_METRIC));
 			pMetricState->setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(10));
 
 			FutureInvocationState fis;

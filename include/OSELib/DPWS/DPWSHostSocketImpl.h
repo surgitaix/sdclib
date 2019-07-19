@@ -48,6 +48,9 @@ public:
 	void sendStream(const MDM::WaveformStream & stream, const AddressType epr);
 
 private:
+
+    std::mutex m_mutex;
+
 	void onMulticastSocketReadable(Poco::Net::ReadableNotification * notification);
 	void onDatagrammSocketWritable(Poco::Net::WritableNotification * notification);
 	void onTimeOut(Poco::Net::TimeoutNotification * notification);

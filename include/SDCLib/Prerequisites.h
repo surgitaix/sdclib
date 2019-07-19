@@ -55,12 +55,6 @@ namespace SDCLib
         class SSLConfig;
         using SSLConfig_shared_ptr = std::shared_ptr<SSLConfig>;
     }
-
-    namespace SSL
-    {
-        class SSLHandler;
-        using SSLHandler_shared_ptr = std::shared_ptr<SSLHandler>;
-    }
     // Just a few helpers
     namespace Data {
             namespace SDC {

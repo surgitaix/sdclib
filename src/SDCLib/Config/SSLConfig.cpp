@@ -21,35 +21,14 @@ using namespace SDCLib::Config;
 using namespace Poco::Net;
 
 
-SSLConfig::SSLConfig()
-{
-    Poco::Net::initializeSSL();
-}
-SSLConfig::~SSLConfig()
-{
-    _cleanup();
-}
-
-void SSLConfig::_cleanup()
-{
-    // Nothing to cleanup
-    if (!isInit()) {
-        return;
-    }
-
-    // Lock
-    //std::lock_guard<std::mutex> t_lock(m_mutex);
-
-    // ...Cleanup....
-    // TODO
-
-}
-
 bool SSLConfig::init(const Poco::Net::Context::VerificationMode p_modeClient, const Poco::Net::Context::VerificationMode p_modeServer)
 {
     if (isInit()) {
         return false;
     }
+
+    // Init All SSL related Handlers
+    Poco::Net::initializeSSL();
 
     try {
         if(!_initClientSide(p_modeClient)) { return false; }
@@ -59,6 +38,9 @@ bool SSLConfig::init(const Poco::Net::Context::VerificationMode p_modeClient, co
     {
         return false;
     }
+
+    // Lock
+    std::lock_guard<std::mutex> t_lock(m_mutex);
 
     // Important!
     m_context_client->enableExtendedCertificateVerification(false);

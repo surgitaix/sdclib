@@ -28,7 +28,6 @@ set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             ${INCLUDE_DIR}/SDCLib/Config/SDCConfig.h
                             ${INCLUDE_DIR}/SDCLib/Config/NetworkConfig.h
                             ${INCLUDE_DIR}/SDCLib/Config/SSLConfig.h
-
                             # OSELib
                             # Schema
                             ${INCLUDE_DIR}/OSELib/Schema/Schema.h
@@ -308,7 +307,6 @@ target_sources(${CURRENT_TARGET_NAME}
         # SDCLib
         ${SRC_DIR}/SDCLib/SDCLibrary.cpp
         ${SRC_DIR}/SDCLib/SDCInstance.cpp
-        ${SRC_DIR}/SDCLib/SSLHandler.cpp
         # Config
         ${SRC_DIR}/SDCLib/Config/SDCConfig.cpp
         ${SRC_DIR}/SDCLib/Config/NetworkConfig.cpp

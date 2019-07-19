@@ -42,5 +42,12 @@ openssl x509 -in leaf.pem -text -noout
 # If necessary you can extract the public key:
 openssl rsa -pubout -in leafkey.pem -out public.pem
 
-# Necessay? Test! (WIP)
+# Test! (WIP)
 openssl verify -verbose -x509_strict -CAfile rootCA.pem leaf.pem
+
+# Install the Files:
+# Calc the hash:
+openssl x509 -noout -hash -in <FILENAME>
+
+# Create a symbolic link (add it to /usr/lib/ssl or check with openssl version -d):
+ln -s rootCA.pem `openssl x509 -hash -noout -in rootCA.pem`.0

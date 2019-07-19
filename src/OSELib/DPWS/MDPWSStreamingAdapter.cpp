@@ -117,8 +117,7 @@ MDPWSStreamingAdapter::MDPWSStreamingAdapter(SDCLib::Config::NetworkConfig_share
         m_reactor.addEventHandler(m_ipv6MulticastSocket, Poco::Observer<MDPWSStreamingAdapter, Poco::Net::ReadableNotification>(*this, &MDPWSStreamingAdapter::onMulticastSocketReadable));
     }
 
-    xercesc::XMLPlatformUtils::Initialize();
-
+    // Start the Thread with the SocketReactor
     m_reactorThread.start(m_reactor);
 }
 
@@ -141,8 +140,6 @@ MDPWSStreamingAdapter::~MDPWSStreamingAdapter() {
 
 	m_reactor.stop();
 	m_reactorThread.join();
-
-	xercesc::XMLPlatformUtils::Terminate ();
 }
 
 void MDPWSStreamingAdapter::onMulticastSocketReadable(Poco::Net::ReadableNotification * notification) {
