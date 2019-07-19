@@ -22,7 +22,7 @@ template<typename TState>
 class SDCParticipantMDStateForwarder : public SDCConsumerMDStateHandler<TState>, public SDCProviderMDStateHandler<TState> {
 public:
 	SDCParticipantMDStateForwarder(const std::string descriptorHandle) : SDCConsumerMDStateHandler<TState>(descriptorHandle), SDCProviderMDStateHandler<TState>(descriptorHandle) {}
-	virtual ~SDCParticipantMDStateForwarder() {}
+	virtual ~SDCParticipantMDStateForwarder() = default;
 
 	void onStateChanged(const TState & state) override {
 		SDCProviderStateHandler::updateState(state);
@@ -31,7 +31,7 @@ public:
     InvocationState onStateChangeRequest(const TState & , const OperationInvocationContext & oic) override {
     	// extract information from the incoming operation
     	SDCProviderStateHandler::notifyOperationInvoked(oic, InvocationState::Start);
-    	return InvocationState::Fin;
+    	return InvocationState::Fail;
     }
 
 };

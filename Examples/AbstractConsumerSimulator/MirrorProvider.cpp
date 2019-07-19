@@ -2,7 +2,7 @@
  * MirrorProvider.cpp
  *
  *  Created on: Apr 10, 2019
- *      Author: sebastian
+ *      Author: rosenau
  */
 
 #include "MirrorProvider.h"
@@ -16,9 +16,10 @@ MirrorProvider::MirrorProvider(SDCInstance_shared_ptr p_SDCInstance) : sdcProvid
 
 }
 
-MirrorProvider::~MirrorProvider() {
+const std::string MirrorProvider::getEndpointReference()
+{
+	return sdcProvider.getEndpointReference();
 }
-
 //forwarding of the startup function
 void MirrorProvider::startup() {
 	sdcProvider.startup();
@@ -55,4 +56,9 @@ void MirrorProvider::runImpl() {
 
 MdibContainer MirrorProvider::getMdib() {
 	return sdcProvider.getMdib();
+}
+
+void MirrorProvider::createSetOperationForDescriptor(const NumericMetricDescriptor& descriptor, MdsDescriptor & ownerMDS)
+{
+	sdcProvider.createSetOperationForDescriptor(descriptor, ownerMDS);
 }

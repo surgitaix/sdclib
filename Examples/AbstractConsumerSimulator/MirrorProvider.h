@@ -2,7 +2,7 @@
  * MirrorProvider.h
  *
  *  Created on: Apr 10, 2019
- *      Author: sebastian
+ *      Author: rosenau
  */
 
 #ifndef EXAMPLES_ABSTRACTCONSUMERSIMULATOR_MIRRORPROVIDER_H_
@@ -22,10 +22,14 @@ using namespace SDCLib::Data::SDC;
 class MirrorProvider : public Util::Task {
 public:
 	MirrorProvider(SDCInstance_shared_ptr p_SDCInstance);
-	virtual ~MirrorProvider();
+	virtual ~MirrorProvider() = default;
 
 	void setEndpointReference(const std::string & epr);
+	const std::string getEndpointReference();
+
 	void setDeviceCharacteristics(const Dev::DeviceCharacteristics devChar);
+
+    void createSetOperationForDescriptor(const NumericMetricDescriptor& descriptor, MdsDescriptor & ownerMDS);
 
 	void startup();
 	void shutdown();

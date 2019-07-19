@@ -41,7 +41,7 @@ using namespace SDCLib::Data::SDC;
 
 const std::string ts_file("cachedMdib.xml");
 
-const std::string DEVICE_EPR("UDI-EXAMPLEPROVIDER");
+const std::string DEVICE_EPR("DUTMirrorProvider");
 
 const std::string HANDLE_SET_METRIC("handle_set");
 const std::string HANDLE_GET_METRIC("handle_get");
@@ -97,7 +97,6 @@ public:
         DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: handle_set received state change request. State's value: " << state.getMetricValue().getValue() << std::endl;
 
         notifyOperationInvoked(oic, InvocationState::Start);
-
         return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
     }
 
@@ -228,7 +227,7 @@ public:
     virtual void runImpl() override {
 
     	// Streaming init
-		const std::size_t size(1000);
+		const std::size_t size(1);
 		std::vector<double> samples;
 		for (std::size_t i = 0; i < size; ++i) {
 			samples.push_back(i);
@@ -237,13 +236,13 @@ public:
 
 		while (!isInterrupted()) {
 			{
-                updateStateValue(SampleArrayValue(MetricQuality(MeasurementValidity::Vld)).setSamples(RealTimeValueType(samples)));
+                //updateStateValue(SampleArrayValue(MetricQuality(MeasurementValidity::Vld)).setSamples(RealTimeValueType(samples)));
 			}
-			DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
+			//DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
 
 			// generate NumericMetricState
-			getNumericHandler.setNumericValue(42.0);
-			DebugOut(DebugOut::Default, "ExampleCachedProvider") << "NumericMetric: value changed to 42.0" << std::endl;
+			// getNumericHandler.setNumericValue(42.0);
+			//DebugOut(DebugOut::Default, "ExampleCachedProvider") << "NumericMetric: value changed to 42.0" << std::endl;
 			Poco::Thread::sleep(1000);
 			index += size;
 		}
@@ -265,7 +264,7 @@ int main()
 
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Startup" << std::endl;
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::Debug);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::None);
 
 	// Create a new SDCInstance (no flag will auto init)
     auto t_SDCInstance = std::make_shared<SDCInstance>(Config::SDC_DEFAULT_MDPWS_PORT, true);

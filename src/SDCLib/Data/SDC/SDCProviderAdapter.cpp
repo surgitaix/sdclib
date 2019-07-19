@@ -463,7 +463,9 @@ void SDCProviderAdapter::notifyEvent(const MDM::EpisodicMetricReport & report) {
 
 // WaveformStream uses UDP multicast, thus no subscription management is needed
 void SDCProviderAdapter::notifyEvent(const MDM::WaveformStream & stream) {
-	_dpwsHost->sendStream(stream);
+	if (_dpwsHost) { // assert???
+		_dpwsHost->sendStream(stream);
+	}
 }
 
 
