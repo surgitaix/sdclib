@@ -26,6 +26,7 @@
 
 #include <atomic>
 #include <memory>
+#include <mutex>
 
 #include "SDCLib/Prerequisites.h"
 
@@ -39,7 +40,6 @@
 #include "OSELib/Helper/WithLogger.h"
 
 #include <Poco/NotificationQueue.h>
-#include <Poco/Mutex.h>
 #include <Poco/Timestamp.h>
 #include <Poco/Timespan.h>
 
@@ -90,23 +90,23 @@ public:
     *
     * @return The MDIB container
     */
-    MdibContainer getMdib();
+    MdibContainer getMdib() const;
 
     /**
     * @brief Set the (static) Medical Device Description
     *
     * @param The MdDescription
     */
-    void setMdDescription(const MdDescription & mdDescription);
+    bool setMdDescription(const MdDescription & p_MdDescription);
     /**
     * @brief Set the (static) Medical Device Description
     *
     * @param The MdDescription as xml string
     */
-    void setMdDescription(std::string xml);
+    bool setMdDescription(std::string p_xml);
 
     /**
-    * @brief Get the (static) Medical Device Description.
+    * @brief Get the (static) Medical Device Description. Empty if not started yet.
     *
     * @return The MdDescription
     */
@@ -172,14 +172,25 @@ public:
     * @param oic operation invocation context
     */
     void setAlertConditionPresence(const std::string & alertConditionHandle, bool conditionPresence, const OperationInvocationContext & oic);
-    void evaluateAlertConditions(const std::string & source);
+
+    void evaluateAlertConditions(const std::string & p_source) const;
+    void reevaluateAlertConditions(const std::string & p_alertConditionDescriptor) const;
+
 
     /**
     * @brief Start the provider.
+    * @return True if successful, false if something went wrong. (See log for further details.)
     *
     * All needed DPWS devices & services will be created and hosted.
     */
-    void startup();
+    bool startup();
+
+    /**
+    * @brief Returns if the Provider was already started (initialized).
+    *
+    * @return true/false
+    */
+    bool isStarted() const { return m_started; }
     
     /**
     * @brief Stop the provider.
@@ -187,7 +198,7 @@ public:
     * All needed DPWS devices & services will be stopped and deleted.
     */
     void shutdown();
-    
+
     template<class T>
     void replaceState(const T & state);
 
@@ -196,28 +207,28 @@ public:
     *
     * @param handler The handler
     */
-    void addMdStateHandler(SDCProviderStateHandler * handler);
+    void addMdStateHandler(SDCProviderStateHandler* p_handler);
 
     /**
     * @brief Remove a request handler which provides states and processes incoming change requests from a consumer.
     *
     * @param handler The handler
     */
-    void removeMDStateHandler(SDCProviderStateHandler * handler);
+    void removeMDStateHandler(SDCProviderStateHandler* p_handler);
 
     /**
      * @brief Set the endpoint reference.
      *
      * @param epr the EPR
      */
-	void setEndpointReference(const std::string & epr);
+	void setEndpointReference(const std::string& p_epr);
 
     /**
      * @brief Set the endpoint reference.
      *
      * @return The EPR
      */
-	const std::string getEndpointReference() const;
+	std::string getEndpointReference() const;
 
     /**
      * @brief Get the low level DPWS device characteristics.
@@ -242,7 +253,7 @@ public:
     void incrementMDIBVersion();
 
 
-    Poco::Mutex & getMutex();
+    std::mutex& getMutex() { return m_mutex; } // FIXME! TODO: Keep mutex internal!
 
     /**
      * @brief Set the periodic event fire interval.
@@ -251,9 +262,12 @@ public:
      * @param millisecods Interval milliseconds
      */
     void setPeriodicEventInterval(const int seconds, const int milliseconds);
-    std::vector<std::string> getHandlesForPeriodicUpdate();
-    void addHandleForPeriodicEvent(const std::string & handle);
-    void removeHandleForPeriodicEvent(const std::string & handle);
+    Poco::Timespan getPeriodicEventInterval() const;
+    Poco::Timestamp getLastPeriodicEvent() const;
+    void setLastPeriodicEvent(Poco::Timestamp p_timestamp);
+    std::vector<std::string> getHandlesForPeriodicUpdate() const;
+    void addHandleForPeriodicEvent(const std::string& p_handle);
+    void removeHandleForPeriodicEvent(const std::string& p_handle);
 
     /**
 	* @brief Called on incoming consumer request for a state change.
@@ -371,27 +385,42 @@ private:
 
     SDCInstance_shared_ptr m_SDCInstance = nullptr;
 
-    std::atomic_uint atomicTransactionId;
+    mutable std::mutex m_mutex;
+    std::atomic<bool> m_started = ATOMIC_VAR_INIT(false);
 
-    std::atomic_ullong mdibVersion;
+    std::atomic_uint atomicTransactionId = ATOMIC_VAR_INIT(0);
 
-    std::map<std::string, SDCProviderStateHandler *> stateHandlers;
+    std::atomic_ullong mdibVersion = ATOMIC_VAR_INIT(0);
 
-	std::unique_ptr<MdDescription> m_mdDescription;
+    std::map<std::string, SDCProviderStateHandler *> m_stateHandlers;
+    mutable std::mutex m_mutex_MdStateHandler;
+
+    std::unique_ptr<MdDescription> m_MdDescription;
+    mutable std::mutex m_mutex_MdDescription;
+
+    MdState m_MdState;
+    mutable std::mutex m_mutex_MdState;
+    MdState m_operationStates;
+
     std::unique_ptr<SDCProviderAdapter> _adapter;
     Dev::DeviceCharacteristics m_devicecharacteristics;
-	mutable Poco::Mutex m_mutex;
+    mutable std::mutex m_mutex_DevC;
 
-    std::string endpointReference;
+    std::string m_endpointReference;
+    mutable std::mutex m_mutex_EPR;
 
-	MdState mdibStates;
-    MdState operationStates;
+
     Poco::NotificationQueue invokeQueue;
     std::shared_ptr<AsyncProviderInvoker> providerInvoker;
 
-    std::vector<std::string> handlesForPeriodicUpdates;
-    Poco::Timestamp lastPeriodicEvent;
-    Poco::Timespan periodicEventInterval = Poco::Timespan(10, 0);
+    std::vector<std::string> ml_handlesForPeriodicUpdates;
+    mutable std::mutex m_mutex_PeriodicUpdateHandles;
+
+    Poco::Timespan m_periodicEventInterval = Poco::Timespan(10, 0);
+    mutable std::mutex m_mutex_PeriodicUpdates;
+
+    Poco::Timestamp m_lastPeriodicEvent;
+    mutable std::mutex m_mutex_PeriodicEvent;
 
 //    std::map<std::string, int> streamingPorts;
 

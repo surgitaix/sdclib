@@ -24,7 +24,7 @@ class MDPWSHostAdapter :
 {
 public:
 	MDPWSHostAdapter(
-            SDCLib::SDCInstance_shared_ptr p_SDCInstance,
+            SDCLib::Config::NetworkConfig_shared_ptr p_config,
             const AddressType & epr,
 			const ScopesType & scopes,
 			const TypesType & types,

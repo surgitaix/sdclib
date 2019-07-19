@@ -16,12 +16,13 @@ namespace DPWS {
 
 class DeviceHandler : public SOAP::HTTPRequestHandlerExceptionTrap {
 public:
-	DeviceHandler(IDevice & service);
+	DeviceHandler(IDevice & service, bool p_SSL);
 
 private:
 	virtual void handleRequestImpl(Poco::Net::HTTPServerRequest & httpRequest, Poco::Net::HTTPServerResponse & httpResponse);
 
 	IDevice & _service;
+    const bool m_SSL = true;
 };
 
 } /* namespace SDC */

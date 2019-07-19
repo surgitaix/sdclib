@@ -1,39 +1,30 @@
 /*
- * ExampleCachedProvider.cpp
+ *  ExampleCachedProvider.cpp
  *
  *  @Copyright (C) 2017, SurgiTAIX AG
- *  Author: buerger
+ *  Author: buerger, baumeister
  *
- *  The ExampleCachedProvider uses an .xml file ('cachedMdib.xml') to build up an SDCProvider device. It further shows how some of the the providers states ('') can be used to
+ *  The ExampleCachedProvider uses an .xml file ('cachedMdib.xml') to build up an SDCProvider device.
+ *  It further shows how some of the the providers states ('') can be used to
  *
  */
 
 
 #include <string>
 #include <fstream>
-#include <streambuf>
+#include <thread>
+#include <numeric>
 
 #include "SDCLib/SDCLibrary.h"
 #include "SDCLib/Data/SDC/SDCProvider.h"
 #include "SDCLib/Data/SDC/SDCProviderMDStateHandler.h"
-#include "SDCLib/Data/SDC/MDIB/ChannelDescriptor.h"
-#include "SDCLib/Data/SDC/MDIB/CodedValue.h"
-#include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
-#include "SDCLib/Data/SDC/MDIB/MdsDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
-#include "SDCLib/Data/SDC/MDIB/LocalizedText.h"
-#include "SDCLib/Data/SDC/MDIB/MdDescription.h"
-#include "SDCLib/Data/SDC/MDIB/Range.h"
-#include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/SampleArrayValue.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricValue.h"
-#include "SDCLib/Data/SDC/MDIB/SystemContextDescriptor.h"
-#include "SDCLib/Data/SDC/MDIB/MetaData.h"
 #include "SDCLib/Util/DebugOut.h"
 #include "SDCLib/Util/Task.h"
-
 
 using namespace SDCLib;
 using namespace SDCLib::Util;
@@ -84,7 +75,8 @@ public:
 
 
 
-class SetNumericMetricStateHandler : public SDCProviderMDStateHandler<NumericMetricState> {
+class SetNumericMetricStateHandler : public SDCProviderMDStateHandler<NumericMetricState>
+{
 public:
 	// The state handler take a string named as the descriptor for referencing
     SetNumericMetricStateHandler(const std::string descriptorHandle)
@@ -103,9 +95,8 @@ public:
     // Helper method
     NumericMetricState createState() {
 		NumericMetricState result(descriptorHandle);
-		result
-			.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(2.0))
-			.setActivationState(ComponentActivation::On);
+		result .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(2.0))
+			   .setActivationState(ComponentActivation::On);
         return result;
     }
 
@@ -229,10 +220,9 @@ public:
     	// Streaming init
 		const std::size_t size(1);
 		std::vector<double> samples;
-		for (std::size_t i = 0; i < size; ++i) {
-			samples.push_back(i);
-		}
-		std::size_t index(0);
+        std::iota(samples.begin(), samples.end(), 0);
+
+		long index(0);
 
 		while (!isInterrupted()) {
 			{
@@ -241,9 +231,9 @@ public:
 			//DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
 
 			// generate NumericMetricState
-			// getNumericHandler.setNumericValue(42.0);
-			//DebugOut(DebugOut::Default, "ExampleCachedProvider") << "NumericMetric: value changed to 42.0" << std::endl;
-			Poco::Thread::sleep(1000);
+			getNumericHandler.setNumericValue(42.0);
+			DebugOut(DebugOut::Default, "ExampleCachedProvider") << "NumericMetric: value changed to 42.0" << std::endl;
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 			index += size;
 		}
     }
@@ -267,7 +257,7 @@ int main()
     SDCLibrary::getInstance().startup(OSELib::LogLevel::None);
 
 	// Create a new SDCInstance (no flag will auto init)
-    auto t_SDCInstance = std::make_shared<SDCInstance>(Config::SDC_DEFAULT_MDPWS_PORT, true);
+    auto t_SDCInstance = std::make_shared<SDCInstance>(true);
     // Some restriction
     t_SDCInstance->setIP6enabled(false);
     t_SDCInstance->setIP4enabled(true);
@@ -288,4 +278,6 @@ int main()
 	DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Shutdown." << std::endl;
 	provider.shutdown();
     SDCLibrary::getInstance().shutdown();
+
+    return 0;
 }

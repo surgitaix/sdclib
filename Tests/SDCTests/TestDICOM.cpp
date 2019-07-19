@@ -1,4 +1,6 @@
 
+#include <thread>
+
 #include "SDCLib/SDCInstance.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 #include "SDCLib/Data/SDC/SDCProvider.h"
@@ -17,9 +19,6 @@
 #include "../UnitTest++/src/UnitTest++.h"
 
 #include "OSELib/SDC/ServiceManager.h"
-
-#include "Poco/Mutex.h"
-#include "Poco/ScopedLock.h"
 
 using namespace SDCLib;
 using namespace SDCLib::Util;
@@ -100,7 +99,8 @@ TEST_FIXTURE(FixtureDICOMSDC, dicomSDC)
 	{
         // Provider
         Tests::DICOMSDC::SDCHoldingDeviceProvider provider;
-        provider.startup();    
+        provider.start();
+        provider.startup();
 
         // Consumer
         OSELib::SDC::ServiceManager t_serviceManager;
@@ -139,14 +139,13 @@ TEST_FIXTURE(FixtureDICOMSDC, dicomSDC)
             }
 
             // Run for some time
-    		Poco::Thread::sleep(10000);
+    		std::this_thread::sleep_for(std::chrono::milliseconds(10000));
 
             DebugOut(DebugOut::Default, "dicomSDC") << "Finished...";
-            
             consumer.disconnect();
 		}
 
-        Poco::Thread::sleep(2000);
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
         provider.shutdown();
     } catch (char const* exc) {
 		DebugOut(DebugOut::Default, std::cerr, "dicomSDC") << exc;

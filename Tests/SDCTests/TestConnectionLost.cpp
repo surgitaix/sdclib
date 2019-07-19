@@ -1,4 +1,6 @@
 
+#include <thread>
+
 #include "SDCLib/SDCInstance.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 #include "SDCLib/Data/SDC/SDCConsumerConnectionLostHandler.h"
@@ -18,9 +20,6 @@
 #include "../UnitTest++/src/UnitTest++.h"
 
 #include "OSELib/SDC/ServiceManager.h"
-
-#include "Poco/Mutex.h"
-#include "Poco/ScopedLock.h"
 
 #include <atomic>
 
@@ -69,7 +68,6 @@ public:
         VmdDescriptor t_vmd(VMD_DESCRIPTOR_HANDLE);
         t_vmd.addChannel(t_channel);
 
-
         // MDS
         MdsDescriptor t_Mds(MDS_DESCRIPTOR_HANDLE);
         t_Mds.setType(CodedValue("MDC_DEV_DOCU_POSE_MDS")
@@ -81,11 +79,9 @@ public:
                           .addSerialNumber(SDCLib::Config::CURRENT_C_YEAR))
             .addVmd(t_vmd);
 
-
         // create and add description
 		MdDescription mdDescription;
 		mdDescription.addMdsDescriptor(t_Mds);
-
 		sdcProvider.setMdDescription(mdDescription);
     }
 
@@ -120,16 +116,18 @@ struct FixtureConnectionLostSDC : Tests::AbstractSDCLibFixture {
 };
 
 SUITE(SDC) {
-TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostSDC)
+TEST_FIXTURE(FixtureConnectionLostSDC, ConnectionLost)
 {
 	try
 	{
 	    class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
 	    public:
-	    	MyConnectionLostHandler(Data::SDC::SDCConsumer & consumer) : consumer(consumer) {
-	    	}
+	    	MyConnectionLostHandler(Data::SDC::SDCConsumer & consumer)
+            : consumer(consumer)
+            { }
+
 	    	void onConnectionLost() override {
-	    		DebugOut logoutput(DebugOut::Default, std::cout, "connectionlostSDC");
+	    		DebugOut logoutput(DebugOut::Default, std::cout, "ConnectionLost");
 	    		logoutput << "Connection lost, disconnecting... ";
 	    		consumer.disconnect();
 	    		logoutput << "disconnected." << std::endl;
@@ -154,13 +152,9 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostSDC)
 			t_providerEPRs.push_back(p->getEndpointReference());
             // Startup
             p->startup();
-            Poco::Thread::sleep(100);
 		}
-		// Wait for startup...
-        Poco::Thread::sleep(1000);
 
-
-        DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Starting discovery test...";
+        DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Starting discovery test [Timeout: " << SDCLib::Config::SDC_DISCOVERY_TIMEOUT_MS << " ms] ...";
 
         OSELib::SDC::ServiceManager sm(createSDCInstance());
         auto tl_consumers{sm.discover()};
@@ -201,10 +195,12 @@ TEST_FIXTURE(FixtureConnectionLostSDC, connectionlostSDC)
         	next->shutdown();
         }
 
-        // Wait long enough for all to get a call... FIXME: Sometimes this test fails. Just because the timings arent correct.
-        DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting for connectionLostHanders...\n";
+        // Wait long enough for all to get a call...
 
-        Poco::Thread::sleep(10000); // Long enough to get all, or we get an error...
+        // Long enough that all ConnectionLost Handlers have the time to get triggered...
+        auto t_waitTime = SDCLib::Config::SDC_CONNECTION_TIMEOUT_MS * 1.2;
+        DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting " << t_waitTime << " ms for connectionLostHanders...\n";
+        std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<std::size_t>(t_waitTime)));
 
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Checking connectionLostHandlers...\n";
 

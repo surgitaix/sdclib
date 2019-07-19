@@ -19,6 +19,9 @@
 #include "OSELib/SOAP/SoapFaultCommand.h"
 #include "OSELib/SOAP/SoapHTTPResponseWrapper.h"
 
+#include <xercesc/util/XMLString.hpp>
+#include <xercesc/util/XMLException.hpp>
+
 namespace OSELib {
 namespace SOAP {
 
@@ -47,10 +50,14 @@ void HTTPRequestHandlerExceptionTrap::handleRequest(Poco::Net::HTTPServerRequest
 		log_error([&] { return "Processing HTTP request caused exception: \nUnhandled exception: " + std::string(e.what()); });
 		faultCommand = std::unique_ptr<Command>(new SoapFaultCommand(httpResponse));
 	} catch (const xercesc::XMLException & e) {
-		log_error([&] { return "Processing HTTP request caused exception: \nUnexpected Xerces-C++ exception with code: " + std::to_string(e.getCode()); });
+        char* t_msg(xercesc::XMLString::transcode(e.getMessage()));
+		log_error([&] { return "Processing HTTP request caused exception: \nUnexpected Xerces-C++ exception with code: " + std::to_string(e.getCode()) + std::string(t_msg); });
+        xercesc::XMLString::release(&t_msg);
 		faultCommand = std::unique_ptr<Command>(new SoapFaultCommand(httpResponse));
 	} catch (const xercesc::DOMException & e) {
-		log_error([&] { return "Processing HTTP request caused exception: \nUnexpected Xerces-C++ DOM exception with code: " + std::to_string(e.code); });
+        char* t_msg(xercesc::XMLString::transcode(e.getMessage()));
+		log_error([&] { return "Processing HTTP request caused exception: \nUnexpected Xerces-C++ DOM exception with code: " + std::to_string(e.code) + std::string(t_msg); });
+        xercesc::XMLString::release(&t_msg);
 		faultCommand = std::unique_ptr<Command>(new SoapFaultCommand(httpResponse));
 	} catch (...) {
 		log_error([] { return "Processing HTTP request caused exception: \nUnknown exception."; });

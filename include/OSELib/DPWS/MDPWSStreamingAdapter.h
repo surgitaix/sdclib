@@ -29,7 +29,7 @@ namespace Impl {
 
 class MDPWSStreamingAdapter : public WithLogger {
 public:
-    MDPWSStreamingAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInstance, StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription);
+    MDPWSStreamingAdapter(SDCLib::Config::NetworkConfig_shared_ptr p_config, StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription);
 
 	~MDPWSStreamingAdapter();
 
@@ -39,7 +39,7 @@ private:
 	// todo: implement verify msg
 	//	bool verifyStreamingMessage(const MESSAGEMODEL::Envelope & message);
 
-    SDCLib::SDCInstance_shared_ptr m_SDCInstance = nullptr;
+    SDCLib::Config::NetworkConfig_shared_ptr m_networkConfig = nullptr;
     //  callback function, implemented in SDCConsumerAdapter
 	StreamNotificationDispatcher & m_streamNotificationDispatcher;
 

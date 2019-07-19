@@ -1,3 +1,33 @@
+Update to version 4.2.2
+
+- All unit tests passing.
+- Merged reevaluateAlertCondition Fix from master.
+
+Update to version 4.2.1
+
+- Removed SSLHandler and moved functionality to SDCConfig->SSLConfig
+- Fixed UUID generation for MessageID. Discovery (in ConnectionLost and MultiSDC UnitTests) now works properly.
+- Reworked / Fixed some UnitTests
+
+Update to version 4.2.0
+
+- Introduces SDCConfig (NetworkConfig / SSLConfig) to SDCInstance
+- Fixed Discovery
+- Fixed Application Level Transmission Delay (APP_MAX_DELAY) related bug.
+
+
+Update to version 4.1.1
+
+- Upgrade Poco from 1.9.0 to 1.9.2 to include some bugfixes.
+- Some small tweaks to CMake configuration.
+
+Update to version 4.1.0
+
+- Rudimentary SSL Implementation [experimental]
+- See Examples/SSL: ExampleProviderSSL and ExampleConsumerSSL as well as Examples/SSL/doc/
+- OpenSSL (libssl-dev) needed to build SDCLib now
+- Further work on cmake/Modules
+
 Update to version 4.0.3
 
 - Added CMake install instructions to install SDCLib and Poco header and lib files.

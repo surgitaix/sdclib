@@ -14,6 +14,7 @@
 #include "wsdd-discovery-1.1-schema-os.hxx"
 
 #include "SDCLib/SDCInstance.h"
+#include "SDCLib/Config/SDCConfig.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 #include "SDCLib/Util/DebugOut.h"
 
@@ -25,6 +26,7 @@
 #include "OSELib/SOAP/GenericSoapInvoke.h"
 
 
+using namespace OSELib;
 using namespace OSELib::SDC;
 
 void HelloReceivedHandler::helloReceived(const std::string & ) {
@@ -34,14 +36,14 @@ void HelloReceivedHandler::helloReceived(const std::string & ) {
 ServiceManager::ServiceManager(SDCLib::SDCInstance_shared_ptr p_SDCInstance)
  : WithLogger(Log::SERVICEMANAGER)
  , m_SDCInstance(p_SDCInstance)
- , _dpwsClient(new DPWS::MDPWSDiscoveryClientAdapter(m_SDCInstance))
+ , _dpwsClient(new DPWS::MDPWSDiscoveryClientAdapter(m_SDCInstance->getNetworkConfig()))
 {
 
 }
 
 
 ServiceManager::~ServiceManager() {
-	Poco::Mutex::ScopedLock lock(_mutex);
+	std::lock_guard<std::mutex> t_lock(m_mutex);
 	if (_helloCallback) {
 		_dpwsClient->removeHelloEventHandler(*_helloCallback);
 		_helloCallback.reset();
@@ -60,7 +62,7 @@ void ServiceManager::setHelloReceivedHandler(HelloReceivedHandler * handler) {
 		HelloReceivedHandler * _handler;
 	};
 
-	Poco::Mutex::ScopedLock lock(_mutex);
+	std::lock_guard<std::mutex> t_lock(m_mutex);
 
 	if (_helloCallback) {
 		_dpwsClient->removeHelloEventHandler(*_helloCallback);
@@ -158,8 +160,6 @@ ServiceManager::DiscoverResults ServiceManager::discover()
 	DPWS::TypesType types;
 	types.push_back(xml_schema::Qname(SDC::NS_MDPWS, "MedicalDevice"));
 
-	xml_schema::Qname asdf(SDC::NS_MDPWS, "MedicalDevice");
-
 	DPWS::ProbeType probeFilter;
 	probeFilter.Types().set(types);
 
@@ -206,7 +206,7 @@ ServiceManager::AsyncDiscoverResults ServiceManager::async_discoverOSCP()
 
 ServiceManager::DiscoverResults ServiceManager::discoverOSCP() {
 
-    std::cout << "DEPRECATED: THIS FUNCTION WILL BE REMOVED IN FUTURE VERSIONS. PLEASE USE discover()." << std::endl;
+    std::cout << "DEPRECATED: ServiceManager::discoverOSCP WILL BE REMOVED IN FUTURE VERSIONS. PLEASE USE discover()." << std::endl;
 
 	struct ProbeMatchCallback : public DPWS::ProbeMatchCallback  {
 		ProbeMatchCallback() {}
@@ -221,8 +221,6 @@ ServiceManager::DiscoverResults ServiceManager::discoverOSCP() {
 
 	DPWS::TypesType types;
 	types.push_back(xml_schema::Qname(SDC::NS_MDPWS, "MedicalDevice"));
-
-	xml_schema::Qname asdf(SDC::NS_MDPWS, "MedicalDevice");
 
 	DPWS::ProbeType probeFilter;
 	probeFilter.Types().set(types);
@@ -349,7 +347,7 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 		Helper::XercesGrammarPoolProvider grammarPool;
 		std::unique_ptr<Invoker> invoker(new Invoker(deviceDescription.getDeviceURI(), grammarPool));
 
-		auto response(invoker->invoke(request));
+		auto response(invoker->invoke(request, m_SDCInstance->getSSLConfig()->getClientContext()));
 
 		if (response != nullptr) {
 			for (const auto & metadata : response->MetadataSection()) {
@@ -371,7 +369,7 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 		using Invoker_metadata = OSELib::SOAP::GenericSoapInvoke<DPWS::GetMetadataTraits>;
 		std::unique_ptr<Invoker_metadata> invoker_metadata(new Invoker_metadata(deviceDescription.getWaveformEventReportURI(), grammarPool));
 
-		auto response_metadata(invoker_metadata->invoke(request_metadata));
+		auto response_metadata(invoker_metadata->invoke(request_metadata, m_SDCInstance->getSSLConfig()->getClientContext()));
 
 		if (response_metadata != nullptr) {
 
@@ -402,7 +400,13 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 
 	log_debug([&] { return "Discovery complete for device with uri: " + deviceDescription.getDeviceURI().toString(); });
 
-	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> result(new SDCLib::Data::SDC::SDCConsumer(m_SDCInstance, deviceDescription));
+    // Create new SDCInstance with a NEW SDCConfiguration !
+    auto t_config = SDCLib::Config::SDCConfig::randomMDPWSConfig(m_SDCInstance->getSDCConfig());
+    if(!t_config) {
+        return nullptr;
+    }
+    auto t_SDCInstance = std::make_shared<SDCLib::SDCInstance>(t_config);
+	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> result(new SDCLib::Data::SDC::SDCConsumer(t_SDCInstance, deviceDescription));
 
 	if (!result->isConnected()) {
 		result->disconnect();
@@ -413,5 +417,5 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 		result->disconnect();
 		return nullptr;
 	}
-	return std::move(result);
+	return result;
 }

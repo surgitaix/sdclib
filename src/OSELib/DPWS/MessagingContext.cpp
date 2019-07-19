@@ -6,6 +6,7 @@
  */
 
 #include <chrono>
+#include "config/config.h"
 
 #include "wsdd-discovery-1.1-schema-os.hxx"
 
@@ -15,44 +16,47 @@ namespace OSELib {
 namespace DPWS {
 namespace Impl {
 
-MessagingContext::MessagingContext() :
-	_instanceId(0),
-	_messageCounter(0)
+MessagingContext::MessagingContext()
 {
+    // NOTE: This was the old, hard coded value
+    assert(SDCLib::Config::SDC_MAX_KNOWN_MESSAGE_IDS > 100);
 }
-
-MessagingContext::~MessagingContext() {
-}
-
-bool MessagingContext::registerMessageId(const std::string & id) {
+bool MessagingContext::registerMessageId(const std::string & id)
+{
+    std::lock_guard<std::mutex> t_lock(m_mutex_messageID);
 	if (std::find(_knownMessageIds.begin(), _knownMessageIds.end(), id) != _knownMessageIds.end()) {
 		return false;
-	} else {
-		if (_knownMessageIds.size() >= 100) {
-			_knownMessageIds.pop_back();
-		}
-		_knownMessageIds.push_front(id);
-		return true;
 	}
+    if (_knownMessageIds.size() >= SDCLib::Config::SDC_MAX_KNOWN_MESSAGE_IDS) {
+        _knownMessageIds.pop_back();
+    }
+    _knownMessageIds.push_front(id);
+    return true;
 }
 
-void MessagingContext::clearAppSequenceCache() {
+void MessagingContext::clearAppSequenceCache()
+{
+    std::lock_guard<std::mutex> t_lock(m_mutex_appSequence);
 	_knownAppsequences.clear();
 }
 
-void MessagingContext::resetInstanceId() {
+void MessagingContext::resetInstanceId()
+{
 	_instanceId = std::chrono::system_clock::now().time_since_epoch().count() / 1000000;
 }
 
-unsigned long long int MessagingContext::getInstanceId() const {
+unsigned long long int MessagingContext::getInstanceId() const
+{
 	return _instanceId;
 }
 
-unsigned long long int MessagingContext::getCurrentMessageCounter() const {
+unsigned long long int MessagingContext::getCurrentMessageCounter() const
+{
 	return _messageCounter;
 }
 
-unsigned long long int MessagingContext::getNextMessageCounter() {
+unsigned long long int MessagingContext::getNextMessageCounter()
+{
 	return ++_messageCounter;
 }
 
@@ -64,7 +68,10 @@ bool MessagingContext::registerAppSequence(::WS::DISCOVERY::AppSequenceType & ap
 	}
 }
 
-bool MessagingContext::registerAppSequence(unsigned long long int instanceId, unsigned long long int messageNumber, const std::string & sequenceId) {
+bool MessagingContext::registerAppSequence(unsigned long long int instanceId, unsigned long long int messageNumber, const std::string & sequenceId)
+{
+    std::lock_guard<std::mutex> t_lock(m_mutex_appSequence);
+
 	auto appsequenceIterator = _knownAppsequences.find(instanceId);
 	if (appsequenceIterator == _knownAppsequences.end()) {
 		// instance id unknown => add new mapping and store sequence id and message number

@@ -5,11 +5,10 @@
  *      Author: matthias
  */
 
-#ifndef DPWS_IEVENTSINK_H_
-#define DPWS_IEVENTSINK_H_
+#ifndef OSELIB_DPWS_IEVENTSINK_H_
+#define OSELIB_DPWS_IEVENTSINK_H_
 
 #include "OSELib/fwd.h"
-#include "OSELib/DPWS/OperationTraits.h"
 
 namespace OSELib {
 namespace DPWS {
@@ -24,4 +23,4 @@ public:
 } /* namespace DPWS */
 } /* namespace OSELib */
 
-#endif /* DPWS_IEVENTSINK_H_ */
+#endif /* OSELIB_DPWS_IEVENTSINK_H_ */

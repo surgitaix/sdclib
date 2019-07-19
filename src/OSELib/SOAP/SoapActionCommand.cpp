@@ -5,11 +5,12 @@
  *      Author: matthias
  */
 
-#include "Poco/UUIDGenerator.h"
+#include "OSELib/SOAP/SoapActionCommand.h"
 
 #include "NormalizedMessageModel.hxx"
 
-#include "OSELib/SOAP/SoapActionCommand.h"
+#include <Poco/UUIDGenerator.h>
+
 
 namespace OSELib {
 namespace SOAP {

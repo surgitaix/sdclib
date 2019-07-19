@@ -26,11 +26,10 @@
 
 #include "OSELib/SDC/ServiceManager.h"
 
-#include "Poco/Mutex.h"
-#include "Poco/ScopedLock.h"
+
 #include "Poco/Thread.h"
 #include "Poco/Runnable.h"
-#include "Poco/Net/NetException.h"
+
 
 using namespace SDCLib;
 using namespace SDCLib::Util;
@@ -252,7 +251,7 @@ public:
     }
 
     void setCurrentWeight(float value) {
-    	Poco::Mutex::ScopedLock lock(m_mutex); // FIXME: changed from SDCProvider mutex to internal mutex
+    	std::lock_guard<std::mutex> t_lock(m_mutex); // FIXME: changed from SDCProvider mutex to internal mutex
     	currentWeight = value;
         curValueState.setNumericValue(value);
         DebugOut(DebugOut::Default, "ExampleProject") << "Changed value: " << currentWeight << std::endl;
@@ -260,7 +259,7 @@ public:
 
 private:
 
-    Poco::Mutex m_mutex;
+    std::mutex m_mutex;
     // SDCProvider for communication to the network
     SDCProvider sdcProvider;
 
@@ -289,7 +288,7 @@ public:
         while (!isInterrupted) {
         	provider->setCurrentWeight(currentWeight);
         	currentWeight += 0.1f;
-            Poco::Thread::sleep(1000);
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         }
     }
 
@@ -303,7 +302,7 @@ public:
 	}
 
 private:
-	Poco::Thread thread;
+    Poco::Thread thread;
 	bool isInterrupted;
     SDCHoldingDeviceProvider * provider;
     float currentWeight;
@@ -351,7 +350,7 @@ int main()
 	//SDCLibrary::getInstance().setDiscoveryTime(4000); // FIXME
 
     // Create a new SDCInstance (no flag will auto init)
-    auto t_SDCInstanceConsumer = std::make_shared<SDCInstance>(Config::SDC_DEFAULT_PORT_CONSUMER, true);
+    auto t_SDCInstanceConsumer = std::make_shared<SDCInstance>(true);
     // Some restriction
     t_SDCInstanceConsumer->setIP6enabled(false);
     t_SDCInstanceConsumer->setIP4enabled(true);
@@ -374,7 +373,7 @@ int main()
 	t_serviceManager.setHelloReceivedHandler(myHandler.get());
 
     // Create a new SDCInstance (no flag will auto init)
-    auto t_SDCInstanceProvider = std::make_shared<SDCInstance>(Config::SDC_DEFAULT_PORT_PROVIDER, true);
+    auto t_SDCInstanceProvider = std::make_shared<SDCInstance>(true);
     // Some restriction
     t_SDCInstanceProvider->setIP6enabled(false);
     t_SDCInstanceProvider->setIP4enabled(true);
@@ -415,7 +414,7 @@ int main()
 		consumer.registerStateEventHandler(eces1.get());
 		consumer.registerStateEventHandler(eces2.get());
 
-		Poco::Thread::sleep(4000);
+		std::this_thread::sleep_for(std::chrono::milliseconds(4000));
 
 		// Get state test (current weight)
 		std::unique_ptr<NumericMetricState> pCurrentWeightState(consumer.requestState<NumericMetricState>(HANDLE_CURRENT_WEIGHT_METRIC));
@@ -442,10 +441,10 @@ int main()
 		InvocationState invocationStateSecond  = consumer.commitState(*pMaxWeightState);
 		DebugOut(DebugOut::Default, "ExampleProject") << "InvocationState (2nd commit): " << Data::SDC::EnumToString::convert(invocationStateSecond);
 
-		Poco::Thread::sleep(1000);
+		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 		consumer.unregisterStateEventHandler(eces1.get());
 		consumer.unregisterStateEventHandler(eces2.get());
-		Poco::Thread::sleep(4000);
+		std::this_thread::sleep_for(std::chrono::milliseconds(4000));
 
 		consumer.disconnect();
 	} else {
@@ -456,7 +455,7 @@ int main()
 
 	dummyValueProducer.interrupt();
 	provider.shutdown();
-	Poco::Thread::sleep(2000);
+	std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 
 	DebugOut(DebugOut::Default, "ExampleProject") << "Shutdown." << std::endl;
 	SDCLibrary::getInstance().shutdown();

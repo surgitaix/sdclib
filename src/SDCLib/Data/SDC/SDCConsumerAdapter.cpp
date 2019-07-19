@@ -8,12 +8,11 @@
 #include <iostream>
 #include <list>
 
-#include "Poco/Mutex.h"
 #include "Poco/ThreadPool.h"
 #include "Poco/Net/HTTPServer.h"
 #include "Poco/Net/NetworkInterface.h"
 #include "Poco/Net/ServerSocket.h"
-#include "Poco/Net/MulticastSocket.h"
+#include <Poco/Net/SecureServerSocket.h>
 
 #include "BICEPS_ParticipantModel.hxx"
 #include "BICEPS_MessageModel.hxx"
@@ -318,42 +317,44 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-SDCConsumerAdapter::SDCConsumerAdapter(SDCLib::SDCInstance_shared_ptr p_SDCInstance, SDCConsumer & consumer, const OSELib::DPWS::DeviceDescription & deviceDescription) :
+SDCConsumerAdapter::SDCConsumerAdapter(SDCConsumer & consumer, const OSELib::DPWS::DeviceDescription & deviceDescription) :
 	WithLogger(OSELib::Log::SDCCONSUMERADAPTER),
 	_consumer(consumer),
 	_threadPool(new Poco::ThreadPool()),
 	_deviceDescription(deviceDescription),
-	_streamClientSocketImpl(p_SDCInstance, *this, deviceDescription)
+	_streamClientSocketImpl(consumer.getSDCInstance()->getNetworkConfig(), *this, deviceDescription)
 {
 
 }
 
 SDCConsumerAdapter::~SDCConsumerAdapter() = default;
 
-bool SDCConsumerAdapter::start() {
-	Poco::Mutex::ScopedLock lock(mutex);
+bool SDCConsumerAdapter::start()
+{
+	std::lock_guard<std::mutex> t_lock(m_mutex);
 	if (_httpServer) {
 		return false;
 	}
 
-    auto t_interface = _consumer.getSDCInstance()->getMDPWSInterface();
+    auto t_networkConfig = _consumer.getSDCInstance()->getNetworkConfig();
+    assert(t_networkConfig != nullptr);
+
+    auto t_interface = t_networkConfig->getMDPWSInterface();
     if(!t_interface) {
         std::cout << "Failed to start SDCProviderAdapter: Set MDPWSInterface first!" << std::endl;
         return false;
     }
 
-    auto t_bindingAddress = t_interface->m_if.address();
-    auto t_port = _consumer.getSDCInstance()->getMDPWSPort();
 
-	Poco::Net::ServerSocket ss;
+    auto t_bindingAddress = t_interface->m_if.address();
+    auto t_port = t_networkConfig->getMDPWSPort();
+
 	// todo: IPv6 implementation here!
 	const Poco::Net::SocketAddress socketAddress(t_bindingAddress, t_port);
-	ss.bind(socketAddress);
-	ss.listen();
 
 	class Factory : public OSELib::HTTP::FrontControllerAdapter {
 	public:
-		Factory(SDCConsumer & consumer) :
+		Factory(SDCConsumer & consumer, bool p_SSL) :
 			FrontControllerAdapter(_frontController),
 			_contextServiceEventSink(consumer),
 			_eventReportEventSink(consumer),
@@ -362,6 +363,7 @@ bool SDCConsumerAdapter::start() {
 			_eventReportEventSinkServiceController(_frontController, _eventReportEventSink),
 			_setServiceEventSinkController(_frontController, _setServiceEventSink)
 		{
+            _frontController.setSSL(p_SSL);
 		}
 
 		virtual ~Factory() = default;
@@ -379,7 +381,28 @@ bool SDCConsumerAdapter::start() {
 
 	};
 
-	_httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(_consumer), *_threadPool, ss,  new Poco::Net::HTTPServerParams));
+    bool SSL_INIT = _consumer.getSDCInstance()->getSSLConfig()->isInit();
+    // Use SSL
+    if(SSL_INIT)
+    {
+        // ServerSocket
+        Poco::Net::SecureServerSocket t_sslSocket(_consumer.getSDCInstance()->getSSLConfig()->getServerContext());
+        t_sslSocket.bind(socketAddress);
+        t_sslSocket.listen();
+        t_sslSocket.setKeepAlive(true);
+
+        // Create the Server
+        _httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(_consumer, SSL_INIT), *_threadPool, t_sslSocket, new Poco::Net::HTTPServerParams));
+    }
+    else {
+        // ServerSocket
+        Poco::Net::ServerSocket t_socket;
+        t_socket.bind(socketAddress);
+        t_socket.listen();
+
+        // Create the Server
+        _httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(_consumer, SSL_INIT), *_threadPool, t_socket, new Poco::Net::HTTPServerParams));
+    }
 
 	_httpServer->start();
 
@@ -396,7 +419,7 @@ bool SDCConsumerAdapter::start() {
 
 
 void SDCConsumerAdapter::stop() {
-	Poco::Mutex::ScopedLock lock(mutex);
+	std::lock_guard<std::mutex> t_lock(m_mutex);
 
 	if (_httpServer) {
 		_httpServer->stopAll(false);
@@ -419,7 +442,12 @@ void SDCConsumerAdapter::subscribeEvents() {
 		return;
 	}
 
-	auto t_port = _consumer.getSDCInstance()->getMDPWSPort();
+	auto t_port = _consumer.getSDCInstance()->getNetworkConfig()->getMDPWSPort();
+
+    std::string ts_PROTOCOL = "http";
+    if(_consumer.getSDCInstance()->getSSLConfig()->isInit()) {
+        ts_PROTOCOL.append("s");
+    }
 
 	std::vector<OSELib::DPWS::SubscriptionClient::SubscriptionInformation> subscriptions;
 	// context reports
@@ -428,7 +456,7 @@ void SDCConsumerAdapter::subscribeEvents() {
 		filter.push_back(OSELib::SDC::EpisodicContextChangedReportTraits::Action());
 		filter.push_back(OSELib::SDC::PeriodicContextChangedReportTraits::Action());
 		subscriptions.emplace_back(
-				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(t_port) + "/" + OSELib::SDC::QNAME_CONTEXTSERVICE_PORTTYPE),
+				Poco::URI(ts_PROTOCOL + "://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(t_port) + "/" + OSELib::SDC::QNAME_CONTEXTSERVICE_PORTTYPE),
 				_deviceDescription.getContextServiceURI(),
 				filter);
 	}
@@ -440,7 +468,7 @@ void SDCConsumerAdapter::subscribeEvents() {
 		filter.push_back(OSELib::SDC::PeriodicAlertReportTraits::Action());
 		filter.push_back(OSELib::SDC::PeriodicMetricReportTraits::Action());
 		subscriptions.emplace_back(
-				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(t_port) + "/" + OSELib::SDC::QNAME_STATEEVENTREPORTSERVICE_PORTTYPE),
+				Poco::URI(ts_PROTOCOL + "://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(t_port) + "/" + OSELib::SDC::QNAME_STATEEVENTREPORTSERVICE_PORTTYPE),
 				_deviceDescription.getEventServiceURI(),
 				filter);
 	}
@@ -449,12 +477,15 @@ void SDCConsumerAdapter::subscribeEvents() {
 		// fixme: move to SetService
 		filter.push_back(OSELib::SDC::OperationInvokedReportTraits::Action());
 		subscriptions.emplace_back(
-				Poco::URI("http://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(t_port) + "/" + OSELib::SDC::QNAME_SETSERVICE_PORTTYPE),
+				Poco::URI(ts_PROTOCOL + "://" + _deviceDescription.getLocalIP().toString() + ":" + std::to_string(t_port) + "/" + OSELib::SDC::QNAME_SETSERVICE_PORTTYPE),
 				_deviceDescription.getSetServiceURI(),
 				filter);
 	}
 
-	_subscriptionClient = std::unique_ptr<OSELib::DPWS::SubscriptionClient>(new OSELib::DPWS::SubscriptionClient(subscriptions));
+	// Note: Just passing Poco::Net::Context::Ptr means SSL has to be initialized when
+	//       the SubscriptionClient is created. Else nullptr is passed. Maybe rebuild
+	//       and pass SSLHandler if this causes errors.
+	_subscriptionClient = std::unique_ptr<OSELib::DPWS::SubscriptionClient>(new OSELib::DPWS::SubscriptionClient(subscriptions, _consumer.getSDCInstance()->getSSLConfig()->getClientContext()));
 }
 
 void SDCConsumerAdapter::unsubscribeEvents() {
@@ -464,20 +495,19 @@ void SDCConsumerAdapter::unsubscribeEvents() {
 }
 
 template<class TraitsType>
-std::unique_ptr<typename TraitsType::Response> SDCConsumerAdapter::invokeImplWithEventSubscription(const typename TraitsType::Request & request, const Poco::URI & requestURI) {
+std::unique_ptr<typename TraitsType::Response> SDCConsumerAdapter::invokeImplWithEventSubscription(const typename TraitsType::Request & request, const Poco::URI & requestURI, Poco::Net::Context::Ptr p_context) {
 	// We need to receive operation invoked events, so we do kind of emergency subscriptions here
 	subscribeEvents();
-	return invokeImpl<TraitsType>(request, requestURI);
+	return invokeImpl<TraitsType>(request, requestURI, p_context);
 }
 
 template<class TraitsType>
-std::unique_ptr<typename TraitsType::Response> SDCConsumerAdapter::invokeImpl(const typename TraitsType::Request & request, const Poco::URI & requestURI) {
+std::unique_ptr<typename TraitsType::Response> SDCConsumerAdapter::invokeImpl(const typename TraitsType::Request & request, const Poco::URI & requestURI, Poco::Net::Context::Ptr p_context) {
 
 	using Invoker = OSELib::SOAP::GenericSoapInvoke<TraitsType>;
 	std::unique_ptr<Invoker> invoker(new Invoker(requestURI, _grammarProvider));
 
-	auto response(invoker->invoke(request));
-
+	auto response(invoker->invoke(request, p_context));
 	if (response != nullptr) {
 		if (response->MdibVersion().present()) {
 			_consumer.updateLastKnownMdibVersion(response->MdibVersion().get());
@@ -533,38 +563,38 @@ Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::S
 	return _deviceDescription.getContextServiceURI();
 }
 
-std::unique_ptr<MDM::GetMdDescriptionResponse> SDCConsumerAdapter::invoke(const MDM::GetMdDescription & request) {
-	return invokeImpl<OSELib::SDC::GetMDDescriptionTraits>(request, getRequestURIFromDeviceDescription(request));
+std::unique_ptr<MDM::GetMdDescriptionResponse> SDCConsumerAdapter::invoke(const MDM::GetMdDescription & request, Poco::Net::Context::Ptr p_context) {
+	return invokeImpl<OSELib::SDC::GetMDDescriptionTraits>(request, getRequestURIFromDeviceDescription(request), p_context);
 }
 
-std::unique_ptr<MDM::GetMdibResponse> SDCConsumerAdapter::invoke(const MDM::GetMdib & request) {
-	return invokeImpl<OSELib::SDC::GetMDIBTraits>(request, getRequestURIFromDeviceDescription(request));
+std::unique_ptr<MDM::GetMdibResponse> SDCConsumerAdapter::invoke(const MDM::GetMdib & request, Poco::Net::Context::Ptr p_context) {
+	return invokeImpl<OSELib::SDC::GetMDIBTraits>(request, getRequestURIFromDeviceDescription(request), p_context);
 }
 
-std::unique_ptr<MDM::GetMdStateResponse> SDCConsumerAdapter::invoke(const MDM::GetMdState & request) {
-	return invokeImpl<OSELib::SDC::GetMdStateTraits>(request, getRequestURIFromDeviceDescription(request));
-}
-
-
-std::unique_ptr<MDM::ActivateResponse> SDCConsumerAdapter::invoke(const MDM::Activate & request) {
-	return invokeImplWithEventSubscription<OSELib::SDC::ActivateTraits>(request, getRequestURIFromDeviceDescription(request));
-}
-
-std::unique_ptr<MDM::SetAlertStateResponse> SDCConsumerAdapter::invoke(const MDM::SetAlertState & request) {
-	return invokeImplWithEventSubscription<OSELib::SDC::SetAlertStateTraits>(request, getRequestURIFromDeviceDescription(request));
-}
-
-std::unique_ptr<MDM::SetValueResponse> SDCConsumerAdapter::invoke(const MDM::SetValue & request) {
-	return invokeImplWithEventSubscription<OSELib::SDC::SetValueTraits>(request, getRequestURIFromDeviceDescription(request));
-}
-
-std::unique_ptr<MDM::SetStringResponse> SDCConsumerAdapter::invoke(const MDM::SetString & request) {
-	return invokeImplWithEventSubscription<OSELib::SDC::SetStringTraits>(request, getRequestURIFromDeviceDescription(request));
+std::unique_ptr<MDM::GetMdStateResponse> SDCConsumerAdapter::invoke(const MDM::GetMdState & request, Poco::Net::Context::Ptr p_context) {
+	return invokeImpl<OSELib::SDC::GetMdStateTraits>(request, getRequestURIFromDeviceDescription(request), p_context);
 }
 
 
-std::unique_ptr<MDM::SetContextStateResponse> SDCConsumerAdapter::invoke(const MDM::SetContextState & request) {
-	return invokeImplWithEventSubscription<OSELib::SDC::SetContextStateTraits>(request, getRequestURIFromDeviceDescription(request));
+std::unique_ptr<MDM::ActivateResponse> SDCConsumerAdapter::invoke(const MDM::Activate & request, Poco::Net::Context::Ptr p_context) {
+	return invokeImplWithEventSubscription<OSELib::SDC::ActivateTraits>(request, getRequestURIFromDeviceDescription(request), p_context);
+}
+
+std::unique_ptr<MDM::SetAlertStateResponse> SDCConsumerAdapter::invoke(const MDM::SetAlertState & request, Poco::Net::Context::Ptr p_context) {
+	return invokeImplWithEventSubscription<OSELib::SDC::SetAlertStateTraits>(request, getRequestURIFromDeviceDescription(request), p_context);
+}
+
+std::unique_ptr<MDM::SetValueResponse> SDCConsumerAdapter::invoke(const MDM::SetValue & request, Poco::Net::Context::Ptr p_context) {
+	return invokeImplWithEventSubscription<OSELib::SDC::SetValueTraits>(request, getRequestURIFromDeviceDescription(request), p_context);
+}
+
+std::unique_ptr<MDM::SetStringResponse> SDCConsumerAdapter::invoke(const MDM::SetString & request, Poco::Net::Context::Ptr p_context) {
+	return invokeImplWithEventSubscription<OSELib::SDC::SetStringTraits>(request, getRequestURIFromDeviceDescription(request), p_context);
+}
+
+
+std::unique_ptr<MDM::SetContextStateResponse> SDCConsumerAdapter::invoke(const MDM::SetContextState & request, Poco::Net::Context::Ptr p_context) {
+	return invokeImplWithEventSubscription<OSELib::SDC::SetContextStateTraits>(request, getRequestURIFromDeviceDescription(request), p_context);
 }
 
 }

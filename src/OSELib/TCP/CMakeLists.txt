@@ -49,7 +49,6 @@ set_target_properties(  ${CURRENT_TARGET_NAME}
                         RUNTIME_OUTPUT_DIRECTORY ${PATH_RUNTIME_OUTPUT}
                         LIBRARY_OUTPUT_DIRECTORY ${PATH_LIBRARY_OUTPUT}
                         ARCHIVE_OUTPUT_DIRECTORY ${PATH_ARCHIVE_OUTPUT}
-                        DEBUG_POSTFIX ${DEBUG_POSTFIX_OUTPUT}
                         )
 
 # install

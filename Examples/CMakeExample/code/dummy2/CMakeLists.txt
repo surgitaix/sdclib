@@ -45,7 +45,7 @@ set_target_properties(  ${CURRENT_TARGET_NAME}
                         RUNTIME_OUTPUT_DIRECTORY ${PATH_RUNTIME_OUTPUT} # Executables
                         LIBRARY_OUTPUT_DIRECTORY ${PATH_LIBRARY_OUTPUT} # Shared Libraries (*.dll / *.so)
                         ARCHIVE_OUTPUT_DIRECTORY ${PATH_ARCHIVE_OUTPUT} # *.lib files
-                        DEBUG_POSTFIX ${DEBUG_POSTFIX_OUTPUT}
+                        DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX}
                         )
 
 # NOTE: Distinguish between "Install" and "Building" (See cmake documentation for further detail)

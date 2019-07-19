@@ -5,8 +5,8 @@
  *      Author: matthias
  */
 
-#ifndef DPWS_IDEVICE_H_
-#define DPWS_IDEVICE_H_
+#ifndef OSELIB_DPWS_IDEVICE_H_
+#define OSELIB_DPWS_IDEVICE_H_
 
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/OperationTraits.h"
@@ -19,11 +19,11 @@ public:
 	virtual ~IDevice() = default;
 
 	virtual std::string getBaseUri() const = 0;
-	virtual GetTraits::Response getMetadata(const std::string & serverAddress) = 0;
+	virtual GetTraits::Response getMetadata(const std::string & serverAddress, bool p_SSL) = 0;
 	virtual std::unique_ptr<ProbeTraits::Response> dispatch(const ProbeTraits::Request & request) = 0;
 };
 
 } /* namespace DPWS */
 } /* namespace OSELib */
 
-#endif /* DPWS_IDEVICE_H_ */
+#endif /* OSELIB_DPWS_IDEVICE_H_ */

@@ -38,8 +38,8 @@ project(${PROJECT_NAME})
 
 # Version numbers -> Will be written to the config file
 set (SDCLibrary_VERSION_FIRST          4)
-set (SDCLibrary_VERSION_MIDDLE         0)
-set (SDCLibrary_VERSION_LAST           3)
+set (SDCLibrary_VERSION_MIDDLE         2)
+set (SDCLibrary_VERSION_LAST           2)
 set (SDCLibrary_C_YEAR              2019)
 set (SDCLibrary_SurgiTAIX "SurgiTAIX AG")
 
@@ -104,13 +104,13 @@ endif()
 set(PATH_RUNTIME_OUTPUT ${PROJECT_BINARY_DIR}/bin)
 set(PATH_LIBRARY_OUTPUT ${PROJECT_BINARY_DIR}/bin)
 set(PATH_ARCHIVE_OUTPUT ${PROJECT_BINARY_DIR}/lib)
-set(DEBUG_POSTFIX_OUTPUT _d)
+set(CMAKE_DEBUG_POSTFIX _d) # Force the Debug Postfix
 
 # by "default" take the install prefix
-set(PATH_INSTALL_RUNTIME ${CMAKE_INSTALL_PREFIX}/bin)
-set(PATH_INSTALL_LIBRARY ${CMAKE_INSTALL_PREFIX}/bin)
-set(PATH_INSTALL_ARCHIVE ${CMAKE_INSTALL_PREFIX}/lib)
-set(PATH_INSTALL_INCLUDE ${CMAKE_INSTALL_PREFIX}/include)
+set(PATH_INSTALL_RUNTIME bin)
+set(PATH_INSTALL_LIBRARY bin)
+set(PATH_INSTALL_ARCHIVE lib)
+set(PATH_INSTALL_INCLUDE include)
 ################################################################################
 
 
@@ -127,6 +127,21 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 ################################################################################
 
+################################################################################
+# Warnings
+################################################################################
+message(STATUS "Setting Warning-Level...")
+if(CMAKE_BUILD_TYPE MATCHES Release)
+    if (MSVC)
+        add_compile_options(/W4)
+    else()
+        add_compile_options(-Wall -Wextra -pedantic)
+    endif()
+else()
+    # Inhibit all warning messages
+    add_compile_options(-w)
+endif()
+################################################################################
 
 ################################################################################
 # Firewall - Allowed Ports
@@ -137,25 +152,30 @@ endif()
 
 # Note: Just randomly took a port range that is not densly occupied from:
 # https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
-
-set(SDC_DEFAULT_MDPWS_PORT 0 CACHE STRING "The Default Port to bind on. A value of 0 will choose any free port." FORCE)
+# NOTE: CURRENTLY NOT IN USE!
 
 set(SDC_ALLOWED_PORT_START 14000 CACHE STRING "Start Port of allowed port range. [Make sure your firewall settings match these value]" FORCE)
 set(SDC_ALLOWED_PORT_RANGE  2000 CACHE STRING "Port Range of allowed ports as offset from the Start Port. [Make sure your firewall settings match these value]" FORCE)
-set(SDC_DEFAULT_PORT_RANGE  1000 CACHE STRING "Passed default Port Range if none is specified in configuration.")
-
-set(SDC_DEFAULT_PORT_PROVIDER 14000 CACHE STRING "Default Port to start the Example Provider." FORCE)
-set(SDC_DEFAULT_PORT_CONSUMER 14001 CACHE STRING "Default Port to start the Example Consumer." FORCE)
+set(SDC_DEFAULT_PORT_RANGE  1000 CACHE STRING "Passed default Port Range if none is specified in configuration." FORCE)
 
 mark_as_advanced(SDC_ALLOWED_PORT_START)
 mark_as_advanced(SDC_ALLOWED_PORT_RANGE)
 mark_as_advanced(SDC_DEFAULT_PORT_RANGE)
-mark_as_advanced(SDC_DEFAULT_PORT_PROVIDER)
-mark_as_advanced(SDC_DEFAULT_PORT_CONSUMER)
 
-set(SDC_DISCOVERY_TIMEOUT_MS 5000 CACHE STRING "Time in milliseconds a Discovery will take." FORCE)
+set(SDC_DISCOVERY_TIMEOUT_MS 5000 CACHE STRING "Time in milliseconds a Discovery until timeout." FORCE)
 mark_as_advanced(SDC_DISCOVERY_TIMEOUT_MS)
 
+set(SDC_CONNECTION_TIMEOUT_MS 4000 CACHE STRING "Time in milliseconds the SDCLib will check if the connection is lost." FORCE)
+mark_as_advanced(SDC_CONNECTION_TIMEOUT_MS)
+
+
+set(SDC_MAX_KNOWN_MESSAGE_IDS 200 CACHE STRING "Limits the maximum number of MessageIDs a Messaging Context caches. Be careful with this value!" FORCE)
+mark_as_advanced(SDC_MAX_KNOWN_MESSAGE_IDS)
+
+set(SDC_IP_V4_ENABLED true  CACHE STRING "Enable IPv4 by default or not." FORCE)
+set(SDC_IP_V6_ENABLED false CACHE STRING "Enable IPv6 by default or not." FORCE)
+mark_as_advanced(SDC_IP_V4_ENABLED)
+mark_as_advanced(SDC_IP_V6_ENABLED)
 ################################################################################
 
 
@@ -171,7 +191,6 @@ find_package(PythonLibs 2.7 REQUIRED)
 #target_link_libraries(${CURRENT_TARGET_NAME} ${PYTHON_LIBRARIES})
 ################################################################################
 
-
 ################################################################################
 # Threads - prefer pthreads
 ################################################################################
@@ -183,31 +202,6 @@ find_package(Threads REQUIRED)
 #target_link_libraries(${CURRENT_TARGET_NAME} ${CMAKE_THREAD_LIBS_INIT})
 ################################################################################
 
-
-
-################################################################################
-# XERCES
-################################################################################
-find_library(XercesLibrary NAMES xerces-c REQUIRED)
-################################################################################
-
-################################################################################
-# Poco
-# Custom Version - only a few Components needed
-# Net needed
-# Foundation needed
-################################################################################
-message(STATUS "######## Configuring Poco...")
-set(PATH_POCO_INCLUDE
-                        ${CMAKE_CURRENT_LIST_DIR}/Dependencies/Poco/Net/include/
-                        ${CMAKE_CURRENT_LIST_DIR}/Dependencies/Poco/Foundation/include/
-                        )
-
-set(POCO_LIBRARIES Net Foundation)
-#target_link_libraries(${CURRENT_MODULE_NAME} ${POCO_LIBRARIES})
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/Dependencies/Poco/)
-message(STATUS "######## Configuring Poco done!")
-################################################################################
 
 ################################################################################
 #Asio
@@ -241,43 +235,7 @@ get_filename_component(PATH_EXAMPLES_ROOT ${CMAKE_CURRENT_LIST_DIR}/Examples/ RE
 get_filename_component(PATH_TESTS_ROOT ${CMAKE_CURRENT_LIST_DIR}/Tests/ REALPATH)
 get_filename_component(PATH_ACS_ROOT ${CMAKE_CURRENT_LIST_DIR}/AbstractConsumerSimulator/ REALPATH)
 get_filename_component(PATH_SDCTESTS_ROOT ${PATH_TESTS_ROOT}/SDCTests/ REALPATH)
-
 ################################################################################
-
-
-IF (${CMAKE_SYSTEM_NAME} MATCHES "Linux") 
-    ADD_DEFINITIONS(-D_LINUX)
-    ADD_DEFINITIONS(-Dlinux)
-    # constexpr macro / checking for C++11 is done above allready
-    # Note: Shouldnt this be fixed inside the code? - only used once as far as I can tell...!
-    add_definitions(-DCONSTEXPR_MACRO=constexpr)
-ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-
-
-# <FIXME> WINDOWS untested!
-IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows") 
-    ADD_DEFINITIONS(-D_WIN32)
-
-    # Libraries - WIP... maybe include in Dependencies?
-    SET(PTHREAD_LIB_DIR "${PROJECT_SOURCE_DIR}/../pthread/lib/" CACHE PATH "Path to PTHREAD libraries.")
-    SET(XERCES_LIB_DIR "${PROJECT_SOURCE_DIR}/../xerces/lib/" CACHE PATH "Path to XERCES-C libraries.")
-
-    # XERCES [needed here? - Test!]
-    if (CMAKE_BUILD_TYPE STREQUAL Debug)
-        set(XERCES_LIB xerces-c_3D)
-    else ()
-        set(XERCES_LIB xerces-c_3)
-    endif()
-
-    # define preprocessor macros for Visual Studio: no CONSTEXPR_MACRO before VS15
-    MESSAGE( STATUS "MSVS compiler version: " ${CMAKE_CXX_COMPILER_VERSION} )
-    # Note: Shouldnt this be fixed inside the code? - only used once as far as I can tell...!
-    if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 19.00)
-        add_definitions(-DCONSTEXPR_MACRO= )
-    else()
-        add_definitions(-DCONSTEXPR_MACRO=constexpr)
-    endif()
-ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
 
 ################################################################################
@@ -293,23 +251,6 @@ configure_file (${CONFIG_DIR}/config.h.in ${CONFIG_DIR}/config.h)
 
 
 ################################################################################
-# Warnings
-################################################################################
-message(STATUS "Setting Warning-Level...")
-if(CMAKE_BUILD_TYPE MATCHES Release)
-    if (MSVC)
-        add_compile_options(/W4)
-    else()
-        add_compile_options(-Wall -Wextra -pedantic)
-    endif()
-else()
-    # Inhibit all warning messages
-    add_compile_options(-w)
-endif()
-################################################################################
-
-
-################################################################################
 # Configuration Done
 # Now add the subdirs
 # Note: Inside the subdirs only work by including. See other files
@@ -321,20 +262,18 @@ add_subdirectory(${PATH_DATAMODEL_ROOT})
 add_subdirectory(${PATH_SRC_ROOT}/OSELib/TCP)
 
 
+set(SDCLib_SEARCH_DIRS ".")
+find_package(SDCLib)
+
 # src folder
 add_subdirectory(${PATH_SRC_ROOT})
 
-set(SDCLib_SEARCH_DIRS ".")
-
-
 # Examples
 if(SDC_EXAMPLES)
-    find_package(SDCLib)
     add_subdirectory(${PATH_EXAMPLES_ROOT})
 endif()
 # Tests
 if(SDC_TESTS)
-    find_package(SDCLib)
     add_subdirectory(${PATH_TESTS_ROOT})
 ENDIF()
 #...

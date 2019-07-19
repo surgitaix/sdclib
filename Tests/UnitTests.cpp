@@ -1,8 +1,8 @@
 /**
  *  @file UnitTests.cpp
  *  @project SDCLib
- *  @date 18.06.2012
- *  @author besting
+ *  @date 18.07.2019
+ *  @author besting, baumeister
  *  @copyright (c) SurgiTAIX AG
  */
 
@@ -42,18 +42,18 @@ int runSingleTest(std::string testName) {
 
 int main()
 {
+    // ALL TESTS
+	//runAllTests();
 
-    // This runs all existing tests.
-//	runAllTests();
-
-	// Only run tests of a specific test suite
-	//runTestSuite("Basics");
-//	runTestSuite("Advanced");
-	// RUN THIS for testing the whole framework
+    // TEST SUITE
 	runTestSuite("SDC");
 
-	// Only run test with a given name
-	//runSingleTest("MultiSDC");
+    // SINGLE TESTS (Note: Name is case sensitive!) [ Chose ONE of the following]
+    //runSingleTest("ConnectionLost"); // Should work
+    //runSingleTest("MultiSDC"); // Should work
+    //runSingleTest("SimpleSDC"); // Should work
+    //runSingleTest("PeriodicEvents"); // Should work
+    //runSingleTest("StreamSDC"); // Should work
 	return 0;
 }
 

@@ -4,8 +4,8 @@
  *
  *
  */
-#ifndef SDCLIBRARY_SDCLIB_PREREQUISITES_H
-#define SDCLIBRARY_SDCLIB_PREREQUISITES_H
+#ifndef SDCLIB_PREREQUISITES_H
+#define SDCLIB_PREREQUISITES_H
 
 // Config
 #include "config/config.h"
@@ -30,7 +30,6 @@
 #include <list>
 
 
-
 // Some using "shortcuts"
 // Note: Define these to have some cleaner code, easier handling with smart pointers, predeclaration of classes etc.
 // Expand as need arises
@@ -45,6 +44,17 @@ namespace SDCLib
     class SDCInstance;
     using SDCInstance_shared_ptr = std::shared_ptr<SDCInstance>;
 
+    namespace Config
+    {
+        class SDCConfig;
+        using SDCConfig_shared_ptr = std::shared_ptr<SDCConfig>;
+
+        class NetworkConfig;
+        using NetworkConfig_shared_ptr = std::shared_ptr<NetworkConfig>;
+
+        class SSLConfig;
+        using SSLConfig_shared_ptr = std::shared_ptr<SSLConfig>;
+    }
     // Just a few helpers
     namespace Data {
             namespace SDC {
@@ -71,6 +81,9 @@ namespace SDCLib
                 class StringMetricDescriptor;
                 using StringMetricDescriptor_shared_ptr = std::shared_ptr<StringMetricDescriptor>;
 
+                class EnumStringMetricDescriptor;
+                using EnumStringMetricDescriptor_shared_ptr = std::shared_ptr<EnumStringMetricDescriptor>;
+
                 class ActivateOperationDescriptor;
                 using ActivateOperationDescriptor_shared_ptr = std::shared_ptr<ActivateOperationDescriptor>;
 
@@ -85,7 +98,5 @@ namespace OSELib
         using ServiceManager_shared_ptr = std::shared_ptr<ServiceManager>;
     }
 }
-
-
 
 #endif

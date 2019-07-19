@@ -6,7 +6,6 @@
  */
 
 #include "wsdd-discovery-1.1-schema-os.hxx"
-#include "ws-addressing.hxx"
 
 #include "OSELib/DPWS/MessageAdapter.h"
 

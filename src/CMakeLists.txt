@@ -31,7 +31,30 @@ set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             ${INCLUDE_DIR}/SDCLib/Util/DebugOut.h
                             ${INCLUDE_DIR}/SDCLib/Util/Task.h
                             ${INCLUDE_DIR}/SDCLib/SDCLibrary.h
+                            # Config
+                            ${INCLUDE_DIR}/SDCLib/Config/SDCConfig.h
+                            ${INCLUDE_DIR}/SDCLib/Config/NetworkConfig.h
+                            ${INCLUDE_DIR}/SDCLib/Config/SSLConfig.h
                             # OSELib
+                            # Schema
+                            ${INCLUDE_DIR}/OSELib/Schema/Schema.h
+                            ${INCLUDE_DIR}/OSELib/Schema/SchemaBICEPSMessageModel
+                            ${INCLUDE_DIR}/OSELib/Schema/SchemaDICOMDataModel.h
+                            ${INCLUDE_DIR}/OSELib/Schema/SchemaExtensionPoint.h
+                            ${INCLUDE_DIR}/OSELib/Schema/SchemaBICEPSParticipantModel.h
+                            ${INCLUDE_DIR}/OSELib/Schema/SchemaSoapMessage.h
+                            ${INCLUDE_DIR}/OSELib/Schema/SchemaWSAddressing.h
+                            ${INCLUDE_DIR}/OSELib/Schema/SchemaWSEventing.h
+                            ${INCLUDE_DIR}/OSELib/Schema/SchemaWSDiscovery.h
+                            # WSDL
+                            ${INCLUDE_DIR}/OSELib/WSDL/WSDLLoader.h
+                            # Service
+                            ${INCLUDE_DIR}/OSELib/WSDL/ContextServiceWSDL.h
+                            ${INCLUDE_DIR}/OSELib/WSDL/GetServiceWSDL.h
+                            ${INCLUDE_DIR}/OSELib/WSDL/SetServiceWSDL.h
+                            ${INCLUDE_DIR}/OSELib/WSDL/StateEventServiceWSDL.h
+                            ${INCLUDE_DIR}/OSELib/WSDL/WaveformServiceWSDL.h
+                            # DPWS
                             ${INCLUDE_DIR}/OSELib/DPWS/Types.h
                             ${INCLUDE_DIR}/OSELib/DPWS/MDPWSHostAdapter.h
                             ${INCLUDE_DIR}/OSELib/DPWS/IService.h
@@ -87,8 +110,6 @@ set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             ${INCLUDE_DIR}/OSELib/HTTP/GenericContentHandler.h
                             ${INCLUDE_DIR}/OSELib/HTTP/HTTPClientExchanger.h
                             ${INCLUDE_DIR}/OSELib/HTTP/StaticContentController.h
-                            ${INCLUDE_DIR}/OSELib/WSDL/schema.h
-                            ${INCLUDE_DIR}/OSELib/WSDL/WSDLLoader.h
                             ${INCLUDE_DIR}/OSELib/Helper/SchemaGrammarProvider.h
                             ${INCLUDE_DIR}/OSELib/Helper/Message.h
                             ${INCLUDE_DIR}/OSELib/Helper/BufferAdapter.h
@@ -293,6 +314,11 @@ target_sources(${CURRENT_TARGET_NAME}
         # SDCLib
         ${SRC_DIR}/SDCLib/SDCLibrary.cpp
         ${SRC_DIR}/SDCLib/SDCInstance.cpp
+        # Config
+        ${SRC_DIR}/SDCLib/Config/SDCConfig.cpp
+        ${SRC_DIR}/SDCLib/Config/NetworkConfig.cpp
+        ${SRC_DIR}/SDCLib/Config/SSLConfig.cpp
+        # MDIB
         ${SRC_DIR}/SDCLib/Data/SDC/MDIB/ActivateOperationDescriptor.cpp
         ${SRC_DIR}/SDCLib/Data/SDC/MDIB/ActivateOperationState.cpp
         ${SRC_DIR}/SDCLib/Data/SDC/MDIB/AlertConditionDescriptor.cpp
@@ -505,24 +531,23 @@ target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${SRC_DIR} )
 target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${PATH_SRC_ROOT} )
 target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${PATH_INCLUDE_ROOT} )
 
-# Poco
-target_compile_definitions( ${CURRENT_TARGET_NAME} PUBLIC POCO_NO_AUTOMATIC_LIBS )
-target_compile_definitions( ${CURRENT_TARGET_NAME} PUBLIC Foundation_EXPORTS )
-target_compile_definitions( ${CURRENT_TARGET_NAME} PUBLIC Net_EXPORTS )
-target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${PATH_POCO_INCLUDE})
+# SDCLib: Include and Defs
+target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${SDCLib_INCLUDE_DIRS} )
+target_compile_definitions( ${CURRENT_TARGET_NAME} PUBLIC ${SDCLib_DEFINITIONS} )
+target_compile_options(${CURRENT_TARGET_NAME}      PUBLIC ${SDCLib_OPTIONS} )
+
+# All Dependencies
+target_link_libraries(${CURRENT_TARGET_NAME}        PUBLIC  ${SDCLib_DEPS_LIBRARIES})
+target_include_directories(${CURRENT_TARGET_NAME}   PUBLIC  ${SDCLib_DEPS_INCLUDE_DIRS})
+target_compile_definitions(${CURRENT_TARGET_NAME}   PUBLIC  ${SDCLib_DEPS_DEFINITIONS})
 
 
-# Some Definitions -Temp solution
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    # enable debug and profiling informations for sprof
-    target_compile_options(${CURRENT_TARGET_NAME} PRIVATE -ggdb -g -O0)
-endif()
+# XercesC - Imported Target (Todo: Move this into FindSDCLib)
+target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC XercesC::XercesC)
 
-
-# Packages
-
+# Additional (TODO: Move into SDCLib!)
 # DataModel
-target_sources(${CURRENT_TARGET_NAME} PUBLIC $<TARGET_OBJECTS:DataModel>)
+target_sources(${CURRENT_TARGET_NAME} PRIVATE $<TARGET_OBJECTS:DataModel>)
 # Note: 2nd line for cmake < 3.12
 target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC $<TARGET_PROPERTY:DataModel,INTERFACE_INCLUDE_DIRECTORIES>)
 
@@ -545,7 +570,7 @@ set_target_properties(  ${CURRENT_TARGET_NAME}
                         RUNTIME_OUTPUT_DIRECTORY ${PATH_RUNTIME_OUTPUT}
                         LIBRARY_OUTPUT_DIRECTORY ${PATH_LIBRARY_OUTPUT}
                         ARCHIVE_OUTPUT_DIRECTORY ${PATH_ARCHIVE_OUTPUT}
-                        DEBUG_POSTFIX ${DEBUG_POSTFIX_OUTPUT}
+                        DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX}
                         )
 # install
 install(TARGETS ${CURRENT_TARGET_NAME} CONFIGURATIONS ${CMAKE_BUILD_TYPE}

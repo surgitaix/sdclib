@@ -15,10 +15,8 @@
 - Examples for Debian / Ubuntu:  
     - **sudo apt-get install xsdcxx**  
     - **sudo apt-get install libxerces-c-dev**  
-    - **sudo apt-get install libxerces-c3.1**  
-
-##### ***Note:*** on Ubuntu 18.04 and higher libxerces-c version has changed to 3.2:  
-- **sudo apt-get install libxerces-c3.2**  
+    - **sudo apt-get install libssl-dev**  
+<br/>
 
 ## Build SDCLib using CMake
 We recommend using CMake GUI to configure and generate the project.  
@@ -34,8 +32,7 @@ We recommend using CMake GUI to configure and generate the project.
     - **cmake .**
 
 ### Steps to Generate the Project (out of source) ###
-##### Note: A graphical how-to of the following steps to generate the makefiles can also be found under doc/SDCLib_Eclipse.pdf. Just the used generator varies. Choose "Unix Makefiles" and proceed as described.
-#####
+##### Note: A graphical how-to of the following steps to generate the makefiles can also be found under doc/SDCLib_Eclipse.pdf. Just the used generator varies. Choose "Unix Makefiles" and proceed as described. #####
 (Steps with cmake-gui!)
 - clone this project:  
     - **git clone** https://github.com/surgitaix/sdclib.git  

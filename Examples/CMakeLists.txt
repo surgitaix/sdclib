@@ -12,3 +12,5 @@ add_subdirectory(MDIBVisualizer)
 add_subdirectory(AbstractConsumerSimulator)
 add_subdirectory(PulseOximeterProvider)
 
+# SSL
+add_subdirectory(SSL)

@@ -4,9 +4,6 @@
  *  Created on: 07.12.2015
  *      Author: matthias
  */
-
-#include <iostream>
-
 #include "OSELib/SOAP/SoapHTTPResponseWrapper.h"
 
 namespace OSELib {

@@ -42,88 +42,89 @@
 #include "OSELib/Helper/WithLogger.h"
 #include "SDCInstance.h"
 
-namespace SDCLib {
+namespace SDCLib
+{
+    class SDCLibrary final : public OSELib::WithLogger
+    {
+    private:
 
+        std::atomic<bool> initialized = ATOMIC_VAR_INIT(false);
+        bool m_IP4enabled = true;
+        bool m_IP6enabled = true;
 
+        int m_discoveryTimeMilSec = 5000;
 
-class SDCLibrary final : public OSELib::WithLogger {
-public:
+        void createPortLists(unsigned int portStart, unsigned int portRange = 1000);
+        std::deque<unsigned int> reservedPorts;
+        std::deque<unsigned int> availablePorts;
 
-	SDCLibrary();
-	~SDCLibrary();
+        Poco::Mutex mutex;
+        std::unique_ptr<OSELib::DPWS::PingManager> _latestPingManager;
+    public:
 
-	static SDCLibrary & getInstance();
+        // Special Member Functions
+        SDCLibrary();
+        SDCLibrary(const SDCLibrary& p_obj) = delete;
+        SDCLibrary(SDCLibrary&& p_obj) = delete;
+        SDCLibrary& operator=(const SDCLibrary& p_obj) = delete;
+        SDCLibrary& operator=(SDCLibrary&& p_obj) = delete;
+        ~SDCLibrary();
 
-	/**
-	 * Startup framework.
-	 *
-	 * @param debugLevel The debug output level.
-	 */
-	void startup(OSELib::LogLevel debugLevel = OSELib::LogLevel::Error);
+        static SDCLibrary & getInstance();
 
-	/**
-	 * Shutdown framework.
-	 *
-	 */
-	void shutdown();
+        /**
+        * Startup framework.
+        *
+        * @param debugLevel The debug output level.
+        */
+        void startup(OSELib::LogLevel debugLevel = OSELib::LogLevel::Error);
 
-	/**
-	 * Set the next global free port number used for bindings which are automatically created.
-	 *
-	 * @param portStart The next free port number to use
-	 */
-	void setPortStart(unsigned int portStart, unsigned int portRange = Config::SDC_DEFAULT_PORT_RANGE);
+        /**
+        * Shutdown framework.
+        *
+        */
+        void shutdown();
 
-	/**
-	 * Get the next global free port number used for bindings which are automatically created.
-	 * Increases current number by one.
-	 * 	 *
-	 * @return The next free port number to use
-	 */
-	unsigned int extractFreePort();
-	void returnPortToPool(unsigned int port);
+        /**
+        * Set the next global free port number used for bindings which are automatically created.
+        *
+        * @param portStart The next free port number to use
+        */
+        void setPortStart(unsigned int portStart, unsigned int portRange = Config::SDC_DEFAULT_PORT_RANGE);
 
-	bool isInitialized();
+        /**
+        * Get the next global free port number used for bindings which are automatically created.
+        * Increases current number by one.
+        * 	 *
+        * @return The next free port number to use
+        */
+        unsigned int extractFreePort();
+        void returnPortToPool(unsigned int port);
 
-	void dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pingManager);
+        bool isInitialized();
 
-	void setIP4enabled(bool IP4enabled);
-	void setIP6enabled(bool IP6enabled);
-	bool getIP4enabled();
-	bool getIP6enabled();
+        void dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pingManager);
 
-    /**
-    * @brief Set the time the service manager waits for the device discovery
-    *
-    * @param discoveryTimeSec The time in milliseconds to wait while discovery
-    */
-	void setDiscoveryTime(int discoveryTimeMilSec);
+        void setIP4enabled(bool IP4enabled);
+        void setIP6enabled(bool IP6enabled);
+        bool getIP4enabled();
+        bool getIP6enabled();
 
-    /**
-    * @brief Get the time the service manager waits for the device discovery
-    *
-    * @return The time in milliseconds to wait for discovery
-    */
-	int getDiscoveryTime();
-private:
+        /**
+        * @brief Set the time the service manager waits for the device discovery
+        *
+        * @param discoveryTimeSec The time in milliseconds to wait while discovery
+        */
+        void setDiscoveryTime(int discoveryTimeMilSec);
 
-    bool initialized = false;
-	bool m_IP4enabled = true;
-	bool m_IP6enabled = true;
-
-	int m_discoveryTimeMilSec;
-
-	void createPortLists(unsigned int portStart, unsigned int portRange = 1000);
-	std::deque<unsigned int> reservedPorts;
-	std::deque<unsigned int> availablePorts;
-
-	Poco::Mutex mutex;
-	std::unique_ptr<OSELib::DPWS::PingManager> _latestPingManager;
-
-	// declaring copy-methods prevents from initializing multiple copies of singleton
-	SDCLibrary(SDCLibrary const&);
-	void operator=(SDCLibrary const&);
-};
+        /**
+        * @brief Get the time the service manager waits for the device discovery
+        *
+        * @return The time in milliseconds to wait for discovery
+        */
+        int getDiscoveryTime();
+    };
 
 } /* namespace SDCLib */
+
 #endif /* SDCLIB_SDCLIBRARY_H_ */

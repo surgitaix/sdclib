@@ -20,7 +20,7 @@ public:
 
 	virtual ~DeviceServiceController();
 
-	Poco::Net::HTTPRequestHandler * createRequestHandler(const Poco::Net::HTTPServerRequest & request) override;
+	Poco::Net::HTTPRequestHandler * createRequestHandler(const Poco::Net::HTTPServerRequest & request, bool p_SSL) override;
 
 private:
 	IDevice & _serviceImpl;

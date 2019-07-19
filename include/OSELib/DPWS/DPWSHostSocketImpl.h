@@ -32,7 +32,7 @@ namespace Impl {
 class DPWSHostSocketImpl : public WithLogger {
 public:
 	DPWSHostSocketImpl(
-            SDCLib::SDCInstance_shared_ptr p_SDCInstance,
+            SDCLib::Config::NetworkConfig_shared_ptr p_config,
 			ProbeNotificationDispatcher & probeDispatcher,
 			ResolveNotificationDispatcher & resolveDispatcher);
 
@@ -48,6 +48,9 @@ public:
 	void sendStream(const MDM::WaveformStream & stream, const AddressType epr);
 
 private:
+
+    std::mutex m_mutex;
+
 	void onMulticastSocketReadable(Poco::Net::ReadableNotification * notification);
 	void onDatagrammSocketWritable(Poco::Net::WritableNotification * notification);
 	void onTimeOut(Poco::Net::TimeoutNotification * notification);
@@ -58,7 +61,7 @@ private:
 	struct SendMulticastMessage;
 	struct SendUnicastMessage;
 
-    SDCLib::SDCInstance_shared_ptr m_SDCInstance = nullptr;
+    SDCLib::Config::NetworkConfig_shared_ptr m_networkConfig = nullptr;
 	ProbeNotificationDispatcher & probeDispatcher;
 	ResolveNotificationDispatcher & resolveDispatcher;
 

@@ -17,9 +17,6 @@
 
 #include "OSELib/SDC/ServiceManager.h"
 
-#include "Poco/Mutex.h"
-#include "Poco/ScopedLock.h"
-
 using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
@@ -120,10 +117,7 @@ TEST_FIXTURE(FixtureMultiSDC, MultiSDC)
 			providers.push_back(p);
             providerEPRs.push_back(p->getEndpointReference());
 			p->startup();
-            Poco::Thread::sleep(500);
 		}
-        // Wait for startup...
-        Poco::Thread::sleep(5000);
 
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Starting discovery test...";
 
@@ -158,7 +152,6 @@ TEST_FIXTURE(FixtureMultiSDC, MultiSDC)
         for (auto & next : providers) {
         	next->shutdown();
         }
-        Poco::Thread::sleep(2000);
     } catch (char const* exc) {
 		DebugOut(DebugOut::Default, std::cerr, m_details.testName) << exc;
 	} catch (...) {

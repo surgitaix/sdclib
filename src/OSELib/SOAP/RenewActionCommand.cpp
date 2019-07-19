@@ -5,9 +5,12 @@
  *      Author: matthias
  */
 
+
+#include "OSELib/SOAP/RenewActionCommand.h"
+
 #include "OSELib/DPWS/OperationTraits.h"
 #include "OSELib/SOAP/NormalizedMessageAdapter.h"
-#include "OSELib/SOAP/RenewActionCommand.h"
+
 
 namespace OSELib {
 namespace SOAP {

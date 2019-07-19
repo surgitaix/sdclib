@@ -18,7 +18,6 @@
 #include "SDCLib/Data/SDC/SDCProviderComponentStateHandler.h"
 #include "SDCLib/Data/SDC/SDCProviderStateHandler.h"
 #include "SDCLib/Data/SDC/SDCProviderMDStateHandler.h"
-#include "SDCLib/Data/SDC/MDIB/MdsState.h"
 #include "SDCLib/Data/SDC/MDIB/ChannelDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/CodedValue.h"
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
@@ -364,7 +363,7 @@ public:
 			// Update the NumericMetricState's value using the state handler's method
 			numericProviderStateHandlerGet.setNumericValue(index/size);
 			DebugOut(DebugOut::Default, "ExampleProvider") << "NumericMetric: value changed to " << index/size << std::endl;
-			Poco::Thread::sleep(1000);
+			std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 			index += size;
 		}
     }
@@ -379,7 +378,8 @@ int main()
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Debug);
 
     // Create a new SDCInstance (no flag will auto init)
-    auto t_SDCInstance = std::make_shared<SDCInstance>(Config::SDC_DEFAULT_MDPWS_PORT, true);
+    auto t_SDCInstance = std::make_shared<SDCInstance>(true);
+
     // Some restriction
     t_SDCInstance->setIP6enabled(false);
     t_SDCInstance->setIP4enabled(true);
