@@ -173,6 +173,7 @@ public:
     */
     void setAlertConditionPresence(const std::string & alertConditionHandle, bool conditionPresence, const OperationInvocationContext & oic);
     void evaluateAlertConditions(const std::string & source);
+    void reevaluateAlertConditions(const std::string &source);
 
     /**
     * @brief Start the provider.

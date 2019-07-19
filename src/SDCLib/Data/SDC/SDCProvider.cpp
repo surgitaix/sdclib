@@ -660,14 +660,7 @@ void SDCProvider::updateState(const AlertSignalState & object) {
 
 void SDCProvider::updateState(const AlertConditionState & object) {
 	updateMDIB(object);
-	//Evaluate Alert Conditions sources, based on changes to the AlertCoditionState
-	std::string handle = object.getDescriptorHandle();
-	MdDescription mdDescription = getMdDescription();
-	std::unique_ptr<AlertConditionDescriptor> alertConditionDescription(std::move(mdDescription.findDescriptor<AlertConditionDescriptor>(handle)));
-	for (auto source : alertConditionDescription->getSourceList())
-	{
-		evaluateAlertConditions(source);
-	}
+	reevaluateAlertConditions(object.getDescriptorHandle());
 	notifyAlertEventImpl(object);
 }
 
@@ -680,13 +673,7 @@ void SDCProvider::updateState(const EnumStringMetricState & object) {
 void SDCProvider::updateState(const LimitAlertConditionState & object) {
 	updateMDIB(object);
 	//Evaluate Alert Conditions sources, based on changes to the AlertCoditionState
-	std::string handle = object.getDescriptorHandle();
-	MdDescription mdDescription = getMdDescription();
-	std::unique_ptr<AlertConditionDescriptor> alertConditionDescription(std::move(mdDescription.findDescriptor<AlertConditionDescriptor>(handle)));
-	for (auto source : alertConditionDescription->getSourceList())
-	{
-		evaluateAlertConditions(source);
-	}
+	reevaluateAlertConditions(object.getDescriptorHandle());
 	notifyAlertEventImpl(object);
 }
 
@@ -973,6 +960,24 @@ void SDCProvider::evaluateAlertConditions(const std::string & source) {
 			}
 		}
 	}
+}
+
+void SDCProvider::reevaluateAlertConditions(const std::string& alertConditionDescriptor) {
+	Poco::Mutex::ScopedLock lock(getMutex());
+		const MdDescription description(getMdDescription());
+
+		std::vector<std::string> relevantDescriptors;
+		for (const auto & handler : stateHandlers) {
+			if (SDCProviderAlertConditionStateHandler<AlertConditionState> * h = dynamic_cast<SDCProviderAlertConditionStateHandler<AlertConditionState> *>(handler.second)) {
+				if (h->getDescriptorHandle() == alertConditionDescriptor) {
+					h->alertConditionHasChanged();
+				}
+			} else if (SDCProviderAlertConditionStateHandler<LimitAlertConditionState> * h = dynamic_cast<SDCProviderAlertConditionStateHandler<LimitAlertConditionState> *>(handler.second)) {
+				if (h->getDescriptorHandle() == alertConditionDescriptor) {
+					h->alertConditionHasChanged();
+				}
+			}
+		}
 }
 
 MdibContainer SDCProvider::getMdib() {

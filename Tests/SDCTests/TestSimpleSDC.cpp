@@ -1038,7 +1038,7 @@ private:
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 struct FixtureSimpleSDC : Tests::AbstractSDCLibFixture {
-	FixtureSimpleSDC() : AbstractSDCLibFixture("FixtureSimpleSDC", OSELib::LogLevel::Error) {}
+	FixtureSimpleSDC() : AbstractSDCLibFixture("FixtureSimpleSDC", OSELib::LogLevel::Trace) {}
 };
 
 SUITE(SDC) {
@@ -1064,7 +1064,10 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Discover EPR...";
         Poco::Thread::sleep(2000);
         // Consumer
-        OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
+
+        auto t_SDCInstance2 = createSDCInstance();
+
+        OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance2);
         auto t_consumer(t_serviceManager.discoverEndpointReference(Tests::SimpleSDC::DEVICE_ENDPOINT_REFERENCE));
 
         // create state handlers
