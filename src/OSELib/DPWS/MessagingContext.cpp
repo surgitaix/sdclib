@@ -42,6 +42,7 @@ void MessagingContext::clearAppSequenceCache()
 
 void MessagingContext::resetInstanceId()
 {
+    //FIXME: Is this valid?
 	_instanceId = std::chrono::system_clock::now().time_since_epoch().count() / 1000000;
 }
 
@@ -63,9 +64,8 @@ unsigned long long int MessagingContext::getNextMessageCounter()
 bool MessagingContext::registerAppSequence(::WS::DISCOVERY::AppSequenceType & appSequence) {
 	if (appSequence.SequenceId().present()) {
 		return registerAppSequence(appSequence.InstanceId(), appSequence.MessageNumber(), appSequence.SequenceId().get());
-	} else {
-		return registerAppSequence(appSequence.InstanceId(), appSequence.MessageNumber());
 	}
+    return registerAppSequence(appSequence.InstanceId(), appSequence.MessageNumber());
 }
 
 bool MessagingContext::registerAppSequence(unsigned long long int instanceId, unsigned long long int messageNumber, const std::string & sequenceId)
