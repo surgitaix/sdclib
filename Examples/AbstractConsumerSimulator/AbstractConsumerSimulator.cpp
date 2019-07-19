@@ -44,6 +44,7 @@
 #include "SDCLib/Data/SDC/MDIB/EnumStringMetricDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/ChannelDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
 
 
 #include "SDCParticipantMDStateForwarder.h"
@@ -80,6 +81,7 @@ public:
 	NumericMetricState getInitialState() override {
 		NumericMetricState numericMetricState(SDCProviderMDStateHandler::descriptorHandle);
 		numericMetricState.setActivationState(ComponentActivation::On);
+		numericMetricState.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)));
 		return numericMetricState;
 	}
 	void onStateChanged(const NumericMetricState & state)  {
