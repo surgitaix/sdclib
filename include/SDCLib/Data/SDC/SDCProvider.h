@@ -324,6 +324,9 @@ protected:
 
 private:
     void firePeriodicReportImpl();
+    void startAsyncProviderInvoker();
+    void stopAsyncProviderInvoker();
+
 
     //Sets the updated state within the MDIB and increases the MDIBVersion
     template<class T>
@@ -411,7 +414,7 @@ private:
 
 
     Poco::NotificationQueue invokeQueue;
-    std::shared_ptr<AsyncProviderInvoker> providerInvoker;
+    std::shared_ptr<AsyncProviderInvoker> m_providerInvoker = nullptr;
 
     std::vector<std::string> ml_handlesForPeriodicUpdates;
     mutable std::mutex m_mutex_PeriodicUpdateHandles;

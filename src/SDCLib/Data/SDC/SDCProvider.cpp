@@ -749,7 +749,8 @@ template<class T> void SDCProvider::updateMDIB(const T & object) {
 	replaceState(object);
 }
 
-template<class T> void SDCProvider::notifyAlertEventImpl(const T & object) {
+template<class T> void SDCProvider::notifyAlertEventImpl(const T & object)
+{
 	if (object.getDescriptorHandle().empty()) {
 		log_error([&] { return "State's descriptor handle is empty, event will not be fired!"; });
 		return;
@@ -1090,9 +1091,10 @@ bool SDCProvider::startup()
             }
         }
     } // UNLOCK
-    // PROVIDER INVOKER - TODO -> REFACTOR(?)
-    providerInvoker.reset(new AsyncProviderInvoker(*this, invokeQueue));
-    providerInvoker->start();
+
+    // Start AsyncProviderInvoker
+    startAsyncProviderInvoker();
+
     // Validation
     {
 		const xml_schema::Flags xercesFlags(xml_schema::Flags::dont_validate | xml_schema::Flags::no_xml_declaration | xml_schema::Flags::dont_initialize);
@@ -1119,10 +1121,8 @@ void SDCProvider::shutdown()
 {
     std::lock_guard<std::mutex> t_lock{m_mutex};
     // FIXME: This really needs to be fixed... Shutdown takes some time, synchro etc...
-    if (providerInvoker) {
-    	providerInvoker->interrupt();
-    	providerInvoker.reset();
-    }
+    stopAsyncProviderInvoker();
+
 	if (_adapter) {
 		_adapter->stop();
 		_adapter.reset();
@@ -1491,6 +1491,23 @@ void SDCProvider::removeHandleForPeriodicEvent(const std::string & p_handle)
     ml_handlesForPeriodicUpdates.erase(
     std::remove(ml_handlesForPeriodicUpdates.begin(), ml_handlesForPeriodicUpdates.end(), p_handle), ml_handlesForPeriodicUpdates.end());
 }
+
+void SDCProvider::startAsyncProviderInvoker()
+{
+    if(m_providerInvoker == nullptr) {
+        m_providerInvoker = std::make_shared<AsyncProviderInvoker>(*this, invokeQueue);
+        m_providerInvoker->start();
+    }
+}
+void SDCProvider::stopAsyncProviderInvoker()
+{
+    if(m_providerInvoker == nullptr) {
+        return;
+    }
+    m_providerInvoker->interrupt();
+    m_providerInvoker.reset();
+}
+
 void SDCProvider::setLastPeriodicEvent(Poco::Timestamp p_timestamp)
 {
     std::lock_guard<std::mutex> t_lock{m_mutex_PeriodicEvent};
