@@ -45,6 +45,7 @@
 #include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/ChannelDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
+#include "SDCLib/Data/SDC/FutureInvocationState.h"
 
 
 #include "SDCParticipantMDStateForwarder.h"
@@ -93,8 +94,16 @@ public:
     InvocationState onStateChangeRequest(const NumericMetricState & state , const OperationInvocationContext & oic) override {
     	// extract information from the incoming operation
     	SDCProviderStateHandler::notifyOperationInvoked(oic, InvocationState::Start);
-    	updateState(state);
-    	return InvocationState::Fin;
+    	FutureInvocationState fis;
+    	getParentConsumer().commitState(state, fis);
+    	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result metric state: " << fis.waitReceived(InvocationState::Fin, 10000);
+    	auto providerUpdatedState = getParentConsumer().requestState<NumericMetricState>(state.getDescriptorHandle());
+    	if(state.getMetricValue().getValue() == providerUpdatedState->getMetricValue().getValue())
+    	{
+    		std::cout << "SUCCESS!!!!" << std::endl;
+        	return InvocationState::Fin;
+    	}
+    	return InvocationState::Fail;
     }
 };
 
