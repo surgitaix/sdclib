@@ -31,12 +31,15 @@
 #include <string>
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/MDIB/MDIB-fwd.h"
+#include "SDCLib/Data/SDC/SDCConsumer.h"
+
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
 class SDCConsumerOperationInvokedHandler {
+ 	friend class SDCConsumer;
 public:
 	SDCConsumerOperationInvokedHandler(std::string handle);
     virtual ~SDCConsumerOperationInvokedHandler();
@@ -56,8 +59,11 @@ public:
     */
     std::string getDescriptorHandle();
 
+    SDCConsumer & getParentConsumer();
 protected:
     const std::string descriptorHandle;
+
+    SDCConsumer* parentConsumer;
 
 private:
     // prohibit copying! each state and each state handler is unique

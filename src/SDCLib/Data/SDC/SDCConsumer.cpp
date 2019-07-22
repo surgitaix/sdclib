@@ -290,8 +290,11 @@ bool SDCConsumer::unregisterFutureInvocationListener(int transactionId) {
 }
 
 bool SDCConsumer::registerStateEventHandler(SDCConsumerOperationInvokedHandler * handler) {
+    assert(handler != nullptr);
+
     std::lock_guard<std::mutex> t_lock(m_eventMutex);
 	eventHandlers[handler->getDescriptorHandle()] = handler;
+ 	handler->parentConsumer = this;
 	if (_adapter) {
 		_adapter->subscribeEvents();
 	}
