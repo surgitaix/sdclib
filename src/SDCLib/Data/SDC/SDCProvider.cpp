@@ -1338,6 +1338,12 @@ void SDCProvider::addSetOperationToSCOObjectImpl(const T & p_source, MdsDescript
 					CDM::OperatingMode::En);
 			cachedOperationStates->State().push_back(operationState);
 		}
+		else if (dynamic_cast<const CDM::ActivateOperationDescriptor *>(std::addressof(p_source))) {
+			CDM::ActivateOperationState operationState(
+					p_source.Handle(),
+					CDM::OperatingMode::En);
+			cachedOperationStates->State().push_back(operationState);
+		}
 		else if (dynamic_cast<const CDM::SetStringOperationDescriptor *>(std::addressof(p_source))) {
 			CDM::SetStringOperationState operationState(
 					p_source.Handle(),

@@ -30,6 +30,7 @@ public:
 	void setDeviceCharacteristics(const Dev::DeviceCharacteristics devChar);
 
     void createSetOperationForDescriptor(const NumericMetricDescriptor& descriptor, MdsDescriptor & ownerMDS);
+    void addActivateOperationForDescriptor(const ActivateOperationDescriptor& descriptor, MdsDescriptor & ownderMDS);
 
 	void startup();
 	void shutdown();

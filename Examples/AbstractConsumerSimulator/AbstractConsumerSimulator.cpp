@@ -45,6 +45,7 @@
 #include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/ChannelDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
+#include "SDCLib/Data/SDC/MDIB/ActivateOperationDescriptor.h"
 #include "SDCLib/Data/SDC/FutureInvocationState.h"
 
 
@@ -74,6 +75,7 @@ public:
 	}
 
 };
+
 
 class SDCParticipantNumericStateForwarder : public SDCParticipantMDStateForwarder<NumericMetricState> {
 public:
@@ -201,11 +203,6 @@ int main() {
 			//std::cout << getStringRepresentationOfMDIB(consumer.getMdib()) << std::endl;
 
 			// create handler register them to the provider under test and connect them to the "mirror provider"
-			std::map<std::string, std::shared_ptr<SDCParticipantStreamStateForwarder>> registeredStreamConsumerStateHandlers;
-			std::map<std::string, std::shared_ptr<SDCParticipantNumericStateForwarder>> registeredNumericConsumerStateHandlers;
-
-
-
 //			//should be triggered???
 //			for (auto RealTimeSampleArrayMetricState :
 //					consumer.getMdib().getMdState().findRealTimeSampleArrayMetricStates())
@@ -234,6 +231,11 @@ int main() {
 //				createSetOperationForDescriptor(eh_numeric.get, )
 //			}
 
+			std::map<std::string, std::shared_ptr<SDCParticipantNumericStateForwarder>> registeredNumericConsumerStateHandlers;
+			std::map<std::string, std::shared_ptr<SDCParticipantStreamStateForwarder>> registeredStreamConsumerStateHandlers;
+			std::map<std::string, std::shared_ptr<SDCParticipantMDStateGetForwarder<NumericMetricState>>> registeredActivateGetConsumerStateHandler;
+			std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> registeredActivateDescriptors;
+
 
 
 			for (auto Mds : consumer.getMdDescription().getMdsList())
@@ -249,11 +251,17 @@ int main() {
 						for (auto MetricDescriptor : Channel.getNumericMetricDescriptorList())
 						{
 							auto handleNumericMetric = MetricDescriptor.getHandle();
-							std::shared_ptr<SDCParticipantNumericStateForwarder> eh_numeric(new SDCParticipantNumericStateForwarder(handleNumericMetric));
-							mirrorProvider.addMdStateHandler(eh_numeric.get());
+							std::shared_ptr<SDCParticipantNumericStateForwarder> efh_numeric(new SDCParticipantNumericStateForwarder(handleNumericMetric));
+							mirrorProvider.addMdStateHandler(efh_numeric.get());
 							mirrorProvider.createSetOperationForDescriptor(MetricDescriptor, Mds);
-							consumer.registerStateEventHandler(eh_numeric.get());
-							registeredNumericConsumerStateHandlers.insert(std::make_pair(handleNumericMetric, eh_numeric));
+							consumer.registerStateEventHandler(efh_numeric.get());
+							registeredNumericConsumerStateHandlers.insert(std::make_pair(handleNumericMetric, efh_numeric));
+							std::shared_ptr<SDCParticipantMDStateGetForwarder<NumericMetricState>> afh_numeric(new SDCParticipantMDStateGetForwarder<NumericMetricState>(handleNumericMetric + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX));
+							mirrorProvider.addMdStateHandler(afh_numeric.get());
+							std::shared_ptr<ActivateOperationDescriptor> getNumericMetricRequestDescriptor(new ActivateOperationDescriptor(handleNumericMetric + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX, handleNumericMetric));
+							mirrorProvider.addActivateOperationForDescriptor(*getNumericMetricRequestDescriptor.get(), Mds);
+							registeredActivateGetConsumerStateHandler.insert(std::make_pair(handleNumericMetric, afh_numeric));
+							registeredActivateDescriptors.insert(std::make_pair(handleNumericMetric + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX, getNumericMetricRequestDescriptor));
 						}
 						for (auto MetricDescriptor : Channel.getEnumStringMetricDescriptorList())
 						{

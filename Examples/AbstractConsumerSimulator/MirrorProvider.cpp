@@ -62,3 +62,8 @@ void MirrorProvider::createSetOperationForDescriptor(const NumericMetricDescript
 {
 	sdcProvider.createSetOperationForDescriptor(descriptor, ownerMDS);
 }
+
+void MirrorProvider::addActivateOperationForDescriptor(const ActivateOperationDescriptor &descriptor, MdsDescriptor & ownerMDS)
+{
+	sdcProvider.addActivateOperationForDescriptor(descriptor, ownerMDS);
+}

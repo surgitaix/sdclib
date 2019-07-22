@@ -11,6 +11,9 @@
 #include "SDCLib/Data/SDC/SDCConsumerMDStateHandler.h"
 #include "SDCLib/Data/SDC/SDCProviderMDStateHandler.h"
 #include "SDCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
+#include "SDCLib/Data/SDC/SDCProviderActivateOperationHandler.h"
+
+#include "NamigConvention.h"
 
 namespace SDCLib {
 namespace Data {
@@ -33,8 +36,38 @@ public:
     	SDCProviderStateHandler::notifyOperationInvoked(oic, InvocationState::Start);
     	return InvocationState::Fail;
     }
-
 };
+
+template<typename TState>
+class SDCParticipantMDStateGetForwarder : public SDCProviderActivateOperationHandler, public SDCConsumerMDStateHandler<TState> {
+public:
+	SDCParticipantMDStateGetForwarder(const std::string descriptorHandle) :
+		SDCProviderActivateOperationHandler(descriptorHandle + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX),
+		SDCConsumerMDStateHandler<TState>(descriptorHandle),
+		activateDescriptorHandle(descriptorHandle + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX),
+		consumerStateDescriptorHandle(descriptorHandle)
+	{
+
+	}
+	virtual ~SDCParticipantMDStateGetForwarder() = default;
+	void onStateChanged(const TState & state) override {
+	}
+
+	InvocationState onActivateRequest(const OperationInvocationContext & oic) override {
+		auto p_State(SDCConsumerMDStateHandler<TState>::getParentConsumer().template requestState< TState >(consumerStateDescriptorHandle));
+		if(p_State != nullptr)
+		{
+			SDCProviderActivateOperationHandler::getParentProvider().updateState(*p_State);
+			return InvocationState::Fin;
+		}
+		return InvocationState::Fail;
+	}
+private:
+	std::string activateDescriptorHandle;
+	std::string consumerStateDescriptorHandle;
+};
+
+
 
 } /* namespace ACS */
 } /* namespace SDC */
