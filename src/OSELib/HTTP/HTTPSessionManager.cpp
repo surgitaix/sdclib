@@ -13,11 +13,14 @@
 #include "Poco/Runnable.h"
 #include "Poco/URI.h"
 #include "Poco/Net/HTTPClientSession.h"
+#include "Poco/Net/HTTPSClientSession.h"
 #include "Poco/Net/SocketNotification.h"
 
 #include "OSELib/DPWS/ActiveSubscriptions.h"
 #include "OSELib/HTTP/HTTPClientExchanger.h"
 #include "OSELib/HTTP/HTTPSessionManager.h"
+
+#include "SDCLib/Config/SSLConfig.h"
 
 namespace OSELib {
 namespace HTTP {
@@ -37,12 +40,13 @@ public:
 
 class SendWorker : public Poco::Runnable, public WithLogger {
 public:
-	SendWorker(const Poco::URI & destinationURI, std::shared_ptr<Poco::NotificationQueue> queue, DPWS::ActiveSubscriptions & subscriptions) :
+	SendWorker(const Poco::URI & destinationURI, std::shared_ptr<Poco::NotificationQueue> queue, DPWS::ActiveSubscriptions & subscriptions, Poco::Net::Context::Ptr p_context) :
 		WithLogger(Log::EVENTSOURCE),
 		_running(true),
 		_destinationURI(destinationURI),
 		_queue(queue),
 		_subscriptions(subscriptions)
+		, m_context(p_context)
 	{
 	}
 
@@ -59,9 +63,7 @@ public:
 
 		ScopedFalseSetter setter(_running);
 
-		Poco::Net::HTTPClientSession session(_destinationURI.getHost(), _destinationURI.getPort());
-		session.setTimeout(Poco::Timespan(5,0));
-		session.setKeepAlive(true);
+
 
 		while (Poco::Notification * _n = _queue->waitDequeueNotification(10000)) {
 			Poco::AutoPtr<Poco::Notification> n(_n);
@@ -71,7 +73,22 @@ public:
 			} else if (auto message = dynamic_cast<const Message *>(n.get())) {
 				HTTP::HTTPClientExchanger exchanger;
 				try {
-					const std::string responseContent(exchanger.exchangeHttp(session, message->_destination.getPath(), message->_message));
+
+					// SSL or not
+					if(m_context) {
+						Poco::Net::HTTPSClientSession session(_destinationURI.getHost(), _destinationURI.getPort(), m_context);
+						session.setTimeout(Poco::Timespan(5,0));
+						session.setKeepAlive(true);
+
+						exchanger.exchangeHttp(session, message->_destination.getPath(), message->_message);
+					}
+					else {
+						Poco::Net::HTTPClientSession session(_destinationURI.getHost(), _destinationURI.getPort());
+						session.setTimeout(Poco::Timespan(5,0));
+						session.setKeepAlive(true);
+
+						exchanger.exchangeHttp(session, message->_destination.getPath(), message->_message);
+					}
 				} catch (...) {
 					log_error([&] { return "Delivering event failed. Terminating subscription for sink: " + _destinationURI.toString(); });
 					_subscriptions.unsubscribe(message->_myID);
@@ -90,13 +107,17 @@ private:
 	const Poco::URI _destinationURI;
 	std::shared_ptr<Poco::NotificationQueue> _queue;
 	DPWS::ActiveSubscriptions & _subscriptions;
+	Poco::Net::Context::Ptr m_context = nullptr;
 };
 
-HTTPSessionManager::HTTPSessionManager(DPWS::ActiveSubscriptions & subscriptions, bool p_SSL)
+HTTPSessionManager::HTTPSessionManager(DPWS::ActiveSubscriptions & subscriptions, SDCLib::Config::SSLConfig_shared_ptr p_SSLConfig)
 : WithLogger(Log::EVENTSOURCE)
 , _subscriptions(subscriptions)
-, m_SSL(p_SSL)
 {
+	assert(p_SSLConfig != nullptr);
+	if(p_SSLConfig) {
+		m_context = p_SSLConfig->getClientContext();
+	}
 }
 
 HTTPSessionManager::~HTTPSessionManager() {
@@ -127,7 +148,7 @@ void HTTPSessionManager::enqueMessage(const Poco::URI & destinationURI, const st
 
 	// SSL QND
 	std::string ts_PROTOCOL = "http";
-    if(m_SSL) {
+    if(m_context) {
         ts_PROTOCOL.append("s");
     }
 
@@ -140,7 +161,7 @@ void HTTPSessionManager::enqueMessage(const Poco::URI & destinationURI, const st
 		if (static_cast<std::size_t>(_threadpool.capacity()) < _queues.size()) {
 			_threadpool.addCapacity(_queues.size() - _threadpool.capacity() + 1);
 		}
-		std::unique_ptr<SendWorker> worker(new SendWorker(destinationURI, queue, _subscriptions));
+		std::unique_ptr<SendWorker> worker(new SendWorker(destinationURI, queue, _subscriptions, m_context));
 		_threadpool.start(*worker);
 		_workers.emplace(mapIndex, std::move(worker));
 		queue->enqueueNotification(new Message(content, destinationURI, myID));

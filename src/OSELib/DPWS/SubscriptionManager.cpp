@@ -33,10 +33,10 @@
 namespace OSELib {
 namespace DPWS {
 
-SubscriptionManager::SubscriptionManager(const std::vector<xml_schema::Uri> & allowedEventActions, bool p_SSL)
+SubscriptionManager::SubscriptionManager(const std::vector<xml_schema::Uri> & allowedEventActions, SDCLib::Config::SSLConfig_shared_ptr p_SSLConfig)
 : WithLogger(Log::EVENTSOURCE)
 , _allowedEventActions(allowedEventActions)
-, _sessionManager(new HTTP::HTTPSessionManager(this->_subscriptions, p_SSL))
+, _sessionManager(new HTTP::HTTPSessionManager(this->_subscriptions, p_SSLConfig))
 {
 }
 

@@ -36,6 +36,7 @@ public:
 	virtual ~HTTPClientExchanger();
 
     std::string exchangeHttp(Poco::Net::HTTPClientSession & session, const std::string & path, const std::string & requestData);
+    std::string exchangeHttp(Poco::Net::HTTPSClientSession & session, const std::string & path, const std::string & requestData);
 };
 
 } /* namespace Comm */

@@ -12,9 +12,11 @@
 
 #include "Poco/Mutex.h"
 #include "Poco/ThreadPool.h"
+#include "Poco/Net/Context.h"
 
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
+#include "SDCLib/Prerequisites.h"
 
 namespace OSELib {
 namespace HTTP {
@@ -26,14 +28,14 @@ class SendWorker;
 class HTTPSessionManager : public WithLogger
 {
 public:
-	HTTPSessionManager(DPWS::ActiveSubscriptions & subscriptions, bool p_SSL);
+	HTTPSessionManager(DPWS::ActiveSubscriptions & subscriptions, SDCLib::Config::SSLConfig_shared_ptr p_SSLConfig);
 	~HTTPSessionManager();
 
 	void enqueMessage(const Poco::URI & destinationURI, const std::string & content, const xml_schema::Uri & myID);
 
 private:
     DPWS::ActiveSubscriptions & _subscriptions;
-    bool m_SSL = false;
+    Poco::Net::Context::Ptr m_context = nullptr;
     Poco::ThreadPool _threadpool;
     Poco::Mutex _mutex;
     std::map<std::string, std::shared_ptr<Poco::NotificationQueue>> _queues;
