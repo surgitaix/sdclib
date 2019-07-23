@@ -27,7 +27,10 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-SDCConsumerOperationInvokedHandler::SDCConsumerOperationInvokedHandler(const std::string handle): descriptorHandle(handle) {
+SDCConsumerOperationInvokedHandler::SDCConsumerOperationInvokedHandler(const std::string handle):
+		descriptorHandle(handle),
+		parentConsumer(nullptr)
+{
 
 }
 
@@ -43,6 +46,11 @@ void SDCConsumerOperationInvokedHandler::onOperationInvoked(const OperationInvoc
 std::string SDCConsumerOperationInvokedHandler::getDescriptorHandle() {
 	return descriptorHandle;
 }
+
+SDCConsumer & SDCConsumerOperationInvokedHandler::getParentConsumer() {
+	return *parentConsumer;
+}
+
 
 } /* namespace SDC */
 } /* namespace Data */

@@ -30,6 +30,7 @@
 
 #include "OSELib/DPWS/DeviceDescription.h"
 #include "SDCLib/Data/SDC/SDCConsumerAdapter.h"
+#include "SDCLib/Data/SDC/SDCConsumerOperationInvokedHandler.h"
 
 #include <atomic>
 #include <deque>
@@ -56,6 +57,9 @@ namespace SDC {
 class SDCConsumer final : public OSELib::WithLogger {
 friend class FutureInvocationState;
 friend class SDCConsumerAdapter;
+//TODO kick after consumer state handler refactoring
+friend class SDCConsumerOperationInvokedHandler;
+
 // todo remove friend classes and only use oselibconsumer adapter
 friend struct OSELib::ContextServiceEventSink;
 friend struct OSELib::EventReportEventSink;
