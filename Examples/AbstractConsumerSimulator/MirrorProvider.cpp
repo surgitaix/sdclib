@@ -8,9 +8,10 @@
 #include "MirrorProvider.h"
 #include <Poco/Thread.h>
 
-using namespace SDCLib;
-using namespace SDCLib::Util;
-using namespace SDCLib::Data::SDC;
+namespace SDCLib {
+namespace Data {
+namespace SDC {
+namespace ACS {
 
 MirrorProvider::MirrorProvider(SDCInstance_shared_ptr p_SDCInstance) : sdcProvider(p_SDCInstance) {
 
@@ -67,3 +68,8 @@ void MirrorProvider::addActivateOperationForDescriptor(const ActivateOperationDe
 {
 	sdcProvider.addActivateOperationForDescriptor(descriptor, ownerMDS);
 }
+
+} //ACS
+} //SDC
+} //Data
+} //SDCLib

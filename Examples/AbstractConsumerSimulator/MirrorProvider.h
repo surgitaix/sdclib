@@ -15,9 +15,10 @@
 
 #include "SDCLib/Util/Task.h"
 
-using namespace SDCLib;
-using namespace SDCLib::Util;
-using namespace SDCLib::Data::SDC;
+namespace SDCLib {
+namespace Data {
+namespace SDC {
+namespace ACS {
 
 class MirrorProvider : public Util::Task {
 public:
@@ -48,6 +49,9 @@ private:
 
 
 };
-
+} //ACS
+} //SDC
+} //Data
+} //SDCLib
 
 #endif /* EXAMPLES_ABSTRACTCONSUMERSIMULATOR_MIRRORPROVIDER_H_ */

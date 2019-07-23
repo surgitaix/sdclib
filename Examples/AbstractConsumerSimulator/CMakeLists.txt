@@ -15,6 +15,7 @@ target_sources(${CURRENT_TARGET_NAME}
     PRIVATE
         # Source Files
         ${SRC_DIR}/AbstractConsumerSimulator.cpp
+        ${SRC_DIR}/AbstractConsumer.cpp
         ${SRC_DIR}/MirrorProvider.cpp
         # Add the includes too (for better generation)
         #...
