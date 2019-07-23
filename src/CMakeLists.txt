@@ -20,7 +20,6 @@ set(INCLUDE_DIR ${CMAKE_CURRENT_LIST_DIR}/../include)
 set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             ${INCLUDE_DIR}/SDCLib/Prerequisites.h
                             ${INCLUDE_DIR}/SDCLib/Dev/DeviceCharacteristics.h
-                            ${INCLUDE_DIR}/SDCLib/Mainpage.h
                             ${INCLUDE_DIR}/SDCLib/Util/DebugOut.h
                             ${INCLUDE_DIR}/SDCLib/Util/Task.h
                             ${INCLUDE_DIR}/SDCLib/SDCLibrary.h

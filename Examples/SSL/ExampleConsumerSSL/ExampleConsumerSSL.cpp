@@ -51,7 +51,7 @@ using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
 //SDCLib/C
-const std::string deviceEPR("UDI-1234567890");
+const std::string deviceEPR("UDI-1234567890-SSL");
 const std::string HANDLE_SET_METRIC("handle_set");
 const std::string HANDLE_GET_METRIC("handle_get");
 const std::string HANDLE_STREAM_METRIC("handle_stream");
@@ -69,12 +69,12 @@ public:
 
     void onStateChanged(const NumericMetricState & state) override {
         double val = state.getMetricValue().getValue();
-        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received value changed of " << this->getDescriptorHandle() << ": " << val << std::endl;
+        DebugOut(DebugOut::Default, "ExampleConsumerSSL") << "Consumer: Received value changed of " << this->getDescriptorHandle() << ": " << val << std::endl;
         currentWeight = (float)val;
     }
 
     void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) override {
-        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received operation invoked (numeric metric) (ID, STATE) of " << this->getDescriptorHandle() << ": " << oic.transactionId << ", " << Data::SDC::EnumToString::convert(is) << std::endl;
+        DebugOut(DebugOut::Default, "ExampleConsumerSSL") << "Consumer: Received operation invoked (numeric metric) (ID, STATE) of " << this->getDescriptorHandle() << ": " << oic.transactionId << ", " << Data::SDC::EnumToString::convert(is) << std::endl;
     }
 
     float getCurrentWeight() {
@@ -98,11 +98,11 @@ public:
 		// assumption: sequence of values, increased by 1
 
 		std::string out("Content: ");
-		DebugOut(DebugOut::Default, "ExampleConsumer") << "Received chunk! Handle: " << state.getDescriptorHandle() << std::endl;
+		DebugOut(DebugOut::Default, "ExampleConsumerSSL") << "Received chunk! Handle: " << state.getDescriptorHandle() << std::endl;
 		for (size_t i = 0; i < values.size(); i++) {
 			out.append(" " + std::to_string(values[i]));
 		}
-		DebugOut(DebugOut::Default, "ExampleConsumer") << out;
+		DebugOut(DebugOut::Default, "ExampleConsumerSSL") << out;
 	}
 };
 
@@ -111,7 +111,7 @@ public:
 
 void waitForUserInput() {
 	std::string temp;
-	Util::DebugOut(Util::DebugOut::Default, "") << "Press key to proceed.";
+	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumerSSL") << "Press key to proceed.";
 	std::cin >> temp;
 }
 
@@ -119,7 +119,7 @@ void waitForUserInput() {
 
 
 int main() {
-	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
+	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumerSSL") << "Startup";
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
 	SDCLibrary::getInstance().setPortStart(12000);
 
@@ -184,13 +184,13 @@ int main() {
 			consumer.registerStateEventHandler(eh_set.get());
 			consumer.registerStateEventHandler(eh_stream.get());
 
-			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery succeeded." << std::endl << std::endl << "Waiting 5 sec. for the subscriptions to beeing finished";
+			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumerSSL") << "Discovery succeeded." << std::endl << std::endl << "Waiting 5 sec. for the subscriptions to beeing finished";
 
 			// wait for the subscriptions to be completed
 			std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
 			std::unique_ptr<NumericMetricState> pGetMetricState(consumer.requestState<NumericMetricState>(HANDLE_GET_METRIC));
-			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested get metrics value: " << pGetMetricState->getMetricValue().getValue();
+			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumerSSL") << "Requested get metrics value: " << pGetMetricState->getMetricValue().getValue();
 
 			// set numeric metric
 			std::unique_ptr<NumericMetricState> pMetricState(consumer.requestState<NumericMetricState>(HANDLE_SET_METRIC));
@@ -198,7 +198,7 @@ int main() {
 
 			FutureInvocationState fis;
 			consumer.commitState(*pMetricState, fis);
-			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result metric state: " << fis.waitReceived(InvocationState::Fin, 10000);
+			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumerSSL") << "Commit result metric state: " << fis.waitReceived(InvocationState::Fin, 10000);
 
 			waitForUserInput();
 			consumer.unregisterStateEventHandler(eh_get.get());
@@ -206,12 +206,12 @@ int main() {
 			consumer.unregisterStateEventHandler(eh_stream.get());
 			consumer.disconnect();
 		} else {
-			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery failed.";
+			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumerSSL") << "Discovery failed.";
 		}
 
 	} catch (std::exception & e){
-		Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Exception: " << e.what() << std::endl;
+		Util::DebugOut(Util::DebugOut::Default, "ExampleConsumerSSL") << "Exception: " << e.what() << std::endl;
 	}
     SDCLibrary::getInstance().shutdown();
-    Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Shutdown." << std::endl;
+    Util::DebugOut(Util::DebugOut::Default, "ExampleConsumerSSL") << "Shutdown." << std::endl;
 }
