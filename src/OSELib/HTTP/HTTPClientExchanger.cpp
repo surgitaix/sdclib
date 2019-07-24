@@ -44,18 +44,21 @@ HTTPClientExchanger::~HTTPClientExchanger() {
 
 }
 
-std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPClientSession & session, const std::string & path, const std::string & requestData) {
-    try {
+std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPClientSession & session, const std::string & path, const std::string & requestData)
+{
+
+    std::string responseContent;
+    responseContent.reserve(16384);
+    Poco::Net::HTTPResponse res;
+	try {
     	Poco::Net::HTTPRequest req(Poco::Net::HTTPRequest::HTTP_POST, path, Poco::Net::HTTPMessage::HTTP_1_1);
         req.setContentType("application/soap+xml");
         req.setContentLength(requestData.length());
         req.setKeepAlive(false);
 
-        session.setTimeout(1000000);
         std::ostream & ostr = session.sendRequest(req);
         ostr << requestData << std::flush;
 
-        Poco::Net::HTTPResponse res;
         std::istream & is = session.receiveResponse(res);
         if (res.getStatus() != Poco::Net::HTTPResponse::HTTP_OK && res.getStatus() != Poco::Net::HTTPResponse::HTTP_ACCEPTED) {
         	// todo throw instead of debug out
@@ -63,14 +66,17 @@ std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPClientSession & ses
 //        	SDCLib::Util::DebugOut(SDCLib::Util::DebugOut::Error, "HTTPClientExchanger") << "HTTP request failed due to invalid HTTP response: " << res.getReason();
             return "";
         }
-        std::string responseContent;
-        responseContent.reserve(16384);
-
         Helper::StreamReader streamReader(is);
         responseContent = streamReader.getContent();
         return responseContent;
+    } catch (Poco::Net::NetException& e) {
+		log_error([&] { return "NetException: " + e.message() + "\nResponse: " + responseContent; });
+		throw e;
+	} catch (Poco::Net::MessageException& e) {
+		log_error([&] { return "MessageException: " + e.message() + "\nResponse: " + responseContent; });
+		throw e;
     } catch (const std::exception & e) {
-    	log_error([&] { return std::string("Exception: " + std::string(e.what())); });
+    	log_error([&] { return std::string("Exception: " + std::string(e.what())) + "\nResponse: " + responseContent; });
     	throw e;
     } catch (...) {
     	throw std::logic_error("Unknown error.");
@@ -78,16 +84,18 @@ std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPClientSession & ses
     return "";
 }
 std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPSClientSession & session, const std::string & path, const std::string & requestData) {
-    try {
+
+    std::string responseContent;
+    responseContent.reserve(16384);
+	try {
     	Poco::Net::HTTPRequest req(Poco::Net::HTTPRequest::HTTP_POST, path, Poco::Net::HTTPMessage::HTTP_1_1);
         req.setContentType("application/soap+xml");
         req.setContentLength(requestData.length());
         req.setKeepAlive(false);
 
-        session.setTimeout(1000000);
         std::ostream & ostr = session.sendRequest(req);
         ostr << requestData << std::flush;
-
+        std::cout << "REQUEST SENT!" << std::endl;
         Poco::Net::HTTPResponse res;
         std::istream & is = session.receiveResponse(res);
         if (res.getStatus() != Poco::Net::HTTPResponse::HTTP_OK && res.getStatus() != Poco::Net::HTTPResponse::HTTP_ACCEPTED) {
@@ -96,15 +104,18 @@ std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPSClientSession & se
 //        	SDCLib::Util::DebugOut(SDCLib::Util::DebugOut::Error, "HTTPClientExchanger") << "HTTP request failed due to invalid HTTP response: " << res.getReason();
             return "";
         }
-        std::string responseContent;
-        responseContent.reserve(16384);
-
         Helper::StreamReader streamReader(is);
         responseContent = streamReader.getContent();
         return responseContent;
-    } catch (const std::exception & e) {
-    	log_error([&] { return std::string("Exception: " + std::string(e.what())); });
-    	throw e;
+    } catch (Poco::Net::NetException& e) {
+		log_error([&] { return "NetException: " + e.message() + "\nResponse: " + responseContent; });
+		throw e;
+	} catch (Poco::Net::MessageException& e) {
+		log_error([&] { return "MessageException: " + e.message() + "\nResponse: " + responseContent; });
+		throw e;
+	} catch (const std::exception & e) {
+		log_error([&] { return std::string("Exception: " + std::string(e.what())) + "\nResponse: " + responseContent; });
+		throw e;
     } catch (...) {
     	throw std::logic_error("Unknown error.");
     }

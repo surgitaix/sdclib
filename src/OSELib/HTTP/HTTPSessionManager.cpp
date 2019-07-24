@@ -9,12 +9,13 @@
 #include <iostream>
 #include <string>
 
-#include "Poco/NotificationQueue.h"
-#include "Poco/Runnable.h"
-#include "Poco/URI.h"
-#include "Poco/Net/HTTPClientSession.h"
-#include "Poco/Net/HTTPSClientSession.h"
-#include "Poco/Net/SocketNotification.h"
+#include <Poco/NotificationQueue.h>
+#include <Poco/Runnable.h>
+#include <Poco/URI.h>
+#include <Poco/Net/HTTPClientSession.h>
+#include <Poco/Net/HTTPSClientSession.h>
+#include <Poco/Net/SocketNotification.h>
+#include <Poco/Net/NetException.h>
 
 #include "OSELib/DPWS/ActiveSubscriptions.h"
 #include "OSELib/HTTP/HTTPClientExchanger.h"
