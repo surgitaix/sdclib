@@ -95,7 +95,7 @@ std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPSClientSession & se
 
         std::ostream & ostr = session.sendRequest(req);
         ostr << requestData << std::flush;
-        std::cout << "REQUEST SENT!" << std::endl;
+
         Poco::Net::HTTPResponse res;
         std::istream & is = session.receiveResponse(res);
         if (res.getStatus() != Poco::Net::HTTPResponse::HTTP_OK && res.getStatus() != Poco::Net::HTTPResponse::HTTP_ACCEPTED) {
