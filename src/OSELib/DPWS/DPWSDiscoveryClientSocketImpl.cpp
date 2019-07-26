@@ -1,8 +1,8 @@
 /*
  * DPWSDiscoveryClientSocketImpl.cpp
  *
- *  Created on: 11.12.2015
- *      Author: matthias
+ *  Created on: 11.12.2015, matthias
+*  Modified on: 26.07.2019, baumeister
  */
 
 #include "OSELib/DPWS/DPWSDiscoveryClientSocketImpl.h"
@@ -11,10 +11,11 @@
 #include "OSELib/DPWS/DPWSCommon.h"
 #include "OSELib/Helper/BufferAdapter.h"
 
+#include "SDCLib/SDCInstance.h"
+
 #include "NormalizedMessageModel.hxx"
 
 #include <Poco/Buffer.h>
-#include <Poco/UUIDGenerator.h>
 #include <Poco/Net/SocketAddress.h>
 
 
@@ -33,7 +34,7 @@ const MESSAGEMODEL::Envelope buildProbeMessage(const OSELib::DPWS::ProbeType & f
 	{
 		header.Action(probeUri);
 		header.To(discoveryUri);
-		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator::defaultGenerator().create().toString()));
+		header.MessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
 	}
 	MESSAGEMODEL::Envelope::BodyType body;
 	{
@@ -48,7 +49,7 @@ const MESSAGEMODEL::Envelope buildResolveMessage(const OSELib::DPWS::ResolveType
 	{
 		header.Action(resolveUri);
 		header.To(discoveryUri);
-		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator::defaultGenerator().create().toString()));
+		header.MessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
 	}
 	MESSAGEMODEL::Envelope::BodyType body;
 	{

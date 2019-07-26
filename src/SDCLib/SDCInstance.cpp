@@ -5,7 +5,11 @@
 #include "SDCLib/Config/SDCConfig.h"
 #include "SDCLib/Config/NetworkConfig.h"
 
+#include "OSELib/SDC/SDCConstants.h"
+
 #include <Poco/Net/ServerSocket.h>
+#include <Poco/UUIDGenerator.h>
+#include <Poco/SHA1Engine.h>
 
 
 #include <iostream>
@@ -170,4 +174,35 @@ std::chrono::milliseconds SDCInstance::getDiscoveryTime() const
 {
     assert(m_SDCConfig != nullptr);
     return m_SDCConfig->getNetworkConfig()->getDiscoveryTime();
+}
+
+bool SDCInstance::isUUID(const std::string& p_UUID)
+{
+	// NOTE: Maybe this needs to be revised?
+
+	Poco::UUID t_UUID;
+	return t_UUID.tryParse(p_UUID);
+}
+
+std::string SDCInstance::calcUUID()
+{
+	Poco::SHA1Engine t_engineSHA1;
+	auto t_UUID = Poco::UUIDGenerator::defaultGenerator().create();
+	return std::string(t_UUID.toString());
+}
+std::string SDCInstance::calcUUIDv5(std::string p_name, bool p_prefix)
+{
+	assert(!p_name.empty());
+
+	Poco::SHA1Engine t_engineSHA1;
+	auto t_UUIDv5 = Poco::UUIDGenerator::defaultGenerator().createFromName(Poco::UUID(OSELib::SDC::UUID_SDC_BASE_NAMESPACE),
+																			p_name,
+																			t_engineSHA1,
+																			Poco::UUID::Version::UUID_NAME_BASED_SHA1);
+	return std::string((p_prefix) ? OSELib::SDC::UUID_SDC_PREFIX : std::string("")) + t_UUIDv5.toString();
+}
+
+std::string SDCInstance::calcMSGID()
+{
+	return std::string(OSELib::SDC::UUID_SDC_PREFIX + SDCInstance::calcUUID());
 }

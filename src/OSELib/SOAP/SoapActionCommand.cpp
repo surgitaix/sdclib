@@ -9,8 +9,7 @@
 
 #include "NormalizedMessageModel.hxx"
 
-#include <Poco/UUIDGenerator.h>
-
+#include "SDCLib/SDCInstance.h"
 
 namespace OSELib {
 namespace SOAP {
@@ -66,7 +65,7 @@ std::unique_ptr<MESSAGEMODEL::Envelope> SoapActionCommand::checkDispatchPostCond
 std::unique_ptr<MESSAGEMODEL::Envelope> SoapActionCommand::createResponseMessageFromRequestMessage(const MESSAGEMODEL::Envelope & request) {
 	std::unique_ptr<MESSAGEMODEL::Envelope::HeaderType> header(new MESSAGEMODEL::Envelope::HeaderType());
 	using MessageIDType = MESSAGEMODEL::Envelope::HeaderType::MessageIDType;
-	header->MessageID().set(MessageIDType(Poco::UUIDGenerator::defaultGenerator().create().toString()));
+	header->MessageID().set(MessageIDType(SDCLib::SDCInstance::calcMSGID()));
 	header->RelatesTo().set(request.Header().MessageID().get());
 
 	std::unique_ptr<MESSAGEMODEL::Envelope::BodyType> body(new MESSAGEMODEL::Envelope::BodyType());

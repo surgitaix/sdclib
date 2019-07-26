@@ -8,8 +8,6 @@
 #ifndef SDCLIB_DATA_SDC_SDCPROVIDERADAPTER_H_
 #define SDCLIB_DATA_SDC_SDCPROVIDERADAPTER_H_
 
-#include "Poco/Mutex.h"
-
 #include "SDC-fwd.h"
 #include "OSELib/fwd.h"
 #include <set>
