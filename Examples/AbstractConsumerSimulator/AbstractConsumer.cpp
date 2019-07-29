@@ -11,7 +11,7 @@
 #include "SDCLib/Data/SDC/MDIB/ConvertToCDM.h"
 
 
-
+using namespace std::placeholders;
 
 namespace SDCLib {
 namespace Data {
@@ -36,8 +36,6 @@ AbstractConsumer::AbstractConsumer() :
 		consumer(nullptr),
 		connectionLostHandler(nullptr)
 		{
-	// TODO Auto-generated constructor stub
-
 }
 
 bool AbstractConsumer::discoverDUT(const std::string& deviceEPR) {
@@ -75,7 +73,7 @@ bool AbstractConsumer::discoverDUT(const std::string& deviceEPR) {
 		}
 }
 
-bool AbstractConsumer::setupMirrorProvider(const std::string& MirrorProviderEndpointReference="DUTMirrorProvider") {
+bool AbstractConsumer::setupMirrorProvider(const std::string& MirrorProviderEndpointReference) {
 	auto t_SDCInstanceProvider = std::make_shared<SDCInstance>();		    // Some restriction
 	t_SDCInstanceProvider->setIP6enabled(false);
 	t_SDCInstanceProvider->setIP4enabled(true);
@@ -87,14 +85,13 @@ bool AbstractConsumer::setupMirrorProvider(const std::string& MirrorProviderEndp
 
 	//initialize Mirror Provider which mirrors the behavior of the DUT
 	MirrorProvider mirrorProvider(t_SDCInstanceProvider);
-	mirrorProvider.setEndpointReference("DUTMirrorProvider");
+	mirrorProvider.setEndpointReference(DUTMirrorProviderEndpointRef != "" ? DUTMirrorProviderEndpointRef : "DUTMirrorProvider");
 	Dev::DeviceCharacteristics devChar;
 	devChar.addFriendlyName("en", "DUTMirrorProvider");
 	mirrorProvider.setDeviceCharacteristics(devChar);
 	mirrorProvider.setMdDescription(getConsumerStringRepresentationOfMDIB());
 	startMirrorProvider();
 	return true;
-
 }
 
 void AbstractConsumer::startMirrorProvider() {
@@ -131,6 +128,98 @@ const std::string AbstractConsumer::getStringRepresentationOfMDIB(const MdibCont
 	CDM::MdibContainer(providerMdibStringRepresentation, MdibResponse.Mdib(), map, OSELib::XML_ENCODING, xercesFlags);
 	return providerMdibStringRepresentation.str();
 }
+
+void AbstractConsumer::setupDiscoveryProvider()
+{
+	auto t_SDCInstance = createDefaultSDCInstance();
+	if(t_SDCInstance != nullptr)
+	{
+		DUTMirrorProvider = std::unique_ptr<MirrorProvider>(new MirrorProvider(t_SDCInstance));
+		DUTMirrorProvider->setEndpointReference(DEFAULT_ENDPOINTREFERENCE_DISCOVERY_PROVIDER);
+
+		setDUTEndpointReferenceCaller = std::make_shared<SDCParticipantStringFunctionCaller>(SET_DEVICE_UNDER_TEST_ENDPOINT_REF,
+			std::bind(&AbstractConsumer::setDUTEndpointRef, this, _1));
+		discoverAvailableEndpointReferencesCaller = std::make_shared<SDCParticipantActivateFunctionCaller>(DISCOVER_AVAILABLE_ENDPOINT_REFERENCES,
+			std::bind(&AbstractConsumer::updateAvailableEndpointReferences, this));
+		setMirrorProviderEndpointReferenceCaller = std::make_shared<SDCParticipantStringFunctionCaller>(SET_MIRROR_PROVIDER_ENDPOINT_REF,
+			std::bind(&AbstractConsumer::setMirrorProviderEndpointRef, this, _1));
+		availableEndpointReferencesHandler = std::make_shared<SDCParticipantStringMetricHandler>(GET_AVAILABLE_ENDPOINT_REFERENCES);
+
+		discoverAvailableEndpointReferencesDesc(std::make_shared<ActivateOperationDescriptor>(DISCOVER_AVAILABLE_ENDPOINT_REFERENCES, GET_AVAILABLE_ENDPOINT_REFERENCES));
+		availableEndpointReferencesDesc(std::make_shared<StringMetricDescriptor>(GET_AVAILABLE_ENDPOINT_REFERENCES,
+				CodedValue(STRING_UNIT),
+				MetricCategory::Msrmt,
+				MetricAvailability::Intr));
+
+		setDUTEndpointReferncesDesc(std::make_shared<StringMetricDescriptor>(SET_DEVICE_UNDER_TEST_ENDPOINT_REF,
+				CodedValue(STRING_UNIT),
+				MetricCategory::Set,
+				MetricAvailability::Cont));
+
+
+
+
+		//Channel
+		ChannelDescriptor mirrorProviderSetUpChannel(DISCOVERY_PROVIDER_CHANNEL);
+		mirrorProviderSetUpChannel.addMetric()
+
+
+
+		DUTMirrorProvider->addMdStateHandler(setDUTEndpointReferenceCaller.get());
+		DUTMirrorProvider->addMdStateHandler(getAvailableEndpointReferencesCaller.get());
+		DUTMirrorProvider->addMdStateHandler(setMirrorProviderEndpointReferenceCaller.get());
+		DUTMirrorProvider->addMdStateHandler(availableEndpointReferencesHandler.get());
+
+		DUTMirrorProvider->cre
+
+		DUTMirrorProvider->startup();
+		DUTMirrorProvider->start();
+	}
+}
+
+SDCInstance_shared_ptr AbstractConsumer::createDefaultSDCInstance() {
+    auto t_SDCInstance = std::make_shared<SDCInstance>();
+    t_SDCInstance->setIP6enabled(false);
+	t_SDCInstance->setIP4enabled(true);
+	// Bind it to interface that matches the internal criteria (usually the first enumerated)
+	if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
+		std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+		return nullptr;
+	}
+	return t_SDCInstance;
+}
+
+void AbstractConsumer::setDUTEndpointRef(const std::string& EndpointRef)
+{
+	DUTEndpointRef = EndpointRef;
+}
+
+const std::string& AbstractConsumer::getDUTEndpointRef()
+{
+	return DUTEndpointRef;
+}
+
+void AbstractConsumer::setMirrorProviderEndpointRef(const std::string& EndpointRef)
+{
+	DUTMirrorProviderEndpointRef = EndpointRef;
+}
+
+const std::string& AbstractConsumer::getMirrorProviderEndpointRef()
+{
+	return DUTMirrorProviderEndpointRef;
+}
+
+void AbstractConsumer::updateAvailableEndpointReferences()
+{
+	availableEndpointReferences.clear();
+	OSELib::SDC::ServiceManager oscpsm(createDefaultSDCInstance());
+	auto availableDevices = oscpsm.discover();
+	for(auto&& device : availableDevices)
+	{
+		availableEndpointReferences.push_back(device->getEndpointReference());
+	}
+}
+
 
 
 } //ACS

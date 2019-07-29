@@ -15,6 +15,7 @@
 #include "SDCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricValue.h"
+#include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
 #include "SDCLib/Data/SDC/SDCProviderActivateOperationHandler.h"
 #include "AbstractConsumer.h"
 
@@ -110,26 +111,49 @@ private:
 	std::string MDIBDescriptorHandle;
 };
 
-class SDCParticipantTriggerFunctionActivateHandler : public SDCProviderActivateOperationHandler {
+/**
+ * @brief Activate state handle in the SDC context internally calling the function_ptr from the constructor as callback.
+ */
+
+class SDCParticipantActivateFunctionCaller : public SDCProviderActivateOperationHandler {
 public:
-	SDCParticipantTriggerFunctionActivateHandler(const std::string descriptorHandle, std::function<void()> callback) :
+	SDCParticipantActivateFunctionCaller(const std::string descriptorHandle, std::function<void()> callback) :
 		SDCProviderActivateOperationHandler(descriptorHandle),
 		callbackFunction(callback)
 	{
 	}
 
+	SDCParticipantActivateFunctionCaller(const std::string descriptorHandle, std::function<bool()> callback) :
+		SDCProviderActivateOperationHandler(descriptorHandle),
+		boolCallbackFunction(callback)
+	{
+	}
+
 	InvocationState onActivateRequest(const OperationInvocationContext & oic) override {
-		callbackFunction();
+		if(callbackFunction)
+			callbackFunction();
+		else if(boolCallbackFunction)
+		{
+			if(!boolCallbackFunction())
+			{
+				return InvocationState::Fail;
+			}
+		}
 		return InvocationState::Fin;
 	}
 
 private:
 	std::function<void()> callbackFunction;
+	std::function<bool()> boolCallbackFunction;
 };
 
-class SDCParticipantTriggerStringFunctionActivateHandler : public SDCProviderMDStateHandler<StringMetricState> {
+/**
+ * @brief Set string metric state handler in the SDC context internally calling the function_ptr provided from the constructor as callback with the
+ * set string.
+ */
+class SDCParticipantStringFunctionCaller : public SDCProviderMDStateHandler<StringMetricState> {
 public:
-	SDCParticipantTriggerStringFunctionActivateHandler(const std::string descriptorHandle, std::function<void(const std::string)> callback) :
+	SDCParticipantStringFunctionCaller(const std::string descriptorHandle, std::function<void(const std::string)> callback) :
 		SDCProviderMDStateHandler<StringMetricState>(descriptorHandle),
 		callbackFunction(callback)
 		{
@@ -138,7 +162,7 @@ public:
 	StringMetricState getInitialState() override
 	{
 		StringMetricState initialState(descriptorHandle);
-		StringMetricValue initialStringValue(MetricQuality(MeasurementValidity::Vld))
+		StringMetricValue initialStringValue(MetricQuality(MeasurementValidity::Vld));
 		initialStringValue.setValue("");
 		initialState.setMetricValue(initialStringValue);
 		return initialState;
@@ -161,6 +185,34 @@ public:
 
 private:
 	std::function<void(const std::string)> callbackFunction;
+};
+
+class SDCParticipantStringMetricHandler : public SDCProviderMDStateHandler<StringMetricState> {
+public:
+	SDCParticipantStringMetricHandler(const std::string descripotrHanlde) : SDCProviderMDStateHandler<StringMetricState>(descripotrHanlde){}
+
+	StringMetricState getInitialState() override
+	{
+		StringMetricState initialState(descriptorHandle);
+		StringMetricValue initialStringValue(MetricQuality(MeasurementValidity::Vld));
+		initialStringValue.setValue("");
+		initialState.setMetricValue(initialStringValue);
+		return initialState;
+	}
+
+	InvocationState onStateChangeRequest(const StringMetricState &state, const OperationInvocationContext &oic) override
+	{
+		return InvocationState::Fail;
+	}
+
+	void updateStateValue(const std::string &str)
+	{
+		StringMetricState stringState(descriptorHandle);
+		StringMetricValue stringValue(MetricQuality(MeasurementValidity::Vld));
+		stringValue.setValue(str);
+		stringState.setMetricValue(stringValue);
+		parentProvider->updateState(stringState);
+	}
 };
 
 } /* namespace ACS */

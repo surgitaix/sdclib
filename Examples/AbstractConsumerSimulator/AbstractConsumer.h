@@ -29,6 +29,10 @@ namespace ACS {
 class SDCParticipantNumericStateForwarder;
 class SDCParticipantStreamStateForwarder;
 class MyConnectionLostHandler;
+class SDCParticipantActivateFunctionCaller;
+class SDCParticipantStringFunctionCaller;
+class SDCParticipantStringMetricHandler;
+
 
 class AbstractConsumer {
 public:
@@ -42,6 +46,13 @@ public:
 	bool addSubscriptionHandler(HandleRef descriptionHandler);
 	bool addSetHandler(HandleRef descriptionHandler);
 
+	void setDUTEndpointRef(const std::string& EndpointRef);
+	const std::string& getDUTEndpointRef();
+
+	void setMirrorProviderEndpointRef(const std::string& EndpointRef);
+	const std::string& getMirrorProviderEndpointRef();
+
+	void updateAvailableEndpointReferences();
 
 	const std::string getConsumerStringRepresentationOfMDIB();
 	const std::string getMirrorProviderStringRepresentationOfMDIB();
@@ -49,23 +60,52 @@ public:
 private:
 	const std::string getStringRepresentationOfMDIB(const MdibContainer MDIB);
 
+	/*
+	 * @brief Creates a SDCProvider to be discovered by the test orchestrator SDCConsumer.
+	 * Providing services to discover the DUT and setting the MirrorProviders EndpointReference.
+	 */
+	void setupDiscoveryProvider();
+
+	/*
+	 * @brief Creates a new SDCInstance with IP6 enabled and bound to a free port.
+	 *
+	 * @return Returns the new SDCInstance if successful or a null_ptr if not.
+	 */
+	SDCInstance_shared_ptr createDefaultSDCInstance();
+
+	std::string DUTMirrorProviderEndpointRef;
+	std::string DUTEndpointRef;
+
+	std::vector<std::string> availableEndpointReferences;
+
 	std::unique_ptr<MirrorProvider> DUTMirrorProvider;
 	std::unique_ptr<SDCConsumer> consumer;
+	std::unique_ptr<OSELib::SDC::ServiceManager> serviceManager;
 
-//	std::map<std::string, std::shared_ptr<SDCParticipantNumericStateForwarder>> registeredNumericConsumerStateHandlers;
-//	std::map<std::string, std::shared_ptr<SDCParticipantStreamStateForwarder>> registeredStreamConsumerStateHandlers;
-//	std::map<std::string, std::shared_ptr<SDCParticipantMDStateGetForwarder<NumericMetricState>>> registeredActivateGetConsumerStateHandler;
-//	std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> registeredActivateDescriptors;
+
+	std::shared_ptr<ActivateOperationDescriptor> discoverAvailableEndpointReferencesDesc;
+	std::shared_ptr<StringMetricDescriptor> availableEndpointReferencesDesc;
+	std::shared_ptr<StringMetricDescriptor> setDUTEndpointReferncesDesc;
+	std::shared_ptr<ActivateOperationDescriptor> discoverDUTFunctionDesc;
+	std::shared_ptr<StringMetricDescriptor> setMirrorProviderEndpointReferenceDesc;
+	std::shared_ptr<ActivateOperationDescriptor> setupMirrorProviderDesc;
 
 	std::unique_ptr<MyConnectionLostHandler> connectionLostHandler;
-	std::shared_ptr<SDCParticipantTriggerStringFunctionActivateHandler> setDUTEndpointReferenceHandler;
-	std::shared_ptr<SDCParticipantTriggerFunctionActivateHandler> discoverDUTFunctionTriggerHandler;
-	std::shared_ptr<SDCParticipantTriggerStringFunctionActivateHandler> setMirrorProviderEndpointReferenceHandler;
-	std::shared_ptr<SDCParticipantTriggerFunctionActivateHandler> setupMirrorProviderHandler;
-	std::shared_ptr<SDCParticipantTriggerFunctionActivateHandler> startMirrorProviderHandler;
-	std::map<std::string, std::shared_ptr<SDCParticipantTriggerFunctionActivateHandler>> addGetTriggerHandlers;
-	std::map<std::string, std::shared_ptr<SDCParticipantTriggerFunctionActivateHandler>> addSetTriggerHandlers;
-	std::map<std::string, std::shared_ptr<SDCParticipantTriggerFunctionActivateHandler>> addSubscribeTriggerHandlers;
+	std::shared_ptr<SDCParticipantActivateFunctionCaller> discoverAvailableEndpointReferencesCaller;
+	std::shared_ptr<SDCParticipantStringMetricHandler> availableEndpointReferencesHandler;
+	std::shared_ptr<SDCParticipantStringFunctionCaller> setDUTEndpointReferenceCaller;
+	std::shared_ptr<SDCParticipantActivateFunctionCaller> discoverDUTFunctionCaller;
+	std::shared_ptr<SDCParticipantStringFunctionCaller> setMirrorProviderEndpointReferenceCaller;
+	std::shared_ptr<SDCParticipantActivateFunctionCaller> setupMirrorProviderCaller;
+	std::map<std::string, std::shared_ptr<SDCParticipantActivateFunctionCaller>> addGetCallers;
+	std::map<std::string, std::shared_ptr<SDCParticipantActivateFunctionCaller>> addSetCallers;
+	std::map<std::string, std::shared_ptr<SDCParticipantActivateFunctionCaller>> addSubscribeCallers;
+
+
+	//	std::map<std::string, std::shared_ptr<SDCParticipantNumericStateForwarder>> registeredNumericConsumerStateHandlers;
+	//	std::map<std::string, std::shared_ptr<SDCParticipantStreamStateForwarder>> registeredStreamConsumerStateHandlers;
+	//	std::map<std::string, std::shared_ptr<SDCParticipantMDStateGetForwarder<NumericMetricState>>> registeredActivateGetConsumerStateHandler;
+	//	std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> registeredActivateDescriptors;
 };
 } //ACS
 } //SDC
