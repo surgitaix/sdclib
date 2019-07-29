@@ -29,7 +29,6 @@
 #include <Poco/AutoPtr.h>
 #include <Poco/Net/NetException.h>
 #include <Poco/Notification.h>
-#include <Poco/UUIDGenerator.h>
 
 #include "osdm.hxx"
 
@@ -197,7 +196,8 @@ SDCProvider::SDCProvider(SDCInstance_shared_ptr p_SDCInstance)
  : WithLogger(OSELib::Log::sdcProvider)
  , m_SDCInstance(p_SDCInstance)
 {
-    setEndpointReference(std::string("urn:uuid:" + Poco::UUIDGenerator::defaultGenerator().create().toString()));
+	// Set a random EndpointReference
+    setEndpointReference(SDCInstance::calcUUIDv5(std::string("SDCProvider" + SDCInstance::calcUUID()), true));
     m_MdDescription = std::unique_ptr<MdDescription>(new MdDescription());
 	_adapter = std::unique_ptr<SDCProviderAdapter>(new SDCProviderAdapter(*this));
 }
@@ -795,6 +795,7 @@ void SDCProvider::notifyEpisodicMetricImpl(const T & object) {
 	// TODO: replace sequence id
 	MDM::EpisodicMetricReport report(xml_schema::Uri("0"));
 	report.ReportPart().push_back(reportPart);
+	report.MdibVersion(getMdibVersion());
 
 	_adapter->notifyEvent(report);
 }
@@ -1260,14 +1261,24 @@ MdDescription SDCProvider::getMdDescription() const
 }
 
 
-void SDCProvider::setEndpointReference(const std::string& p_epr)
+void SDCProvider::setEndpointReference(const std::string& p_epr, bool p_toUUID)
 {
     if(p_epr.empty()) {
         return;
     }
+
+    auto t_epr = p_epr;
+    // Check if it is a UUID, if not -> convert!
+    if(p_toUUID) {
+    	t_epr = SDCInstance::calcUUIDv5(t_epr, true);
+    }
+
+    // Set EPR
     std::lock_guard<std::mutex> t_lock{m_mutex_EPR};
-    m_endpointReference = p_epr;
+    m_endpointReference = t_epr;
 }
+
+
 std::string SDCProvider::getEndpointReference() const
 {
     std::lock_guard<std::mutex> t_lock{m_mutex_EPR};

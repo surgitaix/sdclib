@@ -1,33 +1,34 @@
 /*
  * ActiveSubscriptions.cpp
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 26.07.2019, baumeister
  */
 
-#include <sstream>
+#include "OSELib/DPWS/ActiveSubscriptions.h"
 
-#include "Poco/Timestamp.h"
-#include "Poco/UUIDGenerator.h"
+#include "SDCLib/SDCInstance.h"
+
+#include <sstream>
+#include <Poco/Timestamp.h>
 
 #include "eventing.hxx"
 #include "ws-addressing.hxx"
 
-#include "OSELib/DPWS/ActiveSubscriptions.h"
+using namespace OSELib;
+using namespace OSELib::DPWS;
 
-namespace OSELib {
-namespace DPWS {
-
-ActiveSubscriptions::ActiveSubscriptions() :
-	WithLogger(Log::EVENTSOURCE),
-	_runnableAdapter(*this, &ActiveSubscriptions::run)
+ActiveSubscriptions::ActiveSubscriptions()
+: WithLogger(Log::EVENTSOURCE)
+, _runnableAdapter(*this, &ActiveSubscriptions::run)
 {
-	_thread.start(_runnableAdapter);
+    _thread.start(_runnableAdapter);
 }
 
-ActiveSubscriptions::~ActiveSubscriptions() {
-	_thread.wakeUp();
-	_thread.join();
+ActiveSubscriptions::~ActiveSubscriptions()
+{
+    _thread.wakeUp();
+    _thread.join();
 }
 
 void ActiveSubscriptions::printSubscriptions() const {
@@ -62,9 +63,9 @@ void ActiveSubscriptions::unsubscribe(const WS::EVENTING::Identifier & identifie
 std::string ActiveSubscriptions::subscribe(const SubscriptionInformation & subscription) {
 	Poco::Mutex::ScopedLock lock(_mutex);
 
-	const auto mySubscriptionID(Poco::UUIDGenerator::defaultGenerator().create());
-	_subscriptions.emplace(mySubscriptionID.toString(), subscription);
-	return mySubscriptionID.toString();
+	const auto mySubscriptionID(SDCLib::SDCInstance::calcUUID());
+	_subscriptions.emplace(mySubscriptionID, subscription);
+	return mySubscriptionID;
 }
 
 bool ActiveSubscriptions::renew(const WS::EVENTING::Identifier & identifier, const Poco::Timestamp & timestamp) {
@@ -115,6 +116,3 @@ std::map<xml_schema::Uri, WS::ADDRESSING::EndpointReferenceType> ActiveSubscript
 	}
 	return result;
 }
-
-} /* namespace DPWS */
-} /* namespace OSELib */

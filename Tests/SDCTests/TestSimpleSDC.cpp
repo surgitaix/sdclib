@@ -386,11 +386,13 @@ public:
 };
 
 
-class MaxValueStateHandler : public SDCProviderMDStateHandler<NumericMetricState> {
+class MaxValueStateHandler : public SDCProviderMDStateHandler<NumericMetricState>
+{
 public:
 
-    MaxValueStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
-    }
+    MaxValueStateHandler(std::string descriptorHandle)
+	: SDCProviderMDStateHandler(descriptorHandle)
+	{ }
 
     InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
         // Invocation has been fired as WAITING when entering this method
@@ -403,34 +405,32 @@ public:
 
         // Usually, update the real device's state here.
 
-        return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
+        // Framework will update internal MDIB with the state's value and increase MDIB version
+        return InvocationState::Fin;
     }
 
     // Helper method
     NumericMetricState createState() {
         auto t_result = NumericMetricState(descriptorHandle);
-        t_result
-            .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(2.0))
-            .setActivationState(ComponentActivation::On);
+        t_result.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(2.0))
+                .setActivationState(ComponentActivation::On);
         return t_result;
     }
 
     NumericMetricState getInitialState() override {
-        NumericMetricState t_result = createState();
-        return t_result;
+        return createState();
     }
 
     // Convenience value getter
-    float getMaxWeight() {
+    double getMaxWeight() {
     	std::unique_ptr<NumericMetricState> result(getParentProvider().getMdState().findState<NumericMetricState>(NUMERIC_METRIC_MAX_HANDLE));
         // check if result is valid
         if (result != nullptr) {
         	// In real applications, check if state has an observed value and if the observed value has a value!
-        	return (float)result->getMetricValue().getValue();
-        } else {
-            DebugOut(DebugOut::Default, "SimpleSDC") << "Maximum weight metric not found." << std::endl;
-        	return 0;
+        	return result->getMetricValue().getValue();
         }
+        DebugOut(DebugOut::Default, "SimpleSDC") << "Maximum weight metric not found." << std::endl;
+        return 0;
     }
 };
 
@@ -438,18 +438,20 @@ public:
 
 
 
-class CurValueStateHandler : public SDCProviderMDStateHandler<NumericMetricState> {
+class CurValueStateHandler : public SDCProviderMDStateHandler<NumericMetricState>
+{
 public:
 
-    CurValueStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
-    }
+    CurValueStateHandler(std::string descriptorHandle)
+	: SDCProviderMDStateHandler(descriptorHandle)
+	{ }
 
 	// define how to react on a request for a state change. This handler should not be set, thus always return Fail.
 	InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext&) override {
 		return InvocationState::Fail;
 	}
     // Helper method
-    NumericMetricState createState(float value) {
+    NumericMetricState createState(double value) {
         auto t_result = NumericMetricState(descriptorHandle);
         t_result
             .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
@@ -463,12 +465,11 @@ public:
         return createState(0);
     }
 
-    void setNumericValue(float value) {
+    void setNumericValue(double value) {
         NumericMetricState currentWeightState = createState(value);
         // Call update function (this will update internal MDIB and increase MDIB version number)
         updateState(currentWeightState);
     }
-
 };
 
 class EnumStringMetricStateHandler : public SDCProviderMDStateHandler<EnumStringMetricState> {
@@ -616,9 +617,9 @@ public:
 class LimitAlertConditionStateHandler : public SDCProviderAlertConditionStateHandler<LimitAlertConditionState> {
 public:
 
-	LimitAlertConditionStateHandler(std::string descriptorHandle) : SDCProviderAlertConditionStateHandler(descriptorHandle)
-	{
-	}
+	LimitAlertConditionStateHandler(std::string descriptorHandle)
+	: SDCProviderAlertConditionStateHandler(descriptorHandle)
+	{ }
 
     InvocationState onStateChangeRequest(const LimitAlertConditionState & state, const OperationInvocationContext & ) override {
 
@@ -693,8 +694,9 @@ public:
 class AlertSystemStateHandler : public SDCProviderMDStateHandler<AlertSystemState> {
 public:
 
-	AlertSystemStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle){
-    }
+	AlertSystemStateHandler(std::string descriptorHandle)
+	: SDCProviderMDStateHandler(descriptorHandle)
+	{ }
 
 	AlertSystemState getInitialState() override {
         AlertSystemState alertSystemState(descriptorHandle, AlertActivation::On);  // reference alert system descriptor's handle // Alert is activated
@@ -1054,7 +1056,7 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
         // Provider
         Tests::SimpleSDC::SDCHoldingDeviceProvider provider(t_SDCInstance);
         provider.startup();
-        provider.start(); // FIXME: Deadlock on evaluateAlertCondition
+        provider.start();
 
         // MdDescription test
         MdDescription mdDescription =  provider.getMdDescription();

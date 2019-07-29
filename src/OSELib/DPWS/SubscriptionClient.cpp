@@ -1,23 +1,22 @@
 /*
  * SubscriptionClient.cpp
  *
- *  Created on: 14.12.2015
- *      Author: matthias
+ *  Created on: 14.12.2015, matthias
  */
 
-#include <iostream>
+#include "OSELib/DPWS/SubscriptionClient.h"
 
-#include "Poco/UUIDGenerator.h"
 
-#include "eventing.hxx"
 #include "ws-addressing.hxx"
 
-#include "OSELib/DPWS/SubscriptionClient.h"
 #include "OSELib/SOAP/GenericSoapInvoke.h"
 #include "OSELib/SDC/DefaultSDCSchemaGrammarProvider.h"
 
-namespace OSELib {
-namespace DPWS {
+#include "SDCLib/SDCInstance.h"
+
+
+using namespace OSELib;
+using namespace OSELib::DPWS;
 
 class RenewInvoke : public OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::RenewTraits> {
 public:
@@ -65,7 +64,7 @@ SubscriptionClient::SubscriptionClient(const std::vector<SubscriptionInformation
     m_SSLContext(p_context) // Can be nullptr!
 {
 	for (const auto & item : subscriptions) {
-		_subscriptions.emplace(Poco::UUIDGenerator::defaultGenerator().create(), item);
+		_subscriptions.emplace(SDCLib::SDCInstance::calcUUID(), item);
 	}
 	_thread.start(_runnableAdapter);
 }
@@ -90,7 +89,7 @@ void SubscriptionClient::run() {
 		const WS::ADDRESSING::AttributedURIType address(subscription.second._sinkURI.toString());
 		WS::ADDRESSING::EndpointReferenceType epr(address);
 		WS::ADDRESSING::EndpointReferenceType::ReferenceParametersType referenceParameters;
-		referenceParameters.Identifier(WS::EVENTING::Identifier(subscription.first.toString()));
+		referenceParameters.Identifier(WS::EVENTING::Identifier(subscription.first));
 		epr.ReferenceParameters().set(referenceParameters);
 		const WS::EVENTING::DeliveryType delivery(epr);
 
@@ -137,6 +136,3 @@ void SubscriptionClient::run() {
 		auto response(unsubscribeInvoke.invoke(request, m_SSLContext));
 	}
 }
-
-} /* namespace DPWS */
-} /* namespace OSELib */

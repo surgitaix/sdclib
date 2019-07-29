@@ -49,10 +49,11 @@ public:
     /**
     * @brief Create a consumer and try to discover provider using endpointreference (EPR).
     *
-    * @param epr The endpointreference
+    * @param p_epr The endpointreference
+    * @param p_toUUID Determines if the Given EPR Param will be converted to a UUIDv5 before matching.
     * @return The consumer or null
     */
-	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> discoverEndpointReference(const std::string & epr);
+	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> discoverEndpointReference(const std::string & p_epr, bool p_toUUID = true);
 
     /**
     * @brief Discover all SDC providers currently available
@@ -69,20 +70,6 @@ public:
      */
     using AsyncDiscoverResults  = std::future<DiscoverResults>;
     AsyncDiscoverResults async_discover();
-
-    /**
-    * @deprecated USE discover()!
-    *
-    * @return List of all providers
-    */
-	DiscoverResults discoverOSCP();
-
-    /**
-     * @brief [DEPRECATED: USE async_discover()!] Discover all SDC providers currently available in an async manner
-     * 
-     * @return std::future of a list of all providers (DiscoverResults)
-     */
-    AsyncDiscoverResults async_discoverOSCP();
 
 private:
 

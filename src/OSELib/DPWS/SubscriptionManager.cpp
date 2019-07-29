@@ -1,20 +1,16 @@
 /*
  * SubscriptionManager.cpp
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 26.07.2019, baumeister
  */
 
-#include <atomic>
-#include <iostream>
-
-#include "Poco/NotificationQueue.h"
-#include "Poco/Timestamp.h"
-#include "Poco/Timespan.h"
-#include "Poco/URI.h"
-#include "Poco/UUIDGenerator.h"
-#include "Poco/Net/HTTPClientSession.h"
-#include "Poco/Net/SocketNotification.h"
+#include <Poco/NotificationQueue.h>
+#include <Poco/Timestamp.h>
+#include <Poco/Timespan.h>
+#include <Poco/URI.h>
+#include <Poco/Net/HTTPClientSession.h>
+#include <Poco/Net/SocketNotification.h>
 
 #include "eventing.hxx"
 #include "NormalizedMessageModel.hxx"
@@ -30,13 +26,15 @@
 #include "OSELib/SDC/SDCConstants.h"
 #include "OSELib/SDC/ReportTraits.h"
 
+#include "SDCLib/SDCInstance.h"
+
 namespace OSELib {
 namespace DPWS {
 
-SubscriptionManager::SubscriptionManager(const std::vector<xml_schema::Uri> & allowedEventActions, bool p_SSL)
+SubscriptionManager::SubscriptionManager(const std::vector<xml_schema::Uri> & allowedEventActions, SDCLib::Config::SSLConfig_shared_ptr p_SSLConfig)
 : WithLogger(Log::EVENTSOURCE)
 , _allowedEventActions(allowedEventActions)
-, _sessionManager(new HTTP::HTTPSessionManager(this->_subscriptions, p_SSL))
+, _sessionManager(new HTTP::HTTPSessionManager(this->_subscriptions, p_SSLConfig))
 {
 }
 
@@ -130,7 +128,7 @@ template <class TraitsType>
 void SubscriptionManager::fireEvent(const typename TraitsType::ReportType & report) {
 	std::unique_ptr<MESSAGEMODEL::Envelope::HeaderType> header(new MESSAGEMODEL::Envelope::HeaderType());
 	using MessageIDType = MESSAGEMODEL::Envelope::HeaderType::MessageIDType;
-	header->MessageID().set(MessageIDType(Poco::UUIDGenerator::defaultGenerator().create().toString()));
+	header->MessageID().set(MessageIDType(SDCLib::SDCInstance::calcMSGID()));
 	using ActionType = MESSAGEMODEL::Envelope::HeaderType::ActionType;
 	header->Action().set(ActionType(TraitsType::Action()));
 

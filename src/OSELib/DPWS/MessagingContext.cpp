@@ -1,16 +1,19 @@
 /*
  * MessagingContext.cpp
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 25.07.2019, baumeister
  */
 
+#include "OSELib/DPWS/MessagingContext.h"
+
 #include <chrono>
+
 #include "config/config.h"
 
 #include "wsdd-discovery-1.1-schema-os.hxx"
 
-#include "OSELib/DPWS/MessagingContext.h"
+
 
 namespace OSELib {
 namespace DPWS {

@@ -10,6 +10,8 @@
 #include "OSELib/Helper/XercesDocumentWrapper.h"
 #include "OSELib/Helper/XercesUniqueElementByTagNameFilter.h"
 
+#include <xercesc/dom/DOM.hpp>
+
 namespace OSELib {
 namespace Helper {
 

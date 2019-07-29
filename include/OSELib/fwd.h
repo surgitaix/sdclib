@@ -22,6 +22,7 @@ namespace Poco {
 		class HTTPServer;
 		class HTTPServerRequest;
 		class MulticastSocket;
+		class HTTPSClientSession;
 	}
 	class Logger;
 	class NotificationQueue;

@@ -420,7 +420,7 @@ bool SDCProviderAdapter::start() {
 				OSELib::SDC::PeriodicContextChangedReportTraits::Action(),
 				OSELib::SDC::WaveformStreamTraits::Action(),
 				OSELib::SDC::PeriodicMetricReportTraits::Action() };
-	_subscriptionManager = std::unique_ptr<OSELib::DPWS::SubscriptionManager>(new OSELib::DPWS::SubscriptionManager(allowedSubscriptionEventActions, USE_SSL));
+	_subscriptionManager = std::unique_ptr<OSELib::DPWS::SubscriptionManager>(new OSELib::DPWS::SubscriptionManager(allowedSubscriptionEventActions, _provider.getSDCInstance()->getSSLConfig()));
 
     // Use SSL
     if(USE_SSL)

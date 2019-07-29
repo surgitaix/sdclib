@@ -1,8 +1,8 @@
 /*
  * MessagingContext.h
  *
- *  Created on: 18.07.2019
- *      Author: matthias, baumeister
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 18.07.2019, baumeister
  */
 
 #ifndef MESSAGINGCONTEXT_H_

@@ -38,8 +38,8 @@ project(${PROJECT_NAME})
 
 # Version numbers -> Will be written to the config file
 set (SDCLibrary_VERSION_FIRST          4)
-set (SDCLibrary_VERSION_MIDDLE         2)
-set (SDCLibrary_VERSION_LAST           2)
+set (SDCLibrary_VERSION_MIDDLE         3)
+set (SDCLibrary_VERSION_LAST           0)
 set (SDCLibrary_C_YEAR              2019)
 set (SDCLibrary_SurgiTAIX "SurgiTAIX AG")
 
@@ -247,6 +247,17 @@ set(CONFIG_DIR ${CMAKE_CURRENT_LIST_DIR}/include/config)
 # configure
 message(STATUS "Configuring ${PROJECT_NAME}...")
 configure_file (${CONFIG_DIR}/config.h.in ${CONFIG_DIR}/config.h)
+################################################################################
+
+################################################################################
+# Doxygen config
+# Note: Make sure all values are set before doing this!
+################################################################################
+# configure
+message(STATUS "Configuring Doxygen files...")
+get_filename_component(SDC_PATH_DOXYGEN ${CMAKE_CURRENT_LIST_DIR}/doc/Doxygen REALPATH)
+configure_file(${SDC_PATH_DOXYGEN}/Doxyfile.in ${SDC_PATH_DOXYGEN}/Doxyfile)
+configure_file(${SDC_PATH_DOXYGEN}/Mainpage.h.in ${SDC_PATH_DOXYGEN}/Mainpage.h)
 ################################################################################
 
 

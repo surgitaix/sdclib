@@ -8,3 +8,6 @@ Dependencies/Poco/Net/Makefile
 
 # backup folder
 codegenerator/backup
+
+# Doxygen
+doc/Doxygen/doc

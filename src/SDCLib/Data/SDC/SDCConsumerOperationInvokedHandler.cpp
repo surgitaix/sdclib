@@ -51,6 +51,7 @@ SDCConsumer & SDCConsumerOperationInvokedHandler::getParentConsumer() {
 	return *parentConsumer;
 }
 
+
 } /* namespace SDC */
 } /* namespace Data */
 } /* namespace SDCLib */

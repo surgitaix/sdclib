@@ -123,7 +123,6 @@
  */
 
 #include "SDCLib/Data/SDC/MDIB/Defaults.h"
-#include "Poco/UUIDGenerator.h"
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/ConvertToCDM.h"

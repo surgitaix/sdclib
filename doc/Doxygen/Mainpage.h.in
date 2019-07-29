@@ -1,22 +1,22 @@
 /**
 @mainpage %SDCLib documentation
 
-Welcome to the Open Surgical Communication Library documentation pages. Use the menu on the left to navigate to a section, or select
+Welcome to the @PROJECT_NAME@ documentation pages. Use the menu on the left to navigate to a section, or select
 one of the page links below.
 
 @li @ref intro <b>OR.NET</b>: A short introduction to the %SDCLib
 @li @ref sdcpage <b>OR.NET</b>: API for the Open Surgical Communication Protocol
 
-@version 2.0 beta
-@author Besting
-@copyright (C) 2016 SurgiTAIX AG
+@version @SDCLibrary_VERSION_FIRST@.@SDCLibrary_VERSION_MIDDLE@.@SDCLibrary_VERSION_LAST@
+@author Besting, Baumeister
+@copyright (C) @SDCLibrary_C_YEAR@ @SDCLibrary_SurgiTAIX@
 
 @page introductionpage Introduction
 
 @tableofcontents
 
 @section intro Introduction
-The Open Surgical Communication Library (%SDCLib) is a lightweight, easy-to-use, easy-to-port, resource-friendly and fast
+The SDCLibrary (%SDCLib) is a lightweight, easy-to-use, easy-to-port, resource-friendly and fast
 webservice library for medical devices. It implements the Open Surgical Communication Protocol (SDC) on top of
 DPWS 1.1. %SDCLib supports the WS-Discovery, WS-Addressing, WS-Transfer, WS-Eventing and WS-MetadataExchange specification and is based on
 SOAP 1.2 and WSDL 1.1 standards.
@@ -25,83 +25,91 @@ SOAP 1.2 and WSDL 1.1 standards.
 
 The %SDCLib is mostly platform independent. There are only few parts that are implemented for a specific operating system.
 These parts rely on preprocessor directives. Additionally different libraries have to be linked for different operating systems.
-The neccessary steps are described below.
+The neccessary steps are described in the README.md. You can find further information in the doc/ folder.
 
-The %SDCLib relies on XSD including XERCES (http://www.codesynthesis.com). Also, POCO libs are a major dependency but these have been included as source files.
+The %SDCLib relies on XSD (http://www.codesynthesis.com), XercesC and Poco. Being a major dependency Poco has been included in the dependecy folder and will be built along with the SDCLib.
 
-@subsection linuxspecificcmake CMAKE on linux (examples for Ubuntu or Debian, which are recommended)
+@subsection linuxspecificcmake CMake on Linux
 
-We provide a cmake build script, which builds a shared library you can include in your own projects as well as several example
-applications which are ready to run. Follow the steps outlined in this section to build %SDCLib on linux.
+We recommend using the SDCLib with CMake on Linux. We try to support Windows too, but cannot guarantee for platform dependent bugs.
+The following guideline will focus on setting up the SDCLib on Linux systems.
+
+Essential requirements
+  
+<ul>
+  <li>C++ 11 Compiler Support</li>
+  <li>CMake (> 3.5.0), pthread</li>
+  <li>Supported Compilers:</li>
+  <ol>
+  <li>GCC ( 4.8.1 ) full C++11 support</li>
+  <li>Clang ( 3.3 ) full C++11 support</li>
+  <li>MSVC++ ( 18.0 ) partial C++11 support (19.0 or higher recommended)</li>
+  </ol>
+</ul>
 
 @subsubsection linuxdependenciesxsd Installing XSD and XERCES
 
 Install XSD and xerces-c binaries and includes, on debian or ubuntu you can use the commands
-
 <ul>
   <li>sudo apt-get install xsdcxx</li>
-  <li>sudo apt-get install libxerces-c3.1</li>
   <li>sudo apt-get install libxerces-c-dev</li>
+  <li>sudo apt-get install libssl-dev</li>
 </ul>
 
-@subsubsection buildcmake Building SDCLib using cmake
 
-<p>Before running cmake, edit the CMakeList.txt file. You might have to edit paths defined the CMakesList.txt, if dependecies are not installed on the system using <i>make install</i> or 
-<i>apt-get install</i>.</p>
-Run the following commands from within the project root folder:
+@subsection integrating Integrating compiled binaries in your project
+
+After building the SDCLib you can perform
 <ul>
-  <li>cmake ./</li>
-  <li>make</li>
+  <li>make install</li>
 </ul>
-
-The library should now compile and link. If you'd like to configure a debug build, use
-
-<ul>
-  <li>cmake -Ddebug=ON</li>
-</ul>
-
-@subsection integrating Integrating compiled binaries in your project (eclipse CDT)
-
-Please follow the descriptions provided in SDCLib Eclipse.pdf.
+This will copy all required files into the folder specified under CMAKE_INSTALL_PREFIX (Header and compiled binaries).
+You can set the include and library path to this folder and use the built SDCLib in your project without CMake.
 
 @page sdcpage Open Surgical Communication Protocol
 
 @tableofcontents
 
 @section sdcstartup Framework startup and shutdown
-On both consumer and provider side, the library needs to be initialized before use:
+Each Participant is based on an individual SDCInstance. To start a provider create it, bind it to an interface and pass it to the provider on creation:
 @code
 // Include common library headers
-#include "SDCInstance.h"
-// Start framework
-SDCLibrary::getInstance().startup();
-// Optional (override ip autobinding): choose a network adapter by providing an IP address for new socket connections
-SDCLibrary::getInstance().setBindInterface("192.168.1.1");
-// Optional (override default port start): choose a global port start number used for bindings
-SDCLibrary::getInstance().setPortStart("2011");
-// Do something
-...
+#include <SDCLib/SDCInstance.h>
+#include <SDCLib/Data/SDC/SDCProvider.h>
 
-SDCLibrary::getInstance()->shutdown();
-@endcode
+#include <iostream>
 
-Please make sure to explicitly shutdown the library and all high level object such as consumers and providers. When calling the <b>SDCLibrary::getInstance()->shutdown()</b> all internal memory of the library is freed completely and immediately.
-@code
-int main() {
-  // Startup library and init consumer and provider
-  SDCLibrary::getInstance().startup();
+using namespace SDCLib;
+using namespace SDCLib::Data::SDC;
 
-  // Do something
-  ...
+int main()
+{
+    // Create a new SDCInstance (no flag will auto init)
+    auto t_SDCInstance = std::make_shared<SDCInstance>(true);
+    // Configure (optional)
+    t_SDCInstance->setIP6enabled(false);
+    t_SDCInstance->setIP4enabled(true);
+    // Bind it to interface that matches the internal criteria (usually the first enumerated)
+    if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
+        std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+        return -1;
+    }
+    // Create the SDCProvider
+    SDCProvider provider(t_SDCInstance);
+    provider.startup();
 
-  // Shutdown library
-  SDCLibrary::getInstance().shutdown();
+    // ... Do some work here, let the provider run etc.
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
+    // Clean shutdown of the SDCProvider
+    provider.shutdown();
+    return 0;
 }
 @endcode
 
 @section sdcoverview Overview
 
-The API for the Open Surgical Communication Protocol (SDC-API) is set on top of DPWS. It was created by the OR.NET data model working group and is based on the DIN EN ISO 11073-10201 information model. The resulting OR.NET data model is called CDM (Communication Data Model).
+The API for the SDC Protocol (SDC-API) is set on top of DPWS. It was created by the OR.NET data model working group and is based on the DIN EN ISO 11073-10201 information model. The resulting OR.NET data model is called CDM (Communication Data Model).
 
 There are two main instances used for communication:
 
@@ -123,7 +131,7 @@ The MDIB structure is used to exchange information between the SDCProvider and S
     <ul>
       <li><b>Medical Device Description</b>: Describes the static part. Class-name: SDCLib::Data::SDC::MDDescription</li>
         <ul>
-          <li><b>Hydra Medical Device System</b>: Describes the complete device or service. Class-name: SDCLib::Data::SDC::HydraMDSDescriptor</li>
+          <li><b>Medical Device System</b>: Describes the complete device or service. Class-name: SDCLib::Data::SDC::MdsDescriptor</li>
             <ul>
               <li><b>Virtual Medical Device</b>: Describes a subsystem (e.g. a hardware- or software-modul). Class-name: SDCLib::Data::SDC::VMDDescriptor</li>
                 <ul>
@@ -135,7 +143,7 @@ The MDIB structure is used to exchange information between the SDCProvider and S
                 </ul> 
             </ul>
         </ul>
-      <li><b>Medical Devices States</b>: Containes the dynamic part. Class-name: SDCLib::Data::SDC::MDState</li>
+      <li><b>Medical Devices States</b>: Containes the dynamic part. Class-name: SDCLib::Data::SDC::MdState</li>
         <ul>
           <li><b>Metric State</b>: Describes the state of a references metric (e.g. current heart rate value). Sub-classes of: SDCLib::Data::SDC::AbstractMetricState</li> (e.g. NumericMetricState, StringMetricState, etc.)
           <li><b>Context State</b>: Describes the state of a specific context (e.g. patient demographics data). Sub-classes of: SDCLib::Data::SDC::AbstractContextState</li></li> 
@@ -143,16 +151,16 @@ The MDIB structure is used to exchange information between the SDCProvider and S
     </ul>
 </ul>
 
-Alert systems can be inserted at the level of the hydra MDS, the VMD or channel. They will be described later in detail.
+Alert systems can be inserted at the level of the Mds, the VMD or channel. They will be described later in detail.
 
 @section sdc_provider The EndoTAIX SDC Provider example
 
 This section provides a simplified example for an SDCProvider instance for the EndoTAIX holding device system. The <b>SDCHoldingDeviceProvider</b> class extends the <b>SDCLib::Data::SDC::SDCProvider</b> class. However, it is not required to subclass SDCProvider. Instead, you can also use an instance as a member variable in another class.
-<p>Using <b>SDCrovider::addMDStateHandler</b> is a comfortable way to provide separate handlers for each state. This has the advantage, that code concerning devices's data will be encapsulated elsewhere. This will keep our class (SDCHoldingDeviceProvider) short.</p>
+<p>Using <b>SDCrovider::addMdStateHandler</b> is a comfortable way to provide separate handlers for each state. This has the advantage, that code concerning devices's data will be encapsulated elsewhere. This will keep our class (SDCHoldingDeviceProvider) short.</p>
 
 <P>In this example, the provider contains two metrics, which describe their purpose and properties:
 One for current weight (currentWeightMetric, read-only), which is measured using a force-torque-sensor attached to the arm. The other one defines the maximum weight limit (maxWeightMetric, read-write). Each metric also needs a corresponding <b>metric state</b> which contains the actual value.</p>
-Each metric state will be represented by a separate handler, which subclasses <b>SDCProviderMDStateHandler</b>.
+Each metric state will be represented by a separate handler, which subclasses <b>SDCProviderMdStateHandler</b>.
 
 @subsection sdc_provider_basics_descriptive Implementation - The descriptive part
 
@@ -161,18 +169,18 @@ The implementation of the provider's descriptive part can be structured as follo
 @code
 class SDCHoldingDeviceProvider : public SDCProvider {
 public:
-  SDCHoldingDeviceProvider() { ... }
+    SDCHoldingDeviceProvider() { ... }
 
-  virtual ~SDCHoldingDeviceProvider() { }
+    virtual ~SDCHoldingDeviceProvider() { }
 
   ...
 
 private:
-  // The current weight
-  NumericMetricDescriptor currentWeightMetric;
+    // The current weight
+    NumericMetricDescriptor currentWeightMetric;
   
-  // Maximum weight
-  NumericMetricDescriptor maxWeightMetric;
+    // Maximum weight
+    NumericMetricDescriptor maxWeightMetric;
   
   ...
 }
@@ -222,13 +230,13 @@ SDCHoldingDeviceProvider() {
 
 <p>The above code shows the usage of <b>method chaining</b>, which eases the definitions of descriptors.</p>
 
-<p>The description (containing the hydra MDS) will be constructed <b>bottom-up</b>. It describes the structure of our device and uses the definitions of our metrics:
+<p>The description (containing the Mds) will be constructed <b>bottom-up</b>. It describes the structure of our device and uses the definitions of our metrics:
 Each metric must be added to a channel instance, the channel instance to the virtual medical device instance and that one finally to the medical device system instance.</p>
 
 <p><b>Important:</b> To make the maximum value state writeable (<b>onStateChangeRequest</b> implemented), a set operation descriptor must be added using <b>createSetOperationForDescriptor</b>!</p>
 
 @code
-SDCHoldingDeviceProvider() {
+SDCHoldingDeviceProvider(...) {
 
   ...
 
@@ -244,8 +252,8 @@ SDCHoldingDeviceProvider() {
   VMDDescriptor holdingDeviceModule;
   holdingDeviceModule.addChannel(holdingDeviceChannel);
 
-  // Hydra MDS
-  HydraMDSDescriptor holdingDeviceSystem;
+  // Mds
+  MdsDescriptor holdingDeviceSystem;
   holdingDeviceSystem
     .setHandle(MDS_HANDLE)
     .setMetaData(
@@ -260,7 +268,7 @@ SDCHoldingDeviceProvider() {
         .addModelNumber("1")
         .addSerialNumber("1234")
       )
-    // Add VMD to MDS
+    // Add VMD to Mds
     .addVMD(holdingDeviceModule)
     .setType(
       CodedValue()
@@ -271,48 +279,52 @@ SDCHoldingDeviceProvider() {
   createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
   
   // Add MDS to provider
-  addHydraMDS(holdingDeviceSystem);
+  addMds(holdingDeviceSystem);
 
 }
 @endcode
 
 @subsection sdc_provider_basics_dynamic Implementation - The dynamic part
 
-<p>For the dynamic part, we have to implement handlers of a subtype of <b>SDCProviderMDStateHandler</b> (e.g. <b>SDCProviderNumericMetricStateHandler</b>) where each handler takes care of a single state, as already mentioned before. It defines the initial state at startup.
+<p>For the dynamic part, we have to implement handlers of a subtype of <b>SDCProviderMdStateHandler</b> (e.g. <b>SDCProviderNumericMetricStateHandler</b>) where each handler takes care of a single state, as already mentioned before. It defines the initial state at startup.
 The handler may then call the <b>updateState</b> method at any time to tell the framework about a state (value) change (e.g. if the real devices state changes). The internal MDIB will then be updated.</p>
 <p>If the state is writable (SETTING), the handler has to provide at least a type-specific implementation of <b>onStateChangeRequest</b> for a specific type (e.g. NumericMetricState or StringMetricState) which processes incoming change requests for our metric state.</p>
 Each state must refer to the descriptor's state handle. If multiple states refer to the same descriptor, each state must furthermore have its own state handle. Otherwise this is optional.
 
 @code
 // READ-ONLY state handler
-class CurValueStateHandler : public SDCProviderNumericMetricStateHandler {
+class CurValueStateHandler : public SDCProviderMDStateHandler<NumericMetricState>
+{
 public:
 
-  CurValueStateHandler() {
-  }
+    CurValueStateHandler(std::string descriptorHandle)
+	: SDCProviderMDStateHandler(descriptorHandle)
+	{ }
 
-  // onStateChangeRequest not implemented (state is read-only - MEASUREMENT)
+	// define how to react on a request for a state change. This handler should not be set, thus always return Fail.
+	InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext&) override {
+		return InvocationState::Fail;
+	}
+    // Helper method
+    NumericMetricState createState(double value) {
+        auto t_result = NumericMetricState(descriptorHandle);
+        t_result
+            .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
+            .setActivationState(ComponentActivation::On)
+            .setDescriptorHandle(NUMERIC_METRIC_CURRENT_HANDLE)
+            .setLifeTimePeriod(xml_schema::Duration(0,0,0,0,0,0,1));
+        return t_result;
+    }
 
-  // Helper method
-  NumericMetricState createState(float value) {
-    NumericMetricState result;
-    result
-     .setObservedValue(NumericMetricValue().setValue(value))
-     .setComponentActivationState(ComponentActivation::ON)
-     .setDescriptorHandle("handle_cur");
-    return result;
-  }
+    NumericMetricState getInitialState() override {
+        return createState(0);
+    }
 
-  NumericMetricState getInitialState() override {
-    return createState(0);
-  }
-
-  void setNumericValue(float value) {
-    NumericMetricState currentWeightState = createState(value);
-    // Call update function (this will update internal MDIB and increase MDIB version number)
-    updateState(currentWeightState);
-  }
-
+    void setNumericValue(double value) {
+        NumericMetricState currentWeightState = createState(value);
+        // Call update function (this will update internal MDIB and increase MDIB version number)
+        updateState(currentWeightState);
+    }
 };
 
 @endcode
@@ -321,51 +333,53 @@ The handler for the max value state:
 
 @code
 // READ-WRITE state handler
-class MaxValueStateHandler : public SDCProviderNumericMetricStateHandler {
+class MaxValueStateHandler : public SDCProviderMDStateHandler<NumericMetricState>
+{
 public:
 
-  MaxValueStateHandler() {
-  }
+    MaxValueStateHandler(std::string descriptorHandle)
+	: SDCProviderMDStateHandler(descriptorHandle)
+	{ }
 
-  InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
-    // Invocation has been fired as WAITING when entering this method
- 	DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: MaxValueStateHandler received state change request" << std::endl;
+    InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
+        // Invocation has been fired as WAITING when entering this method
+    	DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: MaxValueStateHandler received state change request" << std::endl;
 
-  	notifyOperationInvoked(oic, InvocationState::STARTED);
+    	notifyOperationInvoked(oic, InvocationState::Start);
 
-    // we can update here, but if we return FINISHED, the framework will also update
-    //updateState(state);
+        // we can update here, but if we return Fin, the framework will also update
+        updateState(state);
 
-    // Usually, update the real device's state here.
+        // Usually, update the real device's state here.
 
-    return InvocationState::FINISHED;  // Framework will update internal MDIB with the state's value and increase MDIB version
-  }
+        // Framework will update internal MDIB with the state's value and increase MDIB version
+        return InvocationState::Fin;
+    }
 
-  // Helper method
-  NumericMetricState createState() {
-    NumericMetricState result;
-    result
-      .setObservedValue(NumericMetricValue().setValue(2.0))
-      .setComponentActivationState(ComponentActivation::ON)
-      .setDescriptorHandle("handle_max")
-      .setHandle("handle_max_state");
-      return result;
+    // Helper method
+    NumericMetricState createState() {
+        auto t_result = NumericMetricState(descriptorHandle);
+        t_result
+            .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(2.0))
+            .setActivationState(ComponentActivation::On);
+        return t_result;
     }
 
     NumericMetricState getInitialState() override {
-      NumericMetricState result = createState();
-      return result;
+        return createState();
     }
 
     // Convenience value getter
-    float getMaxWeight() {
-      NumericMetricState result;
-      // TODO: in real applications, check if findState returns true!
-      getParentProvider().getMdState().findState("handle_max", result);
-      // TODO: in real applications, check if state has an observed value and if the observed value has a value!
-      return (float)result.getObservedValue().getValue();
+    double getMaxWeight() {
+    	std::unique_ptr<NumericMetricState> result(getParentProvider().getMdState().findState<NumericMetricState>(NUMERIC_METRIC_MAX_HANDLE));
+        // check if result is valid
+        if (result != nullptr) {
+        	// In real applications, check if state has an observed value and if the observed value has a value!
+        	return result->getMetricValue().getValue();
+        }
+        DebugOut(DebugOut::Default, "SimpleSDC") << "Maximum weight metric not found." << std::endl;
+        return 0;
     }
-
 };
 @endcode
 
@@ -374,13 +388,13 @@ We extend the constructor's code to add the handlers, which we define as members
 @code
 class SDCHoldingDeviceProvider : public SDCProvider {
 public:
-  SDCHoldingDeviceProvider() {
+  SDCHoldingDeviceProvider(...) {
   
     ...
   
     // Add state handler's
-    addMDStateHandler(&maxValueState);
-    addMDStateHandler(&curValueState);
+    addMdStateHandler(&maxValueState);
+    addMdStateHandler(&curValueState);
   
   }
 
@@ -403,14 +417,12 @@ private:
 Starting the provider can be done by calling the method <b>startup</b>. The periodic update thread can be launched by calling <b>start</b>.
  The provider can be stopped by calling </b>shutdown</b>:
 @code
-// Start framework
-SDCLibrary::getInstance()->startup();
-
-// The SDC Provider instance
-{ 
-  SDCHoldingDeviceProvider provider;
+  //...
+  
+  SDCHoldingDeviceProvider provider(t_SDCInstance);
   // Start provider
   provider.startup();  
+  provider.start();
   ...
 
   provider.shutdown();
@@ -424,14 +436,17 @@ SDCLibrary::getInstance()->startup();
 
 @subsection sdc_consumer_servicemanager Discovery using the ServiceManager
 
-<p>An SDCConsumer instance cannot be instantiated directly. The only component that can produce these instances is the ServiceManager (<b>SDCLib::Data::SDC::SDCServiceManager</b>).
-The ServiceManager is resposibe for the discovery of SDCProvider instances. 
-We will now discover the provider using the ServiceManager:
+<p>An SDCConsumer instance cannot be instantiated directly. The only component that can produce these instances is the ServiceManager (<b>OSELib::SDC::ServiceManager</b>).
+The ServiceManager is resposibe for the discovery of SDCProvider instances. An SDCInstance is passed to the ServiceManager. The config is used as a "template" (configured IPv4/IPv6), bound Network Interface etc. for the discovered Consumers. We will now discover the provider using the ServiceManager:</p>
 
 @code
-SDCServiceManager sdcsm;
-unique_ptr<SDCConsumer> consumer = sdcsm.discoverEndpointReference("EPR_1234");
-if (consumer != nullptr) {
+
+// ... SDCInstance (Create, init and bind as shown above)
+// ServiceManager
+OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
+// Consumer
+auto t_consumer(t_serviceManager.discoverEndpointReference("EPR_1234"));
+if (t_consumer != nullptr) {
   ...
 }
 @endcode
@@ -440,11 +455,89 @@ It's also possible to directly connect using a known transport address:
 
 @code
 SDCServiceManager sdcsm;
-unique_ptr<SDCConsumer> consumer = sdcsm.connect("http://192.168.1.32:1234/UDI_1234");
+auto t_consumer = sdcsm.connect("http://192.168.1.32:1234/UDI_1234");
+if (t_consumer != nullptr) {
+  ...
+}
 @endcode
 
-@subsection sdc_consumer_events Using the consumer - reception of events
+You can also issue a global discover into the network:
 
+@code
+
+// ... SDCInstance (Create, initand bind as shown above)
+
+// ServiceManager
+OSELib::SDC::ServiceManager sm(t_SDCInstance);
+auto tl_consumers{sm.discover()};
+// List EPR (Endpoint Reference) of all found Consumers
+for (const auto & t_consumer : tl_consumers) {
+    std::cout << "Found: " << t_consumer->getEndpointReference() << std::endl;
+}
+
+// ...
+
+@endcode
+
+Discovery can also be done asynchronously. A full Example:
+
+@code
+// Include common library headers
+#include <SDCLib/SDCInstance.h>
+#include <OSELib/SDC/ServiceManager.h>
+#include <SDCLib/Data/SDC/SDCConsumer.h>
+
+#include <iostream>
+
+using namespace SDCLib;
+using namespace SDCLib::Data::SDC;
+
+const auto t_discoveryTime = std::chrono::milliseconds{5000};
+
+void discover(OSELib::SDC::ServiceManager& p_SDCServiceManager)
+{
+    std::cout << "Starting Discovery...";
+    int t_waitLoops = t_discoveryTime.count() / 100 + 5;
+    auto t_asyncResults = p_SDCServiceManager.async_discover();
+    for (auto i = 0; i < t_waitLoops; ++i) {
+        std::cout << "." << std::flush;
+        std::this_thread::sleep_for(std::chrono::milliseconds(t_discoveryTime / t_waitLoops));
+    }
+
+    auto t_results = t_asyncResults.get();
+    std::cout << "\nDISCOVERED: ";
+    if (t_results.empty()) { std::cout << "None.\n"; return; }
+    else { std::cout << t_results.size() << ":" << std::endl; }
+    for (auto& t_consumer :  t_results) {
+        if(t_consumer == nullptr) {
+            continue;
+        }
+        std::cout << " - " << t_consumer->getEndpointReference() << std::endl;
+    }
+}
+int main()
+{
+    // Create a new SDCInstance (no flag will auto init)
+    auto t_SDCInstance = std::make_shared<SDCInstance>(true);
+    // Configure (optional)
+    t_SDCInstance->setIP6enabled(false);
+    t_SDCInstance->setIP4enabled(true);
+    // Bind it to interface that matches the internal criteria (usually the first enumerated)
+    if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
+        std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+        return -1;
+    }
+
+    OSELib::SDC::ServiceManager t_SDCServiceManager(t_SDCInstance);
+    discover(t_SDCServiceManager);
+    return 0;
+}
+@endcode
+
+
+@subsection sdc_consumer_events Using the consumer - reception of events
+// NOTE: This subsection needs to be revised!
+  
 If we like to process events (in this case, the ones containing states for the current weight metric), we'll have to provide an event handler of a subtype of
 <b>SDCConsumerEventHandler</b> (e.g. <b>SDCConsumerNumericMetricStateHandler</b>), implement the <b>onStateChanged</b> (if the metric is writable!) and override the <b>getHandle</b> method. The <b>onStateChanged</b> method will be entered whenever the framework or the user code notify about a metric change (updateState).
 Optionally, the method <b>onOperationInvoked</b> can be overwritten to receive detailed notification about invocation states.
@@ -459,7 +552,7 @@ public:
     this->handle = handle;
   }
 
-  virtual ~ExampleConsumerEventHandler(const std::string & handle) { }
+  virtual ~ExampleConsumerEventHandler() = default;
 
   // Overrides base
   void onStateChanged(const NumericMetricState & state) override {
@@ -504,16 +597,17 @@ consumer.registerStateEventHandler(handler2);
 @endcode
 
 @subsection sdc_consumer_request_commit Using the consumer - Request and commit states
-
+// NOTE: This subsection needs to be revised!
+  
 The currentweight metric state can also be requested directly using <b>requestState</b>:
 
 @code
 NumericMetricState currentWeightState;
-if (consumer.requestState("handle_cur", currentWeightState)) {
-  // Note: the following pre-check is very important - if the observed value is missing, the code will result in undefined behavior!
-  if (currentWeightState.hasObservedValue()) {
-    cout << "Current weight value is: " << currentWeightState.getObservedValue().getValue() << endl;
-  }
+if(consumer.requestState("handle_cur", currentWeightState)) {
+    // Note: the following pre-check is very important - if the observed value is missing, the code will result in undefined behavior!
+    if(currentWeightState.hasObservedValue()) {
+        std::cout << "Current weight value is: " << currentWeightState.getObservedValue().getValue() << std::endl;
+    }
 }
 @endcode
 
@@ -526,7 +620,7 @@ However, in some cases like the currentweight metric, the invocation state will 
 
 @code
 NumericMetricState currentWeightStateResult;
-InvocationState::Value is = consumer.commitState(currentWeightState);
+auto is = consumer.commitState(currentWeightState);
 // is == InvocationState::Fail
 @endcode
 
@@ -548,10 +642,10 @@ maxWeightState.setDescriptorHandle("handle_max");
 maxWeightState.setObservedValue(NumericMetricValue(3.0));
 FutureInvocationState fis;
 if (consumer.commitState(maxWeightState, fis) == InvocationState::Wait) {
-  cout << "Commit in progress..." << endl;
+  std::cout << "Commit in progress..." << std::endl;
   // Wait FINISHED to be signaled in the next 1000 milliseconds
   if (fis.waitReceived(InvocationState::FINISHED, 1000)) {
-  	cout << "Commit succeeded within expected time!" << endl;
+  	std::cout << "Commit succeeded within expected time!" << std::endl;
   }
 }
 @endcode
@@ -575,12 +669,13 @@ consumer.disconnect();
 <p>The structures and methods of the alarm system can be used to implement alarm situations using mostly <b>conditions</b> and <b>signals</b>. Descriptors and states exist for each of the latter. This section describes an extension of the previous example to produce and consume an alarm, if the current weight value exceeds the maximum value. A real implementation of this example can be found in the unit test <b>TestSimpleSDC.cpp</b><p>
 <p>An alert condition holds the information about an actual alarm situation, while an alert signal's purpose is to define, how exactly the condition should be reported. In general, multiple signals can reference the same condition. We start again with the descriptive part.</p>
 
-@subsection sdc_alarm_system_provide The provider
+@subsection sdc_alarm_system_provide The Provider
 
 We'd like to create an alert for the <b>limit condition</b> when the current weight value exceeds the maximum value and extend the holding device's provider with the following code.
 
 @code
-class SDCHoldingDeviceProvider : public SDCProvider {
+class SDCHoldingDeviceProvider : public SDCProvider
+{
 public:
   SDCHoldingDeviceProvider() {
   
@@ -593,7 +688,7 @@ public:
         .addAlertCondition(alertCondition)
         .setHandle("handle_alert_system");
 
-    // Add to channel (VMD or MDS is also possible)
+    // Add to channel (VMD or Mds is also possible)
     holdingDeviceChannel.setAlertSystem(alertSystem);
     ...
 
@@ -644,84 +739,79 @@ The <b>LimitAlertConditionStateHandler</b> and <b>AlertSignalStateHandler</b> cl
 The method <b>sourceHasChanged</b> will be called whenever the referenced source state changed (e.g. updateState was called). The behavior of the method call to <b>setAlertConditionPresence</b> will be explained later.
 
 @code
-class LimitAlertConditionStateHandler : public SDCProviderLimitAlertConditionStateHandler {
+class LimitAlertConditionStateHandler : public SDCProviderAlertConditionStateHandler<LimitAlertConditionState> {
 public:
 
-  LimitAlertConditionStateHandler() {
-  }
+    LimitAlertConditionStateHandler(std::string descriptorHandle)
+    : SDCProviderAlertConditionStateHandler(descriptorHandle)
+    { }
 
-  InvocationState onStateChangeRequest(const LimitAlertConditionState & state, const OperationInvocationContext & ) override {
-    // Invocation has been fired as WAITING when entering this method
-    LimitAlertConditionState currentState;
-    getParentProvider().getMdState().findState(state.getDescriptorHandle(), currentState);
+    InvocationState onStateChangeRequest(const LimitAlertConditionState & state, const OperationInvocationContext & ) override {
 
-  	DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: LimitAlertConditionStateHandler received state change, presence = " << state.getPresence() << std::endl;
-    if (state.getPresence() != currentState.getPresence()) {
-      DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: LimitAlertConditionStateHandler detected presence change to: " << state.getPresence() << std::endl;
-      // do something...
+        // Invocation has been fired as WAITING when entering this method
+        std::unique_ptr<LimitAlertConditionState> pCurrentState(getParentProvider().getMdState().findState<LimitAlertConditionState>(state.getDescriptorHandle()));
+        if(!pCurrentState) {
+            return InvocationState::Fail;
+        }
+
+        DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: LimitAlertConditionStateHandler received state change, presence = " << state.getPresence() << std::endl;
+        if (state.getPresence() != pCurrentState->getPresence()) {
+            DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: LimitAlertConditionStateHandler detected presence change to: " << state.getPresence() << std::endl;
+            // do something...
+        }
+
+        //we can update here, but if we return Fin, the framework will also notify
+        //updateState(*pCurrentState);
+
+        return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
     }
 
-    // we can update here, but if we return FINISHED, the framework will also notify
-    //updateState(limitAlertConditionState);
+    // this function monitors the observered metric which is defined by the Source attribute of the corresponding LimitAlertConditionDescriptor
+    void sourceHasChanged(const std::string & sourceHandle) override {
+        DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: LimitAlertConditionStateHandler monitored source state changed." << std::endl;
 
-    return InvocationState::FINISHED;  // Framework will update internal MDIB with the state's value and increase MDIB version
-  }
+        // Check limit and trigger alarm condition, if needed (this method will then take care of handling all signal states)
+        std::unique_ptr<NumericMetricState> pSourceState(getParentProvider().getMdState().findState<NumericMetricState>(sourceHandle));
 
-  void sourceHasChanged(const std::string & sourceHandle) override {
-    DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: LimitAlertConditionStateHandler monitored source state changed." << std::endl;
-
-    // Check limit and trigger alarm condition, if needed (this method will then take care of handling all signal states)
-    NumericMetricState sourceState;
-    getParentProvider().getMdState().findState(sourceHandle, sourceState);
-    LimitAlertConditionState limitAlertConditionState;
-    getParentProvider().getMdState().findState("handle_alert_condition", limitAlertConditionState);
-    if (sourceState.getDescriptorHandle() != sourceHandle) {
-      return;
-    }
-    if (!sourceState.hasObservedValue()) {
-      return;
-    }
-    const auto sourceValue(sourceState.getObservedValue());
-    if (!sourceValue.hasValue()) {
-      return;
-    }
-    if (!limitAlertConditionState.hasLimits()) {
-      return;
-    }
-    const auto limits(limitAlertConditionState.getLimits());
-    if (!limits.hasUpper()) {
-      return;
-    }
-    if (!limits.hasLower()) {
-      return;
+        std::unique_ptr<LimitAlertConditionState> pLimitAlertConditionState(getParentProvider().getMdState().findState<LimitAlertConditionState>(ALERT_CONDITION_HANDLE));
+        if (pSourceState->getDescriptorHandle() != sourceHandle) {
+            return;
+        }
+        if (!pSourceState->hasMetricValue()) {
+            return;
+        }
+        const auto sourceValue(pSourceState->getMetricValue());
+        if (!sourceValue.hasValue()) {
+            return;
+        }
+        const auto limits(pLimitAlertConditionState->getLimits());
+        if (!limits.hasUpper()) {
+            return;
+        }
+        if (!limits.hasLower()) {
+            return;
+        }
+        const bool triggerAlarm(sourceValue.getValue() > limits.getUpper() || sourceValue.getValue() < limits.getLower());
+        setAlertConditionPresence(pLimitAlertConditionState->getDescriptorHandle(), triggerAlarm, OperationInvocationContext::none());
     }
 
-    // Check value and set presence
-    const bool triggerAlarm(sourceValue.getValue() > limits.getUpper() || sourceValue.getValue() < limits.getLower());
-   	setAlertConditionPresence(limitAlertConditionState.getDescriptorHandle(), triggerAlarm, OperationInvocationContext::none());
-  }
+    // Can be used to switch condition on and off (e.g. propagate input from real device). Currently not used in this test.
+    void setPresence(bool presence) {
+        // We do not need to update our state here, this will be done in onStateChangeRequest (will be called by the method we invoke next)
+        setAlertConditionPresence(getDescriptorHandle(), presence, OperationInvocationContext::none());
+    }
 
-  // Can be used to switch condition on and off (e.g. propagate input from real device). Currently not used in this test.
-  void setPresence(bool presence) {
-    // We do not need to update our state here, this will be done in onStateChangeRequest (will be called by the method we invoke next)
-    setAlertConditionPresence(getDescriptorHandle(), presence, OperationInvocationContext::none());
-  }
+    // Helper method
+    LimitAlertConditionState createState() {
+        LimitAlertConditionState result(ALERT_CONDITION_HANDLE, AlertActivation::On, Range().setLower(0.0).setUpper(2.0), AlertConditionMonitoredLimits::All); // Reference alert signal descriptor's handle
+        result
+            .setPresence(false);
+        return result;
+    }
 
-  // Helper method
-  LimitAlertConditionState createState() {
-    LimitAlertConditionState result;
-    result
-      .setDescriptorHandle("handle_alert_condition")  // Reference alert signal descriptor's handle
-      .setActivationState(PausableActivation::ON)  // Component is working
-      .setPresence(false)
-      .setMonitoredAlertLimits(MonitoredAlertLimits::ALL)
-      .setLimits(Range().setLower(0.0).setUpper(2.0));
-    return result;
-  }
-
-  LimitAlertConditionState getInitialState() override {
-    return createState();
-  }
+    LimitAlertConditionState getInitialState() override {
+        return createState();
+    }
 
 };
 @endcode
@@ -729,39 +819,38 @@ public:
 Changing the condition's presence will trigger all alert signals which are referenced. The implementation of the signal's state handler follows next.
 
 @code
-class AlertSignalStateHandler : public SDCProviderAlertSignalStateHandler {
+class AlertSignalStateHandler : public SDCProviderMDStateHandler<AlertSignalState>
+{
 public:
 
-  AlertSignalStateHandler() {
-  }
+    AlertSignalStateHandler(std::string descriptorHandle)
+    : SDCProviderMDStateHandler(descriptorHandle)
+    { }
 
-  InvocationState onStateChangeRequest(const AlertSignalState & state, const OperationInvocationContext & oic) override {
-    // Invocation has been fired as WAITING when entering this method
-    DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: AlertSignalStateHandler received state change: " << EnumToString::convert(state.getPresence()) << std::endl;
+    InvocationState onStateChangeRequest(const AlertSignalState & state, const OperationInvocationContext & oic) override {
+        // Invocation has been fired as WAITING when entering this method
+        DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: AlertSignalStateHandler received state change: " << EnumToString::convert(state.getPresence()) << std::endl;
 
-    notifyOperationInvoked(oic, InvocationState::STARTED);
+        notifyOperationInvoked(oic, InvocationState::Start);
 
-    // Update the real device's state here (update device alarms)! Check state's presence and alertSignalState's presence values!
+        // Update the real device's state here (update device alarms)! Check state's presence and alertSignalState's presence values!
 
-   	// we can update here, but if we return FINISHED, the framework will also notify
-   	//updateState(alertSignalState);
+        // we can update here, but if we return Fin, the framework will also notify
+        //updateState(state);
+        return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
+    }
 
-    return InvocationState::FINISHED;  // Framework will update internal MDIB with the state's value and increase MDIB version
-  }
+    // Helper method
+    AlertSignalState createState() {
+        AlertSignalState result(ALERT_SIGNAL_HANDLE, AlertActivation::On); // Reference alert signal descriptor's handle // Component is working
+        result
+            .setPresence(AlertSignalPresence::Off);  // No alarm signal
+        return result;
+    }
 
-  // Helper method
-  AlertSignalState createState() {
-    AlertSignalState result;
-    result
-      .setDescriptorHandle("handle_alert_signal")  // Reference alert signal descriptor's handle
-      .setActivationState(PausableActivation::ON)  // Component is working
-      .setPresence(SignalPresence::Off);  // No alarm signal
-    return result;
-  }
-
-  AlertSignalState getInitialState() override {
-    return createState();
-  }
+    AlertSignalState getInitialState() override {
+        return createState();
+    }
 
 };
 @endcode
@@ -769,21 +858,23 @@ public:
 Finally, the alarm system's state handler.
 
 @code
-class AlertSystemStateHandler : public SDCProviderAlertSystemStateHandler {
+class AlertSystemStateHandler : public SDCProviderMDStateHandler<AlertSystemState>
+{
 public:
 
-  AlertSystemStateHandler() {
-  }
+    AlertSystemStateHandler(std::string descriptorHandle)
+    : SDCProviderMDStateHandler(descriptorHandle)
+    { }
 
-  AlertSystemState getInitialState() override {
-    AlertSystemState alertSystemState;
-    // reference alert system descriptor's handle
-    alertSystemState
-      .setActivationState(PausableActivation::ON)
-      .setDescriptorHandle("handle_alert_system");
-    return alertSystemState;
-  }
+    AlertSystemState getInitialState() override {
+        AlertSystemState alertSystemState(descriptorHandle, AlertActivation::On);  // reference alert system descriptor's handle // Alert is activated
+        return alertSystemState;
+    }
 
+    // define how to react on a request for a state change. This handler should not be set, thus always return Fail.
+    InvocationState onStateChangeRequest(const AlertSystemState&, const OperationInvocationContext&) override {
+        return InvocationState::Fail;
+    }
 };
 @endcode
 
@@ -796,35 +887,28 @@ Calling the method <b>setAlertConditionPresence</b> will handle all alert signal
 
 <p>However, it will never be set OFF or ACK (automatically). The logic behind this will be left to the user code.</p>
 
-@subsection sdc_alarm_system_consumer The consumer
-
-The consumer can be extended by a new state handler, to handle alert state events fired by the provider. Like the <b>ExampleConsumerEventHandler</b> described before, a similar subclass of <b>SDCConsumerAlertSignalStateHandler</b> will be used. The new handler will be called <b>ExampleConsumerAlertEventHandler</b>.
+@subsection sdc_alarm_system_consumer The Consumer
+// NOTE: This subsection needs to be revised!
+  
+The consumer can be extended by a new state handler, to handle alert state events fired by the provider. Like the <b>ExampleConsumerEventHandler</b> described before, a similar subclass of <b>SDCConsumerMDStateHandler</b> will be used. The new handler will be called <b>ExampleConsumerAlertSignalHandler</b>.
 
 @code
-class ExampleConsumerAlertEventHandler : public SDCConsumerAlertSignalStateHandler {
+class ExampleConsumerAlertSignalHandler : public SDCConsumerMDStateHandler<AlertSignalState>
+{
 public:
-  ExampleConsumerAlertEventHandler(const string & handle) :
-    handle(handle) {
-  }
+    ExampleConsumerAlertSignalHandler(const std::string & descriptorHandle)
+    : SDCConsumerMDStateHandler(descriptorHandle)
+    { }
 
-  virtual ~ExampleConsumerAlertEventHandler() {
-  }
-
-  void onStateChanged(const AlertSignalState & state) override {
-    cout << "Consumer: Received alert signal changed of " << handle << ", presence = " << EnumToString::convert(state.getPresence()) << endl;
-  }
+    void onStateChanged(const AlertSignalState & state) override {
+        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received alert signal changed of " << descriptorHandle << ", presence = " << EnumToString::convert(state.getPresence()) << std::endl;
   
-  void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) {
-    // Implement, if needed...
-  }
-
-  string getHandle() {
-    return handle;
-  }
-
-private:
-  Poco::Mutex mutex;
-  string handle;
+        // ...
+    }
+    void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) override {
+        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received operation invoked (ID, STATE) of " << descriptorHandle << ": " << oic.transactionId << ", " << EnumToString::convert(is) << std::endl;
+    }
+    // ...
 };
 @endcode
 
@@ -832,14 +916,16 @@ private:
 Using the following code shows how to change an alert signal's activation state (in this case, switch the alarm OFF).
 
 @code
-AlertSignalState alertSignal;
 // First request state (this way, we do not have to populate the structure manually)
-if (consumer.requestState("handle_alert_signal", alertSignal)) {
+auto t_state = consumer.requestState<AlertSignalState>("handle_alert_signal");
+if (t_state != nullptr) {
   // Switch alert signal off
-  alertSignal.setPresence(SignalPresence::Off);
+  t_state->setPresence(AlertSignalPresence::Off);
   FutureInvocationState fis;
-  if (consumer.commitState(alertSignal) == InvocationState::Wait && fis.waitReceived(InvocationState::FINISHED, 1000)) {
-    cout << "Success! Alarm has been switched off." << endl;
+  if(t_consumer->commitState(*t_state, fis) == InvocationState::Wait) {
+      if(fis.waitReceived(InvocationState::FINISHED, 1000)) {
+        std::cout << "Success! Alarm has been switched off." << endl;
+      }
   }
 }
 @endcode
@@ -847,6 +933,10 @@ if (consumer.requestState("handle_alert_signal", alertSignal)) {
 @section sdc_code_snippets Useful code snippets and recipes
 
 @subsection sdc_streaming Streaming
+
+NOTE: See TestStreamSDC for a complete example! - This section is outdated!
+  
+  
 In order to provide streaming, the first thing to do is to define one or more streaming metrics members inside an SDCProvider instance.
 <ul>
   <li>Create a member <b>RealTimeSampleArrayMetricDescriptor</b> and configure it in the constructor similar as shown before (define a unique handle for the descriptor).</li>
@@ -927,29 +1017,32 @@ class StreamConsumerEventHandler : public SDCConsumerRealTimeSampleArrayMetricSt
 @endcode
 
 @subsection sdc_activation Custom commands using activations
-
+// NOTE: This subsection needs to be revised!
+  
 <p>Whenever a (parameterless) function should be called that is not connected directly to a state, a custom activate operation can be defined. For example, this can be used for relative value increases or for simple switches like ON / OFF.</p>
 
 Definition of the handler on the provider's side:
 
 @code
-class CommandHandler : public SDCProviderActivateOperationHandler {
+class CommandHandler : public SDCProviderActivateOperationHandler
+{
 public:
 
-  CommandHandler() {
-  }
+    CommandHandler()
+    { }
 
-  InvocationState onActivateRequest(const MDIBContainer & , const OperationInvocationContext & ) {
-    cout << "Provider: Received command!" << endl;
-    
-    // TODO: if needed, make changes in the MDIB (e.g. increase max value) using updateState
-    
-    return InvocationState::FINISHED;
-  }
+    InvocationState onActivateRequest(const MDIBContainer & , const OperationInvocationContext & )
+    {
+        std::cout << "Provider: Received command!" << endl;
+  
+        // TODO: if needed, make changes in the MDIB (e.g. increase max value) using updateState
+  
+        return InvocationState::FINISHED;
+    }
 
-  std::string getHandle() const {
-    return "handle_cmd";
-  }
+    std::string getHandle() const {
+        return "handle_cmd";
+    }
 
 };
 @endcode
@@ -982,7 +1075,8 @@ if (fis.waitReceived(InvocationState::FINISHED, 1000)) {
 @endcode
 
 @subsection sdc_contexts Using contexts
-
+// NOTE: This subsection needs to be revised!
+  
 To handle incoming commits on the provider's side, there can be only one handler which processes all incoming commits.
 
 @code
@@ -1071,7 +1165,8 @@ addMDStateHandler(&contextHandler);  // Use in constructor
 On the consumer's side, requesting and committing context states is no more different than handling any other state, the same rules and methods (<b>requestState</b> and <b>commitState</b>) apply. To receive events, subclass <b>SDCConsumerContextStateChangedHandler</b> and override <b>onContextStateChanged</b>.
 
 @subsection sdc_stringenums Using string enums
-
+// NOTE: This subsection needs to be revised!
+  
 On the provider side, please use the following steps (similar to the ones of conventional metrics):
 
 <ul>

@@ -217,14 +217,15 @@ public:
     void removeMDStateHandler(SDCProviderStateHandler* p_handler);
 
     /**
-     * @brief Set the endpoint reference.
+     * @brief Set the endpoint reference. If toUUID is specified this function will convert it to a UUID of type urn:uuid:<UUID>
      *
-     * @param epr the EPR
+     * @param p_epr the EPR
+     * @param p_toUUID If specified the Value is converted to a UUID (temp / WIP)
      */
-	void setEndpointReference(const std::string& p_epr);
+	void setEndpointReference(const std::string& p_epr, bool p_toUUID = true);
 
     /**
-     * @brief Set the endpoint reference.
+     * @brief Get the endpoint reference.
      *
      * @return The EPR
      */

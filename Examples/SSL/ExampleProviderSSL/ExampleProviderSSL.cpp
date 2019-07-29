@@ -51,7 +51,7 @@ using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
 
-const std::string DEVICE_EPR("UDI-1234567890");
+const std::string DEVICE_EPR("UDI-1234567890-SSL");
 
 const std::string VMD_DESCRIPTOR_HANDLE("holdingDevice_vmd");
 const std::string CHANNEL_DESCRIPTOR_HANDLE("holdingDevice_channel");
@@ -82,7 +82,7 @@ public:
 	// define how to react on a request for a state change. This handler should not be set, thus always return Fail.
 	InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext & oic) override {
 		// extract information from the incoming operation
-		DebugOut(DebugOut::Default, "ExampleProvider") << "Operation invoked. Handle: " << oic.operationHandle << std::endl;
+		DebugOut(DebugOut::Default, "ExampleProviderSSL") << "Operation invoked. Handle: " << oic.operationHandle << std::endl;
 		return InvocationState::Fail;
 	}
 
@@ -110,9 +110,9 @@ public:
     	// Invocation has been fired as WAITING when entering this method
     	notifyOperationInvoked(oic, InvocationState::Start);
     	// Do stuff
-        DebugOut(DebugOut::Default, "ExampleProvider") << "Provider: handle_set received state change request. State's value: " << state.getMetricValue().getValue() << std::endl;
+        DebugOut(DebugOut::Default, "ExampleProviderSSL") << "Provider: handle_set received state change request. State's value: " << state.getMetricValue().getValue() << std::endl;
         // extract information from the incoming operation
-        DebugOut(DebugOut::Default, "ExampleProvider") << "Operation invoked. Handle: " << oic.operationHandle << std::endl;
+        DebugOut(DebugOut::Default, "ExampleProviderSSL") << "Operation invoked. Handle: " << oic.operationHandle << std::endl;
         // if success return Finished
         return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
     }
@@ -141,7 +141,7 @@ public:
         	// In real applications, check if state has an observed value and if the observed value has a value!
         	return (float)result->getMetricValue().getValue();
         } else {
-        	DebugOut(DebugOut::Default, "ExampleProvider") << "Maximum weight metric not found." << std::endl;
+        	DebugOut(DebugOut::Default, "ExampleProviderSSL") << "Maximum weight metric not found." << std::endl;
         	return 0;
         }
 
@@ -171,7 +171,7 @@ public:
     // disallow set operation for this state
     InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState&, const OperationInvocationContext & oic) override {
     	// extract information from the incoming operation
-    	DebugOut(DebugOut::Default, "ExampleProvider") << "Operation invoked. Handle: " << oic.operationHandle << std::endl;
+    	DebugOut(DebugOut::Default, "ExampleProviderSSL") << "Operation invoked. Handle: " << oic.operationHandle << std::endl;
     	return InvocationState::Fail;
     }
 
@@ -194,7 +194,7 @@ public:
 	InvocationState onStateChangeRequest(const StringMetricState & state, const OperationInvocationContext & oic) override {
 		notifyOperationInvoked(oic, InvocationState::Start);
 		// Do something if a state change is requested
-		DebugOut(DebugOut::Default, "ExampleProvider") << "String state of provider state changed to " << state.getMetricValue().getValue() << std::endl;
+		DebugOut(DebugOut::Default, "ExampleProviderSSL") << "String state of provider state changed to " << state.getMetricValue().getValue() << std::endl;
 		// return Finished if successful
 		return InvocationState::Fin;
 	}
@@ -351,12 +351,12 @@ public:
 		while (!isInterrupted()) {
 			{
                 updateStateValue(SampleArrayValue(MetricQuality(MeasurementValidity::Vld)).setSamples(samples));
-                DebugOut(DebugOut::Default, "ExampleProvider") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
+                DebugOut(DebugOut::Default, "ExampleProviderSSL") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
 			}
 
 			// Update the NumericMetricState's value using the state handler's method
 			numericProviderStateHandlerGet.setNumericValue(index/size);
-			DebugOut(DebugOut::Default, "ExampleProvider") << "NumericMetric: value changed to " << index/size << std::endl;
+			DebugOut(DebugOut::Default, "ExampleProviderSSL") << "NumericMetric: value changed to " << index/size << std::endl;
 			std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 			index += size;
 		}
@@ -367,7 +367,7 @@ public:
 int main()
 {
 	// Startup
-	DebugOut(DebugOut::Default, "ExampleProvider") << "Startup" << std::endl;
+	DebugOut(DebugOut::Default, "ExampleProviderSSL") << "Startup" << std::endl;
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
 
     // Create a new SDCInstance (no flag will auto init)
@@ -400,11 +400,11 @@ int main()
 	provider.start();
 
 	std::string temp;
-	DebugOut(DebugOut::Default, "ExampleProvider") << "Press key to exit program.";
+	DebugOut(DebugOut::Default, "ExampleProviderSSL") << "Press key to exit program.";
 	std::cin >> temp;
 
 	// Shutdown
-	DebugOut(DebugOut::Default, "ExampleProvider") << "Shutdown." << std::endl;
+	DebugOut(DebugOut::Default, "ExampleProviderSSL") << "Shutdown." << std::endl;
 	provider.shutdown();
     SDCLibrary::getInstance().shutdown();
 }
