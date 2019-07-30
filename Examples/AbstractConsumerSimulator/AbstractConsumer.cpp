@@ -12,6 +12,9 @@
 #include "SDCLib/Data/SDC/MDIB/CodedValue.h"
 #include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
+#include "SDCLib/Data/SDC/MDIB/VmdDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/MdsDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/MdDescription.h"
 
 
 
@@ -22,27 +25,14 @@ namespace Data {
 namespace SDC {
 namespace ACS {
 
-class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
-public:
-	MyConnectionLostHandler(Data::SDC::SDCConsumer & consumer) : consumer(consumer) {
-	}
-	void onConnectionLost() override {
-		std::cerr << "Connection lost, disconnecting... ";
-		consumer.disconnect();
-		std::cerr << "disconnected." << std::endl;
-	}
-private:
-	Data::SDC::SDCConsumer & consumer;
-};
-
 AbstractConsumer::AbstractConsumer() :
 		DUTMirrorProvider(nullptr),
 		consumer(nullptr),
 		connectionLostHandler(nullptr)
-		{
+{
 }
 
-bool AbstractConsumer::discoverDUT(const std::string& deviceEPR) {
+bool AbstractConsumer::discoverDUT() {
 
 	 // Create a new SDCInstance (no flag will auto init) for Consumer
 	    auto t_SDCInstance = std::make_shared<SDCInstance>();
@@ -59,7 +49,7 @@ bool AbstractConsumer::discoverDUT(const std::string& deviceEPR) {
 		//Discovery of Device under Test
 		OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
 
-		std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
+		std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(DUTEndpointRef));
 
 
 		try {
@@ -135,6 +125,7 @@ const std::string AbstractConsumer::getStringRepresentationOfMDIB(const MdibCont
 
 void AbstractConsumer::setupDiscoveryProvider()
 {
+	std::cout << "Setting up DiscoveryProvider!" << std::endl;
 	auto t_SDCInstance = createDefaultSDCInstance();
 	if(t_SDCInstance != nullptr)
 	{
@@ -143,15 +134,15 @@ void AbstractConsumer::setupDiscoveryProvider()
 
 
 		discoverAvailableEndpointReferencesCaller = std::make_shared<SDCParticipantActivateFunctionCaller>(DISCOVER_AVAILABLE_ENDPOINT_REFERENCES,
-			std::bind(&AbstractConsumer::updateAvailableEndpointReferences, this));
+			[&]() {updateAvailableEndpointReferences();});
 		availableEndpointReferencesHandler = std::make_shared<SDCParticipantStringMetricHandler>(GET_AVAILABLE_ENDPOINT_REFERENCES);
 		setDUTEndpointReferenceCaller = std::make_shared<SDCParticipantStringFunctionCaller>(SET_DEVICE_UNDER_TEST_ENDPOINT_REF,
-			std::bind(&AbstractConsumer::setDUTEndpointRef, this, _1));
+			[&](std::string EndpointRef) { setDUTEndpointRef(EndpointRef); });
 		discoverDUTFunctionCaller = std::make_shared<SDCParticipantActivateFunctionCaller>(DISCOVER_DEVICE_UNDER_TEST,
-			std::bind(&AbstractConsumer::discoverDUT, this));
+			[&]() { discoverDUT(); });
 
 		setMirrorProviderEndpointReferenceCaller = std::make_shared<SDCParticipantStringFunctionCaller>(SET_MIRROR_PROVIDER_ENDPOINT_REF,
-			std::bind(&AbstractConsumer::setMirrorProviderEndpointRef, this, _1));
+			[&](std::string EndpointRef) { setMirrorProviderEndpointRef(EndpointRef); });
 
 		discoverAvailableEndpointReferencesDesc = std::make_shared<ActivateOperationDescriptor>(DISCOVER_AVAILABLE_ENDPOINT_REFERENCES, GET_AVAILABLE_ENDPOINT_REFERENCES);
 		availableEndpointReferencesDesc = std::make_shared<StringMetricDescriptor>(GET_AVAILABLE_ENDPOINT_REFERENCES,
@@ -169,7 +160,7 @@ void AbstractConsumer::setupDiscoveryProvider()
 				CodedValue(STRING_UNIT),
 				MetricCategory::Msrmt,
 				MetricAvailability::Cont);
-		setupMirrorProviderDesc = std::make_shared<ActivateOperationDescriptor>(SETUP_MIRROR_PROVIDER, SET_MIRROR_PROVIDER_ENDPOINT_REF);
+		setupMirrorProviderDesc = std::make_shared<ActivateOperationDescriptor>(SETUP_MIRROR_PROVIDER + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX, SET_MIRROR_PROVIDER_ENDPOINT_REF);
 
 
 		//Channel
@@ -184,7 +175,16 @@ void AbstractConsumer::setupDiscoveryProvider()
 		discoveryProviderVMD.addChannel(discoveryProviderChannel);
 
 		MdsDescriptor discoveryProviderMDs(DISCOVERY_PROVIDER_MDS);
-		discoveryProviderMDs.createSetOperationForDescriptor(DISCOVER_AVAILABLE_ENDPOINT_REFERENCES);
+		discoveryProviderMDs.addVmd(discoveryProviderVMD);
+		DUTMirrorProvider->addActivateOperationForDescriptor(*discoverAvailableEndpointReferencesDesc, discoveryProviderMDs);
+		DUTMirrorProvider->addActivateOperationForDescriptor(*discoverDUTFunctionDesc, discoveryProviderMDs);
+		DUTMirrorProvider->addActivateOperationForDescriptor(*setupMirrorProviderDesc, discoveryProviderMDs);
+
+        // create and add description
+		MdDescription discoveryProvidermdDescription;
+		discoveryProvidermdDescription.addMdsDescriptor(discoveryProviderMDs);
+		DUTMirrorProvider->setMdDescription(discoveryProvidermdDescription);
+
 
 
 
@@ -194,8 +194,10 @@ void AbstractConsumer::setupDiscoveryProvider()
 		DUTMirrorProvider->addMdStateHandler(availableEndpointReferencesHandler.get());
 
 
+		std::cout << getMirrorProviderStringRepresentationOfMDIB() << std::endl;
 		DUTMirrorProvider->startup();
 		DUTMirrorProvider->start();
+		std::cout << "DiscoveryProvider setup" << std::endl;
 	}
 }
 

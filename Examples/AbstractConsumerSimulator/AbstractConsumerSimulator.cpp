@@ -56,6 +56,7 @@
 
 #include "OSELib/SDC/ServiceManager.h"
 #include "OSELib/TCP/TCPClientEventHandler.h"
+#include "AbstractConsumer.h"
 
 using namespace SDCLib;
 using namespace SDCLib::Util;
@@ -125,86 +126,78 @@ void waitForUserInput() {
 	std::cin >> temp;
 }
 
-static const std::string getStringRepresentationOfMDIB(const MdibContainer MDIB) {
-	MDM::GetMdibResponse MdibResponse(xml_schema::Uri("0"),ConvertToCDM::convert(MDIB));
-	MdibResponse.MdibVersion(MDIB.getMdibVersion());
-	const xml_schema::Flags xercesFlags(xml_schema::Flags::dont_validate | xml_schema::Flags::no_xml_declaration | xml_schema::Flags::dont_initialize);
-	xml_schema::NamespaceInfomap map;
-	std::ostringstream providerMdibStringRepresentation;
-	CDM::MdibContainer(providerMdibStringRepresentation, MdibResponse.Mdib(), map, OSELib::XML_ENCODING, xercesFlags);
-	return providerMdibStringRepresentation.str();
-}
 
-void hello()
-{
-	std::cout << "Hello World" << std::endl;
-}
 
 
 int main() {
-	Network::TCPClientEventHandler::getInstance("127.0.0.1", 5000)->startup();
-	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::None);
-	SDCLibrary::getInstance().setPortStart(6000);
-
-	//On connection loss inform Test orchestrator
-    class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
-    public:
-    	MyConnectionLostHandler(Data::SDC::SDCConsumer & consumer) : consumer(consumer) {
-    	}
-    	void onConnectionLost() override {
-    		std::cerr << "Connection lost, disconnecting... ";
-    		consumer.disconnect();
-    		std::cerr << "disconnected." << std::endl;
-    	}
-    private:
-    	Data::SDC::SDCConsumer & consumer;
-    };
-
-    // Create a new SDCInstance (no flag will auto init) for Consumer
-    auto t_SDCInstance = std::make_shared<SDCInstance>();
-	// Some restriction
-	t_SDCInstance->setIP6enabled(false);
-	t_SDCInstance->setIP4enabled(true);
-	// Bind it to interface that matches the internal criteria (usually the first enumerated)
-	if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
-		std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
-		return -1;
-	}
+	AbstractConsumer consumer;
+	consumer.setupDiscoveryProvider();
+	waitForUserInput();
 
 
-	//Discovery of Device under Test
-	OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
-
-	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
-
-
-	try {
-		if (c != nullptr) {
-			Data::SDC::SDCConsumer & consumer = *c;
-			std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(consumer));
-			consumer.setConnectionLostHandler(myHandler.get());
-
-			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery succeeded." << std::endl << std::endl << "Waiting 5 sec. for the subscriptions to beeing finished";
-
-
-		    // Create a new SDCInstance (no flag will auto init) for Consumer
-			auto t_SDCInstanceProvider = std::make_shared<SDCInstance>();		    // Some restriction
-		    t_SDCInstanceProvider->setIP6enabled(false);
-		    t_SDCInstanceProvider->setIP4enabled(true);
-		    // Bind it to interface that matches the internal criteria (usually the first enumerated)
-		    if(!t_SDCInstanceProvider->bindToDefaultNetworkInterface()) {
-		        std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
-		        return -1;
-		    }
-
-			//initialize Mirror Provider which mirrors the behavior of the DUT
-			MirrorProvider mirrorProvider(t_SDCInstanceProvider);
-			mirrorProvider.setEndpointReference("DUTMirrorProvider");
-			Dev::DeviceCharacteristics devChar;
-			devChar.addFriendlyName("en", "DUTMirrorProvider");
-			mirrorProvider.setDeviceCharacteristics(devChar);
-			mirrorProvider.setMdDescription(getStringRepresentationOfMDIB(consumer.getMdib()));
+//	Network::TCPClientEventHandler::getInstance("127.0.0.1", 5000)->startup();
+//	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
+//    SDCLibrary::getInstance().startup(OSELib::LogLevel::None);
+//	SDCLibrary::getInstance().setPortStart(6000);
+//
+//	//On connection loss inform Test orchestrator
+//    class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
+//    public:
+//    	MyConnectionLostHandler(Data::SDC::SDCConsumer & consumer) : consumer(consumer) {
+//    	}
+//    	void onConnectionLost() override {
+//    		std::cerr << "Connection lost, disconnecting... ";
+//    		consumer.disconnect();
+//    		std::cerr << "disconnected." << std::endl;
+//    	}
+//    private:
+//    	Data::SDC::SDCConsumer & consumer;
+//    };
+//
+//    // Create a new SDCInstance (no flag will auto init) for Consumer
+//    auto t_SDCInstance = std::make_shared<SDCInstance>();
+//	// Some restriction
+//	t_SDCInstance->setIP6enabled(false);
+//	t_SDCInstance->setIP4enabled(true);
+//	// Bind it to interface that matches the internal criteria (usually the first enumerated)
+//	if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
+//		std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+//		return -1;
+//	}
+//
+//
+//	//Discovery of Device under Test
+//	OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
+//
+//	std::unique_ptr<Data::SDC::SDCConsumer> c(oscpsm.discoverEndpointReference(deviceEPR));
+//
+//
+//	try {
+//		if (c != nullptr) {
+//			Data::SDC::SDCConsumer & consumer = *c;
+//			std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(consumer));
+//			consumer.setConnectionLostHandler(myHandler.get());
+//
+//			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery succeeded." << std::endl << std::endl << "Waiting 5 sec. for the subscriptions to beeing finished";
+//
+//
+//		    // Create a new SDCInstance (no flag will auto init) for Consumer
+//			auto t_SDCInstanceProvider = std::make_shared<SDCInstance>();		    // Some restriction
+//		    t_SDCInstanceProvider->setIP6enabled(false);
+//		    t_SDCInstanceProvider->setIP4enabled(true);
+//		    // Bind it to interface that matches the internal criteria (usually the first enumerated)
+//		    if(!t_SDCInstanceProvider->bindToDefaultNetworkInterface()) {
+//		        std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+//		        return -1;
+//		    }
+//
+//			//initialize Mirror Provider which mirrors the behavior of the DUT
+//			MirrorProvider mirrorProvider(t_SDCInstanceProvider);
+//			mirrorProvider.setEndpointReference("DUTMirrorProvider");
+//			Dev::DeviceCharacteristics devChar;
+//			devChar.addFriendlyName("en", "DUTMirrorProvider");
+//			mirrorProvider.setDeviceCharacteristics(devChar);
+//			mirrorProvider.setMdDescription(getStringRepresentationOfMDIB(consumer.getMdib()));
 
 
 			//std::cout << getStringRepresentationOfMDIB(consumer.getMdib()) << std::endl;
@@ -307,27 +300,27 @@ int main() {
 //				consumer.registerStateEventHandler(eh_numeric.get());
 //				registeredAlertConditionStateForwarder.insert(std::make_pair(handleAlertConditionState, eh_numeric));
 //			}
-
-			mirrorProvider.startup();
-			mirrorProvider.start();
-
-
-			std::cout << "MirrorProvider Mdib: " << getStringRepresentationOfMDIB(mirrorProvider.getMdib());
-
-			std::cout << "MirrorProvider Endpoint: " << mirrorProvider.getEndpointReference();
-
-			waitForUserInput(); // wait for finish from Test orchestrator
-			// unregister all handler
-			consumer.disconnect();
-			mirrorProvider.shutdown();
-		} else {
-			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery failed."; //Not debug out but inform orchestrator
-		}
-
-} catch (std::exception & e){
-		Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Exception: " << e.what() << std::endl; //Not debug out but inform orchestrator
-	}
-    SDCLibrary::getInstance().shutdown();
-    Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Shutdown." << std::endl; //Not debug out but inform orchestrator
+//
+//			mirrorProvider.startup();
+//			mirrorProvider.start();
+//
+//
+//			std::cout << "MirrorProvider Mdib: " << getStringRepresentationOfMDIB(mirrorProvider.getMdib());
+//
+//			std::cout << "MirrorProvider Endpoint: " << mirrorProvider.getEndpointReference();
+//
+//			waitForUserInput(); // wait for finish from Test orchestrator
+//			// unregister all handler
+//			consumer.disconnect();
+//			mirrorProvider.shutdown();
+//		} else {
+//			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery failed."; //Not debug out but inform orchestrator
+//		}
+//
+//} catch (std::exception & e){
+//		Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Exception: " << e.what() << std::endl; //Not debug out but inform orchestrator
+//	}
+//    SDCLibrary::getInstance().shutdown();
+//    Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Shutdown." << std::endl; //Not debug out but inform orchestrator
 
 }

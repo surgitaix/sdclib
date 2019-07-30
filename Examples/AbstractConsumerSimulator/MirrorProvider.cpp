@@ -40,6 +40,11 @@ void MirrorProvider::setMdDescription(std::string xml) {
 	sdcProvider.setMdDescription(xml);
 }
 
+void MirrorProvider::setMdDescription(MdDescription& description)
+{
+	sdcProvider.setMdDescription(description);
+}
+
 void MirrorProvider::setEndpointReference(const std::string & epr) {
 	sdcProvider.setEndpointReference(epr);
 }

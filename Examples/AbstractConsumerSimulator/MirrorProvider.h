@@ -40,6 +40,8 @@ public:
 	virtual void runImpl() override;
 
 	void setMdDescription(const std::string xml);
+	void setMdDescription(MdDescription& description);
+
 
 	MdibContainer getMdib();
 

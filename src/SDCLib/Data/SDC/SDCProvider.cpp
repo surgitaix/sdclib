@@ -1195,7 +1195,7 @@ void SDCProvider::addMdStateHandler(SDCProviderStateHandler* p_handler)
     			}
     		}
     	}
-    	log_error([&] { return "Could not add handler because no ActivateOperationDescriptor with matching handle was found."; });
+    	log_error([&] { return "Could not add handler because no ActivateOperationDescriptor with matching to "+ activate_handler->getDescriptorHandle() + " was found."; });
     }
 
     // TODO: Move streaming service to service controller

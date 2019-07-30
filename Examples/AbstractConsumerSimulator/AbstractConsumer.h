@@ -8,6 +8,7 @@
 #ifndef EXAMPLES_ABSTRACTCONSUMERSIMULATOR_ABSTRACTCONSUMER_H_
 #define EXAMPLES_ABSTRACTCONSUMERSIMULATOR_ABSTRACTCONSUMER_H_
 
+#include <iostream>
 #include "osdm.hxx"
 #include "OSELib/DPWS/DPWS11Constants.h"
 
@@ -33,18 +34,29 @@ namespace ACS {
 
 class SDCParticipantNumericStateForwarder;
 class SDCParticipantStreamStateForwarder;
-class MyConnectionLostHandler;
 class SDCParticipantActivateFunctionCaller;
 class SDCParticipantStringFunctionCaller;
 class SDCParticipantStringMetricHandler;
+
+class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
+public:
+	MyConnectionLostHandler(Data::SDC::SDCConsumer & consumer) : consumer(consumer) {
+	}
+	void onConnectionLost() override {
+		std::cerr << "Connection lost, disconnecting... ";
+		consumer.disconnect();
+		std::cerr << "disconnected." << std::endl;
+	}
+private:
+	Data::SDC::SDCConsumer & consumer;
+};
 
 
 class AbstractConsumer {
 public:
 	AbstractConsumer();
-	virtual ~AbstractConsumer() = default;
 
-	bool discoverDUT(const std::string& deviceEPR);
+	bool discoverDUT();
 	bool setupMirrorProvider(const std::string& MirrorProviderEndpointReference="DUTMirrorProvider");
 	void startMirrorProvider();
 	bool addGetHandler(HandleRef descriptionHandler);
@@ -62,14 +74,14 @@ public:
 	const std::string getConsumerStringRepresentationOfMDIB();
 	const std::string getMirrorProviderStringRepresentationOfMDIB();
 
-private:
-	const std::string getStringRepresentationOfMDIB(const MdibContainer MDIB);
-
 	/*
 	 * @brief Creates a SDCProvider to be discovered by the test orchestrator SDCConsumer.
 	 * Providing services to discover the DUT and setting the MirrorProviders EndpointReference.
 	 */
 	void setupDiscoveryProvider();
+
+private:
+	const std::string getStringRepresentationOfMDIB(const MdibContainer MDIB);
 
 	/*
 	 * @brief Creates a new SDCInstance with IP6 enabled and bound to a free port.
