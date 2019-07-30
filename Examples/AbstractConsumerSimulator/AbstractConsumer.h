@@ -15,6 +15,11 @@
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 #include "SDCLib/Data/SDC/SDCConsumerConnectionLostHandler.h"
 #include "SDCLib/Data/SDC/MDIB/custom/MdibContainer.h"
+#include "SDCLib/Data/SDC/MDIB/ActivateOperationDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/MdDescription.h"
+#include "SDCLib/Data/SDC/MDIB/StringMetricDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/ChannelDescriptor.h"
+
 
 #include "MirrorProvider.h"
 #include "SDCParticipantMDStateForwarder.h"
@@ -97,6 +102,8 @@ private:
 	std::shared_ptr<SDCParticipantActivateFunctionCaller> discoverDUTFunctionCaller;
 	std::shared_ptr<SDCParticipantStringFunctionCaller> setMirrorProviderEndpointReferenceCaller;
 	std::shared_ptr<SDCParticipantActivateFunctionCaller> setupMirrorProviderCaller;
+
+
 	std::map<std::string, std::shared_ptr<SDCParticipantActivateFunctionCaller>> addGetCallers;
 	std::map<std::string, std::shared_ptr<SDCParticipantActivateFunctionCaller>> addSetCallers;
 	std::map<std::string, std::shared_ptr<SDCParticipantActivateFunctionCaller>> addSubscribeCallers;
