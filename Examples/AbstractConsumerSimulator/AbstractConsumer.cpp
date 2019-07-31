@@ -34,16 +34,10 @@ AbstractConsumer::AbstractConsumer() :
 
 bool AbstractConsumer::discoverDUT() {
 
-	 // Create a new SDCInstance (no flag will auto init) for Consumer
-	    auto t_SDCInstance = std::make_shared<SDCInstance>();
-		// Some restriction
-		t_SDCInstance->setIP6enabled(false);
-		t_SDCInstance->setIP4enabled(true);
-		// Bind it to interface that matches the internal criteria (usually the first enumerated)
-		if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
-			Util::DebugOut(Util::DebugOut::Default, "AbstractConsumer") << "Failed to bind to default network interface! Exit..." << std::endl;
-			return false;
-		}
+	    auto t_SDCInstance = createDefaultSDCInstance();
+
+	    if(t_SDCInstance == nullptr)
+	    	return false;
 
 
 		//Discovery of Device under Test

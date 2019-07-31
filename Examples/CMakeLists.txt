@@ -11,6 +11,7 @@ add_subdirectory(ExampleProvider)
 add_subdirectory(MDIBVisualizer)
 add_subdirectory(AbstractConsumerSimulator)
 add_subdirectory(PulseOximeterProvider)
+add_subdirectory(TestOrchestratorConsumer)
 
 # SSL
 add_subdirectory(SSL)
