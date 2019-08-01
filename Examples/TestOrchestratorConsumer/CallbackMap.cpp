@@ -7,20 +7,29 @@
 
 #include <CallbackMap.h>
 
-void CallbackMap::setCallback(const std::string& callbackName, Callback callback)
+
+
+void CallbackMap::setCallback(const std::string& callbackName, const std::string& callbackArgs, Callback callback)
 {
-	map[callbackName] = callback;
+	functionDescription funcDesc;
+	funcDesc.functionName = callbackName;
+	funcDesc.args = callbackArgs;
+	map[funcDesc] = callback;
 }
 
 CallbackMap::Error CallbackMap::call(const std::string& callbackName, const std::string& args)
 {
-	auto iter = map.find(callbackName);
+	functionDescription funcDesc;
+	funcDesc.functionName = callbackName;
+	auto iter = map.find(funcDesc);
 	if (iter == map.end()) {
+		std::cout << "CALLBACK_NOT_FOUND" << std::endl;
 		return CALLBACK_NOT_FOUND;
 	}
 
 	bool success = iter->second(args);
 	if (!success) {
+		std::cout << "CALLBACK_BAD_ARGS" << std::endl;
 		return CALLBACK_BAD_ARGS;
 	}
 
@@ -36,56 +45,7 @@ Callback CallbackMap::defineCallback(std::function<void(void)> func)
 	return f;
 }
 
-template <class T1>
-Callback CallbackMap::defineCallback(std::function<void(T1)> func)
+std::unordered_map<functionDescription, Callback, hashFunction> CallbackMap::getCallbacks()
 {
-	Callback f = [func](const std::string& args) {
-		T1 v1;
-		std::stringstream sstream;
-		sstream << args;
-		sstream >> v1;
-		if (sstream.fail()) {
-			return false;
-		}
-		func(v1);
-		return true;
-	};
-	return f;
-}
-
-template <class T1, class T2>
-Callback CallbackMap::defineCallback(std::function<void(T1,T2)> func)
-{
-	Callback f = [func](const std::string& args) {
-		T1 v1;
-		T2 v2;
-		std::stringstream sstream;
-		sstream << args;
-		sstream >> v1 >> v2;
-		if (sstream.fail()) {
-			return false;
-		}
-		func(v1,v2);
-		return true;
-	};
-	return f;
-}
-
-template <class T1, class T2, class T3>
-Callback CallbackMap::defineCallback(std::function<void(T1,T2,T3)> func)
-{
-	Callback f = [func](const std::string& args) {
-		T1 v1;
-		T2 v2;
-		T3 v3;
-		std::stringstream sstream;
-		sstream << args;
-		sstream >> v1 >> v2 >> v3;
-		if (sstream.fail()) {
-			return false;
-		}
-		func(v1,v2,v3);
-		return true;
-	};
-	return f;
+	return map;
 }

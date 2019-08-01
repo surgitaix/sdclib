@@ -229,11 +229,27 @@ const std::string& AbstractConsumer::getMirrorProviderEndpointRef()
 
 void AbstractConsumer::updateAvailableEndpointReferences()
 {
+	std::cout << "updatingAvailableEndpointReferences" << std::endl;
 	availableEndpointReferences.clear();
-	OSELib::SDC::ServiceManager oscpsm(createDefaultSDCInstance());
+
+	auto t_SDCInstance = createDefaultSDCInstance();
+	if(t_SDCInstance == nullptr)
+	{
+		std::cout << "Nullptr issue" << std::endl;
+		return;
+	}
+	OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
+	std::cout << "Creating ServiceManager" << std::endl;
 	auto availableDevices = oscpsm.discover();
+	sleep(2);
+	std::cout << availableDevices.size() << std::endl;
 	for(auto&& device : availableDevices)
 	{
+		if (SDCInstance::calcUUIDv5(DEFAULT_ENDPOINTREFERENCE_DISCOVERY_PROVIDER, true) == device->getEndpointReference())
+		{
+			continue;
+		}
+		std::cout << device->getEndpointReference() << std::endl;
 		availableEndpointReferences.push_back(device->getEndpointReference());
 	}
 }

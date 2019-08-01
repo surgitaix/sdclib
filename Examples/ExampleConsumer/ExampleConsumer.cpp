@@ -154,8 +154,8 @@ int main() {
 	OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
 
 
-	std::unique_ptr<Data::SDC::SDCConsumer> c(t_serviceManager.discoverEndpointReference(deviceEPR));
-//	auto c(t_serviceManager.discover());
+//	std::unique_ptr<Data::SDC::SDCConsumer> c(t_serviceManager.discoverEndpointReference(deviceEPR));
+	auto c(t_serviceManager.discover());
 
 	// state handler
 	auto eh_get = std::make_shared<ExampleConsumerEventHandler>(HANDLE_GET_METRIC);
@@ -163,11 +163,11 @@ int main() {
 	auto eh_stream = std::make_shared<StreamConsumerStateHandler>(HANDLE_STREAM_METRIC);
 
 	try {
-		if (c != nullptr) {
-//		if (c[0] != nullptr) {
+//		if (c != nullptr) {
+		if (c[0] != nullptr) {
 //			std::cout << c.size() << std::endl;
-//			Data::SDC::SDCConsumer & consumer = *c[0];
-			Data::SDC::SDCConsumer & consumer = *c;
+			Data::SDC::SDCConsumer & consumer = *c[0];
+//			Data::SDC::SDCConsumer & consumer = *c;
 			std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(consumer));
 			consumer.setConnectionLostHandler(myHandler.get());
 

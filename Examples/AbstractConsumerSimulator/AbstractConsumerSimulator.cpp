@@ -130,6 +130,8 @@ void waitForUserInput() {
 
 
 int main() {
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::None);
+
 	AbstractConsumer consumer;
 	consumer.setupDiscoveryProvider();
 	waitForUserInput();
