@@ -119,7 +119,6 @@ namespace SimpleSDC {
 //
 
 const std::string DEVICE_ENDPOINT_REFERENCE("EPR_1234");
-const std::string DEVICE_UDI("UDI_1234");
 const int DEFAULT_TIMEOUT(5000);
 
 // Device's taxonomic description
@@ -809,7 +808,7 @@ public:
     	mdsStateHandler(MDS_HANDLE),
     	vmdStateHandler(VMD_DESCRIPTOR_HANDLE)
 	{
-    	m_sdcProvider.setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
+    	m_sdcProvider.setEndpointReferenceByName(DEVICE_ENDPOINT_REFERENCE);
 
         // Define semantic meaning of weight unit "kg", which will be used for defining the
         // current weight and the max weight below.

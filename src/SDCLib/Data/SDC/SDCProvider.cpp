@@ -1260,23 +1260,25 @@ MdDescription SDCProvider::getMdDescription() const
 }
 
 
-void SDCProvider::setEndpointReference(const std::string& p_epr, bool p_toUUID)
+void SDCProvider::setEndpointReference(const std::string& p_epr)
 {
     if(p_epr.empty()) {
         return;
     }
-
-    auto t_epr = p_epr;
-    // Check if it is a UUID, if not -> convert!
-    if(p_toUUID) {
-    	t_epr = SDCInstance::calcUUIDv5(t_epr, true);
+    // Set EPR
+    std::lock_guard<std::mutex> t_lock{m_mutex_EPR};
+    m_endpointReference = p_epr;
+}
+void SDCProvider::setEndpointReferenceByName(const std::string& p_name)
+{
+    if(p_name.empty()) {
+        return;
     }
 
     // Set EPR
     std::lock_guard<std::mutex> t_lock{m_mutex_EPR};
-    m_endpointReference = t_epr;
+    m_endpointReference = SDCInstance::calcUUIDv5(p_name, true);
 }
-
 
 std::string SDCProvider::getEndpointReference() const
 {
