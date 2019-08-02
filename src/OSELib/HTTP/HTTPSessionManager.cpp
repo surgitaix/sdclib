@@ -91,8 +91,9 @@ public:
 						exchanger.exchangeHttp(session, message->_destination.getPath(), message->_message);
 					}
 				} catch (...) {
-					log_error([&] { return "Delivering event failed. Terminating subscription for sink: " + _destinationURI.toString(); });
+					log_error([&] { return "Delivering event failed."; });
 					_subscriptions.unsubscribe(message->_myID);
+					log_error([&] { return "Terminating subscription for sink: " + _destinationURI.toString(); });
 					return;
 				}
 			}

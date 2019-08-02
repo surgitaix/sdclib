@@ -40,8 +40,6 @@
 #include "OSELib/Helper/WithLogger.h"
 
 #include <Poco/NotificationQueue.h>
-#include <Poco/Timestamp.h>
-#include <Poco/Timespan.h>
 
 
 // todo remove
@@ -259,13 +257,12 @@ public:
     /**
      * @brief Set the periodic event fire interval.
      *
-     * @param seconds Interval seconds
-     * @param millisecods Interval milliseconds
+     * @param p_interval Interval in milliseconds
      */
-    void setPeriodicEventInterval(const int seconds, const int milliseconds);
-    Poco::Timespan getPeriodicEventInterval() const;
-    Poco::Timestamp getLastPeriodicEvent() const;
-    void setLastPeriodicEvent(Poco::Timestamp p_timestamp);
+    void setPeriodicEventInterval(std::chrono::milliseconds p_interval);
+    std::chrono::milliseconds getPeriodicEventInterval() const;
+    TimePoint getLastPeriodicEvent() const;
+    void setLastPeriodicEvent(TimePoint p_timepoint);
     std::vector<std::string> getHandlesForPeriodicUpdate() const;
     void addHandleForPeriodicEvent(const std::string& p_handle);
     void removeHandleForPeriodicEvent(const std::string& p_handle);
@@ -420,10 +417,9 @@ private:
     std::vector<std::string> ml_handlesForPeriodicUpdates;
     mutable std::mutex m_mutex_PeriodicUpdateHandles;
 
-    Poco::Timespan m_periodicEventInterval = Poco::Timespan(10, 0);
-    mutable std::mutex m_mutex_PeriodicUpdates;
+    std::atomic<std::chrono::milliseconds> m_periodicEventInterval = ATOMIC_VAR_INIT(std::chrono::milliseconds(10));
 
-    Poco::Timestamp m_lastPeriodicEvent;
+    TimePoint m_lastPeriodicEvent = std::chrono::system_clock::now();
     mutable std::mutex m_mutex_PeriodicEvent;
 
 //    std::map<std::string, int> streamingPorts;

@@ -1,17 +1,18 @@
 /*
  * ActiveSubscriptions.h
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 01.08.2019, baumeister
  */
 
 #ifndef DPWS_ACTIVESUBSCRIPTIONS_H_
 #define DPWS_ACTIVESUBSCRIPTIONS_H_
 
-#include "Poco/Mutex.h"
-#include "Poco/Thread.h"
-#include "Poco/Timestamp.h"
-#include "Poco/RunnableAdapter.h"
+#include <mutex>
+#include <chrono>
+
+#include <Poco/Thread.h>
+#include <Poco/RunnableAdapter.h>
 
 #include "eventing.hxx"
 #include "ws-addressing.hxx"
@@ -19,50 +20,60 @@
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
 
-namespace OSELib {
-namespace DPWS {
-
-class ActiveSubscriptions : public WithLogger {
-public:
-	ActiveSubscriptions();
-	~ActiveSubscriptions();
-
-	struct SubscriptionInformation {
-		SubscriptionInformation(
-				const WS::ADDRESSING::EndpointReferenceType & notifyTo,
-				const Poco::Timestamp & expirationTime,
-				const WS::EVENTING::FilterType & actions) :
-			_notifyTo(notifyTo),
-			_expirationTime(expirationTime),
-			_actions(actions)
+namespace OSELib
+{
+	namespace DPWS
+	{
+		class ActiveSubscriptions : public WithLogger
 		{
-		}
-		const WS::ADDRESSING::EndpointReferenceType _notifyTo;
-		Poco::Timestamp _expirationTime;
-		const WS::EVENTING::FilterType _actions;
-	};
+		public:
+			struct SubscriptionInformation
+			{
+				explicit SubscriptionInformation(
+						const WS::ADDRESSING::EndpointReferenceType & notifyTo,
+						std::chrono::system_clock::time_point expirationTime,
+						const WS::EVENTING::FilterType & actions) :
+					m_notifyTo(notifyTo),
+					m_expirationTime(expirationTime),
+					m_actions(actions)
+				{ }
+				const WS::ADDRESSING::EndpointReferenceType m_notifyTo;
+				std::chrono::system_clock::time_point m_expirationTime;
+				const WS::EVENTING::FilterType m_actions;
+			};
 
-	void printSubscriptions() const;
+		private:
 
-	void unsubscribe(const WS::EVENTING::Identifier & identifier);
-	std::string subscribe(const SubscriptionInformation & subscription);
-	bool renew(const WS::EVENTING::Identifier & identifier, const Poco::Timestamp & timestamp);
+			mutable std::mutex m_mutex;
 
-	std::map<xml_schema::Uri, WS::ADDRESSING::EndpointReferenceType> getSubscriptions(const std::string & action);
+			Poco::RunnableAdapter<ActiveSubscriptions> m_runnableAdapter;
+			std::map<xml_schema::Uri, SubscriptionInformation> ml_subscriptions;
+			Poco::Thread m_thread;
 
-private:
+		public:
+			ActiveSubscriptions();
+			// Special Member Functions
+			ActiveSubscriptions(const ActiveSubscriptions& p_obj) = delete;
+			ActiveSubscriptions(ActiveSubscriptions&& p_obj) = delete;
+			ActiveSubscriptions& operator=(const ActiveSubscriptions& p_obj) = delete;
+			ActiveSubscriptions& operator=(ActiveSubscriptions&& p_obj) = delete;
+			~ActiveSubscriptions();
 
-	void houseKeeping();
-	void run();
+			void printSubscriptions() const;
 
-	mutable Poco::Mutex _mutex;
+			void unsubscribe(const WS::EVENTING::Identifier & identifier);
+			std::string subscribe(const SubscriptionInformation & subscription);
+			bool renew(const WS::EVENTING::Identifier & identifier, std::chrono::system_clock::time_point p_timestamp);
 
-	Poco::Thread _thread;
-	Poco::RunnableAdapter<ActiveSubscriptions> _runnableAdapter;
-	std::map<xml_schema::Uri, SubscriptionInformation> _subscriptions;
-};
+			std::map<xml_schema::Uri, WS::ADDRESSING::EndpointReferenceType> getSubscriptions(const std::string & p_action);
 
-} /* namespace DPWS */
+		private:
+
+			void houseKeeping();
+			void run();
+		};
+
+	} /* namespace DPWS */
 } /* namespace OSELib */
 
 #endif /* DPWS_ACTIVESUBSCRIPTIONS_H_ */

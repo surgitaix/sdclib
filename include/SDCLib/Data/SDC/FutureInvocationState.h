@@ -21,44 +21,58 @@
  *  Author: besting, röhser
  */
 
-#ifndef SRC_DATA_SDC_FUTURETRANSACTIONSTATE_H_
-#define SRC_DATA_SDC_FUTURETRANSACTIONSTATE_H_
+#ifndef SDCLIB_DATA_SDC_FUTURETRANSACTIONSTATE_H_
+#define SDCLIB_DATA_SDC_FUTURETRANSACTIONSTATE_H_
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
-#include "Poco/Event.h"
-#include "Poco/Mutex.h"
+#include <Poco/Event.h>
 
+#include <mutex>
 #include <map>
 #include <memory>
+#include <atomic>
 
-namespace SDCLib {
-namespace Data {
-namespace SDC {
+namespace SDCLib
+{
+	namespace Data
+	{
+		namespace SDC
+		{
+			class SDCConsumer;
 
-class SDCConsumer;
+			class FutureInvocationState
+			{
+				friend class SDCConsumer;
+			private:
 
-class FutureInvocationState {
-	friend class SDCConsumer;
-public:
-	FutureInvocationState();
-	virtual ~FutureInvocationState();
+				std::atomic<int> m_transactionId = ATOMIC_VAR_INIT(-1);
+				SDCConsumer * m_consumer = nullptr;
+				std::mutex m_mutex;
 
-	bool waitReceived(InvocationState expected, int timeout);
+				std::map<InvocationState, std::shared_ptr<Poco::Event>> ml_invocationEvents;
 
-	int getTransactionId() const;
+			public:
 
-private:
-	void setEvent(InvocationState actual);
+				// Special Member Functions
+				FutureInvocationState();
+				FutureInvocationState(const FutureInvocationState& p_obj) = delete;
+				FutureInvocationState(FutureInvocationState&& p_obj) = delete;
+				FutureInvocationState& operator=(const FutureInvocationState& p_obj) = delete;
+				FutureInvocationState& operator=(FutureInvocationState&& p_obj) = delete;
+				virtual ~FutureInvocationState();
 
-	int transactionId;
-	SDCConsumer * consumer;
-	Poco::Mutex mutex;
+				bool waitReceived(InvocationState p_expected, int p_timeout);
 
-	std::map<InvocationState, std::shared_ptr<Poco::Event>> invocationEvents;
-};
+				int getTransactionId() const;
 
-} /* namespace SDC */
-} /* namespace Data */
+			private:
+
+				void setEvent(InvocationState p_actual);
+
+			};
+
+		} /* namespace SDC */
+	} /* namespace Data */
 } /* namespace SDCLib */
 
-#endif /* SRC_DATA_SDC_FUTURETRANSACTIONSTATE_H_ */
+#endif /* SDCLIB_DATA_SDC_FUTURETRANSACTIONSTATE_H_ */

@@ -34,6 +34,8 @@ AbstractConsumer::AbstractConsumer() :
 
 bool AbstractConsumer::discoverDUT() {
 
+	std::cout << "Discovering..." << std::endl;
+
 	    auto t_SDCInstance = createDefaultSDCInstance();
 
 	    if(t_SDCInstance == nullptr)

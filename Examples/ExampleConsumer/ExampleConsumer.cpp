@@ -120,11 +120,10 @@ void waitForUserInput() {
 
 
 
-int main() {
+int main()
+{
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
-	SDCLibrary::getInstance().setPortStart(12000);
-
 
     class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
     public:
@@ -153,7 +152,6 @@ int main() {
 	// Discovery
 	OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
 
-
 //	std::unique_ptr<Data::SDC::SDCConsumer> c(t_serviceManager.discoverEndpointReference(deviceEPR));
 	auto c(t_serviceManager.discover());
 
@@ -168,6 +166,7 @@ int main() {
 //			std::cout << c.size() << std::endl;
 			Data::SDC::SDCConsumer & consumer = *c[0];
 //			Data::SDC::SDCConsumer & consumer = *c;
+
 			std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(consumer));
 			consumer.setConnectionLostHandler(myHandler.get());
 

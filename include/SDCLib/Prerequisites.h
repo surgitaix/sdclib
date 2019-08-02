@@ -44,6 +44,8 @@ namespace SDCLib
     class SDCInstance;
     using SDCInstance_shared_ptr = std::shared_ptr<SDCInstance>;
 
+    using TimePoint = std::chrono::system_clock::time_point;
+
     namespace Config
     {
         class SDCConfig;

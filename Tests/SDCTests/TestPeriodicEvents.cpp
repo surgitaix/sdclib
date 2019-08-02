@@ -63,10 +63,9 @@ const std::string VMD_DESCRIPTOR_HANDLE("vmd_handle");
 
 class ConsumerAlertConditionHandler : public SDCConsumerMDStateHandler<AlertConditionState> {
 public:
-	ConsumerAlertConditionHandler(const std::string descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle),
-		counter(0)
-	{
-	}
+	ConsumerAlertConditionHandler(const std::string descriptorHandle)
+	: SDCConsumerMDStateHandler(descriptorHandle)
+	{ }
 
     void onStateChanged(const AlertConditionState & ) override {
     	++counter;
@@ -82,17 +81,18 @@ public:
 	}
 
 private:
-    int counter;
+	std::atomic<int> counter = ATOMIC_VAR_INIT(0);
     Poco::Event event;
 };
 
 
 // FIXME: right?????
-class ConsumerContextEventHandler : public SDCConsumerMDStateHandler<LocationContextState> {
+class ConsumerContextEventHandler : public SDCConsumerMDStateHandler<LocationContextState>
+{
 public:
-	ConsumerContextEventHandler(const std::string descriptorHandle) : SDCConsumerMDStateHandler<LocationContextState>(descriptorHandle),
-		counter(0) {
-	}
+	ConsumerContextEventHandler(const std::string descriptorHandle)
+	: SDCConsumerMDStateHandler<LocationContextState>(descriptorHandle)
+	{ }
 
 	virtual void onStateChanged(const LocationContextState&) override {
 		++counter;
@@ -108,16 +108,14 @@ public:
 	}
 
 private:
-	int counter;
+	std::atomic<int> counter = ATOMIC_VAR_INIT(0);
 	Poco::Event event;
 };
 
 class ConsumerDummyHandler : public SDCConsumerMDStateHandler<NumericMetricState> {
 public:
-	ConsumerDummyHandler(const std::string descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle),
-		counter(0)
-	{
-	}
+	ConsumerDummyHandler(const std::string descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle)
+	{ }
 
     void onStateChanged(const NumericMetricState & ) override {
         ++counter;
@@ -133,7 +131,7 @@ public:
 	}
 
 private:
-    int counter;
+    std::atomic<int> counter = ATOMIC_VAR_INIT(0);
     Poco::Event event;
 };
 
@@ -153,8 +151,7 @@ public:
     }
 
 	AlertConditionState getInitialState() override {
-    	AlertConditionState result = createState();
-        return result;
+        return createState();
     }
 
 	// not allowed to change the state
@@ -183,8 +180,7 @@ public:
     }
 
 	AlertSystemState getInitialState() override {
-        AlertSystemState result = createState();
-        return result;
+        return createState();
     }
 
 	InvocationState onStateChangeRequest(const AlertSystemState&, const OperationInvocationContext&) override {
@@ -229,8 +225,7 @@ public:
     }
 
     NumericMetricState getInitialState() override {
-        NumericMetricState result = createState();
-        return result;
+        return createState();
     }
 
     // not allowed
@@ -254,16 +249,16 @@ public:
     }
 
 	virtual MdsState getInitialState() override {
-        MdsState state = createState();
-        return state;
+        return createState();
 	}
 };
 
 
 class AlwaysOnVmdStateHandler : public SDCProviderComponentStateHandler<VmdState> {
 public:
-	AlwaysOnVmdStateHandler(const std::string & descriptorHandle) : SDCProviderComponentStateHandler<VmdState>(descriptorHandle) {
-	}
+	AlwaysOnVmdStateHandler(const std::string & descriptorHandle)
+	: SDCProviderComponentStateHandler<VmdState>(descriptorHandle)
+	{ }
 
     // Helper method
     VmdState createState() {
@@ -274,8 +269,7 @@ public:
     }
 
 	virtual VmdState getInitialState() override {
-		VmdState state = createState();
-        return state;
+        return createState();
 	}
 };
 
@@ -382,8 +376,8 @@ public:
 		sdcProvider.addHandleForPeriodicEvent(handle);
 	}
 
-	void setPeriodicEventInterval(const int seconds, const int milliseconds) {
-		sdcProvider.setPeriodicEventInterval(seconds, milliseconds);
+	void setPeriodicEventInterval(std::chrono::milliseconds p_milliseconds) {
+		sdcProvider.setPeriodicEventInterval(p_milliseconds);
 	}
 
 private:
@@ -431,16 +425,16 @@ TEST_FIXTURE(FixturePeriodicEvents, PeriodicEvents)
         Tests::PeriodicEvents::SDCDeviceProvider provider(t_SDCInstance);
         provider.startup();
 
-        // enable periodic event for metrices
+        // enable periodic event for metrics
         provider.addHandleForPeriodicEvent(Tests::PeriodicEvents::ALERT_CONDITION_HANDLE);
         provider.addHandleForPeriodicEvent(Tests::PeriodicEvents::LOCATION_CONTEXT_DESCRIPTOR_HANDLE);
         provider.addHandleForPeriodicEvent(Tests::PeriodicEvents::METRIC_DUMMY_HANDLE);
         // and set custom periodic event interval to 0.5s
-        provider.setPeriodicEventInterval(0, 500);
+        provider.setPeriodicEventInterval(std::chrono::milliseconds(500));
 
         // Consumer
         OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
-        std::shared_ptr<SDCConsumer> consumer(t_serviceManager.discoverEndpointReference(Tests::PeriodicEvents::DEVICE_ENDPOINT_REFERENCE));
+        auto consumer(t_serviceManager.discoverEndpointReference(SDCInstance::calcUUIDv5(Tests::PeriodicEvents::DEVICE_ENDPOINT_REFERENCE, true)));
 
         // Make test fail if discovery fails
         CHECK_EQUAL(true, consumer != nullptr);
@@ -458,13 +452,10 @@ TEST_FIXTURE(FixturePeriodicEvents, PeriodicEvents)
             // Run for some time to receive incoming metric events.
 			std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 
-
-			// TODO: fails
 			// verify results
 			CHECK_EQUAL(true, dummyMetricHandler.getEvent().tryWait(Tests::PeriodicEvents::DEFAULT_TIMEOUT));
 			CHECK_EQUAL(true, alertConditionHandler.getEvent().tryWait(Tests::PeriodicEvents::DEFAULT_TIMEOUT));
             CHECK_EQUAL(true, locationContextStateHandler.getEvent().tryWait(Tests::PeriodicEvents::DEFAULT_TIMEOUT));
-
 
             // shutdown consumer
             CHECK_EQUAL(true, consumer->unregisterStateEventHandler(&alertConditionHandler));

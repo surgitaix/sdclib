@@ -144,12 +144,12 @@ TEST_FIXTURE(FixtureConnectionLostSDC, ConnectionLost)
 
 		std::size_t t_providerCount{10};
 		std::vector<std::shared_ptr<Tests::ConnectionLostSDC::SDCTestDeviceProvider>> providers;
-		std::vector<std::string> t_providerEPRs;
+		std::vector<std::string> tl_providerEPRs;
 
 		for (std::size_t i = 0; i < t_providerCount; ++i) {
 			auto p = std::make_shared<Tests::ConnectionLostSDC::SDCTestDeviceProvider>(createSDCInstance(), i);
 			providers.push_back(p);
-			t_providerEPRs.push_back(p->getEndpointReference());
+			tl_providerEPRs.push_back(p->getEndpointReference());
             // Startup
             p->startup();
 		}
@@ -157,20 +157,20 @@ TEST_FIXTURE(FixtureConnectionLostSDC, ConnectionLost)
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Starting discovery test [Timeout: " << SDCLib::Config::SDC_DISCOVERY_TIMEOUT_MS << " ms] ...";
 
         OSELib::SDC::ServiceManager sm(createSDCInstance());
-        auto tl_consumers{sm.discover()};
+        auto tl_consumers = sm.discover();
 
         // Found all the providers?
         bool foundAll = true;
-        for (const auto & providerEPR : t_providerEPRs) {
+        for (const auto & t_providerEPR : tl_providerEPRs) {
         	bool foundOne = false;
 			for (const auto & consumer : tl_consumers) {
-				if (consumer->getEndpointReference() == providerEPR) {
+				if (consumer->getEndpointReference() == t_providerEPR) {
 					foundOne = true;
 					break;
 				}
 			}
 			if (!foundOne) {
-				DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Missing epr: " << providerEPR << std::endl;
+				DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Missing epr: " << t_providerEPR << std::endl;
 			}
 			foundAll &= foundOne;
         }
@@ -180,7 +180,7 @@ TEST_FIXTURE(FixtureConnectionLostSDC, ConnectionLost)
         for (auto& nextConsumer : tl_consumers) {
             DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Found " << nextConsumer->getEndpointReference();
 
-            if (std::find(t_providerEPRs.begin(), t_providerEPRs.end(), nextConsumer->getEndpointReference()) == t_providerEPRs.end()) {
+            if (std::find(tl_providerEPRs.begin(), tl_providerEPRs.end(), nextConsumer->getEndpointReference()) == tl_providerEPRs.end()) {
         		// not our own provider => skip
         		continue;
         	}

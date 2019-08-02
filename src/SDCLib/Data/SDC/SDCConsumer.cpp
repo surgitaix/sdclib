@@ -188,7 +188,7 @@ SDCConsumer::SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, const OSE
 SDCConsumer::~SDCConsumer() {
 
     for (auto & fis : fisMap) {
-    	fis.second->consumer = nullptr;
+    	fis.second->m_consumer = nullptr;
     }
     // FIXME: This is not threadsafe!
     if (_adapter != nullptr)
@@ -527,12 +527,13 @@ InvocationState SDCConsumer::commitStateImpl(const StateType & state, FutureInvo
 	}
 }
 
-void SDCConsumer::handleInvocationState(int transactionId, FutureInvocationState & fis) {
+void SDCConsumer::handleInvocationState(int transactionId, FutureInvocationState & fis)
+{
 	// Put user future state into map
 	std::lock_guard<std::mutex> t_lock(m_transactionMutex);
-	fis.transactionId = transactionId;
-	fisMap[fis.transactionId] = &fis;
-	fis.consumer = this;
+	fis.m_transactionId = transactionId;
+	fisMap[fis.m_transactionId] = &fis;
+	fis.m_consumer = this;
 	// Dequeue possible intermediate events
     while (transactionQueue.size() > 0) {
     	const TransactionState ts(transactionQueue.front());

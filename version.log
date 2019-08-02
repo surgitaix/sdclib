@@ -1,3 +1,10 @@
+Update to version 4.3.1
+
+- Changed default behaviour of setting endpoint reference
+- Replaced Poco::Timestamp and Poco::Timespan with std::chrono counterparts
+- Replaced some Poco::Mutex with std::mutex
+- Fixed Examples discoverEndpointReference with new UUIDv5 calculation
+
 Update to version 4.3.0
 
 - Centralized UUID generation. EPRs are per default now UUIDv5 and of type urn:uuid:<UUIDv5>.

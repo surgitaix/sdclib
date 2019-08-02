@@ -18,51 +18,49 @@
  * FutureInvocationState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, röhser
+ *  Author: besting, röhser, baumeister
  */
 
 #include "SDCLib/Data/SDC/FutureInvocationState.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 
-namespace SDCLib {
-namespace Data {
-namespace SDC {
+using namespace SDCLib;
+using namespace SDCLib::Data;
+using namespace SDCLib::Data::SDC;
 
-FutureInvocationState::FutureInvocationState() : transactionId(-1), consumer(nullptr) {
-	invocationEvents[InvocationState::Cnclld] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
-	invocationEvents[InvocationState::CnclldMan] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
-	invocationEvents[InvocationState::Fail] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
-	invocationEvents[InvocationState::Fin] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
-	invocationEvents[InvocationState::Start] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
-	invocationEvents[InvocationState::Wait] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
+FutureInvocationState::FutureInvocationState()
+{
+	ml_invocationEvents[InvocationState::Cnclld] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
+	ml_invocationEvents[InvocationState::CnclldMan] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
+	ml_invocationEvents[InvocationState::Fail] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
+	ml_invocationEvents[InvocationState::Fin] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
+	ml_invocationEvents[InvocationState::Start] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
+	ml_invocationEvents[InvocationState::Wait] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
 }
 
-FutureInvocationState::~FutureInvocationState() {
-	if (consumer != nullptr) {
-		consumer->unregisterFutureInvocationListener(transactionId);
+FutureInvocationState::~FutureInvocationState()
+{
+	if (m_consumer != nullptr) {
+		m_consumer->unregisterFutureInvocationListener(m_transactionId);
 	}
 }
 
 
-bool FutureInvocationState::waitReceived(InvocationState expected, int timeout) {
-	std::shared_ptr<Poco::Event> event;
+bool FutureInvocationState::waitReceived(InvocationState p_expected, int p_timeout)
+{
+	std::shared_ptr<Poco::Event> t_event;
 	{
-		Poco::Mutex::ScopedLock lock(mutex);
-		event = invocationEvents[expected];
+		std::lock_guard<std::mutex> t_lock(m_mutex);
+		t_event = ml_invocationEvents[p_expected];
 	}
-
-	return event->tryWait(timeout);
+	return t_event->tryWait(p_timeout);
 }
 
 int FutureInvocationState::getTransactionId() const {
-	return transactionId;
+	return m_transactionId;
 }
 
-void FutureInvocationState::setEvent(InvocationState actual) {
-	Poco::Mutex::ScopedLock lock(mutex);
-	invocationEvents[actual]->set();
+void FutureInvocationState::setEvent(InvocationState p_actual) {
+	std::lock_guard<std::mutex> t_lock(m_mutex);
+	ml_invocationEvents[p_actual]->set();
 }
-
-} /* namespace SDC */
-} /* namespace Data */
-} /* namespace SDCLib */

@@ -40,7 +40,7 @@ void TestOrchestratorConsumer::discoverDiscoveryProvider() {
     }
 
     OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
-    auto c(oscpsm.discoverEndpointReference(DEFAULT_ENDPOINTREFERENCE_DISCOVERY_PROVIDER));
+    auto c(oscpsm.discoverEndpointReference(SDCInstance::calcUUIDv5(DEFAULT_ENDPOINTREFERENCE_DISCOVERY_PROVIDER, true)));
 	try {
 		if (c != nullptr) {
 			consumer = std::move(c);
@@ -110,7 +110,7 @@ void TestOrchestratorConsumer::discoverMirrorProvider() {
     }
 
     OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
-    auto c(oscpsm.discoverEndpointReference(DUTMirrorProviderRef));
+    auto c(oscpsm.discoverEndpointReference(SDCInstance::calcUUIDv5(DUTMirrorProviderRef, true)));
 	try {
 		if (c != nullptr) {
 			consumer.release();

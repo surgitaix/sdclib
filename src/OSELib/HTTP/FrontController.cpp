@@ -5,37 +5,32 @@
  *      Author: matthias
  */
 
-#include <iostream>
-#include <string>
-
-#include "Poco/Net/HTTPRequestHandler.h"
-#include "Poco/Net/HTTPServerRequest.h"
-
 #include "OSELib/HTTP/FrontController.h"
 #include "OSELib/HTTP/Service.h"
 
-namespace OSELib {
-namespace HTTP {
+#include <Poco/Net/HTTPServerRequest.h>
 
-FrontController::FrontController() :
-	WithLogger(Log::HTTP)
+using namespace OSELib;
+using namespace OSELib::HTTP;
+
+FrontController::FrontController()
+: WithLogger(Log::HTTP)
+{ }
+
+void FrontController::addService(const std::string & uri, Service & service)
 {
+	std::lock_guard<std::mutex> t_lock(m_mutex);
+	ml_serviceControllers.emplace(uri, service);
 }
 
-void FrontController::addService(const std::string & uri, Service & service) {
-	serviceControllers.emplace(uri, service);
-}
-
-Poco::Net::HTTPRequestHandler * FrontController::dispatchRequest(const Poco::Net::HTTPServerRequest & request) {
-	auto match(serviceControllers.find(request.getURI()));
-	if (match == serviceControllers.end()) {
+Poco::Net::HTTPRequestHandler * FrontController::dispatchRequest(const Poco::Net::HTTPServerRequest & request)
+{
+	std::lock_guard<std::mutex> t_lock(m_mutex);
+	auto match(ml_serviceControllers.find(request.getURI()));
+	if (match == ml_serviceControllers.end()) {
 		log_error([&] { return "No service controller for uri: " + request.getURI(); });
 		return nullptr;
-	} else {
-		log_debug([&] { return "Dispatching to service controller for uri: " + request.getURI(); });
-		return match->second.get().createRequestHandler(request, m_SSL);
 	}
+	log_debug([&] { return "Dispatching to service controller for uri: " + request.getURI(); });
+	return match->second.get().createRequestHandler(request, m_SSL);
 }
-
-}
-} /* namespace OSELib */

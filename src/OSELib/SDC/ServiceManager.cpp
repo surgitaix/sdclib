@@ -78,13 +78,9 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connect(const st
 	return connectXAddress(xAddress_list, "Unknown");
 }
 
-std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpointReference(const std::string & p_epr, bool p_toUUID)
+std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpointReference(const std::string & p_epr)
 {
 	assert(!p_epr.empty());
-
-	// Convert to name based UUIDv5 ?
-	auto t_epr = SDCLib::SDCInstance::calcUUIDv5(p_epr, p_toUUID);
-
 	struct ResolveMatchCallback : public DPWS::ResolveMatchCallback  {
 		ResolveMatchCallback(Poco::Event & matchEvent) :
 			_matchEvent(matchEvent) {
@@ -102,7 +98,7 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpoint
 	Poco::Event matchEvent;
 	ResolveMatchCallback resolveCb(matchEvent);
 
-	DPWS::ResolveType resolveFilter((WS::ADDRESSING::EndpointReferenceType(WS::ADDRESSING::AttributedURIType(t_epr))));
+	DPWS::ResolveType resolveFilter((WS::ADDRESSING::EndpointReferenceType(WS::ADDRESSING::AttributedURIType(p_epr))));
 	_dpwsClient->addResolveMatchEventHandler(resolveFilter, resolveCb);
 	try {
 
