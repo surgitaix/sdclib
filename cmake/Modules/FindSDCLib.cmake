@@ -102,8 +102,6 @@ set(SDCLib_INCLUDE_DIRS     ${SDCLib_ROOT_DIR}/include
                             # Poco
                             ${SDCLib_ROOT_DIR}/Dependencies/Poco/Foundation/include/
                             ${SDCLib_ROOT_DIR}/Dependencies/Poco/Net/include/
-                            # tclap
-                            ${SDCLib_ROOT_DIR}/include/tclap
                             # datamodel
                             ${SDCLib_ROOT_DIR}/datamodel/generated
 )
