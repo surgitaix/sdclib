@@ -21,7 +21,7 @@ int main() {
 	cbm.setCallback("discoverDiscoveryProvider", "", cbm.defineCallback([&]() { toc.discoverDiscoveryProvider(); }));
 	cbm.setCallback("updateAvailableEndpointReferences", "", cbm.defineCallback( [&]() { toc.updateAvailableEndpointReferences(); }));
 	cbm.setCallback("setDUTEndpointRef", "[string]", cbm.defineCallback<std::string>( [&](std::string EndpointRef) { toc.setDUTEndpointRef(EndpointRef);}));
-	cbm.setCallback("disoverDUT", "", cbm.defineCallback( [&]() {toc.discoverDUT();}));
+	cbm.setCallback("discoverDUT", "", cbm.defineCallback( [&]() {toc.discoverDUT();}));
 	cbm.setCallback("setMirrorProviderEndpointRef", "[string]", cbm.defineCallback<std::string>( [&](std::string EndpointRef) {toc.setMirrorProviderEndpointRef(EndpointRef);}));
 	cbm.setCallback("setupMirrorProvider", "", cbm.defineCallback([&]() {toc.setupMirrorProvider();}));
 	cbm.setCallback("discoverMirrorProvider", "", cbm.defineCallback([&]() {toc.discoverMirrorProvider();}));

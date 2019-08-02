@@ -210,6 +210,7 @@ SDCInstance_shared_ptr AbstractConsumer::createDefaultSDCInstance() {
 void AbstractConsumer::setDUTEndpointRef(const std::string& EndpointRef)
 {
 	DUTEndpointRef = EndpointRef;
+	std::cout << "DUTEndpointRef = " << DUTEndpointRef << std::endl;
 }
 
 const std::string& AbstractConsumer::getDUTEndpointRef()
@@ -220,6 +221,7 @@ const std::string& AbstractConsumer::getDUTEndpointRef()
 void AbstractConsumer::setMirrorProviderEndpointRef(const std::string& EndpointRef)
 {
 	DUTMirrorProviderEndpointRef = EndpointRef;
+	std::cout << "MirrorProviderEndpointRef " <<  DUTMirrorProviderEndpointRef;
 }
 
 const std::string& AbstractConsumer::getMirrorProviderEndpointRef()
@@ -252,6 +254,10 @@ void AbstractConsumer::updateAvailableEndpointReferences()
 		std::cout << device->getEndpointReference() << std::endl;
 		availableEndpointReferences.push_back(device->getEndpointReference());
 	}
+	std::ostringstream oss;
+	std::copy(availableEndpointReferences.begin(), availableEndpointReferences.end(),
+			  std::ostream_iterator<std::string>(oss, " "));
+	availableEndpointReferencesHandler->updateStateValue(oss.str());
 }
 
 

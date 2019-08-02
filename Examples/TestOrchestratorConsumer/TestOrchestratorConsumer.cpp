@@ -7,6 +7,9 @@
 
 #include <TestOrchestratorConsumer.h>
 
+#include "SDCLib/Data/SDC/MDIB/StringMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/StringMetricValue.h"
+#include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
 #include "SDCLib/Data/SDC/FutureInvocationState.h"
 
 #include "SDCLib/Util/DebugOut.h"
@@ -57,28 +60,74 @@ void TestOrchestratorConsumer::discoverDiscoveryProvider() {
 }
 
 void TestOrchestratorConsumer::updateAvailableEndpointReferences() {
-	consumer->activate(DISCOVER_AVAILABLE_ENDPOINT_REFERENCES);
+	FutureInvocationState fis;
+	consumer->activate(DISCOVER_AVAILABLE_ENDPOINT_REFERENCES, fis);
+	Util::DebugOut(Util::DebugOut::Default, "TestOrchestratorConsumer") << "Discovering available Devices... " << fis.waitReceived(InvocationState::Fin, 10000) << std::endl;
+
+	auto availableEndpointReferences = getAvailableEndpointReferences();
+	for(auto availaleEndpointRef : availableEndpointReferences)
+	{
+		std::cout << availaleEndpointRef << std::endl;
+	}
 }
 
 void TestOrchestratorConsumer::setDUTEndpointRef(const std::string& EndpointRef) {
 	DUTEndpointRef = EndpointRef;
+	HandleRef ref = SET_DEVICE_UNDER_TEST_ENDPOINT_REF;
+	StringMetricState strMS(SET_DEVICE_UNDER_TEST_ENDPOINT_REF);
+	strMS.setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(EndpointRef));
+	this->sendSetRequest<StringMetricState>(ref, strMS);
 
 }
 
 void TestOrchestratorConsumer::discoverDUT() {
-
+	FutureInvocationState fis;
+	consumer->activate(DISCOVER_DEVICE_UNDER_TEST, fis);
+	Util::DebugOut(Util::DebugOut::Default, "TestOrchestratorConsumer") << "Discovering Device Under Test... " << fis.waitReceived(InvocationState::Fin, 10000) << std::endl;
 }
 
 void TestOrchestratorConsumer::setMirrorProviderEndpointRef(const std::string& EndpointRef) {
-
+	DUTMirrorProviderRef = EndpointRef;
+	HandleRef ref = SET_MIRROR_PROVIDER_ENDPOINT_REF;
+	StringMetricState strMS(SET_MIRROR_PROVIDER_ENDPOINT_REF);
+	strMS.setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(EndpointRef));
+	this->sendSetRequest<StringMetricState>(ref, strMS);
 }
 
 void TestOrchestratorConsumer::setupMirrorProvider() {
-
+	FutureInvocationState fis;
+	consumer->activate(SETUP_MIRROR_PROVIDER, fis);
+	Util::DebugOut(Util::DebugOut::Default, "TestOrchestratorConsumer") << "Setting Up MirrorProvider... " << fis.waitReceived(InvocationState::Fin, 10000) << std::endl;
 }
 
-bool TestOrchestratorConsumer::discoverMirrorProvider() {
+void TestOrchestratorConsumer::discoverMirrorProvider() {
+    auto t_SDCInstance = createDefaultSDCInstance();
 
+    if(t_SDCInstance == nullptr)
+    {
+    	std::cout << "Mirror Provider not found" << std::endl;
+    	return;
+    }
+
+    OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
+    auto c(oscpsm.discoverEndpointReference(DUTMirrorProviderRef));
+	try {
+		if (c != nullptr) {
+			consumer.release();
+			consumer = std::move(c);
+	    	std::cout << "Mirror Provider found" << std::endl;
+			return;
+		}
+		else {
+			Util::DebugOut(Util::DebugOut::Default, "TestOrchestratorConsumer") << "Discovery failed."; //Not debug out but inform orchestrator
+			return;
+		}
+	} catch (std::exception & e) {
+	Util::DebugOut(Util::DebugOut::Default, "TestOrchestratorConsumer") << "Exception: " << e.what() << std::endl; //Not debug out but inform orchestrator
+		return;
+	}
+
+	return;
 }
 
 std::string TestOrchestratorConsumer::getProviderMDIB() {
@@ -88,14 +137,14 @@ std::string TestOrchestratorConsumer::getProviderMDIB() {
 template <typename TState>
 void TestOrchestratorConsumer::sendSetRequest(HandleRef& descriptorHandle, TState state) {
 	FutureInvocationState fis;
-	consumer->commitState(*state, fis);
-	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result metric state: " << fis.waitReceived(InvocationState::Fin, 5000);
+	consumer->commitState(state, fis);
+	Util::DebugOut(Util::DebugOut::Default, "TestOrchestratorConsumer") << "Setting: " << descriptorHandle << " " << fis.waitReceived(InvocationState::Fin, 5000) << std::endl;
 }
 
 
 template <typename TState>
-TState TestOrchestratorConsumer::requestState(HandleRef& descriptorHandle) {
-	return consumer->requestState<TState>(descriptorHandle);
+std::unique_ptr<TState> TestOrchestratorConsumer::requestState(HandleRef& descriptorHandle) {
+	return std::move(consumer->requestState<TState>(descriptorHandle));
 }
 
 SDCInstance_shared_ptr TestOrchestratorConsumer::createDefaultSDCInstance()
@@ -111,6 +160,16 @@ SDCInstance_shared_ptr TestOrchestratorConsumer::createDefaultSDCInstance()
 	return t_SDCInstance;
 }
 
+std::vector<std::string> TestOrchestratorConsumer::getAvailableEndpointReferences()
+{
+	HandleRef ref = GET_AVAILABLE_ENDPOINT_REFERENCES;
+	auto availableEndpointReferencesState = this->requestState<StringMetricState>(ref);
+	auto EndpointReferencesString = availableEndpointReferencesState->getMetricValue().getValue();
+	std::istringstream iss(EndpointReferencesString);
+	std::vector<std::string> EndpointReferences(std::istream_iterator<std::string>{iss},
+	                                 std::istream_iterator<std::string>());
+	return EndpointReferences;
+}
 
 
 } //ACS

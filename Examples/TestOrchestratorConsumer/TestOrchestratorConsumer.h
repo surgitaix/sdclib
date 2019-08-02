@@ -39,19 +39,21 @@ public:
 	//Setup MirrorProvider
 	void setMirrorProviderEndpointRef(const std::string& EndpointRef);
 	void setupMirrorProvider();
-	bool discoverMirrorProvider();
+	void discoverMirrorProvider();
 
 
 	std::string getProviderMDIB();
 	void addSetHandler();
 	void sendGetRequest(HandleRef& descriptorHandle);
 	template <typename TState>
-	TState requestState(HandleRef& descriptorHandle);
+	std::unique_ptr<TState> requestState(HandleRef& descriptorHandle);
 	template <typename TState>
 	void sendSetRequest(HandleRef& descriptorHandle, TState state);
 	void sendSubcribeRequest(HandleRef& descriptorHandle);
 	void stopMirrorProvider();
 	void startMirrorProvider();
+	std::vector<std::string> getAvailableEndpointReferences();
+
 
 private:
 	const std::string getStringRepresentationOfMDIB(const MdibContainer MDIB);
