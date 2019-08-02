@@ -257,7 +257,7 @@ public:
 						MetricAvailability::Cont)
     	{
 
-		sdcProvider.setEndpointReference(DEVICE_EPR);
+		sdcProvider.setEndpointReferenceByName(DEVICE_EPR);
 
 		// set DPWS metadata, e.g. for the displayed friendly name
 		Dev::DeviceCharacteristics devChar;

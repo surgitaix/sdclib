@@ -138,31 +138,6 @@ set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             ${INCLUDE_DIR}/OSELib/SOAP/GenericSoapActionCommand.h
                             ${INCLUDE_DIR}/OSELib/SOAP/RenewActionCommand.h
                             ${INCLUDE_DIR}/OSELib/SOAP/GenericSoapInvoke.h
-                            # tclap
-                            ${INCLUDE_DIR}/tclap/ValueArg.h
-                            ${INCLUDE_DIR}/tclap/StdOutput.h
-                            ${INCLUDE_DIR}/tclap/VersionVisitor.h
-                            ${INCLUDE_DIR}/tclap/UnlabeledValueArg.h
-                            ${INCLUDE_DIR}/tclap/SwitchArg.h
-                            ${INCLUDE_DIR}/tclap/MultiArg.h
-                            ${INCLUDE_DIR}/tclap/UnlabeledMultiArg.h
-                            ${INCLUDE_DIR}/tclap/ZshCompletionOutput.h
-                            ${INCLUDE_DIR}/tclap/OptionalUnlabeledTracker.h
-                            ${INCLUDE_DIR}/tclap/ArgException.h
-                            ${INCLUDE_DIR}/tclap/ArgTraits.h
-                            ${INCLUDE_DIR}/tclap/CmdLineInterface.h
-                            ${INCLUDE_DIR}/tclap/StandardTraits.h
-                            ${INCLUDE_DIR}/tclap/CmdLineOutput.h
-                            ${INCLUDE_DIR}/tclap/DocBookOutput.h
-                            ${INCLUDE_DIR}/tclap/MultiSwitchArg.h
-                            ${INCLUDE_DIR}/tclap/XorHandler.h
-                            ${INCLUDE_DIR}/tclap/CmdLine.h
-                            ${INCLUDE_DIR}/tclap/Visitor.h
-                            ${INCLUDE_DIR}/tclap/Arg.h
-                            ${INCLUDE_DIR}/tclap/Constraint.h
-                            ${INCLUDE_DIR}/tclap/ValuesConstraint.h
-                            ${INCLUDE_DIR}/tclap/HelpVisitor.h
-                            ${INCLUDE_DIR}/tclap/IgnoreRestVisitor.h
                             # SDCLib
                             ${INCLUDE_DIR}/SDCLib/Data/SDC/SDCProviderMDStateHandler.h
                             ${INCLUDE_DIR}/SDCLib/Data/SDC/SDCProviderStateHandler.h

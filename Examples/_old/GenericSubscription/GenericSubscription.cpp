@@ -27,18 +27,7 @@
 #include "SDCLib/Data/SDC/MDIB/StringMetricValue.h"
 #include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
-#include "SDCLib/Data/SDC/MDIB/Real
-#include "SDCLib/Data/SDC/MDIB/RTValueType.h"
-#include "SDCLib/Data/SDC/MDIB/VMDDescriptor.h"
-#include "OSELib/SDC/SDCConstants.h
 #include "SDCLib/Data/SDC/SDCConsumer.h"
-#include "SDCLib/Data/SDC/SDCConsumerAlertConditionStateHandler.h"
-#include "SDCLib/Data/SDC/SDCConsumerAlertSignalStateHandler.h"
-#include "SDCLib/Data/SDC/SDCConsumerEnumStringMetricStateHandler.h"
-#include "SDCLib/Data/SDC/SDCConsumerLimitAlertConditionStateHandler.h"
-#include "SDCLib/Data/SDC/SDCConsumerNumericMetricStateHandler.h"
-#include "SDCLib/Data/SDC/SDCConsumerRealTimeSampleArrayMetricStateHandler.h"
-#include "SDCLib/Data/SDC/SDCConsumerStringMetricStateHandler.h"
 #include "SDCLib/Data/SDC/SDCProvider.h"
 #include "SDCLib/Util/DebugOut.h"
 
@@ -50,10 +39,6 @@
 #include "Poco/Timestamp.h"
 #include "Poco/DateTimeFormatter.h"
 #include "Poco/DateTimeFormat.h"
-
-#include "tclap/CmdLine.h"
-#include "tclap/UnlabeledMultiArg.h"
-#include "tclap/ValueArg.h"
 
 using namespace SDCLib;
 using namespace SDCLib::Util;
@@ -183,10 +168,10 @@ int main (int argc, char * argv[])
 	std::vector<std::string> handles;
 
 	try {
-		TCLAP::CmdLine cmd("Generic subscription tool for various value types.", ' ', "0.01");
-		TCLAP::ValueArg<std::string> eprArg("e", "epr", "EndpointReference of target SDC Device.", true, "UDI_EXAMPLE_1234", "string");
+		TC_LAP::CmdLine cmd("Generic subscription tool for various value types.", ' ', "0.01");
+		TC_LAP::ValueArg<std::string> eprArg("e", "epr", "EndpointReference of target SDC Device.", true, "UDI_EXAMPLE_1234", "string");
 		cmd.add(eprArg);
-		TCLAP::UnlabeledMultiArg<std::string> handlesArg("handle", "Handle of metric that should be subscribed to.", true, "string");
+		TC_LAP::UnlabeledMultiArg<std::string> handlesArg("handle", "Handle of metric that should be subscribed to.", true, "string");
 		cmd.add(handlesArg);
 
 		cmd.parse( argc, argv );
@@ -199,14 +184,13 @@ int main (int argc, char * argv[])
 			std::exit(0);
 		}
 
-	} catch (TCLAP::ArgException & e) {
+	} catch (TC_LAP::ArgException & e) {
 		std::cerr << "error: " << e.error() << " for arg " << e.argId() << std::endl;
 		std::exit(0);
 	}
 
 	DebugOut(DebugOut::Default, "GenericSubscription") << std::endl << "Startup";
 	SDCLibrary::getInstance().startup();
-	SDCLibrary::getInstance().setPortStart(42000);
 
 	OSELib::SDC::ServiceManager t_serviceManager;
 	std::unique_ptr<SDCConsumer> consumer(t_serviceManager.discoverEndpointReference(epr));

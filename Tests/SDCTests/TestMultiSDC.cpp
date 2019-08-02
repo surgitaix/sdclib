@@ -34,7 +34,7 @@ public:
     , metrics(metricCount)
     {
 
-        sdcProvider.setEndpointReference(std::string("UDI_") + std::to_string(m_eprID));
+        sdcProvider.setEndpointReferenceByName(std::string("UDI_") + std::to_string(m_eprID));
 
         Dev::DeviceCharacteristics devChar;
 		devChar.addFriendlyName("en", "Test TestMultiSDC " + std::to_string(m_eprID));

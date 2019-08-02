@@ -316,7 +316,7 @@ public:
 		mdsState(MDS_HANDLE),
 		vmdState(VMD_DESCRIPTOR_HANDLE)
 	{
-		sdcProvider.setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
+		sdcProvider.setEndpointReferenceByName(DEVICE_ENDPOINT_REFERENCE);
 
     	// Alerts
         AlertSystemDescriptor alertSystem(ALERT_SYSTEM_HANDLE);

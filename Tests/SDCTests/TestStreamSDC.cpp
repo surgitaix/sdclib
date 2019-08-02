@@ -204,7 +204,7 @@ public:
     	distributionEventHandler("handle_distribution_stream")
 	{
 
-		sdcProvider.setEndpointReference(SDCLib::Tests::StreamSDC::deviceEPR);
+		sdcProvider.setEndpointReferenceByName(SDCLib::Tests::StreamSDC::deviceEPR);
 
 
 		// Currentweight stream metric (read-only)

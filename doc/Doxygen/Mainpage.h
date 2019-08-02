@@ -7,7 +7,7 @@ one of the page links below.
 @li @ref intro <b>OR.NET</b>: A short introduction to the %SDCLib
 @li @ref sdcpage <b>OR.NET</b>: API for the Open Surgical Communication Protocol
 
-@version 4.3.1
+@version 4.3.3
 @author Besting, Baumeister
 @copyright (C) 2019 SurgiTAIX AG
 
@@ -194,7 +194,9 @@ The most important thing about initializing the metrics is that each metric need
 SDCHoldingDeviceProvider() {
   // Note: When setting this is converted to UUIDv5 and a prefix is applied:
   // urn:uuid:<UUIDv5("EPR_12345")>
-  setEndpointReference("EPR_12345");
+  setEndpointReference(SDCInstance::calcUUIDv5("EPR_12345"));
+  // Or use
+  setEndpointReferenceByName("EPR_12345"); // This will do automatic conversion
 
   // Define semantic meaning of weight unit "kg", which will be used for defining the
   // current weight and the max weight below.
