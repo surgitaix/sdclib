@@ -11,28 +11,40 @@
 #include <functional>
 #include <map>
 #include <string>
+#include <mutex>
 
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
 
-namespace OSELib {
-namespace HTTP {
+namespace OSELib
+{
+	namespace HTTP {
 
-class FrontController : public WithLogger {
-public:
-	FrontController();
+		class FrontController : public WithLogger
+		{
+		private:
+			std::mutex m_mutex;
+			bool m_SSL = true;
+			std::map<std::string, std::reference_wrapper<Service>> ml_serviceControllers;
 
-	void addService(const std::string & uri, Service & service);
-	Poco::Net::HTTPRequestHandler * dispatchRequest(const Poco::Net::HTTPServerRequest & request);
+		public:
 
-    void setSSL(bool p_SSL) { m_SSL = p_SSL; }
+			FrontController();
+			// Special Member Functions
+			FrontController(const FrontController& p_obj) = delete;
+			FrontController(FrontController&& p_obj) = delete;
+			FrontController& operator=(const FrontController& p_obj) = delete;
+			FrontController& operator=(FrontController&& p_obj) = delete;
+			~FrontController() = default;
 
-private:
-    bool m_SSL = true;
-	std::map<std::string, std::reference_wrapper<Service>> serviceControllers;
-};
 
+			void addService(const std::string & uri, Service & service);
+			Poco::Net::HTTPRequestHandler * dispatchRequest(const Poco::Net::HTTPServerRequest & request);
+
+			void setSSL(bool p_SSL) { m_SSL = p_SSL; }
+
+		};
+	}
 }
-} /* namespace OSELib */
 
 #endif /* FRONTCONTROLLER_H_ */

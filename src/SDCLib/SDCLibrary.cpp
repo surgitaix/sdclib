@@ -57,10 +57,6 @@ SDCLibrary::SDCLibrary()
 	Poco::AutoPtr<Poco::FormattingChannel> formattingChannel(new Poco::FormattingChannel(patternFormatter, splitterChannel));
 
 	getLogger().setChannel(formattingChannel);
-
-	// default ports chosen regarding to unlikely used ports:
-	// https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
-	createPortLists(14000, 1000);
 }
 
 SDCLibrary::~SDCLibrary()
@@ -93,37 +89,6 @@ void SDCLibrary::shutdown()
     }
 }
 
-void SDCLibrary::setPortStart(unsigned int start, unsigned int range) {
-	Poco::Mutex::ScopedLock lock(mutex);
-
-	const auto end(start + range);
-	log_information([&]{ return "Using ports: [" + std::to_string(start) + "," + std::to_string(end) + ")"; });
-
-	createPortLists(start, range);
-}
-
-void SDCLibrary::createPortLists(unsigned int start, unsigned int range) {
-	reservedPorts.clear();
-	for (unsigned int i = start; i < start + range; i++) {
-		reservedPorts.push_back(i);
-	}
-	availablePorts = reservedPorts;
-}
-
-unsigned int SDCLibrary::extractFreePort() {
-	Poco::Mutex::ScopedLock lock(mutex);
-	const unsigned int result(availablePorts.front());
-	availablePorts.pop_front();
-	return result;
-}
-
-void SDCLibrary::returnPortToPool(unsigned int port) {
-	Poco::Mutex::ScopedLock lock(mutex);
-	if (std::find(reservedPorts.begin(), reservedPorts.end(), port) != reservedPorts.end()) {
-		availablePorts.push_back(port);
-	}
-}
-
 void SDCLibrary::dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pingManager) {
 	Poco::Mutex::ScopedLock lock(mutex);
 	_latestPingManager = std::move(pingManager);
@@ -131,29 +96,4 @@ void SDCLibrary::dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> ping
 
 bool SDCLibrary::isInitialized() {
 	return initialized;
-}
-
-void SDCLibrary::setIP4enabled(bool IP4enabled) {
-	m_IP4enabled = IP4enabled;
-}
-
-void SDCLibrary::setIP6enabled(bool IP6enabled) {
-	m_IP6enabled = IP6enabled;
-}
-
-bool SDCLibrary::getIP4enabled() {
-	return m_IP4enabled;
-}
-
-bool SDCLibrary::getIP6enabled() {
-	return m_IP6enabled;
-}
-
-
-void SDCLibrary::setDiscoveryTime(int discoveryTimeMilSec){
-	m_discoveryTimeMilSec = discoveryTimeMilSec;
-}
-
-int SDCLibrary::getDiscoveryTime(){
-	return m_discoveryTimeMilSec;
 }

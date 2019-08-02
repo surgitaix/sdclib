@@ -152,10 +152,9 @@ public:
 			return;
 		}
 
-		if (provider.getPeriodicEventInterval() < provider.getLastPeriodicEvent().elapsed()) {
+		if (provider.getPeriodicEventInterval() < (std::chrono::system_clock::now() - provider.getLastPeriodicEvent())) {
 			provider.firePeriodicReportImpl();
-            auto t_ts = provider.getLastPeriodicEvent();
-            provider.setLastPeriodicEvent(t_ts);
+            provider.setLastPeriodicEvent(provider.getLastPeriodicEvent());
 		}
     }
 
@@ -1458,9 +1457,9 @@ Dev::DeviceCharacteristics SDCProvider::getDeviceCharacteristics() const
 void SDCProvider::setDeviceCharacteristics(const Dev::DeviceCharacteristics p_deviceCharacteristics)
 {
     std::lock_guard<std::mutex> t_lock{m_mutex_DevC};
-    // add endpointReference to deviceCharacteristics because the host metadata need to provide the enpoint reference
+    // add endpointReference to deviceCharacteristics because the host metadata need to provide the endpoint reference
 	m_devicecharacteristics = p_deviceCharacteristics;
-    // add endpointReference to deviceCharacteristics because the host metadata need to provide the enpoint reference
+    // add endpointReference to deviceCharacteristics because the host metadata need to provide the endpoint reference
 	m_devicecharacteristics.setEndpointReference(m_endpointReference);
 }
 
@@ -1472,22 +1471,20 @@ void SDCProvider::incrementMDIBVersion() {
 	mdibVersion++;
 }
 
-void SDCProvider::setPeriodicEventInterval(const int seconds, const int milliseconds)
+void SDCProvider::setPeriodicEventInterval(std::chrono::milliseconds p_interval)
 {
-	const Poco::Timespan t_interval (seconds, milliseconds);
-	if (t_interval > Poco::Timespan(0, 250)) {
-		std::lock_guard<std::mutex> t_lock{m_mutex_PeriodicUpdates};
-		m_periodicEventInterval = t_interval;
+	// TODO: Why 250?
+	if (p_interval > std::chrono::milliseconds(250)) {
+		m_periodicEventInterval = p_interval;
 	}
 }
-Poco::Timespan SDCProvider::getPeriodicEventInterval() const
+std::chrono::milliseconds SDCProvider::getPeriodicEventInterval() const
 {
-    std::lock_guard<std::mutex> t_lock{m_mutex_PeriodicUpdates};
     return m_periodicEventInterval;
 }
 std::vector<std::string> SDCProvider::getHandlesForPeriodicUpdate() const
 {
-    std::lock_guard<std::mutex> t_lock{m_mutex_PeriodicUpdates};
+    std::lock_guard<std::mutex> t_lock{m_mutex_PeriodicUpdateHandles};
     return ml_handlesForPeriodicUpdates;
 }
 
@@ -1519,12 +1516,12 @@ void SDCProvider::stopAsyncProviderInvoker()
     m_providerInvoker.reset();
 }
 
-void SDCProvider::setLastPeriodicEvent(Poco::Timestamp p_timestamp)
+void SDCProvider::setLastPeriodicEvent(TimePoint p_timepoint)
 {
     std::lock_guard<std::mutex> t_lock{m_mutex_PeriodicEvent};
-    m_lastPeriodicEvent = p_timestamp;
+    m_lastPeriodicEvent = p_timepoint;
 }
-Poco::Timestamp SDCProvider::getLastPeriodicEvent() const
+TimePoint SDCProvider::getLastPeriodicEvent() const
 {
     std::lock_guard<std::mutex> t_lock{m_mutex_PeriodicEvent};
     return m_lastPeriodicEvent;

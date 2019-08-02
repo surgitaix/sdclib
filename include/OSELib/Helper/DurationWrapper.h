@@ -1,30 +1,37 @@
 /*
  * DurationWrapper.h
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ * Helper class to convert between various duration formats
+ *
+ * Created on: 07.12.2015, matthias
+ * Modified on: 01.08.2019, baumeister
+ *
  */
 
-#ifndef HELPER_DURATIONWRAPPER_H_
-#define HELPER_DURATIONWRAPPER_H_
+#ifndef OSELIB_HELPER_DURATIONWRAPPER_H_
+#define OSELIB_HELPER_DURATIONWRAPPER_H_
 
 #include "OSELib/fwd.h"
 
-namespace OSELib {
-namespace Helper {
+#include "SDCLib/Prerequisites.h"
 
-class DurationWrapper : public xml_schema::Duration {
-public:
-	DurationWrapper(const std::string & value);
+namespace OSELib
+{
+	namespace Helper
+	{
 
-	DurationWrapper & operator=(const xml_schema::Duration & source);
+		class DurationWrapper : public xml_schema::Duration
+		{
+		public:
+			DurationWrapper(const std::string & value);
 
-	std::string toString();
+			DurationWrapper & operator=(const xml_schema::Duration & source);
 
-	Poco::Timestamp toExpirationTimeStamp();
-};
+			std::string toString();
 
-} /* namespace Helper */
-} /* namespace OSELib */
+			SDCLib::TimePoint toExpirationTimePoint();
+		};
+	}
+}
 
-#endif /* HELPER_DURATIONWRAPPER_H_ */
+#endif /* OSELIB_HELPER_DURATIONWRAPPER_H_ */

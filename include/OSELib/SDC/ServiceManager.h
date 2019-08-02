@@ -50,10 +50,9 @@ public:
     * @brief Create a consumer and try to discover provider using endpointreference (EPR).
     *
     * @param p_epr The endpointreference
-    * @param p_toUUID Determines if the Given EPR Param will be converted to a UUIDv5 before matching.
     * @return The consumer or null
     */
-	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> discoverEndpointReference(const std::string & p_epr, bool p_toUUID = true);
+	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> discoverEndpointReference(const std::string & p_epr);
 
     /**
     * @brief Discover all SDC providers currently available

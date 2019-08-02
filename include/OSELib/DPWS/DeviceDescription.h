@@ -15,7 +15,6 @@
 #include <list>
 #include "Poco/URI.h"
 #include "Poco/Net/IPAddress.h"
-#include "Poco/Timespan.h"
 #include "Poco/Net/StreamSocket.h"
 #include "Poco/Net/SocketAddress.h"
 #include "OSELib/Helper/WithLogger.h"

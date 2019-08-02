@@ -6,8 +6,6 @@
  */
 
 #include <Poco/NotificationQueue.h>
-#include <Poco/Timestamp.h>
-#include <Poco/Timespan.h>
 #include <Poco/URI.h>
 #include <Poco/Net/HTTPClientSession.h>
 #include <Poco/Net/SocketNotification.h>
@@ -68,7 +66,7 @@ std::unique_ptr<SubscribeTraits::Response> SubscriptionManager::dispatch(const S
 		}
 	}
 
-	ActiveSubscriptions::SubscriptionInformation info(request.Delivery().NotifyTo(), expiresDuration.toExpirationTimeStamp(), request.Filter().get());
+	ActiveSubscriptions::SubscriptionInformation info(request.Delivery().NotifyTo(), expiresDuration.toExpirationTimePoint(), request.Filter().get());
 	const auto mySubscriptionID(_subscriptions.subscribe(info));
 
 	ResponseType::SubscriptionManagerType subscriptionManager(WS::ADDRESSING::AttributedURIType("To be defined by ServiceHandler"));
@@ -117,7 +115,7 @@ std::unique_ptr<RenewTraits::Response> SubscriptionManager::dispatch(const Renew
 	response->Expires().set(expiresDuration.toString());
 
 	log_debug([&] { return "Renewing " + identifier; });
-	_subscriptions.renew(identifier, expiresDuration.toExpirationTimeStamp());
+	_subscriptions.renew(identifier, expiresDuration.toExpirationTimePoint());
 
 	_subscriptions.printSubscriptions();
 
