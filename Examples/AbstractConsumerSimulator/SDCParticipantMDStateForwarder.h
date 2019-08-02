@@ -173,6 +173,7 @@ public:
 		std::string functionParameterString = "";
 		if(state.getMetricValue().getValue(functionParameterString))
 		{
+			std::cout << descriptorHandle << " called with " << functionParameterString << std::endl;
 			if(functionParameterString == "")
 			{
 				return InvocationState::Fail;

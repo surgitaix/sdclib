@@ -46,7 +46,7 @@ void MirrorProvider::setMdDescription(MdDescription& description)
 }
 
 void MirrorProvider::setEndpointReference(const std::string & epr) {
-	sdcProvider.setEndpointReference(epr);
+	sdcProvider.setEndpointReferenceByName(epr);
 }
 
 void MirrorProvider::setDeviceCharacteristics(Dev::DeviceCharacteristics devChar)
@@ -64,15 +64,13 @@ MdibContainer MirrorProvider::getMdib() {
 	return sdcProvider.getMdib();
 }
 
-void MirrorProvider::createSetOperationForDescriptor(const NumericMetricDescriptor& descriptor, MdsDescriptor & ownerMDS)
-{
-	sdcProvider.createSetOperationForDescriptor(descriptor, ownerMDS);
-}
 
 void MirrorProvider::addActivateOperationForDescriptor(const ActivateOperationDescriptor &descriptor, MdsDescriptor & ownerMDS)
 {
 	sdcProvider.addActivateOperationForDescriptor(descriptor, ownerMDS);
 }
+
+
 
 } //ACS
 } //SDC

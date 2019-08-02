@@ -57,7 +57,7 @@ public:
 	AbstractConsumer();
 
 	bool discoverDUT();
-	bool setupMirrorProvider(const std::string& MirrorProviderEndpointReference="DUTMirrorProvider");
+	bool setupMirrorProvider();
 	void startMirrorProvider();
 	bool addGetHandler(HandleRef descriptionHandler);
 	bool addSubscriptionHandler(HandleRef descriptionHandler);

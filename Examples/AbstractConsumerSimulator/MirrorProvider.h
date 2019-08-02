@@ -30,7 +30,12 @@ public:
 
 	void setDeviceCharacteristics(const Dev::DeviceCharacteristics devChar);
 
-    void createSetOperationForDescriptor(const NumericMetricDescriptor& descriptor, MdsDescriptor & ownerMDS);
+	template<typename T>
+	void createSetOperationForDescriptor(const T& descriptor, MdsDescriptor & ownerMDS)
+	{
+		sdcProvider.createSetOperationForDescriptor(descriptor, ownerMDS);
+	}
+
     void addActivateOperationForDescriptor(const ActivateOperationDescriptor& descriptor, MdsDescriptor & ownderMDS);
 
 	void startup();

@@ -63,7 +63,8 @@ bool AbstractConsumer::discoverDUT() {
 		}
 }
 
-bool AbstractConsumer::setupMirrorProvider(const std::string& MirrorProviderEndpointReference) {
+bool AbstractConsumer::setupMirrorProvider() {
+	std::cout << "Setting Up Mirrorprovider" << std::endl;
 	auto t_SDCInstanceProvider = std::make_shared<SDCInstance>();		    // Some restriction
 	t_SDCInstanceProvider->setIP6enabled(false);
 	t_SDCInstanceProvider->setIP4enabled(true);
@@ -74,12 +75,17 @@ bool AbstractConsumer::setupMirrorProvider(const std::string& MirrorProviderEndp
 	}
 
 	//initialize Mirror Provider which mirrors the behavior of the DUT
-	MirrorProvider mirrorProvider(t_SDCInstanceProvider);
-	mirrorProvider.setEndpointReference(DUTMirrorProviderEndpointRef != "" ? DUTMirrorProviderEndpointRef : "DUTMirrorProvider");
+	std::unique_ptr<MirrorProvider> mirrorProvider(new MirrorProvider(t_SDCInstanceProvider));
+	mirrorProvider->setEndpointReference(DUTMirrorProviderEndpointRef != "" ? DUTMirrorProviderEndpointRef : "DUTMirrorProvider");
 	Dev::DeviceCharacteristics devChar;
 	devChar.addFriendlyName("en", "DUTMirrorProvider");
-	mirrorProvider.setDeviceCharacteristics(devChar);
-	mirrorProvider.setMdDescription(getConsumerStringRepresentationOfMDIB());
+	mirrorProvider->setDeviceCharacteristics(devChar);
+	mirrorProvider->setMdDescription(getConsumerStringRepresentationOfMDIB());
+
+	std::cout << "HIERNNACH KNALLT ES";
+
+	DUTMirrorProvider.release();
+	DUTMirrorProvider = std::move(mirrorProvider);
 	startMirrorProvider();
 	return true;
 }
@@ -139,6 +145,9 @@ void AbstractConsumer::setupDiscoveryProvider()
 
 		setMirrorProviderEndpointReferenceCaller = std::make_shared<SDCParticipantStringFunctionCaller>(SET_MIRROR_PROVIDER_ENDPOINT_REF,
 			[&](std::string EndpointRef) { setMirrorProviderEndpointRef(EndpointRef); });
+		setupMirrorProviderCaller = std::make_shared<SDCParticipantActivateFunctionCaller>(SETUP_MIRROR_PROVIDER,
+			[&]() { setupMirrorProvider(); });
+
 
 		discoverAvailableEndpointReferencesDesc = std::make_shared<ActivateOperationDescriptor>(DISCOVER_AVAILABLE_ENDPOINT_REFERENCES, GET_AVAILABLE_ENDPOINT_REFERENCES);
 		availableEndpointReferencesDesc = std::make_shared<StringMetricDescriptor>(GET_AVAILABLE_ENDPOINT_REFERENCES,
@@ -154,9 +163,9 @@ void AbstractConsumer::setupDiscoveryProvider()
 
 		setMirrorProviderEndpointReferenceDesc = std::make_shared<StringMetricDescriptor>(SET_MIRROR_PROVIDER_ENDPOINT_REF,
 				CodedValue(STRING_UNIT),
-				MetricCategory::Msrmt,
+				MetricCategory::Set,
 				MetricAvailability::Cont);
-		setupMirrorProviderDesc = std::make_shared<ActivateOperationDescriptor>(SETUP_MIRROR_PROVIDER + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX, SET_MIRROR_PROVIDER_ENDPOINT_REF);
+		setupMirrorProviderDesc = std::make_shared<ActivateOperationDescriptor>(SETUP_MIRROR_PROVIDER, SET_MIRROR_PROVIDER_ENDPOINT_REF);
 
 
 		//Channel
@@ -174,20 +183,22 @@ void AbstractConsumer::setupDiscoveryProvider()
 		discoveryProviderMDs.addVmd(discoveryProviderVMD);
 		DUTMirrorProvider->addActivateOperationForDescriptor(*discoverAvailableEndpointReferencesDesc, discoveryProviderMDs);
 		DUTMirrorProvider->addActivateOperationForDescriptor(*discoverDUTFunctionDesc, discoveryProviderMDs);
+		DUTMirrorProvider->createSetOperationForDescriptor<StringMetricDescriptor>(*setDUTEndpointReferncesDesc, discoveryProviderMDs);
+		DUTMirrorProvider->createSetOperationForDescriptor<StringMetricDescriptor>(*setMirrorProviderEndpointReferenceDesc, discoveryProviderMDs);
 		DUTMirrorProvider->addActivateOperationForDescriptor(*setupMirrorProviderDesc, discoveryProviderMDs);
+
 
         // create and add description
 		MdDescription discoveryProvidermdDescription;
 		discoveryProvidermdDescription.addMdsDescriptor(discoveryProviderMDs);
 		DUTMirrorProvider->setMdDescription(discoveryProvidermdDescription);
 
-
-
-
-		DUTMirrorProvider->addMdStateHandler(setDUTEndpointReferenceCaller.get());
 		DUTMirrorProvider->addMdStateHandler(discoverAvailableEndpointReferencesCaller.get());
-		DUTMirrorProvider->addMdStateHandler(setMirrorProviderEndpointReferenceCaller.get());
 		DUTMirrorProvider->addMdStateHandler(availableEndpointReferencesHandler.get());
+		DUTMirrorProvider->addMdStateHandler(setDUTEndpointReferenceCaller.get());
+		DUTMirrorProvider->addMdStateHandler(discoverDUTFunctionCaller.get());
+		DUTMirrorProvider->addMdStateHandler(setMirrorProviderEndpointReferenceCaller.get());
+		DUTMirrorProvider->addMdStateHandler(setupMirrorProviderCaller.get());
 
 
 		std::cout << getMirrorProviderStringRepresentationOfMDIB() << std::endl;
