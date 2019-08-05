@@ -27,16 +27,9 @@
 #define SDCLIB_SDCLIBRARY_H_
 
 #include <atomic>
-#include <list>
 #include <memory>
-#include <set>
 #include <string>
-
-#include "Poco/Mutex.h"
-#include "Poco/Thread.h"
-#include "Poco/Runnable.h"
-#include "Poco/NotificationQueue.h"
-#include "Poco/Net/IPAddress.h"
+#include <mutex>
 
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
@@ -48,10 +41,10 @@ namespace SDCLib
     {
     private:
 
-        std::atomic<bool> initialized = ATOMIC_VAR_INIT(false);
+        std::atomic<bool> m_initialized = ATOMIC_VAR_INIT(false);
 
-        Poco::Mutex mutex;
-        std::unique_ptr<OSELib::DPWS::PingManager> _latestPingManager;
+        std::mutex m_mutex;
+        std::unique_ptr<OSELib::DPWS::PingManager> m_latestPingManager;
     public:
 
         // Special Member Functions

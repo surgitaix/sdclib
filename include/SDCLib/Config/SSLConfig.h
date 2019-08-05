@@ -25,7 +25,7 @@
 #ifndef SDCLIB_CONFIG_SSLCONFIG_H
 #define SDCLIB_CONFIG_SSLCONFIG_H
 
-#include "Prerequisites.h"
+#include "SDCLib/Prerequisites.h"
 #include "config/config.h"
 
 #include <Poco/Net/Context.h>

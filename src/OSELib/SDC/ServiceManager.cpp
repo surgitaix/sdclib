@@ -17,7 +17,6 @@
 #include "SDCLib/SDCInstance.h"
 #include "SDCLib/Config/SDCConfig.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
-#include "SDCLib/Util/DebugOut.h"
 
 #include <Poco/Event.h>
 #include <Poco/URI.h>
@@ -109,13 +108,13 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpoint
      // FIXME: CRASH HERE... MUTEX ISSUE? WAKEUP (UNLOCK) FROM DIFFERENT THREAD NOT ALLOWED? OWNER PROBLEM? BUG IN POCO?
         bool t_result = matchEvent.tryWait(m_SDCInstance->getDiscoveryTime().count());
 		if (!t_result) {
-             SDCLib::Util::DebugOut(SDCLib::Util::DebugOut::Default, "ServiceManager") <<  "discoverEndpointReference::TIMEOUT." << std::endl;
+            log_debug([] { return "ServiceManager: discoverEndpointReference::TIMEOUT."; });
         }
 		log_debug([&] { return "Received ResolveMatch for: " + resolveCb._result->EndpointReference().Address(); });
      }
      catch (...)
      {
-         SDCLib::Util::DebugOut(SDCLib::Util::DebugOut::Default, "ServiceManager") <<  "discoverEndpointReference::CATCH..." << std::endl;
+         log_debug([] { return "ServiceManager: discoverEndpointReference::CATCH..."; });
      }
     /*try {
         matchEvent.wait(SDCLib::SDCLibrary::getInstance().getDiscoveryTime());

@@ -122,16 +122,19 @@ HTTPSessionManager::HTTPSessionManager(DPWS::ActiveSubscriptions & subscriptions
 	}
 }
 
-HTTPSessionManager::~HTTPSessionManager() {
-	Poco::Mutex::ScopedLock lock(_mutex);
+HTTPSessionManager::~HTTPSessionManager()
+{
+	std::lock_guard<std::mutex> t_lock(m_mutex);
 	for (const auto & item : _queues) {
 		item.second->enqueueUrgentNotification(new Poco::Net::ShutdownNotification(nullptr));
 	}
 	_threadpool.joinAll();
 }
 
-void HTTPSessionManager::enqueMessage(const Poco::URI & destinationURI, const std::string & content, const xml_schema::Uri & myID) {
-	Poco::Mutex::ScopedLock lock(_mutex);
+void HTTPSessionManager::enqueMessage(const Poco::URI & destinationURI, const std::string & content, const xml_schema::Uri & myID)
+{
+	std::lock_guard<std::mutex> t_lock(m_mutex);
+
 
 	{
 		std::vector<std::string> toErase;

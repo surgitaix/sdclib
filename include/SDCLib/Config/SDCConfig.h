@@ -25,7 +25,7 @@
 #ifndef SDCLIB_CONFIG_SDCCONFIG_H
 #define SDCLIB_CONFIG_SDCCONFIG_H
 
-#include "Prerequisites.h"
+#include "SDCLib/Prerequisites.h"
 #include "config/config.h"
 
 namespace SDCLib

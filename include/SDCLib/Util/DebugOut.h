@@ -23,78 +23,79 @@
  *
  */
 
-#ifndef DEBUGSTREAM_H_
-#define DEBUGSTREAM_H_
+#ifndef SDCLIB_UTIL_DEBUGSTREAM_H_
+#define SDCLIB_UTIL_DEBUGSTREAM_H_
 
-#include "Poco/Mutex.h"
-
+#include <mutex>
 #include <iostream>
 #include <fstream>
 #include <sstream>
 
-namespace SDCLib {
-namespace Util {
+namespace SDCLib
+{
+	namespace Util
+	{
+		/**
+		 * Class for managing debug output.
+		 */
+		class DebugOut
+		{
+		public:
 
-/**
- * Class for managing debug output.
- */
-class DebugOut {
-public:
+			enum LogLevel {
+				Silent,
+				Default,
+				Error,
+				Info,
+				Full,
+				Verbose
+			};
 
-	enum LogLevel {
-		Silent,
-		Default,
-		Error,
-		Info,
-		Full,
-		Verbose
-	};
+			static LogLevel DEBUG_LEVEL;
 
-	static LogLevel DEBUG_LEVEL;
+			DebugOut(LogLevel level, std::ostream & s, const std::string & prefix = "");
+			DebugOut(std::ostream & s, const std::string & prefix = "");
+			DebugOut(LogLevel level, const std::string & prefix = "");
+			virtual ~DebugOut();
 
-	DebugOut(LogLevel level, std::ostream & s, const std::string & prefix = "");
-	DebugOut(std::ostream & s, const std::string & prefix = "");
-	DebugOut(LogLevel level, const std::string & prefix = "");
-	virtual ~DebugOut();
+			static bool openLogFile(const std::string & filename, bool truncateFile = false);
+			static void closeLogFile();
 
-    static bool openLogFile(const std::string & filename, bool truncateFile = false);
-    static void closeLogFile();
+			void flush();
 
-    void flush();
+			DebugOut & operator<<(std::ostream & (*pf)(std::ostream&));
 
-    DebugOut & operator<<(std::ostream & (*pf)(std::ostream&));
+			template<typename T>
+			DebugOut & operator<<(T & item) {
+				const T & constItem(item);
+				return operator <<(constItem);
+			}
 
-    template<typename T>
-    DebugOut & operator<<(T & item) {
-    	const T & constItem(item);
-		return operator <<(constItem);
-    }
+			template<typename T>
+			DebugOut & operator<<(const T & item) {
+				if (showMessage) {
+					logBuffer << item;
+				}
+				return *this;
+			}
 
-    template<typename T>
-    DebugOut & operator<<(const T & item) {
-    	if (showMessage) {
-    		logBuffer << item;
-    	}
-		return *this;
-    }
+		private:
 
-private:
+			void outputOnCreate();
+			void outputOnDestroy();
 
-    void outputOnCreate();
-    void outputOnDestroy();
+			std::ostringstream logBuffer;
+			std::ostream & stream;
 
-    std::ostringstream logBuffer;
-    std::ostream & stream;
+			const LogLevel level;
+			const std::string prefix;
+			bool showMessage;
 
-	const LogLevel level;
-	const std::string prefix;
-	bool showMessage;
+			static std::mutex globalOutputLock;
+			static std::ofstream * fileOut;
+			static bool isLogFileGood();
+		};
 
-    static Poco::Mutex globalOutputLock;
-	static std::ofstream * fileOut;
-	static bool isLogFileGood();
-};
-
-} /* namespace Util */
+	} /* namespace Util */
 } /* namespace SDCLib */
-#endif /* DEBUGSTREAM_H_ */
+#endif /* SDCLIB_UTIL_DEBUGSTREAM_H_ */

@@ -24,8 +24,6 @@
  */
 
 #include "SDCLib/SDCLibrary.h"
-#include "SDCLib/Data/SDC/SDCConsumer.h"
-#include "SDCLib/Data/SDC/SDCProvider.h"
 
 
 #include "OSELib/DPWS/PingManager.h"
@@ -45,19 +43,19 @@ using namespace SDCLib;
 SDCLibrary::SDCLibrary()
 : WithLogger(OSELib::Log::BASE)
 {
-	Poco::AutoPtr<Poco::ConsoleChannel> consoleChannel(new Poco::ConsoleChannel);
-	Poco::AutoPtr<Poco::SimpleFileChannel> fileChannel(new Poco::SimpleFileChannel);
-	Poco::AutoPtr<Poco::SplitterChannel> splitterChannel(new Poco::SplitterChannel);
-	fileChannel->setProperty("path", "sdclib.log");
-	fileChannel->setProperty("rotation", "10 M");
-	splitterChannel->addChannel(consoleChannel);
-	splitterChannel->addChannel(fileChannel);
+	Poco::AutoPtr<Poco::ConsoleChannel> t_consoleChannel(new Poco::ConsoleChannel);
+	Poco::AutoPtr<Poco::SimpleFileChannel> t_fileChannel(new Poco::SimpleFileChannel);
+	Poco::AutoPtr<Poco::SplitterChannel> t_splitterChannel(new Poco::SplitterChannel);
+	t_fileChannel->setProperty("path", "sdclib.log");
+	t_fileChannel->setProperty("rotation", "10 M");
+	t_splitterChannel->addChannel(t_consoleChannel);
+	t_splitterChannel->addChannel(t_fileChannel);
 
-	Poco::AutoPtr<Poco::PatternFormatter> patternFormatter(new Poco::PatternFormatter);
-	patternFormatter->setProperty("pattern", "%q %H:%M:%S.%i %s:\n  %t");
-	Poco::AutoPtr<Poco::FormattingChannel> formattingChannel(new Poco::FormattingChannel(patternFormatter, splitterChannel));
+	Poco::AutoPtr<Poco::PatternFormatter> t_patternFormatter(new Poco::PatternFormatter);
+	t_patternFormatter->setProperty("pattern", "%q %H:%M:%S.%i %s:\n  %t");
+	Poco::AutoPtr<Poco::FormattingChannel> t_formattingChannel(new Poco::FormattingChannel(t_patternFormatter, t_splitterChannel));
 
-	getLogger().setChannel(formattingChannel);
+	getLogger().setChannel(t_formattingChannel);
 }
 
 SDCLibrary::~SDCLibrary()
@@ -66,13 +64,13 @@ SDCLibrary::~SDCLibrary()
 }
 
 SDCLibrary & SDCLibrary::getInstance() {
-	static Poco::SingletonHolder<SDCLibrary> singletonHolder;
-	return *singletonHolder.get();
+	static Poco::SingletonHolder<SDCLibrary> t_singletonHolder;
+	return *t_singletonHolder.get();
 }
 
 void SDCLibrary::startup(OSELib::LogLevel debugLevel) {
-	if (!initialized) {
-		initialized = true;
+	if (!m_initialized) {
+		m_initialized = true;
 		setDebugLevel(debugLevel);
 		log_notice([&]{ return "SDCLib version " + Config::CURRENT_LIB_VERSION + " (C) " + Config::CURRENT_C_YEAR + " " + Config::STR_SURGITAIX; });
         xercesc::XMLPlatformUtils::Initialize();
@@ -83,18 +81,17 @@ void SDCLibrary::startup(OSELib::LogLevel debugLevel) {
 
 void SDCLibrary::shutdown()
 {
-    if(initialized)
-    {
-        initialized = false;
-        _latestPingManager.reset();
+    if(m_initialized) {
+        m_initialized = false;
+        m_latestPingManager.reset();
     }
 }
 
 void SDCLibrary::dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pingManager) {
-	Poco::Mutex::ScopedLock lock(mutex);
-	_latestPingManager = std::move(pingManager);
+	std::lock_guard<std::mutex> t_lock(m_mutex);
+	m_latestPingManager = std::move(pingManager);
 }
 
 bool SDCLibrary::isInitialized() {
-	return initialized;
+	return m_initialized;
 }

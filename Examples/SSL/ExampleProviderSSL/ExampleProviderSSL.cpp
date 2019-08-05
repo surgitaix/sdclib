@@ -346,7 +346,7 @@ public:
 		for (std::size_t i = 0; i < size; i++) {
 			samples.push_back(i);
 		}
-		long index(0);
+		std::size_t index(0);
 
 		while (!isInterrupted()) {
 			{
@@ -378,13 +378,13 @@ int main()
     t_SDCInstance->setIP4enabled(true);
     // Bind it to interface that matches the internal criteria (usually the first enumerated)
     if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
-        std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+        DebugOut(DebugOut::Default, "ExampleProviderSSL") << "Failed to bind to default network interface! Exit..." << std::endl;
         return -1;
     }
 
     // Init SSL (Default Params should be fine)
     if(!t_SDCInstance->initSSL()) {
-        std::cout << "Failed to init SSL!" << std::endl;
+        DebugOut(DebugOut::Default, "ExampleProviderSSL") << "Failed to init SSL!" << std::endl;
         return -1;
     }
 

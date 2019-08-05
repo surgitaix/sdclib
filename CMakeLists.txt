@@ -39,7 +39,7 @@ project(${PROJECT_NAME})
 # Version numbers -> Will be written to the config file
 set (SDCLibrary_VERSION_FIRST          4)
 set (SDCLibrary_VERSION_MIDDLE         3)
-set (SDCLibrary_VERSION_LAST           4)
+set (SDCLibrary_VERSION_LAST           5)
 set (SDCLibrary_C_YEAR              2019)
 set (SDCLibrary_SurgiTAIX "SurgiTAIX AG")
 

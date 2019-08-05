@@ -1,5 +1,6 @@
 
 #include <thread>
+#include <atomic>
 
 #include "SDCLib/SDCInstance.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
@@ -21,7 +22,7 @@
 
 #include "OSELib/SDC/ServiceManager.h"
 
-#include <atomic>
+
 
 using namespace SDCLib;
 using namespace SDCLib::Util;
