@@ -46,6 +46,8 @@ namespace SDCLib
 
     using TimePoint = std::chrono::system_clock::time_point;
 
+    using StringVector = std::vector <std::string>;
+
     namespace Config
     {
         class SDCConfig;

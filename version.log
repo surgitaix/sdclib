@@ -1,3 +1,9 @@
+Update to version 4.3.4
+
+- Small changes to internal DeviceDescription. Now Threadsafe.
+- Some Cleanup.
+
+
 Update to version 4.3.3
 
 - Small change in setEndpointReference API. Added setEndpointReferenceByName with conversion to UUIDv5 and prefix.

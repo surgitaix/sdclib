@@ -155,14 +155,16 @@ MDM::SetContextState createRequestMessage(const WorkflowContextState & state, co
 	return result;
 }
 
-SDCConsumer::SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, const OSELib::DPWS::DeviceDescription & deviceDescription) :
-		WithLogger(OSELib::Log::SDCCONSUMER),
-		m_SDCInstance(p_SDCInstance),
-		_deviceDescription(deviceDescription)
+SDCConsumer::SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, OSELib::DPWS::DeviceDescription_shared_ptr p_deviceDescription)
+: WithLogger(OSELib::Log::SDCCONSUMER)
+, m_SDCInstance(p_SDCInstance)
+, m_deviceDescription(p_deviceDescription)
 {
+	assert(m_deviceDescription != nullptr);
+
     // DONT DO THIS INSIDE THE CTOR! FIXME! FIXME
 	try {
-		_adapter = std::unique_ptr<SDCConsumerAdapter>(new SDCConsumerAdapter(*this, _deviceDescription));
+		_adapter = std::unique_ptr<SDCConsumerAdapter>(new SDCConsumerAdapter(*this, m_deviceDescription));
 		if(!_adapter->start()) {
             log_error([] { return "Could not start ConsumerAdapter!"; });
             disconnect();
@@ -180,7 +182,7 @@ SDCConsumer::SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, const OSE
     }
 
 	if (!connected) {
-		log_error([&] { return "Connecting to " + deviceDescription.getEPR() + " failed."; });
+		log_error([&] { return "Connecting to " + m_deviceDescription->getEPR() + " failed."; });
 	}
 }
 
@@ -702,7 +704,7 @@ void SDCConsumer::onOperationInvoked(const OperationInvocationContext & oic, Inv
 }
 
 std::string SDCConsumer::getEndpointReference() const {
-	return _deviceDescription.getEPR();
+	return m_deviceDescription->getEPR();
 }
 
 unsigned long long int SDCConsumer::getLastKnownMdibVersion() {

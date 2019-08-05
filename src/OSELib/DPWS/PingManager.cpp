@@ -35,8 +35,9 @@ void PingManager::run()
     {
 		OSELib::DPWS::ProbeTraits::Request request;
 		using ProbeInvoke = OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::ProbeTraits>;
-		ProbeInvoke probeInvoke(_consumer._deviceDescription.getDeviceURI(), grammarProvider);
+
 		try {
+			ProbeInvoke probeInvoke(_consumer.m_deviceDescription->getDeviceURI(), grammarProvider);
 			auto response(probeInvoke.invoke(request, _consumer.getSDCInstance()->getSSLConfig()->getClientContext()));
 			if (!response) {
 				_consumer.onConnectionLost();

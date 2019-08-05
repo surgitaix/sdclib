@@ -36,6 +36,7 @@
 #include <Poco/ScopedLock.h>
 #include <Poco/SimpleFileChannel.h>
 #include <Poco/SplitterChannel.h>
+#include <Poco/SingletonHolder.h>
 
 #include <xercesc/util/PlatformUtils.hpp>
 

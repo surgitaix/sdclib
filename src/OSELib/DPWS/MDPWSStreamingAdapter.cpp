@@ -16,14 +16,16 @@ using namespace OSELib;
 using namespace OSELib::DPWS;
 using namespace OSELib::DPWS::Impl;
 
-MDPWSStreamingAdapter::MDPWSStreamingAdapter(SDCLib::Config::NetworkConfig_shared_ptr p_config, StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription) :
+MDPWSStreamingAdapter::MDPWSStreamingAdapter(SDCLib::Config::NetworkConfig_shared_ptr p_config, StreamNotificationDispatcher & streamNotificationDispatcher, DeviceDescription_shared_ptr p_deviceDescription) :
 	WithLogger(Log::DISCOVERY),
 	m_networkConfig(p_config),
 	m_streamNotificationDispatcher(streamNotificationDispatcher),
-	m_deviceDescription(deviceDescription),
+	m_deviceDescription(p_deviceDescription),
 	m_ipv4MulticastAddress(Poco::Net::SocketAddress(p_config->_getStreamingIPv4(), p_config->_getStreamingPortv4())),
 	m_ipv6MulticastAddress(Poco::Net::SocketAddress(p_config->_getStreamingIPv6(), p_config->_getStreamingPortv6()))
 {
+	assert(p_deviceDescription != nullptr);
+
     if (m_networkConfig->getIP4enabled())
     {
         // Create MulticastSocket
@@ -170,7 +172,11 @@ void MDPWSStreamingAdapter::onMulticastSocketReadable(Poco::Net::ReadableNotific
 		log_warning([&]{return "From-field in streaming message does not exist";});
 		m_streamNotificationDispatcher.dispatch(message->Body().WaveformStream().get());
 	} else {
-		if (message->Header().From().get().Address() == m_deviceDescription.getEPR()) {
+		if((m_deviceDescription == nullptr)) {
+			log_error([&]{return "Invalid device Description! Message not dispatched.";});
+			return;
+		}
+		if (message->Header().From().get().Address() == m_deviceDescription->getEPR()) {
 			m_streamNotificationDispatcher.dispatch(message->Body().WaveformStream().get());
 		} else {
 			log_error([&]{return "Message has wrong endpoint reference. Message not dispatched.";});

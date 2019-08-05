@@ -32,7 +32,7 @@ class SDCConsumerAdapter :
 		public OSELib::WithLogger
 {
 public:
-    SDCConsumerAdapter(SDCConsumer & consumer, const OSELib::DPWS::DeviceDescription & deviceDescription);
+    SDCConsumerAdapter(SDCConsumer & consumer, OSELib::DPWS::DeviceDescription_shared_ptr p_deviceDescription);
 	virtual ~SDCConsumerAdapter();
 
 	bool start();
@@ -67,14 +67,14 @@ private:
 	std::unique_ptr<typename TraitsType::Response> invokeImplWithEventSubscription(const typename TraitsType::Request & request, const Poco::URI & requestURI, Poco::Net::Context::Ptr p_context);
 
 	template<class RequestType>
-	Poco::URI getRequestURIFromDeviceDescription(const RequestType & request);
+	Poco::URI getRequestURIFromDeviceDescription(const RequestType & request) const;
 
 	SDCConsumer & _consumer;
 
 	mutable std::mutex m_mutex;
 	std::unique_ptr<Poco::ThreadPool> _threadPool;
 
-	const OSELib::DPWS::DeviceDescription _deviceDescription;
+	OSELib::DPWS::DeviceDescription_shared_ptr m_deviceDescription = nullptr;
 	OSELib::SDC::DefaultSDCSchemaGrammarProvider _grammarProvider;
 	std::unique_ptr<Poco::Net::HTTPServer> _httpServer;
 //	std::unique_ptr<OSELib::DPWS::Impl::DPWSStreamingClientSocketImpl> _streamClientSocketImpl;

@@ -1,79 +1,94 @@
-/*l
+/*
  * DeviceDescription.h
  *
  *  Created on: 11.12.2015
- *      Author: sebastian, matthias
+ *      Author: sebastian, matthias, baumeister
  *
- *      Contains information about the provider, to which the consumer connects to. All devices xAddresses are saved here (no validity check). The validity of the connection is checked in each get-method.
+ *      Contains information about the provider, to which the consumer connects to. All devices xAddresses are saved here (no validity check).
+ *      The validity of the connection is checked in each get-method.
  *
  */
 
 #ifndef OSELIB_DPWS_DEVICEDESCRIPTION_H_
 #define OSELIB_DPWS_DEVICEDESCRIPTION_H_
 
+#include <mutex>
 #include <string>
-#include <list>
-#include "Poco/URI.h"
-#include "Poco/Net/IPAddress.h"
-#include "Poco/Net/StreamSocket.h"
-#include "Poco/Net/SocketAddress.h"
+
+#include <Poco/URI.h>
+#include <Poco/Net/IPAddress.h>
+
 #include "OSELib/Helper/WithLogger.h"
 
 
-namespace OSELib {
-namespace DPWS {
+namespace OSELib
+{
+	namespace DPWS
+	{
+		using URIVector = std::vector<Poco::URI>;
 
-class DeviceDescription : public WithLogger {
-public:
-	DeviceDescription();
-	virtual ~DeviceDescription();
+		class DeviceDescription : public WithLogger
+		{
+		private:
 
-	bool checkURIsValidity(const Poco::URI & uri) const;
+			mutable std::mutex m_mutex_epr;
+			mutable std::mutex m_mutex_IP;
+			mutable std::mutex m_mutex_URIs;
 
-	std::string getEPR() const;
-	void setEPR(const std::string & epr);
+			std::string m_epr;
+			Poco::Net::IPAddress m_localIP;
 
-	Poco::Net::IPAddress getLocalIP() const;
-	void setLocalIP(const Poco::Net::IPAddress & localIP);
+			// there may be more than one streaming addresses for compatibility with other frameworks
+			URIVector ml_streamMulticastURIs;
+			URIVector ml_contextServiceURIs;
+			URIVector ml_eventServiceURIs;
+			URIVector ml_getServiceURIs;
+			URIVector ml_setServiceURIs;
+			URIVector ml_waveformEventReportURIs;
+			URIVector ml_deviceURIs;
 
-	Poco::URI getDeviceURI() const;
-	void addDeviceURI(const Poco::URI & uri);
+		public:
 
-	Poco::URI getContextServiceURI() const;
-	void addContextServiceURI(const Poco::URI & uri);
+			DeviceDescription();
+			// Special Member Functions
+			DeviceDescription(const DeviceDescription& p_obj) = delete;
+			DeviceDescription(DeviceDescription&& p_obj) = delete;
+			DeviceDescription& operator=(const DeviceDescription& p_obj) = delete;
+			DeviceDescription& operator=(DeviceDescription&& p_obj) = delete;
+			~DeviceDescription() = default;
 
-	Poco::URI getEventServiceURI() const;
-	void addStateEventReportServiceURI(const Poco::URI & uri);
+			bool checkURIsValidity(const Poco::URI & uri) const;
 
-	Poco::URI getGetServiceURI() const;
-	void addGetServiceURI(const Poco::URI & uri);
+			std::string getEPR() const;
+			void setEPR(const std::string & epr);
 
-	Poco::URI getSetServiceURI() const;
-	void addSetServiceURI(const Poco::URI & uri);
+			Poco::Net::IPAddress getLocalIP() const;
+			void setLocalIP(const Poco::Net::IPAddress & localIP);
 
-	void addWaveformServiceURI(const Poco::URI & uri);
-	Poco::URI getWaveformEventReportURI() const;
+			Poco::URI getDeviceURI() const;
+			void addDeviceURI(const Poco::URI & uri);
 
-	void addStreamMulticastAddressURI(const Poco::URI & uri);
-	const std::list<Poco::URI>&  getStreamMulticastAddressURIs() const;
+			Poco::URI getContextServiceURI() const;
+			void addContextServiceURI(const Poco::URI & uri);
 
-private:
-	std::string _epr;
-	Poco::Net::IPAddress _localIP;
+			Poco::URI getEventServiceURI() const;
+			void addStateEventReportServiceURI(const Poco::URI & uri);
 
+			Poco::URI getGetServiceURI() const;
+			void addGetServiceURI(const Poco::URI & uri);
 
-	// there may be more than one streaming addresses for compatibility with other frameworks
-	std::list<Poco::URI> _streamMulticastURIs;
-	std::list<Poco::URI> _contextServiceURIs;
-	std::list<Poco::URI> _eventServiceURIs;
-	std::list<Poco::URI> _getServiceURIs;
-	std::list<Poco::URI> _setServiceURIs;
-	std::list<Poco::URI> _waveformEventReportURIs;
-	std::list<Poco::URI> _deviceURIs;
+			Poco::URI getSetServiceURI() const;
+			void addSetServiceURI(const Poco::URI & uri);
 
-};
+			void addWaveformServiceURI(const Poco::URI & uri);
+			Poco::URI getWaveformEventReportURI() const;
 
-} /* namespace DPWS */
+			void addStreamMulticastAddressURI(const Poco::URI & uri);
+			URIVector getStreamMulticastAddressURIs() const;
+
+		};
+
+	} /* namespace DPWS */
 } /* namespace OSELib */
 
 #endif /* OSELIB_DPWS_DEVICEDESCRIPTION_H_ */
