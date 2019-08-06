@@ -15,8 +15,11 @@
 #include "SDCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricValue.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricValue.h"
 #include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
 #include "SDCLib/Data/SDC/SDCProviderActivateOperationHandler.h"
+#include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
 #include "AbstractConsumer.h"
 
 #include "NamigConvention.h"
@@ -42,13 +45,32 @@ public:
     	SDCProviderStateHandler::notifyOperationInvoked(oic, InvocationState::Start);
     	return InvocationState::Fail;
     }
+
+    TState getInitialState() override {
+    	if(std::is_same<TState, NumericMetricState>::value)
+    	{
+    		NumericMetricState numericMetricState(SDCProviderStateHandler::descriptorHandle);
+    		numericMetricState.setActivationState(ComponentActivation::On);
+    		numericMetricState.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)));
+    		return numericMetricState;
+    	}
+//    	else if(std::is_same<TState, RealTimeSampleArrayMetricState>::value)
+//    	{
+//    		RealTimeSampleArrayMetricState realTimeSampleArrayState(SDCProviderStateHandler::descriptorHandle);
+//    		realTimeSampleArrayState.setActivationState(ComponentActivation::On);
+//    		return realTimeSampleArrayState;
+//    	}
+//    	else
+//    	{
+//    		std::cout << "Unknown stateType error" << std::endl;
+//    	}
+    }
 };
 
 template<typename TState>
 class SDCParticipantMDStateGetForwarder : public SDCProviderActivateOperationHandler, public SDCConsumerMDStateHandler<TState> {
-	class AbstractConsumer;
 public:
-	SDCParticipantMDStateGetForwarder(const std::string descriptorHandle, const AbstractConsumer& observer) :
+	SDCParticipantMDStateGetForwarder(const std::string descriptorHandle) :
 		SDCProviderActivateOperationHandler(descriptorHandle + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX),
 		SDCConsumerMDStateHandler<TState>(descriptorHandle),
 		activateDescriptorHandle(descriptorHandle + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX),
@@ -74,33 +96,35 @@ private:
 	std::string consumerStateDescriptorHandle;
 };
 
-template<typename TState>
-class SDCParticipantMDIBGetForwarder : public SDCProviderActivateOperationHandler, public SDCConsumerOperationInvokedHandler {
+class SDCParticipantGetMDIBCaller : public SDCProviderActivateOperationHandler, public SDCConsumerOperationInvokedHandler {
 public:
-	SDCParticipantMDIBGetForwarder(const std::string descriptorHandle) :
+	SDCParticipantGetMDIBCaller(const std::string descriptorHandle) :
 		SDCProviderActivateOperationHandler(descriptorHandle + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX),
-		SDCConsumerOperationInvokedHandler(descriptorHandle),
+		SDCConsumerOperationInvokedHandler(descriptorHandle + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX),
 		activateDescriptorHandle(descriptorHandle + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX),
 		MDIBDescriptorHandle(descriptorHandle)
 	{
 
 	}
-	virtual ~SDCParticipantMDIBGetForwarder() = default;
-	void onStateChanged(const TState & state) override {
-	}
+	virtual ~SDCParticipantGetMDIBCaller() = default;
+
 
 	InvocationState onActivateRequest(const OperationInvocationContext & oic) override {
-		std::string Mdib(SDCConsumerMDStateHandler<TState>::getParentConsumer().requestRawMdib());
+		std::string Mdib(SDCConsumerOperationInvokedHandler::getParentConsumer().requestRawMdib());
+		std::cout << Mdib << std::endl;
 
 		auto stringMetricStates = SDCProviderActivateOperationHandler::getParentProvider().getMdState().findStringMetricStates();
 		for(auto strMetricState : stringMetricStates)
 		{
+			std::cout << strMetricState.getDescriptorHandle() << std::endl;
+			std::cout << MDIBDescriptorHandle << std::endl;
 			if(strMetricState.getDescriptorHandle() == MDIBDescriptorHandle)
 			{
-				StringMetricValue MdibStringMetricValue(MetricQuality(MeasurementValidity::Vld));
-				MdibStringMetricValue.setValue(Mdib);
-				strMetricState.setMetricValue(MdibStringMetricValue);
-				SDCProviderActivateOperationHandler::getParentProvider().updateState(strMetricState);
+				StringMetricState stringState(MDIBDescriptorHandle);
+				StringMetricValue stringValue(MetricQuality(MeasurementValidity::Vld));
+				stringValue.setValue(Mdib);
+				stringState.setMetricValue(stringValue);
+				parentProvider->updateState(stringState);
 				return InvocationState::Fin;
 			}
 		}
@@ -188,9 +212,9 @@ private:
 	std::function<void(const std::string)> callbackFunction;
 };
 
-class SDCParticipantStringMetricHandler : public SDCProviderMDStateHandler<StringMetricState> {
+class SDCProviderStringMetricHandler : public SDCProviderMDStateHandler<StringMetricState> {
 public:
-	SDCParticipantStringMetricHandler(const std::string descripotrHanlde) : SDCProviderMDStateHandler<StringMetricState>(descripotrHanlde){}
+	SDCProviderStringMetricHandler(const std::string descripotrHanlde) : SDCProviderMDStateHandler<StringMetricState>(descripotrHanlde){}
 
 	StringMetricState getInitialState() override
 	{

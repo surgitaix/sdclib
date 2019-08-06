@@ -40,6 +40,12 @@ void MirrorProvider::setMdDescription(std::string xml) {
 	sdcProvider.setMdDescription(xml);
 }
 
+MdDescription MirrorProvider::getMdDescription() const
+{
+    return sdcProvider.getMdDescription();
+}
+
+
 void MirrorProvider::setMdDescription(MdDescription& description)
 {
 	sdcProvider.setMdDescription(description);

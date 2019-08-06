@@ -9,6 +9,8 @@
 
 #include "SDCLib/Data/SDC/MDIB/StringMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricValue.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricValue.h"
 #include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
 #include "SDCLib/Data/SDC/FutureInvocationState.h"
 
@@ -62,7 +64,7 @@ void TestOrchestratorConsumer::discoverDiscoveryProvider() {
 void TestOrchestratorConsumer::updateAvailableEndpointReferences() {
 	FutureInvocationState fis;
 	consumer->activate(DISCOVER_AVAILABLE_ENDPOINT_REFERENCES, fis);
-	Util::DebugOut(Util::DebugOut::Default, "TestOrchestratorConsumer") << "Discovering available Devices... " << fis.waitReceived(InvocationState::Fin, 10000) << std::endl;
+	std::cout << "Discovering available Devices... " << fis.waitReceived(InvocationState::Fin, 10000) << std::endl;
 
 	auto availableEndpointReferences = getAvailableEndpointReferences();
 	for(auto availaleEndpointRef : availableEndpointReferences)
@@ -70,6 +72,18 @@ void TestOrchestratorConsumer::updateAvailableEndpointReferences() {
 		std::cout << availaleEndpointRef << std::endl;
 	}
 }
+
+void TestOrchestratorConsumer::requestDUTMDIB() {
+	FutureInvocationState fis;
+	consumer->activate(GET_DUT_MDIB + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX, fis);
+	bool success = fis.waitReceived(InvocationState::Fin, 10000);
+	std::cout << "Requesting DUTMDIB... "  << std::endl;
+	auto Mdib = getDUTMDIB();
+	std::cout << Mdib << std::endl;
+
+
+}
+
 
 void TestOrchestratorConsumer::setDUTEndpointRef(const std::string& EndpointRef) {
 	DUTEndpointRef = EndpointRef;
@@ -130,7 +144,7 @@ void TestOrchestratorConsumer::discoverMirrorProvider() {
 	return;
 }
 
-std::string TestOrchestratorConsumer::getProviderMDIB() {
+const std::string TestOrchestratorConsumer::getMirrorProviderMDIB() {
 	return "";
 }
 
@@ -160,7 +174,7 @@ SDCInstance_shared_ptr TestOrchestratorConsumer::createDefaultSDCInstance()
 	return t_SDCInstance;
 }
 
-std::vector<std::string> TestOrchestratorConsumer::getAvailableEndpointReferences()
+const std::vector<std::string> TestOrchestratorConsumer::getAvailableEndpointReferences()
 {
 	HandleRef ref = GET_AVAILABLE_ENDPOINT_REFERENCES;
 	auto availableEndpointReferencesState = this->requestState<StringMetricState>(ref);
@@ -170,6 +184,37 @@ std::vector<std::string> TestOrchestratorConsumer::getAvailableEndpointReference
 	                                 std::istream_iterator<std::string>());
 	return EndpointReferences;
 }
+
+const std::string TestOrchestratorConsumer::getDUTMDIB()
+{
+	HandleRef ref = GET_DUT_MDIB;
+	auto DUTMDIBState = this->requestState<StringMetricState>(ref);
+	if (DUTMDIBState == nullptr)
+	{
+		return "";
+	}
+	if(!DUTMDIBState->hasMetricValue())
+	{
+		return "";
+	}
+	if(!DUTMDIBState->getMetricValue().hasValue())
+	{
+		return "";
+	}
+	std::string DUTMDIBString = DUTMDIBState->getMetricValue().getValue();
+	return DUTMDIBString;
+}
+
+void TestOrchestratorConsumer::updateNumericMetricValue(HandleRef& descriptorHandle)
+{
+	FutureInvocationState fis;
+	consumer->activate(GET_DUT_MDIB + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX, fis);
+	bool success = fis.waitReceived(InvocationState::Fin, 10000);
+	auto nms = requestState<NumericMetricState>(descriptorHandle);
+	std::cout << nms->getMetricValue().getValue();
+}
+
+
 
 
 } //ACS

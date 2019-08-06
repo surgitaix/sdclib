@@ -25,6 +25,8 @@ int main() {
 	cbm.setCallback("setMirrorProviderEndpointRef", "[string]", cbm.defineCallback<std::string>( [&](std::string EndpointRef) {toc.setMirrorProviderEndpointRef(EndpointRef);}));
 	cbm.setCallback("setupMirrorProvider", "", cbm.defineCallback([&]() {toc.setupMirrorProvider();}));
 	cbm.setCallback("discoverMirrorProvider", "", cbm.defineCallback([&]() {toc.discoverMirrorProvider();}));
+	cbm.setCallback("requestDUTMDIB", "", cbm.defineCallback( [&] () {toc.requestDUTMDIB();}));
+	cbm.setCallback("updateNumericMetricValue", "[string]", cbm.defineCallback<std::string>( [&] (std::string descriptorHandle) {toc.updateNumericMetricValue(descriptorHandle);}));
 	cbm.setCallback("exit", "", cbm.defineCallback([&]() { exit(0);}));
 	auto help = [&]() {
 		std::cout << "Available Methods:" << std::endl;

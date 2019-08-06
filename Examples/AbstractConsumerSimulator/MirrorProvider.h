@@ -12,6 +12,7 @@
 
 #include "SDCLib/Data/SDC/SDCProvider.h"
 #include "SDCLib/Data/SDC/MDIB/custom/MdibContainer.h"
+#include "SDCLib/Data/SDC/MDIB/MdDescription.h"
 
 #include "SDCLib/Util/Task.h"
 
@@ -46,6 +47,9 @@ public:
 
 	void setMdDescription(const std::string xml);
 	void setMdDescription(MdDescription& description);
+
+    MdDescription getMdDescription() const;
+
 
 
 	MdibContainer getMdib();

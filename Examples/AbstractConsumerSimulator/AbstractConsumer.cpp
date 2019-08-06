@@ -82,10 +82,69 @@ bool AbstractConsumer::setupMirrorProvider() {
 	mirrorProvider->setDeviceCharacteristics(devChar);
 	mirrorProvider->setMdDescription(getConsumerStringRepresentationOfMDIB());
 
-	std::cout << "HIERNNACH KNALLT ES";
+	getDUTMDIBCaller = std::make_shared<SDCParticipantGetMDIBCaller>(GET_DUT_MDIB);
+	getDUTMDIBHandler = std::make_shared<SDCProviderStringMetricHandler>(GET_DUT_MDIB);
+
+	getDUTMDIBCallerDesc = std::make_shared<ActivateOperationDescriptor>(GET_DUT_MDIB + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX, GET_DUT_MDIB);
+	getDUTMDIBDesc = std::make_shared<StringMetricDescriptor>(GET_DUT_MDIB,
+		CodedValue(STRING_UNIT),
+		MetricCategory::Msrmt,
+		MetricAvailability::Intr);
+
+	MdDescription extendedMdDesc = mirrorProvider->getMdDescription();
+
+	//Extended MdDescption
+	//Channel
+	ChannelDescriptor controlDUTChannel(CONTROL_DUT_CHANNEL);
+	controlDUTChannel.addMetric(*getDUTMDIBDesc);
+
+	//VMD
+	VmdDescriptor controlDUTVmd(CONTROL_DUT_VMD);
+	controlDUTVmd.addChannel(controlDUTChannel);
+
+	//MDS
+
+	MdsDescriptor controlDUTMds(CONTROL_DUT_MDS);
+	controlDUTMds.addVmd(controlDUTVmd);
+
+	for(auto nms : consumer->getMdib().getMdState().findNumericMetricStates())
+	{
+		auto nmsGetCaller = std::make_shared<SDCParticipantMDStateGetForwarder<NumericMetricState>>(nms.getDescriptorHandle());
+		registeredNumericMetricStateActivateGetCaller.insert(std::make_pair(nms.getDescriptorHandle() + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX,
+				nmsGetCaller));
+		auto nmsGetCallerDesc = std::make_shared<ActivateOperationDescriptor>(nms.getDescriptorHandle() + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX, nms.getDescriptorHandle());
+		numericMetricStateActivateGetCallerDescriptors.insert(std::make_pair(nms.getDescriptorHandle() + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX,
+				nmsGetCallerDesc));
+		mirrorProvider->addActivateOperationForDescriptor(*nmsGetCallerDesc, controlDUTMds);
+		mirrorProvider->addMdStateHandler(nmsGetCaller.get());
+
+		auto nmsForwarder = std::make_shared<SDCParticipantMDStateForwarder<NumericMetricState>>(nms.getDescriptorHandle());
+
+//		auto nmsForwarderDesc = std::make_shared<NumericMetricDescriptor>(consumer->getMdib().getMdDescription()
+//				.findDescriptor<NumericMetricDescriptor>(nms.getDescriptorHandle()));
+	}
+
+
+	//TODO: Move to VMD once addActivateOperation is provided.
+
+
+	mirrorProvider->addActivateOperationForDescriptor(*getDUTMDIBCallerDesc, controlDUTMds);
+
+	extendedMdDesc.addMds(controlDUTMds);
+
+	mirrorProvider->setMdDescription(extendedMdDesc);
+
+	mirrorProvider->addMdStateHandler(getDUTMDIBCaller.get());
+	mirrorProvider->addMdStateHandler(getDUTMDIBHandler.get());
+
+	consumer->registerStateEventHandler(getDUTMDIBCaller.get());
+
 
 	DUTMirrorProvider.release();
 	DUTMirrorProvider = std::move(mirrorProvider);
+
+	std::cout << getMirrorProviderStringRepresentationOfMDIB() << std::endl;
+
 	startMirrorProvider();
 	return true;
 }
@@ -137,7 +196,7 @@ void AbstractConsumer::setupDiscoveryProvider()
 
 		discoverAvailableEndpointReferencesCaller = std::make_shared<SDCParticipantActivateFunctionCaller>(DISCOVER_AVAILABLE_ENDPOINT_REFERENCES,
 			[&]() {updateAvailableEndpointReferences();});
-		availableEndpointReferencesHandler = std::make_shared<SDCParticipantStringMetricHandler>(GET_AVAILABLE_ENDPOINT_REFERENCES);
+		availableEndpointReferencesHandler = std::make_shared<SDCProviderStringMetricHandler>(GET_AVAILABLE_ENDPOINT_REFERENCES);
 		setDUTEndpointReferenceCaller = std::make_shared<SDCParticipantStringFunctionCaller>(SET_DEVICE_UNDER_TEST_ENDPOINT_REF,
 			[&](std::string EndpointRef) { setDUTEndpointRef(EndpointRef); });
 		discoverDUTFunctionCaller = std::make_shared<SDCParticipantActivateFunctionCaller>(DISCOVER_DEVICE_UNDER_TEST,
@@ -166,6 +225,7 @@ void AbstractConsumer::setupDiscoveryProvider()
 				MetricCategory::Set,
 				MetricAvailability::Cont);
 		setupMirrorProviderDesc = std::make_shared<ActivateOperationDescriptor>(SETUP_MIRROR_PROVIDER, SET_MIRROR_PROVIDER_ENDPOINT_REF);
+
 
 
 		//Channel

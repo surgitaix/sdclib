@@ -65,50 +65,50 @@ using namespace SDCLib::Data::SDC::ACS;
 
 const std::string deviceEPR("UDI-1234567890"); //needs to be configured
 
-class SDCParticipantStreamStateForwarder : public SDCParticipantMDStateForwarder<RealTimeSampleArrayMetricState> {
-public:
-	SDCParticipantStreamStateForwarder(const std::string descriptorHandle) : SDCParticipantMDStateForwarder(descriptorHandle) {}
-
-	RealTimeSampleArrayMetricState getInitialState() override {
-		RealTimeSampleArrayMetricState realTimeSampleArrayState(SDCProviderMDStateHandler::descriptorHandle);
-		realTimeSampleArrayState.setActivationState(ComponentActivation::On);
-		return realTimeSampleArrayState;
-	}
-
-};
-
-
-class SDCParticipantNumericStateForwarder : public SDCParticipantMDStateForwarder<NumericMetricState> {
-public:
-	SDCParticipantNumericStateForwarder(std::string descriptorHandle) : SDCParticipantMDStateForwarder(descriptorHandle) {}
-
-	NumericMetricState getInitialState() override {
-		NumericMetricState numericMetricState(SDCProviderMDStateHandler::descriptorHandle);
-		numericMetricState.setActivationState(ComponentActivation::On);
-		numericMetricState.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)));
-		return numericMetricState;
-	}
-	void onStateChanged(const NumericMetricState & state)  {
-        double val = state.getMetricValue().getValue();
-        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received value changed of " << this->SDCProviderStateHandler::getDescriptorHandle() << ": " << val << std::endl;
-		SDCProviderStateHandler::updateState(state);
-	}
-
-    InvocationState onStateChangeRequest(const NumericMetricState & state , const OperationInvocationContext & oic) override {
-    	// extract information from the incoming operation
-    	SDCProviderStateHandler::notifyOperationInvoked(oic, InvocationState::Start);
-    	FutureInvocationState fis;
-    	getParentConsumer().commitState(state, fis);
-    	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result metric state: " << fis.waitReceived(InvocationState::Fin, 10000);
-    	auto providerUpdatedState = getParentConsumer().requestState<NumericMetricState>(state.getDescriptorHandle());
-    	if(state.getMetricValue().getValue() == providerUpdatedState->getMetricValue().getValue())
-    	{
-    		std::cout << "SUCCESS!!!!" << std::endl;
-        	return InvocationState::Fin;
-    	}
-    	return InvocationState::Fail;
-    }
-};
+//class SDCParticipantStreamStateForwarder : public SDCParticipantMDStateForwarder<RealTimeSampleArrayMetricState> {
+//public:
+//	SDCParticipantStreamStateForwarder(const std::string descriptorHandle) : SDCParticipantMDStateForwarder(descriptorHandle) {}
+//
+//	RealTimeSampleArrayMetricState getInitialState() override {
+//		RealTimeSampleArrayMetricState realTimeSampleArrayState(SDCProviderMDStateHandler::descriptorHandle);
+//		realTimeSampleArrayState.setActivationState(ComponentActivation::On);
+//		return realTimeSampleArrayState;
+//	}
+//
+//};
+//
+//
+//class SDCParticipantNumericStateForwarder : public SDCParticipantMDStateForwarder<NumericMetricState> {
+//public:
+//	SDCParticipantNumericStateForwarder(std::string descriptorHandle) : SDCParticipantMDStateForwarder(descriptorHandle) {}
+//
+//	NumericMetricState getInitialState() override {
+//		NumericMetricState numericMetricState(SDCProviderMDStateHandler::descriptorHandle);
+//		numericMetricState.setActivationState(ComponentActivation::On);
+//		numericMetricState.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)));
+//		return numericMetricState;
+//	}
+//	void onStateChanged(const NumericMetricState & state)  {
+//        double val = state.getMetricValue().getValue();
+//        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received value changed of " << this->SDCProviderStateHandler::getDescriptorHandle() << ": " << val << std::endl;
+//		SDCProviderStateHandler::updateState(state);
+//	}
+//
+//    InvocationState onStateChangeRequest(const NumericMetricState & state , const OperationInvocationContext & oic) override {
+//    	// extract information from the incoming operation
+//    	SDCProviderStateHandler::notifyOperationInvoked(oic, InvocationState::Start);
+//    	FutureInvocationState fis;
+//    	getParentConsumer().commitState(state, fis);
+//    	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result metric state: " << fis.waitReceived(InvocationState::Fin, 10000);
+//    	auto providerUpdatedState = getParentConsumer().requestState<NumericMetricState>(state.getDescriptorHandle());
+//    	if(state.getMetricValue().getValue() == providerUpdatedState->getMetricValue().getValue())
+//    	{
+//    		std::cout << "SUCCESS!!!!" << std::endl;
+//        	return InvocationState::Fin;
+//    	}
+//    	return InvocationState::Fail;
+//    }
+//};
 
 //class SDCParticipantAlertConditionStateForwarder : public SDCParticipantMDStateForwarder<AlertConditionState> {
 //	SDCParticipantAlertConditionStateForwarder(std::string descriptorHandle) : SDCParticipantMDStateForwarder(descriptroHandle) {}

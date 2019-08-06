@@ -41,8 +41,11 @@ public:
 	void setupMirrorProvider();
 	void discoverMirrorProvider();
 
+	void requestDUTMDIB();
 
-	std::string getProviderMDIB();
+	void updateNumericMetricValue(HandleRef& defciptorHandle);
+	const std::string getMirrorProviderMDIB();
+	const std::string getDUTMDIB();
 	void addSetHandler();
 	void sendGetRequest(HandleRef& descriptorHandle);
 	template <typename TState>
@@ -52,7 +55,7 @@ public:
 	void sendSubcribeRequest(HandleRef& descriptorHandle);
 	void stopMirrorProvider();
 	void startMirrorProvider();
-	std::vector<std::string> getAvailableEndpointReferences();
+	const std::vector<std::string> getAvailableEndpointReferences();
 
 
 private:
