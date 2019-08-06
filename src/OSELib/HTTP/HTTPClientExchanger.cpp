@@ -72,9 +72,6 @@ std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPClientSession & ses
     } catch (Poco::Net::NetException& e) {
 		log_error([&] { return "NetException: " + e.message() + "\nResponse: " + responseContent; });
 		throw e;
-	} catch (Poco::Net::MessageException& e) {
-		log_error([&] { return "MessageException: " + e.message() + "\nResponse: " + responseContent; });
-		throw e;
     } catch (const std::exception & e) {
     	log_error([&] { return std::string("Exception: " + std::string(e.what())) + "\nResponse: " + responseContent; });
     	throw e;
@@ -110,9 +107,6 @@ std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPSClientSession & se
     } catch (Poco::Net::NetException& e) {
 		log_error([&] { return "NetException: " + e.message() + "\nResponse: " + responseContent; });
 		throw e;
-	} catch (Poco::Net::MessageException& e) {
-		log_error([&] { return "MessageException: " + e.message() + "\nResponse: " + responseContent; });
-		throw e;
 	} catch (const std::exception & e) {
 		log_error([&] { return std::string("Exception: " + std::string(e.what())) + "\nResponse: " + responseContent; });
 		throw e;
@@ -122,5 +116,5 @@ std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPSClientSession & se
     return "";
 }
 
-} /* namespace Comm */
-} /* namespace SDCLib */
+} /* namespace HTTP */
+} /* namespace OSELib */
