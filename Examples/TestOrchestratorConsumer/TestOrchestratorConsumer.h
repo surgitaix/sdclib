@@ -44,6 +44,8 @@ public:
 	void requestDUTMDIB();
 
 	void updateNumericMetricValue(HandleRef& defciptorHandle);
+
+	void requestMirrorProviderMDIB();
 	const std::string getMirrorProviderMDIB();
 	const std::string getDUTMDIB();
 	void addSetHandler();

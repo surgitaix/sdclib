@@ -21,6 +21,7 @@
 #include "SDCLib/Data/SDC/MDIB/StringMetricDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/ChannelDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricDescriptor.h"
 
 
 
@@ -42,6 +43,9 @@ class SDCProviderStringMetricHandler;
 class SDCParticipantGetMDIBCaller;
 template <typename TState>
 class SDCParticipantMDStateGetForwarder;
+template <typename TState>
+class SDCParticipantMDStateForwarder;
+
 
 class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
 public:
@@ -100,6 +104,7 @@ private:
 
 	std::vector<std::string> availableEndpointReferences;
 
+	std::unique_ptr<MirrorProvider> DiscoveryProvider;
 	std::unique_ptr<MirrorProvider> DUTMirrorProvider;
 	std::unique_ptr<SDCConsumer> consumer;
 	std::unique_ptr<OSELib::SDC::ServiceManager> serviceManager;
@@ -135,6 +140,7 @@ private:
 
 	std::map<std::string, std::shared_ptr<SDCParticipantMDStateGetForwarder<NumericMetricState>>> registeredNumericMetricStateActivateGetCaller;
 	std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> numericMetricStateActivateGetCallerDescriptors;
+	std::map<std::string, std::shared_ptr<SDCParticipantMDStateForwarder<NumericMetricState>>> numericMetricStateForwarder;
 
 
 

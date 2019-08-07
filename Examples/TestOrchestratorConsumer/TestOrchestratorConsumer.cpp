@@ -127,6 +127,7 @@ void TestOrchestratorConsumer::discoverMirrorProvider() {
     auto c(oscpsm.discoverEndpointReference(SDCInstance::calcUUIDv5(DUTMirrorProviderRef, true)));
 	try {
 		if (c != nullptr) {
+			consumer->disconnect();
 			consumer.release();
 			consumer = std::move(c);
 	    	std::cout << "Mirror Provider found" << std::endl;
@@ -145,7 +146,7 @@ void TestOrchestratorConsumer::discoverMirrorProvider() {
 }
 
 const std::string TestOrchestratorConsumer::getMirrorProviderMDIB() {
-	return "";
+	return consumer->requestRawMdib();
 }
 
 template <typename TState>
@@ -208,14 +209,18 @@ const std::string TestOrchestratorConsumer::getDUTMDIB()
 void TestOrchestratorConsumer::updateNumericMetricValue(HandleRef& descriptorHandle)
 {
 	FutureInvocationState fis;
-	consumer->activate(GET_DUT_MDIB + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX, fis);
+	consumer->activate(descriptorHandle + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX, fis);
 	bool success = fis.waitReceived(InvocationState::Fin, 10000);
 	auto nms = requestState<NumericMetricState>(descriptorHandle);
-	std::cout << nms->getMetricValue().getValue();
+	if(nms != nullptr)
+		std::cout << nms->getMetricValue().getValue();
 }
 
 
-
+void TestOrchestratorConsumer::requestMirrorProviderMDIB()
+{
+	std::cout << getMirrorProviderMDIB() << std::endl;
+}
 
 } //ACS
 } //SDC

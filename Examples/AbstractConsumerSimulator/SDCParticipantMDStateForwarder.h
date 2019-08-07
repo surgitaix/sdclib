@@ -51,7 +51,7 @@ public:
     	{
     		NumericMetricState numericMetricState(SDCProviderStateHandler::descriptorHandle);
     		numericMetricState.setActivationState(ComponentActivation::On);
-    		numericMetricState.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)));
+    		numericMetricState.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(0));
     		return numericMetricState;
     	}
 //    	else if(std::is_same<TState, RealTimeSampleArrayMetricState>::value)
@@ -68,26 +68,33 @@ public:
 };
 
 template<typename TState>
-class SDCParticipantMDStateGetForwarder : public SDCProviderActivateOperationHandler, public SDCConsumerMDStateHandler<TState> {
+class SDCParticipantMDStateGetForwarder : public SDCProviderActivateOperationHandler//, public SDCConsumerMDStateHandler<TState> {
+{
 public:
 	SDCParticipantMDStateGetForwarder(const std::string descriptorHandle) :
 		SDCProviderActivateOperationHandler(descriptorHandle + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX),
-		SDCConsumerMDStateHandler<TState>(descriptorHandle),
+		//SDCConsumerMDStateHandler<TState>(descriptorHandle),
 		activateDescriptorHandle(descriptorHandle + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX),
 		consumerStateDescriptorHandle(descriptorHandle)
 	{
 
 	}
 	virtual ~SDCParticipantMDStateGetForwarder() = default;
-	void onStateChanged(const TState & state) override {
-	}
+//	void onStateChanged(const TState & state) override {
+//	}
 
 	InvocationState onActivateRequest(const OperationInvocationContext & oic) override {
-		auto p_State(SDCConsumerMDStateHandler<TState>::getParentConsumer().template requestState< TState >(consumerStateDescriptorHandle));
-		if(p_State != nullptr)
+		std::cout << "GetForwarder on " << consumerStateDescriptorHandle << std::endl;
+		//auto p_State(SDCConsumerMDStateHandler<TState>::getParentConsumer().template requestState< TState >(consumerStateDescriptorHandle));
+		if(true)
 		{
-			SDCProviderActivateOperationHandler::getParentProvider().updateState(*p_State);
+			std::cout << "Updating State" << std::endl;
+		//	SDCProviderActivateOperationHandler::getParentProvider().updateState(*p_State);
 			return InvocationState::Fin;
+		}
+		else
+		{
+			std::cout << "Consumer could not find " << consumerStateDescriptorHandle << " in MDIB" << std::endl;
 		}
 		return InvocationState::Fail;
 	}
@@ -111,8 +118,6 @@ public:
 
 	InvocationState onActivateRequest(const OperationInvocationContext & oic) override {
 		std::string Mdib(SDCConsumerOperationInvokedHandler::getParentConsumer().requestRawMdib());
-		std::cout << Mdib << std::endl;
-
 		auto stringMetricStates = SDCProviderActivateOperationHandler::getParentProvider().getMdState().findStringMetricStates();
 		for(auto strMetricState : stringMetricStates)
 		{
