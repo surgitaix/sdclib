@@ -13,12 +13,13 @@
 #include <sstream>
 #include <type_traits>
 #include <iostream>
+#include <list>
 
 typedef std::function<bool(const std::string& args)> Callback;
 
 struct functionDescription {
 	std::string functionName;
-	std::string args;
+	std::list<std::string> args;
 
 	bool operator==(const functionDescription &rhs) const
 	{
@@ -44,7 +45,8 @@ public:
 		CALLBACK_BAD_ARGS,
 		CALLBACK_NO_ERROR
 	};
-	void setCallback(const std::string& callbackName, const std::string& callbackArgs, Callback callback);
+//	void setCallback(const std::string& callbackName, const std::string& callbackArg, Callback callback);
+	void setCallback(const std::string& callbackName, const std::list<std::string>& callbackArgs, Callback callback);
 	Error call(const std::string&callbackName, const std::string& args);
 	std::unordered_map<functionDescription, Callback, hashFunction> getCallbacks();
 

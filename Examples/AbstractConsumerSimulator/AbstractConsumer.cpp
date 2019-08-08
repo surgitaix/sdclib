@@ -17,8 +17,6 @@
 #include "SDCLib/Data/SDC/MDIB/MdDescription.h"
 
 
-
-
 using namespace std::placeholders;
 
 namespace SDCLib {
@@ -84,6 +82,7 @@ bool AbstractConsumer::setupMirrorProvider() {
 	DUTMirrorProvider->setMdDescription(getConsumerStringRepresentationOfMDIB());
 
 	getDUTMDIBCaller = std::make_shared<SDCParticipantGetMDIBCaller>(GET_DUT_MDIB);
+	consumer->addParentConsumerToStateHandler(getDUTMDIBCaller.get());
 	getDUTMDIBHandler = std::make_shared<SDCProviderStringMetricHandler>(GET_DUT_MDIB);
 
 	getDUTMDIBCallerDesc = std::make_shared<ActivateOperationDescriptor>(GET_DUT_MDIB + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX, GET_DUT_MDIB);
@@ -96,35 +95,121 @@ bool AbstractConsumer::setupMirrorProvider() {
 	//Extended MdDescption
 	//Channel
 	ChannelDescriptor controlDUTChannel(CONTROL_DUT_CHANNEL);
-	controlDUTChannel.addMetric(*getDUTMDIBDesc);
 
 	//VMD
 	VmdDescriptor controlDUTVmd(CONTROL_DUT_VMD);
-	controlDUTVmd.addChannel(controlDUTChannel);
 
 	//MDS
 
 	MdsDescriptor controlDUTMds(CONTROL_DUT_MDS);
+
+	for(auto nms : consumer->getMdib().getMdState().findNumericMetricStates())
+	{
+		//Creating stateForwarder, which forwards the Device Under Test NumericState from the Abstract Consumer to the MirrorProvider.
+		auto nmsForwarder = std::make_shared<SDCParticipantNumericMetricStateForwarder>(nms.getDescriptorHandle());
+		numericMetricStateForwarder.insert(std::make_pair(nms.getDescriptorHandle(), nmsForwarder));
+
+		//Creating GetCaller for NumericMetricState (Activate of this on MirrorProvider side -> Get request of the state on AbstractConsumer side).
+		auto nmsGetCaller = std::make_shared<SDCParticipantMDStateGetForwarder<NumericMetricState>>(nms.getDescriptorHandle());
+		registeredNumericMetricStateActivateGetCaller.insert(std::make_pair(nms.getDescriptorHandle() + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX,
+				nmsGetCaller));
+		consumer->addParentConsumerToStateHandler(nmsGetCaller.get());
+
+		//Creating Descriptor for the GetCaller and adding it to SCO.
+		auto nmsGetCallerDesc = std::make_shared<ActivateOperationDescriptor>(nms.getDescriptorHandle() + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX, nms.getDescriptorHandle());
+		numericMetricStateActivateGetCallerDescriptors.insert(std::make_pair(nms.getDescriptorHandle() + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX,
+				nmsGetCallerDesc));
+		DUTMirrorProvider->addActivateOperationForDescriptor(*nmsGetCallerDesc, controlDUTMds);
+
+		//Creating SubscribeCaller for NumericMetricState to subscribe to it. Activating the handle -> subscribeState()
+		auto nmsSubscribeCaller = std::make_shared<SDCParticipantActivateFunctionCaller>(nms.getDescriptorHandle() + ACTIVATE_FOR_SUBSCRIBE_OPERATION_ON_DUT_POSTFIX,
+				[&, nmsForwarder] () {subscribeState(nmsForwarder.get());});
+		numericMetricStateActivateSubscribeCaller.insert(std::make_pair(nms.getDescriptorHandle() + ACTIVATE_FOR_SUBSCRIBE_OPERATION_ON_DUT_POSTFIX, nmsSubscribeCaller));
+		auto nmsSubscribeCallerDesc = std::make_shared<ActivateOperationDescriptor>(nms.getDescriptorHandle() + ACTIVATE_FOR_SUBSCRIBE_OPERATION_ON_DUT_POSTFIX, nms.getDescriptorHandle());
+		numericMetricStateSubscribeCallerDescriptors.insert(std::make_pair(nms.getDescriptorHandle() + ACTIVATE_FOR_SUBSCRIBE_OPERATION_ON_DUT_POSTFIX, nmsSubscribeCallerDesc));
+		DUTMirrorProvider->addActivateOperationForDescriptor(*nmsSubscribeCallerDesc, controlDUTMds);
+
+		//Creating UnsubscribeCaller for NumericMetricState to unsubscribe from it. Activating the handle -> unsubscribeState()
+		auto nmsUnsubscribeCaller = std::make_shared<SDCParticipantActivateFunctionCaller>(nms.getDescriptorHandle() + ACTIVATE_FOR_UNSUBSCRIBE_OPERATION_ON_DUT_POSTFIX,
+				[&, nmsForwarder] () {unsubscribeState(nmsForwarder.get());});
+		numericMetricStateActivateUnsubscribeCaller.insert(std::make_pair(nms.getDescriptorHandle() + ACTIVATE_FOR_UNSUBSCRIBE_OPERATION_ON_DUT_POSTFIX, nmsUnsubscribeCaller));
+		auto nmsUnsubscribeCallerDesc = std::make_shared<ActivateOperationDescriptor>(nms.getDescriptorHandle() + ACTIVATE_FOR_UNSUBSCRIBE_OPERATION_ON_DUT_POSTFIX, nms.getDescriptorHandle());
+		numericMetricStateUnsubscribeCallerDescriptors.insert(std::make_pair(nms.getDescriptorHandle() + ACTIVATE_FOR_UNSUBSCRIBE_OPERATION_ON_DUT_POSTFIX, nmsUnsubscribeCallerDesc));
+		DUTMirrorProvider->addActivateOperationForDescriptor(*nmsUnsubscribeCallerDesc, controlDUTMds);
+
+	}
+
+	for(auto sms : consumer->getMdib().getMdState().findStringMetricStates())
+	{
+		auto smsForwarder = std::make_shared<SDCParticipantStringMetricStateForwarder>(sms.getDescriptorHandle());
+		stringMetricStateForwarder.insert(std::make_pair(sms.getDescriptorHandle(), smsForwarder));
+		auto smsGetCaller = std::make_shared<SDCParticipantMDStateGetForwarder<StringMetricState>>(sms.getDescriptorHandle());
+		registeredStringMetricStateActivateGetCaller.insert(std::make_pair(sms.getDescriptorHandle() + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX,
+				smsGetCaller));
+		consumer->addParentConsumerToStateHandler(smsGetCaller.get());
+
+		auto smsGetCallerDesc = std::make_shared<ActivateOperationDescriptor>(sms.getDescriptorHandle() + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX, sms.getDescriptorHandle());
+		stringMetricStateActivateGetCallerDescriptors.insert(std::make_pair(sms.getDescriptorHandle() + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX,
+				smsGetCallerDesc));
+		DUTMirrorProvider->addActivateOperationForDescriptor(*smsGetCallerDesc, controlDUTMds);
+
+		//Creating SubscribeCaller for stringMetricState to subscribe to it. Activating the handle -> subscribeState()
+		auto smsSubscribeCaller = std::make_shared<SDCParticipantActivateFunctionCaller>(sms.getDescriptorHandle() + ACTIVATE_FOR_SUBSCRIBE_OPERATION_ON_DUT_POSTFIX,
+				[&, smsForwarder] () {subscribeState(smsForwarder.get());});
+		stringMetricStateActivateSubscribeCaller.insert(std::make_pair(sms.getDescriptorHandle() + ACTIVATE_FOR_SUBSCRIBE_OPERATION_ON_DUT_POSTFIX, smsSubscribeCaller));
+		auto smsSubscribeCallerDesc = std::make_shared<ActivateOperationDescriptor>(sms.getDescriptorHandle() + ACTIVATE_FOR_SUBSCRIBE_OPERATION_ON_DUT_POSTFIX, sms.getDescriptorHandle());
+		stringMetricStateSubscribeCallerDescriptors.insert(std::make_pair(sms.getDescriptorHandle() + ACTIVATE_FOR_SUBSCRIBE_OPERATION_ON_DUT_POSTFIX, smsSubscribeCallerDesc));
+		DUTMirrorProvider->addActivateOperationForDescriptor(*smsSubscribeCallerDesc, controlDUTMds);
+
+		//Creating UnsubscribeCaller for stringMetricState to unsubscribe from it. Activating the handle -> unsubscribeState()
+		auto smsUnsubscribeCaller = std::make_shared<SDCParticipantActivateFunctionCaller>(sms.getDescriptorHandle() + ACTIVATE_FOR_UNSUBSCRIBE_OPERATION_ON_DUT_POSTFIX,
+				[&, smsForwarder] () {unsubscribeState(smsForwarder.get());});
+		stringMetricStateActivateUnsubscribeCaller.insert(std::make_pair(sms.getDescriptorHandle() + ACTIVATE_FOR_UNSUBSCRIBE_OPERATION_ON_DUT_POSTFIX, smsUnsubscribeCaller));
+		auto smsUnsubscribeCallerDesc = std::make_shared<ActivateOperationDescriptor>(sms.getDescriptorHandle() + ACTIVATE_FOR_UNSUBSCRIBE_OPERATION_ON_DUT_POSTFIX, sms.getDescriptorHandle());
+		stringMetricStateUnsubscribeCallerDescriptors.insert(std::make_pair(sms.getDescriptorHandle() + ACTIVATE_FOR_UNSUBSCRIBE_OPERATION_ON_DUT_POSTFIX, smsUnsubscribeCallerDesc));
+		DUTMirrorProvider->addActivateOperationForDescriptor(*smsUnsubscribeCallerDesc, controlDUTMds);
+	}
+
+	for(auto rtsams : consumer->getMdib().getMdState().findRealTimeSampleArrayMetricStates())
+	{
+		auto rtsamsForwarder = std::make_shared<SDCParticipantRealTimeSampleArrayMetricStateForwarder>(rtsams.getDescriptorHandle());
+		realTimeSampleArrayMetricStateForwarder.insert(std::make_pair(rtsams.getDescriptorHandle(), rtsamsForwarder));
+		auto rtsamsGetCaller = std::make_shared<SDCParticipantMDStateGetForwarder<RealTimeSampleArrayMetricState>>(rtsams.getDescriptorHandle());
+		registeredRealTimeSampleArrayMetricStateActivateGetCaller.insert(std::make_pair(rtsams.getDescriptorHandle() + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX,
+				rtsamsGetCaller));
+		consumer->addParentConsumerToStateHandler(rtsamsGetCaller.get());
+
+		auto rtsamsGetCallerDesc = std::make_shared<ActivateOperationDescriptor>(rtsams.getDescriptorHandle() + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX, rtsams.getDescriptorHandle());
+		realTimeSampleArrayMetricStateActivateGetCallerDescriptors.insert(std::make_pair(rtsams.getDescriptorHandle() + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX,
+				rtsamsGetCallerDesc));
+		DUTMirrorProvider->addActivateOperationForDescriptor(*rtsamsGetCallerDesc, controlDUTMds);
+		//Creating SubscribeCaller for stringMetricState to subscribe to it. Activating the handle -> subscribeState()
+		auto rtsamsSubscribeCaller = std::make_shared<SDCParticipantActivateFunctionCaller>(rtsams.getDescriptorHandle() + ACTIVATE_FOR_SUBSCRIBE_OPERATION_ON_DUT_POSTFIX,
+				[&, rtsamsForwarder] () {subscribeState(rtsamsForwarder.get());});
+		realTimeSampleArrayMetricStateActivateSubscribeCaller.insert(std::make_pair(rtsams.getDescriptorHandle() + ACTIVATE_FOR_SUBSCRIBE_OPERATION_ON_DUT_POSTFIX, rtsamsSubscribeCaller));
+		auto rtsamsSubscribeCallerDesc = std::make_shared<ActivateOperationDescriptor>(rtsams.getDescriptorHandle() + ACTIVATE_FOR_SUBSCRIBE_OPERATION_ON_DUT_POSTFIX, rtsams.getDescriptorHandle());
+		realTimeSampleArrayMetricStateSubscribeCallerDescriptors.insert(std::make_pair(rtsams.getDescriptorHandle() + ACTIVATE_FOR_SUBSCRIBE_OPERATION_ON_DUT_POSTFIX, rtsamsSubscribeCallerDesc));
+		DUTMirrorProvider->addActivateOperationForDescriptor(*rtsamsSubscribeCallerDesc, controlDUTMds);
+
+		//Creating UnsubscribeCaller for realTimeSampleArrayMetricState to unsubscribe from it. Activating the handle -> unsubscribeState()
+		auto rtsamsUnsubscribeCaller = std::make_shared<SDCParticipantActivateFunctionCaller>(rtsams.getDescriptorHandle() + ACTIVATE_FOR_UNSUBSCRIBE_OPERATION_ON_DUT_POSTFIX,
+				[&, rtsamsForwarder] () {unsubscribeState(rtsamsForwarder.get());});
+		realTimeSampleArrayMetricStateActivateUnsubscribeCaller.insert(std::make_pair(rtsams.getDescriptorHandle() + ACTIVATE_FOR_UNSUBSCRIBE_OPERATION_ON_DUT_POSTFIX, rtsamsUnsubscribeCaller));
+		auto rtsamsUnsubscribeCallerDesc = std::make_shared<ActivateOperationDescriptor>(rtsams.getDescriptorHandle() + ACTIVATE_FOR_UNSUBSCRIBE_OPERATION_ON_DUT_POSTFIX, rtsams.getDescriptorHandle());
+		realTimeSampleArrayMetricStateUnsubscribeCallerDescriptors.insert(std::make_pair(rtsams.getDescriptorHandle() + ACTIVATE_FOR_UNSUBSCRIBE_OPERATION_ON_DUT_POSTFIX, rtsamsUnsubscribeCallerDesc));
+		DUTMirrorProvider->addActivateOperationForDescriptor(*rtsamsUnsubscribeCallerDesc, controlDUTMds);
+	}
+
+//	for(auto settableNms : consumer->getMdib().().().)
+
+	controlDUTChannel.addMetric(*getDUTMDIBDesc);
+
+
+	controlDUTVmd.addChannel(controlDUTChannel);
+
 	controlDUTMds.addVmd(controlDUTVmd);
-//
-//	for(auto nms : consumer->getMdib().getMdState().findNumericMetricStates())
-//	{
-//		std::cout << "adding " << nms.getDescriptorHandle() << std::endl;
-//		auto nmsGetCaller = std::make_shared<SDCParticipantMDStateGetForwarder<NumericMetricState>>(nms.getDescriptorHandle());
-//		registeredNumericMetricStateActivateGetCaller.insert(std::make_pair(nms.getDescriptorHandle() + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX,
-//				nmsGetCaller));
-//		auto nmsGetCallerDesc = std::make_shared<ActivateOperationDescriptor>(nms.getDescriptorHandle() + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX, nms.getDescriptorHandle());
-//		numericMetricStateActivateGetCallerDescriptors.insert(std::make_pair(nms.getDescriptorHandle() + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX,
-//				nmsGetCallerDesc));
-//		DUTMirrorProvider->addActivateOperationForDescriptor(*nmsGetCallerDesc, controlDUTMds);
-//		DUTMirrorProvider->addMdStateHandler(nmsGetCaller.get());
-//
-//
-//		auto nmsForwarder = std::make_shared<SDCParticipantMDStateForwarder<NumericMetricState>>(nms.getDescriptorHandle());
-//
-//		numericMetricStateForwarder.insert(std::make_pair(nms.getDescriptorHandle(), nmsForwarder));
-//		DUTMirrorProvider->addMdStateHandler(nmsForwarder.get());
-//	}
+
+
 //
 //
 //	//TODO: Move to VMD once addActivateOperation is provided.
@@ -140,6 +225,62 @@ bool AbstractConsumer::setupMirrorProvider() {
 //
 	DUTMirrorProvider->addMdStateHandler(getDUTMDIBCaller.get());
 	DUTMirrorProvider->addMdStateHandler(getDUTMDIBHandler.get());
+
+	for (auto it : numericMetricStateForwarder)
+	{
+		DUTMirrorProvider->addMdStateHandler(it.second.get());
+	}
+	for (auto it : registeredNumericMetricStateActivateGetCaller)
+	{
+		DUTMirrorProvider->addMdStateHandler(it.second.get());
+	}
+	for(auto it : numericMetricStateActivateSubscribeCaller)
+	{
+		DUTMirrorProvider->addMdStateHandler(it.second.get());
+	}
+	for(auto it : numericMetricStateActivateUnsubscribeCaller)
+	{
+		DUTMirrorProvider->addMdStateHandler(it.second.get());
+	}
+
+
+	for (auto it : stringMetricStateForwarder)
+	{
+		DUTMirrorProvider->addMdStateHandler(it.second.get());
+	}
+	for (auto it : registeredStringMetricStateActivateGetCaller)
+	{
+		DUTMirrorProvider->addMdStateHandler(it.second.get());
+	}
+	for(auto it : stringMetricStateActivateSubscribeCaller)
+	{
+		DUTMirrorProvider->addMdStateHandler(it.second.get());
+	}
+	for(auto it : stringMetricStateActivateUnsubscribeCaller)
+	{
+		DUTMirrorProvider->addMdStateHandler(it.second.get());
+	}
+
+
+	for (auto it : realTimeSampleArrayMetricStateForwarder)
+	{
+		DUTMirrorProvider->addMdStateHandler(it.second.get());
+	}
+	for (auto it : registeredRealTimeSampleArrayMetricStateActivateGetCaller)
+	{
+		DUTMirrorProvider->addMdStateHandler(it.second.get());
+	}
+	for(auto it : realTimeSampleArrayMetricStateActivateSubscribeCaller)
+	{
+		DUTMirrorProvider->addMdStateHandler(it.second.get());
+	}
+	for(auto it : realTimeSampleArrayMetricStateActivateUnsubscribeCaller)
+	{
+		DUTMirrorProvider->addMdStateHandler(it.second.get());
+	}
+
+
+
 //
 	//consumer->registerStateEventHandler(getDUTMDIBCaller.get());
 
@@ -154,18 +295,6 @@ bool AbstractConsumer::setupMirrorProvider() {
 void AbstractConsumer::startMirrorProvider() {
 	DUTMirrorProvider->startup();
 	DUTMirrorProvider->start();
-}
-
-bool AbstractConsumer::addSubscriptionHandler(HandleRef descriptionHandler) {
-	return false;
-}
-
-bool AbstractConsumer::addSetHandler(HandleRef descriptionHandler) {
-	return false;
-}
-
-bool AbstractConsumer::addGetHandler(HandleRef descriptionHandler) {
-	return false;
 }
 
 const std::string AbstractConsumer::getConsumerStringRepresentationOfMDIB() {
@@ -334,6 +463,26 @@ void AbstractConsumer::updateAvailableEndpointReferences()
 	availableEndpointReferencesHandler->updateStateValue(oss.str());
 }
 
+void AbstractConsumer::subscribeState(SDCConsumerOperationInvokedHandler * handler)
+{
+	if(handler == nullptr)
+	{
+		std::cout << "handler is nullptr" << std::endl;
+		return;
+	}
+	std::cout << "registering " << handler->getDescriptorHandle() << std::endl;
+	consumer->registerStateEventHandler(handler);
+}
+
+void AbstractConsumer::unsubscribeState(SDCConsumerOperationInvokedHandler* handler)
+{
+	if(handler == nullptr)
+	{
+		std::cout << "handler is nullptr" << std::endl;
+		return;
+	}
+	consumer->unregisterStateEventHandler(handler);
+}
 
 
 } //ACS

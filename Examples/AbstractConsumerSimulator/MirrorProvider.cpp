@@ -77,7 +77,6 @@ void MirrorProvider::addActivateOperationForDescriptor(const ActivateOperationDe
 }
 
 
-
 } //ACS
 } //SDC
 } //Data

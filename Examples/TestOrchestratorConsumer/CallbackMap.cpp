@@ -9,12 +9,21 @@
 
 
 
-void CallbackMap::setCallback(const std::string& callbackName, const std::string& callbackArgs, Callback callback)
+//void CallbackMap::setCallback(const std::string& callbackName, const std::string& callbackArg, Callback callback)
+//{
+//	functionDescription funcDesc;
+//	funcDesc.functionName = callbackName;
+//	funcDesc.args.push_back(callbackArg);
+//	map[funcDesc] = callback;
+//}
+
+void CallbackMap::setCallback(const std::string& callbackName, const std::list<std::string>& callbackArgs, Callback callback)
 {
 	functionDescription funcDesc;
 	funcDesc.functionName = callbackName;
-	funcDesc.args = callbackArgs;
+	funcDesc.args = (callbackArgs);
 	map[funcDesc] = callback;
+
 }
 
 CallbackMap::Error CallbackMap::call(const std::string& callbackName, const std::string& args)

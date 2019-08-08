@@ -295,11 +295,15 @@ bool SDCConsumer::registerStateEventHandler(SDCConsumerOperationInvokedHandler *
 
     std::lock_guard<std::mutex> t_lock(m_eventMutex);
 	eventHandlers[handler->getDescriptorHandle()] = handler;
-	handler->parentConsumer = this;
+//	handler->parentConsumer = this;
 	if (_adapter) {
 		_adapter->subscribeEvents();
 	}
 	return true;
+}
+
+void SDCConsumer::addParentConsumerToStateHandler(SDCConsumerOperationInvokedHandler *handler) {
+	handler->parentConsumer = this;
 }
 
 bool SDCConsumer::unregisterStateEventHandler(SDCConsumerOperationInvokedHandler * handler)

@@ -43,8 +43,10 @@ class SDCProviderStringMetricHandler;
 class SDCParticipantGetMDIBCaller;
 template <typename TState>
 class SDCParticipantMDStateGetForwarder;
-template <typename TState>
-class SDCParticipantMDStateForwarder;
+class SDCParticipantNumericMetricStateForwarder;
+class SDCParticipantNumericMetricSetStateForwarder;
+class SDCParticipantRealTimeSampleArrayMetricStateForwarder;
+class SDCParticipantStringMetricStateForwarder;
 
 
 class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
@@ -68,9 +70,9 @@ public:
 	bool discoverDUT();
 	bool setupMirrorProvider();
 	void startMirrorProvider();
-	bool addGetHandler(HandleRef descriptionHandler);
-	bool addSubscriptionHandler(HandleRef descriptionHandler);
-	bool addSetHandler(HandleRef descriptionHandler);
+
+	void subscribeState(SDCConsumerOperationInvokedHandler * handler);
+	void unsubscribeState(SDCConsumerOperationInvokedHandler * handler);
 
 	void setDUTEndpointRef(const std::string& EndpointRef);
 	const std::string& getDUTEndpointRef();
@@ -88,6 +90,7 @@ public:
 	 * Providing services to discover the DUT and setting the MirrorProviders EndpointReference.
 	 */
 	void setupDiscoveryProvider();
+
 
 private:
 	const std::string getStringRepresentationOfMDIB(const MdibContainer MDIB);
@@ -134,13 +137,29 @@ private:
 	std::shared_ptr<SDCParticipantGetMDIBCaller> getDUTMDIBCaller;
 	std::shared_ptr<SDCProviderStringMetricHandler> getDUTMDIBHandler;
 
-//	std::map<std::string, std::shared_ptr<SDCParticipantActivateFunctionCaller>> addGetCallers;
-//	std::map<std::string, std::shared_ptr<SDCParticipantActivateFunctionCaller>> addSetCallers;
-//	std::map<std::string, std::shared_ptr<SDCParticipantActivateFunctionCaller>> addSubscribeCallers;
-
 	std::map<std::string, std::shared_ptr<SDCParticipantMDStateGetForwarder<NumericMetricState>>> registeredNumericMetricStateActivateGetCaller;
 	std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> numericMetricStateActivateGetCallerDescriptors;
-	std::map<std::string, std::shared_ptr<SDCParticipantMDStateForwarder<NumericMetricState>>> numericMetricStateForwarder;
+	std::map<std::string, std::shared_ptr<SDCParticipantNumericMetricStateForwarder>> numericMetricStateForwarder;
+	std::map<std::string, std::shared_ptr<SDCParticipantActivateFunctionCaller>> numericMetricStateActivateSubscribeCaller;
+	std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> numericMetricStateSubscribeCallerDescriptors;
+	std::map<std::string, std::shared_ptr<SDCParticipantActivateFunctionCaller>> numericMetricStateActivateUnsubscribeCaller;
+	std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> numericMetricStateUnsubscribeCallerDescriptors;
+
+	std::map<std::string, std::shared_ptr<SDCParticipantMDStateGetForwarder<StringMetricState>>> registeredStringMetricStateActivateGetCaller;
+	std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> stringMetricStateActivateGetCallerDescriptors;
+	std::map<std::string, std::shared_ptr<SDCParticipantStringMetricStateForwarder>> stringMetricStateForwarder;
+	std::map<std::string, std::shared_ptr<SDCParticipantActivateFunctionCaller>> stringMetricStateActivateSubscribeCaller;
+	std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> stringMetricStateSubscribeCallerDescriptors;
+	std::map<std::string, std::shared_ptr<SDCParticipantActivateFunctionCaller>> stringMetricStateActivateUnsubscribeCaller;
+	std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> stringMetricStateUnsubscribeCallerDescriptors;
+
+	std::map<std::string, std::shared_ptr<SDCParticipantMDStateGetForwarder<RealTimeSampleArrayMetricState>>> registeredRealTimeSampleArrayMetricStateActivateGetCaller;
+	std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> realTimeSampleArrayMetricStateActivateGetCallerDescriptors;
+	std::map<std::string, std::shared_ptr<SDCParticipantRealTimeSampleArrayMetricStateForwarder>> realTimeSampleArrayMetricStateForwarder;
+	std::map<std::string, std::shared_ptr<SDCParticipantActivateFunctionCaller>> realTimeSampleArrayMetricStateActivateSubscribeCaller;
+	std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> realTimeSampleArrayMetricStateSubscribeCallerDescriptors;
+	std::map<std::string, std::shared_ptr<SDCParticipantActivateFunctionCaller>> realTimeSampleArrayMetricStateActivateUnsubscribeCaller;
+	std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> realTimeSampleArrayMetricStateUnsubscribeCallerDescriptors;
 
 
 

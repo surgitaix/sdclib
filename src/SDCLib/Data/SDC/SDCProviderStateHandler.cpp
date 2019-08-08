@@ -100,7 +100,9 @@ void SDCProviderStateHandler::updateState(const TState & object) {
     }
 }
 
+//Fixme: Dereferencing a nullptr! This causes undefined behavior! Make return value also a pointer
 SDCProvider & SDCProviderStateHandler::getParentProvider() {
+	assert((parentProvider != nullptr) && "You are about to dereference a nullptr!");
 	return *parentProvider;
 }
 

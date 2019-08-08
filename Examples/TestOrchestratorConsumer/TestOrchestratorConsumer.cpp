@@ -206,14 +206,44 @@ const std::string TestOrchestratorConsumer::getDUTMDIB()
 	return DUTMDIBString;
 }
 
-void TestOrchestratorConsumer::updateNumericMetricValue(HandleRef& descriptorHandle)
+void TestOrchestratorConsumer::requestNumericMetricValue(HandleRef& descriptorHandle)
 {
 	FutureInvocationState fis;
 	consumer->activate(descriptorHandle + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX, fis);
+	std::cout << "Activating " << descriptorHandle + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX << std::endl;
 	bool success = fis.waitReceived(InvocationState::Fin, 10000);
 	auto nms = requestState<NumericMetricState>(descriptorHandle);
 	if(nms != nullptr)
 		std::cout << nms->getMetricValue().getValue();
+}
+
+void TestOrchestratorConsumer::setNumericMetricValue(HandleRef& descriptorHandle, double val)
+{
+	FutureInvocationState fis;
+	NumericMetricState nms(descriptorHandle);
+	nms.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(val));
+	consumer->commitState(nms, fis);
+	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result metric state: " << fis.waitReceived(InvocationState::Fin, 10000);
+}
+
+void TestOrchestratorConsumer::calcUUIDv5(std::string StringEndpointRef)
+{
+	std::cout << SDCInstance::calcUUIDv5(StringEndpointRef, true) << std::endl;
+}
+
+void TestOrchestratorConsumer::subscribeToState(std::string descriptorHandle)
+{
+	FutureInvocationState fis;
+	consumer->activate(descriptorHandle + ACTIVATE_FOR_SUBSCRIBE_OPERATION_ON_DUT_POSTFIX, fis);
+	std::cout << "subscribing to " << descriptorHandle << "using " << descriptorHandle + ACTIVATE_FOR_SUBSCRIBE_OPERATION_ON_DUT_POSTFIX << std::endl;
+	fis.waitReceived(InvocationState::Fin, 10000);
+}
+
+void TestOrchestratorConsumer::unsubscribeFromState(std::string descriptorHandle)
+{
+	FutureInvocationState fis;
+	consumer->activate(descriptorHandle + ACTIVATE_FOR_UNSUBSCRIBE_OPERATION_ON_DUT_POSTFIX, fis);
+	fis.waitReceived(InvocationState::Fin, 10000);
 }
 
 

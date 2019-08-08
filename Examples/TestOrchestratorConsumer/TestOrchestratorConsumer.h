@@ -43,7 +43,13 @@ public:
 
 	void requestDUTMDIB();
 
-	void updateNumericMetricValue(HandleRef& defciptorHandle);
+	void requestNumericMetricValue(HandleRef& defciptorHandle);
+	void setNumericMetricValue(HandleRef& descriptorHandle, double val);
+
+	void calcUUIDv5(std::string StringEndpointRef);
+
+	void subscribeToState(std::string descriptorHandle);
+	void unsubscribeFromState(std::string descriptorHandle);
 
 	void requestMirrorProviderMDIB();
 	const std::string getMirrorProviderMDIB();

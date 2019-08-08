@@ -31,12 +31,6 @@ public:
 
 	void setDeviceCharacteristics(const Dev::DeviceCharacteristics devChar);
 
-	template<typename T>
-	void createSetOperationForDescriptor(const T& descriptor, MdsDescriptor & ownerMDS)
-	{
-		sdcProvider.createSetOperationForDescriptor(descriptor, ownerMDS);
-	}
-
     void addActivateOperationForDescriptor(const ActivateOperationDescriptor& descriptor, MdsDescriptor & ownderMDS);
 
 	void startup();
@@ -50,7 +44,17 @@ public:
 
     MdDescription getMdDescription() const;
 
+	template<typename T>
+	void createSetOperationForDescriptor(const T& descriptor, MdsDescriptor & ownerMDS)
+	{
+		sdcProvider.createSetOperationForDescriptor(descriptor, ownerMDS);
+	}
 
+    template <typename TState>
+    void updateState(const TState& object)
+    {
+    	sdcProvider.updateState(object);
+    }
 
 	MdibContainer getMdib();
 

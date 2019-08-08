@@ -18,17 +18,22 @@ int main() {
 
 	TestOrchestratorConsumer toc;
 	CallbackMap cbm;
-	cbm.setCallback("discoverDiscoveryProvider", "", cbm.defineCallback([&]() { toc.discoverDiscoveryProvider(); }));
-	cbm.setCallback("updateAvailableEndpointReferences", "", cbm.defineCallback( [&]() { toc.updateAvailableEndpointReferences(); }));
-	cbm.setCallback("setDUTEndpointRef", "[string]", cbm.defineCallback<std::string>( [&](std::string EndpointRef) { toc.setDUTEndpointRef(EndpointRef);}));
-	cbm.setCallback("discoverDUT", "", cbm.defineCallback( [&]() {toc.discoverDUT();}));
-	cbm.setCallback("setMirrorProviderEndpointRef", "[string]", cbm.defineCallback<std::string>( [&](std::string EndpointRef) {toc.setMirrorProviderEndpointRef(EndpointRef);}));
-	cbm.setCallback("setupMirrorProvider", "", cbm.defineCallback([&]() {toc.setupMirrorProvider();}));
-	cbm.setCallback("discoverMirrorProvider", "", cbm.defineCallback([&]() {toc.discoverMirrorProvider();}));
-	cbm.setCallback("requestDUTMDIB", "", cbm.defineCallback( [&] () {toc.requestDUTMDIB();}));
-	cbm.setCallback("updateNumericMetricValue", "[string]", cbm.defineCallback<std::string>( [&] (std::string descriptorHandle) {toc.updateNumericMetricValue(descriptorHandle);}));
-	cbm.setCallback("requestMirrorProviderMDIB", "", cbm.defineCallback( [&]() {toc.requestMirrorProviderMDIB();}));
-	cbm.setCallback("exit", "", cbm.defineCallback([&]() { exit(0);}));
+	cbm.setCallback("discoverDiscoveryProvider", {""}, cbm.defineCallback([&]() { toc.discoverDiscoveryProvider(); }));
+	cbm.setCallback("updateAvailableEndpointReferences", {""}, cbm.defineCallback( [&]() { toc.updateAvailableEndpointReferences(); }));
+	cbm.setCallback("setDUTEndpointRef", {"[string]"}, cbm.defineCallback<std::string>( [&](std::string EndpointRef) { toc.setDUTEndpointRef(EndpointRef);}));
+	cbm.setCallback("discoverDUT", {""}, cbm.defineCallback( [&]() {toc.discoverDUT();}));
+	cbm.setCallback("setMirrorProviderEndpointRef", {"[string]"}, cbm.defineCallback<std::string>( [&](std::string EndpointRef) {toc.setMirrorProviderEndpointRef(EndpointRef);}));
+	cbm.setCallback("setupMirrorProvider", {""}, cbm.defineCallback([&]() {toc.setupMirrorProvider();}));
+	cbm.setCallback("discoverMirrorProvider", {""}, cbm.defineCallback([&]() {toc.discoverMirrorProvider();}));
+	cbm.setCallback("requestDUTMDIB", {""}, cbm.defineCallback( [&] () {toc.requestDUTMDIB();}));
+	cbm.setCallback("requestNumericMetricValue", {"[string]"}, cbm.defineCallback<std::string>( [&] (std::string descriptorHandle) {toc.requestNumericMetricValue(descriptorHandle);}));
+	cbm.setCallback("setNumericMetricValue", {"[string]", "[double]"}, cbm.defineCallback<std::string, double>
+	( [&](std::string descriptorHandle, double val) { toc.setNumericMetricValue(descriptorHandle, val); } ));
+	cbm.setCallback("requestMirrorProviderMDIB", {""}, cbm.defineCallback( [&]() {toc.requestMirrorProviderMDIB();}));
+	cbm.setCallback("exit", {""}, cbm.defineCallback([&]() { exit(0);}));
+	cbm.setCallback("calcUUIDv5", {"string"}, cbm.defineCallback<std::string>( [&](std::string stringEndpointRef) {toc.calcUUIDv5(stringEndpointRef);}));
+	cbm.setCallback("subscribeToState", {"string"}, cbm.defineCallback<std::string>( [&](std::string descriptorHandle) {toc.subscribeToState(descriptorHandle);}));
+	cbm.setCallback("unsubscribeFromState", {"string"}, cbm.defineCallback<std::string>( [&](std::string descriptorHandle) {toc.unsubscribeFromState(descriptorHandle);}));
 	auto help = [&]() {
 		std::cout << "Available Methods:" << std::endl;
 		for(auto callback : cbm.getCallbacks())
@@ -37,11 +42,16 @@ int main() {
 			{
 				continue;
 			}
-			std::cout << callback.first.functionName << " " << callback.first.args << std::endl;
+			std::cout << callback.first.functionName << " ";
+			for(auto arg : callback.first.args)
+			{
+				std::cout << arg << " ";
+			}
+			std::cout << std::endl;
 		}
 	};
-	cbm.setCallback("help", "", cbm.defineCallback(help));
-	cbm.setCallback("Help", "", cbm.defineCallback(help));
+	cbm.setCallback("help", {""}, cbm.defineCallback(help));
+	cbm.setCallback("Help", {""}, cbm.defineCallback(help));
 
 	std::cout << "Welcome to the TestOrchestratorConsumer ConsoleApplication. "
 				 "If you are here for the first time use help, to get a list of all available functions. \n";

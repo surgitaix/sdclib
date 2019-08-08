@@ -122,6 +122,15 @@ public:
     bool registerStateEventHandler(SDCConsumerOperationInvokedHandler * handler);
 
     /**
+     * @brief sets the PartentConsumer of a StateHandler to this to access the consumer from the StateHandler
+     *
+     * Note: This functionality is primarily intended for cases where states need to access functions from the parent Consumer
+     * In regard to an open closed principal this functionality might need to be prohibited. And only be used for specific implementations
+     * of the SDCLib.
+     */
+    void addParentConsumerToStateHandler(SDCConsumerOperationInvokedHandler *handler);
+
+    /**
     * @brief Unregister notification.
     *
     * @param handler The event handler

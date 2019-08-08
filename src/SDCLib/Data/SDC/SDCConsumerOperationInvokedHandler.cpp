@@ -47,7 +47,9 @@ std::string SDCConsumerOperationInvokedHandler::getDescriptorHandle() {
 	return descriptorHandle;
 }
 
+//Fixme: Dereferencing a nullptr! This causes undefined behavior! Make return value also a pointer
 SDCConsumer & SDCConsumerOperationInvokedHandler::getParentConsumer() {
+	assert((parentConsumer != nullptr) && "You are about to dereference a nullptr!");
 	return *parentConsumer;
 }
 
