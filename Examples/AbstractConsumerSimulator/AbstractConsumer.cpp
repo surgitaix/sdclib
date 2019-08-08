@@ -15,6 +15,8 @@
 #include "SDCLib/Data/SDC/MDIB/VmdDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/MdsDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/MdDescription.h"
+#include "SDCLib/Data/SDC/MDIB/ScoDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/SetValueOperationDescriptor.h"
 
 
 using namespace std::placeholders;
@@ -105,6 +107,26 @@ bool AbstractConsumer::setupMirrorProvider() {
 
 	for(auto nms : consumer->getMdib().getMdState().findNumericMetricStates())
 	{
+
+		bool settableState = false;
+
+		for (auto mds : consumer->getMdib().getMdDescription().collectAllMdsDescriptors())
+		{
+			for(auto setValueOperationDesc : mds.getSco().collectAllSetValueOperationDescriptors())
+			{
+				if(setValueOperationDesc.getHandle() == (nms.getDescriptorHandle() + "_sco"))
+				{
+					settableState = true;
+				}
+			}
+		}
+		if(settableState)
+		{
+			std::cout << nms.getDescriptorHandle() << " is settable" << std::endl;
+			auto nmsSetForwarder = std::make_shared<SDCParticipantNumericMetricSetStateForwarder>(nms.getDescriptorHandle());
+			numericMetricStateSetForwarder.insert(std::make_pair(nms.getDescriptorHandle(), nmsSetForwarder));
+		}
+
 		//Creating stateForwarder, which forwards the Device Under Test NumericState from the Abstract Consumer to the MirrorProvider.
 		auto nmsForwarder = std::make_shared<SDCParticipantNumericMetricStateForwarder>(nms.getDescriptorHandle());
 		numericMetricStateForwarder.insert(std::make_pair(nms.getDescriptorHandle(), nmsForwarder));
@@ -227,6 +249,10 @@ bool AbstractConsumer::setupMirrorProvider() {
 	DUTMirrorProvider->addMdStateHandler(getDUTMDIBHandler.get());
 
 	for (auto it : numericMetricStateForwarder)
+	{
+		DUTMirrorProvider->addMdStateHandler(it.second.get());
+	}
+	for(auto it : numericMetricStateSetForwarder)
 	{
 		DUTMirrorProvider->addMdStateHandler(it.second.get());
 	}

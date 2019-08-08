@@ -140,6 +140,7 @@ private:
 	std::map<std::string, std::shared_ptr<SDCParticipantMDStateGetForwarder<NumericMetricState>>> registeredNumericMetricStateActivateGetCaller;
 	std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> numericMetricStateActivateGetCallerDescriptors;
 	std::map<std::string, std::shared_ptr<SDCParticipantNumericMetricStateForwarder>> numericMetricStateForwarder;
+	std::map<std::string, std::shared_ptr<SDCParticipantNumericMetricSetStateForwarder>>numericMetricStateSetForwarder;
 	std::map<std::string, std::shared_ptr<SDCParticipantActivateFunctionCaller>> numericMetricStateActivateSubscribeCaller;
 	std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> numericMetricStateSubscribeCallerDescriptors;
 	std::map<std::string, std::shared_ptr<SDCParticipantActivateFunctionCaller>> numericMetricStateActivateUnsubscribeCaller;
