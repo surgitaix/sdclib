@@ -47,6 +47,8 @@ class SDCParticipantNumericMetricStateForwarder;
 class SDCParticipantNumericMetricSetStateForwarder;
 class SDCParticipantRealTimeSampleArrayMetricStateForwarder;
 class SDCParticipantStringMetricStateForwarder;
+class SDCParticipantActivateForwarder;
+class SDCParticipantStringMetricStateSetForwarder;
 
 
 class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
@@ -149,6 +151,7 @@ private:
 	std::map<std::string, std::shared_ptr<SDCParticipantMDStateGetForwarder<StringMetricState>>> registeredStringMetricStateActivateGetCaller;
 	std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> stringMetricStateActivateGetCallerDescriptors;
 	std::map<std::string, std::shared_ptr<SDCParticipantStringMetricStateForwarder>> stringMetricStateForwarder;
+	std::map<std::string, std::shared_ptr<SDCParticipantStringMetricStateSetForwarder>> stringMetricStateSetForwarder;
 	std::map<std::string, std::shared_ptr<SDCParticipantActivateFunctionCaller>> stringMetricStateActivateSubscribeCaller;
 	std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> stringMetricStateSubscribeCallerDescriptors;
 	std::map<std::string, std::shared_ptr<SDCParticipantActivateFunctionCaller>> stringMetricStateActivateUnsubscribeCaller;
@@ -161,6 +164,8 @@ private:
 	std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> realTimeSampleArrayMetricStateSubscribeCallerDescriptors;
 	std::map<std::string, std::shared_ptr<SDCParticipantActivateFunctionCaller>> realTimeSampleArrayMetricStateActivateUnsubscribeCaller;
 	std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> realTimeSampleArrayMetricStateUnsubscribeCallerDescriptors;
+
+	std::map<std::string, std::shared_ptr<SDCParticipantActivateForwarder>> activateForwarder;
 
 
 

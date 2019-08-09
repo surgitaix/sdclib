@@ -43,8 +43,14 @@ public:
 
 	void requestDUTMDIB();
 
-	void requestNumericMetricValue(HandleRef& defciptorHandle);
+	void requestNumericMetricValue(HandleRef& descriptorHandle);
 	void setNumericMetricValue(HandleRef& descriptorHandle, double val);
+
+	void requestStringMetricValue(HandleRef& descriptorHandle);
+	void setStringMetricValue(HandleRef& descriptorHandel, std::string val);
+
+	void activate(std::string descriptorHandle);
+
 
 	void calcUUIDv5(std::string StringEndpointRef);
 

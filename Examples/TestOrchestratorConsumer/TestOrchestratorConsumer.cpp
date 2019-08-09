@@ -226,6 +226,25 @@ void TestOrchestratorConsumer::setNumericMetricValue(HandleRef& descriptorHandle
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result metric state: " << fis.waitReceived(InvocationState::Fin, 10000);
 }
 
+void TestOrchestratorConsumer::requestStringMetricValue(HandleRef& descriptorHandle)
+{
+	FutureInvocationState fis;
+	consumer->activate(descriptorHandle + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX, fis);
+	bool success = fis.waitReceived(InvocationState::Fin, 10000);
+	auto sms = requestState<StringMetricState>(descriptorHandle);
+	if(sms != nullptr)
+		std::cout << sms->getMetricValue().getValue();
+}
+
+void TestOrchestratorConsumer::setStringMetricValue(HandleRef& descriptorHandle, std::string val)
+{
+	FutureInvocationState fis;
+	StringMetricState sms(descriptorHandle);
+	sms.setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(val));
+	consumer->commitState(sms, fis);
+	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result metric state: " << fis.waitReceived(InvocationState::Fin, 10000);
+}
+
 void TestOrchestratorConsumer::calcUUIDv5(std::string StringEndpointRef)
 {
 	std::cout << SDCInstance::calcUUIDv5(StringEndpointRef, true) << std::endl;
@@ -243,6 +262,13 @@ void TestOrchestratorConsumer::unsubscribeFromState(std::string descriptorHandle
 {
 	FutureInvocationState fis;
 	consumer->activate(descriptorHandle + ACTIVATE_FOR_UNSUBSCRIBE_OPERATION_ON_DUT_POSTFIX, fis);
+	fis.waitReceived(InvocationState::Fin, 10000);
+}
+
+void TestOrchestratorConsumer::activate(std::string descriptorHandle)
+{
+	FutureInvocationState fis;
+	consumer->activate(descriptorHandle, fis);
 	fis.waitReceived(InvocationState::Fin, 10000);
 }
 

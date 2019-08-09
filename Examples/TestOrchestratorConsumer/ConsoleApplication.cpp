@@ -20,16 +20,22 @@ int main() {
 	CallbackMap cbm;
 	cbm.setCallback("discoverDiscoveryProvider", {""}, cbm.defineCallback([&]() { toc.discoverDiscoveryProvider(); }));
 	cbm.setCallback("updateAvailableEndpointReferences", {""}, cbm.defineCallback( [&]() { toc.updateAvailableEndpointReferences(); }));
-	cbm.setCallback("setDUTEndpointRef", {"[string]"}, cbm.defineCallback<std::string>( [&](std::string EndpointRef) { toc.setDUTEndpointRef(EndpointRef);}));
+	cbm.setCallback("setDUTEndpointRef", {"[UUIDv5]"}, cbm.defineCallback<std::string>( [&](std::string EndpointRef) { toc.setDUTEndpointRef(EndpointRef);}));
 	cbm.setCallback("discoverDUT", {""}, cbm.defineCallback( [&]() {toc.discoverDUT();}));
-	cbm.setCallback("setMirrorProviderEndpointRef", {"[string]"}, cbm.defineCallback<std::string>( [&](std::string EndpointRef) {toc.setMirrorProviderEndpointRef(EndpointRef);}));
+	cbm.setCallback("setMirrorProviderEndpointRef", {"[EndpointRef]"}, cbm.defineCallback<std::string>( [&](std::string EndpointRef) {toc.setMirrorProviderEndpointRef(EndpointRef);}));
 	cbm.setCallback("setupMirrorProvider", {""}, cbm.defineCallback([&]() {toc.setupMirrorProvider();}));
 	cbm.setCallback("discoverMirrorProvider", {""}, cbm.defineCallback([&]() {toc.discoverMirrorProvider();}));
 	cbm.setCallback("requestDUTMDIB", {""}, cbm.defineCallback( [&] () {toc.requestDUTMDIB();}));
-	cbm.setCallback("requestNumericMetricValue", {"[string]"}, cbm.defineCallback<std::string>( [&] (std::string descriptorHandle) {toc.requestNumericMetricValue(descriptorHandle);}));
-	cbm.setCallback("setNumericMetricValue", {"[string]", "[double]"}, cbm.defineCallback<std::string, double>
+	cbm.setCallback("requestNumericMetricValue", {"[NMSDescriptorHandle]"}, cbm.defineCallback<std::string>( [&] (std::string descriptorHandle) {toc.requestNumericMetricValue(descriptorHandle);}));
+	cbm.setCallback("setNumericMetricValue", {"[NMSDescriptorHandle]", "[double]"}, cbm.defineCallback<std::string, double>
 	( [&](std::string descriptorHandle, double val) { toc.setNumericMetricValue(descriptorHandle, val); } ));
+	cbm.setCallback("requestStringMetricValue", {"[SMSDescriptorHandle]"}, cbm.defineCallback<std::string>
+	( [&] (std::string descriptorHandle) {toc.requestStringMetricValue(descriptorHandle);}));
+	cbm.setCallback("setStringMetricValue", {"[SMSDescriptorHandle]", "[string]"}, cbm.defineCallback<std::string, std::string>
+	( [&] (std::string descriptorHandle, std::string val) {toc.setStringMetricValue(descriptorHandle, val);}));
 	cbm.setCallback("requestMirrorProviderMDIB", {""}, cbm.defineCallback( [&]() {toc.requestMirrorProviderMDIB();}));
+	cbm.setCallback("activate", {"[ActivateDescriptorHandle]"}, cbm.defineCallback<std::string>
+	([&] (std::string descriptorHandle) {toc.activate(descriptorHandle);}));
 	cbm.setCallback("exit", {""}, cbm.defineCallback([&]() { exit(0);}));
 	cbm.setCallback("calcUUIDv5", {"string"}, cbm.defineCallback<std::string>( [&](std::string stringEndpointRef) {toc.calcUUIDv5(stringEndpointRef);}));
 	cbm.setCallback("subscribeToState", {"string"}, cbm.defineCallback<std::string>( [&](std::string descriptorHandle) {toc.subscribeToState(descriptorHandle);}));

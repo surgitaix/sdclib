@@ -17,6 +17,7 @@
 #include "SDCLib/Data/SDC/MDIB/MdDescription.h"
 #include "SDCLib/Data/SDC/MDIB/ScoDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/SetValueOperationDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/SetStringOperationDescriptor.h"
 
 
 using namespace std::placeholders;
@@ -108,6 +109,7 @@ bool AbstractConsumer::setupMirrorProvider() {
 	for(auto nms : consumer->getMdib().getMdState().findNumericMetricStates())
 	{
 
+		//Check if NumericMetricState is settable
 		bool settableState = false;
 
 		for (auto mds : consumer->getMdib().getMdDescription().collectAllMdsDescriptors())
@@ -120,16 +122,24 @@ bool AbstractConsumer::setupMirrorProvider() {
 				}
 			}
 		}
+		std::shared_ptr<SDCConsumerOperationInvokedHandler> subscribe_ptr(nullptr);
 		if(settableState)
 		{
 			std::cout << nms.getDescriptorHandle() << " is settable" << std::endl;
 			auto nmsSetForwarder = std::make_shared<SDCParticipantNumericMetricSetStateForwarder>(nms.getDescriptorHandle());
 			numericMetricStateSetForwarder.insert(std::make_pair(nms.getDescriptorHandle(), nmsSetForwarder));
+			consumer->addParentConsumerToStateHandler(nmsSetForwarder.get());
+			subscribe_ptr = nmsSetForwarder;
 		}
 
 		//Creating stateForwarder, which forwards the Device Under Test NumericState from the Abstract Consumer to the MirrorProvider.
-		auto nmsForwarder = std::make_shared<SDCParticipantNumericMetricStateForwarder>(nms.getDescriptorHandle());
-		numericMetricStateForwarder.insert(std::make_pair(nms.getDescriptorHandle(), nmsForwarder));
+		else
+		{
+			auto nmsForwarder = std::make_shared<SDCParticipantNumericMetricStateForwarder>(nms.getDescriptorHandle());
+			numericMetricStateForwarder.insert(std::make_pair(nms.getDescriptorHandle(), nmsForwarder));
+			consumer->addParentConsumerToStateHandler(nmsForwarder.get());
+			subscribe_ptr = nmsForwarder;
+		}
 
 		//Creating GetCaller for NumericMetricState (Activate of this on MirrorProvider side -> Get request of the state on AbstractConsumer side).
 		auto nmsGetCaller = std::make_shared<SDCParticipantMDStateGetForwarder<NumericMetricState>>(nms.getDescriptorHandle());
@@ -145,7 +155,7 @@ bool AbstractConsumer::setupMirrorProvider() {
 
 		//Creating SubscribeCaller for NumericMetricState to subscribe to it. Activating the handle -> subscribeState()
 		auto nmsSubscribeCaller = std::make_shared<SDCParticipantActivateFunctionCaller>(nms.getDescriptorHandle() + ACTIVATE_FOR_SUBSCRIBE_OPERATION_ON_DUT_POSTFIX,
-				[&, nmsForwarder] () {subscribeState(nmsForwarder.get());});
+				[&, subscribe_ptr] () {subscribeState(subscribe_ptr.get());});
 		numericMetricStateActivateSubscribeCaller.insert(std::make_pair(nms.getDescriptorHandle() + ACTIVATE_FOR_SUBSCRIBE_OPERATION_ON_DUT_POSTFIX, nmsSubscribeCaller));
 		auto nmsSubscribeCallerDesc = std::make_shared<ActivateOperationDescriptor>(nms.getDescriptorHandle() + ACTIVATE_FOR_SUBSCRIBE_OPERATION_ON_DUT_POSTFIX, nms.getDescriptorHandle());
 		numericMetricStateSubscribeCallerDescriptors.insert(std::make_pair(nms.getDescriptorHandle() + ACTIVATE_FOR_SUBSCRIBE_OPERATION_ON_DUT_POSTFIX, nmsSubscribeCallerDesc));
@@ -153,7 +163,7 @@ bool AbstractConsumer::setupMirrorProvider() {
 
 		//Creating UnsubscribeCaller for NumericMetricState to unsubscribe from it. Activating the handle -> unsubscribeState()
 		auto nmsUnsubscribeCaller = std::make_shared<SDCParticipantActivateFunctionCaller>(nms.getDescriptorHandle() + ACTIVATE_FOR_UNSUBSCRIBE_OPERATION_ON_DUT_POSTFIX,
-				[&, nmsForwarder] () {unsubscribeState(nmsForwarder.get());});
+				[&, subscribe_ptr] () {unsubscribeState(subscribe_ptr.get());});
 		numericMetricStateActivateUnsubscribeCaller.insert(std::make_pair(nms.getDescriptorHandle() + ACTIVATE_FOR_UNSUBSCRIBE_OPERATION_ON_DUT_POSTFIX, nmsUnsubscribeCaller));
 		auto nmsUnsubscribeCallerDesc = std::make_shared<ActivateOperationDescriptor>(nms.getDescriptorHandle() + ACTIVATE_FOR_UNSUBSCRIBE_OPERATION_ON_DUT_POSTFIX, nms.getDescriptorHandle());
 		numericMetricStateUnsubscribeCallerDescriptors.insert(std::make_pair(nms.getDescriptorHandle() + ACTIVATE_FOR_UNSUBSCRIBE_OPERATION_ON_DUT_POSTFIX, nmsUnsubscribeCallerDesc));
@@ -163,8 +173,39 @@ bool AbstractConsumer::setupMirrorProvider() {
 
 	for(auto sms : consumer->getMdib().getMdState().findStringMetricStates())
 	{
-		auto smsForwarder = std::make_shared<SDCParticipantStringMetricStateForwarder>(sms.getDescriptorHandle());
-		stringMetricStateForwarder.insert(std::make_pair(sms.getDescriptorHandle(), smsForwarder));
+		//Check if NumericMetricState is settable
+		bool settableState = false;
+
+		for (auto mds : consumer->getMdib().getMdDescription().collectAllMdsDescriptors())
+		{
+			for(auto setValueOperationDesc : mds.getSco().collectAllSetStringOperationDescriptors())
+			{
+				if(setValueOperationDesc.getHandle() == (sms.getDescriptorHandle() + "_sco"))
+				{
+					settableState = true;
+				}
+			}
+		}
+		std::shared_ptr<SDCConsumerOperationInvokedHandler> subscribe_ptr(nullptr);
+		if(settableState)
+		{
+			std::cout << sms.getDescriptorHandle() << " is settable" << std::endl;
+			auto smsSetForwarder = std::make_shared<SDCParticipantStringMetricStateSetForwarder>(sms.getDescriptorHandle());
+			stringMetricStateSetForwarder.insert(std::make_pair(sms.getDescriptorHandle(), smsSetForwarder));
+			consumer->addParentConsumerToStateHandler(smsSetForwarder.get());
+			subscribe_ptr = smsSetForwarder;
+		}
+
+		//Creating stateForwarder, which forwards the Device Under Test NumericState from the Abstract Consumer to the MirrorProvider.
+		else
+		{
+			auto smsForwarder = std::make_shared<SDCParticipantStringMetricStateForwarder>(sms.getDescriptorHandle());
+			stringMetricStateForwarder.insert(std::make_pair(sms.getDescriptorHandle(), smsForwarder));
+			consumer->addParentConsumerToStateHandler(smsForwarder.get());
+			subscribe_ptr = smsForwarder;
+		}
+
+
 		auto smsGetCaller = std::make_shared<SDCParticipantMDStateGetForwarder<StringMetricState>>(sms.getDescriptorHandle());
 		registeredStringMetricStateActivateGetCaller.insert(std::make_pair(sms.getDescriptorHandle() + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX,
 				smsGetCaller));
@@ -177,7 +218,7 @@ bool AbstractConsumer::setupMirrorProvider() {
 
 		//Creating SubscribeCaller for stringMetricState to subscribe to it. Activating the handle -> subscribeState()
 		auto smsSubscribeCaller = std::make_shared<SDCParticipantActivateFunctionCaller>(sms.getDescriptorHandle() + ACTIVATE_FOR_SUBSCRIBE_OPERATION_ON_DUT_POSTFIX,
-				[&, smsForwarder] () {subscribeState(smsForwarder.get());});
+				[&, subscribe_ptr] () {subscribeState(subscribe_ptr.get());});
 		stringMetricStateActivateSubscribeCaller.insert(std::make_pair(sms.getDescriptorHandle() + ACTIVATE_FOR_SUBSCRIBE_OPERATION_ON_DUT_POSTFIX, smsSubscribeCaller));
 		auto smsSubscribeCallerDesc = std::make_shared<ActivateOperationDescriptor>(sms.getDescriptorHandle() + ACTIVATE_FOR_SUBSCRIBE_OPERATION_ON_DUT_POSTFIX, sms.getDescriptorHandle());
 		stringMetricStateSubscribeCallerDescriptors.insert(std::make_pair(sms.getDescriptorHandle() + ACTIVATE_FOR_SUBSCRIBE_OPERATION_ON_DUT_POSTFIX, smsSubscribeCallerDesc));
@@ -185,7 +226,7 @@ bool AbstractConsumer::setupMirrorProvider() {
 
 		//Creating UnsubscribeCaller for stringMetricState to unsubscribe from it. Activating the handle -> unsubscribeState()
 		auto smsUnsubscribeCaller = std::make_shared<SDCParticipantActivateFunctionCaller>(sms.getDescriptorHandle() + ACTIVATE_FOR_UNSUBSCRIBE_OPERATION_ON_DUT_POSTFIX,
-				[&, smsForwarder] () {unsubscribeState(smsForwarder.get());});
+				[&, subscribe_ptr] () {unsubscribeState(subscribe_ptr.get());});
 		stringMetricStateActivateUnsubscribeCaller.insert(std::make_pair(sms.getDescriptorHandle() + ACTIVATE_FOR_UNSUBSCRIBE_OPERATION_ON_DUT_POSTFIX, smsUnsubscribeCaller));
 		auto smsUnsubscribeCallerDesc = std::make_shared<ActivateOperationDescriptor>(sms.getDescriptorHandle() + ACTIVATE_FOR_UNSUBSCRIBE_OPERATION_ON_DUT_POSTFIX, sms.getDescriptorHandle());
 		stringMetricStateUnsubscribeCallerDescriptors.insert(std::make_pair(sms.getDescriptorHandle() + ACTIVATE_FOR_UNSUBSCRIBE_OPERATION_ON_DUT_POSTFIX, smsUnsubscribeCallerDesc));
@@ -222,7 +263,18 @@ bool AbstractConsumer::setupMirrorProvider() {
 		DUTMirrorProvider->addActivateOperationForDescriptor(*rtsamsUnsubscribeCallerDesc, controlDUTMds);
 	}
 
-//	for(auto settableNms : consumer->getMdib().().().)
+	for (auto mds : consumer->getMdib().getMdDescription().collectAllMdsDescriptors())
+	{
+		for(auto aosdesc : mds.getSco().collectAllActivateOperationDescriptors())
+		{
+			std::cout << aosdesc.getHandle() << std::endl;
+			auto aosForwarder = std::make_shared<SDCParticipantActivateForwarder>(aosdesc.getHandle());
+			consumer->addParentConsumerToStateHandler(aosForwarder.get());
+			activateForwarder.insert(std::make_pair(aosdesc.getHandle(), aosForwarder));
+			DUTMirrorProvider->addActivateOperationForDescriptor(aosdesc, mds);
+		}
+	}
+
 
 	controlDUTChannel.addMetric(*getDUTMDIBDesc);
 
@@ -274,6 +326,10 @@ bool AbstractConsumer::setupMirrorProvider() {
 	{
 		DUTMirrorProvider->addMdStateHandler(it.second.get());
 	}
+	for(auto it : stringMetricStateSetForwarder)
+	{
+		DUTMirrorProvider->addMdStateHandler(it.second.get());
+	}
 	for (auto it : registeredStringMetricStateActivateGetCaller)
 	{
 		DUTMirrorProvider->addMdStateHandler(it.second.get());
@@ -301,6 +357,11 @@ bool AbstractConsumer::setupMirrorProvider() {
 		DUTMirrorProvider->addMdStateHandler(it.second.get());
 	}
 	for(auto it : realTimeSampleArrayMetricStateActivateUnsubscribeCaller)
+	{
+		DUTMirrorProvider->addMdStateHandler(it.second.get());
+	}
+
+	for(auto it : activateForwarder)
 	{
 		DUTMirrorProvider->addMdStateHandler(it.second.get());
 	}
