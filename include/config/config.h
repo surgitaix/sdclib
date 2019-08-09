@@ -34,8 +34,8 @@ namespace SDCLib
         // Will be replaced by CMake
         const int SDCLIBRARY_VERSION_FIRST = 4;
         const int SDCLIBRARY_VERSION_MIDDLE = 3;
-        const int SDCLIBRARY_VERSION_LAST = 5;
-        const std::string CURRENT_LIB_VERSION("4.3.5");
+        const int SDCLIBRARY_VERSION_LAST = 6;
+        const std::string CURRENT_LIB_VERSION("4.3.6");
 
         const std::string CURRENT_C_YEAR("2019"); // Copyright year
 

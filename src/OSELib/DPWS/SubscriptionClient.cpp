@@ -38,6 +38,26 @@ private:
 	const WS::EVENTING::Identifier _identifier;
 };
 
+class GetStatusInvoke : public OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::GetStatusTraits> {
+public:
+	GetStatusInvoke(const Poco::URI & requestURI,
+			const WS::EVENTING::Identifier & identifier,
+			OSELib::Helper::XercesGrammarPoolProvider & grammarProvider) :
+			OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::GetStatusTraits>(requestURI, grammarProvider),
+			_identifier(identifier)
+		{
+		}
+
+	virtual std::unique_ptr<MESSAGEMODEL::Header> createHeader() override {
+		auto header(OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::GetStatusTraits>::createHeader());
+		header->Identifier(_identifier);
+		return header;
+	}
+
+private:
+	const WS::EVENTING::Identifier _identifier;
+};
+
 class UnsubscribeInvoke : public OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::UnsubscribeTraits> {
 public:
 	UnsubscribeInvoke(const Poco::URI & requestURI,
@@ -107,13 +127,14 @@ void SubscriptionClient::run() {
 			|| !response->SubscriptionManager().ReferenceParameters().get().Identifier().present()) {
 			log_fatal([&] { return "Subscribing failed."; });
 		} else {
-			log_information([&] { return "Subscription accomplished"; });
+			log_information([] { return "Subscription accomplished"; });
 		}
 
 		_subscriptionIdentifiers.emplace(subscription.first, response->SubscriptionManager().ReferenceParameters().get().Identifier().get());
 	}
 
 	while (Poco::Thread::trySleep(defaultWaitBeforeRenew)) {
+
 		log_debug([&] { return "Renewing ..."; });
 
 		for (const auto & subscription : _subscriptions) {

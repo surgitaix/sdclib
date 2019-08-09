@@ -739,6 +739,66 @@ namespace MESSAGEMODEL
     this->RenewResponse_.set (std::move (x));
   }
 
+  const Body::GetStatusOptional& Body::
+  GetStatus () const
+  {
+    return this->GetStatus_;
+  }
+
+  Body::GetStatusOptional& Body::
+  GetStatus ()
+  {
+    return this->GetStatus_;
+  }
+
+  void Body::
+  GetStatus (const GetStatusType& x)
+  {
+    this->GetStatus_.set (x);
+  }
+
+  void Body::
+  GetStatus (const GetStatusOptional& x)
+  {
+    this->GetStatus_ = x;
+  }
+
+  void Body::
+  GetStatus (::std::unique_ptr< GetStatusType > x)
+  {
+    this->GetStatus_.set (std::move (x));
+  }
+
+  const Body::GetStatusResponseOptional& Body::
+  GetStatusResponse () const
+  {
+    return this->GetStatusResponse_;
+  }
+
+  Body::GetStatusResponseOptional& Body::
+  GetStatusResponse ()
+  {
+    return this->GetStatusResponse_;
+  }
+
+  void Body::
+  GetStatusResponse (const GetStatusResponseType& x)
+  {
+    this->GetStatusResponse_.set (x);
+  }
+
+  void Body::
+  GetStatusResponse (const GetStatusResponseOptional& x)
+  {
+    this->GetStatusResponse_ = x;
+  }
+
+  void Body::
+  GetStatusResponse (::std::unique_ptr< GetStatusResponseType > x)
+  {
+    this->GetStatusResponse_.set (std::move (x));
+  }
+
   const Body::GetContextStatesOptional& Body::
   GetContextStates () const
   {
@@ -1977,6 +2037,8 @@ namespace MESSAGEMODEL
     Unsubscribe_ (this),
     Renew_ (this),
     RenewResponse_ (this),
+    GetStatus_ (this),
+    GetStatusResponse_ (this),
     GetContextStates_ (this),
     GetContextStatesResponse_ (this),
     SetContextState_ (this),
@@ -2024,6 +2086,8 @@ namespace MESSAGEMODEL
     Unsubscribe_ (x.Unsubscribe_, f, this),
     Renew_ (x.Renew_, f, this),
     RenewResponse_ (x.RenewResponse_, f, this),
+    GetStatus_ (x.GetStatus_, f, this),
+    GetStatusResponse_ (x.GetStatusResponse_, f, this),
     GetContextStates_ (x.GetContextStates_, f, this),
     GetContextStatesResponse_ (x.GetContextStatesResponse_, f, this),
     SetContextState_ (x.SetContextState_, f, this),
@@ -2071,6 +2135,8 @@ namespace MESSAGEMODEL
     Unsubscribe_ (this),
     Renew_ (this),
     RenewResponse_ (this),
+    GetStatus_ (this),
+    GetStatusResponse_ (this),
     GetContextStates_ (this),
     GetContextStatesResponse_ (this),
     SetContextState_ (this),
@@ -2377,6 +2443,34 @@ namespace MESSAGEMODEL
         if (!this->RenewResponse_)
         {
           this->RenewResponse_.set (::std::move (r));
+          continue;
+        }
+      }
+
+      // GetStatus
+      //
+      if (n.name () == "GetStatus" && n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
+      {
+        ::std::unique_ptr< GetStatusType > r (
+          GetStatusTraits::create (i, f, this));
+
+        if (!this->GetStatus_)
+        {
+          this->GetStatus_.set (::std::move (r));
+          continue;
+        }
+      }
+
+      // GetStatusResponse
+      //
+      if (n.name () == "GetStatusResponse" && n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
+      {
+        ::std::unique_ptr< GetStatusResponseType > r (
+          GetStatusResponseTraits::create (i, f, this));
+
+        if (!this->GetStatusResponse_)
+        {
+          this->GetStatusResponse_.set (::std::move (r));
           continue;
         }
       }
@@ -2775,6 +2869,8 @@ namespace MESSAGEMODEL
       this->Unsubscribe_ = x.Unsubscribe_;
       this->Renew_ = x.Renew_;
       this->RenewResponse_ = x.RenewResponse_;
+      this->GetStatus_ = x.GetStatus_;
+      this->GetStatusResponse_ = x.GetStatusResponse_;
       this->GetContextStates_ = x.GetContextStates_;
       this->GetContextStatesResponse_ = x.GetContextStatesResponse_;
       this->SetContextState_ = x.SetContextState_;
@@ -4721,6 +4817,32 @@ namespace MESSAGEMODEL
           e));
 
       s << *i.RenewResponse ();
+    }
+
+    // GetStatus
+    //
+    if (i.GetStatus ())
+    {
+      ::xercesc::DOMElement& s (
+        ::xsd::cxx::xml::dom::create_element (
+          "GetStatus",
+          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
+          e));
+
+      s << *i.GetStatus ();
+    }
+
+    // GetStatusResponse
+    //
+    if (i.GetStatusResponse ())
+    {
+      ::xercesc::DOMElement& s (
+        ::xsd::cxx::xml::dom::create_element (
+          "GetStatusResponse",
+          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
+          e));
+
+      s << *i.GetStatusResponse ();
     }
 
     // GetContextStates

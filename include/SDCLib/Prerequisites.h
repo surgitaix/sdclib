@@ -45,6 +45,7 @@ namespace SDCLib
     using SDCInstance_shared_ptr = std::shared_ptr<SDCInstance>;
 
     using TimePoint = std::chrono::system_clock::time_point;
+    using Duration_s = std::chrono::seconds;
 
     using StringVector = std::vector <std::string>;
 

@@ -5,7 +5,7 @@
 
 namespace SCHEMA
 {
-const std::string SCHEMA_WSEVENTING_NAME("WSEventing.xsd");
+const std::string SCHEMA_WSEVENTING_NAME("eventing.xsd");
 
 const std::string SCHEMA_WSEVENTING_CONTENT = std::string(R"(<?xml version="1.0" encoding="UTF-8" ?>
 <!-- 

@@ -6,7 +6,7 @@
 namespace SCHEMA
 {
 
-const std::string SCHEMA_WSADDRESSING_NAME("WSAddressing.xsd");
+const std::string SCHEMA_WSADDRESSING_NAME("ws-addressing.xsd");
 
 const std::string SCHEMA_WSADDRESSING_CONTENT = std::string(R"(<?xml version="1.0" encoding="utf-8"?>
 <!--

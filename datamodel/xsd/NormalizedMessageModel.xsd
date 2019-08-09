@@ -56,6 +56,8 @@
 				<xs:element ref="wse:Unsubscribe" />
 				<xs:element ref="wse:Renew" />
 				<xs:element ref="wse:RenewResponse" />
+				<xs:element ref="wse:GetStatus" />
+				<xs:element ref="wse:GetStatusResponse" />
 				
 				<!-- ContextService -->
 				<xs:element ref="mm:GetContextStates" />

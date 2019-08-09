@@ -27,12 +27,13 @@ namespace OSELib
 		class ActiveSubscriptions : public WithLogger
 		{
 		public:
+
 			struct SubscriptionInformation
 			{
 				explicit SubscriptionInformation(
-						const WS::ADDRESSING::EndpointReferenceType & notifyTo,
+						WS::ADDRESSING::EndpointReferenceType notifyTo,
 						std::chrono::system_clock::time_point expirationTime,
-						const WS::EVENTING::FilterType & actions) :
+						WS::EVENTING::FilterType actions) :
 					m_notifyTo(notifyTo),
 					m_expirationTime(expirationTime),
 					m_actions(actions)
@@ -41,6 +42,8 @@ namespace OSELib
 				std::chrono::system_clock::time_point m_expirationTime;
 				const WS::EVENTING::FilterType m_actions;
 			};
+
+			using GetStatusResult = std::pair <bool, SubscriptionInformation>;
 
 		private:
 
@@ -64,6 +67,8 @@ namespace OSELib
 			void unsubscribe(const WS::EVENTING::Identifier & identifier);
 			std::string subscribe(const SubscriptionInformation & subscription);
 			bool renew(const WS::EVENTING::Identifier & identifier, std::chrono::system_clock::time_point p_timestamp);
+
+			GetStatusResult getStatus(const WS::EVENTING::Identifier & identifier) const;
 
 			std::map<xml_schema::Uri, WS::ADDRESSING::EndpointReferenceType> getSubscriptions(const std::string & p_action);
 

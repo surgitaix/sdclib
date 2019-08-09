@@ -133,6 +133,36 @@ struct NormalizedMessageAdapter<DPWS::RenewTraits::Response> {
 };
 
 template<>
+struct NormalizedMessageAdapter<DPWS::GetStatusTraits::Request> {
+	const DPWS::GetStatusTraits::Request & get(const MESSAGEMODEL::Envelope & message) {
+		return message.Body().GetStatus().get();
+	}
+
+	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<DPWS::GetStatusTraits::Request> source) {
+		message.Body().GetStatus().set(std::move(source));
+	}
+
+	bool present(const MESSAGEMODEL::Envelope & message) {
+		return message.Body().GetStatus().present();
+	}
+};
+
+template<>
+struct NormalizedMessageAdapter<DPWS::GetStatusTraits::Response> {
+	const DPWS::GetStatusTraits::Response & get(const MESSAGEMODEL::Envelope & message) {
+		return message.Body().GetStatusResponse().get();
+	}
+
+	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<DPWS::GetStatusTraits::Response> source) {
+		message.Body().GetStatusResponse().set(std::move(source));
+	}
+
+	bool present(const MESSAGEMODEL::Envelope & message) {
+		return message.Body().GetStatusResponse().present();
+	}
+};
+
+template<>
 struct NormalizedMessageAdapter<DPWS::ProbeTraits::Request> {
 	const DPWS::ProbeTraits::Request & get(const MESSAGEMODEL::Envelope & message) {
 		return message.Body().Probe().get();

@@ -26,6 +26,7 @@
 #include "OSELib/SOAP/SoapHTTPResponseWrapper.h"
 #include "OSELib/SOAP/SubscribeActionCommand.h"
 #include "OSELib/SOAP/UnsubscribeActionCommand.h"
+#include "OSELib/SOAP/GetStatusActionCommand.h"
 
 namespace OSELib {
 namespace SDC {
@@ -58,6 +59,8 @@ void WaveformReportServiceHandler::handleRequestImpl(Poco::Net::HTTPServerReques
 		command = std::unique_ptr<SOAP::Command>(new SOAP::UnsubscribeActionCommand(std::move(soapHandling.normalizedMessage), _service));
 	} else if (soapAction == DPWS::RenewTraits::RequestAction()) {
 		command = std::unique_ptr<SOAP::Command>(new SOAP::RenewActionCommand(std::move(soapHandling.normalizedMessage), _service));
+    } else if (soapAction == DPWS::GetStatusTraits::RequestAction()) {
+		command = std::unique_ptr<SOAP::Command>(new SOAP::GetStatusActionCommand(std::move(soapHandling.normalizedMessage), _service));
 	} else {
 		log_error([&] { return "WaveformReportServiceHandler can't handle action: " + soapAction; });
 	}

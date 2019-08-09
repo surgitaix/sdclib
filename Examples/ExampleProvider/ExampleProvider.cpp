@@ -49,7 +49,7 @@ using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
 
-const std::string DEVICE_EPR("UDI-1234567890");
+const std::string DEVICE_EPR("UDI-ExampleProvider");
 
 const std::string VMD_DESCRIPTOR_HANDLE("holdingDevice_vmd");
 const std::string CHANNEL_DESCRIPTOR_HANDLE("holdingDevice_channel");

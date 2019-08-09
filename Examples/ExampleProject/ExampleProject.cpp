@@ -165,7 +165,7 @@ public:
 		curValueState(HANDLE_CURRENT_WEIGHT_METRIC),
     	mdsState(MDS_HANDLE)
 	{
-    	sdcProvider.setEndpointReference(DEVICE_EPR);
+    	sdcProvider.setEndpointReferenceByName(DEVICE_EPR);
         // Define semantic meaning of weight unit "kg", which will be used for defining the
         // current weight and the max weight below.
 

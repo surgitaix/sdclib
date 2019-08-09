@@ -34,46 +34,50 @@
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 
 
-namespace SDCLib {
-namespace Data {
-namespace SDC {
+namespace SDCLib
+{
+	namespace Data
+	{
+		namespace SDC
+		{
 
-class SDCConsumerOperationInvokedHandler {
- 	friend class SDCConsumer;
-public:
-	SDCConsumerOperationInvokedHandler(std::string handle);
-    virtual ~SDCConsumerOperationInvokedHandler();
+			class SDCConsumerOperationInvokedHandler
+			{
+				friend class SDCConsumer;
 
-    /**
-    * @brief Receive notifications about the invocation state.
-    *
-    * @param transactionId The transaction id.
-    * @param is The invocation state.
-    */
-    virtual void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is);
+			protected:
+				const std::string descriptorHandle;
 
-    /**
-    * @brief Define the descriptor handle.
-    *
-    * @return The handle
-    */
-    std::string getDescriptorHandle();
+				SDCConsumer* parentConsumer = nullptr;
 
-    SDCConsumer & getParentConsumer();
-protected:
-    const std::string descriptorHandle;
+			public:
+				SDCConsumerOperationInvokedHandler(std::string handle);
 
-    SDCConsumer* parentConsumer;
+				// Special Member Functions
+				SDCConsumerOperationInvokedHandler(const SDCConsumerOperationInvokedHandler& p_obj) = delete;
+				SDCConsumerOperationInvokedHandler(SDCConsumerOperationInvokedHandler&& p_obj) = delete;
+				SDCConsumerOperationInvokedHandler& operator=(const SDCConsumerOperationInvokedHandler& p_obj) = delete;
+				SDCConsumerOperationInvokedHandler& operator=(SDCConsumerOperationInvokedHandler&& p_obj) = delete;
+				virtual ~SDCConsumerOperationInvokedHandler() = default;
 
-private:
-    // prohibit copying! each state and each state handler is unique
-    SDCConsumerOperationInvokedHandler(const SDCConsumerOperationInvokedHandler &);
+				/**
+				* @brief Receive notifications about the invocation state.
+				*
+				* @param transactionId The transaction id.
+				* @param is The invocation state.
+				*/
+				virtual void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) { }
 
+				/**
+				* @brief Define the descriptor handle.
+				*
+				* @return The handle
+				*/
+				std::string getDescriptorHandle() { return descriptorHandle; }
+			};
 
-};
-
-} /* namespace SDC */
-} /* namespace Data */
+		} /* namespace SDC */
+	} /* namespace Data */
 } /* namespace SDCLib */
 
 #endif /* SDCCONSUMEROPERATIONINVOKEDHANDLER_H_ */

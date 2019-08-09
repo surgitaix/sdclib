@@ -670,7 +670,7 @@ void SDCConsumer::onOperationInvoked(const OperationInvocationContext & oic, Inv
     // If operation handle belongs to ActivateOperationDescriptor, use operation handle as target handle in case of operation invoked events!
     const MdDescription mdd(getCachedMdDescription());
     std::string targetHandle;
-    const std::vector<MdsDescriptor> mdss(mdd.collectAllMdsDescriptors());
+    const auto mdss(mdd.collectAllMdsDescriptors());
     for (const auto & mds : mdss) {
     	const std::unique_ptr<CDM::MdsDescriptor> mds_uniquePtr(ConvertToCDM::convert(mds));
 		if (!mds_uniquePtr->Sco().present()) {
@@ -687,11 +687,12 @@ void SDCConsumer::onOperationInvoked(const OperationInvocationContext & oic, Inv
     }
 
     // All other operation descriptor cases
-    if (targetHandle.empty())
+    if (targetHandle.empty()) {
     	targetHandle = mdd.getOperationTargetForOperationHandle(oic.operationHandle);
-    std::map<std::string, SDCConsumerOperationInvokedHandler *>::iterator it = eventHandlers.find(targetHandle);
-    if (it != eventHandlers.end()) {
-        it->second->onOperationInvoked(oic, is);
+    }
+    const auto t_iter = eventHandlers.find(targetHandle);
+    if (t_iter != eventHandlers.end()) {
+    	t_iter->second->onOperationInvoked(oic, is);
     }
 
     // Notify user future invocation state events
