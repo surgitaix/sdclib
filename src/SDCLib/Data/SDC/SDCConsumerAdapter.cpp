@@ -302,9 +302,9 @@ private:
 
 }
 
-using namespace SDCLib;
-using namespace SDCLib::Data;
-using namespace SDCLib::Data::SDC;
+namespace SDCLib {
+namespace Data {
+namespace SDC {
 
 SDCConsumerAdapter::SDCConsumerAdapter(SDCConsumer & consumer, OSELib::DPWS::DeviceDescription_shared_ptr p_deviceDescription) :
 	WithLogger(OSELib::Log::SDCCONSUMERADAPTER),
@@ -586,3 +586,6 @@ std::unique_ptr<MDM::SetContextStateResponse> SDCConsumerAdapter::invoke(const M
 	return invokeImplWithEventSubscription<OSELib::SDC::SetContextStateTraits>(request, getRequestURIFromDeviceDescription(request), p_context);
 }
 
+} /* namespace SDC */
+} /* namespace Data */
+} /* namespace SDCLib */
