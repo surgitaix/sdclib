@@ -25,11 +25,9 @@
 
 #include "SDCLib/Util/DebugOut.h"
 
-#include "Poco/Mutex.h"
-#include "Poco/ScopedLock.h"
 
-namespace SDCLib {
-namespace Util {
+using namespace SDCLib;
+using namespace SDCLib::Util;
 
 /**
  * Specify global debug level:
@@ -39,7 +37,7 @@ namespace Util {
  */
 DebugOut::LogLevel DebugOut::DEBUG_LEVEL = DebugOut::Info;
 std::ofstream * DebugOut::fileOut = nullptr;
-Poco::Mutex DebugOut::globalOutputLock;
+std::mutex DebugOut::globalOutputLock;
 
 DebugOut::DebugOut(LogLevel logLevel, std::ostream & s, const std::string & prefix) :
 		stream(s),
@@ -79,12 +77,12 @@ void DebugOut::flush() {
 		return;
 	}
 
-	Poco::Mutex::ScopedLock lock(globalOutputLock);
+	std::lock_guard<std::mutex> t_lock(globalOutputLock);
 
 	const std::string output(logBuffer.str());
 	{
-		static Poco::Mutex mutex;
-		Poco::Mutex::ScopedLock lock(mutex);
+		static std::mutex mutex;
+		std::lock_guard<std::mutex> t_lock(mutex);
 
 		if (showMessage) {
 			stream << output << std::flush;
@@ -98,7 +96,7 @@ void DebugOut::flush() {
 }
 
 bool DebugOut::openLogFile(const std::string & filename, bool truncateFile) {
-	Poco::Mutex::ScopedLock lock(globalOutputLock);
+	std::lock_guard<std::mutex> t_lock(globalOutputLock);
 	if (DebugOut::fileOut == nullptr) {
 		fileOut = new std::ofstream();
 	}
@@ -117,7 +115,7 @@ bool DebugOut::openLogFile(const std::string & filename, bool truncateFile) {
 }
 
 void DebugOut::closeLogFile() {
-	Poco::Mutex::ScopedLock lock(globalOutputLock);
+    std::lock_guard<std::mutex> t_lock(globalOutputLock);
 	if (DebugOut::fileOut != nullptr) {
 		DebugOut::fileOut->close();
 		delete fileOut;
@@ -160,6 +158,3 @@ bool DebugOut::isLogFileGood() {
 
    	return false;
 }
-
-} /* namespace Util */
-} /* namespace SDCLib */

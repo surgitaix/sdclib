@@ -30,7 +30,7 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
     # Only if not already set! -> We dont want to override this
     if(NOT XSD_ROOT)
-        set(XSD_ROOT "C:\\Program Files (x86)\\CodeSynthesis XSD 4.0")
+        set(XSD_ROOT "C:\\Program Files (x86)\\CodeSynthesis XSD 4.0" CACHE PATH "Install path of CodeSynthesis XSD 4.0")
     endif()
 
     # INCLUDE

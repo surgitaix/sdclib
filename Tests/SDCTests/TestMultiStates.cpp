@@ -133,7 +133,7 @@ public:
     	multistateProviderStateHandler2_2("locationContextAbitious_handle", "nextRoom_handle")
 	{
 
-		sdcProvider.setEndpointReference(SDCLib::Tests::multiStatesSDC::deviceEPR);
+		sdcProvider.setEndpointReferenceByName(SDCLib::Tests::multiStatesSDC::deviceEPR);
 
 
 		LocationContextDescriptor locationContextDescriptor1("locationStateLikeSingleState_handle");
@@ -227,7 +227,7 @@ TEST_FIXTURE(FixtureMultiStatesTest, multistates)
         // Consumer
         OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
         DebugOut(DebugOut::Default, "MultiStateSDC") << "Consumer discovery..." << std::endl;
-        std::shared_ptr<SDCConsumer> c(t_serviceManager.discoverEndpointReference(SDCLib::Tests::multiStatesSDC::deviceEPR));
+        std::shared_ptr<SDCConsumer> c(t_serviceManager.discoverEndpointReference(SDCLib::SDCInstance::calcUUIDv5(SDCLib::Tests::multiStatesSDC::deviceEPR, true)));
 //        std::shared_ptr<Tests::multiStatesSDC::  > eventHandler = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream");
 //        std::shared_ptr<Tests::StreamSDC::StreamConsumerEventHandler> eventHandlerAlt = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream_alt");
 //        std::shared_ptr<Tests::StreamSDC::StreamDistributionConsumerEventHandler> eventHandlerDistribution= std::make_shared<Tests::StreamSDC::StreamDistributionConsumerEventHandler>("handle_distribution_stream");

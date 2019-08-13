@@ -249,7 +249,7 @@ public:
 						MetricAvailability::Cont)
     	{
 
-		sdcProvider.setEndpointReference(DEVICE_EPR);
+		sdcProvider.setEndpointReferenceByName(DEVICE_EPR);
 
 		// set DPWS metadata, e.g. for the displayed friendly name
 		Dev::DeviceCharacteristics devChar;
@@ -344,7 +344,7 @@ public:
 		for (std::size_t i = 0; i < size; i++) {
 			samples.push_back(i);
 		}
-		long index(0);
+		std::size_t index(0);
 
 		while (!isInterrupted()) {
 			{
@@ -376,7 +376,7 @@ int main()
     t_SDCInstance->setIP4enabled(true);
     // Bind it to interface that matches the internal criteria (usually the first enumerated)
     if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
-        std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+    	DebugOut(DebugOut::Default, "ExampleProvider") << "Failed to bind to default network interface! Exit..." << std::endl;
         return -1;
     }
 

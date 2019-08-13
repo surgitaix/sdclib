@@ -9,6 +9,7 @@
 #define OSELIB_SOAP_SOAPINVOKE_H_
 
 #include <Poco/URI.h>
+#include <Poco/Net/Context.h>
 
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"

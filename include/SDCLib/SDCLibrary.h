@@ -27,16 +27,9 @@
 #define SDCLIB_SDCLIBRARY_H_
 
 #include <atomic>
-#include <list>
 #include <memory>
-#include <set>
 #include <string>
-
-#include "Poco/Mutex.h"
-#include "Poco/Thread.h"
-#include "Poco/Runnable.h"
-#include "Poco/NotificationQueue.h"
-#include "Poco/Net/IPAddress.h"
+#include <mutex>
 
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
@@ -48,18 +41,10 @@ namespace SDCLib
     {
     private:
 
-        std::atomic<bool> initialized = ATOMIC_VAR_INIT(false);
-        bool m_IP4enabled = true;
-        bool m_IP6enabled = true;
+        std::atomic<bool> m_initialized = ATOMIC_VAR_INIT(false);
 
-        int m_discoveryTimeMilSec = 5000;
-
-        void createPortLists(unsigned int portStart, unsigned int portRange = 1000);
-        std::deque<unsigned int> reservedPorts;
-        std::deque<unsigned int> availablePorts;
-
-        Poco::Mutex mutex;
-        std::unique_ptr<OSELib::DPWS::PingManager> _latestPingManager;
+        std::mutex m_mutex;
+        std::unique_ptr<OSELib::DPWS::PingManager> m_latestPingManager;
     public:
 
         // Special Member Functions
@@ -85,44 +70,9 @@ namespace SDCLib
         */
         void shutdown();
 
-        /**
-        * Set the next global free port number used for bindings which are automatically created.
-        *
-        * @param portStart The next free port number to use
-        */
-        void setPortStart(unsigned int portStart, unsigned int portRange = Config::SDC_DEFAULT_PORT_RANGE);
-
-        /**
-        * Get the next global free port number used for bindings which are automatically created.
-        * Increases current number by one.
-        * 	 *
-        * @return The next free port number to use
-        */
-        unsigned int extractFreePort();
-        void returnPortToPool(unsigned int port);
-
         bool isInitialized();
 
         void dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pingManager);
-
-        void setIP4enabled(bool IP4enabled);
-        void setIP6enabled(bool IP6enabled);
-        bool getIP4enabled();
-        bool getIP6enabled();
-
-        /**
-        * @brief Set the time the service manager waits for the device discovery
-        *
-        * @param discoveryTimeSec The time in milliseconds to wait while discovery
-        */
-        void setDiscoveryTime(int discoveryTimeMilSec);
-
-        /**
-        * @brief Get the time the service manager waits for the device discovery
-        *
-        * @return The time in milliseconds to wait for discovery
-        */
-        int getDiscoveryTime();
     };
 
 } /* namespace SDCLib */

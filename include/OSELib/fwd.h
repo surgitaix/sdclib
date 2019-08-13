@@ -22,6 +22,7 @@ namespace Poco {
 		class HTTPServer;
 		class HTTPServerRequest;
 		class MulticastSocket;
+		class HTTPSClientSession;
 	}
 	class Logger;
 	class NotificationQueue;
@@ -31,8 +32,14 @@ namespace Poco {
 	class Timestamp;
 }
 
-namespace OSELib {
-	namespace DPWS {
+namespace OSELib
+{
+	namespace DPWS
+	{
+		class DeviceDescription;
+		using DeviceDescription_shared_ptr = std::shared_ptr<DeviceDescription>;
+
+
 		namespace Impl {
 			class DPWSDiscoveryClientSocketImpl;
 			class DPWSHostSocketImpl;

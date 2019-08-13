@@ -1,8 +1,9 @@
 /*
  * ServiceManager.h
  *
- *  Created on: 11.12.2015
- *      Author: matthias
+ *  Created on: 11.12.2015, matthias
+ *  Modified on: 05.08.2019, baumeister
+ *
  */
 
 #ifndef OSELIB_SDC_SERVICEMANAGER_H_
@@ -15,75 +16,49 @@
 
 #include "SDCLib/Prerequisites.h"
 
-namespace OSELib {
-namespace SDC {
+namespace OSELib
+{
+	namespace SDC
+	{
 
-class HelloReceivedHandler {
-public:
-    HelloReceivedHandler() = default;
-    virtual ~HelloReceivedHandler() = default;
+		class HelloReceivedHandler {
+		public:
+			HelloReceivedHandler() = default;
+			virtual ~HelloReceivedHandler() = default;
 
-	virtual void helloReceived(const std::string & epr);
-};
+			virtual void helloReceived(const std::string & epr);
+		};
 
-class ServiceManager final: public WithLogger {
-public:
-	ServiceManager(SDCLib::SDCInstance_shared_ptr p_SDCInstance);
-	~ServiceManager();
+		class ServiceManager final: public WithLogger
+		{
 
-    /**
-    * @brief Set a handler that will be called when device send DPWS hello.
-    *
-    * @param handler The handler
-    */
-	void setHelloReceivedHandler(HelloReceivedHandler * handler);
+		private:
 
-    /**
-    * @brief Create a consumer and connect to Xaddr.
-    *
-    * @param xaddr The address
-    * @return The consumer or null
-    */
-	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> connect(const std::string & xaddr);
+			mutable std::mutex m_mutex;
 
-    /**
-    * @brief Create a consumer and try to discover provider using endpointreference (EPR).
-    *
-    * @param epr The endpointreference
-    * @return The consumer or null
-    */
-	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> discoverEndpointReference(const std::string & epr);
+			SDCLib::SDCInstance_shared_ptr m_SDCInstance = nullptr;
+			std::unique_ptr<DPWS::MDPWSDiscoveryClientAdapter> _dpwsClient;
 
-    /**
-    * @brief Discover all SDC providers currently available
-    *
-    * @return List of all providers
-    */
-    using DiscoverResults = std::vector<std::unique_ptr<SDCLib::Data::SDC::SDCConsumer>>;
-	DiscoverResults discover();
+			// todo: kick this helloCallback. Supposedly it is not needed.
+			std::unique_ptr<DPWS::HelloCallback> _helloCallback;
 
-    /**
-     * @deprecated Discover all SDC providers currently available in an async manner
-     * 
-     * @return std::future of a list of all providers (DiscoverResults)
-     */
-    using AsyncDiscoverResults  = std::future<DiscoverResults>;
-    AsyncDiscoverResults async_discover();
 
-    /**
-    * @deprecated USE discover()!
-    *
-    * @return List of all providers
-    */
-	DiscoverResults discoverOSCP();
+		public:
 
-    /**
-     * @brief [DEPRECATED: USE async_discover()!] Discover all SDC providers currently available in an async manner
-     * 
-     * @return std::future of a list of all providers (DiscoverResults)
-     */
-    AsyncDiscoverResults async_discoverOSCP();
+			ServiceManager(SDCLib::SDCInstance_shared_ptr p_SDCInstance);
+			// Special Member Functions
+			ServiceManager(const ServiceManager& p_obj) = delete;
+			ServiceManager(ServiceManager&& p_obj) = delete;
+			ServiceManager& operator=(const ServiceManager& p_obj) = delete;
+			ServiceManager& operator=(ServiceManager&& p_obj) = delete;
+			~ServiceManager();
 
+			/**
+			* @brief Set a handler that will be called when device send DPWS hello.
+			*
+			* @param handler The handler
+			*/
+			void setHelloReceivedHandler(HelloReceivedHandler * handler);
 	/**
 	* @brief Discover all SDC providers currently available
 	*
@@ -94,20 +69,45 @@ public:
 
 private:
 
-    SDCLib::SDCInstance_shared_ptr m_SDCInstance = nullptr;
-    std::unique_ptr<DPWS::MDPWSDiscoveryClientAdapter> _dpwsClient;
+			/**
+			* @brief Create a consumer and connect to Xaddr.
+			*
+			* @param p_xaddr The address
+			* @return The consumer or nullptr
+			*/
+			std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> connect(const std::string & p_xaddr);
 
-    // todo: kick this helloCallback. Supposedly it is not needed.
-	std::unique_ptr<DPWS::HelloCallback> _helloCallback;
-	mutable std::mutex m_mutex;
+			/**
+			* @brief Create a consumer and try to discover provider using endpointreference (EPR).
+			*
+			* @param p_epr The endpointreference
+			* @return The consumer or null
+			*/
+			std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> discoverEndpointReference(const std::string & p_epr);
 
+			/**
+			* @brief Discover all SDC providers currently available
+			*
+			* @return List of all providers
+			*/
+			using DiscoverResults = std::vector<std::unique_ptr<SDCLib::Data::SDC::SDCConsumer>>;
+			DiscoverResults discover();
 
-    //  DONT MIX MEMBER FUNCTIONS AND DATA...
-    std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> connectXAddress(const std::list<std::string> xaddress, const std::string & epr);
-    void resolveServiceURIsFromMetadata(const WS::MEX::MetadataSection & metadata, OSELib::DPWS::DeviceDescription & deviceDescription);
-};
+			/**
+			 * @deprecated Discover all SDC providers currently available in an async manner
+			 *
+			 * @return std::future of a list of all providers (DiscoverResults)
+			 */
+			using AsyncDiscoverResults  = std::future<DiscoverResults>;
+			AsyncDiscoverResults async_discover();
 
-} /* namespace SDC */
+		private:
+
+			std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> connectXAddress(const SDCLib::StringVector& pl_xAddresses, const std::string & p_epr);
+			void resolveServiceURIsFromMetadata(const WS::MEX::MetadataSection & metadata, OSELib::DPWS::DeviceDescription & deviceDescription);
+		};
+
+	} /* namespace SDC */
 } /* namespace OSELib */
 
 #endif /* OSELIB_SDC_SERVICEMANAGER_H_ */

@@ -25,6 +25,7 @@
 
 #include "Poco/Net/HTTPRequest.h"
 #include "Poco/Net/HTTPClientSession.h"
+#include "Poco/Net/HTTPSClientSession.h"
 #include "Poco/Net/HTTPRequest.h"
 #include "Poco/Net/HTTPResponse.h"
 #include "Poco/Net/NetException.h"
@@ -43,14 +44,52 @@ HTTPClientExchanger::~HTTPClientExchanger() {
 
 }
 
-std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPClientSession & session, const std::string & path, const std::string & requestData) {
-    try {
+std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPClientSession & session, const std::string & path, const std::string & requestData)
+{
+
+    std::string responseContent;
+    responseContent.reserve(16384);
+    Poco::Net::HTTPResponse res;
+	try {
     	Poco::Net::HTTPRequest req(Poco::Net::HTTPRequest::HTTP_POST, path, Poco::Net::HTTPMessage::HTTP_1_1);
         req.setContentType("application/soap+xml");
         req.setContentLength(requestData.length());
         req.setKeepAlive(false);
 
-        session.setTimeout(1000000);
+        std::ostream & ostr = session.sendRequest(req);
+        ostr << requestData << std::flush;
+
+        std::istream & is = session.receiveResponse(res);
+        if (res.getStatus() != Poco::Net::HTTPResponse::HTTP_OK && res.getStatus() != Poco::Net::HTTPResponse::HTTP_ACCEPTED) {
+        	// todo throw instead of debug out
+        	log_error([&] { return "HTTP request failed due to invalid HTTP response: " + res.getReason(); });
+//        	SDCLib::Util::DebugOut(SDCLib::Util::DebugOut::Error, "HTTPClientExchanger") << "HTTP request failed due to invalid HTTP response: " << res.getReason();
+            return "";
+        }
+        Helper::StreamReader streamReader(is);
+        responseContent = streamReader.getContent();
+        return responseContent;
+    } catch (Poco::Net::NetException& e) {
+		log_error([&] { return "NetException: " + e.message() + "\nResponse: " + responseContent; });
+		throw e;
+    } catch (const std::exception & e) {
+    	log_error([&] { return std::string("Exception: " + std::string(e.what())) + "\nResponse: " + responseContent; });
+    	throw e;
+    } catch (...) {
+    	throw std::logic_error("Unknown error.");
+    }
+    return "";
+}
+std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPSClientSession & session, const std::string & path, const std::string & requestData) {
+
+    std::string responseContent;
+    responseContent.reserve(16384);
+	try {
+    	Poco::Net::HTTPRequest req(Poco::Net::HTTPRequest::HTTP_POST, path, Poco::Net::HTTPMessage::HTTP_1_1);
+        req.setContentType("application/soap+xml");
+        req.setContentLength(requestData.length());
+        req.setKeepAlive(false);
+
         std::ostream & ostr = session.sendRequest(req);
         ostr << requestData << std::flush;
 
@@ -62,19 +101,20 @@ std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPClientSession & ses
 //        	SDCLib::Util::DebugOut(SDCLib::Util::DebugOut::Error, "HTTPClientExchanger") << "HTTP request failed due to invalid HTTP response: " << res.getReason();
             return "";
         }
-        std::string responseContent;
-        responseContent.reserve(16384);
-
         Helper::StreamReader streamReader(is);
         responseContent = streamReader.getContent();
         return responseContent;
-    } catch (const std::exception & e) {
-    	throw e;
+    } catch (Poco::Net::NetException& e) {
+		log_error([&] { return "NetException: " + e.message() + "\nResponse: " + responseContent; });
+		throw e;
+	} catch (const std::exception & e) {
+		log_error([&] { return std::string("Exception: " + std::string(e.what())) + "\nResponse: " + responseContent; });
+		throw e;
     } catch (...) {
     	throw std::logic_error("Unknown error.");
     }
     return "";
 }
 
-} /* namespace Comm */
-} /* namespace SDCLib */
+} /* namespace HTTP */
+} /* namespace OSELib */

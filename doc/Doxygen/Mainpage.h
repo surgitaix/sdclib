@@ -7,7 +7,7 @@ one of the page links below.
 @li @ref intro <b>OR.NET</b>: A short introduction to the %SDCLib
 @li @ref sdcpage <b>OR.NET</b>: API for the Open Surgical Communication Protocol
 
-@version 4.2.2
+@version 4.3.5
 @author Besting, Baumeister
 @copyright (C) 2019 SurgiTAIX AG
 
@@ -192,7 +192,11 @@ The most important thing about initializing the metrics is that each metric need
 
 @code
 SDCHoldingDeviceProvider() {
-  setEndpointReference("EPR_12345");
+  // Note: When setting this is converted to UUIDv5 and a prefix is applied:
+  // urn:uuid:<UUIDv5("EPR_12345")>
+  setEndpointReference(SDCInstance::calcUUIDv5("EPR_12345"));
+  // Or use
+  setEndpointReferenceByName("EPR_12345"); // This will do automatic conversion
 
   // Define semantic meaning of weight unit "kg", which will be used for defining the
   // current weight and the max weight below.
@@ -444,8 +448,8 @@ The ServiceManager is resposibe for the discovery of SDCProvider instances. An S
 // ... SDCInstance (Create, init and bind as shown above)
 // ServiceManager
 OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
-// Consumer
-auto t_consumer(t_serviceManager.discoverEndpointReference("EPR_1234"));
+// Consumer - Calculate UUIDv5 AND apply the prefix "urn:uuid:" when searching
+auto t_consumer(t_serviceManager.discoverEndpointReference(SDCInstance::calcUUIDv5("EPR_1234", true)));
 if (t_consumer != nullptr) {
   ...
 }

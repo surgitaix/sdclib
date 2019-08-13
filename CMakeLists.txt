@@ -38,8 +38,8 @@ project(${PROJECT_NAME})
 
 # Version numbers -> Will be written to the config file
 set (SDCLibrary_VERSION_FIRST          4)
-set (SDCLibrary_VERSION_MIDDLE         2)
-set (SDCLibrary_VERSION_LAST           2)
+set (SDCLibrary_VERSION_MIDDLE         3)
+set (SDCLibrary_VERSION_LAST           5)
 set (SDCLibrary_C_YEAR              2019)
 set (SDCLibrary_SurgiTAIX "SurgiTAIX AG")
 
@@ -175,18 +175,6 @@ mark_as_advanced(SDC_IP_V4_ENABLED)
 mark_as_advanced(SDC_IP_V6_ENABLED)
 ################################################################################
 
-
-################################################################################
-# Python
-################################################################################
-message(STATUS "Looking for Python...")
-set(Python_ADDITIONAL_VERSIONS 2.7)
-find_package(PythonLibs 2.7 REQUIRED)
-
-# Use it like this in the subprojects:
-# ${PYTHON_LIBRARIES} # Path to the libs
-#target_link_libraries(${CURRENT_TARGET_NAME} ${PYTHON_LIBRARIES})
-################################################################################
 
 ################################################################################
 # Some more paths - cleaned from symlinks

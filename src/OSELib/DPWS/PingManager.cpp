@@ -1,8 +1,9 @@
 /*
  * PingManager.cpp
  *
- *  Created on: 14.12.2015
- *      Author: matthias
+ *  Created on: 14.12.2015, matthias
+ *  Modified on: 05.08.2019, baumeister
+ *
  */
 
 #include "OSELib/DPWS/PingManager.h"
@@ -16,34 +17,35 @@
 
 using namespace OSELib::DPWS;
 
-PingManager::PingManager(SDCLib::Data::SDC::SDCConsumer & consumer) :
-	_runnableAdapter(*this, &PingManager::run),
-	_consumer(consumer)
+PingManager::PingManager(SDCLib::Data::SDC::SDCConsumer & p_consumer)
+: m_runnableAdapter(*this, &PingManager::run)
+, m_consumer(p_consumer)
 {
-	_thread.start(_runnableAdapter);
+	m_thread.start(m_runnableAdapter);
 }
 
 PingManager::~PingManager() {
-	_thread.wakeUp();
-	_thread.join();
+	m_thread.wakeUp();
+	m_thread.join();
 }
 
 void PingManager::run()
 {
-	Helper::XercesGrammarPoolProvider grammarProvider;
+	Helper::XercesGrammarPoolProvider t_grammarProvider;
 	while (Poco::Thread::trySleep(SDCLib::Config::SDC_CONNECTION_TIMEOUT_MS))
     {
-		OSELib::DPWS::ProbeTraits::Request request;
+		OSELib::DPWS::ProbeTraits::Request t_request;
 		using ProbeInvoke = OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::ProbeTraits>;
-		ProbeInvoke probeInvoke(_consumer._deviceDescription.getDeviceURI(), grammarProvider);
+
 		try {
-			auto response(probeInvoke.invoke(request, _consumer.getSDCInstance()->getSSLConfig()->getClientContext()));
-			if (!response) {
-				_consumer.onConnectionLost();
+			ProbeInvoke t_probeInvoke(m_consumer.m_deviceDescription->getDeviceURI(), t_grammarProvider);
+			auto t_response(t_probeInvoke.invoke(t_request, m_consumer.getSDCInstance()->getSSLConfig()->getClientContext()));
+			if (!t_response) {
+				m_consumer.onConnectionLost();
 				return;
 			}
 		} catch (...) {
-			_consumer.onConnectionLost();
+			m_consumer.onConnectionLost();
 			return;
 		}
 	}
@@ -51,6 +53,6 @@ void PingManager::run()
 
 void PingManager::disable()
 {
-    _thread.wakeUp();
+    m_thread.wakeUp();
 }
 

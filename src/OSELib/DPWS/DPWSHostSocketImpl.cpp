@@ -1,15 +1,14 @@
 /*
  * DPWSHostSocketImpl.cpp
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 26.07.2019, baumeister
  */
 
 #include <chrono>
 #include <iostream>
 
-#include "Poco/Buffer.h"
-#include "Poco/UUIDGenerator.h"
+#include <Poco/Buffer.h>
 
 #include "NormalizedMessageModel.hxx"
 
@@ -20,6 +19,7 @@
 #include "OSELib/DPWS/MessageAdapter.h"
 #include "OSELib/Helper/BufferAdapter.h"
 #include "SDCLib/Config/NetworkConfig.h"
+#include "SDCLib/SDCInstance.h"
 
 namespace OSELib {
 namespace DPWS {
@@ -30,7 +30,7 @@ const MESSAGEMODEL::Envelope buildByeMessage(const ByeType & notification) {
 	{
 		header.Action(byeUri);
 		header.To(discoveryUri);
-		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator::defaultGenerator().create().toString()));
+		header.MessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
 	}
 	MESSAGEMODEL::Envelope::BodyType body;
 	{
@@ -44,7 +44,7 @@ const MESSAGEMODEL::Envelope buildHelloMessage(const HelloType & notification) {
 	{
 		header.Action(helloUri);
 		header.To(discoveryUri);
-		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator::defaultGenerator().create().toString()));
+		header.MessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
 	}
 	MESSAGEMODEL::Envelope::BodyType body;
 	{
@@ -58,7 +58,7 @@ const MESSAGEMODEL::Envelope buildStreamMessage(const MDM::WaveformStream  & not
 	MESSAGEMODEL::Envelope::HeaderType header;
 	{
 		header.Action(xml_schema::Uri(SDC::EVENT_ACTION_CDM_WAVEFORM_STREAM_REPORT));
-		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator::defaultGenerator().create().toString()));
+		header.MessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
 		header.From(epr);
 	}
 	MESSAGEMODEL::Envelope::BodyType body;
@@ -86,7 +86,7 @@ const MESSAGEMODEL::Envelope buildProbeMatchMessage(const std::vector<ProbeMatch
 		if (request.Header().MessageID().present()) {
 			header.RelatesTo(request.Header().MessageID().get());
 		}
-		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator::defaultGenerator().create().toString()));
+		header.MessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
 	}
 	MESSAGEMODEL::Envelope::BodyType body;
 	{
@@ -112,7 +112,7 @@ const MESSAGEMODEL::Envelope buildResolveMatchMessage(const ResolveMatchType & n
 		if (request.Header().MessageID().present()) {
 			header.RelatesTo(request.Header().MessageID().get());
 		}
-		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator::defaultGenerator().create().toString()));
+		header.MessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
 	}
 	MESSAGEMODEL::Envelope::BodyType body;
 	{

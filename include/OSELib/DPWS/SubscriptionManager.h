@@ -12,13 +12,14 @@
 #include "OSELib/DPWS/ActiveSubscriptions.h"
 #include "OSELib/DPWS/ISubscriptionManager.h"
 #include "OSELib/Helper/WithLogger.h"
+#include "SDCLib/Prerequisites.h"
 
 namespace OSELib {
 namespace DPWS {
 
 class SubscriptionManager : public ISubscriptionManager, public WithLogger {
 public:
-	SubscriptionManager(const std::vector<xml_schema::Uri> & allowedEventActions, bool p_SSL);
+	SubscriptionManager(const std::vector<xml_schema::Uri> & allowedEventActions, SDCLib::Config::SSLConfig_shared_ptr p_SSLConfig);
 
 	template <class TraitsType>
 	void fireEvent(const typename TraitsType::ReportType & report);

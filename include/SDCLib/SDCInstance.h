@@ -25,7 +25,7 @@
 #ifndef SDCLIB_SDCINSTANCE_H
 #define SDCLIB_SDCINSTANCE_H
 
-#include "Prerequisites.h"
+#include "SDCLib/Prerequisites.h"
 #include "config/config.h"
 
 #include "SDCLib/Config/NetworkConfig.h"
@@ -100,6 +100,35 @@ namespace SDCLib
 
 
         void dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pingManager);
+
+
+        /**
+         * @brief checks if the given string matches the UUID pattern
+         *
+         * @param p_UUID the string to check
+         * @return Matching the UUID requirements or not.
+         *
+         */
+        static bool isUUID(const std::string& p_UUID);
+
+        /**
+		 * @brief Generates a time based UUID and prefixes it with "urn:uuid:"
+		 *
+		 */
+		static std::string calcMSGID();
+        /**
+		 * @brief Generates a time based UUID (MAC Address seeded)
+		 *
+		 */
+		static std::string calcUUID();
+        /**
+		 * @brief Generates a new UUIDv5 (SDC Namespace UUID seed)
+		 *
+		 * @param p_name Name from which to generate the UUID
+		 * @param p_prefix If specified the UUID will be prefixed with "urn:uuid:" . (Default for Endpoint References)
+		 *
+		 */
+		static std::string calcUUIDv5(std::string p_name, bool p_prefix);
 
     private:
 

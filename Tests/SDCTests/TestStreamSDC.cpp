@@ -204,7 +204,7 @@ public:
     	distributionEventHandler("handle_distribution_stream")
 	{
 
-		sdcProvider.setEndpointReference(SDCLib::Tests::StreamSDC::deviceEPR);
+		sdcProvider.setEndpointReferenceByName(SDCLib::Tests::StreamSDC::deviceEPR);
 
 
 		// Currentweight stream metric (read-only)
@@ -227,7 +227,7 @@ public:
 				xml_schema::Duration(0,0,0,0,0,0,1));
 
 
-		// set up a distibution metric
+		// set up a distribution metric
 		// Declares a sample array that represents linear value distributions in the form of arrays containing scaled sample values.
 		// In contrast to real-time sample arrays, distribution sample arrays provide observed spatial values, not time points.
 		// An example for a distribution sample array metric might be a fourier-transformed electroencephalogram to derive frequency distribution.
@@ -347,13 +347,13 @@ TEST_FIXTURE(FixtureStreamSDC, StreamSDC)
 
         // Provider
 		Tests::StreamSDC::SDCStreamHoldingDeviceProvider t_provider(t_SDCInstance);
-		DebugOut(DebugOut::Default, "StreamSDC") << "Provider init.." << std::endl;
+		DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Provider init.." << std::endl;
 		t_provider.startup();
 
         // Consumer
         OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
-        DebugOut(DebugOut::Default, "StreamSDC") << "Consumer discovery..." << std::endl;
-        auto t_consumer(t_serviceManager.discoverEndpointReference(SDCLib::Tests::StreamSDC::deviceEPR));
+        DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Consumer discovery..." << std::endl;
+        auto t_consumer(t_serviceManager.discoverEndpointReference(SDCLib::SDCInstance::calcUUIDv5(SDCLib::Tests::StreamSDC::deviceEPR, true)));
         auto eventHandler = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream");
         auto eventHandlerAlt = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream_alt");
         auto eventHandlerDistribution = std::make_shared<Tests::StreamSDC::StreamDistributionConsumerEventHandler>("handle_distribution_stream");
@@ -385,11 +385,11 @@ TEST_FIXTURE(FixtureStreamSDC, StreamSDC)
 	}
 	catch (char const* exc)
 	{
-		DebugOut(DebugOut::Default, std::cerr, "streamsdc") << exc;
+		DebugOut(DebugOut::Default, std::cerr, m_details.testName) << exc;
 	}
 	catch (...)
 	{
-		DebugOut(DebugOut::Default, std::cerr, "streamsdc") << "Unknown exception occurred!";
+		DebugOut(DebugOut::Default, std::cerr, m_details.testName) << "Unknown exception occurred!";
 	}
 	DebugOut::closeLogFile();
 }

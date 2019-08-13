@@ -1,120 +1,126 @@
 /*
  * ActiveSubscriptions.cpp
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 01.08.2019, baumeister
  */
-
-#include <sstream>
-
-#include "Poco/Timestamp.h"
-#include "Poco/UUIDGenerator.h"
-
-#include "eventing.hxx"
-#include "ws-addressing.hxx"
 
 #include "OSELib/DPWS/ActiveSubscriptions.h"
 
-namespace OSELib {
-namespace DPWS {
+#include "SDCLib/SDCInstance.h"
 
-ActiveSubscriptions::ActiveSubscriptions() :
-	WithLogger(Log::EVENTSOURCE),
-	_runnableAdapter(*this, &ActiveSubscriptions::run)
+#include <sstream>
+
+using namespace OSELib;
+using namespace OSELib::DPWS;
+
+ActiveSubscriptions::ActiveSubscriptions()
+: WithLogger(Log::EVENTSOURCE)
+, m_runnableAdapter(*this, &ActiveSubscriptions::run)
 {
-	_thread.start(_runnableAdapter);
+    m_thread.start(m_runnableAdapter);
 }
 
-ActiveSubscriptions::~ActiveSubscriptions() {
-	_thread.wakeUp();
-	_thread.join();
+ActiveSubscriptions::~ActiveSubscriptions()
+{
+    m_thread.wakeUp();
+    m_thread.join();
 }
 
-void ActiveSubscriptions::printSubscriptions() const {
-	Poco::Mutex::ScopedLock lock(_mutex);
+void ActiveSubscriptions::printSubscriptions() const
+{
+	std::lock_guard<std::mutex> t_lock(m_mutex);
 
-	log_information([&] { return "Active Subscriptions: " + std::to_string(_subscriptions.size()); });
+	log_information([&] { return "Active Subscriptions: " + std::to_string(ml_subscriptions.size()); });
 
 	log_trace([&] {
 		std::ostringstream logInfo;
 		logInfo << std::endl;
-		for (const auto & item : _subscriptions) {
-			logInfo << "Subscription with my id: " << item.first << std::endl;
-			logInfo << "Sink: " << item.second._notifyTo.Address() << std::endl;
+		for (const auto & t_item : ml_subscriptions) {
+			logInfo << "Subscription with my id: " << t_item.first << std::endl;
+			logInfo << "Sink: " << t_item.second.m_notifyTo.Address() << std::endl;
 			logInfo << "Actions: " << std::endl;
-			for (const auto & action : item.second._actions) {
-				logInfo << "" << action << std::endl;
+			for (const auto & t_action : t_item.second.m_actions) {
+				logInfo << "" << t_action << std::endl;
 			}
 			logInfo << std::endl;
 		}
 		return logInfo.str(); });
 }
 
-void ActiveSubscriptions::unsubscribe(const WS::EVENTING::Identifier & identifier) {
-	Poco::Mutex::ScopedLock lock(_mutex);
+void ActiveSubscriptions::unsubscribe(const WS::EVENTING::Identifier & p_identifier)
+{
+	std::lock_guard<std::mutex> t_lock(m_mutex);
 
-	auto subscription = _subscriptions.find(identifier);
-	if (subscription != _subscriptions.end()) {
-		_subscriptions.erase(subscription);
+	auto t_subscription = ml_subscriptions.find(p_identifier);
+	if (t_subscription != ml_subscriptions.end()) {
+		ml_subscriptions.erase(t_subscription);
 	}
 }
 
-std::string ActiveSubscriptions::subscribe(const SubscriptionInformation & subscription) {
-	Poco::Mutex::ScopedLock lock(_mutex);
+std::string ActiveSubscriptions::subscribe(const SubscriptionInformation & subscription)
+{
+	std::lock_guard<std::mutex> t_lock(m_mutex);
 
-	const auto mySubscriptionID(Poco::UUIDGenerator::defaultGenerator().create());
-	_subscriptions.emplace(mySubscriptionID.toString(), subscription);
-	return mySubscriptionID.toString();
+	const auto mySubscriptionID(SDCLib::SDCInstance::calcUUID());
+	ml_subscriptions.emplace(mySubscriptionID, subscription);
+	return mySubscriptionID;
 }
 
-bool ActiveSubscriptions::renew(const WS::EVENTING::Identifier & identifier, const Poco::Timestamp & timestamp) {
-	Poco::Mutex::ScopedLock lock(_mutex);
+bool ActiveSubscriptions::renew(const WS::EVENTING::Identifier & identifier, std::chrono::system_clock::time_point p_timestamp)
+{
+	std::lock_guard<std::mutex> t_lock(m_mutex);
 
-	auto subscription = _subscriptions.find(identifier);
-	if (subscription != _subscriptions.end()) {
-		subscription->second._expirationTime = timestamp;
+	auto subscription = ml_subscriptions.find(identifier);
+	if (subscription != ml_subscriptions.end()) {
+		subscription->second.m_expirationTime = p_timestamp;
 		return true;
 	}
 	return false;
 }
 
-void ActiveSubscriptions::houseKeeping() {
-	std::vector<WS::EVENTING::Identifier> expiredSubscriptions;
+void ActiveSubscriptions::houseKeeping()
+{
+	std::vector<WS::EVENTING::Identifier> tl_expiredSubscriptions;
 
-	Poco::Mutex::ScopedLock lock(_mutex);
-	const Poco::Timestamp now;
-	for (auto & item : _subscriptions) {
-		if (item.second._expirationTime < now) {
-			expiredSubscriptions.emplace_back(item.first);
+	std::lock_guard<std::mutex> t_lock(m_mutex);
+	auto t_now = std::chrono::system_clock::now();
+
+	// 1. Collect all expired
+	for (auto & t_item : ml_subscriptions) {
+		if (t_item.second.m_expirationTime < t_now) {
+			tl_expiredSubscriptions.emplace_back(t_item.first);
 		}
 	}
-	for (const auto & item : expiredSubscriptions) {
-		unsubscribe(item);
-		log_information([&] { return "Expired Subscription: " + item; });
+
+	// 2. Unsubscribe all
+	for (const auto & t_item : tl_expiredSubscriptions) {
+		unsubscribe(t_item);
+		log_information([&] { return "Expired Subscription: " + t_item; });
 	}
 }
 
-void ActiveSubscriptions::run() {
+void ActiveSubscriptions::run()
+{
 	while (Poco::Thread::trySleep(10000)) {
 		log_debug([&] { return "Checking for expired subscription"; });
 		houseKeeping();
 	}
 }
 
-std::map<xml_schema::Uri, WS::ADDRESSING::EndpointReferenceType> ActiveSubscriptions::getSubscriptions(const std::string & action) {
-
+std::map<xml_schema::Uri, WS::ADDRESSING::EndpointReferenceType> ActiveSubscriptions::getSubscriptions(const std::string & p_action)
+{
+	// Cleanup first
 	houseKeeping();
 
-	std::map<xml_schema::Uri, WS::ADDRESSING::EndpointReferenceType> result;
-	Poco::Mutex::ScopedLock lock(_mutex);
-	for (const auto & item : this->_subscriptions) {
-		const auto actionFilter(item.second._actions);
-		if (std::find(actionFilter.begin(), actionFilter.end(), action) != actionFilter.end()) {
-			result.emplace(item.first, item.second._notifyTo);
+	std::map<xml_schema::Uri, WS::ADDRESSING::EndpointReferenceType> t_result;
+	// Collect and return
+	std::lock_guard<std::mutex> t_lock(m_mutex);
+	for (const auto & t_item : ml_subscriptions) {
+		const auto t_actionFilter(t_item.second.m_actions);
+		if (std::find(t_actionFilter.begin(), t_actionFilter.end(), p_action) != t_actionFilter.end()) {
+			t_result.emplace(t_item.first, t_item.second.m_notifyTo);
 		}
 	}
-	return result;
+	return t_result;
 }
-
-} /* namespace DPWS */
-} /* namespace OSELib */

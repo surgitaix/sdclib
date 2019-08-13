@@ -8,20 +8,15 @@
 #ifndef OSELIB_DPWS_SUBSCRIPTIONCLIENT_H_
 #define OSELIB_DPWS_SUBSCRIPTIONCLIENT_H_
 
-#include <atomic>
-#include <tuple>
-
-#include <Poco/Mutex.h>
 #include <Poco/RunnableAdapter.h>
 #include <Poco/Thread.h>
-#include <Poco/UUID.h>
 #include <Poco/URI.h>
 #include <Poco/Net/Context.h>
 
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
 
-#include "SDCLib/Data/SDC/SDCConsumerAdapter.h"
+#include "eventing.hxx"
 
 namespace OSELib {
 namespace DPWS {
@@ -60,12 +55,11 @@ public:
 
 private:
 	void run();
-	mutable Poco::Mutex _mutex;
 
 	Poco::Thread _thread;
 	Poco::RunnableAdapter<SubscriptionClient> _runnableAdapter;
-	std::map<Poco::UUID, WS::EVENTING::Identifier> _subscriptionIdentifiers;
-	std::map<Poco::UUID, SubscriptionInformation> _subscriptions;
+	std::map<std::string, WS::EVENTING::Identifier> _subscriptionIdentifiers;
+	std::map<std::string, SubscriptionInformation> _subscriptions;
     Poco::Net::Context::Ptr m_SSLContext = nullptr; // != nullptr -> SSL Active!
 };
 

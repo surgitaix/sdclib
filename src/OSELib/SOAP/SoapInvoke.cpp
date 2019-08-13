@@ -2,12 +2,9 @@
  * SoapInvoke.cpp
  *
  *  Created on: 11.12.2015, matthias
- *  Modified on: 27.06.2019, baumeister
+ *  Modified on: 26.07.2019, baumeister
  */
 
-#include <iostream>
-
-#include <Poco/UUIDGenerator.h>
 #include <Poco/Net/HTTPClientSession.h>
 #include <Poco/Net/HTTPSClientSession.h>
 #include <Poco/Net/SSLException.h>
@@ -22,6 +19,7 @@
 #include "OSELib/SOAP/NormalizedMessageSerializer.h"
 #include "OSELib/SOAP/SoapInvoke.h"
 
+#include "SDCLib/SDCInstance.h"
 
 using namespace OSELib::SOAP;
 
@@ -36,7 +34,7 @@ SoapInvoke::SoapInvoke(const Poco::URI & p_requestURI, OSELib::Helper::XercesGra
 std::unique_ptr<MESSAGEMODEL::Header> SoapInvoke::createHeader() {
 	std::unique_ptr<MESSAGEMODEL::Envelope::HeaderType> header(new MESSAGEMODEL::Envelope::HeaderType());
 	using MessageIDType = MESSAGEMODEL::Envelope::HeaderType::MessageIDType;
-	header->MessageID().set(MessageIDType(Poco::UUIDGenerator::defaultGenerator().create().toString()));
+	header->MessageID().set(MessageIDType(SDCLib::SDCInstance::calcMSGID()));
 	using ToType = MESSAGEMODEL::Envelope::HeaderType::ToType;
 	header->To().set(ToType(m_requestURI.toString()));
 	return header;

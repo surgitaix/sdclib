@@ -102,8 +102,6 @@ set(SDCLib_INCLUDE_DIRS     ${SDCLib_ROOT_DIR}/include
                             # Poco
                             ${SDCLib_ROOT_DIR}/Dependencies/Poco/Foundation/include/
                             ${SDCLib_ROOT_DIR}/Dependencies/Poco/Net/include/
-                            # tclap
-                            ${SDCLib_ROOT_DIR}/include/tclap
                             # datamodel
                             ${SDCLib_ROOT_DIR}/datamodel/generated
 )
@@ -124,6 +122,11 @@ if (CMAKE_SYSTEM_NAME MATCHES "Linux")
         if (CMAKE_BUILD_TYPE STREQUAL "Release")
             set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/libSDCLib.so)
         else()
+            # Not set? Specify a default
+            if (NOT CMAKE_DEBUG_POSTFIX)
+                set(CMAKE_DEBUG_POSTFIX _d)
+                message(STATUS "No Debug Postfix set. Setting to ${CMAKE_DEBUG_POSTFIX}!")
+            endif()
             set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/libSDCLib${CMAKE_DEBUG_POSTFIX}.so)
         endif()
     else()

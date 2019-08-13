@@ -1,3 +1,45 @@
+Update to version 4.3.5
+
+- Replaced remaining Poco::Mutex with std::mutex
+- Some cleanup.
+- Fixed issue #3: 'Change Include path for "Prerequisites.h" in some header files'
+
+Update to version 4.3.4
+
+- Small changes to internal DeviceDescription. Now Threadsafe.
+- Some Cleanup.
+
+
+Update to version 4.3.3
+
+- Small change in setEndpointReference API. Added setEndpointReferenceByName with conversion to UUIDv5 and prefix.
+
+Update to version 4.3.2
+
+- Removed unused tclap library files from include folder
+
+Update to version 4.3.1
+
+- Changed default behaviour of setting endpoint reference
+- Replaced Poco::Timestamp and Poco::Timespan with std::chrono counterparts
+- Replaced some Poco::Mutex with std::mutex
+- Fixed Examples discoverEndpointReference with new UUIDv5 calculation
+
+Update to version 4.3.0
+
+- Centralized UUID generation. EPRs are per default now UUIDv5 and of type urn:uuid:<UUIDv5>.
+- UUIDv5 generation is seeded with SDC Namespace UUID according to IEEE-11073 20701 Annex A.
+- MessageIDs are of type urn:uuid<UUID> (random time based, MAC Address seeded)
+- Subscription IDs remain of type <UUID> (random time based, MAC Address seeded)
+- EpisodicMetricReport now updates MdibVersion
+- Removed some deprecated functions in ServiceManager
+
+
+Update to version 4.2.3
+
+- Fixed SSL bug in HTTP exchange code
+
+
 Update to version 4.2.2
 
 - All unit tests passing.
