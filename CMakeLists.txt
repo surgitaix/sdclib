@@ -177,18 +177,6 @@ mark_as_advanced(SDC_IP_V6_ENABLED)
 
 
 ################################################################################
-# Python
-################################################################################
-message(STATUS "Looking for Python...")
-set(Python_ADDITIONAL_VERSIONS 2.7)
-find_package(PythonLibs 2.7 REQUIRED)
-
-# Use it like this in the subprojects:
-# ${PYTHON_LIBRARIES} # Path to the libs
-#target_link_libraries(${CURRENT_TARGET_NAME} ${PYTHON_LIBRARIES})
-################################################################################
-
-################################################################################
 # Some more paths - cleaned from symlinks
 # Note: Use these in the other CMakeLists for easier handling
 ################################################################################
