@@ -30,7 +30,7 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
     # Only if not already set! -> We dont want to override this
     if(NOT XSD_ROOT)
-        set(XSD_ROOT "C:\\Program Files (x86)\\CodeSynthesis XSD 4.0")
+        set(XSD_ROOT "C:\\Program Files (x86)\\CodeSynthesis XSD 4.0" CACHE PATH "Path where CodeSynthesis XSD is installed.")
     endif()
 
     # INCLUDE
@@ -39,7 +39,7 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
         message(FATAL_ERROR "XercesC_DEFAULT_INCLUDE_DIR DOES NOT EXIST! Please set it manually and reconfigure!")
     endif()
     # ADD TO CMAKE SEARCH PATH
-    list(APPEND XercesC_DEFAULT_INCLUDE_DIR)
+    list(APPEND CMAKE_PREFIX_PATH ${XercesC_DEFAULT_LIB_DIR})
 
 
     # LIB

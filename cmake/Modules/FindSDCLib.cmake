@@ -122,6 +122,11 @@ if (CMAKE_SYSTEM_NAME MATCHES "Linux")
         if (CMAKE_BUILD_TYPE STREQUAL "Release")
             set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/libSDCLib.so)
         else()
+            # Not set? Specify a default
+            if (NOT CMAKE_DEBUG_POSTFIX)
+                set(CMAKE_DEBUG_POSTFIX _d)
+                message(STATUS "No Debug Postfix set. Setting to ${CMAKE_DEBUG_POSTFIX}!")
+            endif()
             set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/libSDCLib${CMAKE_DEBUG_POSTFIX}.so)
         endif()
     else()
@@ -276,6 +281,23 @@ list(APPEND SDCLib_DEPS_INCLUDE_DIRS ${POCO_INCLUDE_DIRS})
 list(APPEND SDCLib_DEPS_DEFINITIONS ${POCO_COMPILE_DEFINITIONS})
 ################################################################################
 
+
+
+################################################################################
+# XSD
+################################################################################
+
+
+# Only Include Path needed under Windows
+include(SDC_XSD)
+
+# Found it?
+if(NOT XSD_FOUND)
+    message(FATAL_ERROR "Failed to find XSD Include! Please specify XSD_ROOT!")
+endif()
+list(APPEND SDCLib_DEPS_INCLUDE_DIRS ${XSD_INCLUDE_DIRS})
+
+################################################################################
 
 ################################################################################
 # Threads - prefer pthreads
