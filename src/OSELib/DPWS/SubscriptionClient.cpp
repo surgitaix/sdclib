@@ -32,7 +32,7 @@ public:
 	virtual std::unique_ptr<MESSAGEMODEL::Header> createHeader() override {
 		auto header(OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::RenewTraits>::createHeader());
 		header->Identifier(_identifier);
-		return std::move(header);
+		return header;
 	}
 
 private:
@@ -52,16 +52,17 @@ public:
 	virtual std::unique_ptr<MESSAGEMODEL::Header> createHeader() override {
 		auto header(OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::UnsubscribeTraits>::createHeader());
 		header->Identifier(_identifier);
-		return std::move(header);
+		return header;
 	}
 
 private:
 	const WS::EVENTING::Identifier _identifier;
 };
 
-SubscriptionClient::SubscriptionClient(const std::vector<SubscriptionInformation> & subscriptions) :
+SubscriptionClient::SubscriptionClient(const std::vector<SubscriptionInformation> & subscriptions, Poco::Net::Context::Ptr p_context) :
 	WithLogger(Log::EVENTSINK),
-	_runnableAdapter(*this, &SubscriptionClient::run)
+	_runnableAdapter(*this, &SubscriptionClient::run),
+    m_SSLContext(p_context) // Can be nullptr!
 {
 	for (const auto & item : subscriptions) {
 		_subscriptions.emplace(Poco::UUIDGenerator::defaultGenerator().create(), item);
@@ -82,7 +83,7 @@ void SubscriptionClient::run() {
 	const WS::EVENTING::ExpirationType defaultExpires("PT10S");
 	const WS::EVENTING::ExpirationType defaultRenew(defaultExpires);
 
-	CONSTEXPR_MACRO int defaultWaitBeforeRenew (5000);
+	int defaultWaitBeforeRenew (5000);
 
 	for (const auto & subscription : _subscriptions) {
 		// get information
@@ -100,7 +101,7 @@ void SubscriptionClient::run() {
 
 		using SubscribeInvoke = OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::SubscribeTraits>;
 		SubscribeInvoke subscribeInvoke(subscription.second._sourceURI, grammarProvider);
-		auto response(subscribeInvoke.invoke(request));
+		auto response(subscribeInvoke.invoke(request, m_SSLContext));
 
 		if (!response
 			|| !response->SubscriptionManager().ReferenceParameters().present()
@@ -124,7 +125,7 @@ void SubscriptionClient::run() {
 			request.Expires(defaultRenew);
 
 			RenewInvoke renewInvoke(subscription.second._sourceURI, _subscriptionIdentifiers.at(subscription.first), grammarProvider);
-			auto response(renewInvoke.invoke(request));
+			auto response(renewInvoke.invoke(request, m_SSLContext));
 
 			if (!response) {
 				log_fatal([&] { return "Renew failed."; });
@@ -140,7 +141,7 @@ void SubscriptionClient::run() {
 		OSELib::DPWS::UnsubscribeTraits::Request request;
 
 		UnsubscribeInvoke unsubscribeInvoke(subscription.second._sourceURI, _subscriptionIdentifiers.at(subscription.first), grammarProvider);
-		auto response(unsubscribeInvoke.invoke(request));
+		auto response(unsubscribeInvoke.invoke(request, m_SSLContext));
 	}
 }
 

@@ -4,9 +4,6 @@
  *  Created on: 07.12.2015
  *      Author: matthias
  */
-
-#include "Poco/Net/HTTPServerRequest.h"
-
 #include "NormalizedMessageModel.hxx"
 
 #include "OSELib/Helper/Message.h"

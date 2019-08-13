@@ -16,13 +16,14 @@ namespace SDC {
 
 class EventReportServiceHandler : public SOAP::HTTPRequestHandlerExceptionTrap {
 public:
-	EventReportServiceHandler(IEventReport & service, Helper::XercesGrammarPoolProvider & grammarProvider);
+	EventReportServiceHandler(IEventReport & service, Helper::XercesGrammarPoolProvider & grammarProvider, bool p_SSL);
 
 private:
 	void handleRequestImpl(Poco::Net::HTTPServerRequest & httpRequest, Poco::Net::HTTPServerResponse & httpResponse) override;
 
 	IEventReport & _service;
 	Helper::XercesGrammarPoolProvider & _grammarProvider;
+    const bool m_SSL = true;
 };
 
 } /* namespace SDC */

@@ -8,7 +8,6 @@
 #ifndef OSELIB_SDC_SERVICEMANAGER_H_
 #define OSELIB_SDC_SERVICEMANAGER_H_
 
-#include "Poco/Mutex.h"
 
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
@@ -100,7 +99,7 @@ private:
 
     // todo: kick this helloCallback. Supposedly it is not needed.
 	std::unique_ptr<DPWS::HelloCallback> _helloCallback;
-	mutable Poco::Mutex _mutex;
+	mutable std::mutex m_mutex;
 
 
     //  DONT MIX MEMBER FUNCTIONS AND DATA...

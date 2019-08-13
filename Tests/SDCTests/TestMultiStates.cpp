@@ -31,6 +31,7 @@
  *
  *
  */
+#include <thread>
 #include "SDCLib/SDCInstance.h"
 
 #include "SDCLib/Data/SDC/SDCConsumer.h"
@@ -64,11 +65,6 @@
 #include "../UnitTest++/src/UnitTest++.h"
 
 #include "OSELib/SDC/ServiceManager.h"
-
-#include "Poco/Runnable.h"
-#include "Poco/Mutex.h"
-#include "Poco/ScopedLock.h"
-#include "Poco/Thread.h"
 
 using namespace SDCLib;
 using namespace SDCLib::Util;
@@ -247,7 +243,7 @@ TEST_FIXTURE(FixtureMultiStatesTest, multistates)
 //            provider.start();// starts provider in a thread and calls the overwritten function runImpl()
 //
 //			// Metric event reception test
-//            Poco::Thread::sleep(10000);
+//            std::this_thread::sleep_for(std::chrono::milliseconds(10000));
 //            CHECK_EQUAL(true, eventHandler->getVerifiedChunks());
 //            CHECK_EQUAL(true, eventHandlerAlt->getVerifiedChunks());
 //            CHECK_EQUAL(true, eventHandlerDistribution->getVerifiedChunks());
@@ -259,7 +255,7 @@ TEST_FIXTURE(FixtureMultiStatesTest, multistates)
             c->disconnect();
         }
 
-        Poco::Thread::sleep(2000);
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
         provider.shutdown();
 	}
 	catch (char const* exc)

@@ -5,11 +5,6 @@
  *      Author: matthias
  */
 
-#include "MetadataExchange.hxx"
-#include "NormalizedMessageModel.hxx"
-#include "ws-addressing.hxx"
-
-#include "OSELib/DPWS/OperationTraits.h"
 #include "OSELib/SOAP/GetActionCommand.h"
 #include "OSELib/SOAP/NormalizedMessageAdapter.h"
 

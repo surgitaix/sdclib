@@ -5,6 +5,7 @@
  *      Author: besting
  */
 
+
 #include "Poco/Net/HTTPServerRequest.h"
 #include "Poco/Net/HTTPServerResponse.h"
 
@@ -29,9 +30,10 @@
 namespace OSELib {
 namespace SDC {
 
-WaveformReportServiceHandler::WaveformReportServiceHandler(IWaveformService & service, Helper::XercesGrammarPoolProvider & grammarProvider) :
+WaveformReportServiceHandler::WaveformReportServiceHandler(IWaveformService & service, Helper::XercesGrammarPoolProvider & grammarProvider, bool p_SSL) :
 	_service(service),
-	_grammarProvider(grammarProvider)
+	_grammarProvider(grammarProvider),
+	m_SSL(p_SSL)
 {
 }
 
@@ -46,9 +48,11 @@ void WaveformReportServiceHandler::handleRequestImpl(Poco::Net::HTTPServerReques
 
 	if (soapAction == DPWS::GetMetadataTraits::RequestAction()) {
 		const std::string serverAddress(httpRequest.serverAddress().toString());
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GetMetadataActionCommand(std::move(soapHandling.normalizedMessage), _service.getMetadata(serverAddress)));
+		command = std::unique_ptr<SOAP::Command>(new SOAP::GetMetadataActionCommand(std::move(soapHandling.normalizedMessage), _service.getMetadata(serverAddress, m_SSL)));
 	} else if (soapAction == DPWS::SubscribeTraits::RequestAction()) {
-		const std::string subscriptionManagerAddress("http://" + httpRequest.serverAddress().toString() + _service.getBaseUri());
+        std::string ts_PROTOCOL = "http";
+        if(m_SSL) { ts_PROTOCOL.append("s"); }
+		const std::string subscriptionManagerAddress(ts_PROTOCOL + "://" + httpRequest.serverAddress().toString() + _service.getBaseUri());
 		command = std::unique_ptr<SOAP::Command>(new SOAP::SubscribeActionCommand(std::move(soapHandling.normalizedMessage), _service, subscriptionManagerAddress));
 	} else if (soapAction == DPWS::UnsubscribeTraits::RequestAction()) {
 		command = std::unique_ptr<SOAP::Command>(new SOAP::UnsubscribeActionCommand(std::move(soapHandling.normalizedMessage), _service));

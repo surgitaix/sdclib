@@ -19,9 +19,9 @@
 
 const std::string UDP_MULTICAST_IP_V4("239.255.255.250");
 const std::string UDP_MULTICAST_IP_V6("FF02::C");
-CONSTEXPR_MACRO uint16_t UPD_MULTICAST_DISCOVERY_PORT(3702);
+uint16_t UPD_MULTICAST_DISCOVERY_PORT(3702);
 const std::string intendationLevel1("  ");
-CONSTEXPR_MACRO std::size_t lineLength(80);
+std::size_t lineLength(80);
 const std::string separator(lineLength, '-');
 
 class MulticastHandler {

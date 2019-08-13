@@ -16,7 +16,7 @@ StaticContentController::StaticContentController(FrontController & controller, c
 {
 }
 
-Poco::Net::HTTPRequestHandler * StaticContentController::createRequestHandler(const Poco::Net::HTTPServerRequest & ) {
+Poco::Net::HTTPRequestHandler * StaticContentController::createRequestHandler(const Poco::Net::HTTPServerRequest & , bool) {
 	return new GenericContentHandler(_content);
 }
 

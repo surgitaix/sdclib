@@ -41,9 +41,8 @@
 
 using namespace SDCLib;
 
-SDCLibrary::SDCLibrary() :
-	WithLogger(OSELib::Log::BASE),
-	m_discoveryTimeMilSec(5000)
+SDCLibrary::SDCLibrary()
+: WithLogger(OSELib::Log::BASE)
 {
 	Poco::AutoPtr<Poco::ConsoleChannel> consoleChannel(new Poco::ConsoleChannel);
 	Poco::AutoPtr<Poco::SimpleFileChannel> fileChannel(new Poco::SimpleFileChannel);
@@ -64,7 +63,8 @@ SDCLibrary::SDCLibrary() :
 	createPortLists(14000, 1000);
 }
 
-SDCLibrary::~SDCLibrary() {
+SDCLibrary::~SDCLibrary()
+{
     shutdown();
 }
 
@@ -84,12 +84,13 @@ void SDCLibrary::startup(OSELib::LogLevel debugLevel) {
 	}
 }
 
-void SDCLibrary::shutdown() {
-	if (initialized) {
+void SDCLibrary::shutdown()
+{
+    if(initialized)
+    {
         initialized = false;
         _latestPingManager.reset();
-        xercesc::XMLPlatformUtils::Terminate();
-	}
+    }
 }
 
 void SDCLibrary::setPortStart(unsigned int start, unsigned int range) {

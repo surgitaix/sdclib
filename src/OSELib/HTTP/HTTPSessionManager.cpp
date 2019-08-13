@@ -92,9 +92,10 @@ private:
 	DPWS::ActiveSubscriptions & _subscriptions;
 };
 
-HTTPSessionManager::HTTPSessionManager(DPWS::ActiveSubscriptions & subscriptions) :
-	WithLogger(Log::EVENTSOURCE),
-	_subscriptions(subscriptions)
+HTTPSessionManager::HTTPSessionManager(DPWS::ActiveSubscriptions & subscriptions, bool p_SSL)
+: WithLogger(Log::EVENTSOURCE)
+, _subscriptions(subscriptions)
+, m_SSL(p_SSL)
 {
 }
 
@@ -124,13 +125,19 @@ void HTTPSessionManager::enqueMessage(const Poco::URI & destinationURI, const st
 		}
 	}
 
-	const std::string mapIndex("http://" + destinationURI.getHost() + ":" + std::to_string(destinationURI.getPort()));
+	// SSL QND
+	std::string ts_PROTOCOL = "http";
+    if(m_SSL) {
+        ts_PROTOCOL.append("s");
+    }
+
+    const std::string mapIndex(ts_PROTOCOL + "://" + destinationURI.getHost() + ":" + std::to_string(destinationURI.getPort()));
 
 	auto matchQueue(_queues.find(mapIndex));
 	if (matchQueue == _queues.end()) {
 		auto queue = std::make_shared<Poco::NotificationQueue>();
 		_queues.emplace(mapIndex, queue);
-		if (_threadpool.capacity() < _queues.size()) {
+		if (static_cast<std::size_t>(_threadpool.capacity()) < _queues.size()) {
 			_threadpool.addCapacity(_queues.size() - _threadpool.capacity() + 1);
 		}
 		std::unique_ptr<SendWorker> worker(new SendWorker(destinationURI, queue, _subscriptions));

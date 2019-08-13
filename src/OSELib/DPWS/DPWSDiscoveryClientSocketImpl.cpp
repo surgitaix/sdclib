@@ -6,7 +6,7 @@
  */
 
 #include "OSELib/DPWS/DPWSDiscoveryClientSocketImpl.h"
-#include "SDCLib/SDCInstance.h"
+#include "SDCLib/Config/NetworkConfig.h"
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/DPWS/DPWSCommon.h"
 #include "OSELib/Helper/BufferAdapter.h"
@@ -18,6 +18,7 @@
 #include <Poco/Net/SocketAddress.h>
 
 
+using namespace OSELib;
 using namespace OSELib::DPWS;
 using namespace OSELib::DPWS::Impl;
 
@@ -32,7 +33,7 @@ const MESSAGEMODEL::Envelope buildProbeMessage(const OSELib::DPWS::ProbeType & f
 	{
 		header.Action(probeUri);
 		header.To(discoveryUri);
-		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator().create().toString()));
+		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator::defaultGenerator().create().toString()));
 	}
 	MESSAGEMODEL::Envelope::BodyType body;
 	{
@@ -47,7 +48,7 @@ const MESSAGEMODEL::Envelope buildResolveMessage(const OSELib::DPWS::ResolveType
 	{
 		header.Action(resolveUri);
 		header.To(discoveryUri);
-		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator().create().toString()));
+		header.MessageID(xml_schema::Uri(Poco::UUIDGenerator::defaultGenerator().create().toString()));
 	}
 	MESSAGEMODEL::Envelope::BodyType body;
 	{
@@ -58,33 +59,33 @@ const MESSAGEMODEL::Envelope buildResolveMessage(const OSELib::DPWS::ResolveType
 }
 
 DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
-        SDCLib::SDCInstance_shared_ptr p_SDCInstance,
+        SDCLib::Config::NetworkConfig_shared_ptr p_config,
 		ByeNotificationDispatcher & byeDispatcher,
 		HelloNotificationDispatcher & helloDispatcher,
 		ProbeMatchNotificationDispatcher & probeMatchDispatcher,
 		ResolveMatchNotificationDispatcher & resolveDispatcher) :
 	WithLogger(Log::DISCOVERY),
-	m_SDCInstance(p_SDCInstance),
+	m_networkConfig(p_config),
 	_byeDispatcher(byeDispatcher),
 	_helloDispatcher(helloDispatcher),
 	_probeMatchDispatcher(probeMatchDispatcher),
 	_resolveDispatcher(resolveDispatcher),
-    m_ipv4MulticastAddress(Poco::Net::SocketAddress(p_SDCInstance->_getMulticastIPv4(), p_SDCInstance->_getMulticastPortv4())),
-    m_ipv6MulticastAddress(Poco::Net::SocketAddress(p_SDCInstance->_getMulticastIPv6(), p_SDCInstance->_getMulticastPortv6()))
+    m_ipv4MulticastAddress(Poco::Net::SocketAddress(p_config->_getMulticastIPv4(), p_config->_getMulticastPortv4())),
+    m_ipv6MulticastAddress(Poco::Net::SocketAddress(p_config->_getMulticastIPv6(), p_config->_getMulticastPortv6()))
 {
 
-    if (m_SDCInstance->getIP4enabled())
+    if (m_networkConfig->getIP4enabled())
     {
         // Create DiscoverySocket
         m_ipv4DiscoverySocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv4);
 
         // Add only interfaces bound to the SDCInstance
-        if (m_SDCInstance->isBound()) {
+        if (m_networkConfig->isBound()) {
             // Bind DiscoverySocket
             auto t_ipv4BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress::Family::IPv4, m_ipv4MulticastAddress.port());
             m_ipv4DiscoverySocket.bind(t_ipv4BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             // Add all interfaces
-            for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
+            for (auto t_interface : m_networkConfig->getNetworkInterfaces()) {
                 try
                 {
                     // Interface - Join group: Note: Fails if we enumerate a bridge that is already connected
@@ -135,17 +136,17 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
         // Add Ipv4 Socket EventHandler
         m_reactor.addEventHandler(m_ipv4DiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
 	}
-    if (m_SDCInstance->getIP6enabled())
+    if (m_networkConfig->getIP6enabled())
     {
         // Create DiscoverySocket
         m_ipv6DiscoverySocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv6);
 
         // Add only interfaces bound to the SDCInstance
-        if (m_SDCInstance->isBound()) {
+        if (m_networkConfig->isBound()) {
             // Bind DiscoverySocket
             auto t_ipv6BindingAddress = Poco::Net::SocketAddress (Poco::Net::IPAddress::Family::IPv6, m_ipv6MulticastAddress.port());
             m_ipv6DiscoverySocket.bind(t_ipv6BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
-            for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
+            for (auto t_interface : m_networkConfig->getNetworkInterfaces()) {
                 try {
                     // Interface - Join group: Note: Fails if we enumerate a bridge that is already connected
                     m_ipv6DiscoverySocket.joinGroup(m_ipv6MulticastAddress.host(), t_interface->m_if);
@@ -193,8 +194,8 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
         // Add Ipv6 Socket EventHandler
         m_reactor.addEventHandler(m_ipv6DiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
     }
-	xercesc::XMLPlatformUtils::Initialize ();
 
+    // Start the Thread with the SocketReactor
 	m_reactorThread.start(m_reactor);
 }
 
@@ -202,11 +203,11 @@ DPWSDiscoveryClientSocketImpl::~DPWSDiscoveryClientSocketImpl() {
 	m_reactor.removeEventHandler(m_ipv4DiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
 	m_reactor.removeEventHandler(m_ipv6DiscoverySocket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::ReadableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable));
 
-    for (auto t_interface : m_SDCInstance->getNetworkInterfaces()) {
+    for (auto t_interface : m_networkConfig->getNetworkInterfaces()) {
         try
         {
-            if (m_SDCInstance->getIP4enabled()) { m_ipv4DiscoverySocket.leaveGroup(m_ipv4MulticastAddress.host(), t_interface->m_if); }
-            if (m_SDCInstance->getIP6enabled()) { m_ipv6DiscoverySocket.leaveGroup(m_ipv6MulticastAddress.host(), t_interface->m_if); }
+            if (m_networkConfig->getIP4enabled()) { m_ipv4DiscoverySocket.leaveGroup(m_ipv4MulticastAddress.host(), t_interface->m_if); }
+            if (m_networkConfig->getIP6enabled()) { m_ipv6DiscoverySocket.leaveGroup(m_ipv6MulticastAddress.host(), t_interface->m_if); }
         }
         catch (...) {
             // todo fixme. This loop fails, when a network interface has serveral network addresses, i.e. 2 IPv6 global scoped addresses
@@ -222,14 +223,12 @@ DPWSDiscoveryClientSocketImpl::~DPWSDiscoveryClientSocketImpl() {
 
 	m_reactor.stop();
 	m_reactorThread.join();
-
-	xercesc::XMLPlatformUtils::Terminate ();
 }
 
 void DPWSDiscoveryClientSocketImpl::sendProbe(const ProbeType& filter) {
 	const MESSAGEMODEL::Envelope message(buildProbeMessage(filter));
 	if (message.Header().MessageID().present()) {
-		context.registerMessageId(message.Header().MessageID().get());
+		m_messagingContext.registerMessageId(message.Header().MessageID().get());
 	}
 	for (auto & socketQueue : m_socketSendMessageQueue) {
 		socketQueue.second.enqueueNotification(new SendMulticastMessage(serializeMessage(message)));
@@ -240,7 +239,7 @@ void DPWSDiscoveryClientSocketImpl::sendProbe(const ProbeType& filter) {
 void DPWSDiscoveryClientSocketImpl::sendResolve(const ResolveType& filter) {
 	const MESSAGEMODEL::Envelope message(buildResolveMessage(filter));
 	if (message.Header().MessageID().present()) {
-		context.registerMessageId(message.Header().MessageID().get());
+		m_messagingContext.registerMessageId(message.Header().MessageID().get());
 	}
 	for (auto & socketQueue : m_socketSendMessageQueue) {
 		socketQueue.second.enqueueNotification(new SendMulticastMessage(serializeMessage(message)));
@@ -256,23 +255,16 @@ void DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable(Poco::Net::Readabl
 		return;
 	}
 
-    // Only read if this belongs to this SDCInstance! - Peek first
-	//This causes socket exceptions on Windows because a size of zero for the buffer is too small to peek and this is not catched in Poco Debug
-	//Poco::Net::SocketAddress t_sender;
-    //socket.receiveFrom(nullptr, 0, t_sender, MSG_PEEK); 
-	//if (m_SDCInstance->isBound() && !m_SDCInstance->belongsToSDCInstance(t_sender.host())) {
-    //    return;
-    //}
+    // Only read if this belongs to this Config! - Peek first
+    Poco::Net::SocketAddress t_sender;
+    Poco::Buffer<char> t_peekBuf(1);
+    socket.receiveFrom(t_peekBuf.begin(), 1, t_sender, MSG_PEEK);
+    if (m_networkConfig->isBound() && !m_networkConfig->belongsTo(t_sender.host())) {
+        return;
+    }
 
 	Poco::Buffer<char> buf(available);
 	Poco::Net::SocketAddress remoteAddr;
-
-	// Only read if this belongs to this SDCInstance! - Peek first
-	socket.receiveFrom(buf.begin(), available, remoteAddr, MSG_PEEK);
-	if (m_SDCInstance->isBound() && !m_SDCInstance->belongsToSDCInstance(remoteAddr.host())) {
-	    return;
-	}
-
 	const int received(socket.receiveFrom(buf.begin(), available, remoteAddr, 0));
 	Helper::BufferAdapter adapter(buf, received);
 	std::unique_ptr<MESSAGEMODEL::Envelope> message(parseMessage(adapter));
@@ -283,13 +275,14 @@ void DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable(Poco::Net::Readabl
 	if (! message->Header().MessageID().present()) {
 		return;
 	}
-	if (! context.registerMessageId(message->Header().MessageID().get())) {
+	if (! m_messagingContext.registerMessageId(message->Header().MessageID().get())) {
+        log_debug([&] { return "DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable. registerMessageId failed!"; });
 		return;
 	}
 	if (! message->Header().AppSequence().present()) {
 		return;
 	}
-	if (! context.registerAppSequence(message->Header().AppSequence().get())) {
+	if (! m_messagingContext.registerAppSequence(message->Header().AppSequence().get())) {
 		return;
 	}
 	if (message->Body().Hello().present()) {
@@ -324,7 +317,8 @@ void DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable(Poco::Net::Readabl
 		return;
 	}
 	if (message->Header().MessageID().present()) {
-		if (! context.registerMessageId(message->Header().MessageID().get())) {
+		if (!m_messagingContext.registerMessageId(message->Header().MessageID().get())) {
+            log_debug([&] { return "DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable. registerMessageId failed!"; });
 			return;
 		}
 	}
@@ -399,7 +393,6 @@ bool DPWSDiscoveryClientSocketImpl::verifyBye(const MESSAGEMODEL::Envelope & mes
 		log_error([&] { return "Bye message: RelatesTo field should not be present."; });
 		return false;
 	}
-
 	return true;
 }
 

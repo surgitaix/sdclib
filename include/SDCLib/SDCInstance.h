@@ -28,81 +28,37 @@
 #include "Prerequisites.h"
 #include "config/config.h"
 
-#include "OSELib/DPWS/DPWS11Constants.h"
+#include "SDCLib/Config/NetworkConfig.h"
+#include "SDCLib/Config/SSLConfig.h"
+
+
 #include "OSELib/DPWS/PingManager.h"
-
-#include <Poco/Net/NetworkInterface.h>
-#include <Poco/Net/SocketDefs.h>
-
 
 namespace SDCLib
 {
-    const Poco::Net::IPAddress SUBNET_CLASS_A = Poco::Net::IPAddress("255.0.0.0");
-    const Poco::Net::IPAddress SUBNET_CLASS_B = Poco::Net::IPAddress("255.255.0.0");
-    const Poco::Net::IPAddress SUBNET_CLASS_C = Poco::Net::IPAddress("255.255.255.0");
-
-    using IPAddress = Poco::Net::IPAddress;
-    using IPAddressList = std::vector<IPAddress>;
 
     using SDCInstanceID = std::string;
-
-    class NetInterface {
-    public:
-        std::string m_name;
-        IPAddress m_IPv4;
-        IPAddress m_IPv6;
-        Poco::Net::NetworkInterface m_if;
-
-        bool SO_REUSEADDR_FLAG = true;
-        bool SO_REUSEPORT_FLAG = false;
-
-
-        NetInterface (const Poco::Net::NetworkInterface& p_if)
-          : m_if(p_if) {
-              m_name = m_if.adapterName();
-
-        }
-      };
-
-    using NetInterface_shared_ptr = std::shared_ptr<NetInterface>;
-    using NI_List = std::vector<NetInterface_shared_ptr>;
 
     class SDCInstance
     {
     private:
 
         static std::atomic_uint s_IDcounter;
-        SDCInstanceID m_ID;
+        SDCInstanceID m_ID = "INVALID_ID";
 
         mutable std::mutex m_mutex;
 
         std::atomic<bool> m_init = ATOMIC_VAR_INIT(false);
-        NI_List ml_networkInterfaces;
-        NetInterface_shared_ptr m_MDPWSInterface = nullptr;
-        SDCPort m_MDPWSPort = Config::SDC_DEFAULT_MDPWS_PORT;
 
-        std::atomic<bool> m_IP4enabled = ATOMIC_VAR_INIT(true);
-        std::atomic<bool> m_IP6enabled = ATOMIC_VAR_INIT(true);
-
-        std::chrono::milliseconds m_discoveryTime = std::chrono::milliseconds(Config::SDC_DISCOVERY_TIMEOUT_MS);
+        Config::SDCConfig_shared_ptr m_SDCConfig = nullptr;
 
         std::unique_ptr<OSELib::DPWS::PingManager> _latestPingManager;
 
-
-        // Network settings
-        std::string m_MULTICAST_IPv4 = OSELib::UDP_MULTICAST_DISCOVERY_IP_V4;
-        std::string m_MULTICAST_IPv6 = OSELib::UDP_MULTICAST_DISCOVERY_IP_V6;
-        std::string m_STREAMING_IPv4 = OSELib::UDP_MULTICAST_STREAMING_IP_V4;
-        std::string m_STREAMING_IPv6 = OSELib::UDP_MULTICAST_STREAMING_IP_V6;
-
-        SDCPort m_PORT_MULTICASTv4 = OSELib::UPD_MULTICAST_DISCOVERY_PORT;
-        SDCPort m_PORT_MULTICASTv6 = OSELib::UPD_MULTICAST_DISCOVERY_PORT;
-        SDCPort m_PORT_STREAMINGv4 = OSELib::UPD_MULTICAST_STREAMING_PORT;
-        SDCPort m_PORT_STREAMINGv6 = OSELib::UPD_MULTICAST_STREAMING_PORT;
-
     public:
 
-        SDCInstance(SDCPort p_MDPWSPort = Config::SDC_DEFAULT_MDPWS_PORT, bool p_init = true);
+        explicit SDCInstance(bool p_init = true);
+        explicit SDCInstance(Config::SDCConfig_shared_ptr p_config, bool p_init = true);
+        explicit SDCInstance(SDCPort p_MDPWSPort, bool p_init);
 
         // Special Member Functions
         SDCInstance(const SDCInstance& p_obj) = delete;
@@ -116,59 +72,42 @@ namespace SDCLib
         bool init();
         bool isInit() const { return m_init; }
 
+        // Convenience Helper to get Config and Subconfig parts
+        Config::SDCConfig_shared_ptr getSDCConfig() const;
+        Config::NetworkConfig_shared_ptr getNetworkConfig() const;
+        Config::SSLConfig_shared_ptr getSSLConfig() const;
+
+
         bool bindToDefaultNetworkInterface(bool p_useAsMDPWS = true);
-        bool bindToNetworkInterface(const std::string& ps_networkInterfaceName, bool p_useAsMDPWS = false);
-        NI_List getNetworkInterfaces() const { return ml_networkInterfaces; }
-        size_t getNumNetworkInterfaces() const { return ml_networkInterfaces.size(); }
+        bool bindToInterface(const std::string& ps_networkInterfaceName, bool p_useAsMDPWS = false);
         bool _networkInterfaceBoundTo(std::string ps_adapterName) const;
-        bool isBound() const;
-
-        // Note: Can be nullptr!
-        NetInterface_shared_ptr getMDPWSInterface() { return m_MDPWSInterface; }
-        // Listening Port of the HTTP Server
-        SDCPort getMDPWSPort() { return m_MDPWSPort; }
-
-        // Internal usage
-        std::string _getMulticastIPv4() const { return m_MULTICAST_IPv4; }
-        std::string _getMulticastIPv6() const { return m_MULTICAST_IPv6; }
-        std::string _getStreamingIPv4() const { return m_STREAMING_IPv4; }
-        std::string _getStreamingIPv6() const { return m_STREAMING_IPv6; }
-        SDCPort _getMulticastPortv4() const { return m_PORT_MULTICASTv4; }
-        SDCPort _getMulticastPortv6() const { return m_PORT_MULTICASTv6; }
-        SDCPort _getStreamingPortv4() const { return m_PORT_STREAMINGv4; }
-        SDCPort _getStreamingPortv6() const { return m_PORT_STREAMINGv6; }
 
         // Configure own Params
         bool setDiscoveryConfigV4(std::string ps_IP_MC, SDCPort p_portMC, std::string ps_IP_Streaming, SDCPort p_portStreaming);
         bool setDiscoveryConfigV6(std::string ps_IP_MC, SDCPort p_portMC, std::string ps_IP_Streaming, SDCPort p_portStreaming);
 
-        // Note: Only works with IPv4 IPAddresses!
-        bool belongsToSDCInstance(Poco::Net::IPAddress p_IP) const;
 
-        // IP4 / IP6
-        bool getIP4enabled() const { return m_IP4enabled; }
-        bool getIP6enabled() const { return m_IP6enabled; }
-        void setIP4enabled(bool p_set) { m_IP4enabled = p_set; }
-        void setIP6enabled(bool p_set) { m_IP6enabled = p_set; }
+        // SSL (optional) WIP!
+        bool initSSL(Poco::Net::Context::VerificationMode p_modeClient = Poco::Net::Context::VERIFY_RELAXED, Poco::Net::Context::VerificationMode p_modeServer = Poco::Net::Context::VERIFY_RELAXED);
 
-        // Discovery Time
-        /**
-         * @brief Set the time the service manager waits for the device discovery
-         *
-         * @param discoveryTimeSec The time in milliseconds to wait while discovery
-         */
+        // IP4 / IP6 - Forward to the Config
+        bool getIP4enabled() const;
+        bool getIP6enabled() const;
+        void setIP4enabled(bool p_set);
+        void setIP6enabled(bool p_set);
         bool setDiscoveryTime(std::chrono::milliseconds p_time);
-        /**
-         * @brief Get the time the service manager waits for the device discovery
-         *
-         * @return The time in milliseconds to wait for discovery
-         */
         std::chrono::milliseconds getDiscoveryTime() const;
+
 
         void dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pingManager);
 
     private:
 
+        /**
+         * @brief Get a free network port to listen.
+         *
+         * @return First argument true if second argument contains a valid port.
+         */
         std::pair<bool, SDCPort> findFreePort() const;
 
         void _cleanup();

@@ -20,8 +20,8 @@ DeviceServiceController::DeviceServiceController(HTTP::FrontController & control
 
 DeviceServiceController::~DeviceServiceController() = default;
 
-Poco::Net::HTTPRequestHandler * DeviceServiceController::createRequestHandler(const Poco::Net::HTTPServerRequest & ) {
-	return new DeviceHandler(_serviceImpl);
+Poco::Net::HTTPRequestHandler * DeviceServiceController::createRequestHandler(const Poco::Net::HTTPServerRequest & , bool p_SSL) {
+	return new DeviceHandler(_serviceImpl, p_SSL);
 }
 
 } /* namespace DPWS */

@@ -12,7 +12,10 @@
 
 #include "OSELib/fwd.h"
 
-#include <xercesc/dom/DOM.hpp>
+namespace XERCES_CPP_NAMESPACE
+{
+    class DOMElement;
+}
 
 namespace OSELib {
 namespace Helper {

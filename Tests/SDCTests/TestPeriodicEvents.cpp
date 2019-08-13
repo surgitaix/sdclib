@@ -421,7 +421,7 @@ struct FixturePeriodicEvents : Tests::AbstractSDCLibFixture {
 };
 
 SUITE(SDC) {
-TEST_FIXTURE(FixturePeriodicEvents, periodicevents)
+TEST_FIXTURE(FixturePeriodicEvents, PeriodicEvents)
 {
 	try
 	{
@@ -456,7 +456,7 @@ TEST_FIXTURE(FixturePeriodicEvents, periodicevents)
             CHECK_EQUAL(true, consumer->registerStateEventHandler(&locationContextStateHandler));
 
             // Run for some time to receive incoming metric events.
-			Poco::Thread::sleep(2000);
+			std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 
 
 			// TODO: fails

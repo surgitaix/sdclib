@@ -5,8 +5,8 @@
  *      Author: matthias
  */
 
-#ifndef DPWS_ISERVICE_H_
-#define DPWS_ISERVICE_H_
+#ifndef OSELIB_DPWS_ISERVICE_H_
+#define OSELIB_DPWS_ISERVICE_H_
 
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/OperationTraits.h"
@@ -20,10 +20,10 @@ public:
 
 	virtual std::string getBaseUri() const = 0;
 	virtual std::string getWSDL() = 0;
-	virtual GetMetadataTraits::Response getMetadata(const std::string & serverAddress) = 0;
+	virtual GetMetadataTraits::Response getMetadata(const std::string & serverAddress, bool p_SSL) = 0;
 };
 
 } /* namespace DPWS */
 } /* namespace OSELib */
 
-#endif /* DPWS_ISERVICE_H_ */
+#endif /* OSELIB_DPWS_ISERVICE_H_ */

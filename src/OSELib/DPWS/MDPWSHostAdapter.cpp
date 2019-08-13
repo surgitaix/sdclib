@@ -16,7 +16,7 @@
 using namespace OSELib::DPWS;
 
 MDPWSHostAdapter::MDPWSHostAdapter(
-        SDCLib::SDCInstance_shared_ptr p_SDCInstance,
+        SDCLib::Config::NetworkConfig_shared_ptr p_config,
 		const AddressType & epr,
 		const ScopesType & scopes,
 		const TypesType & types,
@@ -27,7 +27,7 @@ MDPWSHostAdapter::MDPWSHostAdapter(
 	_types(types),
 	_xaddresses(xaddresses),
 	_metadataVersion(metadataVersion),
-    _impl(new Impl::DPWSHostSocketImpl(p_SDCInstance, *this, *this))
+    _impl(new Impl::DPWSHostSocketImpl(p_config, *this, *this))
 {
 }
 MDPWSHostAdapter::~MDPWSHostAdapter() = default;

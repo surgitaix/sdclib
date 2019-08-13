@@ -50,11 +50,9 @@ set(TARGET_PUBLIC_HEADERS       ${GEN_DIR}/BICEPS_MessageModel.hxx
                                 ${GEN_DIR}/wsdd-dpws-1.1-schema-os-fwd.hxx
                                 ${GEN_DIR}/wsdl-custom-fwd.hxx
                                 ${GEN_DIR}/wsdl-soap-binding-fwd.hxx
-                                
                                 # OSDM
                                 ${GEN_DIR}/osdm.hxx
                                 ${GEN_DIR}/osdm-fwd.hxx
-                                
 )
 
 # Add the sources to the target
@@ -89,7 +87,9 @@ target_sources(${CURRENT_TARGET_NAME}
 target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${GEN_DIR} )
 
 
-
+# install
+install(DIRECTORY ${GEN_DIR}/ DESTINATION ${PATH_INSTALL_INCLUDE}/${CURRENT_TARGET_NAME}
+            FILES_MATCHING PATTERN "*.hxx")
 
 
 

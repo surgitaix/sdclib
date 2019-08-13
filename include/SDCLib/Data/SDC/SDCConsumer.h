@@ -30,14 +30,14 @@
 
 #include "OSELib/DPWS/DeviceDescription.h"
 #include "SDCLib/Data/SDC/SDCConsumerAdapter.h"
+#include "SDCLib/Data/SDC/SDCConsumerOperationInvokedHandler.h"
 
 #include <atomic>
 #include <deque>
 #include <map>
 #include <memory>
 #include <string>
-
-#include "Poco/Mutex.h"
+#include <mutex>
 
 #include "OSELib/Helper/WithLogger.h"
 
@@ -57,6 +57,9 @@ namespace SDC {
 class SDCConsumer final : public OSELib::WithLogger {
 friend class FutureInvocationState;
 friend class SDCConsumerAdapter;
+//TODO kick after consumer state handler refactoring
+friend class SDCConsumerOperationInvokedHandler;
+
 // todo remove friend classes and only use oselibconsumer adapter
 friend struct OSELib::ContextServiceEventSink;
 friend struct OSELib::EventReportEventSink;
@@ -294,13 +297,13 @@ private:
     OSELib::DPWS::DeviceDescription _deviceDescription;
 
     std::map<int, FutureInvocationState *> fisMap;
-    Poco::Mutex transactionMutex;
+    std::mutex m_transactionMutex;
 
     std::shared_ptr<MdibContainer> mdib;
     std::deque<TransactionState> transactionQueue;
-	Poco::Mutex mdibVersionMutex;
-	Poco::Mutex requestMutex;
-    Poco::Mutex eventMutex;
+	std::mutex m_mdibVersionMutex;
+	std::mutex m_requestMutex;
+    std::mutex m_eventMutex;
     std::map<std::string, SDCConsumerOperationInvokedHandler *> eventHandlers;
     SDCConsumerConnectionLostHandler * connectionLostHandler = nullptr;
     // todo: kick

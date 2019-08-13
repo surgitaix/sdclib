@@ -5,10 +5,9 @@
  *      Author: matthias
  */
 
-#ifndef DPWS_TYPES_H_
-#define DPWS_TYPES_H_
+#ifndef OSELIB_DPWS_TYPES_H_
+#define OSELIB_DPWS_TYPES_H_
 
-#include "ws-addressing-fwd.hxx"
 #include "wsdd-discovery-1.1-schema-os-fwd.hxx"
 #include "BICEPS_MessageModel-fwd.hxx"
 
@@ -113,4 +112,4 @@ public:
 }
 }
 
-#endif /* DPWS_TYPES_H_ */
+#endif /* OSELIB_DPWS_TYPES_H_ */

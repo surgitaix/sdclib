@@ -5,13 +5,12 @@
  *      Author: matthias
  */
 
-#ifndef DPWS_SUBSCRIPTIONMANAGER_H_
-#define DPWS_SUBSCRIPTIONMANAGER_H_
+#ifndef OSELIB_DPWS_SUBSCRIPTIONMANAGER_H_
+#define OSELIB_DPWS_SUBSCRIPTIONMANAGER_H_
 
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/ActiveSubscriptions.h"
 #include "OSELib/DPWS/ISubscriptionManager.h"
-#include "OSELib/DPWS/OperationTraits.h"
 #include "OSELib/Helper/WithLogger.h"
 
 namespace OSELib {
@@ -19,7 +18,7 @@ namespace DPWS {
 
 class SubscriptionManager : public ISubscriptionManager, public WithLogger {
 public:
-	SubscriptionManager(const std::vector<xml_schema::Uri> & allowedEventActions);
+	SubscriptionManager(const std::vector<xml_schema::Uri> & allowedEventActions, bool p_SSL);
 
 	template <class TraitsType>
 	void fireEvent(const typename TraitsType::ReportType & report);
@@ -37,4 +36,4 @@ private:
 } /* namespace DPWS */
 } /* namespace OSELib */
 
-#endif /* DPWS_SUBSCRIPTIONMANAGER_H_ */
+#endif /* OSELIB_DPWS_SUBSCRIPTIONMANAGER_H_ */

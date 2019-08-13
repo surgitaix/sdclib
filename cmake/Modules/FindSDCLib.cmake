@@ -8,7 +8,7 @@
 # - Find SDCLib
 # Find the SDCLib includes and libraries
 # This module defines:
-# SDCLib_ROOT_DIR, SDCLib_INCLUDE_DIRS, SDCLib_LIBRARY_DIRS, SDCLib_FOUND
+# SDCLib_ROOT_DIR, SDCLib_INCLUDE_DIRS, SDCLib_DEFINITIONS, SDCLib_LIBRARY_DIRS, SDCLib_FOUND
 
 ################################################################################
 # Here we have to add a few pathes to get it working
@@ -23,7 +23,20 @@ if(SDCLib_FOUND)
 endif()
 
 # Init Flag to false
-set(SDCLib_FOUND FALSE)
+set(SDCLib_FOUND FALSE CACHE STRING "SDCLib including its dependencies found or not.")
+#
+# Set other variables
+set(SDCLib_LIBRARIES            "" CACHE STRING "Library file of SDCLib.")
+set(SDCLib_INCLUDE_DIRS         "" CACHE STRING "All include directories of the SDCLib.")
+set(SDCLib_DEFINITIONS          "" CACHE STRING "All Compile Definitions of the SDCLib.")
+set(SDCLib_OPTIONS              "" CACHE STRING "All Compile Options of the SDCLib.")
+# Dependencies
+set(SDCLib_DEPS_LIBRARIES       "" CACHE STRING "List of library files to link the SDCLib to.")
+set(SDCLib_DEPS_INCLUDE_DIRS    "" CACHE STRING "List of all include directories SDCLib dependencies.")
+set(SDCLib_DEPS_DEFINITIONS     "" CACHE STRING "List of all compile definitions of SDCLib dependencies.")
+
+
+
 ################################################################################
 
 
@@ -100,7 +113,7 @@ set(SDCLib_INCLUDE_DIRS     ${SDCLib_ROOT_DIR}/include
 
 ################################################################################
 # Clear the given path of all symlinks
-get_filename_component(SDCLib_SEARCH_BIN ${SDCLib_LIBRARY_DIRS} REALPATH)
+get_filename_component(SDCLib_SEARCH_LIB ${SDCLib_LIBRARY_DIRS} REALPATH)
 ################################################################################
 # Platform specific Parameters
 #
@@ -109,9 +122,9 @@ if (CMAKE_SYSTEM_NAME MATCHES "Linux")
     # Set the library based on build type
     if (CMAKE_BUILD_TYPE)
         if (CMAKE_BUILD_TYPE STREQUAL "Release")
-            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_BIN}/libSDCLib.so)
+            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/libSDCLib.so)
         else()
-            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_BIN}/libSDCLib_d.so)
+            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/libSDCLib${CMAKE_DEBUG_POSTFIX}.so)
         endif()
     else()
         message(SEND_ERROR "Trying to determine SDCLib type, but no build type specified yet. Specify one first, before calling findSDCLib!")
@@ -121,22 +134,69 @@ endif()
 
 # FIXME: Check if files are there!
 if (CMAKE_SYSTEM_NAME MATCHES "Windows")
-    message(s"CMAKE_SYSTEM_NAME WINDOWS: UNTESTED!")
     # Set the library based on build type
-	##HACK build/lib
-	set(SDCLib_LIBRARY_DIRS ${SDCLib_LIBRARY_DIRS} "${SDCLib_SEARCH_BIN}/build/lib")
-    set(SDCLib_LIBRARIES 
-			ws2_32 iphlpapi 
-			debug SDCLib_d		debug PocoFoundationmdd 	debug PocoNetmdd
-			optimized SDCLibmd	optimized PocoFoundationmd 	optimized PocoNetmd)
-			
-	#TODO we need the xsd4 include dir...
+    if(CMAKE_BUILD_TYPE)
+        if(CMAKE_BUILD_TYPE STREQUAL "Release")
+            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/SDCLib.lib)
+        else()
+            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/SDCLib${CMAKE_DEBUG_POSTFIX}.lib)
+        endif()
+    else()
+        message(SEND_ERROR "Trying to determine SDCLib type, but no build type specified yet. Specify one first, before calling findSDCLib!")
+        RETURN()
+    endif()
+#	if(MSVC)
+#		##HACK build/lib
+#		set(SDCLib_LIBRARY_DIRS ${SDCLib_LIBRARY_DIRS} "${SDCLib_SEARCH_BIN}/build/lib")
+#	    set(SDCLib_LIBRARIES 
+#				ws2_32 iphlpapi 
+#				debug SDCLib_d		debug PocoFoundationmdd 	debug PocoNetmdd
+#				optimized SDCLibmd	optimized PocoFoundationmd 	optimized PocoNetmd)
+#			
+#		#TODO we need the xsd4 include dir...
+#	endif()
 endif()
+
+################################################################################
+# Compile Definitions
 ################################################################################
 
+if(CMAKE_SYSTEM_NAME MATCHES "Linux")
+    list(APPEND SDCLib_DEFINITIONS -D_LINUX)
+    list(APPEND SDCLib_DEFINITIONS -Dlinux)
+    # constexpr macro / checking for C++11 is done above allready
+    # Note: Shouldnt this be fixed inside the code? - only used once as far as I can tell...!
+    list(APPEND SDCLib_DEFINITIONS -DCONSTEXPR_MACRO=constexpr)
+endif()
 
 
+if(CMAKE_SYSTEM_NAME MATCHES "Windows")
+    list(APPEND SDCLib_DEFINITIONS -D_WIN32)
 
+    # Libraries - WIP... maybe include in Dependencies?
+    #SET(PTHREAD_LIB_DIR "${PROJECT_SOURCE_DIR}/../pthread/lib/" CACHE PATH "Path to PTHREAD libraries.")
+
+    # define preprocessor macros for Visual Studio: no CONSTEXPR_MACRO before VS15
+    MESSAGE( STATUS "MSVS compiler version: " ${CMAKE_CXX_COMPILER_VERSION} )
+    # Note: Shouldnt this be fixed inside the code? - only used once as far as I can tell...!
+    if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 19.00)
+        list(APPEND SDCLib_DEFINITIONS -DCONSTEXPR_MACRO= )
+    else()
+        list(APPEND SDCLib_DEFINITIONS -DCONSTEXPR_MACRO=constexpr)
+    endif()
+endif()
+
+
+################################################################################
+# Compile Options
+################################################################################
+if(CMAKE_BUILD_TYPE)
+    if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+        # enable debug and profiling informations for sprof
+        list(APPEND SDCLib_OPTIONS -ggdb -g -O0)
+    endif()
+endif()
+################################################################################
 
 
 ################################################################################
@@ -154,22 +214,95 @@ if (CMAKE_SYSTEM_NAME MATCHES "Linux")
 		message(STATUS "FOUND ${SDCLib_LIBRARIES}!")
 	endif()
 endif()
-# Set flag
-set(SDCLib_FOUND TRUE)
-################################################################################
-
 
 ################################################################################
+
 ################################################################################
+# Note: This script will also gather SDCLib dependencies inside the given
+#       variables for better handling.
 ################################################################################
-# XERCES - qnd
+# explicitly link atomic -> Needed to build on ARM
+list(APPEND SDCLib_LIBRARIES atomic)
+################################################################################
+
+################################################################################
+# Other Dependencies
+# - XercesC
+# - Poco
+# - XSD [coming soon]
+################################################################################
+#
+#
+#
+################################################################################
+# XERCESC
 # Note: Dependency - Just for convenience (bad style!)
 #       Adding SDCLib as shared lib, we need xerces too
 #       As quick hack, append it to the SDCLib variable
 ################################################################################
-message(STATUS "-Looking for XercesLibrary...")
-find_library(XercesLibrary NAMES xerces-c REQUIRED)
-# Append Xerces - quick hack - remove this for cleaner resource management later
-list(APPEND SDCLib_LIBRARIES ${XercesLibrary})
+message(STATUS "-Looking for XercesC...")
+include(SDC_Xerces) # This adds an imported target WIP
+
+# Found it?
+if(NOT XercesC_FOUND)
+  message(FATAL_ERROR "Failed to find XercesC!")
+endif()
+
+# Append Xerces
+if (CMAKE_BUILD_TYPE STREQUAL Release)
+    list(APPEND SDCLib_DEPS_LIBRARIES ${XercesC_LIBRARY_RELEASE})
+else ()
+    if(NOT XercesC_LIBRARY_DEBUG)
+        message(STATUS "Could not find XercesC Debug Library, using release version!")
+        list(APPEND SDCLib_DEPS_LIBRARIES ${XercesC_LIBRARY_RELEASE})
+    else()
+        list(APPEND SDCLib_DEPS_LIBRARIES ${XercesC_LIBRARY_DEBUG})
+    endif()
+endif()
 #list(APPEND SDCLib_LIBRARIES ${ADDITIONAL_LIBS})
+################################################################################
+#
+#
+#
+################################################################################
+# Poco (Some components needed)
+# - Foundation
+# - Net
+# - Crypto
+# - Util
+# - NetSSL
+################################################################################
+set(POCO_SEARCH_DIRS ${SDCLib_ROOT_DIR}/Dependencies/Poco CACHE STRING "Poco Root folder")
+include(SDC_Poco)
+
+# Found it?
+if(NOT POCO_FOUND)
+  message(FATAL_ERROR "Failed to find Poco!")
+endif()
+
+# Append Libraries
+list(APPEND SDCLib_DEPS_LIBRARIES ${POCO_LIBRARIES})
+
+# Append Include Dirs
+list(APPEND SDCLib_INCLUDE_DIRS ${POCO_INCLUDE_DIRS})
+list(APPEND SDCLib_DEPS_INCLUDE_DIRS ${POCO_INCLUDE_DIRS})
+
+# Append Compile Definitions
+list(APPEND SDCLib_DEPS_DEFINITIONS ${POCO_COMPILE_DEFINITIONS})
+################################################################################
+
+
+################################################################################
+# Threads - prefer pthreads
+################################################################################
+set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
+set(THREADS_PREFER_PTHREAD_FLAG TRUE)
+find_package(Threads REQUIRED)
+list(APPEND SDCLib_DEPS_LIBRARIES ${CMAKE_THREAD_LIBS_INIT})
+################################################################################
+
+
+################################################################################
+# Set flag
+set(SDCLib_FOUND TRUE)
 ################################################################################

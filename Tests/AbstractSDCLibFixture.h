@@ -23,30 +23,26 @@ public:
 		WithLogger(OSELib::Log::BASE),
 		testname(testname)
 	{
-		log_notice([&]{ return testname + ":  Startup."; });
+		log_notice([&]{ return std::string(testname + ":  Startup."); });
 		SDCLibrary::getInstance().startup(debuglevel);
 
 	}
 
 	virtual ~AbstractSDCLibFixture() {
 		SDCLibrary::getInstance().shutdown();
-		log_notice([&]{ return testname + ":  Shutdown."; });
+		log_notice([&]{ return  std::string(testname + ":  Shutdown."); });
 	}
 
 public:
-
-    SDCLib::SDCPort getNewPort() { return m_port++; }
 
     SDCLib::SDCInstance_shared_ptr createSDCInstance()
     {
         // Init SDCInstance
         // Create a new SDCInstance (dont init yet) - give it a new port (just increment)
-        log_notice([]{ return "Creating new SDCInstance..."; });
-        auto t_SDCInstance = std::make_shared<SDCInstance>(getNewPort(), false);
+        auto t_SDCInstance = std::make_shared<SDCInstance>(false);
         // Init
-        log_notice([]{ return "Init SDCInstance..."; });
         if(!t_SDCInstance->init()) {
-            log_notice([]{ return "CRITICAL: Failed to init SDCInstance"; });
+            log_notice([]{ return "Failed to init SDCInstance"; });
             return nullptr;
         }
         // Some restriction
@@ -62,8 +58,6 @@ public:
 
 private:
 	const std::string testname;
-
-    std::atomic<SDCPort> m_port = ATOMIC_VAR_INIT(Config::SDC_ALLOWED_PORT_START);
 };
 
 }

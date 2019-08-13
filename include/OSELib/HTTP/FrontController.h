@@ -25,7 +25,10 @@ public:
 	void addService(const std::string & uri, Service & service);
 	Poco::Net::HTTPRequestHandler * dispatchRequest(const Poco::Net::HTTPServerRequest & request);
 
+    void setSSL(bool p_SSL) { m_SSL = p_SSL; }
+
 private:
+    bool m_SSL = true;
 	std::map<std::string, std::reference_wrapper<Service>> serviceControllers;
 };
 

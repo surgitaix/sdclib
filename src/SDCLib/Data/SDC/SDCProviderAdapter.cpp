@@ -7,18 +7,17 @@
 
 #include <iostream>
 
-#include "Poco/Mutex.h"
-#include "Poco/ThreadPool.h"
-#include "Poco/Net/HTTPServer.h"
-#include "Poco/Net/NetworkInterface.h"
-#include "Poco/Net/ServerSocket.h"
-#include "Poco/Net/IPAddress.h"
+#include <Poco/ThreadPool.h>
+#include <Poco/Net/HTTPServer.h>
+#include <Poco/Net/NetworkInterface.h>
+#include <Poco/Net/ServerSocket.h>
+#include <Poco/Net/IPAddress.h>
+#include <Poco/Net/SecureServerSocket.h>
 
 #include "BICEPS_ParticipantModel.hxx"
 #include "BICEPS_MessageModel.hxx"
 #include "MetadataExchange.hxx"
 #include "NormalizedMessageModel.hxx"
-#include "ws-addressing.hxx"
 #include "wsdd-discovery-1.1-schema-os.hxx"
 
 #include "SDCLib/SDCInstance.h"
@@ -69,8 +68,8 @@ struct DeviceImpl : public DPWS::IDevice {
 		return _metadata.getDeviceServicePath();
 	}
 
-	virtual DPWS::GetTraits::Response getMetadata(const std::string & serverAddress) override {
-		return _metadata.createDeviceMetadata(serverAddress);
+	virtual DPWS::GetTraits::Response getMetadata(const std::string & serverAddress, bool p_SSL) override {
+		return _metadata.createDeviceMetadata(serverAddress, p_SSL);
 	}
 
 	virtual std::unique_ptr<DPWS::ProbeTraits::Response> dispatch(const DPWS::ProbeTraits::Request & request) override {
@@ -105,8 +104,8 @@ struct ContextReportServiceImpl : public SDC::IContextService {
 		return wsdlLoader.getContextServiceWSDL();
 	}
 
-	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
-		return _metadata.createContextServiceMetadata(serverAddress);
+	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress, bool p_SSL) override {
+		return _metadata.createContextServiceMetadata(serverAddress, p_SSL);
 	}
 
 	virtual std::unique_ptr<DPWS::SubscribeTraits::Response> dispatch(const DPWS::SubscribeTraits::Request & request) override {
@@ -119,11 +118,11 @@ struct ContextReportServiceImpl : public SDC::IContextService {
 		return _subscriptionManager.dispatch(request, identifier);
 	}
 	virtual std::unique_ptr<SDC::GetContextStatesTraits::Response> dispatch(const SDC::GetContextStatesTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
+        std::lock_guard<std::mutex> t_lock{_provider.getMutex()};
 		return std::unique_ptr<SDC::GetContextStatesTraits::Response>(new SDC::GetContextStatesTraits::Response(_provider.GetContextStates(request)));
 	}
 	virtual std::unique_ptr<SDC::SetContextStateTraits::Response> dispatch(const SDC::SetContextStateTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
+		std::lock_guard<std::mutex> t_lock{_provider.getMutex()};
 		return std::unique_ptr<SDC::SetContextStateTraits::Response>(new SDC::SetContextStateTraits::Response(_provider.SetContextStateAsync(request)));
 	}
 
@@ -150,8 +149,8 @@ struct EventReportServiceImpl : public SDC::IEventReport {
 		return wsdlLoader.getStateEventServiceWSDL();
 	}
 
-	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
-		return _metadata.createEventServiceMetadata(serverAddress);
+	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress, bool p_SSL) override {
+		return _metadata.createEventServiceMetadata(serverAddress, p_SSL);
 	}
 
 	virtual std::unique_ptr<DPWS::SubscribeTraits::Response> dispatch(const DPWS::SubscribeTraits::Request & request) override {
@@ -185,8 +184,8 @@ struct WaveformReportServiceImpl : public SDC::IWaveformService {
 		return wsdlLoader.getWaveformServiceWSDL();
 	}
 
-	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
-		return _metadata.createStreamServiceMetadata(serverAddress, _streamingPorts);
+	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress, bool p_SSL) override {
+		return _metadata.createStreamServiceMetadata(serverAddress, _streamingPorts, p_SSL);
 	}
 
 	virtual std::unique_ptr<DPWS::SubscribeTraits::Response> dispatch(const DPWS::SubscribeTraits::Request & request) override {
@@ -222,20 +221,20 @@ struct GetServiceImpl : public SDC::IGetService {
 		return wsdlLoader.getGetServiceWSDL();
 	}
 
-	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
-		return _metadata.createGetServiceMetadata(serverAddress);
+	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress, bool p_SSL) override {
+		return _metadata.createGetServiceMetadata(serverAddress, p_SSL);
 	}
 
 	virtual std::unique_ptr<SDC::GetMDDescriptionTraits::Response> dispatch(const SDC::GetMDDescriptionTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
+		std::lock_guard<std::mutex> t_lock{_provider.getMutex()};
 		return std::unique_ptr<SDC::GetMDDescriptionTraits::Response>(new SDC::GetMDDescriptionTraits::Response(_provider.GetMdDescription(request)));
 	}
 	virtual std::unique_ptr<SDC::GetMDIBTraits::Response> dispatch(const SDC::GetMDIBTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
+		std::lock_guard<std::mutex> t_lock{_provider.getMutex()};
 		return std::unique_ptr<SDC::GetMDIBTraits::Response>(new SDC::GetMDIBTraits::Response(_provider.GetMdib(request)));
 	}
 	virtual std::unique_ptr<SDC::GetMdStateTraits::Response> dispatch(const SDC::GetMdStateTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
+		std::lock_guard<std::mutex> t_lock{_provider.getMutex()};
 		return std::unique_ptr<SDC::GetMdStateTraits::Response>(new SDC::GetMdStateTraits::Response(_provider.GetMdState(request)));
 	}
 
@@ -262,27 +261,27 @@ struct SetServiceImpl : public SDC::ISetService {
 		return wsdlLoader.getSetServiceWSDL();
 	}
 
-	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress) override {
-		return _metadata.createSetServiceMetadata(serverAddress);
+	virtual DPWS::GetMetadataTraits::Response getMetadata(const std::string & serverAddress, bool p_SSL) override {
+		return _metadata.createSetServiceMetadata(serverAddress, p_SSL);
 	}
 
 	virtual std::unique_ptr<SDC::ActivateTraits::Response> dispatch(const SDC::ActivateTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
+		std::lock_guard<std::mutex> t_lock{_provider.getMutex()};
 		return std::unique_ptr<SDC::ActivateTraits::Response>(new SDC::ActivateTraits::Response(_provider.OnActivateAsync(request)));
 	}
 
 	virtual std::unique_ptr<SDC::SetAlertStateTraits::Response> dispatch(const SDC::SetAlertStateTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
+		std::lock_guard<std::mutex> t_lock{_provider.getMutex()};
 		return std::unique_ptr<SDC::SetAlertStateTraits::Response>(new SDC::SetAlertStateTraits::Response(_provider.SetAlertStateAsync(request)));
 	}
 
 	virtual std::unique_ptr<SDC::SetStringTraits::Response> dispatch(const SDC::SetStringTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
+		std::lock_guard<std::mutex> t_lock{_provider.getMutex()};
 		return std::unique_ptr<SDC::SetStringTraits::Response>(new SDC::SetStringTraits::Response(_provider.SetStringAsync(request)));
 	}
 
 	virtual std::unique_ptr<SDC::SetValueTraits::Response> dispatch(const SDC::SetValueTraits::Request & request) override {
-		Poco::Mutex::ScopedLock lock(_provider.getMutex());
+		std::lock_guard<std::mutex> t_lock{_provider.getMutex()};
 		return std::unique_ptr<SDC::SetValueTraits::Response>(new SDC::SetValueTraits::Response(_provider.SetValueAsync(request)));
 	}
 
@@ -309,6 +308,50 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
+class Factory : public OSELib::HTTP::FrontControllerAdapter {
+public:
+    Factory(SDCProvider & provider,
+            const OSELib::DPWS::MetadataProvider & metadata,
+            OSELib::DPWS::MDPWSHostAdapter & dpwsHost,
+            OSELib::DPWS::SubscriptionManager & subscriptionManager,
+            std::set<int> & strPorts,
+            bool p_SSL) :
+        FrontControllerAdapter(_frontController),
+        deviceStub(metadata, dpwsHost),
+        contextStub(provider, metadata, subscriptionManager),
+        eventReportStub(metadata, subscriptionManager),
+        getServiceStub(provider, metadata),
+        setServiceStub(provider, metadata, subscriptionManager),
+        waveformReportStub(metadata, subscriptionManager, strPorts),
+        _deviceService(_frontController, deviceStub),
+        _contextService(_frontController, contextStub),
+        _getService(_frontController, getServiceStub),
+        _setService(_frontController, setServiceStub),
+        _eventReportService(_frontController, eventReportStub),
+        _waveformReportService(_frontController, waveformReportStub)
+    {
+        _frontController.setSSL(p_SSL);
+    }
+
+    virtual ~Factory() = default;
+
+    private:
+        OSELib::DeviceImpl deviceStub;
+        OSELib::ContextReportServiceImpl contextStub;
+        OSELib::EventReportServiceImpl eventReportStub;
+        OSELib::GetServiceImpl getServiceStub;
+        OSELib::SetServiceImpl setServiceStub;
+        OSELib::WaveformReportServiceImpl waveformReportStub;
+
+        OSELib::HTTP::FrontController _frontController;
+        OSELib::DPWS::DeviceServiceController _deviceService;
+        OSELib::ContextServiceController _contextService;
+        OSELib::GetServiceController _getService;
+        OSELib::SetServiceController _setService;
+        OSELib::EventReportServiceController _eventReportService;
+        OSELib::WaveformEventReportServiceController _waveformReportService;
+};
+
 SDCProviderAdapter::SDCProviderAdapter(SDCProvider & provider) :
 	_provider(provider),
 	_threadPool(new Poco::ThreadPool())
@@ -319,18 +362,22 @@ SDCProviderAdapter::~SDCProviderAdapter() = default;
 
 bool SDCProviderAdapter::start() {
 
-	Poco::Mutex::ScopedLock lock(mutex);
+	std::lock_guard<std::mutex> lock{m_mutex};
 	if (_dpwsHost || _subscriptionManager || _httpServer) {
 		throw std::runtime_error("Service is already running..");
 	}
 
 	OSELib::DPWS::MetadataProvider metadata(_provider.getDeviceCharacteristics());
 
-    if(!_provider.getSDCInstance()->getMDPWSInterface()) {
+
+    auto t_networkConfig = _provider.getSDCInstance()->getNetworkConfig();
+    assert(t_networkConfig != nullptr);
+
+    if(!t_networkConfig->getMDPWSInterface()) {
         return false;
     }
 
-    auto t_interface = _provider.getSDCInstance()->getMDPWSInterface();
+    auto t_interface = t_networkConfig->getMDPWSInterface();
     if(!t_interface) {
         std::cout << "Failed to start SDCProviderAdapter: Set MDPWSInterface first!" << std::endl;
         return false;
@@ -338,26 +385,31 @@ bool SDCProviderAdapter::start() {
 
     // todo: right now only binding to one interface is possible -> implementation for more than one interface is needed!
     auto t_bindingAddress = t_interface->m_if.address();
-    auto t_port = _provider.getSDCInstance()->getMDPWSPort();
+    auto t_port = t_networkConfig->getMDPWSPort();
 
-	Poco::Net::ServerSocket ss;
-	const Poco::Net::SocketAddress socketAddress(t_bindingAddress, t_port);
-	ss.bind(socketAddress);
-	ss.listen();
+    std::string ts_PROTOCOL = "http";
+    const Poco::Net::SocketAddress socketAddress(t_bindingAddress, t_port);
+
+    // Use SSL - HTTP'S'
+    if(_provider.getSDCInstance()->getSSLConfig()->isInit()) {
+        ts_PROTOCOL.append("s");
+    }
 
 	// add address to to DPWS xAddresses so that searching devices know on which address to connect to device
 	OSELib::DPWS::XAddressesType xAddresses;
-	xAddresses.push_back(OSELib::DPWS::AddressType("http://" + t_bindingAddress.toString() + ":" + std::to_string(t_port) + metadata.getDeviceServicePath()));
+	xAddresses.push_back(OSELib::DPWS::AddressType(ts_PROTOCOL + "://" + t_bindingAddress.toString() + ":" + std::to_string(t_port) + metadata.getDeviceServicePath()));
 
 	OSELib::DPWS::TypesType types;
 	types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_DPWS, "Device"));
 	types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_MDPWS, "MedicalDevice"));
 
-	_dpwsHost = std::unique_ptr<OSELib::DPWS::MDPWSHostAdapter>(new OSELib::DPWS::MDPWSHostAdapter(_provider.getSDCInstance(),
+	_dpwsHost = std::unique_ptr<OSELib::DPWS::MDPWSHostAdapter>(new OSELib::DPWS::MDPWSHostAdapter(_provider.getSDCInstance()->getNetworkConfig(),
 			OSELib::DPWS::AddressType(_provider.getEndpointReference()),
 			OSELib::DPWS::ScopesType(),
 			types,
 			xAddresses));
+
+    bool USE_SSL = _provider.getSDCInstance()->getSSLConfig()->isInit();
 
 	const std::vector<xml_schema::Uri> allowedSubscriptionEventActions {
 				OSELib::SDC::EpisodicAlertReportTraits::Action(),
@@ -368,52 +420,29 @@ bool SDCProviderAdapter::start() {
 				OSELib::SDC::PeriodicContextChangedReportTraits::Action(),
 				OSELib::SDC::WaveformStreamTraits::Action(),
 				OSELib::SDC::PeriodicMetricReportTraits::Action() };
-	_subscriptionManager = std::unique_ptr<OSELib::DPWS::SubscriptionManager>(new OSELib::DPWS::SubscriptionManager(allowedSubscriptionEventActions));
+	_subscriptionManager = std::unique_ptr<OSELib::DPWS::SubscriptionManager>(new OSELib::DPWS::SubscriptionManager(allowedSubscriptionEventActions, USE_SSL));
 
-	class Factory : public OSELib::HTTP::FrontControllerAdapter {
-	public:
-		Factory(SDCProvider & provider,
-				const OSELib::DPWS::MetadataProvider & metadata,
-				OSELib::DPWS::MDPWSHostAdapter & dpwsHost,
-				OSELib::DPWS::SubscriptionManager & subscriptionManager,
-				std::set<int> & strPorts) :
-			FrontControllerAdapter(_frontController),
-			deviceStub(metadata, dpwsHost),
-			contextStub(provider, metadata, subscriptionManager),
-			eventReportStub(metadata, subscriptionManager),
-			getServiceStub(provider, metadata),
-			setServiceStub(provider, metadata, subscriptionManager),
-			waveformReportStub(metadata, subscriptionManager, strPorts),
-			_deviceService(_frontController, deviceStub),
-			_contextService(_frontController, contextStub),
-			_getService(_frontController, getServiceStub),
-			_setService(_frontController, setServiceStub),
-			_eventReportService(_frontController, eventReportStub),
-			_waveformReportService(_frontController, waveformReportStub)
-		{
-		}
+    // Use SSL
+    if(USE_SSL)
+    {
+        // ServerSocket
+        Poco::Net::SecureServerSocket t_sslSocket(_provider.getSDCInstance()->getSSLConfig()->getServerContext());
+        t_sslSocket.bind(socketAddress);
+        t_sslSocket.listen();
+        t_sslSocket.setKeepAlive(true);
 
-		virtual ~Factory() = default;
+        // Create the Server
+        _httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(_provider, metadata, *_dpwsHost, *_subscriptionManager, streamingPorts, true), *_threadPool, t_sslSocket,  new Poco::Net::HTTPServerParams));
+    }
+    else {
+        // ServerSocket
+        Poco::Net::ServerSocket t_socket;
+        t_socket.bind(socketAddress);
+        t_socket.listen();
 
-		private:
-			OSELib::DeviceImpl deviceStub;
-			OSELib::ContextReportServiceImpl contextStub;
-			OSELib::EventReportServiceImpl eventReportStub;
-			OSELib::GetServiceImpl getServiceStub;
-			OSELib::SetServiceImpl setServiceStub;
-			OSELib::WaveformReportServiceImpl waveformReportStub;
-
-			OSELib::HTTP::FrontController _frontController;
-			OSELib::DPWS::DeviceServiceController _deviceService;
-			OSELib::ContextServiceController _contextService;
-			OSELib::GetServiceController _getService;
-			OSELib::SetServiceController _setService;
-			OSELib::EventReportServiceController _eventReportService;
-			OSELib::WaveformEventReportServiceController _waveformReportService;
-	};
-
-	_httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(_provider, metadata, *_dpwsHost, *_subscriptionManager, streamingPorts), *_threadPool, ss,  new Poco::Net::HTTPServerParams));
-
+        // Create the Server
+        _httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(_provider, metadata, *_dpwsHost, *_subscriptionManager, streamingPorts, false), *_threadPool, t_socket, new Poco::Net::HTTPServerParams));
+    }
 
 	_httpServer->start();
 	_dpwsHost->start();
@@ -422,7 +451,7 @@ bool SDCProviderAdapter::start() {
 
 void SDCProviderAdapter::stop() {
 
-	Poco::Mutex::ScopedLock lock(mutex);
+	std::lock_guard<std::mutex> lock{m_mutex};
 
 	if (_dpwsHost) {
 		_dpwsHost->stop();
@@ -432,7 +461,7 @@ void SDCProviderAdapter::stop() {
 	}
 
 	while (_httpServer->currentConnections() != 0) {
-		Poco::Thread::sleep(100);
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}
 
 	_dpwsHost.reset();
@@ -441,21 +470,21 @@ void SDCProviderAdapter::stop() {
 }
 
 void SDCProviderAdapter::notifyEvent(const MDM::EpisodicAlertReport & report) {
-	Poco::Mutex::ScopedLock lock(mutex);
+	std::lock_guard<std::mutex> lock{m_mutex};
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::SDC::EpisodicAlertReportTraits>(report);
 	}
 }
 
 void SDCProviderAdapter::notifyEvent(const MDM::EpisodicContextReport & report) {
-	Poco::Mutex::ScopedLock lock(mutex);
+	std::lock_guard<std::mutex> lock{m_mutex};
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::SDC::EpisodicContextChangedReportTraits>(report);
 	}
 }
 
 void SDCProviderAdapter::notifyEvent(const MDM::EpisodicMetricReport & report) {
-	Poco::Mutex::ScopedLock lock(mutex);
+	std::lock_guard<std::mutex> lock{m_mutex};
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::SDC::EpisodicMetricReportTraits>(report);
 	}
@@ -469,28 +498,28 @@ void SDCProviderAdapter::notifyEvent(const MDM::WaveformStream & stream) {
 
 
 void SDCProviderAdapter::notifyEvent(const MDM::PeriodicAlertReport & report) {
-	Poco::Mutex::ScopedLock lock(mutex);
+	std::lock_guard<std::mutex> lock{m_mutex};
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::SDC::PeriodicAlertReportTraits>(report);
 	}
 }
 
 void SDCProviderAdapter::notifyEvent(const MDM::PeriodicContextReport & report) {
-	Poco::Mutex::ScopedLock lock(mutex);
+	std::lock_guard<std::mutex> lock{m_mutex};
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::SDC::PeriodicContextChangedReportTraits>(report);
 	}
 }
 
 void SDCProviderAdapter::notifyEvent(const MDM::PeriodicMetricReport & report) {
-	Poco::Mutex::ScopedLock lock(mutex);
+	std::lock_guard<std::mutex> lock{m_mutex};
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::SDC::PeriodicMetricReportTraits>(report);
 	}
 }
 
 void SDCProviderAdapter::notifyEvent(const MDM::OperationInvokedReport & report) {
-	Poco::Mutex::ScopedLock lock(mutex);
+	std::lock_guard<std::mutex> lock{m_mutex};
 	if (_subscriptionManager) {
 		_subscriptionManager->fireEvent<OSELib::SDC::OperationInvokedReportTraits>(report);
 	}

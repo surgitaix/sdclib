@@ -11,8 +11,6 @@
 #include <xercesc/framework/MemBufInputSource.hpp>
 #include <xercesc/framework/Wrapper4InputSource.hpp>
 
-#include "NormalizedMessageModel.hxx"
-
 #include <xsd/cxx/xml/dom/bits/error-handler-proxy.hxx>
 #include <xsd/cxx/tree/error-handler.hxx>
 

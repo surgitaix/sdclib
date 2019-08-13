@@ -25,12 +25,12 @@ public:
 	std::string getSetServicePath() const;
 	std::string getWaveformServicePath() const;
 
-	WS::MEX::Metadata createDeviceMetadata(const std::string & serverAddress) const;
-	WS::MEX::Metadata createContextServiceMetadata(const std::string & serverAddress) const;
-	WS::MEX::Metadata createGetServiceMetadata(const std::string & serverAddress) const;
-	WS::MEX::Metadata createSetServiceMetadata(const std::string & serverAddress) const;
-	WS::MEX::Metadata createEventServiceMetadata(const std::string & serverAddress) const;
-	WS::MEX::Metadata createStreamServiceMetadata(const std::string & serverAddress, const std::set<int> & streamingPorts) const;
+	WS::MEX::Metadata createDeviceMetadata(const std::string & serverAddress, bool p_SSL) const;
+	WS::MEX::Metadata createContextServiceMetadata(const std::string & serverAddress, bool p_SSL) const;
+	WS::MEX::Metadata createGetServiceMetadata(const std::string & serverAddress, bool p_SSL) const;
+	WS::MEX::Metadata createSetServiceMetadata(const std::string & serverAddress, bool p_SSL) const;
+	WS::MEX::Metadata createEventServiceMetadata(const std::string & serverAddress, bool p_SSL) const;
+	WS::MEX::Metadata createStreamServiceMetadata(const std::string & serverAddress, const std::set<int> & streamingPorts, bool p_SSL) const;
 
 private:
 	using StreamDescriptions = MDPWS::StreamDescriptionsType;
@@ -48,21 +48,21 @@ private:
 
 	MetadataSection createMetadataSectionThisModel() const;
 	MetadataSection createMetadataSectionThisDevice() const;
-	MetadataSection createMetadataSectionWSDLForContextService(const std::string & serverAddress) const;
-	MetadataSection createMetadataSectionWSDLForEventReportService(const std::string & serverAddress) const;
+	MetadataSection createMetadataSectionWSDLForContextService(const std::string & serverAddress, bool p_SSL) const;
+	MetadataSection createMetadataSectionWSDLForEventReportService(const std::string & serverAddress, bool p_SSL) const;
 	MetadataSection createMetadataSectionStream(const std::set<int> & streamingPorts) const;
-	MetadataSection createMetadataSectionWSDLForWaveformReportService(const std::string & serverAddress) const;
-	MetadataSection createMetadataSectionWSDLForGetService(const std::string & serverAddress) const;
-	MetadataSection createMetadataSectionWSDLForSetService(const std::string & serverAddress) const;
+	MetadataSection createMetadataSectionWSDLForWaveformReportService(const std::string & serverAddress, bool p_SSL) const;
+	MetadataSection createMetadataSectionWSDLForGetService(const std::string & serverAddress, bool p_SSL) const;
+	MetadataSection createMetadataSectionWSDLForSetService(const std::string & serverAddress, bool p_SSL) const;
 	MetadataSection createMetadataSectionRelationship(const Host & host, const std::vector<Hosted> & hosted) const;
 
 	Host createHostMetadata(const std::string & serverAddress) const;
 
-	Hosted createHostedContextService(const std::string & serverAddress) const;
-	Hosted createHostedEventReportService(const std::string & serverAddress) const;
-	Hosted createHostedStreamReportService(const std::string & serverAddress) const;
-	Hosted createHostedGetService(const std::string & serverAddress) const;
-	Hosted createHostedSetService(const std::string & serverAddress) const;
+	Hosted createHostedContextService(const std::string & serverAddress, bool p_SSL) const;
+	Hosted createHostedEventReportService(const std::string & serverAddress, bool p_SSL) const;
+	Hosted createHostedStreamReportService(const std::string & serverAddress, bool p_SSL) const;
+	Hosted createHostedGetService(const std::string & serverAddress, bool p_SSL) const;
+	Hosted createHostedSetService(const std::string & serverAddress, bool p_SSL) const;
 
 	SDCLib::Dev::DeviceCharacteristics _deviceCharacteristics;
 };

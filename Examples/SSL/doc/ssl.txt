@@ -1,0 +1,53 @@
+# A quick how-to to create the necessary certificate files with openssl. (WIP!)
+
+
+# THIS IS IMPORTANT! KEEP IT SAFE!
+openssl genrsa -des3 -out rootCA.key 4096
+# THIS IS IMPORTANT! KEEP IT SAFE!
+
+# IMPORTANT: The value you enter when asked for 'Common Name' MUST be different than in the leaf certificate !
+openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.pem
+
+
+# Now we generate a certificate for each server:
+# IMPORTANT: The value you enter when asked for 'Common Name' MUST be different than in the rootCA !
+
+openssl genrsa -out leafkey.pem 2048
+
+# Generate a CSR (Certificate Signing Request) with this key:
+openssl req -new -key leafkey.pem -out leaf.csr
+
+# Verify (If no errors, proceed):
+openssl req -in leaf.csr -noout -text
+
+# Sign it 1st time: (NOTE: Use -CAcreateserial only with the first time you sign a certificate):
+openssl x509 -req -in leaf.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out leaf.pem -days 500 -sha256
+# 2nd time and later (NOTE: Use the -CAserial option)
+openssl x509 -req -in leaf.csr -CA rootCA.pem -CAkey rootCA.key -CAserial -out leaf.pem -days 500 -sha256
+
+# Verify it:
+openssl x509 -in leaf.pem -text -noout
+
+# You should now have:
+- rootCA.key (KEEP THIS ONE SAFE!)
+- rootCA.pem (Your root certificate. Can be used to sign other certificates, but this is the root authority, every other certificate will always refer to this one.)
+- rootCA.srl (Contains the rootCAs serial number. Incremented each time you sign a new certificate.)
+
+# 1st generated leaf certificate
+- leaf.pem (A signed leaf certificate (1st child in the chain). Can be used to sign other certificates.)
+- leafkey.pem
+- leaf.csr
+(Note: To convert .key to .pem: openssl rsa -in leaf.key -text > private.pem)
+
+# If necessary you can extract the public key:
+openssl rsa -pubout -in leafkey.pem -out public.pem
+
+# Test! (WIP)
+openssl verify -verbose -x509_strict -CAfile rootCA.pem leaf.pem
+
+# Install the Files:
+# Calc the hash:
+openssl x509 -noout -hash -in <FILENAME>
+
+# Create a symbolic link (add it to /usr/lib/ssl or check with openssl version -d):
+ln -s rootCA.pem `openssl x509 -hash -noout -in rootCA.pem`.0

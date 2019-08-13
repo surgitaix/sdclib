@@ -11,11 +11,12 @@
 #include <atomic>
 #include <tuple>
 
-#include "Poco/Mutex.h"
-#include "Poco/RunnableAdapter.h"
-#include "Poco/Thread.h"
-#include "Poco/UUID.h"
-#include "Poco/URI.h"
+#include <Poco/Mutex.h>
+#include <Poco/RunnableAdapter.h>
+#include <Poco/Thread.h>
+#include <Poco/UUID.h>
+#include <Poco/URI.h>
+#include <Poco/Net/Context.h>
 
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
@@ -54,7 +55,7 @@ public:
 		SDCLib::Data::SDC::SDCConsumerAdapter& _consumerAdapter;	//needed for subscription lost handling
 	};
 
-	SubscriptionClient(const std::vector<SubscriptionInformation> & subscriptions);
+	SubscriptionClient(const std::vector<SubscriptionInformation> & subscriptions, Poco::Net::Context::Ptr p_context);
 	virtual ~SubscriptionClient();
 
 private:
@@ -65,6 +66,7 @@ private:
 	Poco::RunnableAdapter<SubscriptionClient> _runnableAdapter;
 	std::map<Poco::UUID, WS::EVENTING::Identifier> _subscriptionIdentifiers;
 	std::map<Poco::UUID, SubscriptionInformation> _subscriptions;
+    Poco::Net::Context::Ptr m_SSLContext = nullptr; // != nullptr -> SSL Active!
 };
 
 } /* namespace DPWS */

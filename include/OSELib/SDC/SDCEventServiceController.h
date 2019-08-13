@@ -12,7 +12,6 @@
 #include "OSELib/HTTP/Service.h"
 #include "OSELib/SDC/DefaultSDCSchemaGrammarProvider.h"
 #include "OSELib/HTTP/StaticContentController.h"
-#include "OSELib/WSDL/schema.h"
 
 namespace OSELib {
 namespace SDC {
@@ -27,7 +26,7 @@ public:
 	}
 	virtual ~SDCEventServiceController() = default;
 
-	Poco::Net::HTTPRequestHandler * createRequestHandler(const Poco::Net::HTTPServerRequest & ) override {
+	Poco::Net::HTTPRequestHandler * createRequestHandler(const Poco::Net::HTTPServerRequest & , bool) override {
 		return new ServiceHandlerType(_serviceImpl, _grammarProvider);
 	}
 

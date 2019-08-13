@@ -90,16 +90,25 @@
 #include "../UnitTest++/src/UnitTest++.h"
 
 #include <memory>
+#include <string>
 
 #include "Poco/Event.h"
-#include "Poco/Mutex.h"
-#include "Poco/ScopedLock.h"
 
 #include "OSELib/SDC/ServiceManager.h"
 
 using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
+
+
+// Some values to configure the test
+const int LOOP_SLEEP = 200;
+const int NUM_LOOPS_SLEEP = 2; // The number of loops to wait and let the provider run
+
+const double WEIGHT_LOWER = 0.0;
+const double WEIGHT_UPPER = 2.0;
+const double WEIGHT_MAX = 2.5;
+const double WEIGHT_INCR_PER_LOOP = 0.2;
 
 namespace SDCLib {
 namespace Tests {
@@ -159,20 +168,15 @@ const std::string PATIENT_CONTEXT_HANDLE("patient_context");
 
 class ExampleConsumerNumericHandler : public SDCConsumerMDStateHandler<NumericMetricState> {
 public:
-	ExampleConsumerNumericHandler(const std::string & descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle),
-    	weight(0)
-	{
-	}
-
-    virtual ~ExampleConsumerNumericHandler() {
-
-    }
+	ExampleConsumerNumericHandler(const std::string & descriptorHandle)
+    : SDCConsumerMDStateHandler(descriptorHandle)
+	{ }
+    virtual ~ExampleConsumerNumericHandler() = default;
 
     void onStateChanged(const NumericMetricState & state) override {
-        double val = state.getMetricValue().getValue();
-        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received value changed of " << descriptorHandle << ": " << val << std::endl;
-    	Poco::Mutex::ScopedLock lock(mutex);
-        weight = (float)val;
+        auto t_val = state.getMetricValue().getValue();
+        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received value changed of " << descriptorHandle << ": " << t_val << std::endl;
+        m_weight = t_val;
         eventEMR.set();
     }
 
@@ -180,19 +184,14 @@ public:
         DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received operation invoked (ID, STATE) of " << descriptorHandle << ": " << oic.transactionId << ", " << EnumToString::convert(is) << std::endl;
     }
 
-    float getWeight() {
-    	Poco::Mutex::ScopedLock lock(mutex);
-    	float result(weight);
-        return result;
-    }
+    double getWeight() const { return m_weight; }
 
 	Poco::Event & getEventEMR() {
 		return eventEMR;
 	}
 
 private:
-    Poco::Mutex mutex;
-    float weight;
+    std::atomic<double> m_weight = ATOMIC_VAR_INIT(0.0);
     Poco::Event eventEMR;
 };
 
@@ -387,11 +386,13 @@ public:
 };
 
 
-class MaxValueStateHandler : public SDCProviderMDStateHandler<NumericMetricState> {
+class MaxValueStateHandler : public SDCProviderMDStateHandler<NumericMetricState>
+{
 public:
 
-    MaxValueStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
-    }
+    MaxValueStateHandler(std::string descriptorHandle)
+	: SDCProviderMDStateHandler(descriptorHandle)
+	{ }
 
     InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
         // Invocation has been fired as WAITING when entering this method
@@ -404,34 +405,32 @@ public:
 
         // Usually, update the real device's state here.
 
-        return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
+        // Framework will update internal MDIB with the state's value and increase MDIB version
+        return InvocationState::Fin;
     }
 
     // Helper method
     NumericMetricState createState() {
-        NumericMetricState result(descriptorHandle);
-        result
-            .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(2.0))
-            .setActivationState(ComponentActivation::On);
-        return result;
+        auto t_result = NumericMetricState(descriptorHandle);
+        t_result.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(2.0))
+                .setActivationState(ComponentActivation::On);
+        return t_result;
     }
 
     NumericMetricState getInitialState() override {
-        NumericMetricState result = createState();
-        return result;
+        return createState();
     }
 
     // Convenience value getter
-    float getMaxWeight() {
+    double getMaxWeight() {
     	std::unique_ptr<NumericMetricState> result(getParentProvider().getMdState().findState<NumericMetricState>(NUMERIC_METRIC_MAX_HANDLE));
         // check if result is valid
         if (result != nullptr) {
         	// In real applications, check if state has an observed value and if the observed value has a value!
-        	return (float)result->getMetricValue().getValue();
-        } else {
-            DebugOut(DebugOut::Default, "SimpleSDC") << "Maximum weight metric not found." << std::endl;
-        	return 0;
+        	return result->getMetricValue().getValue();
         }
+        DebugOut(DebugOut::Default, "SimpleSDC") << "Maximum weight metric not found." << std::endl;
+        return 0;
     }
 };
 
@@ -439,37 +438,38 @@ public:
 
 
 
-class CurValueStateHandler : public SDCProviderMDStateHandler<NumericMetricState> {
+class CurValueStateHandler : public SDCProviderMDStateHandler<NumericMetricState>
+{
 public:
 
-    CurValueStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
-    }
+    CurValueStateHandler(std::string descriptorHandle)
+	: SDCProviderMDStateHandler(descriptorHandle)
+	{ }
 
 	// define how to react on a request for a state change. This handler should not be set, thus always return Fail.
 	InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext&) override {
 		return InvocationState::Fail;
 	}
     // Helper method
-    NumericMetricState createState(float value) {
-        NumericMetricState result(descriptorHandle);
-        result
+    NumericMetricState createState(double value) {
+        auto t_result = NumericMetricState(descriptorHandle);
+        t_result
             .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
             .setActivationState(ComponentActivation::On)
             .setDescriptorHandle(NUMERIC_METRIC_CURRENT_HANDLE)
             .setLifeTimePeriod(xml_schema::Duration(0,0,0,0,0,0,1));
-        return result;
+        return t_result;
     }
 
     NumericMetricState getInitialState() override {
         return createState(0);
     }
 
-    void setNumericValue(float value) {
+    void setNumericValue(double value) {
         NumericMetricState currentWeightState = createState(value);
         // Call update function (this will update internal MDIB and increase MDIB version number)
         updateState(currentWeightState);
     }
-
 };
 
 class EnumStringMetricStateHandler : public SDCProviderMDStateHandler<EnumStringMetricState> {
@@ -617,13 +617,17 @@ public:
 class LimitAlertConditionStateHandler : public SDCProviderAlertConditionStateHandler<LimitAlertConditionState> {
 public:
 
-	LimitAlertConditionStateHandler(std::string descriptorHandle) : SDCProviderAlertConditionStateHandler(descriptorHandle)
-	{
-	}
+	LimitAlertConditionStateHandler(std::string descriptorHandle)
+	: SDCProviderAlertConditionStateHandler(descriptorHandle)
+	{ }
 
     InvocationState onStateChangeRequest(const LimitAlertConditionState & state, const OperationInvocationContext & ) override {
+
         // Invocation has been fired as WAITING when entering this method
     	std::unique_ptr<LimitAlertConditionState> pCurrentState(getParentProvider().getMdState().findState<LimitAlertConditionState>(state.getDescriptorHandle()));
+        if(!pCurrentState) {
+            return InvocationState::Fail;
+        }
 
     	DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: LimitAlertConditionStateHandler received state change, presence = " << state.getPresence() << std::endl;
         if (state.getPresence() != pCurrentState->getPresence()) {
@@ -662,7 +666,6 @@ public:
     	if (!limits.hasLower()) {
     		return;
     	}
-
     	const bool triggerAlarm(sourceValue.getValue() > limits.getUpper() || sourceValue.getValue() < limits.getLower());
    		setAlertConditionPresence(pLimitAlertConditionState->getDescriptorHandle(), triggerAlarm, OperationInvocationContext::none());
     }
@@ -691,8 +694,9 @@ public:
 class AlertSystemStateHandler : public SDCProviderMDStateHandler<AlertSystemState> {
 public:
 
-	AlertSystemStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle){
-    }
+	AlertSystemStateHandler(std::string descriptorHandle)
+	: SDCProviderMDStateHandler(descriptorHandle)
+	{ }
 
 	AlertSystemState getInitialState() override {
         AlertSystemState alertSystemState(descriptorHandle, AlertActivation::On);  // reference alert system descriptor's handle // Alert is activated
@@ -726,10 +730,10 @@ public:
 
     // Helper method
     ChannelState createState() {
-    	ChannelState result(descriptorHandle);
-        result
+    	auto t_result = ChannelState(descriptorHandle);
+        t_result
             .setActivationState(ComponentActivation::On);
-        return result;
+        return t_result;
     }
 
     virtual ChannelState getInitialState() override {
@@ -746,10 +750,10 @@ public:
 
     // Helper method
     VmdState createState() {
-    	VmdState result(descriptorHandle);
-        result
+    	auto t_result = VmdState(descriptorHandle);
+        t_result
             .setActivationState(ComponentActivation::On);
-        return result;
+        return t_result;
     }
 
     virtual VmdState getInitialState() override {
@@ -767,10 +771,10 @@ public:
 
     // Helper method
     MdsState createState() {
-        MdsState result(descriptorHandle);
-        result
+        auto t_result = MdsState(descriptorHandle);
+        t_result
             .setActivationState(ComponentActivation::On);
-        return result;
+        return t_result;
     }
 
     virtual MdsState getInitialState() override {
@@ -787,9 +791,9 @@ public:
 
 class SDCHoldingDeviceProvider : public Util::Task {
 public:
-    SDCHoldingDeviceProvider(SDCInstance_shared_ptr p_SDCInstance) :
-    	currentWeight(0),
-    	sdcProvider(p_SDCInstance),
+    SDCHoldingDeviceProvider(SDCInstance_shared_ptr p_SDCInstance)
+    :
+    	m_sdcProvider(p_SDCInstance),
     	locationContextStateHandler(LOCATION_CONTEXT_HANDLE),
     	patientContextStateHandler(PATIENT_CONTEXT_HANDLE),
     	curValueState(NUMERIC_METRIC_CURRENT_HANDLE),
@@ -805,7 +809,7 @@ public:
     	mdsStateHandler(MDS_HANDLE),
     	vmdStateHandler(VMD_DESCRIPTOR_HANDLE)
 	{
-    	sdcProvider.setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
+    	m_sdcProvider.setEndpointReference(DEVICE_ENDPOINT_REFERENCE);
 
         // Define semantic meaning of weight unit "kg", which will be used for defining the
         // current weight and the max weight below.
@@ -874,8 +878,8 @@ public:
         		AlertConditionKind::Tec,
         		AlertConditionPriority::Me,
         		Range()
-        			.setLower(0)
-        			.setUpper(2.0)
+        			.setLower(WEIGHT_LOWER)
+        			.setUpper(WEIGHT_UPPER)
         		);
 
         limitAlertCondition.setType(CodedValue("MDCX_CODE_ID_ALERT_WEIGHT_CONDITION").setCodingSystem("OR.NET.Codings")).addSource(NUMERIC_METRIC_CURRENT_HANDLE);
@@ -937,78 +941,78 @@ public:
                 CodedValue("MDCX_CODE_ID_MDS")
                 .setCodingSystem("OR.NET.Codings"));
 
-        sdcProvider.createSetOperationForDescriptor(alertSignal, holdingDeviceSystem);
-        sdcProvider.createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
-        sdcProvider.createSetOperationForDescriptor(testEnumMetric, holdingDeviceSystem);
-        sdcProvider.createSetOperationForDescriptor(testStringMetric, holdingDeviceSystem);
-        sdcProvider.createSetOperationForDescriptor(location, holdingDeviceSystem);
-        sdcProvider.createSetOperationForDescriptor(patient, holdingDeviceSystem);
+        m_sdcProvider.createSetOperationForDescriptor(alertSignal, holdingDeviceSystem);
+        m_sdcProvider.createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
+        m_sdcProvider.createSetOperationForDescriptor(testEnumMetric, holdingDeviceSystem);
+        m_sdcProvider.createSetOperationForDescriptor(testStringMetric, holdingDeviceSystem);
+        m_sdcProvider.createSetOperationForDescriptor(location, holdingDeviceSystem);
+        m_sdcProvider.createSetOperationForDescriptor(patient, holdingDeviceSystem);
 
         ActivateOperationDescriptor aod(CMD_HANDLE, NUMERIC_METRIC_MAX_HANDLE);
         aod.setRetriggerable(true);
 
-		sdcProvider.addActivateOperationForDescriptor(aod, holdingDeviceSystem);
+		m_sdcProvider.addActivateOperationForDescriptor(aod, holdingDeviceSystem);
 
 		// create and add description
 		MdDescription mdDescription;
 		mdDescription.addMdsDescriptor(holdingDeviceSystem);
 
-		sdcProvider.setMdDescription(mdDescription);
+		m_sdcProvider.setMdDescription(mdDescription);
 
         // State handlers
 
-		sdcProvider.addMdStateHandler(&locationContextStateHandler);
-		sdcProvider.addMdStateHandler(&patientContextStateHandler);
-		sdcProvider.addMdStateHandler(&curValueState);
-		sdcProvider.addMdStateHandler(&enumState);
-		sdcProvider.addMdStateHandler(&maxValueState);
-		sdcProvider.addMdStateHandler(&strValueState);
-		sdcProvider.addMdStateHandler(&limitAlertConditionHandler);
-		sdcProvider.addMdStateHandler(&alertSigHandler);
-		sdcProvider.addMdStateHandler(&latchingAlertSigHandler);
-		sdcProvider.addMdStateHandler(&alertSysHandler);
-		sdcProvider.addMdStateHandler(&cmdHandler);
-		sdcProvider.addMdStateHandler(&channelStateHandler);
-		sdcProvider.addMdStateHandler(&mdsStateHandler);
-		sdcProvider.addMdStateHandler(&vmdStateHandler);
+		m_sdcProvider.addMdStateHandler(&locationContextStateHandler);
+		m_sdcProvider.addMdStateHandler(&patientContextStateHandler);
+		m_sdcProvider.addMdStateHandler(&curValueState);
+		m_sdcProvider.addMdStateHandler(&enumState);
+		m_sdcProvider.addMdStateHandler(&maxValueState);
+		m_sdcProvider.addMdStateHandler(&strValueState);
+		m_sdcProvider.addMdStateHandler(&limitAlertConditionHandler);
+		m_sdcProvider.addMdStateHandler(&alertSigHandler);
+		m_sdcProvider.addMdStateHandler(&latchingAlertSigHandler);
+		m_sdcProvider.addMdStateHandler(&alertSysHandler);
+		m_sdcProvider.addMdStateHandler(&cmdHandler);
+		m_sdcProvider.addMdStateHandler(&channelStateHandler);
+		m_sdcProvider.addMdStateHandler(&mdsStateHandler);
+		m_sdcProvider.addMdStateHandler(&vmdStateHandler);
 	}
 
     MdDescription getMdDescription() {
-    	return sdcProvider.getMdDescription();
+    	return m_sdcProvider.getMdDescription();
     }
 
     void startup() {
-    	sdcProvider.startup();
+    	m_sdcProvider.startup();
     }
 
     void shutdown() {
-    	sdcProvider.shutdown();
+    	m_sdcProvider.shutdown();
     }
 
     // Update weight periodically
     virtual void runImpl() override {
-    	float nextWeight = currentWeight + 0.2f;
-    	if (nextWeight > 2.5f) {
-    		nextWeight = 0.1;
+    	auto nextWeight = m_currentWeight + WEIGHT_INCR_PER_LOOP;
+    	if (nextWeight > WEIGHT_MAX) {
+    		nextWeight = 0.0;
     	}
 		setCurrentWeight(nextWeight);
-		Poco::Thread::sleep(1000);
+		std::this_thread::sleep_for(std::chrono::milliseconds(LOOP_SLEEP));
     }
 
-    void setCurrentWeight(float value) {
-        Poco::Mutex::ScopedLock lock(m_mutex); // FIXME: changed from SDCProvider mutex to internal mutex
-        currentWeight = value;
-        curValueState.setNumericValue(value);
-        DebugOut(DebugOut::Default, "SimpleSDC") << "Changed value: " << currentWeight << std::endl;
-        strValueState.setStringValue("Test " + std::to_string(value));
+    void setCurrentWeight(double p_value)
+    {
+        m_currentWeight = p_value;
+        curValueState.setNumericValue(p_value);
+        DebugOut(DebugOut::Default, "SimpleSDC") << "Changed value: " << m_currentWeight << std::endl;
+        strValueState.setStringValue(std::string("Test ") + std::to_string(p_value));
     }
 
 private:
-    float currentWeight;
 
     // Provider object
-    Poco::Mutex m_mutex;
-    SDCProvider sdcProvider;
+    SDCProvider m_sdcProvider;
+
+    double m_currentWeight = 0;
 
     // State (handlers)
     LocationContextStateHandler locationContextStateHandler;
@@ -1059,10 +1063,9 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
         // add and remove a test MDS
         MdsDescriptor mds_test("MDC_MDS_HANDLE");
         mdDescription.addMdsDescriptor(mds_test);
-
         CHECK_EQUAL(true, mdDescription.removeMdsDescriptor(mds_test));
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Discover EPR...";
-        Poco::Thread::sleep(2000);
+
         // Consumer
         OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
         auto t_consumer(t_serviceManager.discoverEndpointReference(Tests::SimpleSDC::DEVICE_ENDPOINT_REFERENCE));
@@ -1131,7 +1134,8 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
             CHECK_EQUAL(true, t_consumer->registerStateEventHandler(&patientEventHandler));
 
             DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting...";
-            Poco::Thread::sleep(2000);
+            // Note: Min 1 Loop sleep
+            std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(LOOP_SLEEP*1.1)));
 
             {	// Ensure that requests for wrong handles fail.
                 DebugOut(DebugOut::Default, m_details.testName) << "Numeric test..." << std::endl;
@@ -1146,7 +1150,7 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 				CHECK_EQUAL(true, pTempNMS->hasMetricValue());
 				if (pTempNMS->hasMetricValue()) {
 					const double curWeight(pTempNMS->getMetricValue().getValue());
-					CHECK_EQUAL(true, curWeight > 0.1);
+					CHECK_EQUAL(true, curWeight > WEIGHT_INCR_PER_LOOP*0.5);
 				}
             }
             {	// Ensure that (read-only) metrics without matching SetOperation cannot be set.
@@ -1191,7 +1195,8 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 
             // Wait here and let the current value exceed max value. This will trigger alert condition presence which in turn
             // will trigger an alert signal presence (Off -> On -> Latch)!
-            Poco::Thread::sleep(8000);
+            auto t_waitTime0 = LOOP_SLEEP * (WEIGHT_UPPER / WEIGHT_INCR_PER_LOOP)*NUM_LOOPS_SLEEP;
+			std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(t_waitTime0)));
 
 			{	// Set state test for a numeric metric state (must succeed, use state handle instead of descriptor handle)
                 std::unique_ptr<NumericMetricState> pTempNMS(t_consumer->requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_MAX_HANDLE));
@@ -1256,7 +1261,8 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 				DebugOut(DebugOut::Default, m_details.testName) << "Patient context test done...";
 			}
             // Run for some time to receive and display incoming metric events.
-			Poco::Thread::sleep(5000);
+            auto t_waitTime1 = LOOP_SLEEP * (WEIGHT_UPPER / WEIGHT_INCR_PER_LOOP)*NUM_LOOPS_SLEEP;
+			std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(t_waitTime1)));
 
 			// Stop dummy events created by provider
 			provider.interrupt();
@@ -1272,7 +1278,8 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleSDC::DEFAULT_TIMEOUT));
 			}
 
-            Poco::Thread::sleep(5000);
+            auto t_waitTime2 = LOOP_SLEEP * (WEIGHT_UPPER / WEIGHT_INCR_PER_LOOP)*NUM_LOOPS_SLEEP;
+			std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(t_waitTime2)));
 
             CHECK_EQUAL(true, eces1.getWeight() > 0);
 
@@ -1300,8 +1307,6 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 
             t_consumer->disconnect();
         }
-
-        Poco::Thread::sleep(2000);
         provider.shutdown();
     } catch (char const* exc) {
 		DebugOut(DebugOut::Default, std::cerr, m_details.testName) << exc;
