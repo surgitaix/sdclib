@@ -5,10 +5,9 @@
 
 namespace SCHEMA
 {
+const static std::string SCHEMA_WSDISCOVERY_NAME("wsdd-discovery-1.1-schema-os.xsd");
 
-const std::string SCHEMA_WSDISCOVERY_NAME("wsdd-discovery-1.1-schema-os.xsd");
-
-const std::string SCHEMA_WSDISCOVERY_CONTENT = std::string(R"(<?xml version="1.0" encoding="UTF-8"?>
+const static std::string SCHEMA_WSDISCOVERY_CONTENT = std::string(R"(<?xml version="1.0" encoding="UTF-8"?>
 <!--
 Copyright (c) OASIS(r) 2009. All Rights Reserved.
 

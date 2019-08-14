@@ -9,7 +9,7 @@ const static std::string SCHEMA_BICEPS_PARTICIPANTMODEL_NAME("BICEPS_Participant
 
 const static std::string SCHEMA_BICEPS_PARTICIPANTMODEL_CONTENT = std::string(R"(<?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ext="http://standards.ieee.org/downloads/11073/11073-10207-2017/extension" xmlns:pm="http://standards.ieee.org/downloads/11073/11073-10207-2017/participant" targetNamespace="http://standards.ieee.org/downloads/11073/11073-10207-2017/participant" elementFormDefault="qualified" attributeFormDefault="unqualified" xml:lang="en">
-	<xsd:import namespace="http://standards.ieee.org/downloads/11073/11073-10207-2017/extension" schemaLocation=")" + SCHEMA_EXTENSIONPOINT_NAME + R"("/>
+	<xsd:import namespace="http://standards.ieee.org/downloads/11073/11073-10207-2017/extension" schemaLocation="ExtensionPoint.xsd"/>
 	<xsd:annotation>
 		<xsd:documentation>This XML schema defines the 'Basic Integrated Clinical Environment Protocol Specification' (BICEPS) that is a Domain Information Model (DIM) for point of care medical device communication. It encompasses the device model and the corresponding messages. This XML Schema is based on the ISO/IEEE 11073-10201 Domain Information Model standard, which belongs to the "Point-of-care medical device communication" standard family in ISO/IEEE 11073. This standard family should not to be confused with the ISO/IEEE 11073 "Personal Health Device" standard family.
 While former is based on the standards ISO/IEEE 11073-10101, 11073-10201, 11073-20101, and 11073-30200, the latter is based on ISO/IEEE 11073-20601 and ISO/IEEE 11073-104xx.

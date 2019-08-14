@@ -1,3 +1,8 @@
+Update to 4.3.7
+
+- Fixed ws-eventing and ws-addressing (Now working with SDCLib/J and openSDC again)
+- SubscriptionClient now queries status via GetStatus and only Renews when under a specified threshold
+
 Update to 4.3.6
 
 - GetStatus Implementation

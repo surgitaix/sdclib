@@ -9,8 +9,8 @@ const static std::string SCHEMA_BICEPS_MESSAGEMODEL_NAME("BICEPS_MessageModel.xs
 
 const static std::string SCHEMA_BICEPS_MESSAGEMODEL_CONTENT = std::string(R"(<?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ext="http://standards.ieee.org/downloads/11073/11073-10207-2017/extension" xmlns:pm="http://standards.ieee.org/downloads/11073/11073-10207-2017/participant" xmlns:msg="http://standards.ieee.org/downloads/11073/11073-10207-2017/message" targetNamespace="http://standards.ieee.org/downloads/11073/11073-10207-2017/message" elementFormDefault="qualified" attributeFormDefault="unqualified" xml:lang="en">
-	<xsd:import namespace="http://standards.ieee.org/downloads/11073/11073-10207-2017/extension" schemaLocation=")" + SCHEMA_EXTENSIONPOINT_NAME + R"("/>
-	<xsd:import namespace="http://standards.ieee.org/downloads/11073/11073-10207-2017/participant" schemaLocation=")" + SCHEMA_BICEPS_PARTICIPANTMODEL_NAME + R"("/>
+	<xsd:import namespace="http://standards.ieee.org/downloads/11073/11073-10207-2017/extension" schemaLocation="ExtensionPoint.xsd"/>
+	<xsd:import namespace="http://standards.ieee.org/downloads/11073/11073-10207-2017/participant" schemaLocation="BICEPS_ParticipantModel.xsd"/>
 	<xsd:annotation>
 		<xsd:documentation>This XML schema defines the 'Basic Integrated Clinical Environment Protocol Specification' (BICEPS) that is a Domain Information Model (DIM) for point of care medical device communication.
 			It encompasses the device model and the corresponding messages.
