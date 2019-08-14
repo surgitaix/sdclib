@@ -88,7 +88,7 @@ void ActiveSubscriptions::houseKeeping()
 
 	// 1. Collect all expired
 	for (auto & t_item : ml_subscriptions) {
-		if (t_item.second.m_expirationTime < t_now) {
+		if (t_item.second.m_expirationTime.time_since_epoch() < t_now.time_since_epoch()) {
 			tl_expiredSubscriptions.emplace_back(t_item.first);
 		}
 	}
@@ -102,7 +102,7 @@ void ActiveSubscriptions::houseKeeping()
 
 void ActiveSubscriptions::run()
 {
-	while (Poco::Thread::trySleep(10000)) {
+	while (Poco::Thread::trySleep(8000)) {
 		log_debug([&] { return "Checking for expired subscription"; });
 		houseKeeping();
 	}
@@ -123,4 +123,18 @@ std::map<xml_schema::Uri, WS::ADDRESSING::EndpointReferenceType> ActiveSubscript
 		}
 	}
 	return t_result;
+}
+ActiveSubscriptions::GetStatusResult ActiveSubscriptions::getStatus(const WS::EVENTING::Identifier & identifier) const
+{
+	std::lock_guard<std::mutex> t_lock(m_mutex);
+	auto t_subscription = ml_subscriptions.find(identifier);
+	if (t_subscription != ml_subscriptions.end()) {
+		return {true, t_subscription->second};
+	}
+
+	// Note: Not nice but working... Create an empty SubscriptionInformation... REWORK!
+	return {false, ActiveSubscriptions::SubscriptionInformation(
+	WS::ADDRESSING::EndpointReferenceType(WS::ADDRESSING::AttributedURIType("")),
+	std::chrono::system_clock::time_point(),
+	WS::EVENTING::FilterType())};
 }

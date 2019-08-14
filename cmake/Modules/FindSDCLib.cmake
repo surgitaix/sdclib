@@ -282,6 +282,23 @@ list(APPEND SDCLib_DEPS_DEFINITIONS ${POCO_COMPILE_DEFINITIONS})
 ################################################################################
 
 
+
+################################################################################
+# XSD
+################################################################################
+
+
+# Only Include Path needed under Windows
+include(SDC_XSD)
+
+# Found it?
+if(NOT XSD_FOUND)
+    message(FATAL_ERROR "Failed to find XSD Include! Please specify XSD_ROOT!")
+endif()
+list(APPEND SDCLib_DEPS_INCLUDE_DIRS ${XSD_INCLUDE_DIRS})
+
+################################################################################
+
 ################################################################################
 # Threads - prefer pthreads
 ################################################################################

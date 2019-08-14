@@ -1,13 +1,4 @@
-#ifndef SCHEMA_WSADDRESSING_H
-#define SCHEMA_WSADDRESSING_H
-
-#include <string.h>
-
-namespace SCHEMA
-{
-const static std::string SCHEMA_WSADDRESSING_NAME("ws-addressing.xsd");
-
-const static std::string SCHEMA_WSADDRESSING_CONTENT = std::string(R"(<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     W3C XML Schema defined in the Web Services Addressing 1.0 specification
     http://www.w3.org/TR/ws-addr-core
@@ -143,7 +134,4 @@ const static std::string SCHEMA_WSADDRESSING_CONTENT = std::string(R"(<?xml vers
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
 	
-</xs:schema>)");
-
-}
-#endif
+</xs:schema>

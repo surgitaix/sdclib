@@ -21,6 +21,7 @@ public:
 	virtual std::unique_ptr<SubscribeTraits::Response> dispatch(const SubscribeTraits::Request & request) = 0;
 	virtual std::unique_ptr<UnsubscribeTraits::Response> dispatch(const UnsubscribeTraits::Request & request, const UnsubscribeTraits::RequestIdentifier & identifier) = 0;
 	virtual std::unique_ptr<RenewTraits::Response> dispatch(const RenewTraits::Request & request, const RenewTraits::RequestIdentifier & identifier) = 0;
+	virtual std::unique_ptr<GetStatusTraits::Response> dispatch(const GetStatusTraits::Request & request, const GetStatusTraits::RequestIdentifier & identifier) = 0;
 };
 
 } /* namespace DPWS */
