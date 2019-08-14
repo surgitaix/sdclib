@@ -59,15 +59,13 @@ namespace OSELib
 			* @param handler The handler
 			*/
 			void setHelloReceivedHandler(HelloReceivedHandler * handler);
-	/**
-	* @brief Discover all SDC providers currently available
-	*
-	* @return List of all provider eprs
-	*/
-	std::vector<std::string> discoverEndpointReferences();
 
-
-private:
+			/**
+			* @brief Discover all SDC providers currently available
+			*
+			* @return List of all provider eprs
+			*/
+			std::vector<std::string> discoverEndpointReferences();
 
 			/**
 			* @brief Create a consumer and connect to Xaddr.

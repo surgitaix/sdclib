@@ -17,6 +17,7 @@
 #include "OSELib/Helper/WithLogger.h"
 
 #include "eventing.hxx"
+#include "SDCLib/Data//SDC/SDCConsumerAdapter.h"
 
 namespace OSELib {
 namespace DPWS {

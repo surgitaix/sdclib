@@ -140,24 +140,14 @@ if (CMAKE_SYSTEM_NAME MATCHES "Windows")
     # Set the library based on build type
     if(CMAKE_BUILD_TYPE)
         if(CMAKE_BUILD_TYPE STREQUAL "Release")
-            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/SDCLib.lib)
+            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/libSDCLib.dll)
         else()
-            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/SDCLib${CMAKE_DEBUG_POSTFIX}.lib)
+            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/libSDCLib${CMAKE_DEBUG_POSTFIX}.dll)
         endif()
     else()
         message(SEND_ERROR "Trying to determine SDCLib type, but no build type specified yet. Specify one first, before calling findSDCLib!")
         RETURN()
     endif()
-#	if(MSVC)
-#		##HACK build/lib
-#		set(SDCLib_LIBRARY_DIRS ${SDCLib_LIBRARY_DIRS} "${SDCLib_SEARCH_BIN}/build/lib")
-#	    set(SDCLib_LIBRARIES 
-#				ws2_32 iphlpapi 
-#				debug SDCLib_d		debug PocoFoundationmdd 	debug PocoNetmdd
-#				optimized SDCLibmd	optimized PocoFoundationmd 	optimized PocoNetmd)
-#			
-#		#TODO we need the xsd4 include dir...
-#	endif()
 endif()
 
 ################################################################################
@@ -177,7 +167,7 @@ if(CMAKE_SYSTEM_NAME MATCHES "Windows")
     list(APPEND SDCLib_DEFINITIONS -D_WIN32)
 
     # Libraries - WIP... maybe include in Dependencies?
-    #SET(PTHREAD_LIB_DIR "${PROJECT_SOURCE_DIR}/../pthread/lib/" CACHE PATH "Path to PTHREAD libraries.")
+    SET(PTHREAD_LIB_DIR "${PROJECT_SOURCE_DIR}/../pthread/lib/" CACHE PATH "Path to PTHREAD libraries.")
 
     # define preprocessor macros for Visual Studio: no CONSTEXPR_MACRO before VS15
     MESSAGE( STATUS "MSVS compiler version: " ${CMAKE_CXX_COMPILER_VERSION} )
@@ -207,15 +197,13 @@ endif()
 ################################################################################
 # Not Found
 message(STATUS "-Searching for SDCLib file (${SDCLib_LIBRARIES}) ...")
-if (CMAKE_SYSTEM_NAME MATCHES "Linux")
-	if (NOT EXISTS ${SDCLib_LIBRARIES})
-		message("  Could not find ${SDCLib_LIBRARIES}!")
-		if(NOT SDCLib_ADDITIONAL_LIBRARY_DIRS)
-			message("## Note: For our of source build add SDCLib_ADDITIONAL_LIBRARY_DIRS ##\n")
-		endif()
-	else()
-		message(STATUS "FOUND ${SDCLib_LIBRARIES}!")
-	endif()
+if (NOT EXISTS ${SDCLib_LIBRARIES})
+    message("  Could not find ${SDCLib_LIBRARIES}!")
+    if(NOT SDCLib_ADDITIONAL_LIBRARY_DIRS)
+        message("## Note: For our of source build add SDCLib_ADDITIONAL_LIBRARY_DIRS ##\n")
+    endif()
+else()
+    message(STATUS "FOUND ${SDCLib_LIBRARIES}!")
 endif()
 
 ################################################################################
@@ -262,7 +250,6 @@ else ()
         list(APPEND SDCLib_DEPS_LIBRARIES ${XercesC_LIBRARY_DEBUG})
     endif()
 endif()
-#list(APPEND SDCLib_LIBRARIES ${ADDITIONAL_LIBS})
 ################################################################################
 #
 #
@@ -294,6 +281,23 @@ list(APPEND SDCLib_DEPS_INCLUDE_DIRS ${POCO_INCLUDE_DIRS})
 list(APPEND SDCLib_DEPS_DEFINITIONS ${POCO_COMPILE_DEFINITIONS})
 ################################################################################
 
+
+
+################################################################################
+# XSD
+################################################################################
+
+
+# Only Include Path needed under Windows
+include(SDC_XSD)
+
+# Found it?
+if(NOT XSD_FOUND)
+    message(FATAL_ERROR "Failed to find XSD Include! Please specify XSD_ROOT!")
+endif()
+list(APPEND SDCLib_DEPS_INCLUDE_DIRS ${XSD_INCLUDE_DIRS})
+
+################################################################################
 
 ################################################################################
 # Threads - prefer pthreads
