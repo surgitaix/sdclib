@@ -122,6 +122,7 @@ void waitForUserInput() {
 
 int main()
 {
+	Network::TCPClientEventHandler::getInstance("127.0.0.1", 7001)->startup();
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
 

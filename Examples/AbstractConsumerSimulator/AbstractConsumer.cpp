@@ -114,6 +114,8 @@ bool AbstractConsumer::setupMirrorProvider() {
 
 		for (auto mds : consumer->getMdib().getMdDescription().collectAllMdsDescriptors())
 		{
+			if(!mds.hasSco())
+				continue;
 			for(auto setValueOperationDesc : mds.getSco().collectAllSetValueOperationDescriptors())
 			{
 				if(setValueOperationDesc.getHandle() == (nms.getDescriptorHandle() + "_sco"))
@@ -178,6 +180,8 @@ bool AbstractConsumer::setupMirrorProvider() {
 
 		for (auto mds : consumer->getMdib().getMdDescription().collectAllMdsDescriptors())
 		{
+			if(!mds.hasSco())
+				continue;
 			for(auto setValueOperationDesc : mds.getSco().collectAllSetStringOperationDescriptors())
 			{
 				if(setValueOperationDesc.getHandle() == (sms.getDescriptorHandle() + "_sco"))
@@ -265,6 +269,8 @@ bool AbstractConsumer::setupMirrorProvider() {
 
 	for (auto mds : consumer->getMdib().getMdDescription().collectAllMdsDescriptors())
 	{
+		if(!mds.hasSco())
+			continue;
 		for(auto aosdesc : mds.getSco().collectAllActivateOperationDescriptors())
 		{
 			std::cout << aosdesc.getHandle() << std::endl;

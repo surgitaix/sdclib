@@ -97,8 +97,7 @@ namespace Network {
 
     bool ContextWorker::stop()
     {
-    	assert(isStarted() && "Asio service is not started!");
-    	    if (!isStarted())
+    	if (!isStarted())
     	        return false;
 
     	    // Post the stop routine

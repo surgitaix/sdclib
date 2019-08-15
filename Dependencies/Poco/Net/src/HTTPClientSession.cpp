@@ -26,6 +26,9 @@
 #include "Poco/RegularExpression.h"
 #include <sstream>
 
+#include <iostream>
+#include "../../../../include/OSELib/TCP/TCPClientEventHandler.h"
+
 
 using Poco::NumberFormatter;
 using Poco::IllegalStateException;
@@ -308,6 +311,18 @@ std::istream& HTTPClientSession::receiveResponse(HTTPResponse& response)
 	else
 		_pResponseStream = new HTTPInputStream(*this);
 
+	if(Network::TCPClientEventHandler::getInstance("127.0.0.1", 5000)->isConnected())
+	{
+	    std::ostringstream ss;
+	    ss << _pResponseStream->rdbuf();
+	    std::string requestString = ss.str();
+	    if(requestString != "")
+			Network::TCPClientEventHandler::getInstance("127.0.0.1", 5000)->sendRequest(requestString);
+		std::cout << "OUTGOING receivedResponse \n" << requestString << std::endl;
+		_hackyStream = new std::istringstream(requestString);
+		return *_hackyStream;
+
+	}
 	return *_pResponseStream;
 }
 

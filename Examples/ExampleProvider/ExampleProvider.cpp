@@ -372,7 +372,7 @@ public:
 
 int main()
 {
-	Network::TCPClientEventHandler::getInstance("127.0.0.1", 5000)->startup();
+	Network::TCPClientEventHandler::getInstance("127.0.0.1", 6000)->startup();
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleProvider") << "Startup" << std::endl;
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Debug);

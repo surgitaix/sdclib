@@ -318,6 +318,7 @@ private:
 	bool            _responseReceived;
 	Poco::SharedPtr<std::ostream> _pRequestStream;
 	Poco::SharedPtr<std::istream> _pResponseStream;
+	Poco::SharedPtr<std::istringstream> _hackyStream;
 
 	static ProxyConfig _globalProxyConfig;
 
