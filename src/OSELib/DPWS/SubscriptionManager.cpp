@@ -5,26 +5,22 @@
  *  Modified on: 26.07.2019, baumeister
  */
 
-#include <Poco/NotificationQueue.h>
-#include <Poco/URI.h>
-#include <Poco/Net/HTTPClientSession.h>
-#include <Poco/Net/SocketNotification.h>
+#include "OSELib/DPWS/SubscriptionManager.h"
 
 #include "eventing.hxx"
-#include "NormalizedMessageModel.hxx"
 
-#include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/DPWS/OperationTraits.h"
-#include "OSELib/DPWS/SubscriptionManager.h"
 #include "OSELib/Helper/DurationWrapper.h"
 #include "OSELib/HTTP/HTTPSessionManager.h"
 #include "OSELib/SOAP/NormalizedMessageAdapter.h"
 #include "OSELib/SOAP/NormalizedMessageSerializer.h"
 #include "OSELib/SOAP/SoapActionCommand.h"
-#include "OSELib/SDC/SDCConstants.h"
-#include "OSELib/SDC/ReportTraits.h"
 
 #include "SDCLib/SDCInstance.h"
+
+#include <Poco/URI.h>
+#include <Poco/Net/HTTPClientSession.h>
+
 
 namespace OSELib {
 namespace DPWS {

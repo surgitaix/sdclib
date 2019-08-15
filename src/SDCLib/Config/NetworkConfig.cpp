@@ -10,6 +10,7 @@ using namespace SDCLib::Config;
 
 
 NetworkConfig::NetworkConfig()
+: OSELib::WithLogger(OSELib::Log::BASE)
 {
     // TODO: PortList
 }
@@ -74,7 +75,7 @@ bool NetworkConfig::bindToInterface(const std::string& ps_networkInterfaceName, 
                     t_interface.firstAddress(t_IPv4, Poco::Net::IPAddress::IPv4);
                     t_if->m_IPv4 = t_IPv4;
                 }
-                catch (...) { }
+                catch (...) { setIP4enabled(false); }
             }
             else { setIP4enabled(false); }
 
@@ -86,7 +87,7 @@ bool NetworkConfig::bindToInterface(const std::string& ps_networkInterfaceName, 
                     t_interface.firstAddress(t_IPv6, Poco::Net::IPAddress::IPv6);
                     t_if->m_IPv6 = t_IPv6;
                 }
-                catch (...) { }
+                catch (...) { setIP6enabled(false); }
             }
             else { setIP6enabled(false); }
 
@@ -105,11 +106,18 @@ bool NetworkConfig::bindToInterface(const std::string& ps_networkInterfaceName, 
                 else {
                     throw std::runtime_error("NO FREE PORTS FOUND!");
                 }
+
+                log_debug([&] { return "SDCInstance bound to: " +  m_MDPWSInterface->m_name +  " ("
+                		+ (m_MDPWSInterface->m_if.supportsIPv4() ? "IPv4: " + m_MDPWSInterface->m_IPv4.toString() : "")
+						+ ((m_MDPWSInterface->m_if.supportsIPv4() && m_MDPWSInterface->m_if.supportsIPv6()) ? "|" : "")
+						+ (m_MDPWSInterface->m_if.supportsIPv6() ? "IPv6: "+  m_MDPWSInterface->m_IPv6.toString() : "")
+                		+ ").\n";
+                });
             }
             else {
                 // Not set yet! - Emit a Warning
                 if(m_MDPWSInterface == nullptr) {
-                    std::cout << "Warning: No Primary MDPWS Binding Interface set yet!" << std::endl;
+                	log_warning([] { return "Warning: No Primary MDPWS Binding Interface set yet!"; });
                 }
             }
             return true;
