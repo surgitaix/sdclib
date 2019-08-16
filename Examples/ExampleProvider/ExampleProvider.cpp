@@ -57,7 +57,7 @@ using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
 
-const std::string DEVICE_EPR("UDI-1234567890");
+const std::string DEVICE_EPR("UDI-ExampleProvider");
 
 const std::string VMD_DESCRIPTOR_HANDLE("holdingDevice_vmd");
 const std::string CHANNEL_DESCRIPTOR_HANDLE("holdingDevice_channel");
@@ -352,7 +352,7 @@ public:
 		for (std::size_t i = 0; i < size; i++) {
 			samples.push_back(i);
 		}
-		long index(0);
+		std::size_t index(0);
 
 		while (!isInterrupted()) {
 			{
@@ -385,7 +385,7 @@ int main()
     t_SDCInstance->setIP4enabled(true);
     // Bind it to interface that matches the internal criteria (usually the first enumerated)
     if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
-        std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+    	DebugOut(DebugOut::Default, "ExampleProvider") << "Failed to bind to default network interface! Exit..." << std::endl;
         return -1;
     }
 

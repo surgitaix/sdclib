@@ -7,7 +7,7 @@ namespace SCHEMA
 {
 const static std::string SCHEMA_EXTENSIONPOINT_NAME("ExtensionPoint.xsd");
 
-const std::string SCHEMA_EXTENSIONPOINT_CONTENT = std::string(R"(<?xml version="1.0" encoding="UTF-8"?>
+const static std::string SCHEMA_EXTENSIONPOINT_CONTENT = std::string(R"(<?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://standards.ieee.org/downloads/11073/11073-10207-2017/extension" targetNamespace="http://standards.ieee.org/downloads/11073/11073-10207-2017/extension" elementFormDefault="qualified" attributeFormDefault="unqualified" xml:lang="en">
 	<xsd:element name="Extension" type="tns:ExtensionType"/>
 	<xsd:complexType name="ExtensionType">

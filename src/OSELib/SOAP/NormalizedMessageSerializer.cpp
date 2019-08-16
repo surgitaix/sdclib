@@ -27,6 +27,7 @@ std::string NormalizedMessageSerializer::serialize(const MESSAGEMODEL::Envelope 
 	xml_schema::NamespaceInfomap map;
 
 	map["wsa"].name = SDC::NS_ADDRESSING;
+	map["wse"].name = SDC::NS_EVENTING;
 	map["dpws"].name = OSELib::WS_NS_DPWS;
 	map["mm"].name = SDC::NS_MESSAGE_MODEL;
 

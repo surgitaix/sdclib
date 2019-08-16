@@ -137,6 +137,7 @@ set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             ${INCLUDE_DIR}/OSELib/SOAP/GetActionCommand.h
                             ${INCLUDE_DIR}/OSELib/SOAP/GenericSoapActionCommand.h
                             ${INCLUDE_DIR}/OSELib/SOAP/RenewActionCommand.h
+                            ${INCLUDE_DIR}/OSELib/SOAP/GetStatusActionCommand.h
                             ${INCLUDE_DIR}/OSELib/SOAP/GenericSoapInvoke.h
                             # SDCLib
                             ${INCLUDE_DIR}/SDCLib/Data/SDC/SDCProviderMDStateHandler.h
@@ -483,6 +484,7 @@ target_sources(${CURRENT_TARGET_NAME}
         ${SRC_DIR}/OSELib/SOAP/NormalizedMessageSerializer.cpp
         ${SRC_DIR}/OSELib/SOAP/NormalizeMessageFilter.cpp
         ${SRC_DIR}/OSELib/SOAP/RenewActionCommand.cpp
+        ${SRC_DIR}/OSELib/SOAP/GetStatusActionCommand.cpp
         ${SRC_DIR}/OSELib/SOAP/SoapActionCommand.cpp
         ${SRC_DIR}/OSELib/SOAP/SoapFaultCommand.cpp
         ${SRC_DIR}/OSELib/SOAP/SoapHTTPResponseWrapper.cpp

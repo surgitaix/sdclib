@@ -25,7 +25,7 @@
 #ifndef SDCLIB_CONFIG_NETWORKCONFIG_H
 #define SDCLIB_CONFIG_NETWORKCONFIG_H
 
-#include "Prerequisites.h"
+#include "SDCLib/Prerequisites.h"
 #include "config/config.h"
 
 #include "OSELib/DPWS/DPWS11Constants.h"

@@ -56,7 +56,7 @@ std::string ProbeTraits::RequestAction() {
 std::string ProbeTraits::ResponseAction() {
 	return WS_ACTION_PROBE_MATCHES;
 }
-std::unique_ptr<ProbeTraits::Response> ProbeTraits::dispatch(Dispatcher & dispatcher, const Request & request) {
+std::unique_ptr<ProbeTraits::Response> ProbeTraits::dispatch(ProbeTraits::Dispatcher & dispatcher, const Request & request) {
 	return dispatcher.dispatch(request);
 }
 
@@ -75,7 +75,7 @@ std::string RenewTraits::ResponseAction() {
 xml_schema::Qname RenewTraits::ResponseType() {
 	return xml_schema::Qname(WS_NS_EVENTING, OperationName() + "Response");
 }
-std::unique_ptr<RenewTraits::Response> RenewTraits::dispatch(Dispatcher & dispatcher, const Request & request, const RequestIdentifier & identifier) {
+std::unique_ptr<RenewTraits::Response> RenewTraits::dispatch(RenewTraits::Dispatcher & dispatcher, const Request & request, const RequestIdentifier & identifier) {
 	return dispatcher.dispatch(request, identifier);
 }
 
@@ -113,7 +113,26 @@ std::string UnsubscribeTraits::ResponseAction() {
 xml_schema::Qname UnsubscribeTraits::ResponseType() {
 	return xml_schema::Qname(WS_NS_EVENTING, OperationName() + "Response");
 }
-std::unique_ptr<UnsubscribeTraits::Response> UnsubscribeTraits::dispatch(Dispatcher & dispatcher, const Request & request, const RequestIdentifier & identifier) {
+std::unique_ptr<UnsubscribeTraits::Response> UnsubscribeTraits::dispatch(UnsubscribeTraits::Dispatcher & dispatcher, const Request & request, const RequestIdentifier & identifier) {
+	return dispatcher.dispatch(request, identifier);
+}
+
+std::string GetStatusTraits::OperationName() {
+	return "GetStatus";
+}
+std::string GetStatusTraits::RequestAction() {
+	return WS_ACTION_GETSTATUS;
+}
+xml_schema::Qname GetStatusTraits::RequestType() {
+	return xml_schema::Qname(WS_NS_EVENTING, OperationName());
+}
+std::string GetStatusTraits::ResponseAction() {
+	return WS_ACTION_GETSTATUS_RESPONSE;
+}
+xml_schema::Qname GetStatusTraits::ResponseType() {
+	return xml_schema::Qname(WS_NS_EVENTING, OperationName() + "Response");
+}
+std::unique_ptr<GetStatusTraits::Response> GetStatusTraits::dispatch(GetStatusTraits::Dispatcher & dispatcher, const Request & request, const RequestIdentifier & identifier) {
 	return dispatcher.dispatch(request, identifier);
 }
 

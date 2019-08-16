@@ -5,9 +5,10 @@
 
 namespace SCHEMA
 {
-const std::string SCHEMA_WSEVENTING_NAME("WSEventing.xsd");
 
-const std::string SCHEMA_WSEVENTING_CONTENT = std::string(R"(<?xml version="1.0" encoding="UTF-8" ?>
+const static std::string SCHEMA_WSEVENTING_NAME("eventing.xsd");
+
+const static std::string SCHEMA_WSEVENTING_CONTENT = std::string(R"(<?xml version="1.0" encoding="UTF-8" ?>
 <!-- 
 (c) 2004 BEA Systems Inc., International Business Machines Corporation, Microsoft Corporation, Inc, Sun Microsystems, Inc, and TIBCO Software Inc. All rights reserved.
 

@@ -6,10 +6,10 @@
 namespace SCHEMA
 {
 
-const std::string SCHEMA_DICOM_DATAMODEL_NAME("DICOMDeviceDescription.xsd");
+const static std::string SCHEMA_DICOM_DATAMODEL_NAME("DICOMDeviceDescription.xsd");
 
-const std::string SCHEMA_DICOM_DATAMODEL_CONTENT = std::string(R"(<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://dicom-extension-uri/09/08" xmlns:pm="http://standards.ieee.org/downloads/11073/11073-10207-2017/participant" targetNamespace="http://dicom-extension-uri/09/08" elementFormDefault="qualified" attributeFormDefault="unqualified" xml:lang="en">
-	<xsd:import namespace="http://standards.ieee.org/downloads/11073/11073-10207-2017/participant" schemaLocation=")" + SCHEMA_BICEPS_PARTICIPANTMODEL_NAME + R"("/>
+const static std::string SCHEMA_DICOM_DATAMODEL_CONTENT = std::string(R"(<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://dicom-extension-uri/09/08" xmlns:pm="http://standards.ieee.org/downloads/11073/11073-10207-2017/participant" targetNamespace="http://dicom-extension-uri/09/08" elementFormDefault="qualified" attributeFormDefault="unqualified" xml:lang="en">
+	<xsd:import namespace="http://standards.ieee.org/downloads/11073/11073-10207-2017/participant" schemaLocation="BICEPS_ParticipantModel.xsd"/>
 	<xsd:simpleType name="DicomTransferRole">
 		<xsd:annotation>
 			<xsd:documentation>Role can be either server (SCP) or client (SCU)</xsd:documentation>

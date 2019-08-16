@@ -125,6 +125,9 @@ struct ContextReportServiceImpl : public SDC::IContextService {
 		std::lock_guard<std::mutex> t_lock{_provider.getMutex()};
 		return std::unique_ptr<SDC::SetContextStateTraits::Response>(new SDC::SetContextStateTraits::Response(_provider.SetContextStateAsync(request)));
 	}
+	virtual std::unique_ptr<DPWS::GetStatusTraits::Response> dispatch(const DPWS::GetStatusTraits::Request & request, const DPWS::GetStatusTraits::RequestIdentifier & identifier) override {
+		return _subscriptionManager.dispatch(request, identifier);
+	}
 
 private:
 	SDCLib::Data::SDC::SDCProvider & _provider;
@@ -162,6 +165,9 @@ struct EventReportServiceImpl : public SDC::IEventReport {
 	virtual std::unique_ptr<DPWS::RenewTraits::Response> dispatch(const DPWS::RenewTraits::Request & request, const DPWS::RenewTraits::RequestIdentifier & identifier) override {
 		return _subscriptionManager.dispatch(request, identifier);
 	}
+	virtual std::unique_ptr<DPWS::GetStatusTraits::Response> dispatch(const DPWS::GetStatusTraits::Request & request, const DPWS::GetStatusTraits::RequestIdentifier & identifier) override {
+		return _subscriptionManager.dispatch(request, identifier);
+	}
 
 private:
 	const DPWS::MetadataProvider _metadata;
@@ -195,6 +201,9 @@ struct WaveformReportServiceImpl : public SDC::IWaveformService {
 		return _subscriptionManager.dispatch(request, identifier);
 	}
 	virtual std::unique_ptr<DPWS::RenewTraits::Response> dispatch(const DPWS::RenewTraits::Request & request, const DPWS::RenewTraits::RequestIdentifier & identifier) override {
+		return _subscriptionManager.dispatch(request, identifier);
+	}
+	virtual std::unique_ptr<DPWS::GetStatusTraits::Response> dispatch(const DPWS::GetStatusTraits::Request & request, const DPWS::GetStatusTraits::RequestIdentifier & identifier) override {
 		return _subscriptionManager.dispatch(request, identifier);
 	}
 
@@ -292,6 +301,9 @@ struct SetServiceImpl : public SDC::ISetService {
 			return _subscriptionManager.dispatch(request, identifier);
 	}
 	virtual std::unique_ptr<DPWS::RenewTraits::Response> dispatch(const DPWS::RenewTraits::Request & request, const DPWS::RenewTraits::RequestIdentifier & identifier) override {
+		return _subscriptionManager.dispatch(request, identifier);
+	}
+	virtual std::unique_ptr<DPWS::GetStatusTraits::Response> dispatch(const DPWS::GetStatusTraits::Request & request, const DPWS::GetStatusTraits::RequestIdentifier & identifier) override {
 		return _subscriptionManager.dispatch(request, identifier);
 	}
 

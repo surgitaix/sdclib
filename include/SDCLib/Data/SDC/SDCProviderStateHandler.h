@@ -27,8 +27,6 @@
 //#include <memory>
 #include <string>
 
-#include "Poco/Mutex.h"
-
 #include "SDCLib/Data/SDC/SDC-fwd.h"
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 

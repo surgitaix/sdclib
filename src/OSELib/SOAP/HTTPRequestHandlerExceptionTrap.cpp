@@ -46,9 +46,6 @@ void HTTPRequestHandlerExceptionTrap::handleRequest(Poco::Net::HTTPServerRequest
 	} catch (const xml_schema::Exception & e) {
 		log_error([&] { return "Processing HTTP request caused exception: " + std::string(e.what()); });
 		faultCommand = std::unique_ptr<Command>(new SoapFaultCommand(httpResponse));
-	} catch (const std::exception & e) {
-		log_error([&] { return "Processing HTTP request caused exception: \nUnhandled exception: " + std::string(e.what()); });
-		faultCommand = std::unique_ptr<Command>(new SoapFaultCommand(httpResponse));
 	} catch (const xercesc::XMLException & e) {
         char* t_msg(xercesc::XMLString::transcode(e.getMessage()));
 		log_error([&] { return "Processing HTTP request caused exception: \nUnexpected Xerces-C++ exception with code: " + std::to_string(e.getCode()) + std::string(t_msg); });
@@ -58,6 +55,9 @@ void HTTPRequestHandlerExceptionTrap::handleRequest(Poco::Net::HTTPServerRequest
         char* t_msg(xercesc::XMLString::transcode(e.getMessage()));
 		log_error([&] { return "Processing HTTP request caused exception: \nUnexpected Xerces-C++ DOM exception with code: " + std::to_string(e.code) + std::string(t_msg); });
         xercesc::XMLString::release(&t_msg);
+		faultCommand = std::unique_ptr<Command>(new SoapFaultCommand(httpResponse));
+	} catch (const std::exception & e) {
+		log_error([&] { return "Processing HTTP request caused exception: \nUnhandled exception: " + std::string(e.what()); });
 		faultCommand = std::unique_ptr<Command>(new SoapFaultCommand(httpResponse));
 	} catch (...) {
 		log_error([] { return "Processing HTTP request caused exception: \nUnknown exception."; });

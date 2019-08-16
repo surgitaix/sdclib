@@ -99,6 +99,8 @@ const std::string WS_ACTION_RENEW("http://schemas.xmlsoap.org/ws/2004/08/eventin
 const std::string WS_ACTION_RENEW_RESPONSE("http://schemas.xmlsoap.org/ws/2004/08/eventing/RenewResponse");
 const std::string WS_ACTION_UNSUBSCRIBE("http://schemas.xmlsoap.org/ws/2004/08/eventing/Unsubscribe");
 const std::string WS_ACTION_UNSUBSCRIBE_RESPONSE("http://schemas.xmlsoap.org/ws/2004/08/eventing/UnsubscribeResponse");
+const std::string WS_ACTION_GETSTATUS("http://schemas.xmlsoap.org/ws/2004/08/eventing/GetStatus");
+const std::string WS_ACTION_GETSTATUS_RESPONSE("http://schemas.xmlsoap.org/ws/2004/08/eventing/GetStatusResponse");
 
 const std::string WS_DISCOVERY_URN("urn:docs-oasis-open-org:ws-dd:ns:discovery:2009:01");
 

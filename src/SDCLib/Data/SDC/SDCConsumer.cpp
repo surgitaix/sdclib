@@ -156,14 +156,16 @@ MDM::SetContextState createRequestMessage(const WorkflowContextState & state, co
 	return result;
 }
 
-SDCConsumer::SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, const OSELib::DPWS::DeviceDescription & deviceDescription) :
-		WithLogger(OSELib::Log::SDCCONSUMER),
-		m_SDCInstance(p_SDCInstance),
-		_deviceDescription(deviceDescription)
+SDCConsumer::SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, OSELib::DPWS::DeviceDescription_shared_ptr p_deviceDescription)
+: WithLogger(OSELib::Log::SDCCONSUMER)
+, m_SDCInstance(p_SDCInstance)
+, m_deviceDescription(p_deviceDescription)
 {
+	assert(m_deviceDescription != nullptr);
+
     // DONT DO THIS INSIDE THE CTOR! FIXME! FIXME
 	try {
-		_adapter = std::unique_ptr<SDCConsumerAdapter>(new SDCConsumerAdapter(*this, _deviceDescription));
+		_adapter = std::unique_ptr<SDCConsumerAdapter>(new SDCConsumerAdapter(*this, m_deviceDescription));
 		if(!_adapter->start()) {
             log_error([] { return "Could not start ConsumerAdapter!"; });
             disconnect();
@@ -181,7 +183,7 @@ SDCConsumer::SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, const OSE
     }
 
 	if (!connected) {
-		log_error([&] { return "Connecting to " + deviceDescription.getEPR() + " failed."; });
+		log_error([&] { return "Connecting to " + m_deviceDescription->getEPR() + " failed."; });
 	}
 }
 
@@ -673,7 +675,7 @@ void SDCConsumer::onOperationInvoked(const OperationInvocationContext & oic, Inv
     // If operation handle belongs to ActivateOperationDescriptor, use operation handle as target handle in case of operation invoked events!
     const MdDescription mdd(getCachedMdDescription());
     std::string targetHandle;
-    const std::vector<MdsDescriptor> mdss(mdd.collectAllMdsDescriptors());
+    const auto mdss(mdd.collectAllMdsDescriptors());
     for (const auto & mds : mdss) {
     	const std::unique_ptr<CDM::MdsDescriptor> mds_uniquePtr(ConvertToCDM::convert(mds));
 		if (!mds_uniquePtr->Sco().present()) {
@@ -690,11 +692,12 @@ void SDCConsumer::onOperationInvoked(const OperationInvocationContext & oic, Inv
     }
 
     // All other operation descriptor cases
-    if (targetHandle.empty())
+    if (targetHandle.empty()) {
     	targetHandle = mdd.getOperationTargetForOperationHandle(oic.operationHandle);
-    std::map<std::string, SDCConsumerOperationInvokedHandler *>::iterator it = eventHandlers.find(targetHandle);
-    if (it != eventHandlers.end()) {
-        it->second->onOperationInvoked(oic, is);
+    }
+    const auto t_iter = eventHandlers.find(targetHandle);
+    if (t_iter != eventHandlers.end()) {
+    	t_iter->second->onOperationInvoked(oic, is);
     }
 
     // Notify user future invocation state events
@@ -707,7 +710,7 @@ void SDCConsumer::onOperationInvoked(const OperationInvocationContext & oic, Inv
 }
 
 std::string SDCConsumer::getEndpointReference() const {
-	return _deviceDescription.getEPR();
+	return m_deviceDescription->getEPR();
 }
 
 unsigned long long int SDCConsumer::getLastKnownMdibVersion() {

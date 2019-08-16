@@ -53,7 +53,9 @@ using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
 //SDCLib/C
+
 const std::string deviceEPR("DUTMirrorProvider");
+
 const std::string HANDLE_SET_METRIC("handle_set");
 const std::string HANDLE_GET_METRIC("handle_get");
 const std::string HANDLE_STREAM_METRIC("handle_stream");

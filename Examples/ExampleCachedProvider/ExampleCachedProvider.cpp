@@ -32,7 +32,8 @@ using namespace SDCLib::Data::SDC;
 
 const std::string ts_file("cachedMdib.xml");
 
-const std::string DEVICE_EPR("DUTMirrorProvider");
+
+const std::string DEVICE_EPR("UDI-EXAMPLE_CACHED_PROVIDER");
 
 const std::string HANDLE_SET_METRIC("handle_set");
 const std::string HANDLE_GET_METRIC("handle_get");
@@ -165,7 +166,7 @@ public:
 
         assert(p_stream.is_open());
 
-		sdcProvider.setEndpointReference(DEVICE_EPR);
+		sdcProvider.setEndpointReferenceByName(DEVICE_EPR);
 
 
 		std::stringstream buffer;

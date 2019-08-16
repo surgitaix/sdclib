@@ -255,7 +255,7 @@ public:
 
 private:
 
-    SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, const OSELib::DPWS::DeviceDescription & deviceDescription);
+    SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, OSELib::DPWS::DeviceDescription_shared_ptr p_deviceDescription);
 
     /**
     * @brief Get the managing SDCInstance
@@ -299,7 +299,7 @@ private:
     //
 
     SDCInstance_shared_ptr m_SDCInstance = nullptr;
-    OSELib::DPWS::DeviceDescription _deviceDescription;
+    OSELib::DPWS::DeviceDescription_shared_ptr m_deviceDescription = nullptr;
 
     std::map<int, FutureInvocationState *> fisMap;
     std::mutex m_transactionMutex;

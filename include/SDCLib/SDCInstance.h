@@ -25,7 +25,7 @@
 #ifndef SDCLIB_SDCINSTANCE_H
 #define SDCLIB_SDCINSTANCE_H
 
-#include "Prerequisites.h"
+#include "SDCLib/Prerequisites.h"
 #include "config/config.h"
 
 #include "SDCLib/Config/NetworkConfig.h"

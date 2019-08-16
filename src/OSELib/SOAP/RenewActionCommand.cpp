@@ -32,7 +32,7 @@ std::unique_ptr<MESSAGEMODEL::Envelope> RenewActionCommand::dispatch(const MESSA
 
 	NormalizedMessageAdapter<DPWS::RenewTraits::RequestIdentifier> requestIdentifierAdapter;
 	if (!requestIdentifierAdapter.present(request)) {
-		throw MissingRequestBody("Event identifier in request header missing for " + DPWS::UnsubscribeTraits::RequestAction());
+		throw MissingRequestBody("Event identifier in request header missing for " + DPWS::RenewTraits::RequestAction());
 	}
 
 	const DPWS::RenewTraits::Request & requestBody(requestAdapter.get(request));

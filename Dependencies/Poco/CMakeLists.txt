@@ -96,15 +96,9 @@ option(ENABLE_PDF "Enable PDF" OFF)
 option(ENABLE_UTIL "Enable Util" ON)
 option(ENABLE_NET "Enable Net" ON)
 
-# NOTE: ENABLE SSL - system dependend
-if(CMAKE_SYSTEM_NAME MATCHES "Linux")
-    option(ENABLE_NETSSL "Enable NetSSL" ON)
-    option(ENABLE_NETSSL_WIN "Enable NetSSL Windows" OFF)
-endif()
-if(CMAKE_SYSTEM_NAME MATCHES "Windows")
-    option(ENABLE_NETSSL "Enable NetSSL" OFF)
-    option(ENABLE_NETSSL_WIN "Enable NetSSL Windows" ON)
-endif()
+# NOTE: ENABLE SSL - Use NetSSL with OpenSSL
+option(ENABLE_NETSSL "Enable NetSSL" ON)
+option(ENABLE_NETSSL_WIN "Enable NetSSL Windows" OFF)
 
 option(ENABLE_CRYPTO "Enable Crypto" ON)
 option(ENABLE_DATA "Enable Data" OFF)

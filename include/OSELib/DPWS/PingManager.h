@@ -1,8 +1,9 @@
 /*
  * PingManager.h
  *
- *  Created on: 14.12.2015
- *      Author: matthias
+ *  Created on: 14.12.2015, matthias
+ *  Modified on: 05.08.2019, baumeister
+ *
  */
 
 #ifndef OSELIB_DPWS_PINGMANAGER_H_
@@ -11,30 +12,38 @@
 #include <Poco/Thread.h>
 #include <Poco/RunnableAdapter.h>
 
-
 #include "SDCLib/Prerequisites.h"
 #include "OSELib/fwd.h"
 
-namespace OSELib {
-namespace DPWS {
+namespace OSELib
+{
+	namespace DPWS
+	{
+		class PingManager
+		{
+		private:
+			Poco::Thread m_thread;
+			Poco::RunnableAdapter<PingManager> m_runnableAdapter;
+			SDCLib::Data::SDC::SDCConsumer & m_consumer;
 
-class PingManager {
-public:
-	PingManager(SDCLib::Data::SDC::SDCConsumer & consumer);
-	virtual ~PingManager();
+		public:
 
-	void disable();
+			// Special Member Functions
+			PingManager(SDCLib::Data::SDC::SDCConsumer & p_consumer);
+			PingManager(const PingManager& p_obj) = delete;
+			PingManager(PingManager&& p_obj) = delete;
+			PingManager& operator=(const PingManager& p_obj) = delete;
+			PingManager& operator=(PingManager&& p_obj) = delete;
+			~PingManager();
 
-private:
-	void run();
-	mutable Poco::Mutex _mutex;
+			void disable();
 
-	Poco::Thread _thread;
-	Poco::RunnableAdapter<PingManager> _runnableAdapter;
-	SDCLib::Data::SDC::SDCConsumer & _consumer;
-};
+		private:
 
-} /* namespace DPWS */
+			void run();
+		};
+
+	} /* namespace DPWS */
 } /* namespace OSELib */
 
 #endif /* OSELIB_DPWS_PINGMANAGER_H_ */

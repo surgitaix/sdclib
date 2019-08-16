@@ -29,7 +29,7 @@ namespace Impl {
 
 class MDPWSStreamingAdapter : public WithLogger {
 public:
-    MDPWSStreamingAdapter(SDCLib::Config::NetworkConfig_shared_ptr p_config, StreamNotificationDispatcher & streamNotificationDispatcher, const DeviceDescription & deviceDescription);
+    MDPWSStreamingAdapter(SDCLib::Config::NetworkConfig_shared_ptr p_config, StreamNotificationDispatcher & streamNotificationDispatcher, DeviceDescription_shared_ptr p_deviceDescription);
 
 	~MDPWSStreamingAdapter();
 
@@ -43,7 +43,7 @@ private:
     //  callback function, implemented in SDCConsumerAdapter
 	StreamNotificationDispatcher & m_streamNotificationDispatcher;
 
-    const DeviceDescription & m_deviceDescription;
+	DeviceDescription_shared_ptr m_deviceDescription = nullptr;
 
 	// todo: make list of socket for compatibility with other frameworks
 
