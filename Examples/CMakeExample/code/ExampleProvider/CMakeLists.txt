@@ -28,9 +28,16 @@ target_include_directories(${CURRENT_TARGET_NAME} PUBLIC ${SRC_DIR})
 # Additional include directories
 # ...
 
-# Add SDCLib Include Directories and Link to it
-target_include_directories(${CURRENT_TARGET_NAME} PRIVATE ${SDCLib_INCLUDE_DIRS})
-target_link_libraries(${CURRENT_TARGET_NAME} PRIVATE ${SDCLib_LIBRARIES})
+# NOTE: Set SDCLib Libraries and its dependencies
+# SDCLib
+target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC ${SDCLib_LIBRARIES})
+target_include_directories(${CURRENT_TARGET_NAME} PUBLIC ${SDCLib_INCLUDE_DIRS})
+target_compile_definitions(${CURRENT_TARGET_NAME} PUBLIC ${SDCLib_DEFINITIONS})
+# SDCLib Deps
+target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC ${SDCLib_DEPS_LIBRARIES})
+target_include_directories(${CURRENT_TARGET_NAME} PUBLIC ${SDCLib_DEPS_INCLUDE_DIRS})
+target_compile_definitions(${CURRENT_TARGET_NAME} PUBLIC ${SDCLib_DEPS_DEFINITIONS})
+
 
 
 # Some properties (These variables are set in the top level CMakeLists file)
