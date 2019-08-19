@@ -48,6 +48,7 @@ namespace OSELib
 		private:
 
 			mutable std::mutex m_mutex;
+			std::mutex m_mutex_houseKeeping;
 
 			Poco::RunnableAdapter<ActiveSubscriptions> m_runnableAdapter;
 			std::map<xml_schema::Uri, SubscriptionInformation> ml_subscriptions;

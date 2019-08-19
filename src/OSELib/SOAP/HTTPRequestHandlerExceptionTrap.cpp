@@ -34,7 +34,7 @@ HTTPRequestHandlerExceptionTrap::~HTTPRequestHandlerExceptionTrap() = default;
 
 void HTTPRequestHandlerExceptionTrap::handleRequest(Poco::Net::HTTPServerRequest & httpRequest, Poco::Net::HTTPServerResponse & httpResponse) {
 
-	std::unique_ptr<Command> faultCommand;
+	std::unique_ptr<Command> faultCommand = nullptr;
 
 	try {
 		log_trace([&] { return "Processing HTTP request ... "; });

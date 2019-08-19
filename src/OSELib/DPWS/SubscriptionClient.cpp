@@ -9,6 +9,7 @@
 
 
 #include "ws-addressing.hxx"
+#include "eventing.hxx"
 
 #include "OSELib/SOAP/GenericSoapInvoke.h"
 #include "OSELib/SDC/DefaultSDCSchemaGrammarProvider.h"
@@ -17,7 +18,9 @@
 
 #include "SDCLib/SDCInstance.h"
 
-const std::size_t RENEW_THRESHOLD = 60;
+// Note: Configure these values later?
+const std::size_t RENEW_THRESHOLD = 60; // Time in sec a renew will be needed
+const double RENEW_FACTOR = 2.0; // Multiplied with the RENEW_THRESHOLD = EXPIRATION_TIME for the subscription
 
 using namespace OSELib;
 using namespace OSELib::DPWS;
@@ -105,7 +108,7 @@ void SubscriptionClient::run() {
 
 	auto t_renewThreshold = std::chrono::seconds(RENEW_THRESHOLD);
 
-	auto t_expireString = "PT" + std::to_string(t_renewThreshold.count() * 2) + "S"; // Note: Double the factor
+	auto t_expireString = "PT" + std::to_string(t_renewThreshold.count() * RENEW_FACTOR) + "S"; // Note: Factor on the renew threshold
 	const WS::EVENTING::ExpirationType t_defaultExpires(t_expireString);
 
 	std::size_t t_sleepQueryGetStatus_ms = 2000;
@@ -132,6 +135,7 @@ void SubscriptionClient::run() {
 			|| !response->SubscriptionManager().ReferenceParameters().present()
 			|| !response->SubscriptionManager().ReferenceParameters().get().Identifier().present()) {
 			log_fatal([&] { return "Subscribing failed."; });
+			continue;
 		} else {
 			log_information([] { return "Subscription accomplished"; });
 		}
@@ -145,15 +149,20 @@ void SubscriptionClient::run() {
 		for (const auto & subscription : _subscriptions) {
 			OSELib::DPWS::GetStatusTraits::Request t_getStatusRequest;
 
+
+			OSELib::Helper::DurationWrapper t_expireDuration(t_expireString); // Init to default
+
 			GetStatusInvoke t_getStatusInvoke(subscription.second._sourceURI, _subscriptionIdentifiers.at(subscription.first), grammarProvider);
 			auto t_response(t_getStatusInvoke.invoke(t_getStatusRequest, m_SSLContext));
-			if (!t_response) {
+
+			// Valid response - Init
+			if (t_response != nullptr) {
+				t_expireDuration = OSELib::Helper::DurationWrapper(t_response.get()->Expires().get());
+				log_debug([&] { return "GetStatus " + _subscriptionIdentifiers.at(subscription.first) + ": " + t_expireDuration.toString() + "."; });
+			}
+			else {
 				log_fatal([] { return "GetStatus failed."; });
 			}
-
-			auto t_expireDuration = OSELib::Helper::DurationWrapper(t_response.get()->Expires().get());
-
-			log_debug([&] { return "GetStatus " + _subscriptionIdentifiers.at(subscription.first) + ": " + t_expireDuration.toString() + "."; });
 
 			// Renew when under a threshold or duration convert error
 			if((!t_expireDuration.toDuration_s().first) || (t_expireDuration.toDuration_s().second < t_renewThreshold))

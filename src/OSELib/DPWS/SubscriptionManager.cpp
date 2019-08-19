@@ -145,8 +145,8 @@ std::unique_ptr<GetStatusTraits::Response> SubscriptionManager::dispatch(const G
 {
 	auto t_subscription = _subscriptions.getStatus(identifier);
 	if(!t_subscription.first) {
-		log_debug([&] { return "GetStatus: Unknown Identifier!"; });
-		throw SOAP::SoapActionCommand::DispatchingFailed("### GETSTATUS: Unknown Identifier!");
+		log_debug([] { return "GetStatus: Unknown Identifier!"; });
+		throw SOAP::SoapActionCommand::DispatchingFailed("### GETSTATUS: Unknown Identifier: " + identifier + "!");
 	}
 
 	auto t_expiresDuration = Helper::DurationWrapper(std::chrono::duration_cast<std::chrono::seconds>(t_subscription.second.m_expirationTime-std::chrono::system_clock::now()));

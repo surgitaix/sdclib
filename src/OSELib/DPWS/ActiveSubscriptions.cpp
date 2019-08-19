@@ -81,17 +81,25 @@ bool ActiveSubscriptions::renew(const WS::EVENTING::Identifier & identifier, std
 
 void ActiveSubscriptions::houseKeeping()
 {
+	// Protect from double execution
+	std::lock_guard<std::mutex> t_lock(m_mutex_houseKeeping);
+
 	std::vector<WS::EVENTING::Identifier> tl_expiredSubscriptions;
 
-	std::lock_guard<std::mutex> t_lock(m_mutex);
-	auto t_now = std::chrono::system_clock::now();
-
-	// 1. Collect all expired
-	for (auto & t_item : ml_subscriptions) {
-		if (t_item.second.m_expirationTime.time_since_epoch() < t_now.time_since_epoch()) {
-			tl_expiredSubscriptions.emplace_back(t_item.first);
+	{ // LOCK - Protect the subscriptions
+		std::lock_guard<std::mutex> t_lock(m_mutex);
+		if(ml_subscriptions.empty()) {
+			return;
 		}
-	}
+
+		// 1. Collect all expired
+		auto t_now = std::chrono::system_clock::now();
+		for (auto & t_item : ml_subscriptions) {
+			if (t_item.second.m_expirationTime.time_since_epoch() < t_now.time_since_epoch()) {
+				tl_expiredSubscriptions.emplace_back(t_item.first);
+			}
+		}
+	} // UNLOCK
 
 	// 2. Unsubscribe all
 	for (const auto & t_item : tl_expiredSubscriptions) {
@@ -102,8 +110,8 @@ void ActiveSubscriptions::houseKeeping()
 
 void ActiveSubscriptions::run()
 {
-	while (Poco::Thread::trySleep(8000)) {
-		log_debug([&] { return "Checking for expired subscription"; });
+	while (Poco::Thread::trySleep(6000)) {
+		log_debug([] { return "Checking for expired subscriptions..."; });
 		houseKeeping();
 	}
 }

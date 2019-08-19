@@ -362,7 +362,12 @@ void DPWSHostSocketImpl::onMulticastSocketReadable(Poco::Net::ReadableNotificati
 		return;
 	}
 	if (requestMessage->Header().MessageID().present()) {
-		if (! context.registerMessageId(requestMessage->Header().MessageID().get())) {
+		if(requestMessage->Header().MessageID().get().empty()) {
+			log_debug([&] { return "DPWSHostSocketImpl::onMulticastSocketReadable. <MessageID> EMPTY!"; });
+			return;
+		}
+		if (!context.registerMessageId(requestMessage->Header().MessageID().get())) {
+			log_debug([&] { return "DPWSHostSocketImpl::onMulticastSocketReadable. registerMessageId failed!"; });
 			return;
 		}
 	}

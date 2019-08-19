@@ -26,6 +26,9 @@ MessagingContext::MessagingContext()
 }
 bool MessagingContext::registerMessageId(const std::string & id)
 {
+	if(id.empty()) {
+		return false;
+	}
     std::lock_guard<std::mutex> t_lock(m_mutex_messageID);
 	if (std::find(_knownMessageIds.begin(), _knownMessageIds.end(), id) != _knownMessageIds.end()) {
 		return false;

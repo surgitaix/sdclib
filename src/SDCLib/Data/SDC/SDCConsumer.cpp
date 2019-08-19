@@ -305,11 +305,10 @@ bool SDCConsumer::registerStateEventHandler(SDCConsumerOperationInvokedHandler *
 
 bool SDCConsumer::unregisterStateEventHandler(SDCConsumerOperationInvokedHandler * handler)
 {
+	assert(handler != nullptr);
 
-    { //LOCK
-        std::lock_guard<std::mutex> t_lock(m_eventMutex);
-        eventHandlers.erase(handler->getDescriptorHandle());
-    } // UNLOCK
+	std::lock_guard<std::mutex> t_lock(m_eventMutex);
+    eventHandlers.erase(handler->getDescriptorHandle());
 
 	if (_adapter && eventHandlers.empty() && contextStateChangedHandler == nullptr) {
 		_adapter->unsubscribeEvents();
