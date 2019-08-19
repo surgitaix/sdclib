@@ -140,9 +140,9 @@ if (CMAKE_SYSTEM_NAME MATCHES "Windows")
     # Set the library based on build type
     if(CMAKE_BUILD_TYPE)
         if(CMAKE_BUILD_TYPE STREQUAL "Release")
-            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/libSDCLib.dll)
+            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/SDCLib.lib)
         else()
-            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/libSDCLib${CMAKE_DEBUG_POSTFIX}.dll)
+            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/SDCLib${CMAKE_DEBUG_POSTFIX}.lib)
         endif()
     else()
         message(SEND_ERROR "Trying to determine SDCLib type, but no build type specified yet. Specify one first, before calling findSDCLib!")
@@ -167,7 +167,7 @@ if(CMAKE_SYSTEM_NAME MATCHES "Windows")
     list(APPEND SDCLib_DEFINITIONS -D_WIN32)
 
     # Libraries - WIP... maybe include in Dependencies?
-    SET(PTHREAD_LIB_DIR "${PROJECT_SOURCE_DIR}/../pthread/lib/" CACHE PATH "Path to PTHREAD libraries.")
+    #SET(PTHREAD_LIB_DIR "${PROJECT_SOURCE_DIR}/../pthread/lib/" CACHE PATH "Path to PTHREAD libraries.")
 
     # define preprocessor macros for Visual Studio: no CONSTEXPR_MACRO before VS15
     MESSAGE( STATUS "MSVS compiler version: " ${CMAKE_CXX_COMPILER_VERSION} )

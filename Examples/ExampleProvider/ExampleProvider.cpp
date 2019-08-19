@@ -366,7 +366,7 @@ int main()
 {
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleProvider") << "Startup" << std::endl;
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::Debug);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::Trace);
 
     // Create a new SDCInstance (no flag will auto init)
     auto t_SDCInstance = std::make_shared<SDCInstance>(true);

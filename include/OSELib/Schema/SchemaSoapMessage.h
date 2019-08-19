@@ -1,16 +1,14 @@
 #ifndef SCHEMA_SOAPMESSAGE_H
 #define SCHEMA_SOAPMESSAGE_H
 
-#include <string.h>
+#include <string>
 
 namespace SCHEMA
 {
 const std::string SCHEMA_SOAPMESSAGE_NAME("GenericSoapMessage.xsd");
 
-const std::string SCHEMA_SOAPMESSAGE_CONTENT = std::string(R"(<?xml version="1.0" encoding="utf-8"?>
-<!-- This schema is only used for validation of incoming messages. -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.w3.org/2003/05/soap-envelope" 
-	elementFormDefault="qualified" attributeFormDefault="unqualified" xml:lang="en">
+const std::string SCHEMA_SOAPMESSAGE_CONTENT = std::string(R"(<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.w3.org/2003/05/soap-envelope" elementFormDefault="qualified" attributeFormDefault="unqualified" xml:lang="en">
 	<xs:element name="Envelope">
 		<xs:complexType>
 			<xs:sequence>
@@ -24,7 +22,7 @@ const std::string SCHEMA_SOAPMESSAGE_CONTENT = std::string(R"(<?xml version="1.0
 				<xs:element name="Body">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:any namespace="##any" processContents="lax" minOccurs="0" />
+							<xs:any namespace="##any" processContents="lax" minOccurs="0"/>
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
