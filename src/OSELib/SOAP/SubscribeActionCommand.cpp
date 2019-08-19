@@ -25,7 +25,7 @@ std::unique_ptr<MESSAGEMODEL::Envelope> SubscribeActionCommand::postprocessRespo
 	std::unique_ptr<DPWS::SubscribeTraits::Response> responseBody(new DPWS::SubscribeTraits::Response(responseAdapter.get(*response)));
 	responseBody->SubscriptionManager().Address(_subscriptionManagerAddress);
 	responseAdapter.set(*response, std::move(responseBody));
-	return std::move(response);
+	return response;
 }
 
 } /* namespace SOAP */

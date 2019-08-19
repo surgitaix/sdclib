@@ -80,6 +80,19 @@ struct UnsubscribeTraits {
 	static std::unique_ptr<Response> dispatch(Dispatcher & dispatcher, const Request & request, const RequestIdentifier & identifier);
 };
 
+struct GetStatusTraits {
+	typedef WS::EVENTING::GetStatus Request;
+	typedef WS::EVENTING::GetStatusResponse Response;
+	typedef WS::EVENTING::Identifier RequestIdentifier;
+	typedef ISubscriptionManager Dispatcher;
+	static std::string OperationName();
+	static std::string RequestAction();
+	static xml_schema::Qname RequestType();
+	static std::string ResponseAction();
+	static xml_schema::Qname ResponseType();
+	static std::unique_ptr<Response> dispatch(Dispatcher & dispatcher, const Request & request, const RequestIdentifier & identifier);
+};
+
 } /* namespace DPWS */
 } /* namespace OSELib */
 

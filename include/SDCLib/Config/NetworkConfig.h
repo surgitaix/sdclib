@@ -29,6 +29,7 @@
 #include "config/config.h"
 
 #include "OSELib/DPWS/DPWS11Constants.h"
+#include "OSELib/Helper/WithLogger.h"
 
 #include <Poco/Net/NetworkInterface.h>
 #include <Poco/Net/SocketDefs.h>
@@ -44,7 +45,8 @@ namespace SDCLib
         using IPAddress = Poco::Net::IPAddress;
         using IPAddressList = std::vector<IPAddress>;
 
-        class NetInterface {
+        class NetInterface
+		{
         public:
             std::string m_name;
             IPAddress m_IPv4;
@@ -66,7 +68,7 @@ namespace SDCLib
         using NI_List = std::vector<NetInterface_shared_ptr>;
 
 
-        class NetworkConfig
+        class NetworkConfig : public OSELib::WithLogger
         {
             friend SDCConfig;
 

@@ -5,29 +5,27 @@
  *  Modified on: 26.07.2019, baumeister
  */
 
-#include <Poco/NotificationQueue.h>
-#include <Poco/URI.h>
-#include <Poco/Net/HTTPClientSession.h>
-#include <Poco/Net/SocketNotification.h>
+#include "OSELib/DPWS/SubscriptionManager.h"
 
 #include "eventing.hxx"
-#include "NormalizedMessageModel.hxx"
 
-#include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/DPWS/OperationTraits.h"
-#include "OSELib/DPWS/SubscriptionManager.h"
 #include "OSELib/Helper/DurationWrapper.h"
 #include "OSELib/HTTP/HTTPSessionManager.h"
 #include "OSELib/SOAP/NormalizedMessageAdapter.h"
 #include "OSELib/SOAP/NormalizedMessageSerializer.h"
 #include "OSELib/SOAP/SoapActionCommand.h"
-#include "OSELib/SDC/SDCConstants.h"
-#include "OSELib/SDC/ReportTraits.h"
 
 #include "SDCLib/SDCInstance.h"
 
+#include <Poco/URI.h>
+#include <Poco/Net/HTTPClientSession.h>
+
+
 namespace OSELib {
 namespace DPWS {
+
+const std::chrono::seconds DEFAULT_DURATION_S = std::chrono::seconds(60);
 
 SubscriptionManager::SubscriptionManager(const std::vector<xml_schema::Uri> & allowedEventActions, SDCLib::Config::SSLConfig_shared_ptr p_SSLConfig)
 : WithLogger(Log::EVENTSOURCE)
@@ -41,12 +39,14 @@ std::unique_ptr<SubscribeTraits::Response> SubscriptionManager::dispatch(const S
 	using ResponseType = SubscribeTraits::Response;
 
 	const std::string expiresString(request.Expires().present() ? request.Expires().get() : "PT60S");
-	Helper::DurationWrapper expiresDuration(expiresString);
-	const xml_schema::Duration zeroDuration(false, 0, 0, 0, 0, 0, 0.0);
+	Helper::DurationWrapper t_expiresDuration(expiresString);
 
-	if (expiresDuration == zeroDuration || expiresDuration.negative()) {
-		const xml_schema::Duration defaultDuration(false, 0, 0, 0, 0, 0, 61.0);
-		expiresDuration = defaultDuration;
+	if (t_expiresDuration.toDuration_s().second == std::chrono::seconds(0) || t_expiresDuration.negative()) {
+		if(request.Expires().present()) {
+			// NOTE: THIS MUST FAIL! See WS-Eventing wse:InvalidExpirationTime ?
+		}
+		// Falling back to default
+		t_expiresDuration = Helper::DurationWrapper(DEFAULT_DURATION_S);
 	}
 
 	if (request.Delivery().Mode().present() && request.Delivery().Mode().get() != OSELib::WS_EVENTING_DELIVERYMODE_PUSH) {
@@ -66,22 +66,29 @@ std::unique_ptr<SubscribeTraits::Response> SubscriptionManager::dispatch(const S
 		}
 	}
 
-	ActiveSubscriptions::SubscriptionInformation info(request.Delivery().NotifyTo(), expiresDuration.toExpirationTimePoint(), request.Filter().get());
+	auto t_result_TimePoint = t_expiresDuration.toExpirationTimePoint();
+	if(!t_result_TimePoint.first) {
+		log_error([&] { return "Subscribe: TimePoint conversion failed!"; });
+		throw SOAP::SoapActionCommand::DispatchingFailed("Subscribe: Timepoint / Duration parse Error!");
+	}
+
+
+	ActiveSubscriptions::SubscriptionInformation info(request.Delivery().NotifyTo(), t_result_TimePoint.second, request.Filter().get());
 	const auto mySubscriptionID(_subscriptions.subscribe(info));
 
+	log_debug([&] { return "Subscribing " + mySubscriptionID; });
+
+	// Build the response
 	ResponseType::SubscriptionManagerType subscriptionManager(WS::ADDRESSING::AttributedURIType("To be defined by ServiceHandler"));
 	ResponseType::SubscriptionManagerType::ReferenceParametersType::IdentifierType myID(mySubscriptionID);
 	ResponseType::SubscriptionManagerType::ReferenceParametersType referenceParameters;
 	referenceParameters.Identifier().set(myID);
 	subscriptionManager.ReferenceParameters().set(referenceParameters);
-
-	std::unique_ptr<ResponseType> response(new ResponseType(subscriptionManager, expiresDuration.toString()));
-
-	log_debug([&] { return "Subscribing " + mySubscriptionID; });
+	std::unique_ptr<ResponseType> response(new ResponseType(subscriptionManager, t_expiresDuration.toString()));
 
 	_subscriptions.printSubscriptions();
 
-	return std::move(response);
+	return response;
 }
 
 std::unique_ptr<UnsubscribeTraits::Response> SubscriptionManager::dispatch(const UnsubscribeTraits::Request & , const UnsubscribeTraits::RequestIdentifier & identifier) {
@@ -98,28 +105,65 @@ std::unique_ptr<UnsubscribeTraits::Response> SubscriptionManager::dispatch(const
 	return std::move(response);
 }
 
-std::unique_ptr<RenewTraits::Response> SubscriptionManager::dispatch(const RenewTraits::Request & request, const RenewTraits::RequestIdentifier & identifier) {
+std::unique_ptr<RenewTraits::Response> SubscriptionManager::dispatch(const RenewTraits::Request & request, const RenewTraits::RequestIdentifier & identifier)
+{
+	// Check if the subscription already exists
+	auto t_subscription = _subscriptions.getStatus(identifier);
+	if(!t_subscription.first) {
+		// FIXME: Create a new Subscription! https://www.w3.org/Submission/WS-Eventing/#Renew
+	}
 
 	using ResponseType = RenewTraits::Response;
 
 	const std::string expiresString(request.Expires().present() ? request.Expires().get() : "PT60S");
-	Helper::DurationWrapper expiresDuration(expiresString);
-	const xml_schema::Duration zeroDuration(false, 0, 0, 0, 0, 0, 0.0);
+	Helper::DurationWrapper t_expiresDuration(expiresString);
 
-	if (expiresDuration == zeroDuration || expiresDuration.negative()) {
-		const xml_schema::Duration defaultDuration(false, 0, 0, 0, 0, 0, 61.0);
-		expiresDuration = defaultDuration;
+	auto t_duration = t_expiresDuration.toDuration_s();
+	if ((t_duration.second == std::chrono::seconds(0)) || t_expiresDuration.negative()) {
+		t_expiresDuration = Helper::DurationWrapper(DEFAULT_DURATION_S);
 	}
 
 	std::unique_ptr<ResponseType> response(new ResponseType());
-	response->Expires().set(expiresDuration.toString());
+	response->Expires().set(t_expiresDuration.toString());
 
-	log_debug([&] { return "Renewing " + identifier; });
-	_subscriptions.renew(identifier, expiresDuration.toExpirationTimePoint());
+	auto t_result_TimePoint = t_expiresDuration.toExpirationTimePoint();
+	if(t_result_TimePoint.first) {
+		log_debug([&] { return "Renewing " + identifier; });
+		_subscriptions.renew(identifier, t_result_TimePoint.second);
+	}
+	else {
+		// TODO Fallback? Error response?
+		log_error([&] { return "Renew: TimePoint conversion failed! No renewing!"; });
+	}
 
 	_subscriptions.printSubscriptions();
 
-	return std::move(response);
+	return response;
+}
+
+std::unique_ptr<GetStatusTraits::Response> SubscriptionManager::dispatch(const GetStatusTraits::Request & request, const GetStatusTraits::RequestIdentifier & identifier)
+{
+	auto t_subscription = _subscriptions.getStatus(identifier);
+	if(!t_subscription.first) {
+		log_debug([&] { return "GetStatus: Unknown Identifier!"; });
+		throw SOAP::SoapActionCommand::DispatchingFailed("### GETSTATUS: Unknown Identifier!");
+	}
+
+	auto t_expiresDuration = Helper::DurationWrapper(std::chrono::duration_cast<std::chrono::seconds>(t_subscription.second.m_expirationTime-std::chrono::system_clock::now()));
+
+	auto t_duration = t_expiresDuration.toDuration_s();
+	if ((t_duration.second == std::chrono::seconds(0)) || t_expiresDuration.negative()) {
+		// NOTE: EXPIRED! WHAT TO DO HERE? -> Copied from renew...
+		t_expiresDuration = Helper::DurationWrapper(DEFAULT_DURATION_S);
+	}
+
+	// Create the Response
+	using ResponseType = GetStatusTraits::Response;
+	std::unique_ptr<ResponseType> t_response(new ResponseType());
+	t_response->Expires().set(t_expiresDuration.toString());
+
+	_subscriptions.printSubscriptions();
+	return t_response;
 }
 
 template <class TraitsType>

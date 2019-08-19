@@ -49,7 +49,7 @@ using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
 
-const std::string DEVICE_EPR("UDI-1234567890");
+const std::string DEVICE_EPR("UDI-ExampleProvider");
 
 const std::string VMD_DESCRIPTOR_HANDLE("holdingDevice_vmd");
 const std::string CHANNEL_DESCRIPTOR_HANDLE("holdingDevice_channel");
@@ -366,7 +366,7 @@ int main()
 {
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleProvider") << "Startup" << std::endl;
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::Trace);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::Debug);
 
     // Create a new SDCInstance (no flag will auto init)
     auto t_SDCInstance = std::make_shared<SDCInstance>(true);

@@ -10,6 +10,7 @@ using namespace SDCLib::Config;
 
 
 NetworkConfig::NetworkConfig()
+: OSELib::WithLogger(OSELib::Log::BASE)
 {
     // TODO: PortList
 }
@@ -68,27 +69,41 @@ bool NetworkConfig::bindToInterface(const std::string& ps_networkInterfaceName, 
             // Grab the address
 
             // IPv4? Else disable!
-            if (t_interface.supportsIPv4()) {
-                IPAddress t_IPv4;
-                try {
-                    t_interface.firstAddress(t_IPv4, Poco::Net::IPAddress::IPv4);
-                    t_if->m_IPv4 = t_IPv4;
-                }
-                catch (...) { }
-            }
-            else { setIP4enabled(false); }
+			if (getIP4enabled()) {
+				if (t_interface.supportsIPv4()) {
+					IPAddress t_IPv4;
+					try {
+						t_interface.firstAddress(t_IPv4, Poco::Net::IPAddress::IPv4);
+						t_if->m_IPv4 = t_IPv4;
+					}
+					catch (...) { setIP4enabled(false); }
+				}
+#ifdef WIN32			
+				else
+					continue;
+#else
+				else { setIP4enabled(false); }	//Windows lists the interface name multiple times (for IPv4 and IPv6), so this fails
+#endif
+			}
 
-
+			//FIXME This won't do on Windows with IPv4 and IPv6 enabled!
             // IPv6? Else disable!
-            if (t_interface.supportsIPv6()) {
-                IPAddress t_IPv6;
-                try {
-                    t_interface.firstAddress(t_IPv6, Poco::Net::IPAddress::IPv6);
-                    t_if->m_IPv6 = t_IPv6;
-                }
-                catch (...) { }
-            }
-            else { setIP6enabled(false); }
+			if (getIP6enabled()) {
+				if (t_interface.supportsIPv6()) {
+					IPAddress t_IPv6;
+					try {
+						t_interface.firstAddress(t_IPv6, Poco::Net::IPAddress::IPv6);
+						t_if->m_IPv6 = t_IPv6;
+					}
+					catch (...) { setIP6enabled(false); }
+				}
+#ifdef WIN32			
+				else
+					continue;
+#else
+				else { setIP6enabled(false); } //Windows lists the interface name multiple times (for IPv4 and IPv6), so this fails
+#endif
+			}
 
             // Add
             ml_networkInterfaces.push_back(t_if);
@@ -105,11 +120,18 @@ bool NetworkConfig::bindToInterface(const std::string& ps_networkInterfaceName, 
                 else {
                     throw std::runtime_error("NO FREE PORTS FOUND!");
                 }
+
+                log_debug([&] { return "SDCInstance bound to: " +  m_MDPWSInterface->m_name +  " ("
+                		+ (m_MDPWSInterface->m_if.supportsIPv4() ? "IPv4: " + m_MDPWSInterface->m_IPv4.toString() : "")
+						+ ((m_MDPWSInterface->m_if.supportsIPv4() && m_MDPWSInterface->m_if.supportsIPv6()) ? "|" : "")
+						+ (m_MDPWSInterface->m_if.supportsIPv6() ? "IPv6: "+  m_MDPWSInterface->m_IPv6.toString() : "")
+                		+ ").\n";
+                });
             }
             else {
                 // Not set yet! - Emit a Warning
                 if(m_MDPWSInterface == nullptr) {
-                    std::cout << "Warning: No Primary MDPWS Binding Interface set yet!" << std::endl;
+                	log_warning([] { return "Warning: No Primary MDPWS Binding Interface set yet!"; });
                 }
             }
             return true;

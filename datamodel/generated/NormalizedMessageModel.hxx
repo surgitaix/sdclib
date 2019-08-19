@@ -608,6 +608,48 @@ namespace MESSAGEMODEL
     void
     RenewResponse (::std::unique_ptr< RenewResponseType > p);
 
+    // GetStatus
+    //
+    typedef ::WS::EVENTING::GetStatus GetStatusType;
+    typedef ::xsd::cxx::tree::optional< GetStatusType > GetStatusOptional;
+    typedef ::xsd::cxx::tree::traits< GetStatusType, char > GetStatusTraits;
+
+    const GetStatusOptional&
+    GetStatus () const;
+
+    GetStatusOptional&
+    GetStatus ();
+
+    void
+    GetStatus (const GetStatusType& x);
+
+    void
+    GetStatus (const GetStatusOptional& x);
+
+    void
+    GetStatus (::std::unique_ptr< GetStatusType > p);
+
+    // GetStatusResponse
+    //
+    typedef ::WS::EVENTING::GetStatusResponse GetStatusResponseType;
+    typedef ::xsd::cxx::tree::optional< GetStatusResponseType > GetStatusResponseOptional;
+    typedef ::xsd::cxx::tree::traits< GetStatusResponseType, char > GetStatusResponseTraits;
+
+    const GetStatusResponseOptional&
+    GetStatusResponse () const;
+
+    GetStatusResponseOptional&
+    GetStatusResponse ();
+
+    void
+    GetStatusResponse (const GetStatusResponseType& x);
+
+    void
+    GetStatusResponse (const GetStatusResponseOptional& x);
+
+    void
+    GetStatusResponse (::std::unique_ptr< GetStatusResponseType > p);
+
     // GetContextStates
     //
     typedef ::MDM::GetContextStates GetContextStatesType;
@@ -1197,6 +1239,8 @@ namespace MESSAGEMODEL
     UnsubscribeOptional Unsubscribe_;
     RenewOptional Renew_;
     RenewResponseOptional RenewResponse_;
+    GetStatusOptional GetStatus_;
+    GetStatusResponseOptional GetStatusResponse_;
     GetContextStatesOptional GetContextStates_;
     GetContextStatesResponseOptional GetContextStatesResponse_;
     SetContextStateOptional SetContextState_;

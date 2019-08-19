@@ -258,8 +258,14 @@ void DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable(Poco::Net::Readabl
 
     // Only read if this belongs to this Config! - Peek first
     Poco::Net::SocketAddress t_sender;
-    Poco::Buffer<char> t_peekBuf(1);
-    socket.receiveFrom(t_peekBuf.begin(), 1, t_sender, MSG_PEEK);
+	//Windows is complaining if we use something less than available...
+#ifdef WIN32
+	int peek_buffer_length = available;
+#else
+	int peek_buffer_length = 1;
+#endif
+    Poco::Buffer<char> t_peekBuf(peek_buffer_length);
+    socket.receiveFrom(t_peekBuf.begin(), peek_buffer_length, t_sender, MSG_PEEK);
     if (m_networkConfig->isBound() && !m_networkConfig->belongsTo(t_sender.host())) {
         return;
     }

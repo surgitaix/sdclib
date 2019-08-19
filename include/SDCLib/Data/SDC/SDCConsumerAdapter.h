@@ -12,7 +12,6 @@
 
 #include "SDC-fwd.h"
 #include "OSELib/fwd.h"
-#include "OSELib/DPWS/DeviceDescription.h"
 #include "OSELib/SDC/DefaultSDCSchemaGrammarProvider.h"
 #include "OSELib/DPWS/Types.h"
 
@@ -27,9 +26,7 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class SDCConsumerAdapter :
-		public OSELib::DPWS::StreamNotificationDispatcher,
-		public OSELib::WithLogger
+class SDCConsumerAdapter : public OSELib::DPWS::StreamNotificationDispatcher, public OSELib::WithLogger
 {
 public:
     SDCConsumerAdapter(SDCConsumer & consumer, OSELib::DPWS::DeviceDescription_shared_ptr p_deviceDescription);

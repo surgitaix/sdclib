@@ -2,6 +2,7 @@
  * SubscriptionClient.cpp
  *
  *  Created on: 14.12.2015, matthias
+ *  Mofiried on: 12.08.2019, baumeister
  */
 
 #include "OSELib/DPWS/SubscriptionClient.h"
@@ -11,9 +12,12 @@
 
 #include "OSELib/SOAP/GenericSoapInvoke.h"
 #include "OSELib/SDC/DefaultSDCSchemaGrammarProvider.h"
+#include "OSELib/Helper/DurationWrapper.h"
+
 
 #include "SDCLib/SDCInstance.h"
 
+const std::size_t RENEW_THRESHOLD = 60;
 
 using namespace OSELib;
 using namespace OSELib::DPWS;
@@ -30,6 +34,26 @@ public:
 
 	virtual std::unique_ptr<MESSAGEMODEL::Header> createHeader() override {
 		auto header(OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::RenewTraits>::createHeader());
+		header->Identifier(_identifier);
+		return header;
+	}
+
+private:
+	const WS::EVENTING::Identifier _identifier;
+};
+
+class GetStatusInvoke : public OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::GetStatusTraits> {
+public:
+	GetStatusInvoke(const Poco::URI & requestURI,
+			const WS::EVENTING::Identifier & identifier,
+			OSELib::Helper::XercesGrammarPoolProvider & grammarProvider) :
+			OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::GetStatusTraits>(requestURI, grammarProvider),
+			_identifier(identifier)
+		{
+		}
+
+	virtual std::unique_ptr<MESSAGEMODEL::Header> createHeader() override {
+		auto header(OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::GetStatusTraits>::createHeader());
 		header->Identifier(_identifier);
 		return header;
 	}
@@ -79,10 +103,12 @@ void SubscriptionClient::run() {
 	// todo clean up and split method
 	SDC::DefaultSDCSchemaGrammarProvider grammarProvider;
 
-	const WS::EVENTING::ExpirationType defaultExpires("PT10S");
-	const WS::EVENTING::ExpirationType defaultRenew(defaultExpires);
+	auto t_renewThreshold = std::chrono::seconds(RENEW_THRESHOLD);
 
-	int defaultWaitBeforeRenew (5000);
+	auto t_expireString = "PT" + std::to_string(t_renewThreshold.count() * 2) + "S"; // Note: Double the factor
+	const WS::EVENTING::ExpirationType t_defaultExpires(t_expireString);
+
+	std::size_t t_sleepQueryGetStatus_ms = 2000;
 
 	for (const auto & subscription : _subscriptions) {
 		// get information
@@ -95,7 +121,7 @@ void SubscriptionClient::run() {
 
 
 		OSELib::DPWS::SubscribeTraits::Request request(delivery);
-		request.Expires(defaultExpires);
+		request.Expires(t_defaultExpires);
 		request.Filter(subscription.second._actions);
 
 		using SubscribeInvoke = OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::SubscribeTraits>;
@@ -108,26 +134,41 @@ void SubscriptionClient::run() {
 			log_fatal([&] { return "Subscribing failed."; });
 			_subscriptionIdentifiers.erase(subscription.first);
 		} else {
-			log_information([&] { return "Subscription accomplished"; });
+			log_information([] { return "Subscription accomplished"; });
 			_subscriptionIdentifiers.emplace(subscription.first, response->SubscriptionManager().ReferenceParameters().get().Identifier().get());
 		}
 	}
 
-	while (Poco::Thread::trySleep(defaultWaitBeforeRenew)) {
-		log_debug([&] { return "Renewing ..."; });
+	while (Poco::Thread::trySleep(t_sleepQueryGetStatus_ms)) {
 
+		// Query the status via GetStatus
 		for (const auto & subscription : _subscriptions) {
 			if (_subscriptionIdentifiers.find(subscription.first) == _subscriptionIdentifiers.end())
 				continue;
 
-			OSELib::DPWS::RenewTraits::Request request;
-			request.Expires(defaultRenew);
+			OSELib::DPWS::GetStatusTraits::Request t_getStatusRequest;
+			GetStatusInvoke t_getStatusInvoke(subscription.second._sourceURI, _subscriptionIdentifiers.at(subscription.first), grammarProvider);
+			auto t_response(t_getStatusInvoke.invoke(t_getStatusRequest, m_SSLContext));
+			if (!t_response) {
+				log_fatal([] { return "GetStatus failed."; });
+			}
 
-			RenewInvoke renewInvoke(subscription.second._sourceURI, _subscriptionIdentifiers.at(subscription.first), grammarProvider);
-			auto response(renewInvoke.invoke(request, m_SSLContext));
+			auto t_expireDuration = OSELib::Helper::DurationWrapper(t_response.get()->Expires().get());
 
-			if (!response) {
-				log_fatal([&] { return "Renew failed."; });
+			log_debug([&] { return "GetStatus " + _subscriptionIdentifiers.at(subscription.first) + ": " + t_expireDuration.toString() + "."; });
+
+			// Renew when under a threshold or duration convert error
+			if((!t_expireDuration.toDuration_s().first) || (t_expireDuration.toDuration_s().second < t_renewThreshold))
+			{
+				log_debug([&] { return "Renewing " + _subscriptionIdentifiers.at(subscription.first) + " (" + t_expireDuration.toString() + "):..."; });
+				OSELib::DPWS::RenewTraits::Request request;
+				request.Expires(t_defaultExpires);
+				RenewInvoke renewInvoke(subscription.second._sourceURI, _subscriptionIdentifiers.at(subscription.first), grammarProvider);
+				auto response(renewInvoke.invoke(request, m_SSLContext));
+
+				if (!response) {
+					log_fatal([] { return "Renew failed."; });
+				}
 				subscription.second._consumerAdapter.onSubscriptionLost();	//ToDo Do we need some further clean up here?
 			}
 		}
