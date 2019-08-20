@@ -1,229 +1,187 @@
 #ifndef SCHEMA_WSEVENTING_H
 #define SCHEMA_WSEVENTING_H
 
-#include <string.h>
+#include <string>
 
 namespace SCHEMA
 {
+const std::string SCHEMA_WSEVENTING_NAME("eventing.xsd");
 
-const static std::string SCHEMA_WSEVENTING_NAME("eventing.xsd");
+const std::string SCHEMA_WSEVENTING_CONTENT = std::string(
+		R"(<?xml version="1.0"?>
+		<xs:schema xmlns:tns="http://schemas.xmlsoap.org/ws/2004/08/eventing" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schemas.xmlsoap.org/ws/2004/08/eventing" elementFormDefault="qualified" blockDefault="#all">
+		  
+		  <xs:import namespace="http://www.w3.org/2005/08/addressing" schemaLocation="ws-addressing.xsd"/>
 
-const static std::string SCHEMA_WSEVENTING_CONTENT = std::string(R"(<?xml version="1.0" encoding="UTF-8" ?>
-<!-- 
-(c) 2004 BEA Systems Inc., International Business Machines Corporation, Microsoft Corporation, Inc, Sun Microsystems, Inc, and TIBCO Software Inc. All rights reserved.
+		  <xs:complexType name="DeliveryType">
+		    <xs:sequence>
+		      <xs:element ref="tns:NotifyTo"/>
+		      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		    </xs:sequence>
+		    <xs:attribute name="Mode" type="xs:anyURI" use="optional"/>
+		    <xs:anyAttribute namespace="##other" processContents="lax"/>
+		  </xs:complexType>
 
-BEA Systems Inc., International Business Machines Corporation, Microsoft Corporation, Inc, Sun Microsystems, Inc, and TIBCO Software Inc (collectively, the "Authors") hereby grant you permission to copy and display the WS-Eventing Specification (the "Specification", which includes WSDL and schema documents), in any medium without fee or royalty, provided that you include the following on ALL copies of the Specification, that you make:
+		  <xs:element name="NotifyTo" type="wsa:EndpointReferenceType"/>
 
-1.	A link or URL to the WS-Eventing Specification at one of the Authors' websites 
-2.	The copyright notice as shown in the WS-Eventing Specification. 
+		  <xs:simpleType name="NonNegativeDurationType">
+		    <xs:restriction base="xs:duration">
+		      <xs:minInclusive value="P0Y0M0DT0H0M0S"/>
+		    </xs:restriction>
+		  </xs:simpleType>
 
-BEA, IBM, Microsoft, Sun, and TIBCO (collectively, the "Authors") each agree to grant you a license, under royalty-free and otherwise reasonable, non-discriminatory terms and conditions, to their respective essential patent claims that they deem necessary to implement the Specification. 
+		  <xs:simpleType name="ExpirationType">
+		      <xs:union memberTypes="xs:dateTime tns:NonNegativeDurationType"/>
+		  </xs:simpleType>
 
-THE SPECIFICATION IS PROVIDED "AS IS," AND THE AUTHORS MAKE NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, OR TITLE; THAT THE CONTENTS OF THE SPECIFICATION ARE SUITABLE FOR ANY PURPOSE; NOR THAT THE IMPLEMENTATION OF SUCH CONTENTS WILL NOT INFRINGE ANY THIRD PARTY PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS. 
+		  <xs:simpleType name="ActionList">
+		  	<xs:list itemType="xs:anyURI"/>
+		  </xs:simpleType>
 
-THE AUTHORS WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF OR RELATING TO ANY USE OR DISTRIBUTION OF THE SPECIFICATION. 
+		  <xs:complexType name="FilterType">
+		  	<xs:simpleContent>
+		  		<xs:extension base="tns:ActionList">
+		  		    <xs:attribute name="Dialect" type="xs:anyURI" use="optional" default="http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01/Action"/>
+		    		<xs:anyAttribute namespace="##other" processContents="lax"/>
+		    	</xs:extension>
+		  	</xs:simpleContent>
+		  </xs:complexType>
 
-The name and trademarks of the Authors may NOT be used in any manner, including advertising or publicity pertaining to the Specification or its contents without specific, written prior permission. Title to copyright in the Specification will at all times remain with the Authors. 
+		  <xs:complexType name="LanguageSpecificStringType">
+		    <xs:simpleContent>
+		      <xs:extension base="xs:string">
+		        <xs:attribute name="lang" type="xs:string"/>
+		        <xs:anyAttribute namespace="##other" processContents="lax"/>
+		      </xs:extension>
+		    </xs:simpleContent>
+		  </xs:complexType>
 
-No other rights are granted by implication, estoppel or otherwise.
--->
-<xs:schema
-  targetNamespace="http://schemas.xmlsoap.org/ws/2004/08/eventing" 
-  xmlns:tns="http://schemas.xmlsoap.org/ws/2004/08/eventing"
-  xmlns:wsa="http://www.w3.org/2005/08/addressing"
-  xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-  elementFormDefault="qualified" 
-  blockDefault="#all">
-  
-  <xs:import namespace="http://www.w3.org/2005/08/addressing" 
-	schemaLocation="ws-addressing.xsd" />
+		  
+		  <xs:element name="Subscribe">
+		    <xs:complexType>
+		      <xs:sequence>
+		        <xs:eleme)"
+		R"(nt name="EndTo" type="wsa:EndpointReferenceType" minOccurs="0"/>
+		        <xs:element name="Delivery" type="tns:DeliveryType"/>
+		        <xs:element name="Expires" type="tns:ExpirationType" minOccurs="0"/>
+		        <xs:element name="Filter" type="tns:FilterType" minOccurs="0"/>
+		        <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		      </xs:sequence>
+		      <xs:anyAttribute namespace="##other" processContents="lax"/>
+		    </xs:complexType>
+		  </xs:element>
 
-  <!-- Types and global elements -->
-  <xs:complexType name="DeliveryType">
-    <xs:sequence>
-      <xs:element ref="tns:NotifyTo" />
-      <xs:any namespace="##other" processContents="lax" 
-        minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-    <xs:attribute name="Mode" type="xs:anyURI" use="optional" />
-    <xs:anyAttribute namespace="##other" processContents="lax" />
-  </xs:complexType>
+		 <xs:element name="Identifier">
+		 	<xs:complexType>
+		 		<xs:simpleContent>
+		 			<xs:extension base="xs:anyURI">
+		 				<xs:attribute ref="wsa:IsReferenceParameter" use="optional"/>
+		 			</xs:extension>
+		 		</xs:simpleContent>
+		 	</xs:complexType>
+		 </xs:element>
+		 
+		  
+		  <xs:element name="SubscribeResponse">
+		    <xs:complexType>
+		      <xs:sequence>
+			  <xs:element name="SubscriptionManager" type="wsa:EndpointReferenceType"/>
+		        <xs:element name="Expires" type="tns:ExpirationType"/>
+		        <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		      </xs:sequence>
+		      <xs:anyAttribute namespace="##other" processContents="lax"/>
+		    </xs:complexType>
+		  </xs:element>
 
-  <xs:element name="NotifyTo" type="wsa:EndpointReferenceType" />
+		  
+		  <xs:element name="SupportedDialect" type="xs:anyURI"/>
 
-  <xs:simpleType name="NonNegativeDurationType">
-    <xs:restriction base="xs:duration">
-      <xs:minInclusive value="P0Y0M0DT0H0M0S" />
-    </xs:restriction>
-  </xs:simpleType>
+		  
+		  <xs:element name="SupportedDeliveryMode" type="xs:anyURI"/>
 
-  <xs:simpleType name="ExpirationType">
-      <xs:union memberTypes="xs:dateTime tns:NonNegativeDurationType" />
-  </xs:simpleType>
+		  
+		  <xs:element name="Renew">
+		    <xs:complexType>
+		      <xs:sequence>
+		        <xs:element name="Expires" type="tns:ExpirationType" minOccurs="0"/>
+		        <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		      </xs:sequence>
+		      <xs:anyAttribute namespace="##other" processContents="lax"/>
+		    </xs:complexType>
+		  </xs:element>
 
-  <xs:simpleType name="ActionList">
-  	<xs:list itemType="xs:anyURI" />
-  </xs:simpleType>
+		  
+		  <xs:element name="RenewResponse">
+		    <xs:complexType>
+		      <xs:sequence>
+		        <xs:element name="Expires" type="tns:ExpirationType" minOccurs="0"/>
+		        <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		      </xs:sequence>
+		      <xs:anyAttribute na)"
+		R"(mespace="##other" processContents="lax"/>
+		    </xs:complexType>
+		  </xs:element>
 
-  <xs:complexType name="FilterType">
-  	<xs:simpleContent>
-  		<xs:extension base="tns:ActionList">
-  		    <xs:attribute name="Dialect" type="xs:anyURI" use="optional" default="http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01/Action" />
-    		<xs:anyAttribute namespace="##other" processContents="lax" />
-    	</xs:extension>
-  	</xs:simpleContent>
-  </xs:complexType>
+		  
+		  <xs:element name="GetStatus">
+		    <xs:complexType>
+		      <xs:sequence>
+		        <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		      </xs:sequence>
+		      <xs:anyAttribute namespace="##other" processContents="lax"/>
+		    </xs:complexType>
+		  </xs:element>
 
-  <xs:complexType name="LanguageSpecificStringType">
-    <xs:simpleContent>
-      <xs:extension base="xs:string">
-        <xs:attribute name="lang" type="xs:string" />
-        <xs:anyAttribute namespace="##other" processContents="lax" />
-      </xs:extension>
-    </xs:simpleContent>
-  </xs:complexType>
+		  
+		  <xs:element name="GetStatusResponse">
+		    <xs:complexType>
+		      <xs:sequence>
+		        <xs:element name="Expires" type="tns:ExpirationType" minOccurs="0"/>
+		        <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		      </xs:sequence>
+		      <xs:anyAttribute namespace="##other" processContents="lax"/>
+		    </xs:complexType>
+		  </xs:element>
 
-  <!-- Subscribe request -->
-  <xs:element name="Subscribe">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="EndTo" type="wsa:EndpointReferenceType" 
-          minOccurs="0" />
-        <xs:element name="Delivery" type="tns:DeliveryType" />
-        <xs:element name="Expires" type="tns:ExpirationType" 
-          minOccurs="0" />
-        <xs:element name="Filter" type="tns:FilterType" minOccurs="0" />
-        <xs:any namespace="##other" processContents="lax" 
-          minOccurs="0" maxOccurs="unbounded" />
-      </xs:sequence>
-      <xs:anyAttribute namespace="##other" processContents="lax" />
-    </xs:complexType>
-  </xs:element>
+		  <xs:element name="Unsubscribe">
+		    <xs:complexType>
+		      <xs:sequence>
+		        <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		      </xs:sequence>
+		      <xs:anyAttribute namespace="##other" processContents="lax"/>
+		    </xs:complexType>
+		  </xs:element>
 
- <xs:element name="Identifier" >
- 	<xs:complexType>
- 		<xs:simpleContent>
- 			<xs:extension base="xs:anyURI">
- 				<xs:attribute ref="wsa:IsReferenceParameter" use="optional" />
- 			</xs:extension>
- 		</xs:simpleContent>
- 	</xs:complexType>
- </xs:element>
- 
-  <!-- Subscribe response -->
-  <xs:element name="SubscribeResponse">
-    <xs:complexType>
-      <xs:sequence>
-	  <xs:element name="SubscriptionManager" 
-                    type="wsa:EndpointReferenceType" />
-        <xs:element name="Expires" type="tns:ExpirationType" />
-        <xs:any namespace="##other" processContents="lax" 
-          minOccurs="0" maxOccurs="unbounded" />
-      </xs:sequence>
-      <xs:anyAttribute namespace="##other" processContents="lax" />
-    </xs:complexType>
-  </xs:element>
+		  
+		  <xs:element name="SubscriptionEnd">
+		    <xs:complexType>
+		      <xs:sequence>
+		        <xs:element name="SubscriptionManager" type="wsa:EndpointReferenceType"/>
+		        <xs:element name="Status" type="tns:OpenSubscriptionEndCodeType"/>
+		        <xs:element name="Reason" type="tns:LanguageSpecificStringType" minOccurs="0" maxOccurs="unbounded"/>
+		        <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		      </xs:sequence>
+		      <xs:anyAttribute namespace="##other" processContents="lax"/>
+		    </xs:complexType>
+		  </xs:element>
 
-  <!-- Used in a fault if there's an unsupported dialect -->
-  <xs:element name="SupportedDialect" type="xs:anyURI" />
+		  <xs:simpleType name="SubscriptionEndCodeType">
+		    <xs:restriction base="xs:anyURI">
+		      <xs:enumeration value="http://schemas.xmlsoap.org/ws/2004/08/eventing/DeliveryFailure"/>
+		      <xs:enumeration value="http://schemas.xmlsoap.org/ws/2004/08/eventing/SourceShuttingDown"/>
+		      <xs:enumeration value="http://schemas.xmlsoap.org/ws/2004/08/eventing/Sou)"
+		R"(rceCancelling"/>
+		    </xs:restriction>
+		  </xs:simpleType>
 
-  <!-- Used in a fault if there's an unsupported delivery mode -->
-  <xs:element name="SupportedDeliveryMode" type="xs:anyURI" />
+		  <xs:simpleType name="OpenSubscriptionEndCodeType">
+		    <xs:union memberTypes="tns:SubscriptionEndCodeType xs:anyURI"/>
+		  </xs:simpleType>
 
-  <!-- Renew request -->
-  <xs:element name="Renew">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="Expires" type="tns:ExpirationType" 
-          minOccurs="0" />
-        <xs:any namespace="##other" processContents="lax" 
-          minOccurs="0" maxOccurs="unbounded" />
-      </xs:sequence>
-      <xs:anyAttribute namespace="##other" processContents="lax" />
-    </xs:complexType>
-  </xs:element>
-
-  <!-- Renew response -->
-  <xs:element name="RenewResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="Expires" type="tns:ExpirationType" 
-          minOccurs="0" />
-        <xs:any namespace="##other" processContents="lax" 
-          minOccurs="0" maxOccurs="unbounded" />
-      </xs:sequence>
-      <xs:anyAttribute namespace="##other" processContents="lax" />
-    </xs:complexType>
-  </xs:element>
-
-  <!-- GetStatus request -->
-  <xs:element name="GetStatus">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:any namespace="##other" processContents="lax" 
-          minOccurs="0" maxOccurs="unbounded" />
-      </xs:sequence>
-      <xs:anyAttribute namespace="##other" processContents="lax" />
-    </xs:complexType>
-  </xs:element>
-
-  <!-- GetStatus response -->
-  <xs:element name="GetStatusResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="Expires" type="tns:ExpirationType" 
-          minOccurs="0" />
-        <xs:any namespace="##other" processContents="lax" 
-          minOccurs="0" maxOccurs="unbounded" />
-      </xs:sequence>
-      <xs:anyAttribute namespace="##other" processContents="lax" />
-    </xs:complexType>
-  </xs:element>
-
-  <!-- Unsubscribe request -->
-  <xs:element name="Unsubscribe">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:any namespace="##other" processContents="lax" 
-          minOccurs="0" maxOccurs="unbounded" />
-      </xs:sequence>
-      <xs:anyAttribute namespace="##other" processContents="lax" />
-    </xs:complexType>
-  </xs:element>
-
-  <!-- count(/s:Envelope/s:Body/*) = 0 for Unsubscribe response -->
-
-  <!-- SubscriptionEnd message -->
-  <xs:element name="SubscriptionEnd">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="SubscriptionManager" 
-                    type="wsa:EndpointReferenceType" />
-        <xs:element name="Status" type="tns:OpenSubscriptionEndCodeType" />
-        <xs:element name="Reason" type="tns:LanguageSpecificStringType" 
-          minOccurs="0" maxOccurs="unbounded" />
-        <xs:any namespace="##other" processContents="lax" 
-          minOccurs="0" maxOccurs="unbounded" />
-      </xs:sequence>
-      <xs:anyAttribute namespace="##other" processContents="lax" />
-    </xs:complexType>
-  </xs:element>
-
-  <xs:simpleType name="SubscriptionEndCodeType">
-    <xs:restriction base="xs:anyURI">
-      <xs:enumeration value="http://schemas.xmlsoap.org/ws/2004/08/eventing/DeliveryFailure" />
-      <xs:enumeration value="http://schemas.xmlsoap.org/ws/2004/08/eventing/SourceShuttingDown" />
-      <xs:enumeration value="http://schemas.xmlsoap.org/ws/2004/08/eventing/SourceCancelling" />
-    </xs:restriction>
-  </xs:simpleType>
-
-  <xs:simpleType name="OpenSubscriptionEndCodeType">
-    <xs:union memberTypes="tns:SubscriptionEndCodeType xs:anyURI" />
-  </xs:simpleType>
-
-  <xs:attribute name="EventSource" type="xs:boolean" />
-
-</xs:schema>)");
+		  <xs:attribute name="EventSource" type="xs:boolean"/>
+		</xs:schema>
+		)"
+);
 
 }
 #endif

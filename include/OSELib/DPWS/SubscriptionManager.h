@@ -8,7 +8,6 @@
 #ifndef OSELIB_DPWS_SUBSCRIPTIONMANAGER_H_
 #define OSELIB_DPWS_SUBSCRIPTIONMANAGER_H_
 
-#include "OSELib/fwd.h"
 #include "OSELib/DPWS/ActiveSubscriptions.h"
 #include "OSELib/DPWS/ISubscriptionManager.h"
 #include "OSELib/Helper/WithLogger.h"

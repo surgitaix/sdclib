@@ -9,20 +9,8 @@ cmake_minimum_required(VERSION 3.5.0)
 
 
 ################################################################################
-# Warnings
-################################################################################
-message(STATUS "Setting Warning-Level...")
-if(MSVC)
-    add_compile_options(/W)
-else()
-    add_compile_options(-Wall -Wpedantic)
-endif()
-################################################################################
-
-
-################################################################################
-# Using the sdclib root folder and add to CMake Modules
-get_filename_component(PROJECT_CMAKE_MODULES ${CMAKE_CURRENT_LIST_DIR}/../../ REALPATH)
+# Using the sdclib modules folder and add to CMake Modules
+get_filename_component(PROJECT_CMAKE_MODULES ${CMAKE_CURRENT_LIST_DIR}/../../cmake/Modules REALPATH)
 message(STATUS "Adding ${PROJECT_CMAKE_MODULES} to Modules Path...")
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_CMAKE_MODULES})
 ################################################################################
@@ -79,6 +67,7 @@ endif()
 set(PATH_RUNTIME_OUTPUT ${PROJECT_BINARY_DIR}/bin)
 set(PATH_LIBRARY_OUTPUT ${PROJECT_BINARY_DIR}/bin)
 set(PATH_ARCHIVE_OUTPUT ${PROJECT_BINARY_DIR}/lib)
+set(CMAKE_DEBUG_POSTFIX _d) # Force the Debug Postfix
 
 # by "default" take the install prefix
 set(PATH_INSTALL_RUNTIME ${CMAKE_INSTALL_PREFIX}/bin)
@@ -101,6 +90,21 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 ################################################################################
 
+################################################################################
+# Warnings
+################################################################################
+message(STATUS "Setting Warning-Level...")
+if(CMAKE_BUILD_TYPE MATCHES Release)
+    if (MSVC)
+        add_compile_options(/W4)
+    else()
+        add_compile_options(-Wall -Wextra -pedantic)
+    endif()
+else()
+    # Inhibit all warning messages
+    add_compile_options(-w)
+endif()
+################################################################################
 
 
 ################################################################################
