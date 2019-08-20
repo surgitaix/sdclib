@@ -38,10 +38,10 @@ void ContextEventSinkHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & h
 
 	std::unique_ptr<SOAP::Command> command(new SOAP::SoapFaultCommand(httpResponse));
 
-	if (soapAction == EpisodicContextChangedReportTraits::Action()) {
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<EpisodicContextChangedReportTraits>(std::move(soapHandling.normalizedMessage), _service));
-	} else if (soapAction == PeriodicContextChangedReportTraits::Action()) {
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<PeriodicContextChangedReportTraits>(std::move(soapHandling.normalizedMessage), _service));
+	if (soapAction == EpisodicContextReportTraits::Action()) {
+		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<EpisodicContextReportTraits>(std::move(soapHandling.normalizedMessage), _service));
+	} else if (soapAction == PeriodicContextReportTraits::Action()) {
+		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<PeriodicContextReportTraits>(std::move(soapHandling.normalizedMessage), _service));
 	} else {
 		log_error([&] { return "ContextEventSinkHandler can't handle action: " + soapAction; });
 	}

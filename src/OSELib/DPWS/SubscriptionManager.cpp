@@ -199,11 +199,11 @@ void SubscriptionManager::fireEvent(const typename TraitsType::ReportType & repo
 	}
 }
 
-template void SubscriptionManager::fireEvent<OSELib::SDC::EpisodicContextChangedReportTraits>(const OSELib::SDC::EpisodicContextChangedReportTraits::ReportType & report);
+template void SubscriptionManager::fireEvent<OSELib::SDC::EpisodicContextReportTraits>(const OSELib::SDC::EpisodicContextReportTraits::ReportType & report);
 template void SubscriptionManager::fireEvent<OSELib::SDC::EpisodicAlertReportTraits>(const OSELib::SDC::EpisodicAlertReportTraits::ReportType & report);
 template void SubscriptionManager::fireEvent<OSELib::SDC::EpisodicMetricReportTraits>(const OSELib::SDC::EpisodicMetricReportTraits::ReportType & report);
 template void SubscriptionManager::fireEvent<OSELib::SDC::PeriodicAlertReportTraits>(const OSELib::SDC::PeriodicAlertReportTraits::ReportType & report);
-template void SubscriptionManager::fireEvent<OSELib::SDC::PeriodicContextChangedReportTraits>(const OSELib::SDC::PeriodicContextChangedReportTraits::ReportType & report);
+template void SubscriptionManager::fireEvent<OSELib::SDC::PeriodicContextReportTraits>(const OSELib::SDC::PeriodicContextReportTraits::ReportType & report);
 template void SubscriptionManager::fireEvent<OSELib::SDC::PeriodicMetricReportTraits>(const OSELib::SDC::PeriodicMetricReportTraits::ReportType & report);
 template void SubscriptionManager::fireEvent<OSELib::SDC::OperationInvokedReportTraits>(const OSELib::SDC::OperationInvokedReportTraits::ReportType & report);
 

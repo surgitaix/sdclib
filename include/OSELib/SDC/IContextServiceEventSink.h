@@ -19,8 +19,8 @@ class IContextServiceEventSink : public DPWS::IEventSink {
 public:
 	virtual ~IContextServiceEventSink() = default;
 
-	virtual void dispatch(const EpisodicContextChangedReportTraits::ReportType & request) = 0;
-	virtual void dispatch(const PeriodicContextChangedReportTraits::ReportType & request) = 0;
+	virtual void dispatch(const EpisodicContextReportTraits::ReportType & request) = 0;
+	virtual void dispatch(const PeriodicContextReportTraits::ReportType & request) = 0;
 };
 
 } /* namespace SDC */

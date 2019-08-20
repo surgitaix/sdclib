@@ -121,7 +121,7 @@ struct ContextServiceEventSink : public SDC::IContextServiceEventSink, public OS
 
 
 	// dispatch episodic reports and delegate the contained context states
-	virtual void dispatch(const SDC::EpisodicContextChangedReportTraits::ReportType & report) override {
+	virtual void dispatch(const SDC::EpisodicContextReportTraits::ReportType & report) override {
 
 		if (report.MdibVersion().present()) {
 			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
@@ -139,7 +139,7 @@ struct ContextServiceEventSink : public SDC::IContextServiceEventSink, public OS
 	}
 
 	// dispatch periodic reports and delegate the contained context states
-	virtual void dispatch(const SDC::PeriodicContextChangedReportTraits::ReportType & report) override {
+	virtual void dispatch(const SDC::PeriodicContextReportTraits::ReportType & report) override {
 		if (report.MdibVersion().present()) {
 			_consumer.updateLastKnownMdibVersion(report.MdibVersion().get());
 		}
@@ -442,8 +442,8 @@ void SDCConsumerAdapter::subscribeEvents() {
 	// context reports
 	{
 		WS::EVENTING::FilterType filter;
-		filter.push_back(OSELib::SDC::EpisodicContextChangedReportTraits::Action());
-		filter.push_back(OSELib::SDC::PeriodicContextChangedReportTraits::Action());
+		filter.push_back(OSELib::SDC::EpisodicContextReportTraits::Action());
+		filter.push_back(OSELib::SDC::PeriodicContextReportTraits::Action());
 		subscriptions.emplace_back(
 				Poco::URI(ts_PROTOCOL + "://" + m_deviceDescription->getLocalIP().toString() + ":" + std::to_string(t_port) + "/" + OSELib::SDC::QNAME_CONTEXTSERVICE_PORTTYPE),
 				m_deviceDescription->getContextServiceURI(),

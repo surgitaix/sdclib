@@ -25,7 +25,7 @@ struct EpisodicAlertReportTraits {
 	static void dispatch(Dispatcher & dispatcher, const ReportType & request);
 };
 
-struct EpisodicContextChangedReportTraits {
+struct EpisodicContextReportTraits {
 	typedef MDM::EpisodicContextReport ReportType;
 	typedef IContextServiceEventSink Dispatcher;
 	static xml_schema::Qname MessageType();
@@ -65,7 +65,7 @@ struct PeriodicAlertReportTraits {
 	static void dispatch(Dispatcher & dispatcher, const ReportType & request);
 };
 
-struct PeriodicContextChangedReportTraits {
+struct PeriodicContextReportTraits {
 	typedef MDM::PeriodicContextReport ReportType;
 	typedef IContextServiceEventSink Dispatcher;
 	static xml_schema::Qname MessageType();

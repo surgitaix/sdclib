@@ -43,19 +43,19 @@ void EpisodicAlertReportTraits::dispatch(Dispatcher & dispatcher, const ReportTy
 	dispatcher.dispatch(report);
 }
 
-xml_schema::Qname EpisodicContextChangedReportTraits::MessageType() {
+xml_schema::Qname EpisodicContextReportTraits::MessageType() {
 	return xml_schema::Qname(NS_MESSAGE_MODEL, NotificationName());
 }
-std::string EpisodicContextChangedReportTraits::NotificationName() {
+std::string EpisodicContextReportTraits::NotificationName() {
 	return "EpisodicContextReport";
 }
-xml_schema::Qname EpisodicContextChangedReportTraits::PortType() {
+xml_schema::Qname EpisodicContextReportTraits::PortType() {
 	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_CONTEXTSERVICE_PORTTYPE);
 }
-std::string EpisodicContextChangedReportTraits::Action() {
+std::string EpisodicContextReportTraits::Action() {
 	return EVENT_ACTION_CDM_EPISODIC_CONTEXT_REPORT;
 }
-void EpisodicContextChangedReportTraits::dispatch(Dispatcher & dispatcher, const ReportType & report) {
+void EpisodicContextReportTraits::dispatch(Dispatcher & dispatcher, const ReportType & report) {
 	dispatcher.dispatch(report);
 }
 
@@ -107,19 +107,19 @@ void PeriodicAlertReportTraits::dispatch(Dispatcher & dispatcher, const ReportTy
 	dispatcher.dispatch(report);
 }
 
-xml_schema::Qname PeriodicContextChangedReportTraits::MessageType() {
+xml_schema::Qname PeriodicContextReportTraits::MessageType() {
 	return xml_schema::Qname(NS_MESSAGE_MODEL, NotificationName());
 }
-std::string PeriodicContextChangedReportTraits::NotificationName() {
+std::string PeriodicContextReportTraits::NotificationName() {
 	return "PeriodicContextReport";
 }
-xml_schema::Qname PeriodicContextChangedReportTraits::PortType() {
+xml_schema::Qname PeriodicContextReportTraits::PortType() {
 	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_CONTEXTSERVICE_PORTTYPE);
 }
-std::string PeriodicContextChangedReportTraits::Action() {
+std::string PeriodicContextReportTraits::Action() {
 	return EVENT_ACTION_CDM_PERIODIC_CONTEXT_REPORT;
 }
-void PeriodicContextChangedReportTraits::dispatch(Dispatcher & dispatcher, const ReportType & report) {
+void PeriodicContextReportTraits::dispatch(Dispatcher & dispatcher, const ReportType & report) {
 	dispatcher.dispatch(report);
 }
 

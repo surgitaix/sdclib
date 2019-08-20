@@ -425,11 +425,11 @@ bool SDCProviderAdapter::start() {
 
 	const std::vector<xml_schema::Uri> allowedSubscriptionEventActions {
 				OSELib::SDC::EpisodicAlertReportTraits::Action(),
-				OSELib::SDC::EpisodicContextChangedReportTraits::Action(),
+				OSELib::SDC::EpisodicContextReportTraits::Action(),
 				OSELib::SDC::EpisodicMetricReportTraits::Action(),
 				OSELib::SDC::OperationInvokedReportTraits::Action(),
 				OSELib::SDC::PeriodicAlertReportTraits::Action(),
-				OSELib::SDC::PeriodicContextChangedReportTraits::Action(),
+				OSELib::SDC::PeriodicContextReportTraits::Action(),
 				OSELib::SDC::WaveformStreamTraits::Action(),
 				OSELib::SDC::PeriodicMetricReportTraits::Action() };
 	_subscriptionManager = std::unique_ptr<OSELib::DPWS::SubscriptionManager>(new OSELib::DPWS::SubscriptionManager(allowedSubscriptionEventActions, _provider.getSDCInstance()->getSSLConfig()));
@@ -491,7 +491,7 @@ void SDCProviderAdapter::notifyEvent(const MDM::EpisodicAlertReport & report) {
 void SDCProviderAdapter::notifyEvent(const MDM::EpisodicContextReport & report) {
 	std::lock_guard<std::mutex> lock{m_mutex};
 	if (_subscriptionManager) {
-		_subscriptionManager->fireEvent<OSELib::SDC::EpisodicContextChangedReportTraits>(report);
+		_subscriptionManager->fireEvent<OSELib::SDC::EpisodicContextReportTraits>(report);
 	}
 }
 
@@ -519,7 +519,7 @@ void SDCProviderAdapter::notifyEvent(const MDM::PeriodicAlertReport & report) {
 void SDCProviderAdapter::notifyEvent(const MDM::PeriodicContextReport & report) {
 	std::lock_guard<std::mutex> lock{m_mutex};
 	if (_subscriptionManager) {
-		_subscriptionManager->fireEvent<OSELib::SDC::PeriodicContextChangedReportTraits>(report);
+		_subscriptionManager->fireEvent<OSELib::SDC::PeriodicContextReportTraits>(report);
 	}
 }
 
