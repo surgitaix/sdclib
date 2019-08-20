@@ -53,7 +53,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class SDCProvider final : public OSELib::WithLogger {
+class SDCProvider final : public OSELib::Helper::WithLogger
+{
     friend class AsyncProviderInvoker;
 
     // todo: kick after provider state handler refactoring

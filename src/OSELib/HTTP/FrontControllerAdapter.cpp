@@ -4,11 +4,8 @@
  *  Created on: 18.11.2015
  *      Author: matthias
  */
-
-#include <iostream>
-
-#include "Poco/Net/HTTPRequestHandler.h"
-#include "Poco/Net/HTTPServerRequest.h"
+#include <Poco/Net/HTTPRequestHandler.h>
+#include <Poco/Net/HTTPServerRequest.h>
 
 #include "OSELib/HTTP/FrontController.h"
 #include "OSELib/HTTP/FrontControllerAdapter.h"
@@ -18,7 +15,7 @@ namespace HTTP {
 
 FrontControllerAdapter::FrontControllerAdapter(FrontController & controller) :
 	Poco::Net::HTTPRequestHandlerFactory(),
-	WithLogger(Log::HTTP),
+	OSELib::Helper::WithLogger(Log::HTTP),
 	_controller(controller)
 {
 }

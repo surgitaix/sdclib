@@ -12,7 +12,9 @@
 namespace OSELib {
 namespace SDC {
 
-DefaultSDCSchemaGrammarProvider::DefaultSDCSchemaGrammarProvider() : WithLogger(Log::SCHEMA) {
+DefaultSDCSchemaGrammarProvider::DefaultSDCSchemaGrammarProvider()
+: OSELib::Helper::WithLogger(Log::SCHEMA)
+{
 
 	auto addSchemaWithErrorHandling([this](const std::string & name, const std::string & schema) {
 		if (!addSchema(name, schema)) {

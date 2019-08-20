@@ -5,8 +5,6 @@
  *      Author: matthias
  */
 
-#include <iostream>
-
 #include <xercesc/dom/DOM.hpp>
 #include <xercesc/util/PlatformUtils.hpp>
 #include <xercesc/util/XMLUniDefs.hpp>

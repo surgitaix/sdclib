@@ -20,7 +20,7 @@ namespace OSELib
 {
 	namespace HTTP {
 
-		class FrontController : public WithLogger
+		class FrontController : public OSELib::Helper::WithLogger
 		{
 		private:
 			std::mutex m_mutex;

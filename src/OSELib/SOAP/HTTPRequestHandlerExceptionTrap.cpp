@@ -5,11 +5,6 @@
  *      Author: matthias
  */
 
-#include <iostream>
-
-#include <xercesc/dom/DOMException.hpp>
-#include <xercesc/util/XMLException.hpp>
-
 #include "NormalizedMessageModel.hxx"
 
 #include "OSELib/SOAP/Command.h"
@@ -19,16 +14,17 @@
 #include "OSELib/SOAP/SoapFaultCommand.h"
 #include "OSELib/SOAP/SoapHTTPResponseWrapper.h"
 
+#include <xercesc/dom/DOMException.hpp>
+#include <xercesc/util/XMLException.hpp>
 #include <xercesc/util/XMLString.hpp>
 #include <xercesc/util/XMLException.hpp>
 
 namespace OSELib {
 namespace SOAP {
 
-HTTPRequestHandlerExceptionTrap::HTTPRequestHandlerExceptionTrap() :
-	WithLogger(Log::HTTP)
-{
-}
+HTTPRequestHandlerExceptionTrap::HTTPRequestHandlerExceptionTrap()
+: OSELib::Helper::WithLogger(Log::HTTP)
+{ }
 
 HTTPRequestHandlerExceptionTrap::~HTTPRequestHandlerExceptionTrap() = default;
 

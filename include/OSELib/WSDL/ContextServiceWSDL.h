@@ -1,9 +1,14 @@
-#ifndef SDCLIB_WSDL_CONTEXTSERVICEWSDL_H
-#define SDCLIB_WSDL_CONTEXTSERVICEWSDL_H
+#ifndef OSELIB_WSDL_CONTEXTSERVICEWSDL_H
+#define OSELIB_WSDL_CONTEXTSERVICEWSDL_H
 
-#include <string.h>
+#include <string>
 
-const std::string contextServiceWsdl=R"(<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mm="http://standards.ieee.org/downloads/11073/11073-10207-2017/message">
+namespace OSELib
+{
+namespace WSDL
+{
+
+const std::string contextServiceWsdl=std::string(R"(<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" targetNamespace="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mm="http://standards.ieee.org/downloads/11073/11073-10207-2017/message" xmlns:dpws="http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01">
     <wsdl:types>
         <xs:schema targetNamespace="http://standards.ieee.org/downloads/11073/11073-10207-2017/message" xmlns:xs="http://www.w3.org/2001/XMLSchema">
             <xs:include schemaLocation="BICEPS_MessageModel.xsd"/>
@@ -27,7 +32,7 @@ const std::string contextServiceWsdl=R"(<wsdl:definitions xmlns:wsdl="http://sch
     <wsdl:message name="PeriodicContextReport">
         <wsdl:part element="mm:PeriodicContextReport" name="parameters"/>
     </wsdl:message>
-    <wsdl:portType name="ContextService" xmlns:p1="http://schemas.xmlsoap.org/ws/2004/08/eventing" p1:EventSource="true">
+    <wsdl:portType name="ContextService" xmlns:p1="http://schemas.xmlsoap.org/ws/2004/08/eventing" p1:EventSource="true" dpws:DiscoveryType="p1:ServiceProvider">
         <wsdl:operation name="GetContextStates">
             <wsdl:input message="tns:GetContextStates" wsa:Action="http://standards.ieee.org/downloads/11073/11073-20701-2018/ContextService/GetContextStates"/>
             <wsdl:output message="tns:GetContextStatesResponse" wsa:Action="http://standards.ieee.org/downloads/11073/11073-20701-2018/ContextService/GetContextStatesResponse"/>
@@ -42,6 +47,9 @@ const std::string contextServiceWsdl=R"(<wsdl:definitions xmlns:wsdl="http://sch
         <wsdl:operation name="PeriodicContextReport">
             <wsdl:output message="tns:PeriodicContextReport" wsa:Action="http://standards.ieee.org/downloads/11073/11073-20701-2018/ContextService/PeriodicContextReport"/>
         </wsdl:operation>
+        <wsp:Policy>
+            <dpws:Profile wsp:Optional="true" />
+        </wsp:Policy>
     </wsdl:portType>
     <wsdl:binding name="ContextServiceBinding" type="tns:ContextService" xmlns:p1="http://schemas.xmlsoap.org/wsdl/soap12/">
         <p1:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
@@ -76,6 +84,9 @@ const std::string contextServiceWsdl=R"(<wsdl:definitions xmlns:wsdl="http://sch
             </wsdl:output>
         </wsdl:operation>
     </wsdl:binding>
-</wsdl:definitions>)";
+</wsdl:definitions>)");
+
+}
+}
 
 #endif

@@ -266,11 +266,6 @@ set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             ${INCLUDE_DIR}/SDCLib/Data/SDC/SDCConsumer.h
                             ${INCLUDE_DIR}/SDCLib/Data/SDC/SDCProviderActivateOperationHandler.h
                             ${INCLUDE_DIR}/SDCLib/Data/SDC/SDCConsumerAdapter.h
-                            ${INCLUDE_DIR}/SDCLib/Data/SDC/WSDL/StateEventServiceWSDL.h
-                            ${INCLUDE_DIR}/SDCLib/Data/SDC/WSDL/SetServiceWSDL.h
-                            ${INCLUDE_DIR}/SDCLib/Data/SDC/WSDL/GetServiceWSDL.h
-                            ${INCLUDE_DIR}/SDCLib/Data/SDC/WSDL/WaveformServiceWSDL.h
-                            ${INCLUDE_DIR}/SDCLib/Data/SDC/WSDL/ContextServiceWSDL.h
                             ${INCLUDE_DIR}/SDCLib/Data/SDC/SDCProvider.h
 )
 

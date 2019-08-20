@@ -36,13 +36,9 @@
 namespace OSELib {
 namespace HTTP {
 
-HTTPClientExchanger::HTTPClientExchanger() : WithLogger(Log::HTTP){
-
-}
-
-HTTPClientExchanger::~HTTPClientExchanger() {
-
-}
+HTTPClientExchanger::HTTPClientExchanger()
+: OSELib::Helper::WithLogger(Log::HTTP)
+{ }
 
 std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPClientSession & session, const std::string & path, const std::string & requestData)
 {

@@ -14,7 +14,7 @@
 namespace OSELib {
 namespace SOAP {
 
-class CommonSoapPreprocessing : public WithLogger {
+class CommonSoapPreprocessing : public OSELib::Helper::WithLogger {
 public:
 
 	// fixme move all exception definitions to a common file so the are not scattered around the classes

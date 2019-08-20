@@ -15,7 +15,7 @@ using namespace OSELib;
 using namespace OSELib::DPWS;
 
 ActiveSubscriptions::ActiveSubscriptions()
-: WithLogger(Log::EVENTSOURCE)
+: Helper::WithLogger(Log::EVENTSOURCE)
 , m_runnableAdapter(*this, &ActiveSubscriptions::run)
 {
     m_thread.start(m_runnableAdapter);

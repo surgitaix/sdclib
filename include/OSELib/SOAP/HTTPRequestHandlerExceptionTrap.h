@@ -14,7 +14,7 @@
 namespace OSELib {
 namespace SOAP {
 
-class HTTPRequestHandlerExceptionTrap : public Poco::Net::HTTPRequestHandler, public WithLogger {
+class HTTPRequestHandlerExceptionTrap : public Poco::Net::HTTPRequestHandler, public OSELib::Helper::WithLogger {
 public:
 	HTTPRequestHandlerExceptionTrap();
 	virtual ~HTTPRequestHandlerExceptionTrap();

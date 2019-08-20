@@ -45,10 +45,10 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-SDCProviderStateHandler::SDCProviderStateHandler(std::string desriptorHandle) :
-	WithLogger(OSELib::Log::sdcProvider),
-	descriptorHandle(desriptorHandle),
-	parentProvider(nullptr)
+SDCProviderStateHandler::SDCProviderStateHandler(std::string desriptorHandle)
+: OSELib::Helper::WithLogger(OSELib::Log::sdcProvider)
+, descriptorHandle(desriptorHandle)
+, parentProvider(nullptr)
 {
 }
 

@@ -32,11 +32,11 @@ using namespace OSELib;
 using namespace OSELib::SDC;
 
 void HelloReceivedHandler::helloReceived(const std::string & ) {
-	WithLogger(Log::BASE).log_error([] { return "Method 'helloReceived' must be overridden!"; });
+	OSELib::Helper::WithLogger(Log::BASE).log_error([] { return "Method 'helloReceived' must be overridden!"; });
 }
 
 ServiceManager::ServiceManager(SDCLib::SDCInstance_shared_ptr p_SDCInstance)
- : WithLogger(Log::SERVICEMANAGER)
+ : OSELib::Helper::WithLogger(Log::SERVICEMANAGER)
  , m_SDCInstance(p_SDCInstance)
  , _dpwsClient(new DPWS::MDPWSDiscoveryClientAdapter(m_SDCInstance->getNetworkConfig()))
 {

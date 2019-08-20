@@ -29,7 +29,7 @@ namespace OSELib
 			virtual void helloReceived(const std::string & epr);
 		};
 
-		class ServiceManager final: public WithLogger
+		class ServiceManager final: public OSELib::Helper::WithLogger
 		{
 
 		private:

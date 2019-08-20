@@ -24,7 +24,7 @@
 using namespace OSELib::SOAP;
 
 SoapInvoke::SoapInvoke(const Poco::URI & p_requestURI, OSELib::Helper::XercesGrammarPoolProvider & p_grammarProvider)
- : WithLogger(Log::SOAP)
+ : OSELib::Helper::WithLogger(Log::SOAP)
  , m_requestURI(p_requestURI)
  , m_grammarProvider(p_grammarProvider)
 {

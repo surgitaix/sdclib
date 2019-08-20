@@ -29,7 +29,7 @@ namespace OSELib {
 namespace DPWS {
 namespace Impl {
 
-class DPWSHostSocketImpl : public WithLogger {
+class DPWSHostSocketImpl : public OSELib::Helper::WithLogger {
 public:
 	DPWSHostSocketImpl(
             SDCLib::Config::NetworkConfig_shared_ptr p_config,

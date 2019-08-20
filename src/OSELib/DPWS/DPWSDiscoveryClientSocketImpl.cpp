@@ -64,15 +64,15 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
 		ByeNotificationDispatcher & byeDispatcher,
 		HelloNotificationDispatcher & helloDispatcher,
 		ProbeMatchNotificationDispatcher & probeMatchDispatcher,
-		ResolveMatchNotificationDispatcher & resolveDispatcher) :
-	WithLogger(Log::DISCOVERY),
-	m_networkConfig(p_config),
-	_byeDispatcher(byeDispatcher),
-	_helloDispatcher(helloDispatcher),
-	_probeMatchDispatcher(probeMatchDispatcher),
-	_resolveDispatcher(resolveDispatcher),
-    m_ipv4MulticastAddress(Poco::Net::SocketAddress(p_config->_getMulticastIPv4(), p_config->_getMulticastPortv4())),
-    m_ipv6MulticastAddress(Poco::Net::SocketAddress(p_config->_getMulticastIPv6(), p_config->_getMulticastPortv6()))
+		ResolveMatchNotificationDispatcher & resolveDispatcher)
+: OSELib::Helper::WithLogger(Log::DISCOVERY)
+, m_networkConfig(p_config)
+, _byeDispatcher(byeDispatcher)
+, _helloDispatcher(helloDispatcher)
+, _probeMatchDispatcher(probeMatchDispatcher)
+, _resolveDispatcher(resolveDispatcher)
+, m_ipv4MulticastAddress(Poco::Net::SocketAddress(p_config->_getMulticastIPv4(), p_config->_getMulticastPortv4()))
+, m_ipv6MulticastAddress(Poco::Net::SocketAddress(p_config->_getMulticastIPv6(), p_config->_getMulticastPortv6()))
 {
 
     if (m_networkConfig->getIP4enabled())

@@ -16,7 +16,7 @@
 namespace OSELib {
 namespace HTTP {
 
-class FrontControllerAdapter : public Poco::Net::HTTPRequestHandlerFactory, public WithLogger {
+class FrontControllerAdapter : public Poco::Net::HTTPRequestHandlerFactory, public OSELib::Helper::WithLogger {
 public:
 	FrontControllerAdapter(FrontController & controller);
 	virtual ~FrontControllerAdapter();

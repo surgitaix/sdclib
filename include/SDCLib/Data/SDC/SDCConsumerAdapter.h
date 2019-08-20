@@ -26,7 +26,7 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class SDCConsumerAdapter : public OSELib::DPWS::StreamNotificationDispatcher, public OSELib::WithLogger
+class SDCConsumerAdapter : public OSELib::DPWS::StreamNotificationDispatcher, public OSELib::Helper::WithLogger
 {
 public:
     SDCConsumerAdapter(SDCConsumer & consumer, OSELib::DPWS::DeviceDescription_shared_ptr p_deviceDescription);

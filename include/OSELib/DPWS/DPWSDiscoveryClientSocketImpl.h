@@ -27,7 +27,7 @@ namespace OSELib {
 namespace DPWS {
 namespace Impl {
 
-class DPWSDiscoveryClientSocketImpl : public WithLogger {
+class DPWSDiscoveryClientSocketImpl : public OSELib::Helper::WithLogger {
 public:
 	DPWSDiscoveryClientSocketImpl(
             SDCLib::Config::NetworkConfig_shared_ptr p_config,

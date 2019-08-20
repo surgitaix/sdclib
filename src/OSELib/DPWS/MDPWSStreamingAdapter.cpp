@@ -17,7 +17,7 @@ using namespace OSELib::DPWS;
 using namespace OSELib::DPWS::Impl;
 
 MDPWSStreamingAdapter::MDPWSStreamingAdapter(SDCLib::Config::NetworkConfig_shared_ptr p_config, StreamNotificationDispatcher & streamNotificationDispatcher, DeviceDescription_shared_ptr p_deviceDescription) :
-	WithLogger(Log::DISCOVERY),
+	OSELib::Helper::WithLogger(Log::DISCOVERY),
 	m_networkConfig(p_config),
 	m_streamNotificationDispatcher(streamNotificationDispatcher),
 	m_deviceDescription(p_deviceDescription),

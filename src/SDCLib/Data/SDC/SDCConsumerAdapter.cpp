@@ -57,9 +57,9 @@ using StateEventServiceEventSinkController = SDC::SDCEventServiceController<SDC:
 using SetServiceEventSinkController = SDC::SDCEventServiceController<SDC::ISetServiceEventSink, SDC::SetServiceEventSinkHandler>;
 
 
-struct ContextServiceEventSink : public SDC::IContextServiceEventSink, public OSELib::WithLogger  {
+struct ContextServiceEventSink : public SDC::IContextServiceEventSink, public OSELib::Helper::WithLogger  {
 	ContextServiceEventSink(SDCLib::Data::SDC::SDCConsumer & consumer) :
-		WithLogger(OSELib::Log::EVENTSINK),
+		OSELib::Helper::WithLogger(OSELib::Log::EVENTSINK),
 		_consumer(consumer)
 	{
 	}
@@ -159,9 +159,9 @@ private:
 	SDCLib::Data::SDC::SDCConsumer & _consumer;
 };
 
-struct EventReportEventSink : public SDC::IStateEventServiceEventSink, public OSELib::WithLogger {
+struct EventReportEventSink : public SDC::IStateEventServiceEventSink, public OSELib::Helper::WithLogger {
 	EventReportEventSink(SDCLib::Data::SDC::SDCConsumer & consumer) :
-		WithLogger(Log::EVENTSINK),
+		OSELib::Helper::WithLogger(Log::EVENTSINK),
 		_consumer(consumer)
 	{
 	}
@@ -271,9 +271,9 @@ private:
 };
 
 
-struct SetServiceEventSink : public SDC::ISetServiceEventSink, public OSELib::WithLogger {
+struct SetServiceEventSink : public SDC::ISetServiceEventSink, public OSELib::Helper::WithLogger {
 	SetServiceEventSink(SDCLib::Data::SDC::SDCConsumer & consumer) :
-		WithLogger(Log::EVENTSINK),
+		OSELib::Helper::WithLogger(Log::EVENTSINK),
 		_consumer(consumer)
 	{
 	}
@@ -307,7 +307,7 @@ namespace Data {
 namespace SDC {
 
 SDCConsumerAdapter::SDCConsumerAdapter(SDCConsumer & consumer, OSELib::DPWS::DeviceDescription_shared_ptr p_deviceDescription) :
-	WithLogger(OSELib::Log::SDCCONSUMERADAPTER),
+	OSELib::Helper::WithLogger(OSELib::Log::SDCCONSUMERADAPTER),
 	_consumer(consumer),
 	_threadPool(new Poco::ThreadPool()),
 	m_deviceDescription(p_deviceDescription),

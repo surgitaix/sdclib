@@ -30,10 +30,11 @@
 namespace OSELib {
 namespace HTTP {
 
-class HTTPClientExchanger : public WithLogger{
+class HTTPClientExchanger : public OSELib::Helper::WithLogger
+{
 public:
 	HTTPClientExchanger();
-	virtual ~HTTPClientExchanger();
+	virtual ~HTTPClientExchanger() = default;
 
     std::string exchangeHttp(Poco::Net::HTTPClientSession & session, const std::string & path, const std::string & requestData);
     std::string exchangeHttp(Poco::Net::HTTPSClientSession & session, const std::string & path, const std::string & requestData);

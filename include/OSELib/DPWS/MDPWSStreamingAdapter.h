@@ -27,7 +27,7 @@ namespace DPWS {
 namespace Impl {
 
 
-class MDPWSStreamingAdapter : public WithLogger {
+class MDPWSStreamingAdapter : public OSELib::Helper::WithLogger {
 public:
     MDPWSStreamingAdapter(SDCLib::Config::NetworkConfig_shared_ptr p_config, StreamNotificationDispatcher & streamNotificationDispatcher, DeviceDescription_shared_ptr p_deviceDescription);
 

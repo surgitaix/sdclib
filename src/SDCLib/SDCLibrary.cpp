@@ -41,7 +41,7 @@
 using namespace SDCLib;
 
 SDCLibrary::SDCLibrary()
-: WithLogger(OSELib::Log::BASE)
+: OSELib::Helper::WithLogger(OSELib::Log::BASE)
 {
 	Poco::AutoPtr<Poco::ConsoleChannel> t_consoleChannel(new Poco::ConsoleChannel);
 	Poco::AutoPtr<Poco::SimpleFileChannel> t_fileChannel(new Poco::SimpleFileChannel);

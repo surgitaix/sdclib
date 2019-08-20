@@ -13,7 +13,7 @@ SoapHTTPResponseWrapper::SoapHTTPResponseWrapper(
 		Poco::Net::HTTPServerResponse & httpResponse,
 		HTTPStatus httpStatus
 		) :
-	WithLogger(Log::HTTP),
+	OSELib::Helper::WithLogger(Log::HTTP),
 	_httpResponse(httpResponse),
 	_httpStatus(httpStatus)
 {

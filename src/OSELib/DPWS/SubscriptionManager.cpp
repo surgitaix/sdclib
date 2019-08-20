@@ -28,7 +28,7 @@ namespace DPWS {
 const std::chrono::seconds DEFAULT_DURATION_S = std::chrono::seconds(60);
 
 SubscriptionManager::SubscriptionManager(const std::vector<xml_schema::Uri> & allowedEventActions, SDCLib::Config::SSLConfig_shared_ptr p_SSLConfig)
-: WithLogger(Log::EVENTSOURCE)
+: OSELib::Helper::WithLogger(Log::EVENTSOURCE)
 , _allowedEventActions(allowedEventActions)
 , _sessionManager(new HTTP::HTTPSessionManager(this->_subscriptions, p_SSLConfig))
 {

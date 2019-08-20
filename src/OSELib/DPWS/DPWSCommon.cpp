@@ -4,9 +4,6 @@
  *  Created on: 11.12.2015
  *      Author: matthias
  */
-
-#include <iostream>
-
 #include "NormalizedMessageModel.hxx"
 
 #include "OSELib/DPWS/DPWS11Constants.h"

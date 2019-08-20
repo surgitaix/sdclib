@@ -19,7 +19,7 @@ namespace OSELib
     namespace SOAP
     {
 
-        class SoapInvoke : public WithLogger
+        class SoapInvoke : public OSELib::Helper::WithLogger
         {
         private:
             const Poco::URI m_requestURI;

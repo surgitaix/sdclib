@@ -53,27 +53,31 @@ enum class LogLevel {
 	Trace
 };
 
-class WithLogger {
-public:
-	WithLogger(const std::string & loggerID);
-	virtual ~WithLogger();
+namespace Helper
+{
+	class WithLogger {
+	public:
+		WithLogger(const std::string & loggerID);
+		virtual ~WithLogger();
 
-	Poco::Logger & getLogger();
+		Poco::Logger & getLogger();
 
-	void log_fatal(std::function<std::string()> logmessage) const;
-	void log_critical(std::function<std::string()> logmessage) const;
-	void log_error(std::function<std::string()> logmessage) const;
-	void log_warning(std::function<std::string()> logmessage) const;
-	void log_notice(std::function<std::string()> logmessage) const;
-	void log_information(std::function<std::string()> logmessage) const;
-	void log_debug(std::function<std::string()> logmessage) const;
-	void log_trace(std::function<std::string()> logmessage) const;
+		void log_fatal(std::function<std::string()> logmessage) const;
+		void log_critical(std::function<std::string()> logmessage) const;
+		void log_error(std::function<std::string()> logmessage) const;
+		void log_warning(std::function<std::string()> logmessage) const;
+		void log_notice(std::function<std::string()> logmessage) const;
+		void log_information(std::function<std::string()> logmessage) const;
+		void log_debug(std::function<std::string()> logmessage) const;
+		void log_trace(std::function<std::string()> logmessage) const;
 
-	void setDebugLevel(LogLevel logLevel);
+		void setDebugLevel(LogLevel logLevel);
 
-private:
-	Poco::Logger & _logger;
-};
+	private:
+		Poco::Logger & _logger;
+	};
+
+} /* namespace Helper */
 
 } /* namespace OSELib */
 

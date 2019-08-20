@@ -37,7 +37,7 @@
 
 namespace SDCLib
 {
-    class SDCLibrary final : public OSELib::WithLogger
+    class SDCLibrary final : public OSELib::Helper::WithLogger
     {
     private:
 

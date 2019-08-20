@@ -3,14 +3,13 @@
 
 #include <Poco/Net/ServerSocket.h>
 
-#include <iostream>
 
 using namespace SDCLib;
 using namespace SDCLib::Config;
 
 
 NetworkConfig::NetworkConfig()
-: OSELib::WithLogger(OSELib::Log::BASE)
+: OSELib::Helper::WithLogger(OSELib::Log::BASE)
 {
     // TODO: PortList
 }

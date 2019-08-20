@@ -27,7 +27,7 @@ namespace OSELib
 	{
 		using URIVector = std::vector<Poco::URI>;
 
-		class DeviceDescription : public WithLogger
+		class DeviceDescription : public Helper::WithLogger
 		{
 		private:
 

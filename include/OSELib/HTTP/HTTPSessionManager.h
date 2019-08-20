@@ -25,7 +25,7 @@ class SendWorker;
 
 // todo maybe generalize and also use for other client connections in the SDCConsumerAdapter.
 
-class HTTPSessionManager : public WithLogger
+class HTTPSessionManager : public OSELib::Helper::WithLogger
 {
 public:
 	HTTPSessionManager(DPWS::ActiveSubscriptions & subscriptions, SDCLib::Config::SSLConfig_shared_ptr p_SSLConfig);

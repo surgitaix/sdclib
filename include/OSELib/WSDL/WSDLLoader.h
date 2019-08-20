@@ -7,8 +7,8 @@
  *  @brief: Class for loading the WSDLs for each service from hard drive
  */
 
-#ifndef INCLUDE_WSDL_H_
-#define INCLUDE_WSDL_H_
+#ifndef OSELIB_WSDL_WSDLLOADER_H_
+#define OSELIB_WSDL_WSDLLOADER_H_
 
 #include <string>
 
@@ -30,4 +30,4 @@ namespace OSELib
     }
 }
 
-#endif /* INCLUDE_WSDL_H_ */
+#endif /* OSELIB_WSDL_WSDLLOADER_H_ */

@@ -37,7 +37,8 @@ namespace Data {
 namespace SDC {
 
 
-class SDCProviderStateHandler : public OSELib::WithLogger {
+class SDCProviderStateHandler : public OSELib::Helper::WithLogger
+{
 	friend class SDCProvider;
 public:
 	SDCProviderStateHandler(std::string desriptorHandle);

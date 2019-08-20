@@ -51,7 +51,7 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class SDCConsumer final : public OSELib::WithLogger {
+class SDCConsumer final : public OSELib::Helper::WithLogger {
 friend class FutureInvocationState;
 friend class SDCConsumerAdapter;
 //TODO kick after consumer state handler refactoring

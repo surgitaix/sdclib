@@ -14,7 +14,7 @@
 namespace OSELib {
 namespace SDC {
 
-class DefaultSDCSchemaGrammarProvider : public Helper::SchemaGrammarProvider, public WithLogger {
+class DefaultSDCSchemaGrammarProvider : public Helper::SchemaGrammarProvider, public OSELib::Helper::WithLogger {
 public:
 	DefaultSDCSchemaGrammarProvider();
 	virtual ~DefaultSDCSchemaGrammarProvider();

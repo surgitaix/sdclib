@@ -21,7 +21,7 @@
 namespace OSELib {
 namespace DPWS {
 
-class SubscriptionClient : public WithLogger {
+class SubscriptionClient : public OSELib::Helper::WithLogger {
 public:
 	struct SubscriptionInformation {
 		SubscriptionInformation(

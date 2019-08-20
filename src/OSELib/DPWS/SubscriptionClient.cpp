@@ -86,7 +86,7 @@ private:
 };
 
 SubscriptionClient::SubscriptionClient(const std::vector<SubscriptionInformation> & subscriptions, Poco::Net::Context::Ptr p_context) :
-	WithLogger(Log::EVENTSINK),
+	OSELib::Helper::WithLogger(Log::EVENTSINK),
 	_runnableAdapter(*this, &SubscriptionClient::run),
     m_SSLContext(p_context) // Can be nullptr!
 {

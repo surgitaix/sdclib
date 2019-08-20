@@ -15,7 +15,7 @@ using namespace OSELib;
 using namespace OSELib::DPWS;
 
 DeviceDescription::DeviceDescription()
-: WithLogger(Log::DISCOVERY)
+: Helper::WithLogger(Log::DISCOVERY)
 {
 
 }

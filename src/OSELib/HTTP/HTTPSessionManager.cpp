@@ -39,10 +39,10 @@ public:
 	const xml_schema::Uri _myID;
 };
 
-class SendWorker : public Poco::Runnable, public WithLogger {
+class SendWorker : public Poco::Runnable, public OSELib::Helper::WithLogger {
 public:
 	SendWorker(const Poco::URI & destinationURI, std::shared_ptr<Poco::NotificationQueue> queue, DPWS::ActiveSubscriptions & subscriptions, Poco::Net::Context::Ptr p_context) :
-		WithLogger(Log::EVENTSOURCE),
+		OSELib::Helper::WithLogger(Log::EVENTSOURCE),
 		_running(true),
 		_destinationURI(destinationURI),
 		_queue(queue),
@@ -113,7 +113,7 @@ private:
 };
 
 HTTPSessionManager::HTTPSessionManager(DPWS::ActiveSubscriptions & subscriptions, SDCLib::Config::SSLConfig_shared_ptr p_SSLConfig)
-: WithLogger(Log::EVENTSOURCE)
+: OSELib::Helper::WithLogger(Log::EVENTSOURCE)
 , _subscriptions(subscriptions)
 {
 	assert(p_SSLConfig != nullptr);

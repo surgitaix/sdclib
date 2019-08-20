@@ -24,7 +24,7 @@ namespace OSELib
 {
 	namespace DPWS
 	{
-		class ActiveSubscriptions : public WithLogger
+		class ActiveSubscriptions : public Helper::WithLogger
 		{
 		public:
 

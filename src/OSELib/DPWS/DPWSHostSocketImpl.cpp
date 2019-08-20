@@ -6,7 +6,6 @@
  */
 
 #include <chrono>
-#include <iostream>
 
 #include <Poco/Buffer.h>
 
@@ -144,7 +143,7 @@ DPWSHostSocketImpl::DPWSHostSocketImpl(
         SDCLib::Config::NetworkConfig_shared_ptr p_config,
 		ProbeNotificationDispatcher & probeDispatcher,
 		ResolveNotificationDispatcher & resolveDispatcher):
-	WithLogger(Log::DISCOVERY),
+	OSELib::Helper::WithLogger(Log::DISCOVERY),
 	m_networkConfig(p_config),
 	probeDispatcher(probeDispatcher),
 	resolveDispatcher(resolveDispatcher),

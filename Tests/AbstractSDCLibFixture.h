@@ -17,10 +17,11 @@
 namespace SDCLib {
 namespace Tests {
 
-struct AbstractSDCLibFixture : public OSELib::WithLogger {
+struct AbstractSDCLibFixture : public OSELib::Helper::WithLogger
+{
 public:
 	AbstractSDCLibFixture(const std::string & testname, OSELib::LogLevel debuglevel) :
-		WithLogger(OSELib::Log::BASE),
+		OSELib::Helper::WithLogger(OSELib::Log::BASE),
 		testname(testname)
 	{
 		log_notice([&]{ return std::string(testname + ":  Startup."); });

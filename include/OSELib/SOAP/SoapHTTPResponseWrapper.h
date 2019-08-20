@@ -15,7 +15,8 @@
 namespace OSELib {
 namespace SOAP {
 
-class SoapHTTPResponseWrapper : public WithLogger {
+class SoapHTTPResponseWrapper : public OSELib::Helper::WithLogger
+{
 public:
 	using HTTPStatus = Poco::Net::HTTPServerResponse::HTTPStatus;
 

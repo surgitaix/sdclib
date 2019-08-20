@@ -14,7 +14,7 @@ using namespace OSELib;
 using namespace OSELib::HTTP;
 
 FrontController::FrontController()
-: WithLogger(Log::HTTP)
+: OSELib::Helper::WithLogger(Log::HTTP)
 { }
 
 void FrontController::addService(const std::string & uri, Service & service)

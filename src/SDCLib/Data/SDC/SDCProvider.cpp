@@ -111,14 +111,13 @@ public:
 
 // FIXME - Task class and this class need to be fixed!
 
-class AsyncProviderInvoker : public Util::Task, OSELib::WithLogger {
+class AsyncProviderInvoker : public Util::Task, OSELib::Helper::WithLogger {
 public:
-	AsyncProviderInvoker(SDCProvider & provider,
-			Poco::NotificationQueue & queue) :
-		WithLogger(OSELib::Log::sdcProvider),
-		provider(provider),
-		queue(queue){
-    }
+	AsyncProviderInvoker(SDCProvider & provider, Poco::NotificationQueue & queue)
+	: OSELib::Helper::WithLogger(OSELib::Log::sdcProvider)
+	, provider(provider)
+	, queue(queue)
+	{ }
 
     void runImpl() override {
 		Poco::AutoPtr<Poco::Notification> pNf(queue.waitDequeueNotification(100));
@@ -191,7 +190,7 @@ bool SDCProvider::isMetricChangeAllowed(const StateType & state, SDCProvider & p
 
 
 SDCProvider::SDCProvider(SDCInstance_shared_ptr p_SDCInstance)
- : WithLogger(OSELib::Log::sdcProvider)
+ : OSELib::Helper::WithLogger(OSELib::Log::sdcProvider)
  , m_SDCInstance(p_SDCInstance)
 {
 	// Set a random EndpointReference

@@ -8,11 +8,11 @@
  */
 
 #include "OSELib/WSDL/WSDLLoader.h"
-#include "SDCLib/Data/SDC/WSDL/ContextServiceWSDL.h"
-#include "SDCLib/Data/SDC/WSDL/GetServiceWSDL.h"
-#include "SDCLib/Data/SDC/WSDL/SetServiceWSDL.h"
-#include "SDCLib/Data/SDC/WSDL/WaveformServiceWSDL.h"
-#include "SDCLib/Data/SDC/WSDL/StateEventServiceWSDL.h"
+#include "OSELib/WSDL/ContextServiceWSDL.h"
+#include "OSELib/WSDL/GetServiceWSDL.h"
+#include "OSELib/WSDL/SetServiceWSDL.h"
+#include "OSELib/WSDL/WaveformServiceWSDL.h"
+#include "OSELib/WSDL/StateEventServiceWSDL.h"
 
 
 using namespace OSELib::WSDL;

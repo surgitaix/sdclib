@@ -16,7 +16,7 @@ namespace OSELib {
 namespace SOAP {
 
 CommonSoapPreprocessing::CommonSoapPreprocessing(Helper::XercesGrammarPoolProvider & grammarProvider) :
-	WithLogger(Log::SOAP),
+	OSELib::Helper::WithLogger(Log::SOAP),
 	_grammarProvider(grammarProvider)
 {
 }

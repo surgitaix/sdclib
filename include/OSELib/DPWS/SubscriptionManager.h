@@ -16,7 +16,7 @@
 namespace OSELib {
 namespace DPWS {
 
-class SubscriptionManager : public ISubscriptionManager, public WithLogger {
+class SubscriptionManager : public ISubscriptionManager, public OSELib::Helper::WithLogger {
 public:
 	SubscriptionManager(const std::vector<xml_schema::Uri> & allowedEventActions, SDCLib::Config::SSLConfig_shared_ptr p_SSLConfig);
 
