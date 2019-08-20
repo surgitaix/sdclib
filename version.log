@@ -1,3 +1,8 @@
+Update to 4.3.8
+
+- Fixed Schema Bugs.
+- Fixed atomic library bug. Now added to SDCLib_DEPS_LIBRARIES.
+
 Update to 4.3.7
 
 - Fixed ws-eventing and ws-addressing (Now working with SDCLib/J and openSDC again)

@@ -20,7 +20,7 @@ endif()
 # Create an empty Variable
 set(XSD_INCLUDE_DIRS "")
 
-
+# Note: WIP!
 IF (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     # Not needed when installed under Linux.
     # Set FOUND - Flag
