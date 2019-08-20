@@ -2,7 +2,7 @@
  * TCPClientMessenger.cpp
  *
  *  Created on: Jul 8, 2019
- *      Author: sebastian
+ *      Author: rosenau
  */
 
 #include "OSELib/TCP/TCPClientMessenger.h"
@@ -51,7 +51,7 @@ void TCPClientMessenger::onReceived(const void *buffer, size_t size)
 		}
 		msgBytesToRead = header->size;
 		std::cout << "Bytes to Read " << msgBytesToRead << std::endl;
-		std::cout << "Timestamp" << header->timestamp << std::endl;
+		std::cout << "Timestamp: " << header->timestamp << std::endl;
 		currentState = ReceiveState::READ_MSG;
 		readHeader = true;
 	}

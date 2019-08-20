@@ -2,7 +2,7 @@
  * TCPClientEventHandler.h
  *
  *  Created on: May 13, 2019
- *      Author: sebastian
+ *      Author: rosenau
  */
 
 #ifndef TCPCLIENTEVENTHANDLER_H_

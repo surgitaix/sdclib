@@ -2,7 +2,7 @@
  * TCPClientMessenger.h
  *
  *  Created on: Jul 8, 2019
- *      Author: sebastian
+ *      Author: rosenau
  */
 
 #ifndef TCPCLIENTMESSENGER_H_

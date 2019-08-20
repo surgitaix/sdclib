@@ -42,7 +42,7 @@ void TCPClientEventHandler::startup()
 	}
 	else
 	{
-		std::cout << "Starting up" << std::endl;
+		std::cout << "Starting up TCPClientSingelton" << std::endl;
 		instance->TCPClient::start();
 		received = false;
 		response = "";
