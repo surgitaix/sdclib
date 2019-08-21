@@ -108,7 +108,7 @@ void SubscriptionClient::run() {
 	auto t_expireString = "PT" + std::to_string(t_renewThreshold.count() * 2) + "S"; // Note: Double the factor
 	const WS::EVENTING::ExpirationType t_defaultExpires(t_expireString);
 
-	std::size_t t_sleepQueryGetStatus_ms = 2000;
+	std::size_t t_sleepQueryGetStatus_ms = t_renewThreshold.count() * 1000 / 4;
 
 	for (const auto & subscription : _subscriptions) {
 		// get information
@@ -149,27 +149,33 @@ void SubscriptionClient::run() {
 			OSELib::DPWS::GetStatusTraits::Request t_getStatusRequest;
 			GetStatusInvoke t_getStatusInvoke(subscription.second._sourceURI, _subscriptionIdentifiers.at(subscription.first), grammarProvider);
 			auto t_response(t_getStatusInvoke.invoke(t_getStatusRequest, m_SSLContext));
-			if (!t_response) {
+			bool needRenew = false;
+			if (t_response)
+			{
+				auto t_expireDuration = OSELib::Helper::DurationWrapper(t_response.get()->Expires().get());
+				log_debug([&] { return "GetStatus " + _subscriptionIdentifiers.at(subscription.first) + ": " + t_expireDuration.toString() + "."; });
+
+				needRenew = ((!t_expireDuration.toDuration_s().first) || (t_expireDuration.toDuration_s().second < t_renewThreshold));
+			}
+			else
+			{
 				log_fatal([] { return "GetStatus failed."; });
+				needRenew = true; //we try to renew (emergency renewing...)
 			}
 
-			auto t_expireDuration = OSELib::Helper::DurationWrapper(t_response.get()->Expires().get());
-
-			log_debug([&] { return "GetStatus " + _subscriptionIdentifiers.at(subscription.first) + ": " + t_expireDuration.toString() + "."; });
-
 			// Renew when under a threshold or duration convert error
-			if((!t_expireDuration.toDuration_s().first) || (t_expireDuration.toDuration_s().second < t_renewThreshold))
+			if (needRenew)
 			{
-				log_debug([&] { return "Renewing " + _subscriptionIdentifiers.at(subscription.first) + " (" + t_expireDuration.toString() + "):..."; });
+				log_debug([&] { return "Renewing " + _subscriptionIdentifiers.at(subscription.first) + "..."; });
 				OSELib::DPWS::RenewTraits::Request request;
 				request.Expires(t_defaultExpires);
 				RenewInvoke renewInvoke(subscription.second._sourceURI, _subscriptionIdentifiers.at(subscription.first), grammarProvider);
 				auto response(renewInvoke.invoke(request, m_SSLContext));
 
 				if (!response) {
-					log_fatal([] { return "Renew failed."; });
+					log_fatal([&] { return "Renew " + _subscriptionIdentifiers.at(subscription.first) + " failed."; });
+					subscription.second._consumerAdapter.onSubscriptionLost();	//ToDo Do we need some further clean up here?
 				}
-				subscription.second._consumerAdapter.onSubscriptionLost();	//ToDo Do we need some further clean up here?
 			}
 		}
 	}

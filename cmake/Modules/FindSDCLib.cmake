@@ -144,7 +144,7 @@ if (CMAKE_SYSTEM_NAME MATCHES "Windows")
 	endif()
     if(CMAKE_BUILD_TYPE)
         if(CMAKE_BUILD_TYPE STREQUAL "Release")
-            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/SDCLib.lib)
+            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/SDCLib${CMAKE_RELEASE_POSTFIX}.lib)
         else()
             set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/SDCLib${CMAKE_DEBUG_POSTFIX}.lib)
         endif()
@@ -226,7 +226,7 @@ endif()
 #       As quick hack, append it to the SDCLib variable
 ################################################################################
 message(STATUS "-Looking for XercesC...")
-include(SDC_Xerces) # This adds an imported target WIP
+include("${CMAKE_CURRENT_LIST_DIR}/SDC_Xerces.cmake") # This adds an imported target WIP
 
 # Found it?
 if(NOT XercesC_FOUND)
@@ -257,7 +257,7 @@ endif()
 # - NetSSL
 ################################################################################
 set(POCO_SEARCH_DIRS ${SDCLib_ROOT_DIR}/Dependencies/Poco CACHE STRING "Poco Root folder")
-include(SDC_Poco)
+include("${CMAKE_CURRENT_LIST_DIR}/SDC_Poco.cmake")
 
 # Found it?
 if(NOT POCO_FOUND)
@@ -281,7 +281,7 @@ list(APPEND SDCLib_DEPS_DEFINITIONS ${POCO_COMPILE_DEFINITIONS})
 # XSD
 ################################################################################
 # Only Include Path needed under Windows
-include(SDC_XSD)
+include("${CMAKE_CURRENT_LIST_DIR}/SDC_XSD.cmake")
 
 # Found it?
 if(NOT XSD_FOUND)

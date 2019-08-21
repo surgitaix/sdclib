@@ -486,7 +486,7 @@ void SDCConsumerAdapter::unsubscribeEvents() {
 
 void SDCConsumerAdapter::onSubscriptionLost() {
 	//clean up
-	unsubscribeEvents();
+	//unsubscribeEvents();
 
 	_consumer.onSubscriptionLost();
 }
