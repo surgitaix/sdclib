@@ -87,13 +87,7 @@ public:
 		// extract information from the incoming operation
 		SDCProviderStateHandler::notifyOperationInvoked(oic, InvocationState::Start);
 		FutureInvocationState fis;
-		getParentConsumer().commitState(state, fis);
-		auto providerUpdatedState = getParentConsumer().requestState<NumericMetricState>(state.getDescriptorHandle());
-		if(state.getMetricValue().getValue() == providerUpdatedState->getMetricValue().getValue())
-		{
-			return InvocationState::Fin;
-		}
-		return InvocationState::Fail;
+		return getParentConsumer().commitState(state, fis);
 	}
 };
 
@@ -135,13 +129,7 @@ public:
 		SDCProviderStateHandler::notifyOperationInvoked(oic, InvocationState::Start);
 		FutureInvocationState fis;
 		std::cout << "Setting " << SDCProviderMDStateHandler::descriptorHandle << " with " << state.getMetricValue().getValue() << std::endl;
-		getParentConsumer().commitState(state, fis);
-		auto providerUpdatedState = getParentConsumer().requestState<StringMetricState>(state.getDescriptorHandle());
-		if(state.getMetricValue().getValue() == providerUpdatedState->getMetricValue().getValue())
-		{
-			return InvocationState::Fin;
-		}
-		return InvocationState::Fail;
+		return getParentConsumer().commitState(state, fis);
 	}
 };
 
@@ -155,14 +143,8 @@ public:
 
 	InvocationState onActivateRequest(const OperationInvocationContext & oic) override {
 		FutureInvocationState fis;
-		SDCConsumerOperationInvokedHandler::getParentConsumer().activate(SDCConsumerOperationInvokedHandler::descriptorHandle, fis);
 		std::cout << "Forwarding activate Request to DUT " << SDCConsumerOperationInvokedHandler::descriptorHandle << std::endl;
-		//Todo once fis actually returns true or false use this to define the return value
-		if(true)
-		{
-			return InvocationState::Fin;
-		}
-		return InvocationState::Fail;
+		return SDCConsumerOperationInvokedHandler::getParentConsumer().activate(SDCConsumerOperationInvokedHandler::descriptorHandle, fis);
 	}
 };
 

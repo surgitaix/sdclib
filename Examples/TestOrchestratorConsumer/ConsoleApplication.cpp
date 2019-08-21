@@ -9,6 +9,8 @@
 #include "CallbackMap.h"
 #include "SDCLib/SDCLibrary.h"
 
+#include <fstream>
+
 
 using namespace SDCLib::Data::SDC::ACS;
 
@@ -63,14 +65,23 @@ int main() {
 				 "If you are here for the first time use help, to get a list of all available functions. \n";
 
 
-
-	while(true)
+	std::ofstream log("log.txt");
+	if(!log)
 	{
-		std::string input = "";
+		std::cout << "Could not open log file" << std::endl;
+	}
+	std::string input = "";
+
+	while(input != "exit")
+	{
 		std::getline (std::cin, input);
 		if(input.empty())
 		{
 			continue;
+		}
+		if(log)
+		{
+			log << input << std::endl;
 		}
 		std::istringstream iss(input);
 		std::vector<std::string> command(std::istream_iterator<std::string>{iss},
@@ -84,11 +95,8 @@ int main() {
 		std::cout << "calling " << functionName << " with " << args << std::endl;
 		cbm.call(functionName, args);
 	}
-
-
-
-
-
+	log.close();
+	return 0;
 
 //	std::function<void(std::string)> func = (std::bind(&TestOrchestratorConsumer::setDUTEndpointRef, &toc, std::placeholders::_1));
 //	CallbackMap::defineCallback<std::string>(func);

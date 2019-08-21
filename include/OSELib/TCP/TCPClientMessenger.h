@@ -8,7 +8,7 @@
 #ifndef TCPCLIENTMESSENGER_H_
 #define TCPCLIENTMESSENGER_H_
 
-#include "../../../include/OSELib/TCP/TCPClient.h"
+#include "TCPClient.h"
 
 namespace Network {
 

@@ -27,6 +27,9 @@ target_sources(${CURRENT_TARGET_NAME}
        	${SRC_DIR}/TCPClientMessenger.cpp
         ${SRC_DIR}/TCPClientEventHandler.cpp
        	${SRC_DIR}/TCPConnection.cpp
+        ${SRC_DIR}/TCPConnectionBroadcastHandler.cpp
+      	${SRC_DIR}/TCPConnectionMessenger.cpp
+       	${SRC_DIR}/TCPBroadcastServerHandler.cpp
         ${SRC_DIR}/TCPServer.cpp
         ${SRC_DIR}/ContextWorker.cpp
         ${SRC_DIR}/UUID.cpp
@@ -34,6 +37,12 @@ target_sources(${CURRENT_TARGET_NAME}
         ${PATH_INCLUDE_ROOT}/OSELib/TCP/TCPClient.h
         ${PATH_INCLUDE_ROOT}/OSELib/TCP/TCPClientMessenger.h
         ${PATH_INCLUDE_ROOT}/OSELib/TCP/TCPClientEventHandler.h
+        ${PATH_INCLUDE_ROOT}/OSELib/TCP/TCPConnection.h
+        ${PATH_INCLUDE_ROOT}/OSELib/TCP/TCPConnectionBroadcastHandler.h
+        ${PATH_INCLUDE_ROOT}/OSELib/TCP/TCPConnectionMessenger.h
+        ${PATH_INCLUDE_ROOT}/OSELib/TCP/TCPBroadcastServerHandler.h
+        ${PATH_INCLUDE_ROOT}/OSELib/TCP/TCPServer.h
+        
 )
 
 
