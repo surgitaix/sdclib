@@ -5,9 +5,9 @@
  *      Author: matthias
  */
 
-#include "wsdd-discovery-1.1-schema-os.hxx"
-
 #include "OSELib/DPWS/MessageAdapter.h"
+
+#include "wsdd-discovery-1.1-schema-os.hxx"
 
 namespace OSELib {
 namespace DPWS {

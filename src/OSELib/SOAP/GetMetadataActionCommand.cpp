@@ -1,8 +1,9 @@
 /*
  * GetMetadataActionCommand.cpp
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 21.08.2019, baumeister
+ *
  */
 
 #include "OSELib/SOAP/GetMetadataActionCommand.h"
@@ -11,31 +12,30 @@
 namespace OSELib {
 namespace SOAP {
 
-GetMetadataActionCommand::GetMetadataActionCommand(std::unique_ptr<MESSAGEMODEL::Envelope> requestMessage, const WS::MEX::Metadata & metadata) :
-	SoapActionCommand(std::move(requestMessage)),
-	_metadata(new WS::MEX::Metadata(metadata))
+GetMetadataActionCommand::GetMetadataActionCommand(std::unique_ptr<MESSAGEMODEL::Envelope> p_requestMessage, const WS::MEX::Metadata & p_metadata)
+: SoapActionCommand(std::move(p_requestMessage))
+, m_metadata(new WS::MEX::Metadata(p_metadata))
+{ }
+
+std::unique_ptr<MESSAGEMODEL::Envelope> GetMetadataActionCommand::dispatch(const MESSAGEMODEL::Envelope & p_request)
 {
+	std::unique_ptr<MESSAGEMODEL::Envelope> t_response(createResponseMessageFromRequestMessage(p_request));
+	t_response->Header().Action().set(WS::ADDRESSING::AttributedURIType(DPWS::GetMetadataTraits::ResponseAction()));
+
+	NormalizedMessageAdapter<DPWS::GetMetadataTraits::Response> t_responseAdapter;
+	t_responseAdapter.set(*t_response, std::move(m_metadata));
+
+	return t_response;
 }
 
-GetMetadataActionCommand::~GetMetadataActionCommand() = default;
-
-std::unique_ptr<MESSAGEMODEL::Envelope> GetMetadataActionCommand::dispatch(const MESSAGEMODEL::Envelope & request) {
-	std::unique_ptr<MESSAGEMODEL::Envelope> response(createResponseMessageFromRequestMessage(request));
-	response->Header().Action().set(WS::ADDRESSING::AttributedURIType(DPWS::GetMetadataTraits::ResponseAction()));
-
-	NormalizedMessageAdapter<DPWS::GetMetadataTraits::Response> responseAdapter;
-	responseAdapter.set(*response, std::move(_metadata));
-
-	return response;
-}
-
-std::unique_ptr<MESSAGEMODEL::Envelope> GetMetadataActionCommand::checkDispatchPreconditions(std::unique_ptr<MESSAGEMODEL::Envelope> request) {
-	NormalizedMessageAdapter<DPWS::GetMetadataTraits::Request> requestAdapter;
-	if (!requestAdapter.present(*request)) {
+std::unique_ptr<MESSAGEMODEL::Envelope> GetMetadataActionCommand::checkDispatchPreconditions(std::unique_ptr<MESSAGEMODEL::Envelope> p_request)
+{
+	NormalizedMessageAdapter<DPWS::GetMetadataTraits::Request> t_requestAdapter;
+	if (!t_requestAdapter.present(*p_request)) {
 		throw SoapActionCommand::MissingRequestBody("Request body missing for " + DPWS::GetMetadataTraits::RequestAction());
 	}
-	return std::move(request);
+	return p_request;
 }
 
-} /* namespace SOAP */
-} /* namespace OSELib */
+}
+}

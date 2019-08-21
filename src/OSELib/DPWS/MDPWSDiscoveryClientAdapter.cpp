@@ -1,18 +1,15 @@
 /*
  * DPWSClient.cpp
  *
- *  Created on: 11.12.2015
- *      Author: matthias
+ *  Created on: 11.12.2015, matthias
+ *  Modified on: 20.08.2019, baumeister
  */
-
-#include <algorithm>
-
-#include "NormalizedMessageModel.hxx"
 
 #include "OSELib/DPWS/MDPWSDiscoveryClientAdapter.h"
 #include "OSELib/DPWS/DPWSCommon.h"
 #include "OSELib/DPWS/DPWSDiscoveryClientSocketImpl.h"
-#include "OSELib/DPWS/MessageAdapter.h"
+
+#include "NormalizedMessageModel.hxx"
 
 namespace OSELib {
 namespace DPWS {

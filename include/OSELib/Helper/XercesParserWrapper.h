@@ -1,34 +1,41 @@
 /*
  * XercesParserWrapper.h
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 21.08.2019, baumeister
+ *
  */
 
-#ifndef HELPER_XERCESPARSERWRAPPER_H_
-#define HELPER_XERCESPARSERWRAPPER_H_
-
-#include <memory>
+#ifndef OSELIB_HELPER_XERCESPARSERWRAPPER_H_
+#define OSELIB_HELPER_XERCESPARSERWRAPPER_H_
 
 #include "OSELib/Helper/AutoRelease.h"
 #include "OSELib/Helper/XercesGrammarPoolProvider.h"
 
-namespace OSELib {
-namespace Helper {
+#include <memory>
 
-class XercesParserWrapper {
-public:
-	XercesParserWrapper(const XercesGrammarPoolProvider & grammarPoolProvider);
+namespace OSELib
+{
+	namespace Helper
+	{
+		class XercesParserWrapper
+		{
+		private:
+			using ParserDeleter = AutoRelease<xercesc::DOMLSParser>;
+			std::unique_ptr<xercesc::DOMLSParser, ParserDeleter> m_parser = nullptr;
 
-	xercesc::DOMLSParser * getParser();
+		public:
+			XercesParserWrapper(const XercesGrammarPoolProvider & p_grammarPoolProvider);
+			// Special Member Functions
+			XercesParserWrapper(const XercesParserWrapper& p_obj) = default;
+			XercesParserWrapper(XercesParserWrapper&& p_obj) = default;
+			XercesParserWrapper& operator=(const XercesParserWrapper& p_obj) = default;
+			XercesParserWrapper& operator=(XercesParserWrapper&& p_obj) = default;
+            ~XercesParserWrapper() = default;
 
-private:
-	using ParserDeleter = AutoRelease<xercesc::DOMLSParser>;
+			xercesc::DOMLSParser * getParser();
+		};
+	}
+}
 
-	std::unique_ptr<xercesc::DOMLSParser, ParserDeleter> _parser;
-};
-
-} /* namespace Helper */
-} /* namespace OSELib */
-
-#endif /* HELPER_XERCESPARSERWRAPPER_H_ */
+#endif

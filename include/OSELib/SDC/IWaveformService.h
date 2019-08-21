@@ -1,26 +1,33 @@
 /*
  * IWaveformService
  *
- *  Created on: 15.03.2019
- *      Author: buerger
+ *  Created on: 15.03.2019, buerger
+ *  Modified on: 21.08.2019, baumeister
+ *
  */
 
-#ifndef SDC_WAVEFORMSERVICE_H_
-#define SDC_WAVEFORMSERVICE_H_
+#ifndef OSELIB_SDC_WAVEFORMSERVICE_H_
+#define OSELIB_SDC_WAVEFORMSERVICE_H_
 
-#include "OSELib/fwd.h"
 #include "OSELib/DPWS/IService.h"
 #include "OSELib/DPWS/ISubscriptionManager.h"
 
-namespace OSELib {
-namespace SDC {
+namespace OSELib
+{
+	namespace SDC
+	{
+		class IWaveformService : public DPWS::IService, public DPWS::ISubscriptionManager
+		{
+		public:
+			// Special Member Functions
+			IWaveformService() = default;
+			IWaveformService(const IWaveformService& p_obj) = default;
+			IWaveformService(IWaveformService&& p_obj) = default;
+			IWaveformService& operator=(const IWaveformService& p_obj) = default;
+			IWaveformService& operator=(IWaveformService&& p_obj) = default;
+			virtual ~IWaveformService() = default;
+		};
+	}
+}
 
-class IWaveformService : public DPWS::IService, public DPWS::ISubscriptionManager {
-public:
-	virtual ~IWaveformService() = default;
-};
-
-} /* namespace SDC */
-} /* namespace OSELib */
-
-#endif /* SDC_WAVEFORMSERVICE_H_ */
+#endif

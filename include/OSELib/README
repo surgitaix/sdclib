@@ -42,3 +42,36 @@ Hier werden HTTP Requests ausgepackt, in Soap Nachrichten geparst (CommonSoapPro
 XercesGrammarPoolProvider
 Kapselt eine Sammlung von XML Schema Grammatiken, die vom XercesParserWrapper zum schemavalidierenden parsen verwendet wird. Es werden derzeit zwei Ausprägungen verwendet: XercesGrammarPoolProvider (keine Schemavalidierung, da pool nullptr) und DefaultSDCSchemaGrammarProvider (für Datenmodell, Eventing, WS Addressing Valdierung).
 
+
+Some notes on "coding style" (August, 2019, Fabian Baumeister):
+Classes:
+- Variables and functions are not intermixed inside classes (variables first, functions next)
+- Init as many member variables as possible inside the class (not in the initializer list!) with default values (nullptr etc.)
+Naming:
+Prefixes:
+m_ 	: Variables that are 'M'embers of a class
+p_ 	: Variables that are function 'P'arameters.
+t_ 	: 'T'emporary variables with limited scope. Like limited only to this function body or inside a if/else statement.
+Additional (second) specifier:
+*l_ : 'L'ists of any kind holding a number of any elements. NOT necessary a std::list! Example: std::vector<int> ml_vector; -> member of a class holding integers.
+
+Example:
+
+class MyClass
+{
+private:
+	int m_number = 0;
+	std::vector<int> ml_numbers; // Naming Example
+
+public:
+
+	MyClass(int p_number)
+	: m_number(p_number)
+	{
+		auto t_number = m_number;
+		if(t_number == 0) {
+			// ....
+		}
+	}
+	// ...
+}

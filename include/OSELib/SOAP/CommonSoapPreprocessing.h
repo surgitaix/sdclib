@@ -1,43 +1,58 @@
 /*
  * CommonSoapPreprocessing.h
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 21.08.2019, baumeister
+ *
  */
 
-#ifndef SOAP_COMMONSOAPPREPROCESSING_H_
-#define SOAP_COMMONSOAPPREPROCESSING_H_
+#ifndef OSELIB_SOAP_COMMONSOAPPREPROCESSING_H_
+#define OSELIB_SOAP_COMMONSOAPPREPROCESSING_H_
 
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
 
-namespace OSELib {
-namespace SOAP {
+#include "OSELib/Helper/Message.h"
+#include "OSELib/Helper/XercesDocumentWrapper.h"
 
-class CommonSoapPreprocessing : public OSELib::Helper::WithLogger {
-public:
+#include "NormalizedMessageModel.hxx"
 
-	// fixme move all exception definitions to a common file so the are not scattered around the classes
-	// fixme catch all exceptions in the HTTPRequestHandlerExceptionTrap appropriately (use inheritance of exceptions)
-	class SoapFaultException : public std::exception {
-	};
+namespace OSELib
+{
+	namespace SOAP
+	{
+		class CommonSoapPreprocessing : public OSELib::Helper::WithLogger
+		{
+		private:
+			Helper::XercesGrammarPoolProvider & m_grammarProvider;
 
-	CommonSoapPreprocessing(Helper::XercesGrammarPoolProvider & grammarProvider);
+		public:
 
-	void parse(std::istream & request);
-	void parse(const std::string & request);
+			// fixme move all exception definitions to a common file so the are not scattered around the classes
+			// fixme catch all exceptions in the HTTPRequestHandlerExceptionTrap appropriately (use inheritance of exceptions)
+			class SoapFaultException : public std::exception {
+			};
 
-	std::unique_ptr<const Helper::Message> rawMessage;
-	std::unique_ptr<const Helper::XercesDocumentWrapper> xercesDocument;
-	std::unique_ptr<MESSAGEMODEL::Envelope> normalizedMessage;
+			CommonSoapPreprocessing(Helper::XercesGrammarPoolProvider & p_grammarProvider);
+			// Special Member Functions
+			CommonSoapPreprocessing(const CommonSoapPreprocessing& p_obj) = default;
+			CommonSoapPreprocessing(CommonSoapPreprocessing&& p_obj) = default;
+			CommonSoapPreprocessing& operator=(const CommonSoapPreprocessing& p_obj) = default;
+			CommonSoapPreprocessing& operator=(CommonSoapPreprocessing&& p_obj) = default;
+			~CommonSoapPreprocessing() = default;
 
-private:
-	void commonParsing();
+			void parse(std::istream & p_request);
+			void parse(const std::string & p_request);
 
-	Helper::XercesGrammarPoolProvider & _grammarProvider;
-};
+			std::unique_ptr<const Helper::Message> rawMessage = nullptr;
+			std::unique_ptr<const Helper::XercesDocumentWrapper> xercesDocument = nullptr;
+			std::unique_ptr<MESSAGEMODEL::Envelope> normalizedMessage = nullptr;
 
-} /* namespace SOAP */
-} /* namespace OSELib */
+		private:
+			void commonParsing();
 
-#endif /* SOAP_COMMONSOAPPREPROCESSING_H_ */
+		};
+	}
+}
+
+#endif

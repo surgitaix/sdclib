@@ -30,4 +30,4 @@ namespace OSELib
     }
 }
 
-#endif /* OSELIB_WSDL_WSDLLOADER_H_ */
+#endif

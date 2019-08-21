@@ -1,20 +1,16 @@
 /*
  * MetadataProvider.cpp
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 20.08.2019, baumeister
+ *
  */
 
-#include "OSELib/SDC/SDCConstants.h"
-#include "MetadataExchange.hxx"
-#include "MDPWS.hxx"
-
-#include "OSELib/DPWS/DPWS11Constants.h"
-#include "OSELib/SDC/SDCConstants.h"
-
 #include "OSELib/DPWS/MetadataProvider.h"
-#include "SDCLib/Data/SDC/MDIB/LocalizedText.h"
-#include "SDCLib/Data/SDC/MDIB/ConvertToCDM.h"
+#include "OSELib/SDC/SDCConstants.h"
+#include "OSELib/DPWS/DPWS11Constants.h"
+
+#include "MDPWS.hxx"
 
 namespace OSELib {
 namespace DPWS {
@@ -22,10 +18,9 @@ namespace DPWS {
 const std::string HTTPProtocolPrefix("http://");
 const std::string HTTPSProtocolPrefix("https://");
 
-MetadataProvider::MetadataProvider(SDCLib::Dev::DeviceCharacteristics deviceCharacteristics):
-	_deviceCharacteristics(deviceCharacteristics)
-{
-}
+MetadataProvider::MetadataProvider(SDCLib::Dev::DeviceCharacteristics p_deviceCharacteristics)
+: m_deviceCharacteristics(p_deviceCharacteristics)
+{ }
 
 std::string MetadataProvider::getDeviceServicePath() const {
 	return "/Device";
@@ -51,7 +46,8 @@ std::string MetadataProvider::getWaveformServicePath() const {
 	return std::string("/" + SDC::QNAME_WAVEFORMSERVICE_PORTTYPE);
 }
 
-WS::MEX::Metadata MetadataProvider::createDeviceMetadata(const std::string & serverAddress, bool p_SSL) const {
+WS::MEX::Metadata MetadataProvider::createDeviceMetadata(const std::string & serverAddress, bool p_SSL) const
+{
 	WS::MEX::Metadata result;
 	result.MetadataSection().push_back(createMetadataSectionThisModel());
 	result.MetadataSection().push_back(createMetadataSectionThisDevice());
@@ -111,13 +107,14 @@ WS::MEX::Metadata MetadataProvider::createStreamServiceMetadata(const std::strin
 	return result;
 }
 
-MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionThisModel() const {
-	ThisModel::ManufacturerType manufacturer(_deviceCharacteristics.getManufacturer());
+MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionThisModel() const
+{
+	ThisModel::ManufacturerType manufacturer(m_deviceCharacteristics.getManufacturer());
 
 	ThisModel thisModel;
 	thisModel.Manufacturer().push_back(manufacturer);
 
-    for(auto &modelName : _deviceCharacteristics.getModelNames()) {
+    for(auto &modelName : m_deviceCharacteristics.getModelNames()) {
 //		thisModel.ModelName().push_back(std::string(modelName.first + ":" + modelName.second)); // leads to providing two times: en-US
 		thisModel.ModelName().push_back(std::string(modelName.second));
 	}
@@ -129,7 +126,7 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionThisMod
 }
 
 MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionThisDevice() const {
-	auto friendlyName = _deviceCharacteristics.getFriendlyNames();
+	auto friendlyName = m_deviceCharacteristics.getFriendlyNames();
 
 	// TODO: maybe add the regarding language tag (first element) of the deviceCharacteristics.
 	// note that here no field defined for that purpose
@@ -216,7 +213,7 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionRelatio
 
 
 MetadataProvider::Host MetadataProvider::createHostMetadata(const std::string &) const {
-	Host::EndpointReferenceType::AddressType hostEPRAddress(_deviceCharacteristics.getEndpointReference());
+	Host::EndpointReferenceType::AddressType hostEPRAddress(m_deviceCharacteristics.getEndpointReference());
 	Host::EndpointReferenceType hostEPR(hostEPRAddress);
 	Host host(hostEPR);
 	return host;

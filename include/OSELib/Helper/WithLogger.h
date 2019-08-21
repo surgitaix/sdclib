@@ -1,8 +1,9 @@
 /*
  * WithLogger.h
  *
- *  Created on: 16.12.2015
- *      Author: matthias
+ *  Created on: 16.12.2015, matthias
+ *  Modified on: 21.08.2019, baumeister
+ *
  */
 
 #ifndef OSELIB_HELPER_WITHLOGGER_H_
@@ -10,7 +11,7 @@
 
 #include <functional>
 
-#include "Poco/Logger.h"
+#include <Poco/Logger.h>
 
 namespace OSELib {
 
@@ -40,44 +41,50 @@ namespace Log {
 	const std::string STREAMING(BASE + ".STREAMING");
 }
 
-//StF Refactored to avoid collision of ERROR with #def in wingdi.h
-enum class LogLevel {
-	None,
-	Fatal,
-	Critical,
-	Error,
-	Warning,
-	Notice,
-	Information,
-	Debug,
-	Trace
-};
-
-namespace Helper
-{
-	class WithLogger {
-	public:
-		WithLogger(const std::string & loggerID);
-		virtual ~WithLogger();
-
-		Poco::Logger & getLogger();
-
-		void log_fatal(std::function<std::string()> logmessage) const;
-		void log_critical(std::function<std::string()> logmessage) const;
-		void log_error(std::function<std::string()> logmessage) const;
-		void log_warning(std::function<std::string()> logmessage) const;
-		void log_notice(std::function<std::string()> logmessage) const;
-		void log_information(std::function<std::string()> logmessage) const;
-		void log_debug(std::function<std::string()> logmessage) const;
-		void log_trace(std::function<std::string()> logmessage) const;
-
-		void setDebugLevel(LogLevel logLevel);
-
-	private:
-		Poco::Logger & _logger;
+	//StF Refactored to avoid collision of ERROR with #def in wingdi.h
+	enum class LogLevel {
+		None,
+		Fatal,
+		Critical,
+		Error,
+		Warning,
+		Notice,
+		Information,
+		Debug,
+		Trace
 	};
 
-} /* namespace Helper */
+	namespace Helper
+	{
+		class WithLogger
+		{
+		private:
+			Poco::Logger & _logger;
+
+		public:
+			WithLogger(const std::string & loggerID);
+			// Special Member Functions
+			WithLogger(const WithLogger& p_obj) = default;
+			WithLogger(WithLogger&& p_obj) = default;
+			WithLogger& operator=(const WithLogger& p_obj) = default;
+			WithLogger& operator=(WithLogger&& p_obj) = default;
+			virtual ~WithLogger() = default;
+
+			Poco::Logger & getLogger();
+
+			void log_fatal(std::function<std::string()> logmessage) const;
+			void log_critical(std::function<std::string()> logmessage) const;
+			void log_error(std::function<std::string()> logmessage) const;
+			void log_warning(std::function<std::string()> logmessage) const;
+			void log_notice(std::function<std::string()> logmessage) const;
+			void log_information(std::function<std::string()> logmessage) const;
+			void log_debug(std::function<std::string()> logmessage) const;
+			void log_trace(std::function<std::string()> logmessage) const;
+
+			void setDebugLevel(LogLevel logLevel);
+		};
+
+	} /* namespace Helper */
 
 } /* namespace OSELib */
 

@@ -2,23 +2,23 @@
  * DPWSHostSocketImpl.cpp
  *
  *  Created on: 07.12.2015, matthias
- *  Modified on: 26.07.2019, baumeister
+ *  Modified on: 20.08.2019, baumeister
  */
+#include "OSELib/DPWS/DPWSHostSocketImpl.h"
+#include "OSELib/SDC/SDCConstants.h"
+#include "OSELib/DPWS/DPWS11Constants.h"
+#include "OSELib/DPWS/DPWSCommon.h"
+#include "OSELib/DPWS/MessageAdapter.h"
+#include "OSELib/Helper/BufferAdapter.h"
+#include "SDCLib/Config/NetworkConfig.h"
+#include "SDCLib/SDCInstance.h"
+
+#include "NormalizedMessageModel.hxx"
 
 #include <chrono>
 
 #include <Poco/Buffer.h>
 
-#include "NormalizedMessageModel.hxx"
-
-#include "OSELib/SDC/SDCConstants.h"
-#include "OSELib/DPWS/DPWS11Constants.h"
-#include "OSELib/DPWS/DPWSCommon.h"
-#include "OSELib/DPWS/DPWSHostSocketImpl.h"
-#include "OSELib/DPWS/MessageAdapter.h"
-#include "OSELib/Helper/BufferAdapter.h"
-#include "SDCLib/Config/NetworkConfig.h"
-#include "SDCLib/SDCInstance.h"
 
 namespace OSELib {
 namespace DPWS {

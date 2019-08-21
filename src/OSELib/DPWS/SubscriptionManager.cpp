@@ -6,9 +6,6 @@
  */
 
 #include "OSELib/DPWS/SubscriptionManager.h"
-
-#include "eventing.hxx"
-
 #include "OSELib/DPWS/OperationTraits.h"
 #include "OSELib/Helper/DurationWrapper.h"
 #include "OSELib/HTTP/HTTPSessionManager.h"
@@ -17,6 +14,8 @@
 #include "OSELib/SOAP/SoapActionCommand.h"
 
 #include "SDCLib/SDCInstance.h"
+
+#include "eventing.hxx"
 
 #include <Poco/URI.h>
 #include <Poco/Net/HTTPClientSession.h>

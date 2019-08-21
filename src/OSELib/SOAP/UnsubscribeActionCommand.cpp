@@ -1,53 +1,49 @@
 /*
  * UnsubscribeActionCommand.cpp
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 21.08.2019, baumeister
+ *
  */
 
-#include "NormalizedMessageModel.hxx"
-
-#include "OSELib/DPWS/OperationTraits.h"
-#include "OSELib/SOAP/NormalizedMessageAdapter.h"
 #include "OSELib/SOAP/UnsubscribeActionCommand.h"
+#include "OSELib/SOAP/NormalizedMessageAdapter.h"
+
+#include "NormalizedMessageModel.hxx"
 
 namespace OSELib {
 namespace SOAP {
 
-UnsubscribeActionCommand::UnsubscribeActionCommand(std::unique_ptr<MESSAGEMODEL::Envelope> requestMessage, DPWS::UnsubscribeTraits::Dispatcher & dispatcher) :
-	SoapActionCommand(std::move(requestMessage)),
-	_dispatcher(dispatcher)
+UnsubscribeActionCommand::UnsubscribeActionCommand(std::unique_ptr<MESSAGEMODEL::Envelope> p_requestMessage, DPWS::UnsubscribeTraits::Dispatcher & p_dispatcher)
+: SoapActionCommand(std::move(p_requestMessage))
+, m_dispatcher(p_dispatcher)
+{ }
+
+std::unique_ptr<MESSAGEMODEL::Envelope> UnsubscribeActionCommand::dispatch(const MESSAGEMODEL::Envelope & p_request)
 {
-}
-
-UnsubscribeActionCommand::~UnsubscribeActionCommand() = default;
-
-std::unique_ptr<MESSAGEMODEL::Envelope> UnsubscribeActionCommand::dispatch(const MESSAGEMODEL::Envelope & request) {
-
-	NormalizedMessageAdapter<DPWS::UnsubscribeTraits::Request> requestAdapter;
-	if (!requestAdapter.present(request)) {
+	NormalizedMessageAdapter<DPWS::UnsubscribeTraits::Request> t_requestAdapter;
+	if (!t_requestAdapter.present(p_request)) {
 		throw MissingRequestBody("Request body missing for " + DPWS::UnsubscribeTraits::RequestAction());
 	}
 
-	NormalizedMessageAdapter<DPWS::UnsubscribeTraits::RequestIdentifier> requestIdentifierAdapter;
-	if (!requestIdentifierAdapter.present(request)) {
+	NormalizedMessageAdapter<DPWS::UnsubscribeTraits::RequestIdentifier> t_requestIdentifierAdapter;
+	if (!t_requestIdentifierAdapter.present(p_request)) {
 		throw MissingRequestBody("Event identifier in request header missing for " + DPWS::UnsubscribeTraits::RequestAction());
 	}
 
-	const DPWS::UnsubscribeTraits::Request & requestBody(requestAdapter.get(request));
-	const DPWS::UnsubscribeTraits::RequestIdentifier & requestIdentifier(requestIdentifierAdapter.get(request));
+	const DPWS::UnsubscribeTraits::Request & t_requestBody(t_requestAdapter.get(p_request));
+	const DPWS::UnsubscribeTraits::RequestIdentifier & t_requestIdentifier(t_requestIdentifierAdapter.get(p_request));
 
-	std::unique_ptr<DPWS::UnsubscribeTraits::Response> responseBody(DPWS::UnsubscribeTraits::dispatch(_dispatcher, requestBody, requestIdentifier));
+	std::unique_ptr<DPWS::UnsubscribeTraits::Response> t_responseBody(DPWS::UnsubscribeTraits::dispatch(m_dispatcher, t_requestBody, t_requestIdentifier));
 
-	if (!responseBody) {
+	if (!t_responseBody) {
 		throw DispatchingFailed("Internal error. Dispatching failed for " + DPWS::UnsubscribeTraits::RequestAction());
 	}
 
-	std::unique_ptr<MESSAGEMODEL::Envelope> responseMessage(createResponseMessageFromRequestMessage(request));
-	responseMessage->Header().Action().set(WS::ADDRESSING::AttributedURIType(DPWS::UnsubscribeTraits::ResponseAction()));
-
-	return responseMessage;
+	std::unique_ptr<MESSAGEMODEL::Envelope> t_responseMessage(createResponseMessageFromRequestMessage(p_request));
+	t_responseMessage->Header().Action().set(WS::ADDRESSING::AttributedURIType(DPWS::UnsubscribeTraits::ResponseAction()));
+	return t_responseMessage;
 }
 
-} /* namespace SOAP */
-} /* namespace OSELib */
+}
+}

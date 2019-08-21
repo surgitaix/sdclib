@@ -1,22 +1,14 @@
 /*
  * SetServiceHandler.cpp
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 21.08.2019, baumeister
+ *
  */
 
-#include "Poco/Net/HTTPServerRequest.h"
-#include "Poco/Net/HTTPServerResponse.h"
-
-#include "NormalizedMessageModel.hxx"
-
-#include "OSELib/DPWS/OperationTraits.h"
-#include "OSELib/Helper/Message.h"
-#include "OSELib/Helper/XercesDocumentWrapper.h"
-#include "OSELib/Helper/XercesGrammarPoolProvider.h"
-#include "OSELib/SDC/ISetService.h"
-#include "OSELib/SDC/OperationTraits.h"
 #include "OSELib/SDC/SetServiceHandler.h"
+#include "OSELib/DPWS/OperationTraits.h"
+#include "OSELib/SDC/ISetService.h"
 #include "OSELib/SOAP/Command.h"
 #include "OSELib/SOAP/CommonSoapPreprocessing.h"
 #include "OSELib/SOAP/GenericSoapActionCommand.h"
@@ -29,56 +21,60 @@
 #include "OSELib/SOAP/RenewActionCommand.h"
 #include "OSELib/SOAP/GetStatusActionCommand.h"
 
+#include "NormalizedMessageModel.hxx"
+
+#include <Poco/Net/HTTPServerRequest.h>
+
+
 namespace OSELib {
 namespace SDC {
 
-SetServiceHandler::SetServiceHandler(ISetService & service, Helper::XercesGrammarPoolProvider & grammarProvider, bool p_SSL) :
-	_service(service),
-	_grammarProvider(grammarProvider),
-	m_SSL(p_SSL)
-{
-}
+SetServiceHandler::SetServiceHandler(ISetService & p_service, Helper::XercesGrammarPoolProvider & p_grammarProvider, bool p_SSL)
+: m_service(p_service)
+, m_grammarProvider(p_grammarProvider)
+, m_SSL(p_SSL)
+{ }
 
-void SetServiceHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & httpRequest, Poco::Net::HTTPServerResponse & httpResponse) {
+void SetServiceHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & p_httpRequest, Poco::Net::HTTPServerResponse & p_httpResponse) {
 
-	SOAP::CommonSoapPreprocessing soapHandling(_grammarProvider);
-	soapHandling.parse(httpRequest.stream());
+	SOAP::CommonSoapPreprocessing t_soapHandling(m_grammarProvider);
+	t_soapHandling.parse(p_httpRequest.stream());
 
-	const auto soapAction(soapHandling.normalizedMessage->Header().Action().get());
+	const auto t_soapAction(t_soapHandling.normalizedMessage->Header().Action().get());
 
-	std::unique_ptr<SOAP::Command> command(new SOAP::SoapFaultCommand(httpResponse));
+	std::unique_ptr<SOAP::Command> t_command(new SOAP::SoapFaultCommand(p_httpResponse));
 
-	if (soapAction == DPWS::GetMetadataTraits::RequestAction()) {
-		const std::string serverAddress(httpRequest.serverAddress().toString());
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GetMetadataActionCommand(std::move(soapHandling.normalizedMessage), _service.getMetadata(serverAddress, m_SSL)));
-	} else if (soapAction == ActivateTraits::RequestAction()) {
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<ActivateTraits>(std::move(soapHandling.normalizedMessage), _service));
-	} else if (soapAction == SetAlertStateTraits::RequestAction()) {
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<SetAlertStateTraits>(std::move(soapHandling.normalizedMessage), _service));
-	} else if (soapAction == SetStringTraits::RequestAction()) {
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<SetStringTraits>(std::move(soapHandling.normalizedMessage), _service));
-	} else if (soapAction == SetValueTraits::RequestAction()) {
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<SetValueTraits>(std::move(soapHandling.normalizedMessage), _service));
-	} else if (soapAction == DPWS::SubscribeTraits::RequestAction()) {
-        std::string ts_PROTOCOL = "http";
-        if(m_SSL) { ts_PROTOCOL.append("s"); }
-		const std::string subscriptionManagerAddress(ts_PROTOCOL + "://" + httpRequest.serverAddress().toString() + _service.getBaseUri());
-		command = std::unique_ptr<SOAP::Command>(new SOAP::SubscribeActionCommand(std::move(soapHandling.normalizedMessage), _service, subscriptionManagerAddress));
-	} else if (soapAction == DPWS::UnsubscribeTraits::RequestAction()) {
-		command = std::unique_ptr<SOAP::Command>(new SOAP::UnsubscribeActionCommand(std::move(soapHandling.normalizedMessage), _service));
-	} else if (soapAction == DPWS::RenewTraits::RequestAction()) {
-		command = std::unique_ptr<SOAP::Command>(new SOAP::RenewActionCommand(std::move(soapHandling.normalizedMessage), _service));
-    } else if (soapAction == DPWS::GetStatusTraits::RequestAction()) {
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GetStatusActionCommand(std::move(soapHandling.normalizedMessage), _service));
+	if (t_soapAction == DPWS::GetMetadataTraits::RequestAction()) {
+		const std::string t_serverAddress(p_httpRequest.serverAddress().toString());
+		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GetMetadataActionCommand(std::move(t_soapHandling.normalizedMessage), m_service.getMetadata(t_serverAddress, m_SSL)));
+	} else if (t_soapAction == ActivateTraits::RequestAction()) {
+		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<ActivateTraits>(std::move(t_soapHandling.normalizedMessage), m_service));
+	} else if (t_soapAction == SetAlertStateTraits::RequestAction()) {
+		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<SetAlertStateTraits>(std::move(t_soapHandling.normalizedMessage), m_service));
+	} else if (t_soapAction == SetStringTraits::RequestAction()) {
+		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<SetStringTraits>(std::move(t_soapHandling.normalizedMessage), m_service));
+	} else if (t_soapAction == SetValueTraits::RequestAction()) {
+		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<SetValueTraits>(std::move(t_soapHandling.normalizedMessage), m_service));
+	} else if (t_soapAction == DPWS::SubscribeTraits::RequestAction()) {
+        std::string t_PROTOCOL = "http";
+        if(m_SSL) { t_PROTOCOL.append("s"); }
+		const std::string subscriptionManagerAddress(t_PROTOCOL + "://" + p_httpRequest.serverAddress().toString() + m_service.getBaseUri());
+		t_command = std::unique_ptr<SOAP::Command>(new SOAP::SubscribeActionCommand(std::move(t_soapHandling.normalizedMessage), m_service, subscriptionManagerAddress));
+	} else if (t_soapAction == DPWS::UnsubscribeTraits::RequestAction()) {
+		t_command = std::unique_ptr<SOAP::Command>(new SOAP::UnsubscribeActionCommand(std::move(t_soapHandling.normalizedMessage), m_service));
+	} else if (t_soapAction == DPWS::RenewTraits::RequestAction()) {
+		t_command = std::unique_ptr<SOAP::Command>(new SOAP::RenewActionCommand(std::move(t_soapHandling.normalizedMessage), m_service));
+    } else if (t_soapAction == DPWS::GetStatusTraits::RequestAction()) {
+    	t_command = std::unique_ptr<SOAP::Command>(new SOAP::GetStatusActionCommand(std::move(t_soapHandling.normalizedMessage), m_service));
 	} else {
-		log_error([&] { return "SetServiceHandler can't handle action: " + soapAction; });
+		log_error([&] { return "SetServiceHandler can't handle action: " + t_soapAction; });
 	}
 
-	std::unique_ptr<MESSAGEMODEL::Envelope> responseMessage(command->Run());
+	std::unique_ptr<MESSAGEMODEL::Envelope> t_responseMessage(t_command->Run());
 
-	SOAP::SoapHTTPResponseWrapper response(httpResponse);
-	response.send(SOAP::NormalizedMessageSerializer::serialize(*responseMessage));
+	SOAP::SoapHTTPResponseWrapper t_response(p_httpResponse);
+	t_response.send(SOAP::NormalizedMessageSerializer::serialize(*t_responseMessage));
 }
 
-} /* namespace SDC */
-} /* namespace OSELib */
+}
+}

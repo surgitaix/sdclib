@@ -1,8 +1,9 @@
 /*
  * EventReportServiceHandler.h
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 21.08.2019, baumeister
+ *
  */
 
 #ifndef OSELib_SDC_EVENTREPORTSERVICEHANDLER_H_
@@ -11,22 +12,32 @@
 #include "OSELib/fwd.h"
 #include "OSELib/SOAP/HTTPRequestHandlerExceptionTrap.h"
 
-namespace OSELib {
-namespace SDC {
+namespace OSELib
+{
+	namespace SDC
+	{
+		class EventReportServiceHandler : public SOAP::HTTPRequestHandlerExceptionTrap
+		{
+		private:
+			IEventReport & m_service;
+			Helper::XercesGrammarPoolProvider & m_grammarProvider;
+			const bool m_SSL = true;
 
-class EventReportServiceHandler : public SOAP::HTTPRequestHandlerExceptionTrap {
-public:
-	EventReportServiceHandler(IEventReport & service, Helper::XercesGrammarPoolProvider & grammarProvider, bool p_SSL);
+		public:
+			EventReportServiceHandler(IEventReport & p_service, Helper::XercesGrammarPoolProvider & p_grammarProvider, bool p_SSL);
+			// Special Member Functions
+			EventReportServiceHandler(const EventReportServiceHandler& p_obj) = delete;
+			EventReportServiceHandler(EventReportServiceHandler&& p_obj) = delete;
+			EventReportServiceHandler& operator=(const EventReportServiceHandler& p_obj) = delete;
+			EventReportServiceHandler& operator=(EventReportServiceHandler&& p_obj) = delete;
+			~EventReportServiceHandler() = default;
 
-private:
-	void handleRequestImpl(Poco::Net::HTTPServerRequest & httpRequest, Poco::Net::HTTPServerResponse & httpResponse) override;
+		private:
+			void handleRequestImpl(Poco::Net::HTTPServerRequest & p_httpRequest, Poco::Net::HTTPServerResponse & p_httpResponse) override;
 
-	IEventReport & _service;
-	Helper::XercesGrammarPoolProvider & _grammarProvider;
-    const bool m_SSL = true;
-};
+		};
 
-} /* namespace SDC */
-} /* namespace OSELib */
+	}
+}
 
-#endif /* OSELib_SDC_EVENTREPORTSERVICEHANDLER_H_ */
+#endif

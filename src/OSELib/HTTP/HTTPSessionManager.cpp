@@ -1,9 +1,15 @@
 /*
  * HTTPSessionManager.cpp
  *
- *  Created on: 15.12.2015
- *      Author: matthias
+ *  Created on: 15.12.2015, matthias
+ *  Modified on: 20.08.2019, baumeister
+ *
  */
+
+#include "OSELib/HTTP/HTTPSessionManager.h"
+#include "OSELib/DPWS/ActiveSubscriptions.h"
+#include "OSELib/HTTP/HTTPClientExchanger.h"
+#include "SDCLib/Config/SSLConfig.h"
 
 #include <atomic>
 #include <iostream>
@@ -12,88 +18,78 @@
 #include <Poco/NotificationQueue.h>
 #include <Poco/Runnable.h>
 #include <Poco/URI.h>
-#include <Poco/Net/HTTPClientSession.h>
-#include <Poco/Net/HTTPSClientSession.h>
 #include <Poco/Net/SocketNotification.h>
-#include <Poco/Net/NetException.h>
 
-#include "OSELib/DPWS/ActiveSubscriptions.h"
-#include "OSELib/HTTP/HTTPClientExchanger.h"
-#include "OSELib/HTTP/HTTPSessionManager.h"
-
-#include "SDCLib/Config/SSLConfig.h"
 
 namespace OSELib {
 namespace HTTP {
 
-class Message : public Poco::Notification {
+class Message : public Poco::Notification
+{
 public:
-	Message(const std::string & message, const Poco::URI & destination, const xml_schema::Uri & myID) :
-		_message(message),
-		_destination(destination),
-		_myID(myID)
-	{
-	}
-	const std::string _message;
-	const Poco::URI _destination;
-	const xml_schema::Uri _myID;
+	Message(const std::string & p_message, const Poco::URI & p_destination, const xml_schema::Uri & p_myID)
+	: m_message(p_message)
+	, m_destination(p_destination)
+	, m_myID(p_myID)
+	{ }
+	const std::string m_message;
+	const Poco::URI m_destination;
+	const xml_schema::Uri m_myID;
 };
 
-class SendWorker : public Poco::Runnable, public OSELib::Helper::WithLogger {
+class SendWorker : public Poco::Runnable, public OSELib::Helper::WithLogger
+{
 public:
-	SendWorker(const Poco::URI & destinationURI, std::shared_ptr<Poco::NotificationQueue> queue, DPWS::ActiveSubscriptions & subscriptions, Poco::Net::Context::Ptr p_context) :
-		OSELib::Helper::WithLogger(Log::EVENTSOURCE),
-		_running(true),
-		_destinationURI(destinationURI),
-		_queue(queue),
-		_subscriptions(subscriptions)
-		, m_context(p_context)
-	{
-	}
+	SendWorker(const Poco::URI & p_destinationURI, std::shared_ptr<Poco::NotificationQueue> p_queue, DPWS::ActiveSubscriptions & p_subscriptions, Poco::Net::Context::Ptr p_context)
+	: OSELib::Helper::WithLogger(Log::EVENTSOURCE)
+	, m_running(true)
+	, m_destinationURI(p_destinationURI)
+	, m_queue(p_queue)
+	, m_subscriptions(p_subscriptions)
+	, m_context(p_context)
+	{ }
 
 	virtual ~SendWorker() = default;
 
 	virtual void run() override {
 
 		struct ScopedFalseSetter {
-			ScopedFalseSetter(std::atomic<bool> & value) : _value(value) { }
-			~ScopedFalseSetter() { _value = false; }
+			ScopedFalseSetter(std::atomic<bool> & value) : m_value(value) { }
+			~ScopedFalseSetter() { m_value = false; }
 		private:
-			std::atomic<bool> & _value;
+			std::atomic<bool> & m_value;
 		};
 
-		ScopedFalseSetter setter(_running);
+		ScopedFalseSetter setter(m_running);
 
+		while (Poco::Notification * t_loopN = m_queue->waitDequeueNotification(10000)) {
+			Poco::AutoPtr<Poco::Notification> t_notification(t_loopN);
 
-
-		while (Poco::Notification * _n = _queue->waitDequeueNotification(10000)) {
-			Poco::AutoPtr<Poco::Notification> n(_n);
-
-			if (dynamic_cast<const Poco::Net::ShutdownNotification *>(n.get())) {
+			if (dynamic_cast<const Poco::Net::ShutdownNotification *>(t_notification.get())) {
 				return;
-			} else if (auto message = dynamic_cast<const Message *>(n.get())) {
-				HTTP::HTTPClientExchanger exchanger;
+			} else if (auto t_message = dynamic_cast<const Message *>(t_notification.get())) {
+				HTTP::HTTPClientExchanger t_exchanger;
 				try {
 
 					// SSL or not
 					if(m_context) {
-						Poco::Net::HTTPSClientSession session(_destinationURI.getHost(), _destinationURI.getPort(), m_context);
-						session.setTimeout(Poco::Timespan(5,0));
-						session.setKeepAlive(true);
+						Poco::Net::HTTPSClientSession t_session(m_destinationURI.getHost(), m_destinationURI.getPort(), m_context);
+						t_session.setTimeout(Poco::Timespan(5,0));
+						t_session.setKeepAlive(true);
 
-						exchanger.exchangeHttp(session, message->_destination.getPath(), message->_message);
+						t_exchanger.exchangeHttp(t_session, t_message->m_destination.getPath(), t_message->m_message);
 					}
 					else {
-						Poco::Net::HTTPClientSession session(_destinationURI.getHost(), _destinationURI.getPort());
-						session.setTimeout(Poco::Timespan(5,0));
-						session.setKeepAlive(true);
+						Poco::Net::HTTPClientSession t_session(m_destinationURI.getHost(), m_destinationURI.getPort());
+						t_session.setTimeout(Poco::Timespan(5,0));
+						t_session.setKeepAlive(true);
 
-						exchanger.exchangeHttp(session, message->_destination.getPath(), message->_message);
+						t_exchanger.exchangeHttp(t_session, t_message->m_destination.getPath(), t_message->m_message);
 					}
 				} catch (...) {
-					log_error([&] { return "Delivering event failed."; });
-					_subscriptions.unsubscribe(message->_myID);
-					log_error([&] { return "Terminating subscription for sink: " + _destinationURI.toString(); });
+					log_error([] { return "Delivering event failed."; });
+					m_subscriptions.unsubscribe(t_message->m_myID);
+					log_error([&] { return "Terminating subscription for sink: " + m_destinationURI.toString(); });
 					return;
 				}
 			}
@@ -101,20 +97,20 @@ public:
 	}
 
 	bool isRunning() const {
-		return _running;
+		return m_running;
 	}
 
 private:
-	std::atomic<bool> _running;
-	const Poco::URI _destinationURI;
-	std::shared_ptr<Poco::NotificationQueue> _queue;
-	DPWS::ActiveSubscriptions & _subscriptions;
+	std::atomic<bool> m_running = ATOMIC_VAR_INIT(false);
+	const Poco::URI m_destinationURI;
+	std::shared_ptr<Poco::NotificationQueue> m_queue;
+	DPWS::ActiveSubscriptions & m_subscriptions;
 	Poco::Net::Context::Ptr m_context = nullptr;
 };
 
-HTTPSessionManager::HTTPSessionManager(DPWS::ActiveSubscriptions & subscriptions, SDCLib::Config::SSLConfig_shared_ptr p_SSLConfig)
+HTTPSessionManager::HTTPSessionManager(DPWS::ActiveSubscriptions & p_subscriptions, SDCLib::Config::SSLConfig_shared_ptr p_SSLConfig)
 : OSELib::Helper::WithLogger(Log::EVENTSOURCE)
-, _subscriptions(subscriptions)
+, m_subscriptions(p_subscriptions)
 {
 	assert(p_SSLConfig != nullptr);
 	if(p_SSLConfig) {
@@ -125,29 +121,27 @@ HTTPSessionManager::HTTPSessionManager(DPWS::ActiveSubscriptions & subscriptions
 HTTPSessionManager::~HTTPSessionManager()
 {
 	std::lock_guard<std::mutex> t_lock(m_mutex);
-	for (const auto & item : _queues) {
-		item.second->enqueueUrgentNotification(new Poco::Net::ShutdownNotification(nullptr));
+	for (const auto & t_item : ml_queues) {
+		t_item.second->enqueueUrgentNotification(new Poco::Net::ShutdownNotification(nullptr));
 	}
-	_threadpool.joinAll();
+	m_threadpool.joinAll();
 }
 
-void HTTPSessionManager::enqueMessage(const Poco::URI & destinationURI, const std::string & content, const xml_schema::Uri & myID)
+void HTTPSessionManager::enqueMessage(const Poco::URI & p_destinationURI, const std::string & p_content, const xml_schema::Uri & p_myID)
 {
 	std::lock_guard<std::mutex> t_lock(m_mutex);
-
-
 	{
-		std::vector<std::string> toErase;
-		for (const auto & item : _workers) {
-			if (const auto worker = dynamic_cast<const SendWorker *>(item.second.get())) {
-				if (!worker->isRunning()) {
-					toErase.emplace_back(item.first);
+		std::vector<std::string> tl_toErase;
+		for (const auto & t_item : ml_workers) {
+			if (const auto t_worker = dynamic_cast<const SendWorker *>(t_item.second.get())) {
+				if (!t_worker->isRunning()) {
+					tl_toErase.emplace_back(t_item.first);
 				}
 			}
 		}
-		for (const auto & item : toErase) {
-			_queues.erase(item);
-			_workers.erase(item);
+		for (const auto & t_item : tl_toErase) {
+			ml_queues.erase(t_item);
+			ml_workers.erase(t_item);
 		}
 	}
 
@@ -157,21 +151,21 @@ void HTTPSessionManager::enqueMessage(const Poco::URI & destinationURI, const st
         ts_PROTOCOL.append("s");
     }
 
-    const std::string mapIndex(ts_PROTOCOL + "://" + destinationURI.getHost() + ":" + std::to_string(destinationURI.getPort()));
+    const std::string t_mapIndex(ts_PROTOCOL + "://" + p_destinationURI.getHost() + ":" + std::to_string(p_destinationURI.getPort()));
 
-	auto matchQueue(_queues.find(mapIndex));
-	if (matchQueue == _queues.end()) {
-		auto queue = std::make_shared<Poco::NotificationQueue>();
-		_queues.emplace(mapIndex, queue);
-		if (static_cast<std::size_t>(_threadpool.capacity()) < _queues.size()) {
-			_threadpool.addCapacity(_queues.size() - _threadpool.capacity() + 1);
+	auto t_matchQueue(ml_queues.find(t_mapIndex));
+	if (t_matchQueue == ml_queues.end()) {
+		auto t_queue = std::make_shared<Poco::NotificationQueue>();
+		ml_queues.emplace(t_mapIndex, t_queue);
+		if (static_cast<std::size_t>(m_threadpool.capacity()) < ml_queues.size()) {
+			m_threadpool.addCapacity(ml_queues.size() - m_threadpool.capacity() + 1);
 		}
-		std::unique_ptr<SendWorker> worker(new SendWorker(destinationURI, queue, _subscriptions, m_context));
-		_threadpool.start(*worker);
-		_workers.emplace(mapIndex, std::move(worker));
-		queue->enqueueNotification(new Message(content, destinationURI, myID));
+		std::unique_ptr<SendWorker> t_worker(new SendWorker(p_destinationURI, t_queue, m_subscriptions, m_context));
+		m_threadpool.start(*t_worker);
+		ml_workers.emplace(t_mapIndex, std::move(t_worker));
+		t_queue->enqueueNotification(new Message(p_content, p_destinationURI, p_myID));
 	} else {
-		matchQueue->second->enqueueNotification(new Message(content, destinationURI, myID));
+		t_matchQueue->second->enqueueNotification(new Message(p_content, p_destinationURI, p_myID));
 	}
 }
 

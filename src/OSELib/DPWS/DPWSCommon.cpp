@@ -11,7 +11,6 @@
 #include "OSELib/DPWS/MessageAdapter.h"
 #include "OSELib/DPWS/Types.h"
 #include "OSELib/Helper/Message.h"
-#include "OSELib/Helper/XercesDocumentWrapper.h"
 #include "OSELib/Helper/XercesGrammarPoolProvider.h"
 #include "OSELib/SOAP/CommonSoapPreprocessing.h"
 #include "OSELib/SOAP/NormalizedMessageSerializer.h"

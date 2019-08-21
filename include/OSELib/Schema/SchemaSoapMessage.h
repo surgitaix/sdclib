@@ -1,7 +1,7 @@
 #ifndef SCHEMA_SOAPMESSAGE_H
 #define SCHEMA_SOAPMESSAGE_H
 
-#include <string.h>
+#include <string>
 
 namespace SCHEMA
 {

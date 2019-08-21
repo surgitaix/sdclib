@@ -6,17 +6,13 @@
  */
 
 #include "OSELib/DPWS/SubscriptionClient.h"
-
-
-#include "ws-addressing.hxx"
-#include "eventing.hxx"
-
 #include "OSELib/SOAP/GenericSoapInvoke.h"
 #include "OSELib/SDC/DefaultSDCSchemaGrammarProvider.h"
 #include "OSELib/Helper/DurationWrapper.h"
-
-
 #include "SDCLib/SDCInstance.h"
+
+#include "ws-addressing.hxx"
+#include "eventing.hxx"
 
 // Note: Configure these values later?
 const std::size_t RENEW_THRESHOLD = 60; // Time in sec a renew will be needed

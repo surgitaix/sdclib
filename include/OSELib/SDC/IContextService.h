@@ -16,8 +16,15 @@
 namespace OSELib {
 namespace SDC {
 
-class IContextService : public DPWS::IService, public DPWS::ISubscriptionManager {
+class IContextService : public DPWS::IService, public DPWS::ISubscriptionManager
+{
 public:
+	// Special Member Functions
+	IContextService() = default;
+	IContextService(const IContextService& p_obj) = default;
+	IContextService(IContextService&& p_obj) = default;
+	IContextService& operator=(const IContextService& p_obj) = default;
+	IContextService& operator=(IContextService&& p_obj) = default;
 	virtual ~IContextService() = default;
 
 	using DPWS::ISubscriptionManager::dispatch;

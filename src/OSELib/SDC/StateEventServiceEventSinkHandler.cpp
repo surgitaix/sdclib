@@ -1,19 +1,11 @@
 /*
- * EventReportEventSinkHandler.cpp
+ * StateEventServiceEventSinkHandler.cpp
  *
  *  Created on: 10.12.2015
- *      Author: matthias
+ *  Modified on: 21.08.2019, baumeister
+ *
  */
 
-#include "Poco/Net/HTTPServerRequest.h"
-#include "Poco/Net/HTTPServerResponse.h"
-
-#include "NormalizedMessageModel.hxx"
-
-#include "OSELib/DPWS/OperationTraits.h"
-#include "OSELib/Helper/Message.h"
-#include "OSELib/Helper/XercesDocumentWrapper.h"
-#include "OSELib/Helper/XercesGrammarPoolProvider.h"
 #include "OSELib/SDC/StateEventServiceEventSinkHandler.h"
 #include "OSELib/SDC/IGetService.h"
 #include "OSELib/SDC/ReportTraits.h"
@@ -24,43 +16,46 @@
 #include "OSELib/SOAP/SoapFaultCommand.h"
 #include "OSELib/SOAP/SoapHTTPResponseWrapper.h"
 
+#include "NormalizedMessageModel.hxx"
+
+#include <Poco/Net/HTTPServerRequest.h>
+
 namespace OSELib {
 namespace SDC {
 
-StateEventServiceEventSinkHandler::StateEventServiceEventSinkHandler(IStateEventServiceEventSink & service, Helper::XercesGrammarPoolProvider & grammarProvider) :
-	_service(service),
-	_grammarProvider(grammarProvider)
+StateEventServiceEventSinkHandler::StateEventServiceEventSinkHandler(IStateEventServiceEventSink & p_service, Helper::XercesGrammarPoolProvider & p_grammarProvider)
+: m_service(p_service)
+, m_grammarProvider(p_grammarProvider)
+{ }
+
+void StateEventServiceEventSinkHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & p_httpRequest, Poco::Net::HTTPServerResponse & p_httpResponse)
 {
-}
+	SOAP::CommonSoapPreprocessing t_soapHandling(m_grammarProvider);
+	t_soapHandling.parse(p_httpRequest.stream());
 
-void StateEventServiceEventSinkHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & httpRequest, Poco::Net::HTTPServerResponse & httpResponse) {
+	const auto t_soapAction(t_soapHandling.normalizedMessage->Header().Action().get());
 
-	SOAP::CommonSoapPreprocessing soapHandling(_grammarProvider);
-	soapHandling.parse(httpRequest.stream());
+	std::unique_ptr<SOAP::Command> t_command(new SOAP::SoapFaultCommand(p_httpResponse));
 
-	const auto soapAction(soapHandling.normalizedMessage->Header().Action().get());
-
-	std::unique_ptr<SOAP::Command> command(new SOAP::SoapFaultCommand(httpResponse));
-
-	if (soapAction == EpisodicAlertReportTraits::Action()) {
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<EpisodicAlertReportTraits>(std::move(soapHandling.normalizedMessage), _service));
-	} else if (soapAction == EpisodicMetricReportTraits::Action()) {
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<EpisodicMetricReportTraits>(std::move(soapHandling.normalizedMessage), _service));
-	} else if (soapAction == PeriodicAlertReportTraits::Action()) {
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<PeriodicAlertReportTraits>(std::move(soapHandling.normalizedMessage), _service));
-	} else if (soapAction == PeriodicMetricReportTraits::Action()) {
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<PeriodicMetricReportTraits>(std::move(soapHandling.normalizedMessage), _service));
+	if (t_soapAction == EpisodicAlertReportTraits::Action()) {
+		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<EpisodicAlertReportTraits>(std::move(t_soapHandling.normalizedMessage), m_service));
+	} else if (t_soapAction == EpisodicMetricReportTraits::Action()) {
+		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<EpisodicMetricReportTraits>(std::move(t_soapHandling.normalizedMessage), m_service));
+	} else if (t_soapAction == PeriodicAlertReportTraits::Action()) {
+		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<PeriodicAlertReportTraits>(std::move(t_soapHandling.normalizedMessage), m_service));
+	} else if (t_soapAction == PeriodicMetricReportTraits::Action()) {
+		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<PeriodicMetricReportTraits>(std::move(t_soapHandling.normalizedMessage), m_service));
 	} else {
-		log_error([&] { return "StateEventServiceEventSinkHandler can't handle action: " + soapAction; });
+		log_error([&] { return "StateEventServiceEventSinkHandler can't handle action: " + t_soapAction; });
 	}
 
-	std::unique_ptr<MESSAGEMODEL::Envelope> responseMessage(command->Run());
+	std::unique_ptr<MESSAGEMODEL::Envelope> t_responseMessage(t_command->Run());
 
 	// todo add proper soap fault handling in response
 
-	SOAP::SoapHTTPResponseWrapper response(httpResponse, SOAP::SoapHTTPResponseWrapper::HTTPStatus::HTTP_ACCEPTED);
-	response.send("");
+	SOAP::SoapHTTPResponseWrapper t_response(p_httpResponse, SOAP::SoapHTTPResponseWrapper::HTTPStatus::HTTP_ACCEPTED);
+	t_response.send("");
 }
 
-} /* namespace SDC */
-} /* namespace OSELib */
+}
+}

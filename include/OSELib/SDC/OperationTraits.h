@@ -1,6 +1,6 @@
 
-#ifndef SOAPOPERATIONTRAITS_H_
-#define SOAPOPERATIONTRAITS_H_
+#ifndef OSELIB_SDC_OPERATIONTRAITS_H_
+#define OSELIB_SDC_OPERATIONTRAITS_H_
 
 #include <memory>
 
@@ -129,6 +129,6 @@ struct SetValueTraits {
 
 
 
-}  // namespace SDC
-} /* namespace SDCLib */
-#endif /* SOAPOPERATIONTRAITS_H_ */
+}
+}
+#endif

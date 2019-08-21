@@ -1,33 +1,31 @@
 /*
- * DPWSGetMetadataRequestHandler.cpp
+ * GenericContentHandler.cpp
  *
- *  Created on: 25.07.2014
- *      Author: roehser
+ *  Created on: 25.07.2014, roehser
+ *  Modified on: 20.08.2019, baumeister
  */
-
-#include "Poco/Net/HTTPServerRequest.h"
-#include "Poco/Net/HTTPServerResponse.h"
 
 #include "OSELib/HTTP/GenericContentHandler.h"
 
-namespace OSELib {
-namespace HTTP {
+#include <Poco/Net/HTTPServerRequest.h>
+#include <Poco/Net/HTTPServerResponse.h>
 
-GenericContentHandler::GenericContentHandler(const std::string & content) :
-		_content(content)
+
+using namespace OSELib;
+using namespace OSELib::HTTP;
+
+GenericContentHandler::GenericContentHandler(const std::string & p_content)
+: m_content(p_content)
+{ }
+
+void GenericContentHandler::handleRequest(Poco::Net::HTTPServerRequest& p_request, Poco::Net::HTTPServerResponse & p_response)
 {
+	p_response.setStatus(Poco::Net::HTTPResponse::HTTP_OK);
+	p_response.setContentType("application/xml");
+	p_response.setChunkedTransferEncoding(false);
+	p_response.setContentLength(m_content.length());
 
+	std::ostream & t_out = p_response.send();
+	t_out << m_content << std::flush;
 }
 
-void GenericContentHandler::handleRequest(Poco::Net::HTTPServerRequest & , Poco::Net::HTTPServerResponse & resp) {
-	resp.setStatus(Poco::Net::HTTPResponse::HTTP_OK);
-	resp.setContentType("application/xml");
-	resp.setChunkedTransferEncoding(false);
-	resp.setContentLength(_content.length());
-
-	std::ostream & out = resp.send();
-	out << _content << std::flush;
-}
-
-}
-} /* namespace OSELib */

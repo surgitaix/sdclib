@@ -1,8 +1,9 @@
 /*
  * Message.cpp
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 21.08.2019, baumeister
+ *
  */
 
 #include "OSELib/Helper/Message.h"
@@ -11,23 +12,24 @@
 namespace OSELib {
 namespace Helper {
 
-Message::Message(const std::string & content) :
-	_content(content)
+Message::Message(const std::string & p_content)
+: m_content(p_content)
+{ }
+
+std::unique_ptr<Message> Message::create(const std::string & p_content)
 {
+	return std::unique_ptr<Message>(new Message(p_content));
 }
 
-std::unique_ptr<Message> Message::create(const std::string & content) {
-	return std::unique_ptr<Message>(new Message(content));
-}
-
-std::unique_ptr<Message> Message::create(std::istream & stream) {
-	StreamReader reader(stream);
-	return std::unique_ptr<Message>(new Message(reader.getContent()));
+std::unique_ptr<Message> Message::create(std::istream & p_stream)
+{
+	StreamReader t_reader(p_stream);
+	return std::unique_ptr<Message>(new Message(t_reader.getContent()));
 }
 
 const std::string & Message::getContent() const {
-	return _content;
+	return m_content;
 }
 
-} /* namespace Helper */
-} /* namespace OSELib */
+}
+}

@@ -1,8 +1,9 @@
 /*
  * ISetService.h
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 21.08.2019, baumeister
+ *
  */
 
 #ifndef OSELIB_SDC_ISETSERVICE_H_
@@ -13,20 +14,28 @@
 #include "OSELib/SDC/OperationTraits.h"
 #include "OSELib/DPWS/ISubscriptionManager.h"
 
-namespace OSELib {
-namespace SDC {
+namespace OSELib
+{
+	namespace SDC
+	{
+		class ISetService : public DPWS::IService, public DPWS::ISubscriptionManager
+		{
+		public:
 
-class ISetService : public DPWS::IService, public DPWS::ISubscriptionManager {
-public:
-	virtual ~ISetService() = default;
+			// Special Member Functions
+			ISetService() = default;
+			ISetService(const ISetService& p_obj) = delete;
+			ISetService(ISetService&& p_obj) = delete;
+			ISetService& operator=(const ISetService& p_obj) = delete;
+			ISetService& operator=(ISetService&& p_obj) = delete;
+			virtual ~ISetService() = default;
 
-	virtual std::unique_ptr<ActivateTraits::Response> dispatch(const ActivateTraits::Request & request) = 0;
-	virtual std::unique_ptr<SetAlertStateTraits::Response> dispatch(const SetAlertStateTraits::Request & request) = 0;
-	virtual std::unique_ptr<SetStringTraits::Response> dispatch(const SetStringTraits::Request & request) = 0;
-	virtual std::unique_ptr<SetValueTraits::Response> dispatch(const SetValueTraits::Request & request) = 0;
-};
+			virtual std::unique_ptr<ActivateTraits::Response> dispatch(const ActivateTraits::Request & request) = 0;
+			virtual std::unique_ptr<SetAlertStateTraits::Response> dispatch(const SetAlertStateTraits::Request & request) = 0;
+			virtual std::unique_ptr<SetStringTraits::Response> dispatch(const SetStringTraits::Request & request) = 0;
+			virtual std::unique_ptr<SetValueTraits::Response> dispatch(const SetValueTraits::Request & request) = 0;
+		};
+	}
+}
 
-} /* namespace SDC */
-} /* namespace OSELib */
-
-#endif /* OSELIB_SDC_ISETSERVICE_H_ */
+#endif

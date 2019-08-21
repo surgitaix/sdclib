@@ -1,8 +1,9 @@
 /*
  * BufferAdapter.h
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 21.08.2019, baumeister
+ *
  */
 
 #ifndef BUFFERADAPTER_H_
@@ -10,26 +11,28 @@
 
 #include <istream>
 
-#include "Poco/Buffer.h"
-#include "Poco/UnbufferedStreamBuf.h"
+#include <Poco/Buffer.h>
+#include <Poco/UnbufferedStreamBuf.h>
 
-namespace OSELib {
-namespace Helper {
+namespace OSELib
+{
+	namespace Helper
+	{
+		class BufferAdapter : public std::istream, public Poco::UnbufferedStreamBuf
+		{
+		private:
+			const Poco::Buffer<char> & m_buffer;
+			const std::size_t m_length = 0;
+			std::size_t m_position = 0;
 
-class BufferAdapter : public std::istream, public Poco::UnbufferedStreamBuf {
-public:
-	BufferAdapter(const Poco::Buffer<char> & buffer, std::size_t length);
-	virtual ~BufferAdapter();
+		public:
+			BufferAdapter(const Poco::Buffer<char> & buffer, std::size_t length);
+			virtual ~BufferAdapter() = default;
 
-	int readFromDevice() override;
+			int readFromDevice() override;
+		};
 
-private:
-	const Poco::Buffer<char> & _buffer;
-	const std::size_t _length;
-	std::size_t _position;
-};
+	}
+}
 
-} /* namespace Helpers */
-} /* namespace OSELib */
-
-#endif /* BUFFERADAPTER_H_ */
+#endif

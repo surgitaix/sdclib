@@ -5,18 +5,20 @@
  *      Author: matthias
  */
 
-#ifndef HELPER_AUTORELEASE_H_
-#define HELPER_AUTORELEASE_H_
+#ifndef OSELIB_HELPER_AUTORELEASE_H_
+#define OSELIB_HELPER_AUTORELEASE_H_
 
-namespace OSELib {
-namespace Helper {
+namespace OSELib
+{
+	namespace Helper
+	{
+		template<class T>
+		struct AutoRelease
+		{
+			void operator()(T * object) { object->release(); }
+		};
 
-template<class T>
-struct AutoRelease {
-	void operator()(T * object) { object->release(); }
-};
-
+	}
 }
-}
 
-#endif /* HELPER_AUTORELEASE_H_ */
+#endif

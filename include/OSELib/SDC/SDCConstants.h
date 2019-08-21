@@ -22,8 +22,8 @@
  *  @copyright (c) SurgiTAIX AG
  */
 
-#ifndef SDC_SDCCONSTANTS_H_
-#define SDC_SDCCONSTANTS_H_
+#ifndef OSELIB_SDC_SDCCONSTANTS_H_
+#define OSELIB_SDC_SDCCONSTANTS_H_
 
 #include <string>
 
@@ -114,4 +114,4 @@ const std::string UUID_SDC_BASE_NAMESPACE("72772F61-0266-49F9-9552-393C1857B269"
 }
 }
 
-#endif /* SDC_SDCCONSTANTS_H_ */
+#endif

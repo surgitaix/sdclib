@@ -2,23 +2,23 @@
  * SoapInvoke.h
  *
  *  Created on: 11.12.2015, matthias
- *  Modified on: 27.06.2019, baumeister
+ *  Modified on: 21.08.2019, baumeister
  */
 
 #ifndef OSELIB_SOAP_SOAPINVOKE_H_
 #define OSELIB_SOAP_SOAPINVOKE_H_
 
+#include "OSELib/fwd.h"
+#include "OSELib/Helper/WithLogger.h"
+
 #include <Poco/URI.h>
 #include <Poco/Net/Context.h>
 
-#include "OSELib/fwd.h"
-#include "OSELib/Helper/WithLogger.h"
 
 namespace OSELib
 {
     namespace SOAP
     {
-
         class SoapInvoke : public OSELib::Helper::WithLogger
         {
         private:
@@ -39,12 +39,12 @@ namespace OSELib
             virtual std::unique_ptr<MESSAGEMODEL::Envelope> createMessage();
 
             // Plain Invoke
-            virtual std::unique_ptr<MESSAGEMODEL::Envelope> invoke(std::unique_ptr<MESSAGEMODEL::Envelope> invokeMessage);
+            virtual std::unique_ptr<MESSAGEMODEL::Envelope> invoke(std::unique_ptr<MESSAGEMODEL::Envelope> p_invokeMessage);
             // SSL Invoke
-            virtual std::unique_ptr<MESSAGEMODEL::Envelope> invoke(std::unique_ptr<MESSAGEMODEL::Envelope> invokeMessage, Poco::Net::Context::Ptr p_context);
+            virtual std::unique_ptr<MESSAGEMODEL::Envelope> invoke(std::unique_ptr<MESSAGEMODEL::Envelope> p_invokeMessage, Poco::Net::Context::Ptr p_context);
         };
 
-    } /* namespace SOAP */
-} /* namespace OSELib */
+    }
+}
 
-#endif /* OSELIB_SOAP_SOAPINVOKE_H_ */
+#endif

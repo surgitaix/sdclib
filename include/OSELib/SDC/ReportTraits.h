@@ -97,4 +97,4 @@ struct WaveformStreamTraits {
 
 }
 }
-#endif /* OSELIB_SDC_REPORTRAITS_H_ */
+#endif

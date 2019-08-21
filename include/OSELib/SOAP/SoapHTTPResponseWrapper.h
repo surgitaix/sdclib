@@ -1,37 +1,44 @@
 /*
  * SoapHTTPResponseWrapper.h
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 21.08.2019, baumeister
+ *
  */
 
-#ifndef SOAP_SOAPHTTPRESPONSEWRAPPER_H_
-#define SOAP_SOAPHTTPRESPONSEWRAPPER_H_
+#ifndef OSELIB_SOAP_SOAPHTTPRESPONSEWRAPPER_H_
+#define OSELIB_SOAP_SOAPHTTPRESPONSEWRAPPER_H_
 
-#include "Poco/Net/HTTPServerResponse.h"
-
+#include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
 
-namespace OSELib {
-namespace SOAP {
+#include <Poco/Net/HTTPResponse.h>
 
-class SoapHTTPResponseWrapper : public OSELib::Helper::WithLogger
+namespace OSELib
 {
-public:
-	using HTTPStatus = Poco::Net::HTTPServerResponse::HTTPStatus;
+	namespace SOAP
+	{
+		class SoapHTTPResponseWrapper : public OSELib::Helper::WithLogger
+		{
+		public:
+			using HTTPStatus = Poco::Net::HTTPResponse::HTTPStatus;
+		private:
+			Poco::Net::HTTPServerResponse & m_httpResponse;
 
-	SoapHTTPResponseWrapper(
-			Poco::Net::HTTPServerResponse & httpResponse,
-			HTTPStatus httpStatus = HTTPStatus::HTTP_OK);
+			const HTTPStatus m_httpStatus;
+		public:
 
-	void send(const std::string & content);
+			SoapHTTPResponseWrapper(Poco::Net::HTTPServerResponse & p_httpResponse, HTTPStatus p_httpStatus = HTTPStatus::HTTP_OK);
+			// Special Member Functions
+			SoapHTTPResponseWrapper(const SoapHTTPResponseWrapper& p_obj) = default;
+			SoapHTTPResponseWrapper(SoapHTTPResponseWrapper&& p_obj) = default;
+			SoapHTTPResponseWrapper& operator=(const SoapHTTPResponseWrapper& p_obj) = default;
+			SoapHTTPResponseWrapper& operator=(SoapHTTPResponseWrapper&& p_obj) = default;
+			~SoapHTTPResponseWrapper() = default;
 
-private:
-	Poco::Net::HTTPServerResponse & _httpResponse;
-	const HTTPStatus _httpStatus;
-};
+			void send(const std::string & p_content);
+		};
+	}
+}
 
-} /* namespace SOAP */
-} /* namespace OSELib */
-
-#endif /* SOAP_SOAPHTTPRESPONSEWRAPPER_H_ */
+#endif

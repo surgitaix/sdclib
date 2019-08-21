@@ -15,10 +15,6 @@ WithLogger::WithLogger(const std::string & loggerID) :
 {
 }
 
-WithLogger::~WithLogger() {
-
-}
-
 Poco::Logger & WithLogger::getLogger() {
 	return _logger;
 }

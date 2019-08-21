@@ -30,6 +30,7 @@
 #include "OSELib/DPWS/PingManager.h"
 #include "OSELib/DPWS/SubscriptionClient.h"
 #include "OSELib/Helper/WithLogger.h"
+#include "OSELib/HTTP/FrontController.h"
 #include "OSELib/HTTP/FrontControllerAdapter.h"
 #include "OSELib/SDC/ContextEventSinkHandler.h"
 #include "OSELib/SDC/StateEventServiceEventSinkHandler.h"

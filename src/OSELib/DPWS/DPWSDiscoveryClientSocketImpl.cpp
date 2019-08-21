@@ -2,16 +2,16 @@
  * DPWSDiscoveryClientSocketImpl.cpp
  *
  *  Created on: 11.12.2015, matthias
-*  Modified on: 26.07.2019, baumeister
+ *  Modified on: 26.07.2019, baumeister
  */
 
 #include "OSELib/DPWS/DPWSDiscoveryClientSocketImpl.h"
-#include "SDCLib/Config/NetworkConfig.h"
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/DPWS/DPWSCommon.h"
 #include "OSELib/Helper/BufferAdapter.h"
 
 #include "SDCLib/SDCInstance.h"
+#include "SDCLib/Config/NetworkConfig.h"
 
 #include "NormalizedMessageModel.hxx"
 

@@ -22,7 +22,6 @@
 #include <Poco/Net/SocketReactor.h>
 
 
-
 namespace OSELib {
 namespace DPWS {
 namespace Impl {

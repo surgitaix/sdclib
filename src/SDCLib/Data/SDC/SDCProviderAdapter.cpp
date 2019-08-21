@@ -31,6 +31,7 @@
 #include "OSELib/DPWS/IDevice.h"
 #include "OSELib/DPWS/MetadataProvider.h"
 #include "OSELib/DPWS/SubscriptionManager.h"
+#include "OSELib/HTTP/FrontController.h"
 #include "OSELib/HTTP/FrontControllerAdapter.h"
 #include "OSELib/HTTP/HTTPSessionManager.h"
 #include "OSELib/SDC/ContextServiceHandler.h"

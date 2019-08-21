@@ -1,8 +1,8 @@
 /*
  * DPWSHostSocketImpl.h
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 20.08.2019, baumeister
  */
 
 #ifndef DPWS_DPWSDISCOVERYHOSTSOCKETIMPL_H_
@@ -11,12 +11,12 @@
 #include <map>
 #include <random>
 
-#include "Poco/NotificationQueue.h"
-#include "Poco/TimedNotificationQueue.h"
-#include "Poco/Thread.h"
-#include "Poco/Net/MulticastSocket.h"
-#include "Poco/Net/SocketNotification.h"
-#include "Poco/Net/SocketReactor.h"
+#include <Poco/NotificationQueue.h>
+#include <Poco/TimedNotificationQueue.h>
+#include <Poco/Thread.h>
+#include <Poco/Net/MulticastSocket.h>
+#include <Poco/Net/SocketNotification.h>
+#include <Poco/Net/SocketReactor.h>
 
 #include "NormalizedMessageModel-fwd.hxx"
 

@@ -2,7 +2,7 @@
  * ServiceManager.h
  *
  *  Created on: 11.12.2015, matthias
- *  Modified on: 05.08.2019, baumeister
+ *  Modified on: 21.08.2019, baumeister
  *
  */
 
@@ -12,15 +12,12 @@
 
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
-#include "OSELib/DPWS/DeviceDescription.h"
-
 #include "SDCLib/Prerequisites.h"
 
 namespace OSELib
 {
 	namespace SDC
 	{
-
 		class HelloReceivedHandler {
 		public:
 			HelloReceivedHandler() = default;
@@ -37,10 +34,10 @@ namespace OSELib
 			mutable std::mutex m_mutex;
 
 			SDCLib::SDCInstance_shared_ptr m_SDCInstance = nullptr;
-			std::unique_ptr<DPWS::MDPWSDiscoveryClientAdapter> _dpwsClient;
+			std::unique_ptr<DPWS::MDPWSDiscoveryClientAdapter> m_dpwsClient;
 
 			// todo: kick this helloCallback. Supposedly it is not needed.
-			std::unique_ptr<DPWS::HelloCallback> _helloCallback;
+			std::unique_ptr<DPWS::HelloCallback> m_helloCallback;
 
 
 		public:
@@ -58,7 +55,7 @@ namespace OSELib
 			*
 			* @param handler The handler
 			*/
-			void setHelloReceivedHandler(HelloReceivedHandler * handler);
+			void setHelloReceivedHandler(HelloReceivedHandler * p_handler);
 
 			/**
 			* @brief Create a consumer and connect to Xaddr.
@@ -89,16 +86,16 @@ namespace OSELib
 			 *
 			 * @return std::future of a list of all providers (DiscoverResults)
 			 */
-			using AsyncDiscoverResults  = std::future<DiscoverResults>;
+			using AsyncDiscoverResults = std::future<DiscoverResults>;
 			AsyncDiscoverResults async_discover();
 
 		private:
 
 			std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> connectXAddress(const SDCLib::StringVector& pl_xAddresses, const std::string & p_epr);
-			void resolveServiceURIsFromMetadata(const WS::MEX::MetadataSection & metadata, OSELib::DPWS::DeviceDescription & deviceDescription);
+			void resolveServiceURIsFromMetadata(const WS::MEX::MetadataSection & p_metadata, OSELib::DPWS::DeviceDescription & p_deviceDescription);
 		};
 
-	} /* namespace SDC */
-} /* namespace OSELib */
+	}
+}
 
-#endif /* OSELIB_SDC_SERVICEMANAGER_H_ */
+#endif

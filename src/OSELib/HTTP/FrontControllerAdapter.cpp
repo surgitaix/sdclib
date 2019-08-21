@@ -1,31 +1,31 @@
 /*
  * FrontControllerAdapter.cpp
  *
- *  Created on: 18.11.2015
- *      Author: matthias
+ *  Created on: 18.11.2015, matthias
+ *  Modified on: 20.08.2019, baumeister
+ *
  */
+
+#include "OSELib/HTTP/FrontControllerAdapter.h"
+#include "OSELib/HTTP/FrontController.h"
+
+
 #include <Poco/Net/HTTPRequestHandler.h>
 #include <Poco/Net/HTTPServerRequest.h>
 
-#include "OSELib/HTTP/FrontController.h"
-#include "OSELib/HTTP/FrontControllerAdapter.h"
 
-namespace OSELib {
-namespace HTTP {
+using namespace OSELib;
+using namespace OSELib::HTTP;
 
-FrontControllerAdapter::FrontControllerAdapter(FrontController & controller) :
-	Poco::Net::HTTPRequestHandlerFactory(),
-	OSELib::Helper::WithLogger(Log::HTTP),
-	_controller(controller)
+FrontControllerAdapter::FrontControllerAdapter(FrontController & p_controller)
+: Poco::Net::HTTPRequestHandlerFactory()
+, OSELib::Helper::WithLogger(Log::HTTP)
+, m_controller(p_controller)
+{ }
+
+
+Poco::Net::HTTPRequestHandler * FrontControllerAdapter::createRequestHandler(const Poco::Net::HTTPServerRequest & p_request)
 {
+	log_debug([&] { return "Request for " + p_request.serverAddress().toString() + p_request.getURI(); });
+	return m_controller.dispatchRequest(p_request);
 }
-
-FrontControllerAdapter::~FrontControllerAdapter() = default;
-
-Poco::Net::HTTPRequestHandler * FrontControllerAdapter::createRequestHandler(const Poco::Net::HTTPServerRequest & request) {
-	log_debug([&] { return "Request for " + request.serverAddress().toString() + request.getURI(); });
-	return _controller.dispatchRequest(request);
-}
-
-}
-} /* namespace OSELib */
