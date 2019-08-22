@@ -19,7 +19,7 @@ struct ActivateTraits {
 	static xml_schema::Qname RequestType();
 	static std::string ResponseAction();
 	static xml_schema::Qname ResponseType();
-	static std::unique_ptr<Response> dispatch(Dispatcher & dispatcher, const Request & request);
+	static std::unique_ptr<Response> dispatch(Dispatcher & p_dispatcher, const Request & p_request);
 };
 
 struct GetContextStatesTraits {
@@ -32,7 +32,7 @@ struct GetContextStatesTraits {
 	static xml_schema::Qname RequestType();
 	static std::string ResponseAction();
 	static xml_schema::Qname ResponseType();
-	static std::unique_ptr<Response> dispatch(Dispatcher & dispatcher, const Request & request);
+	static std::unique_ptr<Response> dispatch(Dispatcher & p_dispatcher, const Request & p_request);
 };
 
 struct GetMDDescriptionTraits {
@@ -45,7 +45,7 @@ struct GetMDDescriptionTraits {
 	static xml_schema::Qname RequestType();
 	static std::string ResponseAction();
 	static xml_schema::Qname ResponseType();
-	static std::unique_ptr<Response> dispatch(Dispatcher & dispatcher, const Request & request);
+	static std::unique_ptr<Response> dispatch(Dispatcher & p_dispatcher, const Request & p_request);
 };
 
 struct GetMDIBTraits {
@@ -58,7 +58,7 @@ struct GetMDIBTraits {
 	static xml_schema::Qname RequestType();
 	static std::string ResponseAction();
 	static xml_schema::Qname ResponseType();
-	static std::unique_ptr<Response> dispatch(Dispatcher & dispatcher, const Request & request);
+	static std::unique_ptr<Response> dispatch(Dispatcher & p_dispatcher, const Request & p_request);
 };
 
 struct GetMdStateTraits {
@@ -71,7 +71,7 @@ struct GetMdStateTraits {
 	static xml_schema::Qname RequestType();
 	static std::string ResponseAction();
 	static xml_schema::Qname ResponseType();
-	static std::unique_ptr<Response> dispatch(Dispatcher & dispatcher, const Request & request);
+	static std::unique_ptr<Response> dispatch(Dispatcher & p_dispatcher, const Request & p_request);
 };
 
 struct SetAlertStateTraits {
@@ -84,7 +84,7 @@ struct SetAlertStateTraits {
 	static xml_schema::Qname RequestType();
 	static std::string ResponseAction();
 	static xml_schema::Qname ResponseType();
-	static std::unique_ptr<Response> dispatch(Dispatcher & dispatcher, const Request & request);
+	static std::unique_ptr<Response> dispatch(Dispatcher & p_dispatcher, const Request & p_request);
 };
 
 struct SetContextStateTraits {
@@ -97,7 +97,7 @@ struct SetContextStateTraits {
 	static xml_schema::Qname RequestType();
 	static std::string ResponseAction();
 	static xml_schema::Qname ResponseType();
-	static std::unique_ptr<Response> dispatch(Dispatcher & dispatcher, const Request & request);
+	static std::unique_ptr<Response> dispatch(Dispatcher & p_dispatcher, const Request & p_request);
 };
 
 struct SetStringTraits {
@@ -110,7 +110,7 @@ struct SetStringTraits {
 	static xml_schema::Qname RequestType();
 	static std::string ResponseAction();
 	static xml_schema::Qname ResponseType();
-	static std::unique_ptr<Response> dispatch(Dispatcher & dispatcher, const Request & request);
+	static std::unique_ptr<Response> dispatch(Dispatcher & p_dispatcher, const Request & p_request);
 };
 
 struct SetValueTraits {
@@ -123,11 +123,8 @@ struct SetValueTraits {
 	static xml_schema::Qname RequestType();
 	static std::string ResponseAction();
 	static xml_schema::Qname ResponseType();
-	static std::unique_ptr<Response> dispatch(Dispatcher & dispatcher, const Request & request);
+	static std::unique_ptr<Response> dispatch(Dispatcher & p_dispatcher, const Request & p_request);
 };
-
-
-
 
 }
 }

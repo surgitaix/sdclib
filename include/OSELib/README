@@ -52,6 +52,7 @@ Prefixes:
 m_ 	: Variables that are 'M'embers of a class
 p_ 	: Variables that are function 'P'arameters.
 t_ 	: 'T'emporary variables with limited scope. Like limited only to this function body or inside a if/else statement.
+s_	: 'S'tatic Variables. (Rarely used.)
 Additional (second) specifier:
 *l_ : 'L'ists of any kind holding a number of any elements. NOT necessary a std::list! Example: std::vector<int> ml_vector; -> member of a class holding integers.
 

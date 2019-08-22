@@ -19,23 +19,17 @@
  *
  *  @Copyright (C) 2017, SurgiTAIX AG
  *  Author: buerger, besting, roehser
+ *  Modified on: 22.08.2019, baumeister
+ *
  */
 
-#include <iostream>
-#include <memory>
-#include <vector>
-
-#include <Poco/Net/NetException.h>
-
-#include "osdm.hxx"
-
-#include "SDCLib/SDCLibrary.h"
-#include "SDCLib/Data/SDC/FutureInvocationState.h"
-#include "OSELib/SDC/SDCConstants.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
+#include "SDCLib/Data/SDC/SDCConsumerMDStateHandler.h"
 #include "SDCLib/Data/SDC/SDCConsumerConnectionLostHandler.h"
 #include "SDCLib/Data/SDC/SDCConsumerOperationInvokedHandler.h"
 #include "SDCLib/Data/SDC/SDCConsumerSubscriptionLostHandler.h"
+#include "SDCLib/Data/SDC/FutureInvocationState.h"
+#include "SDCLib/SDCInstance.h"
 #include "SDCLib/Data/SDC/MDIB/AlertSystemDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/AlertSystemState.h"
 #include "SDCLib/Data/SDC/MDIB/AlertSignalDescriptor.h"
@@ -73,12 +67,17 @@
 #include "SDCLib/Data/SDC/MDIB/StringMetricDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricValue.h"
-
+#include "OSELib/SDC/SDCConstants.h"
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/SDC/OperationTraits.h"
 
-#include "SDCLib/Data/SDC/SDCConsumerMDStateHandler.h"
+#include <ostream>
+#include <memory>
+#include <vector>
 
+#include <Poco/Net/NetException.h>
+
+#include "osdm.hxx"
 
 namespace SDCLib {
 namespace Data {

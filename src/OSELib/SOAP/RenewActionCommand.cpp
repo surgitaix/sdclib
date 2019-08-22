@@ -33,13 +33,13 @@ std::unique_ptr<MESSAGEMODEL::Envelope> RenewActionCommand::dispatch(const MESSA
 	const DPWS::RenewTraits::Request & t_requestBody(t_requestAdapter.get(p_request));
 	const DPWS::RenewTraits::RequestIdentifier & t_requestIdentifier(t_requestIdentifierAdapter.get(p_request));
 
-	std::unique_ptr<DPWS::RenewTraits::Response> t_responseBody(DPWS::RenewTraits::dispatch(m_dispatcher, t_requestBody, t_requestIdentifier));
+	auto t_responseBody(DPWS::RenewTraits::dispatch(m_dispatcher, t_requestBody, t_requestIdentifier));
 
 	if (!t_responseBody) {
 		throw DispatchingFailed("Internal error. Dispatching failed for " + DPWS::RenewTraits::RequestAction());
 	}
 
-	std::unique_ptr<MESSAGEMODEL::Envelope> t_responseMessage(createResponseMessageFromRequestMessage(p_request));
+	auto t_responseMessage(createResponseMessageFromRequestMessage(p_request));
 	t_responseMessage->Header().Action().set(WS::ADDRESSING::AttributedURIType(DPWS::RenewTraits::ResponseAction()));
 
 	NormalizedMessageAdapter<DPWS::RenewTraits::Response> t_responseAdapter;

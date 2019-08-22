@@ -5,8 +5,8 @@
  *  Modified on: 20.08.2019, baumeister
  */
 
-#include "OSELib/DPWS/DeviceHandler.h"
 #include "OSELib/DPWS/DeviceServiceController.h"
+#include "OSELib/DPWS/DeviceHandler.h"
 #include "OSELib/DPWS/IDevice.h"
 
 namespace OSELib {

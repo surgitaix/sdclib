@@ -21,10 +21,9 @@
  *      Author: buerger
  */
 
-#ifndef SDCPROVIDERSTATEHANDLER_H_
-#define SDCPROVIDERSTATEHANDLER_H_
+#ifndef SDCLIB_DATA_SDC_SDCPROVIDERSTATEHANDLER_H_
+#define SDCLIB_DATA_SDC_SDCPROVIDERSTATEHANDLER_H_
 
-//#include <memory>
 #include <string>
 
 #include "SDCLib/Data/SDC/SDC-fwd.h"
@@ -32,82 +31,83 @@
 
 #include "OSELib/Helper/WithLogger.h"
 
-namespace SDCLib {
-namespace Data {
-namespace SDC {
-
-
-class SDCProviderStateHandler : public OSELib::Helper::WithLogger
+namespace SDCLib
 {
-	friend class SDCProvider;
-public:
-	SDCProviderStateHandler(std::string desriptorHandle);
-	virtual ~SDCProviderStateHandler();
+	namespace Data
+	{
+		namespace SDC
+		{
+			class SDCProviderStateHandler : public OSELib::Helper::WithLogger
+			{
+				friend class SDCProvider;
+			protected:
+				std::string descriptorHandle;
+				SDCProvider * parentProvider = nullptr;
 
-    /**
-    * @brief updates the state in the library and informs all consumers about that change
-    *
-    * @param The state (templated) that is to be updated. The state must be defined properly
-    */
-	template<class TState>
-    void updateState(const TState & state);
+			public:
+				SDCProviderStateHandler(std::string p_desriptorHandle);
+				// Special Member Functions
+				SDCProviderStateHandler(const SDCProviderStateHandler& p_obj) = delete;
+				SDCProviderStateHandler(SDCProviderStateHandler&& p_obj) = delete;
+				SDCProviderStateHandler& operator=(const SDCProviderStateHandler& p_obj) = delete;
+				SDCProviderStateHandler& operator=(SDCProviderStateHandler&& p_obj) = delete;
+				virtual ~SDCProviderStateHandler() = default;
 
-	/**
-    * @brief Return the handle state this handler is referencing
-    *
-    * @return The handle
-    */
-    std::string getDescriptorHandle();
+				/**
+				* @brief updates the state in the library and informs all consumers about that change
+				*
+				* @param The state (templated) that is to be updated. The state must be defined properly
+				*/
+				template<class TState>
+				void updateState(const TState & p_state);
 
-    /**
-    * @brief Notify all registered consumers about an operation changed event
-    *
-    * @param object The MDIB object
-    */
-    void notifyOperationInvoked(const OperationInvocationContext & oic, InvocationState is);
+				/**
+				* @brief Return the handle state this handler is referencing
+				*
+				* @return The handle
+				*/
+				std::string getDescriptorHandle();
 
-    /**
-    * @brief Trigger an alert condition using a flag to indicate the condition's presence.
-    *
-    * Calling this method will handle all alert signals which reference this condition automatically.
-    *
-    * Depending on the condition's presence (true or false), alert signals will be handled as follows:
-    * 1. True: the alert signal's presence state will be set ON (no matter what the previous value was)
-    * 2. False: if an alert signal's presence state is currently set to ON, it will be set to LATCHED
-    * However, it will never be set OFF or ACK (see notes below).
-    * Due to the modification of signal states by this method, condition and signal state handlers implemented by user
-    * code will be invoked. This implementation should trigger an event to inform all consumers about
-    * that modification of the modified alert signal states.
-    *
-    * @param alertConditionHandle The handle of the alert condition state.
-    * @param conditionPresence True, if the condition has been detected.
-    * @param oic operation invocation context
-    */
-    void setAlertConditionPresence(const std::string alertConditionHandle, bool conditionPresence, const OperationInvocationContext & oic);
+				/**
+				* @brief Notify all registered consumers about an operation changed event
+				*
+				* @param object The MDIB object
+				*/
+				void notifyOperationInvoked(const OperationInvocationContext & p_oic, InvocationState p_is);
 
-    /**
-    * @brief All state handlers need an access point to their parent provider. Can be used i.e. to search for information saved in the descriptor via:
-    * sdcProvider.getMdDescription().findDescriptor<T>(handle)
-    *
-    * @return a reference to the provider.
-    */
-    SDCProvider & getParentProvider();
+				/**
+				* @brief Trigger an alert condition using a flag to indicate the condition's presence.
+				*
+				* Calling this method will handle all alert signals which reference this condition automatically.
+				*
+				* Depending on the condition's presence (true or false), alert signals will be handled as follows:
+				* 1. True: the alert signal's presence state will be set ON (no matter what the previous value was)
+				* 2. False: if an alert signal's presence state is currently set to ON, it will be set to LATCHED
+				* However, it will never be set OFF or ACK (see notes below).
+				* Due to the modification of signal states by this method, condition and signal state handlers implemented by user
+				* code will be invoked. This implementation should trigger an event to inform all consumers about
+				* that modification of the modified alert signal states.
+				*
+				* @param alertConditionHandle The handle of the alert condition state.
+				* @param conditionPresence True, if the condition has been detected.
+				* @param oic operation invocation context
+				*/
+				void setAlertConditionPresence(const std::string p_alertConditionHandle, bool p_conditionPresence, const OperationInvocationContext & p_oic);
 
-protected:
-    //void notifyMDIBObjectChangedImpl(const TState & object);
+				/**
+				* @brief All state handlers need an access point to their parent provider. Can be used i.e. to search for information saved in the descriptor via:
+				* sdcProvider.getMdDescription().findDescriptor<T>(handle)
+				*
+				* @return a reference to the provider.
+				*/
+				SDCProvider & getParentProvider();
 
-    std::string descriptorHandle;
+			protected:
+				//void notifyMDIBObjectChangedImpl(const TState & object);
 
-    SDCProvider * parentProvider;
+			};
+		}
+	}
+}
 
-private:
-    // prohibit copying! each state and each state handler is unique
-    SDCProviderStateHandler(const SDCProviderStateHandler &);
-
-};
-
-} /* namespace SDC */
-} /* namespace Data */
-} /* namespace SDCLib */
-
-#endif /* SDCPROVIDERSTATEHANDLER_H_ */
+#endif

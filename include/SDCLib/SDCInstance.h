@@ -52,7 +52,7 @@ namespace SDCLib
 
         Config::SDCConfig_shared_ptr m_SDCConfig = nullptr;
 
-        std::unique_ptr<OSELib::DPWS::PingManager> _latestPingManager;
+        std::unique_ptr<OSELib::DPWS::PingManager> m_latestPingManager = nullptr;
 
     public:
 
@@ -99,7 +99,7 @@ namespace SDCLib
         std::chrono::milliseconds getDiscoveryTime() const;
 
 
-        void dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pingManager);
+        void dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> p_pingManager);
 
 
         /**

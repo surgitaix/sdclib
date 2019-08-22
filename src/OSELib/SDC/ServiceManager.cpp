@@ -2,19 +2,17 @@
  * ServiceManager.cpp
  *
  *  Created on: 11.12.2015, matthias
- *  Modified on: 05.08.2019, baumeister
+ *  Modified on: 22.08.2019, baumeister
  *
  */
 
 #include "OSELib/SDC/ServiceManager.h"
-
+#include "OSELib/SDC/SDCConstants.h"
 #include "OSELib/DPWS/DeviceDescription.h"
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/DPWS/MDPWSDiscoveryClientAdapter.h"
-#include "OSELib/Helper/XercesGrammarPoolProvider.h"
-#include "OSELib/SDC/SDCConstants.h"
 #include "OSELib/SOAP/GenericSoapInvoke.h"
-
+#include "OSELib/Helper/XercesGrammarPoolProvider.h"
 #include "SDCLib/SDCInstance.h"
 #include "SDCLib/Config/SDCConfig.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"

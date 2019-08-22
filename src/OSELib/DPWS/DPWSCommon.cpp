@@ -4,16 +4,17 @@
  *  Created on: 11.12.2015
  *      Author: matthias
  */
-#include "NormalizedMessageModel.hxx"
 
-#include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/DPWS/DPWSCommon.h"
 #include "OSELib/DPWS/MessageAdapter.h"
 #include "OSELib/DPWS/Types.h"
-#include "OSELib/Helper/Message.h"
-#include "OSELib/Helper/XercesGrammarPoolProvider.h"
+#include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/SOAP/CommonSoapPreprocessing.h"
 #include "OSELib/SOAP/NormalizedMessageSerializer.h"
+#include "OSELib/Helper/Message.h"
+#include "OSELib/Helper/XercesGrammarPoolProvider.h"
+
+#include "NormalizedMessageModel.hxx"
 
 namespace OSELib {
 namespace DPWS {

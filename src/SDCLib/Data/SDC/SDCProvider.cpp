@@ -19,27 +19,17 @@
  *
  *  @Copyright (C) 2018, SurgiTAIX AG
  *  Author: roehser, besting, buerger
+ *  Modified on: 22.08.2019, baumeister
+ *
  */
 
-#include <memory>
-#include <iostream>
-
-#include <Poco/AutoPtr.h>
-#include <Poco/Net/NetException.h>
-#include <Poco/Notification.h>
-
-#include "osdm.hxx"
-
-#include "SDCLib/SDCInstance.h"
-#include "OSELib/SDC/SDCConstants.h"
-
 #include "SDCLib/Data/SDC/SDCProvider.h"
+#include "SDCLib/Data/SDC/SDCProviderAdapter.h"
 #include "SDCLib/Data/SDC/SDCProviderStateHandler.h"
 #include "SDCLib/Data/SDC/SDCProviderActivateOperationHandler.h"
 #include "SDCLib/Data/SDC/SDCProviderAlertConditionStateHandler.h"
 #include "SDCLib/Data/SDC/SDCProviderComponentStateHandler.h"
 #include "SDCLib/Data/SDC/SDCProviderMDStateHandler.h"
-
 #include "SDCLib/Data/SDC/MDIB/ActivateOperationDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/AlertConditionDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/AlertConditionState.h"
@@ -69,7 +59,6 @@
 #include "SDCLib/Data/SDC/MDIB/NumericMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricValue.h"
 #include "SDCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
-
 #include "SDCLib/Data/SDC/MDIB/PatientContextState.h"
 #include "SDCLib/Data/SDC/MDIB/PatientContextDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/LocationContextDescriptor.h"
@@ -92,7 +81,20 @@
 #include "OSELib/Helper/XercesDocumentWrapper.h"
 #include "OSELib/Helper/XercesParserWrapper.h"
 #include "OSELib/SDC/DefaultSDCSchemaGrammarProvider.h"
-#include "SDCLib/Data/SDC/SDCProviderAdapter.h"
+
+#include "SDCLib/SDCInstance.h"
+#include "OSELib/SDC/SDCConstants.h"
+
+
+#include "osdm.hxx"
+
+#include <memory>
+#include <sstream>
+
+#include <Poco/AutoPtr.h>
+#include <Poco/Net/NetException.h>
+#include <Poco/Notification.h>
+
 
 namespace SDCLib {
 namespace Data {
@@ -196,13 +198,13 @@ SDCProvider::SDCProvider(SDCInstance_shared_ptr p_SDCInstance)
 	// Set a random EndpointReference
     setEndpointReference(SDCInstance::calcUUIDv5(std::string("SDCProvider" + SDCInstance::calcUUID()), true));
     m_MdDescription = std::unique_ptr<MdDescription>(new MdDescription());
-	_adapter = std::unique_ptr<SDCProviderAdapter>(new SDCProviderAdapter(*this));
+	m_adapter = std::unique_ptr<SDCProviderAdapter>(new SDCProviderAdapter(*this));
 }
 
 
 SDCProvider::~SDCProvider()
 {
-    if (m_SDCInstance->isInit() && _adapter)
+    if (m_SDCInstance->isInit() && m_adapter)
     {
         log_warning([] { return "SDCProvider deleted before shutdown. For proper handling please shutdown the provider first"; });
         shutdown();
@@ -282,8 +284,8 @@ MDM::ActivateResponse SDCProvider::OnActivateAsync(const MDM::Activate & request
 
 
 void SDCProvider::OnActivate(const OperationInvocationContext & oic) {
-	std::map<std::string, SDCProviderStateHandler *>::iterator t_iter = m_stateHandlers.find(oic.operationHandle);
-    if (t_iter != m_stateHandlers.end()) {
+	std::map<std::string, SDCProviderStateHandler *>::iterator t_iter = ml_stateHandlers.find(oic.operationHandle);
+    if (t_iter != ml_stateHandlers.end()) {
         if (SDCProviderActivateOperationHandler * t_handler = dynamic_cast<SDCProviderActivateOperationHandler *>(t_iter->second)) {
             const InvocationState isVal(t_handler->onActivateRequest(oic));
             notifyOperationInvoked(oic, isVal);
@@ -760,7 +762,7 @@ template<class T> void SDCProvider::notifyAlertEventImpl(const T & object)
 	reportPart.AlertState().push_back(ConvertToCDM::convert(object));
 	report.ReportPart().push_back(reportPart);
 
-	_adapter->notifyEvent(report);
+	m_adapter->notifyEvent(report);
 }
 
 template<class T> void SDCProvider::notifyContextEventImpl(const T & object) {
@@ -776,7 +778,7 @@ template<class T> void SDCProvider::notifyContextEventImpl(const T & object) {
 	MDM::EpisodicContextReport report(xml_schema::Uri("0"));
 	report.ReportPart().push_back(reportPart);
 
-	_adapter->notifyEvent(report);
+	m_adapter->notifyEvent(report);
 }
 
 template<class T>
@@ -794,7 +796,7 @@ void SDCProvider::notifyEpisodicMetricImpl(const T & object) {
 	report.ReportPart().push_back(reportPart);
 	report.MdibVersion(getMdibVersion());
 
-	_adapter->notifyEvent(report);
+	m_adapter->notifyEvent(report);
 }
 
 template<class T>
@@ -810,8 +812,7 @@ void SDCProvider::notifyStreamMetricImpl(const T & object) {
 	//waveformStream.State().at(0).
 	waveformStream.State().push_back(ConvertToCDM::convert(object));
 
-	_adapter->notifyEvent(waveformStream);
-
+	m_adapter->notifyEvent(waveformStream);
 }
 
 
@@ -849,16 +850,16 @@ void SDCProvider::firePeriodicReportImpl()
 	MDM::PeriodicAlertReport periodicAlertReport(xml_schema::Uri("0"));
 	periodicAlertReport.MdibVersion(getMdibVersion());
 	periodicAlertReport.ReportPart().push_back(periodicAlertReportPart);
-	_adapter->notifyEvent(periodicAlertReport);
+	m_adapter->notifyEvent(periodicAlertReport);
 
 	MDM::PeriodicContextReport periodicContextReport(xml_schema::Uri("0"));
 	periodicContextReport.MdibVersion(getMdibVersion());
 	periodicContextReport.ReportPart().push_back(periodicContextChangedReportPart);
-	_adapter->notifyEvent(periodicContextReport);
+	m_adapter->notifyEvent(periodicContextReport);
 
 	MDM::PeriodicMetricReport periodicMetricReport(xml_schema::Uri("0"));
 	periodicMetricReport.ReportPart().push_back(periodicMetricReportPart);
-	_adapter->notifyEvent(periodicMetricReport);
+	m_adapter->notifyEvent(periodicMetricReport);
 }
 
 void SDCProvider::setAlertConditionPresence(const std::string & alertConditionHandle, bool conditionPresence, const OperationInvocationContext & oic) {
@@ -959,7 +960,7 @@ void SDCProvider::evaluateAlertConditions(const std::string & p_source) const
     std::vector<AlertCondition_ptr> tl_states;
     {   // LOCK
         std::lock_guard<std::mutex> t_lock{m_mutex_MdStateHandler};
-        for (const auto & handler : m_stateHandlers) {
+        for (const auto & handler : ml_stateHandlers) {
             if (SDCProviderAlertConditionStateHandler<AlertConditionState> * h = dynamic_cast<SDCProviderAlertConditionStateHandler<AlertConditionState> *>(handler.second)) {
                 if (std::find(relevantDescriptors.begin(), relevantDescriptors.end(), h->getDescriptorHandle()) != relevantDescriptors.end()) {
                     tl_states.push_back(static_cast<AlertCondition_ptr>(handler.second));
@@ -986,7 +987,7 @@ void SDCProvider::reevaluateAlertConditions(const std::string& p_alertConditionD
     std::vector<AlertCondition_ptr> tl_states;
     { //LOCK
         std::lock_guard<std::mutex> t_lock{m_mutex_MdStateHandler};
-        for (const auto & handler : m_stateHandlers) {
+        for (const auto & handler : ml_stateHandlers) {
             if (SDCProviderAlertConditionStateHandler<AlertConditionState> * h = dynamic_cast<SDCProviderAlertConditionStateHandler<AlertConditionState> *>(handler.second)) {
                 if (h->getDescriptorHandle() == p_alertConditionDescriptor) {
                     tl_states.push_back(static_cast<AlertCondition_ptr>(handler.second));
@@ -1028,7 +1029,7 @@ bool SDCProvider::startup()
 
     std::lock_guard<std::mutex> t_lock{m_mutex};
     try {
-        _adapter->start();
+        m_adapter->start();
     } catch (const Poco::Net::NetException & e) {
         log_error([&] { return "Net Exception: " + std::string(e.what()) + " Socket unable to be opened. Provider startup aborted.";});
         return false;
@@ -1042,7 +1043,7 @@ bool SDCProvider::startup()
         std::lock_guard<std::mutex> t_lockMdStates{m_mutex_MdState};
         std::lock_guard<std::mutex> t_lockMdStateHandler{m_mutex_MdStateHandler};
         m_MdState = MdState(m_operationStates);
-        for (const auto & handler : m_stateHandlers) {
+        for (const auto & handler : ml_stateHandlers) {
             if (SDCProviderAlertConditionStateHandler<AlertConditionState> * h = dynamic_cast<SDCProviderAlertConditionStateHandler<AlertConditionState> *>(handler.second)) {
                 m_MdState.addState(h->getInitialState());
             } else if (SDCProviderMDStateHandler<AlertSignalState> * h = dynamic_cast<SDCProviderMDStateHandler<AlertSignalState> *>(handler.second)) {
@@ -1122,9 +1123,9 @@ void SDCProvider::shutdown()
     // FIXME: This really needs to be fixed... Shutdown takes some time, synchro etc...
     stopAsyncProviderInvoker();
 
-	if (_adapter) {
-		_adapter->stop();
-		_adapter.reset();
+	if (m_adapter) {
+		m_adapter->stop();
+		m_adapter.reset();
 	}
 
 	{ // LOCK - Clear MdDescription
@@ -1171,7 +1172,7 @@ void SDCProvider::addMdStateHandler(SDCProviderStateHandler* p_handler)
     // TODO: Multistates implementation.. regarding to the SDC standard it should be possible to define states with the same descriptor handle!
     // this is only possible for context states. maybe do a type check.
     // but before implementing -> check the whole frameworks mechanics
-    if (m_stateHandlers.find(p_handler->getDescriptorHandle()) != m_stateHandlers.end()) {
+    if (ml_stateHandlers.find(p_handler->getDescriptorHandle()) != ml_stateHandlers.end()) {
         log_error([&] { return "A SDCProvider handler for handle " + p_handler->getDescriptorHandle() + " already exists. It will be overridden."; });
     }
 
@@ -1188,7 +1189,7 @@ void SDCProvider::addMdStateHandler(SDCProviderStateHandler* p_handler)
     		for (const auto & operation : sco->Operation()) {
     			if (operation.Handle() == activate_handler->getDescriptorHandle()
     					&& nullptr != dynamic_cast<const CDM::ActivateOperationDescriptor *>(&operation)) {
-    				m_stateHandlers[p_handler->getDescriptorHandle()] = p_handler;
+    				ml_stateHandlers[p_handler->getDescriptorHandle()] = p_handler;
     				return;
     			}
     		}
@@ -1200,14 +1201,14 @@ void SDCProvider::addMdStateHandler(SDCProviderStateHandler* p_handler)
     // add DistributionArray...
     else if (/*auto streamHandler = */dynamic_cast<SDCProviderMDStateHandler<RealTimeSampleArrayMetricState> *>(p_handler)) {
         //int port = SDCLibrary::getInstance().extractFreePort();
-        //_adapter->addStreamingPort(4444);
+        //m_adapter->addStreamingPort(4444);
         // FIXME: delete after testing that streaming works on more than one address!
         // FIXME: MAGIC NUMBERS...!!!!
-        //_adapter->addStreamingPort(OSELib::SDC::MDPWS_MCAST_PORT);
-    	m_stateHandlers[p_handler->getDescriptorHandle()] = p_handler;
+        //m_adapter->addStreamingPort(OSELib::SDC::MDPWS_MCAST_PORT);
+    	ml_stateHandlers[p_handler->getDescriptorHandle()] = p_handler;
     }
     else {
-		m_stateHandlers[p_handler->getDescriptorHandle()] = p_handler;
+		ml_stateHandlers[p_handler->getDescriptorHandle()] = p_handler;
 	}
 }
 
@@ -1216,7 +1217,7 @@ void SDCProvider::removeMDStateHandler(SDCProviderStateHandler* p_handler)
 {
     assert(p_handler != nullptr);
     std::lock_guard<std::mutex> t_lock{m_mutex_MdStateHandler};
-    m_stateHandlers.erase(p_handler->getDescriptorHandle());
+    ml_stateHandlers.erase(p_handler->getDescriptorHandle());
 }
 
 
@@ -1287,8 +1288,8 @@ std::string SDCProvider::getEndpointReference() const
 
 template<typename T> InvocationState SDCProvider::onStateChangeRequest(const T & state, const OperationInvocationContext & oic)
 {
-    auto t_iter(m_stateHandlers.find(state.getDescriptorHandle()));
-    if (t_iter != m_stateHandlers.end()) {
+    auto t_iter(ml_stateHandlers.find(state.getDescriptorHandle()));
+    if (t_iter != ml_stateHandlers.end()) {
     	if (SDCProviderMDStateHandler<T> * t_handler = dynamic_cast<SDCProviderMDStateHandler<T> *>(t_iter->second)) {
         	return t_handler->onStateChangeRequest(state, oic);
     	}
@@ -1307,11 +1308,12 @@ void SDCProvider::notifyOperationInvoked(const OperationInvocationContext & oic,
 	oir.MdibVersion(getMdibVersion());
 	oir.ReportPart().push_back(oirPart);
 
-	_adapter->notifyEvent(oir);
+	m_adapter->notifyEvent(oir);
 }
 
 template<class T>
-void SDCProvider::addSetOperationToSCOObjectImpl(const T & p_source, MdsDescriptor & ownerMDS) {
+void SDCProvider::addSetOperationToSCOObjectImpl(const T & p_source, MdsDescriptor & ownerMDS)
+{
 	// get sco object or create new
 	std::unique_ptr<CDM::ScoDescriptor> scoDescriptor(Defaults::ScoDescriptorInit(xml_schema::Uri("")));
 	if (ownerMDS.hasSco()) {

@@ -22,6 +22,16 @@
 #include "SDCLib/Prerequisites.h"
 
 
+// Declare in cpp defined structs
+namespace OSELib
+{
+	struct ContextServiceEventSink;
+	struct EventReportEventSink;
+	struct SetServiceEventSink;
+
+}
+
+
 namespace SDCLib {
 namespace Data {
 namespace SDC {

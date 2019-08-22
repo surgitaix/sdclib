@@ -21,9 +21,12 @@
  *
  *  @Copyright (C) 2018, SurgiTAIX AG
  *  Author: buerger
+ *  Modified on: 22.08.2019, baumeister
  *
  */
 
+#include "SDCLib/Data/SDC/SDCProviderStateHandler.h"
+#include "SDCLib/Data/SDC/SDCProvider.h"
 
 // todo: decide -> kick??
 #include "SDCLib/Data/SDC/MDIB/AlertConditionState.h"
@@ -38,72 +41,66 @@
 #include "SDCLib/Data/SDC/MDIB/StringMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/WorkflowContextState.h"
 
-#include "SDCLib/Data/SDC/SDCProvider.h"
-#include "SDCLib/Data/SDC/SDCProviderStateHandler.h"
-
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-SDCProviderStateHandler::SDCProviderStateHandler(std::string desriptorHandle)
+SDCProviderStateHandler::SDCProviderStateHandler(std::string p_desriptorHandle)
 : OSELib::Helper::WithLogger(OSELib::Log::sdcProvider)
-, descriptorHandle(desriptorHandle)
-, parentProvider(nullptr)
+, descriptorHandle(p_desriptorHandle)
+{ }
+
+void SDCProviderStateHandler::notifyOperationInvoked(const OperationInvocationContext & p_oic, InvocationState p_is)
 {
-}
-
-SDCProviderStateHandler::~SDCProviderStateHandler() {
-}
-
-void SDCProviderStateHandler::notifyOperationInvoked(const OperationInvocationContext & oic, InvocationState is) {
     if (parentProvider == nullptr) {
     	log_error([] { return "Handler is used without calling SDCProvider::addMDStateHandler!"; });
     } else {
-    	parentProvider->notifyOperationInvoked(oic, is);
+    	parentProvider->notifyOperationInvoked(p_oic, p_is);
     }
 }
 
-void SDCProviderStateHandler::setAlertConditionPresence(const std::string alertConditionHandle, bool conditionPresence, const OperationInvocationContext & oic) {
+void SDCProviderStateHandler::setAlertConditionPresence(const std::string p_alertConditionHandle, bool p_conditionPresence, const OperationInvocationContext & p_oic) {
     if (parentProvider == nullptr) {
     	log_error([&] { return "Handler is used without calling SDCProvider::addMDStateHandler!"; });
     } else {
-        parentProvider->setAlertConditionPresence(alertConditionHandle, conditionPresence, oic);
+    	parentProvider->setAlertConditionPresence(p_alertConditionHandle, p_conditionPresence, p_oic);
     }
 }
 
-std::string SDCProviderStateHandler::getDescriptorHandle() {
+std::string SDCProviderStateHandler::getDescriptorHandle()
+{
 	return descriptorHandle;
 }
 
 
-template void SDCProviderStateHandler::updateState(const AlertConditionState & object);
-template void SDCProviderStateHandler::updateState(const AlertSignalState & object);
-template void SDCProviderStateHandler::updateState(const AlertSystemState & object);
-template void SDCProviderStateHandler::updateState(const EnsembleContextState & object);
-template void SDCProviderStateHandler::updateState(const EnumStringMetricState & object);
-template void SDCProviderStateHandler::updateState(const LimitAlertConditionState & object);
-template void SDCProviderStateHandler::updateState(const LocationContextState & object);
-template void SDCProviderStateHandler::updateState(const NumericMetricState & object);
-template void SDCProviderStateHandler::updateState(const OperatorContextState & object);
-template void SDCProviderStateHandler::updateState(const PatientContextState & object);
-template void SDCProviderStateHandler::updateState(const RealTimeSampleArrayMetricState & object);
-template void SDCProviderStateHandler::updateState(const StringMetricState & object);
-template void SDCProviderStateHandler::updateState(const WorkflowContextState & object);
-template void SDCProviderStateHandler::updateState(const DistributionSampleArrayMetricState & object);
+template void SDCProviderStateHandler::updateState(const AlertConditionState & p_object);
+template void SDCProviderStateHandler::updateState(const AlertSignalState & p_object);
+template void SDCProviderStateHandler::updateState(const AlertSystemState & p_object);
+template void SDCProviderStateHandler::updateState(const EnsembleContextState & p_object);
+template void SDCProviderStateHandler::updateState(const EnumStringMetricState & p_object);
+template void SDCProviderStateHandler::updateState(const LimitAlertConditionState & p_object);
+template void SDCProviderStateHandler::updateState(const LocationContextState & p_object);
+template void SDCProviderStateHandler::updateState(const NumericMetricState & p_object);
+template void SDCProviderStateHandler::updateState(const OperatorContextState & p_object);
+template void SDCProviderStateHandler::updateState(const PatientContextState & p_object);
+template void SDCProviderStateHandler::updateState(const RealTimeSampleArrayMetricState & p_object);
+template void SDCProviderStateHandler::updateState(const StringMetricState & p_object);
+template void SDCProviderStateHandler::updateState(const WorkflowContextState & p_object);
+template void SDCProviderStateHandler::updateState(const DistributionSampleArrayMetricState & p_object);
 
 template<class TState>
-void SDCProviderStateHandler::updateState(const TState & object) {
+void SDCProviderStateHandler::updateState(const TState & p_object) {
     if (parentProvider == nullptr) {
     	log_error([&] { return "Handler is used without calling SDCProvider::addMdStateHandler!"; });
     } else {
-        parentProvider->updateState(object);
+    	parentProvider->updateState(p_object);
     }
 }
 
 SDCProvider & SDCProviderStateHandler::getParentProvider() {
-	return *parentProvider;
+	return *parentProvider; // FIXME: Check on nullptr?!
 }
 
-} /* namespace SDC */
-} /* namespace Data */
-} /* namespace SDCLib */
+}
+}
+}

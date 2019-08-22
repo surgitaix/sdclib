@@ -1,20 +1,20 @@
 /*
  * OperationTraits.cpp
  *
- *  Created on: 09.06.2015
- *      Author: roehser
+ *  Created on: 09.06.2015, roehser
+ *  Modified on: 22.08.2019, baumeister
  */
 
-#include <OSELib/SDC/SDCConstants.h>
-#include "BICEPS_MessageModel.hxx"
-#include "NormalizedMessageModel.hxx"
-
-#include "OSELib/DPWS/DPWS11Constants.h"
+#include "OSELib/SDC/OperationTraits.h"
 #include "OSELib/SDC/IContextService.h"
 #include "OSELib/SDC/IEventReport.h"
 #include "OSELib/SDC/IGetService.h"
 #include "OSELib/SDC/ISetService.h"
-#include "OSELib/SDC/OperationTraits.h"
+#include "OSELib/SDC/SDCConstants.h"
+#include "OSELib/DPWS/DPWS11Constants.h"
+
+#include "BICEPS_MessageModel.hxx"
+#include "NormalizedMessageModel.hxx"
 
 namespace OSELib {
 namespace SDC {
@@ -37,8 +37,8 @@ std::string ActivateTraits::ResponseAction() {
 xml_schema::Qname ActivateTraits::ResponseType() {
 	return xml_schema::Qname(NS_MESSAGE_MODEL, OperationName() + "Response");
 }
-std::unique_ptr<ActivateTraits::Response> ActivateTraits::dispatch(ActivateTraits::Dispatcher & dispatcher, const Request & request) {
-	return dispatcher.dispatch(request);
+std::unique_ptr<ActivateTraits::Response> ActivateTraits::dispatch(ActivateTraits::Dispatcher & p_dispatcher, const Request & p_request) {
+	return p_dispatcher.dispatch(p_request);
 }
 
 std::string GetContextStatesTraits::OperationName() {
@@ -59,8 +59,8 @@ std::string GetContextStatesTraits::ResponseAction() {
 xml_schema::Qname GetContextStatesTraits::ResponseType() {
 	return xml_schema::Qname(NS_MESSAGE_MODEL, OperationName() + "Response");
 }
-std::unique_ptr<GetContextStatesTraits::Response> GetContextStatesTraits::dispatch(GetContextStatesTraits::Dispatcher & dispatcher, const Request & request) {
-	return dispatcher.dispatch(request);
+std::unique_ptr<GetContextStatesTraits::Response> GetContextStatesTraits::dispatch(GetContextStatesTraits::Dispatcher & p_dispatcher, const Request & p_request) {
+	return p_dispatcher.dispatch(p_request);
 }
 
 std::string GetMDDescriptionTraits::OperationName() {
@@ -81,8 +81,8 @@ std::string GetMDDescriptionTraits::ResponseAction() {
 xml_schema::Qname GetMDDescriptionTraits::ResponseType() {
 	return xml_schema::Qname(NS_MESSAGE_MODEL, OperationName() + "Response");
 }
-std::unique_ptr<GetMDDescriptionTraits::Response> GetMDDescriptionTraits::dispatch(GetMDDescriptionTraits::Dispatcher & dispatcher, const Request & request) {
-	return dispatcher.dispatch(request);
+std::unique_ptr<GetMDDescriptionTraits::Response> GetMDDescriptionTraits::dispatch(GetMDDescriptionTraits::Dispatcher & p_dispatcher, const Request & p_request) {
+	return p_dispatcher.dispatch(p_request);
 }
 
 std::string GetMDIBTraits::OperationName() {
@@ -103,8 +103,8 @@ std::string GetMDIBTraits::ResponseAction() {
 xml_schema::Qname GetMDIBTraits::ResponseType() {
 	return xml_schema::Qname(NS_MESSAGE_MODEL, OperationName() + "Response");
 }
-std::unique_ptr<GetMDIBTraits::Response> GetMDIBTraits::dispatch(GetMDIBTraits::Dispatcher & dispatcher, const Request & request) {
-	return dispatcher.dispatch(request);
+std::unique_ptr<GetMDIBTraits::Response> GetMDIBTraits::dispatch(GetMDIBTraits::Dispatcher & p_dispatcher, const Request & p_request) {
+	return p_dispatcher.dispatch(p_request);
 }
 
 std::string GetMdStateTraits::OperationName() {
@@ -125,8 +125,8 @@ std::string GetMdStateTraits::ResponseAction() {
 xml_schema::Qname GetMdStateTraits::ResponseType() {
 	return xml_schema::Qname(NS_MESSAGE_MODEL, OperationName() + "Response");
 }
-std::unique_ptr<GetMdStateTraits::Response> GetMdStateTraits::dispatch(GetMdStateTraits::Dispatcher & dispatcher, const Request & request) {
-	return dispatcher.dispatch(request);
+std::unique_ptr<GetMdStateTraits::Response> GetMdStateTraits::dispatch(GetMdStateTraits::Dispatcher & p_dispatcher, const Request & p_request) {
+	return p_dispatcher.dispatch(p_request);
 }
 
 std::string SetAlertStateTraits::OperationName() {
@@ -147,8 +147,8 @@ std::string SetAlertStateTraits::ResponseAction() {
 xml_schema::Qname SetAlertStateTraits::ResponseType() {
 	return xml_schema::Qname(NS_MESSAGE_MODEL, OperationName() + "Response");
 }
-std::unique_ptr<SetAlertStateTraits::Response> SetAlertStateTraits::dispatch(SetAlertStateTraits::Dispatcher & dispatcher, const Request & request) {
-	return dispatcher.dispatch(request);
+std::unique_ptr<SetAlertStateTraits::Response> SetAlertStateTraits::dispatch(SetAlertStateTraits::Dispatcher & p_dispatcher, const Request & p_request) {
+	return p_dispatcher.dispatch(p_request);
 }
 
 std::string SetContextStateTraits::OperationName() {
@@ -169,8 +169,8 @@ std::string SetContextStateTraits::ResponseAction() {
 xml_schema::Qname SetContextStateTraits::ResponseType() {
 	return xml_schema::Qname(NS_MESSAGE_MODEL, OperationName() + "Response");
 }
-std::unique_ptr<SetContextStateTraits::Response> SetContextStateTraits::dispatch(SetContextStateTraits::Dispatcher & dispatcher, const Request & request) {
-	return dispatcher.dispatch(request);
+std::unique_ptr<SetContextStateTraits::Response> SetContextStateTraits::dispatch(SetContextStateTraits::Dispatcher & p_dispatcher, const Request & p_request) {
+	return p_dispatcher.dispatch(p_request);
 }
 
 std::string SetStringTraits::OperationName() {
@@ -191,8 +191,8 @@ std::string SetStringTraits::ResponseAction() {
 xml_schema::Qname SetStringTraits::ResponseType() {
 	return xml_schema::Qname(NS_MESSAGE_MODEL, OperationName() + "Response");
 }
-std::unique_ptr<SetStringTraits::Response> SetStringTraits::dispatch(SetStringTraits::Dispatcher & dispatcher, const Request & request) {
-	return dispatcher.dispatch(request);
+std::unique_ptr<SetStringTraits::Response> SetStringTraits::dispatch(SetStringTraits::Dispatcher & p_dispatcher, const Request & p_request) {
+	return p_dispatcher.dispatch(p_request);
 }
 
 std::string SetValueTraits::OperationName() {
@@ -213,8 +213,8 @@ std::string SetValueTraits::ResponseAction() {
 xml_schema::Qname SetValueTraits::ResponseType() {
 	return xml_schema::Qname(NS_MESSAGE_MODEL, OperationName() + "Response");
 }
-std::unique_ptr<SetValueTraits::Response> SetValueTraits::dispatch(SetValueTraits::Dispatcher & dispatcher, const Request & request) {
-	return dispatcher.dispatch(request);
+std::unique_ptr<SetValueTraits::Response> SetValueTraits::dispatch(SetValueTraits::Dispatcher & p_dispatcher, const Request & p_request) {
+	return p_dispatcher.dispatch(p_request);
 }
 
 }

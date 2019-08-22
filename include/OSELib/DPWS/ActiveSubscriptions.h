@@ -2,11 +2,12 @@
  * ActiveSubscriptions.h
  *
  *  Created on: 07.12.2015, matthias
- *  Modified on: 01.08.2019, baumeister
+ *  Modified on: 22.08.2019, baumeister
+ *
  */
 
-#ifndef DPWS_ACTIVESUBSCRIPTIONS_H_
-#define DPWS_ACTIVESUBSCRIPTIONS_H_
+#ifndef OSELIB_DPWS_ACTIVESUBSCRIPTIONS_H_
+#define OSELIB_DPWS_ACTIVESUBSCRIPTIONS_H_
 
 #include <mutex>
 #include <chrono>
@@ -79,7 +80,7 @@ namespace OSELib
 			void run();
 		};
 
-	} /* namespace DPWS */
-} /* namespace OSELib */
+	}
+}
 
-#endif /* DPWS_ACTIVESUBSCRIPTIONS_H_ */
+#endif

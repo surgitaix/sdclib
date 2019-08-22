@@ -1,19 +1,21 @@
 /*
  * OperationTraits.cpp
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 22.08.2019, baumeister
+ *
  */
 
-#include <OSELib/SDC/SDCConstants.h>
+#include "OSELib/DPWS/OperationTraits.h"
+#include "OSELib/DPWS/DPWS11Constants.h"
+#include "OSELib/DPWS/IDevice.h"
+#include "OSELib/DPWS/ISubscriptionManager.h"
+#include "OSELib/SDC/SDCConstants.h"
+
 #include "eventing.hxx"
 #include "NormalizedMessageModel.hxx"
 #include "wsdd-discovery-1.1-schema-os.hxx"
 
-#include "OSELib/DPWS/DPWS11Constants.h"
-#include "OSELib/DPWS/IDevice.h"
-#include "OSELib/DPWS/ISubscriptionManager.h"
-#include "OSELib/DPWS/OperationTraits.h"
 
 namespace OSELib {
 namespace DPWS {
@@ -56,8 +58,8 @@ std::string ProbeTraits::RequestAction() {
 std::string ProbeTraits::ResponseAction() {
 	return WS_ACTION_PROBE_MATCHES;
 }
-std::unique_ptr<ProbeTraits::Response> ProbeTraits::dispatch(ProbeTraits::Dispatcher & dispatcher, const Request & request) {
-	return dispatcher.dispatch(request);
+std::unique_ptr<ProbeTraits::Response> ProbeTraits::dispatch(ProbeTraits::Dispatcher & p_dispatcher, const Request & p_request) {
+	return p_dispatcher.dispatch(p_request);
 }
 
 std::string RenewTraits::OperationName() {
@@ -75,8 +77,8 @@ std::string RenewTraits::ResponseAction() {
 xml_schema::Qname RenewTraits::ResponseType() {
 	return xml_schema::Qname(WS_NS_EVENTING, OperationName() + "Response");
 }
-std::unique_ptr<RenewTraits::Response> RenewTraits::dispatch(RenewTraits::Dispatcher & dispatcher, const Request & request, const RequestIdentifier & identifier) {
-	return dispatcher.dispatch(request, identifier);
+std::unique_ptr<RenewTraits::Response> RenewTraits::dispatch(RenewTraits::Dispatcher & p_dispatcher, const Request & p_request, const RequestIdentifier & p_identifier) {
+	return p_dispatcher.dispatch(p_request, p_identifier);
 }
 
 std::string SubscribeTraits::OperationName() {
@@ -94,8 +96,8 @@ std::string SubscribeTraits::ResponseAction() {
 xml_schema::Qname SubscribeTraits::ResponseType() {
 	return xml_schema::Qname(WS_NS_EVENTING, OperationName() + "Response");
 }
-std::unique_ptr<SubscribeTraits::Response> SubscribeTraits::dispatch(SubscribeTraits::Dispatcher & dispatcher, const Request & request) {
-	return dispatcher.dispatch(request);
+std::unique_ptr<SubscribeTraits::Response> SubscribeTraits::dispatch(SubscribeTraits::Dispatcher & p_dispatcher, const Request & p_request) {
+	return p_dispatcher.dispatch(p_request);
 }
 
 std::string UnsubscribeTraits::OperationName() {
@@ -113,8 +115,8 @@ std::string UnsubscribeTraits::ResponseAction() {
 xml_schema::Qname UnsubscribeTraits::ResponseType() {
 	return xml_schema::Qname(WS_NS_EVENTING, OperationName() + "Response");
 }
-std::unique_ptr<UnsubscribeTraits::Response> UnsubscribeTraits::dispatch(UnsubscribeTraits::Dispatcher & dispatcher, const Request & request, const RequestIdentifier & identifier) {
-	return dispatcher.dispatch(request, identifier);
+std::unique_ptr<UnsubscribeTraits::Response> UnsubscribeTraits::dispatch(UnsubscribeTraits::Dispatcher & p_dispatcher, const Request & p_request, const RequestIdentifier & p_identifier) {
+	return p_dispatcher.dispatch(p_request, p_identifier);
 }
 
 std::string GetStatusTraits::OperationName() {
@@ -132,9 +134,9 @@ std::string GetStatusTraits::ResponseAction() {
 xml_schema::Qname GetStatusTraits::ResponseType() {
 	return xml_schema::Qname(WS_NS_EVENTING, OperationName() + "Response");
 }
-std::unique_ptr<GetStatusTraits::Response> GetStatusTraits::dispatch(GetStatusTraits::Dispatcher & dispatcher, const Request & request, const RequestIdentifier & identifier) {
-	return dispatcher.dispatch(request, identifier);
+std::unique_ptr<GetStatusTraits::Response> GetStatusTraits::dispatch(GetStatusTraits::Dispatcher & p_dispatcher, const Request & p_request, const RequestIdentifier & p_identifier) {
+	return p_dispatcher.dispatch(p_request, p_identifier);
 }
 
-} /* namespace DPWS */
-} /* namespace OSELib */
+}
+}

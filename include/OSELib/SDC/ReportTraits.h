@@ -2,7 +2,7 @@
 #ifndef OSELIB_SDC_REPORTRAITS_H_
 #define OSELIB_SDC_REPORTRAITS_H_
 
-#include "osdm-fwd.hxx"
+#include "OSELib/fwd.h"
 
 namespace OSELib {
 namespace SDC {
@@ -22,7 +22,7 @@ struct EpisodicAlertReportTraits {
 	static std::string NotificationName();
 	static xml_schema::Qname PortType();
 	static std::string Action();
-	static void dispatch(Dispatcher & dispatcher, const ReportType & request);
+	static void dispatch(Dispatcher & p_dispatcher, const ReportType & p_request);
 };
 
 struct EpisodicContextReportTraits {
@@ -32,7 +32,7 @@ struct EpisodicContextReportTraits {
 	static std::string NotificationName();	
 	static xml_schema::Qname PortType();
 	static std::string Action();
-	static void dispatch(Dispatcher & dispatcher, const ReportType & request);
+	static void dispatch(Dispatcher & p_dispatcher, const ReportType & p_request);
 };
 
 struct EpisodicMetricReportTraits {
@@ -42,7 +42,7 @@ struct EpisodicMetricReportTraits {
 	static std::string NotificationName();
 	static xml_schema::Qname PortType();
 	static std::string Action();
-	static void dispatch(Dispatcher & dispatcher, const ReportType & request);
+	static void dispatch(Dispatcher & p_dispatcher, const ReportType & p_request);
 };
 
 struct OperationInvokedReportTraits {
@@ -52,7 +52,7 @@ struct OperationInvokedReportTraits {
 	static std::string NotificationName();
 	static xml_schema::Qname PortType();
 	static std::string Action();
-	static void dispatch(Dispatcher & dispatcher, const ReportType & request);
+	static void dispatch(Dispatcher & p_dispatcher, const ReportType & p_request);
 };
 
 struct PeriodicAlertReportTraits {
@@ -62,7 +62,7 @@ struct PeriodicAlertReportTraits {
 	static std::string NotificationName();
 	static xml_schema::Qname PortType();
 	static std::string Action();
-	static void dispatch(Dispatcher & dispatcher, const ReportType & request);
+	static void dispatch(Dispatcher & p_dispatcher, const ReportType & p_request);
 };
 
 struct PeriodicContextReportTraits {
@@ -72,7 +72,7 @@ struct PeriodicContextReportTraits {
 	static std::string NotificationName();	
 	static xml_schema::Qname PortType();
 	static std::string Action();
-	static void dispatch(Dispatcher & dispatcher, const ReportType & request);
+	static void dispatch(Dispatcher & p_dispatcher, const ReportType & p_request);
 };
 
 struct PeriodicMetricReportTraits {
@@ -82,7 +82,7 @@ struct PeriodicMetricReportTraits {
 	static std::string NotificationName();
 	static xml_schema::Qname PortType();
 	static std::string Action();
-	static void dispatch(Dispatcher & dispatcher, const ReportType & request);
+	static void dispatch(Dispatcher & p_dispatcher, const ReportType & p_request);
 };
 
 struct WaveformStreamTraits {
@@ -92,7 +92,7 @@ struct WaveformStreamTraits {
 	static std::string NotificationName();
 	static xml_schema::Qname PortType();
 	static std::string Action();
-	static void dispatch(Dispatcher & dispatcher, const ReportType & request);
+	static void dispatch(Dispatcher & p_dispatcher, const ReportType & p_request);
 };
 
 }

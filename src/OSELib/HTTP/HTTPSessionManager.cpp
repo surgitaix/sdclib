@@ -2,7 +2,7 @@
  * HTTPSessionManager.cpp
  *
  *  Created on: 15.12.2015, matthias
- *  Modified on: 20.08.2019, baumeister
+ *  Modified on: 22.08.2019, baumeister
  *
  */
 
@@ -12,7 +12,6 @@
 #include "SDCLib/Config/SSLConfig.h"
 
 #include <atomic>
-#include <iostream>
 #include <string>
 
 #include <Poco/NotificationQueue.h>
@@ -169,5 +168,5 @@ void HTTPSessionManager::enqueMessage(const Poco::URI & p_destinationURI, const 
 	}
 }
 
-} /* namespace HTTP */
-} /* namespace OSELib */
+}
+}

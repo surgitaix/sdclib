@@ -88,7 +88,7 @@ namespace OSELib
 
 		};
 
-	} /* namespace DPWS */
-} /* namespace OSELib */
+	}
+}
 
-#endif /* OSELIB_DPWS_DEVICEDESCRIPTION_H_ */
+#endif

@@ -1,40 +1,45 @@
 /*
  * SubscriptionManager.h
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 22.08.2019, baumeister
+ *
  */
 
 #ifndef OSELIB_DPWS_SUBSCRIPTIONMANAGER_H_
 #define OSELIB_DPWS_SUBSCRIPTIONMANAGER_H_
 
-#include "OSELib/DPWS/ActiveSubscriptions.h"
 #include "OSELib/DPWS/ISubscriptionManager.h"
 #include "OSELib/Helper/WithLogger.h"
+#include "OSELib/DPWS/ActiveSubscriptions.h"
+#include "OSELib/HTTP/HTTPSessionManager.h"
+#include "OSELib/DPWS/OperationTraits.h"
+
 #include "SDCLib/Prerequisites.h"
 
-namespace OSELib {
-namespace DPWS {
+namespace OSELib
+{
+	namespace DPWS
+	{
+		class SubscriptionManager : public ISubscriptionManager, public OSELib::Helper::WithLogger
+		{
+		private:
+			ActiveSubscriptions m_subscriptions;
+			const std::vector<xml_schema::Uri> ml_allowedEventActions;
+			std::unique_ptr<HTTP::HTTPSessionManager> m_sessionManager = nullptr;
 
-class SubscriptionManager : public ISubscriptionManager, public OSELib::Helper::WithLogger {
-public:
-	SubscriptionManager(const std::vector<xml_schema::Uri> & allowedEventActions, SDCLib::Config::SSLConfig_shared_ptr p_SSLConfig);
+		public:
+			SubscriptionManager(const std::vector<xml_schema::Uri> & pl_allowedEventActions, SDCLib::Config::SSLConfig_shared_ptr p_SSLConfig);
 
-	template <class TraitsType>
-	void fireEvent(const typename TraitsType::ReportType & report);
+			template <class TraitsType>
+			void fireEvent(const typename TraitsType::ReportType & p_report);
 
-	std::unique_ptr<SubscribeTraits::Response> dispatch(const SubscribeTraits::Request & request) override;
-	std::unique_ptr<UnsubscribeTraits::Response> dispatch(const UnsubscribeTraits::Request & request, const UnsubscribeTraits::RequestIdentifier & identifier) override;
-	std::unique_ptr<RenewTraits::Response> dispatch(const RenewTraits::Request & request, const RenewTraits::RequestIdentifier & identifier) override;
-	std::unique_ptr<GetStatusTraits::Response> dispatch(const GetStatusTraits::Request & request, const GetStatusTraits::RequestIdentifier & identifier) override;
+			std::unique_ptr<SubscribeTraits::Response> dispatch(const SubscribeTraits::Request & p_request) override;
+			std::unique_ptr<UnsubscribeTraits::Response> dispatch(const UnsubscribeTraits::Request & p_request, const UnsubscribeTraits::RequestIdentifier & p_identifier) override;
+			std::unique_ptr<RenewTraits::Response> dispatch(const RenewTraits::Request & p_request, const RenewTraits::RequestIdentifier & p_identifier) override;
+			std::unique_ptr<GetStatusTraits::Response> dispatch(const GetStatusTraits::Request & p_request, const GetStatusTraits::RequestIdentifier & p_identifier) override;
+		};
+	}
+}
 
-private:
-	ActiveSubscriptions _subscriptions;
-	const std::vector<xml_schema::Uri> _allowedEventActions;
-	std::unique_ptr<HTTP::HTTPSessionManager> _sessionManager;
-};
-
-} /* namespace DPWS */
-} /* namespace OSELib */
-
-#endif /* OSELIB_DPWS_SUBSCRIPTIONMANAGER_H_ */
+#endif

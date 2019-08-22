@@ -24,13 +24,7 @@
 #ifndef SDCLIB_DATA_SDC_SDCPROVIDER_H_
 #define SDCLIB_DATA_SDC_SDCPROVIDER_H_
 
-#include <atomic>
-#include <memory>
-#include <mutex>
-
 #include "SDCLib/Prerequisites.h"
-
-
 #include "SDCLib/Dev/DeviceCharacteristics.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
 #include "SDCLib/Data/SDC/SDCProviderAdapter.h"
@@ -40,14 +34,6 @@
 #include "OSELib/Helper/WithLogger.h"
 
 #include <Poco/NotificationQueue.h>
-
-
-// todo remove
-namespace OSELib {
-	struct ContextReportServiceImpl;
-	struct GetServiceImpl;
-	struct SetServiceImpl;
-}
 
 namespace SDCLib {
 namespace Data {
@@ -66,9 +52,49 @@ class SDCProvider final : public OSELib::Helper::WithLogger
     friend struct OSELib::SetServiceImpl;
 
 
-public:
-    SDCProvider(SDCInstance_shared_ptr p_SDCInstance);
+private:
 
+    SDCInstance_shared_ptr m_SDCInstance = nullptr;
+
+	mutable std::mutex m_mutex;
+	std::atomic<bool> m_started = ATOMIC_VAR_INIT(false);
+
+	std::atomic_uint atomicTransactionId = ATOMIC_VAR_INIT(0);
+
+	std::atomic_ullong mdibVersion = ATOMIC_VAR_INIT(0);
+
+	std::map<std::string, SDCProviderStateHandler *> ml_stateHandlers;
+	mutable std::mutex m_mutex_MdStateHandler;
+
+	std::unique_ptr<MdDescription> m_MdDescription;
+	mutable std::mutex m_mutex_MdDescription;
+
+	MdState m_MdState;
+	mutable std::mutex m_mutex_MdState;
+	MdState m_operationStates;
+
+	std::unique_ptr<SDCProviderAdapter> m_adapter = nullptr;
+	Dev::DeviceCharacteristics m_devicecharacteristics;
+	mutable std::mutex m_mutex_DevC;
+
+	std::string m_endpointReference;
+	mutable std::mutex m_mutex_EPR;
+
+
+	Poco::NotificationQueue invokeQueue;
+	std::shared_ptr<AsyncProviderInvoker> m_providerInvoker = nullptr;
+
+	std::vector<std::string> ml_handlesForPeriodicUpdates;
+	mutable std::mutex m_mutex_PeriodicUpdateHandles;
+
+	std::atomic<std::chrono::milliseconds> m_periodicEventInterval = ATOMIC_VAR_INIT(std::chrono::milliseconds(10));
+
+	TimePoint m_lastPeriodicEvent = std::chrono::system_clock::now();
+	mutable std::mutex m_mutex_PeriodicEvent;
+
+public:
+
+    SDCProvider(SDCInstance_shared_ptr p_SDCInstance);
     // Special Member Functions
     SDCProvider(const SDCProvider& p_obj) = delete;
     SDCProvider(SDCProvider&& p_obj) = delete;
@@ -389,47 +415,6 @@ private:
     void enqueueInvokeNotification(const T & request, const OperationInvocationContext & oic);
 
     unsigned int incrementAndGetTransactionId();
-
-
-    SDCInstance_shared_ptr m_SDCInstance = nullptr;
-
-    mutable std::mutex m_mutex;
-    std::atomic<bool> m_started = ATOMIC_VAR_INIT(false);
-
-    std::atomic_uint atomicTransactionId = ATOMIC_VAR_INIT(0);
-
-    std::atomic_ullong mdibVersion = ATOMIC_VAR_INIT(0);
-
-    std::map<std::string, SDCProviderStateHandler *> m_stateHandlers;
-    mutable std::mutex m_mutex_MdStateHandler;
-
-    std::unique_ptr<MdDescription> m_MdDescription;
-    mutable std::mutex m_mutex_MdDescription;
-
-    MdState m_MdState;
-    mutable std::mutex m_mutex_MdState;
-    MdState m_operationStates;
-
-    std::unique_ptr<SDCProviderAdapter> _adapter;
-    Dev::DeviceCharacteristics m_devicecharacteristics;
-    mutable std::mutex m_mutex_DevC;
-
-    std::string m_endpointReference;
-    mutable std::mutex m_mutex_EPR;
-
-
-    Poco::NotificationQueue invokeQueue;
-    std::shared_ptr<AsyncProviderInvoker> m_providerInvoker = nullptr;
-
-    std::vector<std::string> ml_handlesForPeriodicUpdates;
-    mutable std::mutex m_mutex_PeriodicUpdateHandles;
-
-    std::atomic<std::chrono::milliseconds> m_periodicEventInterval = ATOMIC_VAR_INIT(std::chrono::milliseconds(10));
-
-    TimePoint m_lastPeriodicEvent = std::chrono::system_clock::now();
-    mutable std::mutex m_mutex_PeriodicEvent;
-
-//    std::map<std::string, int> streamingPorts;
 
 };
 

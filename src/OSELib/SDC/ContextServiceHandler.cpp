@@ -2,12 +2,11 @@
  * ContextServiceHandler.cpp
  *
  *  Created on: 09.12.2015, matthias
- *  Modified on: 21.08.2019, baumeister
+ *  Modified on: 22.08.2019, baumeister
  *
  */
 
 #include "OSELib/SDC/ContextServiceHandler.h"
-
 #include "OSELib/SDC/IContextService.h"
 #include "OSELib/SOAP/Command.h"
 #include "OSELib/SOAP/CommonSoapPreprocessing.h"

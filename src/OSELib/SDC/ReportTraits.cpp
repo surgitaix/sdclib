@@ -1,15 +1,15 @@
 /*
  * ReportTraits.cpp
  *
- *  Created on: 09.06.2015
- *      Author: roehser
+ *  Created on: 09.06.2015, roehser
+ *  Modified on: 22.08.2019, baumeister
+ *
  */
-
+#include "OSELib/SDC/ReportTraits.h"
+#include "OSELib/SDC/SDCConstants.h"
 #include "OSELib/SDC/IContextServiceEventSink.h"
 #include "OSELib/SDC/IStateEventServiceEventSink.h"
 #include "OSELib/SDC/ISetServiceEventSink.h"
-#include "OSELib/SDC/SDCConstants.h"
-#include "OSELib/SDC/ReportTraits.h"
 
 namespace OSELib {
 namespace SDC {
@@ -39,8 +39,8 @@ xml_schema::Qname EpisodicAlertReportTraits::PortType() {
 std::string EpisodicAlertReportTraits::Action() {
 	return EVENT_ACTION_CDM_EPISODIC_ALERT_REPORT;
 }
-void EpisodicAlertReportTraits::dispatch(Dispatcher & dispatcher, const ReportType & report) {
-	dispatcher.dispatch(report);
+void EpisodicAlertReportTraits::dispatch(Dispatcher & p_dispatcher, const ReportType & p_report) {
+	p_dispatcher.dispatch(p_report);
 }
 
 xml_schema::Qname EpisodicContextReportTraits::MessageType() {
@@ -55,8 +55,8 @@ xml_schema::Qname EpisodicContextReportTraits::PortType() {
 std::string EpisodicContextReportTraits::Action() {
 	return EVENT_ACTION_CDM_EPISODIC_CONTEXT_REPORT;
 }
-void EpisodicContextReportTraits::dispatch(Dispatcher & dispatcher, const ReportType & report) {
-	dispatcher.dispatch(report);
+void EpisodicContextReportTraits::dispatch(Dispatcher & p_dispatcher, const ReportType & p_report) {
+	p_dispatcher.dispatch(p_report);
 }
 
 xml_schema::Qname EpisodicMetricReportTraits::MessageType() {
@@ -71,8 +71,8 @@ xml_schema::Qname EpisodicMetricReportTraits::PortType() {
 std::string EpisodicMetricReportTraits::Action() {
 	return EVENT_ACTION_CDM_EPISODIC_METRIC_REPORT;
 }
-void EpisodicMetricReportTraits::dispatch(Dispatcher & dispatcher, const ReportType & report) {
-	dispatcher.dispatch(report);
+void EpisodicMetricReportTraits::dispatch(Dispatcher & p_dispatcher, const ReportType & p_report) {
+	p_dispatcher.dispatch(p_report);
 }
 
 xml_schema::Qname OperationInvokedReportTraits::MessageType() {
@@ -87,8 +87,8 @@ xml_schema::Qname OperationInvokedReportTraits::PortType() {
 std::string OperationInvokedReportTraits::Action() {
 	return EVENT_ACTION_CDM_OPERATION_INVOKED_REPORT;
 }
-void OperationInvokedReportTraits::dispatch(Dispatcher & dispatcher, const ReportType & report) {
-	dispatcher.dispatch(report);
+void OperationInvokedReportTraits::dispatch(Dispatcher & p_dispatcher, const ReportType & p_report) {
+	p_dispatcher.dispatch(p_report);
 }
 
 xml_schema::Qname PeriodicAlertReportTraits::MessageType() {
@@ -103,8 +103,8 @@ xml_schema::Qname PeriodicAlertReportTraits::PortType() {
 std::string PeriodicAlertReportTraits::Action() {
 	return EVENT_ACTION_CDM_PERIODIC_ALERT_REPORT;
 }
-void PeriodicAlertReportTraits::dispatch(Dispatcher & dispatcher, const ReportType & report) {
-	dispatcher.dispatch(report);
+void PeriodicAlertReportTraits::dispatch(Dispatcher & p_dispatcher, const ReportType & p_report) {
+	p_dispatcher.dispatch(p_report);
 }
 
 xml_schema::Qname PeriodicContextReportTraits::MessageType() {
@@ -119,8 +119,8 @@ xml_schema::Qname PeriodicContextReportTraits::PortType() {
 std::string PeriodicContextReportTraits::Action() {
 	return EVENT_ACTION_CDM_PERIODIC_CONTEXT_REPORT;
 }
-void PeriodicContextReportTraits::dispatch(Dispatcher & dispatcher, const ReportType & report) {
-	dispatcher.dispatch(report);
+void PeriodicContextReportTraits::dispatch(Dispatcher & p_dispatcher, const ReportType & p_report) {
+	p_dispatcher.dispatch(p_report);
 }
 
 xml_schema::Qname PeriodicMetricReportTraits::MessageType() {
@@ -135,8 +135,8 @@ xml_schema::Qname PeriodicMetricReportTraits::PortType() {
 std::string PeriodicMetricReportTraits::Action() {
 	return EVENT_ACTION_CDM_PERIODIC_METRIC_REPORT;
 }
-void PeriodicMetricReportTraits::dispatch(Dispatcher & dispatcher, const ReportType & report) {
-	dispatcher.dispatch(report);
+void PeriodicMetricReportTraits::dispatch(Dispatcher & p_dispatcher, const ReportType & p_report) {
+	p_dispatcher.dispatch(p_report);
 }
 
 
@@ -152,8 +152,8 @@ xml_schema::Qname WaveformStreamTraits::PortType() {
 std::string WaveformStreamTraits::Action() {
 	return EVENT_ACTION_CDM_WAVEFORM_STREAM_REPORT;
 }
-void WaveformStreamTraits::dispatch(Dispatcher & dispatcher, const ReportType & report) {
-	dispatcher.dispatch(report);
+void WaveformStreamTraits::dispatch(Dispatcher & p_dispatcher, const ReportType & p_report) {
+	p_dispatcher.dispatch(p_report);
 }
 
 }

@@ -58,7 +58,7 @@ void SDCInstance::_cleanup()
 
     // ...Cleanup....
 
-    _latestPingManager.reset();
+    m_latestPingManager.reset();
     // ....
 
 }
@@ -132,10 +132,10 @@ bool SDCInstance::_networkInterfaceBoundTo(std::string ps_adapterName) const
     return m_SDCConfig->getNetworkConfig()->_networkInterfaceBoundTo(ps_adapterName);
 }
 
-void SDCInstance::dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pingManager)
+void SDCInstance::dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> p_pingManager)
 {
     std::lock_guard<std::mutex> t_lock(m_mutex);
-    _latestPingManager = std::move(pingManager);
+    m_latestPingManager = std::move(p_pingManager);
 }
 
 // IP4 / IP6 - Forward to the Config

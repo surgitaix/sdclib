@@ -34,13 +34,13 @@ std::unique_ptr<MESSAGEMODEL::Envelope> UnsubscribeActionCommand::dispatch(const
 	const DPWS::UnsubscribeTraits::Request & t_requestBody(t_requestAdapter.get(p_request));
 	const DPWS::UnsubscribeTraits::RequestIdentifier & t_requestIdentifier(t_requestIdentifierAdapter.get(p_request));
 
-	std::unique_ptr<DPWS::UnsubscribeTraits::Response> t_responseBody(DPWS::UnsubscribeTraits::dispatch(m_dispatcher, t_requestBody, t_requestIdentifier));
+	auto t_responseBody(DPWS::UnsubscribeTraits::dispatch(m_dispatcher, t_requestBody, t_requestIdentifier));
 
 	if (!t_responseBody) {
 		throw DispatchingFailed("Internal error. Dispatching failed for " + DPWS::UnsubscribeTraits::RequestAction());
 	}
 
-	std::unique_ptr<MESSAGEMODEL::Envelope> t_responseMessage(createResponseMessageFromRequestMessage(p_request));
+	auto t_responseMessage(createResponseMessageFromRequestMessage(p_request));
 	t_responseMessage->Header().Action().set(WS::ADDRESSING::AttributedURIType(DPWS::UnsubscribeTraits::ResponseAction()));
 	return t_responseMessage;
 }

@@ -2,13 +2,13 @@
  * MetadataProvider.cpp
  *
  *  Created on: 07.12.2015, matthias
- *  Modified on: 20.08.2019, baumeister
+ *  Modified on: 22.08.2019, baumeister
  *
  */
 
 #include "OSELib/DPWS/MetadataProvider.h"
-#include "OSELib/SDC/SDCConstants.h"
 #include "OSELib/DPWS/DPWS11Constants.h"
+#include "OSELib/SDC/SDCConstants.h"
 
 #include "MDPWS.hxx"
 
