@@ -18,7 +18,7 @@ GenericContentHandler::GenericContentHandler(const std::string & p_content)
 : m_content(p_content)
 { }
 
-void GenericContentHandler::handleRequest(Poco::Net::HTTPServerRequest& p_request, Poco::Net::HTTPServerResponse & p_response)
+void GenericContentHandler::handleRequest(Poco::Net::HTTPServerRequest&, Poco::Net::HTTPServerResponse & p_response)
 {
 	p_response.setStatus(Poco::Net::HTTPResponse::HTTP_OK);
 	p_response.setContentType("application/xml");

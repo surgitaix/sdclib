@@ -1,7 +1,7 @@
 # Current Target
 set( CURRENT_TARGET_NAME SDCLib )
 # Add this for better project structure after cmake generation
-project(${CURRENT_TARGET_NAME})
+project(${CURRENT_TARGET_NAME} "CXX")
 
 # Add an empty target first - FIXME: Why distinguish here. Does PIC flag solve it?
 if(WIN32)

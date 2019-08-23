@@ -66,7 +66,7 @@ namespace SDCLib
 				* @param transactionId The transaction id.
 				* @param is The invocation state.
 				*/
-				virtual void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) { }
+				virtual void onOperationInvoked(const OperationInvocationContext&, InvocationState) { }
 
 				/**
 				* @brief Define the descriptor handle.

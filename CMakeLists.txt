@@ -34,7 +34,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Main Project
 ################################################################################
 set( PROJECT_NAME "SDCLibrary") # in case you need it in a config file
-project(${PROJECT_NAME})
+project(${PROJECT_NAME} "CXX")
 
 # Version numbers -> Will be written to the config file
 set (SDCLibrary_VERSION_FIRST          4)
@@ -121,22 +121,6 @@ if(NOT CMAKE_BUILD_TYPE)
     message(STATUS "No build type specified, setting to Debug.")
     set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Debug as default" FORCE)
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Release" "Debug")
-endif()
-################################################################################
-
-################################################################################
-# Warnings
-################################################################################
-message(STATUS "Setting Warning-Level...")
-if(CMAKE_BUILD_TYPE MATCHES Release)
-    if (MSVC)
-        add_compile_options(/W4)
-    else()
-        add_compile_options(-Wall -Wextra -pedantic)
-    endif()
-else()
-    # Inhibit all warning messages
-    add_compile_options(-w)
 endif()
 ################################################################################
 

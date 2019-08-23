@@ -29,8 +29,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 ################################################################################
 # Main Project
 ################################################################################
-set( PROJECT_NAME "ExampleProject" CACHE STRING "CMake ExampleProject")
-project(${PROJECT_NAME})
+set( PROJECT_NAME "CMakeExampleProject" CACHE STRING "CMake ExampleProject")
+project(${PROJECT_NAME} "CXX")
 ################################################################################
 
 
@@ -89,23 +89,6 @@ if(NOT CMAKE_BUILD_TYPE)
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Release" "Debug")
 endif()
 ################################################################################
-
-################################################################################
-# Warnings
-################################################################################
-message(STATUS "Setting Warning-Level...")
-if(CMAKE_BUILD_TYPE MATCHES Release)
-    if (MSVC)
-        add_compile_options(/W4)
-    else()
-        add_compile_options(-Wall -Wextra -pedantic)
-    endif()
-else()
-    # Inhibit all warning messages
-    add_compile_options(-w)
-endif()
-################################################################################
-
 
 ################################################################################
 # Some more paths - cleaned from symlinks

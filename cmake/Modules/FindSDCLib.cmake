@@ -24,19 +24,6 @@ endif()
 
 # Init Flag to false
 set(SDCLib_FOUND FALSE)
-#
-# Set other variables
-set(SDCLib_LIBRARIES            "")
-set(SDCLib_INCLUDE_DIRS         "")
-set(SDCLib_DEFINITIONS          "")
-set(SDCLib_OPTIONS              "")
-# Dependencies
-set(SDCLib_DEPS_LIBRARIES       "")
-set(SDCLib_DEPS_INCLUDE_DIRS    "")
-set(SDCLib_DEPS_DEFINITIONS     "")
-
-
-
 ################################################################################
 
 
@@ -120,13 +107,8 @@ if (CMAKE_SYSTEM_NAME MATCHES "Linux")
     # Set the library based on build type
     if (CMAKE_BUILD_TYPE)
         if (CMAKE_BUILD_TYPE STREQUAL "Release")
-            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/libSDCLib.so)
+            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/libSDCLib${CMAKE_RELEASE_POSTFIX}.so)
         else()
-            # Not set? Specify a default
-            if (NOT CMAKE_DEBUG_POSTFIX)
-                set(CMAKE_DEBUG_POSTFIX _d)
-                message(STATUS "No Debug Postfix set. Setting to ${CMAKE_DEBUG_POSTFIX}!")
-            endif()
             set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/libSDCLib${CMAKE_DEBUG_POSTFIX}.so)
         endif()
     else()
@@ -144,7 +126,7 @@ if (CMAKE_SYSTEM_NAME MATCHES "Windows")
 	endif()
     if(CMAKE_BUILD_TYPE)
         if(CMAKE_BUILD_TYPE STREQUAL "Release")
-            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/SDCLib.lib)
+            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/SDCLib${CMAKE_RELEASE_POSTFIX}.lib)
         else()
             set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/SDCLib${CMAKE_DEBUG_POSTFIX}.lib)
         endif()
@@ -172,17 +154,23 @@ endif()
 ################################################################################
 # Compile Options
 ################################################################################
-if(CMAKE_BUILD_TYPE)
-    if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-			# Only if under Linux
-			if(CMAKE_SYSTEM_NAME MATCHES "Linux")
-			# enable debug and profiling informations for sprof
-			list(APPEND SDCLib_OPTIONS -ggdb -g -O0)
-        endif()
-    endif()
-endif()
+# Debug Flags
+list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Debug>,$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>>:-ggdb -g>)
+list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Debug>,$<OR:$<CXX_COMPILER_ID:ARMCC>,$<CXX_COMPILER_ID:ARMClang>>>:-ggdb -g>)
+# Warnings
+list(APPEND SDCLib_OPTIONS $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-Wall -Wextra -pedantic>)
+list(APPEND SDCLib_OPTIONS $<$<OR:$<CXX_COMPILER_ID:ARMCC>,$<CXX_COMPILER_ID:ARMClang>>:-Wall -Wextra -pedantic>)
+list(APPEND SDCLib_OPTIONS $<$<CXX_COMPILER_ID:MSVC>:/W4>)
+# Optimization
+# (Release)
+list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Release>,$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>>:-O3>)
+list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Release>,$<OR:$<CXX_COMPILER_ID:ARMCC>,$<CXX_COMPILER_ID:ARMClang>>>:-O3>)
+list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:MSVC>>:/O2>)
+# (Debug)
+list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Debug>,$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>>:-O0>)
+list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Debug>,$<OR:$<CXX_COMPILER_ID:ARMCC>,$<CXX_COMPILER_ID:ARMClang>>>:-O0>)
+# list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Debug>,$<CXX_COMPILER_ID:MSVC>>:/O0>) ?
 ################################################################################
-
 
 ################################################################################
 # Search for given libary file

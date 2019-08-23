@@ -135,7 +135,7 @@ std::unique_ptr<RenewTraits::Response> SubscriptionManager::dispatch(const Renew
 	return t_response;
 }
 
-std::unique_ptr<GetStatusTraits::Response> SubscriptionManager::dispatch(const GetStatusTraits::Request & p_request, const GetStatusTraits::RequestIdentifier & p_identifier)
+std::unique_ptr<GetStatusTraits::Response> SubscriptionManager::dispatch(const GetStatusTraits::Request&, const GetStatusTraits::RequestIdentifier & p_identifier)
 {
 	auto t_subscription = m_subscriptions.getStatus(p_identifier);
 	if(!t_subscription.first) {
