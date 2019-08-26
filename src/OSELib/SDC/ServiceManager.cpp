@@ -138,6 +138,14 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpoint
 	return nullptr;
 }
 
+ServiceManager::AsyncDiscoverEndpointResult ServiceManager::async_discoverEndpointReference(const std::string & p_epr)
+{
+    auto t_invoke = [p_epr](OSELib::SDC::ServiceManager* p_serviceManager) {
+        return p_serviceManager->discoverEndpointReference(p_epr);
+    };
+    return std::async(std::launch::async, t_invoke, this);
+}
+
 ServiceManager::AsyncDiscoverResults ServiceManager::async_discover()
 {
     auto t_invoke = [](OSELib::SDC::ServiceManager* p_serviceManager) {

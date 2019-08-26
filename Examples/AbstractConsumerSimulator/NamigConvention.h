@@ -4,10 +4,10 @@
  *  Created on: Jul 22, 2019
  *      Author: rosenau
  */
-#include <string>
-
 #ifndef EXAMPLES_ABSTRACTCONSUMERSIMULATOR_NAMIGCONVENTION_H_
 #define EXAMPLES_ABSTRACTCONSUMERSIMULATOR_NAMIGCONVENTION_H_
+
+#include <string>
 
 namespace SDCLib {
 namespace Data {

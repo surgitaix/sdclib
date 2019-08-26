@@ -77,6 +77,15 @@ namespace OSELib
 			std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> discoverEndpointReference(const std::string & p_epr);
 
 			/**
+			 * @deprecated Create a consumer and try to discover provider using endpointreferencee in an async manner
+			 *
+			 * @param p_epr The endpointreference
+			 * @return std::future of The consumer or null
+			 */
+			using AsyncDiscoverEndpointResult  = std::future<std::unique_ptr<SDCLib::Data::SDC::SDCConsumer>>;
+			AsyncDiscoverEndpointResult async_discoverEndpointReference(const std::string & p_epr);
+
+			/**
 			* @brief Discover all SDC providers currently available
 			*
 			* @return List of all providers

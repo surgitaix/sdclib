@@ -132,12 +132,13 @@ void waitForUserInput() {
 int main() {
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
 
+	Network::TCPClientEventHandler::getInstance("127.0.0.1", 5000)->startup();
+
 	AbstractConsumer consumer;
 	consumer.setupDiscoveryProvider();
 	waitForUserInput();
 
 
-//	Network::TCPClientEventHandler::getInstance("127.0.0.1", 5000)->startup();
 //	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
 //    SDCLibrary::getInstance().startup(OSELib::LogLevel::None);
 //	SDCLibrary::getInstance().setPortStart(6000);
