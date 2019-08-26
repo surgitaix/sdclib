@@ -8,8 +8,8 @@
 #ifndef OSELIB_DPWS_TYPES_H_
 #define OSELIB_DPWS_TYPES_H_
 
-#include "wsdd-discovery-1.1-schema-os-fwd.hxx"
-#include "BICEPS_MessageModel-fwd.hxx"
+#include "DataModel/wsdd-discovery-1.1-schema-os-fwd.hxx"
+#include "DataModel/BICEPS_MessageModel-fwd.hxx"
 
 namespace OSELib {
 namespace DPWS {

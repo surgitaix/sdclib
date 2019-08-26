@@ -14,7 +14,7 @@
 #ifndef SIMPLETYPESMAPPING_H_
 #define SIMPLETYPESMAPPING_H_
 
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {

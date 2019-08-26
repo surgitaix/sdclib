@@ -9,7 +9,7 @@
 
 
 # Name of the folder
-DIRNAME=generated
+DIRNAME=generated/DataModel/
 
 # Cleanup
 echo "Cleanup..."

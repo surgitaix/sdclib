@@ -17,7 +17,7 @@
 #include <Poco/URI.h>
 #include <Poco/Net/Context.h>
 
-#include "eventing.hxx"
+#include "DataModel/eventing.hxx"
 
 namespace OSELib
 {

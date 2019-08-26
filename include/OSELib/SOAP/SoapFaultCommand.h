@@ -3,6 +3,7 @@
  *
  *  Created on: 07.12.2015, matthias
  *  Modified on: 21.08.2019, baumeister
+ *
  */
 
 #ifndef OSELIB_SOAP_SOAPFAULTCOMMAND_H_
@@ -10,6 +11,8 @@
 
 #include "OSELib/fwd.h"
 #include "OSELib/SOAP/Command.h"
+
+#include "DataModel/NormalizedMessageModel.hxx"
 
 namespace OSELib
 {

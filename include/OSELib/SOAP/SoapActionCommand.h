@@ -12,6 +12,8 @@
 #include "OSELib/fwd.h"
 #include "OSELib/SOAP/Command.h"
 
+#include "DataModel/NormalizedMessageModel.hxx"
+
 namespace OSELib {
 namespace SOAP {
 

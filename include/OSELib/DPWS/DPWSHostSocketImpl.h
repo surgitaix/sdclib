@@ -14,7 +14,7 @@
 #include "OSELib/DPWS/Types.h"
 #include "OSELib/Helper/WithLogger.h"
 
-#include "NormalizedMessageModel-fwd.hxx"
+#include "DataModel/NormalizedMessageModel-fwd.hxx"
 
 #include <map>
 #include <random>

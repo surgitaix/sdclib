@@ -9,12 +9,11 @@
 #ifndef OSELIB_FWD_H_
 #define OSELIB_FWD_H_
 
-#include "BICEPS_ParticipantModel-fwd.hxx"
-#include "BICEPS_MessageModel-fwd.hxx"
-#include "eventing-fwd.hxx"
-#include "MetadataExchange-fwd.hxx"
-#include "NormalizedMessageModel-fwd.hxx"
-
+#include "DataModel/BICEPS_ParticipantModel-fwd.hxx"
+#include "DataModel/BICEPS_MessageModel-fwd.hxx"
+#include "DataModel/eventing-fwd.hxx"
+#include "DataModel/MetadataExchange-fwd.hxx"
+#include "DataModel/NormalizedMessageModel-fwd.hxx"
 
 namespace Poco {
 	namespace Net

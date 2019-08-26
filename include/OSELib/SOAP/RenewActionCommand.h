@@ -11,6 +11,8 @@
 #include "OSELib/DPWS/OperationTraits.h"
 #include "OSELib/SOAP/SoapActionCommand.h"
 
+#include "DataModel/NormalizedMessageModel.hxx"
+
 namespace OSELib
 {
 	namespace SOAP

@@ -15,8 +15,8 @@
 #include <Poco/Thread.h>
 #include <Poco/RunnableAdapter.h>
 
-#include "eventing.hxx"
-#include "ws-addressing.hxx"
+#include "DataModel/eventing.hxx"
+#include "DataModel/ws-addressing.hxx"
 
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"

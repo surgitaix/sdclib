@@ -83,9 +83,7 @@ namespace Log {
 
 			void setDebugLevel(LogLevel logLevel);
 		};
+	}
+}
 
-	} /* namespace Helper */
-
-} /* namespace OSELib */
-
-#endif /* OSELIB_HELPER_WITHLOGGER_H_ */
+#endif

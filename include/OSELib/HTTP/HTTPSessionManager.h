@@ -12,12 +12,13 @@
 #include <memory>
 #include <mutex>
 
-#include <Poco/ThreadPool.h>
-#include <Poco/Net/Context.h>
-
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
 #include "SDCLib/Prerequisites.h"
+
+#include <Poco/ThreadPool.h>
+#include <Poco/Net/Context.h>
+
 
 namespace OSELib
 {

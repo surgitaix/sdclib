@@ -8,12 +8,12 @@
 #ifndef SOAP_NORMALIZEDMESSAGEADAPTER_H_
 #define SOAP_NORMALIZEDMESSAGEADAPTER_H_
 
-#include "NormalizedMessageModel.hxx"
-
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/OperationTraits.h"
 #include "OSELib/SDC/OperationTraits.h"
 #include "OSELib/SDC/ReportTraits.h"
+
+#include "DataModel/NormalizedMessageModel.hxx"
 
 namespace OSELib {
 namespace SOAP {

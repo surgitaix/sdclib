@@ -6,6 +6,7 @@
 #include "SDCLib/Config/NetworkConfig.h"
 
 #include "OSELib/SDC/SDCConstants.h"
+#include "OSELib/Helper/WithLogger.h"
 
 #include <Poco/Net/ServerSocket.h>
 #include <Poco/UUIDGenerator.h>
@@ -32,15 +33,6 @@ SDCInstance::SDCInstance(Config::SDCConfig_shared_ptr p_config, bool p_init)
         init();
     }
 }
-SDCInstance::SDCInstance(SDCPort, bool p_init)
- : m_SDCConfig([]() { return std::make_shared<Config::SDCConfig>(); } ())
-{
-    std::cout << "SDCInstance(SDCPort, bool) Constructor will be removed in future versions." << std::endl;
-    if(p_init) {
-        init();
-    }
-}
-
 
 SDCInstance::~SDCInstance()
 {
@@ -205,4 +197,46 @@ std::string SDCInstance::calcUUIDv5(std::string p_name, bool p_prefix)
 std::string SDCInstance::calcMSGID()
 {
 	return std::string(OSELib::SDC::UUID_SDC_PREFIX + SDCInstance::calcUUID());
+}
+
+SDCLib::SDCInstance_shared_ptr SDCInstance::createSDCInstance(std::string p_networkInterface, bool p_IPv4, bool p_IPv6)
+{
+	assert(p_IPv4 || p_IPv6);
+
+	if(!(p_IPv4 || p_IPv6)) {
+		OSELib::Helper::WithLogger(OSELib::Log::BASE).log_error([]{ return "ERROR IPv4 AND IPv6 disabled!"; });
+		return nullptr;
+	}
+
+    // Init SDCInstance
+    // Create a new SDCInstance (dont init yet) - give it a new port (just increment)
+    auto t_SDCInstance = std::make_shared<SDCInstance>(false);
+
+    // Init
+    if(!t_SDCInstance->init()) {
+    	OSELib::Helper::WithLogger(OSELib::Log::BASE).log_error([]{ return "Failed to init SDCInstance"; });
+        return nullptr;
+    }
+
+    // Some restrictions
+    t_SDCInstance->setIP6enabled(p_IPv4);
+    t_SDCInstance->setIP4enabled(p_IPv6);
+
+    // Bind to network interface if specified
+    if(!p_networkInterface.empty()) {
+    	if(t_SDCInstance->bindToInterface(p_networkInterface, true)) {
+    		return t_SDCInstance;
+    	}
+    	OSELib::Helper::WithLogger(OSELib::Log::BASE).log_error([&]{ return "Failed to bind SDCInstance to " + p_networkInterface + "!"; });
+    	return nullptr;
+    }
+
+	// Bind it to interface that matches the internal criteria (usually the first enumerated)
+	if(t_SDCInstance->bindToDefaultNetworkInterface()) {
+		return t_SDCInstance;
+	}
+
+	// In any other case
+	OSELib::Helper::WithLogger(OSELib::Log::BASE).log_error([]{ return "Failed to bind SDCInstance to default network interface!"; });
+    return nullptr;
 }

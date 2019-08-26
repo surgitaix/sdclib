@@ -58,7 +58,6 @@ namespace SDCLib
 
         explicit SDCInstance(bool p_init = true);
         explicit SDCInstance(Config::SDCConfig_shared_ptr p_config, bool p_init = true);
-        explicit SDCInstance(SDCPort p_MDPWSPort, bool p_init);
 
         // Special Member Functions
         SDCInstance(const SDCInstance& p_obj) = delete;
@@ -129,6 +128,18 @@ namespace SDCLib
 		 *
 		 */
 		static std::string calcUUIDv5(std::string p_name, bool p_prefix);
+
+
+
+		/**
+		 * @brief Creates a new SDCInstance and binds it to the default network adapter
+		 * @param p_networkInterface If empty binds to the default interface (matching the internal search criteria). Sufficient for most use cases.
+		 * @param p_IPv4 Enables / Disables the use of IPv4
+		 * @param p_IPv6 Enables / Disables the use of IPv6
+		 *
+		 * @return Shared Pointer to the SDCInstance or nullptr if anything went wrong.
+		 */
+		static SDCLib::SDCInstance_shared_ptr createSDCInstance(std::string p_networkInterface = "", bool p_IPv4 = Config::SDC_IP_V4_ENABLED, bool p_IPv6 = Config::SDC_IP_V6_ENABLED);
 
     private:
 

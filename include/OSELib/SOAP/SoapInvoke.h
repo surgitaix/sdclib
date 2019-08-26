@@ -2,7 +2,8 @@
  * SoapInvoke.h
  *
  *  Created on: 11.12.2015, matthias
- *  Modified on: 21.08.2019, baumeister
+ *  Modified on: 26.08.2019, baumeister
+ *
  */
 
 #ifndef OSELIB_SOAP_SOAPINVOKE_H_
@@ -10,6 +11,8 @@
 
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
+
+#include "DataModel/NormalizedMessageModel.hxx"
 
 #include <Poco/URI.h>
 #include <Poco/Net/Context.h>

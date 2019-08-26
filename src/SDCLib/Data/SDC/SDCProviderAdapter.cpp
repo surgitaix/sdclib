@@ -33,7 +33,7 @@
 #include "OSELib/SDC/SetServiceHandler.h"
 #include "OSELib/WSDL/WSDLLoader.h"
 
-#include "NormalizedMessageModel.hxx"
+#include "DataModel/NormalizedMessageModel.hxx"
 
 #include <Poco/Net/NetworkInterface.h>
 #include <Poco/Net/ServerSocket.h>

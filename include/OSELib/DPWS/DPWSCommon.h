@@ -9,7 +9,7 @@
 #ifndef OSELIB_DPWS_DPWSCOMMON_H_
 #define OSELIB_DPWS_DPWSCOMMON_H_
 
-#include "NormalizedMessageModel-fwd.hxx"
+#include "DataModel/NormalizedMessageModel-fwd.hxx"
 
 #include "OSELib/DPWS/Types.h"
 

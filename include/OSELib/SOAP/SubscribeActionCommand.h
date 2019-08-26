@@ -3,6 +3,7 @@
  *
  *  Created on: 07.12.2015, matthias
  *  Modified on: 21.08.2019, baumeister
+ *
  */
 
 #ifndef OSELIB_SOAP_SUBSCRIBEACTIONCOMMAND_H_

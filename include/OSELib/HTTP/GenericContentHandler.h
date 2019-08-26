@@ -10,7 +10,6 @@
 #define OSELIB_HTTP_GENERICCONTENTHANDLER_H_
 
 #include <string>
-
 #include <Poco/Net/HTTPRequestHandler.h>
 
 namespace OSELib

@@ -9,7 +9,7 @@
 #define OSELIB_SOAP_NORMALIZEMESSAGEFILTER_H_
 
 #include "OSELib/fwd.h"
-#include "NormalizedMessageModel.hxx"
+#include "DataModel/NormalizedMessageModel.hxx"
 
 namespace OSELib
 {
