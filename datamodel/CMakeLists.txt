@@ -88,7 +88,6 @@ target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${GEN_DIR} )
 
 # All Dependencies
 target_include_directories(${CURRENT_TARGET_NAME}   PUBLIC  ${SDCLib_DEPS_INCLUDE_DIRS})
-target_compile_definitions(${CURRENT_TARGET_NAME}   PUBLIC  ${SDCLib_DEPS_DEFINITIONS})
 
 
 # install

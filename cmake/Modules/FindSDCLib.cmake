@@ -36,8 +36,6 @@ endif()
 ################################################################################
 
 
-
-
 ################################################################################
 # Find the root folder inside the dependencies - This script is inside it!
 # Just search for this file in the SDC Root folder
@@ -135,20 +133,16 @@ if (CMAKE_SYSTEM_NAME MATCHES "Windows")
         RETURN()
     endif()
 endif()
+################################################################################
+
 
 ################################################################################
 # Compile Definitions
 ################################################################################
-
-if(CMAKE_SYSTEM_NAME MATCHES "Linux")
-    list(APPEND SDCLib_DEFINITIONS -D_LINUX)
-    list(APPEND SDCLib_DEFINITIONS -Dlinux)
-endif()
-
-
-if(CMAKE_SYSTEM_NAME MATCHES "Windows")
-    list(APPEND SDCLib_DEFINITIONS -D_WIN32)
-endif()
+list(APPEND SDCLib_OPTIONS $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-Dlinux -D_LINUX>)
+list(APPEND SDCLib_OPTIONS $<$<OR:$<CXX_COMPILER_ID:ARMCC>,$<CXX_COMPILER_ID:ARMClang>>:-Dlinux -D_LINUX>)
+list(APPEND SDCLib_OPTIONS $<$<CXX_COMPILER_ID:MSVC>:-D_WIN32>)
+################################################################################
 
 
 ################################################################################
@@ -172,6 +166,8 @@ list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Debug>,$<OR:$<CXX_COMPILER_ID:ARMCC>
 # list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Debug>,$<CXX_COMPILER_ID:MSVC>>:/O0>) ?
 ################################################################################
 
+
+
 ################################################################################
 # Search for given libary file
 ################################################################################
@@ -187,6 +183,7 @@ else()
 endif()
 
 ################################################################################
+
 
 ################################################################################
 # Note: This script will also gather SDCLib dependencies inside the given
