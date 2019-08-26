@@ -18,7 +18,9 @@
  * FutureInvocationState.cpp
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, röhser, baumeister
+ *  Author: besting, röhser
+ *  Modified on: 26.08.2019, baumeister
+ *
  */
 
 #include "SDCLib/Data/SDC/FutureInvocationState.h"
@@ -48,7 +50,7 @@ FutureInvocationState::~FutureInvocationState()
 
 bool FutureInvocationState::waitReceived(InvocationState p_expected, int p_timeout)
 {
-	std::shared_ptr<Poco::Event> t_event;
+	std::shared_ptr<Poco::Event> t_event = nullptr;
 	{
 		std::lock_guard<std::mutex> t_lock(m_mutex);
 		t_event = ml_invocationEvents[p_expected];

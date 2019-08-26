@@ -8,6 +8,14 @@
 #ifndef DPWS_DPWSDISCOVERYHOSTSOCKETIMPL_H_
 #define DPWS_DPWSDISCOVERYHOSTSOCKETIMPL_H_
 
+
+#include "SDCLib/Prerequisites.h"
+#include "OSELib/DPWS/MessagingContext.h"
+#include "OSELib/DPWS/Types.h"
+#include "OSELib/Helper/WithLogger.h"
+
+#include "NormalizedMessageModel-fwd.hxx"
+
 #include <map>
 #include <random>
 
@@ -18,76 +26,75 @@
 #include <Poco/Net/SocketNotification.h>
 #include <Poco/Net/SocketReactor.h>
 
-#include "NormalizedMessageModel-fwd.hxx"
 
-#include "SDCLib/Prerequisites.h"
-#include "OSELib/DPWS/MessagingContext.h"
-#include "OSELib/DPWS/Types.h"
-#include "OSELib/Helper/WithLogger.h"
+namespace OSELib
+{
+	namespace DPWS
+	{
+		namespace Impl
+		{
 
-namespace OSELib {
-namespace DPWS {
-namespace Impl {
+			class DPWSHostSocketImpl : public OSELib::Helper::WithLogger
+			{
+			private:
 
-class DPWSHostSocketImpl : public OSELib::Helper::WithLogger {
-public:
-	DPWSHostSocketImpl(
-            SDCLib::Config::NetworkConfig_shared_ptr p_config,
-			ProbeNotificationDispatcher & probeDispatcher,
-			ResolveNotificationDispatcher & resolveDispatcher);
+				struct SendMulticastMessage;
+				struct SendUnicastMessage;
 
-    DPWSHostSocketImpl(const DPWSHostSocketImpl& p_obj) = delete;
-    DPWSHostSocketImpl(DPWSHostSocketImpl&& p_obj) = delete;
-    DPWSHostSocketImpl& operator=(const DPWSHostSocketImpl& p_obj) = delete;
-    DPWSHostSocketImpl& operator=(DPWSHostSocketImpl&& p_obj) = delete;
+				std::mutex m_mutex;
 
-	~DPWSHostSocketImpl();
+				SDCLib::Config::NetworkConfig_shared_ptr m_networkConfig = nullptr;
+				ProbeNotificationDispatcher & m_probeDispatcher;
+				ResolveNotificationDispatcher & m_resolveDispatcher;
 
-	void sendBye(const ByeType & bye);
-	void sendHello(const HelloType & hello);
-	void sendStream(const MDM::WaveformStream & stream, const AddressType epr);
+				const Poco::Net::SocketAddress m_ipv4DiscoveryMulticastAddress;
+				const Poco::Net::SocketAddress m_ipv6DiscoveryMulticastAddress;
+				const Poco::Net::SocketAddress m_ipv4StreamMulticastAddress;
+				const Poco::Net::SocketAddress m_ipv6StreamMulticastAddress;
+				Poco::Net::MulticastSocket m_ipv4MulticastListeningSocket;
+				Poco::Net::MulticastSocket m_ipv6MulticastListeningSocket;
 
-private:
+				std::map<Poco::Net::DatagramSocket, Poco::NotificationQueue> ml_socketSendMessageQueue;
+				Poco::TimedNotificationQueue m_delayedMessages;
+				std::default_random_engine m_generator;
+				std::uniform_int_distribution<unsigned int> m_distribution;
 
-    std::mutex m_mutex;
+				MessagingContext m_context;
 
-	void onMulticastSocketReadable(Poco::Net::ReadableNotification * notification);
-	void onDatagrammSocketWritable(Poco::Net::WritableNotification * notification);
-	void onTimeOut(Poco::Net::TimeoutNotification * notification);
+				Poco::Thread m_reactorThread;
+				Poco::Net::SocketReactor m_reactor;
 
-	Poco::Timestamp createDelay();
-	void processDelayedMessages();
+				bool m_SO_REUSEADDR_FLAG = true;
+				bool m_SO_REUSEPORT_FLAG = true;
 
-	struct SendMulticastMessage;
-	struct SendUnicastMessage;
+			public:
+				DPWSHostSocketImpl(
+						SDCLib::Config::NetworkConfig_shared_ptr p_config,
+						ProbeNotificationDispatcher & p_probeDispatcher,
+						ResolveNotificationDispatcher & p_resolveDispatcher);
+				// Special Member Functions
+				DPWSHostSocketImpl(const DPWSHostSocketImpl& p_obj) = delete;
+				DPWSHostSocketImpl(DPWSHostSocketImpl&& p_obj) = delete;
+				DPWSHostSocketImpl& operator=(const DPWSHostSocketImpl& p_obj) = delete;
+				DPWSHostSocketImpl& operator=(DPWSHostSocketImpl&& p_obj) = delete;
+				~DPWSHostSocketImpl();
 
-    SDCLib::Config::NetworkConfig_shared_ptr m_networkConfig = nullptr;
-	ProbeNotificationDispatcher & probeDispatcher;
-	ResolveNotificationDispatcher & resolveDispatcher;
+				void sendBye(const ByeType & p_bye);
+				void sendHello(const HelloType & p_hello);
+				void sendStream(const MDM::WaveformStream & p_stream, const AddressType p_epr);
 
-    const Poco::Net::SocketAddress m_ipv4DiscoveryMulticastAddress;
-    const Poco::Net::SocketAddress m_ipv6DiscoveryMulticastAddress;
-    const Poco::Net::SocketAddress m_ipv4StreamMulticastAddress;
-    const Poco::Net::SocketAddress m_ipv6StreamMulticastAddress;
-    Poco::Net::MulticastSocket m_ipv4MulticastListeningSocket;
-    Poco::Net::MulticastSocket m_ipv6MulticastListeningSocket;
+			private:
 
-	std::map<Poco::Net::DatagramSocket, Poco::NotificationQueue> socketSendMessageQueue;
-	Poco::TimedNotificationQueue delayedMessages;
-	std::default_random_engine generator;
-	std::uniform_int_distribution<unsigned int> distribution;
+				void onMulticastSocketReadable(Poco::Net::ReadableNotification * p_notification);
+				void onDatagrammSocketWritable(Poco::Net::WritableNotification * p_notification);
+				void onTimeOut(Poco::Net::TimeoutNotification * p_notification);
 
-	MessagingContext context;
+				Poco::Timestamp createDelay();
+				void processDelayedMessages();
+			};
 
-	Poco::Thread reactorThread;
-	Poco::Net::SocketReactor reactor;
+		}
+	}
+}
 
-    bool m_SO_REUSEADDR_FLAG = true;
-    bool m_SO_REUSEPORT_FLAG = true;
-};
-
-} /* namespace Impl */
-} /* namespace DPWS */
-} /* namespace OSELib */
-
-#endif /* DPWS_DPWSDISCOVERYHOSTSOCKETIMPL_H_ */
+#endif

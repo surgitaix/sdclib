@@ -49,7 +49,6 @@ namespace OSELib
 			std::string exchangeHttp(Poco::Net::HTTPClientSession & p_session, const std::string & p_path, const std::string & p_requestData);
 			std::string exchangeHttp(Poco::Net::HTTPSClientSession & p_session, const std::string & p_path, const std::string & p_requestData);
 		};
-
 	}
 }
 

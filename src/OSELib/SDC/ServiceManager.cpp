@@ -17,13 +17,13 @@
 #include "SDCLib/Config/SDCConfig.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 
+#include "ws-addressing.hxx"
+#include "wsdd-discovery-1.1-schema-os.hxx"
+
 #include <Poco/Event.h>
 #include <Poco/URI.h>
 #include <Poco/Net/SocketAddress.h>
 #include <Poco/Net/StreamSocket.h>
-
-#include "ws-addressing.hxx"
-#include "wsdd-discovery-1.1-schema-os.hxx"
 
 
 using namespace OSELib;
@@ -83,32 +83,32 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpoint
 {
 	assert(!p_epr.empty());
 	struct ResolveMatchCallback : public DPWS::ResolveMatchCallback  {
-		ResolveMatchCallback(Poco::Event & matchEvent) :
-			_matchEvent(matchEvent) {
+		ResolveMatchCallback(Poco::Event & p_matchEvent) :
+			m_matchEvent(p_matchEvent) {
 		}
 		virtual ~ResolveMatchCallback() = default;
 
 		virtual void resolveMatch(const DPWS::ResolveMatchType & n) override {
-			_result = std::unique_ptr<DPWS::ResolveMatchType>(new DPWS::ResolveMatchType(n));
-			_matchEvent.set();
+			m_result = std::unique_ptr<DPWS::ResolveMatchType>(new DPWS::ResolveMatchType(n));
+			m_matchEvent.set();
 		}
-		Poco::Event & _matchEvent;
-		std::unique_ptr<DPWS::ResolveMatchType> _result;
+		Poco::Event & m_matchEvent;
+		std::unique_ptr<DPWS::ResolveMatchType> m_result = nullptr;
 	};
 
-	Poco::Event matchEvent;
-	ResolveMatchCallback resolveCb(matchEvent);
+	Poco::Event t_matchEvent;
+	ResolveMatchCallback t_resolveCb(t_matchEvent);
 
 	DPWS::ResolveType resolveFilter((WS::ADDRESSING::EndpointReferenceType(WS::ADDRESSING::AttributedURIType(p_epr))));
-	m_dpwsClient->addResolveMatchEventHandler(resolveFilter, resolveCb);
+	m_dpwsClient->addResolveMatchEventHandler(resolveFilter, t_resolveCb);
 	try {
 
      // FIXME: CRASH HERE... MUTEX ISSUE? WAKEUP (UNLOCK) FROM DIFFERENT THREAD NOT ALLOWED? OWNER PROBLEM? BUG IN POCO?
-        bool t_result = matchEvent.tryWait(m_SDCInstance->getDiscoveryTime().count());
+        bool t_result = t_matchEvent.tryWait(m_SDCInstance->getDiscoveryTime().count());
 		if (!t_result) {
             log_debug([] { return "ServiceManager: discoverEndpointReference::TIMEOUT."; });
         }
-		log_debug([&] { return "Received ResolveMatch for: " + resolveCb._result->EndpointReference().Address(); });
+		log_debug([&] { return "Received ResolveMatch for: " + t_resolveCb.m_result->EndpointReference().Address(); });
      }
      catch (...)
      {
@@ -119,15 +119,14 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpoint
         log_debug([&] { return "Received ResolveMatch for: " + resolveCb._result->EndpointReference().Address(); });
       } catch (const Poco::TimeoutException & e) {
         } */
-	m_dpwsClient->removeResolveMatchEventHandler(resolveCb);
+	m_dpwsClient->removeResolveMatchEventHandler(t_resolveCb);
 
 	SDCLib::StringVector tl_xAddresses;
-
-	if (resolveCb._result && resolveCb._result->XAddrs().present()) {
-		for (const auto & t_xaddr : resolveCb._result->XAddrs().get()) {
+	if (t_resolveCb.m_result && t_resolveCb.m_result->XAddrs().present()) {
+		for (const auto & t_xaddr : t_resolveCb.m_result->XAddrs().get()) {
 			tl_xAddresses.emplace_back(t_xaddr);
 		}
-		auto t_result(connectXAddress(tl_xAddresses, resolveCb._result->EndpointReference().Address()));
+		auto t_result(connectXAddress(tl_xAddresses, t_resolveCb.m_result->EndpointReference().Address()));
 		if (t_result) {
 			return t_result;
 		}
@@ -146,59 +145,60 @@ ServiceManager::AsyncDiscoverResults ServiceManager::async_discover()
 
 ServiceManager::DiscoverResults ServiceManager::discover()
 {
-
     // Note: Replaces discoverOSCP
 	struct ProbeMatchCallback : public DPWS::ProbeMatchCallback  {
 		ProbeMatchCallback() {}
 		virtual ~ProbeMatchCallback() = default;
 
-		virtual void probeMatch(const DPWS::ProbeMatchType & n) override {
-			m_results.emplace_back(n);
+		virtual void probeMatch(const DPWS::ProbeMatchType & p_type) override {
+			ml_results.emplace_back(p_type);
 		}
 
-		std::vector<DPWS::ProbeMatchType> m_results;
+		std::vector<DPWS::ProbeMatchType> ml_results;
 	};
 
-	DPWS::TypesType types;
-	types.push_back(xml_schema::Qname(SDC::NS_MDPWS, "MedicalDevice"));
+	DPWS::TypesType t_types;
+	t_types.push_back(xml_schema::Qname(SDC::NS_MDPWS, "MedicalDevice"));
 
-	DPWS::ProbeType probeFilter;
-	probeFilter.Types().set(types);
+	DPWS::ProbeType t_probeFilter;
+	t_probeFilter.Types().set(t_types);
 
-
-	ProbeMatchCallback probeCb;
-	m_dpwsClient->addProbeMatchEventHandler(probeFilter, probeCb);
+	ProbeMatchCallback t_probeCb;
+	m_dpwsClient->addProbeMatchEventHandler(t_probeFilter, t_probeCb);
 	// BLOCKING THE WHOLE THREAD?...
 	Poco::Thread::sleep(m_SDCInstance->getDiscoveryTime().count());
-	m_dpwsClient->removeProbeMatchEventHandler(probeCb);
-	log_debug([&] { return "Probing done. Got responses: " + std::to_string(probeCb.m_results.size()); });
+	m_dpwsClient->removeProbeMatchEventHandler(t_probeCb);
+	log_debug([&] { return "Probing done. Got responses: " + std::to_string(t_probeCb.ml_results.size()); });
 
-	ServiceManager::DiscoverResults results;
+	ServiceManager::DiscoverResults t_results;
 	SDCLib::StringVector tl_xAddresses;
 
 	// probeCb._results contains the exact number of unique EPR in the network
-	for (const auto & probeResult : probeCb.m_results) {
-		if (!probeResult.XAddrs().present()) {
-			log_debug([&] { return "No xAddresses in response for epr: " + probeResult.EndpointReference().Address(); });
+	for (const auto & t_probeResult : t_probeCb.ml_results) {
+		if (!t_probeResult.XAddrs().present()) {
+			log_debug([&] { return "No xAddresses in response for epr: " + t_probeResult.EndpointReference().Address(); });
 			continue;
 		}
 
 		// one EPR may be connected via multiple network interfaces
-		for (const auto & t_xaddr : probeResult.XAddrs().get()) {
+		for (const auto & t_xaddr : t_probeResult.XAddrs().get()) {
 			log_notice([&] { return "Trying xAddress: " + t_xaddr; });
 			tl_xAddresses.emplace_back(t_xaddr);
 		}
-		auto result(connectXAddress(tl_xAddresses, probeResult.EndpointReference().Address()));
+		auto result(connectXAddress(tl_xAddresses, t_probeResult.EndpointReference().Address()));
 		if (result) {
-			results.emplace_back(std::move(result));
+			t_results.emplace_back(std::move(result));
 		}
 		tl_xAddresses.clear();
 	}
-	return results;
+	return t_results;
 }
 
 
-void ServiceManager::resolveServiceURIsFromMetadata(const WS::MEX::MetadataSection & p_metadata,	DPWS::DeviceDescription & p_deviceDescription) {
+void ServiceManager::resolveServiceURIsFromMetadata(const WS::MEX::MetadataSection & p_metadata, DPWS::DeviceDescription & p_deviceDescription)
+{
+	// TODO: Is there a better way than so many nested for loops?
+
 	for (const auto & t_hosted : p_metadata.Relationship().get().Hosted()) {
 		for (auto t_hosted_type : t_hosted.Types()) {
 			if (t_hosted_type.name() == QNAME_CONTEXTSERVICE_PORTTYPE) {

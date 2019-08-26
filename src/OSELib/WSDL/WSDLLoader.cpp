@@ -15,7 +15,11 @@
 #include "OSELib/WSDL/StateEventServiceWSDL.h"
 
 
-using namespace OSELib::WSDL;
+namespace OSELib
+{
+namespace WSDL
+{
+
 
 std::string WSDLLoader::getGetServiceWSDL() const
 {
@@ -40,4 +44,6 @@ std::string WSDLLoader::getStateEventServiceWSDL() const
 std::string WSDLLoader::getWaveformServiceWSDL() const
 {
     return waveformServiceWsdl;
+}
+}
 }

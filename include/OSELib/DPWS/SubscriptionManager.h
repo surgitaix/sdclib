@@ -2,7 +2,7 @@
  * SubscriptionManager.h
  *
  *  Created on: 07.12.2015, matthias
- *  Modified on: 22.08.2019, baumeister
+ *  Modified on: 26.08.2019, baumeister
  *
  */
 
@@ -13,7 +13,6 @@
 #include "OSELib/Helper/WithLogger.h"
 #include "OSELib/DPWS/ActiveSubscriptions.h"
 #include "OSELib/HTTP/HTTPSessionManager.h"
-#include "OSELib/DPWS/OperationTraits.h"
 
 #include "SDCLib/Prerequisites.h"
 
@@ -30,6 +29,12 @@ namespace OSELib
 
 		public:
 			SubscriptionManager(const std::vector<xml_schema::Uri> & pl_allowedEventActions, SDCLib::Config::SSLConfig_shared_ptr p_SSLConfig);
+			// Special Member Functions
+			SubscriptionManager(const SubscriptionManager& p_obj) = default;
+			SubscriptionManager(SubscriptionManager&& p_obj) = default;
+			SubscriptionManager& operator=(const SubscriptionManager& p_obj) = default;
+			SubscriptionManager& operator=(SubscriptionManager&& p_obj) = default;
+			~SubscriptionManager() = default;
 
 			template <class TraitsType>
 			void fireEvent(const typename TraitsType::ReportType & p_report);

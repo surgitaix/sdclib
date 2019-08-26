@@ -172,6 +172,6 @@ void SubscriptionClient::run() {
 		OSELib::DPWS::UnsubscribeTraits::Request t_request;
 
 		UnsubscribeInvoke t_unsubscribeInvoke(t_subscription.second.m_sourceURI, m_subscriptionIdentifiers.at(t_subscription.first), t_grammarProvider);
-		auto response(t_unsubscribeInvoke.invoke(t_request, m_SSLContext));
+		auto t_response(t_unsubscribeInvoke.invoke(t_request, m_SSLContext));
 	}
 }

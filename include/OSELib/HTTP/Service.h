@@ -2,7 +2,7 @@
  * Service.h
  *
  *  Created on: 18.11.2015, matthias
- *  Modified on: 20.08.2019, baumeister
+ *  Modified on: 23.08.2019, baumeister
  *
  */
 
@@ -21,7 +21,7 @@ namespace OSELib
 		class Service
 		{
 		private:
-			const std::vector<std::string> m_uris;
+			const std::vector<std::string> ml_uris;
 
 		public:
 			Service(FrontController & controller, const std::vector<std::string> & uris);

@@ -6,7 +6,6 @@
  *
  */
 
-
 #include "OSELib/HTTP/GenericFileHandler.h"
 
 #include <fstream>

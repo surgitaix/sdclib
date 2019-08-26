@@ -2,7 +2,7 @@
  * DeviceServiceController.cpp
  *
  *  Created on: 07.12.2015, matthias
- *  Modified on: 20.08.2019, baumeister
+ *  Modified on: 23.08.2019, baumeister
  */
 
 #include "OSELib/DPWS/DeviceServiceController.h"
@@ -22,5 +22,5 @@ Poco::Net::HTTPRequestHandler * DeviceServiceController::createRequestHandler(co
 	return new DeviceHandler(m_serviceImpl, p_SSL);
 }
 
-} /* namespace DPWS */
-} /* namespace OSELib */
+}
+}

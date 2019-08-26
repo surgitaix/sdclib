@@ -31,9 +31,9 @@ void HTTPRequestHandlerExceptionTrap::handleRequest(Poco::Net::HTTPServerRequest
 
 	std::unique_ptr<Command> t_faultCommand = nullptr;
 	try {
-		log_trace([&] { return "Processing HTTP request ... "; });
+		log_trace([] { return "Processing HTTP request ... "; });
 		handleRequestImpl(p_httpRequest, p_httpResponse);
-		log_trace([&] { return "Processing HTTP request successful. "; });
+		log_trace([] { return "Processing HTTP request successful. "; });
 	} catch (const CommonSoapPreprocessing::SoapFaultException & e) {
 		log_error([&] { return "Processing HTTP request caused exception: " + std::string(e.what()); });
 		t_faultCommand = std::unique_ptr<Command>(new SoapFaultCommand(p_httpResponse));

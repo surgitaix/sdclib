@@ -23,8 +23,8 @@
  */
 
 
-#ifndef DEVICEDESCRIPTION_H_
-#define DEVICEDESCRIPTION_H_
+#ifndef SDCLIB_DEV_DEVICEDESCRIPTION_H_
+#define SDCLIB_DEV_DEVICEDESCRIPTION_H_
 
 #include <string>
 #include <map>
@@ -34,64 +34,68 @@ namespace Dev {
 
 typedef std::map<std::string, std::string> LocalizedString;
 
-class DeviceCharacteristics {
-public:
-	DeviceCharacteristics();
-	virtual ~DeviceCharacteristics();
+		class DeviceCharacteristics
+		{
+		private:
+			// ThisModel
+			std::string manufacturer;
+			std::string manufacturerUrl;
+			LocalizedString modelName;
+			std::string modelNumber;
+			std::string modelUrl;
+			std::string presentationUrl;
 
-	void setManufacturer(const std::string & name);
-	void setManufacturerUrl(const std::string & url);
+			// ThisDevice
+			LocalizedString friendlyName;
+			std::string firmwareVersion;
+			std::string serialNumber;
 
-	void addModelName(const std::string & lang, const std::string & name);
-	const std::string & getManufacturer() const;
-	const std::string & getManufacturerUrl() const;
-	std::string getModelName(const std::string & lang) const;
+			// Host
+			std::string endpointReference;
 
-	const LocalizedString & getModelNames() const;
+		public:
+			DeviceCharacteristics() = default;
+			DeviceCharacteristics(const DeviceCharacteristics& p_obj) = default;
+			DeviceCharacteristics(DeviceCharacteristics&& p_obj) = default;
+			DeviceCharacteristics& operator=(const DeviceCharacteristics& p_obj) = default;
+			DeviceCharacteristics& operator=(DeviceCharacteristics&& p_obj) = default;
+			virtual ~DeviceCharacteristics() = default; // TODO: Why virtual ?
 
-	const std::string & getModelNumber() const;
-	const std::string & getModelUrl() const;
-	const std::string & getPresentationUrl() const;
+			void setManufacturer(const std::string & name);
+			void setManufacturerUrl(const std::string & url);
 
-    void setModelNumber(const std::string & modelNumber);
-    void setModelUrl(const std::string & modelUrl);
-    void setPresentationUrl(const std::string & presentationUrl);
+			void addModelName(const std::string & lang, const std::string & name);
+			const std::string & getManufacturer() const;
+			const std::string & getManufacturerUrl() const;
+			std::string getModelName(const std::string & lang) const;
 
-	void addFriendlyName(const std::string & lang, const std::string & name);
-	std::string getFriendlyName(const std::string & lang) const;
+			const LocalizedString & getModelNames() const;
 
-	const LocalizedString & getFriendlyNames() const;
+			const std::string & getModelNumber() const;
+			const std::string & getModelUrl() const;
+			const std::string & getPresentationUrl() const;
 
-	const std::string & getFirmwareVersion() const;
-	const std::string & getSerialNumber() const;
-    void setFirmwareVersion(const std::string & firmwareVersion);
-    void setSerialNumber(const std::string & serialNumber);
+			void setModelNumber(const std::string & modelNumber);
+			void setModelUrl(const std::string & modelUrl);
+			void setPresentationUrl(const std::string & presentationUrl);
 
-    // Host
+			void addFriendlyName(const std::string & lang, const std::string & name);
+			std::string getFriendlyName(const std::string & lang) const;
 
-    // only to be used by SDCProvider
-    void setEndpointReference(const std::string & epr);
-    std::string getEndpointReference() const;
+			const LocalizedString & getFriendlyNames() const;
 
-private:
-    // ThisModel
-    std::string manufacturer;
-    std::string manufacturerUrl;
-    LocalizedString modelName;
-	std::string modelNumber;
-	std::string modelUrl;
-	std::string presentationUrl;
+			const std::string & getFirmwareVersion() const;
+			const std::string & getSerialNumber() const;
+			void setFirmwareVersion(const std::string & firmwareVersion);
+			void setSerialNumber(const std::string & serialNumber);
 
-    // ThisDevice
-	LocalizedString friendlyName;
-	std::string firmwareVersion;
-	std::string serialNumber;
+			// Host
 
-	// Host
-	std::string endpointReference;
-};
-
+			// only to be used by SDCProvider
+			void setEndpointReference(const std::string & epr);
+			std::string getEndpointReference() const;
+		};
+	}
 }
-}
 
-#endif /* DEVICEDESCRIPTION_H_ */
+#endif

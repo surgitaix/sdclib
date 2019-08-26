@@ -31,14 +31,6 @@
 namespace SDCLib {
 namespace Dev {
 
-DeviceCharacteristics::DeviceCharacteristics()
-{
-}
-
-DeviceCharacteristics::~DeviceCharacteristics()
-{
-}
-
 const LocalizedString & DeviceCharacteristics::getModelNames() const
 {
 	return modelName;

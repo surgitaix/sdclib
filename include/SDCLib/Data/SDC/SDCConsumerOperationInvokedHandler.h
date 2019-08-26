@@ -46,6 +46,7 @@ namespace SDCLib
 				friend class SDCConsumer;
 
 			protected:
+				// TODO: Rework naming
 				const std::string descriptorHandle;
 
 				SDCConsumer* parentConsumer = nullptr;
@@ -76,8 +77,8 @@ namespace SDCLib
 				std::string getDescriptorHandle() { return descriptorHandle; }
 			};
 
-		} /* namespace SDC */
-	} /* namespace Data */
-} /* namespace SDCLib */
+		}
+	}
+}
 
 #endif /* SDCCONSUMEROPERATIONINVOKEDHANDLER_H_ */

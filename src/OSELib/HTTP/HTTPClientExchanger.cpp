@@ -113,5 +113,5 @@ std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPSClientSession & p_
     return "";
 }
 
-} /* namespace HTTP */
-} /* namespace OSELib */
+}
+}

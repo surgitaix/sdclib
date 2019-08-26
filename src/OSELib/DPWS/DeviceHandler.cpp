@@ -2,7 +2,7 @@
  * DeviceHandler.cpp
  *
  *  Created on: 07.12.2015, matthias
- *  Modified on: 20.08.2019, baumeister
+ *  Modified on: 23.08.2019, baumeister
  *
  */
 
@@ -19,7 +19,6 @@
 #include "OSELib/SOAP/SoapHTTPResponseWrapper.h"
 
 #include <Poco/Net/HTTPServerRequest.h>
-#include <Poco/Net/HTTPServerResponse.h>
 
 
 namespace OSELib {
@@ -30,30 +29,30 @@ DeviceHandler::DeviceHandler(IDevice & p_service, bool p_SSL)
 , m_SSL(p_SSL)
 { }
 
-void DeviceHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & httpRequest, Poco::Net::HTTPServerResponse & httpResponse)
+void DeviceHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & p_httpRequest, Poco::Net::HTTPServerResponse & p_httpResponse)
 {
-	Helper::EmptyXercesGrammarPoolProvider pool;
-	SOAP::CommonSoapPreprocessing soapHandling(pool);
-	soapHandling.parse(httpRequest.stream());
+	Helper::EmptyXercesGrammarPoolProvider t_pool;
+	SOAP::CommonSoapPreprocessing t_soapHandling(t_pool);
+	t_soapHandling.parse(p_httpRequest.stream());
 
-	const auto soapAction(soapHandling.normalizedMessage->Header().Action().get());
+	const auto t_soapAction(t_soapHandling.normalizedMessage->Header().Action().get());
 
-	std::unique_ptr<SOAP::Command> t_command(new SOAP::SoapFaultCommand(httpResponse));
+	std::unique_ptr<SOAP::Command> t_command(new SOAP::SoapFaultCommand(p_httpResponse));
 
-	if (soapAction == GetTraits::RequestAction()) {
-		const std::string serverAddress(httpRequest.serverAddress().toString());
-		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GetActionCommand(std::move(soapHandling.normalizedMessage), m_service.getMetadata(serverAddress, m_SSL)));
-	} else if (soapAction == ProbeTraits::RequestAction()) {
-		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<ProbeTraits>(std::move(soapHandling.normalizedMessage), m_service));
+	if (t_soapAction == GetTraits::RequestAction()) {
+		const std::string t_serverAddress(p_httpRequest.serverAddress().toString());
+		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GetActionCommand(std::move(t_soapHandling.normalizedMessage), m_service.getMetadata(t_serverAddress, m_SSL)));
+	} else if (t_soapAction == ProbeTraits::RequestAction()) {
+		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<ProbeTraits>(std::move(t_soapHandling.normalizedMessage), m_service));
 	} else {
-		log_error([&] { return "DeviceHandler can't handle action: " + soapAction; });
+		log_error([&] { return "DeviceHandler can't handle action: " + t_soapAction; });
 	}
 
-	std::unique_ptr<MESSAGEMODEL::Envelope> responseMessage(t_command->Run());
+	std::unique_ptr<MESSAGEMODEL::Envelope> t_responseMessage(t_command->Run());
 
-	SOAP::SoapHTTPResponseWrapper response(httpResponse);
-	response.send(SOAP::NormalizedMessageSerializer::serialize(*responseMessage));
+	SOAP::SoapHTTPResponseWrapper t_response(p_httpResponse);
+	t_response.send(SOAP::NormalizedMessageSerializer::serialize(*t_responseMessage));
 }
 
-} /* namespace SDC */
-} /* namespace OSELib */
+}
+}

@@ -1,8 +1,9 @@
 /*
  * DPWSDiscoveryClientSocketImpl.h
  *
- *  Created on: 11.12.2015
- *      Author: matthias
+ *  Created on: 11.12.2015, matthias
+ *  Modified on: 23.08.2019, baumeister
+ *
  */
 
 #ifndef OSELIB_DPWS_DPWSDISCOVERYCLIENTSOCKETIMPL_H_
@@ -18,65 +19,72 @@
 #include <Poco/Thread.h>
 #include <Poco/Net/DatagramSocket.h>
 #include <Poco/Net/MulticastSocket.h>
-#include <Poco/Net/SocketNotification.h>
 #include <Poco/Net/SocketReactor.h>
 
+namespace OSELib
+{
+	namespace DPWS
+	{
+		namespace Impl
+		{
+			class DPWSDiscoveryClientSocketImpl : public OSELib::Helper::WithLogger
+			{
+			private:
+					SDCLib::Config::NetworkConfig_shared_ptr m_networkConfig = nullptr;
+					ByeNotificationDispatcher & m_byeDispatcher;
+					HelloNotificationDispatcher & m_helloDispatcher;
+					ProbeMatchNotificationDispatcher & m_probeMatchDispatcher;
+					ResolveMatchNotificationDispatcher & m_resolveDispatcher;
 
-namespace OSELib {
-namespace DPWS {
-namespace Impl {
+					const Poco::Net::SocketAddress m_ipv4MulticastAddress;
+					const Poco::Net::SocketAddress m_ipv6MulticastAddress;
+					Poco::Net::MulticastSocket m_ipv4DiscoverySocket;
+					Poco::Net::MulticastSocket m_ipv6DiscoverySocket;
 
-class DPWSDiscoveryClientSocketImpl : public OSELib::Helper::WithLogger {
-public:
-	DPWSDiscoveryClientSocketImpl(
-            SDCLib::Config::NetworkConfig_shared_ptr p_config,
-			ByeNotificationDispatcher & byeDispatcher,
-			HelloNotificationDispatcher & helloDispatcher,
-			ProbeMatchNotificationDispatcher & probeMatchDispatcher,
-			ResolveMatchNotificationDispatcher & resolveDispatcher);
+					SDCLib::SDCPort m_ipv4DatagrammSocketPort = 0; // 0 = Any free Port
+					SDCLib::SDCPort m_ipv6DatagrammSocketPort = 0; // 0 = Any free Port
 
-	~DPWSDiscoveryClientSocketImpl();
+					std::map<Poco::Net::DatagramSocket, Poco::NotificationQueue> ml_socketSendMessageQueue;
 
-	void sendProbe(const ProbeType& filter);
+					MessagingContext m_messagingContext;
 
-	void sendResolve(const ResolveType& filter);
+					Poco::Thread m_reactorThread;
+					Poco::Net::SocketReactor m_reactor;
 
-private:
-	void onMulticastSocketReadable(Poco::Net::ReadableNotification * notification);
-	void onDatagrammSocketReadable(Poco::Net::ReadableNotification * notification);
-	void onDatagrammSocketWritable(Poco::Net::WritableNotification * notification) ;
+					bool m_SO_REUSEADDR_FLAG = true; // Default flag when binding to all adapters
+					bool m_SO_REUSEPORT_FLAG = true; // Default flag when binding to all adapters
+
+			public:
+				DPWSDiscoveryClientSocketImpl(
+						SDCLib::Config::NetworkConfig_shared_ptr p_config,
+						ByeNotificationDispatcher & p_byeDispatcher,
+						HelloNotificationDispatcher & p_helloDispatcher,
+						ProbeMatchNotificationDispatcher & p_probeMatchDispatcher,
+						ResolveMatchNotificationDispatcher & p_resolveDispatcher);
+				// Special Member Functions
+				DPWSDiscoveryClientSocketImpl(const DPWSDiscoveryClientSocketImpl& p_obj) = delete;
+				DPWSDiscoveryClientSocketImpl(DPWSDiscoveryClientSocketImpl&& p_obj) = delete;
+				DPWSDiscoveryClientSocketImpl& operator=(const DPWSDiscoveryClientSocketImpl& p_obj) = delete;
+				DPWSDiscoveryClientSocketImpl& operator=(DPWSDiscoveryClientSocketImpl&& p_obj) = delete;
+				~DPWSDiscoveryClientSocketImpl();
 
 
-	bool verifyBye(const MESSAGEMODEL::Envelope & message);
-	bool verifyHello(const MESSAGEMODEL::Envelope & message);
+				void sendProbe(const ProbeType& p_filter);
+				void sendResolve(const ResolveType& p_filter);
 
-	SDCLib::Config::NetworkConfig_shared_ptr m_networkConfig = nullptr;
-	ByeNotificationDispatcher & _byeDispatcher;
-	HelloNotificationDispatcher & _helloDispatcher;
-	ProbeMatchNotificationDispatcher & _probeMatchDispatcher;
-	ResolveMatchNotificationDispatcher & _resolveDispatcher;
 
-	const Poco::Net::SocketAddress m_ipv4MulticastAddress;
-	const Poco::Net::SocketAddress m_ipv6MulticastAddress;
-	Poco::Net::MulticastSocket m_ipv4DiscoverySocket;
-	Poco::Net::MulticastSocket m_ipv6DiscoverySocket;
+			private:
 
-    SDCLib::SDCPort m_ipv4DatagrammSocketPort = 0; // 0 = Any free Port
-    SDCLib::SDCPort m_ipv6DatagrammSocketPort = 0; // 0 = Any free Port
+				void onMulticastSocketReadable(Poco::Net::ReadableNotification * p_notification);
+				void onDatagrammSocketReadable(Poco::Net::ReadableNotification * p_notification);
+				void onDatagrammSocketWritable(Poco::Net::WritableNotification * p_notification) ;
 
-	std::map<Poco::Net::DatagramSocket, Poco::NotificationQueue> m_socketSendMessageQueue;
 
-	MessagingContext m_messagingContext;
+				bool verifyBye(const MESSAGEMODEL::Envelope & p_message);
+				bool verifyHello(const MESSAGEMODEL::Envelope & p_message);
+			};
+		}
+	}
+}
 
-	Poco::Thread m_reactorThread;
-	Poco::Net::SocketReactor m_reactor;
-
-    bool m_SO_REUSEADDR_FLAG = true; // Default flag when binding to all adapters
-    bool m_SO_REUSEPORT_FLAG = true; // Default flag when binding to all adapters
-};
-
-} /* namespace Impl */
-} /* namespace DPWS */
-} /* namespace OSELib */
-
-#endif /* OSELIB_DPWS_DPWSDISCOVERYCLIENTSOCKETIMPL_H_ */
+#endif

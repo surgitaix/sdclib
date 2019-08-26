@@ -1,67 +1,71 @@
 /*
  * MDPWSStreamingAdapter.h
  *
- *  Created on: Nov 3, 2016
- *      Author: sebastian
+ *  Created on: 03.11.2016, buerger
+ *  Modified on: 23.08.2019, baumeister
+ *
  */
 
-#ifndef INCLUDE_OSELIB_DPWS_DPWSSTREAMINGCLIENTSOCKETIMPL_H_
-#define INCLUDE_OSELIB_DPWS_DPWSSTREAMINGCLIENTSOCKETIMPL_H_
+#ifndef OSELIB_DPWS_IMPL_MDPWSSTREAMINGADAPTER_H_
+#define OSELIB_DPWS_IMPL_MDPWSSTREAMINGADAPTER_H_
 
 
 #include "SDCLib/Prerequisites.h"
-#include "OSELib/DPWS/DeviceDescription.h"
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/Types.h"
 #include "OSELib/Helper/WithLogger.h"
 
-#include <Poco/NotificationQueue.h>
 #include <Poco/Thread.h>
 #include <Poco/Net/MulticastSocket.h>
-#include <Poco/Net/SocketNotification.h>
 #include <Poco/Net/SocketReactor.h>
 
 
-namespace OSELib {
-namespace DPWS {
-namespace Impl {
+namespace OSELib
+{
+	namespace DPWS
+	{
+		namespace Impl
+		{
+			class MDPWSStreamingAdapter : public OSELib::Helper::WithLogger
+			{
+				// todo: implement verify msg
+				//	bool verifyStreamingMessage(const MESSAGEMODEL::Envelope & message);
 
+				SDCLib::Config::NetworkConfig_shared_ptr m_networkConfig = nullptr;
+				//  callback function, implemented in SDCConsumerAdapter
+				StreamNotificationDispatcher & m_streamNotificationDispatcher;
 
-class MDPWSStreamingAdapter : public OSELib::Helper::WithLogger {
-public:
-    MDPWSStreamingAdapter(SDCLib::Config::NetworkConfig_shared_ptr p_config, StreamNotificationDispatcher & streamNotificationDispatcher, DeviceDescription_shared_ptr p_deviceDescription);
+				DeviceDescription_shared_ptr m_deviceDescription = nullptr;
 
-	~MDPWSStreamingAdapter();
+				// todo: make list of socket for compatibility with other frameworks
 
-private:
-	void onMulticastSocketReadable(Poco::Net::ReadableNotification * notification);
+				const Poco::Net::SocketAddress m_ipv4MulticastAddress;
+				const Poco::Net::SocketAddress m_ipv6MulticastAddress;
+				Poco::Net::MulticastSocket m_ipv4MulticastSocket;
+				Poco::Net::MulticastSocket m_ipv6MulticastSocket;
 
-	// todo: implement verify msg
-	//	bool verifyStreamingMessage(const MESSAGEMODEL::Envelope & message);
+				Poco::Thread m_reactorThread;
+				Poco::Net::SocketReactor m_reactor;
 
-    SDCLib::Config::NetworkConfig_shared_ptr m_networkConfig = nullptr;
-    //  callback function, implemented in SDCConsumerAdapter
-	StreamNotificationDispatcher & m_streamNotificationDispatcher;
+				bool m_SO_REUSEADDR_FLAG = true; // Default flag when binding to all adapters
+				bool m_SO_REUSEPORT_FLAG = true; // Default flag when binding to all adapters
 
-	DeviceDescription_shared_ptr m_deviceDescription = nullptr;
+			public:
 
-	// todo: make list of socket for compatibility with other frameworks
+				MDPWSStreamingAdapter(SDCLib::Config::NetworkConfig_shared_ptr p_config, StreamNotificationDispatcher & streamNotificationDispatcher, DeviceDescription_shared_ptr p_deviceDescription);
+				// Special Member Functions
+				MDPWSStreamingAdapter(const MDPWSStreamingAdapter& p_obj) = default;
+				MDPWSStreamingAdapter(MDPWSStreamingAdapter&& p_obj) = default;
+				MDPWSStreamingAdapter& operator=(const MDPWSStreamingAdapter& p_obj) = default;
+				MDPWSStreamingAdapter& operator=(MDPWSStreamingAdapter&& p_obj) = default;
+				~MDPWSStreamingAdapter();
 
-	const Poco::Net::SocketAddress m_ipv4MulticastAddress;
-	const Poco::Net::SocketAddress m_ipv6MulticastAddress;
-	Poco::Net::MulticastSocket m_ipv4MulticastSocket;
-	Poco::Net::MulticastSocket m_ipv6MulticastSocket;
+			private:
+				void onMulticastSocketReadable(Poco::Net::ReadableNotification * p_notification);
 
-	Poco::Thread m_reactorThread;
-	Poco::Net::SocketReactor m_reactor;
+			};
+		}
+	}
+}
 
-    bool m_SO_REUSEADDR_FLAG = true; // Default flag when binding to all adapters
-    bool m_SO_REUSEPORT_FLAG = true; // Default flag when binding to all adapters
-};
-
-} /* namespace Impl */
-} /* namespace DPWS */
-} /* namespace OSELib */
-
-
-#endif /* INCLUDE_OSELIB_DPWS_DPWSSTREAMINGCLIENTSOCKETIMPL_H_ */
+#endif

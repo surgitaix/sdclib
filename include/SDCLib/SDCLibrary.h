@@ -44,7 +44,7 @@ namespace SDCLib
         std::atomic<bool> m_initialized = ATOMIC_VAR_INIT(false);
 
         std::mutex m_mutex;
-        std::unique_ptr<OSELib::DPWS::PingManager> m_latestPingManager;
+        std::unique_ptr<OSELib::DPWS::PingManager> m_latestPingManager = nullptr;
     public:
 
         // Special Member Functions
@@ -62,7 +62,7 @@ namespace SDCLib
         *
         * @param debugLevel The debug output level.
         */
-        void startup(OSELib::LogLevel debugLevel = OSELib::LogLevel::Error);
+        void startup(OSELib::LogLevel p_debugLevel = OSELib::LogLevel::Error);
 
         /**
         * Shutdown framework.
@@ -72,9 +72,9 @@ namespace SDCLib
 
         bool isInitialized();
 
-        void dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pingManager);
+        void dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> p_pingManager);
     };
 
-} /* namespace SDCLib */
+}
 
-#endif /* SDCLIB_SDCLIBRARY_H_ */
+#endif

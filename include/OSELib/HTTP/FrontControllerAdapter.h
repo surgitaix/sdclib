@@ -1,8 +1,9 @@
 /*
  * FrontControllerAdapter.h
  *
- *  Created on: 18.11.2015
- *      Author: matthias
+ *  Created on: 18.11.2015, matthias
+ *  Modified on: 20.08.2019, baumeister
+ *
  */
 
 #ifndef OSELIB_HTTP_FRONTCONTROLLERADAPTER_H_

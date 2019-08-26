@@ -19,7 +19,7 @@
  *
  *  @Copyright (C) 2017, SurgiTAIX AG
  *  Author: roehser, besting, buerger
- *  Modified on: 22.08.2019, baumeister
+ *  Modified on: 26.08.2019, baumeister
  *
  */
 
@@ -64,36 +64,35 @@ namespace SDCLib
 
 			private:
 				struct TransactionState {
-					TransactionState(int id, InvocationState is) :
-						transactionId(id),
-						invocationState(is) {
-					}
-
-					const int transactionId;
-					const InvocationState invocationState;
+					TransactionState(int p_id, InvocationState p_is)
+					: m_transactionId(p_id)
+					, m_invocationState(p_is)
+					{ }
+					const int m_transactionId = 0;
+					const InvocationState m_invocationState;
 				};
 
 				SDCInstance_shared_ptr m_SDCInstance = nullptr;
 				OSELib::DPWS::DeviceDescription_shared_ptr m_deviceDescription = nullptr;
 
-				std::map<int, FutureInvocationState *> fisMap;
+				std::map<int, FutureInvocationState *> ml_fisMap;
 				std::mutex m_transactionMutex;
 
-				std::shared_ptr<MdibContainer> mdib;
-				std::deque<TransactionState> transactionQueue;
+				std::shared_ptr<MdibContainer> m_mdib = nullptr;
+				std::deque<TransactionState> ml_transactionQueue;
 				std::mutex m_mdibVersionMutex;
 				std::mutex m_requestMutex;
 				std::mutex m_eventMutex;
-				std::map<std::string, SDCConsumerOperationInvokedHandler *> eventHandlers;
-				SDCConsumerConnectionLostHandler * connectionLostHandler = nullptr;
+				std::map<std::string, SDCConsumerOperationInvokedHandler *> ml_eventHandlers;
+				SDCConsumerConnectionLostHandler * m_connectionLostHandler = nullptr;
 				// todo: kick
-				SDCConsumerSystemContextStateChangedHandler * contextStateChangedHandler = nullptr;
-				SDCConsumerSubscriptionLostHandler * subscriptionLostHandler = nullptr;
+				SDCConsumerSystemContextStateChangedHandler * m_contextStateChangedHandler = nullptr;
+				SDCConsumerSubscriptionLostHandler * m_subscriptionLostHandler = nullptr;
 
-				unsigned long long int lastKnownMDIBVersion = 0;
-				std::atomic<bool> connected = ATOMIC_VAR_INIT(false);
+				unsigned long long int m_lastKnownMDIBVersion = 0;
+				std::atomic<bool> m_connected = ATOMIC_VAR_INIT(false);
 
-				std::unique_ptr<SDCConsumerAdapter> _adapter = nullptr;
+				std::unique_ptr<SDCConsumerAdapter> m_adapter = nullptr;
 
 			public:
 
@@ -136,7 +135,7 @@ namespace SDCLib
 				*
 				* @return True, if registration was successful
 				*/
-				bool registerStateEventHandler(SDCConsumerOperationInvokedHandler * handler);
+				bool registerStateEventHandler(SDCConsumerOperationInvokedHandler * p_handler);
 
 				/**
 				* @brief Unregister notification.
@@ -145,7 +144,7 @@ namespace SDCLib
 				*
 				* @return True, if unregistration was successful
 				*/
-				bool unregisterStateEventHandler(SDCConsumerOperationInvokedHandler * handler);
+				bool unregisterStateEventHandler(SDCConsumerOperationInvokedHandler * p_handler);
 
 				/**
 				* @brief Request or 'GET' a state.
@@ -157,7 +156,7 @@ namespace SDCLib
 				*/
 
 				template<class TStateType>
-				std::unique_ptr<TStateType> requestState(const std::string & handle);
+				std::unique_ptr<TStateType> requestState(const std::string & p_handle);
 
 				/**
 				* @brief Commit or 'SET' a state (asynchronously).
@@ -167,31 +166,31 @@ namespace SDCLib
 				*
 				* @return InvocationState The immediate return value
 				*/
-				InvocationState commitState(const AlertSystemState & state, FutureInvocationState & fis);
-				InvocationState commitState(const AlertSignalState & state, FutureInvocationState & fis);
-				InvocationState commitState(const AlertConditionState & state, FutureInvocationState & fis);
-				InvocationState commitState(const LimitAlertConditionState & state, FutureInvocationState & fis);
-				InvocationState commitState(const EnumStringMetricState & state, FutureInvocationState & fis);
-				InvocationState commitState(const NumericMetricState & state, FutureInvocationState & fis);
-				InvocationState commitState(const StringMetricState & state, FutureInvocationState & fis);
-				InvocationState commitState(const LocationContextState & state, FutureInvocationState & fis);
-				InvocationState commitState(const EnsembleContextState & state, FutureInvocationState & fis);
-				InvocationState commitState(const OperatorContextState & state, FutureInvocationState & fis);
-				InvocationState commitState(const PatientContextState & state, FutureInvocationState & fis);
-				InvocationState commitState(const WorkflowContextState & state, FutureInvocationState & fis);
+				InvocationState commitState(const AlertSystemState & p_state, FutureInvocationState & p_fis);
+				InvocationState commitState(const AlertSignalState & p_state, FutureInvocationState & p_fis);
+				InvocationState commitState(const AlertConditionState & p_state, FutureInvocationState & p_fis);
+				InvocationState commitState(const LimitAlertConditionState & p_state, FutureInvocationState & p_fis);
+				InvocationState commitState(const EnumStringMetricState & p_state, FutureInvocationState & p_fis);
+				InvocationState commitState(const NumericMetricState & p_state, FutureInvocationState & p_fis);
+				InvocationState commitState(const StringMetricState & state, FutureInvocationState & p_fis);
+				InvocationState commitState(const LocationContextState & p_state, FutureInvocationState & p_fis);
+				InvocationState commitState(const EnsembleContextState & p_state, FutureInvocationState & p_fis);
+				InvocationState commitState(const OperatorContextState & p_state, FutureInvocationState & p_fis);
+				InvocationState commitState(const PatientContextState & p_state, FutureInvocationState & p_fis);
+				InvocationState commitState(const WorkflowContextState & p_state, FutureInvocationState & p_fis);
 
-				InvocationState commitState(const AlertSystemState & state);
-				InvocationState commitState(const AlertSignalState & state);
-				InvocationState commitState(const AlertConditionState & state);
-				InvocationState commitState(const LimitAlertConditionState & state);
-				InvocationState commitState(const EnumStringMetricState & state);
-				InvocationState commitState(const NumericMetricState & state);
-				InvocationState commitState(const StringMetricState & state);
-				InvocationState commitState(const LocationContextState & state);
-				InvocationState commitState(const EnsembleContextState & state);
-				InvocationState commitState(const OperatorContextState & state);
-				InvocationState commitState(const PatientContextState & state);
-				InvocationState commitState(const WorkflowContextState & state);
+				InvocationState commitState(const AlertSystemState & p_state);
+				InvocationState commitState(const AlertSignalState & p_state);
+				InvocationState commitState(const AlertConditionState & p_state);
+				InvocationState commitState(const LimitAlertConditionState & vstate);
+				InvocationState commitState(const EnumStringMetricState & p_state);
+				InvocationState commitState(const NumericMetricState & p_state);
+				InvocationState commitState(const StringMetricState & p_state);
+				InvocationState commitState(const LocationContextState & p_state);
+				InvocationState commitState(const EnsembleContextState & p_state);
+				InvocationState commitState(const OperatorContextState & p_state);
+				InvocationState commitState(const PatientContextState & p_state);
+				InvocationState commitState(const WorkflowContextState & p_state);
 
 				/**
 				* @brief Call an ACTIVATE operation
@@ -201,8 +200,8 @@ namespace SDCLib
 				*
 				* @return InvocationState The immediate return value
 				*/
-				InvocationState activate(const std::string & handle, FutureInvocationState & fis);
-				InvocationState activate(const std::string & handle);
+				InvocationState activate(const std::string & p_handle, FutureInvocationState & p_fis);
+				InvocationState activate(const std::string & p_handle);
 
 				/**
 				* @brief Disconnect the consumer from the provider.
@@ -215,7 +214,7 @@ namespace SDCLib
 				* @return True, if connected
 				*/
 				bool isConnected() const {
-					return connected;
+					return m_connected;
 				}
 
 				/**
@@ -223,7 +222,7 @@ namespace SDCLib
 				*
 				* @param handler The handler
 				*/
-				void setConnectionLostHandler(SDCConsumerConnectionLostHandler * handler);
+				void setConnectionLostHandler(SDCConsumerConnectionLostHandler * p_handler);
 
 				// todo:kick?
 				/**
@@ -231,14 +230,14 @@ namespace SDCLib
 				*
 				* @param handler The handler
 				*/
-				void setContextStateChangedHandler(SDCConsumerSystemContextStateChangedHandler * handler);
+				void setContextStateChangedHandler(SDCConsumerSystemContextStateChangedHandler * p_handler);
 
 				/**
 				* @brief Set a handler which will be invoked if a renewal of a subscription fails.
 				*
 				* @param handler The handler
 				*/
-				void setSubscriptionLostHandler(SDCConsumerSubscriptionLostHandler * handler);
+				void setSubscriptionLostHandler(SDCConsumerSubscriptionLostHandler * p_handler);
 
 				/**
 				* @brief Request Mdib in raw XML format.
@@ -285,22 +284,22 @@ namespace SDCLib
 				bool unregisterFutureInvocationListener(int transactionId);
 
 				template<class OperationTraits, class StateType>
-				InvocationState commitStateImpl(const StateType & state, FutureInvocationState & transactionId);
+				InvocationState commitStateImpl(const StateType & p_state, FutureInvocationState & p_transactionId);
 
-				void handleInvocationState(int transactionId, FutureInvocationState & fis);
+				void handleInvocationState(int p_transactionId, FutureInvocationState & p_fis);
 
 				// This method es called each time a state changes. It calls to the state handler identified by the states descriptor handle
 				template<typename T>
-				void onStateChanged(const T & state);
+				void onStateChanged(const T & p_state);
 				// In contrast to the method above, this method calls to all the state handlers identified by states handles. It also invokes by
 				// the message dispacher to update the state handler identified by its descriptor
 			//    template<typename T>
 			//    void onMultiStateChanged(const T & state);
 
-				void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is);
+				void onOperationInvoked(const OperationInvocationContext & p_oic, InvocationState p_is);
 				void onConnectionLost();
 				void onSubscriptionLost();
-				void updateLastKnownMdibVersion(unsigned long long int newVersion);
+				void updateLastKnownMdibVersion(unsigned long long int p_newVersion);
 			};
 
 		}

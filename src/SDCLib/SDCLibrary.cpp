@@ -64,18 +64,19 @@ SDCLibrary::~SDCLibrary()
 }
 
 SDCLibrary & SDCLibrary::getInstance() {
-	static Poco::SingletonHolder<SDCLibrary> t_singletonHolder;
-	return *t_singletonHolder.get();
+	static Poco::SingletonHolder<SDCLibrary> s_singletonHolder;
+	return *s_singletonHolder.get();
 }
 
-void SDCLibrary::startup(OSELib::LogLevel debugLevel) {
+void SDCLibrary::startup(OSELib::LogLevel p_debugLevel)
+{
 	if (!m_initialized) {
 		m_initialized = true;
-		setDebugLevel(debugLevel);
+		setDebugLevel(p_debugLevel);
 		log_notice([&]{ return "SDCLib version " + Config::CURRENT_LIB_VERSION + " (C) " + Config::CURRENT_C_YEAR + " " + Config::STR_SURGITAIX; });
         xercesc::XMLPlatformUtils::Initialize();
 	} else {
-		log_error([&]{ return "SDCLib already initialized!"; });
+		log_error([]{ return "SDCLib already initialized!"; });
 	}
 }
 
@@ -87,9 +88,9 @@ void SDCLibrary::shutdown()
     }
 }
 
-void SDCLibrary::dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pingManager) {
+void SDCLibrary::dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> p_pingManager) {
 	std::lock_guard<std::mutex> t_lock(m_mutex);
-	m_latestPingManager = std::move(pingManager);
+	m_latestPingManager = std::move(p_pingManager);
 }
 
 bool SDCLibrary::isInitialized() {

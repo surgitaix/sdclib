@@ -25,7 +25,7 @@ void GenericContentHandler::handleRequest(Poco::Net::HTTPServerRequest&, Poco::N
 	p_response.setChunkedTransferEncoding(false);
 	p_response.setContentLength(m_content.length());
 
-	std::ostream & t_out = p_response.send();
+	auto & t_out = p_response.send();
 	t_out << m_content << std::flush;
 }
 

@@ -2,7 +2,7 @@
  * ActiveSubscriptions.cpp
  *
  *  Created on: 07.12.2015, matthias
- *  Modified on: 01.08.2019, baumeister
+ *  Modified on: 23.08.2019, baumeister
  */
 
 #include "OSELib/DPWS/ActiveSubscriptions.h"
@@ -58,20 +58,20 @@ void ActiveSubscriptions::unsubscribe(const WS::EVENTING::Identifier & p_identif
 	}
 }
 
-std::string ActiveSubscriptions::subscribe(const SubscriptionInformation & subscription)
+std::string ActiveSubscriptions::subscribe(const SubscriptionInformation & p_subscription)
 {
 	std::lock_guard<std::mutex> t_lock(m_mutex);
 
 	const auto mySubscriptionID(SDCLib::SDCInstance::calcUUID());
-	ml_subscriptions.emplace(mySubscriptionID, subscription);
+	ml_subscriptions.emplace(mySubscriptionID, p_subscription);
 	return mySubscriptionID;
 }
 
-bool ActiveSubscriptions::renew(const WS::EVENTING::Identifier & identifier, std::chrono::system_clock::time_point p_timestamp)
+bool ActiveSubscriptions::renew(const WS::EVENTING::Identifier & p_identifier, std::chrono::system_clock::time_point p_timestamp)
 {
 	std::lock_guard<std::mutex> t_lock(m_mutex);
 
-	auto subscription = ml_subscriptions.find(identifier);
+	auto subscription = ml_subscriptions.find(p_identifier);
 	if (subscription != ml_subscriptions.end()) {
 		subscription->second.m_expirationTime = p_timestamp;
 		return true;
@@ -132,10 +132,10 @@ std::map<xml_schema::Uri, WS::ADDRESSING::EndpointReferenceType> ActiveSubscript
 	}
 	return t_result;
 }
-ActiveSubscriptions::GetStatusResult ActiveSubscriptions::getStatus(const WS::EVENTING::Identifier & identifier) const
+ActiveSubscriptions::GetStatusResult ActiveSubscriptions::getStatus(const WS::EVENTING::Identifier & p_identifier) const
 {
 	std::lock_guard<std::mutex> t_lock(m_mutex);
-	auto t_subscription = ml_subscriptions.find(identifier);
+	auto t_subscription = ml_subscriptions.find(p_identifier);
 	if (t_subscription != ml_subscriptions.end()) {
 		return {true, t_subscription->second};
 	}

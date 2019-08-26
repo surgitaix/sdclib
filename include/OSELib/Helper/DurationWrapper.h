@@ -4,7 +4,7 @@
  * Helper class to convert between various duration formats
  *
  * Created on: 07.12.2015, matthias
- * Modified on: 09.08.2019, baumeister
+ * Modified on: 23.08.2019, baumeister
  *
  */
 
@@ -22,7 +22,7 @@ namespace OSELib
 		class DurationWrapper : public xml_schema::Duration
 		{
 		public:
-			DurationWrapper(const std::string & value);
+			DurationWrapper(const std::string & p_value);
 			DurationWrapper(std::chrono::seconds p_seconds);
 
 			// Special Member Functions
@@ -32,7 +32,7 @@ namespace OSELib
 			DurationWrapper& operator=(DurationWrapper&& p_obj) = default;
 
 			// Assignment from xml_schema Duration
-			DurationWrapper & operator=(const xml_schema::Duration & source);
+			DurationWrapper & operator=(const xml_schema::Duration & p_source);
 
 
 			std::string toString();
@@ -48,4 +48,4 @@ namespace OSELib
 	}
 }
 
-#endif /* OSELIB_HELPER_DURATIONWRAPPER_H_ */
+#endif

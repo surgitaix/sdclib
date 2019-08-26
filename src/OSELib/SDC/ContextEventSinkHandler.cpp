@@ -7,6 +7,7 @@
  */
 
 #include "OSELib/SDC/ContextEventSinkHandler.h"
+#include "OSELib/SDC/ReportTraits.h"
 #include "OSELib/SOAP/Command.h"
 #include "OSELib/SOAP/CommonSoapPreprocessing.h"
 #include "OSELib/SOAP/GenericSoapEventCommand.h"
@@ -14,6 +15,7 @@
 #include "OSELib/SOAP/SoapHTTPResponseWrapper.h"
 #include "OSELib/Helper/Message.h"
 #include "OSELib/Helper/XercesGrammarPoolProvider.h"
+
 
 #include <Poco/Net/HTTPServerRequest.h>
 
