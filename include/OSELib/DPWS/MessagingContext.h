@@ -15,7 +15,7 @@
 #include <map>
 #include <atomic>
 
-#include "wsdd-discovery-1.1-schema-os-fwd.hxx"
+#include "DataModel/wsdd-discovery-1.1-schema-os-fwd.hxx"
 
 namespace OSELib
 {

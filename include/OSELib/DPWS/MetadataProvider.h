@@ -12,7 +12,7 @@
 #include "OSELib/fwd.h"
 #include "SDCLib/Dev/DeviceCharacteristics.h"
 
-#include "MetadataExchange.hxx"
+#include "DataModel/MetadataExchange.hxx"
 
 namespace OSELib
 {
