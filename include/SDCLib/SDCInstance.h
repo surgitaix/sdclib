@@ -132,14 +132,12 @@ namespace SDCLib
 
 
 		/**
-		 * @brief Creates a new SDCInstance and binds it to the default network adapter
+		 * @brief Creates a new SDCInstance and binds it to the default network adapter.
 		 * @param p_networkInterface If empty binds to the default interface (matching the internal search criteria). Sufficient for most use cases.
-		 * @param p_IPv4 Enables / Disables the use of IPv4
-		 * @param p_IPv6 Enables / Disables the use of IPv6
 		 *
 		 * @return Shared Pointer to the SDCInstance or nullptr if anything went wrong.
 		 */
-		static SDCLib::SDCInstance_shared_ptr createSDCInstance(std::string p_networkInterface = "", bool p_IPv4 = Config::SDC_IP_V4_ENABLED, bool p_IPv6 = Config::SDC_IP_V6_ENABLED);
+		static SDCLib::SDCInstance_shared_ptr createSDCInstance(std::string p_networkInterface = "");
 
     private:
 

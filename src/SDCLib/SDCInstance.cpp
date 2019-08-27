@@ -199,15 +199,8 @@ std::string SDCInstance::calcMSGID()
 	return std::string(OSELib::SDC::UUID_SDC_PREFIX + SDCInstance::calcUUID());
 }
 
-SDCLib::SDCInstance_shared_ptr SDCInstance::createSDCInstance(std::string p_networkInterface, bool p_IPv4, bool p_IPv6)
+SDCLib::SDCInstance_shared_ptr SDCInstance::createSDCInstance(std::string p_networkInterface)
 {
-	assert(p_IPv4 || p_IPv6);
-
-	if(!(p_IPv4 || p_IPv6)) {
-		OSELib::Helper::WithLogger(OSELib::Log::BASE).log_error([]{ return "ERROR IPv4 AND IPv6 disabled!"; });
-		return nullptr;
-	}
-
     // Init SDCInstance
     // Create a new SDCInstance (dont init yet) - give it a new port (just increment)
     auto t_SDCInstance = std::make_shared<SDCInstance>(false);
@@ -217,10 +210,6 @@ SDCLib::SDCInstance_shared_ptr SDCInstance::createSDCInstance(std::string p_netw
     	OSELib::Helper::WithLogger(OSELib::Log::BASE).log_error([]{ return "Failed to init SDCInstance"; });
         return nullptr;
     }
-
-    // Some restrictions
-    t_SDCInstance->setIP6enabled(p_IPv4);
-    t_SDCInstance->setIP4enabled(p_IPv6);
 
     // Bind to network interface if specified
     if(!p_networkInterface.empty()) {

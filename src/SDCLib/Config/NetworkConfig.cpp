@@ -76,7 +76,12 @@ bool NetworkConfig::bindToInterface(const std::string& ps_networkInterfaceName, 
                 }
                 catch (...) { }
             }
-            else { setIP4enabled(false); }
+            else {
+            	// This is the only interface (so far) -> Disable
+            	if(ml_networkInterfaces.size() == 0) {
+            		setIP4enabled(false);
+            	}
+            }
 
 
             // IPv6? Else disable!
@@ -88,7 +93,12 @@ bool NetworkConfig::bindToInterface(const std::string& ps_networkInterfaceName, 
                 }
                 catch (...) { }
             }
-            else { setIP6enabled(false); }
+            else {
+            	// This is the only interface (so far) -> Disable
+				if(ml_networkInterfaces.size() == 0) {
+					setIP6enabled(false);
+				}
+            }
 
             // Add
             ml_networkInterfaces.push_back(t_if);
