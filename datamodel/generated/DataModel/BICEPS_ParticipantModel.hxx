@@ -34,7 +34,7 @@
 #ifndef BICEPS_PARTICIPANT_MODEL_HXX
 #define BICEPS_PARTICIPANT_MODEL_HXX
 
-#include "BICEPS_ParticipantModel-fwd.hxx"
+#include "DataModel/BICEPS_ParticipantModel-fwd.hxx"
 
 // Begin prologue.
 //
@@ -63,7 +63,7 @@
 
 #include <xsd/cxx/xml/dom/parsing-header.hxx>
 
-#include "ExtensionPoint.hxx"
+#include "DataModel/ExtensionPoint.hxx"
 
 namespace CDM
 {

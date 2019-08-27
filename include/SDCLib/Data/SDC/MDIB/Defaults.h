@@ -13,7 +13,7 @@
 #define DATA_SDC_MDIB_DEFAULTS_H_
 
 #include "SDCLib/Data/SDC/MDIB/MDIB-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {

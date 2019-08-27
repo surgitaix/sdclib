@@ -21,7 +21,7 @@
 #include "OSELib/SOAP/RenewActionCommand.h"
 #include "OSELib/SOAP/GetStatusActionCommand.h"
 
-#include "NormalizedMessageModel.hxx"
+#include "DataModel/NormalizedMessageModel.hxx"
 
 #include <Poco/Net/HTTPServerRequest.h>
 

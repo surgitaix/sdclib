@@ -38,7 +38,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "ws-addressing.hxx"
+#include "DataModel/ws-addressing.hxx"
 
 namespace WS
 {

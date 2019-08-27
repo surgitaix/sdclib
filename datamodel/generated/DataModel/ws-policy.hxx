@@ -34,7 +34,7 @@
 #ifndef WS_POLICY_HXX
 #define WS_POLICY_HXX
 
-#include "ws-policy-fwd.hxx"
+#include "DataModel/ws-policy-fwd.hxx"
 
 // Begin prologue.
 //
@@ -63,7 +63,7 @@
 
 #include <xsd/cxx/xml/dom/parsing-header.hxx>
 
-#include "ws-streaming.hxx"
+#include "DataModel/ws-streaming.hxx"
 
 namespace WS
 {

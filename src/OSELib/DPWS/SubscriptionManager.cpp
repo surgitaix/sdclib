@@ -14,7 +14,7 @@
 
 #include "SDCLib/SDCInstance.h"
 
-#include "eventing.hxx"
+#include "DataModel/eventing.hxx"
 
 #include <Poco/URI.h>
 #include <Poco/Net/HTTPClientSession.h>

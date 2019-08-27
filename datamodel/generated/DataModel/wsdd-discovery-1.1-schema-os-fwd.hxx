@@ -252,7 +252,7 @@ namespace xml_schema
   }
 }
 
-#include "ws-addressing-fwd.hxx"
+#include "DataModel/ws-addressing-fwd.hxx"
 
 // Forward declarations.
 //

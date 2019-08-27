@@ -252,7 +252,7 @@ namespace xml_schema
   }
 }
 
-#include "eventing-fwd.hxx"
+#include "DataModel/eventing-fwd.hxx"
 
 // Forward declarations.
 //

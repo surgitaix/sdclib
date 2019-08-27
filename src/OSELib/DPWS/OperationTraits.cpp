@@ -12,9 +12,9 @@
 #include "OSELib/DPWS/ISubscriptionManager.h"
 #include "OSELib/SDC/SDCConstants.h"
 
-#include "eventing.hxx"
-#include "NormalizedMessageModel.hxx"
-#include "wsdd-discovery-1.1-schema-os.hxx"
+#include "DataModel/eventing.hxx"
+#include "DataModel/NormalizedMessageModel.hxx"
+#include "DataModel/wsdd-discovery-1.1-schema-os.hxx"
 
 
 namespace OSELib {

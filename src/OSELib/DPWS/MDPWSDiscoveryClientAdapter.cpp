@@ -8,7 +8,7 @@
 #include "OSELib/DPWS/MDPWSDiscoveryClientAdapter.h"
 #include "OSELib/DPWS/DPWSCommon.h"
 
-#include "NormalizedMessageModel.hxx"
+#include "DataModel/NormalizedMessageModel.hxx"
 
 namespace OSELib {
 namespace DPWS {

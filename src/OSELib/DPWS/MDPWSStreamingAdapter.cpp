@@ -12,7 +12,7 @@
 #include "OSELib/Helper/BufferAdapter.h"
 #include "OSELib/DPWS/DeviceDescription.h"
 
-#include "NormalizedMessageModel.hxx"
+#include "DataModel/NormalizedMessageModel.hxx"
 
 #include <Poco/Net/SocketNotification.h>
 

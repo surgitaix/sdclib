@@ -38,7 +38,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "ExtensionPoint.hxx"
+#include "DataModel/ExtensionPoint.hxx"
 
 namespace EXT
 {

@@ -72,13 +72,14 @@
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/SDC/OperationTraits.h"
 
+#include "DataModel/osdm.hxx"
+
 #include <ostream>
 #include <memory>
 #include <vector>
 
 #include <Poco/Net/NetException.h>
 
-#include "osdm.hxx"
 
 namespace SDCLib {
 namespace Data {

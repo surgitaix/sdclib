@@ -252,7 +252,7 @@ namespace xml_schema
   }
 }
 
-#include "BICEPS_ParticipantModel-fwd.hxx"
+#include "DataModel/BICEPS_ParticipantModel-fwd.hxx"
 
 // Forward declarations.
 //

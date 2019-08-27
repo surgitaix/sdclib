@@ -13,8 +13,8 @@
 #include "OSELib/SDC/SDCConstants.h"
 #include "OSELib/DPWS/DPWS11Constants.h"
 
-#include "BICEPS_MessageModel.hxx"
-#include "NormalizedMessageModel.hxx"
+#include "DataModel/BICEPS_MessageModel.hxx"
+#include "DataModel/NormalizedMessageModel.hxx"
 
 namespace OSELib {
 namespace SDC {

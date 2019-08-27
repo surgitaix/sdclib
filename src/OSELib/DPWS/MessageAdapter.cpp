@@ -2,13 +2,13 @@
  * MessageAdapter.cpp
  *
  *  Created on: 07.12.2015, matthias
- *  Modified on: 23.08.2019, baumeister
+ *  Modified on: 26.08.2019, baumeister
  *
  */
 
 #include "OSELib/DPWS/MessageAdapter.h"
 
-#include "wsdd-discovery-1.1-schema-os.hxx"
+#include "DataModel/wsdd-discovery-1.1-schema-os.hxx"
 
 namespace OSELib {
 namespace DPWS {

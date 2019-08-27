@@ -6,7 +6,7 @@
 #include "SDCLib/Data/SDC/MDIB/AlertConditionDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/LimitAlertConditionDescriptor.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 namespace SDCLib {
 namespace Data {

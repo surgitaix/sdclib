@@ -38,7 +38,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "wsdl-custom.hxx"
+#include "DataModel/wsdl-custom.hxx"
 
 namespace WS
 {

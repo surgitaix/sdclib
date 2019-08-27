@@ -13,7 +13,7 @@
 #include "SDCLib/Config/NetworkConfig.h"
 #include "SDCLib/SDCInstance.h"
 
-#include "NormalizedMessageModel.hxx"
+#include "DataModel/NormalizedMessageModel.hxx"
 
 #include <chrono>
 

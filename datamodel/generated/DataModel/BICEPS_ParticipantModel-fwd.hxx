@@ -252,7 +252,7 @@ namespace xml_schema
   }
 }
 
-#include "ExtensionPoint-fwd.hxx"
+#include "DataModel/ExtensionPoint-fwd.hxx"
 
 // Forward declarations.
 //

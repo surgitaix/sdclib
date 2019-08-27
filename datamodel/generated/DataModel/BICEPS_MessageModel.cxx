@@ -38,7 +38,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "BICEPS_MessageModel.hxx"
+#include "DataModel/BICEPS_MessageModel.hxx"
 
 namespace MDM
 {

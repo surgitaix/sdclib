@@ -38,7 +38,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "ws-policy.hxx"
+#include "DataModel/ws-policy.hxx"
 
 namespace WS
 {

@@ -38,7 +38,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "MetadataExchange.hxx"
+#include "DataModel/MetadataExchange.hxx"
 
 namespace WS
 {

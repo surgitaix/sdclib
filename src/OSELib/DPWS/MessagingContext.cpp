@@ -7,7 +7,7 @@
 
 #include "OSELib/DPWS/MessagingContext.h"
 
-#include "wsdd-discovery-1.1-schema-os.hxx"
+#include "DataModel/wsdd-discovery-1.1-schema-os.hxx"
 #include "config/config.h"
 
 #include <chrono>

@@ -109,9 +109,10 @@
 #include "SDCLib/Data/SDC/MDIB/EnsembleContextState.h"
 #include "SDCLib/Data/SDC/MDIB/ContainmentTree.h"
 #include "SDCLib/Data/SDC/MDIB/ContainmentTreeEntry.h"
-#include "osdm.hxx"
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/MDIB/ConvertToCDM.h"
+
+#include "DataModel/osdm.hxx"
 
 #include <stdexcept>
 

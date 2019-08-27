@@ -10,7 +10,7 @@
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/SDC/SDCConstants.h"
 
-#include "MDPWS.hxx"
+#include "DataModel/MDPWS.hxx"
 
 namespace OSELib {
 namespace DPWS {

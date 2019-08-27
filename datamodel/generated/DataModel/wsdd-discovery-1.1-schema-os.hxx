@@ -34,7 +34,7 @@
 #ifndef WSDD_DISCOVERY_1_1_SCHEMA_OS_HXX
 #define WSDD_DISCOVERY_1_1_SCHEMA_OS_HXX
 
-#include "wsdd-discovery-1.1-schema-os-fwd.hxx"
+#include "DataModel/wsdd-discovery-1.1-schema-os-fwd.hxx"
 
 // Begin prologue.
 //
@@ -63,7 +63,7 @@
 
 #include <xsd/cxx/xml/dom/parsing-header.hxx>
 
-#include "ws-addressing.hxx"
+#include "DataModel/ws-addressing.hxx"
 
 namespace WS
 {

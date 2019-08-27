@@ -34,7 +34,7 @@
 #ifndef WSDL_CUSTOM_HXX
 #define WSDL_CUSTOM_HXX
 
-#include "wsdl-custom-fwd.hxx"
+#include "DataModel/wsdl-custom-fwd.hxx"
 
 // Begin prologue.
 //
@@ -63,13 +63,13 @@
 
 #include <xsd/cxx/xml/dom/parsing-header.hxx>
 
-#include "ws-addressing.hxx"
+#include "DataModel/ws-addressing.hxx"
 
-#include "wsdl-soap-binding.hxx"
+#include "DataModel/wsdl-soap-binding.hxx"
 
-#include "eventing.hxx"
+#include "DataModel/eventing.hxx"
 
-#include "ws-policy.hxx"
+#include "DataModel/ws-policy.hxx"
 
 namespace WS
 {

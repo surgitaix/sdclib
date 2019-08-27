@@ -22,9 +22,7 @@
 #include "SDCLib/Data/SDC/MDIB/VmdDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/WorkflowContextDescriptor.h"
 
-#include "osdm.hxx"
-
-#include <iostream>
+#include "DataModel/osdm.hxx"
 
 namespace SDCLib {
 namespace Data {

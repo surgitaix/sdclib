@@ -34,7 +34,7 @@
 #ifndef METADATA_EXCHANGE_HXX
 #define METADATA_EXCHANGE_HXX
 
-#include "MetadataExchange-fwd.hxx"
+#include "DataModel/MetadataExchange-fwd.hxx"
 
 // Begin prologue.
 //
@@ -63,9 +63,9 @@
 
 #include <xsd/cxx/xml/dom/parsing-header.hxx>
 
-#include "wsdd-dpws-1.1-schema-os.hxx"
+#include "DataModel/wsdd-dpws-1.1-schema-os.hxx"
 
-#include "MDPWS.hxx"
+#include "DataModel/MDPWS.hxx"
 
 namespace WS
 {

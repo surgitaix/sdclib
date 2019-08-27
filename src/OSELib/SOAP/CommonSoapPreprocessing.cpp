@@ -12,7 +12,7 @@
 #include "OSELib/Helper/XercesGrammarPoolProvider.h"
 #include "OSELib/SOAP/NormalizeMessageFilter.h"
 
-#include "NormalizedMessageModel.hxx"
+#include "DataModel/NormalizedMessageModel.hxx"
 
 namespace OSELib {
 namespace SOAP {

@@ -252,13 +252,13 @@ namespace xml_schema
   }
 }
 
-#include "ws-addressing-fwd.hxx"
+#include "DataModel/ws-addressing-fwd.hxx"
 
-#include "wsdl-soap-binding-fwd.hxx"
+#include "DataModel/wsdl-soap-binding-fwd.hxx"
 
-#include "eventing-fwd.hxx"
+#include "DataModel/eventing-fwd.hxx"
 
-#include "ws-policy-fwd.hxx"
+#include "DataModel/ws-policy-fwd.hxx"
 
 // Forward declarations.
 //

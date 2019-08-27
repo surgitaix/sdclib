@@ -252,9 +252,9 @@ namespace xml_schema
   }
 }
 
-#include "ExtensionPoint-fwd.hxx"
+#include "DataModel/ExtensionPoint-fwd.hxx"
 
-#include "BICEPS_ParticipantModel-fwd.hxx"
+#include "DataModel/BICEPS_ParticipantModel-fwd.hxx"
 
 // Forward declarations.
 //

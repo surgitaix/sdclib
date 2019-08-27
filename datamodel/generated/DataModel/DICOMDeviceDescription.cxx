@@ -38,7 +38,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "DICOMDeviceDescription.hxx"
+#include "DataModel/DICOMDeviceDescription.hxx"
 
 namespace CDM
 {

@@ -252,7 +252,7 @@ namespace xml_schema
   }
 }
 
-#include "ws-streaming-fwd.hxx"
+#include "DataModel/ws-streaming-fwd.hxx"
 
 // Forward declarations.
 //

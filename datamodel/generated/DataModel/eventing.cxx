@@ -38,7 +38,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "eventing.hxx"
+#include "DataModel/eventing.hxx"
 
 namespace WS
 {

@@ -11,7 +11,7 @@
 #include "OSELib/SOAP/NormalizedMessageSerializer.h"
 #include "SDCLib/SDCInstance.h"
 
-#include "NormalizedMessageModel.hxx"
+#include "DataModel/NormalizedMessageModel.hxx"
 
 #include <Poco/Net/HTTPClientSession.h>
 #include <Poco/Net/HTTPSClientSession.h>
@@ -23,9 +23,7 @@ SoapInvoke::SoapInvoke(const Poco::URI & p_requestURI, OSELib::Helper::XercesGra
  : OSELib::Helper::WithLogger(Log::SOAP)
  , m_requestURI(p_requestURI)
  , m_grammarProvider(p_grammarProvider)
-{
-
-}
+{ }
 
 std::unique_ptr<MESSAGEMODEL::Header> SoapInvoke::createHeader()
 {

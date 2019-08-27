@@ -38,7 +38,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "MDPWS.hxx"
+#include "DataModel/MDPWS.hxx"
 
 namespace MDPWS
 {

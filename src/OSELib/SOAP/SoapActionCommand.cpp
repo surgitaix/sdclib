@@ -9,7 +9,7 @@
 #include "OSELib/SOAP/SoapActionCommand.h"
 #include "SDCLib/SDCInstance.h"
 
-#include "NormalizedMessageModel.hxx"
+#include "DataModel/NormalizedMessageModel.hxx"
 
 
 namespace OSELib {

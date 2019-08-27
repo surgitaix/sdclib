@@ -38,7 +38,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "ws-streaming.hxx"
+#include "DataModel/ws-streaming.hxx"
 
 namespace WS
 {

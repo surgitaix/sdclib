@@ -14,7 +14,7 @@
 #include "SDCLib/SDCInstance.h"
 #include "SDCLib/Config/NetworkConfig.h"
 
-#include "NormalizedMessageModel.hxx"
+#include "DataModel/NormalizedMessageModel.hxx"
 
 #include <Poco/Buffer.h>
 #include <Poco/Net/SocketAddress.h>

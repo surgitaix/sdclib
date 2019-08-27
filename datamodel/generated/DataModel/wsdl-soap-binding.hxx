@@ -34,7 +34,7 @@
 #ifndef WSDL_SOAP_BINDING_HXX
 #define WSDL_SOAP_BINDING_HXX
 
-#include "wsdl-soap-binding-fwd.hxx"
+#include "DataModel/wsdl-soap-binding-fwd.hxx"
 
 // Begin prologue.
 //

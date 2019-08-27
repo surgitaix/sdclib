@@ -34,7 +34,7 @@
 #ifndef WS_STREAMING_HXX
 #define WS_STREAMING_HXX
 
-#include "ws-streaming-fwd.hxx"
+#include "DataModel/ws-streaming-fwd.hxx"
 
 // Begin prologue.
 //

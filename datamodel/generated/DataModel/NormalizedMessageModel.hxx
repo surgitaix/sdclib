@@ -34,7 +34,7 @@
 #ifndef NORMALIZED_MESSAGE_MODEL_HXX
 #define NORMALIZED_MESSAGE_MODEL_HXX
 
-#include "NormalizedMessageModel-fwd.hxx"
+#include "DataModel/NormalizedMessageModel-fwd.hxx"
 
 // Begin prologue.
 //
@@ -63,17 +63,17 @@
 
 #include <xsd/cxx/xml/dom/parsing-header.hxx>
 
-#include "ws-addressing.hxx"
+#include "DataModel/ws-addressing.hxx"
 
-#include "MetadataExchange.hxx"
+#include "DataModel/MetadataExchange.hxx"
 
-#include "eventing.hxx"
+#include "DataModel/eventing.hxx"
 
-#include "ws-streaming.hxx"
+#include "DataModel/ws-streaming.hxx"
 
-#include "BICEPS_MessageModel.hxx"
+#include "DataModel/BICEPS_MessageModel.hxx"
 
-#include "wsdd-discovery-1.1-schema-os.hxx"
+#include "DataModel/wsdd-discovery-1.1-schema-os.hxx"
 
 namespace MESSAGEMODEL
 {

@@ -17,8 +17,8 @@
 #include "SDCLib/Config/SDCConfig.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 
-#include "ws-addressing.hxx"
-#include "wsdd-discovery-1.1-schema-os.hxx"
+#include "DataModel/ws-addressing.hxx"
+#include "DataModel/wsdd-discovery-1.1-schema-os.hxx"
 
 #include <Poco/Event.h>
 #include <Poco/URI.h>

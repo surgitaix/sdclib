@@ -34,7 +34,7 @@
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/Defaults.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 #include "SDCLib/Data/SDC/MDIB/LocalizedText.h"
 #include "SDCLib/Data/SDC/MDIB/CalibrationResult.h"

@@ -34,7 +34,7 @@
 #ifndef DICOMDEVICE_DESCRIPTION_HXX
 #define DICOMDEVICE_DESCRIPTION_HXX
 
-#include "DICOMDeviceDescription-fwd.hxx"
+#include "DataModel/DICOMDeviceDescription-fwd.hxx"
 
 // Begin prologue.
 //
@@ -63,7 +63,7 @@
 
 #include <xsd/cxx/xml/dom/parsing-header.hxx>
 
-#include "BICEPS_ParticipantModel.hxx"
+#include "DataModel/BICEPS_ParticipantModel.hxx"
 
 namespace CDM
 {

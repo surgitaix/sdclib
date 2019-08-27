@@ -3,7 +3,7 @@
 // needed SimpleTypes?
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 #include <stdexcept>
 

@@ -9,7 +9,7 @@
 #include "OSELib/SOAP/SubscribeActionCommand.h"
 #include "OSELib/SOAP/NormalizedMessageAdapter.h"
 
-#include "NormalizedMessageModel.hxx"
+#include "DataModel/NormalizedMessageModel.hxx"
 
 namespace OSELib {
 namespace SOAP {

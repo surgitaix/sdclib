@@ -12,8 +12,8 @@
 #include "OSELib/Helper/DurationWrapper.h"
 #include "SDCLib/SDCInstance.h"
 
-#include "ws-addressing.hxx"
-#include "eventing.hxx"
+#include "DataModel/ws-addressing.hxx"
+#include "DataModel/eventing.hxx"
 
 // Note: Configure these values later?
 const std::size_t RENEW_THRESHOLD = 60; // Time in sec a renew will be needed
@@ -150,18 +150,20 @@ void SubscriptionClient::run() {
 			}
 			else {
 				log_fatal([] { return "GetStatus failed."; });
+				// Init with 0 Duration - This will trigger a renew
+				t_expireDuration = OSELib::Helper::DurationWrapper(std::chrono::seconds(0));
 			}
-
+			// FIXME: This might trigger many renews if GetStatus is not supported / anything goes wrong here
 			// Renew when under a threshold or duration convert error
-			if((!t_expireDuration.toDuration_s().first) || (t_expireDuration.toDuration_s().second < t_renewThreshold))
+			if((!t_expireDuration.toDuration_s().first) || (t_expireDuration.toDuration_s().second < t_renewThreshold) || t_expireDuration.toDuration_s().second == std::chrono::seconds(0))
 			{
 				log_debug([&] { return "Renewing " + m_subscriptionIdentifiers.at(subscription.first) + " (" + t_expireDuration.toString() + "):..."; });
 				OSELib::DPWS::RenewTraits::Request t_request;
 				t_request.Expires(t_defaultExpires);
 				RenewInvoke t_renewInvoke(subscription.second.m_sourceURI, m_subscriptionIdentifiers.at(subscription.first), t_grammarProvider);
-				auto response(t_renewInvoke.invoke(t_request, m_SSLContext));
+				auto t_response(t_renewInvoke.invoke(t_request, m_SSLContext));
 
-				if (!response) {
+				if (!t_response) {
 					log_fatal([] { return "Renew failed."; });
 				}
 			}

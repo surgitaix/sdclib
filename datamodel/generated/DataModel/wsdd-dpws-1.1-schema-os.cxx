@@ -38,7 +38,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "wsdd-dpws-1.1-schema-os.hxx"
+#include "DataModel/wsdd-dpws-1.1-schema-os.hxx"
 
 namespace WS
 {

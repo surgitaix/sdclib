@@ -25,7 +25,7 @@
 
 #include <memory>
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 namespace SDCLib {
 namespace Data {

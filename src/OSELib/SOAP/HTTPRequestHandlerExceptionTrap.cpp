@@ -13,7 +13,7 @@
 #include "OSELib/SOAP/SoapFaultCommand.h"
 #include "OSELib/SOAP/SoapHTTPResponseWrapper.h"
 
-#include "NormalizedMessageModel.hxx"
+#include "DataModel/NormalizedMessageModel.hxx"
 
 #include <xercesc/dom/DOMException.hpp>
 #include <xercesc/util/XMLException.hpp>

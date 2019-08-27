@@ -20,7 +20,7 @@
 #include "OSELib/SOAP/UnsubscribeActionCommand.h"
 #include "OSELib/SOAP/GetStatusActionCommand.h"
 
-#include "NormalizedMessageModel.hxx"
+#include "DataModel/NormalizedMessageModel.hxx"
 
 #include <Poco/Net/HTTPServerRequest.h>
 

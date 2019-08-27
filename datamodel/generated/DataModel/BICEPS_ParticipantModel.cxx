@@ -38,7 +38,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "BICEPS_ParticipantModel.hxx"
+#include "DataModel/BICEPS_ParticipantModel.hxx"
 
 namespace CDM
 {

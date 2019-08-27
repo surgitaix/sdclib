@@ -15,7 +15,7 @@
 #include "OSELib/Helper/Message.h"
 #include "OSELib/Helper/XercesGrammarPoolProvider.h"
 
-#include "NormalizedMessageModel.hxx"
+#include "DataModel/NormalizedMessageModel.hxx"
 
 namespace OSELib {
 namespace DPWS {

@@ -34,7 +34,7 @@
 #ifndef EXTENSION_POINT_HXX
 #define EXTENSION_POINT_HXX
 
-#include "ExtensionPoint-fwd.hxx"
+#include "DataModel/ExtensionPoint-fwd.hxx"
 
 // Begin prologue.
 //

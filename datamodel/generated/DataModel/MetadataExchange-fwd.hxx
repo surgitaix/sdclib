@@ -252,9 +252,9 @@ namespace xml_schema
   }
 }
 
-#include "wsdd-dpws-1.1-schema-os-fwd.hxx"
+#include "DataModel/wsdd-dpws-1.1-schema-os-fwd.hxx"
 
-#include "MDPWS-fwd.hxx"
+#include "DataModel/MDPWS-fwd.hxx"
 
 // Forward declarations.
 //

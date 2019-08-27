@@ -86,7 +86,7 @@
 #include "OSELib/SDC/SDCConstants.h"
 
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 #include <memory>
 #include <sstream>

@@ -38,7 +38,7 @@
 
 #include <xsd/cxx/pre.hxx>
 
-#include "wsdl-soap-binding.hxx"
+#include "DataModel/wsdl-soap-binding.hxx"
 
 namespace WS
 {

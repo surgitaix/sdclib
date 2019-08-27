@@ -34,7 +34,7 @@
 #ifndef MDPWS_HXX
 #define MDPWS_HXX
 
-#include "MDPWS-fwd.hxx"
+#include "DataModel/MDPWS-fwd.hxx"
 
 // Begin prologue.
 //

@@ -8,7 +8,7 @@
 
 #include "OSELib/SOAP/SoapFaultCommand.h"
 
-#include "NormalizedMessageModel.hxx"
+#include "DataModel/NormalizedMessageModel.hxx"
 
 #include <Poco/Net/HTTPServerResponse.h>
 

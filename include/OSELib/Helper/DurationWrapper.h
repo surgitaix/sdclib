@@ -15,6 +15,8 @@
 
 #include "SDCLib/Prerequisites.h"
 
+#include "DataModel/NormalizedMessageModel-fwd.hxx"
+
 namespace OSELib
 {
 	namespace Helper

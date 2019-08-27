@@ -34,7 +34,7 @@
 #ifndef EVENTING_HXX
 #define EVENTING_HXX
 
-#include "eventing-fwd.hxx"
+#include "DataModel/eventing-fwd.hxx"
 
 // Begin prologue.
 //
@@ -63,7 +63,7 @@
 
 #include <xsd/cxx/xml/dom/parsing-header.hxx>
 
-#include "ws-addressing.hxx"
+#include "DataModel/ws-addressing.hxx"
 
 namespace WS
 {
