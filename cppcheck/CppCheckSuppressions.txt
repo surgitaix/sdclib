@@ -1,0 +1,4 @@
+// Suppress everything from Dependencies
+*:Dependencies/*
+// Suppress warnings from generated XSD files too (DataModel)
+*:datamodel/*

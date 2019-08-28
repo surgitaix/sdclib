@@ -3,12 +3,11 @@
 
 # NOTE: TEMPORARY WORK! WIP!
 #       SDCLib_SEARCH_DIRS must be defined first!
-#       Building out of source specify SDCLib_ADDITIONAL_LIBRARY_DIRS
 
 # - Find SDCLib
 # Find the SDCLib includes and libraries
 # This module defines:
-# SDCLib_ROOT_DIR, SDCLib_INCLUDE_DIRS, SDCLib_DEFINITIONS, SDCLib_LIBRARY_DIRS, SDCLib_FOUND
+# SDCLib_ROOT_DIR, SDCLib_INCLUDE_DIRS, SDCLib_DEFINITIONS, SDCLib_OPTIONS, SDCLib_LIBRARY_DIRS, SDCLib_FOUND
 
 ################################################################################
 # Here we have to add a few pathes to get it working
@@ -46,14 +45,13 @@ message(STATUS "-Searching for SDCLib files in ${SDCLib_SEARCH_DIRS}")
 # Set Bin folder and manage library dirs
 if (SDCLib_ROOT_DIR)
     message(STATUS "-Found SDC Root Folder: ${SDCLib_ROOT_DIR}!")
-    # Additional Library Dirs?
-    if (SDCLib_ADDITIONAL_LIBRARY_DIRS)
-        message(STATUS "-Detected SDCLib_ADDITIONAL_LIBRARY_DIRS!")
-        message(STATUS "-Adding ${SDCLib_ADDITIONAL_LIBRARY_DIRS} to SDCLib_LIBRARY_DIRS...")
-        set(SDCLib_LIBRARY_DIRS ${SDCLib_ADDITIONAL_LIBRARY_DIRS})
+    # Out of source?
+    if (NOT(${CMAKE_BINARY_DIR} STREQUAL ${CMAKE_SOURCE_DIR}))
+        message(STATUS "-Out of source build: Setting ${CMAKE_BINARY_DIR} to SDCLib_LIBRARY_DIRS!")
+        set(SDCLib_LIBRARY_DIRS ${CMAKE_BINARY_DIR})
     else()
-        message(STATUS "-Adding ${SDCLib_ROOT_DIR} to SDCLib_LIBRARY_DIRS...")
-        set(SDCLib_LIBRARY_DIRS ${SDCLib_ROOT_DIR})
+        message(STATUS "-Setting ${CMAKE_SOURCE_DIR}/bin to SDCLib_LIBRARY_DIRS...")
+        set(SDCLib_LIBRARY_DIRS ${CMAKE_SOURCE_DIR}/bin)
     endif()
 else ()
     message(SEND_ERROR "Could not find SDC Root folder!")
@@ -139,9 +137,9 @@ endif()
 ################################################################################
 # Compile Definitions
 ################################################################################
-list(APPEND SDCLib_OPTIONS $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-Dlinux -D_LINUX>)
-list(APPEND SDCLib_OPTIONS $<$<OR:$<CXX_COMPILER_ID:ARMCC>,$<CXX_COMPILER_ID:ARMClang>>:-Dlinux -D_LINUX>)
-list(APPEND SDCLib_OPTIONS $<$<CXX_COMPILER_ID:MSVC>:-D_WIN32>)
+list(APPEND SDCLib_DEFINITIONS $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:linux;_LINUX>)
+list(APPEND SDCLib_DEFINITIONS $<$<OR:$<CXX_COMPILER_ID:ARMCC>,$<CXX_COMPILER_ID:ARMClang>>:linux;_LINUX>)
+list(APPEND SDCLib_DEFINITIONS $<$<CXX_COMPILER_ID:MSVC>:_WIN32>)
 ################################################################################
 
 
@@ -175,11 +173,8 @@ list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Debug>,$<OR:$<CXX_COMPILER_ID:ARMCC>
 message(STATUS "-Searching for SDCLib file (${SDCLib_LIBRARIES}) ...")
 if (NOT EXISTS ${SDCLib_LIBRARIES})
     message("  Could not find ${SDCLib_LIBRARIES}!")
-    if(NOT SDCLib_ADDITIONAL_LIBRARY_DIRS)
-        message("## Note: For our of source build add SDCLib_ADDITIONAL_LIBRARY_DIRS ##\n")
-    endif()
 else()
-    message(STATUS "FOUND ${SDCLib_LIBRARIES}!")
+    message(STATUS "  -- FOUND SDCLib (${SDCLib_LIBRARIES})!")
 endif()
 
 ################################################################################

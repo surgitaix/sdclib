@@ -531,4 +531,19 @@ install(TARGETS ${CURRENT_TARGET_NAME} CONFIGURATIONS ${CMAKE_BUILD_TYPE}
 )
 install(DIRECTORY ${INCLUDE_DIR}/ DESTINATION ${PATH_INSTALL_INCLUDE}/${CURRENT_TARGET_NAME})
 
+
+# CPPCHECK - Only for CMake Version 3.10 and higher
+if(NOT (${CMAKE_VERSION} VERSION_LESS "3.10.0"))
+	find_program(CMAKE_CXX_CPPCHECK NAMES cppcheck)
+	if (CMAKE_CXX_CPPCHECK AND SDC_CPPCHECK)
+		message(STATUS "Enabling CPPCHECK...")
+		list(
+			APPEND CMAKE_CXX_CPPCHECK
+				"--inconclusive"
+				"--force"
+				"--suppressions-list=${CMAKE_SOURCE_DIR}/cppcheck/CppCheckSuppressions.txt"
+		)
+	endif()
+endif()
+
 # ...

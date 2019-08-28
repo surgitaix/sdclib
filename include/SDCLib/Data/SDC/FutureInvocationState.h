@@ -72,7 +72,6 @@ namespace SDCLib
 				void setEvent(InvocationState p_actual);
 
 			};
-
 		}
 	}
 }

@@ -79,6 +79,11 @@ set_property(CACHE SDC_TESTS PROPERTY STRINGS "ON" "OFF")
 # Examples - Default to ON
 set (SDC_EXAMPLES   ON CACHE STRING "Enable Building Examples")
 set_property(CACHE SDC_EXAMPLES PROPERTY STRINGS "ON" "OFF")
+
+# CPPCHECK - WIP (OFF for now)
+set (SDC_CPPCHECK   OFF CACHE STRING "Enable CPPCHECK (only available for CMAKE 3.10 or higher).")
+set_property(CACHE SDC_CPPCHECK PROPERTY STRINGS "ON" "OFF")
+
 ################################################################################
 
 
