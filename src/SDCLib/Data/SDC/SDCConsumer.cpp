@@ -67,6 +67,18 @@
 #include "SDCLib/Data/SDC/MDIB/StringMetricDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricValue.h"
+#include "SDCLib/Data/SDC/MDIB/ScoState.h"
+#include "SDCLib/Data/SDC/MDIB/BatteryState.h"
+#include "SDCLib/Data/SDC/MDIB/ClockState.h"
+#include "SDCLib/Data/SDC/MDIB/MdsState.h"
+#include "SDCLib/Data/SDC/MDIB/VmdState.h"
+#include "SDCLib/Data/SDC/MDIB/SetValueOperationState.h"
+#include "SDCLib/Data/SDC/MDIB/SetStringOperationState.h"
+#include "SDCLib/Data/SDC/MDIB/ActivateOperationState.h"
+#include "SDCLib/Data/SDC/MDIB/SetContextStateOperationState.h"
+#include "SDCLib/Data/SDC/MDIB/SetMetricStateOperationState.h"
+#include "SDCLib/Data/SDC/MDIB/SetComponentStateOperationState.h"
+#include "SDCLib/Data/SDC/MDIB/SetAlertStateOperationState.h"
 #include "OSELib/SDC/SDCConstants.h"
 #include "OSELib/DPWS/DeviceDescription.h"
 #include "OSELib/DPWS/DPWS11Constants.h"
@@ -649,6 +661,21 @@ template void SDCConsumer::onStateChanged(const AlertSystemState & p_state);
 template void SDCConsumer::onStateChanged(const AlertSignalState & p_state);
 template void SDCConsumer::onStateChanged(const AlertConditionState & p_state);
 template void SDCConsumer::onStateChanged(const LimitAlertConditionState & p_state);
+// Component
+template void SDCConsumer::onStateChanged(const ScoState & p_state);
+template void SDCConsumer::onStateChanged(const ClockState & p_state);
+template void SDCConsumer::onStateChanged(const BatteryState & p_state);
+template void SDCConsumer::onStateChanged(const MdsState & p_state);
+template void SDCConsumer::onStateChanged(const VmdState & p_state);
+// OperationState
+template void SDCConsumer::onStateChanged(const SetValueOperationState & p_state);
+template void SDCConsumer::onStateChanged(const SetComponentStateOperationState & p_state);
+template void SDCConsumer::onStateChanged(const SetMetricStateOperationState & p_state);
+template void SDCConsumer::onStateChanged(const SetContextStateOperationState & p_state);
+template void SDCConsumer::onStateChanged(const ActivateOperationState & p_state);
+template void SDCConsumer::onStateChanged(const SetStringOperationState & p_state);
+template void SDCConsumer::onStateChanged(const SetAlertStateOperationState & p_state);
+
 // TODO: change! context states are multi states
 //template void SDCConsumer::onMultiStateChanged(const WorkflowContextState & p_state);
 //template void SDCConsumer::onMultiStateChanged(const PatientContextState & p_state);

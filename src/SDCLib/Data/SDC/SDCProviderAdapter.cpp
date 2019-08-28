@@ -415,8 +415,10 @@ bool SDCProviderAdapter::start()
 
 	const std::vector<xml_schema::Uri> tl_allowedSubscriptionEventActions {
 				OSELib::SDC::EpisodicAlertReportTraits::Action(),
+				OSELib::SDC::EpisodicComponentReportTraits::Action(),
 				OSELib::SDC::EpisodicContextReportTraits::Action(),
 				OSELib::SDC::EpisodicMetricReportTraits::Action(),
+				OSELib::SDC::EpisodicOperationalStateReportTraits::Action(),
 				OSELib::SDC::OperationInvokedReportTraits::Action(),
 				OSELib::SDC::PeriodicAlertReportTraits::Action(),
 				OSELib::SDC::PeriodicContextReportTraits::Action(),

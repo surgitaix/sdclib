@@ -2,7 +2,7 @@
  * ReportTraits.cpp
  *
  *  Created on: 09.06.2015, roehser
- *  Modified on: 22.08.2019, baumeister
+ *  Modified on: 28.08.2019, baumeister
  *
  */
 #include "OSELib/SDC/ReportTraits.h"
@@ -43,6 +43,22 @@ void EpisodicAlertReportTraits::dispatch(Dispatcher & p_dispatcher, const Report
 	p_dispatcher.dispatch(p_report);
 }
 
+xml_schema::Qname EpisodicComponentReportTraits::MessageType() {
+	return xml_schema::Qname(NS_MESSAGE_MODEL, NotificationName());
+}
+std::string EpisodicComponentReportTraits::NotificationName() {
+	return "EpisodicComponentReport";
+}
+xml_schema::Qname EpisodicComponentReportTraits::PortType() {
+	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_STATEEVENTREPORTSERVICE_PORTTYPE);
+}
+std::string EpisodicComponentReportTraits::Action() {
+	return EVENT_ACTION_CDM_EPISODIC_COMPONENT_REPORT;
+}
+void EpisodicComponentReportTraits::dispatch(Dispatcher & p_dispatcher, const ReportType & p_report) {
+	p_dispatcher.dispatch(p_report);
+}
+
 xml_schema::Qname EpisodicContextReportTraits::MessageType() {
 	return xml_schema::Qname(NS_MESSAGE_MODEL, NotificationName());
 }
@@ -72,6 +88,22 @@ std::string EpisodicMetricReportTraits::Action() {
 	return EVENT_ACTION_CDM_EPISODIC_METRIC_REPORT;
 }
 void EpisodicMetricReportTraits::dispatch(Dispatcher & p_dispatcher, const ReportType & p_report) {
+	p_dispatcher.dispatch(p_report);
+}
+
+xml_schema::Qname EpisodicOperationalStateReportTraits::MessageType() {
+	return xml_schema::Qname(NS_MESSAGE_MODEL, NotificationName());
+}
+std::string EpisodicOperationalStateReportTraits::NotificationName() {
+	return "EpisodicOperationalStateReport";
+}
+xml_schema::Qname EpisodicOperationalStateReportTraits::PortType() {
+	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_STATEEVENTREPORTSERVICE_PORTTYPE);
+}
+std::string EpisodicOperationalStateReportTraits::Action() {
+	return EVENT_ACTION_CDM_EPISODIC_OPERATIONALSTATE_REPORT;
+}
+void EpisodicOperationalStateReportTraits::dispatch(Dispatcher& p_dispatcher, const ReportType& p_report) {
 	p_dispatcher.dispatch(p_report);
 }
 

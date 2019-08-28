@@ -47,8 +47,15 @@ if (SDCLib_ROOT_DIR)
     message(STATUS "-Found SDC Root Folder: ${SDCLib_ROOT_DIR}!")
     # Out of source?
     if (NOT(${CMAKE_BINARY_DIR} STREQUAL ${CMAKE_SOURCE_DIR}))
-        message(STATUS "-Out of source build: Setting ${CMAKE_BINARY_DIR} to SDCLib_LIBRARY_DIRS!")
-        set(SDCLib_LIBRARY_DIRS ${CMAKE_BINARY_DIR})
+		message(STATUS "-Out of source build detected!")
+		if(SDCLib_ADDITIONAL_LIBRARY_DIRS)
+			message(STATUS "Using SDCLib_ADDITIONAL_LIBRARY_DIRS!")
+			message(STATUS "Setting ${SDCLib_ADDITIONAL_LIBRARY_DIRS} to SDCLib_LIBRARY_DIRS!")
+			set(SDCLib_LIBRARY_DIRS ${SDCLib_ADDITIONAL_LIBRARY_DIRS})
+		else()
+			message(STATUS "Setting ${CMAKE_BINARY_DIR} to SDCLib_LIBRARY_DIRS!")
+			set(SDCLib_LIBRARY_DIRS ${CMAKE_BINARY_DIR})
+		endif()
     else()
         message(STATUS "-Setting ${CMAKE_SOURCE_DIR}/bin to SDCLib_LIBRARY_DIRS...")
         set(SDCLib_LIBRARY_DIRS ${CMAKE_SOURCE_DIR}/bin)
@@ -137,8 +144,8 @@ endif()
 ################################################################################
 # Compile Definitions
 ################################################################################
-list(APPEND SDCLib_DEFINITIONS $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:linux;_LINUX>)
-list(APPEND SDCLib_DEFINITIONS $<$<OR:$<CXX_COMPILER_ID:ARMCC>,$<CXX_COMPILER_ID:ARMClang>>:linux;_LINUX>)
+list(APPEND SDCLib_DEFINITIONS $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:linux _LINUX >)
+list(APPEND SDCLib_DEFINITIONS $<$<OR:$<CXX_COMPILER_ID:ARMCC>,$<CXX_COMPILER_ID:ARMClang>>:linux _LINUX>)
 list(APPEND SDCLib_DEFINITIONS $<$<CXX_COMPILER_ID:MSVC>:_WIN32>)
 ################################################################################
 

@@ -27,6 +27,19 @@
 #include "SDCLib/Data/SDC/MDIB/OperatorContextState.h"
 #include "SDCLib/Data/SDC/MDIB/EnsembleContextState.h"
 #include "SDCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
+#include "SDCLib/Data/SDC/MDIB/ScoState.h"
+#include "SDCLib/Data/SDC/MDIB/BatteryState.h"
+#include "SDCLib/Data/SDC/MDIB/ClockState.h"
+#include "SDCLib/Data/SDC/MDIB/MdsState.h"
+#include "SDCLib/Data/SDC/MDIB/VmdState.h"
+#include "SDCLib/Data/SDC/MDIB/SetValueOperationState.h"
+#include "SDCLib/Data/SDC/MDIB/SetStringOperationState.h"
+#include "SDCLib/Data/SDC/MDIB/ActivateOperationState.h"
+#include "SDCLib/Data/SDC/MDIB/SetContextStateOperationState.h"
+#include "SDCLib/Data/SDC/MDIB/SetMetricStateOperationState.h"
+#include "SDCLib/Data/SDC/MDIB/SetComponentStateOperationState.h"
+#include "SDCLib/Data/SDC/MDIB/SetAlertStateOperationState.h"
+
 
 #include "OSELib/DPWS/DeviceDescription.h"
 #include "OSELib/Helper/WithLogger.h"
@@ -185,13 +198,35 @@ public:
 		}
 	}
 
-	virtual void dispatch(const SDC::EpisodicMetricReportTraits::ReportType & p_report) override {
+	virtual void dispatch(const SDC::EpisodicComponentReportTraits::ReportType & p_report) override {
+		if (p_report.MdibVersion().present()) {
+			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
+		}
+		for (const auto & t_reportPart : p_report.ReportPart()) {
+			for (const auto & t_state : t_reportPart.ComponentState()) {
+				dispatchComponentState(t_state);
+			}
+		}
+	}
+
+	virtual void dispatch(const SDC::EpisodicMetricReportTraits::ReportType& p_report) override {
 		if (p_report.MdibVersion().present()) {
 			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
 		}
 		for (const auto & t_reportPart : p_report.ReportPart()) {
 			for (const auto & t_state : t_reportPart.MetricState()) {
 				dispatchMetricState(t_state);
+			}
+		}
+	}
+
+	virtual void dispatch(const SDC::EpisodicOperationalStateReportTraits::ReportType& p_report) override {
+		if (p_report.MdibVersion().present()) {
+			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
+		}
+		for (const auto & t_reportPart : p_report.ReportPart()) {
+			for (const auto & t_state : t_reportPart.OperationState()) {
+				dispatchOperationState(t_state);
 			}
 		}
 	}
@@ -226,48 +261,109 @@ public:
 private:
 
 	void dispatchAlertState(const CDM::AbstractAlertState & p_alertState) {
-		if (const auto t_state = dynamic_cast<const CDM::AlertSystemState *>(&p_alertState)) { // FIXME: std::addressof ?
+		if (const auto t_state = dynamic_cast<const CDM::AlertSystemState *>(&p_alertState)) {
 			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
 			return;
 		}
-		if (const auto t_state = dynamic_cast<const CDM::AlertSignalState *>(&p_alertState)) { // FIXME: std::addressof ?
+		if (const auto t_state = dynamic_cast<const CDM::AlertSignalState *>(&p_alertState)) {
 			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
 			return;
 		}
-		if (const auto t_state = dynamic_cast<const CDM::LimitAlertConditionState *>(&p_alertState)) { // FIXME: std::addressof ?
+		if (const auto t_state = dynamic_cast<const CDM::LimitAlertConditionState *>(&p_alertState)) {
 			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
 			return;
 		}
 		// the order does matter here, because AlertConditionState is the parent class of LimitAlertConditionState
-		if (const auto t_state = dynamic_cast<const CDM::AlertConditionState *>(&p_alertState)) { // FIXME: std::addressof ?
+		if (const auto t_state = dynamic_cast<const CDM::AlertConditionState *>(&p_alertState)) {
 			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
 			return;
 		}
 		log_error([] { return "Unknown alert state type, event will not be forwarded to handler!"; });
 	}
 
-	void dispatchMetricState(const CDM::AbstractMetricState & p_metricState) {
-		if (const auto t_state = dynamic_cast<const CDM::EnumStringMetricState *>(&p_metricState)) { // FIXME: std::addressof ?
+	void dispatchComponentState(const CDM::AbstractDeviceComponentState & p_state)
+	{
+		if (const auto t_state = dynamic_cast<const CDM::ScoState *>(&p_state)) {
 			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
 			return;
 		}
-		if (const auto t_state = dynamic_cast<const CDM::NumericMetricState *>(&p_metricState)) { // FIXME: std::addressof ?
+		if (const auto t_state = dynamic_cast<const CDM::BatteryState *>(&p_state)) {
 			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
 			return;
 		}
-		if (const auto t_state = dynamic_cast<const CDM::StringMetricState *>(&p_metricState)) { // FIXME: std::addressof ?
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		if (const auto t_state = dynamic_cast<const CDM::RealTimeSampleArrayMetricState *>(&p_metricState)) { // FIXME: std::addressof ?
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		if (const auto t_state = dynamic_cast<const CDM::DistributionSampleArrayMetricState *>(&p_metricState)) { // FIXME: std::addressof ?
+		if (const auto t_state = dynamic_cast<const CDM::ClockState *>(&p_state)) {
 			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
 			return;
 		}
 
+		// Derived by AbstractComplexDeviceComponentState
+		if (const auto t_state = dynamic_cast<const CDM::MdsState *>(&p_state)) {
+			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+			return;
+		}
+		if (const auto t_state = dynamic_cast<const CDM::VmdState *>(&p_state)) {
+			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+			return;
+		}
+		log_error([] { return "Unknown component state type, event will not be forwarded to handler!"; });
+	}
+
+	void dispatchMetricState(const CDM::AbstractMetricState & p_metricState) {
+		if (const auto t_state = dynamic_cast<const CDM::EnumStringMetricState *>(&p_metricState)) {
+			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+			return;
+		}
+		if (const auto t_state = dynamic_cast<const CDM::NumericMetricState *>(&p_metricState)) {
+			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+			return;
+		}
+		if (const auto t_state = dynamic_cast<const CDM::StringMetricState *>(&p_metricState)) {
+			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+			return;
+		}
+		if (const auto t_state = dynamic_cast<const CDM::RealTimeSampleArrayMetricState *>(&p_metricState)) {
+			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+			return;
+		}
+		if (const auto t_state = dynamic_cast<const CDM::DistributionSampleArrayMetricState *>(&p_metricState)) {
+			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+			return;
+		}
+
+		log_error([] { return "Unknown metric state type, event will not be forwarded to handler!"; });
+	}
+
+
+	void dispatchOperationState(const CDM::AbstractOperationState& p_state)
+	{
+		if (const auto t_state = dynamic_cast<const CDM::SetValueOperationState *>(&p_state)) {
+			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+			return;
+		}
+		if (const auto t_state = dynamic_cast<const CDM::SetStringOperationState *>(&p_state)) {
+			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+			return;
+		}
+		if (const auto t_state = dynamic_cast<const CDM::ActivateOperationState *>(&p_state)) {
+			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+			return;
+		}
+		if (const auto t_state = dynamic_cast<const CDM::SetContextStateOperationState *>(&p_state)) {
+			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+			return;
+		}
+		if (const auto t_state = dynamic_cast<const CDM::SetMetricStateOperationState *>(&p_state)) {
+			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+			return;
+		}
+		if (const auto t_state = dynamic_cast<const CDM::SetComponentStateOperationState *>(&p_state)) {
+			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+			return;
+		}
+		if (const auto t_state = dynamic_cast<const CDM::SetAlertStateOperationState *>(&p_state)) {
+			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+			return;
+		}
 		log_error([] { return "Unknown metric state type, event will not be forwarded to handler!"; });
 	}
 };

@@ -59,6 +59,7 @@ std::unique_ptr<SubscribeTraits::Response> SubscriptionManager::dispatch(const S
 	}
 	for (const auto & t_filterAction : p_request.Filter().get()) {
 		if (std::find(ml_allowedEventActions.begin(), ml_allowedEventActions.end(), t_filterAction) == ml_allowedEventActions.end()) {
+			log_debug([&] { return "Unknown event action: " + t_filterAction; });
 			throw SOAP::SoapActionCommand::DispatchingFailed("Unknown event action: " + t_filterAction);
 		}
 	}

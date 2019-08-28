@@ -3,6 +3,7 @@
 #define OSELIB_SDC_REPORTRAITS_H_
 
 #include "OSELib/fwd.h"
+#include "DataModel/BICEPS_MessageModel.hxx"
 
 namespace OSELib {
 namespace SDC {
@@ -22,7 +23,17 @@ struct EpisodicAlertReportTraits {
 	static std::string NotificationName();
 	static xml_schema::Qname PortType();
 	static std::string Action();
-	static void dispatch(Dispatcher & p_dispatcher, const ReportType & p_request);
+	static void dispatch(Dispatcher& p_dispatcher, const ReportType& p_request);
+};
+
+struct EpisodicComponentReportTraits {
+	typedef MDM::EpisodicComponentReport ReportType;
+	typedef IStateEventServiceEventSink Dispatcher;
+	static xml_schema::Qname MessageType();
+	static std::string NotificationName();
+	static xml_schema::Qname PortType();
+	static std::string Action();
+	static void dispatch(Dispatcher& p_dispatcher, const ReportType& p_request);
 };
 
 struct EpisodicContextReportTraits {
@@ -43,6 +54,16 @@ struct EpisodicMetricReportTraits {
 	static xml_schema::Qname PortType();
 	static std::string Action();
 	static void dispatch(Dispatcher & p_dispatcher, const ReportType & p_request);
+};
+
+struct EpisodicOperationalStateReportTraits {
+	typedef MDM::EpisodicOperationalStateReport ReportType;
+	typedef IStateEventServiceEventSink Dispatcher;
+	static xml_schema::Qname MessageType();
+	static std::string NotificationName();
+	static xml_schema::Qname PortType();
+	static std::string Action();
+	static void dispatch(Dispatcher& p_dispatcher, const ReportType& p_request);
 };
 
 struct OperationInvokedReportTraits {
