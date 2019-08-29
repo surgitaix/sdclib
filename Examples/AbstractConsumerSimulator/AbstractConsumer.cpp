@@ -417,6 +417,12 @@ void AbstractConsumer::setupDiscoveryProvider()
 		DiscoveryProvider = std::unique_ptr<MirrorProvider>(new MirrorProvider(t_SDCInstance));
 		DiscoveryProvider->setEndpointReference(DEFAULT_ENDPOINTREFERENCE_DISCOVERY_PROVIDER);
 
+		Dev::DeviceCharacteristics devChar;
+		devChar.addFriendlyName("en", "SDCLib C DiscoveryProvider");
+		devChar.setManufacturer("Lorenz Rosenau");
+		devChar.addModelName("en", "sdcDiscoveryProvider");
+		DiscoveryProvider->setDeviceCharacteristics(devChar);
+
 
 		discoverAvailableEndpointReferencesCaller = std::make_shared<SDCParticipantActivateFunctionCaller>(DISCOVER_AVAILABLE_ENDPOINT_REFERENCES,
 			[&]() {updateAvailableEndpointReferences();});

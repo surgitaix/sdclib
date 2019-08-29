@@ -5,7 +5,7 @@
  *      Author: matthias
  */
 #include "OSELib/SOAP/SoapHTTPResponseWrapper.h"
-#include "TCP/TCPClientEventHandler.h"
+#include "TCP/TCPBroadcastServerHandler.h"
 
 
 namespace OSELib {
@@ -23,10 +23,10 @@ SoapHTTPResponseWrapper::SoapHTTPResponseWrapper(
 
 void SoapHTTPResponseWrapper::send(const std::string & content) {
 
-	if(Network::TCPClientEventHandler::getInstance("127.0.0.1", 5000)->isConnected() && content != "")
+	if(Network::TCPBroadcastServerHandler::getInstance("127.0.0.1", 8000)->isStarted() && content != "")
 	{
 		std::cout << "OUTGOING SOAPHTTPResponseWar \n" << content << std::endl;
-		Network::TCPClientEventHandler::getInstance("127.0.0.1", 5000)->sendRequest(content);
+		Network::TCPBroadcastServerHandler::getInstance("127.0.0.1", 8000)->broadcastMessage(content);
 	}
 
 	log_debug([&] { return "Delivering http response: " + content; });

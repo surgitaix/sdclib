@@ -104,6 +104,7 @@ set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             ${INCLUDE_DIR}/OSELib/HTTP/Service.h
                             ${INCLUDE_DIR}/OSELib/HTTP/FrontController.h
                             ${INCLUDE_DIR}/OSELib/HTTP/GenericFileHandler.h
+                            ${INCLUDE_DIR}/OSELib/HTTP/HTTPClientSessionWrapper.h
                             ${INCLUDE_DIR}/OSELib/HTTP/HTTPSessionManager.h
                             ${INCLUDE_DIR}/OSELib/HTTP/FrontControllerAdapter.h
                             ${INCLUDE_DIR}/OSELib/HTTP/GenericContentHandler.h
@@ -462,6 +463,7 @@ target_sources(${CURRENT_TARGET_NAME}
         ${SRC_DIR}/OSELib/HTTP/GenericContentHandler.cpp
         ${SRC_DIR}/OSELib/HTTP/GenericFileHandler.cpp
         ${SRC_DIR}/OSELib/HTTP/HTTPClientExchanger.cpp
+        ${SRC_DIR}/OSELib/HTTP/HTTPClientSessionWrapper.cpp
         ${SRC_DIR}/OSELib/HTTP/HTTPSessionManager.cpp
         ${SRC_DIR}/OSELib/HTTP/Service.cpp
         ${SRC_DIR}/OSELib/HTTP/StaticContentController.cpp

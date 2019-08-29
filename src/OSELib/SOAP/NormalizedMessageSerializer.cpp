@@ -50,7 +50,7 @@ std::string NormalizedMessageSerializer::manipulateMessage(const std::string& or
 {
 	std::lock_guard<std::mutex> l(_mtx);
 
-	if(Network::TCPClientEventHandler::getInstance("127.0.0.1", 5000)->isConnected())
+	if(Network::TCPClientEventHandler::getInstance("127.0.0.1", 5000)->isStarted() && Network::TCPClientEventHandler::getInstance("127.0.0.1", 5000)->isConnected())
 	{
 		std::cout << "OUTGOING \n" << originalMessage << std::endl;
 		std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();

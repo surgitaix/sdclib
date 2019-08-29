@@ -47,6 +47,7 @@
 #include "OSELib/SDC/ServiceManager.h"
 
 #include "OSELib/TCP/TCPClientEventHandler.h"
+#include "OSELib/TCP/TCPBroadcastServerHandler.h"
 
 using namespace SDCLib;
 using namespace SDCLib::Util;
@@ -125,6 +126,7 @@ void waitForUserInput() {
 int main()
 {
 	Network::TCPClientEventHandler::getInstance("127.0.0.1", 7001)->startup();
+	Network::TCPBroadcastServerHandler::getInstance("127.0.0.1", 8000)->startup();
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
 

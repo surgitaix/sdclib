@@ -14,6 +14,8 @@
 #include "OSELib/Helper/Message.h"
 #include "OSELib/Helper/XercesDocumentWrapper.h"
 #include "OSELib/HTTP/HTTPClientExchanger.h"
+//ToDo: This is only necessary for Testing!
+#include "OSELib/HTTP/HTTPClientSessionWrapper.h"
 #include "OSELib/SOAP/CommonSoapPreprocessing.h"
 #include "OSELib/SOAP/NormalizedMessageAdapter.h"
 #include "OSELib/SOAP/NormalizedMessageSerializer.h"
@@ -56,7 +58,9 @@ std::unique_ptr<MESSAGEMODEL::Envelope> SoapInvoke::invoke(std::unique_ptr<MESSA
 
         HTTP::HTTPClientExchanger t_exchanger;
         log_trace([&] { return "Sending soap invoke: " + request; });
-        Poco::Net::HTTPClientSession t_session(m_requestURI.getHost(), m_requestURI.getPort());
+        //HTTPClientSessionWrapper t_session(m_requestURI.getHost(), m_requestURI.getPort());
+        //ToDo: This is only necessary for Testing!
+        HTTP::HTTPClientSessionWrapper t_session(m_requestURI.getHost(), m_requestURI.getPort());
         const std::string t_responseContent = t_exchanger.exchangeHttp(t_session, m_requestURI.getPath(), request);
         log_trace([&] { return "Received soap response: " + request; });
 

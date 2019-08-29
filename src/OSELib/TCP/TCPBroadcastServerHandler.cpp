@@ -23,7 +23,7 @@ std::shared_ptr<TCPBroadcastServerHandler> TCPBroadcastServerHandler::getInstanc
 TCPBroadcastServerHandler::TCPBroadcastServerHandler(const std::string address, const unsigned short port) :
 		Network::TCPServer (address, port),
 		started(false),
-		instantiated(false)
+		instantiated(true)
 {
 
 }
@@ -37,6 +37,7 @@ void TCPBroadcastServerHandler::startup() {
 	{
 		std::cout << "Starting up TCPServerSingelton" << std::endl;
 		instance->TCPServer::start();
+		started = true;
 	}
 }
 
@@ -89,5 +90,11 @@ void TCPBroadcastServerHandler::onStopped() {
 std::shared_ptr<Network::TCPConnection> TCPBroadcastServerHandler::createConnection(std::shared_ptr<Network::TCPServer> server){
 	return std::make_shared<TCPConnectionBroadcastHandler>(server);
 }
+
+bool TCPBroadcastServerHandler::isStarted()
+{
+	return started;
+}
+
 
 }

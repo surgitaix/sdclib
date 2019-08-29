@@ -25,6 +25,7 @@ public:
 
 	bool responseReceived();
 	bool isInstantiated();
+	bool isStarted();
 
 private:
 	TCPClientEventHandler(const std::string& address, const unsigned short port);

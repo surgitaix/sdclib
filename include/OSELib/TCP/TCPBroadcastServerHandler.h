@@ -25,6 +25,7 @@ public:
 	void broadcastMessage(const std::string& msg);
 
 	bool isInstantiated();
+	bool isStarted();
 
 
 protected:
@@ -51,7 +52,7 @@ private:
 private:
 	Network::UUID _curentUUID;
 	bool started;
-	bool instantiated;
+	bool instantiated = false;
 	static std::shared_ptr<TCPBroadcastServerHandler> instance;
 
 };

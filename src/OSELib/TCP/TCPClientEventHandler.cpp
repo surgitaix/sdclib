@@ -2,7 +2,7 @@
  * TCPClientEventHandler.cpp
  *
  *  Created on: May 13, 2019
- *      Author: sebastian
+ *      Author: rosenau
  */
 
 #include "OSELib/TCP/TCPClientEventHandler.h"
@@ -113,6 +113,11 @@ const std::string TCPClientEventHandler::getResponse()
 bool TCPClientEventHandler::isInstantiated()
 {
 	return instantiated;
+}
+
+bool TCPClientEventHandler::isStarted()
+{
+	return started;
 }
 
 } /* namespace ACS */

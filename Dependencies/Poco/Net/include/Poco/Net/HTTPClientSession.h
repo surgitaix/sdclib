@@ -306,7 +306,9 @@ protected:
 		/// Calls proxyConnect() and attaches the resulting StreamSocket
 		/// to the HTTPClientSession.
 
-private:
+
+//TODO: This is changed to have a wrapper class of the HTTPClientSession!!! Use ifdef
+protected:
 	std::string     _host;
 	Poco::UInt16    _port;
 	ProxyConfig     _proxyConfig;

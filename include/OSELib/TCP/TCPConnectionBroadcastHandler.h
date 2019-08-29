@@ -1,4 +1,4 @@
-/*
+	/*
  * TCPConnectionBroadcastHandler.h
  *
  *  Created on: Aug 21, 2019
@@ -22,6 +22,11 @@ protected:
 	void onMessageSent(const std::string& message) override;
     void onDisconnected() override;
     void onConnected() override;
+
+    /**
+     * \brief This is a broadcast server who does not receive incoming messages!
+     */
+    void onReceived(const void* , size_t ) override;
 };
 
 

@@ -49,6 +49,7 @@
 #include "SDCLib/Data/SDC/FutureInvocationState.h"
 
 
+
 #include "SDCParticipantMDStateForwarder.h"
 #include "MirrorProvider.h"
 
@@ -56,6 +57,7 @@
 
 #include "OSELib/SDC/ServiceManager.h"
 #include "OSELib/TCP/TCPClientEventHandler.h"
+#include "OSELib/TCP/TCPBroadcastServerHandler.h"
 #include "AbstractConsumer.h"
 
 using namespace SDCLib;
@@ -132,7 +134,8 @@ void waitForUserInput() {
 int main() {
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
 
-	Network::TCPClientEventHandler::getInstance("127.0.0.1", 5000)->startup();
+	//Network::TCPClientEventHandler::getInstance("127.0.0.1", 7001)->startup();
+	Network::TCPBroadcastServerHandler::getInstance("127.0.0.1", 8000)->startup();
 
 	AbstractConsumer consumer;
 	consumer.setupDiscoveryProvider();

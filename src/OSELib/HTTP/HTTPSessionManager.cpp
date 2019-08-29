@@ -20,6 +20,7 @@
 #include "OSELib/DPWS/ActiveSubscriptions.h"
 #include "OSELib/HTTP/HTTPClientExchanger.h"
 #include "OSELib/HTTP/HTTPSessionManager.h"
+#include "OSELib/HTTP/HTTPClientSessionWrapper.h"
 
 #include "SDCLib/Config/SSLConfig.h"
 
@@ -84,7 +85,7 @@ public:
 						exchanger.exchangeHttp(session, message->_destination.getPath(), message->_message);
 					}
 					else {
-						Poco::Net::HTTPClientSession session(_destinationURI.getHost(), _destinationURI.getPort());
+						HTTPClientSessionWrapper session(_destinationURI.getHost(), _destinationURI.getPort());
 						session.setTimeout(Poco::Timespan(5,0));
 						session.setKeepAlive(true);
 
