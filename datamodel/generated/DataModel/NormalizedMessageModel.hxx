@@ -797,6 +797,27 @@ namespace MESSAGEMODEL
     void
     EpisodicAlertReport (::std::unique_ptr< EpisodicAlertReportType > p);
 
+    // EpisodicComponentReport
+    //
+    typedef ::MDM::EpisodicComponentReport EpisodicComponentReportType;
+    typedef ::xsd::cxx::tree::optional< EpisodicComponentReportType > EpisodicComponentReportOptional;
+    typedef ::xsd::cxx::tree::traits< EpisodicComponentReportType, char > EpisodicComponentReportTraits;
+
+    const EpisodicComponentReportOptional&
+    EpisodicComponentReport () const;
+
+    EpisodicComponentReportOptional&
+    EpisodicComponentReport ();
+
+    void
+    EpisodicComponentReport (const EpisodicComponentReportType& x);
+
+    void
+    EpisodicComponentReport (const EpisodicComponentReportOptional& x);
+
+    void
+    EpisodicComponentReport (::std::unique_ptr< EpisodicComponentReportType > p);
+
     // EpisodicMetricReport
     //
     typedef ::MDM::EpisodicMetricReport EpisodicMetricReportType;
@@ -817,6 +838,27 @@ namespace MESSAGEMODEL
 
     void
     EpisodicMetricReport (::std::unique_ptr< EpisodicMetricReportType > p);
+
+    // EpisodicOperationalStateReport
+    //
+    typedef ::MDM::EpisodicOperationalStateReport EpisodicOperationalStateReportType;
+    typedef ::xsd::cxx::tree::optional< EpisodicOperationalStateReportType > EpisodicOperationalStateReportOptional;
+    typedef ::xsd::cxx::tree::traits< EpisodicOperationalStateReportType, char > EpisodicOperationalStateReportTraits;
+
+    const EpisodicOperationalStateReportOptional&
+    EpisodicOperationalStateReport () const;
+
+    EpisodicOperationalStateReportOptional&
+    EpisodicOperationalStateReport ();
+
+    void
+    EpisodicOperationalStateReport (const EpisodicOperationalStateReportType& x);
+
+    void
+    EpisodicOperationalStateReport (const EpisodicOperationalStateReportOptional& x);
+
+    void
+    EpisodicOperationalStateReport (::std::unique_ptr< EpisodicOperationalStateReportType > p);
 
     // PeriodicAlertReport
     //
@@ -1248,7 +1290,9 @@ namespace MESSAGEMODEL
     EpisodicContextReportOptional EpisodicContextReport_;
     PeriodicContextReportOptional PeriodicContextReport_;
     EpisodicAlertReportOptional EpisodicAlertReport_;
+    EpisodicComponentReportOptional EpisodicComponentReport_;
     EpisodicMetricReportOptional EpisodicMetricReport_;
+    EpisodicOperationalStateReportOptional EpisodicOperationalStateReport_;
     PeriodicAlertReportOptional PeriodicAlertReport_;
     PeriodicMetricReportOptional PeriodicMetricReport_;
     OperationInvokedReportOptional OperationInvokedReport_;

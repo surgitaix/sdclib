@@ -2,7 +2,7 @@
  * SubscriptionManager.cpp
  *
  *  Created on: 07.12.2015, matthias
- *  Modified on: 23.08.2019, baumeister
+ *  Modified on: 29.08.2019, baumeister
  *
  */
 
@@ -181,7 +181,6 @@ void SubscriptionManager::fireEvent(const typename TraitsType::ReportType & p_re
 	SOAP::NormalizedMessageSerializer t_serializer;
 	for (const auto & t_epr : m_subscriptions.getSubscriptions(TraitsType::Action()))
 	{
-
 		t_eventMessage->Header().To(t_epr.second.Address());
 		t_eventMessage->Header().Identifier().reset();
 
@@ -197,9 +196,11 @@ void SubscriptionManager::fireEvent(const typename TraitsType::ReportType & p_re
 	}
 }
 
-template void SubscriptionManager::fireEvent<OSELib::SDC::EpisodicContextReportTraits>(const OSELib::SDC::EpisodicContextReportTraits::ReportType & p_report);
 template void SubscriptionManager::fireEvent<OSELib::SDC::EpisodicAlertReportTraits>(const OSELib::SDC::EpisodicAlertReportTraits::ReportType & p_report);
+template void SubscriptionManager::fireEvent<OSELib::SDC::EpisodicComponentReportTraits>(const OSELib::SDC::EpisodicComponentReportTraits::ReportType & p_report);
+template void SubscriptionManager::fireEvent<OSELib::SDC::EpisodicContextReportTraits>(const OSELib::SDC::EpisodicContextReportTraits::ReportType & p_report);
 template void SubscriptionManager::fireEvent<OSELib::SDC::EpisodicMetricReportTraits>(const OSELib::SDC::EpisodicMetricReportTraits::ReportType & p_report);
+template void SubscriptionManager::fireEvent<OSELib::SDC::EpisodicOperationalStateReportTraits>(const OSELib::SDC::EpisodicOperationalStateReportTraits::ReportType & p_report);
 template void SubscriptionManager::fireEvent<OSELib::SDC::PeriodicAlertReportTraits>(const OSELib::SDC::PeriodicAlertReportTraits::ReportType & p_report);
 template void SubscriptionManager::fireEvent<OSELib::SDC::PeriodicContextReportTraits>(const OSELib::SDC::PeriodicContextReportTraits::ReportType & p_report);
 template void SubscriptionManager::fireEvent<OSELib::SDC::PeriodicMetricReportTraits>(const OSELib::SDC::PeriodicMetricReportTraits::ReportType & p_report);

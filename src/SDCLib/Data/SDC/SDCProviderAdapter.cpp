@@ -479,6 +479,12 @@ void SDCProviderAdapter::notifyEvent(const MDM::EpisodicAlertReport & p_report) 
 		m_subscriptionManager->fireEvent<OSELib::SDC::EpisodicAlertReportTraits>(p_report);
 	}
 }
+void SDCProviderAdapter::notifyEvent(const MDM::EpisodicComponentReport & p_report) {
+	std::lock_guard<std::mutex> t_lock{m_mutex};
+	if (m_subscriptionManager) {
+		m_subscriptionManager->fireEvent<OSELib::SDC::EpisodicComponentReportTraits>(p_report);
+	}
+}
 
 void SDCProviderAdapter::notifyEvent(const MDM::EpisodicContextReport & p_report) {
 	std::lock_guard<std::mutex> t_lock{m_mutex};
@@ -491,6 +497,13 @@ void SDCProviderAdapter::notifyEvent(const MDM::EpisodicMetricReport & p_report)
 	std::lock_guard<std::mutex> t_lock{m_mutex};
 	if (m_subscriptionManager) {
 		m_subscriptionManager->fireEvent<OSELib::SDC::EpisodicMetricReportTraits>(p_report);
+	}
+}
+
+void SDCProviderAdapter::notifyEvent(const MDM::EpisodicOperationalStateReport & p_report) {
+	std::lock_guard<std::mutex> t_lock{m_mutex};
+	if (m_subscriptionManager) {
+		m_subscriptionManager->fireEvent<OSELib::SDC::EpisodicOperationalStateReportTraits>(p_report);
 	}
 }
 

@@ -70,7 +70,9 @@
 				
 				<!-- EventService -->
 				<xs:element ref="mm:EpisodicAlertReport" />
+				<xs:element ref="mm:EpisodicComponentReport" />
 				<xs:element ref="mm:EpisodicMetricReport" />
+				<xs:element ref="mm:EpisodicOperationalStateReport" />
 				<xs:element ref="mm:PeriodicAlertReport" />
 				<xs:element ref="mm:PeriodicMetricReport" />
 				<xs:element ref="mm:OperationInvokedReport" />

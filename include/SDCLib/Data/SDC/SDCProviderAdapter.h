@@ -58,8 +58,10 @@ namespace SDCLib
 				void stop();
 
 				void notifyEvent(const MDM::EpisodicAlertReport & p_report);
+				void notifyEvent(const MDM::EpisodicComponentReport & p_report);
 				void notifyEvent(const MDM::EpisodicContextReport & p_report);
 				void notifyEvent(const MDM::EpisodicMetricReport & p_report);
+				void notifyEvent(const MDM::EpisodicOperationalStateReport & p_report);
 				void notifyEvent(const MDM::PeriodicAlertReport & p_report);
 				void notifyEvent(const MDM::PeriodicContextReport & p_report);
 				void notifyEvent(const MDM::PeriodicMetricReport & p_report);

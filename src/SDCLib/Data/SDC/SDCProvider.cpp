@@ -19,7 +19,7 @@
  *
  *  @Copyright (C) 2018, SurgiTAIX AG
  *  Author: roehser, besting, buerger
- *  Modified on: 22.08.2019, baumeister
+ *  Modified on: 29.08.2019, baumeister
  *
  */
 
@@ -718,6 +718,7 @@ void SDCProvider::updateState(const DistributionSampleArrayMetricState & p_objec
 
 // UDP metrices
 void SDCProvider::updateState(const RealTimeSampleArrayMetricState & p_object) {
+	// FIXME: This increments the MDIB but does not dispatch an event -> see notifyStreamMetricImpl
 	updateMDIB(p_object);
 	evaluateAlertConditions(p_object.getDescriptorHandle());
 	notifyStreamMetricImpl(p_object);
@@ -825,9 +826,10 @@ void SDCProvider::notifyStreamMetricImpl(const T & p_object)
 	// TODO: replace sequence id
 	MDM::WaveformStream t_waveformStream(xml_schema::Uri("0"));
 
-	//waveformStream.State().at(0).
 	t_waveformStream.State().push_back(ConvertToCDM::convert(p_object));
 
+	// FIXME: No dispatching here
+	// -> Consumer will get no "Event" but the MDIB Version was changed. See updateState(...) above -> MISMATCH!
 	m_adapter->notifyEvent(t_waveformStream);
 }
 
@@ -1348,9 +1350,9 @@ void SDCProvider::addSetOperationToSCOObjectImpl(const T & p_source, MdsDescript
 	p_ownerMDS.setSco(ConvertFromCDM::convert(*t_scoDescriptor));
 
 	// Now add a state object for the sco descriptor to the cached states.
-	std::unique_ptr<CDM::MdState> t_cachedOperationStates(ConvertToCDM::convert(m_operationStates));
+	std::unique_ptr<CDM::MdState> tl_cachedOperationStates(ConvertToCDM::convert(m_operationStates));
 	bool t_existingOperationStateFound{false};
-	for (const auto & t_state : t_cachedOperationStates->State()) {
+	for (const auto & t_state : tl_cachedOperationStates->State()) {
 		if (t_state.DescriptorHandle() == p_source.Handle()) {
 			if (dynamic_cast<const CDM::AbstractOperationState *>(std::addressof(t_state))) {
 				t_existingOperationStateFound = true;
@@ -1369,40 +1371,31 @@ void SDCProvider::addSetOperationToSCOObjectImpl(const T & p_source, MdsDescript
 			CDM::SetValueOperationState t_operationState(
 					p_source.Handle(),
 					CDM::OperatingMode::En);
-			t_cachedOperationStates->State().push_back(t_operationState);
+			tl_cachedOperationStates->State().push_back(t_operationState);
 		}
 		else if (dynamic_cast<const CDM::SetStringOperationDescriptor *>(std::addressof(p_source))) {
-			CDM::SetStringOperationState t_operationState(
-					p_source.Handle(),
-					CDM::OperatingMode::En);
-			t_cachedOperationStates->State().push_back(t_operationState);
+			CDM::SetStringOperationState t_operationState(p_source.Handle(), CDM::OperatingMode::En);
+			tl_cachedOperationStates->State().push_back(t_operationState);
 		} else if (dynamic_cast<const CDM::SetAlertStateOperationDescriptor *>(std::addressof(p_source))) {
-			CDM::SetAlertStateOperationState t_operationState(
-					p_source.Handle(),
-					CDM::OperatingMode::En);
-			t_cachedOperationStates->State().push_back(t_operationState);
+			CDM::SetAlertStateOperationState t_operationState(p_source.Handle(), CDM::OperatingMode::En);
+			tl_cachedOperationStates->State().push_back(t_operationState);
 		} else if (dynamic_cast<const CDM::SetComponentStateOperationDescriptor*>(std::addressof(p_source))) {
-			CDM::SetComponentStateOperationState t_operationState(
-					p_source.Handle(),
-					CDM::OperatingMode::En);
-			t_cachedOperationStates->State().push_back(t_operationState);
+			CDM::SetComponentStateOperationState t_operationState(p_source.Handle(), CDM::OperatingMode::En);
+			tl_cachedOperationStates->State().push_back(t_operationState);
 		} else if (dynamic_cast<const CDM::SetContextStateOperationDescriptor *>(std::addressof(p_source))) {
-			CDM::SetContextStateOperationState t_operationState(
-					p_source.Handle(),
-					CDM::OperatingMode::En);
-			t_cachedOperationStates->State().push_back(t_operationState);
+			CDM::SetContextStateOperationState t_operationState(p_source.Handle(), CDM::OperatingMode::En);
+			tl_cachedOperationStates->State().push_back(t_operationState);
 		} else if (dynamic_cast<const CDM::SetMetricStateOperationDescriptor *>(std::addressof(p_source))) {
-			CDM::SetMetricStateOperationState t_operationState(
-					p_source.Handle(),
-					CDM::OperatingMode::En);
-			t_cachedOperationStates->State().push_back(t_operationState);
+			CDM::SetMetricStateOperationState t_operationState(p_source.Handle(), CDM::OperatingMode::En);
+			tl_cachedOperationStates->State().push_back(t_operationState);
 		}
 		else {
             log_error([] { return "SDCProvider::addSetOperationToSCOObjectImpl: dynamic_cast found no match for source!"; });
         }
 
+		// TODO: Call notify on OperationalState Event here?
 		// replace cached states by update.
-		m_operationStates = ConvertFromCDM::convert(*t_cachedOperationStates);
+		m_operationStates = ConvertFromCDM::convert(*tl_cachedOperationStates);
 	}
 }
 

@@ -1009,6 +1009,36 @@ namespace MESSAGEMODEL
     this->EpisodicAlertReport_.set (std::move (x));
   }
 
+  const Body::EpisodicComponentReportOptional& Body::
+  EpisodicComponentReport () const
+  {
+    return this->EpisodicComponentReport_;
+  }
+
+  Body::EpisodicComponentReportOptional& Body::
+  EpisodicComponentReport ()
+  {
+    return this->EpisodicComponentReport_;
+  }
+
+  void Body::
+  EpisodicComponentReport (const EpisodicComponentReportType& x)
+  {
+    this->EpisodicComponentReport_.set (x);
+  }
+
+  void Body::
+  EpisodicComponentReport (const EpisodicComponentReportOptional& x)
+  {
+    this->EpisodicComponentReport_ = x;
+  }
+
+  void Body::
+  EpisodicComponentReport (::std::unique_ptr< EpisodicComponentReportType > x)
+  {
+    this->EpisodicComponentReport_.set (std::move (x));
+  }
+
   const Body::EpisodicMetricReportOptional& Body::
   EpisodicMetricReport () const
   {
@@ -1037,6 +1067,36 @@ namespace MESSAGEMODEL
   EpisodicMetricReport (::std::unique_ptr< EpisodicMetricReportType > x)
   {
     this->EpisodicMetricReport_.set (std::move (x));
+  }
+
+  const Body::EpisodicOperationalStateReportOptional& Body::
+  EpisodicOperationalStateReport () const
+  {
+    return this->EpisodicOperationalStateReport_;
+  }
+
+  Body::EpisodicOperationalStateReportOptional& Body::
+  EpisodicOperationalStateReport ()
+  {
+    return this->EpisodicOperationalStateReport_;
+  }
+
+  void Body::
+  EpisodicOperationalStateReport (const EpisodicOperationalStateReportType& x)
+  {
+    this->EpisodicOperationalStateReport_.set (x);
+  }
+
+  void Body::
+  EpisodicOperationalStateReport (const EpisodicOperationalStateReportOptional& x)
+  {
+    this->EpisodicOperationalStateReport_ = x;
+  }
+
+  void Body::
+  EpisodicOperationalStateReport (::std::unique_ptr< EpisodicOperationalStateReportType > x)
+  {
+    this->EpisodicOperationalStateReport_.set (std::move (x));
   }
 
   const Body::PeriodicAlertReportOptional& Body::
@@ -2046,7 +2106,9 @@ namespace MESSAGEMODEL
     EpisodicContextReport_ (this),
     PeriodicContextReport_ (this),
     EpisodicAlertReport_ (this),
+    EpisodicComponentReport_ (this),
     EpisodicMetricReport_ (this),
+    EpisodicOperationalStateReport_ (this),
     PeriodicAlertReport_ (this),
     PeriodicMetricReport_ (this),
     OperationInvokedReport_ (this),
@@ -2095,7 +2157,9 @@ namespace MESSAGEMODEL
     EpisodicContextReport_ (x.EpisodicContextReport_, f, this),
     PeriodicContextReport_ (x.PeriodicContextReport_, f, this),
     EpisodicAlertReport_ (x.EpisodicAlertReport_, f, this),
+    EpisodicComponentReport_ (x.EpisodicComponentReport_, f, this),
     EpisodicMetricReport_ (x.EpisodicMetricReport_, f, this),
+    EpisodicOperationalStateReport_ (x.EpisodicOperationalStateReport_, f, this),
     PeriodicAlertReport_ (x.PeriodicAlertReport_, f, this),
     PeriodicMetricReport_ (x.PeriodicMetricReport_, f, this),
     OperationInvokedReport_ (x.OperationInvokedReport_, f, this),
@@ -2144,7 +2208,9 @@ namespace MESSAGEMODEL
     EpisodicContextReport_ (this),
     PeriodicContextReport_ (this),
     EpisodicAlertReport_ (this),
+    EpisodicComponentReport_ (this),
     EpisodicMetricReport_ (this),
+    EpisodicOperationalStateReport_ (this),
     PeriodicAlertReport_ (this),
     PeriodicMetricReport_ (this),
     OperationInvokedReport_ (this),
@@ -2573,6 +2639,20 @@ namespace MESSAGEMODEL
         }
       }
 
+      // EpisodicComponentReport
+      //
+      if (n.name () == "EpisodicComponentReport" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
+      {
+        ::std::unique_ptr< EpisodicComponentReportType > r (
+          EpisodicComponentReportTraits::create (i, f, this));
+
+        if (!this->EpisodicComponentReport_)
+        {
+          this->EpisodicComponentReport_.set (::std::move (r));
+          continue;
+        }
+      }
+
       // EpisodicMetricReport
       //
       if (n.name () == "EpisodicMetricReport" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
@@ -2583,6 +2663,20 @@ namespace MESSAGEMODEL
         if (!this->EpisodicMetricReport_)
         {
           this->EpisodicMetricReport_.set (::std::move (r));
+          continue;
+        }
+      }
+
+      // EpisodicOperationalStateReport
+      //
+      if (n.name () == "EpisodicOperationalStateReport" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
+      {
+        ::std::unique_ptr< EpisodicOperationalStateReportType > r (
+          EpisodicOperationalStateReportTraits::create (i, f, this));
+
+        if (!this->EpisodicOperationalStateReport_)
+        {
+          this->EpisodicOperationalStateReport_.set (::std::move (r));
           continue;
         }
       }
@@ -2878,7 +2972,9 @@ namespace MESSAGEMODEL
       this->EpisodicContextReport_ = x.EpisodicContextReport_;
       this->PeriodicContextReport_ = x.PeriodicContextReport_;
       this->EpisodicAlertReport_ = x.EpisodicAlertReport_;
+      this->EpisodicComponentReport_ = x.EpisodicComponentReport_;
       this->EpisodicMetricReport_ = x.EpisodicMetricReport_;
+      this->EpisodicOperationalStateReport_ = x.EpisodicOperationalStateReport_;
       this->PeriodicAlertReport_ = x.PeriodicAlertReport_;
       this->PeriodicMetricReport_ = x.PeriodicMetricReport_;
       this->OperationInvokedReport_ = x.OperationInvokedReport_;
@@ -4936,6 +5032,19 @@ namespace MESSAGEMODEL
       s << *i.EpisodicAlertReport ();
     }
 
+    // EpisodicComponentReport
+    //
+    if (i.EpisodicComponentReport ())
+    {
+      ::xercesc::DOMElement& s (
+        ::xsd::cxx::xml::dom::create_element (
+          "EpisodicComponentReport",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
+          e));
+
+      s << *i.EpisodicComponentReport ();
+    }
+
     // EpisodicMetricReport
     //
     if (i.EpisodicMetricReport ())
@@ -4947,6 +5056,19 @@ namespace MESSAGEMODEL
           e));
 
       s << *i.EpisodicMetricReport ();
+    }
+
+    // EpisodicOperationalStateReport
+    //
+    if (i.EpisodicOperationalStateReport ())
+    {
+      ::xercesc::DOMElement& s (
+        ::xsd::cxx::xml::dom::create_element (
+          "EpisodicOperationalStateReport",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
+          e));
+
+      s << *i.EpisodicOperationalStateReport ();
     }
 
     // PeriodicAlertReport

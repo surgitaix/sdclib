@@ -2,7 +2,7 @@
  * SDCConsumerAdapter.cpp
  *
  *  Created on: 10.12.2015, matthias
- *  Modified on: 26.08.2019, baumeister
+ *  Modified on: 29.08.2019, baumeister
  *
  */
 

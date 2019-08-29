@@ -514,6 +514,21 @@ struct NormalizedMessageAdapter<SDC::EpisodicAlertReportTraits::ReportType> {
 };
 
 template<>
+struct NormalizedMessageAdapter<SDC::EpisodicComponentReportTraits::ReportType> {
+	const SDC::EpisodicComponentReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
+		return message.Body().EpisodicComponentReport().get();
+	}
+
+	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::EpisodicComponentReportTraits::ReportType> source) {
+		message.Body().EpisodicComponentReport().set(std::move(source));
+	}
+
+	bool present(const MESSAGEMODEL::Envelope & message) {
+		return message.Body().EpisodicComponentReport().present();
+	}
+};
+
+template<>
 struct NormalizedMessageAdapter<SDC::EpisodicContextReportTraits::ReportType> {
 	const SDC::EpisodicContextReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
 		return message.Body().EpisodicContextReport().get();
@@ -540,6 +555,21 @@ struct NormalizedMessageAdapter<SDC::EpisodicMetricReportTraits::ReportType> {
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
 		return message.Body().EpisodicMetricReport().present();
+	}
+};
+
+template<>
+struct NormalizedMessageAdapter<SDC::EpisodicOperationalStateReportTraits::ReportType> {
+	const SDC::EpisodicOperationalStateReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
+		return message.Body().EpisodicOperationalStateReport().get();
+	}
+
+	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::EpisodicOperationalStateReportTraits::ReportType> source) {
+		message.Body().EpisodicOperationalStateReport().set(std::move(source));
+	}
+
+	bool present(const MESSAGEMODEL::Envelope & message) {
+		return message.Body().EpisodicOperationalStateReport().present();
 	}
 };
 
