@@ -75,6 +75,12 @@
 #include "SDCLib/Data/SDC/MDIB/StringMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricValue.h"
 #include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/SetValueOperationState.h"
+#include "SDCLib/Data/SDC/MDIB/SetStringOperationState.h"
+#include "SDCLib/Data/SDC/MDIB/SetAlertStateOperationState.h"
+#include "SDCLib/Data/SDC/MDIB/SetComponentStateOperationState.h"
+#include "SDCLib/Data/SDC/MDIB/SetContextStateOperationState.h"
+#include "SDCLib/Data/SDC/MDIB/SetMetricStateOperationState.h"
 #include "SDCLib/Util/Task.h"
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/Helper/Message.h"
@@ -816,6 +822,25 @@ void SDCProvider::notifyEpisodicMetricImpl(const T & p_object)
 }
 
 template<class T>
+void SDCProvider::notifyEpisodicOperationalStateImpl(const T & p_object)
+{
+	if (p_object.getDescriptorHandle().empty()) {
+		log_error([] { return "State's descriptor handle is empty, event will not be fired!"; });
+		return;
+	}
+
+	MDM::ReportPart4 t_reportPart;
+	t_reportPart.OperationState().push_back(ConvertToCDM::convert(p_object));
+
+	// TODO: replace sequence id
+	MDM::EpisodicOperationalStateReport t_report(xml_schema::Uri("0"));
+	t_report.ReportPart().push_back(t_reportPart);
+	t_report.MdibVersion(getMdibVersion());
+
+	m_adapter->notifyEvent(t_report);
+}
+
+template<class T>
 void SDCProvider::notifyStreamMetricImpl(const T & p_object)
 {
 	if (p_object.getDescriptorHandle().empty()) {
@@ -1334,7 +1359,7 @@ void SDCProvider::notifyOperationInvoked(const OperationInvocationContext & p_oi
 }
 
 template<class T>
-void SDCProvider::addSetOperationToSCOObjectImpl(const T & p_source, MdsDescriptor & p_ownerMDS)
+bool SDCProvider::addSetOperationToSCOObjectImpl(const T & p_source, MdsDescriptor & p_ownerMDS)
 {
 	// get sco object or create new
 	std::unique_ptr<CDM::ScoDescriptor> t_scoDescriptor(Defaults::ScoDescriptorInit(xml_schema::Uri("")));
@@ -1349,54 +1374,50 @@ void SDCProvider::addSetOperationToSCOObjectImpl(const T & p_source, MdsDescript
 	t_scoDescriptor->Operation().push_back(p_source);
 	p_ownerMDS.setSco(ConvertFromCDM::convert(*t_scoDescriptor));
 
-	// Now add a state object for the sco descriptor to the cached states.
+
+	// Search if already exists - 2 Matching criteria: HandleName and Type
 	std::unique_ptr<CDM::MdState> tl_cachedOperationStates(ConvertToCDM::convert(m_operationStates));
-	bool t_existingOperationStateFound{false};
 	for (const auto & t_state : tl_cachedOperationStates->State()) {
 		if (t_state.DescriptorHandle() == p_source.Handle()) {
 			if (dynamic_cast<const CDM::AbstractOperationState *>(std::addressof(t_state))) {
-				t_existingOperationStateFound = true;
-				break;
+				return false;
 			}
 		}
 	}
 
-	if (t_existingOperationStateFound) {
-		// NOOP
-		return;
+	// Now add a state object for the sco descriptor to the cached states.
+	// Add new operation state and Emit OperationalState event
+	if (dynamic_cast<const CDM::SetValueOperationDescriptor *>(std::addressof(p_source))) {
+		auto t_operationState = CDM::SetValueOperationState(p_source.Handle(), CDM::OperatingMode::En);
+		tl_cachedOperationStates->State().push_back(t_operationState);
+		notifyEpisodicOperationalStateImpl(SetValueOperationState(t_operationState)); // Emit an event!
+	} else if (dynamic_cast<const CDM::SetStringOperationDescriptor *>(std::addressof(p_source))) {
+		auto t_operationState = CDM::SetStringOperationState(p_source.Handle(), CDM::OperatingMode::En);
+		tl_cachedOperationStates->State().push_back(t_operationState);
+		notifyEpisodicOperationalStateImpl(SetStringOperationState(t_operationState)); // Emit an event!
+	} else if (dynamic_cast<const CDM::SetAlertStateOperationDescriptor *>(std::addressof(p_source))) {
+		auto t_operationState = CDM::SetAlertStateOperationState(p_source.Handle(), CDM::OperatingMode::En);
+		tl_cachedOperationStates->State().push_back(t_operationState);
+		notifyEpisodicOperationalStateImpl(SetAlertStateOperationState(t_operationState)); // Emit an event!
+	} else if (dynamic_cast<const CDM::SetComponentStateOperationDescriptor*>(std::addressof(p_source))) {
+		auto t_operationState = CDM::SetComponentStateOperationState(p_source.Handle(), CDM::OperatingMode::En);
+		tl_cachedOperationStates->State().push_back(t_operationState);
+		notifyEpisodicOperationalStateImpl(SetComponentStateOperationState(t_operationState)); // Emit an event!
+	} else if (dynamic_cast<const CDM::SetContextStateOperationDescriptor *>(std::addressof(p_source))) {
+		auto t_operationState = CDM::SetContextStateOperationState(p_source.Handle(), CDM::OperatingMode::En);
+		tl_cachedOperationStates->State().push_back(t_operationState);
+		notifyEpisodicOperationalStateImpl(SetContextStateOperationState(t_operationState)); // Emit an event!
+	} else if (dynamic_cast<const CDM::SetMetricStateOperationDescriptor *>(std::addressof(p_source))) {
+		auto t_operationState = CDM::SetMetricStateOperationState(p_source.Handle(), CDM::OperatingMode::En);
+		tl_cachedOperationStates->State().push_back(t_operationState);
+		notifyEpisodicOperationalStateImpl(SetMetricStateOperationState(t_operationState)); // Emit an event!
 	} else {
-        // FIXME: dynamic_casts are ""SLOW""
-		// add new operation state
-		if (dynamic_cast<const CDM::SetValueOperationDescriptor *>(std::addressof(p_source))) {
-			CDM::SetValueOperationState t_operationState(
-					p_source.Handle(),
-					CDM::OperatingMode::En);
-			tl_cachedOperationStates->State().push_back(t_operationState);
-		}
-		else if (dynamic_cast<const CDM::SetStringOperationDescriptor *>(std::addressof(p_source))) {
-			CDM::SetStringOperationState t_operationState(p_source.Handle(), CDM::OperatingMode::En);
-			tl_cachedOperationStates->State().push_back(t_operationState);
-		} else if (dynamic_cast<const CDM::SetAlertStateOperationDescriptor *>(std::addressof(p_source))) {
-			CDM::SetAlertStateOperationState t_operationState(p_source.Handle(), CDM::OperatingMode::En);
-			tl_cachedOperationStates->State().push_back(t_operationState);
-		} else if (dynamic_cast<const CDM::SetComponentStateOperationDescriptor*>(std::addressof(p_source))) {
-			CDM::SetComponentStateOperationState t_operationState(p_source.Handle(), CDM::OperatingMode::En);
-			tl_cachedOperationStates->State().push_back(t_operationState);
-		} else if (dynamic_cast<const CDM::SetContextStateOperationDescriptor *>(std::addressof(p_source))) {
-			CDM::SetContextStateOperationState t_operationState(p_source.Handle(), CDM::OperatingMode::En);
-			tl_cachedOperationStates->State().push_back(t_operationState);
-		} else if (dynamic_cast<const CDM::SetMetricStateOperationDescriptor *>(std::addressof(p_source))) {
-			CDM::SetMetricStateOperationState t_operationState(p_source.Handle(), CDM::OperatingMode::En);
-			tl_cachedOperationStates->State().push_back(t_operationState);
-		}
-		else {
-            log_error([] { return "SDCProvider::addSetOperationToSCOObjectImpl: dynamic_cast found no match for source!"; });
-        }
-
-		// TODO: Call notify on OperationalState Event here?
-		// replace cached states by update.
-		m_operationStates = ConvertFromCDM::convert(*tl_cachedOperationStates);
+		log_error([] { return "SDCProvider::addSetOperationToSCOObjectImpl: dynamic_cast found no match for source!"; });
+		return false;
 	}
+	// replace cached states by update.
+	m_operationStates = ConvertFromCDM::convert(*tl_cachedOperationStates);
+	return true;
 }
 
 void SDCProvider::addActivateOperationForDescriptor(const ActivateOperationDescriptor & p_descriptor, MdsDescriptor & p_ownerMDS) {

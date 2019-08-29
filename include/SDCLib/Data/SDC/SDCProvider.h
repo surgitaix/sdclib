@@ -19,6 +19,8 @@
  *
  *  @Copyright (C) 2017, SurgiTAIX AG
  *  Author: besting, buerger, roehser
+ *  Modified on: 29.08.2019, baumeister
+ *
  */
 
 #ifndef SDCLIB_DATA_SDC_SDCPROVIDER_H_
@@ -360,20 +362,22 @@ namespace SDCLib
 
 				//Sets the updated state within the MDIB and increases the MDIBVersion
 				template<class T>
-				void updateMDIB(const T &p_object);
+				void updateMDIB(const T& p_object);
 
 				template<class T>
-				void notifyAlertEventImpl(const T & p_object);
+				void notifyAlertEventImpl(const T& p_object);
 				template<class T>
-				void notifyContextEventImpl(const T & p_object);
+				void notifyContextEventImpl(const T& p_object);
 				template<class T>
-				void notifyEpisodicMetricImpl(const T & p_object);
+				void notifyEpisodicMetricImpl(const T& p_object);
+				template<class T>
+				void notifyEpisodicOperationalStateImpl(const T& p_object);
 
 				template<class T>
-				void notifyStreamMetricImpl(const T & p_object);
+				void notifyStreamMetricImpl(const T& p_object);
 
 				template<class T>
-				void createSetOperationForContextDescriptor(const T & p_descriptor, MdsDescriptor & p_ownerMDS);
+				void createSetOperationForContextDescriptor(const T& p_descriptor, MdsDescriptor & p_ownerMDS);
 
 				template<class StateType>
 				bool isMetricChangeAllowed(const StateType & p_state, SDCProvider & p_provider);
@@ -408,7 +412,7 @@ namespace SDCLib
 				void SetContextStateImpl(const TState & p_state,  const OperationInvocationContext & p_oic);
 
 				template<class T>
-				void addSetOperationToSCOObjectImpl(const T & p_source, MdsDescriptor & p_ownerMDS);
+				bool addSetOperationToSCOObjectImpl(const T & p_source, MdsDescriptor & p_ownerMDS);
 
 				template<class T>
 				void enqueueInvokeNotification(const T & p_request, const OperationInvocationContext & p_oic);

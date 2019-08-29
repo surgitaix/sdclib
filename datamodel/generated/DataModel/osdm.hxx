@@ -14,10 +14,10 @@
 #define XSD_CXX_TREE_USE_CHAR
 #endif
 
-#include "BICEPS_ParticipantModel.hxx"
-#include "BICEPS_MessageModel.hxx"
-#include "DICOMDeviceDescription.hxx"
-#include "ExtensionPoint.hxx"
+#include "DataModel/BICEPS_ParticipantModel.hxx"
+#include "DataModel/BICEPS_MessageModel.hxx"
+#include "DataModel/DICOMDeviceDescription.hxx"
+#include "DataModel/ExtensionPoint.hxx"
 
 namespace CDM {
 	typedef xml_schema::Base64Binary Base64Binary;
