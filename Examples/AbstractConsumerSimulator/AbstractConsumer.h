@@ -19,6 +19,7 @@
 #include "SDCLib/Data/SDC/MDIB/ActivateOperationDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/MdDescription.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/EnumStringMetricDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/ChannelDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricDescriptor.h"
@@ -49,6 +50,7 @@ class SDCParticipantRealTimeSampleArrayMetricStateForwarder;
 class SDCParticipantStringMetricStateForwarder;
 class SDCParticipantActivateForwarder;
 class SDCParticipantStringMetricStateSetForwarder;
+class BackBoneTestCaseEnum;
 
 
 class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
@@ -148,6 +150,7 @@ private:
 	std::map<std::string, std::shared_ptr<SDCParticipantActivateFunctionCaller>> numericMetricStateActivateUnsubscribeCaller;
 	std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> numericMetricStateUnsubscribeCallerDescriptors;
 
+
 	std::map<std::string, std::shared_ptr<SDCParticipantMDStateGetForwarder<StringMetricState>>> registeredStringMetricStateActivateGetCaller;
 	std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> stringMetricStateActivateGetCallerDescriptors;
 	std::map<std::string, std::shared_ptr<SDCParticipantStringMetricStateForwarder>> stringMetricStateForwarder;
@@ -156,6 +159,7 @@ private:
 	std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> stringMetricStateSubscribeCallerDescriptors;
 	std::map<std::string, std::shared_ptr<SDCParticipantActivateFunctionCaller>> stringMetricStateActivateUnsubscribeCaller;
 	std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> stringMetricStateUnsubscribeCallerDescriptors;
+
 
 	std::map<std::string, std::shared_ptr<SDCParticipantMDStateGetForwarder<RealTimeSampleArrayMetricState>>> registeredRealTimeSampleArrayMetricStateActivateGetCaller;
 	std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> realTimeSampleArrayMetricStateActivateGetCallerDescriptors;
@@ -166,6 +170,8 @@ private:
 	std::map<std::string, std::shared_ptr<ActivateOperationDescriptor>> realTimeSampleArrayMetricStateUnsubscribeCallerDescriptors;
 
 	std::map<std::string, std::shared_ptr<SDCParticipantActivateForwarder>> activateForwarder;
+
+	//std::map<std::string, std::shared_ptr<BackBoneTestCaseEnum>>
 
 
 

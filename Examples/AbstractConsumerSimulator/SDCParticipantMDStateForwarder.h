@@ -14,6 +14,7 @@
 #include "SDCLib/Data/SDC/SDCProviderMDStateHandler.h"
 #include "SDCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/EnumStringMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricValue.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricValue.h"
 #include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
@@ -323,6 +324,43 @@ public:
 		stringValue.setValue(str);
 		stringState.setMetricValue(stringValue);
 		parentProvider->updateState(stringState);
+	}
+};
+
+class BackBoneTestCaseEnum : public SDCProviderMDStateHandler<EnumStringMetricState> {
+public:
+	BackBoneTestCaseEnum(const std::string descripotrHanlde) : SDCProviderMDStateHandler<EnumStringMetricState>(descripotrHanlde){}
+
+	EnumStringMetricState getInitialState() override
+	{
+		EnumStringMetricState initialState(descriptorHandle);
+		StringMetricValue initialStringValue(MetricQuality(MeasurementValidity::Vld));
+		initialStringValue.setValue("");
+		initialState.setMetricValue(initialStringValue);
+		return initialState;
+	}
+
+	InvocationState onStateChangeRequest(const EnumStringMetricState &state, const OperationInvocationContext &oic) override
+	{
+    	notifyOperationInvoked(oic, InvocationState::Start);
+    	if(state.hasMetricValue())
+    	{
+    		if(state.getMetricValue().hasValue())
+    		{
+    			updateStateValue(state.getMetricValue().getValue());
+    			return InvocationState::Fin;
+    		}
+    	}
+    	return InvocationState::Fail;
+	}
+
+	void updateStateValue(const std::string &str)
+	{
+        EnumStringMetricState result(descriptorHandle);
+        result
+            .setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(str))
+            .setActivationState(ComponentActivation::On);
+		parentProvider->updateState(result);
 	}
 };
 

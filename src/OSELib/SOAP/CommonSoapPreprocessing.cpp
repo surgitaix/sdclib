@@ -11,6 +11,8 @@
 #include "OSELib/Helper/XercesGrammarPoolProvider.h"
 #include "OSELib/SOAP/CommonSoapPreprocessing.h"
 #include "OSELib/SOAP/NormalizeMessageFilter.h"
+#include "OSELib/TCP/TCPBroadcastServerHandler.h"
+
 
 namespace OSELib {
 namespace SOAP {
@@ -31,9 +33,13 @@ void CommonSoapPreprocessing::parse(const std::string & request) {
 
 void CommonSoapPreprocessing::parse(std::istream & request) {
 	rawMessage = Helper::Message::create(request);
-
 	if (!rawMessage) {
 		log_error([&] { return "Extracting raw message from http stream failed. "; });
+	}
+
+	if(Network::TCPBroadcastServerHandler::getInstance("127.0.0.1", 8000)->isStarted())
+	{
+			Network::TCPBroadcastServerHandler::getInstance("127.0.0.1", 5000)->broadcastMessage(rawMessage->getContent());
 	}
 
 	commonParsing();

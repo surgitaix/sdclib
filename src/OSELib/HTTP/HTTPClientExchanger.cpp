@@ -32,6 +32,7 @@
 
 #include "OSELib/Helper/StreamReader.h"
 #include "OSELib/HTTP/HTTPClientExchanger.h"
+#include "OSELib/HTTP/HTTPClientSessionWrapper.h"
 
 namespace OSELib {
 namespace HTTP {
@@ -44,9 +45,8 @@ HTTPClientExchanger::~HTTPClientExchanger() {
 
 }
 
-std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPClientSession & session, const std::string & path, const std::string & requestData)
+std::string HTTPClientExchanger::exchangeHttp(HTTPClientSessionWrapper & session, const std::string & path, const std::string & requestData)
 {
-
     std::string responseContent;
     responseContent.reserve(16384);
     Poco::Net::HTTPResponse res;
