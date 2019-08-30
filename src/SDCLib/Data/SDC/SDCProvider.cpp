@@ -1505,7 +1505,7 @@ void SDCProvider::setDeviceCharacteristics(const Dev::DeviceCharacteristics p_de
     // add endpointReference to deviceCharacteristics because the host metadata need to provide the endpoint reference
 	m_devicecharacteristics = p_deviceCharacteristics;
     // add endpointReference to deviceCharacteristics because the host metadata need to provide the endpoint reference
-	m_devicecharacteristics.setEndpointReference(m_endpointReference);
+	m_devicecharacteristics.setEndpointReference(getEndpointReference());
 }
 
 unsigned long long int SDCProvider::getMdibVersion() const {

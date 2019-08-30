@@ -20,6 +20,8 @@
  *  @date 05.07.2011
  *  @author besting (H)
  *  @copyright (c) SurgiTAIX AG
+ *
+ *  Modified on: 29.08.2019, baumeister
  */
 
 #include <stdexcept>
@@ -28,134 +30,145 @@
 
 #include "OSELib/DPWS/DPWS11Constants.h"
 
-namespace SDCLib {
-namespace Dev {
-
-const LocalizedString & DeviceCharacteristics::getModelNames() const
+namespace SDCLib
 {
-	return modelName;
+namespace Dev
+{
+
+LocalizedString DeviceCharacteristics::getModelNames() const
+{
+	return ml_modelName;
 }
 
-const LocalizedString & DeviceCharacteristics::getFriendlyNames() const
+LocalizedString DeviceCharacteristics::getFriendlyNames() const
 {
-	return friendlyName;
+	return ml_friendlyName;
 }
 
-void DeviceCharacteristics::setManufacturer(const std::string & name)
+void DeviceCharacteristics::setManufacturer(const std::string& p_name)
 {
-	if (name.length() > OSELib::MAX_FIELD_SIZE)
+	if (p_name.length() > OSELib::MAX_FIELD_SIZE) {
 		throw std::runtime_error("Name length exceeds MAX_FILE_SIZE");
-	this->manufacturer = name;
+	}
+	m_manufacturer = p_name;
 }
 
-void DeviceCharacteristics::setManufacturerUrl(const std::string & url)
+void DeviceCharacteristics::setManufacturerUrl(const std::string& p_url)
 {
-	if (url.length() > OSELib::MAX_FIELD_SIZE)
+	if (p_url.length() > OSELib::MAX_FIELD_SIZE) {
 		throw std::runtime_error("Name length exceeds MAX_FILE_SIZE");
-	this->manufacturerUrl = url;
+	}
+	m_manufacturerUrl = p_url;
 }
 
-void DeviceCharacteristics::addModelName(const std::string & lang, const std::string & name)
+void DeviceCharacteristics::addModelName(const std::string& p_lang, const std::string& p_name)
 {
-	if (name.length() > OSELib::MAX_FIELD_SIZE)
+	if (p_name.length() > OSELib::MAX_FIELD_SIZE) {
 		throw std::runtime_error("Name length exceeds MAX_FILE_SIZE");
-	modelName[lang] = name;
+	}
+	ml_modelName[p_lang] = p_name;
 }
 
-const std::string & DeviceCharacteristics::getManufacturer() const
+std::string DeviceCharacteristics::getManufacturer() const
 {
-	return manufacturer;
+	return m_manufacturer;
 }
 
-const std::string & DeviceCharacteristics::getManufacturerUrl() const
+std::string DeviceCharacteristics::getManufacturerUrl() const
 {
-	return manufacturerUrl;
+	return m_manufacturerUrl;
 }
 
-std::string DeviceCharacteristics::getModelName(const std::string & lang) const
+std::string DeviceCharacteristics::getModelName(const std::string& p_lang) const
 {
-	std::string name;
-	if (modelName.find(lang) == modelName.end())
-		return name;
-	return modelName.find(lang)->second;
+	if (ml_modelName.find(p_lang) == ml_modelName.end()) {
+		return std::string();
+	}
+	return ml_modelName.find(p_lang)->second;
 }
 
-const std::string & DeviceCharacteristics::getModelNumber() const
+std::string DeviceCharacteristics::getModelNumber() const
 {
-    return modelNumber;
+    return m_modelNumber;
 }
 
-const std::string & DeviceCharacteristics::getModelUrl() const
+std::string DeviceCharacteristics::getModelUrl() const
 {
-    return modelUrl;
+    return m_modelUrl;
 }
 
-const std::string & DeviceCharacteristics::getPresentationUrl() const
+std::string DeviceCharacteristics::getPresentationUrl() const
 {
-    return presentationUrl;
+    return m_presentationUrl;
 }
 
-void DeviceCharacteristics::setModelNumber(const std::string & modelNumber)
+void DeviceCharacteristics::setModelNumber(const std::string& p_modelNumber)
 {
-	if (modelNumber.length() > OSELib::MAX_FIELD_SIZE)
+	if (p_modelNumber.length() > OSELib::MAX_FIELD_SIZE) {
 		throw std::runtime_error("Name length exceeds MAX_FILE_SIZE");
-    this->modelNumber = modelNumber;
+	}
+    m_modelNumber = p_modelNumber;
 }
 
-void DeviceCharacteristics::setModelUrl(const std::string & modelUrl)
+void DeviceCharacteristics::setModelUrl(const std::string& p_modelUrl)
 {
-	if (modelUrl.length() > OSELib::MAX_URI_SIZE)
+	if (p_modelUrl.length() > OSELib::MAX_URI_SIZE) {
 		throw std::runtime_error("Name length exceeds MAX_URI_SIZE");
-    this->modelUrl = modelUrl;
+	}
+    m_modelUrl = p_modelUrl;
 }
 
-void DeviceCharacteristics::setPresentationUrl(const std::string & presentationUrl)
+void DeviceCharacteristics::setPresentationUrl(const std::string& p_presentationUrl)
 {
-	if (presentationUrl.length() > OSELib::MAX_URI_SIZE)
+	if (p_presentationUrl.length() > OSELib::MAX_URI_SIZE) {
 		throw std::runtime_error("Name length exceeds MAX_URI_SIZE");
-    this->presentationUrl = presentationUrl;
+	}
+    m_presentationUrl = p_presentationUrl;
 }
 
-void DeviceCharacteristics::addFriendlyName(const std::string & lang, const std::string & name)
+void DeviceCharacteristics::addFriendlyName(const std::string& p_lang, const std::string& p_name)
 {
-	if (name.length() > OSELib::MAX_FIELD_SIZE)
+	if (p_name.length() > OSELib::MAX_FIELD_SIZE) {
 		throw std::runtime_error("Name length exceeds MAX_FILE_SIZE");
-	friendlyName[lang] = name;
+	}
+	ml_friendlyName[p_lang] = p_name;
 }
 
-std::string DeviceCharacteristics::getFriendlyName(const std::string & lang) const
+std::string DeviceCharacteristics::getFriendlyName(const std::string & p_lang) const
 {
-	std::string name;
-	if (friendlyName.find(lang) == friendlyName.end())
-		return name;
-	return friendlyName.find(lang)->second;
+	if (ml_friendlyName.find(p_lang) == ml_friendlyName.end()) {
+		return std::string();
+	}
+	return ml_friendlyName.find(p_lang)->second;
 }
 
-const std::string & DeviceCharacteristics::getFirmwareVersion() const
+std::string DeviceCharacteristics::getFirmwareVersion() const
 {
-    return firmwareVersion;
+    return m_firmwareVersion;
 }
 
-const std::string & DeviceCharacteristics::getSerialNumber() const
+std::string DeviceCharacteristics::getSerialNumber() const
 {
-    return serialNumber;
+    return m_serialNumber;
 }
 
-void DeviceCharacteristics::setFirmwareVersion(const std::string & firmwareVersion)
+void DeviceCharacteristics::setFirmwareVersion(const std::string& p_firmwareVersion)
 {
-    this->firmwareVersion = firmwareVersion;
+    m_firmwareVersion = p_firmwareVersion;
 }
 
-void DeviceCharacteristics::setSerialNumber(const std::string & serialNumber)
+void DeviceCharacteristics::setSerialNumber(const std::string& p_serialNumber)
 {
-    this->serialNumber = serialNumber;
+    m_serialNumber = p_serialNumber;
 }
 
-void DeviceCharacteristics::setEndpointReference(const std::string & epr) {
-	endpointReference = epr;
+void DeviceCharacteristics::setEndpointReference(const std::string& p_epr)
+{
+	m_endpointReference = p_epr;
 }
-std::string DeviceCharacteristics::getEndpointReference() const {
-	return endpointReference;
+std::string DeviceCharacteristics::getEndpointReference() const
+{
+	return m_endpointReference;
 }
 
 

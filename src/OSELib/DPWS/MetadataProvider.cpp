@@ -9,8 +9,10 @@
 #include "OSELib/DPWS/MetadataProvider.h"
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/SDC/SDCConstants.h"
+#include "OSELib/Helper/WithLogger.h"
 
 #include "DataModel/MDPWS.hxx"
+
 
 namespace OSELib {
 namespace DPWS {
@@ -129,6 +131,10 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionThisMod
 MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionThisDevice() const
 {
 	auto t_friendlyName = m_deviceCharacteristics.getFriendlyNames();
+	if(t_friendlyName.empty()) {
+		OSELib::Helper::WithLogger(OSELib::Log::BASE).log_critical([]() { return "Friendly Name not set! Setting a default!";});
+		t_friendlyName["de-DE"] = "SDCProvider";
+	}
 
 	// TODO: maybe add the regarding language tag (first element) of the deviceCharacteristics.
 	// note that here no field defined for that purpose

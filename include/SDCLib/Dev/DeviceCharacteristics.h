@@ -20,6 +20,8 @@
  *  @date 05.07.2011
  *  @author besting
  *  @copyright (c) SurgiTAIX AG
+ *
+ *  Modified on: 29.08.2019, baumeister
  */
 
 
@@ -29,29 +31,31 @@
 #include <string>
 #include <map>
 
-namespace SDCLib {
-namespace Dev {
-
-typedef std::map<std::string, std::string> LocalizedString;
-
+namespace SDCLib
+{
+	namespace Dev
+	{
+		typedef std::map<std::string, std::string> LocalizedString;
+		// FIXME: NOT THREADSAFE!
 		class DeviceCharacteristics
 		{
 		private:
+
 			// ThisModel
-			std::string manufacturer;
-			std::string manufacturerUrl;
-			LocalizedString modelName;
-			std::string modelNumber;
-			std::string modelUrl;
-			std::string presentationUrl;
+			std::string m_manufacturer;
+			std::string m_manufacturerUrl;
+			LocalizedString ml_modelName;
+			std::string m_modelNumber;
+			std::string m_modelUrl;
+			std::string m_presentationUrl;
 
 			// ThisDevice
-			LocalizedString friendlyName;
-			std::string firmwareVersion;
-			std::string serialNumber;
+			LocalizedString ml_friendlyName;
+			std::string m_firmwareVersion;
+			std::string m_serialNumber;
 
 			// Host
-			std::string endpointReference;
+			std::string m_endpointReference;
 
 		public:
 			DeviceCharacteristics() = default;
@@ -59,40 +63,40 @@ typedef std::map<std::string, std::string> LocalizedString;
 			DeviceCharacteristics(DeviceCharacteristics&& p_obj) = default;
 			DeviceCharacteristics& operator=(const DeviceCharacteristics& p_obj) = default;
 			DeviceCharacteristics& operator=(DeviceCharacteristics&& p_obj) = default;
-			virtual ~DeviceCharacteristics() = default; // TODO: Why virtual ?
+			~DeviceCharacteristics() = default;
 
-			void setManufacturer(const std::string & name);
-			void setManufacturerUrl(const std::string & url);
+			void setManufacturer(const std::string& p_name);
+			void setManufacturerUrl(const std::string& p_url);
 
-			void addModelName(const std::string & lang, const std::string & name);
-			const std::string & getManufacturer() const;
-			const std::string & getManufacturerUrl() const;
-			std::string getModelName(const std::string & lang) const;
+			void addModelName(const std::string& p_lang, const std::string& p_name);
+			std::string getManufacturer() const;
+			std::string getManufacturerUrl() const;
+			std::string getModelName(const std::string& p_lang) const;
 
-			const LocalizedString & getModelNames() const;
+			LocalizedString getModelNames() const;
 
-			const std::string & getModelNumber() const;
-			const std::string & getModelUrl() const;
-			const std::string & getPresentationUrl() const;
+			std::string getModelNumber() const;
+			std::string getModelUrl() const;
+			std::string getPresentationUrl() const;
 
-			void setModelNumber(const std::string & modelNumber);
-			void setModelUrl(const std::string & modelUrl);
-			void setPresentationUrl(const std::string & presentationUrl);
+			void setModelNumber(const std::string& p_modelNumber);
+			void setModelUrl(const std::string& p_modelUrl);
+			void setPresentationUrl(const std::string& p_presentationUrl);
 
-			void addFriendlyName(const std::string & lang, const std::string & name);
-			std::string getFriendlyName(const std::string & lang) const;
+			void addFriendlyName(const std::string& p_lang, const std::string& p_name);
+			std::string getFriendlyName(const std::string& p_lang) const;
 
-			const LocalizedString & getFriendlyNames() const;
+			LocalizedString getFriendlyNames() const;
 
-			const std::string & getFirmwareVersion() const;
-			const std::string & getSerialNumber() const;
-			void setFirmwareVersion(const std::string & firmwareVersion);
-			void setSerialNumber(const std::string & serialNumber);
+			std::string getFirmwareVersion() const;
+			std::string getSerialNumber() const;
+			void setFirmwareVersion(const std::string& p_firmwareVersion);
+			void setSerialNumber(const std::string& p_serialNumber);
 
 			// Host
 
 			// only to be used by SDCProvider
-			void setEndpointReference(const std::string & epr);
+			void setEndpointReference(const std::string& p_epr);
 			std::string getEndpointReference() const;
 		};
 	}
