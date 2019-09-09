@@ -39,8 +39,12 @@ void StateEventServiceEventSinkHandler::handleRequestImpl(Poco::Net::HTTPServerR
 
 	if (t_soapAction == EpisodicAlertReportTraits::Action()) {
 		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<EpisodicAlertReportTraits>(std::move(t_soapHandling.normalizedMessage), m_service));
+	} else if (t_soapAction == EpisodicComponentReportTraits::Action()) {
+		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<EpisodicComponentReportTraits>(std::move(t_soapHandling.normalizedMessage), m_service));
 	} else if (t_soapAction == EpisodicMetricReportTraits::Action()) {
 		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<EpisodicMetricReportTraits>(std::move(t_soapHandling.normalizedMessage), m_service));
+	} else if (t_soapAction == EpisodicOperationalStateReportTraits::Action()) {
+		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<EpisodicOperationalStateReportTraits>(std::move(t_soapHandling.normalizedMessage), m_service));
 	} else if (t_soapAction == PeriodicAlertReportTraits::Action()) {
 		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<PeriodicAlertReportTraits>(std::move(t_soapHandling.normalizedMessage), m_service));
 	} else if (t_soapAction == PeriodicMetricReportTraits::Action()) {

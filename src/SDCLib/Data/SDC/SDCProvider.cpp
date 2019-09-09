@@ -447,7 +447,7 @@ void SDCProvider::SetAlertStateImpl(const StateType & state, const OperationInvo
 MDM::SetAlertStateResponse SDCProvider::SetAlertStateAsync(const MDM::SetAlertState & p_request)
 {
 	const OperationInvocationContext t_oic(p_request.OperationHandleRef(), incrementAndGetTransactionId());
-	const CDM::AbstractAlertState * t_incomingCDMState = &(p_request.ProposedAlertState()); // FIXME: std::addressof ?
+	const CDM::AbstractAlertState * t_incomingCDMState = &(p_request.ProposedAlertState());
 
 	auto genResponse = [this, &t_oic](InvocationState v) {
 		notifyOperationInvoked(t_oic, v);
@@ -488,7 +488,7 @@ MDM::SetAlertStateResponse SDCProvider::SetAlertStateAsync(const MDM::SetAlertSt
 
 void SDCProvider::SetAlertState(const MDM::SetAlertState & p_request, const OperationInvocationContext & p_oic) {
 
-	const CDM::AbstractAlertState * t_incomingCDMState = &(p_request.ProposedAlertState()); // FIXME: std::addressof ?
+	const CDM::AbstractAlertState * t_incomingCDMState = &(p_request.ProposedAlertState());
 
 	const auto t_targetHandle(getMdDescription().getOperationTargetForOperationHandle(p_oic.operationHandle));
 	if (t_targetHandle.empty()) {
