@@ -67,7 +67,6 @@ std::istream& HTTPClientSessionWrapper::receiveResponse(HTTPResponse& response)
 	    std::string requestString = ss.str();
 	    if(requestString != "")
 			Network::TCPBroadcastServerHandler::getInstance("127.0.0.1", 5000)->broadcastMessage(requestString);
-	    std::cout << "SENDING HERE!!!! THIS WORKS GREAT!!!!!" << std::endl;
 		_hackyStream = new std::istringstream(requestString);
 		return *_hackyStream;
 

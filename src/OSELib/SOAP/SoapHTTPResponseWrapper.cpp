@@ -25,7 +25,6 @@ void SoapHTTPResponseWrapper::send(const std::string & content) {
 
 	if(Network::TCPBroadcastServerHandler::getInstance("127.0.0.1", 8000)->isStarted() && content != "")
 	{
-		std::cout << "OUTGOING SOAPHTTPResponseWar \n" << content << std::endl;
 		Network::TCPBroadcastServerHandler::getInstance("127.0.0.1", 8000)->broadcastMessage(content);
 	}
 

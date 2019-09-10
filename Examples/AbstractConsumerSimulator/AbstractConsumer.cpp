@@ -18,6 +18,7 @@
 #include "SDCLib/Data/SDC/MDIB/ScoDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/SetValueOperationDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/SetStringOperationDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/AllowedValue.h"
 
 
 using namespace std::placeholders;
@@ -289,15 +290,17 @@ bool AbstractConsumer::setupMirrorProvider() {
 
 	controlDUTMds.addVmd(controlDUTVmd);
 
-
-//
-//
-//	//TODO: Move to VMD once addActivateOperation is provided.
-//
-//
 	DUTMirrorProvider->addActivateOperationForDescriptor(*getDUTMDIBCallerDesc, controlDUTMds);
 //
 	extendedMdDesc.addMds(controlDUTMds);
+
+	//Add BackBone Control for MessageManipulator
+	auto MMMds = getMessageManipulatorControlInterfaceMds();
+	for(auto it : bbTestCaseEnumDescriptors)
+	{
+		DUTMirrorProvider->createSetOperationForDescriptor<EnumStringMetricDescriptor>(*it.second, MMMds);
+	}
+	extendedMdDesc.addMds(MMMds);
 
 	DUTMirrorProvider->setMdDescription(extendedMdDesc);
 
@@ -371,6 +374,11 @@ bool AbstractConsumer::setupMirrorProvider() {
 	{
 		DUTMirrorProvider->addMdStateHandler(it.second.get());
 	}
+
+//	for(auto it : bbTestCaseEnumHandles)
+//	{
+//		DUTMirrorProvider->addMdStateHandler(it.second.get());
+//	}
 
 
 
@@ -581,6 +589,88 @@ void AbstractConsumer::unsubscribeState(SDCConsumerOperationInvokedHandler* hand
 		return;
 	}
 	consumer->unregisterStateEventHandler(handler);
+}
+
+MdsDescriptor AbstractConsumer::getMessageManipulatorControlInterfaceMds()
+{
+	//Channel
+	ChannelDescriptor controlMMChannel(CONTROL_MM_CHANNEL);
+
+	//VMD
+	VmdDescriptor controlMMVmd(CONTROL_MM_VMD);
+
+	//MDS
+	MdsDescriptor controlMMMds(CONTROL_MM_MDS);
+
+	std::vector<std::string> actionHandles;
+	actionHandles.push_back("HELLO");
+	actionHandles.push_back("BYE");
+	actionHandles.push_back("GET");
+	actionHandles.push_back("GET_RESPONSE");
+	actionHandles.push_back("GET_METADATA_REQUEST");
+	actionHandles.push_back("GET_METADATA_RESPONSE");
+	actionHandles.push_back("RESOLVE");
+	actionHandles.push_back("RESOLVE_MATCHES");
+	actionHandles.push_back("PROBE");
+	actionHandles.push_back("PROBE_MATCHES");
+	actionHandles.push_back("SUBSCRIBE");
+	actionHandles.push_back("SUBSCRIBE_RESPONSE");
+	actionHandles.push_back("RENEW");
+	actionHandles.push_back("RENEW_RESPONSE");
+	actionHandles.push_back("UNSUBSCRIBE");
+	actionHandles.push_back("UNSUBSCRIBE_RESPONSE");
+	actionHandles.push_back("GETSTATUS");
+	actionHandles.push_back("GETSTATUS_RESPONSE");
+	actionHandles.push_back("ACTIVATE_REQUEST");
+	actionHandles.push_back("ACTIVATE_RESPONSE");
+	actionHandles.push_back("GET_CONTEXTSTATES_REQUEST");
+	actionHandles.push_back("GET_CONTEXTSTATES_RESPONSE");
+	actionHandles.push_back("GET_MDDESCRIPTION_REQUEST");
+	actionHandles.push_back("GET_MDDESCRIPTION_RESPONSE");
+	actionHandles.push_back("GET_MDIB_REQUEST");
+	actionHandles.push_back("GET_MDIB_RESPONSE");
+	actionHandles.push_back("GET_MDSTATE_REQUEST");
+	actionHandles.push_back("GET_MDSTATE_RESPONSE");
+	actionHandles.push_back("SET_ALERT_STATE_REQUEST");
+	actionHandles.push_back("SET_ALERT_STATE_RESPONSE");
+	actionHandles.push_back("SET_CONTEXT_STATE_REQUEST");
+	actionHandles.push_back("SET_CONTEXT_STATE_RESPONSE");
+	actionHandles.push_back("SET_STRING_REQUEST");
+	actionHandles.push_back("SET_STRING_RESPONSE");
+	actionHandles.push_back("DESCRIPTION_MODIFICATION_REPORT");
+	actionHandles.push_back("EPISODIC_ALERT_REPORT");
+	actionHandles.push_back("PERIODIC_ALERT_REPORT");
+	actionHandles.push_back("EPISODIC_CONTEXT_REPORT");
+	actionHandles.push_back("PERIODIC_CONTEXT_REPORT");
+	actionHandles.push_back("EPISODIC_METRIC_REPORT");
+	actionHandles.push_back("PERIODIC_METRIC_REPORT");
+	actionHandles.push_back("OPERATION_INVOKED_REPORT");
+	actionHandles.push_back("WAVEFORM_STREAM_REPORT");
+
+
+	for(auto action : actionHandles)
+	{
+		auto MMControler = std::make_shared<BackBoneTestCaseEnum>(action + MM_BB_CONTROL_ENUM_POSTFIX);
+		auto MMControllerDescriptor = std::make_shared<EnumStringMetricDescriptor>(action + MM_BB_CONTROL_ENUM_POSTFIX,
+				CodedValue(action + "MM_BB_CONTROL_CODED_ENUM_POSTFIX"),
+				MetricCategory::Set,
+				MetricAvailability::Cont);
+		MMControllerDescriptor->addAllowedValue(AllowedValue(MM_BB_CONTROL_DO_NOTHING));
+		MMControllerDescriptor->addAllowedValue(AllowedValue(MM_BB_CONTROL_EMPTY_MESSAGE));
+		MMControllerDescriptor->addAllowedValue(AllowedValue(MM_BB_CONTROL_EMPTY_HEADER));
+		MMControllerDescriptor->addAllowedValue(AllowedValue(MM_BB_CONTROL_EMPTY_BODY));
+		MMControllerDescriptor->addAllowedValue(AllowedValue(MM_BB_CONTROL_RANDOM_MSG_DEFECT));
+		bbTestCaseEnumHandles.insert(std::make_pair(action, MMControler));
+		bbTestCaseEnumDescriptors.insert(std::make_pair(action, MMControllerDescriptor));
+		controlMMChannel.addMetric(*MMControllerDescriptor);
+	}
+
+
+	controlMMVmd.addChannel(controlMMChannel);
+//
+	controlMMMds.addVmd(controlMMVmd);
+
+	return controlMMMds;
 }
 
 

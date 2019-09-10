@@ -11,6 +11,7 @@
 #include <iostream>
 #include "osdm.hxx"
 #include "OSELib/DPWS/DPWS11Constants.h"
+#include "OSELib/SDC/SDCConstants.h"
 
 
 #include "SDCLib/Data/SDC/SDCConsumer.h"
@@ -99,6 +100,8 @@ public:
 private:
 	const std::string getStringRepresentationOfMDIB(const MdibContainer MDIB);
 
+	MdsDescriptor getMessageManipulatorControlInterfaceMds();
+
 	/*
 	 * @brief Creates a new SDCInstance with IP6 enabled and bound to a free port.
 	 *
@@ -171,7 +174,8 @@ private:
 
 	std::map<std::string, std::shared_ptr<SDCParticipantActivateForwarder>> activateForwarder;
 
-	//std::map<std::string, std::shared_ptr<BackBoneTestCaseEnum>>
+	std::map<std::string, std::shared_ptr<BackBoneTestCaseEnum>> bbTestCaseEnumHandles;
+	std::map<std::string, std::shared_ptr<EnumStringMetricDescriptor>> bbTestCaseEnumDescriptors;
 
 
 

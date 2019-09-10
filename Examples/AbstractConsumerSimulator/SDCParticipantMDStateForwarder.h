@@ -335,7 +335,7 @@ public:
 	{
 		EnumStringMetricState initialState(descriptorHandle);
 		StringMetricValue initialStringValue(MetricQuality(MeasurementValidity::Vld));
-		initialStringValue.setValue("");
+		initialStringValue.setValue(MM_BB_CONTROL_DO_NOTHING);
 		initialState.setMetricValue(initialStringValue);
 		return initialState;
 	}
