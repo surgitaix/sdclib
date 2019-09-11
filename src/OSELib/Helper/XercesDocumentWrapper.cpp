@@ -34,13 +34,11 @@ std::unique_ptr<XercesDocumentWrapper> XercesDocumentWrapper::create(const Messa
 
 std::unique_ptr<XercesDocumentWrapper> XercesDocumentWrapper::create(const Message & p_msg, const XercesGrammarPoolProvider & p_grammarPoolProvider)
 {
-	auto t_document(parseAndValidate(p_msg.getContent(), p_grammarPoolProvider));
-	if (t_document) {
+	auto t_document = parseAndValidate(p_msg.getContent(), p_grammarPoolProvider);
+	if (nullptr != t_document) {
 		return std::unique_ptr<XercesDocumentWrapper>(new XercesDocumentWrapper(std::move(t_document)));
-	} else {
-		return nullptr;
 	}
-	// todo: return the "else part" here?
+	return nullptr;
 }
 
 const xercesc::DOMDocument & XercesDocumentWrapper::getDocument() const

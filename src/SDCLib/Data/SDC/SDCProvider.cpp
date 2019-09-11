@@ -1137,9 +1137,6 @@ bool SDCProvider::startup()
         }
     } // UNLOCK
 
-    // Start AsyncProviderInvoker
-    startAsyncProviderInvoker();
-
     // Validation
     {
 		const xml_schema::Flags t_xercesFlags(xml_schema::Flags::dont_validate | xml_schema::Flags::no_xml_declaration | xml_schema::Flags::dont_initialize);
@@ -1150,12 +1147,19 @@ bool SDCProvider::startup()
 		OSELib::SDC::DefaultSDCSchemaGrammarProvider t_grammarProvider;
 		auto t_rawMessage = OSELib::Helper::Message::create(t_xml.str());
 		auto t_xercesDocument = OSELib::Helper::XercesDocumentWrapper::create(*t_rawMessage, t_grammarProvider);
+		if(nullptr == t_xercesDocument) {
+			log_fatal([&] { return "Fatal error, can't create MDIB - schema validation error! Offending MDIB: \n" + t_xml.str(); });
+			return false;
+		}
 		std::unique_ptr<CDM::Mdib> t_result(CDM::MdibContainer(t_xercesDocument->getDocument()));
 		if (nullptr == t_result) {
 			log_fatal([&] { return "Fatal error, can't create MDIB - schema validation error! Offending MDIB: \n" + t_xml.str(); });
 			return false;
 		}
     }
+
+    // Start AsyncProviderInvoker
+    startAsyncProviderInvoker();
 
     // Set the flag
     m_started = true;
