@@ -23,7 +23,7 @@ std::unique_ptr<Message> Message::create(const std::string & p_content)
 
 std::unique_ptr<Message> Message::create(std::istream & p_stream)
 {
-	StreamReader t_reader(p_stream);
+	OSELib::Helper::StreamReader t_reader(p_stream);
 	return std::unique_ptr<Message>(new Message(t_reader.getContent()));
 }
 

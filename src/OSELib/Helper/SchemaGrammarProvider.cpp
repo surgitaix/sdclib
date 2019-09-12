@@ -40,7 +40,7 @@ bool SchemaGrammarProvider::addSchema(const std::string & p_name, const std::str
 {
 	XercesParserWrapper parser(*this);
 
-	xercesc::MemBufInputSource t_contentSource((const XMLByte*)p_content.c_str(), p_content.size(), p_name.c_str());
+	xercesc::MemBufInputSource t_contentSource(reinterpret_cast<const XMLByte*>(p_content.c_str()), p_content.size(), p_name.c_str()); // TODO: Careful! reinterpret_cast
 	xercesc::Wrapper4InputSource t_wrapextensionstream (&t_contentSource, false);
 
 	if (!parser.getParser()->loadGrammar(&t_wrapextensionstream, xercesc::Grammar::SchemaGrammarType, true)) {

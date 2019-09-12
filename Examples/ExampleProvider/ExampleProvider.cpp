@@ -125,25 +125,23 @@ public:
         return result;
     }
 
-    NumericMetricState getInitialState() override {
-        NumericMetricState result = createState();
-        return result;
+    NumericMetricState getInitialState() override
+    {
+        return createState();
     }
 
-    // Convenience value getter
-    float getMaxWeight() {
-        std::unique_ptr<NumericMetricState> result(getParentProvider().getMdState().findState<NumericMetricState>(HANDLE_SET_METRIC));
-
-        // check if result is valid
-        if (result != nullptr) {
-        	// In real applications, check if state has an observed value and if the observed value has a value!
-        	return (float)result->getMetricValue().getValue();
-        } else {
-        	DebugOut(DebugOut::Default, "ExampleProvider") << "Maximum weight metric not found." << std::endl;
-        	return 0;
-        }
-
-    }
+	// Convenience value getter
+	double getMaxWeight()
+	{
+		auto t_result = getParentProvider().getMdState().findState<NumericMetricState>(HANDLE_SET_METRIC);
+		// check if result is valid
+		if (nullptr == t_result) {
+			DebugOut(DebugOut::Default, "ExampleProvider") << "Maximum weight metric not found." << std::endl;
+			return 0;
+		}
+		// In real applications, check if state has an observed value and if the observed value has a value!
+		return t_result->getMetricValue().getValue();
+	}
 };
 
 

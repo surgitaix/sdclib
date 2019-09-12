@@ -104,17 +104,17 @@ public:
     NumericMetricState getInitialState() override { return createState(); }
 
     // Convenience value getter
-    float getMaxWeight() {
-        std::unique_ptr<NumericMetricState> result(getParentProvider().getMdState().findState<NumericMetricState>(HANDLE_SET_METRIC));
+    double getMaxWeight()
+    {
+        auto t_result = getParentProvider().getMdState().findState<NumericMetricState>(HANDLE_SET_METRIC);
 
         // check if result is valid
-        if (result != nullptr) {
-        	// In real applications, check if state has an observed value and if the observed value has a value!
-        	return (float)result->getMetricValue().getValue();
-        } else {
+        if (nullptr == t_result) {
         	DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Maximum weight metric not found." << std::endl;
         	return 0;
         }
+        // In real applications, check if state has an observed value and if the observed value has a value!
+        return t_result->getMetricValue().getValue();
     }
 };
 
@@ -136,9 +136,7 @@ public:
     }
 
 
-    RealTimeSampleArrayMetricState getInitialState() override {
-        return createState();
-    }
+    RealTimeSampleArrayMetricState getInitialState() override { return createState(); }
 
     void updateStateValue(const SampleArrayValue & sav) {
         RealTimeSampleArrayMetricState realTimeSampleArrayState = createState();
@@ -219,11 +217,11 @@ public:
     virtual void runImpl() override {
 
     	// Streaming init
-		const std::size_t size(1000);
+		const std::size_t size = 1000;
 		std::vector<double> samples;
         std::iota(samples.begin(), samples.end(), 0);
 
-		long index(0);
+		std::size_t index = 0;
 
 		while (!isInterrupted()) {
 			{

@@ -60,7 +60,7 @@ std::unique_ptr<xercesc::DOMDocument, XercesDocumentWrapper::DocumentDeleter> Xe
 	t_parser.getParser()->getDomConfig ()->setParameter (xercesc::XMLUni::fgDOMErrorHandler, &t_ehp);
 
 	try {
-		xercesc::MemBufInputSource t_contentSource((const XMLByte*)p_source.c_str(), p_source.size(), "");
+		xercesc::MemBufInputSource t_contentSource(reinterpret_cast<const XMLByte*>(p_source.c_str()), p_source.size(), ""); // TODO: Careful! reinterpret_cast
 		xercesc::Wrapper4InputSource t_wrap (&t_contentSource, false);
 
 		std::unique_ptr<xercesc::DOMDocument, DocumentDeleter> t_doc (t_parser.getParser()->parse (&t_wrap));
