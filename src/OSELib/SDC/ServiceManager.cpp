@@ -72,6 +72,8 @@ void ServiceManager::setHelloReceivedHandler(HelloReceivedHandler * handler) {
 	}
 
 	_helloCallback = std::unique_ptr<HelloCallback>(new HelloCallback(handler));
+	// Add the new Callback
+   _dpwsClient->addHelloEventHandler(*_helloCallback);
 }
 
 std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connect(const std::string & p_xaddr)
