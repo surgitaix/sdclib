@@ -7,6 +7,7 @@
 
 #include <TestOrchestratorConsumer.h>
 
+#include "SDCLib/Data/SDC/MDIB/EnumStringMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricValue.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricState.h"
@@ -234,6 +235,14 @@ void TestOrchestratorConsumer::requestStringMetricValue(HandleRef& descriptorHan
 	auto sms = requestState<StringMetricState>(descriptorHandle);
 	if(sms != nullptr)
 		std::cout << sms->getMetricValue().getValue();
+}
+
+void TestOrchestratorConsumer::setMMBBTestCaseValue(HandleRef& descriptorHandle, std::string val)
+{
+	FutureInvocationState fis;
+	EnumStringMetricState esms(descriptorHandle);
+	esms.setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(val));
+	consumer->commitState(esms, fis);
 }
 
 void TestOrchestratorConsumer::setStringMetricValue(HandleRef& descriptorHandle, std::string val)

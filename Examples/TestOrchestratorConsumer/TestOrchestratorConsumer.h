@@ -49,6 +49,8 @@ public:
 	void requestStringMetricValue(HandleRef& descriptorHandle);
 	void setStringMetricValue(HandleRef& descriptorHandel, std::string val);
 
+	void setMMBBTestCaseValue(HandleRef& descriptorHandel, std::string val);
+
 	void activate(std::string descriptorHandle);
 
 

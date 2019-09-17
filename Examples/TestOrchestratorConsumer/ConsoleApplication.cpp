@@ -31,6 +31,8 @@ int main() {
 	cbm.setCallback("requestNumericMetricValue", {"[NMSDescriptorHandle]"}, cbm.defineCallback<std::string>( [&] (std::string descriptorHandle) {toc.requestNumericMetricValue(descriptorHandle);}));
 	cbm.setCallback("setNumericMetricValue", {"[NMSDescriptorHandle]", "[double]"}, cbm.defineCallback<std::string, double>
 	( [&](std::string descriptorHandle, double val) { toc.setNumericMetricValue(descriptorHandle, val); } ));
+	cbm.setCallback("setMMBBTestCaseValue", {"[BBMMEnumHandle]", "[allowedTestCaseValue]"}, cbm.defineCallback<std::string, std::string>
+	( [&](std::string descriptorHandle, std::string val) {toc.setMMBBTestCaseValue(descriptorHandle, val);}));
 	cbm.setCallback("requestStringMetricValue", {"[SMSDescriptorHandle]"}, cbm.defineCallback<std::string>
 	( [&] (std::string descriptorHandle) {toc.requestStringMetricValue(descriptorHandle);}));
 	cbm.setCallback("setStringMetricValue", {"[SMSDescriptorHandle]", "[string]"}, cbm.defineCallback<std::string, std::string>
