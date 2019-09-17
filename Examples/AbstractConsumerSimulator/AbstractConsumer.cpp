@@ -296,10 +296,6 @@ bool AbstractConsumer::setupMirrorProvider() {
 
 	//Add BackBone Control for MessageManipulator
 	auto MMMds = getMessageManipulatorControlInterfaceMds();
-	for(auto it : bbTestCaseEnumDescriptors)
-	{
-		DUTMirrorProvider->createSetOperationForDescriptor<EnumStringMetricDescriptor>(*it.second, MMMds);
-	}
 	extendedMdDesc.addMds(MMMds);
 
 	DUTMirrorProvider->setMdDescription(extendedMdDesc);
@@ -374,11 +370,10 @@ bool AbstractConsumer::setupMirrorProvider() {
 	{
 		DUTMirrorProvider->addMdStateHandler(it.second.get());
 	}
-
-//	for(auto it : bbTestCaseEnumHandles)
-//	{
-//		DUTMirrorProvider->addMdStateHandler(it.second.get());
-//	}
+	for(auto it : bbTestCaseEnumDescriptors)
+	{
+		DUTMirrorProvider->createSetOperationForDescriptor<EnumStringMetricDescriptor>(*it.second, MMMds);
+	}
 
 
 
@@ -465,7 +460,6 @@ void AbstractConsumer::setupDiscoveryProvider()
 		setupMirrorProviderDesc = std::make_shared<ActivateOperationDescriptor>(SETUP_MIRROR_PROVIDER, SET_MIRROR_PROVIDER_ENDPOINT_REF);
 
 
-
 		//Channel
 		ChannelDescriptor discoveryProviderChannel(DISCOVERY_PROVIDER_CHANNEL);
 		discoveryProviderChannel.addMetric(*availableEndpointReferencesDesc);
@@ -489,7 +483,16 @@ void AbstractConsumer::setupDiscoveryProvider()
         // create and add description
 		MdDescription discoveryProvidermdDescription;
 		discoveryProvidermdDescription.addMdsDescriptor(discoveryProviderMDs);
+		auto MMMds = getMessageManipulatorControlInterfaceMds();
+		discoveryProvidermdDescription.addMds(MMMds);
 		DiscoveryProvider->setMdDescription(discoveryProvidermdDescription);
+
+		for(auto it : bbTestCaseEnumDescriptors)
+		{
+			DiscoveryProvider->createSetOperationForDescriptor<EnumStringMetricDescriptor>(*it.second, MMMds);
+		}
+
+
 
 		DiscoveryProvider->addMdStateHandler(discoverAvailableEndpointReferencesCaller.get());
 		DiscoveryProvider->addMdStateHandler(availableEndpointReferencesHandler.get());
