@@ -2,7 +2,7 @@
  * EventReportServiceHandler.cpp
  *
  *  Created on: 07.12.2015, matthias
- *  Modified on: 21.08.2019, baumeister
+ *  Modified on: 18.09.2019, baumeister
  *
  */
 
@@ -64,7 +64,11 @@ void EventReportServiceHandler::handleRequestImpl(Poco::Net::HTTPServerRequest &
 		log_error([&] { return "EventReportServiceHandler can't handle action: " + t_soapAction; });
 	}
 
-	std::unique_ptr<MESSAGEMODEL::Envelope> t_responseMessage(t_command->Run());
+	auto t_responseMessage(t_command->Run());
+	if(nullptr == t_responseMessage) {
+		log_error([&] { return "EventReportServiceHandler failed to generate Response for Action: " + t_soapAction; });
+		return;
+	}
 
 	SOAP::SoapHTTPResponseWrapper t_response(p_httpResponse);
 	t_response.send(SOAP::NormalizedMessageSerializer::serialize(*t_responseMessage));

@@ -57,6 +57,9 @@ namespace OSELib
 				}
 
 				std::unique_ptr<MESSAGEMODEL::Envelope> t_responseMessage(createResponseMessageFromRequestMessage(request));
+				if(nullptr == t_responseMessage) {
+					return nullptr;
+				}
 				t_responseMessage->Header().Action().set(WS::ADDRESSING::AttributedURIType(TraitsType::ResponseAction()));
 
 				insertResponseBodyIntoMessage(*t_responseMessage, std::move(t_responseBody));

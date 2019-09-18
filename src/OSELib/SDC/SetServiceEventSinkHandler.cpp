@@ -2,7 +2,7 @@
  *  SetServiceEventSinkHandler.cpp
  *
  *  Created on: 10.12.2015, matthias
- *  Modified on: 21.08.2019, baumeister
+ *  Modified on: 18.09.2019, baumeister
  *
  */
 
@@ -43,7 +43,7 @@ void SetServiceEventSinkHandler::handleRequestImpl(Poco::Net::HTTPServerRequest 
 		log_error([&] { return "SetServiceEventSinkHandler can't handle action: " + t_soapAction; });
 	}
 
-	std::unique_ptr<MESSAGEMODEL::Envelope> t_responseMessage(t_command->Run());
+	auto t_responseMessage(t_command->Run());
 
 	// todo add proper soap fault handling in response
 
