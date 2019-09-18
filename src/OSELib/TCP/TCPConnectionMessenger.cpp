@@ -11,7 +11,7 @@
 
 
 struct tcp_message_header {
-	uint16_t size;
+	uint32_t size;
 	uint64_t timestamp;
 	uint16_t msgNumber;
 	uint8_t dropMessage;

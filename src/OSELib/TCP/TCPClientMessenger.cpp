@@ -9,7 +9,7 @@
 #include <cstring>
 
 struct tcp_message_header {
-	uint16_t size;
+	uint32_t size;
 	uint64_t timestamp;
 	uint16_t msgNumber;
 	uint8_t dropMessage;
@@ -115,6 +115,7 @@ void TCPClientMessenger::onConnected()
 
 void TCPClientMessenger::sendMessage(const std::string &message)
 {
+
 	tcp_message_header header;
 	header.msgNumber = currentMessageNumber;
 	header.timestamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
@@ -126,6 +127,8 @@ void TCPClientMessenger::sendMessage(const std::string &message)
     const char* c_pointer = static_cast<const char*>(v_pointer);
     std::string data = std::string(c_pointer, sizeof(tcp_message_header));
     data.append(message);
+	std::cout << message << std::endl;
+	std::cout << header.size << std::endl;
     send(data.c_str(), header.size);
 	onMessageSent(message);
 }

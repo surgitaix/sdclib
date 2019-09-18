@@ -52,8 +52,8 @@ std::string NormalizedMessageSerializer::manipulateMessage(const std::string& or
 
 	if(Network::TCPClientEventHandler::getInstance("127.0.0.1", 5000)->isStarted() && Network::TCPClientEventHandler::getInstance("127.0.0.1", 5000)->isConnected())
 	{
-		std::cout << "OUTGOING \n" << originalMessage << std::endl;
-		std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+//		std::cout << "OUTGOING \n" << originalMessage << std::endl;
+//		std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 		Network::TCPClientEventHandler::getInstance("127.0.0.1", 5000)->sendRequest(originalMessage);
 		while(!Network::TCPClientEventHandler::getInstance("127.0.0.1", 5000)->responseReceived())
 		{
@@ -62,8 +62,8 @@ std::string NormalizedMessageSerializer::manipulateMessage(const std::string& or
 		std::string manipulatedMessage = Network::TCPClientEventHandler::getInstance("127.0.0.1", 5000)->getResponse();
 
 		std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-		std::cout << "INCOMING after " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << std::endl;
-		std::cout << manipulatedMessage << std::endl;
+//		std::cout << "INCOMING after " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << std::endl;
+//		std::cout << manipulatedMessage << std::endl;
 
 		return manipulatedMessage;
 	}
