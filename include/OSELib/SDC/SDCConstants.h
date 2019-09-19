@@ -42,24 +42,16 @@ const std::string NS_WSDL_SOAP_BINDING("http://schemas.xmlsoap.org/wsdl/soap/");
 const std::string NS_XML_SCHEMA("http://www.w3.org/2001/XMLSchema");
 const std::string NS_MDPWS("http://standards.ieee.org/downloads/11073/11073-20702-2016");
 const std::string WS_MEX_ORNET_NS_STREAM("http://standardized.namespace.org/ws-streaming");
-const std::string NS_ORNET_STREAM_ID(NS_SERVICE_DESCRIPTION + "/WaveformService");
 const std::string MDPWS_STREAM_TYPE("WaveformStream");
 const std::string WS_POLICY("http://www.w3.org/ns/ws-policy");
 const std::string NS_DPWS("http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01");
 
 const std::string MDPWS_MCAST_ADDR("soap.udp://239.239.239.235");
 const int MDPWS_MCAST_PORT(5555);
-const std::string MDPWS_STREAMTRANSMISSIONTYPE(NS_MDPWS + "/StreamTransmissionType");
 
-const std::string ACTION_ORNET_STREAM(NS_SERVICE_DESCRIPTION + "/WaveformService/WaveformStream");
-const std::string WS_MEX_ORNET_STREAM_IDENTIFIER(NS_SERVICE_DESCRIPTION + "/WaveformService");
-const std::string WS_MEX_ORNET_STREAM_TYPE("http://docs.oasis-open.org/ws-dd/soapoverudp/1.1/os/wsdd-soapoverudp-1.1-spec-os.html");
+const std::string WS_MEX_ORNET_STREAM_IDENTIFIER(NS_SERVICE_DESCRIPTION + "/WaveformService"); // FIXME: Rename constant(?)
+const std::string WS_MEX_ORNET_STREAM_TYPE("http://docs.oasis-open.org/ws-dd/soapoverudp/1.1/os/wsdd-soapoverudp-1.1-spec-os.html"); // FIXME: Rename constant(?)
 const std::string WS_MEX_DIALECT_STREAM("http://standards.ieee.org/downloads/11073/11073-20702-2016");
-
-//Should not be needed.
-//const std::string WS_MEX_ORNET_DIALECT_STREAM("http://standardized.namespace.org/ws-streaming/StreamDescriptions");
-
-const std::string SOAP_HTTP_BINDING_URI("http://schemas.xmlsoap.org/soap/http");
 
 // Service Qnames
 const std::string QNAME_CONTEXTSERVICE_PORTTYPE("ContextService");

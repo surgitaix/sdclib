@@ -8,7 +8,8 @@ namespace OSELib
 namespace WSDL
 {
 
-const std::string contextServiceWsdl=std::string(R"(<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" targetNamespace="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mm="http://standards.ieee.org/downloads/11073/11073-10207-2017/message" xmlns:dpws="http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01">
+const std::string contextServiceWsdl=std::string(
+R"(<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" targetNamespace="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mm="http://standards.ieee.org/downloads/11073/11073-10207-2017/message" xmlns:dpws="http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01">
     <wsdl:types>
         <xs:schema targetNamespace="http://standards.ieee.org/downloads/11073/11073-10207-2017/message" xmlns:xs="http://www.w3.org/2001/XMLSchema">
             <xs:include schemaLocation="BICEPS_MessageModel.xsd"/>
@@ -51,37 +52,25 @@ const std::string contextServiceWsdl=std::string(R"(<wsdl:definitions xmlns:wsdl
             <dpws:Profile wsp:Optional="true" />
         </wsp:Policy>
     </wsdl:portType>
-    <wsdl:binding name="ContextServiceBinding" type="tns:ContextService" xmlns:p1="http://schemas.xmlsoap.org/wsdl/soap12/">
-        <p1:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:binding name="ContextServiceBinding" type="tns:ContextService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
         <wsdl:operation name="GetContextStates">
-            <p1:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/ContextService/GetContextStates" style="document"/>
-            <wsdl:input>
-                <p1:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output>
-                <p1:body use="literal"/>
-            </wsdl:output>
+            <soap:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/ContextService/GetContextStates" style="document"/>
+            <wsdl:input><soap:body use="literal"/></wsdl:input>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="SetContextState">
-            <p1:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/ContextService/SetContextState" style="document"/>
-            <wsdl:input>
-                <p1:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output>
-                <p1:body use="literal"/>
-            </wsdl:output>
+            <soap:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/ContextService/SetContextState" style="document"/>
+            <wsdl:input><soap:body use="literal"/></wsdl:input>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="EpisodicContextReport">
-            <p1:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/ContextService/EpisodicContextReport" style="document"/>
-            <wsdl:output>
-                <p1:body use="literal"/>
-            </wsdl:output>
+            <soap:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/ContextService/EpisodicContextReport" style="document"/>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="PeriodicContextReport">
-            <p1:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/ContextService/PeriodicContextReport" style="document"/>
-            <wsdl:output>
-                <p1:body use="literal"/>
-            </wsdl:output>
+            <soap:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/ContextService/PeriodicContextReport" style="document"/>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
         </wsdl:operation>
     </wsdl:binding>
 </wsdl:definitions>)");

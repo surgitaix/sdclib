@@ -518,10 +518,11 @@ void SDCProvider::SetAlertState(const MDM::SetAlertState & p_request, const Oper
 MDM::GetMdStateResponse SDCProvider::GetMdState(const MDM::GetMdState & p_request)
 {
     auto t_sdmMdStates(ConvertToCDM::convert(getMdState()));
-
     if (p_request.HandleRef().empty()) {
     	//TODO: use real SequenceID, not 0
-        return MDM::GetMdStateResponse(xml_schema::Uri("0"), std::move(t_sdmMdStates));
+        MDM::GetMdStateResponse t_mdstateResponse(xml_schema::Uri("0"), std::move(t_sdmMdStates));
+        t_mdstateResponse.MdibVersion(getMdibVersion());
+        return t_mdstateResponse;
     } else {
     	CDM::MdState t_tmpmds;
     	const std::set<std::string> t_reqHandles(p_request.HandleRef().begin(), p_request.HandleRef().end());
@@ -531,7 +532,9 @@ MDM::GetMdStateResponse SDCProvider::GetMdState(const MDM::GetMdState & p_reques
 			}
     	}
     	//TODO: use real SequenceID, not 0
-    	return MDM::GetMdStateResponse(xml_schema::Uri("0"), t_tmpmds);
+    	MDM::GetMdStateResponse t_mdstateResponse(xml_schema::Uri("0"), t_tmpmds);
+    	t_mdstateResponse.MdibVersion(getMdibVersion());
+    	return t_mdstateResponse;
     }
     // FIXME: What to return here?
 }

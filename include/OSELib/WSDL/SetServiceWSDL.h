@@ -8,7 +8,8 @@ namespace OSELib
 namespace WSDL
 {
 
-const std::string setServiceWsdl=R"(<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" targetNamespace="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mm="http://standards.ieee.org/downloads/11073/11073-10207-2017/message" xmlns:dpws="http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01">
+const std::string setServiceWsdl=std::string(
+R"(<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" targetNamespace="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mm="http://standards.ieee.org/downloads/11073/11073-10207-2017/message" xmlns:dpws="http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01">
     <wsdl:types>
         <xs:schema targetNamespace="http://standards.ieee.org/downloads/11073/11073-10207-2017/message" xmlns:xs="http://www.w3.org/2001/XMLSchema">
             <xs:include schemaLocation="BICEPS_MessageModel.xsd"/>
@@ -75,61 +76,39 @@ const std::string setServiceWsdl=R"(<wsdl:definitions xmlns:wsdl="http://schemas
             <dpws:Profile wsp:Optional="true" />
         </wsp:Policy>
     </wsdl:portType>
-    <wsdl:binding name="SetServiceBinding" type="tns:SetService" xmlns:p1="http://schemas.xmlsoap.org/wsdl/soap12/">
-        <p1:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:binding name="SetServiceBinding" type="tns:SetService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
         <wsdl:operation name="Activate">
-            <p1:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/SetService/Activate" style="document"/>
-            <wsdl:input>
-                <p1:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output>
-                <p1:body use="literal"/>
-            </wsdl:output>
+            <soap:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/SetService/Activate" style="document"/>
+            <wsdl:input><soap:body use="literal"/></wsdl:input>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="SetAlertState">
-            <p1:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/SetService/SetAlertState" style="document"/>
-            <wsdl:input>
-                <p1:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output>
-                <p1:body use="literal"/>
-            </wsdl:output>
+            <soap:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/SetService/SetAlertState" style="document"/>
+            <wsdl:input><soap:body use="literal"/></wsdl:input>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="SetString">
-            <p1:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/SetService/SetString" style="document"/>
-            <wsdl:input>
-                <p1:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output>
-                <p1:body use="literal"/>
-            </wsdl:output>
+            <soap:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/SetService/SetString" style="document"/>
+            <wsdl:input><soap:body use="literal"/></wsdl:input>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="SetValue">
-            <p1:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/SetService/SetValue" style="document"/>
-            <wsdl:input>
-                <p1:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output>
-                <p1:body use="literal"/>
-            </wsdl:output>
+            <soap:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/SetService/SetValue" style="document"/>
+            <wsdl:input><soap:body use="literal"/></wsdl:input>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="SetMetricState">
-            <p1:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/SetService/SetMetricState" style="document"/>
-            <wsdl:input>
-                <p1:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output>
-                <p1:body use="literal"/>
-            </wsdl:output>
+            <soap:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/SetService/SetMetricState" style="document"/>
+            <wsdl:input><soap:body use="literal"/></wsdl:input>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="OperationInvokedReport">
-            <p1:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/SetService/OperationInvokedReport" style="document"/>
-            <wsdl:output>
-                <p1:body use="literal"/>
-            </wsdl:output>
+            <soap:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/SetService/OperationInvokedReport" style="document"/>
+            <wsdl:output><soap:body use="literal"/></wsdl:output>
         </wsdl:operation>                
     </wsdl:binding>
-</wsdl:definitions>)";
+</wsdl:definitions>)");
 
 }
 }
