@@ -1176,7 +1176,6 @@ void SDCProvider::shutdown()
     stopAsyncProviderInvoker();
 
 	if (m_adapter) {
-		m_adapter->stop();
 		m_adapter.reset();
 	}
 

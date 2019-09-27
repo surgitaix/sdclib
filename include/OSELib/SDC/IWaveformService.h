@@ -2,7 +2,7 @@
  * IWaveformService
  *
  *  Created on: 15.03.2019, buerger
- *  Modified on: 21.08.2019, baumeister
+ *  Modified on: 26.09.2019, baumeister
  *
  */
 
@@ -16,15 +16,15 @@ namespace OSELib
 {
 	namespace SDC
 	{
-		class IWaveformService : public DPWS::IService, public DPWS::ISubscriptionManager
+		class IWaveformService : public virtual DPWS::IService, public virtual DPWS::ISubscriptionManager
 		{
 		public:
 			// Special Member Functions
 			IWaveformService() = default;
-			IWaveformService(const IWaveformService& p_obj) = default;
-			IWaveformService(IWaveformService&& p_obj) = default;
-			IWaveformService& operator=(const IWaveformService& p_obj) = default;
-			IWaveformService& operator=(IWaveformService&& p_obj) = default;
+			IWaveformService(const IWaveformService& p_obj) = delete;
+			IWaveformService(IWaveformService&& p_obj) = delete;
+			IWaveformService& operator=(const IWaveformService& p_obj) = delete;
+			IWaveformService& operator=(IWaveformService&& p_obj) = delete;
 			virtual ~IWaveformService() = default;
 		};
 	}

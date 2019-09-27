@@ -56,9 +56,8 @@ namespace SDCLib
 				friend class SDCConsumerOperationInvokedHandler;
 
 				// todo remove friend classes and only use oselibconsumer adapter
-				friend struct OSELib::ContextServiceEventSink;
-				friend struct OSELib::EventReportEventSink;
-				friend struct OSELib::SetServiceEventSink;
+				friend class OSELib::BICEPSServiceEventSink;
+				friend class OSELib::SetServiceEventSink;
 				friend class OSELib::DPWS::PingManager;
 				friend class OSELib::SDC::ServiceManager;
 

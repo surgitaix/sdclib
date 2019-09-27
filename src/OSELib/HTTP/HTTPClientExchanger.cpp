@@ -51,7 +51,7 @@ std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPClientSession & p_s
     	Poco::Net::HTTPRequest t_request(Poco::Net::HTTPRequest::HTTP_POST, p_path, Poco::Net::HTTPMessage::HTTP_1_1);
         t_request.setContentType("application/soap+xml");
         t_request.setContentLength(p_requestData.length());
-        t_request.setKeepAlive(false);
+        t_request.setKeepAlive(true);
 
         std::ostream & t_ostr = p_session.sendRequest(t_request);
         t_ostr << p_requestData << std::flush;
@@ -85,7 +85,7 @@ std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPSClientSession & p_
     	Poco::Net::HTTPRequest t_request(Poco::Net::HTTPRequest::HTTP_POST, p_path, Poco::Net::HTTPMessage::HTTP_1_1);
     	t_request.setContentType("application/soap+xml");
     	t_request.setContentLength(p_requestData.length());
-    	t_request.setKeepAlive(false);
+    	t_request.setKeepAlive(true);
 
         std::ostream & t_ostr = p_session.sendRequest(t_request);
         t_ostr << p_requestData << std::flush;

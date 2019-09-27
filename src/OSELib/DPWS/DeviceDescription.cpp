@@ -24,6 +24,7 @@ bool DeviceDescription::checkURIsValidity(const Poco::URI & p_uri) const
 {
 	// Checks if a given URI is valid by trying to establish a connection
 	try {
+		// FIXME: SSL ?
 		Poco::Net::StreamSocket t_connection;
 		t_connection.connect(Poco::Net::SocketAddress(p_uri.getHost(), p_uri.getPort()), Poco::Timespan(50000));
 		return true;
@@ -79,6 +80,19 @@ void DeviceDescription::addDeviceURI(const Poco::URI & p_uri)
 	}
 }
 
+Poco::URI DeviceDescription::getBICEPSServiceURI() const
+{
+	Poco::URI t_tmp_stateEvent = getEventServiceURI();
+	Poco::URI t_tmp_context = getContextServiceURI();
+	// TODO ...
+
+	if(t_tmp_stateEvent != t_tmp_context) {
+		log_error([&] { return "R0034 Violated! Services: ContextService, StateEventService... dirstributet accross multiple hosted services!"; });
+	}
+
+	return t_tmp_stateEvent;
+}
+
 Poco::URI DeviceDescription::getContextServiceURI() const
 {
 	std::lock_guard<std::mutex> t_lock(m_mutex_URIs);
@@ -89,6 +103,7 @@ Poco::URI DeviceDescription::getContextServiceURI() const
 	}
 	throw std::runtime_error("No ContextServiceURI valid.");
 }
+
 void DeviceDescription::addContextServiceURI(const Poco::URI & p_uri)
 {
 	std::lock_guard<std::mutex> t_lock(m_mutex_URIs);

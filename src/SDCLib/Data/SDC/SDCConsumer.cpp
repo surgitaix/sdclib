@@ -184,6 +184,7 @@ SDCConsumer::SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, OSELib::D
 	catch(...) {
         log_error([] {return "Unknown Exception: Could not create ConsumerAdapter!"; });
         disconnect();
+        // FIXME: Zombie state?
     }
 
 	if (!m_connected) {
@@ -191,11 +192,13 @@ SDCConsumer::SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, OSELib::D
 	}
 }
 
-SDCConsumer::~SDCConsumer() {
-
+SDCConsumer::~SDCConsumer()
+{
+	// TODO: Why?
     for (auto & t_fis : ml_fisMap) {
     	t_fis.second->m_consumer = nullptr;
     }
+
     // FIXME: This is not threadsafe + RAII
     if (m_adapter != nullptr)
     {
@@ -207,9 +210,7 @@ SDCConsumer::~SDCConsumer() {
 
 void SDCConsumer::disconnect()
 {
-	// FIXME: Adapter: RAII!
 	if (m_adapter) {
-		m_adapter->stop();
 		m_adapter.reset();
 	}
 }

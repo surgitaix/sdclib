@@ -41,11 +41,9 @@ set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             # WSDL
                             ${INCLUDE_DIR}/OSELib/WSDL/WSDLLoader.h
                             # Service
-                            ${INCLUDE_DIR}/OSELib/WSDL/ContextServiceWSDL.h
                             ${INCLUDE_DIR}/OSELib/WSDL/GetServiceWSDL.h
                             ${INCLUDE_DIR}/OSELib/WSDL/SetServiceWSDL.h
-                            ${INCLUDE_DIR}/OSELib/WSDL/StateEventServiceWSDL.h
-                            ${INCLUDE_DIR}/OSELib/WSDL/WaveformServiceWSDL.h
+                            ${INCLUDE_DIR}/OSELib/WSDL/BICEPSServiceWSDL.h
                             # DPWS
                             ${INCLUDE_DIR}/OSELib/DPWS/Types.h
                             ${INCLUDE_DIR}/OSELib/DPWS/MDPWSHostAdapter.h
@@ -74,11 +72,12 @@ set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             ${INCLUDE_DIR}/OSELib/SDC/ServiceManager.h
                             ${INCLUDE_DIR}/OSELib/SDC/DefaultSDCSchemaGrammarProvider.h
                             ${INCLUDE_DIR}/OSELib/SDC/OperationTraits.h
-                            ${INCLUDE_DIR}/OSELib/SDC/WaveformReportServiceHandler.h
                             ${INCLUDE_DIR}/OSELib/SDC/IStateEventServiceEventSink.h
                             ${INCLUDE_DIR}/OSELib/SDC/IEventReport.h
                             ${INCLUDE_DIR}/OSELib/SDC/GetServiceHandler.h
                             ${INCLUDE_DIR}/OSELib/SDC/SetServiceHandler.h
+                            ${INCLUDE_DIR}/OSELib/SDC/BICEPSServiceHandler.h
+                            ${INCLUDE_DIR}/OSELib/SDC/BICEPSServiceEventSinkHandler.h
                             ${INCLUDE_DIR}/OSELib/SDC/ISetServiceEventSink.h
                             ${INCLUDE_DIR}/OSELib/SDC/SDCConstants.h
                             ${INCLUDE_DIR}/OSELib/SDC/IContextServiceEventSink.h
@@ -86,16 +85,16 @@ set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             ${INCLUDE_DIR}/OSELib/SDC/IGetService.h
                             ${INCLUDE_DIR}/OSELib/SDC/IContextService.h
                             ${INCLUDE_DIR}/OSELib/SDC/SDCServiceController.h
-                            ${INCLUDE_DIR}/OSELib/SDC/ContextServiceHandler.h
                             ${INCLUDE_DIR}/OSELib/SDC/ISetService.h
-                            ${INCLUDE_DIR}/OSELib/SDC/ContextEventSinkHandler.h
-                            ${INCLUDE_DIR}/OSELib/SDC/StateEventServiceEventSinkHandler.h
+                            ${INCLUDE_DIR}/OSELib/SDC/IBICEPSService.h
+                            ${INCLUDE_DIR}/OSELib/SDC/IBICEPSServiceEventSink.h
                             ${INCLUDE_DIR}/OSELib/SDC/ReportTraits.h
                             ${INCLUDE_DIR}/OSELib/SDC/IWaveformService.h
                             ${INCLUDE_DIR}/OSELib/SDC/SetServiceEventSinkHandler.h
-                            ${INCLUDE_DIR}/OSELib/SDC/EventReportServiceHandler.h
                             ${INCLUDE_DIR}/OSELib/HTTP/Service.h
                             ${INCLUDE_DIR}/OSELib/HTTP/FrontController.h
+                            ${INCLUDE_DIR}/OSELib/HTTP/HTTPServer.h
+                            ${INCLUDE_DIR}/OSELib/HTTP/HTTPRequestHandlerFactory.h
                             ${INCLUDE_DIR}/OSELib/HTTP/GenericFileHandler.h
                             ${INCLUDE_DIR}/OSELib/HTTP/HTTPSessionManager.h
                             ${INCLUDE_DIR}/OSELib/HTTP/FrontControllerAdapter.h
@@ -447,23 +446,23 @@ target_sources(${CURRENT_TARGET_NAME}
         ${SRC_DIR}/OSELib/Helper/XercesUniqueElementByTagNameFilter.cpp
         ${SRC_DIR}/OSELib/HTTP/FrontControllerAdapter.cpp
         ${SRC_DIR}/OSELib/HTTP/FrontController.cpp
+        ${SRC_DIR}/OSELib/HTTP/HTTPServer.cpp
+		${SRC_DIR}/OSELib/HTTP/HTTPRequestHandlerFactory.cpp
         ${SRC_DIR}/OSELib/HTTP/GenericContentHandler.cpp
         ${SRC_DIR}/OSELib/HTTP/GenericFileHandler.cpp
         ${SRC_DIR}/OSELib/HTTP/HTTPClientExchanger.cpp
         ${SRC_DIR}/OSELib/HTTP/HTTPSessionManager.cpp
         ${SRC_DIR}/OSELib/HTTP/Service.cpp
         ${SRC_DIR}/OSELib/HTTP/StaticContentController.cpp
-        ${SRC_DIR}/OSELib/SDC/ContextEventSinkHandler.cpp
-        ${SRC_DIR}/OSELib/SDC/ContextServiceHandler.cpp
         ${SRC_DIR}/OSELib/SDC/DefaultSDCSchemaGrammarProvider.cpp
-        ${SRC_DIR}/OSELib/SDC/StateEventServiceEventSinkHandler.cpp
-        ${SRC_DIR}/OSELib/SDC/EventReportServiceHandler.cpp
         ${SRC_DIR}/OSELib/SDC/GetServiceHandler.cpp
         ${SRC_DIR}/OSELib/SDC/OperationTraits.cpp
         ${SRC_DIR}/OSELib/SDC/ReportTraits.cpp
         ${SRC_DIR}/OSELib/SDC/ServiceManager.cpp
         ${SRC_DIR}/OSELib/SDC/SetServiceHandler.cpp
         ${SRC_DIR}/OSELib/SDC/SetServiceEventSinkHandler.cpp
+        ${SRC_DIR}/OSELib/SDC/BICEPSServiceHandler.cpp
+        ${SRC_DIR}/OSELib/SDC/BICEPSServiceEventSinkHandler.cpp
         ${SRC_DIR}/OSELib/SOAP/CommonSoapPreprocessing.cpp
         ${SRC_DIR}/OSELib/SOAP/GetActionCommand.cpp
         ${SRC_DIR}/OSELib/SOAP/GetMetadataActionCommand.cpp
@@ -479,7 +478,6 @@ target_sources(${CURRENT_TARGET_NAME}
         ${SRC_DIR}/OSELib/SOAP/SoapInvoke.cpp
         ${SRC_DIR}/OSELib/SOAP/SubscribeActionCommand.cpp
         ${SRC_DIR}/OSELib/SOAP/UnsubscribeActionCommand.cpp
-        ${SRC_DIR}/OSELib/SDC/WaveformReportServiceHandler.cpp
         ${SRC_DIR}/OSELib/WSDL/WSDLLoader.cpp
         #
         # Add the includes too (for better generation)

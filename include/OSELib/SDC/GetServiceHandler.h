@@ -32,7 +32,7 @@ namespace OSELib
 			~GetServiceHandler() = default;
 
 		private:
-			virtual void handleRequestImpl(Poco::Net::HTTPServerRequest & p_httpRequest, Poco::Net::HTTPServerResponse & p_httpResponse);
+			void handleRequestImpl(Poco::Net::HTTPServerRequest & p_httpRequest, Poco::Net::HTTPServerResponse & p_httpResponse);
 
 		};
 	}

@@ -204,15 +204,15 @@ void ServiceManager::resolveServiceURIsFromMetadata(const WS::MEX::MetadataSecti
 	for (const auto & t_hosted : p_metadata.Relationship().get().Hosted()) {
 		for (auto t_hosted_type : t_hosted.Types()) {
 			if (t_hosted_type.name() == QNAME_CONTEXTSERVICE_PORTTYPE) {
-				log_debug([&]{return "ContextService found";});
+				log_debug([&]{return QNAME_CONTEXTSERVICE_PORTTYPE + " found";});
 				for (const auto & t_iter : t_hosted.EndpointReference()) {
 					p_deviceDescription.addContextServiceURI(Poco::URI(t_iter.Address()));
 				}
 			}
 		}
 		for (auto t_hosted_type : t_hosted.Types()) {
-			if (t_hosted_type.name() == QNAME_STATEEVENTREPORTSERVICE_PORTTYPE) {
-				log_debug([&]{return "StateEventReportService found";});
+			if (t_hosted_type.name() == QNAME_STATEEVENTSERVICE_PORTTYPE) {
+				log_debug([&]{return QNAME_STATEEVENTSERVICE_PORTTYPE + " found";});
 				for (const auto & t_iter : t_hosted.EndpointReference()) {
 					p_deviceDescription.addStateEventReportServiceURI(Poco::URI(t_iter.Address()));
 				}
@@ -220,7 +220,7 @@ void ServiceManager::resolveServiceURIsFromMetadata(const WS::MEX::MetadataSecti
 		}
 		for (auto t_hosted_type : t_hosted.Types()) {
 			if (t_hosted_type.name() == QNAME_GETSERVICE_PORTTYPE) {
-				log_debug([]{return "GetService found";});
+				log_debug([]{return QNAME_GETSERVICE_PORTTYPE + " found";});
 				for (const auto & t_iter : t_hosted.EndpointReference()) {
 					p_deviceDescription.addGetServiceURI(Poco::URI(t_iter.Address()));
 				}
@@ -228,7 +228,7 @@ void ServiceManager::resolveServiceURIsFromMetadata(const WS::MEX::MetadataSecti
 		}
 		for (auto t_hosted_type : t_hosted.Types()) {
 			if (t_hosted_type.name() == QNAME_SETSERVICE_PORTTYPE) {
-				log_debug([]{return "SetService found";});
+				log_debug([]{return QNAME_SETSERVICE_PORTTYPE + " found";});
 				for (const auto & t_iter : t_hosted.EndpointReference()) {
 					p_deviceDescription.addSetServiceURI(Poco::URI(t_iter.Address()));
 				}
@@ -236,7 +236,7 @@ void ServiceManager::resolveServiceURIsFromMetadata(const WS::MEX::MetadataSecti
 		}
 		for (auto t_hosted_type : t_hosted.Types()) {
 			if (t_hosted_type.name() == QNAME_WAVEFORMSERVICE_PORTTYPE) {
-				log_debug([]{return "WaveformService found";});
+				log_debug([]{return QNAME_WAVEFORMSERVICE_PORTTYPE + " found";});
 				for (const auto & t_iter : t_hosted.EndpointReference()) {
 					p_deviceDescription.addWaveformServiceURI(Poco::URI(t_iter.Address()));
 				}

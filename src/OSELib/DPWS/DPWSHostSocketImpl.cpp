@@ -59,7 +59,7 @@ const MESSAGEMODEL::Envelope buildStreamMessage(const MDM::WaveformStream  & p_n
 {
 	MESSAGEMODEL::Envelope::HeaderType t_header;
 	{
-		t_header.Action(xml_schema::Uri(SDC::EVENT_ACTION_CDM_WAVEFORM_STREAM_REPORT));
+		t_header.Action(xml_schema::Uri(SDC::ACT_WAVEFORM_STREAM_REPORT));
 		t_header.MessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
 		t_header.From(p_epr);
 	}

@@ -2,7 +2,7 @@
  * IContextServiceEventSink.h
  *
  *  Created on: 10.12.2015, matthias
- *  Modified on: 21.08.2019, baumeister
+ *  Modified on: 26.09.2019, baumeister
  *
  */
 
@@ -17,7 +17,7 @@ namespace OSELib
 {
 	namespace SDC
 	{
-		class IContextServiceEventSink : public DPWS::IEventSink
+		class IContextServiceEventSink : public virtual DPWS::IEventSink
 		{
 		public:
 			// Special Member Functions

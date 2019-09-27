@@ -43,7 +43,7 @@ namespace OSELib
 			void run();
 		};
 
-	} /* namespace DPWS */
-} /* namespace OSELib */
+	}
+}
 
-#endif /* OSELIB_DPWS_PINGMANAGER_H_ */
+#endif

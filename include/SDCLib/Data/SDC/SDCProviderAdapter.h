@@ -2,7 +2,7 @@
  * SDCProviderAdapter.h
  *
  *  Created on: 09.12.2015, matthias
- *  Modified on: 22.08.2019, baumeister
+ *  Modified on: 26.09.2019, baumeister
  *
  */
 
@@ -12,17 +12,15 @@
 #include "SDC-fwd.h"
 #include "OSELib/DPWS/SubscriptionManager.h"
 #include "OSELib/DPWS/MDPWSHostAdapter.h"
+#include "OSELib/HTTP/HTTPServer.h"
 
 #include <set>
 #include <mutex>
 
-#include <Poco/Net/HTTPServer.h>
-#include <Poco/ThreadPool.h>
-
 namespace OSELib {
-	struct ContextReportServiceImpl;
-	struct GetServiceImpl;
-	struct SetServiceImpl;
+	class GetServiceImpl;
+	class SetServiceImpl;
+	class BICEPSServiceImpl;
 }
 
 namespace SDCLib
@@ -37,13 +35,12 @@ namespace SDCLib
 				SDCProvider & m_provider;
 
 				mutable std::mutex m_mutex;
-				std::unique_ptr<Poco::ThreadPool> m_threadPool = nullptr;
 
 				std::set<int> ml_streamingPorts;
 
 				std::unique_ptr<OSELib::DPWS::SubscriptionManager> m_subscriptionManager = nullptr;
 				std::unique_ptr<OSELib::DPWS::MDPWSHostAdapter> m_dpwsHost = nullptr;
-				std::unique_ptr<Poco::Net::HTTPServer> m_httpServer = nullptr;
+				std::unique_ptr<OSELib::HTTP::HTTPServer> m_httpServer = nullptr;
 
 			public:
 				SDCProviderAdapter(SDCProvider & p_provider);
@@ -52,7 +49,7 @@ namespace SDCLib
 				SDCProviderAdapter(SDCProviderAdapter&& p_obj) = delete;
 				SDCProviderAdapter& operator=(const SDCProviderAdapter& p_obj) = delete;
 				SDCProviderAdapter& operator=(SDCProviderAdapter&& p_obj) = delete;
-				virtual ~SDCProviderAdapter() = default;
+				~SDCProviderAdapter();
 
 				bool start();
 				void stop();

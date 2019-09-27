@@ -2,7 +2,7 @@
  * IEventReport.h
  *
  *  Created on: 07.12.2015, matthias
- *  Modified on: 21.08.2019, baumeister
+ *  Modified on: 26.09.2019, baumeister
  *
  */
 
@@ -16,15 +16,15 @@ namespace OSELib
 {
 	namespace SDC
 	{
-		class IEventReport : public DPWS::IService, public DPWS::ISubscriptionManager
+		class IEventReport : public virtual DPWS::IService, public virtual DPWS::ISubscriptionManager
 		{
 		public:
 			// Special Member Functions
 			IEventReport() = default;
-			IEventReport(const IEventReport& p_obj) = default;
-			IEventReport(IEventReport&& p_obj) = default;
-			IEventReport& operator=(const IEventReport& p_obj) = default;
-			IEventReport& operator=(IEventReport&& p_obj) = default;
+			IEventReport(const IEventReport& p_obj) = delete;
+			IEventReport(IEventReport&& p_obj) = delete;
+			IEventReport& operator=(const IEventReport& p_obj) = delete;
+			IEventReport& operator=(IEventReport&& p_obj) = delete;
 			virtual ~IEventReport() = default;
 		};
 	}

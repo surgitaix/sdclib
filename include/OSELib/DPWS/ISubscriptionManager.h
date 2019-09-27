@@ -21,10 +21,10 @@ namespace OSELib
 		public:
 			// Special Member Functions
 			ISubscriptionManager() = default;
-			ISubscriptionManager(const ISubscriptionManager& p_obj) = default;
-			ISubscriptionManager(ISubscriptionManager&& p_obj) = default;
-			ISubscriptionManager& operator=(const ISubscriptionManager& p_obj) = default;
-			ISubscriptionManager& operator=(ISubscriptionManager&& p_obj) = default;
+			ISubscriptionManager(const ISubscriptionManager& p_obj) = delete;
+			ISubscriptionManager(ISubscriptionManager&& p_obj) = delete;
+			ISubscriptionManager& operator=(const ISubscriptionManager& p_obj) = delete;
+			ISubscriptionManager& operator=(ISubscriptionManager&& p_obj) = delete;
 			virtual ~ISubscriptionManager() = default;
 
 			virtual std::unique_ptr<SubscribeTraits::Response> dispatch(const SubscribeTraits::Request & p_request) = 0;

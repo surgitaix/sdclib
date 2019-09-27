@@ -36,7 +36,6 @@ namespace OSELib
 			SDCLib::SDCInstance_shared_ptr m_SDCInstance = nullptr;
 			std::unique_ptr<DPWS::MDPWSDiscoveryClientAdapter> m_dpwsClient;
 
-			// todo: kick this helloCallback. Supposedly it is not needed.
 			std::unique_ptr<DPWS::HelloCallback> m_helloCallback;
 
 

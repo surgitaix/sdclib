@@ -37,7 +37,7 @@ namespace OSELib
 			, m_schemaDatamodelController(p_controller, p_serviceImpl.getBaseUri() + "/" + SCHEMA::SCHEMA_BICEPS_PARTICIPANTMODEL_NAME, SCHEMA::SCHEMA_BICEPS_PARTICIPANTMODEL_CONTENT)
 			, m_schemaMessagemodelController(p_controller, p_serviceImpl.getBaseUri() + "/" + SCHEMA::SCHEMA_BICEPS_MESSAGEMODEL_NAME, SCHEMA::SCHEMA_BICEPS_MESSAGEMODEL_CONTENT)
 			, m_schemaExtensionController(p_controller, p_serviceImpl.getBaseUri() + "/" + SCHEMA::SCHEMA_EXTENSIONPOINT_NAME, SCHEMA::SCHEMA_EXTENSIONPOINT_CONTENT)
-			{ /* Fixme: Some missing here? */ }
+			{ }
 			// Special Member Functions
 			SDCServiceController(const SDCServiceController& p_obj) = delete;
 			SDCServiceController(SDCServiceController&& p_obj) = delete;

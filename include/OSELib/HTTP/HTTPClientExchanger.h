@@ -44,7 +44,7 @@ namespace OSELib
 			HTTPClientExchanger(HTTPClientExchanger&& p_obj) = default;
 			HTTPClientExchanger& operator=(const HTTPClientExchanger& p_obj) = default;
 			HTTPClientExchanger& operator=(HTTPClientExchanger&& p_obj) = default;
-			virtual ~HTTPClientExchanger() = default;
+			~HTTPClientExchanger() = default;
 
 			std::string exchangeHttp(Poco::Net::HTTPClientSession & p_session, const std::string & p_path, const std::string & p_requestData);
 			std::string exchangeHttp(Poco::Net::HTTPSClientSession & p_session, const std::string & p_path, const std::string & p_requestData);

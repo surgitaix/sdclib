@@ -51,9 +51,10 @@ namespace SDCLib
 				friend class SDCProviderStateHandler;
 
 				// todo replace by friend class SDCProviderAdapter
-				friend struct OSELib::ContextReportServiceImpl;
-				friend struct OSELib::GetServiceImpl;
-				friend struct OSELib::SetServiceImpl;
+
+				friend class OSELib::GetServiceImpl;
+				friend class OSELib::SetServiceImpl;
+				friend class OSELib::BICEPSServiceImpl;
 
 			private:
 

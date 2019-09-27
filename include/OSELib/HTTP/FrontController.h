@@ -48,4 +48,4 @@ namespace OSELib
 	}
 }
 
-#endif /* OSELIB_HTTP_FRONTCONTROLLER_H_ */
+#endif

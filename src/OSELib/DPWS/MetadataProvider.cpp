@@ -14,8 +14,8 @@
 #include "DataModel/MDPWS.hxx"
 
 
-namespace OSELib {
-namespace DPWS {
+using namespace OSELib;
+using namespace OSELib::DPWS;
 
 const std::string HTTPProtocolPrefix("http://");
 const std::string HTTPSProtocolPrefix("https://");
@@ -28,24 +28,14 @@ std::string MetadataProvider::getDeviceServicePath() const {
 	return "/Device";
 }
 
-std::string MetadataProvider::getStateEventReportServicePath() const {
-	return std::string("/" + SDC::QNAME_STATEEVENTREPORTSERVICE_PORTTYPE);
-}
-
 std::string MetadataProvider::getGetServicePath() const {
 	return std::string("/" + SDC::QNAME_GETSERVICE_PORTTYPE);
 }
-
-std::string MetadataProvider::getContextServicePath() const {
-	return std::string("/" + SDC::QNAME_CONTEXTSERVICE_PORTTYPE);
-}
-
 std::string MetadataProvider::getSetServicePath() const {
 	return std::string("/" + SDC::QNAME_SETSERVICE_PORTTYPE);
 }
-
-std::string MetadataProvider::getWaveformServicePath() const {
-	return std::string("/" + SDC::QNAME_WAVEFORMSERVICE_PORTTYPE);
+std::string MetadataProvider::getBICEPSServicePath() const {
+	return std::string("/" + SDC::QNAME_BICEPSSERVICE);
 }
 
 WS::MEX::Metadata MetadataProvider::createDeviceMetadata(const std::string & p_serverAddress, bool p_SSL) const
@@ -57,59 +47,16 @@ WS::MEX::Metadata MetadataProvider::createDeviceMetadata(const std::string & p_s
 		createMetadataSectionRelationship(
 			createHostMetadata(p_serverAddress),
 			{
-					createHostedContextService(p_serverAddress, p_SSL),
 					createHostedGetService(p_serverAddress, p_SSL),
-					createHostedEventReportService(p_serverAddress, p_SSL),
 					createHostedSetService(p_serverAddress, p_SSL),
-					createHostedStreamReportService(p_serverAddress, p_SSL),
+					createHostedBICEPSServices(p_serverAddress, p_SSL),
 			}
 		)
 	);
 	return t_result;
 }
 
-WS::MEX::Metadata MetadataProvider::createContextServiceMetadata(const std::string & p_serverAddress, bool p_SSL) const {
-	WS::MEX::Metadata t_result;
-	t_result.MetadataSection().push_back(createMetadataSectionWSDLForContextService(p_serverAddress, p_SSL));
-	t_result.MetadataSection().push_back(
-			createMetadataSectionRelationship(createHostMetadata(p_serverAddress), { createHostedContextService(p_serverAddress, p_SSL) } ));
-	return t_result;
-}
-
-WS::MEX::Metadata MetadataProvider::createGetServiceMetadata(const std::string & p_serverAddress, bool p_SSL) const {
-	WS::MEX::Metadata t_result;
-	t_result.MetadataSection().push_back(createMetadataSectionWSDLForGetService(p_serverAddress, p_SSL));
-	t_result.MetadataSection().push_back(
-			createMetadataSectionRelationship(createHostMetadata(p_serverAddress), { createHostedGetService(p_serverAddress, p_SSL) } ));
-	return t_result;
-}
-
-WS::MEX::Metadata MetadataProvider::createSetServiceMetadata(const std::string & p_serverAddress, bool p_SSL) const {
-	WS::MEX::Metadata t_result;
-	t_result.MetadataSection().push_back(createMetadataSectionWSDLForSetService(p_serverAddress, p_SSL));
-	t_result.MetadataSection().push_back(
-		createMetadataSectionRelationship(createHostMetadata(p_serverAddress), { createHostedSetService(p_serverAddress, p_SSL) } ));
-	return t_result;
-}
-
-WS::MEX::Metadata MetadataProvider::createEventServiceMetadata(const std::string & p_serverAddress, bool p_SSL) const {
-	WS::MEX::Metadata t_result;
-	t_result.MetadataSection().push_back(createMetadataSectionWSDLForEventReportService(p_serverAddress, p_SSL));
-	t_result.MetadataSection().push_back(
-			createMetadataSectionRelationship(createHostMetadata(p_serverAddress), { createHostedEventReportService(p_serverAddress, p_SSL) } ));
-	return t_result;
-}
-
-WS::MEX::Metadata MetadataProvider::createStreamServiceMetadata(const std::string & p_serverAddress, const std::set<int> & p_streamingPorts, bool p_SSL) const
-{
-	WS::MEX::Metadata t_result;
-	t_result.MetadataSection().push_back(createMetadataSectionWSDLForWaveformReportService(p_serverAddress, p_SSL));
-	t_result.MetadataSection().push_back(
-			createMetadataSectionRelationship(createHostMetadata(p_serverAddress), { createHostedStreamReportService(p_serverAddress, p_SSL) } ));
-	t_result.MetadataSection().push_back(createMetadataSectionStream(p_streamingPorts));
-	return t_result;
-}
-
+// This *
 MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionThisModel() const
 {
 	ThisModel::ManufacturerType t_manufacturer(m_deviceCharacteristics.getManufacturer());
@@ -148,30 +95,139 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionThisDev
 	return t_result;
 }
 
-MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionWSDLForContextService(const std::string & p_serverAddress, bool p_SSL) const {
+
+// Host
+MetadataProvider::Host MetadataProvider::createHostMetadata(const std::string &) const
+{
+	Host t_host(Host::EndpointReferenceType(Host::EndpointReferenceType::AddressType(m_deviceCharacteristics.getEndpointReference())));
+	return t_host;
+}
+
+// Get Service
+MetadataProvider::Hosted MetadataProvider::createHostedGetService(const std::string & p_serverAddress, bool p_SSL) const
+{
+    auto t_protocol = HTTPSProtocolPrefix; // HTTPS by default
+    if(!p_SSL) { t_protocol = HTTPProtocolPrefix; } // If specified else -> Switch to HTTP
+	Hosted::EndpointReferenceType t_hostedEPR(Hosted::EndpointReferenceType::AddressType(t_protocol + p_serverAddress + getGetServicePath()));
+	Hosted::TypesType tl_hostedTypes;
+	tl_hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_GETSERVICE_PORTTYPE));
+
+	Hosted::ServiceIdType t_hostedServiceId(SDC::QNAME_GETSERVICE);
+	Hosted t_hosted(tl_hostedTypes, t_hostedServiceId);
+	t_hosted.EndpointReference().push_back(t_hostedEPR);
+	return t_hosted;
+}
+WS::MEX::Metadata MetadataProvider::createGetServiceMetadata(const std::string & p_serverAddress, bool p_SSL) const {
+	WS::MEX::Metadata t_result;
+	t_result.MetadataSection().push_back(createMetadataSectionWSDLForGetService(p_serverAddress, p_SSL));
+	t_result.MetadataSection().push_back(
+			createMetadataSectionRelationship(createHostMetadata(p_serverAddress), { createHostedGetService(p_serverAddress, p_SSL) } ));
+	return t_result;
+}
+MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionWSDLForGetService(const std::string & p_serverAddress, bool p_SSL) const {
+	MetadataSection metadataSectionWsdl((MetadataDialect(OSELib::WS_MEX_DIALECT_WSDL)));
+    auto t_protocol = HTTPSProtocolPrefix; // HTTPS by default
+    if(!p_SSL) { t_protocol = HTTPProtocolPrefix; } // If specified else -> Switch to HTTP
+	metadataSectionWsdl.Location().set(MetadataLocation(t_protocol + p_serverAddress + getGetServicePath() + "/description.wsdl"));
+	return metadataSectionWsdl;
+}
+
+
+// Set Service
+MetadataProvider::Hosted MetadataProvider::createHostedSetService(const std::string & p_serverAddress, bool p_SSL) const
+{
+    auto t_protocol = HTTPSProtocolPrefix; // HTTPS by default
+    if(!p_SSL) { t_protocol = HTTPProtocolPrefix; } // If specified else -> Switch to HTTP
+	Hosted::EndpointReferenceType t_hostedEPR(Hosted::EndpointReferenceType::AddressType(t_protocol + p_serverAddress + getSetServicePath()));
+	Hosted::TypesType tl_hostedTypes;
+	tl_hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_SETSERVICE_PORTTYPE));
+
+	Hosted::ServiceIdType t_hostedServiceId(SDC::QNAME_SETSERVICE);
+	Hosted t_hosted(tl_hostedTypes, t_hostedServiceId);
+	t_hosted.EndpointReference().push_back(t_hostedEPR);
+	return t_hosted;
+}
+WS::MEX::Metadata MetadataProvider::createSetServiceMetadata(const std::string & p_serverAddress, bool p_SSL) const
+{
+	WS::MEX::Metadata t_result;
+	t_result.MetadataSection().push_back(createMetadataSectionWSDLForSetService(p_serverAddress, p_SSL));
+	t_result.MetadataSection().push_back(
+		createMetadataSectionRelationship(createHostMetadata(p_serverAddress), { createHostedSetService(p_serverAddress, p_SSL) } ));
+	return t_result;
+}
+MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionWSDLForSetService(const std::string & p_serverAddress, bool p_SSL) const {
 	MetadataSection t_metadataSectionWsdl((MetadataDialect(OSELib::WS_MEX_DIALECT_WSDL)));
     auto t_protocol = HTTPSProtocolPrefix; // HTTPS by default
     if(!p_SSL) { t_protocol = HTTPProtocolPrefix; } // If specified else -> Switch to HTTP
-    t_metadataSectionWsdl.Location().set(MetadataLocation(t_protocol + p_serverAddress + getContextServicePath() + "/description.wsdl"));
+    t_metadataSectionWsdl.Location().set(MetadataLocation(t_protocol + p_serverAddress + getSetServicePath() + "/description.wsdl"));
 	return t_metadataSectionWsdl;
 }
 
-MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionWSDLForEventReportService(const std::string & p_serverAddress, bool p_SSL) const {
-	MetadataSection t_metadataSectionWsdl((MetadataDialect(OSELib::WS_MEX_DIALECT_WSDL)));
+
+// BICEPS Service
+MetadataProvider::Hosted MetadataProvider::createHostedBICEPSServices(const std::string& p_serverAddress, bool p_SSL) const
+{
+	// According to R0034 Description Event Service, State Event Service, Context Service and Waveform Service
+	// must be implemented as ONE hosted service
     auto t_protocol = HTTPSProtocolPrefix; // HTTPS by default
     if(!p_SSL) { t_protocol = HTTPProtocolPrefix; } // If specified else -> Switch to HTTP
-    t_metadataSectionWsdl.Location().set(MetadataLocation(t_protocol + p_serverAddress + getStateEventReportServicePath() + "/description.wsdl"));
-	return t_metadataSectionWsdl;
-}
 
-MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionWSDLForWaveformReportService(const std::string & p_serverAddress, bool p_SSL) const {
+	Hosted::TypesType tl_hostedTypes;
+
+	//tl_hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_DESCRIPTIONEVENTSERVICE)); TODO
+	tl_hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_STATEEVENTSERVICE_PORTTYPE));
+	tl_hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_CONTEXTSERVICE_PORTTYPE));
+	tl_hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_WAVEFORMSERVICE));
+
+	Hosted::ServiceIdType t_hostedServiceId(SDC::QNAME_BICEPSSERVICE);
+	Hosted t_hosted(tl_hostedTypes, t_hostedServiceId);
+	t_hosted.EndpointReference().push_back(Hosted::EndpointReferenceType (Hosted::EndpointReferenceType::AddressType(t_protocol + p_serverAddress + getBICEPSServicePath())));
+
+	return t_hosted;
+}
+WS::MEX::Metadata MetadataProvider::createBICEPSServiceMetadata(const std::string & p_serverAddress, bool p_SSL) const {
+	WS::MEX::Metadata t_result;
+	t_result.MetadataSection().push_back(createMetadataSectionWSDLForBICEPSService(p_serverAddress, p_SSL));
+	t_result.MetadataSection().push_back(
+			createMetadataSectionRelationship(createHostMetadata(p_serverAddress), { createHostedBICEPSServices(p_serverAddress, p_SSL) } ));
+	return t_result;
+}
+MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionWSDLForBICEPSService(const std::string & p_serverAddress, bool p_SSL) const
+{
 	MetadataSection t_metadataSectionWsdl((MetadataDialect(OSELib::WS_MEX_DIALECT_WSDL)));
-    auto t_protocol = HTTPSProtocolPrefix; // HTTPS by default
-    if(!p_SSL) { t_protocol = HTTPProtocolPrefix; } // If specified else -> Switch to HTTP
-    t_metadataSectionWsdl.Location().set(MetadataLocation(t_protocol + p_serverAddress + getWaveformServicePath() + "/description.wsdl"));
+	auto t_protocol = HTTPSProtocolPrefix; // HTTPS by default
+	if(!p_SSL) { t_protocol = HTTPProtocolPrefix; } // If specified else -> Switch to HTTP
+	t_metadataSectionWsdl.Location().set(MetadataLocation(t_protocol + p_serverAddress + getBICEPSServicePath() + "/description.wsdl"));
 	return t_metadataSectionWsdl;
 }
 
+
+MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionRelationship(const Host & p_host, const std::vector<Hosted> & p_hosted) const
+{
+	Relationship t_relationship(p_host, RelationshipType(OSELib::WS_MEX_REL_HOST));
+	for(const auto & t_item : p_hosted) {
+		t_relationship.Hosted().push_back(t_item);
+	}
+
+	MetadataSection t_metadataSectionRelationship((MetadataDialect(OSELib::WS_MEX_DIALECT_REL)));
+	t_metadataSectionRelationship.Relationship().set(t_relationship);
+	return t_metadataSectionRelationship;
+}
+
+
+
+
+/*
+ * Currently unused -> See createMetadataSectionStream for later use in BICEPSService
+ * WS::MEX::Metadata MetadataProvider::createStreamServiceMetadata(const std::string & p_serverAddress, const std::set<int> & p_streamingPorts, bool p_SSL) const
+{
+	WS::MEX::Metadata t_result;
+	t_result.MetadataSection().push_back(createMetadataSectionWSDLForBICEPSService(p_serverAddress, p_SSL));
+	t_result.MetadataSection().push_back(
+			createMetadataSectionRelationship(createHostMetadata(p_serverAddress), { createHostedBICEPSServices(p_serverAddress, p_SSL) } ));  // FIXME: Just a temp workaround...
+	t_result.MetadataSection().push_back(createMetadataSectionStream(p_streamingPorts));
+	return t_result;
+}
 MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionStream(const std::set<int> & p_streamingPorts) const
 {
 	MetadataSection t_metadataSectionStream((MetadataDialect(SDC::WS_MEX_DIALECT_STREAM)));
@@ -193,116 +249,5 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionStream(
 	return t_metadataSectionStream;
 }
 
-MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionWSDLForGetService(const std::string & p_serverAddress, bool p_SSL) const {
-	MetadataSection metadataSectionWsdl((MetadataDialect(OSELib::WS_MEX_DIALECT_WSDL)));
-    auto t_protocol = HTTPSProtocolPrefix; // HTTPS by default
-    if(!p_SSL) { t_protocol = HTTPProtocolPrefix; } // If specified else -> Switch to HTTP
-	metadataSectionWsdl.Location().set(MetadataLocation(t_protocol + p_serverAddress + getGetServicePath() + "/description.wsdl"));
-	return metadataSectionWsdl;
-}
 
-MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionWSDLForSetService(const std::string & p_serverAddress, bool p_SSL) const {
-	MetadataSection t_metadataSectionWsdl((MetadataDialect(OSELib::WS_MEX_DIALECT_WSDL)));
-    auto t_protocol = HTTPSProtocolPrefix; // HTTPS by default
-    if(!p_SSL) { t_protocol = HTTPProtocolPrefix; } // If specified else -> Switch to HTTP
-    t_metadataSectionWsdl.Location().set(MetadataLocation(t_protocol + p_serverAddress + getSetServicePath() + "/description.wsdl"));
-	return t_metadataSectionWsdl;
-}
-
-MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionRelationship(const Host & p_host, const std::vector<Hosted> & p_hosted) const
-{
-	Relationship t_relationship(p_host, RelationshipType(OSELib::WS_MEX_REL_HOST));
-	for(const auto & t_item : p_hosted) {
-		t_relationship.Hosted().push_back(t_item);
-	}
-
-	MetadataSection t_metadataSectionRelationship((MetadataDialect(OSELib::WS_MEX_DIALECT_REL)));
-	t_metadataSectionRelationship.Relationship().set(t_relationship);
-	return t_metadataSectionRelationship;
-}
-
-
-MetadataProvider::Host MetadataProvider::createHostMetadata(const std::string &) const {
-	Host::EndpointReferenceType::AddressType t_hostEPRAddress(m_deviceCharacteristics.getEndpointReference());
-	Host::EndpointReferenceType t_hostEPR(t_hostEPRAddress);
-	Host t_host(t_hostEPR);
-	return t_host;
-}
-
-MetadataProvider::Hosted MetadataProvider::createHostedContextService(const std::string & p_serverAddress, bool p_SSL) const
-{
-    auto t_protocol = HTTPSProtocolPrefix; // HTTPS by default
-    if(!p_SSL) { t_protocol = HTTPProtocolPrefix; } // If specified else -> Switch to HTTP
-	Hosted::EndpointReferenceType::AddressType t_hostedEPRAddress(t_protocol + p_serverAddress + getContextServicePath());
-	Hosted::EndpointReferenceType t_hostedEPR(t_hostedEPRAddress);
-	Hosted::TypesType tl_hostedTypes;
-	tl_hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_CONTEXTSERVICE_PORTTYPE));
-
-	Hosted::ServiceIdType t_hostedServiceId("ContextService");
-	Hosted t_hosted(tl_hostedTypes, t_hostedServiceId);
-	t_hosted.EndpointReference().push_back(t_hostedEPR);
-	return t_hosted;
-}
-
-MetadataProvider::Hosted MetadataProvider::createHostedGetService(const std::string & p_serverAddress, bool p_SSL) const
-{
-    auto t_protocol = HTTPSProtocolPrefix; // HTTPS by default
-    if(!p_SSL) { t_protocol = HTTPProtocolPrefix; } // If specified else -> Switch to HTTP
-	Hosted::EndpointReferenceType::AddressType t_hostedEPRAddress(t_protocol + p_serverAddress + getGetServicePath());
-	Hosted::EndpointReferenceType t_hostedEPR(t_hostedEPRAddress);
-	Hosted::TypesType tl_hostedTypes;
-	tl_hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_GETSERVICE_PORTTYPE));
-
-	Hosted::ServiceIdType t_hostedServiceId("GetService");
-	Hosted t_hosted(tl_hostedTypes, t_hostedServiceId);
-	t_hosted.EndpointReference().push_back(t_hostedEPR);
-	return t_hosted;
-}
-
-MetadataProvider::Hosted MetadataProvider::createHostedEventReportService(const std::string & p_serverAddress, bool p_SSL) const
-{
-    auto t_protocol = HTTPSProtocolPrefix; // HTTPS by default
-    if(!p_SSL) { t_protocol = HTTPProtocolPrefix; } // If specified else -> Switch to HTTP
-	Hosted::EndpointReferenceType::AddressType t_hostedEPRAddress(t_protocol + p_serverAddress + getStateEventReportServicePath());
-	Hosted::EndpointReferenceType t_hostedEPR(t_hostedEPRAddress);
-	Hosted::TypesType tl_hostedTypes;
-	tl_hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_STATEEVENTREPORTSERVICE_PORTTYPE));
-
-	Hosted::ServiceIdType t_hostedServiceId("StateEventService");
-	Hosted t_hosted(tl_hostedTypes, t_hostedServiceId);
-	t_hosted.EndpointReference().push_back(t_hostedEPR);
-	return t_hosted;
-}
-
-MetadataProvider::Hosted MetadataProvider::createHostedStreamReportService(const std::string & p_serverAddress, bool p_SSL) const
-{
-    auto t_protocol = HTTPSProtocolPrefix; // HTTPS by default
-    if(!p_SSL) { t_protocol = HTTPProtocolPrefix; } // If specified else -> Switch to HTTP
-	Hosted::EndpointReferenceType::AddressType t_hostedEPRAddress(t_protocol + p_serverAddress + getWaveformServicePath());
-	Hosted::EndpointReferenceType t_hostedEPR(t_hostedEPRAddress);
-	Hosted::TypesType tl_hostedTypes;
-	tl_hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_WAVEFORMSERVICE_PORTTYPE));
-
-	Hosted::ServiceIdType t_hostedServiceId("WaveformService");
-	Hosted t_hosted(tl_hostedTypes, t_hostedServiceId);
-	t_hosted.EndpointReference().push_back(t_hostedEPR);
-	return t_hosted;
-}
-
-MetadataProvider::Hosted MetadataProvider::createHostedSetService(const std::string & p_serverAddress, bool p_SSL) const
-{
-    auto t_protocol = HTTPSProtocolPrefix; // HTTPS by default
-    if(!p_SSL) { t_protocol = HTTPProtocolPrefix; } // If specified else -> Switch to HTTP
-	Hosted::EndpointReferenceType::AddressType t_hostedEPRAddress(t_protocol + p_serverAddress + getSetServicePath());
-	Hosted::EndpointReferenceType t_hostedEPR(t_hostedEPRAddress);
-	Hosted::TypesType tl_hostedTypes;
-	tl_hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_SETSERVICE_PORTTYPE));
-
-	Hosted::ServiceIdType t_hostedServiceId("SetService");
-	Hosted t_hosted(tl_hostedTypes, t_hostedServiceId);
-	t_hosted.EndpointReference().push_back(t_hostedEPR);
-	return t_hosted;
-}
-
-}
-}
+*/

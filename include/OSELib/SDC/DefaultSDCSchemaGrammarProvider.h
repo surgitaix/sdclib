@@ -26,7 +26,7 @@ namespace OSELib
 			DefaultSDCSchemaGrammarProvider(DefaultSDCSchemaGrammarProvider&& p_obj) = delete;
 			DefaultSDCSchemaGrammarProvider& operator=(const DefaultSDCSchemaGrammarProvider& p_obj) = delete;
 			DefaultSDCSchemaGrammarProvider& operator=(DefaultSDCSchemaGrammarProvider&& p_obj) = delete;
-			virtual ~DefaultSDCSchemaGrammarProvider() = default;
+			~DefaultSDCSchemaGrammarProvider() = default;
 		};
 	}
 }

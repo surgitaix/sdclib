@@ -68,6 +68,8 @@ namespace OSELib
 			Poco::URI getDeviceURI() const;
 			void addDeviceURI(const Poco::URI & p_uri);
 
+			Poco::URI getBICEPSServiceURI() const; // Returns the first URI of the BICEPS Service (See R0034)
+
 			Poco::URI getContextServiceURI() const;
 			void addContextServiceURI(const Poco::URI & p_uri);
 

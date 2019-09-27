@@ -23,7 +23,9 @@ namespace Helper {
 
 SchemaGrammarProvider::SchemaGrammarProvider()
 : m_pool(new xercesc::XMLGrammarPoolImpl(xercesc::XMLPlatformUtils::fgMemoryManager))
-{ }
+{
+	assert(nullptr != m_pool);
+}
 
 SchemaGrammarProvider::~SchemaGrammarProvider()
 {
@@ -31,7 +33,7 @@ SchemaGrammarProvider::~SchemaGrammarProvider()
 	m_pool->clear();
 }
 
-xercesc::XMLGrammarPool * SchemaGrammarProvider::getPool() const
+xercesc::XMLGrammarPool* SchemaGrammarProvider::getPool() const
 {
 	return m_pool.get();
 }
@@ -51,7 +53,9 @@ bool SchemaGrammarProvider::addSchema(const std::string & p_name, const std::str
 
 void SchemaGrammarProvider::seal()
 {
-	m_pool->lockPool();
+	if(m_pool) {
+		m_pool->lockPool();
+	}
 }
 
 }

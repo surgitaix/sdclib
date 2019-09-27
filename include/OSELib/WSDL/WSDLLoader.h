@@ -4,7 +4,8 @@
  *
  *  Created on: 15.03.2019
  *  @author: buerger
- *  @brief: Class for loading the WSDLs for each service from hard drive
+ *  @brief: Class for loading the WSDLs for each service
+ *  Modified on: 26.09.2019, baumeister
  */
 
 #ifndef OSELIB_WSDL_WSDLLOADER_H_
@@ -23,9 +24,7 @@ namespace OSELib
 
             std::string getGetServiceWSDL() const;
             std::string getSetServiceWSDL() const;
-            std::string getContextServiceWSDL() const;
-            std::string getStateEventServiceWSDL() const;
-            std::string getWaveformServiceWSDL() const;
+            std::string getBICEPSServiceWSDL() const;
         };
     }
 }

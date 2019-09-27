@@ -2,7 +2,7 @@
  * fwd.h
  *
  *  Created on: 18.11.2015, matthias
- *  Modified on: 20.08.2019, baumeister
+ *  Modified on: 26.09.2019, baumeister
  *
  */
 
@@ -19,6 +19,7 @@ namespace Poco {
 	namespace Net
 	{
 		class HTTPRequestHandler;
+		class HTTPRequestHandlerFactory;
 		class HTTPServer;
 		class HTTPServerRequest;
 		class HTTPServerResponse;
@@ -88,6 +89,9 @@ namespace OSELib
 	{
 		class FrontController;
 		class FrontControllerAdapter;
+		class HTTPServer;
+		class HTTPRequestHandlerFactory;
+		using HTTPRequestHandlerFactory_shared_ptr = std::shared_ptr<HTTPRequestHandlerFactory>;
 		class HTTPClientExchanger;
 		class HTTPSessionManager;
 		class Service;
@@ -97,13 +101,16 @@ namespace OSELib
 	namespace SDC {
 		class ContextEventSinkHandler;
 		class DefaultSDCSchemaGrammarProvider;
-		class EventReportServiceHandler;
 		class GetServiceHandler;
 		class IContextService;
 		class IContextServiceEventSink;
 		class IEventReport;
 		class IGetService;
 		class ISetService;
+		class IBICEPSService;
+		class IBICEPSServiceEventSink;
+		class BICEPSServiceHandler;
+		class BICEPSServiceEventSinkHandler;
 		class ISetServiceEventSink;
 		class IStateEventServiceEventSink;
 		class IWaveformService;
@@ -113,7 +120,6 @@ namespace OSELib
 		class SetServiceEventSingHandler;
 		class SetServiceHandler;
 		class StateEventServiceEventSinkHandler;
-		class WaveformReportServiceHandler;
 	}
 
 	namespace SOAP
@@ -144,4 +150,4 @@ namespace OSELib
 	}
 }
 
-#endif /* OSELIB_FWD_H_ */
+#endif

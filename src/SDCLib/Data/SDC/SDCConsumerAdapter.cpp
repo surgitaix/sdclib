@@ -2,7 +2,7 @@
  * SDCConsumerAdapter.cpp
  *
  *  Created on: 10.12.2015, matthias
- *  Modified on: 29.08.2019, baumeister
+ *  Modified on: 26.09.2019, baumeister
  *
  */
 
@@ -40,16 +40,14 @@
 #include "SDCLib/Data/SDC/MDIB/SetComponentStateOperationState.h"
 #include "SDCLib/Data/SDC/MDIB/SetAlertStateOperationState.h"
 
-
 #include "OSELib/DPWS/DeviceDescription.h"
 #include "OSELib/Helper/WithLogger.h"
 #include "OSELib/HTTP/FrontController.h"
 #include "OSELib/HTTP/FrontControllerAdapter.h"
-#include "OSELib/SDC/ContextEventSinkHandler.h"
-#include "OSELib/SDC/StateEventServiceEventSinkHandler.h"
+#include "OSELib/HTTP/HTTPRequestHandlerFactory.h"
 #include "OSELib/SDC/SetServiceEventSinkHandler.h"
-#include "OSELib/SDC/IContextServiceEventSink.h"
-#include "OSELib/SDC/IStateEventServiceEventSink.h"
+#include "OSELib/SDC/IBICEPSServiceEventSink.h"
+#include "OSELib/SDC/BICEPSServiceEventSinkHandler.h"
 #include "OSELib/SDC/ISetServiceEventSink.h"
 #include "OSELib/SDC/OperationTraits.h"
 #include "OSELib/SDC/SDCConstants.h"
@@ -57,320 +55,15 @@
 #include "OSELib/SDC/ReportTraits.h"
 #include "OSELib/SOAP/GenericSoapInvoke.h"
 
-#include <Poco/Net/ServerSocket.h>
-#include <Poco/Net/SecureServerSocket.h>
 
-
-namespace OSELib {
-
-using ContextServiceEventSinkController = SDC::SDCEventServiceController<SDC::IContextServiceEventSink , SDC::ContextEventSinkHandler>;
-using StateEventServiceEventSinkController = SDC::SDCEventServiceController<SDC::IStateEventServiceEventSink, SDC::StateEventServiceEventSinkHandler>;
-using SetServiceEventSinkController = SDC::SDCEventServiceController<SDC::ISetServiceEventSink, SDC::SetServiceEventSinkHandler>;
-
-
-struct ContextServiceEventSink : public SDC::IContextServiceEventSink, public OSELib::Helper::WithLogger
+namespace OSELib
 {
-// FIXME: Is struct still appropriate here?
-private:
-	SDCLib::Data::SDC::SDCConsumer & m_consumer;
-public:
-	ContextServiceEventSink(SDCLib::Data::SDC::SDCConsumer & p_consumer)
-	: OSELib::Helper::WithLogger(OSELib::Log::EVENTSINK)
-	, m_consumer(p_consumer)
-	{ }
 
-	virtual std::string getBaseUri() const override {
-		return "/" + OSELib::SDC::QNAME_CONTEXTSERVICE_PORTTYPE;
-	}
+using SetServiceEventSinkController = SDC::SDCEventServiceController<SDC::ISetServiceEventSink, SDC::SetServiceEventSinkHandler>;
+using BICEPSServiceEventSinkController = SDC::SDCEventServiceController<SDC::IBICEPSServiceEventSink , SDC::BICEPSServiceEventSinkHandler>;
 
-	// todo: fix multistate implementation. this one only calls the state handlers which reference the descriptorsHandles
-	// when a state with a defined handle updated also the state with the regarding descriptor Handle is called.
-	// this is not right.
-
-	// casts to right inherited type and call the regarding method of the consumer
-	void delegateContextState(const CDM::AbstractContextState & p_contextState) {
-		if (const auto t_state = dynamic_cast<const CDM::LocationContextState *>(&p_contextState)) {
-			// dispatch to multi state callback
-//			_consumer.onMultiStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
-			// dispatch to state callback referenced by the multistate descriptor
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		if (const auto t_state = dynamic_cast<const CDM::PatientContextState *>(&p_contextState)) {
-			// dispatch to multi state callback
-//			_consumer.onMultiStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
-			// dispatch to state callback referenced by the multistate descriptor
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		if (const auto t_state = dynamic_cast<const CDM::WorkflowContextState *>(&p_contextState)) {
-			// dispatch to multi state callback
-//			_consumer.onMultiStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
-			// dispatch to state callback referenced by the multistate descriptor
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		if (const auto t_state = dynamic_cast<const CDM::EnsembleContextState *>(&p_contextState)) {
-			// dispatch to multi state callback
-//			_consumer.onMultiStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
-			// dispatch to state callback referenced by the multistate descriptor
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		if (const auto t_state = dynamic_cast<const CDM::OperatorContextState *>(&p_contextState)) {
-			// dispatch to multi state callback
-//			_consumer.onMultiStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
-			// dispatch to state callback referenced by the multistate descriptor
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		if (const auto t_state = dynamic_cast<const CDM::MeansContextState *>(&p_contextState)) {
-			// dispatch to multi state callback
-//			_consumer.onMultiStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
-			// dispatch to state callback referenced by the multistate descriptor
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		log_error([] { return "Unknown context state type, event will not be forwarded to handler!"; });
-	}
-
-
-	// dispatch episodic reports and delegate the contained context states
-	virtual void dispatch(const SDC::EpisodicContextReportTraits::ReportType & p_report) override {
-
-		if (p_report.MdibVersion().present()) {
-			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
-		}
-
-		for (const auto & t_reportPart: p_report.ReportPart()) {
-			// get the part of the report, as defined by the message model
-			if (const auto part = dynamic_cast<const MDM::ReportPart *>(&t_reportPart)) { // FIXME: std::addressof?
-				// get all ContextStates. ContextStates are all states inheriting from AbstractContextState
-				for (const auto & t_contextState : part->ContextState()) {
-					delegateContextState(t_contextState);
-				}
-			}
-		}
-	}
-
-	// dispatch periodic reports and delegate the contained context states
-	virtual void dispatch(const SDC::PeriodicContextReportTraits::ReportType & p_report) override {
-		if (p_report.MdibVersion().present()) {
-			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
-		}
-
-		for (const auto & t_reportPart: p_report.ReportPart()) { // FIXME: Nested for loops AND dynamic_cast! -> REFACTOR!
-			// get the part of the report, that is defined by the message model
-			if (const auto t_part = dynamic_cast<const MDM::ReportPart *>(&t_reportPart)) { // FIXME: std::addressif?
-				// get all ContextStates. ContextStates are all states inheriting from AbstractContextState
-				for (const auto & t_contextState : t_part->ContextState()) {
-					delegateContextState(t_contextState);
-				}
-			}
-		}
-	}
-};
-
-struct EventReportEventSink : public SDC::IStateEventServiceEventSink, public OSELib::Helper::WithLogger
-{ // FIXME: struct still appropriate?
-private:
-	SDCLib::Data::SDC::SDCConsumer & m_consumer;
-
-public:
-
-	EventReportEventSink(SDCLib::Data::SDC::SDCConsumer & p_consumer)
-	: OSELib::Helper::WithLogger(Log::EVENTSINK)
-	, m_consumer(p_consumer)
-	{ }
-
-	virtual std::string getBaseUri() const override {
-		return std::string("/" + SDC::QNAME_STATEEVENTREPORTSERVICE_PORTTYPE);
-	}
-
-	virtual void dispatch(const SDC::EpisodicAlertReportTraits::ReportType & p_report) override {
-		if (p_report.MdibVersion().present()) {
-			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
-		}
-		for (const auto & t_reportPart : p_report.ReportPart()) {
-			for (const auto & t_state : t_reportPart.AlertState()) {
-				dispatchAlertState(t_state);
-			}
-		}
-	}
-
-	virtual void dispatch(const SDC::EpisodicComponentReportTraits::ReportType & p_report) override {
-		if (p_report.MdibVersion().present()) {
-			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
-		}
-		for (const auto & t_reportPart : p_report.ReportPart()) {
-			for (const auto & t_state : t_reportPart.ComponentState()) {
-				dispatchComponentState(t_state);
-			}
-		}
-	}
-
-	virtual void dispatch(const SDC::EpisodicMetricReportTraits::ReportType& p_report) override {
-		if (p_report.MdibVersion().present()) {
-			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
-		}
-		for (const auto & t_reportPart : p_report.ReportPart()) {
-			for (const auto & t_state : t_reportPart.MetricState()) {
-				dispatchMetricState(t_state);
-			}
-		}
-	}
-
-	virtual void dispatch(const SDC::EpisodicOperationalStateReportTraits::ReportType& p_report) override {
-		if (p_report.MdibVersion().present()) {
-			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
-		}
-		for (const auto & t_reportPart : p_report.ReportPart()) {
-			for (const auto & t_state : t_reportPart.OperationState()) {
-				dispatchOperationState(t_state);
-			}
-		}
-	}
-
-	virtual void dispatch(const SDC::PeriodicAlertReportTraits::ReportType & p_report) override {
-		if (p_report.MdibVersion().present()) {
-			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
-		}
-		for (const auto & reportPart : p_report.ReportPart()) {
-			for (const auto & state : reportPart.AlertState()) {
-				dispatchAlertState(state);
-			}
-		}
-	}
-
-	virtual void dispatch(const SDC::PeriodicMetricReportTraits::ReportType & p_report) override {
-		if (p_report.MdibVersion().present()) {
-			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
-		}
-		for (const auto & t_reportPart : p_report.ReportPart()) {
-			for (const auto & t_state : t_reportPart.MetricState()) {
-				dispatchMetricState(t_state);
-			}
-		}
-	}
-
-	// todo: more elegant implementation of streaming possible?
-	virtual void dispatch(const SDC::WaveformStreamTraits::ReportType&) override {
-		//
-	}
-
-private:
-
-	void dispatchAlertState(const CDM::AbstractAlertState & p_alertState) {
-		if (const auto t_state = dynamic_cast<const CDM::AlertSystemState *>(&p_alertState)) {
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		if (const auto t_state = dynamic_cast<const CDM::AlertSignalState *>(&p_alertState)) {
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		if (const auto t_state = dynamic_cast<const CDM::LimitAlertConditionState *>(&p_alertState)) {
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		// the order does matter here, because AlertConditionState is the parent class of LimitAlertConditionState
-		if (const auto t_state = dynamic_cast<const CDM::AlertConditionState *>(&p_alertState)) {
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		log_error([] { return "Unknown alert state type, event will not be forwarded to handler!"; });
-	}
-
-	void dispatchComponentState(const CDM::AbstractDeviceComponentState & p_state)
-	{
-		if (const auto t_state = dynamic_cast<const CDM::ScoState *>(&p_state)) {
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		if (const auto t_state = dynamic_cast<const CDM::BatteryState *>(&p_state)) {
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		if (const auto t_state = dynamic_cast<const CDM::ClockState *>(&p_state)) {
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-
-		// Derived by AbstractComplexDeviceComponentState
-		if (const auto t_state = dynamic_cast<const CDM::MdsState *>(&p_state)) {
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		if (const auto t_state = dynamic_cast<const CDM::VmdState *>(&p_state)) {
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		log_error([] { return "Unknown component state type, event will not be forwarded to handler!"; });
-	}
-
-	void dispatchMetricState(const CDM::AbstractMetricState & p_metricState) {
-		if (const auto t_state = dynamic_cast<const CDM::EnumStringMetricState *>(&p_metricState)) {
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		if (const auto t_state = dynamic_cast<const CDM::NumericMetricState *>(&p_metricState)) {
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		if (const auto t_state = dynamic_cast<const CDM::StringMetricState *>(&p_metricState)) {
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		if (const auto t_state = dynamic_cast<const CDM::RealTimeSampleArrayMetricState *>(&p_metricState)) {
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		if (const auto t_state = dynamic_cast<const CDM::DistributionSampleArrayMetricState *>(&p_metricState)) {
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-
-		log_error([] { return "Unknown metric state type, event will not be forwarded to handler!"; });
-	}
-
-
-	void dispatchOperationState(const CDM::AbstractOperationState& p_state)
-	{
-		if (const auto t_state = dynamic_cast<const CDM::SetValueOperationState *>(&p_state)) {
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		if (const auto t_state = dynamic_cast<const CDM::SetStringOperationState *>(&p_state)) {
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		if (const auto t_state = dynamic_cast<const CDM::ActivateOperationState *>(&p_state)) {
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		if (const auto t_state = dynamic_cast<const CDM::SetContextStateOperationState *>(&p_state)) {
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		if (const auto t_state = dynamic_cast<const CDM::SetMetricStateOperationState *>(&p_state)) {
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		if (const auto t_state = dynamic_cast<const CDM::SetComponentStateOperationState *>(&p_state)) {
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		if (const auto t_state = dynamic_cast<const CDM::SetAlertStateOperationState *>(&p_state)) {
-			m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
-			return;
-		}
-		log_error([] { return "Unknown metric state type, event will not be forwarded to handler!"; });
-	}
-};
-
-
-struct SetServiceEventSink : public SDC::ISetServiceEventSink, public OSELib::Helper::WithLogger
-{ // FIXME: struct appropriate?
+class SetServiceEventSink : public SDC::ISetServiceEventSink, public OSELib::Helper::WithLogger
+{
 private:
 
 	SDCLib::Data::SDC::SDCConsumer & m_consumer;
@@ -381,11 +74,11 @@ public:
 	, m_consumer(p_consumer)
 	{ }
 
-	virtual std::string getBaseUri() const override {
+	std::string getBaseUri() const override {
 		return "/" + OSELib::SDC::QNAME_SETSERVICE_PORTTYPE;
 	}
 
-	virtual void dispatch(const SDC::OperationInvokedReportTraits::ReportType & p_report) override {
+	void dispatch(const SDC::OperationInvokedReportTraits::ReportType & p_report) override {
 		// fixme move all to SDCConsumer and change interface, so this method here only delegates. This should be done for all events
 		if (p_report.MdibVersion().present()) {
 			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
@@ -398,6 +91,295 @@ public:
 	}
 };
 
+class BICEPSServiceEventSink : public SDC::IBICEPSServiceEventSink, public OSELib::Helper::WithLogger
+{
+private:
+	SDCLib::Data::SDC::SDCConsumer& m_consumer;
+
+public:
+
+	BICEPSServiceEventSink(SDCLib::Data::SDC::SDCConsumer& p_consumer)
+	: OSELib::Helper::WithLogger(Log::EVENTSINK)
+	, m_consumer(p_consumer)
+	{ }
+
+	std::string getBaseUri() const override {
+		return "/" + OSELib::SDC::QNAME_BICEPSSERVICE_PORTTYPE;
+	}
+
+
+	// StateEvent
+	void dispatch(const SDC::EpisodicAlertReportTraits::ReportType & p_report) override
+	{
+		if (p_report.MdibVersion().present()) {
+			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
+		}
+		for (const auto & t_reportPart : p_report.ReportPart()) {
+			for (const auto & t_state : t_reportPart.AlertState()) {
+				dispatchAlertState(t_state);
+			}
+		}
+	}
+
+	void dispatch(const SDC::EpisodicComponentReportTraits::ReportType & p_report) override {
+		if (p_report.MdibVersion().present()) {
+			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
+		}
+		for (const auto & t_reportPart : p_report.ReportPart()) {
+			for (const auto & t_state : t_reportPart.ComponentState()) {
+				dispatchComponentState(t_state);
+			}
+		}
+	}
+
+	void dispatch(const SDC::EpisodicMetricReportTraits::ReportType& p_report) override {
+		if (p_report.MdibVersion().present()) {
+			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
+		}
+		for (const auto & t_reportPart : p_report.ReportPart()) {
+			for (const auto & t_state : t_reportPart.MetricState()) {
+				dispatchMetricState(t_state);
+			}
+		}
+	}
+
+	void dispatch(const SDC::EpisodicOperationalStateReportTraits::ReportType& p_report) override {
+		if (p_report.MdibVersion().present()) {
+			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
+		}
+		for (const auto & t_reportPart : p_report.ReportPart()) {
+			for (const auto & t_state : t_reportPart.OperationState()) {
+				dispatchOperationState(t_state);
+			}
+		}
+	}
+
+	void dispatch(const SDC::PeriodicAlertReportTraits::ReportType & p_report) override {
+		if (p_report.MdibVersion().present()) {
+			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
+		}
+		for (const auto & reportPart : p_report.ReportPart()) {
+			for (const auto & state : reportPart.AlertState()) {
+				dispatchAlertState(state);
+			}
+		}
+	}
+
+	void dispatch(const SDC::PeriodicMetricReportTraits::ReportType & p_report) override {
+		if (p_report.MdibVersion().present()) {
+			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
+		}
+		for (const auto & t_reportPart : p_report.ReportPart()) {
+			for (const auto & t_state : t_reportPart.MetricState()) {
+				dispatchMetricState(t_state);
+			}
+		}
+	}
+
+	// todo: more elegant implementation of streaming possible?
+	void dispatch(const SDC::WaveformStreamTraits::ReportType&) override { }
+
+
+	// Context Service
+	// todo: fix multistate implementation. this one only calls the state handlers which reference the descriptorsHandles
+		// when a state with a defined handle updated also the state with the regarding descriptor Handle is called.
+		// this is not right.
+
+		// casts to right inherited type and call the regarding method of the consumer
+		void delegateContextState(const CDM::AbstractContextState & p_contextState) {
+			if (const auto t_state = dynamic_cast<const CDM::LocationContextState *>(&p_contextState)) {
+				// dispatch to multi state callback
+	//			_consumer.onMultiStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
+				// dispatch to state callback referenced by the multistate descriptor
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			if (const auto t_state = dynamic_cast<const CDM::PatientContextState *>(&p_contextState)) {
+				// dispatch to multi state callback
+	//			_consumer.onMultiStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
+				// dispatch to state callback referenced by the multistate descriptor
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			if (const auto t_state = dynamic_cast<const CDM::WorkflowContextState *>(&p_contextState)) {
+				// dispatch to multi state callback
+	//			_consumer.onMultiStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
+				// dispatch to state callback referenced by the multistate descriptor
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			if (const auto t_state = dynamic_cast<const CDM::EnsembleContextState *>(&p_contextState)) {
+				// dispatch to multi state callback
+	//			_consumer.onMultiStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
+				// dispatch to state callback referenced by the multistate descriptor
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			if (const auto t_state = dynamic_cast<const CDM::OperatorContextState *>(&p_contextState)) {
+				// dispatch to multi state callback
+	//			_consumer.onMultiStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
+				// dispatch to state callback referenced by the multistate descriptor
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			if (const auto t_state = dynamic_cast<const CDM::MeansContextState *>(&p_contextState)) {
+				// dispatch to multi state callback
+	//			_consumer.onMultiStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
+				// dispatch to state callback referenced by the multistate descriptor
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			log_error([] { return "Unknown context state type, event will not be forwarded to handler!"; });
+		}
+
+
+		// dispatch episodic reports and delegate the contained context states
+		void dispatch(const SDC::EpisodicContextReportTraits::ReportType & p_report) override {
+
+			if (p_report.MdibVersion().present()) {
+				m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
+			}
+
+			for (const auto & t_reportPart: p_report.ReportPart()) {
+				// get the part of the report, as defined by the message model
+				if (const auto part = dynamic_cast<const MDM::ReportPart *>(&t_reportPart)) { // FIXME: std::addressof?
+					// get all ContextStates. ContextStates are all states inheriting from AbstractContextState
+					for (const auto & t_contextState : part->ContextState()) {
+						delegateContextState(t_contextState);
+					}
+				}
+			}
+		}
+
+		// dispatch periodic reports and delegate the contained context states
+		void dispatch(const SDC::PeriodicContextReportTraits::ReportType & p_report) override {
+			if (p_report.MdibVersion().present()) {
+				m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
+			}
+
+			for (const auto & t_reportPart: p_report.ReportPart()) { // FIXME: Nested for loops AND dynamic_cast! -> REFACTOR!
+				// get the part of the report, that is defined by the message model
+				if (const auto t_part = dynamic_cast<const MDM::ReportPart *>(&t_reportPart)) { // FIXME: std::addressif?
+					// get all ContextStates. ContextStates are all states inheriting from AbstractContextState
+					for (const auto & t_contextState : t_part->ContextState()) {
+						delegateContextState(t_contextState);
+					}
+				}
+			}
+		}
+
+
+	private:
+
+		void dispatchAlertState(const CDM::AbstractAlertState & p_alertState) {
+			if (const auto t_state = dynamic_cast<const CDM::AlertSystemState *>(&p_alertState)) {
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			if (const auto t_state = dynamic_cast<const CDM::AlertSignalState *>(&p_alertState)) {
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			if (const auto t_state = dynamic_cast<const CDM::LimitAlertConditionState *>(&p_alertState)) {
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			// the order does matter here, because AlertConditionState is the parent class of LimitAlertConditionState
+			if (const auto t_state = dynamic_cast<const CDM::AlertConditionState *>(&p_alertState)) {
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			log_error([] { return "Unknown alert state type, event will not be forwarded to handler!"; });
+		}
+
+		void dispatchComponentState(const CDM::AbstractDeviceComponentState & p_state)
+		{
+			if (const auto t_state = dynamic_cast<const CDM::ScoState *>(&p_state)) {
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			if (const auto t_state = dynamic_cast<const CDM::BatteryState *>(&p_state)) {
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			if (const auto t_state = dynamic_cast<const CDM::ClockState *>(&p_state)) {
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+
+			// Derived by AbstractComplexDeviceComponentState
+			if (const auto t_state = dynamic_cast<const CDM::MdsState *>(&p_state)) {
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			if (const auto t_state = dynamic_cast<const CDM::VmdState *>(&p_state)) {
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			log_error([] { return "Unknown component state type, event will not be forwarded to handler!"; });
+		}
+
+		void dispatchMetricState(const CDM::AbstractMetricState & p_metricState) {
+			if (const auto t_state = dynamic_cast<const CDM::EnumStringMetricState *>(&p_metricState)) {
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			if (const auto t_state = dynamic_cast<const CDM::NumericMetricState *>(&p_metricState)) {
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			if (const auto t_state = dynamic_cast<const CDM::StringMetricState *>(&p_metricState)) {
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			if (const auto t_state = dynamic_cast<const CDM::RealTimeSampleArrayMetricState *>(&p_metricState)) {
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			if (const auto t_state = dynamic_cast<const CDM::DistributionSampleArrayMetricState *>(&p_metricState)) {
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+
+			log_error([] { return "Unknown metric state type, event will not be forwarded to handler!"; });
+		}
+
+
+		void dispatchOperationState(const CDM::AbstractOperationState& p_state)
+		{
+			if (const auto t_state = dynamic_cast<const CDM::SetValueOperationState *>(&p_state)) {
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			if (const auto t_state = dynamic_cast<const CDM::SetStringOperationState *>(&p_state)) {
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			if (const auto t_state = dynamic_cast<const CDM::ActivateOperationState *>(&p_state)) {
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			if (const auto t_state = dynamic_cast<const CDM::SetContextStateOperationState *>(&p_state)) {
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			if (const auto t_state = dynamic_cast<const CDM::SetMetricStateOperationState *>(&p_state)) {
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			if (const auto t_state = dynamic_cast<const CDM::SetComponentStateOperationState *>(&p_state)) {
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			if (const auto t_state = dynamic_cast<const CDM::SetAlertStateOperationState *>(&p_state)) {
+				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
+				return;
+			}
+			log_error([] { return "Unknown metric state type, event will not be forwarded to handler!"; });
+		}
+
+};
+
 
 }
 
@@ -405,14 +387,43 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
+
+class ConsumerFactory : public OSELib::HTTP::FrontControllerAdapter
+{
+private:
+	OSELib::HTTP::FrontController m_frontController;
+
+	OSELib::SetServiceEventSink m_setServiceEventSink;
+	OSELib::BICEPSServiceEventSink m_BICEPSServiceEventSink;
+
+	OSELib::SetServiceEventSinkController m_setServiceEventSinkController;
+	OSELib::BICEPSServiceEventSinkController m_BICEPSServiceEventSinkServiceController;
+
+public:
+	ConsumerFactory(SDCLib::Data::SDC::SDCConsumer& p_consumer, bool p_SSL)
+	: FrontControllerAdapter(m_frontController)
+	, m_setServiceEventSink(p_consumer)
+	, m_BICEPSServiceEventSink(p_consumer)
+	, m_setServiceEventSinkController(m_frontController, m_setServiceEventSink)
+	, m_BICEPSServiceEventSinkServiceController(m_frontController, m_BICEPSServiceEventSink)
+	{
+		m_frontController.setSSL(p_SSL);
+	}
+};
+
+
+
 SDCConsumerAdapter::SDCConsumerAdapter(SDCConsumer & p_consumer, OSELib::DPWS::DeviceDescription_shared_ptr p_deviceDescription)
 : OSELib::Helper::WithLogger(OSELib::Log::SDCCONSUMERADAPTER)
 , m_consumer(p_consumer)
-, m_threadPool(new Poco::ThreadPool())
 , m_deviceDescription(p_deviceDescription)
 , m_streamClientSocketImpl(p_consumer.getSDCInstance()->getNetworkConfig(), *this, p_deviceDescription)
 {
 	assert(m_deviceDescription != nullptr);
+}
+SDCConsumerAdapter::~SDCConsumerAdapter()
+{
+	stop();
 }
 
 bool SDCConsumerAdapter::start()
@@ -423,81 +434,26 @@ bool SDCConsumerAdapter::start()
 	}
 
     auto t_networkConfig = m_consumer.getSDCInstance()->getNetworkConfig();
+	auto t_SSLConfig = m_consumer.getSDCInstance()->getSSLConfig();
     assert(t_networkConfig != nullptr);
+    assert(t_SSLConfig != nullptr);
 
-    auto t_interface = t_networkConfig->getMDPWSInterface();
-    if(!t_interface) {
-    	log_error([&] { return "Failed to start SDCProviderAdapter: Set MDPWSInterface first!"; });
-        return false;
+	// HTTP Server
+    m_httpServer = std::unique_ptr<OSELib::HTTP::HTTPServer>(new OSELib::HTTP::HTTPServer(t_networkConfig, t_SSLConfig));
+
+    // Init
+
+    auto t_factory = new ConsumerFactory(m_consumer, m_consumer.getSDCInstance()->getSSLConfig()->isInit());
+    if(!m_httpServer->init(std::make_shared<OSELib::HTTP::HTTPRequestHandlerFactory>(t_factory))) {
+    	OSELib::Helper::WithLogger(OSELib::Log::SDCCONSUMER).log_error([] { return "SDCConsumerAdapter: Failed to init HTTPServer!";});
+    	return false;
     }
-
-
-    auto t_bindingAddress = t_interface->m_if.address();
-    auto t_port = t_networkConfig->getMDPWSPort();
-
-	// todo: IPv6 implementation here!
-	const Poco::Net::SocketAddress socketAddress(t_bindingAddress, t_port);
-
-
-	// TODO: Move out of here
-	class Factory : public OSELib::HTTP::FrontControllerAdapter
-	{
-	private:
-		OSELib::HTTP::FrontController m_frontController;
-
-		OSELib::ContextServiceEventSink m_contextServiceEventSink;
-		OSELib::EventReportEventSink m_eventReportEventSink;
-		OSELib::SetServiceEventSink m_setServiceEventSink;
-
-		OSELib::ContextServiceEventSinkController m_contextServiceEventSinkServiceController;
-		OSELib::StateEventServiceEventSinkController m_eventReportEventSinkServiceController;
-		OSELib::SetServiceEventSinkController m_setServiceEventSinkController;
-
-	public:
-		Factory(SDCConsumer & p_consumer, bool p_SSL)
-		: FrontControllerAdapter(m_frontController)
-		, m_contextServiceEventSink(p_consumer)
-		, m_eventReportEventSink(p_consumer)
-		, m_setServiceEventSink(p_consumer)
-		, m_contextServiceEventSinkServiceController(m_frontController, m_contextServiceEventSink)
-		, m_eventReportEventSinkServiceController(m_frontController, m_eventReportEventSink)
-		, m_setServiceEventSinkController(m_frontController, m_setServiceEventSink)
-		{
-            m_frontController.setSSL(p_SSL);
-		}
-
-		virtual ~Factory() = default;
-	};
-
-    bool SSL_INIT = m_consumer.getSDCInstance()->getSSLConfig()->isInit();
-    // Use SSL
-    if(SSL_INIT)
-    {
-        // ServerSocket
-        Poco::Net::SecureServerSocket t_sslSocket(m_consumer.getSDCInstance()->getSSLConfig()->getServerContext());
-        t_sslSocket.bind(socketAddress);
-        t_sslSocket.listen();
-        t_sslSocket.setKeepAlive(true);
-
-        // Create the Server
-        m_httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(m_consumer, SSL_INIT), *m_threadPool, t_sslSocket, new Poco::Net::HTTPServerParams));
-    }
-    else {
-        // ServerSocket
-        Poco::Net::ServerSocket t_socket;
-        t_socket.bind(socketAddress);
-        t_socket.listen();
-
-        // Create the Server
-        m_httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(new Factory(m_consumer, SSL_INIT), *m_threadPool, t_socket, new Poco::Net::HTTPServerParams));
-    }
-
 	m_httpServer->start();
 
 	if (m_pingManager) {
 		//todo maybe throw because starting twice is clearly an error
         // FIXME:
-        // (ERROR != THROWING) DONT USE EXCEPTIONS AS FLOW CONTROL... assert, static_assert, logging etc.
+        // (ERROR != THROWING) DONT USE EXCEPTIONS AS FLOW CONTROL... assert, static_assert + logging etc.
 		return false;
 	}
 
@@ -512,15 +468,14 @@ void SDCConsumerAdapter::stop()
 
 	if (m_httpServer) {
 		m_httpServer->stopAll(false); // Comment: Why false?
-	}
-
-	while (m_httpServer->currentConnections() != 0) {
-		Poco::Thread::sleep(100);
+		// TODO: Why wait here?
+		while (m_httpServer->currentConnections() != 0) {
+			std::this_thread::sleep_for(std::chrono::milliseconds(50));
+		}
 		m_httpServer.reset();
 	}
 
-
-	if (m_pingManager) {
+	if (m_pingManager) { // Todo: Why dump it?
 		m_pingManager->disable();
 		m_consumer.getSDCInstance()->dumpPingManager(std::move(m_pingManager));
 	}
@@ -539,29 +494,28 @@ void SDCConsumerAdapter::subscribeEvents()
         t_PROTOCOL.append("s");
     }
 
+
+    // R0035 - Subscribe with one Subscribe
+
 	std::vector<OSELib::DPWS::SubscriptionClient::SubscriptionInformation> tl_subscriptions;
-	// context reports
+
 	{
 		WS::EVENTING::FilterType t_filter;
-		t_filter.push_back(OSELib::SDC::EpisodicContextReportTraits::Action());
-		t_filter.push_back(OSELib::SDC::PeriodicContextReportTraits::Action());
-		tl_subscriptions.emplace_back(
-				Poco::URI(t_PROTOCOL + "://" + m_deviceDescription->getLocalIP().toString() + ":" + std::to_string(t_port) + "/" + OSELib::SDC::QNAME_CONTEXTSERVICE_PORTTYPE),
-				m_deviceDescription->getContextServiceURI(),
-				t_filter);
-	}
-	// Event reports
-	{
-		WS::EVENTING::FilterType t_filter;
+		// Event reports
 		t_filter.push_back(OSELib::SDC::EpisodicAlertReportTraits::Action());
 		t_filter.push_back(OSELib::SDC::EpisodicMetricReportTraits::Action());
 		t_filter.push_back(OSELib::SDC::PeriodicAlertReportTraits::Action());
 		t_filter.push_back(OSELib::SDC::PeriodicMetricReportTraits::Action());
+		// Context reports
+		t_filter.push_back(OSELib::SDC::EpisodicContextReportTraits::Action());
+		t_filter.push_back(OSELib::SDC::PeriodicContextReportTraits::Action());
+
 		tl_subscriptions.emplace_back(
-				Poco::URI(t_PROTOCOL + "://" + m_deviceDescription->getLocalIP().toString() + ":" + std::to_string(t_port) + "/" + OSELib::SDC::QNAME_STATEEVENTREPORTSERVICE_PORTTYPE),
-				m_deviceDescription->getEventServiceURI(),
+				Poco::URI(t_PROTOCOL + "://" + m_deviceDescription->getLocalIP().toString() + ":" + std::to_string(t_port) + "/" + OSELib::SDC::QNAME_BICEPSSERVICE_PORTTYPE),
+				m_deviceDescription->getBICEPSServiceURI(),
 				t_filter);
 	}
+
 	{
 		WS::EVENTING::FilterType t_filter;
 		// fixme: move to SetService

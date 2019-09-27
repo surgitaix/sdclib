@@ -5,14 +5,13 @@
  *  Created on: 15.03.2019
  *  @author: buerger
  *  @brief: Class for loading the WSDLs for each service
+ *  Modified on: 26.09.2019, baumeister
  */
 
 #include "OSELib/WSDL/WSDLLoader.h"
-#include "OSELib/WSDL/ContextServiceWSDL.h"
 #include "OSELib/WSDL/GetServiceWSDL.h"
 #include "OSELib/WSDL/SetServiceWSDL.h"
-#include "OSELib/WSDL/WaveformServiceWSDL.h"
-#include "OSELib/WSDL/StateEventServiceWSDL.h"
+#include "OSELib/WSDL/BICEPSServiceWSDL.h"
 
 
 namespace OSELib
@@ -30,20 +29,9 @@ std::string WSDLLoader::getSetServiceWSDL() const
 {
     return setServiceWsdl;
 }
-
-std::string WSDLLoader::getContextServiceWSDL() const
+std::string WSDLLoader::getBICEPSServiceWSDL() const
 {
-    return contextServiceWsdl;
-}
-
-std::string WSDLLoader::getStateEventServiceWSDL() const
-{
-    return stateEventServiceWsdl;
-}
-
-std::string WSDLLoader::getWaveformServiceWSDL() const
-{
-    return waveformServiceWsdl;
+    return BICEPSServiceWsdl;
 }
 }
 }

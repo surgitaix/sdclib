@@ -3,7 +3,7 @@
  *
  *  Created on: 10.12.2015
  *      Author: matthias, buerger
- *  Modified on: 26.08.2019, baumeister
+ *  Modified on: 26.09.2019, baumeister
  *
  */
 
@@ -15,6 +15,7 @@
 #include "OSELib/DPWS/SubscriptionClient.h"
 #include "OSELib/DPWS/MDPWSStreamingAdapter.h"
 #include "OSELib/DPWS/PingManager.h"
+#include "OSELib/HTTP/HTTPServer.h"
 #include "OSELib/SDC/DefaultSDCSchemaGrammarProvider.h"
 #include "OSELib/DPWS/Types.h"
 #include "OSELib/Helper/WithLogger.h"
@@ -22,15 +23,12 @@
 #include "SDCLib/Prerequisites.h"
 
 #include <Poco/Net/Context.h>
-#include <Poco/ThreadPool.h>
-#include <Poco/Net/HTTPServer.h>
 
-// Declare in cpp defined structs
+// Declare in cpp defined
 namespace OSELib
 {
-	struct ContextServiceEventSink;
-	struct EventReportEventSink;
-	struct SetServiceEventSink;
+	class SetServiceEventSink;
+	class BICEPSServiceEventSink;
 }
 
 namespace SDCLib
@@ -45,11 +43,10 @@ namespace SDCLib
 				SDCConsumer & m_consumer;
 
 				mutable std::mutex m_mutex;
-				std::unique_ptr<Poco::ThreadPool> m_threadPool = nullptr;
 
 				OSELib::DPWS::DeviceDescription_shared_ptr m_deviceDescription = nullptr;
 				OSELib::SDC::DefaultSDCSchemaGrammarProvider m_grammarProvider;
-				std::unique_ptr<Poco::Net::HTTPServer> m_httpServer = nullptr;
+				std::unique_ptr<OSELib::HTTP::HTTPServer> m_httpServer = nullptr;
 			//	std::unique_ptr<OSELib::DPWS::Impl::DPWSStreamingClientSocketImpl> _streamClientSocketImpl;
 				OSELib::DPWS::Impl::MDPWSStreamingAdapter m_streamClientSocketImpl;
 				std::unique_ptr<OSELib::DPWS::SubscriptionClient> m_subscriptionClient = nullptr;
@@ -63,7 +60,7 @@ namespace SDCLib
 				SDCConsumerAdapter(SDCConsumerAdapter&& p_obj) = delete;
 				SDCConsumerAdapter& operator=(const SDCConsumerAdapter& p_obj) = delete;
 				SDCConsumerAdapter& operator=(SDCConsumerAdapter&& p_obj) = delete;
-				virtual ~SDCConsumerAdapter() = default;
+				~SDCConsumerAdapter();
 
 				bool start();
 				void stop();

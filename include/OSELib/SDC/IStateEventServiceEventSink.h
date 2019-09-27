@@ -2,7 +2,7 @@
  * IStateEventServiceEventSink.h
  *
  *  Created on: 10.12.2015, matthias
- *  Modified on: 29.08.2019, baumeister
+ *  Modified on: 26.09.2019, baumeister
  *
  */
 
@@ -16,15 +16,15 @@ namespace OSELib
 {
 	namespace SDC
 	{
-		class IStateEventServiceEventSink : public OSELib::DPWS::IEventSink
+		class IStateEventServiceEventSink : public virtual OSELib::DPWS::IEventSink
 		{
 		public:
 			// Special Member Functions
 			IStateEventServiceEventSink() = default;
-			IStateEventServiceEventSink(const IStateEventServiceEventSink& p_obj) = default;
-			IStateEventServiceEventSink(IStateEventServiceEventSink&& p_obj) = default;
-			IStateEventServiceEventSink& operator=(const IStateEventServiceEventSink& p_obj) = default;
-			IStateEventServiceEventSink& operator=(IStateEventServiceEventSink&& p_obj) = default;
+			IStateEventServiceEventSink(const IStateEventServiceEventSink& p_obj) = delete;
+			IStateEventServiceEventSink(IStateEventServiceEventSink&& p_obj) = delete;
+			IStateEventServiceEventSink& operator=(const IStateEventServiceEventSink& p_obj) = delete;
+			IStateEventServiceEventSink& operator=(IStateEventServiceEventSink&& p_obj) = delete;
 			virtual ~IStateEventServiceEventSink() = default;
 
 			virtual void dispatch(const EpisodicAlertReportTraits::ReportType& p_request) = 0;
