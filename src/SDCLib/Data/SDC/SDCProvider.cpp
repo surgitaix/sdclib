@@ -31,6 +31,7 @@
 #include "SDCLib/Data/SDC/SDCProviderComponentStateHandler.h"
 #include "SDCLib/Data/SDC/SDCProviderMDStateHandler.h"
 #include "SDCLib/Data/SDC/MDIB/ActivateOperationDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/ActivateOperationState.h"
 #include "SDCLib/Data/SDC/MDIB/AlertConditionDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/AlertConditionState.h"
 #include "SDCLib/Data/SDC/MDIB/AlertSignalDescriptor.h"
@@ -1417,6 +1418,10 @@ bool SDCProvider::addSetOperationToSCOObjectImpl(const T & p_source, MdsDescript
 		auto t_operationState = CDM::SetMetricStateOperationState(p_source.Handle(), CDM::OperatingMode::En);
 		tl_cachedOperationStates->State().push_back(t_operationState);
 		notifyEpisodicOperationalStateImpl(SetMetricStateOperationState(t_operationState)); // Emit an event!
+	} else if(dynamic_cast<const CDM::ActivateOperationDescriptor *>(std::addressof(p_source))) {
+		auto t_operationState = CDM::ActivateOperationState(p_source.Handle(), CDM::OperatingMode::En);
+		tl_cachedOperationStates->State().push_back(t_operationState);
+		notifyEpisodicOperationalStateImpl(ActivateOperationState(t_operationState)); // Emit an event!
 	} else {
 		log_error([] { return "SDCProvider::addSetOperationToSCOObjectImpl: dynamic_cast found no match for source!"; });
 		return false;
