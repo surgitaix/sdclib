@@ -485,10 +485,10 @@ void SDCConsumerAdapter::unsubscribeEvents() {
 
 
 void SDCConsumerAdapter::onSubscriptionLost() {
-	//clean up
-	//unsubscribeEvents();
-
 	_consumer.onSubscriptionLost();
+	
+	//clean up
+	unsubscribeEvents();
 }
 
 template<class TraitsType>

@@ -83,15 +83,17 @@ void ActiveSubscriptions::houseKeeping()
 {
 	std::vector<WS::EVENTING::Identifier> tl_expiredSubscriptions;
 
-	std::lock_guard<std::mutex> t_lock(m_mutex);
-	auto t_now = std::chrono::system_clock::now();
-
 	// 1. Collect all expired
-	for (auto & t_item : ml_subscriptions) {
-		if (t_item.second.m_expirationTime.time_since_epoch() < t_now.time_since_epoch()) {
-			tl_expiredSubscriptions.emplace_back(t_item.first);
+	{
+		std::lock_guard<std::mutex> t_lock(m_mutex);
+		auto t_now = std::chrono::system_clock::now();
+		
+		for (auto & t_item : ml_subscriptions) {
+			if (t_item.second.m_expirationTime.time_since_epoch() < t_now.time_since_epoch()) {
+				tl_expiredSubscriptions.emplace_back(t_item.first);
+			}
 		}
-	}
+	}	//unlock m_mutex for unsubscribe
 
 	// 2. Unsubscribe all
 	for (const auto & t_item : tl_expiredSubscriptions) {

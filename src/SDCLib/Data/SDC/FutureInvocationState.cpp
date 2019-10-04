@@ -34,6 +34,7 @@ FutureInvocationState::FutureInvocationState()
 	ml_invocationEvents[InvocationState::CnclldMan] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
 	ml_invocationEvents[InvocationState::Fail] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
 	ml_invocationEvents[InvocationState::Fin] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
+	ml_invocationEvents[InvocationState::FinMod] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
 	ml_invocationEvents[InvocationState::Start] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
 	ml_invocationEvents[InvocationState::Wait] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
 }

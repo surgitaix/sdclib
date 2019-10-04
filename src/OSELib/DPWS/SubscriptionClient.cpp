@@ -108,7 +108,7 @@ void SubscriptionClient::run() {
 	auto t_expireString = "PT" + std::to_string(t_renewThreshold.count() * 2) + "S"; // Note: Double the factor
 	const WS::EVENTING::ExpirationType t_defaultExpires(t_expireString);
 
-	std::size_t t_sleepQueryGetStatus_ms = t_renewThreshold.count() * 1000 / 4;
+	std::size_t t_sleepQueryGetStatus_ms = t_renewThreshold.count() * 1000 / 8;
 
 	for (const auto & subscription : _subscriptions) {
 		// get information
@@ -161,6 +161,7 @@ void SubscriptionClient::run() {
 			{
 				log_fatal([] { return "GetStatus failed."; });
 				needRenew = true; //we try to renew (emergency renewing...)
+				//subscription.second._consumerAdapter.onSubscriptionLost();	//ToDo Do we need some further clean up here?
 			}
 
 			// Renew when under a threshold or duration convert error
@@ -174,7 +175,9 @@ void SubscriptionClient::run() {
 
 				if (!response) {
 					log_fatal([&] { return "Renew " + _subscriptionIdentifiers.at(subscription.first) + " failed."; });
+					_subscriptionIdentifiers.erase(subscription.first);
 					subscription.second._consumerAdapter.onSubscriptionLost();	//ToDo Do we need some further clean up here?
+					return;
 				}
 			}
 		}
