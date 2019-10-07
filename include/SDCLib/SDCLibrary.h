@@ -43,8 +43,6 @@ namespace SDCLib
 
         std::atomic<bool> m_initialized = ATOMIC_VAR_INIT(false);
 
-        std::mutex m_mutex;
-        std::unique_ptr<OSELib::DPWS::PingManager> m_latestPingManager = nullptr;
     public:
 
         // Special Member Functions
@@ -71,8 +69,6 @@ namespace SDCLib
         void shutdown();
 
         bool isInitialized();
-
-        void dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> p_pingManager);
     };
 
 }

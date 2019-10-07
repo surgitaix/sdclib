@@ -87,8 +87,9 @@ Poco::URI DeviceDescription::getBICEPSServiceURI() const
 	// TODO ...
 
 	if(t_tmp_stateEvent != t_tmp_context) {
-		log_error([&] { return "R0034 Violated! Services: ContextService, StateEventService... dirstributet accross multiple hosted services!"; });
+		log_error([] { return "IEEE-11073-20701:R0034 Violated! Services: ContextService, StateEventService... distributed across multiple hosted services!"; });
 	}
+	//
 
 	return t_tmp_stateEvent;
 }

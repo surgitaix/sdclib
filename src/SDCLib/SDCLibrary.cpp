@@ -82,15 +82,7 @@ void SDCLibrary::startup(OSELib::LogLevel p_debugLevel)
 
 void SDCLibrary::shutdown()
 {
-    if(m_initialized) {
-        m_initialized = false;
-        m_latestPingManager.reset();
-    }
-}
-
-void SDCLibrary::dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> p_pingManager) {
-	std::lock_guard<std::mutex> t_lock(m_mutex);
-	m_latestPingManager = std::move(p_pingManager);
+	// ?
 }
 
 bool SDCLibrary::isInitialized() {
