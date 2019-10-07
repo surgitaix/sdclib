@@ -41,6 +41,7 @@
 #include "SDCLib/Data/SDC/SDCProviderMDStateHandler.h"
 
 #include "SDCLib/Data/SDC/MDIB/ActivateOperationDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/ActivateOperationState.h"
 #include "SDCLib/Data/SDC/MDIB/AlertConditionDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/AlertConditionState.h"
 #include "SDCLib/Data/SDC/MDIB/AlertSignalDescriptor.h"
@@ -1375,6 +1376,10 @@ void SDCProvider::addSetOperationToSCOObjectImpl(const T & p_source, MdsDescript
 					p_source.Handle(),
 					CDM::OperatingMode::En);
 			cachedOperationStates->State().push_back(operationState);
+		}
+		else if(dynamic_cast<const CDM::ActivateOperationDescriptor *>(std::addressof(p_source))) {
+			auto t_operationState = CDM::ActivateOperationState(p_source.Handle(), CDM::OperatingMode::En);
+			cachedOperationStates->State().push_back(t_operationState);
 		}
 		else {
             log_error([] { return "SDCProvider::addSetOperationToSCOObjectImpl: dynamic_cast found no match for source!"; });
