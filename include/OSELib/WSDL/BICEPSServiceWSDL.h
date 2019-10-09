@@ -14,6 +14,24 @@ const std::string BICEPSServiceWsdl=std::string(R"(<wsdl:definitions xmlns:wsdl=
 		<xs:include schemaLocation=")" + SCHEMA::SCHEMA_BICEPS_MESSAGEMODEL_NAME + R"("/>
 	</xs:schema>
 </wsdl:types>
+<wsdl:message name=")" + SDC::OP_DESCRIPTION_MODIFICATION_REPORT + R"(">
+	<wsdl:part element="msg:)" + SDC::OP_DESCRIPTION_MODIFICATION_REPORT + R"(" name="parameters"/>
+</wsdl:message>
+<wsdl:portType name=")" + SDC::QNAME_DESCRIPTIONEVENTSERVICE_PORTTYPE + R"(" wse:EventSource="true" dpws:DiscoveryType="pm:ServiceProvider">
+	<wsdl:operation name=")" + SDC::OP_DESCRIPTION_MODIFICATION_REPORT + R"(">
+		<wsdl:output message="tns:)" + SDC::OP_DESCRIPTION_MODIFICATION_REPORT + R"(" wsa:Action=")" + SDC::ACT_DESCRIPTION_MODIFICATION_REPORT + R"("/>
+	</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name=")" + SDC::QNAME_DESCRIPTIONEVENTSERVICE + R"(Binding" type="tns:)" + SDC::QNAME_DESCRIPTIONEVENTSERVICE_PORTTYPE + R"(">
+	<soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+	<wsdl:operation name=")" + SDC::OP_DESCRIPTION_MODIFICATION_REPORT + R"(">
+		<soap12:operation soapAction=")" + SDC::ACT_DESCRIPTION_MODIFICATION_REPORT + R"("/>
+		<wsdl:output><soap12:body use="literal"/></wsdl:output>
+	</wsdl:operation>
+	<wsp:Policy>
+		<dpws:Profile wsp:Optional="true" />
+	</wsp:Policy>
+</wsdl:binding>
 <wsdl:message name=")" + SDC::OP_EPISODIC_ALERT_REPORT + R"(">
 	<wsdl:part element="msg:)" + SDC::OP_EPISODIC_ALERT_REPORT + R"(" name="parameters"/>
 </wsdl:message>

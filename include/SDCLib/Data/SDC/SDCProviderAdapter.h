@@ -54,6 +54,9 @@ namespace SDCLib
 				bool start();
 				void stop();
 
+				// DescriptionEvent
+				void notifyEvent(const MDM::DescriptionModificationReport & p_report);
+				// StateEvent
 				void notifyEvent(const MDM::EpisodicAlertReport & p_report);
 				void notifyEvent(const MDM::EpisodicComponentReport & p_report);
 				void notifyEvent(const MDM::EpisodicContextReport & p_report);
@@ -63,6 +66,7 @@ namespace SDCLib
 				void notifyEvent(const MDM::PeriodicContextReport & p_report);
 				void notifyEvent(const MDM::PeriodicMetricReport & p_report);
 				void notifyEvent(const MDM::OperationInvokedReport & p_report);
+				// Waveform
 				void notifyEvent(const MDM::WaveformStream & p_stream);
 
 				void addStreamingPort(const int p_port);

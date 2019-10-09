@@ -8,6 +8,7 @@
 #ifndef OSELIB_SDC_IBICEPSSERVICEEVENTSINK_H_
 #define OSELIB_SDC_IBICEPSSERVICEEVENTSINK_H_
 
+#include "OSELib/SDC/IDescriptionEventServiceEventSink.h"
 #include "OSELib/SDC/IStateEventServiceEventSink.h"
 #include "OSELib/SDC/IContextServiceEventSink.h"
 
@@ -15,7 +16,7 @@ namespace OSELib
 {
 	namespace SDC
 	{
-		class IBICEPSServiceEventSink : public IStateEventServiceEventSink, public IContextServiceEventSink
+		class IBICEPSServiceEventSink : public IDescriptionEventServiceEventSink, public IStateEventServiceEventSink, public IContextServiceEventSink
 		{
 		public:
 			// Special Member Functions

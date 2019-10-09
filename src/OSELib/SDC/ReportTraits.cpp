@@ -2,13 +2,14 @@
  * ReportTraits.cpp
  *
  *  Created on: 09.06.2015, roehser
- *  Modified on: 24.09.2019, baumeister
+ *  Modified on: 09.10.2019, baumeister
  *
  */
 #include "OSELib/SDC/ReportTraits.h"
 #include "OSELib/SDC/SDCConstants.h"
-#include "OSELib/SDC/IContextServiceEventSink.h"
+#include "OSELib/SDC/IDescriptionEventServiceEventSink.h"
 #include "OSELib/SDC/IStateEventServiceEventSink.h"
+#include "OSELib/SDC/IContextServiceEventSink.h"
 #include "OSELib/SDC/ISetServiceEventSink.h"
 
 namespace OSELib {
@@ -42,10 +43,13 @@ std::string DescriptionModificationReportTraits::NotificationName() {
 	return DESCRIPTION_MODIFICATION_REPORT;
 }
 xml_schema::Qname DescriptionModificationReportTraits::PortType() {
-	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_STATEEVENTSERVICE_PORTTYPE);
+	return xml_schema::Qname(NS_WSDL_TARGET_NAMESPACE, QNAME_DESCRIPTIONEVENTSERVICE_PORTTYPE);
 }
 std::string DescriptionModificationReportTraits::Action() {
 	return ACT_DESCRIPTION_MODIFICATION_REPORT;
+}
+void DescriptionModificationReportTraits::dispatch(Dispatcher & p_dispatcher, const ReportType & p_report) {
+	p_dispatcher.dispatch(p_report);
 }
 
 

@@ -73,6 +73,7 @@ set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             ${INCLUDE_DIR}/OSELib/SDC/DefaultSDCSchemaGrammarProvider.h
                             ${INCLUDE_DIR}/OSELib/SDC/OperationTraits.h
                             ${INCLUDE_DIR}/OSELib/SDC/IStateEventServiceEventSink.h
+                            ${INCLUDE_DIR}/OSELib/SDC/IDescriptionEventServiceEventSink.h
                             ${INCLUDE_DIR}/OSELib/SDC/IEventReport.h
                             ${INCLUDE_DIR}/OSELib/SDC/GetServiceHandler.h
                             ${INCLUDE_DIR}/OSELib/SDC/SetServiceHandler.h

@@ -495,8 +495,21 @@ struct NormalizedMessageAdapter<SDC::ActivateTraits::Response> {
 	}
 };
 
+// Description Event Service
+template<>
+struct NormalizedMessageAdapter<SDC::DescriptionModificationReportTraits::ReportType> {
+	const SDC::DescriptionModificationReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
+		return message.Body().DescriptionModificationReport().get();
+	}
 
+	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::DescriptionModificationReportTraits::ReportType> source) {
+		message.Body().DescriptionModificationReport().set(std::move(source));
+	}
 
+	bool present(const MESSAGEMODEL::Envelope & message) {
+		return message.Body().DescriptionModificationReport().present();
+	}
+};
 
 template<>
 struct NormalizedMessageAdapter<SDC::EpisodicAlertReportTraits::ReportType> {

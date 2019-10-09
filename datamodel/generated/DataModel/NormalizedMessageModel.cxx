@@ -799,6 +799,36 @@ namespace MESSAGEMODEL
     this->GetStatusResponse_.set (std::move (x));
   }
 
+  const Body::DescriptionModificationReportOptional& Body::
+  DescriptionModificationReport () const
+  {
+    return this->DescriptionModificationReport_;
+  }
+
+  Body::DescriptionModificationReportOptional& Body::
+  DescriptionModificationReport ()
+  {
+    return this->DescriptionModificationReport_;
+  }
+
+  void Body::
+  DescriptionModificationReport (const DescriptionModificationReportType& x)
+  {
+    this->DescriptionModificationReport_.set (x);
+  }
+
+  void Body::
+  DescriptionModificationReport (const DescriptionModificationReportOptional& x)
+  {
+    this->DescriptionModificationReport_ = x;
+  }
+
+  void Body::
+  DescriptionModificationReport (::std::unique_ptr< DescriptionModificationReportType > x)
+  {
+    this->DescriptionModificationReport_.set (std::move (x));
+  }
+
   const Body::GetContextStatesOptional& Body::
   GetContextStates () const
   {
@@ -2099,6 +2129,7 @@ namespace MESSAGEMODEL
     RenewResponse_ (this),
     GetStatus_ (this),
     GetStatusResponse_ (this),
+    DescriptionModificationReport_ (this),
     GetContextStates_ (this),
     GetContextStatesResponse_ (this),
     SetContextState_ (this),
@@ -2150,6 +2181,7 @@ namespace MESSAGEMODEL
     RenewResponse_ (x.RenewResponse_, f, this),
     GetStatus_ (x.GetStatus_, f, this),
     GetStatusResponse_ (x.GetStatusResponse_, f, this),
+    DescriptionModificationReport_ (x.DescriptionModificationReport_, f, this),
     GetContextStates_ (x.GetContextStates_, f, this),
     GetContextStatesResponse_ (x.GetContextStatesResponse_, f, this),
     SetContextState_ (x.SetContextState_, f, this),
@@ -2201,6 +2233,7 @@ namespace MESSAGEMODEL
     RenewResponse_ (this),
     GetStatus_ (this),
     GetStatusResponse_ (this),
+    DescriptionModificationReport_ (this),
     GetContextStates_ (this),
     GetContextStatesResponse_ (this),
     SetContextState_ (this),
@@ -2537,6 +2570,20 @@ namespace MESSAGEMODEL
         if (!this->GetStatusResponse_)
         {
           this->GetStatusResponse_.set (::std::move (r));
+          continue;
+        }
+      }
+
+      // DescriptionModificationReport
+      //
+      if (n.name () == "DescriptionModificationReport" && n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
+      {
+        ::std::unique_ptr< DescriptionModificationReportType > r (
+          DescriptionModificationReportTraits::create (i, f, this));
+
+        if (!this->DescriptionModificationReport_)
+        {
+          this->DescriptionModificationReport_.set (::std::move (r));
           continue;
         }
       }
@@ -2965,6 +3012,7 @@ namespace MESSAGEMODEL
       this->RenewResponse_ = x.RenewResponse_;
       this->GetStatus_ = x.GetStatus_;
       this->GetStatusResponse_ = x.GetStatusResponse_;
+      this->DescriptionModificationReport_ = x.DescriptionModificationReport_;
       this->GetContextStates_ = x.GetContextStates_;
       this->GetContextStatesResponse_ = x.GetContextStatesResponse_;
       this->SetContextState_ = x.SetContextState_;
@@ -4939,6 +4987,19 @@ namespace MESSAGEMODEL
           e));
 
       s << *i.GetStatusResponse ();
+    }
+
+    // DescriptionModificationReport
+    //
+    if (i.DescriptionModificationReport ())
+    {
+      ::xercesc::DOMElement& s (
+        ::xsd::cxx::xml::dom::create_element (
+          "DescriptionModificationReport",
+          "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
+          e));
+
+      s << *i.DescriptionModificationReport ();
     }
 
     // GetContextStates

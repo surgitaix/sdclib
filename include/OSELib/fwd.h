@@ -112,6 +112,7 @@ namespace OSELib
 		class BICEPSServiceHandler;
 		class BICEPSServiceEventSinkHandler;
 		class ISetServiceEventSink;
+		class IDescriptionEventServiceEventSink;
 		class IStateEventServiceEventSink;
 		class IWaveformService;
 		template<class T1, class T2> class SDCEventServiceController;

@@ -59,6 +59,9 @@
 				<xs:element ref="wse:GetStatus" />
 				<xs:element ref="wse:GetStatusResponse" />
 				
+				<!-- DescriptionEventService -->
+				<xs:element ref="mm:DescriptionModificationReport" />
+
 				<!-- ContextService -->
 				<xs:element ref="mm:GetContextStates" />
 				<xs:element ref="mm:GetContextStatesResponse" />

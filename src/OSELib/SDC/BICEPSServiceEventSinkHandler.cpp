@@ -16,6 +16,7 @@
 #include "OSELib/Helper/XercesGrammarPoolProvider.h"
 
 #include "OSELib/SDC/IBICEPSServiceEventSink.h"
+#include "OSELib/SDC/IDescriptionEventServiceEventSink.h"
 #include "OSELib/SDC/IStateEventServiceEventSink.h"
 #include "OSELib/SDC/IContextServiceEventSink.h"
 
@@ -38,8 +39,12 @@ void BICEPSServiceEventSinkHandler::handleRequestImpl(Poco::Net::HTTPServerReque
 
 	std::unique_ptr<SOAP::Command> t_command(new SOAP::SoapFaultCommand(p_httpResponse));
 	
+	// Description Event Service
+	if (t_soapAction == DescriptionModificationReportTraits::Action()) {
+		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<DescriptionModificationReportTraits>(std::move(t_soapHandling.normalizedMessage), static_cast<IDescriptionEventServiceEventSink&>(m_service)));
+	}
 	// StateEventService
-	if (t_soapAction == EpisodicAlertReportTraits::Action()) {
+	else if (t_soapAction == EpisodicAlertReportTraits::Action()) {
 		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<EpisodicAlertReportTraits>(std::move(t_soapHandling.normalizedMessage), static_cast<IStateEventServiceEventSink&>(m_service)));
 	} else if (t_soapAction == EpisodicComponentReportTraits::Action()) {
 		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapEventCommand<EpisodicComponentReportTraits>(std::move(t_soapHandling.normalizedMessage), static_cast<IStateEventServiceEventSink&>(m_service)));

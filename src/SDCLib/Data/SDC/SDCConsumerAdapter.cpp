@@ -108,6 +108,12 @@ public:
 	}
 
 
+	// Description Event Service
+	void dispatch(const SDC::DescriptionModificationReportTraits::ReportType &) override
+	{
+		// TODO
+	}
+
 	// StateEvent
 	void dispatch(const SDC::EpisodicAlertReportTraits::ReportType & p_report) override
 	{

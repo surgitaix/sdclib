@@ -650,6 +650,27 @@ namespace MESSAGEMODEL
     void
     GetStatusResponse (::std::unique_ptr< GetStatusResponseType > p);
 
+    // DescriptionModificationReport
+    //
+    typedef ::MDM::DescriptionModificationReport DescriptionModificationReportType;
+    typedef ::xsd::cxx::tree::optional< DescriptionModificationReportType > DescriptionModificationReportOptional;
+    typedef ::xsd::cxx::tree::traits< DescriptionModificationReportType, char > DescriptionModificationReportTraits;
+
+    const DescriptionModificationReportOptional&
+    DescriptionModificationReport () const;
+
+    DescriptionModificationReportOptional&
+    DescriptionModificationReport ();
+
+    void
+    DescriptionModificationReport (const DescriptionModificationReportType& x);
+
+    void
+    DescriptionModificationReport (const DescriptionModificationReportOptional& x);
+
+    void
+    DescriptionModificationReport (::std::unique_ptr< DescriptionModificationReportType > p);
+
     // GetContextStates
     //
     typedef ::MDM::GetContextStates GetContextStatesType;
@@ -1283,6 +1304,7 @@ namespace MESSAGEMODEL
     RenewResponseOptional RenewResponse_;
     GetStatusOptional GetStatus_;
     GetStatusResponseOptional GetStatusResponse_;
+    DescriptionModificationReportOptional DescriptionModificationReport_;
     GetContextStatesOptional GetContextStates_;
     GetContextStatesResponseOptional GetContextStatesResponse_;
     SetContextStateOptional SetContextState_;

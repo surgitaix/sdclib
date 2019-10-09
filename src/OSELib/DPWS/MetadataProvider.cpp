@@ -174,7 +174,7 @@ MetadataProvider::Hosted MetadataProvider::createHostedBICEPSServices(const std:
 
 	Hosted::TypesType tl_hostedTypes;
 
-	//tl_hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_DESCRIPTIONEVENTSERVICE)); TODO
+	tl_hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_DESCRIPTIONEVENTSERVICE));
 	tl_hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_STATEEVENTSERVICE_PORTTYPE));
 	tl_hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_CONTEXTSERVICE_PORTTYPE));
 	tl_hostedTypes.push_back(xml_schema::Qname(SDC::NS_WSDL_TARGET_NAMESPACE, SDC::QNAME_WAVEFORMSERVICE));

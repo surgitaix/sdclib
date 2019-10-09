@@ -196,6 +196,9 @@ void SubscriptionManager::fireEvent(const typename TraitsType::ReportType & p_re
 	}
 }
 
+// DescriptionEvent
+template void SubscriptionManager::fireEvent<OSELib::SDC::DescriptionModificationReportTraits>(const OSELib::SDC::DescriptionModificationReportTraits::ReportType & p_report);
+// StateEvent
 template void SubscriptionManager::fireEvent<OSELib::SDC::EpisodicAlertReportTraits>(const OSELib::SDC::EpisodicAlertReportTraits::ReportType & p_report);
 template void SubscriptionManager::fireEvent<OSELib::SDC::EpisodicComponentReportTraits>(const OSELib::SDC::EpisodicComponentReportTraits::ReportType & p_report);
 template void SubscriptionManager::fireEvent<OSELib::SDC::EpisodicContextReportTraits>(const OSELib::SDC::EpisodicContextReportTraits::ReportType & p_report);

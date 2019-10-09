@@ -10,10 +10,12 @@ namespace SDC {
 
 struct DescriptionModificationReportTraits {
 	typedef MDM::DescriptionModificationReport ReportType;
+	typedef IDescriptionEventServiceEventSink Dispatcher;
 	static xml_schema::Qname MessageType();
 	static std::string NotificationName();
 	static xml_schema::Qname PortType();
 	static std::string Action();
+	static void dispatch(Dispatcher& p_dispatcher, const ReportType& p_request);
 };
 
 struct EpisodicAlertReportTraits {

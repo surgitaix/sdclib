@@ -54,7 +54,7 @@ void BICEPSServiceHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & p_ht
 		t_command = std::unique_ptr<SOAP::Command>(new OSELib::SOAP::GetMetadataActionCommand(std::move(t_soapHandling.normalizedMessage), m_service.getMetadata(t_serverAddress, m_SSL)));
 	}
 
-	// StateEvent
+	// Subscriptions: StateEvent + DescriptionEvent
 	else if (t_soapAction == DPWS::SubscribeTraits::RequestAction()) {
 		std::string ts_PROTOCOL = "http";
 		if(m_SSL) { ts_PROTOCOL.append("s"); }

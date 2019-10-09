@@ -322,6 +322,7 @@ bool SDCProviderAdapter::start()
 			t_xAddresses));
 
 	const std::vector<xml_schema::Uri> tl_allowedSubscriptionEventActions {
+				OSELib::SDC::DescriptionModificationReportTraits::Action(),
 				OSELib::SDC::EpisodicAlertReportTraits::Action(),
 				OSELib::SDC::EpisodicComponentReportTraits::Action(),
 				OSELib::SDC::EpisodicContextReportTraits::Action(),
@@ -370,6 +371,13 @@ void SDCProviderAdapter::stop() {
 	m_httpServer.reset();
 	m_dpwsHost.reset();
 	m_subscriptionManager.reset();
+}
+
+void SDCProviderAdapter::notifyEvent(const MDM::DescriptionModificationReport & p_report) {
+	std::lock_guard<std::mutex> t_lock{m_mutex};
+	if (m_subscriptionManager) {
+		m_subscriptionManager->fireEvent<OSELib::SDC::DescriptionModificationReportTraits>(p_report);
+	}
 }
 
 void SDCProviderAdapter::notifyEvent(const MDM::EpisodicAlertReport & p_report) {
