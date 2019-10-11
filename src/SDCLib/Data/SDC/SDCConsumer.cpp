@@ -558,10 +558,9 @@ InvocationState SDCConsumer::activate(const std::string & handle, FutureInvocati
 	auto response(_adapter->invoke(request, getSDCInstance()->getSSLConfig()->getClientContext()));
 	if (response == nullptr) {
 		return InvocationState::Fail;
-	} else {
-		handleInvocationState(response->InvocationInfo().TransactionId(), fis);
-		return ConvertFromCDM::convert(response->InvocationInfo().InvocationState());
 	}
+	handleInvocationState(response->InvocationInfo().TransactionId(), fis);
+	return ConvertFromCDM::convert(response->InvocationInfo().InvocationState());
 }
 
 //// specialization needed for API

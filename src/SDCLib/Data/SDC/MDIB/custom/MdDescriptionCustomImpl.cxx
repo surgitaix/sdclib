@@ -706,24 +706,6 @@ std::vector<SetValueOperationDescriptor> MdDescription::collectAllSetValueOperat
 	return result;
 }
 
-
-std::vector<PatientContextDescriptor> MdDescription::collectAllPatientContextDescriptors() const {
-	std::vector<PatientContextDescriptor> result;
-	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
-		if (mds.Sco().present()) {
-			const CDM::ScoDescriptor & sco(mds.Sco().get());
-			for (const auto & operation : sco.Operation()) {
-				const typename CDM::PatientContextDescriptor *desc = dynamic_cast<const typename CDM::PatientContextDescriptor*>(&operation);
-				if (desc != nullptr)
-					result.push_back(ConvertFromCDM::convert(*desc));
-			}
-		}
-	}
-	return result;
-}
-
-
 }
 }
 }
