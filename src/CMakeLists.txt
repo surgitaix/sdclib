@@ -108,6 +108,7 @@ set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             ${INCLUDE_DIR}/OSELib/Helper/WithLogger.h
                             ${INCLUDE_DIR}/OSELib/Helper/AutoRelease.h
                             ${INCLUDE_DIR}/OSELib/Helper/DurationWrapper.h
+                            ${INCLUDE_DIR}/OSELib/Helper/DateWrapper.h
                             ${INCLUDE_DIR}/OSELib/Helper/XercesDocumentWrapper.h
                             ${INCLUDE_DIR}/OSELib/Helper/XercesUniqueElementByTagNameFilter.h
                             ${INCLUDE_DIR}/OSELib/Helper/XercesParserWrapper.h
@@ -438,6 +439,7 @@ target_sources(${CURRENT_TARGET_NAME}
         ${SRC_DIR}/OSELib/DPWS/SubscriptionManager.cpp
         ${SRC_DIR}/OSELib/Helper/BufferAdapter.cpp
         ${SRC_DIR}/OSELib/Helper/DurationWrapper.cpp
+        ${SRC_DIR}/OSELib/Helper/DateWrapper.cpp
         ${SRC_DIR}/OSELib/Helper/Message.cpp
         ${SRC_DIR}/OSELib/Helper/SchemaGrammarProvider.cpp
         ${SRC_DIR}/OSELib/Helper/StreamReader.cpp

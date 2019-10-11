@@ -786,6 +786,7 @@ template<class T> void SDCProvider::notifyAlertEventImpl(const T & p_object)
 	MDM::ReportPart3 t_reportPart;
 	t_reportPart.AlertState().push_back(ConvertToCDM::convert(p_object));
 	t_report.ReportPart().push_back(t_reportPart);
+	t_report.MdibVersion(getMdibVersion());
 
 	m_adapter->notifyEvent(t_report);
 }
@@ -802,6 +803,7 @@ template<class T> void SDCProvider::notifyContextEventImpl(const T & p_object)
 
 	MDM::EpisodicContextReport t_report(xml_schema::Uri("0"));
 	t_report.ReportPart().push_back(t_reportPart);
+	t_report.MdibVersion(getMdibVersion());
 
 	m_adapter->notifyEvent(t_report);
 }
