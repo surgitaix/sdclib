@@ -110,7 +110,11 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpoint
 		if (!t_result) {
             log_debug([] { return "ServiceManager: discoverEndpointReference::TIMEOUT."; });
         }
-		log_debug([&] { return "Received ResolveMatch for: " + resolveCb._result->EndpointReference().Address(); });
+		else {
+			if (resolveCb._result != nullptr) {
+				log_debug([&] { return "Received ResolveMatch for: " + resolveCb._result->EndpointReference().Address(); });
+			}
+		}
      }
      catch (...)
      {

@@ -100,6 +100,7 @@ public:
 	std::vector<SetStringOperationDescriptor> collectAllSetStringOperationDescriptors() const;
 	std::vector<SetValueOperationDescriptor> collectAllSetValueOperationDescriptors() const;
 	std::vector<VmdDescriptor> collectAllVmdDescriptors() const;
+	std::vector<PatientContextDescriptor> collectAllPatientContextDescriptors() const;
 
 private:
 	// historical atavisms: those functions are used inside the framework
