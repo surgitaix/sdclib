@@ -93,10 +93,7 @@ namespace SDCLib
 
 				std::unique_ptr<SDCConsumerAdapter> m_adapter = nullptr;
 
-
-	MdDescription getCachedMdDescription();
 			public:
-
 				// Special Member Functions
 				SDCConsumer() = delete;
 				SDCConsumer(const SDCConsumer& p_obj) = delete;
@@ -118,6 +115,8 @@ namespace SDCLib
 				* @return The MDD container
 				*/
 				MdDescription getMdDescription();
+
+				MdDescription getCachedMdDescription();
 
 				/**
 				* @brief Get all states as part of the MDIB.
