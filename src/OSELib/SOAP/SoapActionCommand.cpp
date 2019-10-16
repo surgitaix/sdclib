@@ -1,30 +1,32 @@
 /*
  * SoapActionCommand.cpp
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 18.09.2019, baumeister
+ *
  */
 
 #include "OSELib/SOAP/SoapActionCommand.h"
-
-#include "NormalizedMessageModel.hxx"
-
 #include "SDCLib/SDCInstance.h"
+
+#include "DataModel/NormalizedMessageModel.hxx"
+
 
 namespace OSELib {
 namespace SOAP {
 
-SoapActionCommand::SoapActionCommand(std::unique_ptr<MESSAGEMODEL::Envelope> request) :
-	_request(std::move(request))
+SoapActionCommand::SoapActionCommand(std::unique_ptr<MESSAGEMODEL::Envelope> p_request)
+: m_request(std::move(p_request))
 {
+	assert(m_request != nullptr);
 }
-SoapActionCommand::~SoapActionCommand() = default;
 
 std::unique_ptr<MESSAGEMODEL::Envelope> SoapActionCommand::Run() {
 	return RunWithExceptionTrap();
 }
 
-std::unique_ptr<MESSAGEMODEL::Envelope> SoapActionCommand::RunWithExceptionTrap() {
+std::unique_ptr<MESSAGEMODEL::Envelope> SoapActionCommand::RunWithExceptionTrap()
+{
 	try {
 		return RunImpl();
 	} catch (...) {
@@ -33,44 +35,51 @@ std::unique_ptr<MESSAGEMODEL::Envelope> SoapActionCommand::RunWithExceptionTrap(
 	return nullptr;
 }
 
-std::unique_ptr<MESSAGEMODEL::Envelope> SoapActionCommand::RunImpl() {
+std::unique_ptr<MESSAGEMODEL::Envelope> SoapActionCommand::RunImpl()
+{
+	if(nullptr == m_request) {
+		return nullptr;
+	}
 
-	_request = preprocessRequest(std::move(_request));
-	_request = checkDispatchPreconditions(std::move(_request));
+	m_request = preprocessRequest(std::move(m_request));
+	m_request = checkDispatchPreconditions(std::move(m_request));
 
-	_response = dispatch(*_request);
+	m_response = dispatch(*m_request);
 
-	_response = checkDispatchPostConditions(std::move(_response));
-	_response = postprocessResponse(std::move(_response));
+	m_response = checkDispatchPostConditions(std::move(m_response));
+	m_response = postprocessResponse(std::move(m_response));
 
-	return std::move(_response);
+	return std::move(m_response);
 }
 
-std::unique_ptr<MESSAGEMODEL::Envelope> SoapActionCommand::preprocessRequest(std::unique_ptr<MESSAGEMODEL::Envelope> request) {
-	return std::move(request);
+std::unique_ptr<MESSAGEMODEL::Envelope> SoapActionCommand::preprocessRequest(std::unique_ptr<MESSAGEMODEL::Envelope> p_request) {
+	return p_request;
 }
 
-std::unique_ptr<MESSAGEMODEL::Envelope> SoapActionCommand::postprocessResponse(std::unique_ptr<MESSAGEMODEL::Envelope> response) {
-	return std::move(response);
+std::unique_ptr<MESSAGEMODEL::Envelope> SoapActionCommand::postprocessResponse(std::unique_ptr<MESSAGEMODEL::Envelope> p_response) {
+	return p_response;
 }
 
-std::unique_ptr<MESSAGEMODEL::Envelope> SoapActionCommand::checkDispatchPreconditions(std::unique_ptr<MESSAGEMODEL::Envelope> request) {
-	return std::move(request);
+std::unique_ptr<MESSAGEMODEL::Envelope> SoapActionCommand::checkDispatchPreconditions(std::unique_ptr<MESSAGEMODEL::Envelope> p_request) {
+	return p_request;
 }
 
-std::unique_ptr<MESSAGEMODEL::Envelope> SoapActionCommand::checkDispatchPostConditions(std::unique_ptr<MESSAGEMODEL::Envelope> response) {
-	return std::move(response);
+std::unique_ptr<MESSAGEMODEL::Envelope> SoapActionCommand::checkDispatchPostConditions(std::unique_ptr<MESSAGEMODEL::Envelope> p_response) {
+	return p_response;
 }
 
-std::unique_ptr<MESSAGEMODEL::Envelope> SoapActionCommand::createResponseMessageFromRequestMessage(const MESSAGEMODEL::Envelope & request) {
-	std::unique_ptr<MESSAGEMODEL::Envelope::HeaderType> header(new MESSAGEMODEL::Envelope::HeaderType());
+std::unique_ptr<MESSAGEMODEL::Envelope> SoapActionCommand::createResponseMessageFromRequestMessage(const MESSAGEMODEL::Envelope & p_request)
+{
+	std::unique_ptr<MESSAGEMODEL::Envelope::HeaderType> t_header(new MESSAGEMODEL::Envelope::HeaderType());
 	using MessageIDType = MESSAGEMODEL::Envelope::HeaderType::MessageIDType;
-	header->MessageID().set(MessageIDType(SDCLib::SDCInstance::calcMSGID()));
-	header->RelatesTo().set(request.Header().MessageID().get());
-
-	std::unique_ptr<MESSAGEMODEL::Envelope::BodyType> body(new MESSAGEMODEL::Envelope::BodyType());
-	return std::unique_ptr<MESSAGEMODEL::Envelope>(new MESSAGEMODEL::Envelope(std::move(header), std::move(body)));
+	t_header->MessageID().set(MessageIDType(SDCLib::SDCInstance::calcMSGID()));
+	// Only if the request had a MessageID to relate to (OPTIONAL under some conditions)
+	if(p_request.Header().MessageID().present()) {
+		t_header->RelatesTo().set(p_request.Header().MessageID().get());
+	}
+	std::unique_ptr<MESSAGEMODEL::Envelope::BodyType> t_body(new MESSAGEMODEL::Envelope::BodyType());
+	return std::unique_ptr<MESSAGEMODEL::Envelope>(new MESSAGEMODEL::Envelope(std::move(t_header), std::move(t_body)));
 }
 
-} /* namespace SOAP */
-} /* namespace OSELib */
+}
+}

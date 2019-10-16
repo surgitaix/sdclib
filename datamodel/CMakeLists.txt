@@ -1,15 +1,17 @@
 # Current Target
 set( CURRENT_TARGET_NAME DataModel )
 # Add this for better project structure after cmake generation
-project(${CURRENT_TARGET_NAME})
+project(${CURRENT_TARGET_NAME} "CXX")
 
 message(STATUS "Adding Target ${CURRENT_TARGET_NAME}...")
 
 # Variables for better handling
 set(GEN_DIR_NAME generated)
+set(DATAMODEL_DIR_NAME DataModel)
 set(XSD_DIR_NAME xsd)
 
-set(GEN_DIR ${CMAKE_CURRENT_LIST_DIR}/${GEN_DIR_NAME}/)
+set(GEN_DIR_ROOT ${CMAKE_CURRENT_LIST_DIR}/${GEN_DIR_NAME} )
+set(GEN_DIR ${GEN_DIR_ROOT}/${DATAMODEL_DIR_NAME})
 set(XSD_DIR ${CMAKE_CURRENT_LIST_DIR}/${XSD_DIR_NAME}/)
 
 set(SCRIPT_DIR ${CMAKE_CURRENT_LIST_DIR})
@@ -84,16 +86,15 @@ target_sources(${CURRENT_TARGET_NAME}
 )
 
 # Some includes
-target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${GEN_DIR} )
+target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${GEN_DIR_ROOT} )
 
 # All Dependencies
 #target_link_libraries(${CURRENT_TARGET_NAME}        PUBLIC  ${SDCLib_DEPS_LIBRARIES})
 target_include_directories(${CURRENT_TARGET_NAME}   PUBLIC  ${SDCLib_DEPS_INCLUDE_DIRS})
-target_compile_definitions(${CURRENT_TARGET_NAME}   PUBLIC  ${SDCLib_DEPS_DEFINITIONS})
 
 
 # install
-install(DIRECTORY ${GEN_DIR}/ DESTINATION ${PATH_INSTALL_INCLUDE}/${CURRENT_TARGET_NAME}
+install(DIRECTORY ${GEN_DIR}/ DESTINATION ${PATH_INSTALL_INCLUDE}/${CURRENT_TARGET_NAME}/
             FILES_MATCHING PATTERN "*.hxx")
 
 

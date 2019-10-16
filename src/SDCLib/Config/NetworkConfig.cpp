@@ -3,14 +3,13 @@
 
 #include <Poco/Net/ServerSocket.h>
 
-#include <iostream>
 
 using namespace SDCLib;
 using namespace SDCLib::Config;
 
 
 NetworkConfig::NetworkConfig()
-: OSELib::WithLogger(OSELib::Log::BASE)
+: OSELib::Helper::WithLogger(OSELib::Log::BASE)
 {
     // TODO: PortList
 }
@@ -121,7 +120,7 @@ bool NetworkConfig::bindToInterface(const std::string& ps_networkInterfaceName, 
                     throw std::runtime_error("NO FREE PORTS FOUND!");
                 }
 
-                log_debug([&] { return "SDCInstance bound to: " +  m_MDPWSInterface->m_name +  " ("
+                log_notice([&] { return "SDCInstance bound to: " +  m_MDPWSInterface->m_name +  " ("
                 		+ (m_MDPWSInterface->m_if.supportsIPv4() ? "IPv4: " + m_MDPWSInterface->m_IPv4.toString() : "")
 						+ ((m_MDPWSInterface->m_if.supportsIPv4() && m_MDPWSInterface->m_if.supportsIPv6()) ? "|" : "")
 						+ (m_MDPWSInterface->m_if.supportsIPv6() ? "IPv6: "+  m_MDPWSInterface->m_IPv6.toString() : "")
@@ -192,6 +191,7 @@ void NetworkConfig::setDiscoveryTime(std::chrono::milliseconds p_time)
 std::pair<bool, SDCPort> NetworkConfig::findFreePort() const
 {
     // TODO: Rework for Portrange
+	// TODO: Consider Exceptions instead of pair!
     Poco::Net::SocketAddress socketAddress(0);
     Poco::Net::ServerSocket socket(socketAddress);
     unsigned short portNumber = socket.address().port();

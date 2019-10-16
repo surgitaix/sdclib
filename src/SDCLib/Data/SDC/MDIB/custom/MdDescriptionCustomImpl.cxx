@@ -24,9 +24,7 @@
 #include "SDCLib/Data/SDC/MDIB/SetStringOperationDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/SetValueOperationDescriptor.h"
 
-#include "osdm.hxx"
-
-#include <iostream>
+#include "DataModel/osdm.hxx"
 
 namespace SDCLib {
 namespace Data {

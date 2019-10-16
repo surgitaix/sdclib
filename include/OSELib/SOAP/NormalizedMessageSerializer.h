@@ -1,27 +1,29 @@
 /*
  * NormalizedMessageSerializer.h
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 21.08.2019, baumeister
+ *
  */
 
-#ifndef SOAP_NORMALIZEDMESSAGESERIALIZER_H_
-#define SOAP_NORMALIZEDMESSAGESERIALIZER_H_
+#ifndef OSELIB_SOAP_NORMALIZEDMESSAGESERIALIZER_H_
+#define OSELIB_SOAP_NORMALIZEDMESSAGESERIALIZER_H_
 
 #include "OSELib/fwd.h"
 
-namespace OSELib {
-namespace SOAP {
+namespace OSELib
+{
+	namespace SOAP
+	{
+		class NormalizedMessageSerializer
+		{
+		public:
+			class SoapFaultException : public std::exception {
+			};
 
-class NormalizedMessageSerializer {
-public:
-	class SoapFaultException : public std::exception {
-	};
+			static std::string serialize(const MESSAGEMODEL::Envelope & p_message);
+		};
+	}
+}
 
-	static std::string serialize(const MESSAGEMODEL::Envelope & message);
-};
-
-} /* namespace SOAP */
-} /* namespace OSELib */
-
-#endif /* SOAP_NORMALIZEDMESSAGESERIALIZER_H_ */
+#endif

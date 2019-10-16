@@ -46,6 +46,7 @@ namespace SDCLib
 				friend class SDCConsumer;
 
 			protected:
+				// TODO: Rework naming
 				const std::string descriptorHandle;
 
 				SDCConsumer* parentConsumer = nullptr;
@@ -66,7 +67,7 @@ namespace SDCLib
 				* @param transactionId The transaction id.
 				* @param is The invocation state.
 				*/
-				virtual void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) { }
+				virtual void onOperationInvoked(const OperationInvocationContext&, InvocationState) { }
 
 				/**
 				* @brief Define the descriptor handle.
@@ -76,8 +77,8 @@ namespace SDCLib
 				std::string getDescriptorHandle() { return descriptorHandle; }
 			};
 
-		} /* namespace SDC */
-	} /* namespace Data */
-} /* namespace SDCLib */
+		}
+	}
+}
 
 #endif /* SDCCONSUMEROPERATIONINVOKEDHANDLER_H_ */

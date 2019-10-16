@@ -144,12 +144,12 @@ TEST_FIXTURE(FixtureConnectionLostSDC, ConnectionLost)
 	    DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting for the Providers to startup...";
 
 		std::size_t t_providerCount{10};
-		std::vector<std::shared_ptr<Tests::ConnectionLostSDC::SDCTestDeviceProvider>> providers;
+		std::vector<std::shared_ptr<Tests::ConnectionLostSDC::SDCTestDeviceProvider>> tl_providers;
 		std::vector<std::string> tl_providerEPRs;
 
 		for (std::size_t i = 0; i < t_providerCount; ++i) {
 			auto p = std::make_shared<Tests::ConnectionLostSDC::SDCTestDeviceProvider>(createSDCInstance(), i);
-			providers.push_back(p);
+			tl_providers.push_back(p);
 			tl_providerEPRs.push_back(p->getEndpointReference());
             // Startup
             p->startup();
@@ -177,23 +177,23 @@ TEST_FIXTURE(FixtureConnectionLostSDC, ConnectionLost)
         }
         CHECK_EQUAL(true, foundAll);
 
-        std::vector<std::shared_ptr<MyConnectionLostHandler>> connectionLostHanders;
-        for (auto& nextConsumer : tl_consumers) {
-            DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Found " << nextConsumer->getEndpointReference();
+        std::vector<std::shared_ptr<MyConnectionLostHandler>> tl_connectionLostHanders;
+        for (const auto& t_nextConsumer : tl_consumers) {
+            DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Found " << t_nextConsumer->getEndpointReference();
 
-            if (std::find(tl_providerEPRs.begin(), tl_providerEPRs.end(), nextConsumer->getEndpointReference()) == tl_providerEPRs.end()) {
+            if (std::find(tl_providerEPRs.begin(), tl_providerEPRs.end(), t_nextConsumer->getEndpointReference()) == tl_providerEPRs.end()) {
         		// not our own provider => skip
         		continue;
         	}
 
-            auto myHandler = std::make_shared<MyConnectionLostHandler>(*nextConsumer.get());
-        	nextConsumer->setConnectionLostHandler(myHandler.get());
-        	connectionLostHanders.push_back(myHandler);
+            auto myHandler = std::make_shared<MyConnectionLostHandler>(*t_nextConsumer.get());
+        	t_nextConsumer->setConnectionLostHandler(myHandler.get());
+        	tl_connectionLostHanders.push_back(myHandler);
         }
 
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Shutting down all Providers...\n";
-        for (auto next : providers) {
-        	next->shutdown();
+        for (const auto& t_next : tl_providers) {
+        	t_next->shutdown();
         }
 
         // Wait long enough for all to get a call...
@@ -205,7 +205,7 @@ TEST_FIXTURE(FixtureConnectionLostSDC, ConnectionLost)
 
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Checking connectionLostHandlers...\n";
 
-        for (auto & handler : connectionLostHanders) {
+        for (auto & handler : tl_connectionLostHanders) {
             CHECK_EQUAL(true, handler->handlerVisited);
             handler.reset();
         }

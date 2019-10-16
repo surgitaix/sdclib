@@ -5,17 +5,14 @@
  *      Author: matthias
  */
 
-#include <OSELib/Helper/WithLogger.h>
+#include "OSELib/Helper/WithLogger.h"
 
 namespace OSELib {
+namespace Helper {
 
 WithLogger::WithLogger(const std::string & loggerID) :
 	_logger(Poco::Logger::get(loggerID))
 {
-}
-
-WithLogger::~WithLogger() {
-
 }
 
 Poco::Logger & WithLogger::getLogger() {
@@ -83,5 +80,5 @@ void WithLogger::setDebugLevel(LogLevel logLevel) {
 		case LogLevel::Trace: _logger.setLevel(Poco::Message::Priority::PRIO_TRACE); break;
 	}
 }
-
+} /* namespace Helper */
 } /* namespace OSELib */

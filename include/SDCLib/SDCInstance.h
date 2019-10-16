@@ -52,13 +52,12 @@ namespace SDCLib
 
         Config::SDCConfig_shared_ptr m_SDCConfig = nullptr;
 
-        std::unique_ptr<OSELib::DPWS::PingManager> _latestPingManager;
+        std::unique_ptr<OSELib::DPWS::PingManager> m_latestPingManager = nullptr;
 
     public:
 
         explicit SDCInstance(bool p_init = true);
         explicit SDCInstance(Config::SDCConfig_shared_ptr p_config, bool p_init = true);
-        explicit SDCInstance(SDCPort p_MDPWSPort, bool p_init);
 
         // Special Member Functions
         SDCInstance(const SDCInstance& p_obj) = delete;
@@ -99,7 +98,7 @@ namespace SDCLib
         std::chrono::milliseconds getDiscoveryTime() const;
 
 
-        void dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pingManager);
+        void dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> p_pingManager);
 
 
         /**
@@ -129,6 +128,16 @@ namespace SDCLib
 		 *
 		 */
 		static std::string calcUUIDv5(std::string p_name, bool p_prefix);
+
+
+
+		/**
+		 * @brief Creates a new SDCInstance and binds it to the default network adapter.
+		 * @param p_networkInterface If empty binds to the default interface (matching the internal search criteria). Sufficient for most use cases.
+		 *
+		 * @return Shared Pointer to the SDCInstance or nullptr if anything went wrong.
+		 */
+		static SDCLib::SDCInstance_shared_ptr createSDCInstance(std::string p_networkInterface = "");
 
     private:
 

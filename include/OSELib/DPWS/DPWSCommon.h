@@ -1,14 +1,15 @@
 /*
  * DPWSCommon.h
  *
- *  Created on: 11.12.2015
- *      Author: matthias
+ *  Created on: 11.12.2015, matthias
+ *  Modified on: 23.08.2019, baumeister
+ *
  */
 
 #ifndef OSELIB_DPWS_DPWSCOMMON_H_
 #define OSELIB_DPWS_DPWSCOMMON_H_
 
-#include "NormalizedMessageModel-fwd.hxx"
+#include "DataModel/NormalizedMessageModel-fwd.hxx"
 
 #include "OSELib/DPWS/Types.h"
 
@@ -26,14 +27,14 @@ extern const xml_schema::Uri resolveUri;
 extern const xml_schema::Uri resolveMatchesUri;
 extern const xml_schema::Uri addressingAnonymousUri;
 
-std::unique_ptr<MESSAGEMODEL::Envelope> parseMessage(std::istream & stream);
-const std::string serializeMessage(const MESSAGEMODEL::Envelope & message);
+std::unique_ptr<MESSAGEMODEL::Envelope> parseMessage(std::istream & p_stream);
+const std::string serializeMessage(const MESSAGEMODEL::Envelope & p_message);
 
-bool compare(const ProbeType & filter, const ProbeMatchType & n);
-bool compare(const ResolveType & filter, const ResolveMatchType & n);
+bool compare(const ProbeType & p_filter, const ProbeMatchType & p_type);
+bool compare(const ResolveType & p_filter, const ResolveMatchType & p_type);
 
-} /* namespace Impl */
-} /* namespace DPWS */
-} /* namespace OSELib */
+}
+}
+}
 
-#endif /* OSELIB_DPWS_DPWSCOMMON_H_ */
+#endif

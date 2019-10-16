@@ -34,12 +34,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Main Project
 ################################################################################
 set( PROJECT_NAME "SDCLibrary") # in case you need it in a config file
-project(${PROJECT_NAME})
+project(${PROJECT_NAME} "CXX")
 
 # Version numbers -> Will be written to the config file
 set (SDCLibrary_VERSION_FIRST          4)
-set (SDCLibrary_VERSION_MIDDLE         3)
-set (SDCLibrary_VERSION_LAST           8)
+set (SDCLibrary_VERSION_MIDDLE         4)
+set (SDCLibrary_VERSION_LAST           0)
 set (SDCLibrary_C_YEAR              2019)
 set (SDCLibrary_SurgiTAIX "SurgiTAIX AG")
 
@@ -79,6 +79,11 @@ set_property(CACHE SDC_TESTS PROPERTY STRINGS "ON" "OFF")
 # Examples - Default to ON
 set (SDC_EXAMPLES   ON CACHE STRING "Enable Building Examples")
 set_property(CACHE SDC_EXAMPLES PROPERTY STRINGS "ON" "OFF")
+
+# CPPCHECK - WIP (OFF for now)
+set (SDC_CPPCHECK   OFF CACHE STRING "Enable CPPCHECK (only available for CMAKE 3.10 or higher).")
+set_property(CACHE SDC_CPPCHECK PROPERTY STRINGS "ON" "OFF")
+
 ################################################################################
 
 
@@ -121,22 +126,6 @@ if(NOT CMAKE_BUILD_TYPE)
     message(STATUS "No build type specified, setting to Debug.")
     set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Debug as default" FORCE)
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Release" "Debug")
-endif()
-################################################################################
-
-################################################################################
-# Warnings
-################################################################################
-message(STATUS "Setting Warning-Level...")
-if(CMAKE_BUILD_TYPE MATCHES Release)
-    if (MSVC)
-        add_compile_options(/W4)
-    else()
-        add_compile_options(-Wall -Wextra -pedantic)
-    endif()
-else()
-    # Inhibit all warning messages
-    add_compile_options(-w)
 endif()
 ################################################################################
 

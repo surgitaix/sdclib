@@ -1,33 +1,40 @@
 /*
  * FrontControllerAdapter.h
  *
- *  Created on: 18.11.2015
- *      Author: matthias
+ *  Created on: 18.11.2015, matthias
+ *  Modified on: 20.08.2019, baumeister
+ *
  */
 
-#ifndef FRONTCONTROLLERADAPTER_H_
-#define FRONTCONTROLLERADAPTER_H_
-
-#include "Poco/Net/HTTPRequestHandlerFactory.h"
+#ifndef OSELIB_HTTP_FRONTCONTROLLERADAPTER_H_
+#define OSELIB_HTTP_FRONTCONTROLLERADAPTER_H_
 
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
 
-namespace OSELib {
-namespace HTTP {
+#include <Poco/Net/HTTPRequestHandlerFactory.h>
 
-class FrontControllerAdapter : public Poco::Net::HTTPRequestHandlerFactory, public WithLogger {
-public:
-	FrontControllerAdapter(FrontController & controller);
-	virtual ~FrontControllerAdapter();
+namespace OSELib
+{
+	namespace HTTP
+	{
+		class FrontControllerAdapter : public Poco::Net::HTTPRequestHandlerFactory, public OSELib::Helper::WithLogger
+		{
+		private:
+			FrontController & m_controller;
 
-	Poco::Net::HTTPRequestHandler * createRequestHandler(const Poco::Net::HTTPServerRequest & request) override;
+		public:
+			FrontControllerAdapter(FrontController & p_controller);
+			// Special Member Functions
+			FrontControllerAdapter(const FrontControllerAdapter& p_obj) = delete;
+			FrontControllerAdapter(FrontControllerAdapter&& p_obj) = delete;
+			FrontControllerAdapter& operator=(const FrontControllerAdapter& p_obj) = delete;
+			FrontControllerAdapter& operator=(FrontControllerAdapter&& p_obj) = delete;
+			virtual ~FrontControllerAdapter() = default;
 
-private:
-	FrontController & _controller;
-};
-
+			Poco::Net::HTTPRequestHandler * createRequestHandler(const Poco::Net::HTTPServerRequest & p_request) override;
+		};
+	}
 }
-} /* namespace OSELib */
 
-#endif /* FRONTCONTROLLERADAPTER_H_ */
+#endif

@@ -1246,10 +1246,9 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 				pcs.addIdentification(InstanceIdentifier().setRoot("hello").setExtension("world"));
 				pcs.setCoreData(PatientDemographicsCoreData()
 						.setGivenname("Max")
-						.setBirthname("")
-						.setFamilyname("Mustermann"));
-						// FIXME: DateOfBirth does not work yet -> schema validation fail because union is not rightly implemented
-						//.setDateOfBirth("08.05.1945"));
+						.setBirthname("-")
+						.setFamilyname("Mustermann")
+						.setDateOfBirth("1945-05-08"));
 				FutureInvocationState fis;
 				patientEventHandler.getEventEMR().reset();
 				CHECK_EQUAL(true, InvocationState::Wait == t_consumer->commitState(pcs, fis));

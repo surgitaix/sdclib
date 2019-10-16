@@ -68,7 +68,7 @@ namespace SDCLib
         using NI_List = std::vector<NetInterface_shared_ptr>;
 
 
-        class NetworkConfig : public OSELib::WithLogger
+        class NetworkConfig : public OSELib::Helper::WithLogger
         {
             friend SDCConfig;
 

@@ -5,7 +5,7 @@ set( CURRENT_TARGET_NAME Dummy2 )
 #################################################################
 
 # Add this for better project structure after cmake generation
-project(${CURRENT_TARGET_NAME})
+project(${CURRENT_TARGET_NAME} "CXX")
 
 message(STATUS "Adding Target ${CURRENT_TARGET_NAME}...")
 add_executable(${CURRENT_TARGET_NAME} "")

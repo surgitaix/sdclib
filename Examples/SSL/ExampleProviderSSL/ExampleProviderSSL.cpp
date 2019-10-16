@@ -127,24 +127,19 @@ public:
         return result;
     }
 
-    NumericMetricState getInitialState() override {
-        NumericMetricState result = createState();
-        return result;
-    }
+    NumericMetricState getInitialState() override { return createState(); }
 
     // Convenience value getter
-    float getMaxWeight() {
-        std::unique_ptr<NumericMetricState> result(getParentProvider().getMdState().findState<NumericMetricState>(HANDLE_SET_METRIC));
-
+    double getMaxWeight()
+    {
+        auto t_result = getParentProvider().getMdState().findState<NumericMetricState>(HANDLE_SET_METRIC);
         // check if result is valid
-        if (result != nullptr) {
-        	// In real applications, check if state has an observed value and if the observed value has a value!
-        	return (float)result->getMetricValue().getValue();
-        } else {
+        if (nullptr == t_result) {
         	DebugOut(DebugOut::Default, "ExampleProviderSSL") << "Maximum weight metric not found." << std::endl;
-        	return 0;
+        	        	return 0;
         }
-
+        // In real applications, check if state has an observed value and if the observed value has a value!
+        return t_result->getMetricValue().getValue();
     }
 };
 
@@ -164,9 +159,7 @@ public:
     }
 
 
-    RealTimeSampleArrayMetricState getInitialState() override {
-        return createState();
-    }
+    RealTimeSampleArrayMetricState getInitialState() override { return createState(); }
 
     // disallow set operation for this state
     InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState&, const OperationInvocationContext & oic) override {
@@ -209,10 +202,7 @@ public:
 	    return result;
 	}
 
-	StringMetricState getInitialState() override {
-		StringMetricState result = createState();
-	        return result;
-	    }
+	StringMetricState getInitialState() override { return createState(); }
 
 private:
 	std::string descriptorHandle;

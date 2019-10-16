@@ -9,7 +9,7 @@
 
 
 # Name of the folder
-DIRNAME=generated
+DIRNAME=generated/DataModel/
 
 # Cleanup
 echo "Cleanup..."
@@ -36,6 +36,7 @@ xsdcxx cxx-tree \
 	--hxx-suffix ".hxx" \
 	--cxx-suffix ".cxx" \
 	--ixx-suffix ".ixx" \
+	--include-prefix "DataModel/" \
 	--namespace-map http://standards.ieee.org/downloads/11073/11073-10207-2017/participant=CDM \
 	--namespace-map http://standards.ieee.org/downloads/11073/11073-10207-2017/extension=EXT \
 	--namespace-map http://standards.ieee.org/downloads/11073/11073-10207-2017/message=MDM \

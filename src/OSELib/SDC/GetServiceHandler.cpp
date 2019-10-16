@@ -1,18 +1,11 @@
 /*
- * GetServiceHandler.cpp
+ *  GetServiceHandler.cpp
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 18.09.2019, baumeister
+ *
  */
 
-#include "Poco/Net/HTTPServerRequest.h"
-#include "Poco/Net/HTTPServerResponse.h"
-
-#include "NormalizedMessageModel.hxx"
-
-#include "OSELib/Helper/Message.h"
-#include "OSELib/Helper/XercesDocumentWrapper.h"
-#include "OSELib/Helper/XercesGrammarPoolProvider.h"
 #include "OSELib/SDC/GetServiceHandler.h"
 #include "OSELib/SDC/IGetService.h"
 #include "OSELib/SDC/OperationTraits.h"
@@ -24,43 +17,50 @@
 #include "OSELib/SOAP/SoapFaultCommand.h"
 #include "OSELib/SOAP/SoapHTTPResponseWrapper.h"
 
+#include "DataModel/NormalizedMessageModel.hxx"
+
+#include <Poco/Net/HTTPServerRequest.h>
+
 namespace OSELib {
 namespace SDC {
 
-GetServiceHandler::GetServiceHandler(IGetService & service, Helper::XercesGrammarPoolProvider & grammarProvider, bool p_SSL) :
-	_service(service),
-	_grammarProvider(grammarProvider),
-	m_SSL(p_SSL)
-{
-}
+GetServiceHandler::GetServiceHandler(IGetService & p_service, Helper::XercesGrammarPoolProvider & p_grammarProvider, bool p_SSL)
+: m_service(p_service)
+, m_grammarProvider(p_grammarProvider)
+, m_SSL(p_SSL)
+{ }
 
-void GetServiceHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & httpRequest, Poco::Net::HTTPServerResponse & httpResponse) {
+void GetServiceHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & p_httpRequest, Poco::Net::HTTPServerResponse & p_httpResponse) {
 
-	SOAP::CommonSoapPreprocessing soapHandling(_grammarProvider);
-	soapHandling.parse(httpRequest.stream());
+	SOAP::CommonSoapPreprocessing t_soapHandling(m_grammarProvider);
+	t_soapHandling.parse(p_httpRequest.stream());
 
-	const auto soapAction(soapHandling.normalizedMessage->Header().Action().get());
+	const auto t_soapAction(t_soapHandling.normalizedMessage->Header().Action().get());
 
-	std::unique_ptr<SOAP::Command> command(new SOAP::SoapFaultCommand(httpResponse));
+	std::unique_ptr<SOAP::Command> t_command(new SOAP::SoapFaultCommand(p_httpResponse));
 
-	if (soapAction == DPWS::GetMetadataTraits::RequestAction()) {
-		const std::string serverAddress(httpRequest.serverAddress().toString());
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GetMetadataActionCommand(std::move(soapHandling.normalizedMessage), _service.getMetadata(serverAddress, m_SSL)));
-	} else if (soapAction == GetMDIBTraits::RequestAction()) {
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<GetMDIBTraits>(std::move(soapHandling.normalizedMessage), _service));
-	} else if (soapAction == GetMDDescriptionTraits::RequestAction()) {
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<GetMDDescriptionTraits>(std::move(soapHandling.normalizedMessage), _service));
-	} else if (soapAction == GetMdStateTraits::RequestAction()) {
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<GetMdStateTraits>(std::move(soapHandling.normalizedMessage), _service));
+	if (t_soapAction == DPWS::GetMetadataTraits::RequestAction()) {
+		const std::string t_serverAddress(p_httpRequest.serverAddress().toString());
+		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GetMetadataActionCommand(std::move(t_soapHandling.normalizedMessage), m_service.getMetadata(t_serverAddress, m_SSL)));
+	} else if (t_soapAction == GetMDIBTraits::RequestAction()) {
+		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<GetMDIBTraits>(std::move(t_soapHandling.normalizedMessage), m_service));
+	} else if (t_soapAction == GetMDDescriptionTraits::RequestAction()) {
+		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<GetMDDescriptionTraits>(std::move(t_soapHandling.normalizedMessage), m_service));
+	} else if (t_soapAction == GetMdStateTraits::RequestAction()) {
+		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<GetMdStateTraits>(std::move(t_soapHandling.normalizedMessage), m_service));
 	} else {
-		log_error([&] { return "GetServiceHandler can't handle action: " + soapAction; });
+		log_error([&] { return "GetServiceHandler can't handle action: " + t_soapAction; });
 	}
 
-	std::unique_ptr<MESSAGEMODEL::Envelope> responseMessage(command->Run());
+	auto t_responseMessage(t_command->Run());
+	if(nullptr == t_responseMessage) {
+		log_error([&] { return "GetServiceHandler failed to generate Response for Action: " + t_soapAction; });
+		return;
+	}
 
-	SOAP::SoapHTTPResponseWrapper response(httpResponse);
-	response.send(SOAP::NormalizedMessageSerializer::serialize(*responseMessage));
+	SOAP::SoapHTTPResponseWrapper t_response(p_httpResponse);
+	t_response.send(SOAP::NormalizedMessageSerializer::serialize(*t_responseMessage));
 }
 
-} /* namespace SDC */
-} /* namespace OSELib */
+}
+}

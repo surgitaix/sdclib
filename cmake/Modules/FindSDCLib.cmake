@@ -3,12 +3,11 @@
 
 # NOTE: TEMPORARY WORK! WIP!
 #       SDCLib_SEARCH_DIRS must be defined first!
-#       Building out of source specify SDCLib_ADDITIONAL_LIBRARY_DIRS
 
 # - Find SDCLib
 # Find the SDCLib includes and libraries
 # This module defines:
-# SDCLib_ROOT_DIR, SDCLib_INCLUDE_DIRS, SDCLib_DEFINITIONS, SDCLib_LIBRARY_DIRS, SDCLib_FOUND
+# SDCLib_ROOT_DIR, SDCLib_INCLUDE_DIRS, SDCLib_DEFINITIONS, SDCLib_OPTIONS, SDCLib_LIBRARY_DIRS, SDCLib_FOUND
 
 ################################################################################
 # Here we have to add a few pathes to get it working
@@ -24,19 +23,6 @@ endif()
 
 # Init Flag to false
 set(SDCLib_FOUND FALSE)
-#
-# Set other variables
-set(SDCLib_LIBRARIES            "")
-set(SDCLib_INCLUDE_DIRS         "")
-set(SDCLib_DEFINITIONS          "")
-set(SDCLib_OPTIONS              "")
-# Dependencies
-set(SDCLib_DEPS_LIBRARIES       "")
-set(SDCLib_DEPS_INCLUDE_DIRS    "")
-set(SDCLib_DEPS_DEFINITIONS     "")
-
-
-
 ################################################################################
 
 
@@ -49,8 +35,6 @@ endif()
 ################################################################################
 
 
-
-
 ################################################################################
 # Find the root folder inside the dependencies - This script is inside it!
 # Just search for this file in the SDC Root folder
@@ -61,14 +45,20 @@ message(STATUS "-Searching for SDCLib files in ${SDCLib_SEARCH_DIRS}")
 # Set Bin folder and manage library dirs
 if (SDCLib_ROOT_DIR)
     message(STATUS "-Found SDC Root Folder: ${SDCLib_ROOT_DIR}!")
-    # Additional Library Dirs?
-    if (SDCLib_ADDITIONAL_LIBRARY_DIRS)
-        message(STATUS "-Detected SDCLib_ADDITIONAL_LIBRARY_DIRS!")
-        message(STATUS "-Adding ${SDCLib_ADDITIONAL_LIBRARY_DIRS} to SDCLib_LIBRARY_DIRS...")
-        set(SDCLib_LIBRARY_DIRS ${SDCLib_ADDITIONAL_LIBRARY_DIRS})
+    # Out of source?
+    if (NOT(${CMAKE_BINARY_DIR} STREQUAL ${CMAKE_SOURCE_DIR}))
+		message(STATUS "-Out of source build detected!")
+		if(SDCLib_ADDITIONAL_LIBRARY_DIRS)
+			message(STATUS "Using SDCLib_ADDITIONAL_LIBRARY_DIRS!")
+			message(STATUS "Setting ${SDCLib_ADDITIONAL_LIBRARY_DIRS} to SDCLib_LIBRARY_DIRS!")
+			set(SDCLib_LIBRARY_DIRS ${SDCLib_ADDITIONAL_LIBRARY_DIRS})
+		else()
+			message(STATUS "Setting ${CMAKE_BINARY_DIR} to SDCLib_LIBRARY_DIRS!")
+			set(SDCLib_LIBRARY_DIRS ${CMAKE_BINARY_DIR})
+		endif()
     else()
-        message(STATUS "-Adding ${SDCLib_ROOT_DIR} to SDCLib_LIBRARY_DIRS...")
-        set(SDCLib_LIBRARY_DIRS ${SDCLib_ROOT_DIR})
+        message(STATUS "-Setting ${CMAKE_SOURCE_DIR}/bin to SDCLib_LIBRARY_DIRS...")
+        set(SDCLib_LIBRARY_DIRS ${CMAKE_SOURCE_DIR}/bin)
     endif()
 else ()
     message(SEND_ERROR "Could not find SDC Root folder!")
@@ -120,13 +110,8 @@ if (CMAKE_SYSTEM_NAME MATCHES "Linux")
     # Set the library based on build type
     if (CMAKE_BUILD_TYPE)
         if (CMAKE_BUILD_TYPE STREQUAL "Release")
-            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/libSDCLib.so)
+            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/libSDCLib${CMAKE_RELEASE_POSTFIX}.so)
         else()
-            # Not set? Specify a default
-            if (NOT CMAKE_DEBUG_POSTFIX)
-                set(CMAKE_DEBUG_POSTFIX _d)
-                message(STATUS "No Debug Postfix set. Setting to ${CMAKE_DEBUG_POSTFIX}!")
-            endif()
             set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/libSDCLib${CMAKE_DEBUG_POSTFIX}.so)
         endif()
     else()
@@ -153,35 +138,39 @@ if (CMAKE_SYSTEM_NAME MATCHES "Windows")
         RETURN()
     endif()
 endif()
+################################################################################
+
 
 ################################################################################
 # Compile Definitions
 ################################################################################
-
-if(CMAKE_SYSTEM_NAME MATCHES "Linux")
-    list(APPEND SDCLib_DEFINITIONS -D_LINUX)
-    list(APPEND SDCLib_DEFINITIONS -Dlinux)
-endif()
-
-
-if(CMAKE_SYSTEM_NAME MATCHES "Windows")
-    list(APPEND SDCLib_DEFINITIONS -D_WIN32)
-endif()
+list(APPEND SDCLib_DEFINITIONS $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:linux _LINUX >)
+list(APPEND SDCLib_DEFINITIONS $<$<OR:$<CXX_COMPILER_ID:ARMCC>,$<CXX_COMPILER_ID:ARMClang>>:linux _LINUX>)
+list(APPEND SDCLib_DEFINITIONS $<$<CXX_COMPILER_ID:MSVC>:_WIN32>)
+################################################################################
 
 
 ################################################################################
 # Compile Options
 ################################################################################
-if(CMAKE_BUILD_TYPE)
-    if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-			# Only if under Linux
-			if(CMAKE_SYSTEM_NAME MATCHES "Linux")
-			# enable debug and profiling informations for sprof
-			list(APPEND SDCLib_OPTIONS -ggdb -g -O0)
-        endif()
-    endif()
-endif()
+# Debug Flags
+list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Debug>,$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>>:-ggdb -g>)
+list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Debug>,$<OR:$<CXX_COMPILER_ID:ARMCC>,$<CXX_COMPILER_ID:ARMClang>>>:-ggdb -g>)
+# Warnings
+list(APPEND SDCLib_OPTIONS $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-Wall -Wextra -pedantic>)
+list(APPEND SDCLib_OPTIONS $<$<OR:$<CXX_COMPILER_ID:ARMCC>,$<CXX_COMPILER_ID:ARMClang>>:-Wall -Wextra -pedantic>)
+list(APPEND SDCLib_OPTIONS $<$<CXX_COMPILER_ID:MSVC>:/W4>)
+# Optimization
+# (Release)
+list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Release>,$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>>:-O3>)
+list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Release>,$<OR:$<CXX_COMPILER_ID:ARMCC>,$<CXX_COMPILER_ID:ARMClang>>>:-O3>)
+list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:MSVC>>:/O2>)
+# (Debug)
+list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Debug>,$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>>:-O0>)
+list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Debug>,$<OR:$<CXX_COMPILER_ID:ARMCC>,$<CXX_COMPILER_ID:ARMClang>>>:-O0>)
+# list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Debug>,$<CXX_COMPILER_ID:MSVC>>:/O0>) ?
 ################################################################################
+
 
 
 ################################################################################
@@ -191,14 +180,12 @@ endif()
 message(STATUS "-Searching for SDCLib file (${SDCLib_LIBRARIES}) ...")
 if (NOT EXISTS ${SDCLib_LIBRARIES})
     message("  Could not find ${SDCLib_LIBRARIES}!")
-    if(NOT SDCLib_ADDITIONAL_LIBRARY_DIRS)
-        message("## Note: For our of source build add SDCLib_ADDITIONAL_LIBRARY_DIRS ##\n")
-    endif()
 else()
-    message(STATUS "FOUND ${SDCLib_LIBRARIES}!")
+    message(STATUS "  -- FOUND SDCLib (${SDCLib_LIBRARIES})!")
 endif()
 
 ################################################################################
+
 
 ################################################################################
 # Note: This script will also gather SDCLib dependencies inside the given

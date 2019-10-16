@@ -1,42 +1,54 @@
 /*
  * XercesDocumentWrapper.h
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 21.08.2019, baumeister
+ *
  */
 
-#ifndef HELPER_XERCESDOCUMENTWRAPPER_H_
-#define HELPER_XERCESDOCUMENTWRAPPER_H_
+#ifndef OSELIB_HELPER_XERCESDOCUMENTWRAPPER_H_
+#define OSELIB_HELPER_XERCESDOCUMENTWRAPPER_H_
+
+#include "OSELib/fwd.h"
+#include "OSELib/Helper/AutoRelease.h"
 
 #include <memory>
 
 #include <xercesc/dom/DOM.hpp>
 
-#include "OSELib/fwd.h"
-#include "OSELib/Helper/AutoRelease.h"
+namespace OSELib
+{
+	namespace Helper
+	{
+		class XercesDocumentWrapper
+		{
+		private:
+			using DocumentDeleter = AutoRelease<xercesc::DOMDocument>;
+			std::unique_ptr<xercesc::DOMDocument, DocumentDeleter> m_document = nullptr;
 
-namespace OSELib {
-namespace Helper {
+		public:
 
-class XercesDocumentWrapper {
-public:
-	static std::unique_ptr<XercesDocumentWrapper> create(const Message & msg);
-	static std::unique_ptr<XercesDocumentWrapper> create(const Message & msg, const XercesGrammarPoolProvider & grammarPoolProvider);
+			XercesDocumentWrapper() = delete; // Note: Private Constructor via static create member function
+			// Special Member Functions
+			XercesDocumentWrapper(const XercesDocumentWrapper& p_obj) = default;
+			XercesDocumentWrapper(XercesDocumentWrapper&& p_obj) = default;
+			XercesDocumentWrapper& operator=(const XercesDocumentWrapper& p_obj) = default;
+			XercesDocumentWrapper& operator=(XercesDocumentWrapper&& p_obj) = default;
+			~XercesDocumentWrapper() = default;
 
-	const xercesc::DOMDocument & getDocument() const;
+			static std::unique_ptr<XercesDocumentWrapper> create(const Message & p_msg);
+			static std::unique_ptr<XercesDocumentWrapper> create(const Message & p_msg, const XercesGrammarPoolProvider & p_grammarPoolProvider);
 
-private:
-	using DocumentDeleter = AutoRelease<xercesc::DOMDocument>;
+			const xercesc::DOMDocument & getDocument() const;
 
-	XercesDocumentWrapper() = delete;
-	XercesDocumentWrapper(std::unique_ptr<xercesc::DOMDocument, DocumentDeleter> document);
+		private:
 
-	static std::unique_ptr<xercesc::DOMDocument, DocumentDeleter> parseAndValidate(const std::string & source, const XercesGrammarPoolProvider & grammarPoolProvider);
+			XercesDocumentWrapper(std::unique_ptr<xercesc::DOMDocument, DocumentDeleter> p_document);
 
-	std::unique_ptr<xercesc::DOMDocument, DocumentDeleter> _document;
-};
+			static std::unique_ptr<xercesc::DOMDocument, DocumentDeleter> parseAndValidate(const std::string & p_source, const XercesGrammarPoolProvider & p_grammarPoolProvider);
 
-} /* namespace Helper */
-} /* namespace OSELib */
+		};
+	}
+}
 
-#endif /* HELPER_XERCESDOCUMENTWRAPPER_H_ */
+#endif

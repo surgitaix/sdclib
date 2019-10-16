@@ -19,6 +19,8 @@
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, röhser
+ *	Modified on: 26.08.2019, baumeister
+ *
  */
 
 #ifndef SDCLIB_DATA_SDC_FUTURETRANSACTIONSTATE_H_
@@ -70,9 +72,8 @@ namespace SDCLib
 				void setEvent(InvocationState p_actual);
 
 			};
+		}
+	}
+}
 
-		} /* namespace SDC */
-	} /* namespace Data */
-} /* namespace SDCLib */
-
-#endif /* SDCLIB_DATA_SDC_FUTURETRANSACTIONSTATE_H_ */
+#endif

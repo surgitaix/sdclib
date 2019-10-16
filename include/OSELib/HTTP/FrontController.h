@@ -1,12 +1,13 @@
 /*
  * FrontController.h
  *
- *  Created on: 18.11.2015
- *      Author: matthias
+ *  Created on: 18.11.2015, matthias
+ *  Modified on: 20.08.2019, baumeister
+ *
  */
 
-#ifndef FRONTCONTROLLER_H_
-#define FRONTCONTROLLER_H_
+#ifndef OSELIB_HTTP_FRONTCONTROLLER_H_
+#define OSELIB_HTTP_FRONTCONTROLLER_H_
 
 #include <functional>
 #include <map>
@@ -20,7 +21,7 @@ namespace OSELib
 {
 	namespace HTTP {
 
-		class FrontController : public WithLogger
+		class FrontController : public OSELib::Helper::WithLogger
 		{
 		private:
 			std::mutex m_mutex;
@@ -38,8 +39,8 @@ namespace OSELib
 			~FrontController() = default;
 
 
-			void addService(const std::string & uri, Service & service);
-			Poco::Net::HTTPRequestHandler * dispatchRequest(const Poco::Net::HTTPServerRequest & request);
+			void addService(const std::string & p_uri, Service & p_service);
+			Poco::Net::HTTPRequestHandler * dispatchRequest(const Poco::Net::HTTPServerRequest & p_request);
 
 			void setSSL(bool p_SSL) { m_SSL = p_SSL; }
 
@@ -47,4 +48,4 @@ namespace OSELib
 	}
 }
 
-#endif /* FRONTCONTROLLER_H_ */
+#endif

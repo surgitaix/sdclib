@@ -8,12 +8,12 @@
 #ifndef SOAP_NORMALIZEDMESSAGEADAPTER_H_
 #define SOAP_NORMALIZEDMESSAGEADAPTER_H_
 
-#include "NormalizedMessageModel.hxx"
-
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/OperationTraits.h"
 #include "OSELib/SDC/OperationTraits.h"
 #include "OSELib/SDC/ReportTraits.h"
+
+#include "DataModel/NormalizedMessageModel.hxx"
 
 namespace OSELib {
 namespace SOAP {
@@ -495,8 +495,21 @@ struct NormalizedMessageAdapter<SDC::ActivateTraits::Response> {
 	}
 };
 
+// Description Event Service
+template<>
+struct NormalizedMessageAdapter<SDC::DescriptionModificationReportTraits::ReportType> {
+	const SDC::DescriptionModificationReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
+		return message.Body().DescriptionModificationReport().get();
+	}
 
+	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::DescriptionModificationReportTraits::ReportType> source) {
+		message.Body().DescriptionModificationReport().set(std::move(source));
+	}
 
+	bool present(const MESSAGEMODEL::Envelope & message) {
+		return message.Body().DescriptionModificationReport().present();
+	}
+};
 
 template<>
 struct NormalizedMessageAdapter<SDC::EpisodicAlertReportTraits::ReportType> {
@@ -514,12 +527,27 @@ struct NormalizedMessageAdapter<SDC::EpisodicAlertReportTraits::ReportType> {
 };
 
 template<>
-struct NormalizedMessageAdapter<SDC::EpisodicContextChangedReportTraits::ReportType> {
-	const SDC::EpisodicContextChangedReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
+struct NormalizedMessageAdapter<SDC::EpisodicComponentReportTraits::ReportType> {
+	const SDC::EpisodicComponentReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
+		return message.Body().EpisodicComponentReport().get();
+	}
+
+	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::EpisodicComponentReportTraits::ReportType> source) {
+		message.Body().EpisodicComponentReport().set(std::move(source));
+	}
+
+	bool present(const MESSAGEMODEL::Envelope & message) {
+		return message.Body().EpisodicComponentReport().present();
+	}
+};
+
+template<>
+struct NormalizedMessageAdapter<SDC::EpisodicContextReportTraits::ReportType> {
+	const SDC::EpisodicContextReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
 		return message.Body().EpisodicContextReport().get();
 	}
 
-	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::EpisodicContextChangedReportTraits::ReportType> source) {
+	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::EpisodicContextReportTraits::ReportType> source) {
 		message.Body().EpisodicContextReport().set(std::move(source));
 	}
 
@@ -544,6 +572,21 @@ struct NormalizedMessageAdapter<SDC::EpisodicMetricReportTraits::ReportType> {
 };
 
 template<>
+struct NormalizedMessageAdapter<SDC::EpisodicOperationalStateReportTraits::ReportType> {
+	const SDC::EpisodicOperationalStateReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
+		return message.Body().EpisodicOperationalStateReport().get();
+	}
+
+	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::EpisodicOperationalStateReportTraits::ReportType> source) {
+		message.Body().EpisodicOperationalStateReport().set(std::move(source));
+	}
+
+	bool present(const MESSAGEMODEL::Envelope & message) {
+		return message.Body().EpisodicOperationalStateReport().present();
+	}
+};
+
+template<>
 struct NormalizedMessageAdapter<SDC::PeriodicAlertReportTraits::ReportType> {
 	const SDC::PeriodicAlertReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
 		return message.Body().PeriodicAlertReport().get();
@@ -559,12 +602,12 @@ struct NormalizedMessageAdapter<SDC::PeriodicAlertReportTraits::ReportType> {
 };
 
 template<>
-struct NormalizedMessageAdapter<SDC::PeriodicContextChangedReportTraits::ReportType> {
-	const SDC::PeriodicContextChangedReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
+struct NormalizedMessageAdapter<SDC::PeriodicContextReportTraits::ReportType> {
+	const SDC::PeriodicContextReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
 		return message.Body().PeriodicContextReport().get();
 	}
 
-	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::PeriodicContextChangedReportTraits::ReportType> source) {
+	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::PeriodicContextReportTraits::ReportType> source) {
 		message.Body().PeriodicContextReport().set(std::move(source));
 	}
 

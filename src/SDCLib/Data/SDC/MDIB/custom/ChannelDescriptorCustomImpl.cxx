@@ -10,7 +10,7 @@
 
 #include <vector>
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 namespace SDCLib {
 namespace Data {

@@ -10,17 +10,18 @@
 
 #include "OSELib/fwd.h"
 
-namespace OSELib {
-namespace SOAP {
+namespace OSELib
+{
+	namespace SOAP
+	{
+		class Command
+		{
+		public:
+			virtual ~Command() = default;
 
-class Command {
-public:
-	virtual ~Command() = default;
+			virtual std::unique_ptr<MESSAGEMODEL::Envelope> Run() = 0;
+		};
+	}
+}
 
-	virtual std::unique_ptr<MESSAGEMODEL::Envelope> Run() = 0;
-};
-
-} /* namespace SOAP */
-} /* namespace OSELib */
-
-#endif /* SOAP_COMMAND_H_ */
+#endif

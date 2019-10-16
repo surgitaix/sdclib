@@ -7,7 +7,7 @@
 
 #include "OSELib/SDC/ServiceManager.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 #include <chrono>
 

@@ -27,7 +27,7 @@ namespace OSELib
 	{
 		using URIVector = std::vector<Poco::URI>;
 
-		class DeviceDescription : public WithLogger
+		class DeviceDescription : public Helper::WithLogger
 		{
 		private:
 
@@ -57,38 +57,40 @@ namespace OSELib
 			DeviceDescription& operator=(DeviceDescription&& p_obj) = delete;
 			~DeviceDescription() = default;
 
-			bool checkURIsValidity(const Poco::URI & uri) const;
+			bool checkURIsValidity(const Poco::URI & p_uri) const;
 
 			std::string getEPR() const;
-			void setEPR(const std::string & epr);
+			void setEPR(const std::string & p_epr);
 
 			Poco::Net::IPAddress getLocalIP() const;
-			void setLocalIP(const Poco::Net::IPAddress & localIP);
+			void setLocalIP(const Poco::Net::IPAddress & p_localIP);
 
 			Poco::URI getDeviceURI() const;
-			void addDeviceURI(const Poco::URI & uri);
+			void addDeviceURI(const Poco::URI & p_uri);
+
+			Poco::URI getBICEPSServiceURI() const; // Returns the first URI of the BICEPS Service (See R0034)
 
 			Poco::URI getContextServiceURI() const;
-			void addContextServiceURI(const Poco::URI & uri);
+			void addContextServiceURI(const Poco::URI & p_uri);
 
 			Poco::URI getEventServiceURI() const;
-			void addStateEventReportServiceURI(const Poco::URI & uri);
+			void addStateEventReportServiceURI(const Poco::URI & p_uri);
 
 			Poco::URI getGetServiceURI() const;
-			void addGetServiceURI(const Poco::URI & uri);
+			void addGetServiceURI(const Poco::URI & p_uri);
 
 			Poco::URI getSetServiceURI() const;
-			void addSetServiceURI(const Poco::URI & uri);
+			void addSetServiceURI(const Poco::URI & p_uri);
 
-			void addWaveformServiceURI(const Poco::URI & uri);
+			void addWaveformServiceURI(const Poco::URI & p_uri);
 			Poco::URI getWaveformEventReportURI() const;
 
-			void addStreamMulticastAddressURI(const Poco::URI & uri);
+			void addStreamMulticastAddressURI(const Poco::URI & p_uri);
 			URIVector getStreamMulticastAddressURIs() const;
 
 		};
 
-	} /* namespace DPWS */
-} /* namespace OSELib */
+	}
+}
 
-#endif /* OSELIB_DPWS_DEVICEDESCRIPTION_H_ */
+#endif

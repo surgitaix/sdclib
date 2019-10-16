@@ -1,31 +1,41 @@
 /*
  * DeviceHandler.h
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 20.08.2019, baumeister
+ *
  */
 
-#ifndef DPWS_DEVICEHANDLER_H_
-#define DPWS_DEVICEHANDLER_H_
+#ifndef OSELIB_DPWS_DEVICEHANDLER_H_
+#define OSELIB_DPWS_DEVICEHANDLER_H_
 
 #include "OSELib/fwd.h"
 #include "OSELib/SOAP/HTTPRequestHandlerExceptionTrap.h"
 
-namespace OSELib {
-namespace DPWS {
+namespace OSELib
+{
+	namespace DPWS
+	{
+		class DeviceHandler : public SOAP::HTTPRequestHandlerExceptionTrap
+		{
+		private:
+			IDevice & m_service;
+			const bool m_SSL = true;
 
-class DeviceHandler : public SOAP::HTTPRequestHandlerExceptionTrap {
-public:
-	DeviceHandler(IDevice & service, bool p_SSL);
+		public:
+			DeviceHandler(IDevice & p_service, bool p_SSL);
+			// Special Member Functions
+			DeviceHandler(const DeviceHandler& p_obj) = default;
+			DeviceHandler(DeviceHandler&& p_obj) = default;
+			DeviceHandler& operator=(const DeviceHandler& p_obj) = default;
+			DeviceHandler& operator=(DeviceHandler&& p_obj) = default;
+			~DeviceHandler() = default;
 
-private:
-	virtual void handleRequestImpl(Poco::Net::HTTPServerRequest & httpRequest, Poco::Net::HTTPServerResponse & httpResponse);
+		private:
+			virtual void handleRequestImpl(Poco::Net::HTTPServerRequest & p_httpRequest, Poco::Net::HTTPServerResponse & p_httpResponse);
+		};
 
-	IDevice & _service;
-    const bool m_SSL = true;
-};
+	}
+}
 
-} /* namespace SDC */
-} /* namespace OSELib */
-
-#endif /* DPWS_DEVICEHANDLER_H_ */
+#endif

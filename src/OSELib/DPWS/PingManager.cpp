@@ -11,6 +11,7 @@
 #include "SDCLib/SDCInstance.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 
+#include "OSELib/DPWS/DeviceDescription.h"
 #include "OSELib/DPWS/OperationTraits.h"
 #include "OSELib/Helper/XercesGrammarPoolProvider.h"
 #include "OSELib/SOAP/GenericSoapInvoke.h"

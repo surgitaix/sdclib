@@ -59,30 +59,30 @@ const std::string HANDLE_STREAM_METRIC("handle_stream");
 
 
 
-class ExampleConsumerEventHandler : public SDCConsumerMDStateHandler<NumericMetricState> {
+class ExampleConsumerEventHandler : public SDCConsumerMDStateHandler<NumericMetricState>
+{
+private:
+    double currentWeight = 0;
+
 public:
-    ExampleConsumerEventHandler(const std::string & handle) : SDCConsumerMDStateHandler(handle),
-    	currentWeight(0)
-	{
-    }
+    ExampleConsumerEventHandler(const std::string & handle)
+	: SDCConsumerMDStateHandler(handle)
+	{ }
 
 
     void onStateChanged(const NumericMetricState & state) override {
-        double val = state.getMetricValue().getValue();
-        DebugOut(DebugOut::Default, "ExampleConsumerSSL") << "Consumer: Received value changed of " << this->getDescriptorHandle() << ": " << val << std::endl;
-        currentWeight = (float)val;
+        double t_value = state.getMetricValue().getValue();
+        DebugOut(DebugOut::Default, "ExampleConsumerSSL") << "Consumer: Received value changed of " << this->getDescriptorHandle() << ": " << t_value << std::endl;
+        currentWeight = t_value;
     }
 
     void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) override {
         DebugOut(DebugOut::Default, "ExampleConsumerSSL") << "Consumer: Received operation invoked (numeric metric) (ID, STATE) of " << this->getDescriptorHandle() << ": " << oic.transactionId << ", " << Data::SDC::EnumToString::convert(is) << std::endl;
     }
 
-    float getCurrentWeight() {
+    double getCurrentWeight() {
         return currentWeight;
     }
-
-private:
-    float currentWeight;
 };
 
 

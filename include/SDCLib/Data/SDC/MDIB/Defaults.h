@@ -13,7 +13,7 @@
 #define DATA_SDC_MDIB_DEFAULTS_H_
 
 #include "SDCLib/Data/SDC/MDIB/MDIB-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
@@ -25,10 +25,6 @@ class Defaults {
 public:
 	Defaults();
 	virtual ~Defaults();
-	static CDM::DicomTransferCapability * DicomTransferCapabilityInit(std::string sopclass, DicomTransferRole transferrole);
-	static CDM::DicomNetworkAe * DicomNetworkAeInit(std::string aetitle, xml_schema::Idrefs networkconnectionreference, bool associationinitiator, bool associationacceptor);
-	static CDM::DicomNetworkConnection * DicomNetworkConnectionInit(xml_schema::Id id, std::string hostname);
-	static CDM::DicomDeviceDescriptor * DicomDeviceDescriptorInit(Handle handle);
 	static CDM::Mdib * MdibInit();
 	static CDM::MdDescription * MdDescriptionInit();
 	static CDM::MdState * MdStateInit();
@@ -136,6 +132,10 @@ public:
 	static CDM::EnsembleContextState * EnsembleContextStateInit(HandleRef descriptorhandle, Handle handle);
 	static CDM::ContainmentTree * ContainmentTreeInit();
 	static CDM::ContainmentTreeEntry * ContainmentTreeEntryInit();
+	static CDM::DicomTransferCapability * DicomTransferCapabilityInit(std::string sopclass, DicomTransferRole transferrole);
+	static CDM::DicomNetworkAe * DicomNetworkAeInit(std::string aetitle, xml_schema::Idrefs networkconnectionreference, bool associationinitiator, bool associationacceptor);
+	static CDM::DicomNetworkConnection * DicomNetworkConnectionInit(xml_schema::Id id, std::string hostname);
+	static CDM::DicomDeviceDescriptor * DicomDeviceDescriptorInit(Handle handle);
 };
 
 } /* namespace SDC */

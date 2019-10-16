@@ -1,3 +1,14 @@
+Update to 4.4.0
+
+- Complete Coding style reworked
+- Requirement R0034 -> Regrouped DescriptionEventService, StateEventService, ContextService, WaveformService under one Hosted Service
+- Started Service Refactoring
+- WSDL Refactoring
+- HTTPServer Wrapper class
+- Dummy Implementation of EpisodicComponentReport and EpisodicOperationalStateReport
+- Moved DataModel into dedicated folder
+- CMake Find script changes to use generator expressions
+
 Update to 4.3.8
 
 - Fixed Schema Bugs.
