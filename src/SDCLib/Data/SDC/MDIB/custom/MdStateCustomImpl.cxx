@@ -22,6 +22,8 @@
 #include "SDCLib/Data/SDC/MDIB/Range.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/WorkflowContextState.h"
+#include "SDCLib/Data/SDC/MDIB/ScoState.h"
+#include "SDCLib/Data/SDC/MDIB/SystemContextState.h"
 
 #include <memory>
 
@@ -50,6 +52,10 @@ template std::unique_ptr<PatientContextState> MdState::findState<PatientContextS
 template std::unique_ptr<RealTimeSampleArrayMetricState> MdState::findState<RealTimeSampleArrayMetricState>(const std::string & handle) const;
 template std::unique_ptr<StringMetricState> MdState::findState<StringMetricState>(const std::string & handle) const;
 template std::unique_ptr<WorkflowContextState> MdState::findState<WorkflowContextState>(const std::string & handle) const;
+template std::unique_ptr<VmdState> MdState::findState<VmdState>(const std::string & handle) const;
+template std::unique_ptr<ChannelState> MdState::findState<ChannelState>(const std::string & handle) const;
+template std::unique_ptr<ScoState> MdState::findState<ScoState>(const std::string & handle) const;
+template std::unique_ptr<SystemContextState> MdState::findState<SystemContextState>(const std::string & handle) const;
 
 template<class TState>
 std::unique_ptr<TState> MdState::findState(const std::string & handle) const {
@@ -57,9 +63,8 @@ std::unique_ptr<TState> MdState::findState(const std::string & handle) const {
 	if (findState(handle, outState)) {
 		auto ptr = std::unique_ptr<TState>(new TState(outState));
 		return std::move(ptr);
-	} else {
-		return nullptr;
 	}
+	return nullptr;
 }
 
 bool MdState::findState(const std::string & handle, AlertConditionState & outState) const {
@@ -132,6 +137,21 @@ bool MdState::findState(const std::string & handle, StringMetricState & outState
 
 bool MdState::findState(const std::string & handle, WorkflowContextState & outState) const {
 	return findStateImpl<WorkflowContextState>(handle, outState);
+}
+
+bool MdState::findState(const std::string & handle, VmdState & outState) const {
+	return findStateImpl<VmdState>(handle, outState);
+}
+
+bool MdState::findState(const std::string & handle, ChannelState & outState) const {
+	return findStateImpl<ChannelState>(handle, outState);
+}
+
+bool MdState::findState(const std::string & handle, ScoState & outState) const {
+	return findStateImpl<ScoState>(handle, outState);
+}
+bool MdState::findState(const std::string & handle, SystemContextState & outState) const {
+	return findStateImpl<SystemContextState>(handle, outState);
 }
 
 template <class WrapperStateDescriptorType>
@@ -221,6 +241,13 @@ MdState & MdState::addState(const VmdState & source) {
 }
 
 MdState & MdState::addState(const ChannelState & source) {
+	return addStateImpl(source);
+}
+
+MdState & MdState::addState(const ScoState & source) {
+	return addStateImpl(source);
+}
+MdState & MdState::addState(const SystemContextState & source) {
 	return addStateImpl(source);
 }
 

@@ -227,7 +227,7 @@ namespace SDCLib
 				void shutdown();
 
 				template<class T>
-				void replaceState(const T & p_state);
+				void replaceState(T p_state);
 
 				/**
 				* @brief Add a state handler to provide states and to process incoming change requests from a consumer.
@@ -419,6 +419,8 @@ namespace SDCLib
 				void enqueueInvokeNotification(const T & p_request, const OperationInvocationContext & p_oic);
 
 				unsigned int incrementAndGetTransactionId();
+
+				void _incrementMdStateVersion();
 
 			};
 		}

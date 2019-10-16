@@ -105,6 +105,7 @@ public:
     MdState & addState(const WorkflowContextState & source);
     MdState & addState(const VmdState & source);
     MdState & addState(const ChannelState & source);
+    MdState & addState(const ScoState & source);
 
 private:
     // these classes are for internal finding states in the MDIB
@@ -124,7 +125,11 @@ private:
 	bool findState(const std::string & handle, RealTimeSampleArrayMetricState & outState) const;
 	bool findState(const std::string & handle, StringMetricState & outState) const;
 	bool findState(const std::string & handle, WorkflowContextState & outState) const;
-    template <class WrapperStateDescriptorType>
+	bool findState(const std::string & handle, VmdState & outState) const;
+	bool findState(const std::string & handle, ChannelState & outState) const;
+	bool findState(const std::string & handle, ScoState & outState) const;
+
+	template <class WrapperStateDescriptorType>
     bool findStateImpl(const std::string & handle, WrapperStateDescriptorType & out) const;
 
     template <class WrapperStateDescriptorType>
