@@ -78,6 +78,7 @@
 #include "SDCLib/Data/SDC/MDIB/StringMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricValue.h"
 #include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/SampleArrayValue.h"
 #include "SDCLib/Data/SDC/MDIB/SetValueOperationState.h"
 #include "SDCLib/Data/SDC/MDIB/SetStringOperationState.h"
 #include "SDCLib/Data/SDC/MDIB/SetAlertStateOperationState.h"
@@ -1104,82 +1105,93 @@ bool SDCProvider::startup()
         for (const auto & t_handler : ml_stateHandlers) {
             if (SDCProviderAlertConditionStateHandler<AlertConditionState> * t_casted = dynamic_cast<SDCProviderAlertConditionStateHandler<AlertConditionState> *>(t_handler.second)) {
             	auto t_state = t_casted->getInitialState();
-            	t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
+            	_initAbstractStateDefaults(t_state);
             	m_MdState.addState(t_state);
             } else if (SDCProviderMDStateHandler<AlertSignalState> * t_casted = dynamic_cast<SDCProviderMDStateHandler<AlertSignalState> *>(t_handler.second)) {
             	auto t_state = t_casted->getInitialState();
-            	t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
+            	_initAbstractStateDefaults(t_state);
             	m_MdState.addState(t_state);
             } else if (SDCProviderMDStateHandler<EnumStringMetricState> * t_casted = dynamic_cast<SDCProviderMDStateHandler<EnumStringMetricState> *>(t_handler.second)) {
             	auto t_state = t_casted->getInitialState();
-            	t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
+            	_initAbstractStateDefaults(t_state);
+            	_initStateMetricValueDefaults(t_state);
             	m_MdState.addState(t_state);
             } else if (SDCProviderMDStateHandler<AlertSystemState> * t_casted = dynamic_cast<SDCProviderMDStateHandler<AlertSystemState> *>(t_handler.second)) {
             	auto t_state = t_casted->getInitialState();
-            	t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
+            	_initAbstractStateDefaults(t_state);
             	m_MdState.addState(t_state);
             } else if (SDCProviderAlertConditionStateHandler<LimitAlertConditionState> * t_casted = dynamic_cast<SDCProviderAlertConditionStateHandler<LimitAlertConditionState> *>(t_handler.second)) {
             	auto t_state = t_casted->getInitialState();
-            	t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
+            	_initAbstractStateDefaults(t_state);
             	m_MdState.addState(t_state);
             } else if (SDCProviderMDStateHandler<NumericMetricState> * t_casted = dynamic_cast<SDCProviderMDStateHandler<NumericMetricState> *>(t_handler.second)) {
             	auto t_state = t_casted->getInitialState();
-            	t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
+            	_initAbstractStateDefaults(t_state);
+            	_initComponentStateDefaults(t_state);
+            	_initStateMetricValueDefaults(t_state);
             	m_MdState.addState(t_state);
             } else if (SDCProviderMDStateHandler<RealTimeSampleArrayMetricState> * t_casted = dynamic_cast<SDCProviderMDStateHandler<RealTimeSampleArrayMetricState> *>(t_handler.second)) {
             	auto t_state = t_casted->getInitialState();
-            	t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
+            	_initAbstractStateDefaults(t_state);
+            	_initStateMetricValueDefaults(t_state);
             	m_MdState.addState(t_state);
             } else if (SDCProviderMDStateHandler<DistributionSampleArrayMetricState> * t_casted = dynamic_cast<SDCProviderMDStateHandler<DistributionSampleArrayMetricState> *>(t_handler.second)) {
             	auto t_state = t_casted->getInitialState();
-            	t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
+            	_initAbstractStateDefaults(t_state);
+            	_initStateMetricValueDefaults(t_state);
             	m_MdState.addState(t_state);
             } else if (SDCProviderMDStateHandler<StringMetricState> * t_casted = dynamic_cast<SDCProviderMDStateHandler<StringMetricState> *>(t_handler.second)) {
             	auto t_state = t_casted->getInitialState();
-            	t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
+            	_initAbstractStateDefaults(t_state);
+            	_initComponentStateDefaults(t_state);
+            	_initStateMetricValueDefaults(t_state);
             	m_MdState.addState(t_state);
             } else if (SDCProviderComponentStateHandler<ClockState> * t_casted = dynamic_cast<SDCProviderComponentStateHandler<ClockState> *>(t_handler.second)) {
             	auto t_state = t_casted->getInitialState();
-            	t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
+            	_initAbstractStateDefaults(t_state);
+            	_initComponentStateDefaults(t_state);
             	m_MdState.addState(t_state);
             } else if (SDCProviderComponentStateHandler<MdsState> * t_casted = dynamic_cast<SDCProviderComponentStateHandler<MdsState>*>(t_handler.second)) {
             	auto t_state = t_casted->getInitialState();
-            	t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
+            	_initAbstractStateDefaults(t_state);
+            	_initComponentStateDefaults(t_state);
             	m_MdState.addState(t_state);
             } else if (SDCProviderComponentStateHandler<VmdState> * t_casted = dynamic_cast<SDCProviderComponentStateHandler<VmdState> *>(t_handler.second)) {
             	auto t_state = t_casted->getInitialState();
-            	t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
+            	_initAbstractStateDefaults(t_state);
+            	_initComponentStateDefaults(t_state);
             	m_MdState.addState(t_state);
             } else if (SDCProviderComponentStateHandler<ChannelState> * t_casted = dynamic_cast<SDCProviderComponentStateHandler<ChannelState>*>(t_handler.second)) {
             	auto t_state = t_casted->getInitialState();
-            	t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
+            	_initAbstractStateDefaults(t_state);
+            	_initComponentStateDefaults(t_state);
             	m_MdState.addState(t_state);
             } else if (dynamic_cast<SDCProviderActivateOperationHandler *>(t_handler.second)) {
                 // NOOP
                 // well I gess not...
             } else if (SDCProviderMDStateHandler<LocationContextState>  * t_casted = dynamic_cast<SDCProviderMDStateHandler<LocationContextState>*>(t_handler.second)) {
             	auto t_state = t_casted->getInitialState();
-            	t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
+            	_initAbstractStateDefaults(t_state);
             	m_MdState.addState(t_state);
             } else if (SDCProviderMDStateHandler<PatientContextState>  * t_casted = dynamic_cast<SDCProviderMDStateHandler<PatientContextState>*>(t_handler.second)) {
             	auto t_state = t_casted->getInitialState();
-            	t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
+            	_initAbstractStateDefaults(t_state);
             	m_MdState.addState(t_state);
             } else if (SDCProviderMDStateHandler<MeansContextState>  * t_casted = dynamic_cast<SDCProviderMDStateHandler<MeansContextState>*>(t_handler.second)) {
             	auto t_state = t_casted->getInitialState();
-            	t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
+            	_initAbstractStateDefaults(t_state);
             	m_MdState.addState(t_state);
             } else if (SDCProviderMDStateHandler<WorkflowContextState>  * t_casted = dynamic_cast<SDCProviderMDStateHandler<WorkflowContextState>*>(t_handler.second)) {
             	auto t_state = t_casted->getInitialState();
-            	t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
+            	_initAbstractStateDefaults(t_state);
             	m_MdState.addState(t_state);
             } else if (SDCProviderMDStateHandler<OperatorContextState>  * t_casted = dynamic_cast<SDCProviderMDStateHandler<OperatorContextState>*>(t_handler.second)) {
             	auto t_state = t_casted->getInitialState();
-            	t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
+            	_initAbstractStateDefaults(t_state);
             	m_MdState.addState(t_state);
             } else if (SDCProviderMDStateHandler<EnsembleContextState>  * t_casted = dynamic_cast<SDCProviderMDStateHandler<EnsembleContextState>*>(t_handler.second)) {
             	auto t_state = t_casted->getInitialState();
-            	t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
+            	_initAbstractStateDefaults(t_state);
             	m_MdState.addState(t_state);
             } else {
                 log_fatal([] { return "Unknown handler type! This is an implementation error in the SDCLib!"; });
@@ -1191,79 +1203,94 @@ bool SDCProvider::startup()
     // Iterate over MdDescription and Add States for all Descriptors not added yet -> TODO REWORK!
     auto t_description = getMdDescription();
 
-    // Mds
-    for(const auto& t_Mds : t_description.getMdsList())
-    {
-    	// Not added yet - Add
-    	if(!m_MdState.findState<MdsState>(t_Mds.getHandle())) {
-			auto t_state = MdsState(t_Mds.getHandle());
-			t_state.setActivationState(ComponentActivation::On);
-			t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
-			m_MdState.addState(t_state);
-    	}
-    	// Sco
-    	if(t_Mds.hasSco()) {
-			if(!m_MdState.findState<ScoState>(t_Mds.getSco().getHandle())) {
-				auto t_state = ScoState(t_Mds.getSco().getHandle());
-				t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
-				m_MdState.addState(t_state);
-			}
-    	}
+    { // LOCK
+    	std::lock_guard<std::mutex> t_lock{m_mutex_MdState};
 
-    	// SystemContext ?
-    	if(t_Mds.hasSystemContext()) {
-			if(!m_MdState.findState<SystemContextState>(t_Mds.getSystemContext().getHandle())) {
-				auto t_state = SystemContextState(t_Mds.getSystemContext().getHandle());
-				t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
+		// Mds
+		for(const auto& t_Mds : t_description.getMdsList())
+		{
+			// Not added yet - Add
+			if(!m_MdState.findState<MdsState>(t_Mds.getHandle())) {
+				auto t_state = MdsState(t_Mds.getHandle());
+				_initAbstractStateDefaults(t_state);
+				_initComponentStateDefaults(t_state);
 				m_MdState.addState(t_state);
 			}
-    	}
-
-     	// Vmd
-    	for(const auto& t_vmd : t_Mds.getVmdList())
-    	{
-    		// Not added yet - Add
-    		if(!m_MdState.findState<VmdState>(t_vmd.getHandle())) {
-				auto t_state = VmdState(t_vmd.getHandle());
-				t_state.setActivationState(ComponentActivation::On);
-				t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
-				m_MdState.addState(t_state);
-			}
-    		// Channel
-    		for(const auto& t_channel : t_vmd.getChannelList())
-    		{
-				if(!m_MdState.findState<ChannelState>(t_channel.getHandle())) {
-					auto t_state = ChannelState(t_channel.getHandle());
-					t_state.setActivationState(ComponentActivation::On);
-					t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
+			// Sco
+			if(t_Mds.hasSco()) {
+				if(!m_MdState.findState<ScoState>(t_Mds.getSco().getHandle())) {
+					auto t_state = ScoState(t_Mds.getSco().getHandle());
+					_initAbstractStateDefaults(t_state);
 					m_MdState.addState(t_state);
 				}
+			}
 
-				// Numeric Metrics
-				for(const auto& t_metric : t_channel.getNumericMetricDescriptorList()) {
-					if(!m_MdState.findState<NumericMetricState>(t_metric.getHandle())) {
-						auto t_state = NumericMetricState(t_metric.getHandle());
-						t_state.setActivationState(ComponentActivation::On);
-						t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
+			// SystemContext ?
+			if(t_Mds.hasSystemContext()) {
+				if(!m_MdState.findState<SystemContextState>(t_Mds.getSystemContext().getHandle())) {
+					auto t_state = SystemContextState(t_Mds.getSystemContext().getHandle());
+					_initAbstractStateDefaults(t_state);
+					_initComponentStateDefaults(t_state);
+					m_MdState.addState(t_state);
+				}
+			}
+
+			// Vmd
+			for(const auto& t_vmd : t_Mds.getVmdList())
+			{
+				// Not added yet - Add
+				if(!m_MdState.findState<VmdState>(t_vmd.getHandle())) {
+					auto t_state = VmdState(t_vmd.getHandle());
+					_initAbstractStateDefaults(t_state);
+					_initComponentStateDefaults(t_state);
+					m_MdState.addState(t_state);
+				}
+				// Channel
+				for(const auto& t_channel : t_vmd.getChannelList())
+				{
+					if(!m_MdState.findState<ChannelState>(t_channel.getHandle())) {
+						auto t_state = ChannelState(t_channel.getHandle());
+						_initAbstractStateDefaults(t_state);
+						_initComponentStateDefaults(t_state);
 						m_MdState.addState(t_state);
 					}
-				}
-				// String Metrics
-				for(const auto& t_metric : t_channel.getStringMetricDescriptorList()) {
-					if(!m_MdState.findState<StringMetricState>(t_metric.getHandle())) {
-						auto t_state = StringMetricState(t_metric.getHandle());
-						t_state.setActivationState(ComponentActivation::On);
-						t_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
-						m_MdState.addState(t_state);
+
+					// Activate
+
+					// Numeric Metrics
+					for(const auto& t_metric : t_channel.getNumericMetricDescriptorList()) {
+						if(!m_MdState.findState<NumericMetricState>(t_metric.getHandle())) {
+							auto t_state = NumericMetricState(t_metric.getHandle());
+							_initAbstractStateDefaults(t_state);
+							_initStateMetricValueDefaults(t_state);
+							m_MdState.addState(t_state);
+						}
 					}
+					// String Metrics
+					for(const auto& t_metric : t_channel.getStringMetricDescriptorList()) {
+						if(!m_MdState.findState<StringMetricState>(t_metric.getHandle()) && !m_MdState.findState<EnumStringMetricState>(t_metric.getHandle())) {
+							auto t_state = StringMetricState(t_metric.getHandle());
+							_initAbstractStateDefaults(t_state);
+							_initStateMetricValueDefaults(t_state);
+							m_MdState.addState(t_state);
+						}
+					}
+					// Enum String Metrics
+					for(const auto& t_metric : t_channel.getEnumStringMetricDescriptorList()) {
+						if(!m_MdState.findState<EnumStringMetricState>(t_metric.getHandle()) && !m_MdState.findState<StringMetricState>(t_metric.getHandle())) {
+							auto t_state = EnumStringMetricState(t_metric.getHandle());
+							_initAbstractStateDefaults(t_state);
+							_initStateMetricValueDefaults(t_state);
+							m_MdState.addState(t_state);
+						}
+					}
+
+					// TODO: More MetricStates...
 				}
-				// .....
-    		}
-    		// Metrics
+			}
 
-    	}
-
-    }
+		}
+    } // UNLOCK
 
 
 
@@ -1739,6 +1766,35 @@ TimePoint SDCProvider::getLastPeriodicEvent() const
     std::lock_guard<std::mutex> t_lock{m_mutex_PeriodicEvent};
     return m_lastPeriodicEvent;
 }
+
+template<class T>
+void SDCProvider::_initAbstractStateDefaults(T& p_state)
+{
+	if(!p_state.hasStateVersion()) {
+		p_state.setStateVersion(VersionCounter(INITIAL_STATE_VERSION));
+	}
+}
+
+template<class T>
+void SDCProvider::_initComponentStateDefaults(T& p_state)
+{
+	if(!p_state.hasActivationState()) {
+		p_state.setActivationState(ComponentActivation::On);
+	}
+}
+
+template<class T>
+void SDCProvider::_initStateMetricValueDefaults(T& p_state)
+{
+	if(!p_state.hasMetricValue()) {
+		return;
+	}
+
+	if(!p_state.getMetricValue().hasDeterminationTime()) {
+		p_state.setMetricValue(p_state.getMetricValue().setDeterminationTime(Timestamp(0)));
+	}
+}
+
 
 }
 }

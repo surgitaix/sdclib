@@ -47,16 +47,14 @@ template std::unique_ptr<StringMetricDescriptor>  MdDescription::findDescriptor(
 template std::unique_ptr<VmdDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
 template std::unique_ptr<WorkflowContextDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
 
-
 template<class TDescriptor>
 std::unique_ptr<TDescriptor> MdDescription::findDescriptor(const std::string & handle) const {
 	TDescriptor outState;
 	if (findDescriptor(handle, outState)) {
 		auto ptr = std::unique_ptr<TDescriptor>(new TDescriptor(outState));
 		return std::move(ptr);
-	} else {
-		return nullptr;
 	}
+	return nullptr;
 }
 
 template<class AlertSystemOwner>
@@ -405,6 +403,20 @@ std::string MdDescription::getOperationTargetForOperationHandle(const std::strin
 				return operation.OperationTarget();
 			}
 		}
+		// Check Vmds too
+		for(const auto& t_vmd : mds.Vmd())
+		{
+			if (!t_vmd.Sco().present()) {
+				continue;
+			}
+			for (const auto & t_operation : t_vmd.Sco().get().Operation()) {
+				if (t_operation.Handle() == operationHandle) {
+					return t_operation.OperationTarget();
+				}
+			}
+
+		}
+
 	}
 
 	return "";
