@@ -1,3 +1,10 @@
+Update to 4.4.1
+
+- Added 'SetOperation'-Handling for Activates
+- Added DescriptionEventService to BICEPSSerive (no Events emitted yet)
+- Adding missing MdStates on Provider startup (WIP)
+- Small bugfixes related to Event handling
+
 Update to 4.4.0
 
 - Complete Coding style reworked
