@@ -24,6 +24,7 @@
 #include <Poco/URI.h>
 #include <Poco/Net/SocketAddress.h>
 #include <Poco/Net/StreamSocket.h>
+#include <Poco/Net/SecureStreamSocket.h>
 
 
 using namespace OSELib;
@@ -280,9 +281,23 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 
 	try {
 		const Poco::URI t_remoteURI(t_deviceDescription->getDeviceURI());
-		Poco::Net::StreamSocket t_connection;
-		t_connection.connect(Poco::Net::SocketAddress(t_remoteURI.getHost(), t_remoteURI.getPort()), Poco::Timespan(1, 0));
-		t_deviceDescription->setLocalIP(t_connection.address().host());
+
+		auto SSL_INIT = m_SDCInstance->getSSLConfig()->isInit();
+
+		if(SSL_INIT) {
+			Poco::Net::SecureStreamSocket t_connection;
+			t_connection.connect(Poco::Net::SocketAddress(t_remoteURI.getHost(), t_remoteURI.getPort()), Poco::Timespan(1, 0));
+			t_deviceDescription->setLocalIP(t_connection.address().host());
+			t_connection.shutdown();
+			t_connection.close();
+		}
+		else {
+			Poco::Net::StreamSocket t_connection;
+			t_connection.connect(Poco::Net::SocketAddress(t_remoteURI.getHost(), t_remoteURI.getPort()), Poco::Timespan(1, 0));
+			t_deviceDescription->setLocalIP(t_connection.address().host());
+			t_connection.shutdown();
+			t_connection.close();
+		}
 	} catch (...) {
 		log_debug([&] { return "Contacting xAddress failed: " + t_deviceDescription->getDeviceURI().toString(); });
 		return nullptr;

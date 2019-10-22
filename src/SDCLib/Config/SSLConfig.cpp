@@ -4,10 +4,11 @@
 
 #include <Poco/SharedPtr.h>
 #include <Poco/Net/SSLManager.h>
-#include <Poco/Net/KeyConsoleHandler.h>
-#include <Poco/Net/ConsoleCertificateHandler.h>
+#include <Poco/Net/KeyFileHandler.h>
+#include <Poco/Net/RejectCertificateHandler.h>
 #include <Poco/Net/PrivateKeyPassphraseHandler.h>
 #include <Poco/Crypto/X509Certificate.h>
+#include <Poco/Net/SSLException.h>
 
 #include <iostream>
 
@@ -45,11 +46,11 @@ bool SSLConfig::init(const Poco::Net::Context::VerificationMode p_modeClient, co
 bool SSLConfig::_initClientSide(const Poco::Net::Context::VerificationMode p_mode)
 {
     try {
-        Poco::SharedPtr<Poco::Net::PrivateKeyPassphraseHandler> pConsoleHandler = new Poco::Net::KeyConsoleHandler(false);
-        Poco::SharedPtr<Poco::Net::InvalidCertificateHandler> pInvalidCertHandler = new Poco::Net::ConsoleCertificateHandler(false);
+        Poco::SharedPtr<Poco::Net::PrivateKeyPassphraseHandler> t_privateHandler = new Poco::Net::KeyFileHandler(false);
+        Poco::SharedPtr<Poco::Net::InvalidCertificateHandler> t_invalidCertHandler = new Poco::Net::RejectCertificateHandler(false);
         m_context_client = new Poco::Net::Context(Poco::Net::Context::TLSV1_2_CLIENT_USE, "","","", p_mode, 9, false, "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH");
 
-        Poco::Net::SSLManager::instance().initializeClient(pConsoleHandler, pInvalidCertHandler, m_context_client);
+        Poco::Net::SSLManager::instance().initializeClient(t_privateHandler, t_invalidCertHandler, m_context_client);
         return true;
     }
     catch(...) {
@@ -60,11 +61,11 @@ bool SSLConfig::_initClientSide(const Poco::Net::Context::VerificationMode p_mod
 bool SSLConfig::_initServerSide(const Poco::Net::Context::VerificationMode p_mode)
 {
     try {
-        Poco::SharedPtr<Poco::Net::PrivateKeyPassphraseHandler> pConsoleHandler = new Poco::Net::KeyConsoleHandler(true);
-        Poco::SharedPtr<Poco::Net::InvalidCertificateHandler> pInvalidCertHandler = new Poco::Net::ConsoleCertificateHandler(true);
+        Poco::SharedPtr<Poco::Net::PrivateKeyPassphraseHandler> t_privateHandler = new Poco::Net::KeyFileHandler(true);
+        Poco::SharedPtr<Poco::Net::InvalidCertificateHandler> t_invalidCertHandler = new Poco::Net::RejectCertificateHandler(true);
         m_context_server = new Poco::Net::Context(Poco::Net::Context::TLSV1_2_SERVER_USE, "","","", p_mode, 9, false, "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH");
 
-        Poco::Net::SSLManager::instance().initializeServer(pConsoleHandler, pInvalidCertHandler, m_context_server);
+        Poco::Net::SSLManager::instance().initializeServer(t_privateHandler, t_invalidCertHandler, m_context_server);
         return true;
     }
     catch(...) {
@@ -142,9 +143,15 @@ bool SSLConfig::useKeyFiles(const std::string& p_publicKey, const std::string& p
         if(p_serverSide) { m_context_server->usePrivateKey(Poco::Crypto::RSAKey(p_publicKey, p_privateKey, p_pasphrase)); }
         return true;
     }
-    catch(...)
+    catch(Poco::Net::SSLContextException& e)
     {
+    	std::cout << "SSLContextException in useKeyFiles: " << e.message() << "\n";
+    	std::cout << "Hint: Call useKeyFiles after adding the chain Certificate via useCertificate.\n";
+    	std::cout << "      To add multiple certificates call useCertificate(...); useKeyFiles(...); pairwise." << std::endl;
         return false;
+    }
+    catch(...) {
+    	throw;
     }
     return false;
 }

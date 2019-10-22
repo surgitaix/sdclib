@@ -32,6 +32,7 @@
 #include <Poco/Net/HTTPRequest.h>
 #include <Poco/Net/HTTPResponse.h>
 #include <Poco/Net/NetException.h>
+#include <Poco/Net/SSLException.h>
 
 
 namespace OSELib {
@@ -101,6 +102,8 @@ std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPSClientSession & p_
         Helper::StreamReader t_streamReader(t_is);
         t_responseContent = t_streamReader.getContent();
         return t_responseContent;
+	} catch (Poco::Net::SSLException& e) {
+		log_error([&] { return "SSLException: " + e.message() + "\nResponse: " + t_responseContent; });
     } catch (Poco::Net::NetException& e) {
 		log_error([&] { return "NetException: " + e.message() + "\nResponse: " + t_responseContent; });
 		throw e;

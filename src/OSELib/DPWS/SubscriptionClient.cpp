@@ -84,7 +84,9 @@ SubscriptionClient::SubscriptionClient(const std::vector<SubscriptionInformation
 	m_thread.start(m_runnableAdapter);
 }
 
-SubscriptionClient::~SubscriptionClient() {
+SubscriptionClient::~SubscriptionClient()
+{
+	// TODO: Cleanup / Restructure along with run() !
 	m_thread.wakeUp();
 	m_thread.join();
 }
