@@ -29,6 +29,8 @@
 #include "SDCLib/Data/SDC/SDC-fwd.h"
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/MDIB/custom/MdibContainer.h"
+#include "SDCLib/Data/SDC/MDIB/MdDescription.h"
+#include "SDCLib/Data/SDC/MDIB/MdState.h"
 #include "SDCLib/Data/SDC/SDCConsumerAdapter.h"
 
 #include <atomic>

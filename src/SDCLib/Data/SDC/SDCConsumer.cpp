@@ -56,8 +56,6 @@
 #include "SDCLib/Data/SDC/MDIB/OperatorContextDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/WorkflowContextDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/MdsDescriptor.h"
-#include "SDCLib/Data/SDC/MDIB/MdDescription.h"
-#include "SDCLib/Data/SDC/MDIB/MdState.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricValue.h"
@@ -87,7 +85,6 @@
 #include "DataModel/osdm.hxx"
 
 #include <ostream>
-#include <memory>
 #include <vector>
 
 #include <Poco/Net/NetException.h>
