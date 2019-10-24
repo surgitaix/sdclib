@@ -1299,8 +1299,6 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
             CHECK_EQUAL(true, t_consumer->unregisterStateEventHandler(&alertSignalsink));
             CHECK_EQUAL(true, t_consumer->unregisterStateEventHandler(&latchingAlertSignalsink));
 
-            t_consumer->setContextStateChangedHandler(nullptr);
-
             DebugOut(DebugOut::Default, m_details.testName) << "Finished...";
 
             t_consumer->disconnect();

@@ -84,8 +84,7 @@ namespace SDCLib
 				std::mutex m_eventMutex;
 				std::map<std::string, SDCConsumerOperationInvokedHandler *> ml_eventHandlers;
 				SDCConsumerConnectionLostHandler * m_connectionLostHandler = nullptr;
-				// todo: kick
-				SDCConsumerSystemContextStateChangedHandler * m_contextStateChangedHandler = nullptr;
+
 				SDCConsumerSubscriptionLostHandler * m_subscriptionLostHandler = nullptr;
 
 				unsigned long long int m_lastKnownMDIBVersion = 0;
@@ -102,6 +101,14 @@ namespace SDCLib
 				SDCConsumer& operator=(const SDCConsumer& p_obj) = delete;
 				SDCConsumer& operator=(SDCConsumer&& p_obj) = delete;
 				~SDCConsumer();
+
+
+				/**
+				* @brief Get the managing SDCInstance (WIP: temporary "public"!)
+				*
+				* @return shared_ptr to the SDCInstance
+				*/
+				SDCInstance_shared_ptr getSDCInstance() { return m_SDCInstance; }
 
 				/**
 				* @brief Get the complete MDIB (description and states).
@@ -223,14 +230,6 @@ namespace SDCLib
 				*/
 				void setConnectionLostHandler(SDCConsumerConnectionLostHandler * p_handler);
 
-				// todo:kick?
-				/**
-				* @brief Set a handler which will be invoked if a context state change event arrives.
-				*
-				* @param handler The handler
-				*/
-				void setContextStateChangedHandler(SDCConsumerSystemContextStateChangedHandler * p_handler);
-
 				/**
 				* @brief Set a handler which will be invoked if a renewal of a subscription fails.
 				*
@@ -262,13 +261,6 @@ namespace SDCLib
 			private:
 
 				SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, OSELib::DPWS::DeviceDescription_shared_ptr p_deviceDescription);
-
-				/**
-				* @brief Get the managing SDCInstance
-				*
-				* @return shared_ptr to the SDCInstance
-				*/
-				SDCInstance_shared_ptr getSDCInstance() { return m_SDCInstance; }
 
 				/**
 				* @brief Update the local MDIB using an RPC to the provider.

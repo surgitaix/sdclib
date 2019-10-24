@@ -461,7 +461,6 @@ TEST_FIXTURE(FixturePeriodicEvents, PeriodicEvents)
             CHECK_EQUAL(true, consumer->unregisterStateEventHandler(&alertConditionHandler));
             CHECK_EQUAL(true, consumer->unregisterStateEventHandler(&dummyMetricHandler));
             CHECK_EQUAL(true, consumer->unregisterStateEventHandler(&locationContextStateHandler));
-            consumer->setContextStateChangedHandler(nullptr);
             consumer->disconnect();
 		}
 

@@ -151,7 +151,7 @@ mark_as_advanced(SDC_DEFAULT_PORT_RANGE)
 set(SDC_DISCOVERY_TIMEOUT_MS 5000 CACHE STRING "Time in milliseconds a Discovery until timeout." FORCE)
 mark_as_advanced(SDC_DISCOVERY_TIMEOUT_MS)
 
-set(SDC_CONNECTION_TIMEOUT_MS 4000 CACHE STRING "Time in milliseconds the SDCLib will check if the connection is lost." FORCE)
+set(SDC_CONNECTION_TIMEOUT_MS 2000 CACHE STRING "Time in milliseconds the SDCLib will check if the connection is lost." FORCE)
 mark_as_advanced(SDC_CONNECTION_TIMEOUT_MS)
 
 

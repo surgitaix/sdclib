@@ -24,11 +24,10 @@
 
 #include "OSELib/HTTP/HTTPClientExchanger.h"
 #include "OSELib/Helper/StreamReader.h"
-
+#include "config/config.h"
 
 #include <sstream>
 
-#include <Poco/Net/HTTPRequest.h>
 #include <Poco/Net/HTTPRequest.h>
 #include <Poco/Net/HTTPResponse.h>
 #include <Poco/Net/NetException.h>
@@ -54,8 +53,14 @@ std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPClientSession & p_s
         t_request.setContentLength(p_requestData.length());
         t_request.setKeepAlive(true);
 
+        // Send
         std::ostream & t_ostr = p_session.sendRequest(t_request);
         t_ostr << p_requestData << std::flush;
+
+        // Change socket timeout
+		auto t_timeout_us = SDCLib::Config::SDC_CONNECTION_TIMEOUT_MS*1000;  // Convert to microseconds
+		p_session.setTimeout(Poco::Timespan(t_timeout_us));
+		p_session.setKeepAliveTimeout(Poco::Timespan(t_timeout_us));
 
         std::istream & t_is = p_session.receiveResponse(t_response);
         if (t_response.getStatus() != Poco::Net::HTTPResponse::HTTP_OK && t_response.getStatus() != Poco::Net::HTTPResponse::HTTP_ACCEPTED) {
@@ -68,7 +73,7 @@ std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPClientSession & p_s
         t_responseContent = t_streamReader.getContent();
         return t_responseContent;
     } catch (Poco::Net::NetException& e) {
-		log_error([&] { return "NetException: " + e.message() + "\nResponse: " + t_responseContent; });
+		log_error([&] { return "NetException: " + std::string(e.what()) + "\nResponse: " + t_responseContent; });
 		throw e;
     } catch (const std::exception & e) {
     	log_error([&] { return std::string("Exception: " + std::string(e.what())) + "\nResponse: " + t_responseContent; });
@@ -88,8 +93,14 @@ std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPSClientSession & p_
     	t_request.setContentLength(p_requestData.length());
     	t_request.setKeepAlive(true);
 
+    	// Send
         std::ostream & t_ostr = p_session.sendRequest(t_request);
         t_ostr << p_requestData << std::flush;
+
+        // Change socket timeout
+		auto t_timeout_us = SDCLib::Config::SDC_CONNECTION_TIMEOUT_MS*1000;  // Convert to microseconds
+		p_session.setTimeout(Poco::Timespan(t_timeout_us));
+		p_session.setKeepAliveTimeout(Poco::Timespan(t_timeout_us));
 
         Poco::Net::HTTPResponse t_response;
         std::istream & t_is = p_session.receiveResponse(t_response);
@@ -103,9 +114,9 @@ std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPSClientSession & p_
         t_responseContent = t_streamReader.getContent();
         return t_responseContent;
 	} catch (Poco::Net::SSLException& e) {
-		log_error([&] { return "SSLException: " + e.message() + "\nResponse: " + t_responseContent; });
+		log_error([&] { return "SSLException: " + std::string(e.what()) + "\nResponse: " + t_responseContent; });
     } catch (Poco::Net::NetException& e) {
-		log_error([&] { return "NetException: " + e.message() + "\nResponse: " + t_responseContent; });
+		log_error([&] { return "NetException: " + std::string(e.what()) + "\nResponse: " + t_responseContent; });
 		throw e;
 	} catch (const std::exception & e) {
 		log_error([&] { return std::string("Exception: " + std::string(e.what())) + "\nResponse: " + t_responseContent; });

@@ -313,12 +313,21 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 
 		auto t_response(t_invoker->invoke(t_request, m_SDCInstance->getSSLConfig()->getClientContext()));
 
+		bool t_metadataFound = false;
 		if (t_response != nullptr) {
 			for (const auto & t_metadata : t_response->MetadataSection()) {
-				if (t_metadata.Dialect() != OSELib::WS_MEX_DIALECT_REL
-					|| !t_metadata.Relationship().present()
-					|| t_metadata.Relationship().get().Hosted().empty()
-					) {
+				if(t_metadata.Dialect() != OSELib::WS_MEX_DIALECT_REL) {
+					continue;
+				}
+				else {
+					t_metadataFound = true;
+				}
+
+				if(!t_metadata.Relationship().present()) {
+					continue;
+				}
+				if(t_metadata.Relationship().get().Hosted().empty()) {
+					log_error([&] { return "Metadata Relationship part does not contain any hosted services!"; });
 					continue;
 				}
 
@@ -326,6 +335,13 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 				resolveServiceURIsFromMetadata(t_metadata, *t_deviceDescription);
 			}
 		}
+
+		// No metadata -> violating R5020 of DPWS 1.1
+		if(!t_metadataFound) {
+			log_error([&] { return "## No Metadata found. Violating R5020 of DPWS 1.1. !"; }); // Todo: Is that fully correct?
+			return nullptr;
+		}
+
 
 		// get metadata for streaming
 		const DPWS::GetMetadataTraits::Request t_request_metadata;
@@ -367,16 +383,16 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
         return nullptr;
     }
     auto t_SDCInstance = std::make_shared<SDCLib::SDCInstance>(t_config);
-	std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> t_result(new SDCLib::Data::SDC::SDCConsumer(t_SDCInstance, t_deviceDescription));
+	SDCLib::Data::SDC::SDCConsumer_unique_ptr t_consumer(new SDCLib::Data::SDC::SDCConsumer(t_SDCInstance, t_deviceDescription));
 
-	if (!t_result->isConnected()) {
-		t_result->disconnect();
+	if (!t_consumer->isConnected()) {
+		t_consumer->disconnect();
 		return nullptr;
 	}
 
-	if (!t_result->requestMdib()) {
-		t_result->disconnect();
+	if (!t_consumer->requestMdib()) {
+		t_consumer->disconnect();
 		return nullptr;
 	}
-	return t_result;
+	return t_consumer;
 }

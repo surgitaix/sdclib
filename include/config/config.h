@@ -48,7 +48,7 @@ namespace SDCLib
         const unsigned int SDC_DEFAULT_PORT_RANGE = 1000;
 
         const unsigned int SDC_DISCOVERY_TIMEOUT_MS = 5000;
-        const unsigned int SDC_CONNECTION_TIMEOUT_MS = 4000;
+        const unsigned int SDC_CONNECTION_TIMEOUT_MS = 2000;
 
         const bool SDC_IP_V4_ENABLED = true;
         const bool SDC_IP_V6_ENABLED = false;

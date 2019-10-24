@@ -73,14 +73,14 @@ public:
 					// SSL or not
 					if(m_context) {
 						Poco::Net::HTTPSClientSession t_session(m_destinationURI.getHost(), m_destinationURI.getPort(), m_context);
-						t_session.setTimeout(Poco::Timespan(5,0));
+						t_session.setTimeout(Poco::Timespan(SDCLib::Config::SDC_CONNECTION_TIMEOUT_MS*1000)); // Convert to microseconds
 						t_session.setKeepAlive(true);
 
 						t_exchanger.exchangeHttp(t_session, t_message->m_destination.getPath(), t_message->m_message);
 					}
 					else {
 						Poco::Net::HTTPClientSession t_session(m_destinationURI.getHost(), m_destinationURI.getPort());
-						t_session.setTimeout(Poco::Timespan(5,0));
+						t_session.setTimeout(Poco::Timespan(SDCLib::Config::SDC_CONNECTION_TIMEOUT_MS*1000)); // Convert to microseconds
 						t_session.setKeepAlive(true);
 
 						t_exchanger.exchangeHttp(t_session, t_message->m_destination.getPath(), t_message->m_message);

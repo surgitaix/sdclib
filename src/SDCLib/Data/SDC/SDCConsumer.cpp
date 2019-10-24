@@ -196,7 +196,7 @@ SDCConsumer::~SDCConsumer()
 {
 	// TODO: Why?
     for (auto & t_fis : ml_fisMap) {
-    	t_fis.second->m_consumer = nullptr;
+       t_fis.second->m_consumer = nullptr;
     }
 
     // FIXME: This is not threadsafe + RAII
@@ -219,15 +219,6 @@ void SDCConsumer::setConnectionLostHandler(SDCConsumerConnectionLostHandler * p_
     m_connectionLostHandler = p_handler;
 }
 
-void SDCConsumer::setContextStateChangedHandler(SDCConsumerSystemContextStateChangedHandler * p_handler)
-{
-    std::lock_guard<std::mutex> t_lock(m_eventMutex);
-	m_contextStateChangedHandler = p_handler;
-	if (m_adapter) {
-		m_adapter->subscribeEvents();
-	}
-}
-
 void SDCConsumer::setSubscriptionLostHandler(SDCConsumerSubscriptionLostHandler * p_handler) {
     m_subscriptionLostHandler = p_handler;
 }
@@ -246,7 +237,7 @@ void SDCConsumer::onSubscriptionLost() {
 
 MdibContainer SDCConsumer::getMdib() {
 	if (!requestMdib()) {
-		onConnectionLost();
+		onConnectionLost(); // Todo: Why? Unclear handling of connecion!
 	}
     return *m_mdib; // FIXME: What if nullptr?
 }
@@ -257,7 +248,7 @@ MdDescription SDCConsumer::getMdDescription()
     auto t_response(m_adapter->invoke(request, getSDCInstance()->getSSLConfig()->getClientContext()));
 	if (t_response == nullptr) {
         log_error([] { return "GetMdDescription request failed!"; });
-		onConnectionLost();
+		onConnectionLost(); // Todo: Why? Unclear handling of connecion!
 		return MdDescription();
 	}
 
@@ -288,7 +279,7 @@ MdState SDCConsumer::getMdState()
 
 	if (nullptr == t_response) {
 		log_error([] { return "GetMdState request failed!"; });
-		onConnectionLost();
+		onConnectionLost(); // Todo: Why? Unclear handling of connecion!
 		return MdState();
 	}
 
@@ -320,7 +311,7 @@ bool SDCConsumer::unregisterStateEventHandler(SDCConsumerOperationInvokedHandler
 	std::lock_guard<std::mutex> t_lock(m_eventMutex);
     ml_eventHandlers.erase(p_handler->getDescriptorHandle());
 
-	if (m_adapter && ml_eventHandlers.empty() && m_contextStateChangedHandler == nullptr) {
+	if (m_adapter && ml_eventHandlers.empty()) {
 		m_adapter->unsubscribeEvents();
 	}
     return true;

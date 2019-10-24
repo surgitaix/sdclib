@@ -481,7 +481,7 @@ void SDCConsumerAdapter::stop()
 		m_httpServer.reset();
 	}
 
-	if (m_pingManager) { // Todo: Why dump it?
+	if (m_pingManager) { // Todo: Why dump it? -> PINGMANAGER: FIX CLEANUP / RAII... FIXME
 		m_pingManager->disable();
 		m_consumer.getSDCInstance()->dumpPingManager(std::move(m_pingManager));
 	}
