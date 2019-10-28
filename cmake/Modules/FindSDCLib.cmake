@@ -2,7 +2,7 @@
 
 
 # NOTE: TEMPORARY WORK! WIP!
-#       SDCLib_SEARCH_DIRS must be defined first!
+# SDCLib_SEARCH_DIRS (Optional) -> Will be set to CMAKE_SOURCE_DIR if not set
 
 # - Find SDCLib
 # Find the SDCLib includes and libraries
@@ -27,10 +27,9 @@ set(SDCLib_FOUND FALSE)
 
 
 ################################################################################
-# Check if necessary variables have been specified
+# If not specified: Search in CMAKE_SOURCE_DIR
 if (NOT SDCLib_SEARCH_DIRS)
-    message(FATAL_ERROR "PLEASE SPECIFY SDCLib_SEARCH_DIRS!")
-    RETURN()
+	set(SDCLib_SEARCH_DIRS ${CMAKE_SOURCE_DIR})
 endif()
 ################################################################################
 
@@ -39,7 +38,7 @@ endif()
 # Find the root folder inside the dependencies - This script is inside it!
 # Just search for this file in the SDC Root folder
 find_path(SDCLib_ROOT_DIR cmake/Modules/FindSDCLib.cmake ${SDCLib_SEARCH_DIRS})
-message(STATUS "-Searching for SDCLib files in ${SDCLib_SEARCH_DIRS}")
+message(STATUS "Searching for SDCLib in ${CMAKE_SOURCE_DIR} ...")
 
 # Found?
 # Set Bin folder and manage library dirs

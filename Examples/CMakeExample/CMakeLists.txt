@@ -125,8 +125,6 @@ get_filename_component(PATH_DEPS_ROOT ${CMAKE_CURRENT_LIST_DIR}/../../../ REALPA
 # This variable is needed by the FindSDCLib.cmake module. Set it to the SDCLib
 # root dir.
 set(SDCLib_SEARCH_DIRS "${PATH_DEPS_ROOT}/sdclib" CACHE STRING "SDCLib root dir")
-# Out of Source build
-set(SDCLib_ADDITIONAL_LIBRARY_DIRS "${PATH_DEPS_ROOT}/sdclib_build/bin" CACHE STRING "Additional Dirs")
 
 # FindSDCLib.cmake will set all necessary variables, Prefix: SDCLib_
 include(${SDCLib_SEARCH_DIRS}/FindSDCLib.cmake)

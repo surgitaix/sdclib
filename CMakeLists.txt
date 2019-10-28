@@ -211,7 +211,6 @@ message(STATUS "Adding Targets...")
 # datamodel
 add_subdirectory(${PATH_DATAMODEL_ROOT})
 
-set(SDCLib_SEARCH_DIRS ".")
 find_package(SDCLib)
 
 # src folder
