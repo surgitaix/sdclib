@@ -91,7 +91,7 @@ namespace OSELib
 		private:
 
 			std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> connectXAddress(const SDCLib::StringVector& pl_xAddresses, const std::string & p_epr);
-			void resolveServiceURIsFromMetadata(const WS::MEX::MetadataSection & p_metadata, OSELib::DPWS::DeviceDescription & p_deviceDescription);
+			bool resolveServiceURIsFromMetadata(const WS::MEX::MetadataSection & p_metadata, OSELib::DPWS::DeviceDescription & p_deviceDescription);
 		};
 
 	}

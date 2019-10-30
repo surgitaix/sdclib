@@ -198,11 +198,27 @@ ServiceManager::DiscoverResults ServiceManager::discover()
 }
 
 
-void ServiceManager::resolveServiceURIsFromMetadata(const WS::MEX::MetadataSection & p_metadata, DPWS::DeviceDescription & p_deviceDescription)
+bool ServiceManager::resolveServiceURIsFromMetadata(const WS::MEX::MetadataSection & p_metadata, DPWS::DeviceDescription & p_deviceDescription)
 {
 	// TODO: Is there a better way than so many nested for loops?
 
-	for (const auto & t_hosted : p_metadata.Relationship().get().Hosted()) {
+	bool t_getServiceFound = false;
+
+	for (const auto & t_hosted : p_metadata.Relationship().get().Hosted())
+	{
+
+		// NOTE: GetService is MANDATORY!
+
+		for (auto t_hosted_type : t_hosted.Types()) {
+			if (t_hosted_type.name() == QNAME_GETSERVICE_PORTTYPE) {
+				log_debug([]{return QNAME_GETSERVICE_PORTTYPE + " found";});
+				for (const auto & t_iter : t_hosted.EndpointReference()) {
+					p_deviceDescription.addGetServiceURI(Poco::URI(t_iter.Address()));
+					t_getServiceFound = true;
+				}
+			}
+		}
+
 		for (auto t_hosted_type : t_hosted.Types()) {
 			if (t_hosted_type.name() == QNAME_CONTEXTSERVICE_PORTTYPE) {
 				log_debug([&]{return QNAME_CONTEXTSERVICE_PORTTYPE + " found";});
@@ -216,14 +232,6 @@ void ServiceManager::resolveServiceURIsFromMetadata(const WS::MEX::MetadataSecti
 				log_debug([&]{return QNAME_STATEEVENTSERVICE_PORTTYPE + " found";});
 				for (const auto & t_iter : t_hosted.EndpointReference()) {
 					p_deviceDescription.addStateEventReportServiceURI(Poco::URI(t_iter.Address()));
-				}
-			}
-		}
-		for (auto t_hosted_type : t_hosted.Types()) {
-			if (t_hosted_type.name() == QNAME_GETSERVICE_PORTTYPE) {
-				log_debug([]{return QNAME_GETSERVICE_PORTTYPE + " found";});
-				for (const auto & t_iter : t_hosted.EndpointReference()) {
-					p_deviceDescription.addGetServiceURI(Poco::URI(t_iter.Address()));
 				}
 			}
 		}
@@ -245,6 +253,12 @@ void ServiceManager::resolveServiceURIsFromMetadata(const WS::MEX::MetadataSecti
 		}
 	}
 
+	// Mandatory GetService was not found! -> FAIL!
+	if(!t_getServiceFound) {
+		return false;
+	}
+
+	return true;
 }
 
 
@@ -257,7 +271,8 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 		return nullptr;
 	}
 
-	auto t_deviceDescription = std::make_shared<DPWS::DeviceDescription>();
+	auto SSL_INIT = m_SDCInstance->getSSLConfig()->isInit();
+	auto t_deviceDescription = std::make_shared<DPWS::DeviceDescription>(SSL_INIT);
 
 	bool t_connectionPossible_flag = false;
 	for (const auto t_xaddress : pl_xAddresses) {
@@ -281,8 +296,6 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 
 	try {
 		const Poco::URI t_remoteURI(t_deviceDescription->getDeviceURI());
-
-		auto SSL_INIT = m_SDCInstance->getSSLConfig()->isInit();
 
 		if(SSL_INIT) {
 			Poco::Net::SecureStreamSocket t_connection;
@@ -331,8 +344,10 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 					continue;
 				}
 
-				// Resolve
-				resolveServiceURIsFromMetadata(t_metadata, *t_deviceDescription);
+				// Try to resolve (at least all mandatory services)
+				if(!resolveServiceURIsFromMetadata(t_metadata, *t_deviceDescription)) {
+					return nullptr;
+				}
 			}
 		}
 
