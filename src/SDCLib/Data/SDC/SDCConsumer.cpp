@@ -232,7 +232,8 @@ void SDCConsumer::onSubscriptionLost() {
     }
 }
 
-MdibContainer SDCConsumer::getMdib() {
+MdibContainer SDCConsumer::getMdib()
+{
 	if (!requestMdib()) {
 		onConnectionLost(); // Todo: Why? Unclear handling of connecion!
 	}
@@ -241,6 +242,10 @@ MdibContainer SDCConsumer::getMdib() {
 
 MdDescription SDCConsumer::getMdDescription()
 {
+	if(nullptr == m_adapter) { // Todo: Temp workaround
+		return MdDescription();
+	}
+
     const MDM::GetMdDescription request;
     auto t_response(m_adapter->invoke(request, getSDCInstance()->getSSLConfig()->getClientContext()));
 	if (t_response == nullptr) {
@@ -264,13 +269,16 @@ MdDescription SDCConsumer::getCachedMdDescription()
 {
 	if (m_mdib) {
 		return m_mdib->getMdDescription();
-	} else {
-		return MdDescription();
 	}
+	return MdDescription();
 }
 
 MdState SDCConsumer::getMdState()
 {
+	if(nullptr == m_adapter) { // Todo: Temp workaround
+		return MdState();
+	}
+
     const MDM::GetMdState t_request;
     auto t_response(m_adapter->invoke(t_request, getSDCInstance()->getSSLConfig()->getClientContext()));
 
@@ -334,7 +342,12 @@ bool SDCConsumer::requestMdib()
 	return true;
 }
 
-std::unique_ptr<MDM::GetMdibResponse> SDCConsumer::requestCDMMdib() {
+std::unique_ptr<MDM::GetMdibResponse> SDCConsumer::requestCDMMdib()
+{
+	if(nullptr == m_adapter) { // Todo: Temp workaround
+		return nullptr;
+	}
+
     const MDM::GetMdib t_request;
     auto t_response(m_adapter->invoke(t_request, getSDCInstance()->getSSLConfig()->getClientContext()));
     return t_response;
@@ -487,7 +500,12 @@ InvocationState SDCConsumer::commitState(const WorkflowContextState & p_state) {
 }
 
 template<class OperationTraits, class StateType>
-InvocationState SDCConsumer::commitStateImpl(const StateType & p_state, FutureInvocationState & p_fis) {
+InvocationState SDCConsumer::commitStateImpl(const StateType & p_state, FutureInvocationState & p_fis)
+{
+	if(nullptr == m_adapter) { // Todo: Temp workaround
+		log_error([] { return "Commit failed: Adapter not initialized!"; });
+		return InvocationState::Fail;
+	}
 
 	if (p_state.getDescriptorHandle().empty()) {
 		log_error([] { return "Commit failed: descriptor handle is empty!"; });
@@ -551,7 +569,12 @@ InvocationState SDCConsumer::activate(const std::string & p_handle) {
 	return activate(p_handle, t_dummy);
 }
 
-InvocationState SDCConsumer::activate(const std::string & p_handle, FutureInvocationState & p_fis) {
+InvocationState SDCConsumer::activate(const std::string & p_handle, FutureInvocationState & p_fis)
+{
+	if(nullptr == m_adapter) { // Todo: Temp workaround
+		log_error([] { return "Commit failed: Adapter not initialized!"; });
+		return InvocationState::Fail;
+	}
 
     const auto t_mdd(getCachedMdDescription());
 
@@ -586,7 +609,11 @@ template std::unique_ptr<RealTimeSampleArrayMetricState> SDCConsumer::requestSta
 // TODO: implement and test! missing states -> RealTimeSampleArrayMetricState, DistributionSampleArrayMetricState
 
 template<class TStateType>
-std::unique_ptr<TStateType> SDCConsumer::requestState(const std::string & p_handle) {
+std::unique_ptr<TStateType> SDCConsumer::requestState(const std::string & p_handle)
+{
+	if(nullptr == m_adapter) {
+		return nullptr;
+	}
 
     MDM::GetMdState t_request;
     t_request.HandleRef().push_back(p_handle);

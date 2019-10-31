@@ -127,6 +127,13 @@ namespace SDCLib
 				MdDescription getMdDescription();
 
 				/**
+				* @brief Gets a cached version of the Medical Device Description, I.e. does not send a request to the connected provider.
+				*
+				* @return Cached or EMPTY MdDescription if not (yet) available.
+				*/
+				MdDescription getCachedMdDescription();
+
+				/**
 				* @brief Get all states as part of the MDIB.
 				*
 				* @return The MD state container
@@ -271,8 +278,6 @@ namespace SDCLib
 				*/
 				bool requestMdib();
 				std::unique_ptr<MDM::GetMdibResponse> requestCDMMdib();
-
-				MdDescription getCachedMdDescription();
 
 				bool unregisterFutureInvocationListener(int transactionId);
 

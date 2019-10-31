@@ -15,7 +15,6 @@
 #include "SDCLib/SDCLibrary.h"
 #include "SDCLib/SDCInstance.h"
 
-#include "SDCLib/Data/SDC/SDCProviderComponentStateHandler.h"
 #include "SDCLib/Data/SDC/SDCProviderStateHandler.h"
 #include "SDCLib/Data/SDC/SDCProviderMDStateHandler.h"
 #include "SDCLib/Data/SDC/MDIB/MdsState.h"
@@ -36,7 +35,6 @@
 #include "SDCLib/Data/SDC/MDIB/StringMetricDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricValue.h"
-#include "SDCLib/Data/SDC/MDIB/SystemContextDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/MetaData.h"
 #include "SDCLib/Dev/DeviceCharacteristics.h"
 #include "SDCLib/Data/SDC/MDIB/VmdDescriptor.h"

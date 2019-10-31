@@ -4,7 +4,6 @@
 #include "SDCLib/SDCInstance.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 #include "SDCLib/Data/SDC/SDCProvider.h"
-//#include "SDCLib/Data/SDC/MDIB/Base64Binary.h"
 #include "SDCLib/Data/SDC/MDIB/CodedValue.h"
 #include "SDCLib/Data/SDC/MDIB/DicomDeviceDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/DicomNetworkAe.h"

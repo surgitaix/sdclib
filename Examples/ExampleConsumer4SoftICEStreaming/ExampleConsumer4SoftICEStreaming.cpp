@@ -35,7 +35,6 @@
 #include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/SampleArrayValue.h"
 #include "SDCLib/Util/DebugOut.h"
-#include "SDCLib/Util/Task.h"
 
 
 #include "OSELib/SDC/ServiceManager.h"

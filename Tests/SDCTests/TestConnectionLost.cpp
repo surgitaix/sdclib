@@ -12,8 +12,6 @@
 #include "SDCLib/Data/SDC/MDIB/LocalizedText.h"
 #include "SDCLib/Data/SDC/MDIB/MdDescription.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricDescriptor.h"
-#include "SDCLib/Data/SDC/MDIB/SystemContextDescriptor.h"
-#include "SDCLib/Data/SDC/MDIB/LocationContextDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/MetaData.h"
 #include "SDCLib/Data/SDC/MDIB/VmdDescriptor.h"
 #include "SDCLib/Util/DebugOut.h"

@@ -18,8 +18,6 @@
 #include "SDCLib/Data/SDC/MDIB/NumericMetricValue.h"
 #include "SDCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricValue.h"
-#include "SDCLib/Data/SDC/MDIB/SystemContextDescriptor.h"
-#include "SDCLib/Data/SDC/MDIB/SystemContextState.h"
 #include "SDCLib/Data/SDC/MDIB/LocalizedText.h"
 #include "SDCLib/Data/SDC/MDIB/VmdDescriptor.h"
 #include "SDCLib/Util/DebugOut.h"
@@ -27,8 +25,8 @@
 #include "OSELib/SDC/ServiceManager.h"
 
 
-#include "Poco/Thread.h"
-#include "Poco/Runnable.h"
+#include <Poco/Thread.h>
+#include <Poco/Runnable.h>
 
 
 using namespace SDCLib;

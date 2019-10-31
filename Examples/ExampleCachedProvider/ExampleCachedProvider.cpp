@@ -13,7 +13,6 @@
 #include <string>
 #include <fstream>
 #include <thread>
-#include <numeric>
 
 #include "SDCLib/SDCLibrary.h"
 #include "SDCLib/Data/SDC/SDCProvider.h"

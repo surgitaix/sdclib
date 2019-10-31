@@ -31,15 +31,11 @@
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 #include "SDCLib/Data/SDC/SDCConsumerConnectionLostHandler.h"
 #include "SDCLib/Data/SDC/SDCConsumerMDStateHandler.h"
-#include "SDCLib/Data/SDC/MDIB/MdsDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricValue.h"
 #include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/SampleArrayValue.h"
-#include "SDCLib/Data/SDC/MDIB/LocationContextState.h"
-#include "SDCLib/Data/SDC/MDIB/LocationDetail.h"
-#include "SDCLib/Data/SDC/MDIB/AlertSignalState.h"
 #include "SDCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
 #include "SDCLib/Data/SDC/FutureInvocationState.h"
 #include "SDCLib/Util/DebugOut.h"
@@ -109,9 +105,8 @@ public:
 
 
 void waitForUserInput() {
-	std::string temp;
 	Util::DebugOut(Util::DebugOut::Default, "") << "Press key to proceed.";
-	std::cin >> temp;
+	std::cin.get();
 }
 
 
@@ -129,7 +124,7 @@ int main()
     	void onConnectionLost() override {
     		std::cerr << "Connection lost, disconnecting... ";
     		consumer.disconnect();
-    		std::cerr << "disconnected." << std::endl;
+    		std::cerr << "Disconnected. Press key to proceed." << std::endl;
     	}
     private:
     	Data::SDC::SDCConsumer & consumer;
@@ -150,7 +145,7 @@ int main()
 	OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
 
 	// Note: Calculate a UUIDv5 and apply prefix to it!
-	std::unique_ptr<Data::SDC::SDCConsumer> c(t_serviceManager.discoverEndpointReference(SDCInstance::calcUUIDv5(deviceEPR, true)));
+	auto t_consumer(t_serviceManager.discoverEndpointReference(SDCInstance::calcUUIDv5(deviceEPR, true)));
 
 	// state handler
 	auto eh_get = std::make_shared<ExampleConsumerEventHandler>(HANDLE_GET_METRIC);
@@ -158,36 +153,37 @@ int main()
 	auto eh_stream = std::make_shared<StreamConsumerStateHandler>(HANDLE_STREAM_METRIC);
 
 	try {
-		if (c != nullptr) {
-			Data::SDC::SDCConsumer & consumer = *c;
-			std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(consumer));
-			consumer.setConnectionLostHandler(myHandler.get());
+		if (t_consumer != nullptr) {
+			std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(*t_consumer));
+			t_consumer->setConnectionLostHandler(myHandler.get());
 
-			consumer.registerStateEventHandler(eh_get.get());
-			consumer.registerStateEventHandler(eh_set.get());
-			consumer.registerStateEventHandler(eh_stream.get());
+			t_consumer->registerStateEventHandler(eh_get.get());
+			t_consumer->registerStateEventHandler(eh_set.get());
+			t_consumer->registerStateEventHandler(eh_stream.get());
 
 			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery succeeded." << std::endl << std::endl << "Waiting 5 sec. for the subscriptions to beeing finished";
 
 			// wait for the subscriptions to be completed
             std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
-			std::unique_ptr<NumericMetricState> pGetMetricState(consumer.requestState<NumericMetricState>(HANDLE_GET_METRIC));
-			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested get metrics value: " << pGetMetricState->getMetricValue().getValue();
+			auto t_getMetricState(t_consumer->requestState<NumericMetricState>(HANDLE_GET_METRIC));
+			if(t_getMetricState) {
+				Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested get metrics value: " << t_getMetricState->getMetricValue().getValue();
+			}
 
 			// set numeric metric
-			std::unique_ptr<NumericMetricState> pMetricState(consumer.requestState<NumericMetricState>(HANDLE_SET_METRIC));
-			pMetricState->setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(10));
-
-			FutureInvocationState fis;
-			consumer.commitState(*pMetricState, fis);
-			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result metric state: " << fis.waitReceived(InvocationState::Fin, 10000);
-
+			auto t_setMetricState(t_consumer->requestState<NumericMetricState>(HANDLE_SET_METRIC));
+			if(t_setMetricState) {
+				t_setMetricState->setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(10));
+				FutureInvocationState fis;
+				t_consumer->commitState(*t_setMetricState, fis);
+				Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result metric state: " << fis.waitReceived(InvocationState::Fin, 10000);
+			}
 			waitForUserInput();
-			consumer.unregisterStateEventHandler(eh_get.get());
-			consumer.unregisterStateEventHandler(eh_set.get());
-			consumer.unregisterStateEventHandler(eh_stream.get());
-			consumer.disconnect();
+			t_consumer->unregisterStateEventHandler(eh_get.get());
+			t_consumer->unregisterStateEventHandler(eh_set.get());
+			t_consumer->unregisterStateEventHandler(eh_stream.get());
+			t_consumer->disconnect();
 		} else {
 			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery failed.";
 		}
