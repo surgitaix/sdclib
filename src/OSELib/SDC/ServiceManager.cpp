@@ -85,13 +85,16 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connect(const st
 std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpointReference(const std::string & p_epr)
 {
 	assert(!p_epr.empty());
-	struct ResolveMatchCallback : public DPWS::ResolveMatchCallback  {
-		ResolveMatchCallback(Poco::Event & p_matchEvent) :
-			m_matchEvent(p_matchEvent) {
-		}
+
+	struct ResolveMatchCallback : public DPWS::ResolveMatchCallback
+	{
+		ResolveMatchCallback(Poco::Event & p_matchEvent)
+		: m_matchEvent(p_matchEvent)
+		{ }
 		virtual ~ResolveMatchCallback() = default;
 
-		virtual void resolveMatch(const DPWS::ResolveMatchType & n) override {
+		virtual void resolveMatch(const DPWS::ResolveMatchType & n) override
+		{
 			m_result = std::unique_ptr<DPWS::ResolveMatchType>(new DPWS::ResolveMatchType(n));
 			m_matchEvent.set();
 		}
@@ -105,27 +108,29 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpoint
 	DPWS::ResolveType resolveFilter((WS::ADDRESSING::EndpointReferenceType(WS::ADDRESSING::AttributedURIType(p_epr))));
 	m_dpwsClient->addResolveMatchEventHandler(resolveFilter, t_resolveCb);
 	try {
-
-     // FIXME: CRASH HERE... MUTEX ISSUE? WAKEUP (UNLOCK) FROM DIFFERENT THREAD NOT ALLOWED? OWNER PROBLEM? BUG IN POCO?
-        bool t_result = t_matchEvent.tryWait(m_SDCInstance->getDiscoveryTime().count());
+		// FIXME: CRASH HERE... MUTEX ISSUE? WAKEUP (UNLOCK) FROM DIFFERENT THREAD NOT ALLOWED? OWNER PROBLEM?
+		bool t_result = t_matchEvent.tryWait(m_SDCInstance->getDiscoveryTime().count());
 		if (!t_result) {
-            log_debug([] { return "ServiceManager: discoverEndpointReference::TIMEOUT."; });
-        }
-		log_debug([&] { return "Received ResolveMatch for: " + t_resolveCb.m_result->EndpointReference().Address(); });
-     }
-     catch (...)
-     {
-         log_debug([] { return "ServiceManager: discoverEndpointReference::CATCH..."; });
-     }
-    /*try {
-        matchEvent.wait(SDCLib::SDCLibrary::getInstance().getDiscoveryTime());
-        log_debug([&] { return "Received ResolveMatch for: " + resolveCb._result->EndpointReference().Address(); });
-      } catch (const Poco::TimeoutException & e) {
-        } */
+			log_debug([] { return "ServiceManager: discoverEndpointReference::TIMEOUT."; });
+		}
+		if(nullptr != t_resolveCb.m_result) {
+			log_debug([&] { return "Received ResolveMatch for: " + t_resolveCb.m_result->EndpointReference().Address(); });
+		}
+	}
+	catch (...)
+	{
+		// TODO:
+		log_debug([] { return "ServiceManager: discoverEndpointReference::CATCH..."; });
+	}
+
 	m_dpwsClient->removeResolveMatchEventHandler(t_resolveCb);
 
+	if(nullptr == t_resolveCb.m_result) {
+		return nullptr;
+	}
+
 	SDCLib::StringVector tl_xAddresses;
-	if (t_resolveCb.m_result && t_resolveCb.m_result->XAddrs().present()) {
+    if (t_resolveCb.m_result && t_resolveCb.m_result->XAddrs().present()) {
 		for (const auto & t_xaddr : t_resolveCb.m_result->XAddrs().get()) {
 			tl_xAddresses.emplace_back(t_xaddr);
 		}
