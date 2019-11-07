@@ -103,7 +103,7 @@ namespace SDCLib
 
             // Special Member Functions
             NetworkConfig();
-            NetworkConfig(const NetworkConfig& p_obj) = delete;
+            NetworkConfig(const NetworkConfig& p_obj);
             NetworkConfig(NetworkConfig&& p_obj) = delete;
             NetworkConfig& operator=(const NetworkConfig& p_obj) = delete;
             NetworkConfig& operator=(NetworkConfig&& p_obj) = delete;

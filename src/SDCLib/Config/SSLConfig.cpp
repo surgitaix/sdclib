@@ -14,6 +14,12 @@
 using namespace SDCLib;
 using namespace SDCLib::Config;
 
+SSLConfig::SSLConfig(const SSLConfig& p_obj) {
+	m_init = p_obj.isInit();
+	m_context_client = p_obj.m_context_client;
+	m_context_server = p_obj.m_context_server;
+}
+
 bool SSLConfig::init(const Poco::Net::Context::VerificationMode p_modeClient, const Poco::Net::Context::VerificationMode p_modeServer)
 {
     if (isInit()) {
