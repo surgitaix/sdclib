@@ -45,11 +45,11 @@ namespace SDCLib
             SDCConfig(NetworkConfig_shared_ptr p_networkConfig);
             SDCConfig(NetworkConfig_shared_ptr p_networkConfig, SSLConfig_shared_ptr p_SSLConfig);
 
-            // Special Member Functions
-            SDCConfig(const SDCConfig& p_obj) = default;
-            SDCConfig(SDCConfig&& p_obj) = default;
-            SDCConfig& operator=(const SDCConfig& p_obj) = default;
-            SDCConfig& operator=(SDCConfig&& p_obj) = default;
+            // Deep Coppy to create a new NetworkConfig and SSLConfig for the new SDCConfig.
+            SDCConfig(const SDCConfig& p_obj);
+            SDCConfig(SDCConfig&& p_obj) = delete;
+            SDCConfig& operator=(const SDCConfig& p_obj) = delete;
+            SDCConfig& operator=(SDCConfig&& p_obj) = delete;
             ~SDCConfig() = default;
 
             // Get the SubConfigs

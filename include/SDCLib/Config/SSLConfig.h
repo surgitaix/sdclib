@@ -49,7 +49,7 @@ namespace SDCLib
 
             // Special Member Functions
             SSLConfig() = default;
-            SSLConfig(const SSLConfig& p_obj) = delete;
+            SSLConfig(const SSLConfig& p_obj);
             SSLConfig(SSLConfig&& p_obj) = delete;
             SSLConfig& operator=(const SSLConfig& p_obj) = delete;
             SSLConfig& operator=(SSLConfig&& p_obj) = delete;

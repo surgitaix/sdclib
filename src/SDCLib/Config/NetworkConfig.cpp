@@ -14,6 +14,31 @@ NetworkConfig::NetworkConfig()
     // TODO: PortList
 }
 
+
+NetworkConfig::NetworkConfig(const NetworkConfig& p_obj)
+: OSELib::Helper::WithLogger(OSELib::Log::BASE)
+{
+	ml_networkInterfaces = p_obj.ml_networkInterfaces;
+	m_MDPWSInterface = p_obj.m_MDPWSInterface;
+	m_MDPWSPort = p_obj.m_MDPWSPort;
+
+
+	m_IP4enabled = p_obj.getIP4enabled();
+	m_IP6enabled = p_obj.getIP6enabled();
+	m_discoveryTime = p_obj.getDiscoveryTime();
+
+
+	m_MULTICAST_IPv4 = p_obj.m_MULTICAST_IPv4;
+	m_MULTICAST_IPv6 = p_obj.m_MULTICAST_IPv6;
+	m_STREAMING_IPv4 = p_obj.m_STREAMING_IPv4;
+	m_STREAMING_IPv6 = p_obj.m_STREAMING_IPv6;
+	m_PORT_MULTICASTv4 = p_obj.m_PORT_MULTICASTv4;
+	m_PORT_MULTICASTv6 = p_obj.m_PORT_MULTICASTv6;
+	m_PORT_STREAMINGv4 = p_obj.m_PORT_STREAMINGv4;
+	m_PORT_STREAMINGv6 = p_obj.m_PORT_STREAMINGv6;
+}
+
+
 bool NetworkConfig::bindToDefaultNetworkInterface(bool p_useAsMDPWS)
 {
     assert(!isBound());
