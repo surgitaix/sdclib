@@ -3,6 +3,7 @@
 	template<class TState>
 	std::unique_ptr<TState> findState(const std::string & handle) const;
 
+	std::vector<ActivateOperationState> findActivateOperationStates() const;
 	std::vector<AlertConditionState> findAlertConditionStates() const;
 	std::vector<AlertSignalState> findAlertSignalStates() const;
 	std::vector<AlertSystemState> findAlertSystemStates() const;
@@ -44,6 +45,7 @@
 private:
     // these classes are for internal finding states in the MDIB
     // the initialize objects which reference is processed
+	bool findState(const std::string & handle, ActivateOperationState & outState) const;
 	bool findState(const std::string & handle, AlertConditionState & outState) const;
 	bool findState(const std::string & handle, AlertSignalState & outState) const;
 	bool findState(const std::string & handle, AlertSystemState & outState) const;

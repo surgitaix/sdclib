@@ -395,14 +395,16 @@ bool MdDescription::findDescriptor(const std::string & handle, MdsDescriptor & o
 std::string MdDescription::getOperationTargetForOperationHandle(const std::string & operationHandle) const {
 	const CDM::MdDescription & mddescription(*this->data);
 	for (const auto & mds : mddescription.Mds()) {
-		if (!mds.Sco().present()) {
-			continue;
-		}
-		for (const auto & operation : mds.Sco().get().Operation()) {
-			if (operation.Handle() == operationHandle) {
-				return operation.OperationTarget();
+
+		// Mds SCO
+		if (mds.Sco().present()) {
+			for (const auto & operation : mds.Sco().get().Operation()) {
+				if (operation.Handle() == operationHandle) {
+					return operation.OperationTarget();
+				}
 			}
 		}
+
 		// Check Vmds too
 		for(const auto& t_vmd : mds.Vmd())
 		{

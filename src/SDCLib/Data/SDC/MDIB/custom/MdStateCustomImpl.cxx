@@ -1,4 +1,5 @@
 
+#include "SDCLib/Data/SDC/MDIB/ActivateOperationState.h"
 #include "SDCLib/Data/SDC/MDIB/AlertConditionState.h"
 #include "SDCLib/Data/SDC/MDIB/AlertSignalState.h"
 #include "SDCLib/Data/SDC/MDIB/AlertSystemState.h"
@@ -37,6 +38,7 @@ namespace SDC {
 
 
 //// template specialization for API
+template std::unique_ptr<ActivateOperationState> MdState::findState<ActivateOperationState>(const std::string & handle) const;
 template std::unique_ptr<AlertConditionState> MdState::findState<AlertConditionState>(const std::string & handle) const;
 template std::unique_ptr<AlertSignalState> MdState::findState<AlertSignalState>(const std::string & handle) const;
 template std::unique_ptr<AlertSystemState> MdState::findState<AlertSystemState>(const std::string & handle) const;
@@ -65,6 +67,10 @@ std::unique_ptr<TState> MdState::findState(const std::string & handle) const {
 		return std::move(ptr);
 	}
 	return nullptr;
+}
+
+bool MdState::findState(const std::string & handle, ActivateOperationState & outState) const {
+	return findStateImpl<ActivateOperationState>(handle, outState);
 }
 
 bool MdState::findState(const std::string & handle, AlertConditionState & outState) const {
@@ -256,7 +262,9 @@ MdState & MdState::addStateImpl(const WrapperStateDescriptorType & source) {
 	data->State().push_back(ConvertToCDM::convert(source));
 	return *this;
 }
-
+std::vector<ActivateOperationState> MdState::findActivateOperationStates() const {
+	return findStatesImpl<ActivateOperationState>();
+}
 std::vector<AlertConditionState> MdState::findAlertConditionStates() const {
 	return findStatesImpl<AlertConditionState, LimitAlertConditionState>();
 }
