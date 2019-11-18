@@ -68,7 +68,6 @@ bool HTTPServer::init(HTTPRequestHandlerFactory_shared_ptr p_factory)
 		Poco::Net::SecureServerSocket t_sslSocket(getSSLConfig()->getServerContext());
 		t_sslSocket.bind(t_socketAddress);
 		t_sslSocket.listen();
-		t_sslSocket.setKeepAlive(true);
 
 		// Create the Server
 		m_httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(p_factory->getFactory(), *m_threadPool, t_sslSocket, t_serverParams));
@@ -78,7 +77,6 @@ bool HTTPServer::init(HTTPRequestHandlerFactory_shared_ptr p_factory)
 		Poco::Net::ServerSocket t_socket;
 		t_socket.bind(t_socketAddress);
 		t_socket.listen();
-		t_socket.setKeepAlive(true);
 
 		// Create the Server
 		m_httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(p_factory->getFactory(), *m_threadPool, t_socket, t_serverParams));
