@@ -10,5 +10,9 @@ add_subdirectory(ExampleProject)
 add_subdirectory(ExampleProvider)
 add_subdirectory(MDIBVisualizer)
 
+if(SDC_ADVANCED_EXAMPLES)
+    add_subdirectory(PulseOximeterProvider)
+endif()
+
 # SSL
 add_subdirectory(SSL)
