@@ -20,7 +20,6 @@
 #include <Poco/Net/SocketAddress.h>
 #include <Poco/Net/SocketNotification.h>
 
-
 using namespace OSELib;
 using namespace OSELib::DPWS;
 using namespace OSELib::DPWS::Impl;
@@ -87,7 +86,7 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
         // Add only interfaces bound to the SDCInstance
         if (m_networkConfig->isBound()) {
             // Bind DiscoverySocket
-            auto t_ipv4BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress::Family::IPv4, m_ipv4MulticastAddress.port());
+            auto t_ipv4BindingAddress = Poco::Net::SocketAddress(m_ipv4MulticastAddress.host(), m_ipv4MulticastAddress.port());
             m_ipv4DiscoverySocket.bind(t_ipv4BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             // Add all interfaces
             for (auto t_interface : m_networkConfig->getNetworkInterfaces()) {
@@ -111,7 +110,7 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
         }
         else {
             // Bind DiscoverySocket
-            auto t_ipv4BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv4), m_ipv4MulticastAddress.port());
+            auto t_ipv4BindingAddress = Poco::Net::SocketAddress(m_ipv4MulticastAddress.host(), m_ipv4MulticastAddress.port());
             m_ipv4DiscoverySocket.bind(t_ipv4BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             // Add all interfaces
             for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
@@ -149,7 +148,7 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
         // Add only interfaces bound to the SDCInstance
         if (m_networkConfig->isBound()) {
             // Bind DiscoverySocket
-            auto t_ipv6BindingAddress = Poco::Net::SocketAddress (Poco::Net::IPAddress::Family::IPv6, m_ipv6MulticastAddress.port());
+            auto t_ipv6BindingAddress = Poco::Net::SocketAddress(m_ipv6MulticastAddress.host(), m_ipv6MulticastAddress.port());
             m_ipv6DiscoverySocket.bind(t_ipv6BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             for (auto t_interface : m_networkConfig->getNetworkInterfaces()) {
                 try {
@@ -171,7 +170,7 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
         }
         else {
             // Bind DiscoverySocket
-            auto t_ipv6BindingAddress = Poco::Net::SocketAddress (Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv6), m_ipv6MulticastAddress.port());
+            auto t_ipv6BindingAddress = Poco::Net::SocketAddress(m_ipv6MulticastAddress.host(), m_ipv6MulticastAddress.port());
             m_ipv6DiscoverySocket.bind(t_ipv6BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             // Add all interfaces
             for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
@@ -353,7 +352,7 @@ void DPWSDiscoveryClientSocketImpl::onDatagrammSocketWritable(Poco::Net::Writabl
 	// Poco::Net::DatagramSocket socket(pNf->socket());
     Poco::Net::MulticastSocket t_socket(t_pNf->socket());
     t_socket.setTimeToLive(OSELib::UPD_MULTICAST_TIMETOLIVE);
-	
+
 	const Poco::AutoPtr<Poco::Notification> t_rawMessage(ml_socketSendMessageQueue[t_socket].dequeueNotification());
 	if (t_rawMessage.isNull()) {
 		p_notification->source().removeEventHandler(t_socket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::WritableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketWritable));

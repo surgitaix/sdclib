@@ -101,7 +101,7 @@ void SubscriptionClient::run() {
 	auto t_expireString = "PT" + std::to_string(t_renewThreshold.count() * RENEW_FACTOR) + "S"; // Note: Factor on the renew threshold
 	const WS::EVENTING::ExpirationType t_defaultExpires(t_expireString);
 
-	std::size_t t_sleepQueryGetStatus_ms = 2000;
+	std::size_t t_sleepQueryGetStatus_ms = 2000; // TODO: MAGIC NUMBER
 
 	for (const auto & t_subscription : m_subscriptions) {
 		// get information

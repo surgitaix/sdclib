@@ -35,7 +35,7 @@ std::unique_ptr<SubscribeTraits::Response> SubscriptionManager::dispatch(const S
 {
 	using ResponseType = SubscribeTraits::Response;
 
-	const std::string t_expiresString(p_request.Expires().present() ? p_request.Expires().get() : "PT60S");
+	const std::string t_expiresString(p_request.Expires().present() ? p_request.Expires().get() : "PT60S"); // TODO: MAGIC NUMBER PT'60'S
 	Helper::DurationWrapper t_expiresDuration(t_expiresString);
 
 	if (t_expiresDuration.toDuration_s().second == std::chrono::seconds(0) || t_expiresDuration.negative()) {
@@ -111,7 +111,7 @@ std::unique_ptr<RenewTraits::Response> SubscriptionManager::dispatch(const Renew
 	}
 
 	using ResponseType = RenewTraits::Response;
-	const std::string t_expiresString(p_request.Expires().present() ? p_request.Expires().get() : "PT60S");
+	const std::string t_expiresString(p_request.Expires().present() ? p_request.Expires().get() : "PT60S"); // TODO: MAGIC NUMBER PT'60'S
 	Helper::DurationWrapper t_expiresDuration(t_expiresString);
 
 	auto t_duration = t_expiresDuration.toDuration_s();
