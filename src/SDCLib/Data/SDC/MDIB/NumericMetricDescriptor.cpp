@@ -66,29 +66,26 @@ NumericMetricDescriptor::NumericMetricDescriptor(
 		metricavailability
 		,
 		resolution
-)) {}
+))
+{}
 
 NumericMetricDescriptor::operator CDM::NumericMetricDescriptor() const {
 	return *data;
 }
 
-NumericMetricDescriptor::NumericMetricDescriptor(const CDM::NumericMetricDescriptor & object) : data(new CDM::NumericMetricDescriptor(object)) {
+NumericMetricDescriptor::NumericMetricDescriptor(const CDM::NumericMetricDescriptor & object)
+: data(new CDM::NumericMetricDescriptor(object))
+{ }
 
-}
-
-NumericMetricDescriptor::NumericMetricDescriptor(const NumericMetricDescriptor & object) : data(new CDM::NumericMetricDescriptor(*object.data)) {
-
-}
-
-NumericMetricDescriptor::~NumericMetricDescriptor() {
-
-}
+NumericMetricDescriptor::NumericMetricDescriptor(const NumericMetricDescriptor & object)
+: data(std::make_shared<CDM::NumericMetricDescriptor>(*object.data))
+{ }
 
 void NumericMetricDescriptor::copyFrom(const NumericMetricDescriptor & object) {
-	data = std::shared_ptr<CDM::NumericMetricDescriptor>( new CDM::NumericMetricDescriptor(*object.data));
+	data = std::make_shared<CDM::NumericMetricDescriptor>(*object.data);
 }
 
-NumericMetricDescriptor & NumericMetricDescriptor:: operator=(const NumericMetricDescriptor & object) {
+NumericMetricDescriptor & NumericMetricDescriptor:: operator=(const NumericMetricDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

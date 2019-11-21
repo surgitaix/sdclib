@@ -60,29 +60,26 @@ ImagingProcedure::ImagingProcedure(
 		studyinstanceuid
 		,
 		scheduledprocedurestepid
-)) {}
+))
+{}
 
 ImagingProcedure::operator CDM::ImagingProcedure() const {
 	return *data;
 }
 
-ImagingProcedure::ImagingProcedure(const CDM::ImagingProcedure & object) : data(new CDM::ImagingProcedure(object)) {
+ImagingProcedure::ImagingProcedure(const CDM::ImagingProcedure & object)
+: data(new CDM::ImagingProcedure(object))
+{ }
 
-}
-
-ImagingProcedure::ImagingProcedure(const ImagingProcedure & object) : data(new CDM::ImagingProcedure(*object.data)) {
-
-}
-
-ImagingProcedure::~ImagingProcedure() {
-
-}
+ImagingProcedure::ImagingProcedure(const ImagingProcedure & object)
+: data(std::make_shared<CDM::ImagingProcedure>(*object.data))
+{ }
 
 void ImagingProcedure::copyFrom(const ImagingProcedure & object) {
-	data = std::shared_ptr<CDM::ImagingProcedure>( new CDM::ImagingProcedure(*object.data));
+	data = std::make_shared<CDM::ImagingProcedure>(*object.data);
 }
 
-ImagingProcedure & ImagingProcedure:: operator=(const ImagingProcedure & object) {
+ImagingProcedure & ImagingProcedure:: operator=(const ImagingProcedure& object) {
 	copyFrom(object);
 	return *this;
 }

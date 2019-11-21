@@ -52,29 +52,26 @@ VmdDescriptor::VmdDescriptor(
 		Handle handle
 ) : data(Defaults::VmdDescriptorInit(
 		handle
-)) {}
+))
+{}
 
 VmdDescriptor::operator CDM::VmdDescriptor() const {
 	return *data;
 }
 
-VmdDescriptor::VmdDescriptor(const CDM::VmdDescriptor & object) : data(new CDM::VmdDescriptor(object)) {
+VmdDescriptor::VmdDescriptor(const CDM::VmdDescriptor & object)
+: data(new CDM::VmdDescriptor(object))
+{ }
 
-}
-
-VmdDescriptor::VmdDescriptor(const VmdDescriptor & object) : data(new CDM::VmdDescriptor(*object.data)) {
-
-}
-
-VmdDescriptor::~VmdDescriptor() {
-
-}
+VmdDescriptor::VmdDescriptor(const VmdDescriptor & object)
+: data(std::make_shared<CDM::VmdDescriptor>(*object.data))
+{ }
 
 void VmdDescriptor::copyFrom(const VmdDescriptor & object) {
-	data = std::shared_ptr<CDM::VmdDescriptor>( new CDM::VmdDescriptor(*object.data));
+	data = std::make_shared<CDM::VmdDescriptor>(*object.data);
 }
 
-VmdDescriptor & VmdDescriptor:: operator=(const VmdDescriptor & object) {
+VmdDescriptor & VmdDescriptor:: operator=(const VmdDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

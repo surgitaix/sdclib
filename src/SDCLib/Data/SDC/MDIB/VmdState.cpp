@@ -49,29 +49,26 @@ VmdState::VmdState(
 		HandleRef descriptorhandle
 ) : data(Defaults::VmdStateInit(
 		descriptorhandle
-)) {}
+))
+{}
 
 VmdState::operator CDM::VmdState() const {
 	return *data;
 }
 
-VmdState::VmdState(const CDM::VmdState & object) : data(new CDM::VmdState(object)) {
+VmdState::VmdState(const CDM::VmdState & object)
+: data(new CDM::VmdState(object))
+{ }
 
-}
-
-VmdState::VmdState(const VmdState & object) : data(new CDM::VmdState(*object.data)) {
-
-}
-
-VmdState::~VmdState() {
-
-}
+VmdState::VmdState(const VmdState & object)
+: data(std::make_shared<CDM::VmdState>(*object.data))
+{ }
 
 void VmdState::copyFrom(const VmdState & object) {
-	data = std::shared_ptr<CDM::VmdState>( new CDM::VmdState(*object.data));
+	data = std::make_shared<CDM::VmdState>(*object.data);
 }
 
-VmdState & VmdState:: operator=(const VmdState & object) {
+VmdState & VmdState:: operator=(const VmdState& object) {
 	copyFrom(object);
 	return *this;
 }

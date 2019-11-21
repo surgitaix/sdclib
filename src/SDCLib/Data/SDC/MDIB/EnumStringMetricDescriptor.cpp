@@ -62,29 +62,26 @@ EnumStringMetricDescriptor::EnumStringMetricDescriptor(
 		metriccategory
 		,
 		metricavailability
-)) {}
+))
+{}
 
 EnumStringMetricDescriptor::operator CDM::EnumStringMetricDescriptor() const {
 	return *data;
 }
 
-EnumStringMetricDescriptor::EnumStringMetricDescriptor(const CDM::EnumStringMetricDescriptor & object) : data(new CDM::EnumStringMetricDescriptor(object)) {
+EnumStringMetricDescriptor::EnumStringMetricDescriptor(const CDM::EnumStringMetricDescriptor & object)
+: data(new CDM::EnumStringMetricDescriptor(object))
+{ }
 
-}
-
-EnumStringMetricDescriptor::EnumStringMetricDescriptor(const EnumStringMetricDescriptor & object) : data(new CDM::EnumStringMetricDescriptor(*object.data)) {
-
-}
-
-EnumStringMetricDescriptor::~EnumStringMetricDescriptor() {
-
-}
+EnumStringMetricDescriptor::EnumStringMetricDescriptor(const EnumStringMetricDescriptor & object)
+: data(std::make_shared<CDM::EnumStringMetricDescriptor>(*object.data))
+{ }
 
 void EnumStringMetricDescriptor::copyFrom(const EnumStringMetricDescriptor & object) {
-	data = std::shared_ptr<CDM::EnumStringMetricDescriptor>( new CDM::EnumStringMetricDescriptor(*object.data));
+	data = std::make_shared<CDM::EnumStringMetricDescriptor>(*object.data);
 }
 
-EnumStringMetricDescriptor & EnumStringMetricDescriptor:: operator=(const EnumStringMetricDescriptor & object) {
+EnumStringMetricDescriptor & EnumStringMetricDescriptor:: operator=(const EnumStringMetricDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

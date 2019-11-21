@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class RelatedMeasurement {
+class RelatedMeasurement
+{
 private:
 	RelatedMeasurement(const CDM::RelatedMeasurement & object);
 	operator CDM::RelatedMeasurement() const;
@@ -57,11 +58,11 @@ public:
 private:
 	RelatedMeasurement(){};
 public:
-	RelatedMeasurement(const RelatedMeasurement & object);
-	virtual ~RelatedMeasurement();
+	RelatedMeasurement(const RelatedMeasurement& object);
+	virtual ~RelatedMeasurement() = default;
 
-    void copyFrom(const RelatedMeasurement & object);
-    RelatedMeasurement & operator=(const RelatedMeasurement & object);
+    void copyFrom(const RelatedMeasurement& object);
+    RelatedMeasurement & operator=(const RelatedMeasurement& object);
 
     typedef CDM::RelatedMeasurement WrappedType;
 
@@ -78,7 +79,7 @@ public:
 	void clearReferenceRangeList();
 
 private:
-	std::shared_ptr<CDM::RelatedMeasurement> data;
+	std::shared_ptr<CDM::RelatedMeasurement> data = nullptr;
 };
 
 } /* namespace SDC */

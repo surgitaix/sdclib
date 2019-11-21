@@ -55,29 +55,26 @@ AlertSignalDescriptor::AlertSignalDescriptor(
 		manifestation
 		,
 		latching
-)) {}
+))
+{}
 
 AlertSignalDescriptor::operator CDM::AlertSignalDescriptor() const {
 	return *data;
 }
 
-AlertSignalDescriptor::AlertSignalDescriptor(const CDM::AlertSignalDescriptor & object) : data(new CDM::AlertSignalDescriptor(object)) {
+AlertSignalDescriptor::AlertSignalDescriptor(const CDM::AlertSignalDescriptor & object)
+: data(new CDM::AlertSignalDescriptor(object))
+{ }
 
-}
-
-AlertSignalDescriptor::AlertSignalDescriptor(const AlertSignalDescriptor & object) : data(new CDM::AlertSignalDescriptor(*object.data)) {
-
-}
-
-AlertSignalDescriptor::~AlertSignalDescriptor() {
-
-}
+AlertSignalDescriptor::AlertSignalDescriptor(const AlertSignalDescriptor & object)
+: data(std::make_shared<CDM::AlertSignalDescriptor>(*object.data))
+{ }
 
 void AlertSignalDescriptor::copyFrom(const AlertSignalDescriptor & object) {
-	data = std::shared_ptr<CDM::AlertSignalDescriptor>( new CDM::AlertSignalDescriptor(*object.data));
+	data = std::make_shared<CDM::AlertSignalDescriptor>(*object.data);
 }
 
-AlertSignalDescriptor & AlertSignalDescriptor:: operator=(const AlertSignalDescriptor & object) {
+AlertSignalDescriptor & AlertSignalDescriptor:: operator=(const AlertSignalDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

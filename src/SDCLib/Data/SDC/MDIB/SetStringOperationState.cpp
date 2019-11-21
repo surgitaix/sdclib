@@ -51,29 +51,26 @@ SetStringOperationState::SetStringOperationState(
 		descriptorhandle
 		,
 		operatingmode
-)) {}
+))
+{}
 
 SetStringOperationState::operator CDM::SetStringOperationState() const {
 	return *data;
 }
 
-SetStringOperationState::SetStringOperationState(const CDM::SetStringOperationState & object) : data(new CDM::SetStringOperationState(object)) {
+SetStringOperationState::SetStringOperationState(const CDM::SetStringOperationState & object)
+: data(new CDM::SetStringOperationState(object))
+{ }
 
-}
-
-SetStringOperationState::SetStringOperationState(const SetStringOperationState & object) : data(new CDM::SetStringOperationState(*object.data)) {
-
-}
-
-SetStringOperationState::~SetStringOperationState() {
-
-}
+SetStringOperationState::SetStringOperationState(const SetStringOperationState & object)
+: data(std::make_shared<CDM::SetStringOperationState>(*object.data))
+{ }
 
 void SetStringOperationState::copyFrom(const SetStringOperationState & object) {
-	data = std::shared_ptr<CDM::SetStringOperationState>( new CDM::SetStringOperationState(*object.data));
+	data = std::make_shared<CDM::SetStringOperationState>(*object.data);
 }
 
-SetStringOperationState & SetStringOperationState:: operator=(const SetStringOperationState & object) {
+SetStringOperationState & SetStringOperationState:: operator=(const SetStringOperationState& object) {
 	copyFrom(object);
 	return *this;
 }

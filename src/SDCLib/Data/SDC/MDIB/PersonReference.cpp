@@ -46,29 +46,26 @@ namespace SDC {
 
 PersonReference::PersonReference(
 ) : data(Defaults::PersonReferenceInit(
-)) {}
+))
+{}
 
 PersonReference::operator CDM::PersonReference() const {
 	return *data;
 }
 
-PersonReference::PersonReference(const CDM::PersonReference & object) : data(new CDM::PersonReference(object)) {
+PersonReference::PersonReference(const CDM::PersonReference & object)
+: data(new CDM::PersonReference(object))
+{ }
 
-}
-
-PersonReference::PersonReference(const PersonReference & object) : data(new CDM::PersonReference(*object.data)) {
-
-}
-
-PersonReference::~PersonReference() {
-
-}
+PersonReference::PersonReference(const PersonReference & object)
+: data(std::make_shared<CDM::PersonReference>(*object.data))
+{ }
 
 void PersonReference::copyFrom(const PersonReference & object) {
-	data = std::shared_ptr<CDM::PersonReference>( new CDM::PersonReference(*object.data));
+	data = std::make_shared<CDM::PersonReference>(*object.data);
 }
 
-PersonReference & PersonReference:: operator=(const PersonReference & object) {
+PersonReference & PersonReference:: operator=(const PersonReference& object) {
 	copyFrom(object);
 	return *this;
 }

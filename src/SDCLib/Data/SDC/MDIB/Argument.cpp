@@ -51,29 +51,26 @@ Argument::Argument(
 		argname
 		,
 		arg
-)) {}
+))
+{}
 
 Argument::operator CDM::Argument() const {
 	return *data;
 }
 
-Argument::Argument(const CDM::Argument & object) : data(new CDM::Argument(object)) {
+Argument::Argument(const CDM::Argument & object)
+: data(new CDM::Argument(object))
+{ }
 
-}
-
-Argument::Argument(const Argument & object) : data(new CDM::Argument(*object.data)) {
-
-}
-
-Argument::~Argument() {
-
-}
+Argument::Argument(const Argument & object)
+: data(std::make_shared<CDM::Argument>(*object.data))
+{ }
 
 void Argument::copyFrom(const Argument & object) {
-	data = std::shared_ptr<CDM::Argument>( new CDM::Argument(*object.data));
+	data = std::make_shared<CDM::Argument>(*object.data);
 }
 
-Argument & Argument:: operator=(const Argument & object) {
+Argument & Argument:: operator=(const Argument& object) {
 	copyFrom(object);
 	return *this;
 }

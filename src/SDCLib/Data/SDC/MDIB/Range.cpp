@@ -44,29 +44,26 @@ namespace SDC {
 
 Range::Range(
 ) : data(Defaults::RangeInit(
-)) {}
+))
+{}
 
 Range::operator CDM::Range() const {
 	return *data;
 }
 
-Range::Range(const CDM::Range & object) : data(new CDM::Range(object)) {
+Range::Range(const CDM::Range & object)
+: data(new CDM::Range(object))
+{ }
 
-}
-
-Range::Range(const Range & object) : data(new CDM::Range(*object.data)) {
-
-}
-
-Range::~Range() {
-
-}
+Range::Range(const Range & object)
+: data(std::make_shared<CDM::Range>(*object.data))
+{ }
 
 void Range::copyFrom(const Range & object) {
-	data = std::shared_ptr<CDM::Range>( new CDM::Range(*object.data));
+	data = std::make_shared<CDM::Range>(*object.data);
 }
 
-Range & Range:: operator=(const Range & object) {
+Range & Range:: operator=(const Range& object) {
 	copyFrom(object);
 	return *this;
 }

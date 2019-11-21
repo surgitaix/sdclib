@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class CauseInfo {
+class CauseInfo
+{
 private:
 	CauseInfo(const CDM::CauseInfo & object);
 	operator CDM::CauseInfo() const;
@@ -53,11 +54,11 @@ private:
 public:
 	CauseInfo(
 	);
-	CauseInfo(const CauseInfo & object);
-	virtual ~CauseInfo();
+	CauseInfo(const CauseInfo& object);
+	virtual ~CauseInfo() = default;
 
-    void copyFrom(const CauseInfo & object);
-    CauseInfo & operator=(const CauseInfo & object);
+    void copyFrom(const CauseInfo& object);
+    CauseInfo & operator=(const CauseInfo& object);
 
     typedef CDM::CauseInfo WrappedType;
 
@@ -71,7 +72,7 @@ public:
 	void clearDescriptionList();
 
 private:
-	std::shared_ptr<CDM::CauseInfo> data;
+	std::shared_ptr<CDM::CauseInfo> data = nullptr;
 };
 
 } /* namespace SDC */

@@ -47,29 +47,26 @@ LocationContextDescriptor::LocationContextDescriptor(
 		Handle handle
 ) : data(Defaults::LocationContextDescriptorInit(
 		handle
-)) {}
+))
+{}
 
 LocationContextDescriptor::operator CDM::LocationContextDescriptor() const {
 	return *data;
 }
 
-LocationContextDescriptor::LocationContextDescriptor(const CDM::LocationContextDescriptor & object) : data(new CDM::LocationContextDescriptor(object)) {
+LocationContextDescriptor::LocationContextDescriptor(const CDM::LocationContextDescriptor & object)
+: data(new CDM::LocationContextDescriptor(object))
+{ }
 
-}
-
-LocationContextDescriptor::LocationContextDescriptor(const LocationContextDescriptor & object) : data(new CDM::LocationContextDescriptor(*object.data)) {
-
-}
-
-LocationContextDescriptor::~LocationContextDescriptor() {
-
-}
+LocationContextDescriptor::LocationContextDescriptor(const LocationContextDescriptor & object)
+: data(std::make_shared<CDM::LocationContextDescriptor>(*object.data))
+{ }
 
 void LocationContextDescriptor::copyFrom(const LocationContextDescriptor & object) {
-	data = std::shared_ptr<CDM::LocationContextDescriptor>( new CDM::LocationContextDescriptor(*object.data));
+	data = std::make_shared<CDM::LocationContextDescriptor>(*object.data);
 }
 
-LocationContextDescriptor & LocationContextDescriptor:: operator=(const LocationContextDescriptor & object) {
+LocationContextDescriptor & LocationContextDescriptor:: operator=(const LocationContextDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

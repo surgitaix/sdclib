@@ -46,29 +46,26 @@ MetricQuality::MetricQuality(
 		MeasurementValidity validity
 ) : data(Defaults::MetricQualityInit(
 		validity
-)) {}
+))
+{}
 
 MetricQuality::operator CDM::MetricQuality() const {
 	return *data;
 }
 
-MetricQuality::MetricQuality(const CDM::MetricQuality & object) : data(new CDM::MetricQuality(object)) {
+MetricQuality::MetricQuality(const CDM::MetricQuality & object)
+: data(new CDM::MetricQuality(object))
+{ }
 
-}
-
-MetricQuality::MetricQuality(const MetricQuality & object) : data(new CDM::MetricQuality(*object.data)) {
-
-}
-
-MetricQuality::~MetricQuality() {
-
-}
+MetricQuality::MetricQuality(const MetricQuality & object)
+: data(std::make_shared<CDM::MetricQuality>(*object.data))
+{ }
 
 void MetricQuality::copyFrom(const MetricQuality & object) {
-	data = std::shared_ptr<CDM::MetricQuality>( new CDM::MetricQuality(*object.data));
+	data = std::make_shared<CDM::MetricQuality>(*object.data);
 }
 
-MetricQuality & MetricQuality:: operator=(const MetricQuality & object) {
+MetricQuality & MetricQuality:: operator=(const MetricQuality& object) {
 	copyFrom(object);
 	return *this;
 }

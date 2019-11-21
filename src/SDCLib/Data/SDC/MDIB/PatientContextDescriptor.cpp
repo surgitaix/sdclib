@@ -47,29 +47,26 @@ PatientContextDescriptor::PatientContextDescriptor(
 		Handle handle
 ) : data(Defaults::PatientContextDescriptorInit(
 		handle
-)) {}
+))
+{}
 
 PatientContextDescriptor::operator CDM::PatientContextDescriptor() const {
 	return *data;
 }
 
-PatientContextDescriptor::PatientContextDescriptor(const CDM::PatientContextDescriptor & object) : data(new CDM::PatientContextDescriptor(object)) {
+PatientContextDescriptor::PatientContextDescriptor(const CDM::PatientContextDescriptor & object)
+: data(new CDM::PatientContextDescriptor(object))
+{ }
 
-}
-
-PatientContextDescriptor::PatientContextDescriptor(const PatientContextDescriptor & object) : data(new CDM::PatientContextDescriptor(*object.data)) {
-
-}
-
-PatientContextDescriptor::~PatientContextDescriptor() {
-
-}
+PatientContextDescriptor::PatientContextDescriptor(const PatientContextDescriptor & object)
+: data(std::make_shared<CDM::PatientContextDescriptor>(*object.data))
+{ }
 
 void PatientContextDescriptor::copyFrom(const PatientContextDescriptor & object) {
-	data = std::shared_ptr<CDM::PatientContextDescriptor>( new CDM::PatientContextDescriptor(*object.data));
+	data = std::make_shared<CDM::PatientContextDescriptor>(*object.data);
 }
 
-PatientContextDescriptor & PatientContextDescriptor:: operator=(const PatientContextDescriptor & object) {
+PatientContextDescriptor & PatientContextDescriptor:: operator=(const PatientContextDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

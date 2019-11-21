@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class MdDescription {
+class MdDescription
+{
 private:
 	MdDescription(const CDM::MdDescription & object);
 	operator CDM::MdDescription() const;
@@ -52,11 +53,11 @@ private:
 public:
 	MdDescription(
 	);
-	MdDescription(const MdDescription & object);
-	virtual ~MdDescription();
+	MdDescription(const MdDescription& object);
+	virtual ~MdDescription() = default;
 
-    void copyFrom(const MdDescription & object);
-    MdDescription & operator=(const MdDescription & object);
+    void copyFrom(const MdDescription& object);
+    MdDescription & operator=(const MdDescription& object);
 
     typedef CDM::MdDescription WrappedType;
 
@@ -129,7 +130,7 @@ private:
 	template <class WrapperMetricDescriptorType, class ForbiddenType>
 	void collectMetricDescriptorImpl(std::vector<WrapperMetricDescriptorType> & out) const;
 private:
-	std::shared_ptr<CDM::MdDescription> data;
+	std::shared_ptr<CDM::MdDescription> data = nullptr;
 };
 
 } /* namespace SDC */

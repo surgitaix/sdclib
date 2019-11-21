@@ -53,29 +53,26 @@ PatientContextState::PatientContextState(
 		descriptorhandle
 		,
 		handle
-)) {}
+))
+{}
 
 PatientContextState::operator CDM::PatientContextState() const {
 	return *data;
 }
 
-PatientContextState::PatientContextState(const CDM::PatientContextState & object) : data(new CDM::PatientContextState(object)) {
+PatientContextState::PatientContextState(const CDM::PatientContextState & object)
+: data(new CDM::PatientContextState(object))
+{ }
 
-}
-
-PatientContextState::PatientContextState(const PatientContextState & object) : data(new CDM::PatientContextState(*object.data)) {
-
-}
-
-PatientContextState::~PatientContextState() {
-
-}
+PatientContextState::PatientContextState(const PatientContextState & object)
+: data(std::make_shared<CDM::PatientContextState>(*object.data))
+{ }
 
 void PatientContextState::copyFrom(const PatientContextState & object) {
-	data = std::shared_ptr<CDM::PatientContextState>( new CDM::PatientContextState(*object.data));
+	data = std::make_shared<CDM::PatientContextState>(*object.data);
 }
 
-PatientContextState & PatientContextState:: operator=(const PatientContextState & object) {
+PatientContextState & PatientContextState:: operator=(const PatientContextState& object) {
 	copyFrom(object);
 	return *this;
 }

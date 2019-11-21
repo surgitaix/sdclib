@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class PhysicalConnectorInfo {
+class PhysicalConnectorInfo
+{
 private:
 	PhysicalConnectorInfo(const CDM::PhysicalConnectorInfo & object);
 	operator CDM::PhysicalConnectorInfo() const;
@@ -53,11 +54,11 @@ private:
 public:
 	PhysicalConnectorInfo(
 	);
-	PhysicalConnectorInfo(const PhysicalConnectorInfo & object);
-	virtual ~PhysicalConnectorInfo();
+	PhysicalConnectorInfo(const PhysicalConnectorInfo& object);
+	virtual ~PhysicalConnectorInfo() = default;
 
-    void copyFrom(const PhysicalConnectorInfo & object);
-    PhysicalConnectorInfo & operator=(const PhysicalConnectorInfo & object);
+    void copyFrom(const PhysicalConnectorInfo& object);
+    PhysicalConnectorInfo & operator=(const PhysicalConnectorInfo& object);
 
     typedef CDM::PhysicalConnectorInfo WrappedType;
 
@@ -71,7 +72,7 @@ public:
 	void clearLabelList();
 
 private:
-	std::shared_ptr<CDM::PhysicalConnectorInfo> data;
+	std::shared_ptr<CDM::PhysicalConnectorInfo> data = nullptr;
 };
 
 } /* namespace SDC */

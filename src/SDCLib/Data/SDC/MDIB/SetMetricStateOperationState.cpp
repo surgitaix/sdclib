@@ -50,29 +50,26 @@ SetMetricStateOperationState::SetMetricStateOperationState(
 		descriptorhandle
 		,
 		operatingmode
-)) {}
+))
+{}
 
 SetMetricStateOperationState::operator CDM::SetMetricStateOperationState() const {
 	return *data;
 }
 
-SetMetricStateOperationState::SetMetricStateOperationState(const CDM::SetMetricStateOperationState & object) : data(new CDM::SetMetricStateOperationState(object)) {
+SetMetricStateOperationState::SetMetricStateOperationState(const CDM::SetMetricStateOperationState & object)
+: data(new CDM::SetMetricStateOperationState(object))
+{ }
 
-}
-
-SetMetricStateOperationState::SetMetricStateOperationState(const SetMetricStateOperationState & object) : data(new CDM::SetMetricStateOperationState(*object.data)) {
-
-}
-
-SetMetricStateOperationState::~SetMetricStateOperationState() {
-
-}
+SetMetricStateOperationState::SetMetricStateOperationState(const SetMetricStateOperationState & object)
+: data(std::make_shared<CDM::SetMetricStateOperationState>(*object.data))
+{ }
 
 void SetMetricStateOperationState::copyFrom(const SetMetricStateOperationState & object) {
-	data = std::shared_ptr<CDM::SetMetricStateOperationState>( new CDM::SetMetricStateOperationState(*object.data));
+	data = std::make_shared<CDM::SetMetricStateOperationState>(*object.data);
 }
 
-SetMetricStateOperationState & SetMetricStateOperationState:: operator=(const SetMetricStateOperationState & object) {
+SetMetricStateOperationState & SetMetricStateOperationState:: operator=(const SetMetricStateOperationState& object) {
 	copyFrom(object);
 	return *this;
 }

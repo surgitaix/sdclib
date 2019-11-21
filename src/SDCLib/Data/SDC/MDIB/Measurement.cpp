@@ -51,29 +51,26 @@ Measurement::Measurement(
 		measurementunit
 		,
 		measuredvalue
-)) {}
+))
+{}
 
 Measurement::operator CDM::Measurement() const {
 	return *data;
 }
 
-Measurement::Measurement(const CDM::Measurement & object) : data(new CDM::Measurement(object)) {
+Measurement::Measurement(const CDM::Measurement & object)
+: data(new CDM::Measurement(object))
+{ }
 
-}
-
-Measurement::Measurement(const Measurement & object) : data(new CDM::Measurement(*object.data)) {
-
-}
-
-Measurement::~Measurement() {
-
-}
+Measurement::Measurement(const Measurement & object)
+: data(std::make_shared<CDM::Measurement>(*object.data))
+{ }
 
 void Measurement::copyFrom(const Measurement & object) {
-	data = std::shared_ptr<CDM::Measurement>( new CDM::Measurement(*object.data));
+	data = std::make_shared<CDM::Measurement>(*object.data);
 }
 
-Measurement & Measurement:: operator=(const Measurement & object) {
+Measurement & Measurement:: operator=(const Measurement& object) {
 	copyFrom(object);
 	return *this;
 }

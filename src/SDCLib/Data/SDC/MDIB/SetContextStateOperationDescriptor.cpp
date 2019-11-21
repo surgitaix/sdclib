@@ -51,29 +51,26 @@ SetContextStateOperationDescriptor::SetContextStateOperationDescriptor(
 		handle
 		,
 		operationtarget
-)) {}
+))
+{}
 
 SetContextStateOperationDescriptor::operator CDM::SetContextStateOperationDescriptor() const {
 	return *data;
 }
 
-SetContextStateOperationDescriptor::SetContextStateOperationDescriptor(const CDM::SetContextStateOperationDescriptor & object) : data(new CDM::SetContextStateOperationDescriptor(object)) {
+SetContextStateOperationDescriptor::SetContextStateOperationDescriptor(const CDM::SetContextStateOperationDescriptor & object)
+: data(new CDM::SetContextStateOperationDescriptor(object))
+{ }
 
-}
-
-SetContextStateOperationDescriptor::SetContextStateOperationDescriptor(const SetContextStateOperationDescriptor & object) : data(new CDM::SetContextStateOperationDescriptor(*object.data)) {
-
-}
-
-SetContextStateOperationDescriptor::~SetContextStateOperationDescriptor() {
-
-}
+SetContextStateOperationDescriptor::SetContextStateOperationDescriptor(const SetContextStateOperationDescriptor & object)
+: data(std::make_shared<CDM::SetContextStateOperationDescriptor>(*object.data))
+{ }
 
 void SetContextStateOperationDescriptor::copyFrom(const SetContextStateOperationDescriptor & object) {
-	data = std::shared_ptr<CDM::SetContextStateOperationDescriptor>( new CDM::SetContextStateOperationDescriptor(*object.data));
+	data = std::make_shared<CDM::SetContextStateOperationDescriptor>(*object.data);
 }
 
-SetContextStateOperationDescriptor & SetContextStateOperationDescriptor:: operator=(const SetContextStateOperationDescriptor & object) {
+SetContextStateOperationDescriptor & SetContextStateOperationDescriptor:: operator=(const SetContextStateOperationDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

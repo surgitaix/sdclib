@@ -46,29 +46,26 @@ Translation::Translation(
 		CodeIdentifier code
 ) : data(Defaults::TranslationInit(
 		code
-)) {}
+))
+{}
 
 Translation::operator CDM::Translation() const {
 	return *data;
 }
 
-Translation::Translation(const CDM::Translation & object) : data(new CDM::Translation(object)) {
+Translation::Translation(const CDM::Translation & object)
+: data(new CDM::Translation(object))
+{ }
 
-}
-
-Translation::Translation(const Translation & object) : data(new CDM::Translation(*object.data)) {
-
-}
-
-Translation::~Translation() {
-
-}
+Translation::Translation(const Translation & object)
+: data(std::make_shared<CDM::Translation>(*object.data))
+{ }
 
 void Translation::copyFrom(const Translation & object) {
-	data = std::shared_ptr<CDM::Translation>( new CDM::Translation(*object.data));
+	data = std::make_shared<CDM::Translation>(*object.data);
 }
 
-Translation & Translation:: operator=(const Translation & object) {
+Translation & Translation:: operator=(const Translation& object) {
 	copyFrom(object);
 	return *this;
 }

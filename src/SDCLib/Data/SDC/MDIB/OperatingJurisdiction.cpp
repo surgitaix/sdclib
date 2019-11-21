@@ -43,27 +43,24 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-OperatingJurisdiction::OperatingJurisdiction() : data(Defaults::OperatingJurisdictionInit()) {
-}
+OperatingJurisdiction::OperatingJurisdiction()
+: data(Defaults::OperatingJurisdictionInit())
+{ }
 
 OperatingJurisdiction::operator CDM::OperatingJurisdiction() const {
 	return *data;
 }
 
-OperatingJurisdiction::OperatingJurisdiction(const CDM::OperatingJurisdiction & object) : data(new CDM::OperatingJurisdiction(object)) {
+OperatingJurisdiction::OperatingJurisdiction(const CDM::OperatingJurisdiction & object)
+: data(new CDM::OperatingJurisdiction(object))
+{ }
 
-}
-
-OperatingJurisdiction::OperatingJurisdiction(const OperatingJurisdiction & object) : data(new CDM::OperatingJurisdiction(*object.data)) {
-
-}
-
-OperatingJurisdiction::~OperatingJurisdiction() {
-
-}
+OperatingJurisdiction::OperatingJurisdiction(const OperatingJurisdiction & object)
+: data(new CDM::OperatingJurisdiction(*object.data))
+{ }
 
 void OperatingJurisdiction::copyFrom(const OperatingJurisdiction & object) {
-	data = std::shared_ptr<CDM::OperatingJurisdiction>( new CDM::OperatingJurisdiction(*object.data));
+	data = std::make_shared<CDM::OperatingJurisdiction>(*object.data);
 }
 
 OperatingJurisdiction & OperatingJurisdiction:: operator=(const OperatingJurisdiction & object) {

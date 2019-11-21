@@ -45,29 +45,26 @@ namespace SDC {
 
 ApprovedJurisdictions::ApprovedJurisdictions(
 ) : data(Defaults::ApprovedJurisdictionsInit(
-)) {}
+))
+{}
 
 ApprovedJurisdictions::operator CDM::ApprovedJurisdictions() const {
 	return *data;
 }
 
-ApprovedJurisdictions::ApprovedJurisdictions(const CDM::ApprovedJurisdictions & object) : data(new CDM::ApprovedJurisdictions(object)) {
+ApprovedJurisdictions::ApprovedJurisdictions(const CDM::ApprovedJurisdictions & object)
+: data(new CDM::ApprovedJurisdictions(object))
+{ }
 
-}
-
-ApprovedJurisdictions::ApprovedJurisdictions(const ApprovedJurisdictions & object) : data(new CDM::ApprovedJurisdictions(*object.data)) {
-
-}
-
-ApprovedJurisdictions::~ApprovedJurisdictions() {
-
-}
+ApprovedJurisdictions::ApprovedJurisdictions(const ApprovedJurisdictions & object)
+: data(std::make_shared<CDM::ApprovedJurisdictions>(*object.data))
+{ }
 
 void ApprovedJurisdictions::copyFrom(const ApprovedJurisdictions & object) {
-	data = std::shared_ptr<CDM::ApprovedJurisdictions>( new CDM::ApprovedJurisdictions(*object.data));
+	data = std::make_shared<CDM::ApprovedJurisdictions>(*object.data);
 }
 
-ApprovedJurisdictions & ApprovedJurisdictions:: operator=(const ApprovedJurisdictions & object) {
+ApprovedJurisdictions & ApprovedJurisdictions:: operator=(const ApprovedJurisdictions& object) {
 	copyFrom(object);
 	return *this;
 }

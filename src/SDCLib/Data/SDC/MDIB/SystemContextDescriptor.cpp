@@ -54,29 +54,26 @@ SystemContextDescriptor::SystemContextDescriptor(
 		Handle handle
 ) : data(Defaults::SystemContextDescriptorInit(
 		handle
-)) {}
+))
+{}
 
 SystemContextDescriptor::operator CDM::SystemContextDescriptor() const {
 	return *data;
 }
 
-SystemContextDescriptor::SystemContextDescriptor(const CDM::SystemContextDescriptor & object) : data(new CDM::SystemContextDescriptor(object)) {
+SystemContextDescriptor::SystemContextDescriptor(const CDM::SystemContextDescriptor & object)
+: data(new CDM::SystemContextDescriptor(object))
+{ }
 
-}
-
-SystemContextDescriptor::SystemContextDescriptor(const SystemContextDescriptor & object) : data(new CDM::SystemContextDescriptor(*object.data)) {
-
-}
-
-SystemContextDescriptor::~SystemContextDescriptor() {
-
-}
+SystemContextDescriptor::SystemContextDescriptor(const SystemContextDescriptor & object)
+: data(std::make_shared<CDM::SystemContextDescriptor>(*object.data))
+{ }
 
 void SystemContextDescriptor::copyFrom(const SystemContextDescriptor & object) {
-	data = std::shared_ptr<CDM::SystemContextDescriptor>( new CDM::SystemContextDescriptor(*object.data));
+	data = std::make_shared<CDM::SystemContextDescriptor>(*object.data);
 }
 
-SystemContextDescriptor & SystemContextDescriptor:: operator=(const SystemContextDescriptor & object) {
+SystemContextDescriptor & SystemContextDescriptor:: operator=(const SystemContextDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

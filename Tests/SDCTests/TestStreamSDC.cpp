@@ -207,10 +207,10 @@ public:
 		sdcProvider.setEndpointReferenceByName(SDCLib::Tests::StreamSDC::deviceEPR);
 
 
-		// Currentweight stream metric (read-only)
+		// Current weight stream metric (read-only)
 		// Metric references the handler
 		RealTimeSampleArrayMetricDescriptor currentMetric("handle_plethysmogram_stream",
-				CodedValue(CodeIdentifier("MDCX_VOLTAGE")).addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")),
+				CodedValue(CodeIdentifier("MDCX_VOLTAGE")).addConceptDescription(LocalizedText("Concept Description on MDCX_VOLTAGE.").setLang("en")),
 				MetricCategory::Msrmt,
 				MetricAvailability::Cont,
 				1,
@@ -220,7 +220,7 @@ public:
 	    // alternative current matrix
 		// Metric references the handler
 		RealTimeSampleArrayMetricDescriptor currentMetricAlt("handle_plethysmogram_stream_alt",
-				CodedValue(CodeIdentifier("MDCS_VOLTAGE")).addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")),
+				CodedValue(CodeIdentifier("MDCS_VOLTAGE")).addConceptDescription(LocalizedText("Concept Description on MDCS_VOLTAGE.").setLang("en")),
 				MetricCategory::Msrmt,
 				MetricAvailability::Cont,
 				1,
@@ -261,9 +261,9 @@ public:
         holdingDeviceSystem
 			.setMetaData(
 				MetaData()
-					.addManufacturer(LocalizedText().setRef("SurgiTAIX AG"))
+					.addManufacturer(LocalizedText("SurgiTAIX AG"))
 	        		.setModelNumber("1")
-	        		.addModelName(LocalizedText().setRef("EndoTAIX"))
+	        		.addModelName(LocalizedText("EndoTAIX"))
 	        		.addSerialNumber("1234"))
             .setType(CodedValue(CodeIdentifier("MDC_DEV_ANALY_SAT_O2_MDS")))
 			.addVmd(holdingDeviceModule);

@@ -51,29 +51,26 @@ SetComponentStateOperationDescriptor::SetComponentStateOperationDescriptor(
 		handle
 		,
 		operationtarget
-)) {}
+))
+{}
 
 SetComponentStateOperationDescriptor::operator CDM::SetComponentStateOperationDescriptor() const {
 	return *data;
 }
 
-SetComponentStateOperationDescriptor::SetComponentStateOperationDescriptor(const CDM::SetComponentStateOperationDescriptor & object) : data(new CDM::SetComponentStateOperationDescriptor(object)) {
+SetComponentStateOperationDescriptor::SetComponentStateOperationDescriptor(const CDM::SetComponentStateOperationDescriptor & object)
+: data(new CDM::SetComponentStateOperationDescriptor(object))
+{ }
 
-}
-
-SetComponentStateOperationDescriptor::SetComponentStateOperationDescriptor(const SetComponentStateOperationDescriptor & object) : data(new CDM::SetComponentStateOperationDescriptor(*object.data)) {
-
-}
-
-SetComponentStateOperationDescriptor::~SetComponentStateOperationDescriptor() {
-
-}
+SetComponentStateOperationDescriptor::SetComponentStateOperationDescriptor(const SetComponentStateOperationDescriptor & object)
+: data(std::make_shared<CDM::SetComponentStateOperationDescriptor>(*object.data))
+{ }
 
 void SetComponentStateOperationDescriptor::copyFrom(const SetComponentStateOperationDescriptor & object) {
-	data = std::shared_ptr<CDM::SetComponentStateOperationDescriptor>( new CDM::SetComponentStateOperationDescriptor(*object.data));
+	data = std::make_shared<CDM::SetComponentStateOperationDescriptor>(*object.data);
 }
 
-SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor:: operator=(const SetComponentStateOperationDescriptor & object) {
+SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor:: operator=(const SetComponentStateOperationDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

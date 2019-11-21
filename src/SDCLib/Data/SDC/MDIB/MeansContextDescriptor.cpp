@@ -47,29 +47,26 @@ MeansContextDescriptor::MeansContextDescriptor(
 		Handle handle
 ) : data(Defaults::MeansContextDescriptorInit(
 		handle
-)) {}
+))
+{}
 
 MeansContextDescriptor::operator CDM::MeansContextDescriptor() const {
 	return *data;
 }
 
-MeansContextDescriptor::MeansContextDescriptor(const CDM::MeansContextDescriptor & object) : data(new CDM::MeansContextDescriptor(object)) {
+MeansContextDescriptor::MeansContextDescriptor(const CDM::MeansContextDescriptor & object)
+: data(new CDM::MeansContextDescriptor(object))
+{ }
 
-}
-
-MeansContextDescriptor::MeansContextDescriptor(const MeansContextDescriptor & object) : data(new CDM::MeansContextDescriptor(*object.data)) {
-
-}
-
-MeansContextDescriptor::~MeansContextDescriptor() {
-
-}
+MeansContextDescriptor::MeansContextDescriptor(const MeansContextDescriptor & object)
+: data(std::make_shared<CDM::MeansContextDescriptor>(*object.data))
+{ }
 
 void MeansContextDescriptor::copyFrom(const MeansContextDescriptor & object) {
-	data = std::shared_ptr<CDM::MeansContextDescriptor>( new CDM::MeansContextDescriptor(*object.data));
+	data = std::make_shared<CDM::MeansContextDescriptor>(*object.data);
 }
 
-MeansContextDescriptor & MeansContextDescriptor:: operator=(const MeansContextDescriptor & object) {
+MeansContextDescriptor & MeansContextDescriptor:: operator=(const MeansContextDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

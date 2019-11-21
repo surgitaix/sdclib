@@ -44,29 +44,26 @@ namespace SDC {
 
 AllowedValues::AllowedValues(
 ) : data(Defaults::AllowedValuesInit(
-)) {}
+))
+{}
 
 AllowedValues::operator CDM::AllowedValues() const {
 	return *data;
 }
 
-AllowedValues::AllowedValues(const CDM::AllowedValues & object) : data(new CDM::AllowedValues(object)) {
+AllowedValues::AllowedValues(const CDM::AllowedValues & object)
+: data(new CDM::AllowedValues(object))
+{ }
 
-}
-
-AllowedValues::AllowedValues(const AllowedValues & object) : data(new CDM::AllowedValues(*object.data)) {
-
-}
-
-AllowedValues::~AllowedValues() {
-
-}
+AllowedValues::AllowedValues(const AllowedValues & object)
+: data(std::make_shared<CDM::AllowedValues>(*object.data))
+{ }
 
 void AllowedValues::copyFrom(const AllowedValues & object) {
-	data = std::shared_ptr<CDM::AllowedValues>( new CDM::AllowedValues(*object.data));
+	data = std::make_shared<CDM::AllowedValues>(*object.data);
 }
 
-AllowedValues & AllowedValues:: operator=(const AllowedValues & object) {
+AllowedValues & AllowedValues:: operator=(const AllowedValues& object) {
 	copyFrom(object);
 	return *this;
 }

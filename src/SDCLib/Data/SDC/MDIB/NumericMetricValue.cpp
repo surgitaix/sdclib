@@ -48,29 +48,26 @@ NumericMetricValue::NumericMetricValue(
 		MetricQuality metricquality
 ) : data(Defaults::NumericMetricValueInit(
 		metricquality
-)) {}
+))
+{}
 
 NumericMetricValue::operator CDM::NumericMetricValue() const {
 	return *data;
 }
 
-NumericMetricValue::NumericMetricValue(const CDM::NumericMetricValue & object) : data(new CDM::NumericMetricValue(object)) {
+NumericMetricValue::NumericMetricValue(const CDM::NumericMetricValue & object)
+: data(new CDM::NumericMetricValue(object))
+{ }
 
-}
-
-NumericMetricValue::NumericMetricValue(const NumericMetricValue & object) : data(new CDM::NumericMetricValue(*object.data)) {
-
-}
-
-NumericMetricValue::~NumericMetricValue() {
-
-}
+NumericMetricValue::NumericMetricValue(const NumericMetricValue & object)
+: data(std::make_shared<CDM::NumericMetricValue>(*object.data))
+{ }
 
 void NumericMetricValue::copyFrom(const NumericMetricValue & object) {
-	data = std::shared_ptr<CDM::NumericMetricValue>( new CDM::NumericMetricValue(*object.data));
+	data = std::make_shared<CDM::NumericMetricValue>(*object.data);
 }
 
-NumericMetricValue & NumericMetricValue:: operator=(const NumericMetricValue & object) {
+NumericMetricValue & NumericMetricValue:: operator=(const NumericMetricValue& object) {
 	copyFrom(object);
 	return *this;
 }

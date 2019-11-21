@@ -59,29 +59,26 @@ LimitAlertConditionState::LimitAlertConditionState(
 		limits
 		,
 		monitoredalertlimits
-)) {}
+))
+{}
 
 LimitAlertConditionState::operator CDM::LimitAlertConditionState() const {
 	return *data;
 }
 
-LimitAlertConditionState::LimitAlertConditionState(const CDM::LimitAlertConditionState & object) : data(new CDM::LimitAlertConditionState(object)) {
+LimitAlertConditionState::LimitAlertConditionState(const CDM::LimitAlertConditionState & object)
+: data(new CDM::LimitAlertConditionState(object))
+{ }
 
-}
-
-LimitAlertConditionState::LimitAlertConditionState(const LimitAlertConditionState & object) : data(new CDM::LimitAlertConditionState(*object.data)) {
-
-}
-
-LimitAlertConditionState::~LimitAlertConditionState() {
-
-}
+LimitAlertConditionState::LimitAlertConditionState(const LimitAlertConditionState & object)
+: data(std::make_shared<CDM::LimitAlertConditionState>(*object.data))
+{ }
 
 void LimitAlertConditionState::copyFrom(const LimitAlertConditionState & object) {
-	data = std::shared_ptr<CDM::LimitAlertConditionState>( new CDM::LimitAlertConditionState(*object.data));
+	data = std::make_shared<CDM::LimitAlertConditionState>(*object.data);
 }
 
-LimitAlertConditionState & LimitAlertConditionState:: operator=(const LimitAlertConditionState & object) {
+LimitAlertConditionState & LimitAlertConditionState:: operator=(const LimitAlertConditionState& object) {
 	copyFrom(object);
 	return *this;
 }

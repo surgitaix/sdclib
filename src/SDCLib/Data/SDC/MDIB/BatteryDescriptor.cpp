@@ -49,29 +49,26 @@ BatteryDescriptor::BatteryDescriptor(
 		Handle handle
 ) : data(Defaults::BatteryDescriptorInit(
 		handle
-)) {}
+))
+{}
 
 BatteryDescriptor::operator CDM::BatteryDescriptor() const {
 	return *data;
 }
 
-BatteryDescriptor::BatteryDescriptor(const CDM::BatteryDescriptor & object) : data(new CDM::BatteryDescriptor(object)) {
+BatteryDescriptor::BatteryDescriptor(const CDM::BatteryDescriptor & object)
+: data(new CDM::BatteryDescriptor(object))
+{ }
 
-}
-
-BatteryDescriptor::BatteryDescriptor(const BatteryDescriptor & object) : data(new CDM::BatteryDescriptor(*object.data)) {
-
-}
-
-BatteryDescriptor::~BatteryDescriptor() {
-
-}
+BatteryDescriptor::BatteryDescriptor(const BatteryDescriptor & object)
+: data(std::make_shared<CDM::BatteryDescriptor>(*object.data))
+{ }
 
 void BatteryDescriptor::copyFrom(const BatteryDescriptor & object) {
-	data = std::shared_ptr<CDM::BatteryDescriptor>( new CDM::BatteryDescriptor(*object.data));
+	data = std::make_shared<CDM::BatteryDescriptor>(*object.data);
 }
 
-BatteryDescriptor & BatteryDescriptor:: operator=(const BatteryDescriptor & object) {
+BatteryDescriptor & BatteryDescriptor:: operator=(const BatteryDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

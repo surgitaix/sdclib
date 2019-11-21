@@ -56,29 +56,26 @@ AlertConditionDescriptor::AlertConditionDescriptor(
 		kind
 		,
 		priority
-)) {}
+))
+{}
 
 AlertConditionDescriptor::operator CDM::AlertConditionDescriptor() const {
 	return *data;
 }
 
-AlertConditionDescriptor::AlertConditionDescriptor(const CDM::AlertConditionDescriptor & object) : data(new CDM::AlertConditionDescriptor(object)) {
+AlertConditionDescriptor::AlertConditionDescriptor(const CDM::AlertConditionDescriptor & object)
+: data(new CDM::AlertConditionDescriptor(object))
+{ }
 
-}
-
-AlertConditionDescriptor::AlertConditionDescriptor(const AlertConditionDescriptor & object) : data(new CDM::AlertConditionDescriptor(*object.data)) {
-
-}
-
-AlertConditionDescriptor::~AlertConditionDescriptor() {
-
-}
+AlertConditionDescriptor::AlertConditionDescriptor(const AlertConditionDescriptor & object)
+: data(std::make_shared<CDM::AlertConditionDescriptor>(*object.data))
+{ }
 
 void AlertConditionDescriptor::copyFrom(const AlertConditionDescriptor & object) {
-	data = std::shared_ptr<CDM::AlertConditionDescriptor>( new CDM::AlertConditionDescriptor(*object.data));
+	data = std::make_shared<CDM::AlertConditionDescriptor>(*object.data);
 }
 
-AlertConditionDescriptor & AlertConditionDescriptor:: operator=(const AlertConditionDescriptor & object) {
+AlertConditionDescriptor & AlertConditionDescriptor:: operator=(const AlertConditionDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

@@ -51,29 +51,26 @@ SetAlertStateOperationDescriptor::SetAlertStateOperationDescriptor(
 		handle
 		,
 		operationtarget
-)) {}
+))
+{}
 
 SetAlertStateOperationDescriptor::operator CDM::SetAlertStateOperationDescriptor() const {
 	return *data;
 }
 
-SetAlertStateOperationDescriptor::SetAlertStateOperationDescriptor(const CDM::SetAlertStateOperationDescriptor & object) : data(new CDM::SetAlertStateOperationDescriptor(object)) {
+SetAlertStateOperationDescriptor::SetAlertStateOperationDescriptor(const CDM::SetAlertStateOperationDescriptor & object)
+: data(new CDM::SetAlertStateOperationDescriptor(object))
+{ }
 
-}
-
-SetAlertStateOperationDescriptor::SetAlertStateOperationDescriptor(const SetAlertStateOperationDescriptor & object) : data(new CDM::SetAlertStateOperationDescriptor(*object.data)) {
-
-}
-
-SetAlertStateOperationDescriptor::~SetAlertStateOperationDescriptor() {
-
-}
+SetAlertStateOperationDescriptor::SetAlertStateOperationDescriptor(const SetAlertStateOperationDescriptor & object)
+: data(std::make_shared<CDM::SetAlertStateOperationDescriptor>(*object.data))
+{ }
 
 void SetAlertStateOperationDescriptor::copyFrom(const SetAlertStateOperationDescriptor & object) {
-	data = std::shared_ptr<CDM::SetAlertStateOperationDescriptor>( new CDM::SetAlertStateOperationDescriptor(*object.data));
+	data = std::make_shared<CDM::SetAlertStateOperationDescriptor>(*object.data);
 }
 
-SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor:: operator=(const SetAlertStateOperationDescriptor & object) {
+SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor:: operator=(const SetAlertStateOperationDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

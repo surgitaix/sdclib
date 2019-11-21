@@ -193,7 +193,7 @@ PulseOximeterProvider::PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance
 		CauseInfo satO2LimitCauseInfo;
 		LocalizedText satO2InfoDescriptor;
 		satO2InfoDescriptor.setLang("en");
-		satO2InfoDescriptor.setRef("O2 saturation outside of limit");
+		satO2InfoDescriptor.setText("O2 saturation outside of limit");
 		satO2LimitCauseInfo.addDescription(satO2InfoDescriptor);
 		satO2AlarmLimitDescriptor.getCauseInfoList().push_back(satO2LimitCauseInfo);
 		alertSystemDesc.addLimitAlertCondition(satO2AlarmLimitDescriptor);
@@ -221,7 +221,7 @@ PulseOximeterProvider::PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance
 		CauseInfo pulseRateLimitCauseInfo;
 		LocalizedText pulseRateInfoDescriptor;
 		pulseRateInfoDescriptor.setLang("en");
-		pulseRateInfoDescriptor.setRef("Pulse Rate outside of limit");
+		pulseRateInfoDescriptor.setText("Pulse Rate outside of limit");
 		pulseRateLimitCauseInfo.addDescription(pulseRateInfoDescriptor);
 		pulseRateAlarmLimitDescriptor.getCauseInfoList().push_back(pulseRateLimitCauseInfo);
 		alertSystemDesc.addLimitAlertCondition(pulseRateAlarmLimitDescriptor);
@@ -244,7 +244,7 @@ PulseOximeterProvider::PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance
 		CauseInfo fingerOutCauseInfo;
 		LocalizedText fingerOutInfoDescriptor;
 		fingerOutInfoDescriptor.setLang("en");
-		fingerOutInfoDescriptor.setRef("Patient Finger is Out");
+		fingerOutInfoDescriptor.setText("Patient Finger is Out");
 		fingerOutCauseInfo.addDescription(fingerOutInfoDescriptor);
 		fingerOutAlarmDescriptor.getCauseInfoList().push_back(fingerOutCauseInfo);
 		alertSystemDesc.addAlertCondition(fingerOutAlarmDescriptor);

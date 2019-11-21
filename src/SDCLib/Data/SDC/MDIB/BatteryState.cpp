@@ -49,29 +49,26 @@ BatteryState::BatteryState(
 		HandleRef descriptorhandle
 ) : data(Defaults::BatteryStateInit(
 		descriptorhandle
-)) {}
+))
+{}
 
 BatteryState::operator CDM::BatteryState() const {
 	return *data;
 }
 
-BatteryState::BatteryState(const CDM::BatteryState & object) : data(new CDM::BatteryState(object)) {
+BatteryState::BatteryState(const CDM::BatteryState & object)
+: data(new CDM::BatteryState(object))
+{ }
 
-}
-
-BatteryState::BatteryState(const BatteryState & object) : data(new CDM::BatteryState(*object.data)) {
-
-}
-
-BatteryState::~BatteryState() {
-
-}
+BatteryState::BatteryState(const BatteryState & object)
+: data(std::make_shared<CDM::BatteryState>(*object.data))
+{ }
 
 void BatteryState::copyFrom(const BatteryState & object) {
-	data = std::shared_ptr<CDM::BatteryState>( new CDM::BatteryState(*object.data));
+	data = std::make_shared<CDM::BatteryState>(*object.data);
 }
 
-BatteryState & BatteryState:: operator=(const BatteryState & object) {
+BatteryState & BatteryState:: operator=(const BatteryState& object) {
 	copyFrom(object);
 	return *this;
 }

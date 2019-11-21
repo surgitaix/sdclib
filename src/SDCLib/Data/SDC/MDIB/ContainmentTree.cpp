@@ -45,29 +45,26 @@ namespace SDC {
 
 ContainmentTree::ContainmentTree(
 ) : data(Defaults::ContainmentTreeInit(
-)) {}
+))
+{}
 
 ContainmentTree::operator CDM::ContainmentTree() const {
 	return *data;
 }
 
-ContainmentTree::ContainmentTree(const CDM::ContainmentTree & object) : data(new CDM::ContainmentTree(object)) {
+ContainmentTree::ContainmentTree(const CDM::ContainmentTree & object)
+: data(new CDM::ContainmentTree(object))
+{ }
 
-}
-
-ContainmentTree::ContainmentTree(const ContainmentTree & object) : data(new CDM::ContainmentTree(*object.data)) {
-
-}
-
-ContainmentTree::~ContainmentTree() {
-
-}
+ContainmentTree::ContainmentTree(const ContainmentTree & object)
+: data(std::make_shared<CDM::ContainmentTree>(*object.data))
+{ }
 
 void ContainmentTree::copyFrom(const ContainmentTree & object) {
-	data = std::shared_ptr<CDM::ContainmentTree>( new CDM::ContainmentTree(*object.data));
+	data = std::make_shared<CDM::ContainmentTree>(*object.data);
 }
 
-ContainmentTree & ContainmentTree:: operator=(const ContainmentTree & object) {
+ContainmentTree & ContainmentTree:: operator=(const ContainmentTree& object) {
 	copyFrom(object);
 	return *this;
 }

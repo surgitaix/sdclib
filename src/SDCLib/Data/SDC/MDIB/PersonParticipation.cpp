@@ -47,29 +47,26 @@ namespace SDC {
 
 PersonParticipation::PersonParticipation(
 ) : data(Defaults::PersonParticipationInit(
-)) {}
+))
+{}
 
 PersonParticipation::operator CDM::PersonParticipation() const {
 	return *data;
 }
 
-PersonParticipation::PersonParticipation(const CDM::PersonParticipation & object) : data(new CDM::PersonParticipation(object)) {
+PersonParticipation::PersonParticipation(const CDM::PersonParticipation & object)
+: data(new CDM::PersonParticipation(object))
+{ }
 
-}
-
-PersonParticipation::PersonParticipation(const PersonParticipation & object) : data(new CDM::PersonParticipation(*object.data)) {
-
-}
-
-PersonParticipation::~PersonParticipation() {
-
-}
+PersonParticipation::PersonParticipation(const PersonParticipation & object)
+: data(std::make_shared<CDM::PersonParticipation>(*object.data))
+{ }
 
 void PersonParticipation::copyFrom(const PersonParticipation & object) {
-	data = std::shared_ptr<CDM::PersonParticipation>( new CDM::PersonParticipation(*object.data));
+	data = std::make_shared<CDM::PersonParticipation>(*object.data);
 }
 
-PersonParticipation & PersonParticipation:: operator=(const PersonParticipation & object) {
+PersonParticipation & PersonParticipation:: operator=(const PersonParticipation& object) {
 	copyFrom(object);
 	return *this;
 }

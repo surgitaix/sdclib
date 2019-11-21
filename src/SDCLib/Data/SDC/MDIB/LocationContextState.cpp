@@ -53,29 +53,26 @@ LocationContextState::LocationContextState(
 		descriptorhandle
 		,
 		handle
-)) {}
+))
+{}
 
 LocationContextState::operator CDM::LocationContextState() const {
 	return *data;
 }
 
-LocationContextState::LocationContextState(const CDM::LocationContextState & object) : data(new CDM::LocationContextState(object)) {
+LocationContextState::LocationContextState(const CDM::LocationContextState & object)
+: data(new CDM::LocationContextState(object))
+{ }
 
-}
-
-LocationContextState::LocationContextState(const LocationContextState & object) : data(new CDM::LocationContextState(*object.data)) {
-
-}
-
-LocationContextState::~LocationContextState() {
-
-}
+LocationContextState::LocationContextState(const LocationContextState & object)
+: data(std::make_shared<CDM::LocationContextState>(*object.data))
+{ }
 
 void LocationContextState::copyFrom(const LocationContextState & object) {
-	data = std::shared_ptr<CDM::LocationContextState>( new CDM::LocationContextState(*object.data));
+	data = std::make_shared<CDM::LocationContextState>(*object.data);
 }
 
-LocationContextState & LocationContextState:: operator=(const LocationContextState & object) {
+LocationContextState & LocationContextState:: operator=(const LocationContextState& object) {
 	copyFrom(object);
 	return *this;
 }

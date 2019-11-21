@@ -45,29 +45,26 @@ namespace SDC {
 
 CalibrationInfo::CalibrationInfo(
 ) : data(Defaults::CalibrationInfoInit(
-)) {}
+))
+{}
 
 CalibrationInfo::operator CDM::CalibrationInfo() const {
 	return *data;
 }
 
-CalibrationInfo::CalibrationInfo(const CDM::CalibrationInfo & object) : data(new CDM::CalibrationInfo(object)) {
+CalibrationInfo::CalibrationInfo(const CDM::CalibrationInfo & object)
+: data(new CDM::CalibrationInfo(object))
+{ }
 
-}
-
-CalibrationInfo::CalibrationInfo(const CalibrationInfo & object) : data(new CDM::CalibrationInfo(*object.data)) {
-
-}
-
-CalibrationInfo::~CalibrationInfo() {
-
-}
+CalibrationInfo::CalibrationInfo(const CalibrationInfo & object)
+: data(std::make_shared<CDM::CalibrationInfo>(*object.data))
+{ }
 
 void CalibrationInfo::copyFrom(const CalibrationInfo & object) {
-	data = std::shared_ptr<CDM::CalibrationInfo>( new CDM::CalibrationInfo(*object.data));
+	data = std::make_shared<CDM::CalibrationInfo>(*object.data);
 }
 
-CalibrationInfo & CalibrationInfo:: operator=(const CalibrationInfo & object) {
+CalibrationInfo & CalibrationInfo:: operator=(const CalibrationInfo& object) {
 	copyFrom(object);
 	return *this;
 }

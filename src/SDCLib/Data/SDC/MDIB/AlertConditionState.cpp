@@ -50,29 +50,26 @@ AlertConditionState::AlertConditionState(
 		descriptorhandle
 		,
 		activationstate
-)) {}
+))
+{}
 
 AlertConditionState::operator CDM::AlertConditionState() const {
 	return *data;
 }
 
-AlertConditionState::AlertConditionState(const CDM::AlertConditionState & object) : data(new CDM::AlertConditionState(object)) {
+AlertConditionState::AlertConditionState(const CDM::AlertConditionState & object)
+: data(new CDM::AlertConditionState(object))
+{ }
 
-}
-
-AlertConditionState::AlertConditionState(const AlertConditionState & object) : data(new CDM::AlertConditionState(*object.data)) {
-
-}
-
-AlertConditionState::~AlertConditionState() {
-
-}
+AlertConditionState::AlertConditionState(const AlertConditionState & object)
+: data(std::make_shared<CDM::AlertConditionState>(*object.data))
+{ }
 
 void AlertConditionState::copyFrom(const AlertConditionState & object) {
-	data = std::shared_ptr<CDM::AlertConditionState>( new CDM::AlertConditionState(*object.data));
+	data = std::make_shared<CDM::AlertConditionState>(*object.data);
 }
 
-AlertConditionState & AlertConditionState:: operator=(const AlertConditionState & object) {
+AlertConditionState & AlertConditionState:: operator=(const AlertConditionState& object) {
 	copyFrom(object);
 	return *this;
 }

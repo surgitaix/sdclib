@@ -157,9 +157,9 @@ public:
 					.setLocationContext(locationContextDescriptor2))
 			.setMetaData(
 				MetaData()
-					.addManufacturer(LocalizedText().setRef("SurgiTAIX AG"))
+					.addManufacturer(LocalizedText("SurgiTAIX AG"))
 	        		.setModelNumber("1")
-	        		.addModelName(LocalizedText().setRef("EndoTAIX"))
+	        		.addModelName(LocalizedText("EndoTAIX"))
 	        		.addSerialNumber("1234"))
             .setType(CodedValue(CodeIdentifier("MDC_DEV_ANALY_SAT_O2_MDS")))
 			.addVmd(holdingDeviceModule);

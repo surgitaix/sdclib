@@ -49,29 +49,26 @@ ClockDescriptor::ClockDescriptor(
 		Handle handle
 ) : data(Defaults::ClockDescriptorInit(
 		handle
-)) {}
+))
+{}
 
 ClockDescriptor::operator CDM::ClockDescriptor() const {
 	return *data;
 }
 
-ClockDescriptor::ClockDescriptor(const CDM::ClockDescriptor & object) : data(new CDM::ClockDescriptor(object)) {
+ClockDescriptor::ClockDescriptor(const CDM::ClockDescriptor & object)
+: data(new CDM::ClockDescriptor(object))
+{ }
 
-}
-
-ClockDescriptor::ClockDescriptor(const ClockDescriptor & object) : data(new CDM::ClockDescriptor(*object.data)) {
-
-}
-
-ClockDescriptor::~ClockDescriptor() {
-
-}
+ClockDescriptor::ClockDescriptor(const ClockDescriptor & object)
+: data(std::make_shared<CDM::ClockDescriptor>(*object.data))
+{ }
 
 void ClockDescriptor::copyFrom(const ClockDescriptor & object) {
-	data = std::shared_ptr<CDM::ClockDescriptor>( new CDM::ClockDescriptor(*object.data));
+	data = std::make_shared<CDM::ClockDescriptor>(*object.data);
 }
 
-ClockDescriptor & ClockDescriptor:: operator=(const ClockDescriptor & object) {
+ClockDescriptor & ClockDescriptor:: operator=(const ClockDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

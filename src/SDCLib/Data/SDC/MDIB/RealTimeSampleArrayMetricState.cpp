@@ -50,29 +50,26 @@ RealTimeSampleArrayMetricState::RealTimeSampleArrayMetricState(
 		HandleRef descriptorhandle
 ) : data(Defaults::RealTimeSampleArrayMetricStateInit(
 		descriptorhandle
-)) {}
+))
+{}
 
 RealTimeSampleArrayMetricState::operator CDM::RealTimeSampleArrayMetricState() const {
 	return *data;
 }
 
-RealTimeSampleArrayMetricState::RealTimeSampleArrayMetricState(const CDM::RealTimeSampleArrayMetricState & object) : data(new CDM::RealTimeSampleArrayMetricState(object)) {
+RealTimeSampleArrayMetricState::RealTimeSampleArrayMetricState(const CDM::RealTimeSampleArrayMetricState & object)
+: data(new CDM::RealTimeSampleArrayMetricState(object))
+{ }
 
-}
-
-RealTimeSampleArrayMetricState::RealTimeSampleArrayMetricState(const RealTimeSampleArrayMetricState & object) : data(new CDM::RealTimeSampleArrayMetricState(*object.data)) {
-
-}
-
-RealTimeSampleArrayMetricState::~RealTimeSampleArrayMetricState() {
-
-}
+RealTimeSampleArrayMetricState::RealTimeSampleArrayMetricState(const RealTimeSampleArrayMetricState & object)
+: data(std::make_shared<CDM::RealTimeSampleArrayMetricState>(*object.data))
+{ }
 
 void RealTimeSampleArrayMetricState::copyFrom(const RealTimeSampleArrayMetricState & object) {
-	data = std::shared_ptr<CDM::RealTimeSampleArrayMetricState>( new CDM::RealTimeSampleArrayMetricState(*object.data));
+	data = std::make_shared<CDM::RealTimeSampleArrayMetricState>(*object.data);
 }
 
-RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState:: operator=(const RealTimeSampleArrayMetricState & object) {
+RealTimeSampleArrayMetricState & RealTimeSampleArrayMetricState:: operator=(const RealTimeSampleArrayMetricState& object) {
 	copyFrom(object);
 	return *this;
 }

@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class BatteryState {
+class BatteryState
+{
 private:
 	BatteryState(const CDM::BatteryState & object);
 	operator CDM::BatteryState() const;
@@ -57,11 +58,11 @@ public:
 private:
 	BatteryState(){};
 public:
-	BatteryState(const BatteryState & object);
-	virtual ~BatteryState();
+	BatteryState(const BatteryState& object);
+	virtual ~BatteryState() = default;
 
-    void copyFrom(const BatteryState & object);
-    BatteryState & operator=(const BatteryState & object);
+    void copyFrom(const BatteryState& object);
+    BatteryState & operator=(const BatteryState& object);
 
     typedef CDM::BatteryState WrappedType;
 
@@ -144,7 +145,7 @@ public:
 	bool hasChargeCycles() const;
 
 private:
-	std::shared_ptr<CDM::BatteryState> data;
+	std::shared_ptr<CDM::BatteryState> data = nullptr;
 };
 
 } /* namespace SDC */

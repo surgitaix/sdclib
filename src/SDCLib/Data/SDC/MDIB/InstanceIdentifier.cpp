@@ -43,27 +43,24 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-InstanceIdentifier::InstanceIdentifier() : data(Defaults::InstanceIdentifierInit()) {
-}
+InstanceIdentifier::InstanceIdentifier()
+: data(Defaults::InstanceIdentifierInit())
+{ }
 
 InstanceIdentifier::operator CDM::InstanceIdentifier() const {
 	return *data;
 }
 
-InstanceIdentifier::InstanceIdentifier(const CDM::InstanceIdentifier & object) : data(new CDM::InstanceIdentifier(object)) {
+InstanceIdentifier::InstanceIdentifier(const CDM::InstanceIdentifier & object)
+: data(new CDM::InstanceIdentifier(object))
+{ }
 
-}
-
-InstanceIdentifier::InstanceIdentifier(const InstanceIdentifier & object) : data(new CDM::InstanceIdentifier(*object.data)) {
-
-}
-
-InstanceIdentifier::~InstanceIdentifier() {
-
-}
+InstanceIdentifier::InstanceIdentifier(const InstanceIdentifier & object)
+: data(new CDM::InstanceIdentifier(*object.data))
+{ }
 
 void InstanceIdentifier::copyFrom(const InstanceIdentifier & object) {
-	data = std::shared_ptr<CDM::InstanceIdentifier>( new CDM::InstanceIdentifier(*object.data));
+	data = std::make_shared<CDM::InstanceIdentifier>(*object.data);
 }
 
 InstanceIdentifier & InstanceIdentifier:: operator=(const InstanceIdentifier & object) {

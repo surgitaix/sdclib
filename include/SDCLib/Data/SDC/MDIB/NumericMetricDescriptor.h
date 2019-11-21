@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class NumericMetricDescriptor {
+class NumericMetricDescriptor
+{
 private:
 	NumericMetricDescriptor(const CDM::NumericMetricDescriptor & object);
 	operator CDM::NumericMetricDescriptor() const;
@@ -65,11 +66,11 @@ public:
 private:
 	NumericMetricDescriptor(){};
 public:
-	NumericMetricDescriptor(const NumericMetricDescriptor & object);
-	virtual ~NumericMetricDescriptor();
+	NumericMetricDescriptor(const NumericMetricDescriptor& object);
+	virtual ~NumericMetricDescriptor() = default;
 
-    void copyFrom(const NumericMetricDescriptor & object);
-    NumericMetricDescriptor & operator=(const NumericMetricDescriptor & object);
+    void copyFrom(const NumericMetricDescriptor& object);
+    NumericMetricDescriptor & operator=(const NumericMetricDescriptor& object);
 
     typedef CDM::NumericMetricDescriptor WrappedType;
     typedef NumericMetricState StateType;
@@ -152,7 +153,7 @@ public:
 	void clearTechnicalRangeList();
 
 private:
-	std::shared_ptr<CDM::NumericMetricDescriptor> data;
+	std::shared_ptr<CDM::NumericMetricDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

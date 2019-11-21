@@ -52,20 +52,16 @@ ScoState::operator CDM::ScoState() const {
 	return *data;
 }
 
-ScoState::ScoState(const CDM::ScoState & object) : data(new CDM::ScoState(object)) {
+ScoState::ScoState(const CDM::ScoState & object)
+: data(new CDM::ScoState(object))
+{ }
 
-}
-
-ScoState::ScoState(const ScoState & object) : data(new CDM::ScoState(*object.data)) {
-
-}
-
-ScoState::~ScoState() {
-
-}
+ScoState::ScoState(const ScoState & object)
+: data(new CDM::ScoState(*object.data))
+{ }
 
 void ScoState::copyFrom(const ScoState & object) {
-	data = std::shared_ptr<CDM::ScoState>( new CDM::ScoState(*object.data));
+	data = std::make_shared<CDM::ScoState>(*object.data);
 }
 
 ScoState & ScoState:: operator=(const ScoState & object) {

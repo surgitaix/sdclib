@@ -46,29 +46,26 @@ namespace SDC {
 
 CalibrationDocumentation::CalibrationDocumentation(
 ) : data(Defaults::CalibrationDocumentationInit(
-)) {}
+))
+{}
 
 CalibrationDocumentation::operator CDM::CalibrationDocumentation() const {
 	return *data;
 }
 
-CalibrationDocumentation::CalibrationDocumentation(const CDM::CalibrationDocumentation & object) : data(new CDM::CalibrationDocumentation(object)) {
+CalibrationDocumentation::CalibrationDocumentation(const CDM::CalibrationDocumentation & object)
+: data(new CDM::CalibrationDocumentation(object))
+{ }
 
-}
-
-CalibrationDocumentation::CalibrationDocumentation(const CalibrationDocumentation & object) : data(new CDM::CalibrationDocumentation(*object.data)) {
-
-}
-
-CalibrationDocumentation::~CalibrationDocumentation() {
-
-}
+CalibrationDocumentation::CalibrationDocumentation(const CalibrationDocumentation & object)
+: data(std::make_shared<CDM::CalibrationDocumentation>(*object.data))
+{ }
 
 void CalibrationDocumentation::copyFrom(const CalibrationDocumentation & object) {
-	data = std::shared_ptr<CDM::CalibrationDocumentation>( new CDM::CalibrationDocumentation(*object.data));
+	data = std::make_shared<CDM::CalibrationDocumentation>(*object.data);
 }
 
-CalibrationDocumentation & CalibrationDocumentation:: operator=(const CalibrationDocumentation & object) {
+CalibrationDocumentation & CalibrationDocumentation:: operator=(const CalibrationDocumentation& object) {
 	copyFrom(object);
 	return *this;
 }

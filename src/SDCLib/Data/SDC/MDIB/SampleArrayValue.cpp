@@ -49,29 +49,26 @@ SampleArrayValue::SampleArrayValue(
 		MetricQuality metricquality
 ) : data(Defaults::SampleArrayValueInit(
 		metricquality
-)) {}
+))
+{}
 
 SampleArrayValue::operator CDM::SampleArrayValue() const {
 	return *data;
 }
 
-SampleArrayValue::SampleArrayValue(const CDM::SampleArrayValue & object) : data(new CDM::SampleArrayValue(object)) {
+SampleArrayValue::SampleArrayValue(const CDM::SampleArrayValue & object)
+: data(new CDM::SampleArrayValue(object))
+{ }
 
-}
-
-SampleArrayValue::SampleArrayValue(const SampleArrayValue & object) : data(new CDM::SampleArrayValue(*object.data)) {
-
-}
-
-SampleArrayValue::~SampleArrayValue() {
-
-}
+SampleArrayValue::SampleArrayValue(const SampleArrayValue & object)
+: data(std::make_shared<CDM::SampleArrayValue>(*object.data))
+{ }
 
 void SampleArrayValue::copyFrom(const SampleArrayValue & object) {
-	data = std::shared_ptr<CDM::SampleArrayValue>( new CDM::SampleArrayValue(*object.data));
+	data = std::make_shared<CDM::SampleArrayValue>(*object.data);
 }
 
-SampleArrayValue & SampleArrayValue:: operator=(const SampleArrayValue & object) {
+SampleArrayValue & SampleArrayValue:: operator=(const SampleArrayValue& object) {
 	copyFrom(object);
 	return *this;
 }

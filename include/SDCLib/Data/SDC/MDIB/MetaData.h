@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class MetaData {
+class MetaData
+{
 private:
 	MetaData(const CDM::MetaData & object);
 	operator CDM::MetaData() const;
@@ -53,11 +54,11 @@ private:
 public:
 	MetaData(
 	);
-	MetaData(const MetaData & object);
-	virtual ~MetaData();
+	MetaData(const MetaData& object);
+	virtual ~MetaData() = default;
 
-    void copyFrom(const MetaData & object);
-    MetaData & operator=(const MetaData & object);
+    void copyFrom(const MetaData& object);
+    MetaData & operator=(const MetaData& object);
 
     typedef CDM::MetaData WrappedType;
 
@@ -98,7 +99,7 @@ public:
 	void clearSerialNumberList();
 
 private:
-	std::shared_ptr<CDM::MetaData> data;
+	std::shared_ptr<CDM::MetaData> data = nullptr;
 };
 
 } /* namespace SDC */

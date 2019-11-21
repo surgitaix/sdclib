@@ -48,29 +48,26 @@ StringMetricValue::StringMetricValue(
 		MetricQuality metricquality
 ) : data(Defaults::StringMetricValueInit(
 		metricquality
-)) {}
+))
+{}
 
 StringMetricValue::operator CDM::StringMetricValue() const {
 	return *data;
 }
 
-StringMetricValue::StringMetricValue(const CDM::StringMetricValue & object) : data(new CDM::StringMetricValue(object)) {
+StringMetricValue::StringMetricValue(const CDM::StringMetricValue & object)
+: data(new CDM::StringMetricValue(object))
+{ }
 
-}
-
-StringMetricValue::StringMetricValue(const StringMetricValue & object) : data(new CDM::StringMetricValue(*object.data)) {
-
-}
-
-StringMetricValue::~StringMetricValue() {
-
-}
+StringMetricValue::StringMetricValue(const StringMetricValue & object)
+: data(std::make_shared<CDM::StringMetricValue>(*object.data))
+{ }
 
 void StringMetricValue::copyFrom(const StringMetricValue & object) {
-	data = std::shared_ptr<CDM::StringMetricValue>( new CDM::StringMetricValue(*object.data));
+	data = std::make_shared<CDM::StringMetricValue>(*object.data);
 }
 
-StringMetricValue & StringMetricValue:: operator=(const StringMetricValue & object) {
+StringMetricValue & StringMetricValue:: operator=(const StringMetricValue& object) {
 	copyFrom(object);
 	return *this;
 }

@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class OperatorContextState {
+class OperatorContextState
+{
 private:
 	OperatorContextState(const CDM::OperatorContextState & object);
 	operator CDM::OperatorContextState() const;
@@ -59,11 +60,11 @@ public:
 private:
 	OperatorContextState(){};
 public:
-	OperatorContextState(const OperatorContextState & object);
-	virtual ~OperatorContextState();
+	OperatorContextState(const OperatorContextState& object);
+	virtual ~OperatorContextState() = default;
 
-    void copyFrom(const OperatorContextState & object);
-    OperatorContextState & operator=(const OperatorContextState & object);
+    void copyFrom(const OperatorContextState& object);
+    OperatorContextState & operator=(const OperatorContextState& object);
 
     typedef CDM::OperatorContextState WrappedType;
     typedef OperatorContextDescriptor DescriptorType;
@@ -128,7 +129,7 @@ public:
 	bool hasOperatorDetails() const;
 
 private:
-	std::shared_ptr<CDM::OperatorContextState> data;
+	std::shared_ptr<CDM::OperatorContextState> data = nullptr;
 };
 
 } /* namespace SDC */

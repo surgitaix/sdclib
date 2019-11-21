@@ -46,29 +46,26 @@ namespace SDC {
 
 Mdib::Mdib(
 ) : data(Defaults::MdibInit(
-)) {}
+))
+{}
 
 Mdib::operator CDM::Mdib() const {
 	return *data;
 }
 
-Mdib::Mdib(const CDM::Mdib & object) : data(new CDM::Mdib(object)) {
+Mdib::Mdib(const CDM::Mdib & object)
+: data(new CDM::Mdib(object))
+{ }
 
-}
-
-Mdib::Mdib(const Mdib & object) : data(new CDM::Mdib(*object.data)) {
-
-}
-
-Mdib::~Mdib() {
-
-}
+Mdib::Mdib(const Mdib & object)
+: data(std::make_shared<CDM::Mdib>(*object.data))
+{ }
 
 void Mdib::copyFrom(const Mdib & object) {
-	data = std::shared_ptr<CDM::Mdib>( new CDM::Mdib(*object.data));
+	data = std::make_shared<CDM::Mdib>(*object.data);
 }
 
-Mdib & Mdib:: operator=(const Mdib & object) {
+Mdib & Mdib:: operator=(const Mdib& object) {
 	copyFrom(object);
 	return *this;
 }

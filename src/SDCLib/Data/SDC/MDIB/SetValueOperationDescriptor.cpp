@@ -51,29 +51,26 @@ SetValueOperationDescriptor::SetValueOperationDescriptor(
 		handle
 		,
 		operationtarget
-)) {}
+))
+{}
 
 SetValueOperationDescriptor::operator CDM::SetValueOperationDescriptor() const {
 	return *data;
 }
 
-SetValueOperationDescriptor::SetValueOperationDescriptor(const CDM::SetValueOperationDescriptor & object) : data(new CDM::SetValueOperationDescriptor(object)) {
+SetValueOperationDescriptor::SetValueOperationDescriptor(const CDM::SetValueOperationDescriptor & object)
+: data(new CDM::SetValueOperationDescriptor(object))
+{ }
 
-}
-
-SetValueOperationDescriptor::SetValueOperationDescriptor(const SetValueOperationDescriptor & object) : data(new CDM::SetValueOperationDescriptor(*object.data)) {
-
-}
-
-SetValueOperationDescriptor::~SetValueOperationDescriptor() {
-
-}
+SetValueOperationDescriptor::SetValueOperationDescriptor(const SetValueOperationDescriptor & object)
+: data(std::make_shared<CDM::SetValueOperationDescriptor>(*object.data))
+{ }
 
 void SetValueOperationDescriptor::copyFrom(const SetValueOperationDescriptor & object) {
-	data = std::shared_ptr<CDM::SetValueOperationDescriptor>( new CDM::SetValueOperationDescriptor(*object.data));
+	data = std::make_shared<CDM::SetValueOperationDescriptor>(*object.data);
 }
 
-SetValueOperationDescriptor & SetValueOperationDescriptor:: operator=(const SetValueOperationDescriptor & object) {
+SetValueOperationDescriptor & SetValueOperationDescriptor:: operator=(const SetValueOperationDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

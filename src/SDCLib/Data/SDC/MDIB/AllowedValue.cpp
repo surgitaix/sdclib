@@ -49,29 +49,26 @@ AllowedValue::AllowedValue(
 		std::string value
 ) : data(Defaults::AllowedValueInit(
 		value
-)) {}
+))
+{}
 
 AllowedValue::operator CDM::AllowedValue() const {
 	return *data;
 }
 
-AllowedValue::AllowedValue(const CDM::AllowedValue & object) : data(new CDM::AllowedValue(object)) {
+AllowedValue::AllowedValue(const CDM::AllowedValue & object)
+: data(new CDM::AllowedValue(object))
+{ }
 
-}
-
-AllowedValue::AllowedValue(const AllowedValue & object) : data(new CDM::AllowedValue(*object.data)) {
-
-}
-
-AllowedValue::~AllowedValue() {
-
-}
+AllowedValue::AllowedValue(const AllowedValue & object)
+: data(std::make_shared<CDM::AllowedValue>(*object.data))
+{ }
 
 void AllowedValue::copyFrom(const AllowedValue & object) {
-	data = std::shared_ptr<CDM::AllowedValue>( new CDM::AllowedValue(*object.data));
+	data = std::make_shared<CDM::AllowedValue>(*object.data);
 }
 
-AllowedValue & AllowedValue:: operator=(const AllowedValue & object) {
+AllowedValue & AllowedValue:: operator=(const AllowedValue& object) {
 	copyFrom(object);
 	return *this;
 }

@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class EnumStringMetricDescriptor {
+class EnumStringMetricDescriptor
+{
 private:
 	EnumStringMetricDescriptor(const CDM::EnumStringMetricDescriptor & object);
 	operator CDM::EnumStringMetricDescriptor() const;
@@ -63,11 +64,11 @@ public:
 private:
 	EnumStringMetricDescriptor(){};
 public:
-	EnumStringMetricDescriptor(const EnumStringMetricDescriptor & object);
-	virtual ~EnumStringMetricDescriptor();
+	EnumStringMetricDescriptor(const EnumStringMetricDescriptor& object);
+	virtual ~EnumStringMetricDescriptor() = default;
 
-    void copyFrom(const EnumStringMetricDescriptor & object);
-    EnumStringMetricDescriptor & operator=(const EnumStringMetricDescriptor & object);
+    void copyFrom(const EnumStringMetricDescriptor& object);
+    EnumStringMetricDescriptor & operator=(const EnumStringMetricDescriptor& object);
 
     typedef CDM::EnumStringMetricDescriptor WrappedType;
 
@@ -141,7 +142,7 @@ public:
 	void clearAllowedValueList();
 
 private:
-	std::shared_ptr<CDM::EnumStringMetricDescriptor> data;
+	std::shared_ptr<CDM::EnumStringMetricDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

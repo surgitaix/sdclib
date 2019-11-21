@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class SetStringOperationDescriptor {
+class SetStringOperationDescriptor
+{
 private:
 	SetStringOperationDescriptor(const CDM::SetStringOperationDescriptor & object);
 	operator CDM::SetStringOperationDescriptor() const;
@@ -59,11 +60,11 @@ public:
 private:
 	SetStringOperationDescriptor(){};
 public:
-	SetStringOperationDescriptor(const SetStringOperationDescriptor & object);
-	virtual ~SetStringOperationDescriptor();
+	SetStringOperationDescriptor(const SetStringOperationDescriptor& object);
+	virtual ~SetStringOperationDescriptor() = default;
 
-    void copyFrom(const SetStringOperationDescriptor & object);
-    SetStringOperationDescriptor & operator=(const SetStringOperationDescriptor & object);
+    void copyFrom(const SetStringOperationDescriptor& object);
+    SetStringOperationDescriptor & operator=(const SetStringOperationDescriptor& object);
 
     typedef CDM::SetStringOperationDescriptor WrappedType;
 
@@ -114,7 +115,7 @@ public:
 	bool hasMaxLength() const;
 
 private:
-	std::shared_ptr<CDM::SetStringOperationDescriptor> data;
+	std::shared_ptr<CDM::SetStringOperationDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

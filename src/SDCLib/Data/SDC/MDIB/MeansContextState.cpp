@@ -52,29 +52,26 @@ MeansContextState::MeansContextState(
 		descriptorhandle
 		,
 		handle
-)) {}
+))
+{}
 
 MeansContextState::operator CDM::MeansContextState() const {
 	return *data;
 }
 
-MeansContextState::MeansContextState(const CDM::MeansContextState & object) : data(new CDM::MeansContextState(object)) {
+MeansContextState::MeansContextState(const CDM::MeansContextState & object)
+: data(new CDM::MeansContextState(object))
+{ }
 
-}
-
-MeansContextState::MeansContextState(const MeansContextState & object) : data(new CDM::MeansContextState(*object.data)) {
-
-}
-
-MeansContextState::~MeansContextState() {
-
-}
+MeansContextState::MeansContextState(const MeansContextState & object)
+: data(std::make_shared<CDM::MeansContextState>(*object.data))
+{ }
 
 void MeansContextState::copyFrom(const MeansContextState & object) {
-	data = std::shared_ptr<CDM::MeansContextState>( new CDM::MeansContextState(*object.data));
+	data = std::make_shared<CDM::MeansContextState>(*object.data);
 }
 
-MeansContextState & MeansContextState:: operator=(const MeansContextState & object) {
+MeansContextState & MeansContextState:: operator=(const MeansContextState& object) {
 	copyFrom(object);
 	return *this;
 }

@@ -50,29 +50,26 @@ SetContextStateOperationState::SetContextStateOperationState(
 		descriptorhandle
 		,
 		operatingmode
-)) {}
+))
+{}
 
 SetContextStateOperationState::operator CDM::SetContextStateOperationState() const {
 	return *data;
 }
 
-SetContextStateOperationState::SetContextStateOperationState(const CDM::SetContextStateOperationState & object) : data(new CDM::SetContextStateOperationState(object)) {
+SetContextStateOperationState::SetContextStateOperationState(const CDM::SetContextStateOperationState & object)
+: data(new CDM::SetContextStateOperationState(object))
+{ }
 
-}
-
-SetContextStateOperationState::SetContextStateOperationState(const SetContextStateOperationState & object) : data(new CDM::SetContextStateOperationState(*object.data)) {
-
-}
-
-SetContextStateOperationState::~SetContextStateOperationState() {
-
-}
+SetContextStateOperationState::SetContextStateOperationState(const SetContextStateOperationState & object)
+: data(std::make_shared<CDM::SetContextStateOperationState>(*object.data))
+{ }
 
 void SetContextStateOperationState::copyFrom(const SetContextStateOperationState & object) {
-	data = std::shared_ptr<CDM::SetContextStateOperationState>( new CDM::SetContextStateOperationState(*object.data));
+	data = std::make_shared<CDM::SetContextStateOperationState>(*object.data);
 }
 
-SetContextStateOperationState & SetContextStateOperationState:: operator=(const SetContextStateOperationState & object) {
+SetContextStateOperationState & SetContextStateOperationState:: operator=(const SetContextStateOperationState& object) {
 	copyFrom(object);
 	return *this;
 }

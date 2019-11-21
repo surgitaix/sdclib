@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class AlertConditionDescriptor {
+class AlertConditionDescriptor
+{
 private:
 	AlertConditionDescriptor(const CDM::AlertConditionDescriptor & object);
 	operator CDM::AlertConditionDescriptor() const;
@@ -61,11 +62,11 @@ public:
 private:
 	AlertConditionDescriptor(){};
 public:
-	AlertConditionDescriptor(const AlertConditionDescriptor & object);
-	virtual ~AlertConditionDescriptor();
+	AlertConditionDescriptor(const AlertConditionDescriptor& object);
+	virtual ~AlertConditionDescriptor() = default;
 
-    void copyFrom(const AlertConditionDescriptor & object);
-    AlertConditionDescriptor & operator=(const AlertConditionDescriptor & object);
+    void copyFrom(const AlertConditionDescriptor& object);
+    AlertConditionDescriptor & operator=(const AlertConditionDescriptor& object);
 
     typedef CDM::AlertConditionDescriptor WrappedType;
 
@@ -117,7 +118,7 @@ public:
 	void clearCauseInfoList();
 
 private:
-	std::shared_ptr<CDM::AlertConditionDescriptor> data;
+	std::shared_ptr<CDM::AlertConditionDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

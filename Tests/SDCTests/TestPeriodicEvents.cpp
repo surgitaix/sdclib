@@ -338,9 +338,9 @@ public:
         MdsDescriptor deviceSystem(MDS_HANDLE);
         deviceSystem
 			.setMetaData(MetaData()
-				.addManufacturer(LocalizedText().setRef("SurgiTAIX AG"))
+				.addManufacturer(LocalizedText("SurgiTAIX AG"))
 				.setModelNumber("1")
-				.addModelName(LocalizedText().setRef("EndoTAIX"))
+				.addModelName(LocalizedText("EndoTAIX"))
 				.addSerialNumber("1234"))
 			.setSystemContext(
 				SystemContextDescriptor("systemcontext_handle")

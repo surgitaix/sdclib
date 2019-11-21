@@ -85,9 +85,9 @@ namespace OSELib
 
 			private:
 
-				void onMulticastSocketReadable(Poco::Net::ReadableNotification * p_notification);
-				void onDatagrammSocketWritable(Poco::Net::WritableNotification * p_notification);
-				void onTimeOut(Poco::Net::TimeoutNotification * p_notification);
+				void onMulticastSocketReadable(Poco::Net::ReadableNotification* p_notification);
+				void onDatagrammSocketWritable(Poco::Net::WritableNotification* p_notification);
+				void onTimeOut(Poco::Net::TimeoutNotification* p_notification);
 
 				Poco::Timestamp createDelay();
 				void processDelayedMessages();

@@ -70,11 +70,11 @@ public:
         // MDS
         MdsDescriptor t_Mds(MDS_DESCRIPTOR_HANDLE);
         t_Mds.setType(CodedValue("MDC_DEV_DOCU_POSE_MDS")
-            .addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")))
+            .addConceptDescription(LocalizedText("DOCU POSE").setLang("en")))
             .setMetaData(
-                MetaData().addManufacturer(LocalizedText().setRef(SDCLib::Config::STR_SURGITAIX))
+                MetaData().addManufacturer(LocalizedText(SDCLib::Config::STR_SURGITAIX))
                           .setModelNumber("1")
-                          .addModelName(LocalizedText().setRef("EndoTAIX"))
+                          .addModelName(LocalizedText("EndoTAIX"))
                           .addSerialNumber(SDCLib::Config::CURRENT_C_YEAR))
             .addVmd(t_vmd);
 

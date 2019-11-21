@@ -51,29 +51,26 @@ RequestedOrderDetail::RequestedOrderDetail(
 		InstanceIdentifier placerordernumber
 ) : data(Defaults::RequestedOrderDetailInit(
 		placerordernumber
-)) {}
+))
+{}
 
 RequestedOrderDetail::operator CDM::RequestedOrderDetail() const {
 	return *data;
 }
 
-RequestedOrderDetail::RequestedOrderDetail(const CDM::RequestedOrderDetail & object) : data(new CDM::RequestedOrderDetail(object)) {
+RequestedOrderDetail::RequestedOrderDetail(const CDM::RequestedOrderDetail & object)
+: data(new CDM::RequestedOrderDetail(object))
+{ }
 
-}
-
-RequestedOrderDetail::RequestedOrderDetail(const RequestedOrderDetail & object) : data(new CDM::RequestedOrderDetail(*object.data)) {
-
-}
-
-RequestedOrderDetail::~RequestedOrderDetail() {
-
-}
+RequestedOrderDetail::RequestedOrderDetail(const RequestedOrderDetail & object)
+: data(std::make_shared<CDM::RequestedOrderDetail>(*object.data))
+{ }
 
 void RequestedOrderDetail::copyFrom(const RequestedOrderDetail & object) {
-	data = std::shared_ptr<CDM::RequestedOrderDetail>( new CDM::RequestedOrderDetail(*object.data));
+	data = std::make_shared<CDM::RequestedOrderDetail>(*object.data);
 }
 
-RequestedOrderDetail & RequestedOrderDetail:: operator=(const RequestedOrderDetail & object) {
+RequestedOrderDetail & RequestedOrderDetail:: operator=(const RequestedOrderDetail& object) {
 	copyFrom(object);
 	return *this;
 }

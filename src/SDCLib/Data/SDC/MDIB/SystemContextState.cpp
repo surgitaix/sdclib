@@ -48,29 +48,26 @@ SystemContextState::SystemContextState(
 		HandleRef descriptorhandle
 ) : data(Defaults::SystemContextStateInit(
 		descriptorhandle
-)) {}
+))
+{}
 
 SystemContextState::operator CDM::SystemContextState() const {
 	return *data;
 }
 
-SystemContextState::SystemContextState(const CDM::SystemContextState & object) : data(new CDM::SystemContextState(object)) {
+SystemContextState::SystemContextState(const CDM::SystemContextState & object)
+: data(new CDM::SystemContextState(object))
+{ }
 
-}
-
-SystemContextState::SystemContextState(const SystemContextState & object) : data(new CDM::SystemContextState(*object.data)) {
-
-}
-
-SystemContextState::~SystemContextState() {
-
-}
+SystemContextState::SystemContextState(const SystemContextState & object)
+: data(std::make_shared<CDM::SystemContextState>(*object.data))
+{ }
 
 void SystemContextState::copyFrom(const SystemContextState & object) {
-	data = std::shared_ptr<CDM::SystemContextState>( new CDM::SystemContextState(*object.data));
+	data = std::make_shared<CDM::SystemContextState>(*object.data);
 }
 
-SystemContextState & SystemContextState:: operator=(const SystemContextState & object) {
+SystemContextState & SystemContextState:: operator=(const SystemContextState& object) {
 	copyFrom(object);
 	return *this;
 }

@@ -47,29 +47,26 @@ OperatorContextDescriptor::OperatorContextDescriptor(
 		Handle handle
 ) : data(Defaults::OperatorContextDescriptorInit(
 		handle
-)) {}
+))
+{}
 
 OperatorContextDescriptor::operator CDM::OperatorContextDescriptor() const {
 	return *data;
 }
 
-OperatorContextDescriptor::OperatorContextDescriptor(const CDM::OperatorContextDescriptor & object) : data(new CDM::OperatorContextDescriptor(object)) {
+OperatorContextDescriptor::OperatorContextDescriptor(const CDM::OperatorContextDescriptor & object)
+: data(new CDM::OperatorContextDescriptor(object))
+{ }
 
-}
-
-OperatorContextDescriptor::OperatorContextDescriptor(const OperatorContextDescriptor & object) : data(new CDM::OperatorContextDescriptor(*object.data)) {
-
-}
-
-OperatorContextDescriptor::~OperatorContextDescriptor() {
-
-}
+OperatorContextDescriptor::OperatorContextDescriptor(const OperatorContextDescriptor & object)
+: data(std::make_shared<CDM::OperatorContextDescriptor>(*object.data))
+{ }
 
 void OperatorContextDescriptor::copyFrom(const OperatorContextDescriptor & object) {
-	data = std::shared_ptr<CDM::OperatorContextDescriptor>( new CDM::OperatorContextDescriptor(*object.data));
+	data = std::make_shared<CDM::OperatorContextDescriptor>(*object.data);
 }
 
-OperatorContextDescriptor & OperatorContextDescriptor:: operator=(const OperatorContextDescriptor & object) {
+OperatorContextDescriptor & OperatorContextDescriptor:: operator=(const OperatorContextDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

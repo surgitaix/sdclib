@@ -53,29 +53,26 @@ WorkflowContextState::WorkflowContextState(
 		descriptorhandle
 		,
 		handle
-)) {}
+))
+{}
 
 WorkflowContextState::operator CDM::WorkflowContextState() const {
 	return *data;
 }
 
-WorkflowContextState::WorkflowContextState(const CDM::WorkflowContextState & object) : data(new CDM::WorkflowContextState(object)) {
+WorkflowContextState::WorkflowContextState(const CDM::WorkflowContextState & object)
+: data(new CDM::WorkflowContextState(object))
+{ }
 
-}
-
-WorkflowContextState::WorkflowContextState(const WorkflowContextState & object) : data(new CDM::WorkflowContextState(*object.data)) {
-
-}
-
-WorkflowContextState::~WorkflowContextState() {
-
-}
+WorkflowContextState::WorkflowContextState(const WorkflowContextState & object)
+: data(std::make_shared<CDM::WorkflowContextState>(*object.data))
+{ }
 
 void WorkflowContextState::copyFrom(const WorkflowContextState & object) {
-	data = std::shared_ptr<CDM::WorkflowContextState>( new CDM::WorkflowContextState(*object.data));
+	data = std::make_shared<CDM::WorkflowContextState>(*object.data);
 }
 
-WorkflowContextState & WorkflowContextState:: operator=(const WorkflowContextState & object) {
+WorkflowContextState & WorkflowContextState:: operator=(const WorkflowContextState& object) {
 	copyFrom(object);
 	return *this;
 }

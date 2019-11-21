@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class PersonReference {
+class PersonReference
+{
 private:
 	PersonReference(const CDM::PersonReference & object);
 	operator CDM::PersonReference() const;
@@ -53,11 +54,11 @@ private:
 public:
 	PersonReference(
 	);
-	PersonReference(const PersonReference & object);
-	virtual ~PersonReference();
+	PersonReference(const PersonReference& object);
+	virtual ~PersonReference() = default;
 
-    void copyFrom(const PersonReference & object);
-    PersonReference & operator=(const PersonReference & object);
+    void copyFrom(const PersonReference& object);
+    PersonReference & operator=(const PersonReference& object);
 
     typedef CDM::PersonReference WrappedType;
 
@@ -71,7 +72,7 @@ public:
 	void clearIdentificationList();
 
 private:
-	std::shared_ptr<CDM::PersonReference> data;
+	std::shared_ptr<CDM::PersonReference> data = nullptr;
 };
 
 } /* namespace SDC */

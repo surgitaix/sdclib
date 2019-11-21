@@ -50,29 +50,26 @@ DistributionSampleArrayMetricState::DistributionSampleArrayMetricState(
 		HandleRef descriptorhandle
 ) : data(Defaults::DistributionSampleArrayMetricStateInit(
 		descriptorhandle
-)) {}
+))
+{}
 
 DistributionSampleArrayMetricState::operator CDM::DistributionSampleArrayMetricState() const {
 	return *data;
 }
 
-DistributionSampleArrayMetricState::DistributionSampleArrayMetricState(const CDM::DistributionSampleArrayMetricState & object) : data(new CDM::DistributionSampleArrayMetricState(object)) {
+DistributionSampleArrayMetricState::DistributionSampleArrayMetricState(const CDM::DistributionSampleArrayMetricState & object)
+: data(new CDM::DistributionSampleArrayMetricState(object))
+{ }
 
-}
-
-DistributionSampleArrayMetricState::DistributionSampleArrayMetricState(const DistributionSampleArrayMetricState & object) : data(new CDM::DistributionSampleArrayMetricState(*object.data)) {
-
-}
-
-DistributionSampleArrayMetricState::~DistributionSampleArrayMetricState() {
-
-}
+DistributionSampleArrayMetricState::DistributionSampleArrayMetricState(const DistributionSampleArrayMetricState & object)
+: data(std::make_shared<CDM::DistributionSampleArrayMetricState>(*object.data))
+{ }
 
 void DistributionSampleArrayMetricState::copyFrom(const DistributionSampleArrayMetricState & object) {
-	data = std::shared_ptr<CDM::DistributionSampleArrayMetricState>( new CDM::DistributionSampleArrayMetricState(*object.data));
+	data = std::make_shared<CDM::DistributionSampleArrayMetricState>(*object.data);
 }
 
-DistributionSampleArrayMetricState & DistributionSampleArrayMetricState:: operator=(const DistributionSampleArrayMetricState & object) {
+DistributionSampleArrayMetricState & DistributionSampleArrayMetricState:: operator=(const DistributionSampleArrayMetricState& object) {
 	copyFrom(object);
 	return *this;
 }

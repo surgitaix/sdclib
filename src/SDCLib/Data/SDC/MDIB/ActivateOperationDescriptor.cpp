@@ -52,29 +52,26 @@ ActivateOperationDescriptor::ActivateOperationDescriptor(
 		handle
 		,
 		operationtarget
-)) {}
+))
+{}
 
 ActivateOperationDescriptor::operator CDM::ActivateOperationDescriptor() const {
 	return *data;
 }
 
-ActivateOperationDescriptor::ActivateOperationDescriptor(const CDM::ActivateOperationDescriptor & object) : data(new CDM::ActivateOperationDescriptor(object)) {
+ActivateOperationDescriptor::ActivateOperationDescriptor(const CDM::ActivateOperationDescriptor & object)
+: data(new CDM::ActivateOperationDescriptor(object))
+{ }
 
-}
-
-ActivateOperationDescriptor::ActivateOperationDescriptor(const ActivateOperationDescriptor & object) : data(new CDM::ActivateOperationDescriptor(*object.data)) {
-
-}
-
-ActivateOperationDescriptor::~ActivateOperationDescriptor() {
-
-}
+ActivateOperationDescriptor::ActivateOperationDescriptor(const ActivateOperationDescriptor & object)
+: data(std::make_shared<CDM::ActivateOperationDescriptor>(*object.data))
+{ }
 
 void ActivateOperationDescriptor::copyFrom(const ActivateOperationDescriptor & object) {
-	data = std::shared_ptr<CDM::ActivateOperationDescriptor>( new CDM::ActivateOperationDescriptor(*object.data));
+	data = std::make_shared<CDM::ActivateOperationDescriptor>(*object.data);
 }
 
-ActivateOperationDescriptor & ActivateOperationDescriptor:: operator=(const ActivateOperationDescriptor & object) {
+ActivateOperationDescriptor & ActivateOperationDescriptor:: operator=(const ActivateOperationDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

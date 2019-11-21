@@ -75,9 +75,9 @@ namespace OSELib
 
 			private:
 
-				void onMulticastSocketReadable(Poco::Net::ReadableNotification * p_notification);
-				void onDatagrammSocketReadable(Poco::Net::ReadableNotification * p_notification);
-				void onDatagrammSocketWritable(Poco::Net::WritableNotification * p_notification) ;
+				void onMulticastSocketReadable(Poco::Net::ReadableNotification* p_notification);
+				void onDatagrammSocketReadable(Poco::Net::ReadableNotification* p_notification);
+				void onDatagrammSocketWritable(Poco::Net::WritableNotification* p_notification);
 
 
 				bool verifyBye(const MESSAGEMODEL::Envelope & p_message);

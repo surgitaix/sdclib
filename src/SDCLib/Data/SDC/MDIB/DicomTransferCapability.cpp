@@ -50,29 +50,26 @@ DicomTransferCapability::DicomTransferCapability(
 		sopclass
 		,
 		transferrole
-)) {}
+))
+{}
 
 DicomTransferCapability::operator CDM::DicomTransferCapability() const {
 	return *data;
 }
 
-DicomTransferCapability::DicomTransferCapability(const CDM::DicomTransferCapability & object) : data(new CDM::DicomTransferCapability(object)) {
+DicomTransferCapability::DicomTransferCapability(const CDM::DicomTransferCapability & object)
+: data(new CDM::DicomTransferCapability(object))
+{ }
 
-}
-
-DicomTransferCapability::DicomTransferCapability(const DicomTransferCapability & object) : data(new CDM::DicomTransferCapability(*object.data)) {
-
-}
-
-DicomTransferCapability::~DicomTransferCapability() {
-
-}
+DicomTransferCapability::DicomTransferCapability(const DicomTransferCapability & object)
+: data(std::make_shared<CDM::DicomTransferCapability>(*object.data))
+{ }
 
 void DicomTransferCapability::copyFrom(const DicomTransferCapability & object) {
-	data = std::shared_ptr<CDM::DicomTransferCapability>( new CDM::DicomTransferCapability(*object.data));
+	data = std::make_shared<CDM::DicomTransferCapability>(*object.data);
 }
 
-DicomTransferCapability & DicomTransferCapability:: operator=(const DicomTransferCapability & object) {
+DicomTransferCapability & DicomTransferCapability:: operator=(const DicomTransferCapability& object) {
 	copyFrom(object);
 	return *this;
 }

@@ -47,29 +47,26 @@ Annotation::Annotation(
 		CodedValue type
 ) : data(Defaults::AnnotationInit(
 		type
-)) {}
+))
+{}
 
 Annotation::operator CDM::Annotation() const {
 	return *data;
 }
 
-Annotation::Annotation(const CDM::Annotation & object) : data(new CDM::Annotation(object)) {
+Annotation::Annotation(const CDM::Annotation & object)
+: data(new CDM::Annotation(object))
+{ }
 
-}
-
-Annotation::Annotation(const Annotation & object) : data(new CDM::Annotation(*object.data)) {
-
-}
-
-Annotation::~Annotation() {
-
-}
+Annotation::Annotation(const Annotation & object)
+: data(std::make_shared<CDM::Annotation>(*object.data))
+{ }
 
 void Annotation::copyFrom(const Annotation & object) {
-	data = std::shared_ptr<CDM::Annotation>( new CDM::Annotation(*object.data));
+	data = std::make_shared<CDM::Annotation>(*object.data);
 }
 
-Annotation & Annotation:: operator=(const Annotation & object) {
+Annotation & Annotation:: operator=(const Annotation& object) {
 	copyFrom(object);
 	return *this;
 }

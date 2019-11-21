@@ -49,29 +49,26 @@ MdsState::MdsState(
 		HandleRef descriptorhandle
 ) : data(Defaults::MdsStateInit(
 		descriptorhandle
-)) {}
+))
+{}
 
 MdsState::operator CDM::MdsState() const {
 	return *data;
 }
 
-MdsState::MdsState(const CDM::MdsState & object) : data(new CDM::MdsState(object)) {
+MdsState::MdsState(const CDM::MdsState & object)
+: data(new CDM::MdsState(object))
+{ }
 
-}
-
-MdsState::MdsState(const MdsState & object) : data(new CDM::MdsState(*object.data)) {
-
-}
-
-MdsState::~MdsState() {
-
-}
+MdsState::MdsState(const MdsState & object)
+: data(std::make_shared<CDM::MdsState>(*object.data))
+{ }
 
 void MdsState::copyFrom(const MdsState & object) {
-	data = std::shared_ptr<CDM::MdsState>( new CDM::MdsState(*object.data));
+	data = std::make_shared<CDM::MdsState>(*object.data);
 }
 
-MdsState & MdsState:: operator=(const MdsState & object) {
+MdsState & MdsState:: operator=(const MdsState& object) {
 	copyFrom(object);
 	return *this;
 }

@@ -50,29 +50,26 @@ ApplyAnnotation::ApplyAnnotation(
 		annotationindex
 		,
 		sampleindex
-)) {}
+))
+{}
 
 ApplyAnnotation::operator CDM::ApplyAnnotation() const {
 	return *data;
 }
 
-ApplyAnnotation::ApplyAnnotation(const CDM::ApplyAnnotation & object) : data(new CDM::ApplyAnnotation(object)) {
+ApplyAnnotation::ApplyAnnotation(const CDM::ApplyAnnotation & object)
+: data(new CDM::ApplyAnnotation(object))
+{ }
 
-}
-
-ApplyAnnotation::ApplyAnnotation(const ApplyAnnotation & object) : data(new CDM::ApplyAnnotation(*object.data)) {
-
-}
-
-ApplyAnnotation::~ApplyAnnotation() {
-
-}
+ApplyAnnotation::ApplyAnnotation(const ApplyAnnotation & object)
+: data(std::make_shared<CDM::ApplyAnnotation>(*object.data))
+{ }
 
 void ApplyAnnotation::copyFrom(const ApplyAnnotation & object) {
-	data = std::shared_ptr<CDM::ApplyAnnotation>( new CDM::ApplyAnnotation(*object.data));
+	data = std::make_shared<CDM::ApplyAnnotation>(*object.data);
 }
 
-ApplyAnnotation & ApplyAnnotation:: operator=(const ApplyAnnotation & object) {
+ApplyAnnotation & ApplyAnnotation:: operator=(const ApplyAnnotation& object) {
 	copyFrom(object);
 	return *this;
 }

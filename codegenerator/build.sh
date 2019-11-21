@@ -26,9 +26,11 @@ yes | cp -f $SRC_DIR/OperatingJurisdiction.cpp $BACKUP_SRC
 yes | cp -f $SRC_DIR/OperationGroup.cpp $BACKUP_SRC
 yes | cp -f $SRC_DIR/ScoState.cpp $BACKUP_SRC
 yes | cp -f $SRC_DIR/Relation.cpp $BACKUP_SRC
+yes | cp -f $SRC_DIR/LocalizedText.cpp $BACKUP_SRC
 # ...
 # Header Files
 yes | cp -f $INCLUDE_DIR/ConvertToCDM.h $BACKUP_INCLUDE
+yes | cp -f $INCLUDE_DIR/LocalizedText.h $BACKUP_INCLUDE
 # ...
 
 # MAIN GENERATION PROCESS

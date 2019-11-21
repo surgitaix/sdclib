@@ -45,29 +45,26 @@ namespace SDC {
 
 PhysicalConnectorInfo::PhysicalConnectorInfo(
 ) : data(Defaults::PhysicalConnectorInfoInit(
-)) {}
+))
+{}
 
 PhysicalConnectorInfo::operator CDM::PhysicalConnectorInfo() const {
 	return *data;
 }
 
-PhysicalConnectorInfo::PhysicalConnectorInfo(const CDM::PhysicalConnectorInfo & object) : data(new CDM::PhysicalConnectorInfo(object)) {
+PhysicalConnectorInfo::PhysicalConnectorInfo(const CDM::PhysicalConnectorInfo & object)
+: data(new CDM::PhysicalConnectorInfo(object))
+{ }
 
-}
-
-PhysicalConnectorInfo::PhysicalConnectorInfo(const PhysicalConnectorInfo & object) : data(new CDM::PhysicalConnectorInfo(*object.data)) {
-
-}
-
-PhysicalConnectorInfo::~PhysicalConnectorInfo() {
-
-}
+PhysicalConnectorInfo::PhysicalConnectorInfo(const PhysicalConnectorInfo & object)
+: data(std::make_shared<CDM::PhysicalConnectorInfo>(*object.data))
+{ }
 
 void PhysicalConnectorInfo::copyFrom(const PhysicalConnectorInfo & object) {
-	data = std::shared_ptr<CDM::PhysicalConnectorInfo>( new CDM::PhysicalConnectorInfo(*object.data));
+	data = std::make_shared<CDM::PhysicalConnectorInfo>(*object.data);
 }
 
-PhysicalConnectorInfo & PhysicalConnectorInfo:: operator=(const PhysicalConnectorInfo & object) {
+PhysicalConnectorInfo & PhysicalConnectorInfo:: operator=(const PhysicalConnectorInfo& object) {
 	copyFrom(object);
 	return *this;
 }

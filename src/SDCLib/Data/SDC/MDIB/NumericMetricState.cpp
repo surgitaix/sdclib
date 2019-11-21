@@ -50,29 +50,26 @@ NumericMetricState::NumericMetricState(
 		HandleRef descriptorhandle
 ) : data(Defaults::NumericMetricStateInit(
 		descriptorhandle
-)) {}
+))
+{}
 
 NumericMetricState::operator CDM::NumericMetricState() const {
 	return *data;
 }
 
-NumericMetricState::NumericMetricState(const CDM::NumericMetricState & object) : data(new CDM::NumericMetricState(object)) {
+NumericMetricState::NumericMetricState(const CDM::NumericMetricState & object)
+: data(new CDM::NumericMetricState(object))
+{ }
 
-}
-
-NumericMetricState::NumericMetricState(const NumericMetricState & object) : data(new CDM::NumericMetricState(*object.data)) {
-
-}
-
-NumericMetricState::~NumericMetricState() {
-
-}
+NumericMetricState::NumericMetricState(const NumericMetricState & object)
+: data(std::make_shared<CDM::NumericMetricState>(*object.data))
+{ }
 
 void NumericMetricState::copyFrom(const NumericMetricState & object) {
-	data = std::shared_ptr<CDM::NumericMetricState>( new CDM::NumericMetricState(*object.data));
+	data = std::make_shared<CDM::NumericMetricState>(*object.data);
 }
 
-NumericMetricState & NumericMetricState:: operator=(const NumericMetricState & object) {
+NumericMetricState & NumericMetricState:: operator=(const NumericMetricState& object) {
 	copyFrom(object);
 	return *this;
 }

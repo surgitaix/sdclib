@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class MdState {
+class MdState
+{
 private:
 	MdState(const CDM::MdState & object);
 	operator CDM::MdState() const;
@@ -52,11 +53,11 @@ private:
 public:
 	MdState(
 	);
-	MdState(const MdState & object);
-	virtual ~MdState();
+	MdState(const MdState& object);
+	virtual ~MdState() = default;
 
-    void copyFrom(const MdState & object);
-    MdState & operator=(const MdState & object);
+    void copyFrom(const MdState& object);
+    MdState & operator=(const MdState& object);
 
     typedef CDM::MdState WrappedType;
 
@@ -144,7 +145,7 @@ private:
     template <class WrapperStateDescriptorType>
     std::vector<WrapperStateDescriptorType> findStatesImpl() const;
 private:
-	std::shared_ptr<CDM::MdState> data;
+	std::shared_ptr<CDM::MdState> data = nullptr;
 };
 
 } /* namespace SDC */

@@ -58,20 +58,16 @@ Relation::operator CDM::Relation() const {
 	return *data;
 }
 
-Relation::Relation(const CDM::Relation & object) : data(new CDM::Relation(object)) {
+Relation::Relation(const CDM::Relation & object)
+: data(new CDM::Relation(object))
+{ }
 
-}
-
-Relation::Relation(const Relation & object) : data(new CDM::Relation(*object.data)) {
-
-}
-
-Relation::~Relation() {
-
-}
+Relation::Relation(const Relation & object)
+: data(new CDM::Relation(*object.data))
+{ }
 
 void Relation::copyFrom(const Relation & object) {
-	data = std::shared_ptr<CDM::Relation>( new CDM::Relation(*object.data));
+	data = std::make_shared<CDM::Relation>(*object.data);
 }
 
 Relation & Relation:: operator=(const Relation & object) {

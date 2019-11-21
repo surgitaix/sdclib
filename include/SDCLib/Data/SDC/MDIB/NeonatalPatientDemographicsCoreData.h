@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class NeonatalPatientDemographicsCoreData {
+class NeonatalPatientDemographicsCoreData
+{
 private:
 	NeonatalPatientDemographicsCoreData(const CDM::NeonatalPatientDemographicsCoreData & object);
 	operator CDM::NeonatalPatientDemographicsCoreData() const;
@@ -53,11 +54,11 @@ private:
 public:
 	NeonatalPatientDemographicsCoreData(
 	);
-	NeonatalPatientDemographicsCoreData(const NeonatalPatientDemographicsCoreData & object);
-	virtual ~NeonatalPatientDemographicsCoreData();
+	NeonatalPatientDemographicsCoreData(const NeonatalPatientDemographicsCoreData& object);
+	virtual ~NeonatalPatientDemographicsCoreData() = default;
 
-    void copyFrom(const NeonatalPatientDemographicsCoreData & object);
-    NeonatalPatientDemographicsCoreData & operator=(const NeonatalPatientDemographicsCoreData & object);
+    void copyFrom(const NeonatalPatientDemographicsCoreData& object);
+    NeonatalPatientDemographicsCoreData & operator=(const NeonatalPatientDemographicsCoreData& object);
 
     typedef CDM::NeonatalPatientDemographicsCoreData WrappedType;
 
@@ -141,7 +142,7 @@ public:
 	bool hasMother() const;
 
 private:
-	std::shared_ptr<CDM::NeonatalPatientDemographicsCoreData> data;
+	std::shared_ptr<CDM::NeonatalPatientDemographicsCoreData> data = nullptr;
 };
 
 } /* namespace SDC */

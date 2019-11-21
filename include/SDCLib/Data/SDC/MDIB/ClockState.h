@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class ClockState {
+class ClockState
+{
 private:
 	ClockState(const CDM::ClockState & object);
 	operator CDM::ClockState() const;
@@ -59,11 +60,11 @@ public:
 private:
 	ClockState(){};
 public:
-	ClockState(const ClockState & object);
-	virtual ~ClockState();
+	ClockState(const ClockState& object);
+	virtual ~ClockState() = default;
 
-    void copyFrom(const ClockState & object);
-    ClockState & operator=(const ClockState & object);
+    void copyFrom(const ClockState& object);
+    ClockState & operator=(const ClockState& object);
 
     typedef CDM::ClockState WrappedType;
     typedef ClockDescriptor DescriptorType;
@@ -149,7 +150,7 @@ public:
 	void clearReferenceSourceList();
 
 private:
-	std::shared_ptr<CDM::ClockState> data;
+	std::shared_ptr<CDM::ClockState> data = nullptr;
 };
 
 } /* namespace SDC */

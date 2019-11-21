@@ -48,29 +48,26 @@ CodedValue::CodedValue(
 		CodeIdentifier code
 ) : data(Defaults::CodedValueInit(
 		code
-)) {}
+))
+{}
 
 CodedValue::operator CDM::CodedValue() const {
 	return *data;
 }
 
-CodedValue::CodedValue(const CDM::CodedValue & object) : data(new CDM::CodedValue(object)) {
+CodedValue::CodedValue(const CDM::CodedValue & object)
+: data(new CDM::CodedValue(object))
+{ }
 
-}
-
-CodedValue::CodedValue(const CodedValue & object) : data(new CDM::CodedValue(*object.data)) {
-
-}
-
-CodedValue::~CodedValue() {
-
-}
+CodedValue::CodedValue(const CodedValue & object)
+: data(std::make_shared<CDM::CodedValue>(*object.data))
+{ }
 
 void CodedValue::copyFrom(const CodedValue & object) {
-	data = std::shared_ptr<CDM::CodedValue>( new CDM::CodedValue(*object.data));
+	data = std::make_shared<CDM::CodedValue>(*object.data);
 }
 
-CodedValue & CodedValue:: operator=(const CodedValue & object) {
+CodedValue & CodedValue:: operator=(const CodedValue& object) {
 	copyFrom(object);
 	return *this;
 }

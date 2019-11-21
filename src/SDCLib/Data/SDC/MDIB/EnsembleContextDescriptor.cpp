@@ -47,29 +47,26 @@ EnsembleContextDescriptor::EnsembleContextDescriptor(
 		Handle handle
 ) : data(Defaults::EnsembleContextDescriptorInit(
 		handle
-)) {}
+))
+{}
 
 EnsembleContextDescriptor::operator CDM::EnsembleContextDescriptor() const {
 	return *data;
 }
 
-EnsembleContextDescriptor::EnsembleContextDescriptor(const CDM::EnsembleContextDescriptor & object) : data(new CDM::EnsembleContextDescriptor(object)) {
+EnsembleContextDescriptor::EnsembleContextDescriptor(const CDM::EnsembleContextDescriptor & object)
+: data(new CDM::EnsembleContextDescriptor(object))
+{ }
 
-}
-
-EnsembleContextDescriptor::EnsembleContextDescriptor(const EnsembleContextDescriptor & object) : data(new CDM::EnsembleContextDescriptor(*object.data)) {
-
-}
-
-EnsembleContextDescriptor::~EnsembleContextDescriptor() {
-
-}
+EnsembleContextDescriptor::EnsembleContextDescriptor(const EnsembleContextDescriptor & object)
+: data(std::make_shared<CDM::EnsembleContextDescriptor>(*object.data))
+{ }
 
 void EnsembleContextDescriptor::copyFrom(const EnsembleContextDescriptor & object) {
-	data = std::shared_ptr<CDM::EnsembleContextDescriptor>( new CDM::EnsembleContextDescriptor(*object.data));
+	data = std::make_shared<CDM::EnsembleContextDescriptor>(*object.data);
 }
 
-EnsembleContextDescriptor & EnsembleContextDescriptor:: operator=(const EnsembleContextDescriptor & object) {
+EnsembleContextDescriptor & EnsembleContextDescriptor:: operator=(const EnsembleContextDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

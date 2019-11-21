@@ -49,29 +49,26 @@ AlertSystemDescriptor::AlertSystemDescriptor(
 		Handle handle
 ) : data(Defaults::AlertSystemDescriptorInit(
 		handle
-)) {}
+))
+{}
 
 AlertSystemDescriptor::operator CDM::AlertSystemDescriptor() const {
 	return *data;
 }
 
-AlertSystemDescriptor::AlertSystemDescriptor(const CDM::AlertSystemDescriptor & object) : data(new CDM::AlertSystemDescriptor(object)) {
+AlertSystemDescriptor::AlertSystemDescriptor(const CDM::AlertSystemDescriptor & object)
+: data(new CDM::AlertSystemDescriptor(object))
+{ }
 
-}
-
-AlertSystemDescriptor::AlertSystemDescriptor(const AlertSystemDescriptor & object) : data(new CDM::AlertSystemDescriptor(*object.data)) {
-
-}
-
-AlertSystemDescriptor::~AlertSystemDescriptor() {
-
-}
+AlertSystemDescriptor::AlertSystemDescriptor(const AlertSystemDescriptor & object)
+: data(std::make_shared<CDM::AlertSystemDescriptor>(*object.data))
+{ }
 
 void AlertSystemDescriptor::copyFrom(const AlertSystemDescriptor & object) {
-	data = std::shared_ptr<CDM::AlertSystemDescriptor>( new CDM::AlertSystemDescriptor(*object.data));
+	data = std::make_shared<CDM::AlertSystemDescriptor>(*object.data);
 }
 
-AlertSystemDescriptor & AlertSystemDescriptor:: operator=(const AlertSystemDescriptor & object) {
+AlertSystemDescriptor & AlertSystemDescriptor:: operator=(const AlertSystemDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

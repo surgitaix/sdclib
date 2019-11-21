@@ -268,7 +268,7 @@ void DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable(Poco::Net::Readabl
     Poco::Net::SocketAddress t_sender;
     Poco::Buffer<char> t_peekBuf(1);
     t_socket.receiveFrom(t_peekBuf.begin(), 1, t_sender, MSG_PEEK);
-    if (m_networkConfig->isBound() && !m_networkConfig->belongsTo(t_sender.host())) {
+    if (m_networkConfig->isBound() && !m_networkConfig->belongsTo(t_sender.host(), false)) {
         return;
     }
 

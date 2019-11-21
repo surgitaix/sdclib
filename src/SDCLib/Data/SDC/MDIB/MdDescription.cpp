@@ -45,29 +45,26 @@ namespace SDC {
 
 MdDescription::MdDescription(
 ) : data(Defaults::MdDescriptionInit(
-)) {}
+))
+{}
 
 MdDescription::operator CDM::MdDescription() const {
 	return *data;
 }
 
-MdDescription::MdDescription(const CDM::MdDescription & object) : data(new CDM::MdDescription(object)) {
+MdDescription::MdDescription(const CDM::MdDescription & object)
+: data(new CDM::MdDescription(object))
+{ }
 
-}
-
-MdDescription::MdDescription(const MdDescription & object) : data(new CDM::MdDescription(*object.data)) {
-
-}
-
-MdDescription::~MdDescription() {
-
-}
+MdDescription::MdDescription(const MdDescription & object)
+: data(std::make_shared<CDM::MdDescription>(*object.data))
+{ }
 
 void MdDescription::copyFrom(const MdDescription & object) {
-	data = std::shared_ptr<CDM::MdDescription>( new CDM::MdDescription(*object.data));
+	data = std::make_shared<CDM::MdDescription>(*object.data);
 }
 
-MdDescription & MdDescription:: operator=(const MdDescription & object) {
+MdDescription & MdDescription:: operator=(const MdDescription& object) {
 	copyFrom(object);
 	return *this;
 }

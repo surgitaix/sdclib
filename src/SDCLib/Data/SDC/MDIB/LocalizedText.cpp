@@ -44,29 +44,31 @@ namespace SDC {
 
 LocalizedText::LocalizedText(
 ) : data(Defaults::LocalizedTextInit(
-)) {}
+))
+{}
+
+LocalizedText::LocalizedText(std::string p_text)
+: data(std::make_shared<CDM::LocalizedText>(p_text))
+{ }
+
 
 LocalizedText::operator CDM::LocalizedText() const {
 	return *data;
 }
 
-LocalizedText::LocalizedText(const CDM::LocalizedText & object) : data(new CDM::LocalizedText(object)) {
+LocalizedText::LocalizedText(const CDM::LocalizedText & object)
+: data(new CDM::LocalizedText(object))
+{ }
 
-}
-
-LocalizedText::LocalizedText(const LocalizedText & object) : data(new CDM::LocalizedText(*object.data)) {
-
-}
-
-LocalizedText::~LocalizedText() {
-
-}
+LocalizedText::LocalizedText(const LocalizedText & object)
+: data(std::make_shared<CDM::LocalizedText>(*object.data))
+{ }
 
 void LocalizedText::copyFrom(const LocalizedText & object) {
-	data = std::shared_ptr<CDM::LocalizedText>( new CDM::LocalizedText(*object.data));
+	data = std::make_shared<CDM::LocalizedText>(*object.data);
 }
 
-LocalizedText & LocalizedText:: operator=(const LocalizedText & object) {
+LocalizedText & LocalizedText:: operator=(const LocalizedText& object) {
 	copyFrom(object);
 	return *this;
 }
@@ -156,6 +158,21 @@ bool LocalizedText::hasTextWidth() const {
 	return data->TextWidth().present();
 }
 
+LocalizedText& LocalizedText::setText(std::string p_text)
+{
+	data = std::make_shared<CDM::LocalizedText>(p_text);
+	return *this;
+}
+
+std::string LocalizedText::getText() const
+{
+	// Localized Text inherits from std::string
+	// -> cast to base and return data
+	if(nullptr == data) {
+		return std::string();
+	}
+	return static_cast<std::string>(*data);
+}
 
 } /* namespace SDC */
 } /* namespace Data */

@@ -42,30 +42,24 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-OperationGroup::OperationGroup(
-		CodedValue type
-) : data(Defaults::OperationGroupInit(
-		type
-)) {}
+OperationGroup::OperationGroup(CodedValue type)
+: data(Defaults::OperationGroupInit(type))
+{ }
 
 OperationGroup::operator CDM::OperationGroup() const {
 	return *data;
 }
 
-OperationGroup::OperationGroup(const CDM::OperationGroup & object) : data(new CDM::OperationGroup(object)) {
+OperationGroup::OperationGroup(const CDM::OperationGroup & object)
+: data(new CDM::OperationGroup(object))
+{ }
 
-}
-
-OperationGroup::OperationGroup(const OperationGroup & object) : data(new CDM::OperationGroup(*object.data)) {
-
-}
-
-OperationGroup::~OperationGroup() {
-
-}
+OperationGroup::OperationGroup(const OperationGroup & object)
+: data(new CDM::OperationGroup(*object.data))
+{ }
 
 void OperationGroup::copyFrom(const OperationGroup & object) {
-	data = std::shared_ptr<CDM::OperationGroup>( new CDM::OperationGroup(*object.data));
+	data = std::make_shared<CDM::OperationGroup>(*object.data);
 }
 
 OperationGroup & OperationGroup:: operator=(const OperationGroup & object) {

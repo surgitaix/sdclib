@@ -56,29 +56,26 @@ MdsDescriptor::MdsDescriptor(
 		Handle handle
 ) : data(Defaults::MdsDescriptorInit(
 		handle
-)) {}
+))
+{}
 
 MdsDescriptor::operator CDM::MdsDescriptor() const {
 	return *data;
 }
 
-MdsDescriptor::MdsDescriptor(const CDM::MdsDescriptor & object) : data(new CDM::MdsDescriptor(object)) {
+MdsDescriptor::MdsDescriptor(const CDM::MdsDescriptor & object)
+: data(new CDM::MdsDescriptor(object))
+{ }
 
-}
-
-MdsDescriptor::MdsDescriptor(const MdsDescriptor & object) : data(new CDM::MdsDescriptor(*object.data)) {
-
-}
-
-MdsDescriptor::~MdsDescriptor() {
-
-}
+MdsDescriptor::MdsDescriptor(const MdsDescriptor & object)
+: data(std::make_shared<CDM::MdsDescriptor>(*object.data))
+{ }
 
 void MdsDescriptor::copyFrom(const MdsDescriptor & object) {
-	data = std::shared_ptr<CDM::MdsDescriptor>( new CDM::MdsDescriptor(*object.data));
+	data = std::make_shared<CDM::MdsDescriptor>(*object.data);
 }
 
-MdsDescriptor & MdsDescriptor:: operator=(const MdsDescriptor & object) {
+MdsDescriptor & MdsDescriptor:: operator=(const MdsDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

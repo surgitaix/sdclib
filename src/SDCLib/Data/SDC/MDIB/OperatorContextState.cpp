@@ -53,29 +53,26 @@ OperatorContextState::OperatorContextState(
 		descriptorhandle
 		,
 		handle
-)) {}
+))
+{}
 
 OperatorContextState::operator CDM::OperatorContextState() const {
 	return *data;
 }
 
-OperatorContextState::OperatorContextState(const CDM::OperatorContextState & object) : data(new CDM::OperatorContextState(object)) {
+OperatorContextState::OperatorContextState(const CDM::OperatorContextState & object)
+: data(new CDM::OperatorContextState(object))
+{ }
 
-}
-
-OperatorContextState::OperatorContextState(const OperatorContextState & object) : data(new CDM::OperatorContextState(*object.data)) {
-
-}
-
-OperatorContextState::~OperatorContextState() {
-
-}
+OperatorContextState::OperatorContextState(const OperatorContextState & object)
+: data(std::make_shared<CDM::OperatorContextState>(*object.data))
+{ }
 
 void OperatorContextState::copyFrom(const OperatorContextState & object) {
-	data = std::shared_ptr<CDM::OperatorContextState>( new CDM::OperatorContextState(*object.data));
+	data = std::make_shared<CDM::OperatorContextState>(*object.data);
 }
 
-OperatorContextState & OperatorContextState:: operator=(const OperatorContextState & object) {
+OperatorContextState & OperatorContextState:: operator=(const OperatorContextState& object) {
 	copyFrom(object);
 	return *this;
 }

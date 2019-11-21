@@ -53,29 +53,26 @@ ClockState::ClockState(
 		descriptorhandle
 		,
 		remotesync
-)) {}
+))
+{}
 
 ClockState::operator CDM::ClockState() const {
 	return *data;
 }
 
-ClockState::ClockState(const CDM::ClockState & object) : data(new CDM::ClockState(object)) {
+ClockState::ClockState(const CDM::ClockState & object)
+: data(new CDM::ClockState(object))
+{ }
 
-}
-
-ClockState::ClockState(const ClockState & object) : data(new CDM::ClockState(*object.data)) {
-
-}
-
-ClockState::~ClockState() {
-
-}
+ClockState::ClockState(const ClockState & object)
+: data(std::make_shared<CDM::ClockState>(*object.data))
+{ }
 
 void ClockState::copyFrom(const ClockState & object) {
-	data = std::shared_ptr<CDM::ClockState>( new CDM::ClockState(*object.data));
+	data = std::make_shared<CDM::ClockState>(*object.data);
 }
 
-ClockState & ClockState:: operator=(const ClockState & object) {
+ClockState & ClockState:: operator=(const ClockState& object) {
 	copyFrom(object);
 	return *this;
 }

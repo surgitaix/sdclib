@@ -47,29 +47,26 @@ namespace SDC {
 
 ClinicalInfo::ClinicalInfo(
 ) : data(Defaults::ClinicalInfoInit(
-)) {}
+))
+{}
 
 ClinicalInfo::operator CDM::ClinicalInfo() const {
 	return *data;
 }
 
-ClinicalInfo::ClinicalInfo(const CDM::ClinicalInfo & object) : data(new CDM::ClinicalInfo(object)) {
+ClinicalInfo::ClinicalInfo(const CDM::ClinicalInfo & object)
+: data(new CDM::ClinicalInfo(object))
+{ }
 
-}
-
-ClinicalInfo::ClinicalInfo(const ClinicalInfo & object) : data(new CDM::ClinicalInfo(*object.data)) {
-
-}
-
-ClinicalInfo::~ClinicalInfo() {
-
-}
+ClinicalInfo::ClinicalInfo(const ClinicalInfo & object)
+: data(std::make_shared<CDM::ClinicalInfo>(*object.data))
+{ }
 
 void ClinicalInfo::copyFrom(const ClinicalInfo & object) {
-	data = std::shared_ptr<CDM::ClinicalInfo>( new CDM::ClinicalInfo(*object.data));
+	data = std::make_shared<CDM::ClinicalInfo>(*object.data);
 }
 
-ClinicalInfo & ClinicalInfo:: operator=(const ClinicalInfo & object) {
+ClinicalInfo & ClinicalInfo:: operator=(const ClinicalInfo& object) {
 	copyFrom(object);
 	return *this;
 }

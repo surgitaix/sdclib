@@ -49,29 +49,26 @@ namespace SDC {
 
 PerformedOrderDetail::PerformedOrderDetail(
 ) : data(Defaults::PerformedOrderDetailInit(
-)) {}
+))
+{}
 
 PerformedOrderDetail::operator CDM::PerformedOrderDetail() const {
 	return *data;
 }
 
-PerformedOrderDetail::PerformedOrderDetail(const CDM::PerformedOrderDetail & object) : data(new CDM::PerformedOrderDetail(object)) {
+PerformedOrderDetail::PerformedOrderDetail(const CDM::PerformedOrderDetail & object)
+: data(new CDM::PerformedOrderDetail(object))
+{ }
 
-}
-
-PerformedOrderDetail::PerformedOrderDetail(const PerformedOrderDetail & object) : data(new CDM::PerformedOrderDetail(*object.data)) {
-
-}
-
-PerformedOrderDetail::~PerformedOrderDetail() {
-
-}
+PerformedOrderDetail::PerformedOrderDetail(const PerformedOrderDetail & object)
+: data(std::make_shared<CDM::PerformedOrderDetail>(*object.data))
+{ }
 
 void PerformedOrderDetail::copyFrom(const PerformedOrderDetail & object) {
-	data = std::shared_ptr<CDM::PerformedOrderDetail>( new CDM::PerformedOrderDetail(*object.data));
+	data = std::make_shared<CDM::PerformedOrderDetail>(*object.data);
 }
 
-PerformedOrderDetail & PerformedOrderDetail:: operator=(const PerformedOrderDetail & object) {
+PerformedOrderDetail & PerformedOrderDetail:: operator=(const PerformedOrderDetail& object) {
 	copyFrom(object);
 	return *this;
 }

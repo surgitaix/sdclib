@@ -60,29 +60,26 @@ DicomNetworkAe::DicomNetworkAe(
 		associationinitiator
 		,
 		associationacceptor
-)) {}
+))
+{}
 
 DicomNetworkAe::operator CDM::DicomNetworkAe() const {
 	return *data;
 }
 
-DicomNetworkAe::DicomNetworkAe(const CDM::DicomNetworkAe & object) : data(new CDM::DicomNetworkAe(object)) {
+DicomNetworkAe::DicomNetworkAe(const CDM::DicomNetworkAe & object)
+: data(new CDM::DicomNetworkAe(object))
+{ }
 
-}
-
-DicomNetworkAe::DicomNetworkAe(const DicomNetworkAe & object) : data(new CDM::DicomNetworkAe(*object.data)) {
-
-}
-
-DicomNetworkAe::~DicomNetworkAe() {
-
-}
+DicomNetworkAe::DicomNetworkAe(const DicomNetworkAe & object)
+: data(std::make_shared<CDM::DicomNetworkAe>(*object.data))
+{ }
 
 void DicomNetworkAe::copyFrom(const DicomNetworkAe & object) {
-	data = std::shared_ptr<CDM::DicomNetworkAe>( new CDM::DicomNetworkAe(*object.data));
+	data = std::make_shared<CDM::DicomNetworkAe>(*object.data);
 }
 
-DicomNetworkAe & DicomNetworkAe:: operator=(const DicomNetworkAe & object) {
+DicomNetworkAe & DicomNetworkAe:: operator=(const DicomNetworkAe& object) {
 	copyFrom(object);
 	return *this;
 }

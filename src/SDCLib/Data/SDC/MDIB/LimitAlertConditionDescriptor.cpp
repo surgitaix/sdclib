@@ -61,29 +61,26 @@ LimitAlertConditionDescriptor::LimitAlertConditionDescriptor(
 		priority
 		,
 		maxlimits
-)) {}
+))
+{}
 
 LimitAlertConditionDescriptor::operator CDM::LimitAlertConditionDescriptor() const {
 	return *data;
 }
 
-LimitAlertConditionDescriptor::LimitAlertConditionDescriptor(const CDM::LimitAlertConditionDescriptor & object) : data(new CDM::LimitAlertConditionDescriptor(object)) {
+LimitAlertConditionDescriptor::LimitAlertConditionDescriptor(const CDM::LimitAlertConditionDescriptor & object)
+: data(new CDM::LimitAlertConditionDescriptor(object))
+{ }
 
-}
-
-LimitAlertConditionDescriptor::LimitAlertConditionDescriptor(const LimitAlertConditionDescriptor & object) : data(new CDM::LimitAlertConditionDescriptor(*object.data)) {
-
-}
-
-LimitAlertConditionDescriptor::~LimitAlertConditionDescriptor() {
-
-}
+LimitAlertConditionDescriptor::LimitAlertConditionDescriptor(const LimitAlertConditionDescriptor & object)
+: data(std::make_shared<CDM::LimitAlertConditionDescriptor>(*object.data))
+{ }
 
 void LimitAlertConditionDescriptor::copyFrom(const LimitAlertConditionDescriptor & object) {
-	data = std::shared_ptr<CDM::LimitAlertConditionDescriptor>( new CDM::LimitAlertConditionDescriptor(*object.data));
+	data = std::make_shared<CDM::LimitAlertConditionDescriptor>(*object.data);
 }
 
-LimitAlertConditionDescriptor & LimitAlertConditionDescriptor:: operator=(const LimitAlertConditionDescriptor & object) {
+LimitAlertConditionDescriptor & LimitAlertConditionDescriptor:: operator=(const LimitAlertConditionDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

@@ -44,29 +44,26 @@ namespace SDC {
 
 BaseDemographics::BaseDemographics(
 ) : data(Defaults::BaseDemographicsInit(
-)) {}
+))
+{}
 
 BaseDemographics::operator CDM::BaseDemographics() const {
 	return *data;
 }
 
-BaseDemographics::BaseDemographics(const CDM::BaseDemographics & object) : data(new CDM::BaseDemographics(object)) {
+BaseDemographics::BaseDemographics(const CDM::BaseDemographics & object)
+: data(new CDM::BaseDemographics(object))
+{ }
 
-}
-
-BaseDemographics::BaseDemographics(const BaseDemographics & object) : data(new CDM::BaseDemographics(*object.data)) {
-
-}
-
-BaseDemographics::~BaseDemographics() {
-
-}
+BaseDemographics::BaseDemographics(const BaseDemographics & object)
+: data(std::make_shared<CDM::BaseDemographics>(*object.data))
+{ }
 
 void BaseDemographics::copyFrom(const BaseDemographics & object) {
-	data = std::shared_ptr<CDM::BaseDemographics>( new CDM::BaseDemographics(*object.data));
+	data = std::make_shared<CDM::BaseDemographics>(*object.data);
 }
 
-BaseDemographics & BaseDemographics:: operator=(const BaseDemographics & object) {
+BaseDemographics & BaseDemographics:: operator=(const BaseDemographics& object) {
 	copyFrom(object);
 	return *this;
 }

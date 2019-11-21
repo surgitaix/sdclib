@@ -48,29 +48,26 @@ RelatedMeasurement::RelatedMeasurement(
 		Measurement value
 ) : data(Defaults::RelatedMeasurementInit(
 		value
-)) {}
+))
+{}
 
 RelatedMeasurement::operator CDM::RelatedMeasurement() const {
 	return *data;
 }
 
-RelatedMeasurement::RelatedMeasurement(const CDM::RelatedMeasurement & object) : data(new CDM::RelatedMeasurement(object)) {
+RelatedMeasurement::RelatedMeasurement(const CDM::RelatedMeasurement & object)
+: data(new CDM::RelatedMeasurement(object))
+{ }
 
-}
-
-RelatedMeasurement::RelatedMeasurement(const RelatedMeasurement & object) : data(new CDM::RelatedMeasurement(*object.data)) {
-
-}
-
-RelatedMeasurement::~RelatedMeasurement() {
-
-}
+RelatedMeasurement::RelatedMeasurement(const RelatedMeasurement & object)
+: data(std::make_shared<CDM::RelatedMeasurement>(*object.data))
+{ }
 
 void RelatedMeasurement::copyFrom(const RelatedMeasurement & object) {
-	data = std::shared_ptr<CDM::RelatedMeasurement>( new CDM::RelatedMeasurement(*object.data));
+	data = std::make_shared<CDM::RelatedMeasurement>(*object.data);
 }
 
-RelatedMeasurement & RelatedMeasurement:: operator=(const RelatedMeasurement & object) {
+RelatedMeasurement & RelatedMeasurement:: operator=(const RelatedMeasurement& object) {
 	copyFrom(object);
 	return *this;
 }

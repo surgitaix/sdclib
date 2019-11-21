@@ -50,29 +50,26 @@ AlertSignalState::AlertSignalState(
 		descriptorhandle
 		,
 		activationstate
-)) {}
+))
+{}
 
 AlertSignalState::operator CDM::AlertSignalState() const {
 	return *data;
 }
 
-AlertSignalState::AlertSignalState(const CDM::AlertSignalState & object) : data(new CDM::AlertSignalState(object)) {
+AlertSignalState::AlertSignalState(const CDM::AlertSignalState & object)
+: data(new CDM::AlertSignalState(object))
+{ }
 
-}
-
-AlertSignalState::AlertSignalState(const AlertSignalState & object) : data(new CDM::AlertSignalState(*object.data)) {
-
-}
-
-AlertSignalState::~AlertSignalState() {
-
-}
+AlertSignalState::AlertSignalState(const AlertSignalState & object)
+: data(std::make_shared<CDM::AlertSignalState>(*object.data))
+{ }
 
 void AlertSignalState::copyFrom(const AlertSignalState & object) {
-	data = std::shared_ptr<CDM::AlertSignalState>( new CDM::AlertSignalState(*object.data));
+	data = std::make_shared<CDM::AlertSignalState>(*object.data);
 }
 
-AlertSignalState & AlertSignalState:: operator=(const AlertSignalState & object) {
+AlertSignalState & AlertSignalState:: operator=(const AlertSignalState& object) {
 	copyFrom(object);
 	return *this;
 }

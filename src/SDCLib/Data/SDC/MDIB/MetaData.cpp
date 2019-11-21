@@ -46,29 +46,26 @@ namespace SDC {
 
 MetaData::MetaData(
 ) : data(Defaults::MetaDataInit(
-)) {}
+))
+{}
 
 MetaData::operator CDM::MetaData() const {
 	return *data;
 }
 
-MetaData::MetaData(const CDM::MetaData & object) : data(new CDM::MetaData(object)) {
+MetaData::MetaData(const CDM::MetaData & object)
+: data(new CDM::MetaData(object))
+{ }
 
-}
-
-MetaData::MetaData(const MetaData & object) : data(new CDM::MetaData(*object.data)) {
-
-}
-
-MetaData::~MetaData() {
-
-}
+MetaData::MetaData(const MetaData & object)
+: data(std::make_shared<CDM::MetaData>(*object.data))
+{ }
 
 void MetaData::copyFrom(const MetaData & object) {
-	data = std::shared_ptr<CDM::MetaData>( new CDM::MetaData(*object.data));
+	data = std::make_shared<CDM::MetaData>(*object.data);
 }
 
-MetaData & MetaData:: operator=(const MetaData & object) {
+MetaData & MetaData:: operator=(const MetaData& object) {
 	copyFrom(object);
 	return *this;
 }

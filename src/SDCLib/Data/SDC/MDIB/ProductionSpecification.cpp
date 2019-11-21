@@ -52,29 +52,26 @@ ProductionSpecification::ProductionSpecification(
 		spectype
 		,
 		productionspec
-)) {}
+))
+{}
 
 ProductionSpecification::operator CDM::ProductionSpecification() const {
 	return *data;
 }
 
-ProductionSpecification::ProductionSpecification(const CDM::ProductionSpecification & object) : data(new CDM::ProductionSpecification(object)) {
+ProductionSpecification::ProductionSpecification(const CDM::ProductionSpecification & object)
+: data(new CDM::ProductionSpecification(object))
+{ }
 
-}
-
-ProductionSpecification::ProductionSpecification(const ProductionSpecification & object) : data(new CDM::ProductionSpecification(*object.data)) {
-
-}
-
-ProductionSpecification::~ProductionSpecification() {
-
-}
+ProductionSpecification::ProductionSpecification(const ProductionSpecification & object)
+: data(std::make_shared<CDM::ProductionSpecification>(*object.data))
+{ }
 
 void ProductionSpecification::copyFrom(const ProductionSpecification & object) {
-	data = std::shared_ptr<CDM::ProductionSpecification>( new CDM::ProductionSpecification(*object.data));
+	data = std::make_shared<CDM::ProductionSpecification>(*object.data);
 }
 
-ProductionSpecification & ProductionSpecification:: operator=(const ProductionSpecification & object) {
+ProductionSpecification & ProductionSpecification:: operator=(const ProductionSpecification& object) {
 	copyFrom(object);
 	return *this;
 }

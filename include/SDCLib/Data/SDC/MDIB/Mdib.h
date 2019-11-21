@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class Mdib {
+class Mdib
+{
 private:
 	Mdib(const CDM::Mdib & object);
 	operator CDM::Mdib() const;
@@ -53,11 +54,11 @@ private:
 public:
 	Mdib(
 	);
-	Mdib(const Mdib & object);
-	virtual ~Mdib();
+	Mdib(const Mdib& object);
+	virtual ~Mdib() = default;
 
-    void copyFrom(const Mdib & object);
-    Mdib & operator=(const Mdib & object);
+    void copyFrom(const Mdib& object);
+    Mdib & operator=(const Mdib& object);
 
     typedef CDM::Mdib WrappedType;
 
@@ -72,7 +73,7 @@ public:
 	bool hasMdState() const;
 
 private:
-	std::shared_ptr<CDM::Mdib> data;
+	std::shared_ptr<CDM::Mdib> data = nullptr;
 };
 
 } /* namespace SDC */

@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class RemedyInfo {
+class RemedyInfo
+{
 private:
 	RemedyInfo(const CDM::RemedyInfo & object);
 	operator CDM::RemedyInfo() const;
@@ -53,11 +54,11 @@ private:
 public:
 	RemedyInfo(
 	);
-	RemedyInfo(const RemedyInfo & object);
-	virtual ~RemedyInfo();
+	RemedyInfo(const RemedyInfo& object);
+	virtual ~RemedyInfo() = default;
 
-    void copyFrom(const RemedyInfo & object);
-    RemedyInfo & operator=(const RemedyInfo & object);
+    void copyFrom(const RemedyInfo& object);
+    RemedyInfo & operator=(const RemedyInfo& object);
 
     typedef CDM::RemedyInfo WrappedType;
 
@@ -66,7 +67,7 @@ public:
 	void clearDescriptionList();
 
 private:
-	std::shared_ptr<CDM::RemedyInfo> data;
+	std::shared_ptr<CDM::RemedyInfo> data = nullptr;
 };
 
 } /* namespace SDC */

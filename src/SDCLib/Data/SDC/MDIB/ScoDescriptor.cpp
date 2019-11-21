@@ -48,29 +48,26 @@ ScoDescriptor::ScoDescriptor(
 		Handle handle
 ) : data(Defaults::ScoDescriptorInit(
 		handle
-)) {}
+))
+{}
 
 ScoDescriptor::operator CDM::ScoDescriptor() const {
 	return *data;
 }
 
-ScoDescriptor::ScoDescriptor(const CDM::ScoDescriptor & object) : data(new CDM::ScoDescriptor(object)) {
+ScoDescriptor::ScoDescriptor(const CDM::ScoDescriptor & object)
+: data(new CDM::ScoDescriptor(object))
+{ }
 
-}
-
-ScoDescriptor::ScoDescriptor(const ScoDescriptor & object) : data(new CDM::ScoDescriptor(*object.data)) {
-
-}
-
-ScoDescriptor::~ScoDescriptor() {
-
-}
+ScoDescriptor::ScoDescriptor(const ScoDescriptor & object)
+: data(std::make_shared<CDM::ScoDescriptor>(*object.data))
+{ }
 
 void ScoDescriptor::copyFrom(const ScoDescriptor & object) {
-	data = std::shared_ptr<CDM::ScoDescriptor>( new CDM::ScoDescriptor(*object.data));
+	data = std::make_shared<CDM::ScoDescriptor>(*object.data);
 }
 
-ScoDescriptor & ScoDescriptor:: operator=(const ScoDescriptor & object) {
+ScoDescriptor & ScoDescriptor:: operator=(const ScoDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

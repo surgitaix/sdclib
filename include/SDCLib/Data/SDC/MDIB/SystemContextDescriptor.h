@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class SystemContextDescriptor {
+class SystemContextDescriptor
+{
 private:
 	SystemContextDescriptor(const CDM::SystemContextDescriptor & object);
 	operator CDM::SystemContextDescriptor() const;
@@ -57,11 +58,11 @@ public:
 private:
 	SystemContextDescriptor(){};
 public:
-	SystemContextDescriptor(const SystemContextDescriptor & object);
-	virtual ~SystemContextDescriptor();
+	SystemContextDescriptor(const SystemContextDescriptor& object);
+	virtual ~SystemContextDescriptor() = default;
 
-    void copyFrom(const SystemContextDescriptor & object);
-    SystemContextDescriptor & operator=(const SystemContextDescriptor & object);
+    void copyFrom(const SystemContextDescriptor& object);
+    SystemContextDescriptor & operator=(const SystemContextDescriptor& object);
 
     typedef CDM::SystemContextDescriptor WrappedType;
 
@@ -114,7 +115,7 @@ public:
 	void clearMeansContextList();
 
 private:
-	std::shared_ptr<CDM::SystemContextDescriptor> data;
+	std::shared_ptr<CDM::SystemContextDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

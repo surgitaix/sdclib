@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class ApplyAnnotation {
+class ApplyAnnotation
+{
 private:
 	ApplyAnnotation(const CDM::ApplyAnnotation & object);
 	operator CDM::ApplyAnnotation() const;
@@ -59,11 +60,11 @@ public:
 private:
 	ApplyAnnotation(){};
 public:
-	ApplyAnnotation(const ApplyAnnotation & object);
-	virtual ~ApplyAnnotation();
+	ApplyAnnotation(const ApplyAnnotation& object);
+	virtual ~ApplyAnnotation() = default;
 
-    void copyFrom(const ApplyAnnotation & object);
-    ApplyAnnotation & operator=(const ApplyAnnotation & object);
+    void copyFrom(const ApplyAnnotation& object);
+    ApplyAnnotation & operator=(const ApplyAnnotation& object);
 
     typedef CDM::ApplyAnnotation WrappedType;
 
@@ -74,7 +75,7 @@ public:
 	unsigned int getSampleIndex() const;
 
 private:
-	std::shared_ptr<CDM::ApplyAnnotation> data;
+	std::shared_ptr<CDM::ApplyAnnotation> data = nullptr;
 };
 
 } /* namespace SDC */

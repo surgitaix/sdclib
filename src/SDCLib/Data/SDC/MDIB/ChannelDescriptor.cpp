@@ -48,29 +48,26 @@ ChannelDescriptor::ChannelDescriptor(
 		Handle handle
 ) : data(Defaults::ChannelDescriptorInit(
 		handle
-)) {}
+))
+{}
 
 ChannelDescriptor::operator CDM::ChannelDescriptor() const {
 	return *data;
 }
 
-ChannelDescriptor::ChannelDescriptor(const CDM::ChannelDescriptor & object) : data(new CDM::ChannelDescriptor(object)) {
+ChannelDescriptor::ChannelDescriptor(const CDM::ChannelDescriptor & object)
+: data(new CDM::ChannelDescriptor(object))
+{ }
 
-}
-
-ChannelDescriptor::ChannelDescriptor(const ChannelDescriptor & object) : data(new CDM::ChannelDescriptor(*object.data)) {
-
-}
-
-ChannelDescriptor::~ChannelDescriptor() {
-
-}
+ChannelDescriptor::ChannelDescriptor(const ChannelDescriptor & object)
+: data(std::make_shared<CDM::ChannelDescriptor>(*object.data))
+{ }
 
 void ChannelDescriptor::copyFrom(const ChannelDescriptor & object) {
-	data = std::shared_ptr<CDM::ChannelDescriptor>( new CDM::ChannelDescriptor(*object.data));
+	data = std::make_shared<CDM::ChannelDescriptor>(*object.data);
 }
 
-ChannelDescriptor & ChannelDescriptor:: operator=(const ChannelDescriptor & object) {
+ChannelDescriptor & ChannelDescriptor:: operator=(const ChannelDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

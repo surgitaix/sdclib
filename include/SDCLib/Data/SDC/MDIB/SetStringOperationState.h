@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class SetStringOperationState {
+class SetStringOperationState
+{
 private:
 	SetStringOperationState(const CDM::SetStringOperationState & object);
 	operator CDM::SetStringOperationState() const;
@@ -59,11 +60,11 @@ public:
 private:
 	SetStringOperationState(){};
 public:
-	SetStringOperationState(const SetStringOperationState & object);
-	virtual ~SetStringOperationState();
+	SetStringOperationState(const SetStringOperationState& object);
+	virtual ~SetStringOperationState() = default;
 
-    void copyFrom(const SetStringOperationState & object);
-    SetStringOperationState & operator=(const SetStringOperationState & object);
+    void copyFrom(const SetStringOperationState& object);
+    SetStringOperationState & operator=(const SetStringOperationState& object);
 
     typedef CDM::SetStringOperationState WrappedType;
 
@@ -89,7 +90,7 @@ public:
 	bool hasAllowedValues() const;
 
 private:
-	std::shared_ptr<CDM::SetStringOperationState> data;
+	std::shared_ptr<CDM::SetStringOperationState> data = nullptr;
 };
 
 } /* namespace SDC */

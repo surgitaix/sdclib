@@ -52,29 +52,26 @@ EnsembleContextState::EnsembleContextState(
 		descriptorhandle
 		,
 		handle
-)) {}
+))
+{}
 
 EnsembleContextState::operator CDM::EnsembleContextState() const {
 	return *data;
 }
 
-EnsembleContextState::EnsembleContextState(const CDM::EnsembleContextState & object) : data(new CDM::EnsembleContextState(object)) {
+EnsembleContextState::EnsembleContextState(const CDM::EnsembleContextState & object)
+: data(new CDM::EnsembleContextState(object))
+{ }
 
-}
-
-EnsembleContextState::EnsembleContextState(const EnsembleContextState & object) : data(new CDM::EnsembleContextState(*object.data)) {
-
-}
-
-EnsembleContextState::~EnsembleContextState() {
-
-}
+EnsembleContextState::EnsembleContextState(const EnsembleContextState & object)
+: data(std::make_shared<CDM::EnsembleContextState>(*object.data))
+{ }
 
 void EnsembleContextState::copyFrom(const EnsembleContextState & object) {
-	data = std::shared_ptr<CDM::EnsembleContextState>( new CDM::EnsembleContextState(*object.data));
+	data = std::make_shared<CDM::EnsembleContextState>(*object.data);
 }
 
-EnsembleContextState & EnsembleContextState:: operator=(const EnsembleContextState & object) {
+EnsembleContextState & EnsembleContextState:: operator=(const EnsembleContextState& object) {
 	copyFrom(object);
 	return *this;
 }

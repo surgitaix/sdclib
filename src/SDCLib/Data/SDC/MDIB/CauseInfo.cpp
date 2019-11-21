@@ -46,29 +46,26 @@ namespace SDC {
 
 CauseInfo::CauseInfo(
 ) : data(Defaults::CauseInfoInit(
-)) {}
+))
+{}
 
 CauseInfo::operator CDM::CauseInfo() const {
 	return *data;
 }
 
-CauseInfo::CauseInfo(const CDM::CauseInfo & object) : data(new CDM::CauseInfo(object)) {
+CauseInfo::CauseInfo(const CDM::CauseInfo & object)
+: data(new CDM::CauseInfo(object))
+{ }
 
-}
-
-CauseInfo::CauseInfo(const CauseInfo & object) : data(new CDM::CauseInfo(*object.data)) {
-
-}
-
-CauseInfo::~CauseInfo() {
-
-}
+CauseInfo::CauseInfo(const CauseInfo & object)
+: data(std::make_shared<CDM::CauseInfo>(*object.data))
+{ }
 
 void CauseInfo::copyFrom(const CauseInfo & object) {
-	data = std::shared_ptr<CDM::CauseInfo>( new CDM::CauseInfo(*object.data));
+	data = std::make_shared<CDM::CauseInfo>(*object.data);
 }
 
-CauseInfo & CauseInfo:: operator=(const CauseInfo & object) {
+CauseInfo & CauseInfo:: operator=(const CauseInfo& object) {
 	copyFrom(object);
 	return *this;
 }

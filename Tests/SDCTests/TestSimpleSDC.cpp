@@ -814,7 +814,7 @@ public:
         // current weight and the max weight below.
         CodedValue unit(CodeIdentifier("MDCX_CODE_ID_KG"));
         unit	.setCodingSystem("OR.NET.Codings")
-				.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en"));
+				.addConceptDescription(LocalizedText("Current Weight Handle in KG").setLang("en"));
 
 
     	//
@@ -835,7 +835,7 @@ public:
         EnumStringMetricDescriptor testEnumMetric(ENUM_METRIC_HANDLE,
         		CodedValue("MDCX_CODE_ID_ENUM")
         			.setCodingSystem("OR.NET.Codings")
-        			.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en")),
+        			.addConceptDescription(LocalizedText("Test Enum").setLang("en")),
         		MetricCategory::Set,
         		MetricAvailability::Cont);
 
@@ -924,9 +924,9 @@ public:
         MdsDescriptor holdingDeviceSystem(MDS_HANDLE);
         holdingDeviceSystem
         	.setMetaData(
-        		MetaData().addManufacturer(LocalizedText().setRef("SurgiTAIX AG"))
+        		MetaData().addManufacturer(LocalizedText("SurgiTAIX AG"))
         		.setModelNumber("1")
-        		.addModelName(LocalizedText().setRef("EndoTAIX"))
+        		.addModelName(LocalizedText("EndoTAIX"))
         		.addSerialNumber("1234-5678"))
 			.setSystemContext(
 				SystemContextDescriptor("MDC_SYS_CON")

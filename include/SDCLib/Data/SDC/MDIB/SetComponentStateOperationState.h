@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class SetComponentStateOperationState {
+class SetComponentStateOperationState
+{
 private:
 	SetComponentStateOperationState(const CDM::SetComponentStateOperationState & object);
 	operator CDM::SetComponentStateOperationState() const;
@@ -59,11 +60,11 @@ public:
 private:
 	SetComponentStateOperationState(){};
 public:
-	SetComponentStateOperationState(const SetComponentStateOperationState & object);
-	virtual ~SetComponentStateOperationState();
+	SetComponentStateOperationState(const SetComponentStateOperationState& object);
+	virtual ~SetComponentStateOperationState() = default;
 
-    void copyFrom(const SetComponentStateOperationState & object);
-    SetComponentStateOperationState & operator=(const SetComponentStateOperationState & object);
+    void copyFrom(const SetComponentStateOperationState& object);
+    SetComponentStateOperationState & operator=(const SetComponentStateOperationState& object);
 
     typedef CDM::SetComponentStateOperationState WrappedType;
 
@@ -84,7 +85,7 @@ public:
 	OperatingMode getOperatingMode() const;
 
 private:
-	std::shared_ptr<CDM::SetComponentStateOperationState> data;
+	std::shared_ptr<CDM::SetComponentStateOperationState> data = nullptr;
 };
 
 } /* namespace SDC */

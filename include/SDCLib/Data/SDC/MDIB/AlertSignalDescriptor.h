@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class AlertSignalDescriptor {
+class AlertSignalDescriptor
+{
 private:
 	AlertSignalDescriptor(const CDM::AlertSignalDescriptor & object);
 	operator CDM::AlertSignalDescriptor() const;
@@ -61,11 +62,11 @@ public:
 private:
 	AlertSignalDescriptor(){};
 public:
-	AlertSignalDescriptor(const AlertSignalDescriptor & object);
-	virtual ~AlertSignalDescriptor();
+	AlertSignalDescriptor(const AlertSignalDescriptor& object);
+	virtual ~AlertSignalDescriptor() = default;
 
-    void copyFrom(const AlertSignalDescriptor & object);
-    AlertSignalDescriptor & operator=(const AlertSignalDescriptor & object);
+    void copyFrom(const AlertSignalDescriptor& object);
+    AlertSignalDescriptor & operator=(const AlertSignalDescriptor& object);
 
     typedef CDM::AlertSignalDescriptor WrappedType;
 
@@ -129,7 +130,7 @@ public:
 	bool hasAcknowledgeTimeout() const;
 
 private:
-	std::shared_ptr<CDM::AlertSignalDescriptor> data;
+	std::shared_ptr<CDM::AlertSignalDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

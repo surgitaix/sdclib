@@ -53,29 +53,26 @@ DicomDeviceDescriptor::DicomDeviceDescriptor(
 		Handle handle
 ) : data(Defaults::DicomDeviceDescriptorInit(
 		handle
-)) {}
+))
+{}
 
 DicomDeviceDescriptor::operator CDM::DicomDeviceDescriptor() const {
 	return *data;
 }
 
-DicomDeviceDescriptor::DicomDeviceDescriptor(const CDM::DicomDeviceDescriptor & object) : data(new CDM::DicomDeviceDescriptor(object)) {
+DicomDeviceDescriptor::DicomDeviceDescriptor(const CDM::DicomDeviceDescriptor & object)
+: data(new CDM::DicomDeviceDescriptor(object))
+{ }
 
-}
-
-DicomDeviceDescriptor::DicomDeviceDescriptor(const DicomDeviceDescriptor & object) : data(new CDM::DicomDeviceDescriptor(*object.data)) {
-
-}
-
-DicomDeviceDescriptor::~DicomDeviceDescriptor() {
-
-}
+DicomDeviceDescriptor::DicomDeviceDescriptor(const DicomDeviceDescriptor & object)
+: data(std::make_shared<CDM::DicomDeviceDescriptor>(*object.data))
+{ }
 
 void DicomDeviceDescriptor::copyFrom(const DicomDeviceDescriptor & object) {
-	data = std::shared_ptr<CDM::DicomDeviceDescriptor>( new CDM::DicomDeviceDescriptor(*object.data));
+	data = std::make_shared<CDM::DicomDeviceDescriptor>(*object.data);
 }
 
-DicomDeviceDescriptor & DicomDeviceDescriptor:: operator=(const DicomDeviceDescriptor & object) {
+DicomDeviceDescriptor & DicomDeviceDescriptor:: operator=(const DicomDeviceDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

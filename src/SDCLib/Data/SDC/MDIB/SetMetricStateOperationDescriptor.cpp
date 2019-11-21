@@ -51,29 +51,26 @@ SetMetricStateOperationDescriptor::SetMetricStateOperationDescriptor(
 		handle
 		,
 		operationtarget
-)) {}
+))
+{}
 
 SetMetricStateOperationDescriptor::operator CDM::SetMetricStateOperationDescriptor() const {
 	return *data;
 }
 
-SetMetricStateOperationDescriptor::SetMetricStateOperationDescriptor(const CDM::SetMetricStateOperationDescriptor & object) : data(new CDM::SetMetricStateOperationDescriptor(object)) {
+SetMetricStateOperationDescriptor::SetMetricStateOperationDescriptor(const CDM::SetMetricStateOperationDescriptor & object)
+: data(new CDM::SetMetricStateOperationDescriptor(object))
+{ }
 
-}
-
-SetMetricStateOperationDescriptor::SetMetricStateOperationDescriptor(const SetMetricStateOperationDescriptor & object) : data(new CDM::SetMetricStateOperationDescriptor(*object.data)) {
-
-}
-
-SetMetricStateOperationDescriptor::~SetMetricStateOperationDescriptor() {
-
-}
+SetMetricStateOperationDescriptor::SetMetricStateOperationDescriptor(const SetMetricStateOperationDescriptor & object)
+: data(std::make_shared<CDM::SetMetricStateOperationDescriptor>(*object.data))
+{ }
 
 void SetMetricStateOperationDescriptor::copyFrom(const SetMetricStateOperationDescriptor & object) {
-	data = std::shared_ptr<CDM::SetMetricStateOperationDescriptor>( new CDM::SetMetricStateOperationDescriptor(*object.data));
+	data = std::make_shared<CDM::SetMetricStateOperationDescriptor>(*object.data);
 }
 
-SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor:: operator=(const SetMetricStateOperationDescriptor & object) {
+SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor:: operator=(const SetMetricStateOperationDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

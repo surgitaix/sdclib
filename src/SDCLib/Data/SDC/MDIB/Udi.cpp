@@ -55,29 +55,26 @@ Udi::Udi(
 		humanreadableform
 		,
 		issuer
-)) {}
+))
+{}
 
 Udi::operator CDM::Udi() const {
 	return *data;
 }
 
-Udi::Udi(const CDM::Udi & object) : data(new CDM::Udi(object)) {
+Udi::Udi(const CDM::Udi & object)
+: data(new CDM::Udi(object))
+{ }
 
-}
-
-Udi::Udi(const Udi & object) : data(new CDM::Udi(*object.data)) {
-
-}
-
-Udi::~Udi() {
-
-}
+Udi::Udi(const Udi & object)
+: data(std::make_shared<CDM::Udi>(*object.data))
+{ }
 
 void Udi::copyFrom(const Udi & object) {
-	data = std::shared_ptr<CDM::Udi>( new CDM::Udi(*object.data));
+	data = std::make_shared<CDM::Udi>(*object.data);
 }
 
-Udi & Udi:: operator=(const Udi & object) {
+Udi & Udi:: operator=(const Udi& object) {
 	copyFrom(object);
 	return *this;
 }

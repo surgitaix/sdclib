@@ -46,29 +46,26 @@ namespace SDC {
 
 LocationReference::LocationReference(
 ) : data(Defaults::LocationReferenceInit(
-)) {}
+))
+{}
 
 LocationReference::operator CDM::LocationReference() const {
 	return *data;
 }
 
-LocationReference::LocationReference(const CDM::LocationReference & object) : data(new CDM::LocationReference(object)) {
+LocationReference::LocationReference(const CDM::LocationReference & object)
+: data(new CDM::LocationReference(object))
+{ }
 
-}
-
-LocationReference::LocationReference(const LocationReference & object) : data(new CDM::LocationReference(*object.data)) {
-
-}
-
-LocationReference::~LocationReference() {
-
-}
+LocationReference::LocationReference(const LocationReference & object)
+: data(std::make_shared<CDM::LocationReference>(*object.data))
+{ }
 
 void LocationReference::copyFrom(const LocationReference & object) {
-	data = std::shared_ptr<CDM::LocationReference>( new CDM::LocationReference(*object.data));
+	data = std::make_shared<CDM::LocationReference>(*object.data);
 }
 
-LocationReference & LocationReference:: operator=(const LocationReference & object) {
+LocationReference & LocationReference:: operator=(const LocationReference& object) {
 	copyFrom(object);
 	return *this;
 }

@@ -48,29 +48,26 @@ ChannelState::ChannelState(
 		HandleRef descriptorhandle
 ) : data(Defaults::ChannelStateInit(
 		descriptorhandle
-)) {}
+))
+{}
 
 ChannelState::operator CDM::ChannelState() const {
 	return *data;
 }
 
-ChannelState::ChannelState(const CDM::ChannelState & object) : data(new CDM::ChannelState(object)) {
+ChannelState::ChannelState(const CDM::ChannelState & object)
+: data(new CDM::ChannelState(object))
+{ }
 
-}
-
-ChannelState::ChannelState(const ChannelState & object) : data(new CDM::ChannelState(*object.data)) {
-
-}
-
-ChannelState::~ChannelState() {
-
-}
+ChannelState::ChannelState(const ChannelState & object)
+: data(std::make_shared<CDM::ChannelState>(*object.data))
+{ }
 
 void ChannelState::copyFrom(const ChannelState & object) {
-	data = std::shared_ptr<CDM::ChannelState>( new CDM::ChannelState(*object.data));
+	data = std::make_shared<CDM::ChannelState>(*object.data);
 }
 
-ChannelState & ChannelState:: operator=(const ChannelState & object) {
+ChannelState & ChannelState:: operator=(const ChannelState& object) {
 	copyFrom(object);
 	return *this;
 }

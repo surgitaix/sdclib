@@ -47,29 +47,26 @@ namespace SDC {
 
 OrderDetail::OrderDetail(
 ) : data(Defaults::OrderDetailInit(
-)) {}
+))
+{}
 
 OrderDetail::operator CDM::OrderDetail() const {
 	return *data;
 }
 
-OrderDetail::OrderDetail(const CDM::OrderDetail & object) : data(new CDM::OrderDetail(object)) {
+OrderDetail::OrderDetail(const CDM::OrderDetail & object)
+: data(new CDM::OrderDetail(object))
+{ }
 
-}
-
-OrderDetail::OrderDetail(const OrderDetail & object) : data(new CDM::OrderDetail(*object.data)) {
-
-}
-
-OrderDetail::~OrderDetail() {
-
-}
+OrderDetail::OrderDetail(const OrderDetail & object)
+: data(std::make_shared<CDM::OrderDetail>(*object.data))
+{ }
 
 void OrderDetail::copyFrom(const OrderDetail & object) {
-	data = std::shared_ptr<CDM::OrderDetail>( new CDM::OrderDetail(*object.data));
+	data = std::make_shared<CDM::OrderDetail>(*object.data);
 }
 
-OrderDetail & OrderDetail:: operator=(const OrderDetail & object) {
+OrderDetail & OrderDetail:: operator=(const OrderDetail& object) {
 	copyFrom(object);
 	return *this;
 }

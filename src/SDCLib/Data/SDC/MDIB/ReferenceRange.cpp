@@ -48,29 +48,26 @@ ReferenceRange::ReferenceRange(
 		Range range
 ) : data(Defaults::ReferenceRangeInit(
 		range
-)) {}
+))
+{}
 
 ReferenceRange::operator CDM::ReferenceRange() const {
 	return *data;
 }
 
-ReferenceRange::ReferenceRange(const CDM::ReferenceRange & object) : data(new CDM::ReferenceRange(object)) {
+ReferenceRange::ReferenceRange(const CDM::ReferenceRange & object)
+: data(new CDM::ReferenceRange(object))
+{ }
 
-}
-
-ReferenceRange::ReferenceRange(const ReferenceRange & object) : data(new CDM::ReferenceRange(*object.data)) {
-
-}
-
-ReferenceRange::~ReferenceRange() {
-
-}
+ReferenceRange::ReferenceRange(const ReferenceRange & object)
+: data(std::make_shared<CDM::ReferenceRange>(*object.data))
+{ }
 
 void ReferenceRange::copyFrom(const ReferenceRange & object) {
-	data = std::shared_ptr<CDM::ReferenceRange>( new CDM::ReferenceRange(*object.data));
+	data = std::make_shared<CDM::ReferenceRange>(*object.data);
 }
 
-ReferenceRange & ReferenceRange:: operator=(const ReferenceRange & object) {
+ReferenceRange & ReferenceRange:: operator=(const ReferenceRange& object) {
 	copyFrom(object);
 	return *this;
 }

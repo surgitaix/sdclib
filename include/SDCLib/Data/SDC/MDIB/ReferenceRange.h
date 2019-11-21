@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class ReferenceRange {
+class ReferenceRange
+{
 private:
 	ReferenceRange(const CDM::ReferenceRange & object);
 	operator CDM::ReferenceRange() const;
@@ -57,11 +58,11 @@ public:
 private:
 	ReferenceRange(){};
 public:
-	ReferenceRange(const ReferenceRange & object);
-	virtual ~ReferenceRange();
+	ReferenceRange(const ReferenceRange& object);
+	virtual ~ReferenceRange() = default;
 
-    void copyFrom(const ReferenceRange & object);
-    ReferenceRange & operator=(const ReferenceRange & object);
+    void copyFrom(const ReferenceRange& object);
+    ReferenceRange & operator=(const ReferenceRange& object);
 
     typedef CDM::ReferenceRange WrappedType;
 
@@ -74,7 +75,7 @@ public:
 	bool hasMeaning() const;
 
 private:
-	std::shared_ptr<CDM::ReferenceRange> data;
+	std::shared_ptr<CDM::ReferenceRange> data = nullptr;
 };
 
 } /* namespace SDC */

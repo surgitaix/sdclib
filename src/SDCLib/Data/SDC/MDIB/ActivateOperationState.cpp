@@ -50,29 +50,26 @@ ActivateOperationState::ActivateOperationState(
 		descriptorhandle
 		,
 		operatingmode
-)) {}
+))
+{}
 
 ActivateOperationState::operator CDM::ActivateOperationState() const {
 	return *data;
 }
 
-ActivateOperationState::ActivateOperationState(const CDM::ActivateOperationState & object) : data(new CDM::ActivateOperationState(object)) {
+ActivateOperationState::ActivateOperationState(const CDM::ActivateOperationState & object)
+: data(new CDM::ActivateOperationState(object))
+{ }
 
-}
-
-ActivateOperationState::ActivateOperationState(const ActivateOperationState & object) : data(new CDM::ActivateOperationState(*object.data)) {
-
-}
-
-ActivateOperationState::~ActivateOperationState() {
-
-}
+ActivateOperationState::ActivateOperationState(const ActivateOperationState & object)
+: data(std::make_shared<CDM::ActivateOperationState>(*object.data))
+{ }
 
 void ActivateOperationState::copyFrom(const ActivateOperationState & object) {
-	data = std::shared_ptr<CDM::ActivateOperationState>( new CDM::ActivateOperationState(*object.data));
+	data = std::make_shared<CDM::ActivateOperationState>(*object.data);
 }
 
-ActivateOperationState & ActivateOperationState:: operator=(const ActivateOperationState & object) {
+ActivateOperationState & ActivateOperationState:: operator=(const ActivateOperationState& object) {
 	copyFrom(object);
 	return *this;
 }

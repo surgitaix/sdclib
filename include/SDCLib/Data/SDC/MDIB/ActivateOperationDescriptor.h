@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class ActivateOperationDescriptor {
+class ActivateOperationDescriptor
+{
 private:
 	ActivateOperationDescriptor(const CDM::ActivateOperationDescriptor & object);
 	operator CDM::ActivateOperationDescriptor() const;
@@ -59,11 +60,11 @@ public:
 private:
 	ActivateOperationDescriptor(){};
 public:
-	ActivateOperationDescriptor(const ActivateOperationDescriptor & object);
-	virtual ~ActivateOperationDescriptor();
+	ActivateOperationDescriptor(const ActivateOperationDescriptor& object);
+	virtual ~ActivateOperationDescriptor() = default;
 
-    void copyFrom(const ActivateOperationDescriptor & object);
-    ActivateOperationDescriptor & operator=(const ActivateOperationDescriptor & object);
+    void copyFrom(const ActivateOperationDescriptor& object);
+    ActivateOperationDescriptor & operator=(const ActivateOperationDescriptor& object);
 
     typedef CDM::ActivateOperationDescriptor WrappedType;
 
@@ -117,7 +118,7 @@ public:
 	void clearArgumentList();
 
 private:
-	std::shared_ptr<CDM::ActivateOperationDescriptor> data;
+	std::shared_ptr<CDM::ActivateOperationDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

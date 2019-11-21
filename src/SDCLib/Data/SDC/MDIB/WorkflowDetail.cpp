@@ -53,29 +53,26 @@ WorkflowDetail::WorkflowDetail(
 		PersonReference patient
 ) : data(Defaults::WorkflowDetailInit(
 		patient
-)) {}
+))
+{}
 
 WorkflowDetail::operator CDM::WorkflowDetail() const {
 	return *data;
 }
 
-WorkflowDetail::WorkflowDetail(const CDM::WorkflowDetail & object) : data(new CDM::WorkflowDetail(object)) {
+WorkflowDetail::WorkflowDetail(const CDM::WorkflowDetail & object)
+: data(new CDM::WorkflowDetail(object))
+{ }
 
-}
-
-WorkflowDetail::WorkflowDetail(const WorkflowDetail & object) : data(new CDM::WorkflowDetail(*object.data)) {
-
-}
-
-WorkflowDetail::~WorkflowDetail() {
-
-}
+WorkflowDetail::WorkflowDetail(const WorkflowDetail & object)
+: data(std::make_shared<CDM::WorkflowDetail>(*object.data))
+{ }
 
 void WorkflowDetail::copyFrom(const WorkflowDetail & object) {
-	data = std::shared_ptr<CDM::WorkflowDetail>( new CDM::WorkflowDetail(*object.data));
+	data = std::make_shared<CDM::WorkflowDetail>(*object.data);
 }
 
-WorkflowDetail & WorkflowDetail:: operator=(const WorkflowDetail & object) {
+WorkflowDetail & WorkflowDetail:: operator=(const WorkflowDetail& object) {
 	copyFrom(object);
 	return *this;
 }

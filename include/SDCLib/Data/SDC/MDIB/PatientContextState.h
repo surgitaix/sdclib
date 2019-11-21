@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class PatientContextState {
+class PatientContextState
+{
 private:
 	PatientContextState(const CDM::PatientContextState & object);
 	operator CDM::PatientContextState() const;
@@ -59,11 +60,11 @@ public:
 private:
 	PatientContextState(){};
 public:
-	PatientContextState(const PatientContextState & object);
-	virtual ~PatientContextState();
+	PatientContextState(const PatientContextState& object);
+	virtual ~PatientContextState() = default;
 
-    void copyFrom(const PatientContextState & object);
-    PatientContextState & operator=(const PatientContextState & object);
+    void copyFrom(const PatientContextState& object);
+    PatientContextState & operator=(const PatientContextState& object);
 
     typedef CDM::PatientContextState WrappedType;
     typedef PatientContextDescriptor DescriptorType;
@@ -128,7 +129,7 @@ public:
 	bool hasCoreData() const;
 
 private:
-	std::shared_ptr<CDM::PatientContextState> data;
+	std::shared_ptr<CDM::PatientContextState> data = nullptr;
 };
 
 } /* namespace SDC */

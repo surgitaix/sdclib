@@ -243,7 +243,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class $(class.name:) {
+class $(class.name:)
+{
 private:
 	$(class.name:)(const CDM::$(class.name:) & object);
 	operator CDM::$(class.name:)() const;
@@ -267,12 +268,12 @@ private:
 	$(class.name:)(){};
 public:
 .endif
-	$(class.name:)(const $(class.name:) & object);
-	virtual ~$(class.name:)();
-    
-    void copyFrom(const $(class.name:) & object);
-    $(class.name:) & operator=(const $(class.name:) & object);
-    
+	$(class.name:)(const $(class.name:)& object);
+	virtual ~$(class.name:)() = default;
+
+    void copyFrom(const $(class.name:)& object);
+    $(class.name:) & operator=(const $(class.name:)& object);
+
     typedef CDM::$(class.name:) WrappedType;
 .   for typedef
     typedef $(typedef.type:) $(typedef.name:);
@@ -283,7 +284,7 @@ public:
 . literal from "$(class.name:)CustomImpl.hxx"
 .endif
 private:
-	std::shared_ptr<CDM::$(class.name:)> data;
+	std::shared_ptr<CDM::$(class.name:)> data = nullptr;
 .   close
 .endfor
 . ###################################
@@ -339,31 +340,28 @@ $(class.name:)::$(class.name:)(
 .printancestorsconstructorarguments("$(class.name:)", "$(class.name:)")
 ) : data(Defaults::$(class.name:)Init(
 .printancestorsconstructorargumentswithouttype("$(class.name:)", "$(class.name:)")
-)) {}
+))
+{}
 
 $(class.name:)::operator CDM::$(class.name:)() const {
 	return *data;
 }
 
 .   if "$(class.name:)"<>"MDIBObject"
-$(class.name:)::$(class.name:)(const CDM::$(class.name:) & object) : data(new CDM::$(class.name:)(object)) {
-
-}
+$(class.name:)::$(class.name:)(const CDM::$(class.name:) & object)
+: data(new CDM::$(class.name:)(object))
+{ }
 
 .   endif
-$(class.name:)::$(class.name:)(const $(class.name:) & object) : data(new CDM::$(class.name:)(*object.data)) {
-
-}
-
-$(class.name:)::~$(class.name:)() {
-
-}
+$(class.name:)::$(class.name:)(const $(class.name:) & object)
+: data(std::make_shared<CDM::$(class.name:)>(*object.data))
+{ }
 
 void $(class.name:)::copyFrom(const $(class.name:) & object) {
-	data = std::shared_ptr<CDM::$(class.name:)>( new CDM::$(class.name:)(*object.data));
+	data = std::make_shared<CDM::$(class.name:)>(*object.data);
 }
 
-$(class.name:) & $(class.name:):: operator=(const $(class.name:) & object) {
+$(class.name:) & $(class.name:):: operator=(const $(class.name:)& object) {
 	copyFrom(object);
 	return *this;
 }
@@ -373,7 +371,7 @@ $(class.valuetype:) $(class.name:)::get() const {
 	return *data;
 }
 	
-$(class.name:) & $(class.name:)::set(const $(class.valuetype:) & value) {
+$(class.name:) & $(class.name:)::set(const $(class.valuetype:)& value) {
 	*data = value;
 	return *this;
 } 

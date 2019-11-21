@@ -49,29 +49,26 @@ EnumStringMetricState::EnumStringMetricState(
 		HandleRef descriptorhandle
 ) : data(Defaults::EnumStringMetricStateInit(
 		descriptorhandle
-)) {}
+))
+{}
 
 EnumStringMetricState::operator CDM::EnumStringMetricState() const {
 	return *data;
 }
 
-EnumStringMetricState::EnumStringMetricState(const CDM::EnumStringMetricState & object) : data(new CDM::EnumStringMetricState(object)) {
+EnumStringMetricState::EnumStringMetricState(const CDM::EnumStringMetricState & object)
+: data(new CDM::EnumStringMetricState(object))
+{ }
 
-}
-
-EnumStringMetricState::EnumStringMetricState(const EnumStringMetricState & object) : data(new CDM::EnumStringMetricState(*object.data)) {
-
-}
-
-EnumStringMetricState::~EnumStringMetricState() {
-
-}
+EnumStringMetricState::EnumStringMetricState(const EnumStringMetricState & object)
+: data(std::make_shared<CDM::EnumStringMetricState>(*object.data))
+{ }
 
 void EnumStringMetricState::copyFrom(const EnumStringMetricState & object) {
-	data = std::shared_ptr<CDM::EnumStringMetricState>( new CDM::EnumStringMetricState(*object.data));
+	data = std::make_shared<CDM::EnumStringMetricState>(*object.data);
 }
 
-EnumStringMetricState & EnumStringMetricState:: operator=(const EnumStringMetricState & object) {
+EnumStringMetricState & EnumStringMetricState:: operator=(const EnumStringMetricState& object) {
 	copyFrom(object);
 	return *this;
 }

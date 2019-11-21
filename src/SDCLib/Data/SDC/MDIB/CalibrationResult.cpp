@@ -52,29 +52,26 @@ CalibrationResult::CalibrationResult(
 		code
 		,
 		value
-)) {}
+))
+{}
 
 CalibrationResult::operator CDM::CalibrationResult() const {
 	return *data;
 }
 
-CalibrationResult::CalibrationResult(const CDM::CalibrationResult & object) : data(new CDM::CalibrationResult(object)) {
+CalibrationResult::CalibrationResult(const CDM::CalibrationResult & object)
+: data(new CDM::CalibrationResult(object))
+{ }
 
-}
-
-CalibrationResult::CalibrationResult(const CalibrationResult & object) : data(new CDM::CalibrationResult(*object.data)) {
-
-}
-
-CalibrationResult::~CalibrationResult() {
-
-}
+CalibrationResult::CalibrationResult(const CalibrationResult & object)
+: data(std::make_shared<CDM::CalibrationResult>(*object.data))
+{ }
 
 void CalibrationResult::copyFrom(const CalibrationResult & object) {
-	data = std::shared_ptr<CDM::CalibrationResult>( new CDM::CalibrationResult(*object.data));
+	data = std::make_shared<CDM::CalibrationResult>(*object.data);
 }
 
-CalibrationResult & CalibrationResult:: operator=(const CalibrationResult & object) {
+CalibrationResult & CalibrationResult:: operator=(const CalibrationResult& object) {
 	copyFrom(object);
 	return *this;
 }

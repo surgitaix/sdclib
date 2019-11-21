@@ -75,29 +75,26 @@ DistributionSampleArrayMetricDescriptor::DistributionSampleArrayMetricDescriptor
 		distributionrange
 		,
 		resolution
-)) {}
+))
+{}
 
 DistributionSampleArrayMetricDescriptor::operator CDM::DistributionSampleArrayMetricDescriptor() const {
 	return *data;
 }
 
-DistributionSampleArrayMetricDescriptor::DistributionSampleArrayMetricDescriptor(const CDM::DistributionSampleArrayMetricDescriptor & object) : data(new CDM::DistributionSampleArrayMetricDescriptor(object)) {
+DistributionSampleArrayMetricDescriptor::DistributionSampleArrayMetricDescriptor(const CDM::DistributionSampleArrayMetricDescriptor & object)
+: data(new CDM::DistributionSampleArrayMetricDescriptor(object))
+{ }
 
-}
-
-DistributionSampleArrayMetricDescriptor::DistributionSampleArrayMetricDescriptor(const DistributionSampleArrayMetricDescriptor & object) : data(new CDM::DistributionSampleArrayMetricDescriptor(*object.data)) {
-
-}
-
-DistributionSampleArrayMetricDescriptor::~DistributionSampleArrayMetricDescriptor() {
-
-}
+DistributionSampleArrayMetricDescriptor::DistributionSampleArrayMetricDescriptor(const DistributionSampleArrayMetricDescriptor & object)
+: data(std::make_shared<CDM::DistributionSampleArrayMetricDescriptor>(*object.data))
+{ }
 
 void DistributionSampleArrayMetricDescriptor::copyFrom(const DistributionSampleArrayMetricDescriptor & object) {
-	data = std::shared_ptr<CDM::DistributionSampleArrayMetricDescriptor>( new CDM::DistributionSampleArrayMetricDescriptor(*object.data));
+	data = std::make_shared<CDM::DistributionSampleArrayMetricDescriptor>(*object.data);
 }
 
-DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor:: operator=(const DistributionSampleArrayMetricDescriptor & object) {
+DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor:: operator=(const DistributionSampleArrayMetricDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

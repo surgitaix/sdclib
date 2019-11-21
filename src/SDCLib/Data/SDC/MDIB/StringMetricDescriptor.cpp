@@ -61,29 +61,26 @@ StringMetricDescriptor::StringMetricDescriptor(
 		metriccategory
 		,
 		metricavailability
-)) {}
+))
+{}
 
 StringMetricDescriptor::operator CDM::StringMetricDescriptor() const {
 	return *data;
 }
 
-StringMetricDescriptor::StringMetricDescriptor(const CDM::StringMetricDescriptor & object) : data(new CDM::StringMetricDescriptor(object)) {
+StringMetricDescriptor::StringMetricDescriptor(const CDM::StringMetricDescriptor & object)
+: data(new CDM::StringMetricDescriptor(object))
+{ }
 
-}
-
-StringMetricDescriptor::StringMetricDescriptor(const StringMetricDescriptor & object) : data(new CDM::StringMetricDescriptor(*object.data)) {
-
-}
-
-StringMetricDescriptor::~StringMetricDescriptor() {
-
-}
+StringMetricDescriptor::StringMetricDescriptor(const StringMetricDescriptor & object)
+: data(std::make_shared<CDM::StringMetricDescriptor>(*object.data))
+{ }
 
 void StringMetricDescriptor::copyFrom(const StringMetricDescriptor & object) {
-	data = std::shared_ptr<CDM::StringMetricDescriptor>( new CDM::StringMetricDescriptor(*object.data));
+	data = std::make_shared<CDM::StringMetricDescriptor>(*object.data);
 }
 
-StringMetricDescriptor & StringMetricDescriptor:: operator=(const StringMetricDescriptor & object) {
+StringMetricDescriptor & StringMetricDescriptor:: operator=(const StringMetricDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

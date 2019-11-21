@@ -50,29 +50,26 @@ DicomNetworkConnection::DicomNetworkConnection(
 		id
 		,
 		hostname
-)) {}
+))
+{}
 
 DicomNetworkConnection::operator CDM::DicomNetworkConnection() const {
 	return *data;
 }
 
-DicomNetworkConnection::DicomNetworkConnection(const CDM::DicomNetworkConnection & object) : data(new CDM::DicomNetworkConnection(object)) {
+DicomNetworkConnection::DicomNetworkConnection(const CDM::DicomNetworkConnection & object)
+: data(new CDM::DicomNetworkConnection(object))
+{ }
 
-}
-
-DicomNetworkConnection::DicomNetworkConnection(const DicomNetworkConnection & object) : data(new CDM::DicomNetworkConnection(*object.data)) {
-
-}
-
-DicomNetworkConnection::~DicomNetworkConnection() {
-
-}
+DicomNetworkConnection::DicomNetworkConnection(const DicomNetworkConnection & object)
+: data(std::make_shared<CDM::DicomNetworkConnection>(*object.data))
+{ }
 
 void DicomNetworkConnection::copyFrom(const DicomNetworkConnection & object) {
-	data = std::shared_ptr<CDM::DicomNetworkConnection>( new CDM::DicomNetworkConnection(*object.data));
+	data = std::make_shared<CDM::DicomNetworkConnection>(*object.data);
 }
 
-DicomNetworkConnection & DicomNetworkConnection:: operator=(const DicomNetworkConnection & object) {
+DicomNetworkConnection & DicomNetworkConnection:: operator=(const DicomNetworkConnection& object) {
 	copyFrom(object);
 	return *this;
 }

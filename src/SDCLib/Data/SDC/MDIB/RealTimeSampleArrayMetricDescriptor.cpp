@@ -70,29 +70,26 @@ RealTimeSampleArrayMetricDescriptor::RealTimeSampleArrayMetricDescriptor(
 		resolution
 		,
 		sampleperiod
-)) {}
+))
+{}
 
 RealTimeSampleArrayMetricDescriptor::operator CDM::RealTimeSampleArrayMetricDescriptor() const {
 	return *data;
 }
 
-RealTimeSampleArrayMetricDescriptor::RealTimeSampleArrayMetricDescriptor(const CDM::RealTimeSampleArrayMetricDescriptor & object) : data(new CDM::RealTimeSampleArrayMetricDescriptor(object)) {
+RealTimeSampleArrayMetricDescriptor::RealTimeSampleArrayMetricDescriptor(const CDM::RealTimeSampleArrayMetricDescriptor & object)
+: data(new CDM::RealTimeSampleArrayMetricDescriptor(object))
+{ }
 
-}
-
-RealTimeSampleArrayMetricDescriptor::RealTimeSampleArrayMetricDescriptor(const RealTimeSampleArrayMetricDescriptor & object) : data(new CDM::RealTimeSampleArrayMetricDescriptor(*object.data)) {
-
-}
-
-RealTimeSampleArrayMetricDescriptor::~RealTimeSampleArrayMetricDescriptor() {
-
-}
+RealTimeSampleArrayMetricDescriptor::RealTimeSampleArrayMetricDescriptor(const RealTimeSampleArrayMetricDescriptor & object)
+: data(std::make_shared<CDM::RealTimeSampleArrayMetricDescriptor>(*object.data))
+{ }
 
 void RealTimeSampleArrayMetricDescriptor::copyFrom(const RealTimeSampleArrayMetricDescriptor & object) {
-	data = std::shared_ptr<CDM::RealTimeSampleArrayMetricDescriptor>( new CDM::RealTimeSampleArrayMetricDescriptor(*object.data));
+	data = std::make_shared<CDM::RealTimeSampleArrayMetricDescriptor>(*object.data);
 }
 
-RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor:: operator=(const RealTimeSampleArrayMetricDescriptor & object) {
+RealTimeSampleArrayMetricDescriptor & RealTimeSampleArrayMetricDescriptor:: operator=(const RealTimeSampleArrayMetricDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }

@@ -48,29 +48,26 @@ namespace SDC {
 
 NeonatalPatientDemographicsCoreData::NeonatalPatientDemographicsCoreData(
 ) : data(Defaults::NeonatalPatientDemographicsCoreDataInit(
-)) {}
+))
+{}
 
 NeonatalPatientDemographicsCoreData::operator CDM::NeonatalPatientDemographicsCoreData() const {
 	return *data;
 }
 
-NeonatalPatientDemographicsCoreData::NeonatalPatientDemographicsCoreData(const CDM::NeonatalPatientDemographicsCoreData & object) : data(new CDM::NeonatalPatientDemographicsCoreData(object)) {
+NeonatalPatientDemographicsCoreData::NeonatalPatientDemographicsCoreData(const CDM::NeonatalPatientDemographicsCoreData & object)
+: data(new CDM::NeonatalPatientDemographicsCoreData(object))
+{ }
 
-}
-
-NeonatalPatientDemographicsCoreData::NeonatalPatientDemographicsCoreData(const NeonatalPatientDemographicsCoreData & object) : data(new CDM::NeonatalPatientDemographicsCoreData(*object.data)) {
-
-}
-
-NeonatalPatientDemographicsCoreData::~NeonatalPatientDemographicsCoreData() {
-
-}
+NeonatalPatientDemographicsCoreData::NeonatalPatientDemographicsCoreData(const NeonatalPatientDemographicsCoreData & object)
+: data(std::make_shared<CDM::NeonatalPatientDemographicsCoreData>(*object.data))
+{ }
 
 void NeonatalPatientDemographicsCoreData::copyFrom(const NeonatalPatientDemographicsCoreData & object) {
-	data = std::shared_ptr<CDM::NeonatalPatientDemographicsCoreData>( new CDM::NeonatalPatientDemographicsCoreData(*object.data));
+	data = std::make_shared<CDM::NeonatalPatientDemographicsCoreData>(*object.data);
 }
 
-NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData:: operator=(const NeonatalPatientDemographicsCoreData & object) {
+NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData:: operator=(const NeonatalPatientDemographicsCoreData& object) {
 	copyFrom(object);
 	return *this;
 }

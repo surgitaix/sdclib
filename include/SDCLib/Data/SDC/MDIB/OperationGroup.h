@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class OperationGroup {
+class OperationGroup
+{
 private:
 	OperationGroup(const CDM::OperationGroup & object);
 	operator CDM::OperationGroup() const;
@@ -57,11 +58,11 @@ public:
 private:
 	OperationGroup(){};
 public:
-	OperationGroup(const OperationGroup & object);
-	virtual ~OperationGroup();
+	OperationGroup(const OperationGroup& object);
+	virtual ~OperationGroup() = default;
 
-    void copyFrom(const OperationGroup & object);
-    OperationGroup & operator=(const OperationGroup & object);
+    void copyFrom(const OperationGroup& object);
+    OperationGroup & operator=(const OperationGroup& object);
 
     typedef CDM::OperationGroup WrappedType;
 
@@ -79,7 +80,7 @@ public:
 	bool hasOperations() const;
 
 private:
-	std::shared_ptr<CDM::OperationGroup> data;
+	std::shared_ptr<CDM::OperationGroup> data = nullptr;
 };
 
 } /* namespace SDC */

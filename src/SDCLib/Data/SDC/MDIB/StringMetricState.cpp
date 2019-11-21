@@ -49,29 +49,26 @@ StringMetricState::StringMetricState(
 		HandleRef descriptorhandle
 ) : data(Defaults::StringMetricStateInit(
 		descriptorhandle
-)) {}
+))
+{}
 
 StringMetricState::operator CDM::StringMetricState() const {
 	return *data;
 }
 
-StringMetricState::StringMetricState(const CDM::StringMetricState & object) : data(new CDM::StringMetricState(object)) {
+StringMetricState::StringMetricState(const CDM::StringMetricState & object)
+: data(new CDM::StringMetricState(object))
+{ }
 
-}
-
-StringMetricState::StringMetricState(const StringMetricState & object) : data(new CDM::StringMetricState(*object.data)) {
-
-}
-
-StringMetricState::~StringMetricState() {
-
-}
+StringMetricState::StringMetricState(const StringMetricState & object)
+: data(std::make_shared<CDM::StringMetricState>(*object.data))
+{ }
 
 void StringMetricState::copyFrom(const StringMetricState & object) {
-	data = std::shared_ptr<CDM::StringMetricState>( new CDM::StringMetricState(*object.data));
+	data = std::make_shared<CDM::StringMetricState>(*object.data);
 }
 
-StringMetricState & StringMetricState:: operator=(const StringMetricState & object) {
+StringMetricState & StringMetricState:: operator=(const StringMetricState& object) {
 	copyFrom(object);
 	return *this;
 }
