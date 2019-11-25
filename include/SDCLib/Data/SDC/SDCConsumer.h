@@ -196,7 +196,7 @@ public:
     * @return True, if connected
     */
     bool isConnected() const {
-        return connected;
+        return _adapter != nullptr;
     }
 
     /**
