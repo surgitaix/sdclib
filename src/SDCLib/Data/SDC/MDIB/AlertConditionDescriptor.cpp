@@ -85,195 +85,195 @@ AlertConditionDescriptor & AlertConditionDescriptor:: operator=(const AlertCondi
 
 
 AlertConditionDescriptor & AlertConditionDescriptor::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
+	data->setType(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool AlertConditionDescriptor::getType(CodedValue & out) const {
-	if (data->Type().present()) {
-		out = ConvertFromCDM::convert(data->Type().get());
+	if (data->getType().present()) {
+		out = ConvertFromCDM::convert(data->getType().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue AlertConditionDescriptor::getType() const {
-	return ConvertFromCDM::convert(data->Type().get());
+	return ConvertFromCDM::convert(data->getType().get());
 }
 
 bool AlertConditionDescriptor::hasType() const {
-	return data->Type().present();
+	return data->getType().present();
 }
 
 AlertConditionDescriptor & AlertConditionDescriptor::setHandle(const Handle & value) {
-	data->Handle(ConvertToCDM::convert(value));
+	data->setHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 Handle AlertConditionDescriptor::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle());
+	return ConvertFromCDM::convert(data->getHandle());
 }
 
 AlertConditionDescriptor & AlertConditionDescriptor::setDescriptorVersion(const VersionCounter & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool AlertConditionDescriptor::getDescriptorVersion(VersionCounter & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter AlertConditionDescriptor::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool AlertConditionDescriptor::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 AlertConditionDescriptor & AlertConditionDescriptor::setSafetyClassification(const SafetyClassification & value) {
-	data->SafetyClassification(ConvertToCDM::convert(value));
+	data->setSafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool AlertConditionDescriptor::getSafetyClassification(SafetyClassification & out) const {
-	if (data->SafetyClassification().present()) {
-		out = ConvertFromCDM::convert(data->SafetyClassification().get());
+	if (data->getSafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->getSafetyClassification().get());
 		return true;
 	}
 	return false;
 }
 
 SafetyClassification AlertConditionDescriptor::getSafetyClassification() const {
-	return ConvertFromCDM::convert(data->SafetyClassification().get());
+	return ConvertFromCDM::convert(data->getSafetyClassification().get());
 }
 
 bool AlertConditionDescriptor::hasSafetyClassification() const {
-	return data->SafetyClassification().present();
+	return data->getSafetyClassification().present();
 }
 
 AlertConditionDescriptor & AlertConditionDescriptor::setKind(const AlertConditionKind & value) {
-	data->Kind(ConvertToCDM::convert(value));
+	data->setKind(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 AlertConditionKind AlertConditionDescriptor::getKind() const {
-	return ConvertFromCDM::convert(data->Kind());
+	return ConvertFromCDM::convert(data->getKind());
 }
 
 AlertConditionDescriptor & AlertConditionDescriptor::setPriority(const AlertConditionPriority & value) {
-	data->Priority(ConvertToCDM::convert(value));
+	data->setPriority(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 AlertConditionPriority AlertConditionDescriptor::getPriority() const {
-	return ConvertFromCDM::convert(data->Priority());
+	return ConvertFromCDM::convert(data->getPriority());
 }
 
 AlertConditionDescriptor & AlertConditionDescriptor::setDefaultConditionGenerationDelay(const xml_schema::Duration & value) {
-	data->DefaultConditionGenerationDelay(ConvertToCDM::convert(value));
+	data->setDefaultConditionGenerationDelay(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool AlertConditionDescriptor::getDefaultConditionGenerationDelay(xml_schema::Duration & out) const {
-	if (data->DefaultConditionGenerationDelay().present()) {
-		out = ConvertFromCDM::convert(data->DefaultConditionGenerationDelay().get());
+	if (data->getDefaultConditionGenerationDelay().present()) {
+		out = ConvertFromCDM::convert(data->getDefaultConditionGenerationDelay().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::Duration AlertConditionDescriptor::getDefaultConditionGenerationDelay() const {
-	return ConvertFromCDM::convert(data->DefaultConditionGenerationDelay().get());
+	return ConvertFromCDM::convert(data->getDefaultConditionGenerationDelay().get());
 }
 
 bool AlertConditionDescriptor::hasDefaultConditionGenerationDelay() const {
-	return data->DefaultConditionGenerationDelay().present();
+	return data->getDefaultConditionGenerationDelay().present();
 }
 
 AlertConditionDescriptor & AlertConditionDescriptor::setCanEscalate(const CanEscalate & value) {
-	data->CanEscalate(ConvertToCDM::convert(value));
+	data->setCanEscalate(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool AlertConditionDescriptor::getCanEscalate(CanEscalate & out) const {
-	if (data->CanEscalate().present()) {
-		out = ConvertFromCDM::convert(data->CanEscalate().get());
+	if (data->getCanEscalate().present()) {
+		out = ConvertFromCDM::convert(data->getCanEscalate().get());
 		return true;
 	}
 	return false;
 }
 
 CanEscalate AlertConditionDescriptor::getCanEscalate() const {
-	return ConvertFromCDM::convert(data->CanEscalate().get());
+	return ConvertFromCDM::convert(data->getCanEscalate().get());
 }
 
 bool AlertConditionDescriptor::hasCanEscalate() const {
-	return data->CanEscalate().present();
+	return data->getCanEscalate().present();
 }
 
 AlertConditionDescriptor & AlertConditionDescriptor::setCanDeescalate(const CanDeescalate & value) {
-	data->CanDeescalate(ConvertToCDM::convert(value));
+	data->setCanDeescalate(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool AlertConditionDescriptor::getCanDeescalate(CanDeescalate & out) const {
-	if (data->CanDeescalate().present()) {
-		out = ConvertFromCDM::convert(data->CanDeescalate().get());
+	if (data->getCanDeescalate().present()) {
+		out = ConvertFromCDM::convert(data->getCanDeescalate().get());
 		return true;
 	}
 	return false;
 }
 
 CanDeescalate AlertConditionDescriptor::getCanDeescalate() const {
-	return ConvertFromCDM::convert(data->CanDeescalate().get());
+	return ConvertFromCDM::convert(data->getCanDeescalate().get());
 }
 
 bool AlertConditionDescriptor::hasCanDeescalate() const {
-	return data->CanDeescalate().present();
+	return data->getCanDeescalate().present();
 }
 
 AlertConditionDescriptor & AlertConditionDescriptor::addSource(const HandleRef & value) {
-	data->Source().push_back(ConvertToCDM::convert(value));
+	data->getSource().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<HandleRef> AlertConditionDescriptor::getSourceList() const {
 	std::vector<HandleRef> result;
-	result.reserve(data->Source().size());
-	for (const auto & value: data->Source()) {
+	result.reserve(data->getSource().size());
+	for (const auto & value: data->getSource()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void AlertConditionDescriptor::clearSourceList() {
-	data->Source().clear();
+	data->getSource().clear();
 }
 
 AlertConditionDescriptor & AlertConditionDescriptor::addCauseInfo(const CauseInfo & value) {
-	data->CauseInfo().push_back(ConvertToCDM::convert(value));
+	data->getCauseInfo().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<CauseInfo> AlertConditionDescriptor::getCauseInfoList() const {
 	std::vector<CauseInfo> result;
-	result.reserve(data->CauseInfo().size());
-	for (const auto & value: data->CauseInfo()) {
+	result.reserve(data->getCauseInfo().size());
+	for (const auto & value: data->getCauseInfo()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void AlertConditionDescriptor::clearCauseInfoList() {
-	data->CauseInfo().clear();
+	data->getCauseInfo().clear();
 }
 
 

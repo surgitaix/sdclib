@@ -75,42 +75,42 @@ LocationReference & LocationReference:: operator=(const LocationReference & obje
 
 
 LocationReference & LocationReference::setLocationDetail(const LocationDetail & value) {
-	data->LocationDetail(ConvertToCDM::convert(value));
+	data->setLocationDetail(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool LocationReference::getLocationDetail(LocationDetail & out) const {
-	if (data->LocationDetail().present()) {
-		out = ConvertFromCDM::convert(data->LocationDetail().get());
+	if (data->getLocationDetail().present()) {
+		out = ConvertFromCDM::convert(data->getLocationDetail().get());
 		return true;
 	}
 	return false;
 }
 
 LocationDetail LocationReference::getLocationDetail() const {
-	return ConvertFromCDM::convert(data->LocationDetail().get());
+	return ConvertFromCDM::convert(data->getLocationDetail().get());
 }
 
 bool LocationReference::hasLocationDetail() const {
-	return data->LocationDetail().present();
+	return data->getLocationDetail().present();
 }
 
 LocationReference & LocationReference::addIdentification(const InstanceIdentifier & value) {
-	data->Identification().push_back(ConvertToCDM::convert(value));
+	data->getIdentification().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<InstanceIdentifier> LocationReference::getIdentificationList() const {
 	std::vector<InstanceIdentifier> result;
-	result.reserve(data->Identification().size());
-	for (const auto & value: data->Identification()) {
+	result.reserve(data->getIdentification().size());
+	for (const auto & value: data->getIdentification()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void LocationReference::clearIdentificationList() {
-	data->Identification().clear();
+	data->getIdentification().clear();
 }
 
 

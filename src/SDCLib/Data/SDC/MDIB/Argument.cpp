@@ -80,23 +80,23 @@ Argument & Argument:: operator=(const Argument & object) {
 
 
 Argument & Argument::setArgName(const CodedValue & value) {
-	data->ArgName(ConvertToCDM::convert(value));
+	data->setArgName(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 CodedValue Argument::getArgName() const {
-	return ConvertFromCDM::convert(data->ArgName());
+	return ConvertFromCDM::convert(data->getArgName());
 }
 
 Argument & Argument::setArg(const xml_schema::Qname & value) {
-	data->Arg(ConvertToCDM::convert(value));
+	data->setArg(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 xml_schema::Qname Argument::getArg() const {
-	return ConvertFromCDM::convert(data->Arg());
+	return ConvertFromCDM::convert(data->getArg());
 }
 
 

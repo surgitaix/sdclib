@@ -31,6 +31,11 @@
 // in the accompanying FLOSSE file.
 //
 
+/**
+ * @file
+ * @brief Generated from wsdl-custom.xsd.
+ */
+
 #ifndef WSDL_CUSTOM_HXX
 #define WSDL_CUSTOM_HXX
 
@@ -73,88 +78,255 @@
 
 namespace WS
 {
+  /**
+   * @brief C++ namespace for the %http://schemas.xmlsoap.org/wsdl/
+   * schema namespace.
+   */
   namespace WSDL
   {
+    /**
+     * @brief Class corresponding to the %tDocumentation schema type.
+     *
+     * @nosubgrouping
+     */
     class TDocumentation: public ::xml_schema::Type
     {
       public:
-      // Constructors.
-      //
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       TDocumentation ();
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       TDocumentation (const ::xercesc::DOMElement& e,
                       ::xml_schema::Flags f = 0,
                       ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TDocumentation (const TDocumentation& x,
                       ::xml_schema::Flags f = 0,
                       ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual TDocumentation*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~TDocumentation ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
              ::xml_schema::Flags);
 
       protected:
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %tDocumented schema type.
+     *
+     * This type is extended by component types to allow them to be
+    documented *
+     * @nosubgrouping
+     */
     class TDocumented: public ::xml_schema::Type
     {
       public:
-      // documentation
-      //
+      /**
+       * @name documentation
+       *
+       * @brief Accessor and modifier functions for the %documentation
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::WSDL::TDocumentation DocumentationType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< DocumentationType > DocumentationOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< DocumentationType, char > DocumentationTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const DocumentationOptional&
-      documentation () const;
+      getDocumentation () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       DocumentationOptional&
-      documentation ();
+      getDocumentation ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      documentation (const DocumentationType& x);
+      setDocumentation (const DocumentationType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      documentation (const DocumentationOptional& x);
+      setDocumentation (const DocumentationOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      documentation (::std::unique_ptr< DocumentationType > p);
+      setDocumentation (::std::unique_ptr< DocumentationType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       TDocumented ();
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       TDocumented (const ::xercesc::DOMElement& e,
                    ::xml_schema::Flags f = 0,
                    ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TDocumented (const TDocumented& x,
                    ::xml_schema::Flags f = 0,
                    ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual TDocumented*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TDocumented&
       operator= (const TDocumented& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~TDocumented ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -162,234 +334,779 @@ namespace WS
 
       protected:
       DocumentationOptional documentation_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %tExtensibleAttributesDocumented schema type.
+     *
+     * @nosubgrouping
+     */
     class TExtensibleAttributesDocumented: public ::WS::WSDL::TDocumented
     {
       public:
-      // Constructors.
-      //
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       TExtensibleAttributesDocumented ();
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       TExtensibleAttributesDocumented (const ::xercesc::DOMElement& e,
                                        ::xml_schema::Flags f = 0,
                                        ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TExtensibleAttributesDocumented (const TExtensibleAttributesDocumented& x,
                                        ::xml_schema::Flags f = 0,
                                        ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual TExtensibleAttributesDocumented*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~TExtensibleAttributesDocumented ();
     };
 
+    /**
+     * @brief Class corresponding to the %tExtensibleDocumented schema type.
+     *
+     * @nosubgrouping
+     */
     class TExtensibleDocumented: public ::WS::WSDL::TDocumented
     {
       public:
-      // Constructors.
-      //
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       TExtensibleDocumented ();
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       TExtensibleDocumented (const ::xercesc::DOMElement& e,
                              ::xml_schema::Flags f = 0,
                              ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TExtensibleDocumented (const TExtensibleDocumented& x,
                              ::xml_schema::Flags f = 0,
                              ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual TExtensibleDocumented*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~TExtensibleDocumented ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
              ::xml_schema::Flags);
 
       protected:
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %tDefinitions schema type.
+     *
+     * @nosubgrouping
+     */
     class TDefinitions: public ::WS::WSDL::TExtensibleDocumented
     {
       public:
-      // import
-      //
+      /**
+       * @name import
+       *
+       * @brief Accessor and modifier functions for the %import
+       * sequence element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::WSDL::TImport ImportType;
+
+      /**
+       * @brief Element sequence container type.
+       */
       typedef ::xsd::cxx::tree::sequence< ImportType > ImportSequence;
+
+      /**
+       * @brief Element iterator type.
+       */
       typedef ImportSequence::iterator ImportIterator;
+
+      /**
+       * @brief Element constant iterator type.
+       */
       typedef ImportSequence::const_iterator ImportConstIterator;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< ImportType, char > ImportTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * sequence.
+       *
+       * @return A constant reference to the sequence container.
+       */
       const ImportSequence&
-      import () const;
+      getImport () const;
 
+      /**
+       * @brief Return a read-write reference to the element sequence.
+       *
+       * @return A reference to the sequence container.
+       */
       ImportSequence&
-      import ();
+      getImport ();
 
+      /**
+       * @brief Copy elements from a given sequence.
+       *
+       * @param s A sequence to copy elements from.
+       *
+       * For each element in @a s this function makes a copy and adds it 
+       * to the sequence. Note that this operation completely changes the 
+       * sequence and all old elements will be lost.
+       */
       void
-      import (const ImportSequence& s);
+      setImport (const ImportSequence& s);
 
-      // types
-      //
+      //@}
+
+      /**
+       * @name types
+       *
+       * @brief Accessor and modifier functions for the %types
+       * sequence element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::WSDL::TTypes TypesType;
+
+      /**
+       * @brief Element sequence container type.
+       */
       typedef ::xsd::cxx::tree::sequence< TypesType > TypesSequence;
+
+      /**
+       * @brief Element iterator type.
+       */
       typedef TypesSequence::iterator TypesIterator;
+
+      /**
+       * @brief Element constant iterator type.
+       */
       typedef TypesSequence::const_iterator TypesConstIterator;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< TypesType, char > TypesTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * sequence.
+       *
+       * @return A constant reference to the sequence container.
+       */
       const TypesSequence&
-      types () const;
+      getTypes () const;
 
+      /**
+       * @brief Return a read-write reference to the element sequence.
+       *
+       * @return A reference to the sequence container.
+       */
       TypesSequence&
-      types ();
+      getTypes ();
 
+      /**
+       * @brief Copy elements from a given sequence.
+       *
+       * @param s A sequence to copy elements from.
+       *
+       * For each element in @a s this function makes a copy and adds it 
+       * to the sequence. Note that this operation completely changes the 
+       * sequence and all old elements will be lost.
+       */
       void
-      types (const TypesSequence& s);
+      setTypes (const TypesSequence& s);
 
-      // message
-      //
+      //@}
+
+      /**
+       * @name message
+       *
+       * @brief Accessor and modifier functions for the %message
+       * sequence element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::WSDL::TMessage MessageType;
+
+      /**
+       * @brief Element sequence container type.
+       */
       typedef ::xsd::cxx::tree::sequence< MessageType > MessageSequence;
+
+      /**
+       * @brief Element iterator type.
+       */
       typedef MessageSequence::iterator MessageIterator;
+
+      /**
+       * @brief Element constant iterator type.
+       */
       typedef MessageSequence::const_iterator MessageConstIterator;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< MessageType, char > MessageTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * sequence.
+       *
+       * @return A constant reference to the sequence container.
+       */
       const MessageSequence&
-      message () const;
+      getMessage () const;
 
+      /**
+       * @brief Return a read-write reference to the element sequence.
+       *
+       * @return A reference to the sequence container.
+       */
       MessageSequence&
-      message ();
+      getMessage ();
 
+      /**
+       * @brief Copy elements from a given sequence.
+       *
+       * @param s A sequence to copy elements from.
+       *
+       * For each element in @a s this function makes a copy and adds it 
+       * to the sequence. Note that this operation completely changes the 
+       * sequence and all old elements will be lost.
+       */
       void
-      message (const MessageSequence& s);
+      setMessage (const MessageSequence& s);
 
-      // portType
-      //
+      //@}
+
+      /**
+       * @name portType
+       *
+       * @brief Accessor and modifier functions for the %portType
+       * sequence element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::WSDL::TPortType PortTypeType;
+
+      /**
+       * @brief Element sequence container type.
+       */
       typedef ::xsd::cxx::tree::sequence< PortTypeType > PortTypeSequence;
+
+      /**
+       * @brief Element iterator type.
+       */
       typedef PortTypeSequence::iterator PortTypeIterator;
+
+      /**
+       * @brief Element constant iterator type.
+       */
       typedef PortTypeSequence::const_iterator PortTypeConstIterator;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< PortTypeType, char > PortTypeTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * sequence.
+       *
+       * @return A constant reference to the sequence container.
+       */
       const PortTypeSequence&
-      portType () const;
+      getPortType () const;
 
+      /**
+       * @brief Return a read-write reference to the element sequence.
+       *
+       * @return A reference to the sequence container.
+       */
       PortTypeSequence&
-      portType ();
+      getPortType ();
 
+      /**
+       * @brief Copy elements from a given sequence.
+       *
+       * @param s A sequence to copy elements from.
+       *
+       * For each element in @a s this function makes a copy and adds it 
+       * to the sequence. Note that this operation completely changes the 
+       * sequence and all old elements will be lost.
+       */
       void
-      portType (const PortTypeSequence& s);
+      setPortType (const PortTypeSequence& s);
 
-      // binding
-      //
+      //@}
+
+      /**
+       * @name binding
+       *
+       * @brief Accessor and modifier functions for the %binding
+       * sequence element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::WSDL::TBinding BindingType;
+
+      /**
+       * @brief Element sequence container type.
+       */
       typedef ::xsd::cxx::tree::sequence< BindingType > BindingSequence;
+
+      /**
+       * @brief Element iterator type.
+       */
       typedef BindingSequence::iterator BindingIterator;
+
+      /**
+       * @brief Element constant iterator type.
+       */
       typedef BindingSequence::const_iterator BindingConstIterator;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< BindingType, char > BindingTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * sequence.
+       *
+       * @return A constant reference to the sequence container.
+       */
       const BindingSequence&
-      binding () const;
+      getBinding () const;
 
+      /**
+       * @brief Return a read-write reference to the element sequence.
+       *
+       * @return A reference to the sequence container.
+       */
       BindingSequence&
-      binding ();
+      getBinding ();
 
+      /**
+       * @brief Copy elements from a given sequence.
+       *
+       * @param s A sequence to copy elements from.
+       *
+       * For each element in @a s this function makes a copy and adds it 
+       * to the sequence. Note that this operation completely changes the 
+       * sequence and all old elements will be lost.
+       */
       void
-      binding (const BindingSequence& s);
+      setBinding (const BindingSequence& s);
 
-      // service
-      //
+      //@}
+
+      /**
+       * @name service
+       *
+       * @brief Accessor and modifier functions for the %service
+       * sequence element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::WSDL::TService ServiceType;
+
+      /**
+       * @brief Element sequence container type.
+       */
       typedef ::xsd::cxx::tree::sequence< ServiceType > ServiceSequence;
+
+      /**
+       * @brief Element iterator type.
+       */
       typedef ServiceSequence::iterator ServiceIterator;
+
+      /**
+       * @brief Element constant iterator type.
+       */
       typedef ServiceSequence::const_iterator ServiceConstIterator;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< ServiceType, char > ServiceTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * sequence.
+       *
+       * @return A constant reference to the sequence container.
+       */
       const ServiceSequence&
-      service () const;
+      getService () const;
 
+      /**
+       * @brief Return a read-write reference to the element sequence.
+       *
+       * @return A reference to the sequence container.
+       */
       ServiceSequence&
-      service ();
+      getService ();
 
+      /**
+       * @brief Copy elements from a given sequence.
+       *
+       * @param s A sequence to copy elements from.
+       *
+       * For each element in @a s this function makes a copy and adds it 
+       * to the sequence. Note that this operation completely changes the 
+       * sequence and all old elements will be lost.
+       */
       void
-      service (const ServiceSequence& s);
+      setService (const ServiceSequence& s);
 
-      // targetNamespace
-      //
+      //@}
+
+      /**
+       * @name targetNamespace
+       *
+       * @brief Accessor and modifier functions for the %targetNamespace
+       * optional attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Uri TargetNamespaceType;
+
+      /**
+       * @brief Attribute optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< TargetNamespaceType > TargetNamespaceOptional;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< TargetNamespaceType, char > TargetNamespaceTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const TargetNamespaceOptional&
-      targetNamespace () const;
+      getTargetNamespace () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute container.
+       *
+       * @return A reference to the optional container.
+       */
       TargetNamespaceOptional&
-      targetNamespace ();
+      getTargetNamespace ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      targetNamespace (const TargetNamespaceType& x);
+      setTargetNamespace (const TargetNamespaceType& x);
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the attribute.
+       * Otherwise the attribute container is set the 'not present' state.
+       */
       void
-      targetNamespace (const TargetNamespaceOptional& x);
+      setTargetNamespace (const TargetNamespaceOptional& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      targetNamespace (::std::unique_ptr< TargetNamespaceType > p);
+      setTargetNamespace (::std::unique_ptr< TargetNamespaceType > p);
 
-      // name
-      //
+      //@}
+
+      /**
+       * @name name
+       *
+       * @brief Accessor and modifier functions for the %name
+       * optional attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Ncname NameType;
+
+      /**
+       * @brief Attribute optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< NameType > NameOptional;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< NameType, char > NameTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const NameOptional&
-      name () const;
+      getName () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute container.
+       *
+       * @return A reference to the optional container.
+       */
       NameOptional&
-      name ();
+      getName ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      name (const NameType& x);
+      setName (const NameType& x);
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the attribute.
+       * Otherwise the attribute container is set the 'not present' state.
+       */
       void
-      name (const NameOptional& x);
+      setName (const NameOptional& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      name (::std::unique_ptr< NameType > p);
+      setName (::std::unique_ptr< NameType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       TDefinitions ();
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       TDefinitions (const ::xercesc::DOMElement& e,
                     ::xml_schema::Flags f = 0,
                     ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TDefinitions (const TDefinitions& x,
                     ::xml_schema::Flags f = 0,
                     ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual TDefinitions*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TDefinitions&
       operator= (const TDefinitions& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~TDefinitions ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -404,70 +1121,210 @@ namespace WS
       ServiceSequence service_;
       TargetNamespaceOptional targetNamespace_;
       NameOptional name_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %tImport schema type.
+     *
+     * @nosubgrouping
+     */
     class TImport: public ::WS::WSDL::TExtensibleAttributesDocumented
     {
       public:
-      // namespace
-      //
+      /**
+       * @name namespace
+       *
+       * @brief Accessor and modifier functions for the %namespace
+       * required attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Uri NamespaceType;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< NamespaceType, char > NamespaceTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute.
+       *
+       * @return A constant reference to the attribute.
+       */
       const NamespaceType&
-      namespace_ () const;
+      getNamespace () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute.
+       *
+       * @return A reference to the attribute.
+       */
       NamespaceType&
-      namespace_ ();
+      getNamespace ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      namespace_ (const NamespaceType& x);
+      setNamespace (const NamespaceType& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      namespace_ (::std::unique_ptr< NamespaceType > p);
+      setNamespace (::std::unique_ptr< NamespaceType > p);
 
-      // location
-      //
+      //@}
+
+      /**
+       * @name location
+       *
+       * @brief Accessor and modifier functions for the %location
+       * required attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Uri LocationType;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< LocationType, char > LocationTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute.
+       *
+       * @return A constant reference to the attribute.
+       */
       const LocationType&
-      location () const;
+      getLocation () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute.
+       *
+       * @return A reference to the attribute.
+       */
       LocationType&
-      location ();
+      getLocation ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      location (const LocationType& x);
+      setLocation (const LocationType& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      location (::std::unique_ptr< LocationType > p);
+      setLocation (::std::unique_ptr< LocationType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       TImport (const NamespaceType&,
                const LocationType&);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       TImport (const ::xercesc::DOMElement& e,
                ::xml_schema::Flags f = 0,
                ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TImport (const TImport& x,
                ::xml_schema::Flags f = 0,
                ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual TImport*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TImport&
       operator= (const TImport& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~TImport ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -476,92 +1333,283 @@ namespace WS
       protected:
       ::xsd::cxx::tree::one< NamespaceType > namespace__;
       ::xsd::cxx::tree::one< LocationType > location_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %tTypes schema type.
+     *
+     * @nosubgrouping
+     */
     class TTypes: public ::WS::WSDL::TExtensibleDocumented
     {
       public:
-      // Constructors.
-      //
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       TTypes ();
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       TTypes (const ::xercesc::DOMElement& e,
               ::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TTypes (const TTypes& x,
               ::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual TTypes*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~TTypes ();
     };
 
+    /**
+     * @brief Class corresponding to the %tMessage schema type.
+     *
+     * @nosubgrouping
+     */
     class TMessage: public ::WS::WSDL::TExtensibleDocumented
     {
       public:
-      // part
-      //
+      /**
+       * @name part
+       *
+       * @brief Accessor and modifier functions for the %part
+       * sequence element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::WSDL::TPart PartType;
+
+      /**
+       * @brief Element sequence container type.
+       */
       typedef ::xsd::cxx::tree::sequence< PartType > PartSequence;
+
+      /**
+       * @brief Element iterator type.
+       */
       typedef PartSequence::iterator PartIterator;
+
+      /**
+       * @brief Element constant iterator type.
+       */
       typedef PartSequence::const_iterator PartConstIterator;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< PartType, char > PartTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * sequence.
+       *
+       * @return A constant reference to the sequence container.
+       */
       const PartSequence&
-      part () const;
+      getPart () const;
 
+      /**
+       * @brief Return a read-write reference to the element sequence.
+       *
+       * @return A reference to the sequence container.
+       */
       PartSequence&
-      part ();
+      getPart ();
 
+      /**
+       * @brief Copy elements from a given sequence.
+       *
+       * @param s A sequence to copy elements from.
+       *
+       * For each element in @a s this function makes a copy and adds it 
+       * to the sequence. Note that this operation completely changes the 
+       * sequence and all old elements will be lost.
+       */
       void
-      part (const PartSequence& s);
+      setPart (const PartSequence& s);
 
-      // name
-      //
+      //@}
+
+      /**
+       * @name name
+       *
+       * @brief Accessor and modifier functions for the %name
+       * required attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Ncname NameType;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< NameType, char > NameTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute.
+       *
+       * @return A constant reference to the attribute.
+       */
       const NameType&
-      name () const;
+      getName () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute.
+       *
+       * @return A reference to the attribute.
+       */
       NameType&
-      name ();
+      getName ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      name (const NameType& x);
+      setName (const NameType& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      name (::std::unique_ptr< NameType > p);
+      setName (::std::unique_ptr< NameType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       TMessage (const NameType&);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       TMessage (const ::xercesc::DOMElement& e,
                 ::xml_schema::Flags f = 0,
                 ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TMessage (const TMessage& x,
                 ::xml_schema::Flags f = 0,
                 ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual TMessage*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TMessage&
       operator= (const TMessage& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~TMessage ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -570,94 +1618,303 @@ namespace WS
       protected:
       PartSequence part_;
       ::xsd::cxx::tree::one< NameType > name_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %tPart schema type.
+     *
+     * @nosubgrouping
+     */
     class TPart: public ::WS::WSDL::TExtensibleAttributesDocumented
     {
       public:
-      // name
-      //
+      /**
+       * @name name
+       *
+       * @brief Accessor and modifier functions for the %name
+       * required attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Ncname NameType;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< NameType, char > NameTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute.
+       *
+       * @return A constant reference to the attribute.
+       */
       const NameType&
-      name () const;
+      getName () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute.
+       *
+       * @return A reference to the attribute.
+       */
       NameType&
-      name ();
+      getName ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      name (const NameType& x);
+      setName (const NameType& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      name (::std::unique_ptr< NameType > p);
+      setName (::std::unique_ptr< NameType > p);
 
-      // element
-      //
+      //@}
+
+      /**
+       * @name element
+       *
+       * @brief Accessor and modifier functions for the %element
+       * optional attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Qname ElementType;
+
+      /**
+       * @brief Attribute optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< ElementType > ElementOptional;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< ElementType, char > ElementTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const ElementOptional&
-      element () const;
+      getElement () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute container.
+       *
+       * @return A reference to the optional container.
+       */
       ElementOptional&
-      element ();
+      getElement ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      element (const ElementType& x);
+      setElement (const ElementType& x);
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the attribute.
+       * Otherwise the attribute container is set the 'not present' state.
+       */
       void
-      element (const ElementOptional& x);
+      setElement (const ElementOptional& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      element (::std::unique_ptr< ElementType > p);
+      setElement (::std::unique_ptr< ElementType > p);
 
-      // type
-      //
+      //@}
+
+      /**
+       * @name type
+       *
+       * @brief Accessor and modifier functions for the %type
+       * optional attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Qname TypeType;
+
+      /**
+       * @brief Attribute optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< TypeType > TypeOptional;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< TypeType, char > TypeTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const TypeOptional&
-      type () const;
+      getType () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute container.
+       *
+       * @return A reference to the optional container.
+       */
       TypeOptional&
-      type ();
+      getType ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      type (const TypeType& x);
+      setType (const TypeType& x);
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the attribute.
+       * Otherwise the attribute container is set the 'not present' state.
+       */
       void
-      type (const TypeOptional& x);
+      setType (const TypeOptional& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      type (::std::unique_ptr< TypeType > p);
+      setType (::std::unique_ptr< TypeType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       TPart (const NameType&);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       TPart (const ::xercesc::DOMElement& e,
              ::xml_schema::Flags f = 0,
              ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TPart (const TPart& x,
              ::xml_schema::Flags f = 0,
              ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual TPart*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TPart&
       operator= (const TPart& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~TPart ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -667,108 +1924,356 @@ namespace WS
       ::xsd::cxx::tree::one< NameType > name_;
       ElementOptional element_;
       TypeOptional type_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %tPortType schema type.
+     *
+     * @nosubgrouping
+     */
     class TPortType: public ::WS::WSDL::TExtensibleAttributesDocumented
     {
       public:
-      // operation
-      //
+      /**
+       * @name operation
+       *
+       * @brief Accessor and modifier functions for the %operation
+       * sequence element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::WSDL::TOperation OperationType;
+
+      /**
+       * @brief Element sequence container type.
+       */
       typedef ::xsd::cxx::tree::sequence< OperationType > OperationSequence;
+
+      /**
+       * @brief Element iterator type.
+       */
       typedef OperationSequence::iterator OperationIterator;
+
+      /**
+       * @brief Element constant iterator type.
+       */
       typedef OperationSequence::const_iterator OperationConstIterator;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< OperationType, char > OperationTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * sequence.
+       *
+       * @return A constant reference to the sequence container.
+       */
       const OperationSequence&
-      operation () const;
+      getOperation () const;
 
+      /**
+       * @brief Return a read-write reference to the element sequence.
+       *
+       * @return A reference to the sequence container.
+       */
       OperationSequence&
-      operation ();
+      getOperation ();
 
+      /**
+       * @brief Copy elements from a given sequence.
+       *
+       * @param s A sequence to copy elements from.
+       *
+       * For each element in @a s this function makes a copy and adds it 
+       * to the sequence. Note that this operation completely changes the 
+       * sequence and all old elements will be lost.
+       */
       void
-      operation (const OperationSequence& s);
+      setOperation (const OperationSequence& s);
 
-      // Policy
-      //
+      //@}
+
+      /**
+       * @name Policy
+       *
+       * @brief Accessor and modifier functions for the %Policy
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::POLICY::Policy PolicyType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< PolicyType > PolicyOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< PolicyType, char > PolicyTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const PolicyOptional&
-      Policy () const;
+      getPolicy () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       PolicyOptional&
-      Policy ();
+      getPolicy ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      Policy (const PolicyType& x);
+      setPolicy (const PolicyType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      Policy (const PolicyOptional& x);
+      setPolicy (const PolicyOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      Policy (::std::unique_ptr< PolicyType > p);
+      setPolicy (::std::unique_ptr< PolicyType > p);
 
-      // name
-      //
+      //@}
+
+      /**
+       * @name name
+       *
+       * @brief Accessor and modifier functions for the %name
+       * required attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Ncname NameType;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< NameType, char > NameTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute.
+       *
+       * @return A constant reference to the attribute.
+       */
       const NameType&
-      name () const;
+      getName () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute.
+       *
+       * @return A reference to the attribute.
+       */
       NameType&
-      name ();
+      getName ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      name (const NameType& x);
+      setName (const NameType& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      name (::std::unique_ptr< NameType > p);
+      setName (::std::unique_ptr< NameType > p);
 
-      // EventSource
-      //
+      //@}
+
+      /**
+       * @name EventSource
+       *
+       * @brief Accessor and modifier functions for the %EventSource
+       * optional attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Boolean EventSourceType;
+
+      /**
+       * @brief Attribute optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< EventSourceType > EventSourceOptional;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< EventSourceType, char > EventSourceTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const EventSourceOptional&
-      EventSource () const;
+      getEventSource () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute container.
+       *
+       * @return A reference to the optional container.
+       */
       EventSourceOptional&
-      EventSource ();
+      getEventSource ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      EventSource (const EventSourceType& x);
+      setEventSource (const EventSourceType& x);
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the attribute.
+       * Otherwise the attribute container is set the 'not present' state.
+       */
       void
-      EventSource (const EventSourceOptional& x);
+      setEventSource (const EventSourceOptional& x);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       TPortType (const NameType&);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       TPortType (const ::xercesc::DOMElement& e,
                  ::xml_schema::Flags f = 0,
                  ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TPortType (const TPortType& x,
                  ::xml_schema::Flags f = 0,
                  ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual TPortType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TPortType&
       operator= (const TPortType& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~TPortType ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -779,132 +2284,443 @@ namespace WS
       PolicyOptional Policy_;
       ::xsd::cxx::tree::one< NameType > name_;
       EventSourceOptional EventSource_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %tOperation schema type.
+     *
+     * @nosubgrouping
+     */
     class TOperation: public ::WS::WSDL::TExtensibleDocumented
     {
       public:
-      // input
-      //
+      /**
+       * @name input
+       *
+       * @brief Accessor and modifier functions for the %input
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::WSDL::TParam InputType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< InputType > InputOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< InputType, char > InputTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const InputOptional&
-      input () const;
+      getInput () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       InputOptional&
-      input ();
+      getInput ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      input (const InputType& x);
+      setInput (const InputType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      input (const InputOptional& x);
+      setInput (const InputOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      input (::std::unique_ptr< InputType > p);
+      setInput (::std::unique_ptr< InputType > p);
 
-      // output
-      //
+      //@}
+
+      /**
+       * @name output
+       *
+       * @brief Accessor and modifier functions for the %output
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::WSDL::TParam OutputType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< OutputType > OutputOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< OutputType, char > OutputTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const OutputOptional&
-      output () const;
+      getOutput () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       OutputOptional&
-      output ();
+      getOutput ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      output (const OutputType& x);
+      setOutput (const OutputType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      output (const OutputOptional& x);
+      setOutput (const OutputOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      output (::std::unique_ptr< OutputType > p);
+      setOutput (::std::unique_ptr< OutputType > p);
 
-      // fault
-      //
+      //@}
+
+      /**
+       * @name fault
+       *
+       * @brief Accessor and modifier functions for the %fault
+       * sequence element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::WSDL::TFault FaultType;
+
+      /**
+       * @brief Element sequence container type.
+       */
       typedef ::xsd::cxx::tree::sequence< FaultType > FaultSequence;
+
+      /**
+       * @brief Element iterator type.
+       */
       typedef FaultSequence::iterator FaultIterator;
+
+      /**
+       * @brief Element constant iterator type.
+       */
       typedef FaultSequence::const_iterator FaultConstIterator;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< FaultType, char > FaultTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * sequence.
+       *
+       * @return A constant reference to the sequence container.
+       */
       const FaultSequence&
-      fault () const;
+      getFault () const;
 
+      /**
+       * @brief Return a read-write reference to the element sequence.
+       *
+       * @return A reference to the sequence container.
+       */
       FaultSequence&
-      fault ();
+      getFault ();
 
+      /**
+       * @brief Copy elements from a given sequence.
+       *
+       * @param s A sequence to copy elements from.
+       *
+       * For each element in @a s this function makes a copy and adds it 
+       * to the sequence. Note that this operation completely changes the 
+       * sequence and all old elements will be lost.
+       */
       void
-      fault (const FaultSequence& s);
+      setFault (const FaultSequence& s);
 
-      // name
-      //
+      //@}
+
+      /**
+       * @name name
+       *
+       * @brief Accessor and modifier functions for the %name
+       * required attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Ncname NameType;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< NameType, char > NameTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute.
+       *
+       * @return A constant reference to the attribute.
+       */
       const NameType&
-      name () const;
+      getName () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute.
+       *
+       * @return A reference to the attribute.
+       */
       NameType&
-      name ();
+      getName ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      name (const NameType& x);
+      setName (const NameType& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      name (::std::unique_ptr< NameType > p);
+      setName (::std::unique_ptr< NameType > p);
 
-      // parameterOrder
-      //
+      //@}
+
+      /**
+       * @name parameterOrder
+       *
+       * @brief Accessor and modifier functions for the %parameterOrder
+       * optional attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Nmtokens ParameterOrderType;
+
+      /**
+       * @brief Attribute optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< ParameterOrderType > ParameterOrderOptional;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< ParameterOrderType, char > ParameterOrderTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const ParameterOrderOptional&
-      parameterOrder () const;
+      getParameterOrder () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute container.
+       *
+       * @return A reference to the optional container.
+       */
       ParameterOrderOptional&
-      parameterOrder ();
+      getParameterOrder ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      parameterOrder (const ParameterOrderType& x);
+      setParameterOrder (const ParameterOrderType& x);
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the attribute.
+       * Otherwise the attribute container is set the 'not present' state.
+       */
       void
-      parameterOrder (const ParameterOrderOptional& x);
+      setParameterOrder (const ParameterOrderOptional& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      parameterOrder (::std::unique_ptr< ParameterOrderType > p);
+      setParameterOrder (::std::unique_ptr< ParameterOrderType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       TOperation (const NameType&);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       TOperation (const ::xercesc::DOMElement& e,
                   ::xml_schema::Flags f = 0,
                   ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TOperation (const TOperation& x,
                   ::xml_schema::Flags f = 0,
                   ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual TOperation*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TOperation&
       operator= (const TOperation& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~TOperation ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -916,94 +2732,303 @@ namespace WS
       FaultSequence fault_;
       ::xsd::cxx::tree::one< NameType > name_;
       ParameterOrderOptional parameterOrder_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %tParam schema type.
+     *
+     * @nosubgrouping
+     */
     class TParam: public ::WS::WSDL::TExtensibleAttributesDocumented
     {
       public:
-      // name
-      //
+      /**
+       * @name name
+       *
+       * @brief Accessor and modifier functions for the %name
+       * optional attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Ncname NameType;
+
+      /**
+       * @brief Attribute optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< NameType > NameOptional;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< NameType, char > NameTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const NameOptional&
-      name () const;
+      getName () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute container.
+       *
+       * @return A reference to the optional container.
+       */
       NameOptional&
-      name ();
+      getName ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      name (const NameType& x);
+      setName (const NameType& x);
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the attribute.
+       * Otherwise the attribute container is set the 'not present' state.
+       */
       void
-      name (const NameOptional& x);
+      setName (const NameOptional& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      name (::std::unique_ptr< NameType > p);
+      setName (::std::unique_ptr< NameType > p);
 
-      // message
-      //
+      //@}
+
+      /**
+       * @name message
+       *
+       * @brief Accessor and modifier functions for the %message
+       * required attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Qname MessageType;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< MessageType, char > MessageTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute.
+       *
+       * @return A constant reference to the attribute.
+       */
       const MessageType&
-      message () const;
+      getMessage () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute.
+       *
+       * @return A reference to the attribute.
+       */
       MessageType&
-      message ();
+      getMessage ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      message (const MessageType& x);
+      setMessage (const MessageType& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      message (::std::unique_ptr< MessageType > p);
+      setMessage (::std::unique_ptr< MessageType > p);
 
-      // Action
-      //
+      //@}
+
+      /**
+       * @name Action
+       *
+       * @brief Accessor and modifier functions for the %Action
+       * optional attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Uri ActionType;
+
+      /**
+       * @brief Attribute optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< ActionType > ActionOptional;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< ActionType, char > ActionTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const ActionOptional&
-      Action () const;
+      getAction () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute container.
+       *
+       * @return A reference to the optional container.
+       */
       ActionOptional&
-      Action ();
+      getAction ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      Action (const ActionType& x);
+      setAction (const ActionType& x);
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the attribute.
+       * Otherwise the attribute container is set the 'not present' state.
+       */
       void
-      Action (const ActionOptional& x);
+      setAction (const ActionOptional& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      Action (::std::unique_ptr< ActionType > p);
+      setAction (::std::unique_ptr< ActionType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       TParam (const MessageType&);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       TParam (const ::xercesc::DOMElement& e,
               ::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TParam (const TParam& x,
               ::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual TParam*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TParam&
       operator= (const TParam& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~TParam ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -1013,70 +3038,210 @@ namespace WS
       NameOptional name_;
       ::xsd::cxx::tree::one< MessageType > message_;
       ActionOptional Action_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %tFault schema type.
+     *
+     * @nosubgrouping
+     */
     class TFault: public ::WS::WSDL::TExtensibleAttributesDocumented
     {
       public:
-      // name
-      //
+      /**
+       * @name name
+       *
+       * @brief Accessor and modifier functions for the %name
+       * required attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Ncname NameType;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< NameType, char > NameTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute.
+       *
+       * @return A constant reference to the attribute.
+       */
       const NameType&
-      name () const;
+      getName () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute.
+       *
+       * @return A reference to the attribute.
+       */
       NameType&
-      name ();
+      getName ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      name (const NameType& x);
+      setName (const NameType& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      name (::std::unique_ptr< NameType > p);
+      setName (::std::unique_ptr< NameType > p);
 
-      // message
-      //
+      //@}
+
+      /**
+       * @name message
+       *
+       * @brief Accessor and modifier functions for the %message
+       * required attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Qname MessageType;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< MessageType, char > MessageTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute.
+       *
+       * @return A constant reference to the attribute.
+       */
       const MessageType&
-      message () const;
+      getMessage () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute.
+       *
+       * @return A reference to the attribute.
+       */
       MessageType&
-      message ();
+      getMessage ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      message (const MessageType& x);
+      setMessage (const MessageType& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      message (::std::unique_ptr< MessageType > p);
+      setMessage (::std::unique_ptr< MessageType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       TFault (const NameType&,
               const MessageType&);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       TFault (const ::xercesc::DOMElement& e,
               ::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TFault (const TFault& x,
               ::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual TFault*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TFault&
       operator= (const TFault& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~TFault ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -1085,109 +3250,345 @@ namespace WS
       protected:
       ::xsd::cxx::tree::one< NameType > name_;
       ::xsd::cxx::tree::one< MessageType > message_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %tBinding schema type.
+     *
+     * @nosubgrouping
+     */
     class TBinding: public ::WS::WSDL::TDocumented
     {
       public:
-      // binding
-      //
+      /**
+       * @name binding
+       *
+       * @brief Accessor and modifier functions for the %binding
+       * required element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::WSDL::SOAP_BINDING::BindingType BindingType;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< BindingType, char > BindingTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element.
+       *
+       * @return A constant reference to the element.
+       */
       const BindingType&
-      binding () const;
+      getBinding () const;
 
+      /**
+       * @brief Return a read-write reference to the element.
+       *
+       * @return A reference to the element.
+       */
       BindingType&
-      binding ();
+      getBinding ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      binding (const BindingType& x);
+      setBinding (const BindingType& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      binding (::std::unique_ptr< BindingType > p);
+      setBinding (::std::unique_ptr< BindingType > p);
 
-      // operation
-      //
+      //@}
+
+      /**
+       * @name operation
+       *
+       * @brief Accessor and modifier functions for the %operation
+       * sequence element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::WSDL::TBindingOperation OperationType;
+
+      /**
+       * @brief Element sequence container type.
+       */
       typedef ::xsd::cxx::tree::sequence< OperationType > OperationSequence;
+
+      /**
+       * @brief Element iterator type.
+       */
       typedef OperationSequence::iterator OperationIterator;
+
+      /**
+       * @brief Element constant iterator type.
+       */
       typedef OperationSequence::const_iterator OperationConstIterator;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< OperationType, char > OperationTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * sequence.
+       *
+       * @return A constant reference to the sequence container.
+       */
       const OperationSequence&
-      operation () const;
+      getOperation () const;
 
+      /**
+       * @brief Return a read-write reference to the element sequence.
+       *
+       * @return A reference to the sequence container.
+       */
       OperationSequence&
-      operation ();
+      getOperation ();
 
+      /**
+       * @brief Copy elements from a given sequence.
+       *
+       * @param s A sequence to copy elements from.
+       *
+       * For each element in @a s this function makes a copy and adds it 
+       * to the sequence. Note that this operation completely changes the 
+       * sequence and all old elements will be lost.
+       */
       void
-      operation (const OperationSequence& s);
+      setOperation (const OperationSequence& s);
 
-      // name
-      //
+      //@}
+
+      /**
+       * @name name
+       *
+       * @brief Accessor and modifier functions for the %name
+       * required attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Ncname NameType;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< NameType, char > NameTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute.
+       *
+       * @return A constant reference to the attribute.
+       */
       const NameType&
-      name () const;
+      getName () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute.
+       *
+       * @return A reference to the attribute.
+       */
       NameType&
-      name ();
+      getName ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      name (const NameType& x);
+      setName (const NameType& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      name (::std::unique_ptr< NameType > p);
+      setName (::std::unique_ptr< NameType > p);
 
-      // type
-      //
+      //@}
+
+      /**
+       * @name type
+       *
+       * @brief Accessor and modifier functions for the %type
+       * required attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Qname TypeType;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< TypeType, char > TypeTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute.
+       *
+       * @return A constant reference to the attribute.
+       */
       const TypeType&
-      type () const;
+      getType () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute.
+       *
+       * @return A reference to the attribute.
+       */
       TypeType&
-      type ();
+      getType ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      type (const TypeType& x);
+      setType (const TypeType& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      type (::std::unique_ptr< TypeType > p);
+      setType (::std::unique_ptr< TypeType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       TBinding (const BindingType&,
                 const NameType&,
                 const TypeType&);
 
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes
+       * (::std::unique_ptr version).
+       *
+       * This constructor will try to use the passed values directly
+       * instead of making copies.
+       */
       TBinding (::std::unique_ptr< BindingType >,
                 const NameType&,
                 const TypeType&);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       TBinding (const ::xercesc::DOMElement& e,
                 ::xml_schema::Flags f = 0,
                 ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TBinding (const TBinding& x,
                 ::xml_schema::Flags f = 0,
                 ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual TBinding*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TBinding&
       operator= (const TBinding& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~TBinding ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -1198,75 +3599,237 @@ namespace WS
       OperationSequence operation_;
       ::xsd::cxx::tree::one< NameType > name_;
       ::xsd::cxx::tree::one< TypeType > type_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %tBindingOperationMessage schema type.
+     *
+     * @nosubgrouping
+     */
     class TBindingOperationMessage: public ::WS::WSDL::TDocumented
     {
       public:
-      // body
-      //
+      /**
+       * @name body
+       *
+       * @brief Accessor and modifier functions for the %body
+       * required element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::WSDL::SOAP_BINDING::BodyType BodyType;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< BodyType, char > BodyTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element.
+       *
+       * @return A constant reference to the element.
+       */
       const BodyType&
-      body () const;
+      getBody () const;
 
+      /**
+       * @brief Return a read-write reference to the element.
+       *
+       * @return A reference to the element.
+       */
       BodyType&
-      body ();
+      getBody ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      body (const BodyType& x);
+      setBody (const BodyType& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      body (::std::unique_ptr< BodyType > p);
+      setBody (::std::unique_ptr< BodyType > p);
 
-      // name
-      //
+      //@}
+
+      /**
+       * @name name
+       *
+       * @brief Accessor and modifier functions for the %name
+       * optional attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Ncname NameType;
+
+      /**
+       * @brief Attribute optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< NameType > NameOptional;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< NameType, char > NameTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const NameOptional&
-      name () const;
+      getName () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute container.
+       *
+       * @return A reference to the optional container.
+       */
       NameOptional&
-      name ();
+      getName ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      name (const NameType& x);
+      setName (const NameType& x);
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the attribute.
+       * Otherwise the attribute container is set the 'not present' state.
+       */
       void
-      name (const NameOptional& x);
+      setName (const NameOptional& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      name (::std::unique_ptr< NameType > p);
+      setName (::std::unique_ptr< NameType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       TBindingOperationMessage (const BodyType&);
 
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes
+       * (::std::unique_ptr version).
+       *
+       * This constructor will try to use the passed values directly
+       * instead of making copies.
+       */
       TBindingOperationMessage (::std::unique_ptr< BodyType >);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       TBindingOperationMessage (const ::xercesc::DOMElement& e,
                                 ::xml_schema::Flags f = 0,
                                 ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TBindingOperationMessage (const TBindingOperationMessage& x,
                                 ::xml_schema::Flags f = 0,
                                 ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual TBindingOperationMessage*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TBindingOperationMessage&
       operator= (const TBindingOperationMessage& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~TBindingOperationMessage ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -1275,52 +3838,151 @@ namespace WS
       protected:
       ::xsd::cxx::tree::one< BodyType > body_;
       NameOptional name_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %tBindingOperationFault schema type.
+     *
+     * @nosubgrouping
+     */
     class TBindingOperationFault: public ::WS::WSDL::TExtensibleDocumented
     {
       public:
-      // name
-      //
+      /**
+       * @name name
+       *
+       * @brief Accessor and modifier functions for the %name
+       * required attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Ncname NameType;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< NameType, char > NameTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute.
+       *
+       * @return A constant reference to the attribute.
+       */
       const NameType&
-      name () const;
+      getName () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute.
+       *
+       * @return A reference to the attribute.
+       */
       NameType&
-      name ();
+      getName ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      name (const NameType& x);
+      setName (const NameType& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      name (::std::unique_ptr< NameType > p);
+      setName (::std::unique_ptr< NameType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       TBindingOperationFault (const NameType&);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       TBindingOperationFault (const ::xercesc::DOMElement& e,
                               ::xml_schema::Flags f = 0,
                               ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TBindingOperationFault (const TBindingOperationFault& x,
                               ::xml_schema::Flags f = 0,
                               ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual TBindingOperationFault*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TBindingOperationFault&
       operator= (const TBindingOperationFault& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~TBindingOperationFault ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -1328,132 +3990,437 @@ namespace WS
 
       protected:
       ::xsd::cxx::tree::one< NameType > name_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %tBindingOperation schema type.
+     *
+     * @nosubgrouping
+     */
     class TBindingOperation: public ::WS::WSDL::TDocumented
     {
       public:
-      // operation
-      //
+      /**
+       * @name operation
+       *
+       * @brief Accessor and modifier functions for the %operation
+       * required element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::WSDL::SOAP_BINDING::OperationType OperationType;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< OperationType, char > OperationTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element.
+       *
+       * @return A constant reference to the element.
+       */
       const OperationType&
-      operation () const;
+      getOperation () const;
 
+      /**
+       * @brief Return a read-write reference to the element.
+       *
+       * @return A reference to the element.
+       */
       OperationType&
-      operation ();
+      getOperation ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      operation (const OperationType& x);
+      setOperation (const OperationType& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      operation (::std::unique_ptr< OperationType > p);
+      setOperation (::std::unique_ptr< OperationType > p);
 
-      // input
-      //
+      //@}
+
+      /**
+       * @name input
+       *
+       * @brief Accessor and modifier functions for the %input
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::WSDL::TBindingOperationMessage InputType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< InputType > InputOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< InputType, char > InputTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const InputOptional&
-      input () const;
+      getInput () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       InputOptional&
-      input ();
+      getInput ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      input (const InputType& x);
+      setInput (const InputType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      input (const InputOptional& x);
+      setInput (const InputOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      input (::std::unique_ptr< InputType > p);
+      setInput (::std::unique_ptr< InputType > p);
 
-      // output
-      //
+      //@}
+
+      /**
+       * @name output
+       *
+       * @brief Accessor and modifier functions for the %output
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::WSDL::TBindingOperationMessage OutputType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< OutputType > OutputOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< OutputType, char > OutputTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const OutputOptional&
-      output () const;
+      getOutput () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       OutputOptional&
-      output ();
+      getOutput ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      output (const OutputType& x);
+      setOutput (const OutputType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      output (const OutputOptional& x);
+      setOutput (const OutputOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      output (::std::unique_ptr< OutputType > p);
+      setOutput (::std::unique_ptr< OutputType > p);
 
-      // fault
-      //
+      //@}
+
+      /**
+       * @name fault
+       *
+       * @brief Accessor and modifier functions for the %fault
+       * sequence element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::WSDL::TBindingOperationFault FaultType;
+
+      /**
+       * @brief Element sequence container type.
+       */
       typedef ::xsd::cxx::tree::sequence< FaultType > FaultSequence;
+
+      /**
+       * @brief Element iterator type.
+       */
       typedef FaultSequence::iterator FaultIterator;
+
+      /**
+       * @brief Element constant iterator type.
+       */
       typedef FaultSequence::const_iterator FaultConstIterator;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< FaultType, char > FaultTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * sequence.
+       *
+       * @return A constant reference to the sequence container.
+       */
       const FaultSequence&
-      fault () const;
+      getFault () const;
 
+      /**
+       * @brief Return a read-write reference to the element sequence.
+       *
+       * @return A reference to the sequence container.
+       */
       FaultSequence&
-      fault ();
+      getFault ();
 
+      /**
+       * @brief Copy elements from a given sequence.
+       *
+       * @param s A sequence to copy elements from.
+       *
+       * For each element in @a s this function makes a copy and adds it 
+       * to the sequence. Note that this operation completely changes the 
+       * sequence and all old elements will be lost.
+       */
       void
-      fault (const FaultSequence& s);
+      setFault (const FaultSequence& s);
 
-      // name
-      //
+      //@}
+
+      /**
+       * @name name
+       *
+       * @brief Accessor and modifier functions for the %name
+       * required attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Ncname NameType;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< NameType, char > NameTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute.
+       *
+       * @return A constant reference to the attribute.
+       */
       const NameType&
-      name () const;
+      getName () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute.
+       *
+       * @return A reference to the attribute.
+       */
       NameType&
-      name ();
+      getName ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      name (const NameType& x);
+      setName (const NameType& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      name (::std::unique_ptr< NameType > p);
+      setName (::std::unique_ptr< NameType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       TBindingOperation (const OperationType&,
                          const NameType&);
 
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes
+       * (::std::unique_ptr version).
+       *
+       * This constructor will try to use the passed values directly
+       * instead of making copies.
+       */
       TBindingOperation (::std::unique_ptr< OperationType >,
                          const NameType&);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       TBindingOperation (const ::xercesc::DOMElement& e,
                          ::xml_schema::Flags f = 0,
                          ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TBindingOperation (const TBindingOperation& x,
                          ::xml_schema::Flags f = 0,
                          ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual TBindingOperation*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TBindingOperation&
       operator= (const TBindingOperation& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~TBindingOperation ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -1465,69 +4432,215 @@ namespace WS
       OutputOptional output_;
       FaultSequence fault_;
       ::xsd::cxx::tree::one< NameType > name_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %tService schema type.
+     *
+     * @nosubgrouping
+     */
     class TService: public ::WS::WSDL::TExtensibleDocumented
     {
       public:
-      // port
-      //
+      /**
+       * @name port
+       *
+       * @brief Accessor and modifier functions for the %port
+       * sequence element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::WSDL::TPort PortType;
+
+      /**
+       * @brief Element sequence container type.
+       */
       typedef ::xsd::cxx::tree::sequence< PortType > PortSequence;
+
+      /**
+       * @brief Element iterator type.
+       */
       typedef PortSequence::iterator PortIterator;
+
+      /**
+       * @brief Element constant iterator type.
+       */
       typedef PortSequence::const_iterator PortConstIterator;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< PortType, char > PortTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * sequence.
+       *
+       * @return A constant reference to the sequence container.
+       */
       const PortSequence&
-      port () const;
+      getPort () const;
 
+      /**
+       * @brief Return a read-write reference to the element sequence.
+       *
+       * @return A reference to the sequence container.
+       */
       PortSequence&
-      port ();
+      getPort ();
 
+      /**
+       * @brief Copy elements from a given sequence.
+       *
+       * @param s A sequence to copy elements from.
+       *
+       * For each element in @a s this function makes a copy and adds it 
+       * to the sequence. Note that this operation completely changes the 
+       * sequence and all old elements will be lost.
+       */
       void
-      port (const PortSequence& s);
+      setPort (const PortSequence& s);
 
-      // name
-      //
+      //@}
+
+      /**
+       * @name name
+       *
+       * @brief Accessor and modifier functions for the %name
+       * required attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Ncname NameType;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< NameType, char > NameTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute.
+       *
+       * @return A constant reference to the attribute.
+       */
       const NameType&
-      name () const;
+      getName () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute.
+       *
+       * @return A reference to the attribute.
+       */
       NameType&
-      name ();
+      getName ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      name (const NameType& x);
+      setName (const NameType& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      name (::std::unique_ptr< NameType > p);
+      setName (::std::unique_ptr< NameType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       TService (const NameType&);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       TService (const ::xercesc::DOMElement& e,
                 ::xml_schema::Flags f = 0,
                 ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TService (const TService& x,
                 ::xml_schema::Flags f = 0,
                 ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual TService*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TService&
       operator= (const TService& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~TService ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -1536,70 +4649,210 @@ namespace WS
       protected:
       PortSequence port_;
       ::xsd::cxx::tree::one< NameType > name_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %tPort schema type.
+     *
+     * @nosubgrouping
+     */
     class TPort: public ::WS::WSDL::TExtensibleDocumented
     {
       public:
-      // name
-      //
+      /**
+       * @name name
+       *
+       * @brief Accessor and modifier functions for the %name
+       * required attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Ncname NameType;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< NameType, char > NameTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute.
+       *
+       * @return A constant reference to the attribute.
+       */
       const NameType&
-      name () const;
+      getName () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute.
+       *
+       * @return A reference to the attribute.
+       */
       NameType&
-      name ();
+      getName ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      name (const NameType& x);
+      setName (const NameType& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      name (::std::unique_ptr< NameType > p);
+      setName (::std::unique_ptr< NameType > p);
 
-      // binding
-      //
+      //@}
+
+      /**
+       * @name binding
+       *
+       * @brief Accessor and modifier functions for the %binding
+       * required attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Qname BindingType;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< BindingType, char > BindingTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute.
+       *
+       * @return A constant reference to the attribute.
+       */
       const BindingType&
-      binding () const;
+      getBinding () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute.
+       *
+       * @return A reference to the attribute.
+       */
       BindingType&
-      binding ();
+      getBinding ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      binding (const BindingType& x);
+      setBinding (const BindingType& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      binding (::std::unique_ptr< BindingType > p);
+      setBinding (::std::unique_ptr< BindingType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       TPort (const NameType&,
              const BindingType&);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       TPort (const ::xercesc::DOMElement& e,
              ::xml_schema::Flags f = 0,
              ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TPort (const TPort& x,
              ::xml_schema::Flags f = 0,
              ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual TPort*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TPort&
       operator= (const TPort& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~TPort ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -1608,53 +4861,158 @@ namespace WS
       protected:
       ::xsd::cxx::tree::one< NameType > name_;
       ::xsd::cxx::tree::one< BindingType > binding_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %tExtensibilityElement schema type.
+     *
+     * @nosubgrouping
+     */
     class TExtensibilityElement: public ::xml_schema::Type
     {
       public:
-      // required
-      //
+      /**
+       * @name required
+       *
+       * @brief Accessor and modifier functions for the %required
+       * optional attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Boolean RequiredType;
+
+      /**
+       * @brief Attribute optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< RequiredType > RequiredOptional;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< RequiredType, char > RequiredTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const RequiredOptional&
-      required () const;
+      getRequired () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute container.
+       *
+       * @return A reference to the optional container.
+       */
       RequiredOptional&
-      required ();
+      getRequired ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      required (const RequiredType& x);
+      setRequired (const RequiredType& x);
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the attribute.
+       * Otherwise the attribute container is set the 'not present' state.
+       */
       void
-      required (const RequiredOptional& x);
+      setRequired (const RequiredOptional& x);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       TExtensibilityElement ();
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       TExtensibilityElement (const ::xercesc::DOMElement& e,
                              ::xml_schema::Flags f = 0,
                              ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TExtensibilityElement (const TExtensibilityElement& x,
                              ::xml_schema::Flags f = 0,
                              ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual TExtensibilityElement*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TExtensibilityElement&
       operator= (const TExtensibilityElement& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~TExtensibilityElement ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -1662,6 +5020,8 @@ namespace WS
 
       protected:
       RequiredOptional required_;
+
+      //@endcond
     };
   }
 }
@@ -1676,98 +5036,258 @@ namespace WS
 {
   namespace WSDL
   {
-    // Parse a URI or a local file.
-    //
+    /**
+     * @name Parsing functions for the %definitions document root.
+     */
+    //@{
 
+    /**
+     * @brief Parse a URI or a local file.
+     *
+     * @param uri A URI or a local file name.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
     ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (const ::std::string& uri,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseDefinitions (const ::std::string& uri,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a URI or a local file with an error handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (const ::std::string& uri,
-                 ::xml_schema::ErrorHandler& eh,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseDefinitions (const ::std::string& uri,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a URI or a local file with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (const ::std::string& uri,
-                 ::xercesc::DOMErrorHandler& eh,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseDefinitions (const ::std::string& uri,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    // Parse std::istream.
-    //
-
+    /**
+     * @brief Parse a standard input stream.
+     *
+     * @param is A standrad input stream.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
     ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (::std::istream& is,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseDefinitions (::std::istream& is,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a standard input stream with an error handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (::std::istream& is,
-                 ::xml_schema::ErrorHandler& eh,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseDefinitions (::std::istream& is,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a standard input stream with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (::std::istream& is,
-                 ::xercesc::DOMErrorHandler& eh,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseDefinitions (::std::istream& is,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a standard input stream with a resource id.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
     ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (::std::istream& is,
-                 const ::std::string& id,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseDefinitions (::std::istream& is,
+                      const ::std::string& id,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a standard input stream with a resource id and an
+     * error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (::std::istream& is,
-                 const ::std::string& id,
-                 ::xml_schema::ErrorHandler& eh,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseDefinitions (::std::istream& is,
+                      const ::std::string& id,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a standard input stream with a resource id and a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (::std::istream& is,
-                 const ::std::string& id,
-                 ::xercesc::DOMErrorHandler& eh,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseDefinitions (::std::istream& is,
+                      const ::std::string& id,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    // Parse xercesc::InputSource.
-    //
-
+    /**
+     * @brief Parse a Xerces-C++ input source.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
     ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (::xercesc::InputSource& is,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseDefinitions (::xercesc::InputSource& is,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a Xerces-C++ input source with an error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (::xercesc::InputSource& is,
-                 ::xml_schema::ErrorHandler& eh,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseDefinitions (::xercesc::InputSource& is,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a Xerces-C++ input source with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (::xercesc::InputSource& is,
-                 ::xercesc::DOMErrorHandler& eh,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseDefinitions (::xercesc::InputSource& is,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    // Parse xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     */
     ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (const ::xercesc::DOMDocument& d,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseDefinitions (const ::xercesc::DOMDocument& d,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A pointer to the Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function is normally used together with the keep_dom and
+     * own_dom parsing flags to assign ownership of the DOM document
+     * to the object model.
+     */
     ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseDefinitions (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    //@}
   }
 }
 
@@ -1795,73 +5315,164 @@ namespace WS
     void
     operator<< (::xercesc::DOMElement&, const TExtensibleDocumented&);
 
-    // Serialize to std::ostream.
-    //
+    /**
+     * @name Serialization functions for the %definitions document root.
+     */
+    //@{
 
+    /**
+     * @brief Serialize to a standard output stream.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    definitions (::std::ostream& os,
-                 const ::WS::WSDL::TDefinitions& x, 
-                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                 const ::std::string& e = "UTF-8",
-                 ::xml_schema::Flags f = 0);
+    serializeDefinitions (::std::ostream& os,
+                          const ::WS::WSDL::TDefinitions& x, 
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with an error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    definitions (::std::ostream& os,
-                 const ::WS::WSDL::TDefinitions& x, 
-                 ::xml_schema::ErrorHandler& eh,
-                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                 const ::std::string& e = "UTF-8",
-                 ::xml_schema::Flags f = 0);
+    serializeDefinitions (::std::ostream& os,
+                          const ::WS::WSDL::TDefinitions& x, 
+                          ::xml_schema::ErrorHandler& eh,
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    definitions (::std::ostream& os,
-                 const ::WS::WSDL::TDefinitions& x, 
-                 ::xercesc::DOMErrorHandler& eh,
-                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                 const ::std::string& e = "UTF-8",
-                 ::xml_schema::Flags f = 0);
+    serializeDefinitions (::std::ostream& os,
+                          const ::WS::WSDL::TDefinitions& x, 
+                          ::xercesc::DOMErrorHandler& eh,
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
 
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    definitions (::xercesc::XMLFormatTarget& ft,
-                 const ::WS::WSDL::TDefinitions& x, 
-                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                 const ::std::string& e = "UTF-8",
-                 ::xml_schema::Flags f = 0);
+    serializeDefinitions (::xercesc::XMLFormatTarget& ft,
+                          const ::WS::WSDL::TDefinitions& x, 
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with an error
+     * handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    definitions (::xercesc::XMLFormatTarget& ft,
-                 const ::WS::WSDL::TDefinitions& x, 
-                 ::xml_schema::ErrorHandler& eh,
-                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                 const ::std::string& e = "UTF-8",
-                 ::xml_schema::Flags f = 0);
+    serializeDefinitions (::xercesc::XMLFormatTarget& ft,
+                          const ::WS::WSDL::TDefinitions& x, 
+                          ::xml_schema::ErrorHandler& eh,
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    definitions (::xercesc::XMLFormatTarget& ft,
-                 const ::WS::WSDL::TDefinitions& x, 
-                 ::xercesc::DOMErrorHandler& eh,
-                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                 const ::std::string& e = "UTF-8",
-                 ::xml_schema::Flags f = 0);
+    serializeDefinitions (::xercesc::XMLFormatTarget& ft,
+                          const ::WS::WSDL::TDefinitions& x, 
+                          ::xercesc::DOMErrorHandler& eh,
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
 
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to an existing Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param x An object model to serialize.
+     * @param f Serialization flags.
+     *
+     * Note that it is your responsibility to create the DOM document
+     * with the correct root element as well as set the necessary
+     * namespace mapping attributes.
+     */
     void
-    definitions (::xercesc::DOMDocument& d,
-                 const ::WS::WSDL::TDefinitions& x,
-                 ::xml_schema::Flags f = 0);
+    serializeDefinitions (::xercesc::DOMDocument& d,
+                          const ::WS::WSDL::TDefinitions& x,
+                          ::xml_schema::Flags f = 0);
 
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to a new Xerces-C++ DOM document.
+     *
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param f Serialization flags.
+     * @return A pointer to the new Xerces-C++ DOM document.
+     */
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    definitions (const ::WS::WSDL::TDefinitions& x, 
-                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                 ::xml_schema::Flags f = 0);
+    serializeDefinitions (const ::WS::WSDL::TDefinitions& x, 
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          ::xml_schema::Flags f = 0);
+
+    //@}
 
     void
     operator<< (::xercesc::DOMElement&, const TDefinitions&);

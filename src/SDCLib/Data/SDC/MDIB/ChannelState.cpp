@@ -77,181 +77,181 @@ ChannelState & ChannelState:: operator=(const ChannelState & object) {
 
 
 ChannelState & ChannelState::setStateVersion(const VersionCounter & value) {
-	data->StateVersion(ConvertToCDM::convert(value));
+	data->setStateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ChannelState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
+	if (data->getStateVersion().present()) {
+		out = ConvertFromCDM::convert(data->getStateVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter ChannelState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+	return ConvertFromCDM::convert(data->getStateVersion().get());
 }
 
 bool ChannelState::hasStateVersion() const {
-	return data->StateVersion().present();
+	return data->getStateVersion().present();
 }
 
 ChannelState & ChannelState::setDescriptorHandle(const HandleRef & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
+	data->setDescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 HandleRef ChannelState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
+	return ConvertFromCDM::convert(data->getDescriptorHandle());
 }
 
 ChannelState & ChannelState::setDescriptorVersion(const ReferencedVersion & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ChannelState::getDescriptorVersion(ReferencedVersion & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 ReferencedVersion ChannelState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool ChannelState::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 ChannelState & ChannelState::setCalibrationInfo(const CalibrationInfo & value) {
-	data->CalibrationInfo(ConvertToCDM::convert(value));
+	data->setCalibrationInfo(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ChannelState::getCalibrationInfo(CalibrationInfo & out) const {
-	if (data->CalibrationInfo().present()) {
-		out = ConvertFromCDM::convert(data->CalibrationInfo().get());
+	if (data->getCalibrationInfo().present()) {
+		out = ConvertFromCDM::convert(data->getCalibrationInfo().get());
 		return true;
 	}
 	return false;
 }
 
 CalibrationInfo ChannelState::getCalibrationInfo() const {
-	return ConvertFromCDM::convert(data->CalibrationInfo().get());
+	return ConvertFromCDM::convert(data->getCalibrationInfo().get());
 }
 
 bool ChannelState::hasCalibrationInfo() const {
-	return data->CalibrationInfo().present();
+	return data->getCalibrationInfo().present();
 }
 
 ChannelState & ChannelState::setNextCalibration(const CalibrationInfo & value) {
-	data->NextCalibration(ConvertToCDM::convert(value));
+	data->setNextCalibration(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ChannelState::getNextCalibration(CalibrationInfo & out) const {
-	if (data->NextCalibration().present()) {
-		out = ConvertFromCDM::convert(data->NextCalibration().get());
+	if (data->getNextCalibration().present()) {
+		out = ConvertFromCDM::convert(data->getNextCalibration().get());
 		return true;
 	}
 	return false;
 }
 
 CalibrationInfo ChannelState::getNextCalibration() const {
-	return ConvertFromCDM::convert(data->NextCalibration().get());
+	return ConvertFromCDM::convert(data->getNextCalibration().get());
 }
 
 bool ChannelState::hasNextCalibration() const {
-	return data->NextCalibration().present();
+	return data->getNextCalibration().present();
 }
 
 ChannelState & ChannelState::setPhysicalConnector(const PhysicalConnectorInfo & value) {
-	data->PhysicalConnector(ConvertToCDM::convert(value));
+	data->setPhysicalConnector(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ChannelState::getPhysicalConnector(PhysicalConnectorInfo & out) const {
-	if (data->PhysicalConnector().present()) {
-		out = ConvertFromCDM::convert(data->PhysicalConnector().get());
+	if (data->getPhysicalConnector().present()) {
+		out = ConvertFromCDM::convert(data->getPhysicalConnector().get());
 		return true;
 	}
 	return false;
 }
 
 PhysicalConnectorInfo ChannelState::getPhysicalConnector() const {
-	return ConvertFromCDM::convert(data->PhysicalConnector().get());
+	return ConvertFromCDM::convert(data->getPhysicalConnector().get());
 }
 
 bool ChannelState::hasPhysicalConnector() const {
-	return data->PhysicalConnector().present();
+	return data->getPhysicalConnector().present();
 }
 
 ChannelState & ChannelState::setActivationState(const ComponentActivation & value) {
-	data->ActivationState(ConvertToCDM::convert(value));
+	data->setActivationState(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ChannelState::getActivationState(ComponentActivation & out) const {
-	if (data->ActivationState().present()) {
-		out = ConvertFromCDM::convert(data->ActivationState().get());
+	if (data->getActivationState().present()) {
+		out = ConvertFromCDM::convert(data->getActivationState().get());
 		return true;
 	}
 	return false;
 }
 
 ComponentActivation ChannelState::getActivationState() const {
-	return ConvertFromCDM::convert(data->ActivationState().get());
+	return ConvertFromCDM::convert(data->getActivationState().get());
 }
 
 bool ChannelState::hasActivationState() const {
-	return data->ActivationState().present();
+	return data->getActivationState().present();
 }
 
 ChannelState & ChannelState::setOperatingHours(const unsigned int & value) {
-	data->OperatingHours(ConvertToCDM::convert(value));
+	data->setOperatingHours(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ChannelState::getOperatingHours(unsigned int & out) const {
-	if (data->OperatingHours().present()) {
-		out = ConvertFromCDM::convert(data->OperatingHours().get());
+	if (data->getOperatingHours().present()) {
+		out = ConvertFromCDM::convert(data->getOperatingHours().get());
 		return true;
 	}
 	return false;
 }
 
 unsigned int ChannelState::getOperatingHours() const {
-	return ConvertFromCDM::convert(data->OperatingHours().get());
+	return ConvertFromCDM::convert(data->getOperatingHours().get());
 }
 
 bool ChannelState::hasOperatingHours() const {
-	return data->OperatingHours().present();
+	return data->getOperatingHours().present();
 }
 
 ChannelState & ChannelState::setOperatingCycles(const int & value) {
-	data->OperatingCycles(ConvertToCDM::convert(value));
+	data->setOperatingCycles(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ChannelState::getOperatingCycles(int & out) const {
-	if (data->OperatingCycles().present()) {
-		out = ConvertFromCDM::convert(data->OperatingCycles().get());
+	if (data->getOperatingCycles().present()) {
+		out = ConvertFromCDM::convert(data->getOperatingCycles().get());
 		return true;
 	}
 	return false;
 }
 
 int ChannelState::getOperatingCycles() const {
-	return ConvertFromCDM::convert(data->OperatingCycles().get());
+	return ConvertFromCDM::convert(data->getOperatingCycles().get());
 }
 
 bool ChannelState::hasOperatingCycles() const {
-	return data->OperatingCycles().present();
+	return data->getOperatingCycles().present();
 }
 
 

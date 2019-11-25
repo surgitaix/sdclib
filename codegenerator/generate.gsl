@@ -151,14 +151,14 @@
 .endif
 .   for property
 $(my.childclass:) & $(my.childclass:)::set$(property.name:)(const $(property.type:) & value) {
-	data->$(property.name:)(ConvertToCDM::convert(value));
+	data->set$(property.name:)(ConvertToCDM::convert(value));
 	return *this;
 }
 
 .   if property.optional="true"
 bool $(my.childclass:)::get$(property.name:)($(property.type:) & out) const {
-	if (data->$(property.name:)().present()) {
-		out = ConvertFromCDM::convert(data->$(property.name:)().get());
+	if (data->get$(property.name:)().present()) {
+		out = ConvertFromCDM::convert(data->get$(property.name:)().get());
 		return true;
 	}
 	return false;
@@ -167,36 +167,36 @@ bool $(my.childclass:)::get$(property.name:)($(property.type:) & out) const {
 
 $(property.type:) $(my.childclass:)::get$(property.name:)() const {
 .   if property.optional="true"
-	return ConvertFromCDM::convert(data->$(property.name:)().get());
+	return ConvertFromCDM::convert(data->get$(property.name:)().get());
 .   else
-	return ConvertFromCDM::convert(data->$(property.name:)());
+	return ConvertFromCDM::convert(data->get$(property.name:)());
 .   endif
 }
 	
 .   if property.optional="true"
 bool $(my.childclass:)::has$(property.name:)() const {
-	return data->$(property.name:)().present();
+	return data->get$(property.name:)().present();
 }
 	
 .   endif
 .   endfor
 .   for propertyList
 $(my.childclass:) & $(my.childclass:)::add$(propertyList.nameSingle:)(const $(propertyList.type:) & value) {
-	data->$(propertyList.nameSingle:)().push_back(ConvertToCDM::convert(value));
+	data->get$(propertyList.nameSingle:)().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<$(propertyList.type:)> $(my.childclass:)::get$(propertyList.nameSeveral:)() const {
 	std::vector<$(propertyList.type:)> result;
-	result.reserve(data->$(propertyList.nameSingle:)().size());
-	for (const auto & value: data->$(propertyList.nameSingle:)()) {
+	result.reserve(data->get$(propertyList.nameSingle:)().size());
+	for (const auto & value: data->get$(propertyList.nameSingle:)()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void $(my.childclass:)::clear$(propertyList.nameSeveral:)() {
-	data->$(propertyList.nameSingle:)().clear();
+	data->get$(propertyList.nameSingle:)().clear();
 }
 
 .   endfor

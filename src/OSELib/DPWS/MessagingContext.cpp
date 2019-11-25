@@ -67,10 +67,10 @@ unsigned long long int MessagingContext::getNextMessageCounter()
 
 bool MessagingContext::registerAppSequence(::WS::DISCOVERY::AppSequenceType & p_appSequence)
 {
-	if (p_appSequence.SequenceId().present()) {
-		return registerAppSequence(p_appSequence.InstanceId(), p_appSequence.MessageNumber(), p_appSequence.SequenceId().get());
+	if (p_appSequence.getSequenceId().present()) {
+		return registerAppSequence(p_appSequence.getInstanceId(), p_appSequence.getMessageNumber(), p_appSequence.getSequenceId().get());
 	}
-    return registerAppSequence(p_appSequence.InstanceId(), p_appSequence.MessageNumber());
+    return registerAppSequence(p_appSequence.getInstanceId(), p_appSequence.getMessageNumber());
 }
 
 bool MessagingContext::registerAppSequence(unsigned long long int p_instanceId, unsigned long long int p_messageNumber, const std::string & p_sequenceId)

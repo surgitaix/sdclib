@@ -31,6 +31,11 @@
 // in the accompanying FLOSSE file.
 //
 
+/**
+ * @file
+ * @brief Generated from wsdd-discovery-1.1-schema-os.xsd.
+ */
+
 #ifndef WSDD_DISCOVERY_1_1_SCHEMA_OS_HXX
 #define WSDD_DISCOVERY_1_1_SCHEMA_OS_HXX
 
@@ -67,133 +72,440 @@
 
 namespace WS
 {
+  /**
+   * @brief C++ namespace for the %http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01
+   * schema namespace.
+   */
   namespace DISCOVERY
   {
+    /**
+     * @brief Class corresponding to the %HelloType schema type.
+     *
+     * @nosubgrouping
+     */
     class HelloType: public ::xml_schema::Type
     {
       public:
-      // EndpointReference
-      //
+      /**
+       * @name EndpointReference
+       *
+       * @brief Accessor and modifier functions for the %EndpointReference
+       * required element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::ADDRESSING::EndpointReferenceType EndpointReferenceType;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< EndpointReferenceType, char > EndpointReferenceTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element.
+       *
+       * @return A constant reference to the element.
+       */
       const EndpointReferenceType&
-      EndpointReference () const;
+      getEndpointReference () const;
 
+      /**
+       * @brief Return a read-write reference to the element.
+       *
+       * @return A reference to the element.
+       */
       EndpointReferenceType&
-      EndpointReference ();
+      getEndpointReference ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      EndpointReference (const EndpointReferenceType& x);
+      setEndpointReference (const EndpointReferenceType& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      EndpointReference (::std::unique_ptr< EndpointReferenceType > p);
+      setEndpointReference (::std::unique_ptr< EndpointReferenceType > p);
 
-      // Types
-      //
+      //@}
+
+      /**
+       * @name Types
+       *
+       * @brief Accessor and modifier functions for the %Types
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DISCOVERY::QNameListType TypesType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< TypesType > TypesOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< TypesType, char > TypesTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const TypesOptional&
-      Types () const;
+      getTypes () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       TypesOptional&
-      Types ();
+      getTypes ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      Types (const TypesType& x);
+      setTypes (const TypesType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      Types (const TypesOptional& x);
+      setTypes (const TypesOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      Types (::std::unique_ptr< TypesType > p);
+      setTypes (::std::unique_ptr< TypesType > p);
 
-      // Scopes
-      //
+      //@}
+
+      /**
+       * @name Scopes
+       *
+       * @brief Accessor and modifier functions for the %Scopes
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DISCOVERY::ScopesType ScopesType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< ScopesType > ScopesOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< ScopesType, char > ScopesTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const ScopesOptional&
-      Scopes () const;
+      getScopes () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       ScopesOptional&
-      Scopes ();
+      getScopes ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      Scopes (const ScopesType& x);
+      setScopes (const ScopesType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      Scopes (const ScopesOptional& x);
+      setScopes (const ScopesOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      Scopes (::std::unique_ptr< ScopesType > p);
+      setScopes (::std::unique_ptr< ScopesType > p);
 
-      // XAddrs
-      //
+      //@}
+
+      /**
+       * @name XAddrs
+       *
+       * @brief Accessor and modifier functions for the %XAddrs
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DISCOVERY::UriListType XAddrsType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< XAddrsType > XAddrsOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< XAddrsType, char > XAddrsTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const XAddrsOptional&
-      XAddrs () const;
+      getXAddrs () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       XAddrsOptional&
-      XAddrs ();
+      getXAddrs ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      XAddrs (const XAddrsType& x);
+      setXAddrs (const XAddrsType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      XAddrs (const XAddrsOptional& x);
+      setXAddrs (const XAddrsOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      XAddrs (::std::unique_ptr< XAddrsType > p);
+      setXAddrs (::std::unique_ptr< XAddrsType > p);
 
-      // MetadataVersion
-      //
+      //@}
+
+      /**
+       * @name MetadataVersion
+       *
+       * @brief Accessor and modifier functions for the %MetadataVersion
+       * required element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::xml_schema::UnsignedInt MetadataVersionType;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< MetadataVersionType, char > MetadataVersionTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element.
+       *
+       * @return A constant reference to the element.
+       */
       const MetadataVersionType&
-      MetadataVersion () const;
+      getMetadataVersion () const;
 
+      /**
+       * @brief Return a read-write reference to the element.
+       *
+       * @return A reference to the element.
+       */
       MetadataVersionType&
-      MetadataVersion ();
+      getMetadataVersion ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      MetadataVersion (const MetadataVersionType& x);
+      setMetadataVersion (const MetadataVersionType& x);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       HelloType (const EndpointReferenceType&,
                  const MetadataVersionType&);
 
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes
+       * (::std::unique_ptr version).
+       *
+       * This constructor will try to use the passed values directly
+       * instead of making copies.
+       */
       HelloType (::std::unique_ptr< EndpointReferenceType >,
                  const MetadataVersionType&);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       HelloType (const ::xercesc::DOMElement& e,
                  ::xml_schema::Flags f = 0,
                  ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       HelloType (const HelloType& x,
                  ::xml_schema::Flags f = 0,
                  ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual HelloType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       HelloType&
       operator= (const HelloType& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~HelloType ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -205,135 +517,454 @@ namespace WS
       ScopesOptional Scopes_;
       XAddrsOptional XAddrs_;
       ::xsd::cxx::tree::one< MetadataVersionType > MetadataVersion_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %ByeType schema type.
+     *
+     * @nosubgrouping
+     */
     class ByeType: public ::xml_schema::Type
     {
       public:
-      // EndpointReference
-      //
+      /**
+       * @name EndpointReference
+       *
+       * @brief Accessor and modifier functions for the %EndpointReference
+       * required element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::ADDRESSING::EndpointReferenceType EndpointReferenceType;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< EndpointReferenceType, char > EndpointReferenceTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element.
+       *
+       * @return A constant reference to the element.
+       */
       const EndpointReferenceType&
-      EndpointReference () const;
+      getEndpointReference () const;
 
+      /**
+       * @brief Return a read-write reference to the element.
+       *
+       * @return A reference to the element.
+       */
       EndpointReferenceType&
-      EndpointReference ();
+      getEndpointReference ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      EndpointReference (const EndpointReferenceType& x);
+      setEndpointReference (const EndpointReferenceType& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      EndpointReference (::std::unique_ptr< EndpointReferenceType > p);
+      setEndpointReference (::std::unique_ptr< EndpointReferenceType > p);
 
-      // Types
-      //
+      //@}
+
+      /**
+       * @name Types
+       *
+       * @brief Accessor and modifier functions for the %Types
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DISCOVERY::QNameListType TypesType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< TypesType > TypesOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< TypesType, char > TypesTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const TypesOptional&
-      Types () const;
+      getTypes () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       TypesOptional&
-      Types ();
+      getTypes ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      Types (const TypesType& x);
+      setTypes (const TypesType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      Types (const TypesOptional& x);
+      setTypes (const TypesOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      Types (::std::unique_ptr< TypesType > p);
+      setTypes (::std::unique_ptr< TypesType > p);
 
-      // Scopes
-      //
+      //@}
+
+      /**
+       * @name Scopes
+       *
+       * @brief Accessor and modifier functions for the %Scopes
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DISCOVERY::ScopesType ScopesType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< ScopesType > ScopesOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< ScopesType, char > ScopesTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const ScopesOptional&
-      Scopes () const;
+      getScopes () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       ScopesOptional&
-      Scopes ();
+      getScopes ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      Scopes (const ScopesType& x);
+      setScopes (const ScopesType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      Scopes (const ScopesOptional& x);
+      setScopes (const ScopesOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      Scopes (::std::unique_ptr< ScopesType > p);
+      setScopes (::std::unique_ptr< ScopesType > p);
 
-      // XAddrs
-      //
+      //@}
+
+      /**
+       * @name XAddrs
+       *
+       * @brief Accessor and modifier functions for the %XAddrs
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DISCOVERY::UriListType XAddrsType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< XAddrsType > XAddrsOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< XAddrsType, char > XAddrsTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const XAddrsOptional&
-      XAddrs () const;
+      getXAddrs () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       XAddrsOptional&
-      XAddrs ();
+      getXAddrs ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      XAddrs (const XAddrsType& x);
+      setXAddrs (const XAddrsType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      XAddrs (const XAddrsOptional& x);
+      setXAddrs (const XAddrsOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      XAddrs (::std::unique_ptr< XAddrsType > p);
+      setXAddrs (::std::unique_ptr< XAddrsType > p);
 
-      // MetadataVersion
-      //
+      //@}
+
+      /**
+       * @name MetadataVersion
+       *
+       * @brief Accessor and modifier functions for the %MetadataVersion
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::xml_schema::UnsignedInt MetadataVersionType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< MetadataVersionType > MetadataVersionOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< MetadataVersionType, char > MetadataVersionTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const MetadataVersionOptional&
-      MetadataVersion () const;
+      getMetadataVersion () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       MetadataVersionOptional&
-      MetadataVersion ();
+      getMetadataVersion ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      MetadataVersion (const MetadataVersionType& x);
+      setMetadataVersion (const MetadataVersionType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      MetadataVersion (const MetadataVersionOptional& x);
+      setMetadataVersion (const MetadataVersionOptional& x);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       ByeType (const EndpointReferenceType&);
 
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes
+       * (::std::unique_ptr version).
+       *
+       * This constructor will try to use the passed values directly
+       * instead of making copies.
+       */
       ByeType (::std::unique_ptr< EndpointReferenceType >);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       ByeType (const ::xercesc::DOMElement& e,
                ::xml_schema::Flags f = 0,
                ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       ByeType (const ByeType& x,
                ::xml_schema::Flags f = 0,
                ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual ByeType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       ByeType&
       operator= (const ByeType& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~ByeType ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -345,77 +976,245 @@ namespace WS
       ScopesOptional Scopes_;
       XAddrsOptional XAddrs_;
       MetadataVersionOptional MetadataVersion_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %ProbeType schema type.
+     *
+     * @nosubgrouping
+     */
     class ProbeType: public ::xml_schema::Type
     {
       public:
-      // Types
-      //
+      /**
+       * @name Types
+       *
+       * @brief Accessor and modifier functions for the %Types
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DISCOVERY::QNameListType TypesType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< TypesType > TypesOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< TypesType, char > TypesTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const TypesOptional&
-      Types () const;
+      getTypes () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       TypesOptional&
-      Types ();
+      getTypes ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      Types (const TypesType& x);
+      setTypes (const TypesType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      Types (const TypesOptional& x);
+      setTypes (const TypesOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      Types (::std::unique_ptr< TypesType > p);
+      setTypes (::std::unique_ptr< TypesType > p);
 
-      // Scopes
-      //
+      //@}
+
+      /**
+       * @name Scopes
+       *
+       * @brief Accessor and modifier functions for the %Scopes
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DISCOVERY::ScopesType ScopesType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< ScopesType > ScopesOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< ScopesType, char > ScopesTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const ScopesOptional&
-      Scopes () const;
+      getScopes () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       ScopesOptional&
-      Scopes ();
+      getScopes ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      Scopes (const ScopesType& x);
+      setScopes (const ScopesType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      Scopes (const ScopesOptional& x);
+      setScopes (const ScopesOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      Scopes (::std::unique_ptr< ScopesType > p);
+      setScopes (::std::unique_ptr< ScopesType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       ProbeType ();
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       ProbeType (const ::xercesc::DOMElement& e,
                  ::xml_schema::Flags f = 0,
                  ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       ProbeType (const ProbeType& x,
                  ::xml_schema::Flags f = 0,
                  ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual ProbeType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       ProbeType&
       operator= (const ProbeType& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~ProbeType ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -424,52 +1223,157 @@ namespace WS
       protected:
       TypesOptional Types_;
       ScopesOptional Scopes_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %ProbeMatchesType schema type.
+     *
+     * @nosubgrouping
+     */
     class ProbeMatchesType: public ::xml_schema::Type
     {
       public:
-      // ProbeMatch
-      //
+      /**
+       * @name ProbeMatch
+       *
+       * @brief Accessor and modifier functions for the %ProbeMatch
+       * sequence element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DISCOVERY::ProbeMatchType ProbeMatchType;
+
+      /**
+       * @brief Element sequence container type.
+       */
       typedef ::xsd::cxx::tree::sequence< ProbeMatchType > ProbeMatchSequence;
+
+      /**
+       * @brief Element iterator type.
+       */
       typedef ProbeMatchSequence::iterator ProbeMatchIterator;
+
+      /**
+       * @brief Element constant iterator type.
+       */
       typedef ProbeMatchSequence::const_iterator ProbeMatchConstIterator;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< ProbeMatchType, char > ProbeMatchTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * sequence.
+       *
+       * @return A constant reference to the sequence container.
+       */
       const ProbeMatchSequence&
-      ProbeMatch () const;
+      getProbeMatch () const;
 
+      /**
+       * @brief Return a read-write reference to the element sequence.
+       *
+       * @return A reference to the sequence container.
+       */
       ProbeMatchSequence&
-      ProbeMatch ();
+      getProbeMatch ();
 
+      /**
+       * @brief Copy elements from a given sequence.
+       *
+       * @param s A sequence to copy elements from.
+       *
+       * For each element in @a s this function makes a copy and adds it 
+       * to the sequence. Note that this operation completely changes the 
+       * sequence and all old elements will be lost.
+       */
       void
-      ProbeMatch (const ProbeMatchSequence& s);
+      setProbeMatch (const ProbeMatchSequence& s);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       ProbeMatchesType ();
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       ProbeMatchesType (const ::xercesc::DOMElement& e,
                         ::xml_schema::Flags f = 0,
                         ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       ProbeMatchesType (const ProbeMatchesType& x,
                         ::xml_schema::Flags f = 0,
                         ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual ProbeMatchesType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       ProbeMatchesType&
       operator= (const ProbeMatchesType& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~ProbeMatchesType ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -477,133 +1381,438 @@ namespace WS
 
       protected:
       ProbeMatchSequence ProbeMatch_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %ProbeMatchType schema type.
+     *
+     * @nosubgrouping
+     */
     class ProbeMatchType: public ::xml_schema::Type
     {
       public:
-      // EndpointReference
-      //
+      /**
+       * @name EndpointReference
+       *
+       * @brief Accessor and modifier functions for the %EndpointReference
+       * required element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::ADDRESSING::EndpointReferenceType EndpointReferenceType;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< EndpointReferenceType, char > EndpointReferenceTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element.
+       *
+       * @return A constant reference to the element.
+       */
       const EndpointReferenceType&
-      EndpointReference () const;
+      getEndpointReference () const;
 
+      /**
+       * @brief Return a read-write reference to the element.
+       *
+       * @return A reference to the element.
+       */
       EndpointReferenceType&
-      EndpointReference ();
+      getEndpointReference ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      EndpointReference (const EndpointReferenceType& x);
+      setEndpointReference (const EndpointReferenceType& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      EndpointReference (::std::unique_ptr< EndpointReferenceType > p);
+      setEndpointReference (::std::unique_ptr< EndpointReferenceType > p);
 
-      // Types
-      //
+      //@}
+
+      /**
+       * @name Types
+       *
+       * @brief Accessor and modifier functions for the %Types
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DISCOVERY::QNameListType TypesType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< TypesType > TypesOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< TypesType, char > TypesTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const TypesOptional&
-      Types () const;
+      getTypes () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       TypesOptional&
-      Types ();
+      getTypes ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      Types (const TypesType& x);
+      setTypes (const TypesType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      Types (const TypesOptional& x);
+      setTypes (const TypesOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      Types (::std::unique_ptr< TypesType > p);
+      setTypes (::std::unique_ptr< TypesType > p);
 
-      // Scopes
-      //
+      //@}
+
+      /**
+       * @name Scopes
+       *
+       * @brief Accessor and modifier functions for the %Scopes
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DISCOVERY::ScopesType ScopesType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< ScopesType > ScopesOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< ScopesType, char > ScopesTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const ScopesOptional&
-      Scopes () const;
+      getScopes () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       ScopesOptional&
-      Scopes ();
+      getScopes ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      Scopes (const ScopesType& x);
+      setScopes (const ScopesType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      Scopes (const ScopesOptional& x);
+      setScopes (const ScopesOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      Scopes (::std::unique_ptr< ScopesType > p);
+      setScopes (::std::unique_ptr< ScopesType > p);
 
-      // XAddrs
-      //
+      //@}
+
+      /**
+       * @name XAddrs
+       *
+       * @brief Accessor and modifier functions for the %XAddrs
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DISCOVERY::UriListType XAddrsType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< XAddrsType > XAddrsOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< XAddrsType, char > XAddrsTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const XAddrsOptional&
-      XAddrs () const;
+      getXAddrs () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       XAddrsOptional&
-      XAddrs ();
+      getXAddrs ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      XAddrs (const XAddrsType& x);
+      setXAddrs (const XAddrsType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      XAddrs (const XAddrsOptional& x);
+      setXAddrs (const XAddrsOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      XAddrs (::std::unique_ptr< XAddrsType > p);
+      setXAddrs (::std::unique_ptr< XAddrsType > p);
 
-      // MetadataVersion
-      //
+      //@}
+
+      /**
+       * @name MetadataVersion
+       *
+       * @brief Accessor and modifier functions for the %MetadataVersion
+       * required element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::xml_schema::UnsignedInt MetadataVersionType;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< MetadataVersionType, char > MetadataVersionTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element.
+       *
+       * @return A constant reference to the element.
+       */
       const MetadataVersionType&
-      MetadataVersion () const;
+      getMetadataVersion () const;
 
+      /**
+       * @brief Return a read-write reference to the element.
+       *
+       * @return A reference to the element.
+       */
       MetadataVersionType&
-      MetadataVersion ();
+      getMetadataVersion ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      MetadataVersion (const MetadataVersionType& x);
+      setMetadataVersion (const MetadataVersionType& x);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       ProbeMatchType (const EndpointReferenceType&,
                       const MetadataVersionType&);
 
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes
+       * (::std::unique_ptr version).
+       *
+       * This constructor will try to use the passed values directly
+       * instead of making copies.
+       */
       ProbeMatchType (::std::unique_ptr< EndpointReferenceType >,
                       const MetadataVersionType&);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       ProbeMatchType (const ::xercesc::DOMElement& e,
                       ::xml_schema::Flags f = 0,
                       ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       ProbeMatchType (const ProbeMatchType& x,
                       ::xml_schema::Flags f = 0,
                       ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual ProbeMatchType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       ProbeMatchType&
       operator= (const ProbeMatchType& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~ProbeMatchType ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -615,54 +1824,161 @@ namespace WS
       ScopesOptional Scopes_;
       XAddrsOptional XAddrs_;
       ::xsd::cxx::tree::one< MetadataVersionType > MetadataVersion_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %ResolveType schema type.
+     *
+     * @nosubgrouping
+     */
     class ResolveType: public ::xml_schema::Type
     {
       public:
-      // EndpointReference
-      //
+      /**
+       * @name EndpointReference
+       *
+       * @brief Accessor and modifier functions for the %EndpointReference
+       * required element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::ADDRESSING::EndpointReferenceType EndpointReferenceType;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< EndpointReferenceType, char > EndpointReferenceTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element.
+       *
+       * @return A constant reference to the element.
+       */
       const EndpointReferenceType&
-      EndpointReference () const;
+      getEndpointReference () const;
 
+      /**
+       * @brief Return a read-write reference to the element.
+       *
+       * @return A reference to the element.
+       */
       EndpointReferenceType&
-      EndpointReference ();
+      getEndpointReference ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      EndpointReference (const EndpointReferenceType& x);
+      setEndpointReference (const EndpointReferenceType& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      EndpointReference (::std::unique_ptr< EndpointReferenceType > p);
+      setEndpointReference (::std::unique_ptr< EndpointReferenceType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       ResolveType (const EndpointReferenceType&);
 
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes
+       * (::std::unique_ptr version).
+       *
+       * This constructor will try to use the passed values directly
+       * instead of making copies.
+       */
       ResolveType (::std::unique_ptr< EndpointReferenceType >);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       ResolveType (const ::xercesc::DOMElement& e,
                    ::xml_schema::Flags f = 0,
                    ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       ResolveType (const ResolveType& x,
                    ::xml_schema::Flags f = 0,
                    ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual ResolveType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       ResolveType&
       operator= (const ResolveType& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~ResolveType ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -670,56 +1986,169 @@ namespace WS
 
       protected:
       ::xsd::cxx::tree::one< EndpointReferenceType > EndpointReference_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %ResolveMatchesType schema type.
+     *
+     * @nosubgrouping
+     */
     class ResolveMatchesType: public ::xml_schema::Type
     {
       public:
-      // ResolveMatch
-      //
+      /**
+       * @name ResolveMatch
+       *
+       * @brief Accessor and modifier functions for the %ResolveMatch
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DISCOVERY::ResolveMatchType ResolveMatchType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< ResolveMatchType > ResolveMatchOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< ResolveMatchType, char > ResolveMatchTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const ResolveMatchOptional&
-      ResolveMatch () const;
+      getResolveMatch () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       ResolveMatchOptional&
-      ResolveMatch ();
+      getResolveMatch ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      ResolveMatch (const ResolveMatchType& x);
+      setResolveMatch (const ResolveMatchType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      ResolveMatch (const ResolveMatchOptional& x);
+      setResolveMatch (const ResolveMatchOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      ResolveMatch (::std::unique_ptr< ResolveMatchType > p);
+      setResolveMatch (::std::unique_ptr< ResolveMatchType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       ResolveMatchesType ();
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       ResolveMatchesType (const ::xercesc::DOMElement& e,
                           ::xml_schema::Flags f = 0,
                           ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       ResolveMatchesType (const ResolveMatchesType& x,
                           ::xml_schema::Flags f = 0,
                           ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual ResolveMatchesType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       ResolveMatchesType&
       operator= (const ResolveMatchesType& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~ResolveMatchesType ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -727,133 +2156,438 @@ namespace WS
 
       protected:
       ResolveMatchOptional ResolveMatch_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %ResolveMatchType schema type.
+     *
+     * @nosubgrouping
+     */
     class ResolveMatchType: public ::xml_schema::Type
     {
       public:
-      // EndpointReference
-      //
+      /**
+       * @name EndpointReference
+       *
+       * @brief Accessor and modifier functions for the %EndpointReference
+       * required element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::ADDRESSING::EndpointReferenceType EndpointReferenceType;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< EndpointReferenceType, char > EndpointReferenceTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element.
+       *
+       * @return A constant reference to the element.
+       */
       const EndpointReferenceType&
-      EndpointReference () const;
+      getEndpointReference () const;
 
+      /**
+       * @brief Return a read-write reference to the element.
+       *
+       * @return A reference to the element.
+       */
       EndpointReferenceType&
-      EndpointReference ();
+      getEndpointReference ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      EndpointReference (const EndpointReferenceType& x);
+      setEndpointReference (const EndpointReferenceType& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      EndpointReference (::std::unique_ptr< EndpointReferenceType > p);
+      setEndpointReference (::std::unique_ptr< EndpointReferenceType > p);
 
-      // Types
-      //
+      //@}
+
+      /**
+       * @name Types
+       *
+       * @brief Accessor and modifier functions for the %Types
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DISCOVERY::QNameListType TypesType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< TypesType > TypesOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< TypesType, char > TypesTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const TypesOptional&
-      Types () const;
+      getTypes () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       TypesOptional&
-      Types ();
+      getTypes ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      Types (const TypesType& x);
+      setTypes (const TypesType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      Types (const TypesOptional& x);
+      setTypes (const TypesOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      Types (::std::unique_ptr< TypesType > p);
+      setTypes (::std::unique_ptr< TypesType > p);
 
-      // Scopes
-      //
+      //@}
+
+      /**
+       * @name Scopes
+       *
+       * @brief Accessor and modifier functions for the %Scopes
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DISCOVERY::ScopesType ScopesType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< ScopesType > ScopesOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< ScopesType, char > ScopesTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const ScopesOptional&
-      Scopes () const;
+      getScopes () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       ScopesOptional&
-      Scopes ();
+      getScopes ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      Scopes (const ScopesType& x);
+      setScopes (const ScopesType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      Scopes (const ScopesOptional& x);
+      setScopes (const ScopesOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      Scopes (::std::unique_ptr< ScopesType > p);
+      setScopes (::std::unique_ptr< ScopesType > p);
 
-      // XAddrs
-      //
+      //@}
+
+      /**
+       * @name XAddrs
+       *
+       * @brief Accessor and modifier functions for the %XAddrs
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DISCOVERY::UriListType XAddrsType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< XAddrsType > XAddrsOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< XAddrsType, char > XAddrsTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const XAddrsOptional&
-      XAddrs () const;
+      getXAddrs () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       XAddrsOptional&
-      XAddrs ();
+      getXAddrs ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      XAddrs (const XAddrsType& x);
+      setXAddrs (const XAddrsType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      XAddrs (const XAddrsOptional& x);
+      setXAddrs (const XAddrsOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      XAddrs (::std::unique_ptr< XAddrsType > p);
+      setXAddrs (::std::unique_ptr< XAddrsType > p);
 
-      // MetadataVersion
-      //
+      //@}
+
+      /**
+       * @name MetadataVersion
+       *
+       * @brief Accessor and modifier functions for the %MetadataVersion
+       * required element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::xml_schema::UnsignedInt MetadataVersionType;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< MetadataVersionType, char > MetadataVersionTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element.
+       *
+       * @return A constant reference to the element.
+       */
       const MetadataVersionType&
-      MetadataVersion () const;
+      getMetadataVersion () const;
 
+      /**
+       * @brief Return a read-write reference to the element.
+       *
+       * @return A reference to the element.
+       */
       MetadataVersionType&
-      MetadataVersion ();
+      getMetadataVersion ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      MetadataVersion (const MetadataVersionType& x);
+      setMetadataVersion (const MetadataVersionType& x);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       ResolveMatchType (const EndpointReferenceType&,
                         const MetadataVersionType&);
 
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes
+       * (::std::unique_ptr version).
+       *
+       * This constructor will try to use the passed values directly
+       * instead of making copies.
+       */
       ResolveMatchType (::std::unique_ptr< EndpointReferenceType >,
                         const MetadataVersionType&);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       ResolveMatchType (const ::xercesc::DOMElement& e,
                         ::xml_schema::Flags f = 0,
                         ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       ResolveMatchType (const ResolveMatchType& x,
                         ::xml_schema::Flags f = 0,
                         ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual ResolveMatchType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       ResolveMatchType&
       operator= (const ResolveMatchType& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~ResolveMatchType ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -865,136 +2599,407 @@ namespace WS
       ScopesOptional Scopes_;
       XAddrsOptional XAddrs_;
       ::xsd::cxx::tree::one< MetadataVersionType > MetadataVersion_;
+
+      //@endcond
     };
 
+    /**
+     * @brief List class corresponding to the %QNameListType
+     * schema type.
+     *
+     * This class has an interface of a standard C++ sequence (e.g.,
+     * std::vector).
+     */
     class QNameListType: public ::xml_schema::SimpleType,
       public ::xsd::cxx::tree::list< ::xml_schema::Qname, char >
     {
       public:
+      /**
+       * @brief Default constructor.
+       *
+       * Creates an empty list.
+       */
       QNameListType ();
 
+      /**
+       * @brief Create a list with copies of the specified element.
+       *
+       * @param n A number of elements to copy.
+       * @param x An element to copy.
+       *
+       * This constructor creates a list with @a n copies of @a x.
+       */
       QNameListType (size_type n, const ::xml_schema::Qname& x);
 
+      /**
+       * @brief Create a list from an iterator range.
+       *
+       * @param begin An iterator pointing to the first element.
+       * @param end An iterator pointing to the one past the last element.
+       *
+       * This constructor creates a list consisting of copies of the
+       * elements in the range [begin,end).
+       */
       template < typename I >
       QNameListType (const I& begin, const I& end)
       : ::xsd::cxx::tree::list< ::xml_schema::Qname, char > (begin, end, this)
       {
       }
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       QNameListType (const ::xercesc::DOMElement& e,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a DOM attribute.
+       *
+       * @param a A DOM attribute to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       QNameListType (const ::xercesc::DOMAttr& a,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a string fragment.
+       *
+       * @param s A string fragment to extract the data from.
+       * @param e A pointer to DOM element containing the string fragment.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       QNameListType (const ::std::string& s,
                      const ::xercesc::DOMElement* e,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       QNameListType (const QNameListType& x,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual QNameListType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~QNameListType ();
     };
 
+    /**
+     * @brief List class corresponding to the %UriListType
+     * schema type.
+     *
+     * This class has an interface of a standard C++ sequence (e.g.,
+     * std::vector).
+     */
     class UriListType: public ::xml_schema::SimpleType,
       public ::xsd::cxx::tree::list< ::xml_schema::Uri, char >
     {
       public:
+      /**
+       * @brief Default constructor.
+       *
+       * Creates an empty list.
+       */
       UriListType ();
 
+      /**
+       * @brief Create a list with copies of the specified element.
+       *
+       * @param n A number of elements to copy.
+       * @param x An element to copy.
+       *
+       * This constructor creates a list with @a n copies of @a x.
+       */
       UriListType (size_type n, const ::xml_schema::Uri& x);
 
+      /**
+       * @brief Create a list from an iterator range.
+       *
+       * @param begin An iterator pointing to the first element.
+       * @param end An iterator pointing to the one past the last element.
+       *
+       * This constructor creates a list consisting of copies of the
+       * elements in the range [begin,end).
+       */
       template < typename I >
       UriListType (const I& begin, const I& end)
       : ::xsd::cxx::tree::list< ::xml_schema::Uri, char > (begin, end, this)
       {
       }
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       UriListType (const ::xercesc::DOMElement& e,
                    ::xml_schema::Flags f = 0,
                    ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a DOM attribute.
+       *
+       * @param a A DOM attribute to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       UriListType (const ::xercesc::DOMAttr& a,
                    ::xml_schema::Flags f = 0,
                    ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a string fragment.
+       *
+       * @param s A string fragment to extract the data from.
+       * @param e A pointer to DOM element containing the string fragment.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       UriListType (const ::std::string& s,
                    const ::xercesc::DOMElement* e,
                    ::xml_schema::Flags f = 0,
                    ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       UriListType (const UriListType& x,
                    ::xml_schema::Flags f = 0,
                    ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual UriListType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~UriListType ();
     };
 
+    /**
+     * @brief Class corresponding to the %ScopesType schema type.
+     *
+     * @nosubgrouping
+     */
     class ScopesType: public ::WS::DISCOVERY::UriListType
     {
       public:
-      // MatchBy
-      //
+      /**
+       * @name MatchBy
+       *
+       * @brief Accessor and modifier functions for the %MatchBy
+       * optional attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Uri MatchByType;
+
+      /**
+       * @brief Attribute optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< MatchByType > MatchByOptional;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< MatchByType, char > MatchByTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const MatchByOptional&
-      MatchBy () const;
+      getMatchBy () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute container.
+       *
+       * @return A reference to the optional container.
+       */
       MatchByOptional&
-      MatchBy ();
+      getMatchBy ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      MatchBy (const MatchByType& x);
+      setMatchBy (const MatchByType& x);
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the attribute.
+       * Otherwise the attribute container is set the 'not present' state.
+       */
       void
-      MatchBy (const MatchByOptional& x);
+      setMatchBy (const MatchByOptional& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      MatchBy (::std::unique_ptr< MatchByType > p);
+      setMatchBy (::std::unique_ptr< MatchByType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from initializers for required 
+       * elements and attributes.
+       */
       ScopesType ();
 
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       ScopesType (const ::WS::DISCOVERY::UriListType&);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       ScopesType (const ::xercesc::DOMElement& e,
                   ::xml_schema::Flags f = 0,
                   ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       ScopesType (const ScopesType& x,
                   ::xml_schema::Flags f = 0,
                   ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual ScopesType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       ScopesType&
       operator= (const ScopesType& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~ScopesType ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -1002,113 +3007,341 @@ namespace WS
 
       protected:
       MatchByOptional MatchBy_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Enumeration class corresponding to the %FaultCodeType
+     * schema type.
+     */
     class FaultCodeType: public ::xml_schema::Qname
     {
       public:
+      /**
+       * @brief Create an instance from the base value.
+       *
+       * @param v A base value.
+       */
       FaultCodeType (const ::xml_schema::Qname& v);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       FaultCodeType (const ::xercesc::DOMElement& e,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a DOM attribute.
+       *
+       * @param a A DOM attribute to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       FaultCodeType (const ::xercesc::DOMAttr& a,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a string fragment.
+       *
+       * @param s A string fragment to extract the data from.
+       * @param e A pointer to DOM element containing the string fragment.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       FaultCodeType (const ::std::string& s,
                      const ::xercesc::DOMElement* e,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       FaultCodeType (const FaultCodeType& x,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual FaultCodeType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
     };
 
+    /**
+     * @brief Union class corresponding to the %FaultCodeOpenType
+     * schema type.
+     *
+     * The mapping represents unions as strings.
+     */
     class FaultCodeOpenType: public ::xml_schema::String
     {
       public:
 
+      /**
+       * @brief Create an instance from a C string.
+       *
+       * @param v A string value.
+       */
       FaultCodeOpenType (const char* v);
 
+      /**
+       * @brief Create an instance from a string.
+       *
+       * @param v A string value.
+       */
       FaultCodeOpenType (const ::std::string& v);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       FaultCodeOpenType (const ::xercesc::DOMElement& e,
                          ::xml_schema::Flags f = 0,
                          ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a DOM attribute.
+       *
+       * @param a A DOM attribute to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       FaultCodeOpenType (const ::xercesc::DOMAttr& a,
                          ::xml_schema::Flags f = 0,
                          ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a string fragment.
+       *
+       * @param s A string fragment to extract the data from.
+       * @param e A pointer to DOM element containing the string fragment.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       FaultCodeOpenType (const ::std::string& s,
                          const ::xercesc::DOMElement* e,
                          ::xml_schema::Flags f = 0,
                          ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       FaultCodeOpenType (const FaultCodeOpenType& x,
                          ::xml_schema::Flags f = 0,
                          ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual FaultCodeOpenType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
     };
 
+    /**
+     * @brief Class corresponding to the %SecurityType schema type.
+     *
+     * @nosubgrouping
+     */
     class SecurityType: public ::xml_schema::Type
     {
       public:
-      // Sig
-      //
+      /**
+       * @name Sig
+       *
+       * @brief Accessor and modifier functions for the %Sig
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DISCOVERY::SigType SigType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< SigType > SigOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< SigType, char > SigTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const SigOptional&
-      Sig () const;
+      getSig () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       SigOptional&
-      Sig ();
+      getSig ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      Sig (const SigType& x);
+      setSig (const SigType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      Sig (const SigOptional& x);
+      setSig (const SigOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      Sig (::std::unique_ptr< SigType > p);
+      setSig (::std::unique_ptr< SigType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       SecurityType ();
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       SecurityType (const ::xercesc::DOMElement& e,
                     ::xml_schema::Flags f = 0,
                     ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       SecurityType (const SecurityType& x,
                     ::xml_schema::Flags f = 0,
                     ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual SecurityType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       SecurityType&
       operator= (const SecurityType& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~SecurityType ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -1116,109 +3349,345 @@ namespace WS
 
       protected:
       SigOptional Sig_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %SigType schema type.
+     *
+     * @nosubgrouping
+     */
     class SigType: public ::xml_schema::Type
     {
       public:
-      // Scheme
-      //
+      /**
+       * @name Scheme
+       *
+       * @brief Accessor and modifier functions for the %Scheme
+       * required attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Uri SchemeType;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< SchemeType, char > SchemeTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute.
+       *
+       * @return A constant reference to the attribute.
+       */
       const SchemeType&
-      Scheme () const;
+      getScheme () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute.
+       *
+       * @return A reference to the attribute.
+       */
       SchemeType&
-      Scheme ();
+      getScheme ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      Scheme (const SchemeType& x);
+      setScheme (const SchemeType& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      Scheme (::std::unique_ptr< SchemeType > p);
+      setScheme (::std::unique_ptr< SchemeType > p);
 
-      // KeyId
-      //
+      //@}
+
+      /**
+       * @name KeyId
+       *
+       * @brief Accessor and modifier functions for the %KeyId
+       * optional attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Base64Binary KeyIdType;
+
+      /**
+       * @brief Attribute optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< KeyIdType > KeyIdOptional;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< KeyIdType, char > KeyIdTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const KeyIdOptional&
-      KeyId () const;
+      getKeyId () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute container.
+       *
+       * @return A reference to the optional container.
+       */
       KeyIdOptional&
-      KeyId ();
+      getKeyId ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      KeyId (const KeyIdType& x);
+      setKeyId (const KeyIdType& x);
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the attribute.
+       * Otherwise the attribute container is set the 'not present' state.
+       */
       void
-      KeyId (const KeyIdOptional& x);
+      setKeyId (const KeyIdOptional& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      KeyId (::std::unique_ptr< KeyIdType > p);
+      setKeyId (::std::unique_ptr< KeyIdType > p);
 
-      // Refs
-      //
+      //@}
+
+      /**
+       * @name Refs
+       *
+       * @brief Accessor and modifier functions for the %Refs
+       * required attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Idrefs RefsType;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< RefsType, char > RefsTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute.
+       *
+       * @return A constant reference to the attribute.
+       */
       const RefsType&
-      Refs () const;
+      getRefs () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute.
+       *
+       * @return A reference to the attribute.
+       */
       RefsType&
-      Refs ();
+      getRefs ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      Refs (const RefsType& x);
+      setRefs (const RefsType& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      Refs (::std::unique_ptr< RefsType > p);
+      setRefs (::std::unique_ptr< RefsType > p);
 
-      // Sig
-      //
+      //@}
+
+      /**
+       * @name Sig
+       *
+       * @brief Accessor and modifier functions for the %Sig
+       * required attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Base64Binary SigType1;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< SigType1, char > SigTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute.
+       *
+       * @return A constant reference to the attribute.
+       */
       const SigType1&
-      Sig () const;
+      getSig () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute.
+       *
+       * @return A reference to the attribute.
+       */
       SigType1&
-      Sig ();
+      getSig ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      Sig (const SigType1& x);
+      setSig (const SigType1& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      Sig (::std::unique_ptr< SigType1 > p);
+      setSig (::std::unique_ptr< SigType1 > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       SigType (const SchemeType&,
                const RefsType&,
                const SigType1&);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       SigType (const ::xercesc::DOMElement& e,
                ::xml_schema::Flags f = 0,
                ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       SigType (const SigType& x,
                ::xml_schema::Flags f = 0,
                ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual SigType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       SigType&
       operator= (const SigType& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~SigType ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -1229,89 +3698,272 @@ namespace WS
       KeyIdOptional KeyId_;
       ::xsd::cxx::tree::one< RefsType > Refs_;
       ::xsd::cxx::tree::one< SigType1 > Sig_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %AppSequenceType schema type.
+     *
+     * @nosubgrouping
+     */
     class AppSequenceType: public ::xml_schema::Type
     {
       public:
-      // InstanceId
-      //
+      /**
+       * @name InstanceId
+       *
+       * @brief Accessor and modifier functions for the %InstanceId
+       * required attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::UnsignedInt InstanceIdType;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< InstanceIdType, char > InstanceIdTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute.
+       *
+       * @return A constant reference to the attribute.
+       */
       const InstanceIdType&
-      InstanceId () const;
+      getInstanceId () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute.
+       *
+       * @return A reference to the attribute.
+       */
       InstanceIdType&
-      InstanceId ();
+      getInstanceId ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      InstanceId (const InstanceIdType& x);
+      setInstanceId (const InstanceIdType& x);
 
-      // SequenceId
-      //
+      //@}
+
+      /**
+       * @name SequenceId
+       *
+       * @brief Accessor and modifier functions for the %SequenceId
+       * optional attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Uri SequenceIdType;
+
+      /**
+       * @brief Attribute optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< SequenceIdType > SequenceIdOptional;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< SequenceIdType, char > SequenceIdTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const SequenceIdOptional&
-      SequenceId () const;
+      getSequenceId () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute container.
+       *
+       * @return A reference to the optional container.
+       */
       SequenceIdOptional&
-      SequenceId ();
+      getSequenceId ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      SequenceId (const SequenceIdType& x);
+      setSequenceId (const SequenceIdType& x);
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the attribute.
+       * Otherwise the attribute container is set the 'not present' state.
+       */
       void
-      SequenceId (const SequenceIdOptional& x);
+      setSequenceId (const SequenceIdOptional& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      SequenceId (::std::unique_ptr< SequenceIdType > p);
+      setSequenceId (::std::unique_ptr< SequenceIdType > p);
 
-      // MessageNumber
-      //
+      //@}
+
+      /**
+       * @name MessageNumber
+       *
+       * @brief Accessor and modifier functions for the %MessageNumber
+       * required attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::UnsignedInt MessageNumberType;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< MessageNumberType, char > MessageNumberTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute.
+       *
+       * @return A constant reference to the attribute.
+       */
       const MessageNumberType&
-      MessageNumber () const;
+      getMessageNumber () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute.
+       *
+       * @return A reference to the attribute.
+       */
       MessageNumberType&
-      MessageNumber ();
+      getMessageNumber ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      MessageNumber (const MessageNumberType& x);
+      setMessageNumber (const MessageNumberType& x);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from initializers for required 
+       * elements and attributes.
+       */
       AppSequenceType (const InstanceIdType&,
                        const MessageNumberType&);
 
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       AppSequenceType (const ::xml_schema::Type&,
                        const InstanceIdType&,
                        const MessageNumberType&);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       AppSequenceType (const ::xercesc::DOMElement& e,
                        ::xml_schema::Flags f = 0,
                        ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       AppSequenceType (const AppSequenceType& x,
                        ::xml_schema::Flags f = 0,
                        ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual AppSequenceType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       AppSequenceType&
       operator= (const AppSequenceType& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~AppSequenceType ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -1321,6 +3973,8 @@ namespace WS
       ::xsd::cxx::tree::one< InstanceIdType > InstanceId_;
       SequenceIdOptional SequenceId_;
       ::xsd::cxx::tree::one< MessageNumberType > MessageNumber_;
+
+      //@endcond
     };
   }
 }
@@ -1335,1307 +3989,3547 @@ namespace WS
 {
   namespace DISCOVERY
   {
-    // Parse a URI or a local file.
-    //
+    /**
+     * @name Parsing functions for the %Hello document root.
+     */
+    //@{
 
+    /**
+     * @brief Parse a URI or a local file.
+     *
+     * @param uri A URI or a local file name.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
     ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (const ::std::string& uri,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseHello (const ::std::string& uri,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a URI or a local file with an error handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (const ::std::string& uri,
-           ::xml_schema::ErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseHello (const ::std::string& uri,
+                ::xml_schema::ErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a URI or a local file with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (const ::std::string& uri,
-           ::xercesc::DOMErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseHello (const ::std::string& uri,
+                ::xercesc::DOMErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    // Parse std::istream.
-    //
-
+    /**
+     * @brief Parse a standard input stream.
+     *
+     * @param is A standrad input stream.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
     ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (::std::istream& is,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseHello (::std::istream& is,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a standard input stream with an error handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (::std::istream& is,
-           ::xml_schema::ErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseHello (::std::istream& is,
+                ::xml_schema::ErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a standard input stream with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (::std::istream& is,
-           ::xercesc::DOMErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseHello (::std::istream& is,
+                ::xercesc::DOMErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a standard input stream with a resource id.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
     ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (::std::istream& is,
-           const ::std::string& id,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseHello (::std::istream& is,
+                const ::std::string& id,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a standard input stream with a resource id and an
+     * error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (::std::istream& is,
-           const ::std::string& id,
-           ::xml_schema::ErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseHello (::std::istream& is,
+                const ::std::string& id,
+                ::xml_schema::ErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a standard input stream with a resource id and a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (::std::istream& is,
-           const ::std::string& id,
-           ::xercesc::DOMErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseHello (::std::istream& is,
+                const ::std::string& id,
+                ::xercesc::DOMErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    // Parse xercesc::InputSource.
-    //
-
+    /**
+     * @brief Parse a Xerces-C++ input source.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
     ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (::xercesc::InputSource& is,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseHello (::xercesc::InputSource& is,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a Xerces-C++ input source with an error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (::xercesc::InputSource& is,
-           ::xml_schema::ErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseHello (::xercesc::InputSource& is,
+                ::xml_schema::ErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a Xerces-C++ input source with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (::xercesc::InputSource& is,
-           ::xercesc::DOMErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseHello (::xercesc::InputSource& is,
+                ::xercesc::DOMErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    // Parse xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     */
     ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (const ::xercesc::DOMDocument& d,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseHello (const ::xercesc::DOMDocument& d,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A pointer to the Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function is normally used together with the keep_dom and
+     * own_dom parsing flags to assign ownership of the DOM document
+     * to the object model.
+     */
     ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseHello (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    // Parse a URI or a local file.
-    //
+    //@}
 
+    /**
+     * @name Parsing functions for the %Bye document root.
+     */
+    //@{
+
+    /**
+     * @brief Parse a URI or a local file.
+     *
+     * @param uri A URI or a local file name.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
     ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (const ::std::string& uri,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (const ::std::string& uri,
-         ::xml_schema::ErrorHandler& eh,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (const ::std::string& uri,
-         ::xercesc::DOMErrorHandler& eh,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (::std::istream& is,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (::std::istream& is,
-         ::xml_schema::ErrorHandler& eh,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (::std::istream& is,
-         ::xercesc::DOMErrorHandler& eh,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (::std::istream& is,
-         const ::std::string& id,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (::std::istream& is,
-         const ::std::string& id,
-         ::xml_schema::ErrorHandler& eh,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (::std::istream& is,
-         const ::std::string& id,
-         ::xercesc::DOMErrorHandler& eh,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (::xercesc::InputSource& is,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (::xercesc::InputSource& is,
-         ::xml_schema::ErrorHandler& eh,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (::xercesc::InputSource& is,
-         ::xercesc::DOMErrorHandler& eh,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (const ::xercesc::DOMDocument& d,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (const ::std::string& uri,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (const ::std::string& uri,
-           ::xml_schema::ErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (const ::std::string& uri,
-           ::xercesc::DOMErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (::std::istream& is,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (::std::istream& is,
-           ::xml_schema::ErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (::std::istream& is,
-           ::xercesc::DOMErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (::std::istream& is,
-           const ::std::string& id,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (::std::istream& is,
-           const ::std::string& id,
-           ::xml_schema::ErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (::std::istream& is,
-           const ::std::string& id,
-           ::xercesc::DOMErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (::xercesc::InputSource& is,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (::xercesc::InputSource& is,
-           ::xml_schema::ErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (::xercesc::InputSource& is,
-           ::xercesc::DOMErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (const ::xercesc::DOMDocument& d,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (const ::std::string& uri,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (const ::std::string& uri,
-                  ::xml_schema::ErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (const ::std::string& uri,
-                  ::xercesc::DOMErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (::std::istream& is,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (::std::istream& is,
-                  ::xml_schema::ErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (::std::istream& is,
-                  ::xercesc::DOMErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (::std::istream& is,
-                  const ::std::string& id,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (::std::istream& is,
-                  const ::std::string& id,
-                  ::xml_schema::ErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (::std::istream& is,
-                  const ::std::string& id,
-                  ::xercesc::DOMErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (::xercesc::InputSource& is,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (::xercesc::InputSource& is,
-                  ::xml_schema::ErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (::xercesc::InputSource& is,
-                  ::xercesc::DOMErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (const ::xercesc::DOMDocument& d,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (const ::std::string& uri,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (const ::std::string& uri,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (const ::std::string& uri,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (::std::istream& is,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (::std::istream& is,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (::std::istream& is,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (::std::istream& is,
-             const ::std::string& id,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (::std::istream& is,
-             const ::std::string& id,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (::std::istream& is,
-             const ::std::string& id,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (::xercesc::InputSource& is,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (::xercesc::InputSource& is,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (::xercesc::InputSource& is,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (const ::xercesc::DOMDocument& d,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (const ::std::string& uri,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (const ::std::string& uri,
-                    ::xml_schema::ErrorHandler& eh,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (const ::std::string& uri,
-                    ::xercesc::DOMErrorHandler& eh,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (::std::istream& is,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (::std::istream& is,
-                    ::xml_schema::ErrorHandler& eh,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (::std::istream& is,
-                    ::xercesc::DOMErrorHandler& eh,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (::std::istream& is,
-                    const ::std::string& id,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (::std::istream& is,
-                    const ::std::string& id,
-                    ::xml_schema::ErrorHandler& eh,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (::std::istream& is,
-                    const ::std::string& id,
-                    ::xercesc::DOMErrorHandler& eh,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (::xercesc::InputSource& is,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (::xercesc::InputSource& is,
-                    ::xml_schema::ErrorHandler& eh,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (::xercesc::InputSource& is,
-                    ::xercesc::DOMErrorHandler& eh,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (const ::xercesc::DOMDocument& d,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                    ::xml_schema::Flags f = 0,
-                    const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (const ::std::string& uri,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (const ::std::string& uri,
-           ::xml_schema::ErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (const ::std::string& uri,
-           ::xercesc::DOMErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (::std::istream& is,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (::std::istream& is,
-           ::xml_schema::ErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (::std::istream& is,
-           ::xercesc::DOMErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (::std::istream& is,
-           const ::std::string& id,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (::std::istream& is,
-           const ::std::string& id,
-           ::xml_schema::ErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (::std::istream& is,
-           const ::std::string& id,
-           ::xercesc::DOMErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (::xercesc::InputSource& is,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (::xercesc::InputSource& is,
-           ::xml_schema::ErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (::xercesc::InputSource& is,
-           ::xercesc::DOMErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (const ::xercesc::DOMDocument& d,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (const ::std::string& uri,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (const ::std::string& uri,
-            ::xml_schema::ErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (const ::std::string& uri,
-            ::xercesc::DOMErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (::std::istream& is,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (::std::istream& is,
-            ::xml_schema::ErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (::std::istream& is,
-            ::xercesc::DOMErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (::std::istream& is,
-            const ::std::string& id,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (::std::istream& is,
-            const ::std::string& id,
-            ::xml_schema::ErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (::std::istream& is,
-            const ::std::string& id,
-            ::xercesc::DOMErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (::xercesc::InputSource& is,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (::xercesc::InputSource& is,
-            ::xml_schema::ErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (::xercesc::InputSource& is,
-            ::xercesc::DOMErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (const ::xercesc::DOMDocument& d,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (const ::std::string& uri,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (const ::std::string& uri,
-            ::xml_schema::ErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (const ::std::string& uri,
-            ::xercesc::DOMErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (::std::istream& is,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (::std::istream& is,
-            ::xml_schema::ErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (::std::istream& is,
-            ::xercesc::DOMErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (::std::istream& is,
-            const ::std::string& id,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (::std::istream& is,
-            const ::std::string& id,
-            ::xml_schema::ErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (::std::istream& is,
-            const ::std::string& id,
-            ::xercesc::DOMErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (::xercesc::InputSource& is,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (::xercesc::InputSource& is,
-            ::xml_schema::ErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (::xercesc::InputSource& is,
-            ::xercesc::DOMErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (const ::xercesc::DOMDocument& d,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (const ::std::string& uri,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (const ::std::string& uri,
-                     ::xml_schema::ErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (const ::std::string& uri,
-                     ::xercesc::DOMErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (::std::istream& is,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (::std::istream& is,
-                     ::xml_schema::ErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (::std::istream& is,
-                     ::xercesc::DOMErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (::std::istream& is,
-                     const ::std::string& id,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (::std::istream& is,
-                     const ::std::string& id,
-                     ::xml_schema::ErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (::std::istream& is,
-                     const ::std::string& id,
-                     ::xercesc::DOMErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (::xercesc::InputSource& is,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (::xercesc::InputSource& is,
-                     ::xml_schema::ErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (::xercesc::InputSource& is,
-                     ::xercesc::DOMErrorHandler& eh,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (const ::xercesc::DOMDocument& d,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                     ::xml_schema::Flags f = 0,
-                     const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (const ::std::string& uri,
-                            ::xml_schema::Flags f = 0,
-                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (const ::std::string& uri,
-                            ::xml_schema::ErrorHandler& eh,
-                            ::xml_schema::Flags f = 0,
-                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (const ::std::string& uri,
-                            ::xercesc::DOMErrorHandler& eh,
-                            ::xml_schema::Flags f = 0,
-                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (::std::istream& is,
-                            ::xml_schema::Flags f = 0,
-                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (::std::istream& is,
-                            ::xml_schema::ErrorHandler& eh,
-                            ::xml_schema::Flags f = 0,
-                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (::std::istream& is,
-                            ::xercesc::DOMErrorHandler& eh,
-                            ::xml_schema::Flags f = 0,
-                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (::std::istream& is,
-                            const ::std::string& id,
-                            ::xml_schema::Flags f = 0,
-                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (::std::istream& is,
-                            const ::std::string& id,
-                            ::xml_schema::ErrorHandler& eh,
-                            ::xml_schema::Flags f = 0,
-                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (::std::istream& is,
-                            const ::std::string& id,
-                            ::xercesc::DOMErrorHandler& eh,
-                            ::xml_schema::Flags f = 0,
-                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (::xercesc::InputSource& is,
-                            ::xml_schema::Flags f = 0,
-                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (::xercesc::InputSource& is,
-                            ::xml_schema::ErrorHandler& eh,
-                            ::xml_schema::Flags f = 0,
-                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (::xercesc::InputSource& is,
-                            ::xercesc::DOMErrorHandler& eh,
-                            ::xml_schema::Flags f = 0,
-                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (const ::xercesc::DOMDocument& d,
-                            ::xml_schema::Flags f = 0,
-                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                            ::xml_schema::Flags f = 0,
-                            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (const ::std::string& uri,
+    parseBye (const ::std::string& uri,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (const ::std::string& uri,
+    /**
+     * @brief Parse a URI or a local file with an error handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
+    parseBye (const ::std::string& uri,
               ::xml_schema::ErrorHandler& eh,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (const ::std::string& uri,
+    /**
+     * @brief Parse a URI or a local file with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
+    parseBye (const ::std::string& uri,
               ::xercesc::DOMErrorHandler& eh,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (::std::istream& is,
+    /**
+     * @brief Parse a standard input stream.
+     *
+     * @param is A standrad input stream.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
+    parseBye (::std::istream& is,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (::std::istream& is,
+    /**
+     * @brief Parse a standard input stream with an error handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
+    parseBye (::std::istream& is,
               ::xml_schema::ErrorHandler& eh,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (::std::istream& is,
+    /**
+     * @brief Parse a standard input stream with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
+    parseBye (::std::istream& is,
               ::xercesc::DOMErrorHandler& eh,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (::std::istream& is,
+    /**
+     * @brief Parse a standard input stream with a resource id.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
+    parseBye (::std::istream& is,
               const ::std::string& id,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (::std::istream& is,
+    /**
+     * @brief Parse a standard input stream with a resource id and an
+     * error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
+    parseBye (::std::istream& is,
               const ::std::string& id,
               ::xml_schema::ErrorHandler& eh,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (::std::istream& is,
+    /**
+     * @brief Parse a standard input stream with a resource id and a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
+    parseBye (::std::istream& is,
               const ::std::string& id,
               ::xercesc::DOMErrorHandler& eh,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (::xercesc::InputSource& is,
+    /**
+     * @brief Parse a Xerces-C++ input source.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
+    parseBye (::xercesc::InputSource& is,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (::xercesc::InputSource& is,
+    /**
+     * @brief Parse a Xerces-C++ input source with an error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
+    parseBye (::xercesc::InputSource& is,
               ::xml_schema::ErrorHandler& eh,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (::xercesc::InputSource& is,
+    /**
+     * @brief Parse a Xerces-C++ input source with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
+    parseBye (::xercesc::InputSource& is,
               ::xercesc::DOMErrorHandler& eh,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (const ::xercesc::DOMDocument& d,
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
+    parseBye (const ::xercesc::DOMDocument& d,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A pointer to the Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function is normally used together with the keep_dom and
+     * own_dom parsing flags to assign ownership of the DOM document
+     * to the object model.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
+    parseBye (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
               ::xml_schema::Flags f = 0,
               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    // Parse a URI or a local file.
-    //
+    //@}
 
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (const ::std::string& uri,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    /**
+     * @name Parsing functions for the %Probe document root.
+     */
+    //@{
 
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (const ::std::string& uri,
-         ::xml_schema::ErrorHandler& eh,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    /**
+     * @brief Parse a URI or a local file.
+     *
+     * @param uri A URI or a local file name.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
+    parseProbe (const ::std::string& uri,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (const ::std::string& uri,
-         ::xercesc::DOMErrorHandler& eh,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    /**
+     * @brief Parse a URI or a local file with an error handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
+    parseProbe (const ::std::string& uri,
+                ::xml_schema::ErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    // Parse std::istream.
-    //
+    /**
+     * @brief Parse a URI or a local file with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
+    parseProbe (const ::std::string& uri,
+                ::xercesc::DOMErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (::std::istream& is,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    /**
+     * @brief Parse a standard input stream.
+     *
+     * @param is A standrad input stream.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
+    parseProbe (::std::istream& is,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (::std::istream& is,
-         ::xml_schema::ErrorHandler& eh,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    /**
+     * @brief Parse a standard input stream with an error handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
+    parseProbe (::std::istream& is,
+                ::xml_schema::ErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (::std::istream& is,
-         ::xercesc::DOMErrorHandler& eh,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    /**
+     * @brief Parse a standard input stream with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
+    parseProbe (::std::istream& is,
+                ::xercesc::DOMErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (::std::istream& is,
-         const ::std::string& id,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    /**
+     * @brief Parse a standard input stream with a resource id.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
+    parseProbe (::std::istream& is,
+                const ::std::string& id,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (::std::istream& is,
-         const ::std::string& id,
-         ::xml_schema::ErrorHandler& eh,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    /**
+     * @brief Parse a standard input stream with a resource id and an
+     * error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
+    parseProbe (::std::istream& is,
+                const ::std::string& id,
+                ::xml_schema::ErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (::std::istream& is,
-         const ::std::string& id,
-         ::xercesc::DOMErrorHandler& eh,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    /**
+     * @brief Parse a standard input stream with a resource id and a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
+    parseProbe (::std::istream& is,
+                const ::std::string& id,
+                ::xercesc::DOMErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    // Parse xercesc::InputSource.
-    //
+    /**
+     * @brief Parse a Xerces-C++ input source.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
+    parseProbe (::xercesc::InputSource& is,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (::xercesc::InputSource& is,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    /**
+     * @brief Parse a Xerces-C++ input source with an error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
+    parseProbe (::xercesc::InputSource& is,
+                ::xml_schema::ErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (::xercesc::InputSource& is,
-         ::xml_schema::ErrorHandler& eh,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    /**
+     * @brief Parse a Xerces-C++ input source with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
+    parseProbe (::xercesc::InputSource& is,
+                ::xercesc::DOMErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (::xercesc::InputSource& is,
-         ::xercesc::DOMErrorHandler& eh,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
+    parseProbe (const ::xercesc::DOMDocument& d,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    // Parse xercesc::DOMDocument.
-    //
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A pointer to the Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function is normally used together with the keep_dom and
+     * own_dom parsing flags to assign ownership of the DOM document
+     * to the object model.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
+    parseProbe (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (const ::xercesc::DOMDocument& d,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    //@}
 
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    /**
+     * @name Parsing functions for the %ProbeMatches document root.
+     */
+    //@{
 
-    // Parse a URI or a local file.
-    //
+    /**
+     * @brief Parse a URI or a local file.
+     *
+     * @param uri A URI or a local file name.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
+    parseProbeMatches (const ::std::string& uri,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (const ::std::string& uri,
+    /**
+     * @brief Parse a URI or a local file with an error handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
+    parseProbeMatches (const ::std::string& uri,
+                       ::xml_schema::ErrorHandler& eh,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a URI or a local file with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
+    parseProbeMatches (const ::std::string& uri,
+                       ::xercesc::DOMErrorHandler& eh,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream.
+     *
+     * @param is A standrad input stream.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
+    parseProbeMatches (::std::istream& is,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with an error handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
+    parseProbeMatches (::std::istream& is,
+                       ::xml_schema::ErrorHandler& eh,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
+    parseProbeMatches (::std::istream& is,
+                       ::xercesc::DOMErrorHandler& eh,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
+    parseProbeMatches (::std::istream& is,
+                       const ::std::string& id,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id and an
+     * error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
+    parseProbeMatches (::std::istream& is,
+                       const ::std::string& id,
+                       ::xml_schema::ErrorHandler& eh,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id and a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
+    parseProbeMatches (::std::istream& is,
+                       const ::std::string& id,
+                       ::xercesc::DOMErrorHandler& eh,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
+    parseProbeMatches (::xercesc::InputSource& is,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source with an error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
+    parseProbeMatches (::xercesc::InputSource& is,
+                       ::xml_schema::ErrorHandler& eh,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
+    parseProbeMatches (::xercesc::InputSource& is,
+                       ::xercesc::DOMErrorHandler& eh,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
+    parseProbeMatches (const ::xercesc::DOMDocument& d,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A pointer to the Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function is normally used together with the keep_dom and
+     * own_dom parsing flags to assign ownership of the DOM document
+     * to the object model.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
+    parseProbeMatches (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    //@}
+
+    /**
+     * @name Parsing functions for the %Resolve document root.
+     */
+    //@{
+
+    /**
+     * @brief Parse a URI or a local file.
+     *
+     * @param uri A URI or a local file name.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
+    parseResolve (const ::std::string& uri,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a URI or a local file with an error handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
+    parseResolve (const ::std::string& uri,
+                  ::xml_schema::ErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a URI or a local file with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
+    parseResolve (const ::std::string& uri,
+                  ::xercesc::DOMErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream.
+     *
+     * @param is A standrad input stream.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
+    parseResolve (::std::istream& is,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with an error handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
+    parseResolve (::std::istream& is,
+                  ::xml_schema::ErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
+    parseResolve (::std::istream& is,
+                  ::xercesc::DOMErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
+    parseResolve (::std::istream& is,
+                  const ::std::string& id,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id and an
+     * error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
+    parseResolve (::std::istream& is,
+                  const ::std::string& id,
+                  ::xml_schema::ErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id and a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
+    parseResolve (::std::istream& is,
+                  const ::std::string& id,
+                  ::xercesc::DOMErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
+    parseResolve (::xercesc::InputSource& is,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source with an error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
+    parseResolve (::xercesc::InputSource& is,
+                  ::xml_schema::ErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
+    parseResolve (::xercesc::InputSource& is,
+                  ::xercesc::DOMErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
+    parseResolve (const ::xercesc::DOMDocument& d,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A pointer to the Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function is normally used together with the keep_dom and
+     * own_dom parsing flags to assign ownership of the DOM document
+     * to the object model.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
+    parseResolve (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    //@}
+
+    /**
+     * @name Parsing functions for the %ResolveMatches document root.
+     */
+    //@{
+
+    /**
+     * @brief Parse a URI or a local file.
+     *
+     * @param uri A URI or a local file name.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
+    parseResolveMatches (const ::std::string& uri,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a URI or a local file with an error handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
+    parseResolveMatches (const ::std::string& uri,
+                         ::xml_schema::ErrorHandler& eh,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a URI or a local file with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
+    parseResolveMatches (const ::std::string& uri,
+                         ::xercesc::DOMErrorHandler& eh,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream.
+     *
+     * @param is A standrad input stream.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
+    parseResolveMatches (::std::istream& is,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with an error handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
+    parseResolveMatches (::std::istream& is,
+                         ::xml_schema::ErrorHandler& eh,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
+    parseResolveMatches (::std::istream& is,
+                         ::xercesc::DOMErrorHandler& eh,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
+    parseResolveMatches (::std::istream& is,
+                         const ::std::string& id,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id and an
+     * error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
+    parseResolveMatches (::std::istream& is,
+                         const ::std::string& id,
+                         ::xml_schema::ErrorHandler& eh,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id and a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
+    parseResolveMatches (::std::istream& is,
+                         const ::std::string& id,
+                         ::xercesc::DOMErrorHandler& eh,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
+    parseResolveMatches (::xercesc::InputSource& is,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source with an error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
+    parseResolveMatches (::xercesc::InputSource& is,
+                         ::xml_schema::ErrorHandler& eh,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
+    parseResolveMatches (::xercesc::InputSource& is,
+                         ::xercesc::DOMErrorHandler& eh,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
+    parseResolveMatches (const ::xercesc::DOMDocument& d,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A pointer to the Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function is normally used together with the keep_dom and
+     * own_dom parsing flags to assign ownership of the DOM document
+     * to the object model.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
+    parseResolveMatches (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                         ::xml_schema::Flags f = 0,
+                         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    //@}
+
+    /**
+     * @name Parsing functions for the %Types document root.
+     */
+    //@{
+
+    /**
+     * @brief Parse a URI or a local file.
+     *
+     * @param uri A URI or a local file name.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
+    parseTypes (const ::std::string& uri,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a URI or a local file with an error handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
+    parseTypes (const ::std::string& uri,
+                ::xml_schema::ErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a URI or a local file with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
+    parseTypes (const ::std::string& uri,
+                ::xercesc::DOMErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream.
+     *
+     * @param is A standrad input stream.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
+    parseTypes (::std::istream& is,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with an error handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
+    parseTypes (::std::istream& is,
+                ::xml_schema::ErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
+    parseTypes (::std::istream& is,
+                ::xercesc::DOMErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
+    parseTypes (::std::istream& is,
+                const ::std::string& id,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id and an
+     * error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
+    parseTypes (::std::istream& is,
+                const ::std::string& id,
+                ::xml_schema::ErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id and a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
+    parseTypes (::std::istream& is,
+                const ::std::string& id,
+                ::xercesc::DOMErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
+    parseTypes (::xercesc::InputSource& is,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source with an error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
+    parseTypes (::xercesc::InputSource& is,
+                ::xml_schema::ErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
+    parseTypes (::xercesc::InputSource& is,
+                ::xercesc::DOMErrorHandler& eh,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
+    parseTypes (const ::xercesc::DOMDocument& d,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A pointer to the Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function is normally used together with the keep_dom and
+     * own_dom parsing flags to assign ownership of the DOM document
+     * to the object model.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
+    parseTypes (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                ::xml_schema::Flags f = 0,
+                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    //@}
+
+    /**
+     * @name Parsing functions for the %Scopes document root.
+     */
+    //@{
+
+    /**
+     * @brief Parse a URI or a local file.
+     *
+     * @param uri A URI or a local file name.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
+    parseScopes (const ::std::string& uri,
                  ::xml_schema::Flags f = 0,
                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (const ::std::string& uri,
+    /**
+     * @brief Parse a URI or a local file with an error handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
+    parseScopes (const ::std::string& uri,
                  ::xml_schema::ErrorHandler& eh,
                  ::xml_schema::Flags f = 0,
                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (const ::std::string& uri,
+    /**
+     * @brief Parse a URI or a local file with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
+    parseScopes (const ::std::string& uri,
                  ::xercesc::DOMErrorHandler& eh,
                  ::xml_schema::Flags f = 0,
                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (::std::istream& is,
+    /**
+     * @brief Parse a standard input stream.
+     *
+     * @param is A standrad input stream.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
+    parseScopes (::std::istream& is,
                  ::xml_schema::Flags f = 0,
                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (::std::istream& is,
+    /**
+     * @brief Parse a standard input stream with an error handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
+    parseScopes (::std::istream& is,
                  ::xml_schema::ErrorHandler& eh,
                  ::xml_schema::Flags f = 0,
                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (::std::istream& is,
+    /**
+     * @brief Parse a standard input stream with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
+    parseScopes (::std::istream& is,
                  ::xercesc::DOMErrorHandler& eh,
                  ::xml_schema::Flags f = 0,
                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (::std::istream& is,
+    /**
+     * @brief Parse a standard input stream with a resource id.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
+    parseScopes (::std::istream& is,
                  const ::std::string& id,
                  ::xml_schema::Flags f = 0,
                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (::std::istream& is,
+    /**
+     * @brief Parse a standard input stream with a resource id and an
+     * error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
+    parseScopes (::std::istream& is,
                  const ::std::string& id,
                  ::xml_schema::ErrorHandler& eh,
                  ::xml_schema::Flags f = 0,
                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (::std::istream& is,
+    /**
+     * @brief Parse a standard input stream with a resource id and a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
+    parseScopes (::std::istream& is,
                  const ::std::string& id,
                  ::xercesc::DOMErrorHandler& eh,
                  ::xml_schema::Flags f = 0,
                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (::xercesc::InputSource& is,
+    /**
+     * @brief Parse a Xerces-C++ input source.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
+    parseScopes (::xercesc::InputSource& is,
                  ::xml_schema::Flags f = 0,
                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (::xercesc::InputSource& is,
+    /**
+     * @brief Parse a Xerces-C++ input source with an error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
+    parseScopes (::xercesc::InputSource& is,
                  ::xml_schema::ErrorHandler& eh,
                  ::xml_schema::Flags f = 0,
                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (::xercesc::InputSource& is,
+    /**
+     * @brief Parse a Xerces-C++ input source with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
+    parseScopes (::xercesc::InputSource& is,
                  ::xercesc::DOMErrorHandler& eh,
                  ::xml_schema::Flags f = 0,
                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (const ::xercesc::DOMDocument& d,
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
+    parseScopes (const ::xercesc::DOMDocument& d,
                  ::xml_schema::Flags f = 0,
                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A pointer to the Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function is normally used together with the keep_dom and
+     * own_dom parsing flags to assign ownership of the DOM document
+     * to the object model.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
+    parseScopes (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
                  ::xml_schema::Flags f = 0,
                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    //@}
+
+    /**
+     * @name Parsing functions for the %XAddrs document root.
+     */
+    //@{
+
+    /**
+     * @brief Parse a URI or a local file.
+     *
+     * @param uri A URI or a local file name.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseXAddrs (const ::std::string& uri,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a URI or a local file with an error handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseXAddrs (const ::std::string& uri,
+                 ::xml_schema::ErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a URI or a local file with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseXAddrs (const ::std::string& uri,
+                 ::xercesc::DOMErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream.
+     *
+     * @param is A standrad input stream.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseXAddrs (::std::istream& is,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with an error handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseXAddrs (::std::istream& is,
+                 ::xml_schema::ErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseXAddrs (::std::istream& is,
+                 ::xercesc::DOMErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseXAddrs (::std::istream& is,
+                 const ::std::string& id,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id and an
+     * error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseXAddrs (::std::istream& is,
+                 const ::std::string& id,
+                 ::xml_schema::ErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id and a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseXAddrs (::std::istream& is,
+                 const ::std::string& id,
+                 ::xercesc::DOMErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseXAddrs (::xercesc::InputSource& is,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source with an error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseXAddrs (::xercesc::InputSource& is,
+                 ::xml_schema::ErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseXAddrs (::xercesc::InputSource& is,
+                 ::xercesc::DOMErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseXAddrs (const ::xercesc::DOMDocument& d,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A pointer to the Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function is normally used together with the keep_dom and
+     * own_dom parsing flags to assign ownership of the DOM document
+     * to the object model.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseXAddrs (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    //@}
+
+    /**
+     * @name Parsing functions for the %MetadataVersion document root.
+     */
+    //@{
+
+    /**
+     * @brief Parse a URI or a local file.
+     *
+     * @param uri A URI or a local file name.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::xml_schema::UnsignedInt >
+    parseMetadataVersion (const ::std::string& uri,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a URI or a local file with an error handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::xml_schema::UnsignedInt >
+    parseMetadataVersion (const ::std::string& uri,
+                          ::xml_schema::ErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a URI or a local file with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::xml_schema::UnsignedInt >
+    parseMetadataVersion (const ::std::string& uri,
+                          ::xercesc::DOMErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream.
+     *
+     * @param is A standrad input stream.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::xml_schema::UnsignedInt >
+    parseMetadataVersion (::std::istream& is,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with an error handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::xml_schema::UnsignedInt >
+    parseMetadataVersion (::std::istream& is,
+                          ::xml_schema::ErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::xml_schema::UnsignedInt >
+    parseMetadataVersion (::std::istream& is,
+                          ::xercesc::DOMErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::xml_schema::UnsignedInt >
+    parseMetadataVersion (::std::istream& is,
+                          const ::std::string& id,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id and an
+     * error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::xml_schema::UnsignedInt >
+    parseMetadataVersion (::std::istream& is,
+                          const ::std::string& id,
+                          ::xml_schema::ErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id and a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::xml_schema::UnsignedInt >
+    parseMetadataVersion (::std::istream& is,
+                          const ::std::string& id,
+                          ::xercesc::DOMErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::xml_schema::UnsignedInt >
+    parseMetadataVersion (::xercesc::InputSource& is,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source with an error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::xml_schema::UnsignedInt >
+    parseMetadataVersion (::xercesc::InputSource& is,
+                          ::xml_schema::ErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::xml_schema::UnsignedInt >
+    parseMetadataVersion (::xercesc::InputSource& is,
+                          ::xercesc::DOMErrorHandler& eh,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     */
+    ::std::unique_ptr< ::xml_schema::UnsignedInt >
+    parseMetadataVersion (const ::xercesc::DOMDocument& d,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A pointer to the Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function is normally used together with the keep_dom and
+     * own_dom parsing flags to assign ownership of the DOM document
+     * to the object model.
+     */
+    ::std::unique_ptr< ::xml_schema::UnsignedInt >
+    parseMetadataVersion (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                          ::xml_schema::Flags f = 0,
+                          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    //@}
+
+    /**
+     * @name Parsing functions for the %SupportedMatchingRules document root.
+     */
+    //@{
+
+    /**
+     * @brief Parse a URI or a local file.
+     *
+     * @param uri A URI or a local file name.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseSupportedMatchingRules (const ::std::string& uri,
+                                 ::xml_schema::Flags f = 0,
+                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a URI or a local file with an error handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseSupportedMatchingRules (const ::std::string& uri,
+                                 ::xml_schema::ErrorHandler& eh,
+                                 ::xml_schema::Flags f = 0,
+                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a URI or a local file with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseSupportedMatchingRules (const ::std::string& uri,
+                                 ::xercesc::DOMErrorHandler& eh,
+                                 ::xml_schema::Flags f = 0,
+                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream.
+     *
+     * @param is A standrad input stream.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseSupportedMatchingRules (::std::istream& is,
+                                 ::xml_schema::Flags f = 0,
+                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with an error handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseSupportedMatchingRules (::std::istream& is,
+                                 ::xml_schema::ErrorHandler& eh,
+                                 ::xml_schema::Flags f = 0,
+                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseSupportedMatchingRules (::std::istream& is,
+                                 ::xercesc::DOMErrorHandler& eh,
+                                 ::xml_schema::Flags f = 0,
+                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseSupportedMatchingRules (::std::istream& is,
+                                 const ::std::string& id,
+                                 ::xml_schema::Flags f = 0,
+                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id and an
+     * error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseSupportedMatchingRules (::std::istream& is,
+                                 const ::std::string& id,
+                                 ::xml_schema::ErrorHandler& eh,
+                                 ::xml_schema::Flags f = 0,
+                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id and a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseSupportedMatchingRules (::std::istream& is,
+                                 const ::std::string& id,
+                                 ::xercesc::DOMErrorHandler& eh,
+                                 ::xml_schema::Flags f = 0,
+                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseSupportedMatchingRules (::xercesc::InputSource& is,
+                                 ::xml_schema::Flags f = 0,
+                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source with an error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseSupportedMatchingRules (::xercesc::InputSource& is,
+                                 ::xml_schema::ErrorHandler& eh,
+                                 ::xml_schema::Flags f = 0,
+                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseSupportedMatchingRules (::xercesc::InputSource& is,
+                                 ::xercesc::DOMErrorHandler& eh,
+                                 ::xml_schema::Flags f = 0,
+                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseSupportedMatchingRules (const ::xercesc::DOMDocument& d,
+                                 ::xml_schema::Flags f = 0,
+                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A pointer to the Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function is normally used together with the keep_dom and
+     * own_dom parsing flags to assign ownership of the DOM document
+     * to the object model.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
+    parseSupportedMatchingRules (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                                 ::xml_schema::Flags f = 0,
+                                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    //@}
+
+    /**
+     * @name Parsing functions for the %Security document root.
+     */
+    //@{
+
+    /**
+     * @brief Parse a URI or a local file.
+     *
+     * @param uri A URI or a local file name.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
+    parseSecurity (const ::std::string& uri,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a URI or a local file with an error handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
+    parseSecurity (const ::std::string& uri,
+                   ::xml_schema::ErrorHandler& eh,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a URI or a local file with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
+    parseSecurity (const ::std::string& uri,
+                   ::xercesc::DOMErrorHandler& eh,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream.
+     *
+     * @param is A standrad input stream.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
+    parseSecurity (::std::istream& is,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with an error handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
+    parseSecurity (::std::istream& is,
+                   ::xml_schema::ErrorHandler& eh,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
+    parseSecurity (::std::istream& is,
+                   ::xercesc::DOMErrorHandler& eh,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
+    parseSecurity (::std::istream& is,
+                   const ::std::string& id,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id and an
+     * error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
+    parseSecurity (::std::istream& is,
+                   const ::std::string& id,
+                   ::xml_schema::ErrorHandler& eh,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id and a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
+    parseSecurity (::std::istream& is,
+                   const ::std::string& id,
+                   ::xercesc::DOMErrorHandler& eh,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
+    parseSecurity (::xercesc::InputSource& is,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source with an error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
+    parseSecurity (::xercesc::InputSource& is,
+                   ::xml_schema::ErrorHandler& eh,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
+    parseSecurity (::xercesc::InputSource& is,
+                   ::xercesc::DOMErrorHandler& eh,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
+    parseSecurity (const ::xercesc::DOMDocument& d,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A pointer to the Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function is normally used together with the keep_dom and
+     * own_dom parsing flags to assign ownership of the DOM document
+     * to the object model.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
+    parseSecurity (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                   ::xml_schema::Flags f = 0,
+                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    //@}
+
+    /**
+     * @name Parsing functions for the %Sig document root.
+     */
+    //@{
+
+    /**
+     * @brief Parse a URI or a local file.
+     *
+     * @param uri A URI or a local file name.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
+    parseSig (const ::std::string& uri,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a URI or a local file with an error handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
+    parseSig (const ::std::string& uri,
+              ::xml_schema::ErrorHandler& eh,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a URI or a local file with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
+    parseSig (const ::std::string& uri,
+              ::xercesc::DOMErrorHandler& eh,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream.
+     *
+     * @param is A standrad input stream.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
+    parseSig (::std::istream& is,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with an error handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
+    parseSig (::std::istream& is,
+              ::xml_schema::ErrorHandler& eh,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
+    parseSig (::std::istream& is,
+              ::xercesc::DOMErrorHandler& eh,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
+    parseSig (::std::istream& is,
+              const ::std::string& id,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id and an
+     * error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
+    parseSig (::std::istream& is,
+              const ::std::string& id,
+              ::xml_schema::ErrorHandler& eh,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id and a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
+    parseSig (::std::istream& is,
+              const ::std::string& id,
+              ::xercesc::DOMErrorHandler& eh,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
+    parseSig (::xercesc::InputSource& is,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source with an error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
+    parseSig (::xercesc::InputSource& is,
+              ::xml_schema::ErrorHandler& eh,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
+    parseSig (::xercesc::InputSource& is,
+              ::xercesc::DOMErrorHandler& eh,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
+    parseSig (const ::xercesc::DOMDocument& d,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A pointer to the Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function is normally used together with the keep_dom and
+     * own_dom parsing flags to assign ownership of the DOM document
+     * to the object model.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
+    parseSig (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+              ::xml_schema::Flags f = 0,
+              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    //@}
+
+    /**
+     * @name Parsing functions for the %AppSequence document root.
+     */
+    //@{
+
+    /**
+     * @brief Parse a URI or a local file.
+     *
+     * @param uri A URI or a local file name.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
+    parseAppSequence (const ::std::string& uri,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a URI or a local file with an error handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
+    parseAppSequence (const ::std::string& uri,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a URI or a local file with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
+    parseAppSequence (const ::std::string& uri,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream.
+     *
+     * @param is A standrad input stream.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
+    parseAppSequence (::std::istream& is,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with an error handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
+    parseAppSequence (::std::istream& is,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
+    parseAppSequence (::std::istream& is,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
+    parseAppSequence (::std::istream& is,
+                      const ::std::string& id,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id and an
+     * error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
+    parseAppSequence (::std::istream& is,
+                      const ::std::string& id,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a standard input stream with a resource id and a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
+    parseAppSequence (::std::istream& is,
+                      const ::std::string& id,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
+    parseAppSequence (::xercesc::InputSource& is,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source with an error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
+    parseAppSequence (::xercesc::InputSource& is,
+                      ::xml_schema::ErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ input source with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
+    parseAppSequence (::xercesc::InputSource& is,
+                      ::xercesc::DOMErrorHandler& eh,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
+    parseAppSequence (const ::xercesc::DOMDocument& d,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A pointer to the Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function is normally used together with the keep_dom and
+     * own_dom parsing flags to assign ownership of the DOM document
+     * to the object model.
+     */
+    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
+    parseAppSequence (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                      ::xml_schema::Flags f = 0,
+                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    //@}
   }
 }
 
@@ -2651,286 +7545,650 @@ namespace WS
 {
   namespace DISCOVERY
   {
-    // Serialize to std::ostream.
-    //
+    /**
+     * @name Serialization functions for the %Hello document root.
+     */
+    //@{
 
+    /**
+     * @brief Serialize to a standard output stream.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    Hello (::std::ostream& os,
-           const ::WS::DISCOVERY::HelloType& x, 
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
+    serializeHello (::std::ostream& os,
+                    const ::WS::DISCOVERY::HelloType& x, 
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    const ::std::string& e = "UTF-8",
+                    ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with an error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Hello (::std::ostream& os,
-           const ::WS::DISCOVERY::HelloType& x, 
-           ::xml_schema::ErrorHandler& eh,
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
+    serializeHello (::std::ostream& os,
+                    const ::WS::DISCOVERY::HelloType& x, 
+                    ::xml_schema::ErrorHandler& eh,
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    const ::std::string& e = "UTF-8",
+                    ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Hello (::std::ostream& os,
-           const ::WS::DISCOVERY::HelloType& x, 
-           ::xercesc::DOMErrorHandler& eh,
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
+    serializeHello (::std::ostream& os,
+                    const ::WS::DISCOVERY::HelloType& x, 
+                    ::xercesc::DOMErrorHandler& eh,
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    const ::std::string& e = "UTF-8",
+                    ::xml_schema::Flags f = 0);
 
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    Hello (::xercesc::XMLFormatTarget& ft,
-           const ::WS::DISCOVERY::HelloType& x, 
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
+    serializeHello (::xercesc::XMLFormatTarget& ft,
+                    const ::WS::DISCOVERY::HelloType& x, 
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    const ::std::string& e = "UTF-8",
+                    ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with an error
+     * handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Hello (::xercesc::XMLFormatTarget& ft,
-           const ::WS::DISCOVERY::HelloType& x, 
-           ::xml_schema::ErrorHandler& eh,
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
+    serializeHello (::xercesc::XMLFormatTarget& ft,
+                    const ::WS::DISCOVERY::HelloType& x, 
+                    ::xml_schema::ErrorHandler& eh,
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    const ::std::string& e = "UTF-8",
+                    ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Hello (::xercesc::XMLFormatTarget& ft,
-           const ::WS::DISCOVERY::HelloType& x, 
-           ::xercesc::DOMErrorHandler& eh,
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
+    serializeHello (::xercesc::XMLFormatTarget& ft,
+                    const ::WS::DISCOVERY::HelloType& x, 
+                    ::xercesc::DOMErrorHandler& eh,
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    const ::std::string& e = "UTF-8",
+                    ::xml_schema::Flags f = 0);
 
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to an existing Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param x An object model to serialize.
+     * @param f Serialization flags.
+     *
+     * Note that it is your responsibility to create the DOM document
+     * with the correct root element as well as set the necessary
+     * namespace mapping attributes.
+     */
     void
-    Hello (::xercesc::DOMDocument& d,
-           const ::WS::DISCOVERY::HelloType& x,
-           ::xml_schema::Flags f = 0);
+    serializeHello (::xercesc::DOMDocument& d,
+                    const ::WS::DISCOVERY::HelloType& x,
+                    ::xml_schema::Flags f = 0);
 
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to a new Xerces-C++ DOM document.
+     *
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param f Serialization flags.
+     * @return A pointer to the new Xerces-C++ DOM document.
+     */
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Hello (const ::WS::DISCOVERY::HelloType& x, 
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           ::xml_schema::Flags f = 0);
+    serializeHello (const ::WS::DISCOVERY::HelloType& x, 
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    ::xml_schema::Flags f = 0);
+
+    //@}
 
     void
     operator<< (::xercesc::DOMElement&, const HelloType&);
 
-    // Serialize to std::ostream.
-    //
+    /**
+     * @name Serialization functions for the %Bye document root.
+     */
+    //@{
 
+    /**
+     * @brief Serialize to a standard output stream.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    Bye (::std::ostream& os,
-         const ::WS::DISCOVERY::ByeType& x, 
-         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-         const ::std::string& e = "UTF-8",
-         ::xml_schema::Flags f = 0);
+    serializeBye (::std::ostream& os,
+                  const ::WS::DISCOVERY::ByeType& x, 
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  const ::std::string& e = "UTF-8",
+                  ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with an error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Bye (::std::ostream& os,
-         const ::WS::DISCOVERY::ByeType& x, 
-         ::xml_schema::ErrorHandler& eh,
-         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-         const ::std::string& e = "UTF-8",
-         ::xml_schema::Flags f = 0);
+    serializeBye (::std::ostream& os,
+                  const ::WS::DISCOVERY::ByeType& x, 
+                  ::xml_schema::ErrorHandler& eh,
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  const ::std::string& e = "UTF-8",
+                  ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Bye (::std::ostream& os,
-         const ::WS::DISCOVERY::ByeType& x, 
-         ::xercesc::DOMErrorHandler& eh,
-         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-         const ::std::string& e = "UTF-8",
-         ::xml_schema::Flags f = 0);
+    serializeBye (::std::ostream& os,
+                  const ::WS::DISCOVERY::ByeType& x, 
+                  ::xercesc::DOMErrorHandler& eh,
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  const ::std::string& e = "UTF-8",
+                  ::xml_schema::Flags f = 0);
 
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    Bye (::xercesc::XMLFormatTarget& ft,
-         const ::WS::DISCOVERY::ByeType& x, 
-         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-         const ::std::string& e = "UTF-8",
-         ::xml_schema::Flags f = 0);
+    serializeBye (::xercesc::XMLFormatTarget& ft,
+                  const ::WS::DISCOVERY::ByeType& x, 
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  const ::std::string& e = "UTF-8",
+                  ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with an error
+     * handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Bye (::xercesc::XMLFormatTarget& ft,
-         const ::WS::DISCOVERY::ByeType& x, 
-         ::xml_schema::ErrorHandler& eh,
-         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-         const ::std::string& e = "UTF-8",
-         ::xml_schema::Flags f = 0);
+    serializeBye (::xercesc::XMLFormatTarget& ft,
+                  const ::WS::DISCOVERY::ByeType& x, 
+                  ::xml_schema::ErrorHandler& eh,
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  const ::std::string& e = "UTF-8",
+                  ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Bye (::xercesc::XMLFormatTarget& ft,
-         const ::WS::DISCOVERY::ByeType& x, 
-         ::xercesc::DOMErrorHandler& eh,
-         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-         const ::std::string& e = "UTF-8",
-         ::xml_schema::Flags f = 0);
+    serializeBye (::xercesc::XMLFormatTarget& ft,
+                  const ::WS::DISCOVERY::ByeType& x, 
+                  ::xercesc::DOMErrorHandler& eh,
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  const ::std::string& e = "UTF-8",
+                  ::xml_schema::Flags f = 0);
 
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to an existing Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param x An object model to serialize.
+     * @param f Serialization flags.
+     *
+     * Note that it is your responsibility to create the DOM document
+     * with the correct root element as well as set the necessary
+     * namespace mapping attributes.
+     */
     void
-    Bye (::xercesc::DOMDocument& d,
-         const ::WS::DISCOVERY::ByeType& x,
-         ::xml_schema::Flags f = 0);
+    serializeBye (::xercesc::DOMDocument& d,
+                  const ::WS::DISCOVERY::ByeType& x,
+                  ::xml_schema::Flags f = 0);
 
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to a new Xerces-C++ DOM document.
+     *
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param f Serialization flags.
+     * @return A pointer to the new Xerces-C++ DOM document.
+     */
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Bye (const ::WS::DISCOVERY::ByeType& x, 
-         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-         ::xml_schema::Flags f = 0);
+    serializeBye (const ::WS::DISCOVERY::ByeType& x, 
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  ::xml_schema::Flags f = 0);
+
+    //@}
 
     void
     operator<< (::xercesc::DOMElement&, const ByeType&);
 
-    // Serialize to std::ostream.
-    //
+    /**
+     * @name Serialization functions for the %Probe document root.
+     */
+    //@{
 
+    /**
+     * @brief Serialize to a standard output stream.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    Probe (::std::ostream& os,
-           const ::WS::DISCOVERY::ProbeType& x, 
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
+    serializeProbe (::std::ostream& os,
+                    const ::WS::DISCOVERY::ProbeType& x, 
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    const ::std::string& e = "UTF-8",
+                    ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with an error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Probe (::std::ostream& os,
-           const ::WS::DISCOVERY::ProbeType& x, 
-           ::xml_schema::ErrorHandler& eh,
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
+    serializeProbe (::std::ostream& os,
+                    const ::WS::DISCOVERY::ProbeType& x, 
+                    ::xml_schema::ErrorHandler& eh,
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    const ::std::string& e = "UTF-8",
+                    ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Probe (::std::ostream& os,
-           const ::WS::DISCOVERY::ProbeType& x, 
-           ::xercesc::DOMErrorHandler& eh,
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
+    serializeProbe (::std::ostream& os,
+                    const ::WS::DISCOVERY::ProbeType& x, 
+                    ::xercesc::DOMErrorHandler& eh,
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    const ::std::string& e = "UTF-8",
+                    ::xml_schema::Flags f = 0);
 
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    Probe (::xercesc::XMLFormatTarget& ft,
-           const ::WS::DISCOVERY::ProbeType& x, 
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
+    serializeProbe (::xercesc::XMLFormatTarget& ft,
+                    const ::WS::DISCOVERY::ProbeType& x, 
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    const ::std::string& e = "UTF-8",
+                    ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with an error
+     * handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Probe (::xercesc::XMLFormatTarget& ft,
-           const ::WS::DISCOVERY::ProbeType& x, 
-           ::xml_schema::ErrorHandler& eh,
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
+    serializeProbe (::xercesc::XMLFormatTarget& ft,
+                    const ::WS::DISCOVERY::ProbeType& x, 
+                    ::xml_schema::ErrorHandler& eh,
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    const ::std::string& e = "UTF-8",
+                    ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Probe (::xercesc::XMLFormatTarget& ft,
-           const ::WS::DISCOVERY::ProbeType& x, 
-           ::xercesc::DOMErrorHandler& eh,
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
+    serializeProbe (::xercesc::XMLFormatTarget& ft,
+                    const ::WS::DISCOVERY::ProbeType& x, 
+                    ::xercesc::DOMErrorHandler& eh,
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    const ::std::string& e = "UTF-8",
+                    ::xml_schema::Flags f = 0);
 
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to an existing Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param x An object model to serialize.
+     * @param f Serialization flags.
+     *
+     * Note that it is your responsibility to create the DOM document
+     * with the correct root element as well as set the necessary
+     * namespace mapping attributes.
+     */
     void
-    Probe (::xercesc::DOMDocument& d,
-           const ::WS::DISCOVERY::ProbeType& x,
-           ::xml_schema::Flags f = 0);
+    serializeProbe (::xercesc::DOMDocument& d,
+                    const ::WS::DISCOVERY::ProbeType& x,
+                    ::xml_schema::Flags f = 0);
 
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to a new Xerces-C++ DOM document.
+     *
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param f Serialization flags.
+     * @return A pointer to the new Xerces-C++ DOM document.
+     */
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Probe (const ::WS::DISCOVERY::ProbeType& x, 
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           ::xml_schema::Flags f = 0);
+    serializeProbe (const ::WS::DISCOVERY::ProbeType& x, 
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    ::xml_schema::Flags f = 0);
+
+    //@}
 
     void
     operator<< (::xercesc::DOMElement&, const ProbeType&);
 
-    // Serialize to std::ostream.
-    //
+    /**
+     * @name Serialization functions for the %ProbeMatches document root.
+     */
+    //@{
 
+    /**
+     * @brief Serialize to a standard output stream.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    ProbeMatches (::std::ostream& os,
-                  const ::WS::DISCOVERY::ProbeMatchesType& x, 
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  const ::std::string& e = "UTF-8",
-                  ::xml_schema::Flags f = 0);
+    serializeProbeMatches (::std::ostream& os,
+                           const ::WS::DISCOVERY::ProbeMatchesType& x, 
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with an error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    ProbeMatches (::std::ostream& os,
-                  const ::WS::DISCOVERY::ProbeMatchesType& x, 
-                  ::xml_schema::ErrorHandler& eh,
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  const ::std::string& e = "UTF-8",
-                  ::xml_schema::Flags f = 0);
+    serializeProbeMatches (::std::ostream& os,
+                           const ::WS::DISCOVERY::ProbeMatchesType& x, 
+                           ::xml_schema::ErrorHandler& eh,
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    ProbeMatches (::std::ostream& os,
-                  const ::WS::DISCOVERY::ProbeMatchesType& x, 
-                  ::xercesc::DOMErrorHandler& eh,
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  const ::std::string& e = "UTF-8",
-                  ::xml_schema::Flags f = 0);
+    serializeProbeMatches (::std::ostream& os,
+                           const ::WS::DISCOVERY::ProbeMatchesType& x, 
+                           ::xercesc::DOMErrorHandler& eh,
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
 
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    ProbeMatches (::xercesc::XMLFormatTarget& ft,
-                  const ::WS::DISCOVERY::ProbeMatchesType& x, 
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  const ::std::string& e = "UTF-8",
-                  ::xml_schema::Flags f = 0);
+    serializeProbeMatches (::xercesc::XMLFormatTarget& ft,
+                           const ::WS::DISCOVERY::ProbeMatchesType& x, 
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with an error
+     * handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    ProbeMatches (::xercesc::XMLFormatTarget& ft,
-                  const ::WS::DISCOVERY::ProbeMatchesType& x, 
-                  ::xml_schema::ErrorHandler& eh,
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  const ::std::string& e = "UTF-8",
-                  ::xml_schema::Flags f = 0);
+    serializeProbeMatches (::xercesc::XMLFormatTarget& ft,
+                           const ::WS::DISCOVERY::ProbeMatchesType& x, 
+                           ::xml_schema::ErrorHandler& eh,
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    ProbeMatches (::xercesc::XMLFormatTarget& ft,
-                  const ::WS::DISCOVERY::ProbeMatchesType& x, 
-                  ::xercesc::DOMErrorHandler& eh,
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  const ::std::string& e = "UTF-8",
-                  ::xml_schema::Flags f = 0);
+    serializeProbeMatches (::xercesc::XMLFormatTarget& ft,
+                           const ::WS::DISCOVERY::ProbeMatchesType& x, 
+                           ::xercesc::DOMErrorHandler& eh,
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
 
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to an existing Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param x An object model to serialize.
+     * @param f Serialization flags.
+     *
+     * Note that it is your responsibility to create the DOM document
+     * with the correct root element as well as set the necessary
+     * namespace mapping attributes.
+     */
     void
-    ProbeMatches (::xercesc::DOMDocument& d,
-                  const ::WS::DISCOVERY::ProbeMatchesType& x,
-                  ::xml_schema::Flags f = 0);
+    serializeProbeMatches (::xercesc::DOMDocument& d,
+                           const ::WS::DISCOVERY::ProbeMatchesType& x,
+                           ::xml_schema::Flags f = 0);
 
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to a new Xerces-C++ DOM document.
+     *
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param f Serialization flags.
+     * @return A pointer to the new Xerces-C++ DOM document.
+     */
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    ProbeMatches (const ::WS::DISCOVERY::ProbeMatchesType& x, 
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  ::xml_schema::Flags f = 0);
+    serializeProbeMatches (const ::WS::DISCOVERY::ProbeMatchesType& x, 
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           ::xml_schema::Flags f = 0);
+
+    //@}
 
     void
     operator<< (::xercesc::DOMElement&, const ProbeMatchesType&);
@@ -2938,144 +8196,326 @@ namespace WS
     void
     operator<< (::xercesc::DOMElement&, const ProbeMatchType&);
 
-    // Serialize to std::ostream.
-    //
+    /**
+     * @name Serialization functions for the %Resolve document root.
+     */
+    //@{
 
+    /**
+     * @brief Serialize to a standard output stream.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    Resolve (::std::ostream& os,
-             const ::WS::DISCOVERY::ResolveType& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
+    serializeResolve (::std::ostream& os,
+                      const ::WS::DISCOVERY::ResolveType& x, 
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with an error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Resolve (::std::ostream& os,
-             const ::WS::DISCOVERY::ResolveType& x, 
-             ::xml_schema::ErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
+    serializeResolve (::std::ostream& os,
+                      const ::WS::DISCOVERY::ResolveType& x, 
+                      ::xml_schema::ErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Resolve (::std::ostream& os,
-             const ::WS::DISCOVERY::ResolveType& x, 
-             ::xercesc::DOMErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
+    serializeResolve (::std::ostream& os,
+                      const ::WS::DISCOVERY::ResolveType& x, 
+                      ::xercesc::DOMErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
 
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    Resolve (::xercesc::XMLFormatTarget& ft,
-             const ::WS::DISCOVERY::ResolveType& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
+    serializeResolve (::xercesc::XMLFormatTarget& ft,
+                      const ::WS::DISCOVERY::ResolveType& x, 
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with an error
+     * handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Resolve (::xercesc::XMLFormatTarget& ft,
-             const ::WS::DISCOVERY::ResolveType& x, 
-             ::xml_schema::ErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
+    serializeResolve (::xercesc::XMLFormatTarget& ft,
+                      const ::WS::DISCOVERY::ResolveType& x, 
+                      ::xml_schema::ErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Resolve (::xercesc::XMLFormatTarget& ft,
-             const ::WS::DISCOVERY::ResolveType& x, 
-             ::xercesc::DOMErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
+    serializeResolve (::xercesc::XMLFormatTarget& ft,
+                      const ::WS::DISCOVERY::ResolveType& x, 
+                      ::xercesc::DOMErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
 
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to an existing Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param x An object model to serialize.
+     * @param f Serialization flags.
+     *
+     * Note that it is your responsibility to create the DOM document
+     * with the correct root element as well as set the necessary
+     * namespace mapping attributes.
+     */
     void
-    Resolve (::xercesc::DOMDocument& d,
-             const ::WS::DISCOVERY::ResolveType& x,
-             ::xml_schema::Flags f = 0);
+    serializeResolve (::xercesc::DOMDocument& d,
+                      const ::WS::DISCOVERY::ResolveType& x,
+                      ::xml_schema::Flags f = 0);
 
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to a new Xerces-C++ DOM document.
+     *
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param f Serialization flags.
+     * @return A pointer to the new Xerces-C++ DOM document.
+     */
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Resolve (const ::WS::DISCOVERY::ResolveType& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             ::xml_schema::Flags f = 0);
+    serializeResolve (const ::WS::DISCOVERY::ResolveType& x, 
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      ::xml_schema::Flags f = 0);
+
+    //@}
 
     void
     operator<< (::xercesc::DOMElement&, const ResolveType&);
 
-    // Serialize to std::ostream.
-    //
+    /**
+     * @name Serialization functions for the %ResolveMatches document root.
+     */
+    //@{
 
+    /**
+     * @brief Serialize to a standard output stream.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    ResolveMatches (::std::ostream& os,
-                    const ::WS::DISCOVERY::ResolveMatchesType& x, 
-                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                    const ::std::string& e = "UTF-8",
-                    ::xml_schema::Flags f = 0);
+    serializeResolveMatches (::std::ostream& os,
+                             const ::WS::DISCOVERY::ResolveMatchesType& x, 
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             const ::std::string& e = "UTF-8",
+                             ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with an error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    ResolveMatches (::std::ostream& os,
-                    const ::WS::DISCOVERY::ResolveMatchesType& x, 
-                    ::xml_schema::ErrorHandler& eh,
-                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                    const ::std::string& e = "UTF-8",
-                    ::xml_schema::Flags f = 0);
+    serializeResolveMatches (::std::ostream& os,
+                             const ::WS::DISCOVERY::ResolveMatchesType& x, 
+                             ::xml_schema::ErrorHandler& eh,
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             const ::std::string& e = "UTF-8",
+                             ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    ResolveMatches (::std::ostream& os,
-                    const ::WS::DISCOVERY::ResolveMatchesType& x, 
-                    ::xercesc::DOMErrorHandler& eh,
-                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                    const ::std::string& e = "UTF-8",
-                    ::xml_schema::Flags f = 0);
+    serializeResolveMatches (::std::ostream& os,
+                             const ::WS::DISCOVERY::ResolveMatchesType& x, 
+                             ::xercesc::DOMErrorHandler& eh,
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             const ::std::string& e = "UTF-8",
+                             ::xml_schema::Flags f = 0);
 
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    ResolveMatches (::xercesc::XMLFormatTarget& ft,
-                    const ::WS::DISCOVERY::ResolveMatchesType& x, 
-                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                    const ::std::string& e = "UTF-8",
-                    ::xml_schema::Flags f = 0);
+    serializeResolveMatches (::xercesc::XMLFormatTarget& ft,
+                             const ::WS::DISCOVERY::ResolveMatchesType& x, 
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             const ::std::string& e = "UTF-8",
+                             ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with an error
+     * handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    ResolveMatches (::xercesc::XMLFormatTarget& ft,
-                    const ::WS::DISCOVERY::ResolveMatchesType& x, 
-                    ::xml_schema::ErrorHandler& eh,
-                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                    const ::std::string& e = "UTF-8",
-                    ::xml_schema::Flags f = 0);
+    serializeResolveMatches (::xercesc::XMLFormatTarget& ft,
+                             const ::WS::DISCOVERY::ResolveMatchesType& x, 
+                             ::xml_schema::ErrorHandler& eh,
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             const ::std::string& e = "UTF-8",
+                             ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    ResolveMatches (::xercesc::XMLFormatTarget& ft,
-                    const ::WS::DISCOVERY::ResolveMatchesType& x, 
-                    ::xercesc::DOMErrorHandler& eh,
-                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                    const ::std::string& e = "UTF-8",
-                    ::xml_schema::Flags f = 0);
+    serializeResolveMatches (::xercesc::XMLFormatTarget& ft,
+                             const ::WS::DISCOVERY::ResolveMatchesType& x, 
+                             ::xercesc::DOMErrorHandler& eh,
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             const ::std::string& e = "UTF-8",
+                             ::xml_schema::Flags f = 0);
 
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to an existing Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param x An object model to serialize.
+     * @param f Serialization flags.
+     *
+     * Note that it is your responsibility to create the DOM document
+     * with the correct root element as well as set the necessary
+     * namespace mapping attributes.
+     */
     void
-    ResolveMatches (::xercesc::DOMDocument& d,
-                    const ::WS::DISCOVERY::ResolveMatchesType& x,
-                    ::xml_schema::Flags f = 0);
+    serializeResolveMatches (::xercesc::DOMDocument& d,
+                             const ::WS::DISCOVERY::ResolveMatchesType& x,
+                             ::xml_schema::Flags f = 0);
 
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to a new Xerces-C++ DOM document.
+     *
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param f Serialization flags.
+     * @return A pointer to the new Xerces-C++ DOM document.
+     */
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    ResolveMatches (const ::WS::DISCOVERY::ResolveMatchesType& x, 
-                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                    ::xml_schema::Flags f = 0);
+    serializeResolveMatches (const ::WS::DISCOVERY::ResolveMatchesType& x, 
+                             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                             ::xml_schema::Flags f = 0);
+
+    //@}
 
     void
     operator<< (::xercesc::DOMElement&, const ResolveMatchesType&);
@@ -3083,73 +8523,164 @@ namespace WS
     void
     operator<< (::xercesc::DOMElement&, const ResolveMatchType&);
 
-    // Serialize to std::ostream.
-    //
+    /**
+     * @name Serialization functions for the %Types document root.
+     */
+    //@{
 
+    /**
+     * @brief Serialize to a standard output stream.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    Types (::std::ostream& os,
-           const ::WS::DISCOVERY::QNameListType& x, 
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
+    serializeTypes (::std::ostream& os,
+                    const ::WS::DISCOVERY::QNameListType& x, 
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    const ::std::string& e = "UTF-8",
+                    ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with an error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Types (::std::ostream& os,
-           const ::WS::DISCOVERY::QNameListType& x, 
-           ::xml_schema::ErrorHandler& eh,
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
+    serializeTypes (::std::ostream& os,
+                    const ::WS::DISCOVERY::QNameListType& x, 
+                    ::xml_schema::ErrorHandler& eh,
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    const ::std::string& e = "UTF-8",
+                    ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Types (::std::ostream& os,
-           const ::WS::DISCOVERY::QNameListType& x, 
-           ::xercesc::DOMErrorHandler& eh,
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
+    serializeTypes (::std::ostream& os,
+                    const ::WS::DISCOVERY::QNameListType& x, 
+                    ::xercesc::DOMErrorHandler& eh,
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    const ::std::string& e = "UTF-8",
+                    ::xml_schema::Flags f = 0);
 
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    Types (::xercesc::XMLFormatTarget& ft,
-           const ::WS::DISCOVERY::QNameListType& x, 
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
+    serializeTypes (::xercesc::XMLFormatTarget& ft,
+                    const ::WS::DISCOVERY::QNameListType& x, 
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    const ::std::string& e = "UTF-8",
+                    ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with an error
+     * handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Types (::xercesc::XMLFormatTarget& ft,
-           const ::WS::DISCOVERY::QNameListType& x, 
-           ::xml_schema::ErrorHandler& eh,
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
+    serializeTypes (::xercesc::XMLFormatTarget& ft,
+                    const ::WS::DISCOVERY::QNameListType& x, 
+                    ::xml_schema::ErrorHandler& eh,
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    const ::std::string& e = "UTF-8",
+                    ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Types (::xercesc::XMLFormatTarget& ft,
-           const ::WS::DISCOVERY::QNameListType& x, 
-           ::xercesc::DOMErrorHandler& eh,
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
+    serializeTypes (::xercesc::XMLFormatTarget& ft,
+                    const ::WS::DISCOVERY::QNameListType& x, 
+                    ::xercesc::DOMErrorHandler& eh,
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    const ::std::string& e = "UTF-8",
+                    ::xml_schema::Flags f = 0);
 
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to an existing Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param x An object model to serialize.
+     * @param f Serialization flags.
+     *
+     * Note that it is your responsibility to create the DOM document
+     * with the correct root element as well as set the necessary
+     * namespace mapping attributes.
+     */
     void
-    Types (::xercesc::DOMDocument& d,
-           const ::WS::DISCOVERY::QNameListType& x,
-           ::xml_schema::Flags f = 0);
+    serializeTypes (::xercesc::DOMDocument& d,
+                    const ::WS::DISCOVERY::QNameListType& x,
+                    ::xml_schema::Flags f = 0);
 
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to a new Xerces-C++ DOM document.
+     *
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param f Serialization flags.
+     * @return A pointer to the new Xerces-C++ DOM document.
+     */
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Types (const ::WS::DISCOVERY::QNameListType& x, 
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           ::xml_schema::Flags f = 0);
+    serializeTypes (const ::WS::DISCOVERY::QNameListType& x, 
+                    const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                    ::xml_schema::Flags f = 0);
+
+    //@}
 
     void
     operator<< (::xercesc::DOMElement&, const QNameListType&);
@@ -3161,73 +8692,164 @@ namespace WS
     operator<< (::xml_schema::ListStream&,
                 const QNameListType&);
 
-    // Serialize to std::ostream.
-    //
+    /**
+     * @name Serialization functions for the %Scopes document root.
+     */
+    //@{
 
+    /**
+     * @brief Serialize to a standard output stream.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    Scopes (::std::ostream& os,
-            const ::WS::DISCOVERY::ScopesType& x, 
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
+    serializeScopes (::std::ostream& os,
+                     const ::WS::DISCOVERY::ScopesType& x, 
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with an error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Scopes (::std::ostream& os,
-            const ::WS::DISCOVERY::ScopesType& x, 
-            ::xml_schema::ErrorHandler& eh,
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
+    serializeScopes (::std::ostream& os,
+                     const ::WS::DISCOVERY::ScopesType& x, 
+                     ::xml_schema::ErrorHandler& eh,
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Scopes (::std::ostream& os,
-            const ::WS::DISCOVERY::ScopesType& x, 
-            ::xercesc::DOMErrorHandler& eh,
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
+    serializeScopes (::std::ostream& os,
+                     const ::WS::DISCOVERY::ScopesType& x, 
+                     ::xercesc::DOMErrorHandler& eh,
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
 
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    Scopes (::xercesc::XMLFormatTarget& ft,
-            const ::WS::DISCOVERY::ScopesType& x, 
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
+    serializeScopes (::xercesc::XMLFormatTarget& ft,
+                     const ::WS::DISCOVERY::ScopesType& x, 
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with an error
+     * handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Scopes (::xercesc::XMLFormatTarget& ft,
-            const ::WS::DISCOVERY::ScopesType& x, 
-            ::xml_schema::ErrorHandler& eh,
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
+    serializeScopes (::xercesc::XMLFormatTarget& ft,
+                     const ::WS::DISCOVERY::ScopesType& x, 
+                     ::xml_schema::ErrorHandler& eh,
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Scopes (::xercesc::XMLFormatTarget& ft,
-            const ::WS::DISCOVERY::ScopesType& x, 
-            ::xercesc::DOMErrorHandler& eh,
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
+    serializeScopes (::xercesc::XMLFormatTarget& ft,
+                     const ::WS::DISCOVERY::ScopesType& x, 
+                     ::xercesc::DOMErrorHandler& eh,
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
 
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to an existing Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param x An object model to serialize.
+     * @param f Serialization flags.
+     *
+     * Note that it is your responsibility to create the DOM document
+     * with the correct root element as well as set the necessary
+     * namespace mapping attributes.
+     */
     void
-    Scopes (::xercesc::DOMDocument& d,
-            const ::WS::DISCOVERY::ScopesType& x,
-            ::xml_schema::Flags f = 0);
+    serializeScopes (::xercesc::DOMDocument& d,
+                     const ::WS::DISCOVERY::ScopesType& x,
+                     ::xml_schema::Flags f = 0);
 
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to a new Xerces-C++ DOM document.
+     *
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param f Serialization flags.
+     * @return A pointer to the new Xerces-C++ DOM document.
+     */
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Scopes (const ::WS::DISCOVERY::ScopesType& x, 
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            ::xml_schema::Flags f = 0);
+    serializeScopes (const ::WS::DISCOVERY::ScopesType& x, 
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     ::xml_schema::Flags f = 0);
+
+    //@}
 
     void
     operator<< (::xercesc::DOMElement&, const UriListType&);
@@ -3242,141 +8864,323 @@ namespace WS
     void
     operator<< (::xercesc::DOMElement&, const ScopesType&);
 
-    // Serialize to std::ostream.
-    //
+    /**
+     * @name Serialization functions for the %XAddrs document root.
+     */
+    //@{
 
+    /**
+     * @brief Serialize to a standard output stream.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    XAddrs (::std::ostream& os,
-            const ::WS::DISCOVERY::UriListType& x, 
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
-
-    void
-    XAddrs (::std::ostream& os,
-            const ::WS::DISCOVERY::UriListType& x, 
-            ::xml_schema::ErrorHandler& eh,
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
-
-    void
-    XAddrs (::std::ostream& os,
-            const ::WS::DISCOVERY::UriListType& x, 
-            ::xercesc::DOMErrorHandler& eh,
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
-
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
-    void
-    XAddrs (::xercesc::XMLFormatTarget& ft,
-            const ::WS::DISCOVERY::UriListType& x, 
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
-
-    void
-    XAddrs (::xercesc::XMLFormatTarget& ft,
-            const ::WS::DISCOVERY::UriListType& x, 
-            ::xml_schema::ErrorHandler& eh,
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
-
-    void
-    XAddrs (::xercesc::XMLFormatTarget& ft,
-            const ::WS::DISCOVERY::UriListType& x, 
-            ::xercesc::DOMErrorHandler& eh,
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
-
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
-    void
-    XAddrs (::xercesc::DOMDocument& d,
-            const ::WS::DISCOVERY::UriListType& x,
-            ::xml_schema::Flags f = 0);
-
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    XAddrs (const ::WS::DISCOVERY::UriListType& x, 
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            ::xml_schema::Flags f = 0);
-
-    // Serialize to std::ostream.
-    //
-
-    void
-    MetadataVersion (::std::ostream& os,
-                     const ::xml_schema::UnsignedInt& x, 
+    serializeXAddrs (::std::ostream& os,
+                     const ::WS::DISCOVERY::UriListType& x, 
                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                      const ::std::string& e = "UTF-8",
                      ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with an error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    MetadataVersion (::std::ostream& os,
-                     const ::xml_schema::UnsignedInt& x, 
+    serializeXAddrs (::std::ostream& os,
+                     const ::WS::DISCOVERY::UriListType& x, 
                      ::xml_schema::ErrorHandler& eh,
                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                      const ::std::string& e = "UTF-8",
                      ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    MetadataVersion (::std::ostream& os,
-                     const ::xml_schema::UnsignedInt& x, 
+    serializeXAddrs (::std::ostream& os,
+                     const ::WS::DISCOVERY::UriListType& x, 
                      ::xercesc::DOMErrorHandler& eh,
                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                      const ::std::string& e = "UTF-8",
                      ::xml_schema::Flags f = 0);
 
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    MetadataVersion (::xercesc::XMLFormatTarget& ft,
-                     const ::xml_schema::UnsignedInt& x, 
+    serializeXAddrs (::xercesc::XMLFormatTarget& ft,
+                     const ::WS::DISCOVERY::UriListType& x, 
                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                      const ::std::string& e = "UTF-8",
                      ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with an error
+     * handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    MetadataVersion (::xercesc::XMLFormatTarget& ft,
-                     const ::xml_schema::UnsignedInt& x, 
+    serializeXAddrs (::xercesc::XMLFormatTarget& ft,
+                     const ::WS::DISCOVERY::UriListType& x, 
                      ::xml_schema::ErrorHandler& eh,
                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                      const ::std::string& e = "UTF-8",
                      ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    MetadataVersion (::xercesc::XMLFormatTarget& ft,
-                     const ::xml_schema::UnsignedInt& x, 
+    serializeXAddrs (::xercesc::XMLFormatTarget& ft,
+                     const ::WS::DISCOVERY::UriListType& x, 
                      ::xercesc::DOMErrorHandler& eh,
                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                      const ::std::string& e = "UTF-8",
                      ::xml_schema::Flags f = 0);
 
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to an existing Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param x An object model to serialize.
+     * @param f Serialization flags.
+     *
+     * Note that it is your responsibility to create the DOM document
+     * with the correct root element as well as set the necessary
+     * namespace mapping attributes.
+     */
     void
-    MetadataVersion (::xercesc::DOMDocument& d,
-                     const ::xml_schema::UnsignedInt& x,
+    serializeXAddrs (::xercesc::DOMDocument& d,
+                     const ::WS::DISCOVERY::UriListType& x,
                      ::xml_schema::Flags f = 0);
 
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to a new Xerces-C++ DOM document.
+     *
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param f Serialization flags.
+     * @return A pointer to the new Xerces-C++ DOM document.
+     */
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    MetadataVersion (const ::xml_schema::UnsignedInt& x, 
+    serializeXAddrs (const ::WS::DISCOVERY::UriListType& x, 
                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
                      ::xml_schema::Flags f = 0);
+
+    //@}
+
+    /**
+     * @name Serialization functions for the %MetadataVersion document root.
+     */
+    //@{
+
+    /**
+     * @brief Serialize to a standard output stream.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
+    void
+    serializeMetadataVersion (::std::ostream& os,
+                              const ::xml_schema::UnsignedInt& x, 
+                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                              const ::std::string& e = "UTF-8",
+                              ::xml_schema::Flags f = 0);
+
+    /**
+     * @brief Serialize to a standard output stream with an error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
+    void
+    serializeMetadataVersion (::std::ostream& os,
+                              const ::xml_schema::UnsignedInt& x, 
+                              ::xml_schema::ErrorHandler& eh,
+                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                              const ::std::string& e = "UTF-8",
+                              ::xml_schema::Flags f = 0);
+
+    /**
+     * @brief Serialize to a standard output stream with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
+    void
+    serializeMetadataVersion (::std::ostream& os,
+                              const ::xml_schema::UnsignedInt& x, 
+                              ::xercesc::DOMErrorHandler& eh,
+                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                              const ::std::string& e = "UTF-8",
+                              ::xml_schema::Flags f = 0);
+
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
+    void
+    serializeMetadataVersion (::xercesc::XMLFormatTarget& ft,
+                              const ::xml_schema::UnsignedInt& x, 
+                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                              const ::std::string& e = "UTF-8",
+                              ::xml_schema::Flags f = 0);
+
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with an error
+     * handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
+    void
+    serializeMetadataVersion (::xercesc::XMLFormatTarget& ft,
+                              const ::xml_schema::UnsignedInt& x, 
+                              ::xml_schema::ErrorHandler& eh,
+                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                              const ::std::string& e = "UTF-8",
+                              ::xml_schema::Flags f = 0);
+
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
+    void
+    serializeMetadataVersion (::xercesc::XMLFormatTarget& ft,
+                              const ::xml_schema::UnsignedInt& x, 
+                              ::xercesc::DOMErrorHandler& eh,
+                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                              const ::std::string& e = "UTF-8",
+                              ::xml_schema::Flags f = 0);
+
+    /**
+     * @brief Serialize to an existing Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param x An object model to serialize.
+     * @param f Serialization flags.
+     *
+     * Note that it is your responsibility to create the DOM document
+     * with the correct root element as well as set the necessary
+     * namespace mapping attributes.
+     */
+    void
+    serializeMetadataVersion (::xercesc::DOMDocument& d,
+                              const ::xml_schema::UnsignedInt& x,
+                              ::xml_schema::Flags f = 0);
+
+    /**
+     * @brief Serialize to a new Xerces-C++ DOM document.
+     *
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param f Serialization flags.
+     * @return A pointer to the new Xerces-C++ DOM document.
+     */
+    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
+    serializeMetadataVersion (const ::xml_schema::UnsignedInt& x, 
+                              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                              ::xml_schema::Flags f = 0);
+
+    //@}
 
     void
     operator<< (::xercesc::DOMElement&, const FaultCodeType&);
@@ -3398,283 +9202,647 @@ namespace WS
     operator<< (::xml_schema::ListStream&,
                 const FaultCodeOpenType&);
 
-    // Serialize to std::ostream.
-    //
+    /**
+     * @name Serialization functions for the %SupportedMatchingRules document root.
+     */
+    //@{
 
+    /**
+     * @brief Serialize to a standard output stream.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    SupportedMatchingRules (::std::ostream& os,
-                            const ::WS::DISCOVERY::UriListType& x, 
-                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                            const ::std::string& e = "UTF-8",
-                            ::xml_schema::Flags f = 0);
+    serializeSupportedMatchingRules (::std::ostream& os,
+                                     const ::WS::DISCOVERY::UriListType& x, 
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with an error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    SupportedMatchingRules (::std::ostream& os,
-                            const ::WS::DISCOVERY::UriListType& x, 
-                            ::xml_schema::ErrorHandler& eh,
-                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                            const ::std::string& e = "UTF-8",
-                            ::xml_schema::Flags f = 0);
+    serializeSupportedMatchingRules (::std::ostream& os,
+                                     const ::WS::DISCOVERY::UriListType& x, 
+                                     ::xml_schema::ErrorHandler& eh,
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    SupportedMatchingRules (::std::ostream& os,
-                            const ::WS::DISCOVERY::UriListType& x, 
-                            ::xercesc::DOMErrorHandler& eh,
-                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                            const ::std::string& e = "UTF-8",
-                            ::xml_schema::Flags f = 0);
+    serializeSupportedMatchingRules (::std::ostream& os,
+                                     const ::WS::DISCOVERY::UriListType& x, 
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
 
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    SupportedMatchingRules (::xercesc::XMLFormatTarget& ft,
-                            const ::WS::DISCOVERY::UriListType& x, 
-                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                            const ::std::string& e = "UTF-8",
-                            ::xml_schema::Flags f = 0);
+    serializeSupportedMatchingRules (::xercesc::XMLFormatTarget& ft,
+                                     const ::WS::DISCOVERY::UriListType& x, 
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with an error
+     * handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    SupportedMatchingRules (::xercesc::XMLFormatTarget& ft,
-                            const ::WS::DISCOVERY::UriListType& x, 
-                            ::xml_schema::ErrorHandler& eh,
-                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                            const ::std::string& e = "UTF-8",
-                            ::xml_schema::Flags f = 0);
+    serializeSupportedMatchingRules (::xercesc::XMLFormatTarget& ft,
+                                     const ::WS::DISCOVERY::UriListType& x, 
+                                     ::xml_schema::ErrorHandler& eh,
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    SupportedMatchingRules (::xercesc::XMLFormatTarget& ft,
-                            const ::WS::DISCOVERY::UriListType& x, 
-                            ::xercesc::DOMErrorHandler& eh,
-                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                            const ::std::string& e = "UTF-8",
-                            ::xml_schema::Flags f = 0);
+    serializeSupportedMatchingRules (::xercesc::XMLFormatTarget& ft,
+                                     const ::WS::DISCOVERY::UriListType& x, 
+                                     ::xercesc::DOMErrorHandler& eh,
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     const ::std::string& e = "UTF-8",
+                                     ::xml_schema::Flags f = 0);
 
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to an existing Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param x An object model to serialize.
+     * @param f Serialization flags.
+     *
+     * Note that it is your responsibility to create the DOM document
+     * with the correct root element as well as set the necessary
+     * namespace mapping attributes.
+     */
     void
-    SupportedMatchingRules (::xercesc::DOMDocument& d,
-                            const ::WS::DISCOVERY::UriListType& x,
-                            ::xml_schema::Flags f = 0);
+    serializeSupportedMatchingRules (::xercesc::DOMDocument& d,
+                                     const ::WS::DISCOVERY::UriListType& x,
+                                     ::xml_schema::Flags f = 0);
 
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to a new Xerces-C++ DOM document.
+     *
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param f Serialization flags.
+     * @return A pointer to the new Xerces-C++ DOM document.
+     */
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    SupportedMatchingRules (const ::WS::DISCOVERY::UriListType& x, 
-                            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                            ::xml_schema::Flags f = 0);
+    serializeSupportedMatchingRules (const ::WS::DISCOVERY::UriListType& x, 
+                                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                                     ::xml_schema::Flags f = 0);
 
-    // Serialize to std::ostream.
-    //
+    //@}
 
+    /**
+     * @name Serialization functions for the %Security document root.
+     */
+    //@{
+
+    /**
+     * @brief Serialize to a standard output stream.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    Security (::std::ostream& os,
-              const ::WS::DISCOVERY::SecurityType& x, 
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
+    serializeSecurity (::std::ostream& os,
+                       const ::WS::DISCOVERY::SecurityType& x, 
+                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                       const ::std::string& e = "UTF-8",
+                       ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with an error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Security (::std::ostream& os,
-              const ::WS::DISCOVERY::SecurityType& x, 
-              ::xml_schema::ErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
+    serializeSecurity (::std::ostream& os,
+                       const ::WS::DISCOVERY::SecurityType& x, 
+                       ::xml_schema::ErrorHandler& eh,
+                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                       const ::std::string& e = "UTF-8",
+                       ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Security (::std::ostream& os,
-              const ::WS::DISCOVERY::SecurityType& x, 
-              ::xercesc::DOMErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
+    serializeSecurity (::std::ostream& os,
+                       const ::WS::DISCOVERY::SecurityType& x, 
+                       ::xercesc::DOMErrorHandler& eh,
+                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                       const ::std::string& e = "UTF-8",
+                       ::xml_schema::Flags f = 0);
 
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    Security (::xercesc::XMLFormatTarget& ft,
-              const ::WS::DISCOVERY::SecurityType& x, 
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
+    serializeSecurity (::xercesc::XMLFormatTarget& ft,
+                       const ::WS::DISCOVERY::SecurityType& x, 
+                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                       const ::std::string& e = "UTF-8",
+                       ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with an error
+     * handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Security (::xercesc::XMLFormatTarget& ft,
-              const ::WS::DISCOVERY::SecurityType& x, 
-              ::xml_schema::ErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
+    serializeSecurity (::xercesc::XMLFormatTarget& ft,
+                       const ::WS::DISCOVERY::SecurityType& x, 
+                       ::xml_schema::ErrorHandler& eh,
+                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                       const ::std::string& e = "UTF-8",
+                       ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Security (::xercesc::XMLFormatTarget& ft,
-              const ::WS::DISCOVERY::SecurityType& x, 
-              ::xercesc::DOMErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
+    serializeSecurity (::xercesc::XMLFormatTarget& ft,
+                       const ::WS::DISCOVERY::SecurityType& x, 
+                       ::xercesc::DOMErrorHandler& eh,
+                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                       const ::std::string& e = "UTF-8",
+                       ::xml_schema::Flags f = 0);
 
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to an existing Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param x An object model to serialize.
+     * @param f Serialization flags.
+     *
+     * Note that it is your responsibility to create the DOM document
+     * with the correct root element as well as set the necessary
+     * namespace mapping attributes.
+     */
     void
-    Security (::xercesc::DOMDocument& d,
-              const ::WS::DISCOVERY::SecurityType& x,
-              ::xml_schema::Flags f = 0);
+    serializeSecurity (::xercesc::DOMDocument& d,
+                       const ::WS::DISCOVERY::SecurityType& x,
+                       ::xml_schema::Flags f = 0);
 
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to a new Xerces-C++ DOM document.
+     *
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param f Serialization flags.
+     * @return A pointer to the new Xerces-C++ DOM document.
+     */
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Security (const ::WS::DISCOVERY::SecurityType& x, 
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              ::xml_schema::Flags f = 0);
+    serializeSecurity (const ::WS::DISCOVERY::SecurityType& x, 
+                       const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                       ::xml_schema::Flags f = 0);
+
+    //@}
 
     void
     operator<< (::xercesc::DOMElement&, const SecurityType&);
 
-    // Serialize to std::ostream.
-    //
+    /**
+     * @name Serialization functions for the %Sig document root.
+     */
+    //@{
 
+    /**
+     * @brief Serialize to a standard output stream.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    Sig (::std::ostream& os,
-         const ::WS::DISCOVERY::SigType& x, 
-         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-         const ::std::string& e = "UTF-8",
-         ::xml_schema::Flags f = 0);
+    serializeSig (::std::ostream& os,
+                  const ::WS::DISCOVERY::SigType& x, 
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  const ::std::string& e = "UTF-8",
+                  ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with an error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Sig (::std::ostream& os,
-         const ::WS::DISCOVERY::SigType& x, 
-         ::xml_schema::ErrorHandler& eh,
-         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-         const ::std::string& e = "UTF-8",
-         ::xml_schema::Flags f = 0);
+    serializeSig (::std::ostream& os,
+                  const ::WS::DISCOVERY::SigType& x, 
+                  ::xml_schema::ErrorHandler& eh,
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  const ::std::string& e = "UTF-8",
+                  ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Sig (::std::ostream& os,
-         const ::WS::DISCOVERY::SigType& x, 
-         ::xercesc::DOMErrorHandler& eh,
-         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-         const ::std::string& e = "UTF-8",
-         ::xml_schema::Flags f = 0);
+    serializeSig (::std::ostream& os,
+                  const ::WS::DISCOVERY::SigType& x, 
+                  ::xercesc::DOMErrorHandler& eh,
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  const ::std::string& e = "UTF-8",
+                  ::xml_schema::Flags f = 0);
 
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    Sig (::xercesc::XMLFormatTarget& ft,
-         const ::WS::DISCOVERY::SigType& x, 
-         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-         const ::std::string& e = "UTF-8",
-         ::xml_schema::Flags f = 0);
+    serializeSig (::xercesc::XMLFormatTarget& ft,
+                  const ::WS::DISCOVERY::SigType& x, 
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  const ::std::string& e = "UTF-8",
+                  ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with an error
+     * handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Sig (::xercesc::XMLFormatTarget& ft,
-         const ::WS::DISCOVERY::SigType& x, 
-         ::xml_schema::ErrorHandler& eh,
-         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-         const ::std::string& e = "UTF-8",
-         ::xml_schema::Flags f = 0);
+    serializeSig (::xercesc::XMLFormatTarget& ft,
+                  const ::WS::DISCOVERY::SigType& x, 
+                  ::xml_schema::ErrorHandler& eh,
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  const ::std::string& e = "UTF-8",
+                  ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Sig (::xercesc::XMLFormatTarget& ft,
-         const ::WS::DISCOVERY::SigType& x, 
-         ::xercesc::DOMErrorHandler& eh,
-         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-         const ::std::string& e = "UTF-8",
-         ::xml_schema::Flags f = 0);
+    serializeSig (::xercesc::XMLFormatTarget& ft,
+                  const ::WS::DISCOVERY::SigType& x, 
+                  ::xercesc::DOMErrorHandler& eh,
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  const ::std::string& e = "UTF-8",
+                  ::xml_schema::Flags f = 0);
 
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to an existing Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param x An object model to serialize.
+     * @param f Serialization flags.
+     *
+     * Note that it is your responsibility to create the DOM document
+     * with the correct root element as well as set the necessary
+     * namespace mapping attributes.
+     */
     void
-    Sig (::xercesc::DOMDocument& d,
-         const ::WS::DISCOVERY::SigType& x,
-         ::xml_schema::Flags f = 0);
+    serializeSig (::xercesc::DOMDocument& d,
+                  const ::WS::DISCOVERY::SigType& x,
+                  ::xml_schema::Flags f = 0);
 
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to a new Xerces-C++ DOM document.
+     *
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param f Serialization flags.
+     * @return A pointer to the new Xerces-C++ DOM document.
+     */
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Sig (const ::WS::DISCOVERY::SigType& x, 
-         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-         ::xml_schema::Flags f = 0);
+    serializeSig (const ::WS::DISCOVERY::SigType& x, 
+                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                  ::xml_schema::Flags f = 0);
+
+    //@}
 
     void
     operator<< (::xercesc::DOMElement&, const SigType&);
 
-    // Serialize to std::ostream.
-    //
+    /**
+     * @name Serialization functions for the %AppSequence document root.
+     */
+    //@{
 
+    /**
+     * @brief Serialize to a standard output stream.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    AppSequence (::std::ostream& os,
-                 const ::WS::DISCOVERY::AppSequenceType& x, 
-                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                 const ::std::string& e = "UTF-8",
-                 ::xml_schema::Flags f = 0);
+    serializeAppSequence (::std::ostream& os,
+                          const ::WS::DISCOVERY::AppSequenceType& x, 
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with an error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    AppSequence (::std::ostream& os,
-                 const ::WS::DISCOVERY::AppSequenceType& x, 
-                 ::xml_schema::ErrorHandler& eh,
-                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                 const ::std::string& e = "UTF-8",
-                 ::xml_schema::Flags f = 0);
+    serializeAppSequence (::std::ostream& os,
+                          const ::WS::DISCOVERY::AppSequenceType& x, 
+                          ::xml_schema::ErrorHandler& eh,
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    AppSequence (::std::ostream& os,
-                 const ::WS::DISCOVERY::AppSequenceType& x, 
-                 ::xercesc::DOMErrorHandler& eh,
-                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                 const ::std::string& e = "UTF-8",
-                 ::xml_schema::Flags f = 0);
+    serializeAppSequence (::std::ostream& os,
+                          const ::WS::DISCOVERY::AppSequenceType& x, 
+                          ::xercesc::DOMErrorHandler& eh,
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
 
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    AppSequence (::xercesc::XMLFormatTarget& ft,
-                 const ::WS::DISCOVERY::AppSequenceType& x, 
-                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                 const ::std::string& e = "UTF-8",
-                 ::xml_schema::Flags f = 0);
+    serializeAppSequence (::xercesc::XMLFormatTarget& ft,
+                          const ::WS::DISCOVERY::AppSequenceType& x, 
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with an error
+     * handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    AppSequence (::xercesc::XMLFormatTarget& ft,
-                 const ::WS::DISCOVERY::AppSequenceType& x, 
-                 ::xml_schema::ErrorHandler& eh,
-                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                 const ::std::string& e = "UTF-8",
-                 ::xml_schema::Flags f = 0);
+    serializeAppSequence (::xercesc::XMLFormatTarget& ft,
+                          const ::WS::DISCOVERY::AppSequenceType& x, 
+                          ::xml_schema::ErrorHandler& eh,
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    AppSequence (::xercesc::XMLFormatTarget& ft,
-                 const ::WS::DISCOVERY::AppSequenceType& x, 
-                 ::xercesc::DOMErrorHandler& eh,
-                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                 const ::std::string& e = "UTF-8",
-                 ::xml_schema::Flags f = 0);
+    serializeAppSequence (::xercesc::XMLFormatTarget& ft,
+                          const ::WS::DISCOVERY::AppSequenceType& x, 
+                          ::xercesc::DOMErrorHandler& eh,
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          const ::std::string& e = "UTF-8",
+                          ::xml_schema::Flags f = 0);
 
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to an existing Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param x An object model to serialize.
+     * @param f Serialization flags.
+     *
+     * Note that it is your responsibility to create the DOM document
+     * with the correct root element as well as set the necessary
+     * namespace mapping attributes.
+     */
     void
-    AppSequence (::xercesc::DOMDocument& d,
-                 const ::WS::DISCOVERY::AppSequenceType& x,
-                 ::xml_schema::Flags f = 0);
+    serializeAppSequence (::xercesc::DOMDocument& d,
+                          const ::WS::DISCOVERY::AppSequenceType& x,
+                          ::xml_schema::Flags f = 0);
 
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to a new Xerces-C++ DOM document.
+     *
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param f Serialization flags.
+     * @return A pointer to the new Xerces-C++ DOM document.
+     */
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    AppSequence (const ::WS::DISCOVERY::AppSequenceType& x, 
-                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                 ::xml_schema::Flags f = 0);
+    serializeAppSequence (const ::WS::DISCOVERY::AppSequenceType& x, 
+                          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                          ::xml_schema::Flags f = 0);
+
+    //@}
 
     void
     operator<< (::xercesc::DOMElement&, const AppSequenceType&);

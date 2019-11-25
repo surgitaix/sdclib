@@ -74,24 +74,24 @@ ContainmentTreeEntry & ContainmentTreeEntry:: operator=(const ContainmentTreeEnt
 
 
 ContainmentTreeEntry & ContainmentTreeEntry::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
+	data->setType(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ContainmentTreeEntry::getType(CodedValue & out) const {
-	if (data->Type().present()) {
-		out = ConvertFromCDM::convert(data->Type().get());
+	if (data->getType().present()) {
+		out = ConvertFromCDM::convert(data->getType().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue ContainmentTreeEntry::getType() const {
-	return ConvertFromCDM::convert(data->Type().get());
+	return ConvertFromCDM::convert(data->getType().get());
 }
 
 bool ContainmentTreeEntry::hasType() const {
-	return data->Type().present();
+	return data->getType().present();
 }
 
 

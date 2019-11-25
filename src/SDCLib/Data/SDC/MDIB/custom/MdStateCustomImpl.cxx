@@ -157,8 +157,8 @@ bool MdState::findState(const std::string & handle, SystemContextState & outStat
 template <class WrapperStateDescriptorType>
 bool MdState::findStateImpl(const std::string & handle, WrapperStateDescriptorType & outState) const {
 	const CDM::MdState & mdstate(*this->data);
-	for (const auto & state : mdstate.State()) {
-		if (state.DescriptorHandle() == handle) {
+	for (const auto & state : mdstate.getState()) {
+		if (state.getDescriptorHandle() == handle) {
 			if (const typename WrapperStateDescriptorType::WrappedType * foundState = dynamic_cast<const typename WrapperStateDescriptorType::WrappedType *>(&state)) {
 				outState = ConvertFromCDM::convert(*foundState);
 				return true;
@@ -253,7 +253,7 @@ MdState & MdState::addState(const SystemContextState & source) {
 
 template <class WrapperStateDescriptorType>
 MdState & MdState::addStateImpl(const WrapperStateDescriptorType & source) {
-	data->State().push_back(ConvertToCDM::convert(source));
+	data->getState().push_back(ConvertToCDM::convert(source));
 	return *this;
 }
 
@@ -321,7 +321,7 @@ template <class WrapperStateDescriptorType>
 std::vector<WrapperStateDescriptorType> MdState::findStatesImpl() const {
 	std::vector<WrapperStateDescriptorType> result;
 	const CDM::MdState & mdstate(*this->data);
-	for (const auto & state : mdstate.State()) {
+	for (const auto & state : mdstate.getState()) {
 		if (const typename WrapperStateDescriptorType::WrappedType * foundState = dynamic_cast<const typename WrapperStateDescriptorType::WrappedType *>(&state)) {
 			result.push_back(ConvertFromCDM::convert(*foundState));
 		}
@@ -333,7 +333,7 @@ template <class WrapperStateDescriptorType, class ForbiddenType>
 std::vector<WrapperStateDescriptorType> MdState::findStatesImpl() const {
 	std::vector<WrapperStateDescriptorType> result;
 	const CDM::MdState & mdstate(*this->data);
-	for (const auto & state : mdstate.State()) {
+	for (const auto & state : mdstate.getState()) {
 		if (dynamic_cast<const typename ForbiddenType::WrappedType *>(&state)) {
 			continue;
 		}

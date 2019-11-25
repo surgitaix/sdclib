@@ -29,9 +29,9 @@ std::unique_ptr<MESSAGEMODEL::Header> SoapInvoke::createHeader()
 {
 	std::unique_ptr<MESSAGEMODEL::Envelope::HeaderType> t_header(new MESSAGEMODEL::Envelope::HeaderType());
 	using MessageIDType = MESSAGEMODEL::Envelope::HeaderType::MessageIDType;
-	t_header->MessageID().set(MessageIDType(SDCLib::SDCInstance::calcMSGID()));
+	t_header->getMessageID().set(MessageIDType(SDCLib::SDCInstance::calcMSGID()));
 	using ToType = MESSAGEMODEL::Envelope::HeaderType::ToType;
-	t_header->To().set(ToType(m_requestURI.toString()));
+	t_header->getTo().set(ToType(m_requestURI.toString()));
 	return t_header;
 }
 

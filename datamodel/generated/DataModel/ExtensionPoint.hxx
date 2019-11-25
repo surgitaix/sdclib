@@ -31,6 +31,11 @@
 // in the accompanying FLOSSE file.
 //
 
+/**
+ * @file
+ * @brief Generated from ExtensionPoint.xsd.
+ */
+
 #ifndef EXTENSION_POINT_HXX
 #define EXTENSION_POINT_HXX
 
@@ -63,38 +68,92 @@
 
 #include <xsd/cxx/xml/dom/parsing-header.hxx>
 
+/**
+ * @brief C++ namespace for the %http://standards.ieee.org/downloads/11073/11073-10207-2017/extension
+ * schema namespace.
+ */
 namespace EXT
 {
+  /**
+   * @brief Class corresponding to the %ExtensionType schema type.
+   *
+   * @nosubgrouping
+   */
   class ExtensionType: public ::xml_schema::Type
   {
     public:
-    // Constructors.
-    //
+    /**
+     * @name Constructors
+     */
+    //@{
+
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes.
+     */
     ExtensionType ();
 
+    /**
+     * @brief Create an instance from a DOM element.
+     *
+     * @param e A DOM element to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     ExtensionType (const ::xercesc::DOMElement& e,
                    ::xml_schema::Flags f = 0,
                    ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy constructor.
+     *
+     * @param x An instance to make a copy of.
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     ExtensionType (const ExtensionType& x,
                    ::xml_schema::Flags f = 0,
                    ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy the instance polymorphically.
+     *
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     * @return A pointer to the dynamically allocated copy.
+     *
+     * This function ensures that the dynamic type of the instance is
+     * used for copying and should be used for polymorphic object
+     * models instead of the copy constructor.
+     */
     virtual ExtensionType*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    //@}
+
+    /**
+     * @brief Destructor.
+     */
     virtual 
     ~ExtensionType ();
 
     // Implementation.
     //
+
+    //@cond
+
     protected:
     void
     parse (::xsd::cxx::xml::dom::parser< char >&,
            ::xml_schema::Flags);
 
     protected:
+
+    //@endcond
   };
 }
 
@@ -106,98 +165,258 @@ namespace EXT
 
 namespace EXT
 {
-  // Parse a URI or a local file.
-  //
+  /**
+   * @name Parsing functions for the %Extension document root.
+   */
+  //@{
 
+  /**
+   * @brief Parse a URI or a local file.
+   *
+   * @param uri A URI or a local file name.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * This function uses exceptions to report parsing errors.
+   */
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (const ::std::string& uri,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseExtension (const ::std::string& uri,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+  /**
+   * @brief Parse a URI or a local file with an error handler.
+   *
+   * @param uri A URI or a local file name.
+   * @param eh An error handler.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * This function reports parsing errors by calling the error handler.
+   */
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (const ::std::string& uri,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseExtension (const ::std::string& uri,
+                  ::xml_schema::ErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+  /**
+   * @brief Parse a URI or a local file with a Xerces-C++ DOM error
+   * handler.
+   *
+   * @param uri A URI or a local file name.
+   * @param eh A Xerces-C++ DOM error handler.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * This function reports parsing errors by calling the error handler.
+   */
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (const ::std::string& uri,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseExtension (const ::std::string& uri,
+                  ::xercesc::DOMErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  // Parse std::istream.
-  //
-
+  /**
+   * @brief Parse a standard input stream.
+   *
+   * @param is A standrad input stream.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * This function uses exceptions to report parsing errors.
+   */
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (::std::istream& is,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseExtension (::std::istream& is,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+  /**
+   * @brief Parse a standard input stream with an error handler.
+   *
+   * @param is A standrad input stream.
+   * @param eh An error handler.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * This function reports parsing errors by calling the error handler.
+   */
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (::std::istream& is,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseExtension (::std::istream& is,
+                  ::xml_schema::ErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+  /**
+   * @brief Parse a standard input stream with a Xerces-C++ DOM error
+   * handler.
+   *
+   * @param is A standrad input stream.
+   * @param eh A Xerces-C++ DOM error handler.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * This function reports parsing errors by calling the error handler.
+   */
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (::std::istream& is,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseExtension (::std::istream& is,
+                  ::xercesc::DOMErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+  /**
+   * @brief Parse a standard input stream with a resource id.
+   *
+   * @param is A standrad input stream.
+   * @param id A resource id.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * The resource id is used to identify the document being parsed in
+   * diagnostics as well as to resolve relative paths.
+   *
+   * This function uses exceptions to report parsing errors.
+   */
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (::std::istream& is,
-             const ::std::string& id,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseExtension (::std::istream& is,
+                  const ::std::string& id,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+  /**
+   * @brief Parse a standard input stream with a resource id and an
+   * error handler.
+   *
+   * @param is A standrad input stream.
+   * @param id A resource id.
+   * @param eh An error handler.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * The resource id is used to identify the document being parsed in
+   * diagnostics as well as to resolve relative paths.
+   *
+   * This function reports parsing errors by calling the error handler.
+   */
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (::std::istream& is,
-             const ::std::string& id,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseExtension (::std::istream& is,
+                  const ::std::string& id,
+                  ::xml_schema::ErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+  /**
+   * @brief Parse a standard input stream with a resource id and a
+   * Xerces-C++ DOM error handler.
+   *
+   * @param is A standrad input stream.
+   * @param id A resource id.
+   * @param eh A Xerces-C++ DOM error handler.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * The resource id is used to identify the document being parsed in
+   * diagnostics as well as to resolve relative paths.
+   *
+   * This function reports parsing errors by calling the error handler.
+   */
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (::std::istream& is,
-             const ::std::string& id,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseExtension (::std::istream& is,
+                  const ::std::string& id,
+                  ::xercesc::DOMErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  // Parse xercesc::InputSource.
-  //
-
+  /**
+   * @brief Parse a Xerces-C++ input source.
+   *
+   * @param is A Xerces-C++ input source.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * This function uses exceptions to report parsing errors.
+   */
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (::xercesc::InputSource& is,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseExtension (::xercesc::InputSource& is,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+  /**
+   * @brief Parse a Xerces-C++ input source with an error handler.
+   *
+   * @param is A Xerces-C++ input source.
+   * @param eh An error handler.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * This function reports parsing errors by calling the error handler.
+   */
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (::xercesc::InputSource& is,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseExtension (::xercesc::InputSource& is,
+                  ::xml_schema::ErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+  /**
+   * @brief Parse a Xerces-C++ input source with a Xerces-C++ DOM
+   * error handler.
+   *
+   * @param is A Xerces-C++ input source.
+   * @param eh A Xerces-C++ DOM error handler.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * This function reports parsing errors by calling the error handler.
+   */
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (::xercesc::InputSource& is,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseExtension (::xercesc::InputSource& is,
+                  ::xercesc::DOMErrorHandler& eh,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  // Parse xercesc::DOMDocument.
-  //
-
+  /**
+   * @brief Parse a Xerces-C++ DOM document.
+   *
+   * @param d A Xerces-C++ DOM document.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   */
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (const ::xercesc::DOMDocument& d,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseExtension (const ::xercesc::DOMDocument& d,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+  /**
+   * @brief Parse a Xerces-C++ DOM document.
+   *
+   * @param d A pointer to the Xerces-C++ DOM document.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * This function is normally used together with the keep_dom and
+   * own_dom parsing flags to assign ownership of the DOM document
+   * to the object model.
+   */
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseExtension (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                  ::xml_schema::Flags f = 0,
+                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  //@}
 }
 
 #include <iosfwd>
@@ -210,73 +429,164 @@ namespace EXT
 
 namespace EXT
 {
-  // Serialize to std::ostream.
-  //
+  /**
+   * @name Serialization functions for the %Extension document root.
+   */
+  //@{
 
+  /**
+   * @brief Serialize to a standard output stream.
+   *
+   * @param os A standrad output stream.
+   * @param x An object model to serialize.
+   * @param m A namespace information map.
+   * @param e A character encoding to produce XML in.
+   * @param f Serialization flags.
+   *
+   * This function uses exceptions to report serialization errors.
+   */
   void
-  Extension (::std::ostream& os,
-             const ::EXT::ExtensionType& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
+  serializeExtension (::std::ostream& os,
+                      const ::EXT::ExtensionType& x, 
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
 
+  /**
+   * @brief Serialize to a standard output stream with an error handler.
+   *
+   * @param os A standrad output stream.
+   * @param x An object model to serialize.
+   * @param eh An error handler.
+   * @param m A namespace information map.
+   * @param e A character encoding to produce XML in.
+   * @param f Serialization flags.
+   *
+   * This function reports serialization errors by calling the error
+   * handler.
+   */
   void
-  Extension (::std::ostream& os,
-             const ::EXT::ExtensionType& x, 
-             ::xml_schema::ErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
+  serializeExtension (::std::ostream& os,
+                      const ::EXT::ExtensionType& x, 
+                      ::xml_schema::ErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
 
+  /**
+   * @brief Serialize to a standard output stream with a Xerces-C++ DOM
+   * error handler.
+   *
+   * @param os A standrad output stream.
+   * @param x An object model to serialize.
+   * @param eh A Xerces-C++ DOM error handler.
+   * @param m A namespace information map.
+   * @param e A character encoding to produce XML in.
+   * @param f Serialization flags.
+   *
+   * This function reports serialization errors by calling the error
+   * handler.
+   */
   void
-  Extension (::std::ostream& os,
-             const ::EXT::ExtensionType& x, 
-             ::xercesc::DOMErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
+  serializeExtension (::std::ostream& os,
+                      const ::EXT::ExtensionType& x, 
+                      ::xercesc::DOMErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
 
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
+  /**
+   * @brief Serialize to a Xerces-C++ XML format target.
+   *
+   * @param ft A Xerces-C++ XML format target.
+   * @param x An object model to serialize.
+   * @param m A namespace information map.
+   * @param e A character encoding to produce XML in.
+   * @param f Serialization flags.
+   *
+   * This function uses exceptions to report serialization errors.
+   */
   void
-  Extension (::xercesc::XMLFormatTarget& ft,
-             const ::EXT::ExtensionType& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
+  serializeExtension (::xercesc::XMLFormatTarget& ft,
+                      const ::EXT::ExtensionType& x, 
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
 
+  /**
+   * @brief Serialize to a Xerces-C++ XML format target with an error
+   * handler.
+   *
+   * @param ft A Xerces-C++ XML format target.
+   * @param x An object model to serialize.
+   * @param eh An error handler.
+   * @param m A namespace information map.
+   * @param e A character encoding to produce XML in.
+   * @param f Serialization flags.
+   *
+   * This function reports serialization errors by calling the error
+   * handler.
+   */
   void
-  Extension (::xercesc::XMLFormatTarget& ft,
-             const ::EXT::ExtensionType& x, 
-             ::xml_schema::ErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
+  serializeExtension (::xercesc::XMLFormatTarget& ft,
+                      const ::EXT::ExtensionType& x, 
+                      ::xml_schema::ErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
 
+  /**
+   * @brief Serialize to a Xerces-C++ XML format target with a
+   * Xerces-C++ DOM error handler.
+   *
+   * @param ft A Xerces-C++ XML format target.
+   * @param x An object model to serialize.
+   * @param eh A Xerces-C++ DOM error handler.
+   * @param m A namespace information map.
+   * @param e A character encoding to produce XML in.
+   * @param f Serialization flags.
+   *
+   * This function reports serialization errors by calling the error
+   * handler.
+   */
   void
-  Extension (::xercesc::XMLFormatTarget& ft,
-             const ::EXT::ExtensionType& x, 
-             ::xercesc::DOMErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
+  serializeExtension (::xercesc::XMLFormatTarget& ft,
+                      const ::EXT::ExtensionType& x, 
+                      ::xercesc::DOMErrorHandler& eh,
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      const ::std::string& e = "UTF-8",
+                      ::xml_schema::Flags f = 0);
 
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
+  /**
+   * @brief Serialize to an existing Xerces-C++ DOM document.
+   *
+   * @param d A Xerces-C++ DOM document.
+   * @param x An object model to serialize.
+   * @param f Serialization flags.
+   *
+   * Note that it is your responsibility to create the DOM document
+   * with the correct root element as well as set the necessary
+   * namespace mapping attributes.
+   */
   void
-  Extension (::xercesc::DOMDocument& d,
-             const ::EXT::ExtensionType& x,
-             ::xml_schema::Flags f = 0);
+  serializeExtension (::xercesc::DOMDocument& d,
+                      const ::EXT::ExtensionType& x,
+                      ::xml_schema::Flags f = 0);
 
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
+  /**
+   * @brief Serialize to a new Xerces-C++ DOM document.
+   *
+   * @param x An object model to serialize.
+   * @param m A namespace information map.
+   * @param f Serialization flags.
+   * @return A pointer to the new Xerces-C++ DOM document.
+   */
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  Extension (const ::EXT::ExtensionType& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             ::xml_schema::Flags f = 0);
+  serializeExtension (const ::EXT::ExtensionType& x, 
+                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                      ::xml_schema::Flags f = 0);
+
+  //@}
 
   void
   operator<< (::xercesc::DOMElement&, const ExtensionType&);

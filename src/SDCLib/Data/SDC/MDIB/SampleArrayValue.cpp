@@ -78,133 +78,133 @@ SampleArrayValue & SampleArrayValue:: operator=(const SampleArrayValue & object)
 
 
 SampleArrayValue & SampleArrayValue::setMetricQuality(const MetricQuality & value) {
-	data->MetricQuality(ConvertToCDM::convert(value));
+	data->setMetricQuality(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 MetricQuality SampleArrayValue::getMetricQuality() const {
-	return ConvertFromCDM::convert(data->MetricQuality());
+	return ConvertFromCDM::convert(data->getMetricQuality());
 }
 
 SampleArrayValue & SampleArrayValue::setStartTime(const Timestamp & value) {
-	data->StartTime(ConvertToCDM::convert(value));
+	data->setStartTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SampleArrayValue::getStartTime(Timestamp & out) const {
-	if (data->StartTime().present()) {
-		out = ConvertFromCDM::convert(data->StartTime().get());
+	if (data->getStartTime().present()) {
+		out = ConvertFromCDM::convert(data->getStartTime().get());
 		return true;
 	}
 	return false;
 }
 
 Timestamp SampleArrayValue::getStartTime() const {
-	return ConvertFromCDM::convert(data->StartTime().get());
+	return ConvertFromCDM::convert(data->getStartTime().get());
 }
 
 bool SampleArrayValue::hasStartTime() const {
-	return data->StartTime().present();
+	return data->getStartTime().present();
 }
 
 SampleArrayValue & SampleArrayValue::setStopTime(const Timestamp & value) {
-	data->StopTime(ConvertToCDM::convert(value));
+	data->setStopTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SampleArrayValue::getStopTime(Timestamp & out) const {
-	if (data->StopTime().present()) {
-		out = ConvertFromCDM::convert(data->StopTime().get());
+	if (data->getStopTime().present()) {
+		out = ConvertFromCDM::convert(data->getStopTime().get());
 		return true;
 	}
 	return false;
 }
 
 Timestamp SampleArrayValue::getStopTime() const {
-	return ConvertFromCDM::convert(data->StopTime().get());
+	return ConvertFromCDM::convert(data->getStopTime().get());
 }
 
 bool SampleArrayValue::hasStopTime() const {
-	return data->StopTime().present();
+	return data->getStopTime().present();
 }
 
 SampleArrayValue & SampleArrayValue::setDeterminationTime(const Timestamp & value) {
-	data->DeterminationTime(ConvertToCDM::convert(value));
+	data->setDeterminationTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SampleArrayValue::getDeterminationTime(Timestamp & out) const {
-	if (data->DeterminationTime().present()) {
-		out = ConvertFromCDM::convert(data->DeterminationTime().get());
+	if (data->getDeterminationTime().present()) {
+		out = ConvertFromCDM::convert(data->getDeterminationTime().get());
 		return true;
 	}
 	return false;
 }
 
 Timestamp SampleArrayValue::getDeterminationTime() const {
-	return ConvertFromCDM::convert(data->DeterminationTime().get());
+	return ConvertFromCDM::convert(data->getDeterminationTime().get());
 }
 
 bool SampleArrayValue::hasDeterminationTime() const {
-	return data->DeterminationTime().present();
+	return data->getDeterminationTime().present();
 }
 
 SampleArrayValue & SampleArrayValue::addAnnotation(const Annotation & value) {
-	data->Annotation().push_back(ConvertToCDM::convert(value));
+	data->getAnnotation().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<Annotation> SampleArrayValue::getAnnotationList() const {
 	std::vector<Annotation> result;
-	result.reserve(data->Annotation().size());
-	for (const auto & value: data->Annotation()) {
+	result.reserve(data->getAnnotation().size());
+	for (const auto & value: data->getAnnotation()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void SampleArrayValue::clearAnnotationList() {
-	data->Annotation().clear();
+	data->getAnnotation().clear();
 }
 
 SampleArrayValue & SampleArrayValue::setSamples(const RealTimeValueType & value) {
-	data->Samples(ConvertToCDM::convert(value));
+	data->setSamples(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SampleArrayValue::getSamples(RealTimeValueType & out) const {
-	if (data->Samples().present()) {
-		out = ConvertFromCDM::convert(data->Samples().get());
+	if (data->getSamples().present()) {
+		out = ConvertFromCDM::convert(data->getSamples().get());
 		return true;
 	}
 	return false;
 }
 
 RealTimeValueType SampleArrayValue::getSamples() const {
-	return ConvertFromCDM::convert(data->Samples().get());
+	return ConvertFromCDM::convert(data->getSamples().get());
 }
 
 bool SampleArrayValue::hasSamples() const {
-	return data->Samples().present();
+	return data->getSamples().present();
 }
 
 SampleArrayValue & SampleArrayValue::addApplyAnnotation(const ApplyAnnotation & value) {
-	data->ApplyAnnotation().push_back(ConvertToCDM::convert(value));
+	data->getApplyAnnotation().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<ApplyAnnotation> SampleArrayValue::getApplyAnnotationList() const {
 	std::vector<ApplyAnnotation> result;
-	result.reserve(data->ApplyAnnotation().size());
-	for (const auto & value: data->ApplyAnnotation()) {
+	result.reserve(data->getApplyAnnotation().size());
+	for (const auto & value: data->getApplyAnnotation()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void SampleArrayValue::clearApplyAnnotationList() {
-	data->ApplyAnnotation().clear();
+	data->getApplyAnnotation().clear();
 }
 
 

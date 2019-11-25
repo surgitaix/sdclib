@@ -79,23 +79,23 @@ SystemSignalActivation & SystemSignalActivation:: operator=(const SystemSignalAc
 
 
 SystemSignalActivation & SystemSignalActivation::setManifestation(const AlertSignalManifestation & value) {
-	data->Manifestation(ConvertToCDM::convert(value));
+	data->setManifestation(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 AlertSignalManifestation SystemSignalActivation::getManifestation() const {
-	return ConvertFromCDM::convert(data->Manifestation());
+	return ConvertFromCDM::convert(data->getManifestation());
 }
 
 SystemSignalActivation & SystemSignalActivation::setState(const AlertActivation & value) {
-	data->State(ConvertToCDM::convert(value));
+	data->setState(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 AlertActivation SystemSignalActivation::getState() const {
-	return ConvertFromCDM::convert(data->State());
+	return ConvertFromCDM::convert(data->getState());
 }
 
 

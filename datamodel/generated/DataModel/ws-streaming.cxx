@@ -48,121 +48,121 @@ namespace WS
     // 
 
     const TStreamType::ActionURIOptional& TStreamType::
-    actionURI () const
+    getActionURI () const
     {
       return this->actionURI_;
     }
 
     TStreamType::ActionURIOptional& TStreamType::
-    actionURI ()
+    getActionURI ()
     {
       return this->actionURI_;
     }
 
     void TStreamType::
-    actionURI (const ActionURIType& x)
+    setActionURI (const ActionURIType& x)
     {
       this->actionURI_.set (x);
     }
 
     void TStreamType::
-    actionURI (const ActionURIOptional& x)
+    setActionURI (const ActionURIOptional& x)
     {
       this->actionURI_ = x;
     }
 
     void TStreamType::
-    actionURI (::std::unique_ptr< ActionURIType > x)
+    setActionURI (::std::unique_ptr< ActionURIType > x)
     {
       this->actionURI_.set (std::move (x));
     }
 
     const TStreamType::ElementOptional& TStreamType::
-    element () const
+    getElement () const
     {
       return this->element_;
     }
 
     TStreamType::ElementOptional& TStreamType::
-    element ()
+    getElement ()
     {
       return this->element_;
     }
 
     void TStreamType::
-    element (const ElementType& x)
+    setElement (const ElementType& x)
     {
       this->element_.set (x);
     }
 
     void TStreamType::
-    element (const ElementOptional& x)
+    setElement (const ElementOptional& x)
     {
       this->element_ = x;
     }
 
     void TStreamType::
-    element (::std::unique_ptr< ElementType > x)
+    setElement (::std::unique_ptr< ElementType > x)
     {
       this->element_.set (std::move (x));
     }
 
     const TStreamType::IdOptional& TStreamType::
-    id () const
+    getId () const
     {
       return this->id_;
     }
 
     TStreamType::IdOptional& TStreamType::
-    id ()
+    getId ()
     {
       return this->id_;
     }
 
     void TStreamType::
-    id (const IdType& x)
+    setId (const IdType& x)
     {
       this->id_.set (x);
     }
 
     void TStreamType::
-    id (const IdOptional& x)
+    setId (const IdOptional& x)
     {
       this->id_ = x;
     }
 
     void TStreamType::
-    id (::std::unique_ptr< IdType > x)
+    setId (::std::unique_ptr< IdType > x)
     {
       this->id_.set (std::move (x));
     }
 
     const TStreamType::StreamTypeOptional& TStreamType::
-    streamType () const
+    getStreamType () const
     {
       return this->streamType_;
     }
 
     TStreamType::StreamTypeOptional& TStreamType::
-    streamType ()
+    getStreamType ()
     {
       return this->streamType_;
     }
 
     void TStreamType::
-    streamType (const StreamTypeType& x)
+    setStreamType (const StreamTypeType& x)
     {
       this->streamType_.set (x);
     }
 
     void TStreamType::
-    streamType (const StreamTypeOptional& x)
+    setStreamType (const StreamTypeOptional& x)
     {
       this->streamType_ = x;
     }
 
     void TStreamType::
-    streamType (::std::unique_ptr< StreamTypeType > x)
+    setStreamType (::std::unique_ptr< StreamTypeType > x)
     {
       this->streamType_.set (std::move (x));
     }
@@ -172,55 +172,55 @@ namespace WS
     // 
 
     const TStreamDescriptions::StreamTypeType& TStreamDescriptions::
-    streamType () const
+    getStreamType () const
     {
       return this->streamType_.get ();
     }
 
     TStreamDescriptions::StreamTypeType& TStreamDescriptions::
-    streamType ()
+    getStreamType ()
     {
       return this->streamType_.get ();
     }
 
     void TStreamDescriptions::
-    streamType (const StreamTypeType& x)
+    setStreamType (const StreamTypeType& x)
     {
       this->streamType_.set (x);
     }
 
     void TStreamDescriptions::
-    streamType (::std::unique_ptr< StreamTypeType > x)
+    setStreamType (::std::unique_ptr< StreamTypeType > x)
     {
       this->streamType_.set (std::move (x));
     }
 
     const TStreamDescriptions::TargetNamespaceOptional& TStreamDescriptions::
-    targetNamespace () const
+    getTargetNamespace () const
     {
       return this->targetNamespace_;
     }
 
     TStreamDescriptions::TargetNamespaceOptional& TStreamDescriptions::
-    targetNamespace ()
+    getTargetNamespace ()
     {
       return this->targetNamespace_;
     }
 
     void TStreamDescriptions::
-    targetNamespace (const TargetNamespaceType& x)
+    setTargetNamespace (const TargetNamespaceType& x)
     {
       this->targetNamespace_.set (x);
     }
 
     void TStreamDescriptions::
-    targetNamespace (const TargetNamespaceOptional& x)
+    setTargetNamespace (const TargetNamespaceOptional& x)
     {
       this->targetNamespace_ = x;
     }
 
     void TStreamDescriptions::
-    targetNamespace (::std::unique_ptr< TargetNamespaceType > x)
+    setTargetNamespace (::std::unique_ptr< TargetNamespaceType > x)
     {
       this->targetNamespace_.set (std::move (x));
     }
@@ -230,25 +230,25 @@ namespace WS
     // 
 
     const StreamSource::StreamDescriptionsType& StreamSource::
-    StreamDescriptions () const
+    getStreamDescriptions () const
     {
       return this->StreamDescriptions_.get ();
     }
 
     StreamSource::StreamDescriptionsType& StreamSource::
-    StreamDescriptions ()
+    getStreamDescriptions ()
     {
       return this->StreamDescriptions_.get ();
     }
 
     void StreamSource::
-    StreamDescriptions (const StreamDescriptionsType& x)
+    setStreamDescriptions (const StreamDescriptionsType& x)
     {
       this->StreamDescriptions_.set (x);
     }
 
     void StreamSource::
-    StreamDescriptions (::std::unique_ptr< StreamDescriptionsType > x)
+    setStreamDescriptions (::std::unique_ptr< StreamDescriptionsType > x)
     {
       this->StreamDescriptions_.set (std::move (x));
     }
@@ -642,9 +642,9 @@ namespace WS
   namespace STREAMING
   {
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (const ::std::string& u,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseStreamSource (const ::std::string& u,
+                       ::xml_schema::Flags f,
+                       const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -659,15 +659,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::STREAMING::StreamSource > (
-        ::WS::STREAMING::StreamSource_ (
+        ::WS::STREAMING::parseStreamSource (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (const ::std::string& u,
-                   ::xml_schema::ErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseStreamSource (const ::std::string& u,
+                       ::xml_schema::ErrorHandler& h,
+                       ::xml_schema::Flags f,
+                       const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -681,15 +681,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::STREAMING::StreamSource > (
-        ::WS::STREAMING::StreamSource_ (
+        ::WS::STREAMING::parseStreamSource (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (const ::std::string& u,
-                   ::xercesc::DOMErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseStreamSource (const ::std::string& u,
+                       ::xercesc::DOMErrorHandler& h,
+                       ::xml_schema::Flags f,
+                       const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -699,91 +699,91 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::STREAMING::StreamSource > (
-        ::WS::STREAMING::StreamSource_ (
+        ::WS::STREAMING::parseStreamSource (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (::std::istream& is,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseStreamSource (::std::istream& is,
+                       ::xml_schema::Flags f,
+                       const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::STREAMING::StreamSource_ (isrc, f, p);
+      return ::WS::STREAMING::parseStreamSource (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (::std::istream& is,
-                   ::xml_schema::ErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseStreamSource (::std::istream& is,
+                       ::xml_schema::ErrorHandler& h,
+                       ::xml_schema::Flags f,
+                       const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::STREAMING::StreamSource_ (isrc, h, f, p);
+      return ::WS::STREAMING::parseStreamSource (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (::std::istream& is,
-                   ::xercesc::DOMErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseStreamSource (::std::istream& is,
+                       ::xercesc::DOMErrorHandler& h,
+                       ::xml_schema::Flags f,
+                       const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::STREAMING::StreamSource_ (isrc, h, f, p);
+      return ::WS::STREAMING::parseStreamSource (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (::std::istream& is,
-                   const ::std::string& sid,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseStreamSource (::std::istream& is,
+                       const ::std::string& sid,
+                       ::xml_schema::Flags f,
+                       const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::STREAMING::StreamSource_ (isrc, f, p);
+      return ::WS::STREAMING::parseStreamSource (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (::std::istream& is,
-                   const ::std::string& sid,
-                   ::xml_schema::ErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseStreamSource (::std::istream& is,
+                       const ::std::string& sid,
+                       ::xml_schema::ErrorHandler& h,
+                       ::xml_schema::Flags f,
+                       const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::STREAMING::StreamSource_ (isrc, h, f, p);
+      return ::WS::STREAMING::parseStreamSource (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (::std::istream& is,
-                   const ::std::string& sid,
-                   ::xercesc::DOMErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseStreamSource (::std::istream& is,
+                       const ::std::string& sid,
+                       ::xercesc::DOMErrorHandler& h,
+                       ::xml_schema::Flags f,
+                       const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::STREAMING::StreamSource_ (isrc, h, f, p);
+      return ::WS::STREAMING::parseStreamSource (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (::xercesc::InputSource& i,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseStreamSource (::xercesc::InputSource& i,
+                       ::xml_schema::Flags f,
+                       const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -794,15 +794,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::STREAMING::StreamSource > (
-        ::WS::STREAMING::StreamSource_ (
+        ::WS::STREAMING::parseStreamSource (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (::xercesc::InputSource& i,
-                   ::xml_schema::ErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseStreamSource (::xercesc::InputSource& i,
+                       ::xml_schema::ErrorHandler& h,
+                       ::xml_schema::Flags f,
+                       const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -812,15 +812,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::STREAMING::StreamSource > (
-        ::WS::STREAMING::StreamSource_ (
+        ::WS::STREAMING::parseStreamSource (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (::xercesc::InputSource& i,
-                   ::xercesc::DOMErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseStreamSource (::xercesc::InputSource& i,
+                       ::xercesc::DOMErrorHandler& h,
+                       ::xml_schema::Flags f,
+                       const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -830,14 +830,14 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::STREAMING::StreamSource > (
-        ::WS::STREAMING::StreamSource_ (
+        ::WS::STREAMING::parseStreamSource (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (const ::xercesc::DOMDocument& doc,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseStreamSource (const ::xercesc::DOMDocument& doc,
+                       ::xml_schema::Flags f,
+                       const ::xml_schema::Properties& p)
     {
       if (f & ::xml_schema::Flags::keep_dom)
       {
@@ -845,7 +845,7 @@ namespace WS
           static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
         return ::std::unique_ptr< ::WS::STREAMING::StreamSource > (
-          ::WS::STREAMING::StreamSource_ (
+          ::WS::STREAMING::parseStreamSource (
             std::move (d), f | ::xml_schema::Flags::own_dom, p));
       }
 
@@ -870,9 +870,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties&)
+    parseStreamSource (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                       ::xml_schema::Flags f,
+                       const ::xml_schema::Properties&)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
         ((f & ::xml_schema::Flags::keep_dom) &&
@@ -887,7 +887,7 @@ namespace WS
         ::xsd::cxx::xml::dom::name< char > (e));
 
       if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
+        doc.setUserData (::xml_schema::dom::treeNodeKey,
                          (c.get () ? &c : &d),
                          0);
 
@@ -933,50 +933,50 @@ namespace WS
 
       // actionURI
       //
-      if (i.actionURI ())
+      if (i.getActionURI ())
       {
         ::xercesc::DOMAttr& a (
           ::xsd::cxx::xml::dom::create_attribute (
             "actionURI",
             e));
 
-        a << *i.actionURI ();
+        a << *i.getActionURI ();
       }
 
       // element
       //
-      if (i.element ())
+      if (i.getElement ())
       {
         ::xercesc::DOMAttr& a (
           ::xsd::cxx::xml::dom::create_attribute (
             "element",
             e));
 
-        a << *i.element ();
+        a << *i.getElement ();
       }
 
       // id
       //
-      if (i.id ())
+      if (i.getId ())
       {
         ::xercesc::DOMAttr& a (
           ::xsd::cxx::xml::dom::create_attribute (
             "id",
             e));
 
-        a << *i.id ();
+        a << *i.getId ();
       }
 
       // streamType
       //
-      if (i.streamType ())
+      if (i.getStreamType ())
       {
         ::xercesc::DOMAttr& a (
           ::xsd::cxx::xml::dom::create_attribute (
             "streamType",
             e));
 
-        a << *i.streamType ();
+        a << *i.getStreamType ();
       }
     }
 
@@ -998,7 +998,7 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        const TStreamDescriptions::StreamTypeType& x (i.streamType ());
+        const TStreamDescriptions::StreamTypeType& x (i.getStreamType ());
         if (typeid (TStreamDescriptions::StreamTypeType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -1018,14 +1018,14 @@ namespace WS
 
       // targetNamespace
       //
-      if (i.targetNamespace ())
+      if (i.getTargetNamespace ())
       {
         ::xercesc::DOMAttr& a (
           ::xsd::cxx::xml::dom::create_attribute (
             "targetNamespace",
             e));
 
-        a << *i.targetNamespace ();
+        a << *i.getTargetNamespace ();
       }
     }
 
@@ -1037,17 +1037,17 @@ namespace WS
 
 
     void
-    StreamSource_ (::std::ostream& o,
-                   const ::WS::STREAMING::StreamSource& s,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
+    serializeStreamSource (::std::ostream& o,
+                           const ::WS::STREAMING::StreamSource& s,
+                           const ::xml_schema::NamespaceInfomap& m,
+                           const ::std::string& e,
+                           ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::STREAMING::StreamSource_ (s, m, f));
+        ::WS::STREAMING::serializeStreamSource (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -1059,18 +1059,18 @@ namespace WS
     }
 
     void
-    StreamSource_ (::std::ostream& o,
-                   const ::WS::STREAMING::StreamSource& s,
-                   ::xml_schema::ErrorHandler& h,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
+    serializeStreamSource (::std::ostream& o,
+                           const ::WS::STREAMING::StreamSource& s,
+                           ::xml_schema::ErrorHandler& h,
+                           const ::xml_schema::NamespaceInfomap& m,
+                           const ::std::string& e,
+                           ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::STREAMING::StreamSource_ (s, m, f));
+        ::WS::STREAMING::serializeStreamSource (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -1079,15 +1079,15 @@ namespace WS
     }
 
     void
-    StreamSource_ (::std::ostream& o,
-                   const ::WS::STREAMING::StreamSource& s,
-                   ::xercesc::DOMErrorHandler& h,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
+    serializeStreamSource (::std::ostream& o,
+                           const ::WS::STREAMING::StreamSource& s,
+                           ::xercesc::DOMErrorHandler& h,
+                           const ::xml_schema::NamespaceInfomap& m,
+                           const ::std::string& e,
+                           ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::STREAMING::StreamSource_ (s, m, f));
+        ::WS::STREAMING::serializeStreamSource (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -1096,14 +1096,14 @@ namespace WS
     }
 
     void
-    StreamSource_ (::xercesc::XMLFormatTarget& t,
-                   const ::WS::STREAMING::StreamSource& s,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
+    serializeStreamSource (::xercesc::XMLFormatTarget& t,
+                           const ::WS::STREAMING::StreamSource& s,
+                           const ::xml_schema::NamespaceInfomap& m,
+                           const ::std::string& e,
+                           ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::STREAMING::StreamSource_ (s, m, f));
+        ::WS::STREAMING::serializeStreamSource (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -1114,15 +1114,15 @@ namespace WS
     }
 
     void
-    StreamSource_ (::xercesc::XMLFormatTarget& t,
-                   const ::WS::STREAMING::StreamSource& s,
-                   ::xml_schema::ErrorHandler& h,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
+    serializeStreamSource (::xercesc::XMLFormatTarget& t,
+                           const ::WS::STREAMING::StreamSource& s,
+                           ::xml_schema::ErrorHandler& h,
+                           const ::xml_schema::NamespaceInfomap& m,
+                           const ::std::string& e,
+                           ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::STREAMING::StreamSource_ (s, m, f));
+        ::WS::STREAMING::serializeStreamSource (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -1130,15 +1130,15 @@ namespace WS
     }
 
     void
-    StreamSource_ (::xercesc::XMLFormatTarget& t,
-                   const ::WS::STREAMING::StreamSource& s,
-                   ::xercesc::DOMErrorHandler& h,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
+    serializeStreamSource (::xercesc::XMLFormatTarget& t,
+                           const ::WS::STREAMING::StreamSource& s,
+                           ::xercesc::DOMErrorHandler& h,
+                           const ::xml_schema::NamespaceInfomap& m,
+                           const ::std::string& e,
+                           ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::STREAMING::StreamSource_ (s, m, f));
+        ::WS::STREAMING::serializeStreamSource (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -1146,9 +1146,9 @@ namespace WS
     }
 
     void
-    StreamSource_ (::xercesc::DOMDocument& d,
-                   const ::WS::STREAMING::StreamSource& s,
-                   ::xml_schema::Flags)
+    serializeStreamSource (::xercesc::DOMDocument& d,
+                           const ::WS::STREAMING::StreamSource& s,
+                           ::xml_schema::Flags)
     {
       ::xercesc::DOMElement& e (*d.getDocumentElement ());
       const ::xsd::cxx::xml::qualified_name< char > n (
@@ -1170,9 +1170,9 @@ namespace WS
     }
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    StreamSource_ (const ::WS::STREAMING::StreamSource& s,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   ::xml_schema::Flags f)
+    serializeStreamSource (const ::WS::STREAMING::StreamSource& s,
+                           const ::xml_schema::NamespaceInfomap& m,
+                           ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::serialize< char > (
@@ -1180,7 +1180,7 @@ namespace WS
           "http://standardized.namespace.org/ws-streaming",
           m, f));
 
-      ::WS::STREAMING::StreamSource_ (*d, s, f);
+      ::WS::STREAMING::serializeStreamSource (*d, s, f);
       return d;
     }
 
@@ -1195,7 +1195,7 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        const StreamSource::StreamDescriptionsType& x (i.StreamDescriptions ());
+        const StreamSource::StreamDescriptionsType& x (i.getStreamDescriptions ());
         if (typeid (StreamSource::StreamDescriptionsType) == typeid (x))
         {
           ::xercesc::DOMElement& s (

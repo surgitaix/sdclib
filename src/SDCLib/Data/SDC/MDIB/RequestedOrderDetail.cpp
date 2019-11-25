@@ -80,151 +80,151 @@ RequestedOrderDetail & RequestedOrderDetail:: operator=(const RequestedOrderDeta
 
 
 RequestedOrderDetail & RequestedOrderDetail::setStart(const xml_schema::DateTime & value) {
-	data->Start(ConvertToCDM::convert(value));
+	data->setStart(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool RequestedOrderDetail::getStart(xml_schema::DateTime & out) const {
-	if (data->Start().present()) {
-		out = ConvertFromCDM::convert(data->Start().get());
+	if (data->getStart().present()) {
+		out = ConvertFromCDM::convert(data->getStart().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::DateTime RequestedOrderDetail::getStart() const {
-	return ConvertFromCDM::convert(data->Start().get());
+	return ConvertFromCDM::convert(data->getStart().get());
 }
 
 bool RequestedOrderDetail::hasStart() const {
-	return data->Start().present();
+	return data->getStart().present();
 }
 
 RequestedOrderDetail & RequestedOrderDetail::setEnd(const xml_schema::DateTime & value) {
-	data->End(ConvertToCDM::convert(value));
+	data->setEnd(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool RequestedOrderDetail::getEnd(xml_schema::DateTime & out) const {
-	if (data->End().present()) {
-		out = ConvertFromCDM::convert(data->End().get());
+	if (data->getEnd().present()) {
+		out = ConvertFromCDM::convert(data->getEnd().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::DateTime RequestedOrderDetail::getEnd() const {
-	return ConvertFromCDM::convert(data->End().get());
+	return ConvertFromCDM::convert(data->getEnd().get());
 }
 
 bool RequestedOrderDetail::hasEnd() const {
-	return data->End().present();
+	return data->getEnd().present();
 }
 
 RequestedOrderDetail & RequestedOrderDetail::addPerformer(const PersonParticipation & value) {
-	data->Performer().push_back(ConvertToCDM::convert(value));
+	data->getPerformer().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<PersonParticipation> RequestedOrderDetail::getPerformerList() const {
 	std::vector<PersonParticipation> result;
-	result.reserve(data->Performer().size());
-	for (const auto & value: data->Performer()) {
+	result.reserve(data->getPerformer().size());
+	for (const auto & value: data->getPerformer()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void RequestedOrderDetail::clearPerformerList() {
-	data->Performer().clear();
+	data->getPerformer().clear();
 }
 
 RequestedOrderDetail & RequestedOrderDetail::addService(const CodedValue & value) {
-	data->Service().push_back(ConvertToCDM::convert(value));
+	data->getService().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<CodedValue> RequestedOrderDetail::getServiceList() const {
 	std::vector<CodedValue> result;
-	result.reserve(data->Service().size());
-	for (const auto & value: data->Service()) {
+	result.reserve(data->getService().size());
+	for (const auto & value: data->getService()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void RequestedOrderDetail::clearServiceList() {
-	data->Service().clear();
+	data->getService().clear();
 }
 
 RequestedOrderDetail & RequestedOrderDetail::addImagingProcedure(const ImagingProcedure & value) {
-	data->ImagingProcedure().push_back(ConvertToCDM::convert(value));
+	data->getImagingProcedure().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<ImagingProcedure> RequestedOrderDetail::getImagingProcedureList() const {
 	std::vector<ImagingProcedure> result;
-	result.reserve(data->ImagingProcedure().size());
-	for (const auto & value: data->ImagingProcedure()) {
+	result.reserve(data->getImagingProcedure().size());
+	for (const auto & value: data->getImagingProcedure()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void RequestedOrderDetail::clearImagingProcedureList() {
-	data->ImagingProcedure().clear();
+	data->getImagingProcedure().clear();
 }
 
 RequestedOrderDetail & RequestedOrderDetail::setReferringPhysician(const PersonReference & value) {
-	data->ReferringPhysician(ConvertToCDM::convert(value));
+	data->setReferringPhysician(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool RequestedOrderDetail::getReferringPhysician(PersonReference & out) const {
-	if (data->ReferringPhysician().present()) {
-		out = ConvertFromCDM::convert(data->ReferringPhysician().get());
+	if (data->getReferringPhysician().present()) {
+		out = ConvertFromCDM::convert(data->getReferringPhysician().get());
 		return true;
 	}
 	return false;
 }
 
 PersonReference RequestedOrderDetail::getReferringPhysician() const {
-	return ConvertFromCDM::convert(data->ReferringPhysician().get());
+	return ConvertFromCDM::convert(data->getReferringPhysician().get());
 }
 
 bool RequestedOrderDetail::hasReferringPhysician() const {
-	return data->ReferringPhysician().present();
+	return data->getReferringPhysician().present();
 }
 
 RequestedOrderDetail & RequestedOrderDetail::setRequestingPhysician(const PersonReference & value) {
-	data->RequestingPhysician(ConvertToCDM::convert(value));
+	data->setRequestingPhysician(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool RequestedOrderDetail::getRequestingPhysician(PersonReference & out) const {
-	if (data->RequestingPhysician().present()) {
-		out = ConvertFromCDM::convert(data->RequestingPhysician().get());
+	if (data->getRequestingPhysician().present()) {
+		out = ConvertFromCDM::convert(data->getRequestingPhysician().get());
 		return true;
 	}
 	return false;
 }
 
 PersonReference RequestedOrderDetail::getRequestingPhysician() const {
-	return ConvertFromCDM::convert(data->RequestingPhysician().get());
+	return ConvertFromCDM::convert(data->getRequestingPhysician().get());
 }
 
 bool RequestedOrderDetail::hasRequestingPhysician() const {
-	return data->RequestingPhysician().present();
+	return data->getRequestingPhysician().present();
 }
 
 RequestedOrderDetail & RequestedOrderDetail::setPlacerOrderNumber(const InstanceIdentifier & value) {
-	data->PlacerOrderNumber(ConvertToCDM::convert(value));
+	data->setPlacerOrderNumber(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 InstanceIdentifier RequestedOrderDetail::getPlacerOrderNumber() const {
-	return ConvertFromCDM::convert(data->PlacerOrderNumber());
+	return ConvertFromCDM::convert(data->getPlacerOrderNumber());
 }
 
 

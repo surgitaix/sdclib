@@ -84,54 +84,54 @@ Udi & Udi:: operator=(const Udi & object) {
 
 
 Udi & Udi::setDeviceIdentifier(const std::string & value) {
-	data->DeviceIdentifier(ConvertToCDM::convert(value));
+	data->setDeviceIdentifier(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 std::string Udi::getDeviceIdentifier() const {
-	return ConvertFromCDM::convert(data->DeviceIdentifier());
+	return ConvertFromCDM::convert(data->getDeviceIdentifier());
 }
 
 Udi & Udi::setHumanReadableForm(const std::string & value) {
-	data->HumanReadableForm(ConvertToCDM::convert(value));
+	data->setHumanReadableForm(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 std::string Udi::getHumanReadableForm() const {
-	return ConvertFromCDM::convert(data->HumanReadableForm());
+	return ConvertFromCDM::convert(data->getHumanReadableForm());
 }
 
 Udi & Udi::setIssuer(const InstanceIdentifier & value) {
-	data->Issuer(ConvertToCDM::convert(value));
+	data->setIssuer(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 InstanceIdentifier Udi::getIssuer() const {
-	return ConvertFromCDM::convert(data->Issuer());
+	return ConvertFromCDM::convert(data->getIssuer());
 }
 
 Udi & Udi::setJurisdiction(const InstanceIdentifier & value) {
-	data->Jurisdiction(ConvertToCDM::convert(value));
+	data->setJurisdiction(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool Udi::getJurisdiction(InstanceIdentifier & out) const {
-	if (data->Jurisdiction().present()) {
-		out = ConvertFromCDM::convert(data->Jurisdiction().get());
+	if (data->getJurisdiction().present()) {
+		out = ConvertFromCDM::convert(data->getJurisdiction().get());
 		return true;
 	}
 	return false;
 }
 
 InstanceIdentifier Udi::getJurisdiction() const {
-	return ConvertFromCDM::convert(data->Jurisdiction().get());
+	return ConvertFromCDM::convert(data->getJurisdiction().get());
 }
 
 bool Udi::hasJurisdiction() const {
-	return data->Jurisdiction().present();
+	return data->getJurisdiction().present();
 }
 
 

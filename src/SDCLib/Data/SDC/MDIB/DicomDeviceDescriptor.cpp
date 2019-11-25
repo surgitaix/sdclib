@@ -82,229 +82,229 @@ DicomDeviceDescriptor & DicomDeviceDescriptor:: operator=(const DicomDeviceDescr
 
 
 DicomDeviceDescriptor & DicomDeviceDescriptor::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
+	data->setType(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool DicomDeviceDescriptor::getType(CodedValue & out) const {
-	if (data->Type().present()) {
-		out = ConvertFromCDM::convert(data->Type().get());
+	if (data->getType().present()) {
+		out = ConvertFromCDM::convert(data->getType().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue DicomDeviceDescriptor::getType() const {
-	return ConvertFromCDM::convert(data->Type().get());
+	return ConvertFromCDM::convert(data->getType().get());
 }
 
 bool DicomDeviceDescriptor::hasType() const {
-	return data->Type().present();
+	return data->getType().present();
 }
 
 DicomDeviceDescriptor & DicomDeviceDescriptor::setHandle(const Handle & value) {
-	data->Handle(ConvertToCDM::convert(value));
+	data->setHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 Handle DicomDeviceDescriptor::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle());
+	return ConvertFromCDM::convert(data->getHandle());
 }
 
 DicomDeviceDescriptor & DicomDeviceDescriptor::setDescriptorVersion(const VersionCounter & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool DicomDeviceDescriptor::getDescriptorVersion(VersionCounter & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter DicomDeviceDescriptor::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool DicomDeviceDescriptor::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 DicomDeviceDescriptor & DicomDeviceDescriptor::setSafetyClassification(const SafetyClassification & value) {
-	data->SafetyClassification(ConvertToCDM::convert(value));
+	data->setSafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool DicomDeviceDescriptor::getSafetyClassification(SafetyClassification & out) const {
-	if (data->SafetyClassification().present()) {
-		out = ConvertFromCDM::convert(data->SafetyClassification().get());
+	if (data->getSafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->getSafetyClassification().get());
 		return true;
 	}
 	return false;
 }
 
 SafetyClassification DicomDeviceDescriptor::getSafetyClassification() const {
-	return ConvertFromCDM::convert(data->SafetyClassification().get());
+	return ConvertFromCDM::convert(data->getSafetyClassification().get());
 }
 
 bool DicomDeviceDescriptor::hasSafetyClassification() const {
-	return data->SafetyClassification().present();
+	return data->getSafetyClassification().present();
 }
 
 DicomDeviceDescriptor & DicomDeviceDescriptor::addProductionSpecification(const ProductionSpecification & value) {
-	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
+	data->getProductionSpecification().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<ProductionSpecification> DicomDeviceDescriptor::getProductionSpecificationList() const {
 	std::vector<ProductionSpecification> result;
-	result.reserve(data->ProductionSpecification().size());
-	for (const auto & value: data->ProductionSpecification()) {
+	result.reserve(data->getProductionSpecification().size());
+	for (const auto & value: data->getProductionSpecification()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void DicomDeviceDescriptor::clearProductionSpecificationList() {
-	data->ProductionSpecification().clear();
+	data->getProductionSpecification().clear();
 }
 
 DicomDeviceDescriptor & DicomDeviceDescriptor::setAlertSystem(const AlertSystemDescriptor & value) {
-	data->AlertSystem(ConvertToCDM::convert(value));
+	data->setAlertSystem(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool DicomDeviceDescriptor::getAlertSystem(AlertSystemDescriptor & out) const {
-	if (data->AlertSystem().present()) {
-		out = ConvertFromCDM::convert(data->AlertSystem().get());
+	if (data->getAlertSystem().present()) {
+		out = ConvertFromCDM::convert(data->getAlertSystem().get());
 		return true;
 	}
 	return false;
 }
 
 AlertSystemDescriptor DicomDeviceDescriptor::getAlertSystem() const {
-	return ConvertFromCDM::convert(data->AlertSystem().get());
+	return ConvertFromCDM::convert(data->getAlertSystem().get());
 }
 
 bool DicomDeviceDescriptor::hasAlertSystem() const {
-	return data->AlertSystem().present();
+	return data->getAlertSystem().present();
 }
 
 DicomDeviceDescriptor & DicomDeviceDescriptor::setSco(const ScoDescriptor & value) {
-	data->Sco(ConvertToCDM::convert(value));
+	data->setSco(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool DicomDeviceDescriptor::getSco(ScoDescriptor & out) const {
-	if (data->Sco().present()) {
-		out = ConvertFromCDM::convert(data->Sco().get());
+	if (data->getSco().present()) {
+		out = ConvertFromCDM::convert(data->getSco().get());
 		return true;
 	}
 	return false;
 }
 
 ScoDescriptor DicomDeviceDescriptor::getSco() const {
-	return ConvertFromCDM::convert(data->Sco().get());
+	return ConvertFromCDM::convert(data->getSco().get());
 }
 
 bool DicomDeviceDescriptor::hasSco() const {
-	return data->Sco().present();
+	return data->getSco().present();
 }
 
 DicomDeviceDescriptor & DicomDeviceDescriptor::setIssuerOfPatientID(const std::string & value) {
-	data->IssuerOfPatientID(ConvertToCDM::convert(value));
+	data->setIssuerOfPatientID(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool DicomDeviceDescriptor::getIssuerOfPatientID(std::string & out) const {
-	if (data->IssuerOfPatientID().present()) {
-		out = ConvertFromCDM::convert(data->IssuerOfPatientID().get());
+	if (data->getIssuerOfPatientID().present()) {
+		out = ConvertFromCDM::convert(data->getIssuerOfPatientID().get());
 		return true;
 	}
 	return false;
 }
 
 std::string DicomDeviceDescriptor::getIssuerOfPatientID() const {
-	return ConvertFromCDM::convert(data->IssuerOfPatientID().get());
+	return ConvertFromCDM::convert(data->getIssuerOfPatientID().get());
 }
 
 bool DicomDeviceDescriptor::hasIssuerOfPatientID() const {
-	return data->IssuerOfPatientID().present();
+	return data->getIssuerOfPatientID().present();
 }
 
 DicomDeviceDescriptor & DicomDeviceDescriptor::addNetworkAe(const DicomNetworkAe & value) {
-	data->NetworkAe().push_back(ConvertToCDM::convert(value));
+	data->getNetworkAe().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<DicomNetworkAe> DicomDeviceDescriptor::getNetworkAeList() const {
 	std::vector<DicomNetworkAe> result;
-	result.reserve(data->NetworkAe().size());
-	for (const auto & value: data->NetworkAe()) {
+	result.reserve(data->getNetworkAe().size());
+	for (const auto & value: data->getNetworkAe()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void DicomDeviceDescriptor::clearNetworkAeList() {
-	data->NetworkAe().clear();
+	data->getNetworkAe().clear();
 }
 
 DicomDeviceDescriptor & DicomDeviceDescriptor::addNetworkConnection(const DicomNetworkConnection & value) {
-	data->NetworkConnection().push_back(ConvertToCDM::convert(value));
+	data->getNetworkConnection().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<DicomNetworkConnection> DicomDeviceDescriptor::getNetworkConnectionList() const {
 	std::vector<DicomNetworkConnection> result;
-	result.reserve(data->NetworkConnection().size());
-	for (const auto & value: data->NetworkConnection()) {
+	result.reserve(data->getNetworkConnection().size());
+	for (const auto & value: data->getNetworkConnection()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void DicomDeviceDescriptor::clearNetworkConnectionList() {
-	data->NetworkConnection().clear();
+	data->getNetworkConnection().clear();
 }
 
 DicomDeviceDescriptor & DicomDeviceDescriptor::addDescription(const LocalizedText & value) {
-	data->Description().push_back(ConvertToCDM::convert(value));
+	data->getDescription().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<LocalizedText> DicomDeviceDescriptor::getDescriptionList() const {
 	std::vector<LocalizedText> result;
-	result.reserve(data->Description().size());
-	for (const auto & value: data->Description()) {
+	result.reserve(data->getDescription().size());
+	for (const auto & value: data->getDescription()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void DicomDeviceDescriptor::clearDescriptionList() {
-	data->Description().clear();
+	data->getDescription().clear();
 }
 
 DicomDeviceDescriptor & DicomDeviceDescriptor::addStationName(const LocalizedText & value) {
-	data->StationName().push_back(ConvertToCDM::convert(value));
+	data->getStationName().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<LocalizedText> DicomDeviceDescriptor::getStationNameList() const {
 	std::vector<LocalizedText> result;
-	result.reserve(data->StationName().size());
-	for (const auto & value: data->StationName()) {
+	result.reserve(data->getStationName().size());
+	for (const auto & value: data->getStationName()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void DicomDeviceDescriptor::clearStationNameList() {
-	data->StationName().clear();
+	data->getStationName().clear();
 }
 
 

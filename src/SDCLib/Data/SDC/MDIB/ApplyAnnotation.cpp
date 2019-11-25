@@ -79,23 +79,23 @@ ApplyAnnotation & ApplyAnnotation:: operator=(const ApplyAnnotation & object) {
 
 
 ApplyAnnotation & ApplyAnnotation::setAnnotationIndex(const unsigned int & value) {
-	data->AnnotationIndex(ConvertToCDM::convert(value));
+	data->setAnnotationIndex(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 unsigned int ApplyAnnotation::getAnnotationIndex() const {
-	return ConvertFromCDM::convert(data->AnnotationIndex());
+	return ConvertFromCDM::convert(data->getAnnotationIndex());
 }
 
 ApplyAnnotation & ApplyAnnotation::setSampleIndex(const unsigned int & value) {
-	data->SampleIndex(ConvertToCDM::convert(value));
+	data->setSampleIndex(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 unsigned int ApplyAnnotation::getSampleIndex() const {
-	return ConvertFromCDM::convert(data->SampleIndex());
+	return ConvertFromCDM::convert(data->getSampleIndex());
 }
 
 

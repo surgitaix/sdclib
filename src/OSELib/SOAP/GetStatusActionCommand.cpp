@@ -40,7 +40,7 @@ std::unique_ptr<MESSAGEMODEL::Envelope> GetStatusActionCommand::dispatch(const M
 	}
 
 	std::unique_ptr<MESSAGEMODEL::Envelope> t_responseMessage(createResponseMessageFromRequestMessage(p_request));
-	t_responseMessage->Header().Action().set(WS::ADDRESSING::AttributedURIType(DPWS::GetStatusTraits::ResponseAction()));
+	t_responseMessage->getHeader().getAction().set(WS::ADDRESSING::AttributedURIType(DPWS::GetStatusTraits::ResponseAction()));
 
 	NormalizedMessageAdapter<DPWS::GetStatusTraits::Response> t_responseAdapter;
 	t_responseAdapter.set(*t_responseMessage, std::move(t_responseBody));

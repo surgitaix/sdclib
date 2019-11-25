@@ -73,87 +73,87 @@ LocalizedText & LocalizedText:: operator=(const LocalizedText & object) {
 
 
 LocalizedText & LocalizedText::setRef(const LocalizedTextRef & value) {
-	data->Ref(ConvertToCDM::convert(value));
+	data->setRef(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool LocalizedText::getRef(LocalizedTextRef & out) const {
-	if (data->Ref().present()) {
-		out = ConvertFromCDM::convert(data->Ref().get());
+	if (data->getRef().present()) {
+		out = ConvertFromCDM::convert(data->getRef().get());
 		return true;
 	}
 	return false;
 }
 
 LocalizedTextRef LocalizedText::getRef() const {
-	return ConvertFromCDM::convert(data->Ref().get());
+	return ConvertFromCDM::convert(data->getRef().get());
 }
 
 bool LocalizedText::hasRef() const {
-	return data->Ref().present();
+	return data->getRef().present();
 }
 
 LocalizedText & LocalizedText::setLang(const xml_schema::Language & value) {
-	data->Lang(ConvertToCDM::convert(value));
+	data->setLang(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool LocalizedText::getLang(xml_schema::Language & out) const {
-	if (data->Lang().present()) {
-		out = ConvertFromCDM::convert(data->Lang().get());
+	if (data->getLang().present()) {
+		out = ConvertFromCDM::convert(data->getLang().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::Language LocalizedText::getLang() const {
-	return ConvertFromCDM::convert(data->Lang().get());
+	return ConvertFromCDM::convert(data->getLang().get());
 }
 
 bool LocalizedText::hasLang() const {
-	return data->Lang().present();
+	return data->getLang().present();
 }
 
 LocalizedText & LocalizedText::setVersion(const ReferencedVersion & value) {
-	data->Version(ConvertToCDM::convert(value));
+	data->setVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool LocalizedText::getVersion(ReferencedVersion & out) const {
-	if (data->Version().present()) {
-		out = ConvertFromCDM::convert(data->Version().get());
+	if (data->getVersion().present()) {
+		out = ConvertFromCDM::convert(data->getVersion().get());
 		return true;
 	}
 	return false;
 }
 
 ReferencedVersion LocalizedText::getVersion() const {
-	return ConvertFromCDM::convert(data->Version().get());
+	return ConvertFromCDM::convert(data->getVersion().get());
 }
 
 bool LocalizedText::hasVersion() const {
-	return data->Version().present();
+	return data->getVersion().present();
 }
 
 LocalizedText & LocalizedText::setTextWidth(const LocalizedTextWidth & value) {
-	data->TextWidth(ConvertToCDM::convert(value));
+	data->setTextWidth(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool LocalizedText::getTextWidth(LocalizedTextWidth & out) const {
-	if (data->TextWidth().present()) {
-		out = ConvertFromCDM::convert(data->TextWidth().get());
+	if (data->getTextWidth().present()) {
+		out = ConvertFromCDM::convert(data->getTextWidth().get());
 		return true;
 	}
 	return false;
 }
 
 LocalizedTextWidth LocalizedText::getTextWidth() const {
-	return ConvertFromCDM::convert(data->TextWidth().get());
+	return ConvertFromCDM::convert(data->getTextWidth().get());
 }
 
 bool LocalizedText::hasTextWidth() const {
-	return data->TextWidth().present();
+	return data->getTextWidth().present();
 }
 
 

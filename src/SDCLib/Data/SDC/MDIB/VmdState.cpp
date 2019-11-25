@@ -78,202 +78,202 @@ VmdState & VmdState:: operator=(const VmdState & object) {
 
 
 VmdState & VmdState::setStateVersion(const VersionCounter & value) {
-	data->StateVersion(ConvertToCDM::convert(value));
+	data->setStateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool VmdState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
+	if (data->getStateVersion().present()) {
+		out = ConvertFromCDM::convert(data->getStateVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter VmdState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+	return ConvertFromCDM::convert(data->getStateVersion().get());
 }
 
 bool VmdState::hasStateVersion() const {
-	return data->StateVersion().present();
+	return data->getStateVersion().present();
 }
 
 VmdState & VmdState::setDescriptorHandle(const HandleRef & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
+	data->setDescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 HandleRef VmdState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
+	return ConvertFromCDM::convert(data->getDescriptorHandle());
 }
 
 VmdState & VmdState::setDescriptorVersion(const ReferencedVersion & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool VmdState::getDescriptorVersion(ReferencedVersion & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 ReferencedVersion VmdState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool VmdState::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 VmdState & VmdState::setCalibrationInfo(const CalibrationInfo & value) {
-	data->CalibrationInfo(ConvertToCDM::convert(value));
+	data->setCalibrationInfo(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool VmdState::getCalibrationInfo(CalibrationInfo & out) const {
-	if (data->CalibrationInfo().present()) {
-		out = ConvertFromCDM::convert(data->CalibrationInfo().get());
+	if (data->getCalibrationInfo().present()) {
+		out = ConvertFromCDM::convert(data->getCalibrationInfo().get());
 		return true;
 	}
 	return false;
 }
 
 CalibrationInfo VmdState::getCalibrationInfo() const {
-	return ConvertFromCDM::convert(data->CalibrationInfo().get());
+	return ConvertFromCDM::convert(data->getCalibrationInfo().get());
 }
 
 bool VmdState::hasCalibrationInfo() const {
-	return data->CalibrationInfo().present();
+	return data->getCalibrationInfo().present();
 }
 
 VmdState & VmdState::setNextCalibration(const CalibrationInfo & value) {
-	data->NextCalibration(ConvertToCDM::convert(value));
+	data->setNextCalibration(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool VmdState::getNextCalibration(CalibrationInfo & out) const {
-	if (data->NextCalibration().present()) {
-		out = ConvertFromCDM::convert(data->NextCalibration().get());
+	if (data->getNextCalibration().present()) {
+		out = ConvertFromCDM::convert(data->getNextCalibration().get());
 		return true;
 	}
 	return false;
 }
 
 CalibrationInfo VmdState::getNextCalibration() const {
-	return ConvertFromCDM::convert(data->NextCalibration().get());
+	return ConvertFromCDM::convert(data->getNextCalibration().get());
 }
 
 bool VmdState::hasNextCalibration() const {
-	return data->NextCalibration().present();
+	return data->getNextCalibration().present();
 }
 
 VmdState & VmdState::setPhysicalConnector(const PhysicalConnectorInfo & value) {
-	data->PhysicalConnector(ConvertToCDM::convert(value));
+	data->setPhysicalConnector(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool VmdState::getPhysicalConnector(PhysicalConnectorInfo & out) const {
-	if (data->PhysicalConnector().present()) {
-		out = ConvertFromCDM::convert(data->PhysicalConnector().get());
+	if (data->getPhysicalConnector().present()) {
+		out = ConvertFromCDM::convert(data->getPhysicalConnector().get());
 		return true;
 	}
 	return false;
 }
 
 PhysicalConnectorInfo VmdState::getPhysicalConnector() const {
-	return ConvertFromCDM::convert(data->PhysicalConnector().get());
+	return ConvertFromCDM::convert(data->getPhysicalConnector().get());
 }
 
 bool VmdState::hasPhysicalConnector() const {
-	return data->PhysicalConnector().present();
+	return data->getPhysicalConnector().present();
 }
 
 VmdState & VmdState::setActivationState(const ComponentActivation & value) {
-	data->ActivationState(ConvertToCDM::convert(value));
+	data->setActivationState(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool VmdState::getActivationState(ComponentActivation & out) const {
-	if (data->ActivationState().present()) {
-		out = ConvertFromCDM::convert(data->ActivationState().get());
+	if (data->getActivationState().present()) {
+		out = ConvertFromCDM::convert(data->getActivationState().get());
 		return true;
 	}
 	return false;
 }
 
 ComponentActivation VmdState::getActivationState() const {
-	return ConvertFromCDM::convert(data->ActivationState().get());
+	return ConvertFromCDM::convert(data->getActivationState().get());
 }
 
 bool VmdState::hasActivationState() const {
-	return data->ActivationState().present();
+	return data->getActivationState().present();
 }
 
 VmdState & VmdState::setOperatingHours(const unsigned int & value) {
-	data->OperatingHours(ConvertToCDM::convert(value));
+	data->setOperatingHours(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool VmdState::getOperatingHours(unsigned int & out) const {
-	if (data->OperatingHours().present()) {
-		out = ConvertFromCDM::convert(data->OperatingHours().get());
+	if (data->getOperatingHours().present()) {
+		out = ConvertFromCDM::convert(data->getOperatingHours().get());
 		return true;
 	}
 	return false;
 }
 
 unsigned int VmdState::getOperatingHours() const {
-	return ConvertFromCDM::convert(data->OperatingHours().get());
+	return ConvertFromCDM::convert(data->getOperatingHours().get());
 }
 
 bool VmdState::hasOperatingHours() const {
-	return data->OperatingHours().present();
+	return data->getOperatingHours().present();
 }
 
 VmdState & VmdState::setOperatingCycles(const int & value) {
-	data->OperatingCycles(ConvertToCDM::convert(value));
+	data->setOperatingCycles(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool VmdState::getOperatingCycles(int & out) const {
-	if (data->OperatingCycles().present()) {
-		out = ConvertFromCDM::convert(data->OperatingCycles().get());
+	if (data->getOperatingCycles().present()) {
+		out = ConvertFromCDM::convert(data->getOperatingCycles().get());
 		return true;
 	}
 	return false;
 }
 
 int VmdState::getOperatingCycles() const {
-	return ConvertFromCDM::convert(data->OperatingCycles().get());
+	return ConvertFromCDM::convert(data->getOperatingCycles().get());
 }
 
 bool VmdState::hasOperatingCycles() const {
-	return data->OperatingCycles().present();
+	return data->getOperatingCycles().present();
 }
 
 VmdState & VmdState::setOperatingJurisdiction(const OperatingJurisdiction & value) {
-	data->OperatingJurisdiction(ConvertToCDM::convert(value));
+	data->setOperatingJurisdiction(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool VmdState::getOperatingJurisdiction(OperatingJurisdiction & out) const {
-	if (data->OperatingJurisdiction().present()) {
-		out = ConvertFromCDM::convert(data->OperatingJurisdiction().get());
+	if (data->getOperatingJurisdiction().present()) {
+		out = ConvertFromCDM::convert(data->getOperatingJurisdiction().get());
 		return true;
 	}
 	return false;
 }
 
 OperatingJurisdiction VmdState::getOperatingJurisdiction() const {
-	return ConvertFromCDM::convert(data->OperatingJurisdiction().get());
+	return ConvertFromCDM::convert(data->getOperatingJurisdiction().get());
 }
 
 bool VmdState::hasOperatingJurisdiction() const {
-	return data->OperatingJurisdiction().present();
+	return data->getOperatingJurisdiction().present();
 }
 
 

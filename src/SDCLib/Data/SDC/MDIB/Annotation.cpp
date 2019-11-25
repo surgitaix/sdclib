@@ -76,13 +76,13 @@ Annotation & Annotation:: operator=(const Annotation & object) {
 
 
 Annotation & Annotation::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
+	data->setType(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 CodedValue Annotation::getType() const {
-	return ConvertFromCDM::convert(data->Type());
+	return ConvertFromCDM::convert(data->getType());
 }
 
 

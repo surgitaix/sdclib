@@ -74,42 +74,42 @@ MdDescription & MdDescription:: operator=(const MdDescription & object) {
 
 
 MdDescription & MdDescription::setDescriptionVersion(const VersionCounter & value) {
-	data->DescriptionVersion(ConvertToCDM::convert(value));
+	data->setDescriptionVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool MdDescription::getDescriptionVersion(VersionCounter & out) const {
-	if (data->DescriptionVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptionVersion().get());
+	if (data->getDescriptionVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptionVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter MdDescription::getDescriptionVersion() const {
-	return ConvertFromCDM::convert(data->DescriptionVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptionVersion().get());
 }
 
 bool MdDescription::hasDescriptionVersion() const {
-	return data->DescriptionVersion().present();
+	return data->getDescriptionVersion().present();
 }
 
 MdDescription & MdDescription::addMds(const MdsDescriptor & value) {
-	data->Mds().push_back(ConvertToCDM::convert(value));
+	data->getMds().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<MdsDescriptor> MdDescription::getMdsList() const {
 	std::vector<MdsDescriptor> result;
-	result.reserve(data->Mds().size());
-	for (const auto & value: data->Mds()) {
+	result.reserve(data->getMds().size());
+	for (const auto & value: data->getMds()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void MdDescription::clearMdsList() {
-	data->Mds().clear();
+	data->getMds().clear();
 }
 
 

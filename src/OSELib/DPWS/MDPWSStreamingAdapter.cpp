@@ -167,23 +167,23 @@ void MDPWSStreamingAdapter::onMulticastSocketReadable(Poco::Net::ReadableNotific
 	auto t_message(parseMessage(t_adapter));
 
 	if (nullptr == t_message
-		|| !t_message->Header().MessageID().present()
-		|| !t_message->Body().WaveformStream().present()) {
+		|| !t_message->getHeader().getMessageID().present()
+		|| !t_message->getBody().getWaveformStream().present()) {
 		log_error([]{return "Message is invalid";});
 		return;
 	}
 
 
-	if (!t_message->Header().From().present()) {
+	if (!t_message->getHeader().getFrom().present()) {
 		log_warning([]{return "From-field in streaming message does not exist";});
-		m_streamNotificationDispatcher.dispatch(t_message->Body().WaveformStream().get());
+		m_streamNotificationDispatcher.dispatch(t_message->getBody().getWaveformStream().get());
 	} else {
 		if((m_deviceDescription == nullptr)) {
 			log_error([]{return "Invalid device Description! Message not dispatched.";});
 			return;
 		}
-		if (t_message->Header().From().get().Address() == m_deviceDescription->getEPR()) {
-			m_streamNotificationDispatcher.dispatch(t_message->Body().WaveformStream().get());
+		if (t_message->getHeader().getFrom().get().getAddress() == m_deviceDescription->getEPR()) {
+			m_streamNotificationDispatcher.dispatch(t_message->getBody().getWaveformStream().get());
 		} else {
 			log_error([]{return "Message has wrong endpoint reference. Message not dispatched.";});
 		}

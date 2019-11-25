@@ -48,85 +48,85 @@ namespace WS
     // 
 
     const EndpointReferenceType::AddressType& EndpointReferenceType::
-    Address () const
+    getAddress () const
     {
       return this->Address_.get ();
     }
 
     EndpointReferenceType::AddressType& EndpointReferenceType::
-    Address ()
+    getAddress ()
     {
       return this->Address_.get ();
     }
 
     void EndpointReferenceType::
-    Address (const AddressType& x)
+    setAddress (const AddressType& x)
     {
       this->Address_.set (x);
     }
 
     void EndpointReferenceType::
-    Address (::std::unique_ptr< AddressType > x)
+    setAddress (::std::unique_ptr< AddressType > x)
     {
       this->Address_.set (std::move (x));
     }
 
     const EndpointReferenceType::ReferenceParametersOptional& EndpointReferenceType::
-    ReferenceParameters () const
+    getReferenceParameters () const
     {
       return this->ReferenceParameters_;
     }
 
     EndpointReferenceType::ReferenceParametersOptional& EndpointReferenceType::
-    ReferenceParameters ()
+    getReferenceParameters ()
     {
       return this->ReferenceParameters_;
     }
 
     void EndpointReferenceType::
-    ReferenceParameters (const ReferenceParametersType& x)
+    setReferenceParameters (const ReferenceParametersType& x)
     {
       this->ReferenceParameters_.set (x);
     }
 
     void EndpointReferenceType::
-    ReferenceParameters (const ReferenceParametersOptional& x)
+    setReferenceParameters (const ReferenceParametersOptional& x)
     {
       this->ReferenceParameters_ = x;
     }
 
     void EndpointReferenceType::
-    ReferenceParameters (::std::unique_ptr< ReferenceParametersType > x)
+    setReferenceParameters (::std::unique_ptr< ReferenceParametersType > x)
     {
       this->ReferenceParameters_.set (std::move (x));
     }
 
     const EndpointReferenceType::MetadataOptional& EndpointReferenceType::
-    Metadata () const
+    getMetadata () const
     {
       return this->Metadata_;
     }
 
     EndpointReferenceType::MetadataOptional& EndpointReferenceType::
-    Metadata ()
+    getMetadata ()
     {
       return this->Metadata_;
     }
 
     void EndpointReferenceType::
-    Metadata (const MetadataType& x)
+    setMetadata (const MetadataType& x)
     {
       this->Metadata_.set (x);
     }
 
     void EndpointReferenceType::
-    Metadata (const MetadataOptional& x)
+    setMetadata (const MetadataOptional& x)
     {
       this->Metadata_ = x;
     }
 
     void EndpointReferenceType::
-    Metadata (::std::unique_ptr< MetadataType > x)
+    setMetadata (::std::unique_ptr< MetadataType > x)
     {
       this->Metadata_.set (std::move (x));
     }
@@ -136,31 +136,31 @@ namespace WS
     // 
 
     const ReferenceParametersType::IdentifierOptional& ReferenceParametersType::
-    Identifier () const
+    getIdentifier () const
     {
       return this->Identifier_;
     }
 
     ReferenceParametersType::IdentifierOptional& ReferenceParametersType::
-    Identifier ()
+    getIdentifier ()
     {
       return this->Identifier_;
     }
 
     void ReferenceParametersType::
-    Identifier (const IdentifierType& x)
+    setIdentifier (const IdentifierType& x)
     {
       this->Identifier_.set (x);
     }
 
     void ReferenceParametersType::
-    Identifier (const IdentifierOptional& x)
+    setIdentifier (const IdentifierOptional& x)
     {
       this->Identifier_ = x;
     }
 
     void ReferenceParametersType::
-    Identifier (::std::unique_ptr< IdentifierType > x)
+    setIdentifier (::std::unique_ptr< IdentifierType > x)
     {
       this->Identifier_.set (std::move (x));
     }
@@ -174,31 +174,31 @@ namespace WS
     // 
 
     const RelatesToType::RelationshipTypeOptional& RelatesToType::
-    RelationshipType () const
+    getRelationshipType () const
     {
       return this->RelationshipType_;
     }
 
     RelatesToType::RelationshipTypeOptional& RelatesToType::
-    RelationshipType ()
+    getRelationshipType ()
     {
       return this->RelationshipType_;
     }
 
     void RelatesToType::
-    RelationshipType (const RelationshipTypeType& x)
+    setRelationshipType (const RelationshipTypeType& x)
     {
       this->RelationshipType_.set (x);
     }
 
     void RelatesToType::
-    RelationshipType (const RelationshipTypeOptional& x)
+    setRelationshipType (const RelationshipTypeOptional& x)
     {
       this->RelationshipType_ = x;
     }
 
     void RelatesToType::
-    RelationshipType (::std::unique_ptr< RelationshipTypeType > x)
+    setRelationshipType (::std::unique_ptr< RelationshipTypeType > x)
     {
       this->RelationshipType_.set (std::move (x));
     }
@@ -302,61 +302,61 @@ namespace WS
     // 
 
     const ProblemActionType::ActionOptional& ProblemActionType::
-    Action () const
+    getAction () const
     {
       return this->Action_;
     }
 
     ProblemActionType::ActionOptional& ProblemActionType::
-    Action ()
+    getAction ()
     {
       return this->Action_;
     }
 
     void ProblemActionType::
-    Action (const ActionType& x)
+    setAction (const ActionType& x)
     {
       this->Action_.set (x);
     }
 
     void ProblemActionType::
-    Action (const ActionOptional& x)
+    setAction (const ActionOptional& x)
     {
       this->Action_ = x;
     }
 
     void ProblemActionType::
-    Action (::std::unique_ptr< ActionType > x)
+    setAction (::std::unique_ptr< ActionType > x)
     {
       this->Action_.set (std::move (x));
     }
 
     const ProblemActionType::SoapActionOptional& ProblemActionType::
-    SoapAction () const
+    getSoapAction () const
     {
       return this->SoapAction_;
     }
 
     ProblemActionType::SoapActionOptional& ProblemActionType::
-    SoapAction ()
+    getSoapAction ()
     {
       return this->SoapAction_;
     }
 
     void ProblemActionType::
-    SoapAction (const SoapActionType& x)
+    setSoapAction (const SoapActionType& x)
     {
       this->SoapAction_.set (x);
     }
 
     void ProblemActionType::
-    SoapAction (const SoapActionOptional& x)
+    setSoapAction (const SoapActionOptional& x)
     {
       this->SoapAction_ = x;
     }
 
     void ProblemActionType::
-    SoapAction (::std::unique_ptr< SoapActionType > x)
+    setSoapAction (::std::unique_ptr< SoapActionType > x)
     {
       this->SoapAction_.set (std::move (x));
     }
@@ -1238,9 +1238,9 @@ namespace WS
   namespace ADDRESSING
   {
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    EndpointReference (const ::std::string& u,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+    parseEndpointReference (const ::std::string& u,
+                            ::xml_schema::Flags f,
+                            const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -1255,15 +1255,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::ADDRESSING::EndpointReference (
+        ::WS::ADDRESSING::parseEndpointReference (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    EndpointReference (const ::std::string& u,
-                       ::xml_schema::ErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+    parseEndpointReference (const ::std::string& u,
+                            ::xml_schema::ErrorHandler& h,
+                            ::xml_schema::Flags f,
+                            const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -1277,15 +1277,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::ADDRESSING::EndpointReference (
+        ::WS::ADDRESSING::parseEndpointReference (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    EndpointReference (const ::std::string& u,
-                       ::xercesc::DOMErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+    parseEndpointReference (const ::std::string& u,
+                            ::xercesc::DOMErrorHandler& h,
+                            ::xml_schema::Flags f,
+                            const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -1295,91 +1295,91 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::ADDRESSING::EndpointReference (
+        ::WS::ADDRESSING::parseEndpointReference (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    EndpointReference (::std::istream& is,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+    parseEndpointReference (::std::istream& is,
+                            ::xml_schema::Flags f,
+                            const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::EndpointReference (isrc, f, p);
+      return ::WS::ADDRESSING::parseEndpointReference (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    EndpointReference (::std::istream& is,
-                       ::xml_schema::ErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+    parseEndpointReference (::std::istream& is,
+                            ::xml_schema::ErrorHandler& h,
+                            ::xml_schema::Flags f,
+                            const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::EndpointReference (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseEndpointReference (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    EndpointReference (::std::istream& is,
-                       ::xercesc::DOMErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+    parseEndpointReference (::std::istream& is,
+                            ::xercesc::DOMErrorHandler& h,
+                            ::xml_schema::Flags f,
+                            const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::EndpointReference (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseEndpointReference (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    EndpointReference (::std::istream& is,
-                       const ::std::string& sid,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+    parseEndpointReference (::std::istream& is,
+                            const ::std::string& sid,
+                            ::xml_schema::Flags f,
+                            const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::EndpointReference (isrc, f, p);
+      return ::WS::ADDRESSING::parseEndpointReference (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    EndpointReference (::std::istream& is,
-                       const ::std::string& sid,
-                       ::xml_schema::ErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+    parseEndpointReference (::std::istream& is,
+                            const ::std::string& sid,
+                            ::xml_schema::ErrorHandler& h,
+                            ::xml_schema::Flags f,
+                            const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::EndpointReference (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseEndpointReference (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    EndpointReference (::std::istream& is,
-                       const ::std::string& sid,
-                       ::xercesc::DOMErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+    parseEndpointReference (::std::istream& is,
+                            const ::std::string& sid,
+                            ::xercesc::DOMErrorHandler& h,
+                            ::xml_schema::Flags f,
+                            const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::EndpointReference (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseEndpointReference (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    EndpointReference (::xercesc::InputSource& i,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+    parseEndpointReference (::xercesc::InputSource& i,
+                            ::xml_schema::Flags f,
+                            const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -1390,15 +1390,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::ADDRESSING::EndpointReference (
+        ::WS::ADDRESSING::parseEndpointReference (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    EndpointReference (::xercesc::InputSource& i,
-                       ::xml_schema::ErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+    parseEndpointReference (::xercesc::InputSource& i,
+                            ::xml_schema::ErrorHandler& h,
+                            ::xml_schema::Flags f,
+                            const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -1408,15 +1408,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::ADDRESSING::EndpointReference (
+        ::WS::ADDRESSING::parseEndpointReference (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    EndpointReference (::xercesc::InputSource& i,
-                       ::xercesc::DOMErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+    parseEndpointReference (::xercesc::InputSource& i,
+                            ::xercesc::DOMErrorHandler& h,
+                            ::xml_schema::Flags f,
+                            const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -1426,14 +1426,14 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::ADDRESSING::EndpointReference (
+        ::WS::ADDRESSING::parseEndpointReference (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    EndpointReference (const ::xercesc::DOMDocument& doc,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
+    parseEndpointReference (const ::xercesc::DOMDocument& doc,
+                            ::xml_schema::Flags f,
+                            const ::xml_schema::Properties& p)
     {
       if (f & ::xml_schema::Flags::keep_dom)
       {
@@ -1441,7 +1441,7 @@ namespace WS
           static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
         return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-          ::WS::ADDRESSING::EndpointReference (
+          ::WS::ADDRESSING::parseEndpointReference (
             std::move (d), f | ::xml_schema::Flags::own_dom, p));
       }
 
@@ -1477,9 +1477,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    EndpointReference (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties&)
+    parseEndpointReference (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                            ::xml_schema::Flags f,
+                            const ::xml_schema::Properties&)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
         ((f & ::xml_schema::Flags::keep_dom) &&
@@ -1494,7 +1494,7 @@ namespace WS
         ::xsd::cxx::xml::dom::name< char > (e));
 
       if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
+        doc.setUserData (::xml_schema::dom::treeNodeKey,
                          (c.get () ? &c : &d),
                          0);
 
@@ -1527,9 +1527,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ReferenceParametersType >
-    ReferenceParameters (const ::std::string& u,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
+    parseReferenceParameters (const ::std::string& u,
+                              ::xml_schema::Flags f,
+                              const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -1544,15 +1544,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::ReferenceParametersType > (
-        ::WS::ADDRESSING::ReferenceParameters (
+        ::WS::ADDRESSING::parseReferenceParameters (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ReferenceParametersType >
-    ReferenceParameters (const ::std::string& u,
-                         ::xml_schema::ErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
+    parseReferenceParameters (const ::std::string& u,
+                              ::xml_schema::ErrorHandler& h,
+                              ::xml_schema::Flags f,
+                              const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -1566,15 +1566,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::ReferenceParametersType > (
-        ::WS::ADDRESSING::ReferenceParameters (
+        ::WS::ADDRESSING::parseReferenceParameters (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ReferenceParametersType >
-    ReferenceParameters (const ::std::string& u,
-                         ::xercesc::DOMErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
+    parseReferenceParameters (const ::std::string& u,
+                              ::xercesc::DOMErrorHandler& h,
+                              ::xml_schema::Flags f,
+                              const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -1584,91 +1584,91 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::ReferenceParametersType > (
-        ::WS::ADDRESSING::ReferenceParameters (
+        ::WS::ADDRESSING::parseReferenceParameters (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ReferenceParametersType >
-    ReferenceParameters (::std::istream& is,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
+    parseReferenceParameters (::std::istream& is,
+                              ::xml_schema::Flags f,
+                              const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::ReferenceParameters (isrc, f, p);
+      return ::WS::ADDRESSING::parseReferenceParameters (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ReferenceParametersType >
-    ReferenceParameters (::std::istream& is,
-                         ::xml_schema::ErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
+    parseReferenceParameters (::std::istream& is,
+                              ::xml_schema::ErrorHandler& h,
+                              ::xml_schema::Flags f,
+                              const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::ReferenceParameters (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseReferenceParameters (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ReferenceParametersType >
-    ReferenceParameters (::std::istream& is,
-                         ::xercesc::DOMErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
+    parseReferenceParameters (::std::istream& is,
+                              ::xercesc::DOMErrorHandler& h,
+                              ::xml_schema::Flags f,
+                              const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::ReferenceParameters (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseReferenceParameters (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ReferenceParametersType >
-    ReferenceParameters (::std::istream& is,
-                         const ::std::string& sid,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
+    parseReferenceParameters (::std::istream& is,
+                              const ::std::string& sid,
+                              ::xml_schema::Flags f,
+                              const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::ReferenceParameters (isrc, f, p);
+      return ::WS::ADDRESSING::parseReferenceParameters (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ReferenceParametersType >
-    ReferenceParameters (::std::istream& is,
-                         const ::std::string& sid,
-                         ::xml_schema::ErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
+    parseReferenceParameters (::std::istream& is,
+                              const ::std::string& sid,
+                              ::xml_schema::ErrorHandler& h,
+                              ::xml_schema::Flags f,
+                              const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::ReferenceParameters (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseReferenceParameters (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ReferenceParametersType >
-    ReferenceParameters (::std::istream& is,
-                         const ::std::string& sid,
-                         ::xercesc::DOMErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
+    parseReferenceParameters (::std::istream& is,
+                              const ::std::string& sid,
+                              ::xercesc::DOMErrorHandler& h,
+                              ::xml_schema::Flags f,
+                              const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::ReferenceParameters (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseReferenceParameters (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ReferenceParametersType >
-    ReferenceParameters (::xercesc::InputSource& i,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
+    parseReferenceParameters (::xercesc::InputSource& i,
+                              ::xml_schema::Flags f,
+                              const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -1679,15 +1679,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::ReferenceParametersType > (
-        ::WS::ADDRESSING::ReferenceParameters (
+        ::WS::ADDRESSING::parseReferenceParameters (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ReferenceParametersType >
-    ReferenceParameters (::xercesc::InputSource& i,
-                         ::xml_schema::ErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
+    parseReferenceParameters (::xercesc::InputSource& i,
+                              ::xml_schema::ErrorHandler& h,
+                              ::xml_schema::Flags f,
+                              const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -1697,15 +1697,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::ReferenceParametersType > (
-        ::WS::ADDRESSING::ReferenceParameters (
+        ::WS::ADDRESSING::parseReferenceParameters (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ReferenceParametersType >
-    ReferenceParameters (::xercesc::InputSource& i,
-                         ::xercesc::DOMErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
+    parseReferenceParameters (::xercesc::InputSource& i,
+                              ::xercesc::DOMErrorHandler& h,
+                              ::xml_schema::Flags f,
+                              const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -1715,14 +1715,14 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::ReferenceParametersType > (
-        ::WS::ADDRESSING::ReferenceParameters (
+        ::WS::ADDRESSING::parseReferenceParameters (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ReferenceParametersType >
-    ReferenceParameters (const ::xercesc::DOMDocument& doc,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
+    parseReferenceParameters (const ::xercesc::DOMDocument& doc,
+                              ::xml_schema::Flags f,
+                              const ::xml_schema::Properties& p)
     {
       if (f & ::xml_schema::Flags::keep_dom)
       {
@@ -1730,7 +1730,7 @@ namespace WS
           static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
         return ::std::unique_ptr< ::WS::ADDRESSING::ReferenceParametersType > (
-          ::WS::ADDRESSING::ReferenceParameters (
+          ::WS::ADDRESSING::parseReferenceParameters (
             std::move (d), f | ::xml_schema::Flags::own_dom, p));
       }
 
@@ -1766,9 +1766,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ReferenceParametersType >
-    ReferenceParameters (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties&)
+    parseReferenceParameters (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                              ::xml_schema::Flags f,
+                              const ::xml_schema::Properties&)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
         ((f & ::xml_schema::Flags::keep_dom) &&
@@ -1783,7 +1783,7 @@ namespace WS
         ::xsd::cxx::xml::dom::name< char > (e));
 
       if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
+        doc.setUserData (::xml_schema::dom::treeNodeKey,
                          (c.get () ? &c : &d),
                          0);
 
@@ -1816,9 +1816,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::MetadataType >
-    Metadata (const ::std::string& u,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
+    parseMetadata (const ::std::string& u,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -1833,15 +1833,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::MetadataType > (
-        ::WS::ADDRESSING::Metadata (
+        ::WS::ADDRESSING::parseMetadata (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::MetadataType >
-    Metadata (const ::std::string& u,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
+    parseMetadata (const ::std::string& u,
+                   ::xml_schema::ErrorHandler& h,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -1855,15 +1855,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::MetadataType > (
-        ::WS::ADDRESSING::Metadata (
+        ::WS::ADDRESSING::parseMetadata (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::MetadataType >
-    Metadata (const ::std::string& u,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
+    parseMetadata (const ::std::string& u,
+                   ::xercesc::DOMErrorHandler& h,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -1873,91 +1873,91 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::MetadataType > (
-        ::WS::ADDRESSING::Metadata (
+        ::WS::ADDRESSING::parseMetadata (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::MetadataType >
-    Metadata (::std::istream& is,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
+    parseMetadata (::std::istream& is,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::Metadata (isrc, f, p);
+      return ::WS::ADDRESSING::parseMetadata (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::MetadataType >
-    Metadata (::std::istream& is,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
+    parseMetadata (::std::istream& is,
+                   ::xml_schema::ErrorHandler& h,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::Metadata (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseMetadata (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::MetadataType >
-    Metadata (::std::istream& is,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
+    parseMetadata (::std::istream& is,
+                   ::xercesc::DOMErrorHandler& h,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::Metadata (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseMetadata (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::MetadataType >
-    Metadata (::std::istream& is,
-              const ::std::string& sid,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
+    parseMetadata (::std::istream& is,
+                   const ::std::string& sid,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::Metadata (isrc, f, p);
+      return ::WS::ADDRESSING::parseMetadata (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::MetadataType >
-    Metadata (::std::istream& is,
-              const ::std::string& sid,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
+    parseMetadata (::std::istream& is,
+                   const ::std::string& sid,
+                   ::xml_schema::ErrorHandler& h,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::Metadata (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseMetadata (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::MetadataType >
-    Metadata (::std::istream& is,
-              const ::std::string& sid,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
+    parseMetadata (::std::istream& is,
+                   const ::std::string& sid,
+                   ::xercesc::DOMErrorHandler& h,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::Metadata (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseMetadata (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::MetadataType >
-    Metadata (::xercesc::InputSource& i,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
+    parseMetadata (::xercesc::InputSource& i,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -1968,15 +1968,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::MetadataType > (
-        ::WS::ADDRESSING::Metadata (
+        ::WS::ADDRESSING::parseMetadata (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::MetadataType >
-    Metadata (::xercesc::InputSource& i,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
+    parseMetadata (::xercesc::InputSource& i,
+                   ::xml_schema::ErrorHandler& h,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -1986,15 +1986,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::MetadataType > (
-        ::WS::ADDRESSING::Metadata (
+        ::WS::ADDRESSING::parseMetadata (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::MetadataType >
-    Metadata (::xercesc::InputSource& i,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
+    parseMetadata (::xercesc::InputSource& i,
+                   ::xercesc::DOMErrorHandler& h,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -2004,14 +2004,14 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::MetadataType > (
-        ::WS::ADDRESSING::Metadata (
+        ::WS::ADDRESSING::parseMetadata (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::MetadataType >
-    Metadata (const ::xercesc::DOMDocument& doc,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
+    parseMetadata (const ::xercesc::DOMDocument& doc,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties& p)
     {
       if (f & ::xml_schema::Flags::keep_dom)
       {
@@ -2019,7 +2019,7 @@ namespace WS
           static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
         return ::std::unique_ptr< ::WS::ADDRESSING::MetadataType > (
-          ::WS::ADDRESSING::Metadata (
+          ::WS::ADDRESSING::parseMetadata (
             std::move (d), f | ::xml_schema::Flags::own_dom, p));
       }
 
@@ -2055,9 +2055,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::MetadataType >
-    Metadata (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties&)
+    parseMetadata (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                   ::xml_schema::Flags f,
+                   const ::xml_schema::Properties&)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
         ((f & ::xml_schema::Flags::keep_dom) &&
@@ -2072,7 +2072,7 @@ namespace WS
         ::xsd::cxx::xml::dom::name< char > (e));
 
       if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
+        doc.setUserData (::xml_schema::dom::treeNodeKey,
                          (c.get () ? &c : &d),
                          0);
 
@@ -2105,9 +2105,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    MessageID (const ::std::string& u,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseMessageID (const ::std::string& u,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -2122,15 +2122,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-        ::WS::ADDRESSING::MessageID (
+        ::WS::ADDRESSING::parseMessageID (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    MessageID (const ::std::string& u,
-               ::xml_schema::ErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseMessageID (const ::std::string& u,
+                    ::xml_schema::ErrorHandler& h,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -2144,15 +2144,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-        ::WS::ADDRESSING::MessageID (
+        ::WS::ADDRESSING::parseMessageID (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    MessageID (const ::std::string& u,
-               ::xercesc::DOMErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseMessageID (const ::std::string& u,
+                    ::xercesc::DOMErrorHandler& h,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -2162,91 +2162,91 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-        ::WS::ADDRESSING::MessageID (
+        ::WS::ADDRESSING::parseMessageID (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    MessageID (::std::istream& is,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseMessageID (::std::istream& is,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::MessageID (isrc, f, p);
+      return ::WS::ADDRESSING::parseMessageID (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    MessageID (::std::istream& is,
-               ::xml_schema::ErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseMessageID (::std::istream& is,
+                    ::xml_schema::ErrorHandler& h,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::MessageID (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseMessageID (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    MessageID (::std::istream& is,
-               ::xercesc::DOMErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseMessageID (::std::istream& is,
+                    ::xercesc::DOMErrorHandler& h,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::MessageID (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseMessageID (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    MessageID (::std::istream& is,
-               const ::std::string& sid,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseMessageID (::std::istream& is,
+                    const ::std::string& sid,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::MessageID (isrc, f, p);
+      return ::WS::ADDRESSING::parseMessageID (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    MessageID (::std::istream& is,
-               const ::std::string& sid,
-               ::xml_schema::ErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseMessageID (::std::istream& is,
+                    const ::std::string& sid,
+                    ::xml_schema::ErrorHandler& h,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::MessageID (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseMessageID (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    MessageID (::std::istream& is,
-               const ::std::string& sid,
-               ::xercesc::DOMErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseMessageID (::std::istream& is,
+                    const ::std::string& sid,
+                    ::xercesc::DOMErrorHandler& h,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::MessageID (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseMessageID (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    MessageID (::xercesc::InputSource& i,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseMessageID (::xercesc::InputSource& i,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -2257,15 +2257,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-        ::WS::ADDRESSING::MessageID (
+        ::WS::ADDRESSING::parseMessageID (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    MessageID (::xercesc::InputSource& i,
-               ::xml_schema::ErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseMessageID (::xercesc::InputSource& i,
+                    ::xml_schema::ErrorHandler& h,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -2275,15 +2275,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-        ::WS::ADDRESSING::MessageID (
+        ::WS::ADDRESSING::parseMessageID (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    MessageID (::xercesc::InputSource& i,
-               ::xercesc::DOMErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseMessageID (::xercesc::InputSource& i,
+                    ::xercesc::DOMErrorHandler& h,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -2293,14 +2293,14 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-        ::WS::ADDRESSING::MessageID (
+        ::WS::ADDRESSING::parseMessageID (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    MessageID (const ::xercesc::DOMDocument& doc,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseMessageID (const ::xercesc::DOMDocument& doc,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       if (f & ::xml_schema::Flags::keep_dom)
       {
@@ -2308,7 +2308,7 @@ namespace WS
           static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
         return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-          ::WS::ADDRESSING::MessageID (
+          ::WS::ADDRESSING::parseMessageID (
             std::move (d), f | ::xml_schema::Flags::own_dom, p));
       }
 
@@ -2344,9 +2344,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    MessageID (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties&)
+    parseMessageID (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties&)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
         ((f & ::xml_schema::Flags::keep_dom) &&
@@ -2361,7 +2361,7 @@ namespace WS
         ::xsd::cxx::xml::dom::name< char > (e));
 
       if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
+        doc.setUserData (::xml_schema::dom::treeNodeKey,
                          (c.get () ? &c : &d),
                          0);
 
@@ -2394,9 +2394,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::RelatesToType >
-    RelatesTo (const ::std::string& u,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseRelatesTo (const ::std::string& u,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -2411,15 +2411,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::RelatesToType > (
-        ::WS::ADDRESSING::RelatesTo (
+        ::WS::ADDRESSING::parseRelatesTo (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::RelatesToType >
-    RelatesTo (const ::std::string& u,
-               ::xml_schema::ErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseRelatesTo (const ::std::string& u,
+                    ::xml_schema::ErrorHandler& h,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -2433,15 +2433,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::RelatesToType > (
-        ::WS::ADDRESSING::RelatesTo (
+        ::WS::ADDRESSING::parseRelatesTo (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::RelatesToType >
-    RelatesTo (const ::std::string& u,
-               ::xercesc::DOMErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseRelatesTo (const ::std::string& u,
+                    ::xercesc::DOMErrorHandler& h,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -2451,91 +2451,91 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::RelatesToType > (
-        ::WS::ADDRESSING::RelatesTo (
+        ::WS::ADDRESSING::parseRelatesTo (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::RelatesToType >
-    RelatesTo (::std::istream& is,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseRelatesTo (::std::istream& is,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::RelatesTo (isrc, f, p);
+      return ::WS::ADDRESSING::parseRelatesTo (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::RelatesToType >
-    RelatesTo (::std::istream& is,
-               ::xml_schema::ErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseRelatesTo (::std::istream& is,
+                    ::xml_schema::ErrorHandler& h,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::RelatesTo (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseRelatesTo (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::RelatesToType >
-    RelatesTo (::std::istream& is,
-               ::xercesc::DOMErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseRelatesTo (::std::istream& is,
+                    ::xercesc::DOMErrorHandler& h,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::RelatesTo (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseRelatesTo (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::RelatesToType >
-    RelatesTo (::std::istream& is,
-               const ::std::string& sid,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseRelatesTo (::std::istream& is,
+                    const ::std::string& sid,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::RelatesTo (isrc, f, p);
+      return ::WS::ADDRESSING::parseRelatesTo (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::RelatesToType >
-    RelatesTo (::std::istream& is,
-               const ::std::string& sid,
-               ::xml_schema::ErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseRelatesTo (::std::istream& is,
+                    const ::std::string& sid,
+                    ::xml_schema::ErrorHandler& h,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::RelatesTo (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseRelatesTo (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::RelatesToType >
-    RelatesTo (::std::istream& is,
-               const ::std::string& sid,
-               ::xercesc::DOMErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseRelatesTo (::std::istream& is,
+                    const ::std::string& sid,
+                    ::xercesc::DOMErrorHandler& h,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::RelatesTo (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseRelatesTo (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::RelatesToType >
-    RelatesTo (::xercesc::InputSource& i,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseRelatesTo (::xercesc::InputSource& i,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -2546,15 +2546,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::RelatesToType > (
-        ::WS::ADDRESSING::RelatesTo (
+        ::WS::ADDRESSING::parseRelatesTo (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::RelatesToType >
-    RelatesTo (::xercesc::InputSource& i,
-               ::xml_schema::ErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseRelatesTo (::xercesc::InputSource& i,
+                    ::xml_schema::ErrorHandler& h,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -2564,15 +2564,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::RelatesToType > (
-        ::WS::ADDRESSING::RelatesTo (
+        ::WS::ADDRESSING::parseRelatesTo (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::RelatesToType >
-    RelatesTo (::xercesc::InputSource& i,
-               ::xercesc::DOMErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseRelatesTo (::xercesc::InputSource& i,
+                    ::xercesc::DOMErrorHandler& h,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -2582,14 +2582,14 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::RelatesToType > (
-        ::WS::ADDRESSING::RelatesTo (
+        ::WS::ADDRESSING::parseRelatesTo (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::RelatesToType >
-    RelatesTo (const ::xercesc::DOMDocument& doc,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
+    parseRelatesTo (const ::xercesc::DOMDocument& doc,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties& p)
     {
       if (f & ::xml_schema::Flags::keep_dom)
       {
@@ -2597,7 +2597,7 @@ namespace WS
           static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
         return ::std::unique_ptr< ::WS::ADDRESSING::RelatesToType > (
-          ::WS::ADDRESSING::RelatesTo (
+          ::WS::ADDRESSING::parseRelatesTo (
             std::move (d), f | ::xml_schema::Flags::own_dom, p));
       }
 
@@ -2633,9 +2633,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::RelatesToType >
-    RelatesTo (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties&)
+    parseRelatesTo (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                    ::xml_schema::Flags f,
+                    const ::xml_schema::Properties&)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
         ((f & ::xml_schema::Flags::keep_dom) &&
@@ -2650,7 +2650,7 @@ namespace WS
         ::xsd::cxx::xml::dom::name< char > (e));
 
       if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
+        doc.setUserData (::xml_schema::dom::treeNodeKey,
                          (c.get () ? &c : &d),
                          0);
 
@@ -2683,9 +2683,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    ReplyTo (const ::std::string& u,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseReplyTo (const ::std::string& u,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -2700,15 +2700,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::ADDRESSING::ReplyTo (
+        ::WS::ADDRESSING::parseReplyTo (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    ReplyTo (const ::std::string& u,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseReplyTo (const ::std::string& u,
+                  ::xml_schema::ErrorHandler& h,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -2722,15 +2722,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::ADDRESSING::ReplyTo (
+        ::WS::ADDRESSING::parseReplyTo (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    ReplyTo (const ::std::string& u,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseReplyTo (const ::std::string& u,
+                  ::xercesc::DOMErrorHandler& h,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -2740,91 +2740,91 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::ADDRESSING::ReplyTo (
+        ::WS::ADDRESSING::parseReplyTo (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    ReplyTo (::std::istream& is,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseReplyTo (::std::istream& is,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::ReplyTo (isrc, f, p);
+      return ::WS::ADDRESSING::parseReplyTo (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    ReplyTo (::std::istream& is,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseReplyTo (::std::istream& is,
+                  ::xml_schema::ErrorHandler& h,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::ReplyTo (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseReplyTo (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    ReplyTo (::std::istream& is,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseReplyTo (::std::istream& is,
+                  ::xercesc::DOMErrorHandler& h,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::ReplyTo (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseReplyTo (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    ReplyTo (::std::istream& is,
-             const ::std::string& sid,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseReplyTo (::std::istream& is,
+                  const ::std::string& sid,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::ReplyTo (isrc, f, p);
+      return ::WS::ADDRESSING::parseReplyTo (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    ReplyTo (::std::istream& is,
-             const ::std::string& sid,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseReplyTo (::std::istream& is,
+                  const ::std::string& sid,
+                  ::xml_schema::ErrorHandler& h,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::ReplyTo (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseReplyTo (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    ReplyTo (::std::istream& is,
-             const ::std::string& sid,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseReplyTo (::std::istream& is,
+                  const ::std::string& sid,
+                  ::xercesc::DOMErrorHandler& h,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::ReplyTo (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseReplyTo (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    ReplyTo (::xercesc::InputSource& i,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseReplyTo (::xercesc::InputSource& i,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -2835,15 +2835,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::ADDRESSING::ReplyTo (
+        ::WS::ADDRESSING::parseReplyTo (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    ReplyTo (::xercesc::InputSource& i,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseReplyTo (::xercesc::InputSource& i,
+                  ::xml_schema::ErrorHandler& h,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -2853,15 +2853,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::ADDRESSING::ReplyTo (
+        ::WS::ADDRESSING::parseReplyTo (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    ReplyTo (::xercesc::InputSource& i,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseReplyTo (::xercesc::InputSource& i,
+                  ::xercesc::DOMErrorHandler& h,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -2871,14 +2871,14 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::ADDRESSING::ReplyTo (
+        ::WS::ADDRESSING::parseReplyTo (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    ReplyTo (const ::xercesc::DOMDocument& doc,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseReplyTo (const ::xercesc::DOMDocument& doc,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       if (f & ::xml_schema::Flags::keep_dom)
       {
@@ -2886,7 +2886,7 @@ namespace WS
           static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
         return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-          ::WS::ADDRESSING::ReplyTo (
+          ::WS::ADDRESSING::parseReplyTo (
             std::move (d), f | ::xml_schema::Flags::own_dom, p));
       }
 
@@ -2922,9 +2922,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    ReplyTo (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties&)
+    parseReplyTo (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties&)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
         ((f & ::xml_schema::Flags::keep_dom) &&
@@ -2939,7 +2939,7 @@ namespace WS
         ::xsd::cxx::xml::dom::name< char > (e));
 
       if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
+        doc.setUserData (::xml_schema::dom::treeNodeKey,
                          (c.get () ? &c : &d),
                          0);
 
@@ -2972,9 +2972,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    From (const ::std::string& u,
-          ::xml_schema::Flags f,
-          const ::xml_schema::Properties& p)
+    parseFrom (const ::std::string& u,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -2989,15 +2989,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::ADDRESSING::From (
+        ::WS::ADDRESSING::parseFrom (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    From (const ::std::string& u,
-          ::xml_schema::ErrorHandler& h,
-          ::xml_schema::Flags f,
-          const ::xml_schema::Properties& p)
+    parseFrom (const ::std::string& u,
+               ::xml_schema::ErrorHandler& h,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -3011,15 +3011,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::ADDRESSING::From (
+        ::WS::ADDRESSING::parseFrom (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    From (const ::std::string& u,
-          ::xercesc::DOMErrorHandler& h,
-          ::xml_schema::Flags f,
-          const ::xml_schema::Properties& p)
+    parseFrom (const ::std::string& u,
+               ::xercesc::DOMErrorHandler& h,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -3029,91 +3029,91 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::ADDRESSING::From (
+        ::WS::ADDRESSING::parseFrom (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    From (::std::istream& is,
-          ::xml_schema::Flags f,
-          const ::xml_schema::Properties& p)
+    parseFrom (::std::istream& is,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::From (isrc, f, p);
+      return ::WS::ADDRESSING::parseFrom (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    From (::std::istream& is,
-          ::xml_schema::ErrorHandler& h,
-          ::xml_schema::Flags f,
-          const ::xml_schema::Properties& p)
+    parseFrom (::std::istream& is,
+               ::xml_schema::ErrorHandler& h,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::From (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseFrom (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    From (::std::istream& is,
-          ::xercesc::DOMErrorHandler& h,
-          ::xml_schema::Flags f,
-          const ::xml_schema::Properties& p)
+    parseFrom (::std::istream& is,
+               ::xercesc::DOMErrorHandler& h,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::From (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseFrom (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    From (::std::istream& is,
-          const ::std::string& sid,
-          ::xml_schema::Flags f,
-          const ::xml_schema::Properties& p)
+    parseFrom (::std::istream& is,
+               const ::std::string& sid,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::From (isrc, f, p);
+      return ::WS::ADDRESSING::parseFrom (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    From (::std::istream& is,
-          const ::std::string& sid,
-          ::xml_schema::ErrorHandler& h,
-          ::xml_schema::Flags f,
-          const ::xml_schema::Properties& p)
+    parseFrom (::std::istream& is,
+               const ::std::string& sid,
+               ::xml_schema::ErrorHandler& h,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::From (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseFrom (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    From (::std::istream& is,
-          const ::std::string& sid,
-          ::xercesc::DOMErrorHandler& h,
-          ::xml_schema::Flags f,
-          const ::xml_schema::Properties& p)
+    parseFrom (::std::istream& is,
+               const ::std::string& sid,
+               ::xercesc::DOMErrorHandler& h,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::From (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseFrom (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    From (::xercesc::InputSource& i,
-          ::xml_schema::Flags f,
-          const ::xml_schema::Properties& p)
+    parseFrom (::xercesc::InputSource& i,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -3124,15 +3124,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::ADDRESSING::From (
+        ::WS::ADDRESSING::parseFrom (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    From (::xercesc::InputSource& i,
-          ::xml_schema::ErrorHandler& h,
-          ::xml_schema::Flags f,
-          const ::xml_schema::Properties& p)
+    parseFrom (::xercesc::InputSource& i,
+               ::xml_schema::ErrorHandler& h,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -3142,15 +3142,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::ADDRESSING::From (
+        ::WS::ADDRESSING::parseFrom (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    From (::xercesc::InputSource& i,
-          ::xercesc::DOMErrorHandler& h,
-          ::xml_schema::Flags f,
-          const ::xml_schema::Properties& p)
+    parseFrom (::xercesc::InputSource& i,
+               ::xercesc::DOMErrorHandler& h,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -3160,14 +3160,14 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::ADDRESSING::From (
+        ::WS::ADDRESSING::parseFrom (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    From (const ::xercesc::DOMDocument& doc,
-          ::xml_schema::Flags f,
-          const ::xml_schema::Properties& p)
+    parseFrom (const ::xercesc::DOMDocument& doc,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
     {
       if (f & ::xml_schema::Flags::keep_dom)
       {
@@ -3175,7 +3175,7 @@ namespace WS
           static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
         return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-          ::WS::ADDRESSING::From (
+          ::WS::ADDRESSING::parseFrom (
             std::move (d), f | ::xml_schema::Flags::own_dom, p));
       }
 
@@ -3211,9 +3211,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    From (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-          ::xml_schema::Flags f,
-          const ::xml_schema::Properties&)
+    parseFrom (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties&)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
         ((f & ::xml_schema::Flags::keep_dom) &&
@@ -3228,7 +3228,7 @@ namespace WS
         ::xsd::cxx::xml::dom::name< char > (e));
 
       if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
+        doc.setUserData (::xml_schema::dom::treeNodeKey,
                          (c.get () ? &c : &d),
                          0);
 
@@ -3261,9 +3261,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    FaultTo (const ::std::string& u,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseFaultTo (const ::std::string& u,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -3278,15 +3278,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::ADDRESSING::FaultTo (
+        ::WS::ADDRESSING::parseFaultTo (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    FaultTo (const ::std::string& u,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseFaultTo (const ::std::string& u,
+                  ::xml_schema::ErrorHandler& h,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -3300,15 +3300,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::ADDRESSING::FaultTo (
+        ::WS::ADDRESSING::parseFaultTo (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    FaultTo (const ::std::string& u,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseFaultTo (const ::std::string& u,
+                  ::xercesc::DOMErrorHandler& h,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -3318,91 +3318,91 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::ADDRESSING::FaultTo (
+        ::WS::ADDRESSING::parseFaultTo (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    FaultTo (::std::istream& is,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseFaultTo (::std::istream& is,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::FaultTo (isrc, f, p);
+      return ::WS::ADDRESSING::parseFaultTo (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    FaultTo (::std::istream& is,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseFaultTo (::std::istream& is,
+                  ::xml_schema::ErrorHandler& h,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::FaultTo (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseFaultTo (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    FaultTo (::std::istream& is,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseFaultTo (::std::istream& is,
+                  ::xercesc::DOMErrorHandler& h,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::FaultTo (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseFaultTo (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    FaultTo (::std::istream& is,
-             const ::std::string& sid,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseFaultTo (::std::istream& is,
+                  const ::std::string& sid,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::FaultTo (isrc, f, p);
+      return ::WS::ADDRESSING::parseFaultTo (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    FaultTo (::std::istream& is,
-             const ::std::string& sid,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseFaultTo (::std::istream& is,
+                  const ::std::string& sid,
+                  ::xml_schema::ErrorHandler& h,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::FaultTo (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseFaultTo (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    FaultTo (::std::istream& is,
-             const ::std::string& sid,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseFaultTo (::std::istream& is,
+                  const ::std::string& sid,
+                  ::xercesc::DOMErrorHandler& h,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::FaultTo (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseFaultTo (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    FaultTo (::xercesc::InputSource& i,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseFaultTo (::xercesc::InputSource& i,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -3413,15 +3413,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::ADDRESSING::FaultTo (
+        ::WS::ADDRESSING::parseFaultTo (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    FaultTo (::xercesc::InputSource& i,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseFaultTo (::xercesc::InputSource& i,
+                  ::xml_schema::ErrorHandler& h,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -3431,15 +3431,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::ADDRESSING::FaultTo (
+        ::WS::ADDRESSING::parseFaultTo (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    FaultTo (::xercesc::InputSource& i,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseFaultTo (::xercesc::InputSource& i,
+                  ::xercesc::DOMErrorHandler& h,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -3449,14 +3449,14 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::ADDRESSING::FaultTo (
+        ::WS::ADDRESSING::parseFaultTo (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    FaultTo (const ::xercesc::DOMDocument& doc,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parseFaultTo (const ::xercesc::DOMDocument& doc,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
     {
       if (f & ::xml_schema::Flags::keep_dom)
       {
@@ -3464,7 +3464,7 @@ namespace WS
           static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
         return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-          ::WS::ADDRESSING::FaultTo (
+          ::WS::ADDRESSING::parseFaultTo (
             std::move (d), f | ::xml_schema::Flags::own_dom, p));
       }
 
@@ -3500,7 +3500,296 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    FaultTo (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+    parseFaultTo (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties&)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
+        ((f & ::xml_schema::Flags::keep_dom) &&
+         !(f & ::xml_schema::Flags::own_dom))
+        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
+        : 0);
+
+      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
+      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
+
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (e));
+
+      if (f & ::xml_schema::Flags::keep_dom)
+        doc.setUserData (::xml_schema::dom::treeNodeKey,
+                         (c.get () ? &c : &d),
+                         0);
+
+      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+          "FaultTo",
+          "http://www.w3.org/2005/08/addressing",
+          &::xsd::cxx::tree::factory_impl< ::WS::ADDRESSING::EndpointReferenceType >,
+          true, true, e, n, f, 0));
+
+      if (tmp.get () != 0)
+      {
+
+        ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > r (
+          dynamic_cast< ::WS::ADDRESSING::EndpointReferenceType* > (tmp.get ()));
+
+        if (r.get ())
+          tmp.release ();
+        else
+          throw ::xsd::cxx::tree::not_derived< char > ();
+
+        return r;
+      }
+
+      throw ::xsd::cxx::tree::unexpected_element < char > (
+        n.name (),
+        n.namespace_ (),
+        "FaultTo",
+        "http://www.w3.org/2005/08/addressing");
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    parseTo (const ::std::string& u,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          u, h, p, f));
+
+      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
+        ::WS::ADDRESSING::parseTo (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    parseTo (const ::std::string& u,
+             ::xml_schema::ErrorHandler& h,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          u, h, p, f));
+
+      if (!d.get ())
+        throw ::xsd::cxx::tree::parsing< char > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
+        ::WS::ADDRESSING::parseTo (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    parseTo (const ::std::string& u,
+             ::xercesc::DOMErrorHandler& h,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          u, h, p, f));
+
+      if (!d.get ())
+        throw ::xsd::cxx::tree::parsing< char > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
+        ::WS::ADDRESSING::parseTo (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    parseTo (::std::istream& is,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xsd::cxx::xml::sax::std_input_source isrc (is);
+      return ::WS::ADDRESSING::parseTo (isrc, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    parseTo (::std::istream& is,
+             ::xml_schema::ErrorHandler& h,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xsd::cxx::xml::sax::std_input_source isrc (is);
+      return ::WS::ADDRESSING::parseTo (isrc, h, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    parseTo (::std::istream& is,
+             ::xercesc::DOMErrorHandler& h,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::sax::std_input_source isrc (is);
+      return ::WS::ADDRESSING::parseTo (isrc, h, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    parseTo (::std::istream& is,
+             const ::std::string& sid,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
+      return ::WS::ADDRESSING::parseTo (isrc, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    parseTo (::std::istream& is,
+             const ::std::string& sid,
+             ::xml_schema::ErrorHandler& h,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::auto_initializer i (
+        (f & ::xml_schema::Flags::dont_initialize) == 0,
+        (f & ::xml_schema::Flags::keep_dom) == 0);
+
+      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
+      return ::WS::ADDRESSING::parseTo (isrc, h, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    parseTo (::std::istream& is,
+             const ::std::string& sid,
+             ::xercesc::DOMErrorHandler& h,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
+      return ::WS::ADDRESSING::parseTo (isrc, h, f, p);
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    parseTo (::xercesc::InputSource& i,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
+    {
+      ::xsd::cxx::tree::error_handler< char > h;
+
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          i, h, p, f));
+
+      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
+        ::WS::ADDRESSING::parseTo (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    parseTo (::xercesc::InputSource& i,
+             ::xml_schema::ErrorHandler& h,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          i, h, p, f));
+
+      if (!d.get ())
+        throw ::xsd::cxx::tree::parsing< char > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
+        ::WS::ADDRESSING::parseTo (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    parseTo (::xercesc::InputSource& i,
+             ::xercesc::DOMErrorHandler& h,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
+    {
+      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+        ::xsd::cxx::xml::dom::parse< char > (
+          i, h, p, f));
+
+      if (!d.get ())
+        throw ::xsd::cxx::tree::parsing< char > ();
+
+      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
+        ::WS::ADDRESSING::parseTo (
+          std::move (d), f | ::xml_schema::Flags::own_dom, p));
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    parseTo (const ::xercesc::DOMDocument& doc,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
+    {
+      if (f & ::xml_schema::Flags::keep_dom)
+      {
+        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
+          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
+
+        return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
+          ::WS::ADDRESSING::parseTo (
+            std::move (d), f | ::xml_schema::Flags::own_dom, p));
+      }
+
+      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
+      const ::xsd::cxx::xml::qualified_name< char > n (
+        ::xsd::cxx::xml::dom::name< char > (e));
+
+      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
+        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
+          "To",
+          "http://www.w3.org/2005/08/addressing",
+          &::xsd::cxx::tree::factory_impl< ::WS::ADDRESSING::AttributedURIType >,
+          true, true, e, n, f, 0));
+
+      if (tmp.get () != 0)
+      {
+        ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > r (
+          dynamic_cast< ::WS::ADDRESSING::AttributedURIType* > (tmp.get ()));
+
+        if (r.get ())
+          tmp.release ();
+        else
+          throw ::xsd::cxx::tree::not_derived< char > ();
+
+        return r;
+      }
+
+      throw ::xsd::cxx::tree::unexpected_element < char > (
+        n.name (),
+        n.namespace_ (),
+        "To",
+        "http://www.w3.org/2005/08/addressing");
+    }
+
+    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
+    parseTo (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
              ::xml_schema::Flags f,
              const ::xml_schema::Properties&)
     {
@@ -3517,296 +3806,7 @@ namespace WS
         ::xsd::cxx::xml::dom::name< char > (e));
 
       if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "FaultTo",
-          "http://www.w3.org/2005/08/addressing",
-          &::xsd::cxx::tree::factory_impl< ::WS::ADDRESSING::EndpointReferenceType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-
-        ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > r (
-          dynamic_cast< ::WS::ADDRESSING::EndpointReferenceType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "FaultTo",
-        "http://www.w3.org/2005/08/addressing");
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    To (const ::std::string& u,
-        ::xml_schema::Flags f,
-        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-        ::WS::ADDRESSING::To (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    To (const ::std::string& u,
-        ::xml_schema::ErrorHandler& h,
-        ::xml_schema::Flags f,
-        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-        ::WS::ADDRESSING::To (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    To (const ::std::string& u,
-        ::xercesc::DOMErrorHandler& h,
-        ::xml_schema::Flags f,
-        const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-        ::WS::ADDRESSING::To (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    To (::std::istream& is,
-        ::xml_schema::Flags f,
-        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::To (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    To (::std::istream& is,
-        ::xml_schema::ErrorHandler& h,
-        ::xml_schema::Flags f,
-        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::To (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    To (::std::istream& is,
-        ::xercesc::DOMErrorHandler& h,
-        ::xml_schema::Flags f,
-        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::To (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    To (::std::istream& is,
-        const ::std::string& sid,
-        ::xml_schema::Flags f,
-        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::To (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    To (::std::istream& is,
-        const ::std::string& sid,
-        ::xml_schema::ErrorHandler& h,
-        ::xml_schema::Flags f,
-        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::To (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    To (::std::istream& is,
-        const ::std::string& sid,
-        ::xercesc::DOMErrorHandler& h,
-        ::xml_schema::Flags f,
-        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::To (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    To (::xercesc::InputSource& i,
-        ::xml_schema::Flags f,
-        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-        ::WS::ADDRESSING::To (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    To (::xercesc::InputSource& i,
-        ::xml_schema::ErrorHandler& h,
-        ::xml_schema::Flags f,
-        const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-        ::WS::ADDRESSING::To (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    To (::xercesc::InputSource& i,
-        ::xercesc::DOMErrorHandler& h,
-        ::xml_schema::Flags f,
-        const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-        ::WS::ADDRESSING::To (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    To (const ::xercesc::DOMDocument& doc,
-        ::xml_schema::Flags f,
-        const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-          ::WS::ADDRESSING::To (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "To",
-          "http://www.w3.org/2005/08/addressing",
-          &::xsd::cxx::tree::factory_impl< ::WS::ADDRESSING::AttributedURIType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-        ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > r (
-          dynamic_cast< ::WS::ADDRESSING::AttributedURIType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "To",
-        "http://www.w3.org/2005/08/addressing");
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    To (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-        ::xml_schema::Flags f,
-        const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
+        doc.setUserData (::xml_schema::dom::treeNodeKey,
                          (c.get () ? &c : &d),
                          0);
 
@@ -3839,9 +3839,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    Action (const ::std::string& u,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
+    parseAction (const ::std::string& u,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -3856,15 +3856,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-        ::WS::ADDRESSING::Action (
+        ::WS::ADDRESSING::parseAction (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    Action (const ::std::string& u,
-            ::xml_schema::ErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
+    parseAction (const ::std::string& u,
+                 ::xml_schema::ErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -3878,15 +3878,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-        ::WS::ADDRESSING::Action (
+        ::WS::ADDRESSING::parseAction (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    Action (const ::std::string& u,
-            ::xercesc::DOMErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
+    parseAction (const ::std::string& u,
+                 ::xercesc::DOMErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -3896,91 +3896,91 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-        ::WS::ADDRESSING::Action (
+        ::WS::ADDRESSING::parseAction (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    Action (::std::istream& is,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
+    parseAction (::std::istream& is,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::Action (isrc, f, p);
+      return ::WS::ADDRESSING::parseAction (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    Action (::std::istream& is,
-            ::xml_schema::ErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
+    parseAction (::std::istream& is,
+                 ::xml_schema::ErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::Action (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseAction (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    Action (::std::istream& is,
-            ::xercesc::DOMErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
+    parseAction (::std::istream& is,
+                 ::xercesc::DOMErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::Action (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseAction (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    Action (::std::istream& is,
-            const ::std::string& sid,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
+    parseAction (::std::istream& is,
+                 const ::std::string& sid,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::Action (isrc, f, p);
+      return ::WS::ADDRESSING::parseAction (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    Action (::std::istream& is,
-            const ::std::string& sid,
-            ::xml_schema::ErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
+    parseAction (::std::istream& is,
+                 const ::std::string& sid,
+                 ::xml_schema::ErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::Action (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseAction (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    Action (::std::istream& is,
-            const ::std::string& sid,
-            ::xercesc::DOMErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
+    parseAction (::std::istream& is,
+                 const ::std::string& sid,
+                 ::xercesc::DOMErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::Action (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseAction (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    Action (::xercesc::InputSource& i,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
+    parseAction (::xercesc::InputSource& i,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -3991,15 +3991,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-        ::WS::ADDRESSING::Action (
+        ::WS::ADDRESSING::parseAction (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    Action (::xercesc::InputSource& i,
-            ::xml_schema::ErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
+    parseAction (::xercesc::InputSource& i,
+                 ::xml_schema::ErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -4009,15 +4009,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-        ::WS::ADDRESSING::Action (
+        ::WS::ADDRESSING::parseAction (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    Action (::xercesc::InputSource& i,
-            ::xercesc::DOMErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
+    parseAction (::xercesc::InputSource& i,
+                 ::xercesc::DOMErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -4027,14 +4027,14 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-        ::WS::ADDRESSING::Action (
+        ::WS::ADDRESSING::parseAction (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    Action (const ::xercesc::DOMDocument& doc,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
+    parseAction (const ::xercesc::DOMDocument& doc,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       if (f & ::xml_schema::Flags::keep_dom)
       {
@@ -4042,7 +4042,7 @@ namespace WS
           static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
         return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-          ::WS::ADDRESSING::Action (
+          ::WS::ADDRESSING::parseAction (
             std::move (d), f | ::xml_schema::Flags::own_dom, p));
       }
 
@@ -4078,9 +4078,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    Action (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties&)
+    parseAction (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties&)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
         ((f & ::xml_schema::Flags::keep_dom) &&
@@ -4095,7 +4095,7 @@ namespace WS
         ::xsd::cxx::xml::dom::name< char > (e));
 
       if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
+        doc.setUserData (::xml_schema::dom::treeNodeKey,
                          (c.get () ? &c : &d),
                          0);
 
@@ -4128,9 +4128,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType >
-    RetryAfter (const ::std::string& u,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseRetryAfter (const ::std::string& u,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -4145,15 +4145,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType > (
-        ::WS::ADDRESSING::RetryAfter (
+        ::WS::ADDRESSING::parseRetryAfter (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType >
-    RetryAfter (const ::std::string& u,
-                ::xml_schema::ErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseRetryAfter (const ::std::string& u,
+                     ::xml_schema::ErrorHandler& h,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -4167,15 +4167,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType > (
-        ::WS::ADDRESSING::RetryAfter (
+        ::WS::ADDRESSING::parseRetryAfter (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType >
-    RetryAfter (const ::std::string& u,
-                ::xercesc::DOMErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseRetryAfter (const ::std::string& u,
+                     ::xercesc::DOMErrorHandler& h,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -4185,91 +4185,91 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType > (
-        ::WS::ADDRESSING::RetryAfter (
+        ::WS::ADDRESSING::parseRetryAfter (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType >
-    RetryAfter (::std::istream& is,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseRetryAfter (::std::istream& is,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::RetryAfter (isrc, f, p);
+      return ::WS::ADDRESSING::parseRetryAfter (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType >
-    RetryAfter (::std::istream& is,
-                ::xml_schema::ErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseRetryAfter (::std::istream& is,
+                     ::xml_schema::ErrorHandler& h,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::RetryAfter (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseRetryAfter (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType >
-    RetryAfter (::std::istream& is,
-                ::xercesc::DOMErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseRetryAfter (::std::istream& is,
+                     ::xercesc::DOMErrorHandler& h,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::RetryAfter (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseRetryAfter (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType >
-    RetryAfter (::std::istream& is,
-                const ::std::string& sid,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseRetryAfter (::std::istream& is,
+                     const ::std::string& sid,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::RetryAfter (isrc, f, p);
+      return ::WS::ADDRESSING::parseRetryAfter (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType >
-    RetryAfter (::std::istream& is,
-                const ::std::string& sid,
-                ::xml_schema::ErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseRetryAfter (::std::istream& is,
+                     const ::std::string& sid,
+                     ::xml_schema::ErrorHandler& h,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::RetryAfter (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseRetryAfter (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType >
-    RetryAfter (::std::istream& is,
-                const ::std::string& sid,
-                ::xercesc::DOMErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseRetryAfter (::std::istream& is,
+                     const ::std::string& sid,
+                     ::xercesc::DOMErrorHandler& h,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::RetryAfter (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseRetryAfter (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType >
-    RetryAfter (::xercesc::InputSource& i,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseRetryAfter (::xercesc::InputSource& i,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -4280,15 +4280,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType > (
-        ::WS::ADDRESSING::RetryAfter (
+        ::WS::ADDRESSING::parseRetryAfter (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType >
-    RetryAfter (::xercesc::InputSource& i,
-                ::xml_schema::ErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseRetryAfter (::xercesc::InputSource& i,
+                     ::xml_schema::ErrorHandler& h,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -4298,15 +4298,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType > (
-        ::WS::ADDRESSING::RetryAfter (
+        ::WS::ADDRESSING::parseRetryAfter (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType >
-    RetryAfter (::xercesc::InputSource& i,
-                ::xercesc::DOMErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseRetryAfter (::xercesc::InputSource& i,
+                     ::xercesc::DOMErrorHandler& h,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -4316,14 +4316,14 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType > (
-        ::WS::ADDRESSING::RetryAfter (
+        ::WS::ADDRESSING::parseRetryAfter (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType >
-    RetryAfter (const ::xercesc::DOMDocument& doc,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseRetryAfter (const ::xercesc::DOMDocument& doc,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       if (f & ::xml_schema::Flags::keep_dom)
       {
@@ -4331,7 +4331,7 @@ namespace WS
           static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
         return ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType > (
-          ::WS::ADDRESSING::RetryAfter (
+          ::WS::ADDRESSING::parseRetryAfter (
             std::move (d), f | ::xml_schema::Flags::own_dom, p));
       }
 
@@ -4367,9 +4367,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedUnsignedLongType >
-    RetryAfter (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties&)
+    parseRetryAfter (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties&)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
         ((f & ::xml_schema::Flags::keep_dom) &&
@@ -4384,7 +4384,7 @@ namespace WS
         ::xsd::cxx::xml::dom::name< char > (e));
 
       if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
+        doc.setUserData (::xml_schema::dom::treeNodeKey,
                          (c.get () ? &c : &d),
                          0);
 
@@ -4417,9 +4417,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
-    ProblemHeaderQName (const ::std::string& u,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
+    parseProblemHeaderQName (const ::std::string& u,
+                             ::xml_schema::Flags f,
+                             const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -4434,15 +4434,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType > (
-        ::WS::ADDRESSING::ProblemHeaderQName (
+        ::WS::ADDRESSING::parseProblemHeaderQName (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
-    ProblemHeaderQName (const ::std::string& u,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
+    parseProblemHeaderQName (const ::std::string& u,
+                             ::xml_schema::ErrorHandler& h,
+                             ::xml_schema::Flags f,
+                             const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -4456,15 +4456,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType > (
-        ::WS::ADDRESSING::ProblemHeaderQName (
+        ::WS::ADDRESSING::parseProblemHeaderQName (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
-    ProblemHeaderQName (const ::std::string& u,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
+    parseProblemHeaderQName (const ::std::string& u,
+                             ::xercesc::DOMErrorHandler& h,
+                             ::xml_schema::Flags f,
+                             const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -4474,91 +4474,91 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType > (
-        ::WS::ADDRESSING::ProblemHeaderQName (
+        ::WS::ADDRESSING::parseProblemHeaderQName (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
-    ProblemHeaderQName (::std::istream& is,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
+    parseProblemHeaderQName (::std::istream& is,
+                             ::xml_schema::Flags f,
+                             const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::ProblemHeaderQName (isrc, f, p);
+      return ::WS::ADDRESSING::parseProblemHeaderQName (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
-    ProblemHeaderQName (::std::istream& is,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
+    parseProblemHeaderQName (::std::istream& is,
+                             ::xml_schema::ErrorHandler& h,
+                             ::xml_schema::Flags f,
+                             const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::ProblemHeaderQName (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseProblemHeaderQName (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
-    ProblemHeaderQName (::std::istream& is,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
+    parseProblemHeaderQName (::std::istream& is,
+                             ::xercesc::DOMErrorHandler& h,
+                             ::xml_schema::Flags f,
+                             const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::ProblemHeaderQName (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseProblemHeaderQName (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
-    ProblemHeaderQName (::std::istream& is,
-                        const ::std::string& sid,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
+    parseProblemHeaderQName (::std::istream& is,
+                             const ::std::string& sid,
+                             ::xml_schema::Flags f,
+                             const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::ProblemHeaderQName (isrc, f, p);
+      return ::WS::ADDRESSING::parseProblemHeaderQName (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
-    ProblemHeaderQName (::std::istream& is,
-                        const ::std::string& sid,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
+    parseProblemHeaderQName (::std::istream& is,
+                             const ::std::string& sid,
+                             ::xml_schema::ErrorHandler& h,
+                             ::xml_schema::Flags f,
+                             const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::ProblemHeaderQName (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseProblemHeaderQName (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
-    ProblemHeaderQName (::std::istream& is,
-                        const ::std::string& sid,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
+    parseProblemHeaderQName (::std::istream& is,
+                             const ::std::string& sid,
+                             ::xercesc::DOMErrorHandler& h,
+                             ::xml_schema::Flags f,
+                             const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::ProblemHeaderQName (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseProblemHeaderQName (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
-    ProblemHeaderQName (::xercesc::InputSource& i,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
+    parseProblemHeaderQName (::xercesc::InputSource& i,
+                             ::xml_schema::Flags f,
+                             const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -4569,15 +4569,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType > (
-        ::WS::ADDRESSING::ProblemHeaderQName (
+        ::WS::ADDRESSING::parseProblemHeaderQName (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
-    ProblemHeaderQName (::xercesc::InputSource& i,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
+    parseProblemHeaderQName (::xercesc::InputSource& i,
+                             ::xml_schema::ErrorHandler& h,
+                             ::xml_schema::Flags f,
+                             const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -4587,15 +4587,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType > (
-        ::WS::ADDRESSING::ProblemHeaderQName (
+        ::WS::ADDRESSING::parseProblemHeaderQName (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
-    ProblemHeaderQName (::xercesc::InputSource& i,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
+    parseProblemHeaderQName (::xercesc::InputSource& i,
+                             ::xercesc::DOMErrorHandler& h,
+                             ::xml_schema::Flags f,
+                             const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -4605,14 +4605,14 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType > (
-        ::WS::ADDRESSING::ProblemHeaderQName (
+        ::WS::ADDRESSING::parseProblemHeaderQName (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
-    ProblemHeaderQName (const ::xercesc::DOMDocument& doc,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
+    parseProblemHeaderQName (const ::xercesc::DOMDocument& doc,
+                             ::xml_schema::Flags f,
+                             const ::xml_schema::Properties& p)
     {
       if (f & ::xml_schema::Flags::keep_dom)
       {
@@ -4620,7 +4620,7 @@ namespace WS
           static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
         return ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType > (
-          ::WS::ADDRESSING::ProblemHeaderQName (
+          ::WS::ADDRESSING::parseProblemHeaderQName (
             std::move (d), f | ::xml_schema::Flags::own_dom, p));
       }
 
@@ -4656,9 +4656,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedQNameType >
-    ProblemHeaderQName (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties&)
+    parseProblemHeaderQName (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                             ::xml_schema::Flags f,
+                             const ::xml_schema::Properties&)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
         ((f & ::xml_schema::Flags::keep_dom) &&
@@ -4673,7 +4673,7 @@ namespace WS
         ::xsd::cxx::xml::dom::name< char > (e));
 
       if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
+        doc.setUserData (::xml_schema::dom::treeNodeKey,
                          (c.get () ? &c : &d),
                          0);
 
@@ -4706,9 +4706,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    ProblemIRI (const ::std::string& u,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseProblemIRI (const ::std::string& u,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -4723,15 +4723,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-        ::WS::ADDRESSING::ProblemIRI (
+        ::WS::ADDRESSING::parseProblemIRI (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    ProblemIRI (const ::std::string& u,
-                ::xml_schema::ErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseProblemIRI (const ::std::string& u,
+                     ::xml_schema::ErrorHandler& h,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -4745,15 +4745,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-        ::WS::ADDRESSING::ProblemIRI (
+        ::WS::ADDRESSING::parseProblemIRI (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    ProblemIRI (const ::std::string& u,
-                ::xercesc::DOMErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseProblemIRI (const ::std::string& u,
+                     ::xercesc::DOMErrorHandler& h,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -4763,91 +4763,91 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-        ::WS::ADDRESSING::ProblemIRI (
+        ::WS::ADDRESSING::parseProblemIRI (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    ProblemIRI (::std::istream& is,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseProblemIRI (::std::istream& is,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::ProblemIRI (isrc, f, p);
+      return ::WS::ADDRESSING::parseProblemIRI (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    ProblemIRI (::std::istream& is,
-                ::xml_schema::ErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseProblemIRI (::std::istream& is,
+                     ::xml_schema::ErrorHandler& h,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::ProblemIRI (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseProblemIRI (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    ProblemIRI (::std::istream& is,
-                ::xercesc::DOMErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseProblemIRI (::std::istream& is,
+                     ::xercesc::DOMErrorHandler& h,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::ProblemIRI (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseProblemIRI (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    ProblemIRI (::std::istream& is,
-                const ::std::string& sid,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseProblemIRI (::std::istream& is,
+                     const ::std::string& sid,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::ProblemIRI (isrc, f, p);
+      return ::WS::ADDRESSING::parseProblemIRI (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    ProblemIRI (::std::istream& is,
-                const ::std::string& sid,
-                ::xml_schema::ErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseProblemIRI (::std::istream& is,
+                     const ::std::string& sid,
+                     ::xml_schema::ErrorHandler& h,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::ProblemIRI (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseProblemIRI (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    ProblemIRI (::std::istream& is,
-                const ::std::string& sid,
-                ::xercesc::DOMErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseProblemIRI (::std::istream& is,
+                     const ::std::string& sid,
+                     ::xercesc::DOMErrorHandler& h,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::ProblemIRI (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseProblemIRI (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    ProblemIRI (::xercesc::InputSource& i,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseProblemIRI (::xercesc::InputSource& i,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -4858,15 +4858,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-        ::WS::ADDRESSING::ProblemIRI (
+        ::WS::ADDRESSING::parseProblemIRI (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    ProblemIRI (::xercesc::InputSource& i,
-                ::xml_schema::ErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseProblemIRI (::xercesc::InputSource& i,
+                     ::xml_schema::ErrorHandler& h,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -4876,15 +4876,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-        ::WS::ADDRESSING::ProblemIRI (
+        ::WS::ADDRESSING::parseProblemIRI (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    ProblemIRI (::xercesc::InputSource& i,
-                ::xercesc::DOMErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseProblemIRI (::xercesc::InputSource& i,
+                     ::xercesc::DOMErrorHandler& h,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -4894,14 +4894,14 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-        ::WS::ADDRESSING::ProblemIRI (
+        ::WS::ADDRESSING::parseProblemIRI (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    ProblemIRI (const ::xercesc::DOMDocument& doc,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
+    parseProblemIRI (const ::xercesc::DOMDocument& doc,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties& p)
     {
       if (f & ::xml_schema::Flags::keep_dom)
       {
@@ -4909,7 +4909,7 @@ namespace WS
           static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
         return ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType > (
-          ::WS::ADDRESSING::ProblemIRI (
+          ::WS::ADDRESSING::parseProblemIRI (
             std::move (d), f | ::xml_schema::Flags::own_dom, p));
       }
 
@@ -4945,9 +4945,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::AttributedURIType >
-    ProblemIRI (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties&)
+    parseProblemIRI (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                     ::xml_schema::Flags f,
+                     const ::xml_schema::Properties&)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
         ((f & ::xml_schema::Flags::keep_dom) &&
@@ -4962,7 +4962,7 @@ namespace WS
         ::xsd::cxx::xml::dom::name< char > (e));
 
       if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
+        doc.setUserData (::xml_schema::dom::treeNodeKey,
                          (c.get () ? &c : &d),
                          0);
 
@@ -4995,9 +4995,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
-    ProblemAction (const ::std::string& u,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseProblemAction (const ::std::string& u,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -5012,15 +5012,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType > (
-        ::WS::ADDRESSING::ProblemAction (
+        ::WS::ADDRESSING::parseProblemAction (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
-    ProblemAction (const ::std::string& u,
-                   ::xml_schema::ErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseProblemAction (const ::std::string& u,
+                        ::xml_schema::ErrorHandler& h,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -5034,15 +5034,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType > (
-        ::WS::ADDRESSING::ProblemAction (
+        ::WS::ADDRESSING::parseProblemAction (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
-    ProblemAction (const ::std::string& u,
-                   ::xercesc::DOMErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseProblemAction (const ::std::string& u,
+                        ::xercesc::DOMErrorHandler& h,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -5052,91 +5052,91 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType > (
-        ::WS::ADDRESSING::ProblemAction (
+        ::WS::ADDRESSING::parseProblemAction (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
-    ProblemAction (::std::istream& is,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseProblemAction (::std::istream& is,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::ProblemAction (isrc, f, p);
+      return ::WS::ADDRESSING::parseProblemAction (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
-    ProblemAction (::std::istream& is,
-                   ::xml_schema::ErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseProblemAction (::std::istream& is,
+                        ::xml_schema::ErrorHandler& h,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::ProblemAction (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseProblemAction (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
-    ProblemAction (::std::istream& is,
-                   ::xercesc::DOMErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseProblemAction (::std::istream& is,
+                        ::xercesc::DOMErrorHandler& h,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::ADDRESSING::ProblemAction (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseProblemAction (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
-    ProblemAction (::std::istream& is,
-                   const ::std::string& sid,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseProblemAction (::std::istream& is,
+                        const ::std::string& sid,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::ProblemAction (isrc, f, p);
+      return ::WS::ADDRESSING::parseProblemAction (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
-    ProblemAction (::std::istream& is,
-                   const ::std::string& sid,
-                   ::xml_schema::ErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseProblemAction (::std::istream& is,
+                        const ::std::string& sid,
+                        ::xml_schema::ErrorHandler& h,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::ProblemAction (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseProblemAction (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
-    ProblemAction (::std::istream& is,
-                   const ::std::string& sid,
-                   ::xercesc::DOMErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseProblemAction (::std::istream& is,
+                        const ::std::string& sid,
+                        ::xercesc::DOMErrorHandler& h,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::ADDRESSING::ProblemAction (isrc, h, f, p);
+      return ::WS::ADDRESSING::parseProblemAction (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
-    ProblemAction (::xercesc::InputSource& i,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseProblemAction (::xercesc::InputSource& i,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -5147,15 +5147,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType > (
-        ::WS::ADDRESSING::ProblemAction (
+        ::WS::ADDRESSING::parseProblemAction (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
-    ProblemAction (::xercesc::InputSource& i,
-                   ::xml_schema::ErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseProblemAction (::xercesc::InputSource& i,
+                        ::xml_schema::ErrorHandler& h,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -5165,15 +5165,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType > (
-        ::WS::ADDRESSING::ProblemAction (
+        ::WS::ADDRESSING::parseProblemAction (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
-    ProblemAction (::xercesc::InputSource& i,
-                   ::xercesc::DOMErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseProblemAction (::xercesc::InputSource& i,
+                        ::xercesc::DOMErrorHandler& h,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -5183,14 +5183,14 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType > (
-        ::WS::ADDRESSING::ProblemAction (
+        ::WS::ADDRESSING::parseProblemAction (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
-    ProblemAction (const ::xercesc::DOMDocument& doc,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
+    parseProblemAction (const ::xercesc::DOMDocument& doc,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties& p)
     {
       if (f & ::xml_schema::Flags::keep_dom)
       {
@@ -5198,7 +5198,7 @@ namespace WS
           static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
         return ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType > (
-          ::WS::ADDRESSING::ProblemAction (
+          ::WS::ADDRESSING::parseProblemAction (
             std::move (d), f | ::xml_schema::Flags::own_dom, p));
       }
 
@@ -5234,9 +5234,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::ADDRESSING::ProblemActionType >
-    ProblemAction (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties&)
+    parseProblemAction (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                        ::xml_schema::Flags f,
+                        const ::xml_schema::Properties&)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
         ((f & ::xml_schema::Flags::keep_dom) &&
@@ -5251,7 +5251,7 @@ namespace WS
         ::xsd::cxx::xml::dom::name< char > (e));
 
       if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
+        doc.setUserData (::xml_schema::dom::treeNodeKey,
                          (c.get () ? &c : &d),
                          0);
 
@@ -5303,17 +5303,17 @@ namespace WS
   namespace ADDRESSING
   {
     void
-    EndpointReference (::std::ostream& o,
-                       const ::WS::ADDRESSING::EndpointReferenceType& s,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       const ::std::string& e,
-                       ::xml_schema::Flags f)
+    serializeEndpointReference (::std::ostream& o,
+                                const ::WS::ADDRESSING::EndpointReferenceType& s,
+                                const ::xml_schema::NamespaceInfomap& m,
+                                const ::std::string& e,
+                                ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::EndpointReference (s, m, f));
+        ::WS::ADDRESSING::serializeEndpointReference (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -5325,18 +5325,18 @@ namespace WS
     }
 
     void
-    EndpointReference (::std::ostream& o,
-                       const ::WS::ADDRESSING::EndpointReferenceType& s,
-                       ::xml_schema::ErrorHandler& h,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       const ::std::string& e,
-                       ::xml_schema::Flags f)
+    serializeEndpointReference (::std::ostream& o,
+                                const ::WS::ADDRESSING::EndpointReferenceType& s,
+                                ::xml_schema::ErrorHandler& h,
+                                const ::xml_schema::NamespaceInfomap& m,
+                                const ::std::string& e,
+                                ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::EndpointReference (s, m, f));
+        ::WS::ADDRESSING::serializeEndpointReference (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -5345,15 +5345,15 @@ namespace WS
     }
 
     void
-    EndpointReference (::std::ostream& o,
-                       const ::WS::ADDRESSING::EndpointReferenceType& s,
-                       ::xercesc::DOMErrorHandler& h,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       const ::std::string& e,
-                       ::xml_schema::Flags f)
+    serializeEndpointReference (::std::ostream& o,
+                                const ::WS::ADDRESSING::EndpointReferenceType& s,
+                                ::xercesc::DOMErrorHandler& h,
+                                const ::xml_schema::NamespaceInfomap& m,
+                                const ::std::string& e,
+                                ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::EndpointReference (s, m, f));
+        ::WS::ADDRESSING::serializeEndpointReference (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -5362,14 +5362,14 @@ namespace WS
     }
 
     void
-    EndpointReference (::xercesc::XMLFormatTarget& t,
-                       const ::WS::ADDRESSING::EndpointReferenceType& s,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       const ::std::string& e,
-                       ::xml_schema::Flags f)
+    serializeEndpointReference (::xercesc::XMLFormatTarget& t,
+                                const ::WS::ADDRESSING::EndpointReferenceType& s,
+                                const ::xml_schema::NamespaceInfomap& m,
+                                const ::std::string& e,
+                                ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::EndpointReference (s, m, f));
+        ::WS::ADDRESSING::serializeEndpointReference (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -5380,15 +5380,15 @@ namespace WS
     }
 
     void
-    EndpointReference (::xercesc::XMLFormatTarget& t,
-                       const ::WS::ADDRESSING::EndpointReferenceType& s,
-                       ::xml_schema::ErrorHandler& h,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       const ::std::string& e,
-                       ::xml_schema::Flags f)
+    serializeEndpointReference (::xercesc::XMLFormatTarget& t,
+                                const ::WS::ADDRESSING::EndpointReferenceType& s,
+                                ::xml_schema::ErrorHandler& h,
+                                const ::xml_schema::NamespaceInfomap& m,
+                                const ::std::string& e,
+                                ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::EndpointReference (s, m, f));
+        ::WS::ADDRESSING::serializeEndpointReference (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -5396,15 +5396,15 @@ namespace WS
     }
 
     void
-    EndpointReference (::xercesc::XMLFormatTarget& t,
-                       const ::WS::ADDRESSING::EndpointReferenceType& s,
-                       ::xercesc::DOMErrorHandler& h,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       const ::std::string& e,
-                       ::xml_schema::Flags f)
+    serializeEndpointReference (::xercesc::XMLFormatTarget& t,
+                                const ::WS::ADDRESSING::EndpointReferenceType& s,
+                                ::xercesc::DOMErrorHandler& h,
+                                const ::xml_schema::NamespaceInfomap& m,
+                                const ::std::string& e,
+                                ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::EndpointReference (s, m, f));
+        ::WS::ADDRESSING::serializeEndpointReference (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -5412,9 +5412,9 @@ namespace WS
     }
 
     void
-    EndpointReference (::xercesc::DOMDocument& d,
-                       const ::WS::ADDRESSING::EndpointReferenceType& s,
-                       ::xml_schema::Flags)
+    serializeEndpointReference (::xercesc::DOMDocument& d,
+                                const ::WS::ADDRESSING::EndpointReferenceType& s,
+                                ::xml_schema::Flags)
     {
       ::xercesc::DOMElement& e (*d.getDocumentElement ());
       const ::xsd::cxx::xml::qualified_name< char > n (
@@ -5446,9 +5446,9 @@ namespace WS
     }
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    EndpointReference (const ::WS::ADDRESSING::EndpointReferenceType& s,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       ::xml_schema::Flags f)
+    serializeEndpointReference (const ::WS::ADDRESSING::EndpointReferenceType& s,
+                                const ::xml_schema::NamespaceInfomap& m,
+                                ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
 
@@ -5467,7 +5467,7 @@ namespace WS
           m, s, f);
       }
 
-      ::WS::ADDRESSING::EndpointReference (*d, s, f);
+      ::WS::ADDRESSING::serializeEndpointReference (*d, s, f);
       return d;
     }
 
@@ -5482,7 +5482,7 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        const EndpointReferenceType::AddressType& x (i.Address ());
+        const EndpointReferenceType::AddressType& x (i.getAddress ());
         if (typeid (EndpointReferenceType::AddressType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -5506,9 +5506,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.ReferenceParameters ())
+        if (i.getReferenceParameters ())
         {
-          const EndpointReferenceType::ReferenceParametersType& x (*i.ReferenceParameters ());
+          const EndpointReferenceType::ReferenceParametersType& x (*i.getReferenceParameters ());
           if (typeid (EndpointReferenceType::ReferenceParametersType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -5533,9 +5533,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.Metadata ())
+        if (i.getMetadata ())
         {
-          const EndpointReferenceType::MetadataType& x (*i.Metadata ());
+          const EndpointReferenceType::MetadataType& x (*i.getMetadata ());
           if (typeid (EndpointReferenceType::MetadataType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -5563,17 +5563,17 @@ namespace WS
 
 
     void
-    ReferenceParameters (::std::ostream& o,
-                         const ::WS::ADDRESSING::ReferenceParametersType& s,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         const ::std::string& e,
-                         ::xml_schema::Flags f)
+    serializeReferenceParameters (::std::ostream& o,
+                                  const ::WS::ADDRESSING::ReferenceParametersType& s,
+                                  const ::xml_schema::NamespaceInfomap& m,
+                                  const ::std::string& e,
+                                  ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ReferenceParameters (s, m, f));
+        ::WS::ADDRESSING::serializeReferenceParameters (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -5585,18 +5585,18 @@ namespace WS
     }
 
     void
-    ReferenceParameters (::std::ostream& o,
-                         const ::WS::ADDRESSING::ReferenceParametersType& s,
-                         ::xml_schema::ErrorHandler& h,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         const ::std::string& e,
-                         ::xml_schema::Flags f)
+    serializeReferenceParameters (::std::ostream& o,
+                                  const ::WS::ADDRESSING::ReferenceParametersType& s,
+                                  ::xml_schema::ErrorHandler& h,
+                                  const ::xml_schema::NamespaceInfomap& m,
+                                  const ::std::string& e,
+                                  ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ReferenceParameters (s, m, f));
+        ::WS::ADDRESSING::serializeReferenceParameters (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -5605,15 +5605,15 @@ namespace WS
     }
 
     void
-    ReferenceParameters (::std::ostream& o,
-                         const ::WS::ADDRESSING::ReferenceParametersType& s,
-                         ::xercesc::DOMErrorHandler& h,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         const ::std::string& e,
-                         ::xml_schema::Flags f)
+    serializeReferenceParameters (::std::ostream& o,
+                                  const ::WS::ADDRESSING::ReferenceParametersType& s,
+                                  ::xercesc::DOMErrorHandler& h,
+                                  const ::xml_schema::NamespaceInfomap& m,
+                                  const ::std::string& e,
+                                  ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ReferenceParameters (s, m, f));
+        ::WS::ADDRESSING::serializeReferenceParameters (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -5622,14 +5622,14 @@ namespace WS
     }
 
     void
-    ReferenceParameters (::xercesc::XMLFormatTarget& t,
-                         const ::WS::ADDRESSING::ReferenceParametersType& s,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         const ::std::string& e,
-                         ::xml_schema::Flags f)
+    serializeReferenceParameters (::xercesc::XMLFormatTarget& t,
+                                  const ::WS::ADDRESSING::ReferenceParametersType& s,
+                                  const ::xml_schema::NamespaceInfomap& m,
+                                  const ::std::string& e,
+                                  ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ReferenceParameters (s, m, f));
+        ::WS::ADDRESSING::serializeReferenceParameters (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -5640,15 +5640,15 @@ namespace WS
     }
 
     void
-    ReferenceParameters (::xercesc::XMLFormatTarget& t,
-                         const ::WS::ADDRESSING::ReferenceParametersType& s,
-                         ::xml_schema::ErrorHandler& h,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         const ::std::string& e,
-                         ::xml_schema::Flags f)
+    serializeReferenceParameters (::xercesc::XMLFormatTarget& t,
+                                  const ::WS::ADDRESSING::ReferenceParametersType& s,
+                                  ::xml_schema::ErrorHandler& h,
+                                  const ::xml_schema::NamespaceInfomap& m,
+                                  const ::std::string& e,
+                                  ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ReferenceParameters (s, m, f));
+        ::WS::ADDRESSING::serializeReferenceParameters (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -5656,15 +5656,15 @@ namespace WS
     }
 
     void
-    ReferenceParameters (::xercesc::XMLFormatTarget& t,
-                         const ::WS::ADDRESSING::ReferenceParametersType& s,
-                         ::xercesc::DOMErrorHandler& h,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         const ::std::string& e,
-                         ::xml_schema::Flags f)
+    serializeReferenceParameters (::xercesc::XMLFormatTarget& t,
+                                  const ::WS::ADDRESSING::ReferenceParametersType& s,
+                                  ::xercesc::DOMErrorHandler& h,
+                                  const ::xml_schema::NamespaceInfomap& m,
+                                  const ::std::string& e,
+                                  ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ReferenceParameters (s, m, f));
+        ::WS::ADDRESSING::serializeReferenceParameters (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -5672,9 +5672,9 @@ namespace WS
     }
 
     void
-    ReferenceParameters (::xercesc::DOMDocument& d,
-                         const ::WS::ADDRESSING::ReferenceParametersType& s,
-                         ::xml_schema::Flags)
+    serializeReferenceParameters (::xercesc::DOMDocument& d,
+                                  const ::WS::ADDRESSING::ReferenceParametersType& s,
+                                  ::xml_schema::Flags)
     {
       ::xercesc::DOMElement& e (*d.getDocumentElement ());
       const ::xsd::cxx::xml::qualified_name< char > n (
@@ -5706,9 +5706,9 @@ namespace WS
     }
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    ReferenceParameters (const ::WS::ADDRESSING::ReferenceParametersType& s,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         ::xml_schema::Flags f)
+    serializeReferenceParameters (const ::WS::ADDRESSING::ReferenceParametersType& s,
+                                  const ::xml_schema::NamespaceInfomap& m,
+                                  ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
 
@@ -5727,7 +5727,7 @@ namespace WS
           m, s, f);
       }
 
-      ::WS::ADDRESSING::ReferenceParameters (*d, s, f);
+      ::WS::ADDRESSING::serializeReferenceParameters (*d, s, f);
       return d;
     }
 
@@ -5738,7 +5738,7 @@ namespace WS
 
       // Identifier
       //
-      if (i.Identifier ())
+      if (i.getIdentifier ())
       {
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
@@ -5746,7 +5746,7 @@ namespace WS
             "http://schemas.xmlsoap.org/ws/2004/08/eventing",
             e));
 
-        s << *i.Identifier ();
+        s << *i.getIdentifier ();
       }
     }
 
@@ -5758,17 +5758,17 @@ namespace WS
 
 
     void
-    Metadata (::std::ostream& o,
-              const ::WS::ADDRESSING::MetadataType& s,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
+    serializeMetadata (::std::ostream& o,
+                       const ::WS::ADDRESSING::MetadataType& s,
+                       const ::xml_schema::NamespaceInfomap& m,
+                       const ::std::string& e,
+                       ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::Metadata (s, m, f));
+        ::WS::ADDRESSING::serializeMetadata (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -5780,18 +5780,18 @@ namespace WS
     }
 
     void
-    Metadata (::std::ostream& o,
-              const ::WS::ADDRESSING::MetadataType& s,
-              ::xml_schema::ErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
+    serializeMetadata (::std::ostream& o,
+                       const ::WS::ADDRESSING::MetadataType& s,
+                       ::xml_schema::ErrorHandler& h,
+                       const ::xml_schema::NamespaceInfomap& m,
+                       const ::std::string& e,
+                       ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::Metadata (s, m, f));
+        ::WS::ADDRESSING::serializeMetadata (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -5800,15 +5800,15 @@ namespace WS
     }
 
     void
-    Metadata (::std::ostream& o,
-              const ::WS::ADDRESSING::MetadataType& s,
-              ::xercesc::DOMErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
+    serializeMetadata (::std::ostream& o,
+                       const ::WS::ADDRESSING::MetadataType& s,
+                       ::xercesc::DOMErrorHandler& h,
+                       const ::xml_schema::NamespaceInfomap& m,
+                       const ::std::string& e,
+                       ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::Metadata (s, m, f));
+        ::WS::ADDRESSING::serializeMetadata (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -5817,14 +5817,14 @@ namespace WS
     }
 
     void
-    Metadata (::xercesc::XMLFormatTarget& t,
-              const ::WS::ADDRESSING::MetadataType& s,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
+    serializeMetadata (::xercesc::XMLFormatTarget& t,
+                       const ::WS::ADDRESSING::MetadataType& s,
+                       const ::xml_schema::NamespaceInfomap& m,
+                       const ::std::string& e,
+                       ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::Metadata (s, m, f));
+        ::WS::ADDRESSING::serializeMetadata (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -5835,15 +5835,15 @@ namespace WS
     }
 
     void
-    Metadata (::xercesc::XMLFormatTarget& t,
-              const ::WS::ADDRESSING::MetadataType& s,
-              ::xml_schema::ErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
+    serializeMetadata (::xercesc::XMLFormatTarget& t,
+                       const ::WS::ADDRESSING::MetadataType& s,
+                       ::xml_schema::ErrorHandler& h,
+                       const ::xml_schema::NamespaceInfomap& m,
+                       const ::std::string& e,
+                       ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::Metadata (s, m, f));
+        ::WS::ADDRESSING::serializeMetadata (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -5851,15 +5851,15 @@ namespace WS
     }
 
     void
-    Metadata (::xercesc::XMLFormatTarget& t,
-              const ::WS::ADDRESSING::MetadataType& s,
-              ::xercesc::DOMErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
+    serializeMetadata (::xercesc::XMLFormatTarget& t,
+                       const ::WS::ADDRESSING::MetadataType& s,
+                       ::xercesc::DOMErrorHandler& h,
+                       const ::xml_schema::NamespaceInfomap& m,
+                       const ::std::string& e,
+                       ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::Metadata (s, m, f));
+        ::WS::ADDRESSING::serializeMetadata (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -5867,9 +5867,9 @@ namespace WS
     }
 
     void
-    Metadata (::xercesc::DOMDocument& d,
-              const ::WS::ADDRESSING::MetadataType& s,
-              ::xml_schema::Flags)
+    serializeMetadata (::xercesc::DOMDocument& d,
+                       const ::WS::ADDRESSING::MetadataType& s,
+                       ::xml_schema::Flags)
     {
       ::xercesc::DOMElement& e (*d.getDocumentElement ());
       const ::xsd::cxx::xml::qualified_name< char > n (
@@ -5901,9 +5901,9 @@ namespace WS
     }
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Metadata (const ::WS::ADDRESSING::MetadataType& s,
-              const ::xml_schema::NamespaceInfomap& m,
-              ::xml_schema::Flags f)
+    serializeMetadata (const ::WS::ADDRESSING::MetadataType& s,
+                       const ::xml_schema::NamespaceInfomap& m,
+                       ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
 
@@ -5922,7 +5922,7 @@ namespace WS
           m, s, f);
       }
 
-      ::WS::ADDRESSING::Metadata (*d, s, f);
+      ::WS::ADDRESSING::serializeMetadata (*d, s, f);
       return d;
     }
 
@@ -5940,17 +5940,17 @@ namespace WS
 
 
     void
-    MessageID (::std::ostream& o,
-               const ::WS::ADDRESSING::AttributedURIType& s,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
+    serializeMessageID (::std::ostream& o,
+                        const ::WS::ADDRESSING::AttributedURIType& s,
+                        const ::xml_schema::NamespaceInfomap& m,
+                        const ::std::string& e,
+                        ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::MessageID (s, m, f));
+        ::WS::ADDRESSING::serializeMessageID (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -5962,18 +5962,18 @@ namespace WS
     }
 
     void
-    MessageID (::std::ostream& o,
-               const ::WS::ADDRESSING::AttributedURIType& s,
-               ::xml_schema::ErrorHandler& h,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
+    serializeMessageID (::std::ostream& o,
+                        const ::WS::ADDRESSING::AttributedURIType& s,
+                        ::xml_schema::ErrorHandler& h,
+                        const ::xml_schema::NamespaceInfomap& m,
+                        const ::std::string& e,
+                        ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::MessageID (s, m, f));
+        ::WS::ADDRESSING::serializeMessageID (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -5982,15 +5982,15 @@ namespace WS
     }
 
     void
-    MessageID (::std::ostream& o,
-               const ::WS::ADDRESSING::AttributedURIType& s,
-               ::xercesc::DOMErrorHandler& h,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
+    serializeMessageID (::std::ostream& o,
+                        const ::WS::ADDRESSING::AttributedURIType& s,
+                        ::xercesc::DOMErrorHandler& h,
+                        const ::xml_schema::NamespaceInfomap& m,
+                        const ::std::string& e,
+                        ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::MessageID (s, m, f));
+        ::WS::ADDRESSING::serializeMessageID (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -5999,14 +5999,14 @@ namespace WS
     }
 
     void
-    MessageID (::xercesc::XMLFormatTarget& t,
-               const ::WS::ADDRESSING::AttributedURIType& s,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
+    serializeMessageID (::xercesc::XMLFormatTarget& t,
+                        const ::WS::ADDRESSING::AttributedURIType& s,
+                        const ::xml_schema::NamespaceInfomap& m,
+                        const ::std::string& e,
+                        ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::MessageID (s, m, f));
+        ::WS::ADDRESSING::serializeMessageID (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -6017,15 +6017,15 @@ namespace WS
     }
 
     void
-    MessageID (::xercesc::XMLFormatTarget& t,
-               const ::WS::ADDRESSING::AttributedURIType& s,
-               ::xml_schema::ErrorHandler& h,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
+    serializeMessageID (::xercesc::XMLFormatTarget& t,
+                        const ::WS::ADDRESSING::AttributedURIType& s,
+                        ::xml_schema::ErrorHandler& h,
+                        const ::xml_schema::NamespaceInfomap& m,
+                        const ::std::string& e,
+                        ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::MessageID (s, m, f));
+        ::WS::ADDRESSING::serializeMessageID (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -6033,15 +6033,15 @@ namespace WS
     }
 
     void
-    MessageID (::xercesc::XMLFormatTarget& t,
-               const ::WS::ADDRESSING::AttributedURIType& s,
-               ::xercesc::DOMErrorHandler& h,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
+    serializeMessageID (::xercesc::XMLFormatTarget& t,
+                        const ::WS::ADDRESSING::AttributedURIType& s,
+                        ::xercesc::DOMErrorHandler& h,
+                        const ::xml_schema::NamespaceInfomap& m,
+                        const ::std::string& e,
+                        ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::MessageID (s, m, f));
+        ::WS::ADDRESSING::serializeMessageID (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -6049,9 +6049,9 @@ namespace WS
     }
 
     void
-    MessageID (::xercesc::DOMDocument& d,
-               const ::WS::ADDRESSING::AttributedURIType& s,
-               ::xml_schema::Flags)
+    serializeMessageID (::xercesc::DOMDocument& d,
+                        const ::WS::ADDRESSING::AttributedURIType& s,
+                        ::xml_schema::Flags)
     {
       ::xercesc::DOMElement& e (*d.getDocumentElement ());
       const ::xsd::cxx::xml::qualified_name< char > n (
@@ -6083,9 +6083,9 @@ namespace WS
     }
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    MessageID (const ::WS::ADDRESSING::AttributedURIType& s,
-               const ::xml_schema::NamespaceInfomap& m,
-               ::xml_schema::Flags f)
+    serializeMessageID (const ::WS::ADDRESSING::AttributedURIType& s,
+                        const ::xml_schema::NamespaceInfomap& m,
+                        ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
 
@@ -6104,22 +6104,22 @@ namespace WS
           m, s, f);
       }
 
-      ::WS::ADDRESSING::MessageID (*d, s, f);
+      ::WS::ADDRESSING::serializeMessageID (*d, s, f);
       return d;
     }
 
     void
-    RelatesTo (::std::ostream& o,
-               const ::WS::ADDRESSING::RelatesToType& s,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
+    serializeRelatesTo (::std::ostream& o,
+                        const ::WS::ADDRESSING::RelatesToType& s,
+                        const ::xml_schema::NamespaceInfomap& m,
+                        const ::std::string& e,
+                        ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::RelatesTo (s, m, f));
+        ::WS::ADDRESSING::serializeRelatesTo (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -6131,18 +6131,18 @@ namespace WS
     }
 
     void
-    RelatesTo (::std::ostream& o,
-               const ::WS::ADDRESSING::RelatesToType& s,
-               ::xml_schema::ErrorHandler& h,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
+    serializeRelatesTo (::std::ostream& o,
+                        const ::WS::ADDRESSING::RelatesToType& s,
+                        ::xml_schema::ErrorHandler& h,
+                        const ::xml_schema::NamespaceInfomap& m,
+                        const ::std::string& e,
+                        ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::RelatesTo (s, m, f));
+        ::WS::ADDRESSING::serializeRelatesTo (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -6151,15 +6151,15 @@ namespace WS
     }
 
     void
-    RelatesTo (::std::ostream& o,
-               const ::WS::ADDRESSING::RelatesToType& s,
-               ::xercesc::DOMErrorHandler& h,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
+    serializeRelatesTo (::std::ostream& o,
+                        const ::WS::ADDRESSING::RelatesToType& s,
+                        ::xercesc::DOMErrorHandler& h,
+                        const ::xml_schema::NamespaceInfomap& m,
+                        const ::std::string& e,
+                        ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::RelatesTo (s, m, f));
+        ::WS::ADDRESSING::serializeRelatesTo (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -6168,14 +6168,14 @@ namespace WS
     }
 
     void
-    RelatesTo (::xercesc::XMLFormatTarget& t,
-               const ::WS::ADDRESSING::RelatesToType& s,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
+    serializeRelatesTo (::xercesc::XMLFormatTarget& t,
+                        const ::WS::ADDRESSING::RelatesToType& s,
+                        const ::xml_schema::NamespaceInfomap& m,
+                        const ::std::string& e,
+                        ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::RelatesTo (s, m, f));
+        ::WS::ADDRESSING::serializeRelatesTo (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -6186,15 +6186,15 @@ namespace WS
     }
 
     void
-    RelatesTo (::xercesc::XMLFormatTarget& t,
-               const ::WS::ADDRESSING::RelatesToType& s,
-               ::xml_schema::ErrorHandler& h,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
+    serializeRelatesTo (::xercesc::XMLFormatTarget& t,
+                        const ::WS::ADDRESSING::RelatesToType& s,
+                        ::xml_schema::ErrorHandler& h,
+                        const ::xml_schema::NamespaceInfomap& m,
+                        const ::std::string& e,
+                        ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::RelatesTo (s, m, f));
+        ::WS::ADDRESSING::serializeRelatesTo (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -6202,15 +6202,15 @@ namespace WS
     }
 
     void
-    RelatesTo (::xercesc::XMLFormatTarget& t,
-               const ::WS::ADDRESSING::RelatesToType& s,
-               ::xercesc::DOMErrorHandler& h,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
+    serializeRelatesTo (::xercesc::XMLFormatTarget& t,
+                        const ::WS::ADDRESSING::RelatesToType& s,
+                        ::xercesc::DOMErrorHandler& h,
+                        const ::xml_schema::NamespaceInfomap& m,
+                        const ::std::string& e,
+                        ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::RelatesTo (s, m, f));
+        ::WS::ADDRESSING::serializeRelatesTo (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -6218,9 +6218,9 @@ namespace WS
     }
 
     void
-    RelatesTo (::xercesc::DOMDocument& d,
-               const ::WS::ADDRESSING::RelatesToType& s,
-               ::xml_schema::Flags)
+    serializeRelatesTo (::xercesc::DOMDocument& d,
+                        const ::WS::ADDRESSING::RelatesToType& s,
+                        ::xml_schema::Flags)
     {
       ::xercesc::DOMElement& e (*d.getDocumentElement ());
       const ::xsd::cxx::xml::qualified_name< char > n (
@@ -6252,9 +6252,9 @@ namespace WS
     }
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    RelatesTo (const ::WS::ADDRESSING::RelatesToType& s,
-               const ::xml_schema::NamespaceInfomap& m,
-               ::xml_schema::Flags f)
+    serializeRelatesTo (const ::WS::ADDRESSING::RelatesToType& s,
+                        const ::xml_schema::NamespaceInfomap& m,
+                        ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
 
@@ -6273,7 +6273,7 @@ namespace WS
           m, s, f);
       }
 
-      ::WS::ADDRESSING::RelatesTo (*d, s, f);
+      ::WS::ADDRESSING::serializeRelatesTo (*d, s, f);
       return d;
     }
 
@@ -6284,14 +6284,14 @@ namespace WS
 
       // RelationshipType
       //
-      if (i.RelationshipType ())
+      if (i.getRelationshipType ())
       {
         ::xercesc::DOMAttr& a (
           ::xsd::cxx::xml::dom::create_attribute (
             "RelationshipType",
             e));
 
-        a << *i.RelationshipType ();
+        a << *i.getRelationshipType ();
       }
     }
 
@@ -6355,17 +6355,17 @@ namespace WS
 
 
     void
-    ReplyTo (::std::ostream& o,
-             const ::WS::ADDRESSING::EndpointReferenceType& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+    serializeReplyTo (::std::ostream& o,
+                      const ::WS::ADDRESSING::EndpointReferenceType& s,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      const ::std::string& e,
+                      ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ReplyTo (s, m, f));
+        ::WS::ADDRESSING::serializeReplyTo (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -6377,18 +6377,18 @@ namespace WS
     }
 
     void
-    ReplyTo (::std::ostream& o,
-             const ::WS::ADDRESSING::EndpointReferenceType& s,
-             ::xml_schema::ErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+    serializeReplyTo (::std::ostream& o,
+                      const ::WS::ADDRESSING::EndpointReferenceType& s,
+                      ::xml_schema::ErrorHandler& h,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      const ::std::string& e,
+                      ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ReplyTo (s, m, f));
+        ::WS::ADDRESSING::serializeReplyTo (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -6397,15 +6397,15 @@ namespace WS
     }
 
     void
-    ReplyTo (::std::ostream& o,
-             const ::WS::ADDRESSING::EndpointReferenceType& s,
-             ::xercesc::DOMErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+    serializeReplyTo (::std::ostream& o,
+                      const ::WS::ADDRESSING::EndpointReferenceType& s,
+                      ::xercesc::DOMErrorHandler& h,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      const ::std::string& e,
+                      ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ReplyTo (s, m, f));
+        ::WS::ADDRESSING::serializeReplyTo (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -6414,14 +6414,14 @@ namespace WS
     }
 
     void
-    ReplyTo (::xercesc::XMLFormatTarget& t,
-             const ::WS::ADDRESSING::EndpointReferenceType& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+    serializeReplyTo (::xercesc::XMLFormatTarget& t,
+                      const ::WS::ADDRESSING::EndpointReferenceType& s,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      const ::std::string& e,
+                      ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ReplyTo (s, m, f));
+        ::WS::ADDRESSING::serializeReplyTo (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -6432,15 +6432,15 @@ namespace WS
     }
 
     void
-    ReplyTo (::xercesc::XMLFormatTarget& t,
-             const ::WS::ADDRESSING::EndpointReferenceType& s,
-             ::xml_schema::ErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+    serializeReplyTo (::xercesc::XMLFormatTarget& t,
+                      const ::WS::ADDRESSING::EndpointReferenceType& s,
+                      ::xml_schema::ErrorHandler& h,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      const ::std::string& e,
+                      ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ReplyTo (s, m, f));
+        ::WS::ADDRESSING::serializeReplyTo (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -6448,15 +6448,15 @@ namespace WS
     }
 
     void
-    ReplyTo (::xercesc::XMLFormatTarget& t,
-             const ::WS::ADDRESSING::EndpointReferenceType& s,
-             ::xercesc::DOMErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+    serializeReplyTo (::xercesc::XMLFormatTarget& t,
+                      const ::WS::ADDRESSING::EndpointReferenceType& s,
+                      ::xercesc::DOMErrorHandler& h,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      const ::std::string& e,
+                      ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ReplyTo (s, m, f));
+        ::WS::ADDRESSING::serializeReplyTo (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -6464,9 +6464,9 @@ namespace WS
     }
 
     void
-    ReplyTo (::xercesc::DOMDocument& d,
-             const ::WS::ADDRESSING::EndpointReferenceType& s,
-             ::xml_schema::Flags)
+    serializeReplyTo (::xercesc::DOMDocument& d,
+                      const ::WS::ADDRESSING::EndpointReferenceType& s,
+                      ::xml_schema::Flags)
     {
       ::xercesc::DOMElement& e (*d.getDocumentElement ());
       const ::xsd::cxx::xml::qualified_name< char > n (
@@ -6498,9 +6498,9 @@ namespace WS
     }
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    ReplyTo (const ::WS::ADDRESSING::EndpointReferenceType& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             ::xml_schema::Flags f)
+    serializeReplyTo (const ::WS::ADDRESSING::EndpointReferenceType& s,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
 
@@ -6519,22 +6519,22 @@ namespace WS
           m, s, f);
       }
 
-      ::WS::ADDRESSING::ReplyTo (*d, s, f);
+      ::WS::ADDRESSING::serializeReplyTo (*d, s, f);
       return d;
     }
 
     void
-    From (::std::ostream& o,
-          const ::WS::ADDRESSING::EndpointReferenceType& s,
-          const ::xml_schema::NamespaceInfomap& m,
-          const ::std::string& e,
-          ::xml_schema::Flags f)
+    serializeFrom (::std::ostream& o,
+                   const ::WS::ADDRESSING::EndpointReferenceType& s,
+                   const ::xml_schema::NamespaceInfomap& m,
+                   const ::std::string& e,
+                   ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::From (s, m, f));
+        ::WS::ADDRESSING::serializeFrom (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -6546,18 +6546,18 @@ namespace WS
     }
 
     void
-    From (::std::ostream& o,
-          const ::WS::ADDRESSING::EndpointReferenceType& s,
-          ::xml_schema::ErrorHandler& h,
-          const ::xml_schema::NamespaceInfomap& m,
-          const ::std::string& e,
-          ::xml_schema::Flags f)
+    serializeFrom (::std::ostream& o,
+                   const ::WS::ADDRESSING::EndpointReferenceType& s,
+                   ::xml_schema::ErrorHandler& h,
+                   const ::xml_schema::NamespaceInfomap& m,
+                   const ::std::string& e,
+                   ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::From (s, m, f));
+        ::WS::ADDRESSING::serializeFrom (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -6566,15 +6566,15 @@ namespace WS
     }
 
     void
-    From (::std::ostream& o,
-          const ::WS::ADDRESSING::EndpointReferenceType& s,
-          ::xercesc::DOMErrorHandler& h,
-          const ::xml_schema::NamespaceInfomap& m,
-          const ::std::string& e,
-          ::xml_schema::Flags f)
+    serializeFrom (::std::ostream& o,
+                   const ::WS::ADDRESSING::EndpointReferenceType& s,
+                   ::xercesc::DOMErrorHandler& h,
+                   const ::xml_schema::NamespaceInfomap& m,
+                   const ::std::string& e,
+                   ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::From (s, m, f));
+        ::WS::ADDRESSING::serializeFrom (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -6583,14 +6583,14 @@ namespace WS
     }
 
     void
-    From (::xercesc::XMLFormatTarget& t,
-          const ::WS::ADDRESSING::EndpointReferenceType& s,
-          const ::xml_schema::NamespaceInfomap& m,
-          const ::std::string& e,
-          ::xml_schema::Flags f)
+    serializeFrom (::xercesc::XMLFormatTarget& t,
+                   const ::WS::ADDRESSING::EndpointReferenceType& s,
+                   const ::xml_schema::NamespaceInfomap& m,
+                   const ::std::string& e,
+                   ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::From (s, m, f));
+        ::WS::ADDRESSING::serializeFrom (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -6601,15 +6601,15 @@ namespace WS
     }
 
     void
-    From (::xercesc::XMLFormatTarget& t,
-          const ::WS::ADDRESSING::EndpointReferenceType& s,
-          ::xml_schema::ErrorHandler& h,
-          const ::xml_schema::NamespaceInfomap& m,
-          const ::std::string& e,
-          ::xml_schema::Flags f)
+    serializeFrom (::xercesc::XMLFormatTarget& t,
+                   const ::WS::ADDRESSING::EndpointReferenceType& s,
+                   ::xml_schema::ErrorHandler& h,
+                   const ::xml_schema::NamespaceInfomap& m,
+                   const ::std::string& e,
+                   ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::From (s, m, f));
+        ::WS::ADDRESSING::serializeFrom (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -6617,15 +6617,15 @@ namespace WS
     }
 
     void
-    From (::xercesc::XMLFormatTarget& t,
-          const ::WS::ADDRESSING::EndpointReferenceType& s,
-          ::xercesc::DOMErrorHandler& h,
-          const ::xml_schema::NamespaceInfomap& m,
-          const ::std::string& e,
-          ::xml_schema::Flags f)
+    serializeFrom (::xercesc::XMLFormatTarget& t,
+                   const ::WS::ADDRESSING::EndpointReferenceType& s,
+                   ::xercesc::DOMErrorHandler& h,
+                   const ::xml_schema::NamespaceInfomap& m,
+                   const ::std::string& e,
+                   ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::From (s, m, f));
+        ::WS::ADDRESSING::serializeFrom (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -6633,9 +6633,9 @@ namespace WS
     }
 
     void
-    From (::xercesc::DOMDocument& d,
-          const ::WS::ADDRESSING::EndpointReferenceType& s,
-          ::xml_schema::Flags)
+    serializeFrom (::xercesc::DOMDocument& d,
+                   const ::WS::ADDRESSING::EndpointReferenceType& s,
+                   ::xml_schema::Flags)
     {
       ::xercesc::DOMElement& e (*d.getDocumentElement ());
       const ::xsd::cxx::xml::qualified_name< char > n (
@@ -6667,9 +6667,9 @@ namespace WS
     }
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    From (const ::WS::ADDRESSING::EndpointReferenceType& s,
-          const ::xml_schema::NamespaceInfomap& m,
-          ::xml_schema::Flags f)
+    serializeFrom (const ::WS::ADDRESSING::EndpointReferenceType& s,
+                   const ::xml_schema::NamespaceInfomap& m,
+                   ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
 
@@ -6688,22 +6688,22 @@ namespace WS
           m, s, f);
       }
 
-      ::WS::ADDRESSING::From (*d, s, f);
+      ::WS::ADDRESSING::serializeFrom (*d, s, f);
       return d;
     }
 
     void
-    FaultTo (::std::ostream& o,
-             const ::WS::ADDRESSING::EndpointReferenceType& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+    serializeFaultTo (::std::ostream& o,
+                      const ::WS::ADDRESSING::EndpointReferenceType& s,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      const ::std::string& e,
+                      ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::FaultTo (s, m, f));
+        ::WS::ADDRESSING::serializeFaultTo (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -6715,18 +6715,18 @@ namespace WS
     }
 
     void
-    FaultTo (::std::ostream& o,
-             const ::WS::ADDRESSING::EndpointReferenceType& s,
-             ::xml_schema::ErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+    serializeFaultTo (::std::ostream& o,
+                      const ::WS::ADDRESSING::EndpointReferenceType& s,
+                      ::xml_schema::ErrorHandler& h,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      const ::std::string& e,
+                      ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::FaultTo (s, m, f));
+        ::WS::ADDRESSING::serializeFaultTo (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -6735,15 +6735,15 @@ namespace WS
     }
 
     void
-    FaultTo (::std::ostream& o,
-             const ::WS::ADDRESSING::EndpointReferenceType& s,
-             ::xercesc::DOMErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+    serializeFaultTo (::std::ostream& o,
+                      const ::WS::ADDRESSING::EndpointReferenceType& s,
+                      ::xercesc::DOMErrorHandler& h,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      const ::std::string& e,
+                      ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::FaultTo (s, m, f));
+        ::WS::ADDRESSING::serializeFaultTo (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -6752,14 +6752,14 @@ namespace WS
     }
 
     void
-    FaultTo (::xercesc::XMLFormatTarget& t,
-             const ::WS::ADDRESSING::EndpointReferenceType& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+    serializeFaultTo (::xercesc::XMLFormatTarget& t,
+                      const ::WS::ADDRESSING::EndpointReferenceType& s,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      const ::std::string& e,
+                      ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::FaultTo (s, m, f));
+        ::WS::ADDRESSING::serializeFaultTo (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -6770,15 +6770,15 @@ namespace WS
     }
 
     void
-    FaultTo (::xercesc::XMLFormatTarget& t,
-             const ::WS::ADDRESSING::EndpointReferenceType& s,
-             ::xml_schema::ErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+    serializeFaultTo (::xercesc::XMLFormatTarget& t,
+                      const ::WS::ADDRESSING::EndpointReferenceType& s,
+                      ::xml_schema::ErrorHandler& h,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      const ::std::string& e,
+                      ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::FaultTo (s, m, f));
+        ::WS::ADDRESSING::serializeFaultTo (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -6786,15 +6786,15 @@ namespace WS
     }
 
     void
-    FaultTo (::xercesc::XMLFormatTarget& t,
-             const ::WS::ADDRESSING::EndpointReferenceType& s,
-             ::xercesc::DOMErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+    serializeFaultTo (::xercesc::XMLFormatTarget& t,
+                      const ::WS::ADDRESSING::EndpointReferenceType& s,
+                      ::xercesc::DOMErrorHandler& h,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      const ::std::string& e,
+                      ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::FaultTo (s, m, f));
+        ::WS::ADDRESSING::serializeFaultTo (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -6802,9 +6802,9 @@ namespace WS
     }
 
     void
-    FaultTo (::xercesc::DOMDocument& d,
-             const ::WS::ADDRESSING::EndpointReferenceType& s,
-             ::xml_schema::Flags)
+    serializeFaultTo (::xercesc::DOMDocument& d,
+                      const ::WS::ADDRESSING::EndpointReferenceType& s,
+                      ::xml_schema::Flags)
     {
       ::xercesc::DOMElement& e (*d.getDocumentElement ());
       const ::xsd::cxx::xml::qualified_name< char > n (
@@ -6836,9 +6836,9 @@ namespace WS
     }
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    FaultTo (const ::WS::ADDRESSING::EndpointReferenceType& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             ::xml_schema::Flags f)
+    serializeFaultTo (const ::WS::ADDRESSING::EndpointReferenceType& s,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
 
@@ -6857,22 +6857,22 @@ namespace WS
           m, s, f);
       }
 
-      ::WS::ADDRESSING::FaultTo (*d, s, f);
+      ::WS::ADDRESSING::serializeFaultTo (*d, s, f);
       return d;
     }
 
     void
-    To (::std::ostream& o,
-        const ::WS::ADDRESSING::AttributedURIType& s,
-        const ::xml_schema::NamespaceInfomap& m,
-        const ::std::string& e,
-        ::xml_schema::Flags f)
+    serializeTo (::std::ostream& o,
+                 const ::WS::ADDRESSING::AttributedURIType& s,
+                 const ::xml_schema::NamespaceInfomap& m,
+                 const ::std::string& e,
+                 ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::To (s, m, f));
+        ::WS::ADDRESSING::serializeTo (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -6884,18 +6884,18 @@ namespace WS
     }
 
     void
-    To (::std::ostream& o,
-        const ::WS::ADDRESSING::AttributedURIType& s,
-        ::xml_schema::ErrorHandler& h,
-        const ::xml_schema::NamespaceInfomap& m,
-        const ::std::string& e,
-        ::xml_schema::Flags f)
+    serializeTo (::std::ostream& o,
+                 const ::WS::ADDRESSING::AttributedURIType& s,
+                 ::xml_schema::ErrorHandler& h,
+                 const ::xml_schema::NamespaceInfomap& m,
+                 const ::std::string& e,
+                 ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::To (s, m, f));
+        ::WS::ADDRESSING::serializeTo (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -6904,15 +6904,15 @@ namespace WS
     }
 
     void
-    To (::std::ostream& o,
-        const ::WS::ADDRESSING::AttributedURIType& s,
-        ::xercesc::DOMErrorHandler& h,
-        const ::xml_schema::NamespaceInfomap& m,
-        const ::std::string& e,
-        ::xml_schema::Flags f)
+    serializeTo (::std::ostream& o,
+                 const ::WS::ADDRESSING::AttributedURIType& s,
+                 ::xercesc::DOMErrorHandler& h,
+                 const ::xml_schema::NamespaceInfomap& m,
+                 const ::std::string& e,
+                 ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::To (s, m, f));
+        ::WS::ADDRESSING::serializeTo (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -6921,14 +6921,14 @@ namespace WS
     }
 
     void
-    To (::xercesc::XMLFormatTarget& t,
-        const ::WS::ADDRESSING::AttributedURIType& s,
-        const ::xml_schema::NamespaceInfomap& m,
-        const ::std::string& e,
-        ::xml_schema::Flags f)
+    serializeTo (::xercesc::XMLFormatTarget& t,
+                 const ::WS::ADDRESSING::AttributedURIType& s,
+                 const ::xml_schema::NamespaceInfomap& m,
+                 const ::std::string& e,
+                 ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::To (s, m, f));
+        ::WS::ADDRESSING::serializeTo (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -6939,15 +6939,15 @@ namespace WS
     }
 
     void
-    To (::xercesc::XMLFormatTarget& t,
-        const ::WS::ADDRESSING::AttributedURIType& s,
-        ::xml_schema::ErrorHandler& h,
-        const ::xml_schema::NamespaceInfomap& m,
-        const ::std::string& e,
-        ::xml_schema::Flags f)
+    serializeTo (::xercesc::XMLFormatTarget& t,
+                 const ::WS::ADDRESSING::AttributedURIType& s,
+                 ::xml_schema::ErrorHandler& h,
+                 const ::xml_schema::NamespaceInfomap& m,
+                 const ::std::string& e,
+                 ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::To (s, m, f));
+        ::WS::ADDRESSING::serializeTo (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -6955,15 +6955,15 @@ namespace WS
     }
 
     void
-    To (::xercesc::XMLFormatTarget& t,
-        const ::WS::ADDRESSING::AttributedURIType& s,
-        ::xercesc::DOMErrorHandler& h,
-        const ::xml_schema::NamespaceInfomap& m,
-        const ::std::string& e,
-        ::xml_schema::Flags f)
+    serializeTo (::xercesc::XMLFormatTarget& t,
+                 const ::WS::ADDRESSING::AttributedURIType& s,
+                 ::xercesc::DOMErrorHandler& h,
+                 const ::xml_schema::NamespaceInfomap& m,
+                 const ::std::string& e,
+                 ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::To (s, m, f));
+        ::WS::ADDRESSING::serializeTo (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -6971,9 +6971,9 @@ namespace WS
     }
 
     void
-    To (::xercesc::DOMDocument& d,
-        const ::WS::ADDRESSING::AttributedURIType& s,
-        ::xml_schema::Flags)
+    serializeTo (::xercesc::DOMDocument& d,
+                 const ::WS::ADDRESSING::AttributedURIType& s,
+                 ::xml_schema::Flags)
     {
       ::xercesc::DOMElement& e (*d.getDocumentElement ());
       const ::xsd::cxx::xml::qualified_name< char > n (
@@ -7005,9 +7005,9 @@ namespace WS
     }
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    To (const ::WS::ADDRESSING::AttributedURIType& s,
-        const ::xml_schema::NamespaceInfomap& m,
-        ::xml_schema::Flags f)
+    serializeTo (const ::WS::ADDRESSING::AttributedURIType& s,
+                 const ::xml_schema::NamespaceInfomap& m,
+                 ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
 
@@ -7026,22 +7026,22 @@ namespace WS
           m, s, f);
       }
 
-      ::WS::ADDRESSING::To (*d, s, f);
+      ::WS::ADDRESSING::serializeTo (*d, s, f);
       return d;
     }
 
     void
-    Action (::std::ostream& o,
-            const ::WS::ADDRESSING::AttributedURIType& s,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
+    serializeAction (::std::ostream& o,
+                     const ::WS::ADDRESSING::AttributedURIType& s,
+                     const ::xml_schema::NamespaceInfomap& m,
+                     const ::std::string& e,
+                     ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::Action (s, m, f));
+        ::WS::ADDRESSING::serializeAction (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -7053,18 +7053,18 @@ namespace WS
     }
 
     void
-    Action (::std::ostream& o,
-            const ::WS::ADDRESSING::AttributedURIType& s,
-            ::xml_schema::ErrorHandler& h,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
+    serializeAction (::std::ostream& o,
+                     const ::WS::ADDRESSING::AttributedURIType& s,
+                     ::xml_schema::ErrorHandler& h,
+                     const ::xml_schema::NamespaceInfomap& m,
+                     const ::std::string& e,
+                     ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::Action (s, m, f));
+        ::WS::ADDRESSING::serializeAction (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -7073,15 +7073,15 @@ namespace WS
     }
 
     void
-    Action (::std::ostream& o,
-            const ::WS::ADDRESSING::AttributedURIType& s,
-            ::xercesc::DOMErrorHandler& h,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
+    serializeAction (::std::ostream& o,
+                     const ::WS::ADDRESSING::AttributedURIType& s,
+                     ::xercesc::DOMErrorHandler& h,
+                     const ::xml_schema::NamespaceInfomap& m,
+                     const ::std::string& e,
+                     ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::Action (s, m, f));
+        ::WS::ADDRESSING::serializeAction (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -7090,14 +7090,14 @@ namespace WS
     }
 
     void
-    Action (::xercesc::XMLFormatTarget& t,
-            const ::WS::ADDRESSING::AttributedURIType& s,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
+    serializeAction (::xercesc::XMLFormatTarget& t,
+                     const ::WS::ADDRESSING::AttributedURIType& s,
+                     const ::xml_schema::NamespaceInfomap& m,
+                     const ::std::string& e,
+                     ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::Action (s, m, f));
+        ::WS::ADDRESSING::serializeAction (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -7108,15 +7108,15 @@ namespace WS
     }
 
     void
-    Action (::xercesc::XMLFormatTarget& t,
-            const ::WS::ADDRESSING::AttributedURIType& s,
-            ::xml_schema::ErrorHandler& h,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
+    serializeAction (::xercesc::XMLFormatTarget& t,
+                     const ::WS::ADDRESSING::AttributedURIType& s,
+                     ::xml_schema::ErrorHandler& h,
+                     const ::xml_schema::NamespaceInfomap& m,
+                     const ::std::string& e,
+                     ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::Action (s, m, f));
+        ::WS::ADDRESSING::serializeAction (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -7124,15 +7124,15 @@ namespace WS
     }
 
     void
-    Action (::xercesc::XMLFormatTarget& t,
-            const ::WS::ADDRESSING::AttributedURIType& s,
-            ::xercesc::DOMErrorHandler& h,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
+    serializeAction (::xercesc::XMLFormatTarget& t,
+                     const ::WS::ADDRESSING::AttributedURIType& s,
+                     ::xercesc::DOMErrorHandler& h,
+                     const ::xml_schema::NamespaceInfomap& m,
+                     const ::std::string& e,
+                     ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::Action (s, m, f));
+        ::WS::ADDRESSING::serializeAction (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -7140,9 +7140,9 @@ namespace WS
     }
 
     void
-    Action (::xercesc::DOMDocument& d,
-            const ::WS::ADDRESSING::AttributedURIType& s,
-            ::xml_schema::Flags)
+    serializeAction (::xercesc::DOMDocument& d,
+                     const ::WS::ADDRESSING::AttributedURIType& s,
+                     ::xml_schema::Flags)
     {
       ::xercesc::DOMElement& e (*d.getDocumentElement ());
       const ::xsd::cxx::xml::qualified_name< char > n (
@@ -7174,9 +7174,9 @@ namespace WS
     }
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Action (const ::WS::ADDRESSING::AttributedURIType& s,
-            const ::xml_schema::NamespaceInfomap& m,
-            ::xml_schema::Flags f)
+    serializeAction (const ::WS::ADDRESSING::AttributedURIType& s,
+                     const ::xml_schema::NamespaceInfomap& m,
+                     ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
 
@@ -7195,7 +7195,7 @@ namespace WS
           m, s, f);
       }
 
-      ::WS::ADDRESSING::Action (*d, s, f);
+      ::WS::ADDRESSING::serializeAction (*d, s, f);
       return d;
     }
 
@@ -7265,17 +7265,17 @@ namespace WS
 
 
     void
-    RetryAfter (::std::ostream& o,
-                const ::WS::ADDRESSING::AttributedUnsignedLongType& s,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
+    serializeRetryAfter (::std::ostream& o,
+                         const ::WS::ADDRESSING::AttributedUnsignedLongType& s,
+                         const ::xml_schema::NamespaceInfomap& m,
+                         const ::std::string& e,
+                         ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::RetryAfter (s, m, f));
+        ::WS::ADDRESSING::serializeRetryAfter (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -7287,18 +7287,18 @@ namespace WS
     }
 
     void
-    RetryAfter (::std::ostream& o,
-                const ::WS::ADDRESSING::AttributedUnsignedLongType& s,
-                ::xml_schema::ErrorHandler& h,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
+    serializeRetryAfter (::std::ostream& o,
+                         const ::WS::ADDRESSING::AttributedUnsignedLongType& s,
+                         ::xml_schema::ErrorHandler& h,
+                         const ::xml_schema::NamespaceInfomap& m,
+                         const ::std::string& e,
+                         ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::RetryAfter (s, m, f));
+        ::WS::ADDRESSING::serializeRetryAfter (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -7307,15 +7307,15 @@ namespace WS
     }
 
     void
-    RetryAfter (::std::ostream& o,
-                const ::WS::ADDRESSING::AttributedUnsignedLongType& s,
-                ::xercesc::DOMErrorHandler& h,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
+    serializeRetryAfter (::std::ostream& o,
+                         const ::WS::ADDRESSING::AttributedUnsignedLongType& s,
+                         ::xercesc::DOMErrorHandler& h,
+                         const ::xml_schema::NamespaceInfomap& m,
+                         const ::std::string& e,
+                         ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::RetryAfter (s, m, f));
+        ::WS::ADDRESSING::serializeRetryAfter (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -7324,14 +7324,14 @@ namespace WS
     }
 
     void
-    RetryAfter (::xercesc::XMLFormatTarget& t,
-                const ::WS::ADDRESSING::AttributedUnsignedLongType& s,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
+    serializeRetryAfter (::xercesc::XMLFormatTarget& t,
+                         const ::WS::ADDRESSING::AttributedUnsignedLongType& s,
+                         const ::xml_schema::NamespaceInfomap& m,
+                         const ::std::string& e,
+                         ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::RetryAfter (s, m, f));
+        ::WS::ADDRESSING::serializeRetryAfter (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -7342,15 +7342,15 @@ namespace WS
     }
 
     void
-    RetryAfter (::xercesc::XMLFormatTarget& t,
-                const ::WS::ADDRESSING::AttributedUnsignedLongType& s,
-                ::xml_schema::ErrorHandler& h,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
+    serializeRetryAfter (::xercesc::XMLFormatTarget& t,
+                         const ::WS::ADDRESSING::AttributedUnsignedLongType& s,
+                         ::xml_schema::ErrorHandler& h,
+                         const ::xml_schema::NamespaceInfomap& m,
+                         const ::std::string& e,
+                         ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::RetryAfter (s, m, f));
+        ::WS::ADDRESSING::serializeRetryAfter (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -7358,15 +7358,15 @@ namespace WS
     }
 
     void
-    RetryAfter (::xercesc::XMLFormatTarget& t,
-                const ::WS::ADDRESSING::AttributedUnsignedLongType& s,
-                ::xercesc::DOMErrorHandler& h,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
+    serializeRetryAfter (::xercesc::XMLFormatTarget& t,
+                         const ::WS::ADDRESSING::AttributedUnsignedLongType& s,
+                         ::xercesc::DOMErrorHandler& h,
+                         const ::xml_schema::NamespaceInfomap& m,
+                         const ::std::string& e,
+                         ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::RetryAfter (s, m, f));
+        ::WS::ADDRESSING::serializeRetryAfter (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -7374,9 +7374,9 @@ namespace WS
     }
 
     void
-    RetryAfter (::xercesc::DOMDocument& d,
-                const ::WS::ADDRESSING::AttributedUnsignedLongType& s,
-                ::xml_schema::Flags)
+    serializeRetryAfter (::xercesc::DOMDocument& d,
+                         const ::WS::ADDRESSING::AttributedUnsignedLongType& s,
+                         ::xml_schema::Flags)
     {
       ::xercesc::DOMElement& e (*d.getDocumentElement ());
       const ::xsd::cxx::xml::qualified_name< char > n (
@@ -7408,9 +7408,9 @@ namespace WS
     }
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    RetryAfter (const ::WS::ADDRESSING::AttributedUnsignedLongType& s,
-                const ::xml_schema::NamespaceInfomap& m,
-                ::xml_schema::Flags f)
+    serializeRetryAfter (const ::WS::ADDRESSING::AttributedUnsignedLongType& s,
+                         const ::xml_schema::NamespaceInfomap& m,
+                         ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
 
@@ -7429,7 +7429,7 @@ namespace WS
           m, s, f);
       }
 
-      ::WS::ADDRESSING::RetryAfter (*d, s, f);
+      ::WS::ADDRESSING::serializeRetryAfter (*d, s, f);
       return d;
     }
 
@@ -7447,17 +7447,17 @@ namespace WS
 
 
     void
-    ProblemHeaderQName (::std::ostream& o,
-                        const ::WS::ADDRESSING::AttributedQNameType& s,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
+    serializeProblemHeaderQName (::std::ostream& o,
+                                 const ::WS::ADDRESSING::AttributedQNameType& s,
+                                 const ::xml_schema::NamespaceInfomap& m,
+                                 const ::std::string& e,
+                                 ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ProblemHeaderQName (s, m, f));
+        ::WS::ADDRESSING::serializeProblemHeaderQName (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -7469,18 +7469,18 @@ namespace WS
     }
 
     void
-    ProblemHeaderQName (::std::ostream& o,
-                        const ::WS::ADDRESSING::AttributedQNameType& s,
-                        ::xml_schema::ErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
+    serializeProblemHeaderQName (::std::ostream& o,
+                                 const ::WS::ADDRESSING::AttributedQNameType& s,
+                                 ::xml_schema::ErrorHandler& h,
+                                 const ::xml_schema::NamespaceInfomap& m,
+                                 const ::std::string& e,
+                                 ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ProblemHeaderQName (s, m, f));
+        ::WS::ADDRESSING::serializeProblemHeaderQName (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -7489,15 +7489,15 @@ namespace WS
     }
 
     void
-    ProblemHeaderQName (::std::ostream& o,
-                        const ::WS::ADDRESSING::AttributedQNameType& s,
-                        ::xercesc::DOMErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
+    serializeProblemHeaderQName (::std::ostream& o,
+                                 const ::WS::ADDRESSING::AttributedQNameType& s,
+                                 ::xercesc::DOMErrorHandler& h,
+                                 const ::xml_schema::NamespaceInfomap& m,
+                                 const ::std::string& e,
+                                 ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ProblemHeaderQName (s, m, f));
+        ::WS::ADDRESSING::serializeProblemHeaderQName (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -7506,14 +7506,14 @@ namespace WS
     }
 
     void
-    ProblemHeaderQName (::xercesc::XMLFormatTarget& t,
-                        const ::WS::ADDRESSING::AttributedQNameType& s,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
+    serializeProblemHeaderQName (::xercesc::XMLFormatTarget& t,
+                                 const ::WS::ADDRESSING::AttributedQNameType& s,
+                                 const ::xml_schema::NamespaceInfomap& m,
+                                 const ::std::string& e,
+                                 ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ProblemHeaderQName (s, m, f));
+        ::WS::ADDRESSING::serializeProblemHeaderQName (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -7524,15 +7524,15 @@ namespace WS
     }
 
     void
-    ProblemHeaderQName (::xercesc::XMLFormatTarget& t,
-                        const ::WS::ADDRESSING::AttributedQNameType& s,
-                        ::xml_schema::ErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
+    serializeProblemHeaderQName (::xercesc::XMLFormatTarget& t,
+                                 const ::WS::ADDRESSING::AttributedQNameType& s,
+                                 ::xml_schema::ErrorHandler& h,
+                                 const ::xml_schema::NamespaceInfomap& m,
+                                 const ::std::string& e,
+                                 ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ProblemHeaderQName (s, m, f));
+        ::WS::ADDRESSING::serializeProblemHeaderQName (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -7540,15 +7540,15 @@ namespace WS
     }
 
     void
-    ProblemHeaderQName (::xercesc::XMLFormatTarget& t,
-                        const ::WS::ADDRESSING::AttributedQNameType& s,
-                        ::xercesc::DOMErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
+    serializeProblemHeaderQName (::xercesc::XMLFormatTarget& t,
+                                 const ::WS::ADDRESSING::AttributedQNameType& s,
+                                 ::xercesc::DOMErrorHandler& h,
+                                 const ::xml_schema::NamespaceInfomap& m,
+                                 const ::std::string& e,
+                                 ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ProblemHeaderQName (s, m, f));
+        ::WS::ADDRESSING::serializeProblemHeaderQName (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -7556,9 +7556,9 @@ namespace WS
     }
 
     void
-    ProblemHeaderQName (::xercesc::DOMDocument& d,
-                        const ::WS::ADDRESSING::AttributedQNameType& s,
-                        ::xml_schema::Flags)
+    serializeProblemHeaderQName (::xercesc::DOMDocument& d,
+                                 const ::WS::ADDRESSING::AttributedQNameType& s,
+                                 ::xml_schema::Flags)
     {
       ::xercesc::DOMElement& e (*d.getDocumentElement ());
       const ::xsd::cxx::xml::qualified_name< char > n (
@@ -7590,9 +7590,9 @@ namespace WS
     }
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    ProblemHeaderQName (const ::WS::ADDRESSING::AttributedQNameType& s,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        ::xml_schema::Flags f)
+    serializeProblemHeaderQName (const ::WS::ADDRESSING::AttributedQNameType& s,
+                                 const ::xml_schema::NamespaceInfomap& m,
+                                 ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
 
@@ -7611,7 +7611,7 @@ namespace WS
           m, s, f);
       }
 
-      ::WS::ADDRESSING::ProblemHeaderQName (*d, s, f);
+      ::WS::ADDRESSING::serializeProblemHeaderQName (*d, s, f);
       return d;
     }
 
@@ -7629,17 +7629,17 @@ namespace WS
 
 
     void
-    ProblemIRI (::std::ostream& o,
-                const ::WS::ADDRESSING::AttributedURIType& s,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
+    serializeProblemIRI (::std::ostream& o,
+                         const ::WS::ADDRESSING::AttributedURIType& s,
+                         const ::xml_schema::NamespaceInfomap& m,
+                         const ::std::string& e,
+                         ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ProblemIRI (s, m, f));
+        ::WS::ADDRESSING::serializeProblemIRI (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -7651,18 +7651,18 @@ namespace WS
     }
 
     void
-    ProblemIRI (::std::ostream& o,
-                const ::WS::ADDRESSING::AttributedURIType& s,
-                ::xml_schema::ErrorHandler& h,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
+    serializeProblemIRI (::std::ostream& o,
+                         const ::WS::ADDRESSING::AttributedURIType& s,
+                         ::xml_schema::ErrorHandler& h,
+                         const ::xml_schema::NamespaceInfomap& m,
+                         const ::std::string& e,
+                         ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ProblemIRI (s, m, f));
+        ::WS::ADDRESSING::serializeProblemIRI (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -7671,15 +7671,15 @@ namespace WS
     }
 
     void
-    ProblemIRI (::std::ostream& o,
-                const ::WS::ADDRESSING::AttributedURIType& s,
-                ::xercesc::DOMErrorHandler& h,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
+    serializeProblemIRI (::std::ostream& o,
+                         const ::WS::ADDRESSING::AttributedURIType& s,
+                         ::xercesc::DOMErrorHandler& h,
+                         const ::xml_schema::NamespaceInfomap& m,
+                         const ::std::string& e,
+                         ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ProblemIRI (s, m, f));
+        ::WS::ADDRESSING::serializeProblemIRI (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -7688,14 +7688,14 @@ namespace WS
     }
 
     void
-    ProblemIRI (::xercesc::XMLFormatTarget& t,
-                const ::WS::ADDRESSING::AttributedURIType& s,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
+    serializeProblemIRI (::xercesc::XMLFormatTarget& t,
+                         const ::WS::ADDRESSING::AttributedURIType& s,
+                         const ::xml_schema::NamespaceInfomap& m,
+                         const ::std::string& e,
+                         ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ProblemIRI (s, m, f));
+        ::WS::ADDRESSING::serializeProblemIRI (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -7706,15 +7706,15 @@ namespace WS
     }
 
     void
-    ProblemIRI (::xercesc::XMLFormatTarget& t,
-                const ::WS::ADDRESSING::AttributedURIType& s,
-                ::xml_schema::ErrorHandler& h,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
+    serializeProblemIRI (::xercesc::XMLFormatTarget& t,
+                         const ::WS::ADDRESSING::AttributedURIType& s,
+                         ::xml_schema::ErrorHandler& h,
+                         const ::xml_schema::NamespaceInfomap& m,
+                         const ::std::string& e,
+                         ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ProblemIRI (s, m, f));
+        ::WS::ADDRESSING::serializeProblemIRI (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -7722,15 +7722,15 @@ namespace WS
     }
 
     void
-    ProblemIRI (::xercesc::XMLFormatTarget& t,
-                const ::WS::ADDRESSING::AttributedURIType& s,
-                ::xercesc::DOMErrorHandler& h,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
+    serializeProblemIRI (::xercesc::XMLFormatTarget& t,
+                         const ::WS::ADDRESSING::AttributedURIType& s,
+                         ::xercesc::DOMErrorHandler& h,
+                         const ::xml_schema::NamespaceInfomap& m,
+                         const ::std::string& e,
+                         ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ProblemIRI (s, m, f));
+        ::WS::ADDRESSING::serializeProblemIRI (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -7738,9 +7738,9 @@ namespace WS
     }
 
     void
-    ProblemIRI (::xercesc::DOMDocument& d,
-                const ::WS::ADDRESSING::AttributedURIType& s,
-                ::xml_schema::Flags)
+    serializeProblemIRI (::xercesc::DOMDocument& d,
+                         const ::WS::ADDRESSING::AttributedURIType& s,
+                         ::xml_schema::Flags)
     {
       ::xercesc::DOMElement& e (*d.getDocumentElement ());
       const ::xsd::cxx::xml::qualified_name< char > n (
@@ -7772,9 +7772,9 @@ namespace WS
     }
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    ProblemIRI (const ::WS::ADDRESSING::AttributedURIType& s,
-                const ::xml_schema::NamespaceInfomap& m,
-                ::xml_schema::Flags f)
+    serializeProblemIRI (const ::WS::ADDRESSING::AttributedURIType& s,
+                         const ::xml_schema::NamespaceInfomap& m,
+                         ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
 
@@ -7793,22 +7793,22 @@ namespace WS
           m, s, f);
       }
 
-      ::WS::ADDRESSING::ProblemIRI (*d, s, f);
+      ::WS::ADDRESSING::serializeProblemIRI (*d, s, f);
       return d;
     }
 
     void
-    ProblemAction (::std::ostream& o,
-                   const ::WS::ADDRESSING::ProblemActionType& s,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
+    serializeProblemAction (::std::ostream& o,
+                            const ::WS::ADDRESSING::ProblemActionType& s,
+                            const ::xml_schema::NamespaceInfomap& m,
+                            const ::std::string& e,
+                            ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ProblemAction (s, m, f));
+        ::WS::ADDRESSING::serializeProblemAction (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -7820,18 +7820,18 @@ namespace WS
     }
 
     void
-    ProblemAction (::std::ostream& o,
-                   const ::WS::ADDRESSING::ProblemActionType& s,
-                   ::xml_schema::ErrorHandler& h,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
+    serializeProblemAction (::std::ostream& o,
+                            const ::WS::ADDRESSING::ProblemActionType& s,
+                            ::xml_schema::ErrorHandler& h,
+                            const ::xml_schema::NamespaceInfomap& m,
+                            const ::std::string& e,
+                            ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ProblemAction (s, m, f));
+        ::WS::ADDRESSING::serializeProblemAction (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -7840,15 +7840,15 @@ namespace WS
     }
 
     void
-    ProblemAction (::std::ostream& o,
-                   const ::WS::ADDRESSING::ProblemActionType& s,
-                   ::xercesc::DOMErrorHandler& h,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
+    serializeProblemAction (::std::ostream& o,
+                            const ::WS::ADDRESSING::ProblemActionType& s,
+                            ::xercesc::DOMErrorHandler& h,
+                            const ::xml_schema::NamespaceInfomap& m,
+                            const ::std::string& e,
+                            ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ProblemAction (s, m, f));
+        ::WS::ADDRESSING::serializeProblemAction (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -7857,14 +7857,14 @@ namespace WS
     }
 
     void
-    ProblemAction (::xercesc::XMLFormatTarget& t,
-                   const ::WS::ADDRESSING::ProblemActionType& s,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
+    serializeProblemAction (::xercesc::XMLFormatTarget& t,
+                            const ::WS::ADDRESSING::ProblemActionType& s,
+                            const ::xml_schema::NamespaceInfomap& m,
+                            const ::std::string& e,
+                            ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ProblemAction (s, m, f));
+        ::WS::ADDRESSING::serializeProblemAction (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -7875,15 +7875,15 @@ namespace WS
     }
 
     void
-    ProblemAction (::xercesc::XMLFormatTarget& t,
-                   const ::WS::ADDRESSING::ProblemActionType& s,
-                   ::xml_schema::ErrorHandler& h,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
+    serializeProblemAction (::xercesc::XMLFormatTarget& t,
+                            const ::WS::ADDRESSING::ProblemActionType& s,
+                            ::xml_schema::ErrorHandler& h,
+                            const ::xml_schema::NamespaceInfomap& m,
+                            const ::std::string& e,
+                            ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ProblemAction (s, m, f));
+        ::WS::ADDRESSING::serializeProblemAction (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -7891,15 +7891,15 @@ namespace WS
     }
 
     void
-    ProblemAction (::xercesc::XMLFormatTarget& t,
-                   const ::WS::ADDRESSING::ProblemActionType& s,
-                   ::xercesc::DOMErrorHandler& h,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
+    serializeProblemAction (::xercesc::XMLFormatTarget& t,
+                            const ::WS::ADDRESSING::ProblemActionType& s,
+                            ::xercesc::DOMErrorHandler& h,
+                            const ::xml_schema::NamespaceInfomap& m,
+                            const ::std::string& e,
+                            ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::ADDRESSING::ProblemAction (s, m, f));
+        ::WS::ADDRESSING::serializeProblemAction (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -7907,9 +7907,9 @@ namespace WS
     }
 
     void
-    ProblemAction (::xercesc::DOMDocument& d,
-                   const ::WS::ADDRESSING::ProblemActionType& s,
-                   ::xml_schema::Flags)
+    serializeProblemAction (::xercesc::DOMDocument& d,
+                            const ::WS::ADDRESSING::ProblemActionType& s,
+                            ::xml_schema::Flags)
     {
       ::xercesc::DOMElement& e (*d.getDocumentElement ());
       const ::xsd::cxx::xml::qualified_name< char > n (
@@ -7941,9 +7941,9 @@ namespace WS
     }
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    ProblemAction (const ::WS::ADDRESSING::ProblemActionType& s,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   ::xml_schema::Flags f)
+    serializeProblemAction (const ::WS::ADDRESSING::ProblemActionType& s,
+                            const ::xml_schema::NamespaceInfomap& m,
+                            ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
 
@@ -7962,7 +7962,7 @@ namespace WS
           m, s, f);
       }
 
-      ::WS::ADDRESSING::ProblemAction (*d, s, f);
+      ::WS::ADDRESSING::serializeProblemAction (*d, s, f);
       return d;
     }
 
@@ -7977,9 +7977,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.Action ())
+        if (i.getAction ())
         {
-          const ProblemActionType::ActionType& x (*i.Action ());
+          const ProblemActionType::ActionType& x (*i.getAction ());
           if (typeid (ProblemActionType::ActionType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -8004,9 +8004,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.SoapAction ())
+        if (i.getSoapAction ())
         {
-          const ProblemActionType::SoapActionType& x (*i.SoapAction ());
+          const ProblemActionType::SoapActionType& x (*i.getSoapAction ());
           if (typeid (ProblemActionType::SoapActionType) == typeid (x))
           {
             ::xercesc::DOMElement& s (

@@ -80,83 +80,83 @@ SetValueOperationState & SetValueOperationState:: operator=(const SetValueOperat
 
 
 SetValueOperationState & SetValueOperationState::setStateVersion(const VersionCounter & value) {
-	data->StateVersion(ConvertToCDM::convert(value));
+	data->setStateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetValueOperationState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
+	if (data->getStateVersion().present()) {
+		out = ConvertFromCDM::convert(data->getStateVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter SetValueOperationState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+	return ConvertFromCDM::convert(data->getStateVersion().get());
 }
 
 bool SetValueOperationState::hasStateVersion() const {
-	return data->StateVersion().present();
+	return data->getStateVersion().present();
 }
 
 SetValueOperationState & SetValueOperationState::setDescriptorHandle(const HandleRef & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
+	data->setDescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 HandleRef SetValueOperationState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
+	return ConvertFromCDM::convert(data->getDescriptorHandle());
 }
 
 SetValueOperationState & SetValueOperationState::setDescriptorVersion(const ReferencedVersion & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetValueOperationState::getDescriptorVersion(ReferencedVersion & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 ReferencedVersion SetValueOperationState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool SetValueOperationState::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 SetValueOperationState & SetValueOperationState::setOperatingMode(const OperatingMode & value) {
-	data->OperatingMode(ConvertToCDM::convert(value));
+	data->setOperatingMode(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 OperatingMode SetValueOperationState::getOperatingMode() const {
-	return ConvertFromCDM::convert(data->OperatingMode());
+	return ConvertFromCDM::convert(data->getOperatingMode());
 }
 
 SetValueOperationState & SetValueOperationState::addAllowedRange(const Range & value) {
-	data->AllowedRange().push_back(ConvertToCDM::convert(value));
+	data->getAllowedRange().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<Range> SetValueOperationState::getAllowedRangeList() const {
 	std::vector<Range> result;
-	result.reserve(data->AllowedRange().size());
-	for (const auto & value: data->AllowedRange()) {
+	result.reserve(data->getAllowedRange().size());
+	for (const auto & value: data->getAllowedRange()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void SetValueOperationState::clearAllowedRangeList() {
-	data->AllowedRange().clear();
+	data->getAllowedRange().clear();
 }
 
 

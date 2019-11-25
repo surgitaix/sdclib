@@ -32,7 +32,7 @@ namespace OSELib
 
 			std::unique_ptr<MESSAGEMODEL::Header> createHeader() override {
 				auto t_header(SoapInvoke::createHeader());
-				t_header->Action().set(MESSAGEMODEL::Envelope::HeaderType::ActionType(TraitsType::RequestAction()));
+				t_header->getAction().set(MESSAGEMODEL::Envelope::HeaderType::ActionType(TraitsType::RequestAction()));
 				return t_header;
 			}
 
@@ -61,7 +61,7 @@ namespace OSELib
 					return nullptr;
 				}
 
-				const auto soapAction(t_responseMessage->Header().Action().get());
+				const auto soapAction(t_responseMessage->getHeader().getAction().get());
 				if (soapAction == TraitsType::ResponseAction()) {
 
 					OSELib::SOAP::NormalizedMessageAdapter<typename TraitsType::Response> t_adapter;

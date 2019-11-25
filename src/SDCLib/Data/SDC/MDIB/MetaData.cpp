@@ -75,159 +75,159 @@ MetaData & MetaData:: operator=(const MetaData & object) {
 
 
 MetaData & MetaData::setLotNumber(const std::string & value) {
-	data->LotNumber(ConvertToCDM::convert(value));
+	data->setLotNumber(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool MetaData::getLotNumber(std::string & out) const {
-	if (data->LotNumber().present()) {
-		out = ConvertFromCDM::convert(data->LotNumber().get());
+	if (data->getLotNumber().present()) {
+		out = ConvertFromCDM::convert(data->getLotNumber().get());
 		return true;
 	}
 	return false;
 }
 
 std::string MetaData::getLotNumber() const {
-	return ConvertFromCDM::convert(data->LotNumber().get());
+	return ConvertFromCDM::convert(data->getLotNumber().get());
 }
 
 bool MetaData::hasLotNumber() const {
-	return data->LotNumber().present();
+	return data->getLotNumber().present();
 }
 
 MetaData & MetaData::setManufactureDate(const xml_schema::DateTime & value) {
-	data->ManufactureDate(ConvertToCDM::convert(value));
+	data->setManufactureDate(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool MetaData::getManufactureDate(xml_schema::DateTime & out) const {
-	if (data->ManufactureDate().present()) {
-		out = ConvertFromCDM::convert(data->ManufactureDate().get());
+	if (data->getManufactureDate().present()) {
+		out = ConvertFromCDM::convert(data->getManufactureDate().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::DateTime MetaData::getManufactureDate() const {
-	return ConvertFromCDM::convert(data->ManufactureDate().get());
+	return ConvertFromCDM::convert(data->getManufactureDate().get());
 }
 
 bool MetaData::hasManufactureDate() const {
-	return data->ManufactureDate().present();
+	return data->getManufactureDate().present();
 }
 
 MetaData & MetaData::setExpirationDate(const xml_schema::DateTime & value) {
-	data->ExpirationDate(ConvertToCDM::convert(value));
+	data->setExpirationDate(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool MetaData::getExpirationDate(xml_schema::DateTime & out) const {
-	if (data->ExpirationDate().present()) {
-		out = ConvertFromCDM::convert(data->ExpirationDate().get());
+	if (data->getExpirationDate().present()) {
+		out = ConvertFromCDM::convert(data->getExpirationDate().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::DateTime MetaData::getExpirationDate() const {
-	return ConvertFromCDM::convert(data->ExpirationDate().get());
+	return ConvertFromCDM::convert(data->getExpirationDate().get());
 }
 
 bool MetaData::hasExpirationDate() const {
-	return data->ExpirationDate().present();
+	return data->getExpirationDate().present();
 }
 
 MetaData & MetaData::setModelNumber(const std::string & value) {
-	data->ModelNumber(ConvertToCDM::convert(value));
+	data->setModelNumber(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool MetaData::getModelNumber(std::string & out) const {
-	if (data->ModelNumber().present()) {
-		out = ConvertFromCDM::convert(data->ModelNumber().get());
+	if (data->getModelNumber().present()) {
+		out = ConvertFromCDM::convert(data->getModelNumber().get());
 		return true;
 	}
 	return false;
 }
 
 std::string MetaData::getModelNumber() const {
-	return ConvertFromCDM::convert(data->ModelNumber().get());
+	return ConvertFromCDM::convert(data->getModelNumber().get());
 }
 
 bool MetaData::hasModelNumber() const {
-	return data->ModelNumber().present();
+	return data->getModelNumber().present();
 }
 
 MetaData & MetaData::addUdi(const Udi & value) {
-	data->Udi().push_back(ConvertToCDM::convert(value));
+	data->getUdi().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<Udi> MetaData::getUdiList() const {
 	std::vector<Udi> result;
-	result.reserve(data->Udi().size());
-	for (const auto & value: data->Udi()) {
+	result.reserve(data->getUdi().size());
+	for (const auto & value: data->getUdi()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void MetaData::clearUdiList() {
-	data->Udi().clear();
+	data->getUdi().clear();
 }
 
 MetaData & MetaData::addManufacturer(const LocalizedText & value) {
-	data->Manufacturer().push_back(ConvertToCDM::convert(value));
+	data->getManufacturer().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<LocalizedText> MetaData::getManufacturerList() const {
 	std::vector<LocalizedText> result;
-	result.reserve(data->Manufacturer().size());
-	for (const auto & value: data->Manufacturer()) {
+	result.reserve(data->getManufacturer().size());
+	for (const auto & value: data->getManufacturer()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void MetaData::clearManufacturerList() {
-	data->Manufacturer().clear();
+	data->getManufacturer().clear();
 }
 
 MetaData & MetaData::addModelName(const LocalizedText & value) {
-	data->ModelName().push_back(ConvertToCDM::convert(value));
+	data->getModelName().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<LocalizedText> MetaData::getModelNameList() const {
 	std::vector<LocalizedText> result;
-	result.reserve(data->ModelName().size());
-	for (const auto & value: data->ModelName()) {
+	result.reserve(data->getModelName().size());
+	for (const auto & value: data->getModelName()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void MetaData::clearModelNameList() {
-	data->ModelName().clear();
+	data->getModelName().clear();
 }
 
 MetaData & MetaData::addSerialNumber(const std::string & value) {
-	data->SerialNumber().push_back(ConvertToCDM::convert(value));
+	data->getSerialNumber().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<std::string> MetaData::getSerialNumberList() const {
 	std::vector<std::string> result;
-	result.reserve(data->SerialNumber().size());
-	for (const auto & value: data->SerialNumber()) {
+	result.reserve(data->getSerialNumber().size());
+	for (const auto & value: data->getSerialNumber()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void MetaData::clearSerialNumberList() {
-	data->SerialNumber().clear();
+	data->getSerialNumber().clear();
 }
 
 

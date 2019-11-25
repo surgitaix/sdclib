@@ -79,149 +79,149 @@ AlertSignalState & AlertSignalState:: operator=(const AlertSignalState & object)
 
 
 AlertSignalState & AlertSignalState::setStateVersion(const VersionCounter & value) {
-	data->StateVersion(ConvertToCDM::convert(value));
+	data->setStateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool AlertSignalState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
+	if (data->getStateVersion().present()) {
+		out = ConvertFromCDM::convert(data->getStateVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter AlertSignalState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+	return ConvertFromCDM::convert(data->getStateVersion().get());
 }
 
 bool AlertSignalState::hasStateVersion() const {
-	return data->StateVersion().present();
+	return data->getStateVersion().present();
 }
 
 AlertSignalState & AlertSignalState::setDescriptorHandle(const HandleRef & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
+	data->setDescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 HandleRef AlertSignalState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
+	return ConvertFromCDM::convert(data->getDescriptorHandle());
 }
 
 AlertSignalState & AlertSignalState::setDescriptorVersion(const ReferencedVersion & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool AlertSignalState::getDescriptorVersion(ReferencedVersion & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 ReferencedVersion AlertSignalState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool AlertSignalState::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 AlertSignalState & AlertSignalState::setActivationState(const AlertActivation & value) {
-	data->ActivationState(ConvertToCDM::convert(value));
+	data->setActivationState(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 AlertActivation AlertSignalState::getActivationState() const {
-	return ConvertFromCDM::convert(data->ActivationState());
+	return ConvertFromCDM::convert(data->getActivationState());
 }
 
 AlertSignalState & AlertSignalState::setActualSignalGenerationDelay(const xml_schema::Duration & value) {
-	data->ActualSignalGenerationDelay(ConvertToCDM::convert(value));
+	data->setActualSignalGenerationDelay(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool AlertSignalState::getActualSignalGenerationDelay(xml_schema::Duration & out) const {
-	if (data->ActualSignalGenerationDelay().present()) {
-		out = ConvertFromCDM::convert(data->ActualSignalGenerationDelay().get());
+	if (data->getActualSignalGenerationDelay().present()) {
+		out = ConvertFromCDM::convert(data->getActualSignalGenerationDelay().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::Duration AlertSignalState::getActualSignalGenerationDelay() const {
-	return ConvertFromCDM::convert(data->ActualSignalGenerationDelay().get());
+	return ConvertFromCDM::convert(data->getActualSignalGenerationDelay().get());
 }
 
 bool AlertSignalState::hasActualSignalGenerationDelay() const {
-	return data->ActualSignalGenerationDelay().present();
+	return data->getActualSignalGenerationDelay().present();
 }
 
 AlertSignalState & AlertSignalState::setPresence(const AlertSignalPresence & value) {
-	data->Presence(ConvertToCDM::convert(value));
+	data->setPresence(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool AlertSignalState::getPresence(AlertSignalPresence & out) const {
-	if (data->Presence().present()) {
-		out = ConvertFromCDM::convert(data->Presence().get());
+	if (data->getPresence().present()) {
+		out = ConvertFromCDM::convert(data->getPresence().get());
 		return true;
 	}
 	return false;
 }
 
 AlertSignalPresence AlertSignalState::getPresence() const {
-	return ConvertFromCDM::convert(data->Presence().get());
+	return ConvertFromCDM::convert(data->getPresence().get());
 }
 
 bool AlertSignalState::hasPresence() const {
-	return data->Presence().present();
+	return data->getPresence().present();
 }
 
 AlertSignalState & AlertSignalState::setLocation(const AlertSignalPrimaryLocation & value) {
-	data->Location(ConvertToCDM::convert(value));
+	data->setLocation(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool AlertSignalState::getLocation(AlertSignalPrimaryLocation & out) const {
-	if (data->Location().present()) {
-		out = ConvertFromCDM::convert(data->Location().get());
+	if (data->getLocation().present()) {
+		out = ConvertFromCDM::convert(data->getLocation().get());
 		return true;
 	}
 	return false;
 }
 
 AlertSignalPrimaryLocation AlertSignalState::getLocation() const {
-	return ConvertFromCDM::convert(data->Location().get());
+	return ConvertFromCDM::convert(data->getLocation().get());
 }
 
 bool AlertSignalState::hasLocation() const {
-	return data->Location().present();
+	return data->getLocation().present();
 }
 
 AlertSignalState & AlertSignalState::setSlot(const unsigned int & value) {
-	data->Slot(ConvertToCDM::convert(value));
+	data->setSlot(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool AlertSignalState::getSlot(unsigned int & out) const {
-	if (data->Slot().present()) {
-		out = ConvertFromCDM::convert(data->Slot().get());
+	if (data->getSlot().present()) {
+		out = ConvertFromCDM::convert(data->getSlot().get());
 		return true;
 	}
 	return false;
 }
 
 unsigned int AlertSignalState::getSlot() const {
-	return ConvertFromCDM::convert(data->Slot().get());
+	return ConvertFromCDM::convert(data->getSlot().get());
 }
 
 bool AlertSignalState::hasSlot() const {
-	return data->Slot().present();
+	return data->getSlot().present();
 }
 
 

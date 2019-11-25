@@ -78,76 +78,76 @@ AllowedValue & AllowedValue:: operator=(const AllowedValue & object) {
 
 
 AllowedValue & AllowedValue::setValue(const std::string & value) {
-	data->Value(ConvertToCDM::convert(value));
+	data->setValue(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 std::string AllowedValue::getValue() const {
-	return ConvertFromCDM::convert(data->Value());
+	return ConvertFromCDM::convert(data->getValue());
 }
 
 AllowedValue & AllowedValue::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
+	data->setType(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool AllowedValue::getType(CodedValue & out) const {
-	if (data->Type().present()) {
-		out = ConvertFromCDM::convert(data->Type().get());
+	if (data->getType().present()) {
+		out = ConvertFromCDM::convert(data->getType().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue AllowedValue::getType() const {
-	return ConvertFromCDM::convert(data->Type().get());
+	return ConvertFromCDM::convert(data->getType().get());
 }
 
 bool AllowedValue::hasType() const {
-	return data->Type().present();
+	return data->getType().present();
 }
 
 AllowedValue & AllowedValue::setIdentification(const InstanceIdentifier & value) {
-	data->Identification(ConvertToCDM::convert(value));
+	data->setIdentification(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool AllowedValue::getIdentification(InstanceIdentifier & out) const {
-	if (data->Identification().present()) {
-		out = ConvertFromCDM::convert(data->Identification().get());
+	if (data->getIdentification().present()) {
+		out = ConvertFromCDM::convert(data->getIdentification().get());
 		return true;
 	}
 	return false;
 }
 
 InstanceIdentifier AllowedValue::getIdentification() const {
-	return ConvertFromCDM::convert(data->Identification().get());
+	return ConvertFromCDM::convert(data->getIdentification().get());
 }
 
 bool AllowedValue::hasIdentification() const {
-	return data->Identification().present();
+	return data->getIdentification().present();
 }
 
 AllowedValue & AllowedValue::setCharacteristic(const Measurement & value) {
-	data->Characteristic(ConvertToCDM::convert(value));
+	data->setCharacteristic(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool AllowedValue::getCharacteristic(Measurement & out) const {
-	if (data->Characteristic().present()) {
-		out = ConvertFromCDM::convert(data->Characteristic().get());
+	if (data->getCharacteristic().present()) {
+		out = ConvertFromCDM::convert(data->getCharacteristic().get());
 		return true;
 	}
 	return false;
 }
 
 Measurement AllowedValue::getCharacteristic() const {
-	return ConvertFromCDM::convert(data->Characteristic().get());
+	return ConvertFromCDM::convert(data->getCharacteristic().get());
 }
 
 bool AllowedValue::hasCharacteristic() const {
-	return data->Characteristic().present();
+	return data->getCharacteristic().present();
 }
 
 

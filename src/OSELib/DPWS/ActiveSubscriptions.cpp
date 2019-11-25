@@ -38,7 +38,7 @@ void ActiveSubscriptions::printSubscriptions() const
 		logInfo << std::endl;
 		for (const auto & t_item : ml_subscriptions) {
 			logInfo << "Subscription with my id: " << t_item.first << std::endl;
-			logInfo << "Sink: " << t_item.second.m_notifyTo.Address() << std::endl;
+			logInfo << "Sink: " << t_item.second.m_notifyTo.getAddress() << std::endl;
 			logInfo << "Actions: " << std::endl;
 			for (const auto & t_action : t_item.second.m_actions) {
 				logInfo << "" << t_action << std::endl;

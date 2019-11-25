@@ -31,6 +31,11 @@
 // in the accompanying FLOSSE file.
 //
 
+/**
+ * @file
+ * @brief Generated from ws-policy.xsd.
+ */
+
 #ifndef WS_POLICY_HXX
 #define WS_POLICY_HXX
 
@@ -67,54 +72,163 @@
 
 namespace WS
 {
+  /**
+   * @brief C++ namespace for the %http://www.w3.org/ns/ws-policy
+   * schema namespace.
+   */
   namespace POLICY
   {
+    /**
+     * @brief Class corresponding to the %Policy schema type.
+     *
+     * @nosubgrouping
+     */
     class Policy: public ::xml_schema::Type
     {
       public:
-      // StreamSource
-      //
+      /**
+       * @name StreamSource
+       *
+       * @brief Accessor and modifier functions for the %StreamSource
+       * required element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::STREAMING::StreamSource StreamSourceType;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< StreamSourceType, char > StreamSourceTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element.
+       *
+       * @return A constant reference to the element.
+       */
       const StreamSourceType&
-      StreamSource () const;
+      getStreamSource () const;
 
+      /**
+       * @brief Return a read-write reference to the element.
+       *
+       * @return A reference to the element.
+       */
       StreamSourceType&
-      StreamSource ();
+      getStreamSource ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      StreamSource (const StreamSourceType& x);
+      setStreamSource (const StreamSourceType& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      StreamSource (::std::unique_ptr< StreamSourceType > p);
+      setStreamSource (::std::unique_ptr< StreamSourceType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       Policy (const StreamSourceType&);
 
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes
+       * (::std::unique_ptr version).
+       *
+       * This constructor will try to use the passed values directly
+       * instead of making copies.
+       */
       Policy (::std::unique_ptr< StreamSourceType >);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       Policy (const ::xercesc::DOMElement& e,
               ::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       Policy (const Policy& x,
               ::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual Policy*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       Policy&
       operator= (const Policy& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~Policy ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -122,6 +236,8 @@ namespace WS
 
       protected:
       ::xsd::cxx::tree::one< StreamSourceType > StreamSource_;
+
+      //@endcond
     };
   }
 }
@@ -136,98 +252,258 @@ namespace WS
 {
   namespace POLICY
   {
-    // Parse a URI or a local file.
-    //
+    /**
+     * @name Parsing functions for the %Policy document root.
+     */
+    //@{
 
+    /**
+     * @brief Parse a URI or a local file.
+     *
+     * @param uri A URI or a local file name.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (const ::std::string& uri,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parsePolicy (const ::std::string& uri,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a URI or a local file with an error handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (const ::std::string& uri,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parsePolicy (const ::std::string& uri,
+                 ::xml_schema::ErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a URI or a local file with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (const ::std::string& uri,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parsePolicy (const ::std::string& uri,
+                 ::xercesc::DOMErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    // Parse std::istream.
-    //
-
+    /**
+     * @brief Parse a standard input stream.
+     *
+     * @param is A standrad input stream.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (::std::istream& is,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parsePolicy (::std::istream& is,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a standard input stream with an error handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (::std::istream& is,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parsePolicy (::std::istream& is,
+                 ::xml_schema::ErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a standard input stream with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (::std::istream& is,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parsePolicy (::std::istream& is,
+                 ::xercesc::DOMErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a standard input stream with a resource id.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (::std::istream& is,
-             const ::std::string& id,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parsePolicy (::std::istream& is,
+                 const ::std::string& id,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a standard input stream with a resource id and an
+     * error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (::std::istream& is,
-             const ::std::string& id,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parsePolicy (::std::istream& is,
+                 const ::std::string& id,
+                 ::xml_schema::ErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a standard input stream with a resource id and a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (::std::istream& is,
-             const ::std::string& id,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parsePolicy (::std::istream& is,
+                 const ::std::string& id,
+                 ::xercesc::DOMErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    // Parse xercesc::InputSource.
-    //
-
+    /**
+     * @brief Parse a Xerces-C++ input source.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (::xercesc::InputSource& is,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parsePolicy (::xercesc::InputSource& is,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a Xerces-C++ input source with an error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (::xercesc::InputSource& is,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parsePolicy (::xercesc::InputSource& is,
+                 ::xml_schema::ErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a Xerces-C++ input source with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (::xercesc::InputSource& is,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parsePolicy (::xercesc::InputSource& is,
+                 ::xercesc::DOMErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    // Parse xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     */
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (const ::xercesc::DOMDocument& d,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parsePolicy (const ::xercesc::DOMDocument& d,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A pointer to the Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function is normally used together with the keep_dom and
+     * own_dom parsing flags to assign ownership of the DOM document
+     * to the object model.
+     */
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parsePolicy (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    //@}
   }
 }
 
@@ -243,73 +519,164 @@ namespace WS
 {
   namespace POLICY
   {
-    // Serialize to std::ostream.
-    //
+    /**
+     * @name Serialization functions for the %Policy document root.
+     */
+    //@{
 
+    /**
+     * @brief Serialize to a standard output stream.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    Policy_ (::std::ostream& os,
-             const ::WS::POLICY::Policy& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
+    serializePolicy (::std::ostream& os,
+                     const ::WS::POLICY::Policy& x, 
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with an error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Policy_ (::std::ostream& os,
-             const ::WS::POLICY::Policy& x, 
-             ::xml_schema::ErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
+    serializePolicy (::std::ostream& os,
+                     const ::WS::POLICY::Policy& x, 
+                     ::xml_schema::ErrorHandler& eh,
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Policy_ (::std::ostream& os,
-             const ::WS::POLICY::Policy& x, 
-             ::xercesc::DOMErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
+    serializePolicy (::std::ostream& os,
+                     const ::WS::POLICY::Policy& x, 
+                     ::xercesc::DOMErrorHandler& eh,
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
 
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    Policy_ (::xercesc::XMLFormatTarget& ft,
-             const ::WS::POLICY::Policy& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
+    serializePolicy (::xercesc::XMLFormatTarget& ft,
+                     const ::WS::POLICY::Policy& x, 
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with an error
+     * handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Policy_ (::xercesc::XMLFormatTarget& ft,
-             const ::WS::POLICY::Policy& x, 
-             ::xml_schema::ErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
+    serializePolicy (::xercesc::XMLFormatTarget& ft,
+                     const ::WS::POLICY::Policy& x, 
+                     ::xml_schema::ErrorHandler& eh,
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    Policy_ (::xercesc::XMLFormatTarget& ft,
-             const ::WS::POLICY::Policy& x, 
-             ::xercesc::DOMErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
+    serializePolicy (::xercesc::XMLFormatTarget& ft,
+                     const ::WS::POLICY::Policy& x, 
+                     ::xercesc::DOMErrorHandler& eh,
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
 
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to an existing Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param x An object model to serialize.
+     * @param f Serialization flags.
+     *
+     * Note that it is your responsibility to create the DOM document
+     * with the correct root element as well as set the necessary
+     * namespace mapping attributes.
+     */
     void
-    Policy_ (::xercesc::DOMDocument& d,
-             const ::WS::POLICY::Policy& x,
-             ::xml_schema::Flags f = 0);
+    serializePolicy (::xercesc::DOMDocument& d,
+                     const ::WS::POLICY::Policy& x,
+                     ::xml_schema::Flags f = 0);
 
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to a new Xerces-C++ DOM document.
+     *
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param f Serialization flags.
+     * @return A pointer to the new Xerces-C++ DOM document.
+     */
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Policy_ (const ::WS::POLICY::Policy& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             ::xml_schema::Flags f = 0);
+    serializePolicy (const ::WS::POLICY::Policy& x, 
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     ::xml_schema::Flags f = 0);
+
+    //@}
 
     void
     operator<< (::xercesc::DOMElement&, const Policy&);

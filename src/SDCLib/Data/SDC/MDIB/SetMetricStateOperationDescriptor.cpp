@@ -80,188 +80,188 @@ SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor:: operator
 
 
 SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
+	data->setType(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetMetricStateOperationDescriptor::getType(CodedValue & out) const {
-	if (data->Type().present()) {
-		out = ConvertFromCDM::convert(data->Type().get());
+	if (data->getType().present()) {
+		out = ConvertFromCDM::convert(data->getType().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue SetMetricStateOperationDescriptor::getType() const {
-	return ConvertFromCDM::convert(data->Type().get());
+	return ConvertFromCDM::convert(data->getType().get());
 }
 
 bool SetMetricStateOperationDescriptor::hasType() const {
-	return data->Type().present();
+	return data->getType().present();
 }
 
 SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setHandle(const Handle & value) {
-	data->Handle(ConvertToCDM::convert(value));
+	data->setHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 Handle SetMetricStateOperationDescriptor::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle());
+	return ConvertFromCDM::convert(data->getHandle());
 }
 
 SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setDescriptorVersion(const VersionCounter & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetMetricStateOperationDescriptor::getDescriptorVersion(VersionCounter & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter SetMetricStateOperationDescriptor::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool SetMetricStateOperationDescriptor::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setSafetyClassification(const SafetyClassification & value) {
-	data->SafetyClassification(ConvertToCDM::convert(value));
+	data->setSafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetMetricStateOperationDescriptor::getSafetyClassification(SafetyClassification & out) const {
-	if (data->SafetyClassification().present()) {
-		out = ConvertFromCDM::convert(data->SafetyClassification().get());
+	if (data->getSafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->getSafetyClassification().get());
 		return true;
 	}
 	return false;
 }
 
 SafetyClassification SetMetricStateOperationDescriptor::getSafetyClassification() const {
-	return ConvertFromCDM::convert(data->SafetyClassification().get());
+	return ConvertFromCDM::convert(data->getSafetyClassification().get());
 }
 
 bool SetMetricStateOperationDescriptor::hasSafetyClassification() const {
-	return data->SafetyClassification().present();
+	return data->getSafetyClassification().present();
 }
 
 SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setOperationTarget(const HandleRef & value) {
-	data->OperationTarget(ConvertToCDM::convert(value));
+	data->setOperationTarget(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 HandleRef SetMetricStateOperationDescriptor::getOperationTarget() const {
-	return ConvertFromCDM::convert(data->OperationTarget());
+	return ConvertFromCDM::convert(data->getOperationTarget());
 }
 
 SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setMaxTimeToFinish(const xml_schema::Duration & value) {
-	data->MaxTimeToFinish(ConvertToCDM::convert(value));
+	data->setMaxTimeToFinish(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetMetricStateOperationDescriptor::getMaxTimeToFinish(xml_schema::Duration & out) const {
-	if (data->MaxTimeToFinish().present()) {
-		out = ConvertFromCDM::convert(data->MaxTimeToFinish().get());
+	if (data->getMaxTimeToFinish().present()) {
+		out = ConvertFromCDM::convert(data->getMaxTimeToFinish().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::Duration SetMetricStateOperationDescriptor::getMaxTimeToFinish() const {
-	return ConvertFromCDM::convert(data->MaxTimeToFinish().get());
+	return ConvertFromCDM::convert(data->getMaxTimeToFinish().get());
 }
 
 bool SetMetricStateOperationDescriptor::hasMaxTimeToFinish() const {
-	return data->MaxTimeToFinish().present();
+	return data->getMaxTimeToFinish().present();
 }
 
 SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setInvocationEffectiveTimeout(const xml_schema::Duration & value) {
-	data->InvocationEffectiveTimeout(ConvertToCDM::convert(value));
+	data->setInvocationEffectiveTimeout(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetMetricStateOperationDescriptor::getInvocationEffectiveTimeout(xml_schema::Duration & out) const {
-	if (data->InvocationEffectiveTimeout().present()) {
-		out = ConvertFromCDM::convert(data->InvocationEffectiveTimeout().get());
+	if (data->getInvocationEffectiveTimeout().present()) {
+		out = ConvertFromCDM::convert(data->getInvocationEffectiveTimeout().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::Duration SetMetricStateOperationDescriptor::getInvocationEffectiveTimeout() const {
-	return ConvertFromCDM::convert(data->InvocationEffectiveTimeout().get());
+	return ConvertFromCDM::convert(data->getInvocationEffectiveTimeout().get());
 }
 
 bool SetMetricStateOperationDescriptor::hasInvocationEffectiveTimeout() const {
-	return data->InvocationEffectiveTimeout().present();
+	return data->getInvocationEffectiveTimeout().present();
 }
 
 SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setRetriggerable(const bool & value) {
-	data->Retriggerable(ConvertToCDM::convert(value));
+	data->setRetriggerable(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetMetricStateOperationDescriptor::getRetriggerable(bool & out) const {
-	if (data->Retriggerable().present()) {
-		out = ConvertFromCDM::convert(data->Retriggerable().get());
+	if (data->getRetriggerable().present()) {
+		out = ConvertFromCDM::convert(data->getRetriggerable().get());
 		return true;
 	}
 	return false;
 }
 
 bool SetMetricStateOperationDescriptor::getRetriggerable() const {
-	return ConvertFromCDM::convert(data->Retriggerable().get());
+	return ConvertFromCDM::convert(data->getRetriggerable().get());
 }
 
 bool SetMetricStateOperationDescriptor::hasRetriggerable() const {
-	return data->Retriggerable().present();
+	return data->getRetriggerable().present();
 }
 
 SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::setAccessLevel(const AccessLevel & value) {
-	data->AccessLevel(ConvertToCDM::convert(value));
+	data->setAccessLevel(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetMetricStateOperationDescriptor::getAccessLevel(AccessLevel & out) const {
-	if (data->AccessLevel().present()) {
-		out = ConvertFromCDM::convert(data->AccessLevel().get());
+	if (data->getAccessLevel().present()) {
+		out = ConvertFromCDM::convert(data->getAccessLevel().get());
 		return true;
 	}
 	return false;
 }
 
 AccessLevel SetMetricStateOperationDescriptor::getAccessLevel() const {
-	return ConvertFromCDM::convert(data->AccessLevel().get());
+	return ConvertFromCDM::convert(data->getAccessLevel().get());
 }
 
 bool SetMetricStateOperationDescriptor::hasAccessLevel() const {
-	return data->AccessLevel().present();
+	return data->getAccessLevel().present();
 }
 
 SetMetricStateOperationDescriptor & SetMetricStateOperationDescriptor::addModifiableData(const std::string & value) {
-	data->ModifiableData().push_back(ConvertToCDM::convert(value));
+	data->getModifiableData().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<std::string> SetMetricStateOperationDescriptor::getModifiableDataList() const {
 	std::vector<std::string> result;
-	result.reserve(data->ModifiableData().size());
-	for (const auto & value: data->ModifiableData()) {
+	result.reserve(data->getModifiableData().size());
+	for (const auto & value: data->getModifiableData()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void SetMetricStateOperationDescriptor::clearModifiableDataList() {
-	data->ModifiableData().clear();
+	data->getModifiableData().clear();
 }
 
 

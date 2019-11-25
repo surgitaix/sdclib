@@ -79,41 +79,41 @@ DicomTransferCapability & DicomTransferCapability:: operator=(const DicomTransfe
 
 
 DicomTransferCapability & DicomTransferCapability::setSopClass(const std::string & value) {
-	data->SopClass(ConvertToCDM::convert(value));
+	data->setSopClass(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 std::string DicomTransferCapability::getSopClass() const {
-	return ConvertFromCDM::convert(data->SopClass());
+	return ConvertFromCDM::convert(data->getSopClass());
 }
 
 DicomTransferCapability & DicomTransferCapability::setTransferRole(const DicomTransferRole & value) {
-	data->TransferRole(ConvertToCDM::convert(value));
+	data->setTransferRole(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 DicomTransferRole DicomTransferCapability::getTransferRole() const {
-	return ConvertFromCDM::convert(data->TransferRole());
+	return ConvertFromCDM::convert(data->getTransferRole());
 }
 
 DicomTransferCapability & DicomTransferCapability::addTransferSyntax(const std::string & value) {
-	data->TransferSyntax().push_back(ConvertToCDM::convert(value));
+	data->getTransferSyntax().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<std::string> DicomTransferCapability::getTransferSyntaxList() const {
 	std::vector<std::string> result;
-	result.reserve(data->TransferSyntax().size());
-	for (const auto & value: data->TransferSyntax()) {
+	result.reserve(data->getTransferSyntax().size());
+	for (const auto & value: data->getTransferSyntax()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void DicomTransferCapability::clearTransferSyntaxList() {
-	data->TransferSyntax().clear();
+	data->getTransferSyntax().clear();
 }
 
 
