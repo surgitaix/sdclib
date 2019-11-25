@@ -24,6 +24,8 @@
 #include <iostream>
 #include <memory>
 #include <vector>
+#include <exception>
+
 
 #include <Poco/Net/NetException.h>
 
@@ -204,6 +206,7 @@ void SDCConsumer::disconnect() {
 	if (_adapter) {
 		_adapter->stop();
 		_adapter.reset();
+		connected = false;
 	}
 }
 
@@ -240,7 +243,16 @@ MdibContainer SDCConsumer::getMdib() {
 	if (!requestMdib()) {
 		onConnectionLost();
 	}
-    return *mdib;
+	if(mdib)
+	{
+		return *mdib;
+	}
+	else
+	{
+		// TODO: Replace by correct error handling strategy
+		// Idea: Maybe return a shared pointer to MDIB here and transfer nullptr check to user code!
+		throw std::exception();
+	}
 }
 
 MdDescription SDCConsumer::getMdDescription()

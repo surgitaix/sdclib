@@ -86,7 +86,8 @@ public:
 	~SDCConsumer();
 
     /**
-    * @brief Get the complete MDIB (description and states).
+    * @brief Get the complete MDIB (description and states). In case of connection loss
+    * during retrieval, an exception is thrown
     *
     * @return The MDIB container
     */
