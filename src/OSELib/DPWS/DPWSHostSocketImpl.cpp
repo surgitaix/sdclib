@@ -363,8 +363,8 @@ void DPWSHostSocketImpl::onMulticastSocketReadable(Poco::Net::ReadableNotificati
 	Poco::Net::SocketAddress t_remoteAddr;
 	const int t_received(t_socket.receiveFrom(t_buf.begin(), t_available, t_remoteAddr, 0));
 	Helper::BufferAdapter t_adapter(t_buf, t_received);
-	auto t_requestMessage(parseMessage(t_adapter));
 
+	auto t_requestMessage(parseMessage(t_adapter));
 	if (nullptr == t_requestMessage) {
 		return;
 	}

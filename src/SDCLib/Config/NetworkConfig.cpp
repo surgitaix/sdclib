@@ -174,31 +174,6 @@ bool NetworkConfig::isBound() const
     return !ml_networkInterfaces.empty();
 }
 
-bool NetworkConfig::belongsTo(Poco::Net::IPAddress p_IP, bool p_exact) const
-{
-    // Unicast
-    for (const auto& t_if : ml_networkInterfaces)
-    {
-        // Default to IPv4
-        auto t_networkInterfaceIP = t_if->m_IPv4;
-        // IPv6?
-        if(t_if->m_if.supportsIPv6() && (p_IP.family() == Poco::Net::AddressFamily::IPv6)) {
-            t_networkInterfaceIP = t_if->m_IPv6;
-        }
-        if(!p_exact) {
-			auto t_subnetMask = t_if->m_if.subnetMask();
-			t_networkInterfaceIP.mask(t_subnetMask);
-			p_IP.mask(t_subnetMask);
-        }
-        // Compare - Found one?
-        if (t_networkInterfaceIP == p_IP) {
-            return true;
-        }
-    }
-    // No match
-    return false;
-}
-
 // DiscoveryTime
 std::chrono::milliseconds NetworkConfig::getDiscoveryTime() const
 {

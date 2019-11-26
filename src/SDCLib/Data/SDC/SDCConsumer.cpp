@@ -171,9 +171,6 @@ SDCConsumer::SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, OSELib::D
             log_error([] { return "Could not start ConsumerAdapter!"; });
             disconnect();
         }
-        else {
-            m_connected = true;
-        }
 	} catch (const Poco::Net::NetException & e) {
 		log_error([&] { return "Exception: " + std::string(e.what()) + " Opening socket impossible. Aborted."; });
         disconnect();
@@ -184,7 +181,7 @@ SDCConsumer::SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, OSELib::D
         // FIXME: Zombie state?
     }
 
-	if (!m_connected) {
+	if (!isConnected()) {
 		log_error([&] { return "Connecting to " + m_deviceDescription->getEPR() + " failed."; });
 	}
 }
@@ -204,7 +201,10 @@ SDCConsumer::~SDCConsumer()
         // FIXME: What does this tell us? The dtor should handle a proper disconnect for us! RAII
     }
 }
-
+bool SDCConsumer::isConnected() const
+{
+	return (nullptr != m_adapter);
+}
 void SDCConsumer::disconnect()
 {
 	if (m_adapter) {

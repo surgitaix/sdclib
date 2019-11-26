@@ -2,7 +2,7 @@
  * DPWSDiscoveryClientSocketImpl.cpp
  *
  *  Created on: 11.12.2015, matthias
- *  Modified on: 23.08.2019, baumeister
+ *  Modified on: 26.11.2019, baumeister
  *
  */
 
@@ -264,23 +264,16 @@ void DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable(Poco::Net::Readabl
 		return;
 	}
 
-    // Only read if this belongs to this Config! - Peek first
-    Poco::Net::SocketAddress t_sender;
-    Poco::Buffer<char> t_peekBuf(1);
-    t_socket.receiveFrom(t_peekBuf.begin(), 1, t_sender, MSG_PEEK);
-    if (m_networkConfig->isBound() && !m_networkConfig->belongsTo(t_sender.host(), false)) {
-        return;
-    }
-
 	Poco::Buffer<char> t_buf(t_available);
 	Poco::Net::SocketAddress t_remoteAddr;
 	const int t_received(t_socket.receiveFrom(t_buf.begin(), t_available, t_remoteAddr, 0));
 	Helper::BufferAdapter t_adapter(t_buf, t_received);
-	auto t_message(parseMessage(t_adapter));
 
+	auto t_message(parseMessage(t_adapter));
 	if (nullptr == t_message) {
 		return;
 	}
+
 	if (! t_message->Header().MessageID().present()) {
 		return;
 	}

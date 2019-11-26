@@ -17,7 +17,7 @@
 /**
  *  @file NetworkConfig.h
  *  @project SDCLib
- *  @date 02.07.2019
+ *  @date 26.11.2019
  *  @author baumeister
  *  @copyright (c) SurgiTAIX AG
  *
@@ -125,9 +125,6 @@ namespace SDCLib
             NetInterface_shared_ptr getMDPWSInterface() { return m_MDPWSInterface; }
             // Listening Port of the HTTP Server
             SDCPort getMDPWSPort() { return m_MDPWSPort; }
-
-            // Note: Only works with IPv4 IPAddresses!
-            bool belongsTo(Poco::Net::IPAddress p_IP, bool p_exact) const;
 
             // Internal usage
             std::string _getMulticastIPv4() const { return m_MULTICAST_IPv4; }

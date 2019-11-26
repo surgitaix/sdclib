@@ -1462,7 +1462,7 @@ bool SDCProvider::setMdDescription(std::string p_xml)
 	auto t_rawMessage = OSELib::Helper::Message::create(p_xml);
 	auto t_xercesDocument = OSELib::Helper::XercesDocumentWrapper::create(*t_rawMessage, t_grammarProvider);
 
-	std::unique_ptr<CDM::Mdib> t_result(CDM::MdibContainer(t_xercesDocument->getDocument()));
+	auto t_result(CDM::MdibContainer(t_xercesDocument->getDocument()));
 
 	if ((nullptr != t_result) && (t_result->MdDescription().present())) {
         std::unique_ptr<MdDescription> t_MdDescription(new MdDescription(ConvertFromCDM::convert(t_result->MdDescription().get())));
@@ -1510,7 +1510,7 @@ std::string SDCProvider::getEndpointReference() const
 
 template<typename T> InvocationState SDCProvider::onStateChangeRequest(const T & p_state, const OperationInvocationContext & p_oic)
 {
-    auto t_iter(ml_stateHandlers.find(p_state.getDescriptorHandle()));
+    const auto t_iter(ml_stateHandlers.find(p_state.getDescriptorHandle()));
     if (t_iter != ml_stateHandlers.end()) {
     	if (SDCProviderMDStateHandler<T> * t_handler = dynamic_cast<SDCProviderMDStateHandler<T> *>(t_iter->second)) {
         	return t_handler->onStateChangeRequest(p_state, p_oic);

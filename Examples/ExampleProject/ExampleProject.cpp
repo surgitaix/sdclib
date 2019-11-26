@@ -442,6 +442,7 @@ int main()
 		consumer.disconnect();
 	} else {
 		DebugOut(DebugOut::Default, "ExampleProject") << "Discovery failed.";
+		return -1;
 	}
 
 	t_serviceManager.setHelloReceivedHandler(nullptr);
@@ -452,5 +453,5 @@ int main()
 
 	DebugOut(DebugOut::Default, "ExampleProject") << "Shutdown." << std::endl;
 	SDCLibrary::getInstance().shutdown();
-
+	return 0;
 }

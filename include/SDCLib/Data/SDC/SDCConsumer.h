@@ -57,7 +57,7 @@ namespace SDCLib
 				//TODO kick after consumer state handler refactoring
 				friend class SDCConsumerOperationInvokedHandler;
 
-				// todo remove friend classes and only use oselibconsumer adapter
+				// todo remove friend classes and only use consumer adapter
 				friend class OSELib::BICEPSServiceEventSink;
 				friend class OSELib::SetServiceEventSink;
 				friend class OSELib::DPWS::PingManager;
@@ -90,7 +90,6 @@ namespace SDCLib
 				SDCConsumerSubscriptionLostHandler * m_subscriptionLostHandler = nullptr;
 
 				unsigned long long int m_lastKnownMDIBVersion = 0;
-				std::atomic<bool> m_connected = ATOMIC_VAR_INIT(false);
 
 				std::unique_ptr<SDCConsumerAdapter> m_adapter = nullptr;
 
@@ -228,9 +227,7 @@ namespace SDCLib
 				*
 				* @return True, if connected
 				*/
-				bool isConnected() const {
-					return m_connected;
-				}
+				bool isConnected() const;
 
 				/**
 				* @brief Set a handler which will be invoked if a ping fails.

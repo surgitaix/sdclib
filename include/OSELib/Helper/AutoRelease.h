@@ -8,6 +8,8 @@
 #ifndef OSELIB_HELPER_AUTORELEASE_H_
 #define OSELIB_HELPER_AUTORELEASE_H_
 
+#include <assert.h>
+
 namespace OSELib
 {
 	namespace Helper
@@ -15,7 +17,7 @@ namespace OSELib
 		template<class T>
 		struct AutoRelease
 		{
-			void operator()(T * object) { object->release(); }
+			void operator()(T * object) { assert(nullptr != object); object->release(); }
 		};
 
 	}
