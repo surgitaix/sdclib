@@ -15,18 +15,18 @@ namespace DPWS {
 
 template<class Message>
 AddressType MessageAdapter::EPRAddress(const Message & p_message) {
-	return p_message.EndpointReference().Address();
+	return p_message.getEndpointReference().getAddress();
 }
 
 template<class Message>
 MetadataVersionType MessageAdapter::MetadataVersion(const Message & p_message) {
-	return p_message.MetadataVersion();
+	return p_message.getMetadataVersion();
 }
 
 template<class Message>
 XAddressesType MessageAdapter::XAddresses(const Message & p_message) {
-	if (p_message.XAddrs().present()) {
-		return p_message.XAddrs().get();
+	if (p_message.getXAddrs().present()) {
+		return p_message.getXAddrs().get();
 	} else {
 		return XAddressesType();
 	}
@@ -35,8 +35,8 @@ XAddressesType MessageAdapter::XAddresses(const Message & p_message) {
 
 template<class Message>
 ScopesType MessageAdapter::Scopes(const Message & p_message) {
-	if (p_message.Scopes().present()) {
-		return p_message.Scopes().get();
+	if (p_message.getScopes().present()) {
+		return p_message.getScopes().get();
 	} else {
 		return ScopesType();
 	}
@@ -45,8 +45,8 @@ ScopesType MessageAdapter::Scopes(const Message & p_message) {
 
 template<class Message>
 TypesType MessageAdapter::Types(const Message & p_message) {
-	if (p_message.Types().present()) {
-		return p_message.Types().get();
+	if (p_message.getTypes().present()) {
+		return p_message.getTypes().get();
 	} else {
 		return TypesType();
 	}

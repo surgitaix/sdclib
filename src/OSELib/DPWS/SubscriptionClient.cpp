@@ -34,7 +34,7 @@ public:
 
 	virtual std::unique_ptr<MESSAGEMODEL::Header> createHeader() override {
 		auto t_header(OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::RenewTraits>::createHeader());
-		t_header->Identifier(m_identifier);
+		t_header->setIdentifier(m_identifier);
 		return t_header;
 	}
 };
@@ -51,7 +51,7 @@ public:
 
 	virtual std::unique_ptr<MESSAGEMODEL::Header> createHeader() override {
 		auto t_header(OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::GetStatusTraits>::createHeader());
-		t_header->Identifier(m_identifier);
+		t_header->setIdentifier(m_identifier);
 		return t_header;
 	}
 };
@@ -68,7 +68,7 @@ public:
 
 	virtual std::unique_ptr<MESSAGEMODEL::Header> createHeader() override {
 		auto t_header(OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::UnsubscribeTraits>::createHeader());
-		t_header->Identifier(m_identifier);
+		t_header->setIdentifier(m_identifier);
 		return t_header;
 	}
 };
@@ -108,29 +108,29 @@ void SubscriptionClient::run() {
 		const WS::ADDRESSING::AttributedURIType t_address(t_subscription.second.m_sinkURI.toString());
 		WS::ADDRESSING::EndpointReferenceType t_epr(t_address);
 		WS::ADDRESSING::EndpointReferenceType::ReferenceParametersType t_referenceParameters;
-		t_referenceParameters.Identifier(WS::EVENTING::Identifier(t_subscription.first));
-		t_epr.ReferenceParameters().set(t_referenceParameters);
+		t_referenceParameters.setIdentifier(WS::EVENTING::Identifier(t_subscription.first));
+		t_epr.getReferenceParameters().set(t_referenceParameters);
 		const WS::EVENTING::DeliveryType t_delivery(t_epr);
 
 
 		OSELib::DPWS::SubscribeTraits::Request t_request(t_delivery);
-		t_request.Expires(t_defaultExpires);
-		t_request.Filter(t_subscription.second.m_actions);
+		t_request.setExpires(t_defaultExpires);
+		t_request.setFilter(t_subscription.second.m_actions);
 
 		using SubscribeInvoke = OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::SubscribeTraits>;
 		SubscribeInvoke t_subscribeInvoke(t_subscription.second.m_sourceURI, t_grammarProvider);
 		auto t_response(t_subscribeInvoke.invoke(t_request, m_SSLContext));
 
 		if (!t_response
-			|| !t_response->SubscriptionManager().ReferenceParameters().present()
-			|| !t_response->SubscriptionManager().ReferenceParameters().get().Identifier().present()) {
+			|| !t_response->getSubscriptionManager().getReferenceParameters().present()
+			|| !t_response->getSubscriptionManager().getReferenceParameters().get().getIdentifier().present()) {
 			log_fatal([&] { return "Subscribing failed."; });
 			continue;
 		} else {
 			log_information([] { return "Subscription accomplished"; });
 		}
 
-		m_subscriptionIdentifiers.emplace(t_subscription.first, t_response->SubscriptionManager().ReferenceParameters().get().Identifier().get());
+		m_subscriptionIdentifiers.emplace(t_subscription.first, t_response->getSubscriptionManager().getReferenceParameters().get().getIdentifier().get());
 	}
 
 	while (Poco::Thread::trySleep(t_sleepQueryGetStatus_ms)) {
@@ -147,7 +147,7 @@ void SubscriptionClient::run() {
 
 			// Valid response - Init
 			if (t_response != nullptr) {
-				t_expireDuration = OSELib::Helper::DurationWrapper(t_response.get()->Expires().get());
+				t_expireDuration = OSELib::Helper::DurationWrapper(t_response.get()->getExpires().get());
 				log_debug([&] { return "GetStatus " + m_subscriptionIdentifiers.at(subscription.first) + ": " + t_expireDuration.toString() + "."; });
 			}
 			else {
@@ -161,7 +161,7 @@ void SubscriptionClient::run() {
 			{
 				log_debug([&] { return "Renewing " + m_subscriptionIdentifiers.at(subscription.first) + " (" + t_expireDuration.toString() + "):..."; });
 				OSELib::DPWS::RenewTraits::Request t_request;
-				t_request.Expires(t_defaultExpires);
+				t_request.setExpires(t_defaultExpires);
 				RenewInvoke t_renewInvoke(subscription.second.m_sourceURI, m_subscriptionIdentifiers.at(subscription.first), t_grammarProvider);
 				auto t_response(t_renewInvoke.invoke(t_request, m_SSLContext));
 

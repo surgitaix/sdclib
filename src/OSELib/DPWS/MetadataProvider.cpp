@@ -41,9 +41,9 @@ std::string MetadataProvider::getBICEPSServicePath() const {
 WS::MEX::Metadata MetadataProvider::createDeviceMetadata(const std::string & p_serverAddress, bool p_SSL) const
 {
 	WS::MEX::Metadata t_result;
-	t_result.MetadataSection().push_back(createMetadataSectionThisModel());
-	t_result.MetadataSection().push_back(createMetadataSectionThisDevice());
-	t_result.MetadataSection().push_back(
+	t_result.getMetadataSection().push_back(createMetadataSectionThisModel());
+	t_result.getMetadataSection().push_back(createMetadataSectionThisDevice());
+	t_result.getMetadataSection().push_back(
 		createMetadataSectionRelationship(
 			createHostMetadata(p_serverAddress),
 			{
@@ -62,16 +62,16 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionThisMod
 	ThisModel::ManufacturerType t_manufacturer(m_deviceCharacteristics.getManufacturer());
 
 	ThisModel t_thisModel;
-	t_thisModel.Manufacturer().push_back(t_manufacturer);
+	t_thisModel.getManufacturer().push_back(t_manufacturer);
 
     for(auto &t_modelName : m_deviceCharacteristics.getModelNames()) {
 //		t_thisModel.ModelName().push_back(std::string(t_modelName.first + ":" + t_modelName.second)); // leads to providing two times: en-US
-    	t_thisModel.ModelName().push_back(std::string(t_modelName.second));
+    	t_thisModel.getModelName().push_back(std::string(t_modelName.second));
 	}
 
 	MetadataDialect t_dialectThisModel(OSELib::WS_MEX_DIALECT_MODEL);
 	MetadataSection t_result(t_dialectThisModel);
-	t_result.ThisModel().set(t_thisModel);
+	t_result.getThisModel().set(t_thisModel);
 	return t_result;
 }
 
@@ -87,11 +87,11 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionThisDev
 	// note that here no field defined for that purpose
 	ThisDevice t_thisDevice;
 	for(auto &t_ent1 : t_friendlyName) {
-		t_thisDevice.FriendlyName().push_back(t_ent1.second);
+		t_thisDevice.getFriendlyName().push_back(t_ent1.second);
 	}
 
 	MetadataSection t_result((MetadataDialect(OSELib::WS_MEX_DIALECT_DEVICE)));
-	t_result.ThisDevice().set(t_thisDevice);
+	t_result.getThisDevice().set(t_thisDevice);
 	return t_result;
 }
 
@@ -114,13 +114,13 @@ MetadataProvider::Hosted MetadataProvider::createHostedGetService(const std::str
 
 	Hosted::ServiceIdType t_hostedServiceId(SDC::QNAME_GETSERVICE);
 	Hosted t_hosted(tl_hostedTypes, t_hostedServiceId);
-	t_hosted.EndpointReference().push_back(t_hostedEPR);
+	t_hosted.getEndpointReference().push_back(t_hostedEPR);
 	return t_hosted;
 }
 WS::MEX::Metadata MetadataProvider::createGetServiceMetadata(const std::string & p_serverAddress, bool p_SSL) const {
 	WS::MEX::Metadata t_result;
-	t_result.MetadataSection().push_back(createMetadataSectionWSDLForGetService(p_serverAddress, p_SSL));
-	t_result.MetadataSection().push_back(
+	t_result.getMetadataSection().push_back(createMetadataSectionWSDLForGetService(p_serverAddress, p_SSL));
+	t_result.getMetadataSection().push_back(
 			createMetadataSectionRelationship(createHostMetadata(p_serverAddress), { createHostedGetService(p_serverAddress, p_SSL) } ));
 	return t_result;
 }
@@ -128,7 +128,7 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionWSDLFor
 	MetadataSection metadataSectionWsdl((MetadataDialect(OSELib::WS_MEX_DIALECT_WSDL)));
     auto t_protocol = HTTPSProtocolPrefix; // HTTPS by default
     if(!p_SSL) { t_protocol = HTTPProtocolPrefix; } // If specified else -> Switch to HTTP
-	metadataSectionWsdl.Location().set(MetadataLocation(t_protocol + p_serverAddress + getGetServicePath() + "/description.wsdl"));
+	metadataSectionWsdl.getLocation().set(MetadataLocation(t_protocol + p_serverAddress + getGetServicePath() + "/description.wsdl"));
 	return metadataSectionWsdl;
 }
 
@@ -144,14 +144,14 @@ MetadataProvider::Hosted MetadataProvider::createHostedSetService(const std::str
 
 	Hosted::ServiceIdType t_hostedServiceId(SDC::QNAME_SETSERVICE);
 	Hosted t_hosted(tl_hostedTypes, t_hostedServiceId);
-	t_hosted.EndpointReference().push_back(t_hostedEPR);
+	t_hosted.getEndpointReference().push_back(t_hostedEPR);
 	return t_hosted;
 }
 WS::MEX::Metadata MetadataProvider::createSetServiceMetadata(const std::string & p_serverAddress, bool p_SSL) const
 {
 	WS::MEX::Metadata t_result;
-	t_result.MetadataSection().push_back(createMetadataSectionWSDLForSetService(p_serverAddress, p_SSL));
-	t_result.MetadataSection().push_back(
+	t_result.getMetadataSection().push_back(createMetadataSectionWSDLForSetService(p_serverAddress, p_SSL));
+	t_result.getMetadataSection().push_back(
 		createMetadataSectionRelationship(createHostMetadata(p_serverAddress), { createHostedSetService(p_serverAddress, p_SSL) } ));
 	return t_result;
 }
@@ -159,7 +159,7 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionWSDLFor
 	MetadataSection t_metadataSectionWsdl((MetadataDialect(OSELib::WS_MEX_DIALECT_WSDL)));
     auto t_protocol = HTTPSProtocolPrefix; // HTTPS by default
     if(!p_SSL) { t_protocol = HTTPProtocolPrefix; } // If specified else -> Switch to HTTP
-    t_metadataSectionWsdl.Location().set(MetadataLocation(t_protocol + p_serverAddress + getSetServicePath() + "/description.wsdl"));
+    t_metadataSectionWsdl.getLocation().set(MetadataLocation(t_protocol + p_serverAddress + getSetServicePath() + "/description.wsdl"));
 	return t_metadataSectionWsdl;
 }
 
@@ -181,14 +181,14 @@ MetadataProvider::Hosted MetadataProvider::createHostedBICEPSServices(const std:
 
 	Hosted::ServiceIdType t_hostedServiceId(SDC::QNAME_BICEPSSERVICE);
 	Hosted t_hosted(tl_hostedTypes, t_hostedServiceId);
-	t_hosted.EndpointReference().push_back(Hosted::EndpointReferenceType (Hosted::EndpointReferenceType::AddressType(t_protocol + p_serverAddress + getBICEPSServicePath())));
+	t_hosted.getEndpointReference().push_back(Hosted::EndpointReferenceType (Hosted::EndpointReferenceType::AddressType(t_protocol + p_serverAddress + getBICEPSServicePath())));
 
 	return t_hosted;
 }
 WS::MEX::Metadata MetadataProvider::createBICEPSServiceMetadata(const std::string & p_serverAddress, bool p_SSL) const {
 	WS::MEX::Metadata t_result;
-	t_result.MetadataSection().push_back(createMetadataSectionWSDLForBICEPSService(p_serverAddress, p_SSL));
-	t_result.MetadataSection().push_back(
+	t_result.getMetadataSection().push_back(createMetadataSectionWSDLForBICEPSService(p_serverAddress, p_SSL));
+	t_result.getMetadataSection().push_back(
 			createMetadataSectionRelationship(createHostMetadata(p_serverAddress), { createHostedBICEPSServices(p_serverAddress, p_SSL) } ));
 	return t_result;
 }
@@ -197,7 +197,7 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionWSDLFor
 	MetadataSection t_metadataSectionWsdl((MetadataDialect(OSELib::WS_MEX_DIALECT_WSDL)));
 	auto t_protocol = HTTPSProtocolPrefix; // HTTPS by default
 	if(!p_SSL) { t_protocol = HTTPProtocolPrefix; } // If specified else -> Switch to HTTP
-	t_metadataSectionWsdl.Location().set(MetadataLocation(t_protocol + p_serverAddress + getBICEPSServicePath() + "/description.wsdl"));
+	t_metadataSectionWsdl.getLocation().set(MetadataLocation(t_protocol + p_serverAddress + getBICEPSServicePath() + "/description.wsdl"));
 	return t_metadataSectionWsdl;
 }
 
@@ -206,11 +206,11 @@ MetadataProvider::MetadataSection MetadataProvider::createMetadataSectionRelatio
 {
 	Relationship t_relationship(p_host, RelationshipType(OSELib::WS_MEX_REL_HOST));
 	for(const auto & t_item : p_hosted) {
-		t_relationship.Hosted().push_back(t_item);
+		t_relationship.getHosted().push_back(t_item);
 	}
 
 	MetadataSection t_metadataSectionRelationship((MetadataDialect(OSELib::WS_MEX_DIALECT_REL)));
-	t_metadataSectionRelationship.Relationship().set(t_relationship);
+	t_metadataSectionRelationship.getRelationship().set(t_relationship);
 	return t_metadataSectionRelationship;
 }
 

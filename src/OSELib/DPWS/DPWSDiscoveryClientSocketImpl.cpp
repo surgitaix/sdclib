@@ -34,13 +34,13 @@ const MESSAGEMODEL::Envelope buildProbeMessage(const OSELib::DPWS::ProbeType & p
 {
 	MESSAGEMODEL::Envelope::HeaderType t_header;
 	{
-		t_header.Action(probeUri);
-		t_header.To(discoveryUri);
-		t_header.MessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
+		t_header.setAction(probeUri);
+		t_header.setTo(discoveryUri);
+		t_header.setMessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
 	}
 	MESSAGEMODEL::Envelope::BodyType t_body;
 	{
-		t_body.Probe(p_filter);
+		t_body.setProbe(p_filter);
 	}
 
 	return MESSAGEMODEL::Envelope(t_header, t_body);
@@ -50,13 +50,13 @@ const MESSAGEMODEL::Envelope buildResolveMessage(const OSELib::DPWS::ResolveType
 {
 	MESSAGEMODEL::Envelope::HeaderType t_header;
 	{
-		t_header.Action(resolveUri);
-		t_header.To(discoveryUri);
-		t_header.MessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
+		t_header.setAction(resolveUri);
+		t_header.setTo(discoveryUri);
+		t_header.setMessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
 	}
 	MESSAGEMODEL::Envelope::BodyType t_body;
 	{
-		t_body.Resolve(p_filter);
+		t_body.setResolve(p_filter);
 	}
 
 	return MESSAGEMODEL::Envelope(t_header, t_body);
@@ -234,8 +234,8 @@ DPWSDiscoveryClientSocketImpl::~DPWSDiscoveryClientSocketImpl()
 void DPWSDiscoveryClientSocketImpl::sendProbe(const ProbeType& p_filter)
 {
 	const MESSAGEMODEL::Envelope t_message(buildProbeMessage(p_filter));
-	if (t_message.Header().MessageID().present()) {
-		m_messagingContext.registerMessageId(t_message.Header().MessageID().get());
+	if (t_message.getHeader().getMessageID().present()) {
+		m_messagingContext.registerMessageId(t_message.getHeader().getMessageID().get());
 	}
 	for (auto & t_socketQueue : ml_socketSendMessageQueue) {
 		t_socketQueue.second.enqueueNotification(new SendMulticastMessage(serializeMessage(t_message)));
@@ -246,8 +246,8 @@ void DPWSDiscoveryClientSocketImpl::sendProbe(const ProbeType& p_filter)
 void DPWSDiscoveryClientSocketImpl::sendResolve(const ResolveType& p_filter)
 {
 	const MESSAGEMODEL::Envelope t_message(buildResolveMessage(p_filter));
-	if (t_message.Header().MessageID().present()) {
-		m_messagingContext.registerMessageId(t_message.Header().MessageID().get());
+	if (t_message.getHeader().getMessageID().present()) {
+		m_messagingContext.registerMessageId(t_message.getHeader().getMessageID().get());
 	}
 	for (auto & t_socketQueue : ml_socketSendMessageQueue) {
 		t_socketQueue.second.enqueueNotification(new SendMulticastMessage(serializeMessage(t_message)));
@@ -274,29 +274,29 @@ void DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable(Poco::Net::Readabl
 		return;
 	}
 
-	if (! t_message->Header().MessageID().present()) {
+	if (! t_message->getHeader().getMessageID().present()) {
 		return;
 	}
-	if (! m_messagingContext.registerMessageId(t_message->Header().MessageID().get())) {
+	if (! m_messagingContext.registerMessageId(t_message->getHeader().getMessageID().get())) {
         log_debug([&] { return "DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable. registerMessageId failed!"; });
 		return;
 	}
-	if (! t_message->Header().AppSequence().present()) {
+	if (! t_message->getHeader().getAppSequence().present()) {
 		return;
 	}
-	if (! m_messagingContext.registerAppSequence(t_message->Header().AppSequence().get())) {
+	if (! m_messagingContext.registerAppSequence(t_message->getHeader().getAppSequence().get())) {
 		return;
 	}
-	if (t_message->Body().Hello().present()) {
+	if (t_message->getBody().getHello().present()) {
 		if (! verifyHello(*t_message)) {
 			return;
 		}
-		m_helloDispatcher.dispatch(t_message->Body().Hello().get());
-	} else if (t_message->Body().Bye().present()) {
+		m_helloDispatcher.dispatch(t_message->getBody().getHello().get());
+	} else if (t_message->getBody().getBye().present()) {
 		if (! verifyBye(*t_message)) {
 			return;
 		}
-		m_byeDispatcher.dispatch(t_message->Body().Bye().get());
+		m_byeDispatcher.dispatch(t_message->getBody().getBye().get());
 	}
 }
 
@@ -319,21 +319,21 @@ void DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable(Poco::Net::Readabl
 	if (nullptr == t_message) {
 		return;
 	}
-	if (t_message->Header().MessageID().present()) {
-		if (!m_messagingContext.registerMessageId(t_message->Header().MessageID().get())) {
+	if (t_message->getHeader().getMessageID().present()) {
+		if (!m_messagingContext.registerMessageId(t_message->getHeader().getMessageID().get())) {
             log_debug([&] { return "DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable. registerMessageId failed!"; });
 			return;
 		}
 	}
-	if (t_message->Body().ProbeMatches().present()) {
-		const WS::DISCOVERY::ProbeMatchesType & probeMatches(t_message->Body().ProbeMatches().get());
-		for (const auto & probeMatch : probeMatches.ProbeMatch()) {
+	if (t_message->getBody().getProbeMatches().present()) {
+		const WS::DISCOVERY::ProbeMatchesType & probeMatches(t_message->getBody().getProbeMatches().get());
+		for (const auto & probeMatch : probeMatches.getProbeMatch()) {
 			m_probeMatchDispatcher.dispatch(probeMatch);
 		}
-	} else if (t_message->Body().ResolveMatches().present()) {
-		const WS::DISCOVERY::ResolveMatchesType & resolveMatches(t_message->Body().ResolveMatches().get());
-		if (resolveMatches.ResolveMatch().present()) {
-			m_resolveDispatcher.dispatch(resolveMatches.ResolveMatch().get());
+	} else if (t_message->getBody().getResolveMatches().present()) {
+		const WS::DISCOVERY::ResolveMatchesType & resolveMatches(t_message->getBody().getResolveMatches().get());
+		if (resolveMatches.getResolveMatch().present()) {
+			m_resolveDispatcher.dispatch(resolveMatches.getResolveMatch().get());
 		}
 	}
 }
@@ -362,39 +362,39 @@ void DPWSDiscoveryClientSocketImpl::onDatagrammSocketWritable(Poco::Net::Writabl
 
 bool DPWSDiscoveryClientSocketImpl::verifyBye(const MESSAGEMODEL::Envelope & p_message)
 {
-	if (! p_message.Header().MessageID().present()) {
+	if (! p_message.getHeader().getMessageID().present()) {
 		log_error([&] { return "Bye message: Missing MessageID."; });
 		return false;
 	}
-	if (! p_message.Header().Action().present()) {
+	if (! p_message.getHeader().getAction().present()) {
 		log_error([&] { return "Bye message: Missing Action."; });
 		return false;
 	}
-	if (p_message.Header().Action().get() != byeUri) {
+	if (p_message.getHeader().getAction().get() != byeUri) {
 		log_error([&] { return "Bye message: Invalid Action."; });
 		return false;
 	}
-	if (! p_message.Header().To().present()) {
+	if (! p_message.getHeader().getTo().present()) {
 		log_error([&] { return "Bye message: Missing To."; });
 		return false;
 	}
-	if (p_message.Header().To().get() != discoveryUri) {
+	if (p_message.getHeader().getTo().get() != discoveryUri) {
 		log_error([&] { return "Bye message: Invalid value of To."; });
 		return false;
 	}
-	if (! p_message.Header().AppSequence().present()) {
+	if (! p_message.getHeader().getAppSequence().present()) {
 		log_error([&] { return "Bye message: Missing AppSequence."; });
 		return false;
 	}
-	if (! p_message.Body().Bye().present()) {
+	if (! p_message.getBody().getBye().present()) {
 		log_error([&] { return "Bye message: Missing Body."; });
 		return false;
 	}
-	if (p_message.Body().Bye().get().EndpointReference().Address() == "") {
+	if (p_message.getBody().getBye().get().getEndpointReference().getAddress() == "") {
 		log_error([&] { return "Bye message: Empty EndpointReference."; });
 		return false;
 	}
-	if (p_message.Header().RelatesTo().present()) {
+	if (p_message.getHeader().getRelatesTo().present()) {
 		log_error([&] { return "Bye message: RelatesTo field should not be present."; });
 		return false;
 	}
@@ -403,39 +403,39 @@ bool DPWSDiscoveryClientSocketImpl::verifyBye(const MESSAGEMODEL::Envelope & p_m
 
 bool DPWSDiscoveryClientSocketImpl::verifyHello(const MESSAGEMODEL::Envelope & p_message)
 {
-	if (! p_message.Header().MessageID().present()) {
+	if (! p_message.getHeader().getMessageID().present()) {
 		log_error([&] { return "Hello message: Missing MessageID."; });
 		return false;
 	}
-	if (! p_message.Header().Action().present()) {
+	if (! p_message.getHeader().getAction().present()) {
 		log_error([&] { return "Hello message: Missing Action."; });
 		return false;
 	}
-	if (p_message.Header().Action().get() != helloUri) {
+	if (p_message.getHeader().getAction().get() != helloUri) {
 		log_error([&] { return "Hello message: Invalid Action."; });
 		return false;
 	}
-	if (! p_message.Header().To().present()) {
+	if (! p_message.getHeader().getTo().present()) {
 		log_error([&] { return "Hello message: Missing To."; });
 		return false;
 	}
-	if (p_message.Header().To().get() != discoveryUri) {
+	if (p_message.getHeader().getTo().get() != discoveryUri) {
 		log_error([&] { return "Hello message: Invalid value of To."; });
 		return false;
 	}
-	if (! p_message.Header().AppSequence().present()) {
+	if (! p_message.getHeader().getAppSequence().present()) {
 		log_error([&] { return "Hello message: Missing AppSequence."; });
 		return false;
 	}
-	if (! p_message.Body().Hello().present()) {
+	if (! p_message.getBody().getHello().present()) {
 		log_error([&] { return "Hello message: Missing body."; });
 		return false;
 	}
-	if (p_message.Body().Hello().get().EndpointReference().Address() == "") {
+	if (p_message.getBody().getHello().get().getEndpointReference().getAddress() == "") {
 		log_error([&] { return "Hello message: Empty EndpointReference."; });
 		return false;
 	}
-	if (p_message.Header().RelatesTo().present()) {
+	if (p_message.getHeader().getRelatesTo().present()) {
 		log_error([&] { return "Hello message: RelatesTo field should not be present."; });
 		return false;
 	}

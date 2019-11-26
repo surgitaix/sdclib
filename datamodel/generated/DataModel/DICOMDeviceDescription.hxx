@@ -31,6 +31,11 @@
 // in the accompanying FLOSSE file.
 //
 
+/**
+ * @file
+ * @brief Generated from DICOMDeviceDescription.xsd.
+ */
+
 #ifndef DICOMDEVICE_DESCRIPTION_HXX
 #define DICOMDEVICE_DESCRIPTION_HXX
 
@@ -65,54 +70,153 @@
 
 #include "DataModel/BICEPS_ParticipantModel.hxx"
 
+/**
+ * @brief C++ namespace for the %http://dicom-extension-uri/09/08
+ * schema namespace.
+ */
 namespace CDM
 {
+  /**
+   * @brief Enumeration class corresponding to the %DicomTransferRole
+   * schema type.
+   *
+   * Role can be either server (SCP) or client (SCU)
+   */
   class DicomTransferRole: public ::xml_schema::String
   {
     public:
+
+    /**
+     * @brief Underlying enum type.
+     */
     enum Value
     {
+      /**
+       * Client role
+       */
       Scu,
+      /**
+       * Server role
+       */
       Scp
     };
 
+    /**
+     * @brief Create an instance from the underlying enum value.
+     *
+     * @param v A enum value.
+     */
     DicomTransferRole (Value v);
 
+    /**
+     * @brief Create an instance from a C string.
+     *
+     * @param v A string value.
+     */
     DicomTransferRole (const char* v);
 
+    /**
+     * @brief Create an instance from a string.
+     *
+     * @param v A string value.
+     */
     DicomTransferRole (const ::std::string& v);
 
+    /**
+     * @brief Create an instance from the base value.
+     *
+     * @param v A base value.
+     */
     DicomTransferRole (const ::xml_schema::String& v);
 
+    /**
+     * @brief Create an instance from a DOM element.
+     *
+     * @param e A DOM element to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     DicomTransferRole (const ::xercesc::DOMElement& e,
                        ::xml_schema::Flags f = 0,
                        ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Create an instance from a DOM attribute.
+     *
+     * @param a A DOM attribute to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     DicomTransferRole (const ::xercesc::DOMAttr& a,
                        ::xml_schema::Flags f = 0,
                        ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Create an instance from a string fragment.
+     *
+     * @param s A string fragment to extract the data from.
+     * @param e A pointer to DOM element containing the string fragment.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     DicomTransferRole (const ::std::string& s,
                        const ::xercesc::DOMElement* e,
                        ::xml_schema::Flags f = 0,
                        ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy constructor.
+     *
+     * @param x An instance to make a copy of.
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     DicomTransferRole (const DicomTransferRole& x,
                        ::xml_schema::Flags f = 0,
                        ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy the instance polymorphically.
+     *
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     * @return A pointer to the dynamically allocated copy.
+     *
+     * This function ensures that the dynamic type of the instance is
+     * used for copying and should be used for polymorphic object
+     * models instead of the copy constructor.
+     */
     virtual DicomTransferRole*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    /**
+     * @brief Assign the underlying enum value.
+     *
+     * @param v A enum value.
+     * @return A refernce to the instance.
+     */
     DicomTransferRole&
     operator= (Value v);
 
+    /**
+     * @brief Implicit conversion operator to the underlying
+     * enum value.
+     *
+     * @return A enum value.
+     */
     virtual
     operator Value () const
     {
       return _xsd_DicomTransferRole_convert ();
     }
+
+    //@cond
 
     protected:
     Value
@@ -121,87 +225,284 @@ namespace CDM
     public:
     static const char* const _xsd_DicomTransferRole_literals_[2];
     static const Value _xsd_DicomTransferRole_indexes_[2];
+
+    //@endcond
   };
 
+  /**
+   * @brief Class corresponding to the %DicomTransferCapability schema type.
+   *
+   * A DICOM transfer capability consists of a SOP class and whether the
+   * SOP class is supported as a server (SCP) or client (SCU)
+   *
+   * @nosubgrouping
+   */
   class DicomTransferCapability: public ::xml_schema::Type
   {
     public:
-    // TransferSyntax
-    //
+    /**
+     * @name TransferSyntax
+     *
+     * @brief Accessor and modifier functions for the %TransferSyntax
+     * sequence element.
+     *
+     * The transfer syntax defines the DICOM encoding used for the transfer
+     * of data; this can also include compression of pixel data.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::xml_schema::String TransferSyntaxType;
+
+    /**
+     * @brief Element sequence container type.
+     */
     typedef ::xsd::cxx::tree::sequence< TransferSyntaxType > TransferSyntaxSequence;
+
+    /**
+     * @brief Element iterator type.
+     */
     typedef TransferSyntaxSequence::iterator TransferSyntaxIterator;
+
+    /**
+     * @brief Element constant iterator type.
+     */
     typedef TransferSyntaxSequence::const_iterator TransferSyntaxConstIterator;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< TransferSyntaxType, char > TransferSyntaxTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * sequence.
+     *
+     * @return A constant reference to the sequence container.
+     */
     const TransferSyntaxSequence&
-    TransferSyntax () const;
+    getTransferSyntax () const;
 
+    /**
+     * @brief Return a read-write reference to the element sequence.
+     *
+     * @return A reference to the sequence container.
+     */
     TransferSyntaxSequence&
-    TransferSyntax ();
+    getTransferSyntax ();
 
+    /**
+     * @brief Copy elements from a given sequence.
+     *
+     * @param s A sequence to copy elements from.
+     *
+     * For each element in @a s this function makes a copy and adds it 
+     * to the sequence. Note that this operation completely changes the 
+     * sequence and all old elements will be lost.
+     */
     void
-    TransferSyntax (const TransferSyntaxSequence& s);
+    setTransferSyntax (const TransferSyntaxSequence& s);
 
-    // SopClass
-    //
+    //@}
+
+    /**
+     * @name SopClass
+     *
+     * @brief Accessor and modifier functions for the %SopClass
+     * required attribute.
+     *
+     * The SOP Class (DICOM service)
+     */
+    //@{
+
+    /**
+     * @brief Attribute type.
+     */
     typedef ::xml_schema::String SopClassType;
+
+    /**
+     * @brief Attribute traits type.
+     */
     typedef ::xsd::cxx::tree::traits< SopClassType, char > SopClassTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the attribute.
+     *
+     * @return A constant reference to the attribute.
+     */
     const SopClassType&
-    SopClass () const;
+    getSopClass () const;
 
+    /**
+     * @brief Return a read-write reference to the attribute.
+     *
+     * @return A reference to the attribute.
+     */
     SopClassType&
-    SopClass ();
+    getSopClass ();
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
     void
-    SopClass (const SopClassType& x);
+    setSopClass (const SopClassType& x);
 
+    /**
+     * @brief Set the attribute value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly
+     * instead of making a copy.
+     */
     void
-    SopClass (::std::unique_ptr< SopClassType > p);
+    setSopClass (::std::unique_ptr< SopClassType > p);
 
-    // TransferRole
-    //
+    //@}
+
+    /**
+     * @name TransferRole
+     *
+     * @brief Accessor and modifier functions for the %TransferRole
+     * required attribute.
+     *
+     * Role for this service: Client (SCU) or Server (SCP)
+     */
+    //@{
+
+    /**
+     * @brief Attribute type.
+     */
     typedef ::CDM::DicomTransferRole TransferRoleType;
+
+    /**
+     * @brief Attribute traits type.
+     */
     typedef ::xsd::cxx::tree::traits< TransferRoleType, char > TransferRoleTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the attribute.
+     *
+     * @return A constant reference to the attribute.
+     */
     const TransferRoleType&
-    TransferRole () const;
+    getTransferRole () const;
 
+    /**
+     * @brief Return a read-write reference to the attribute.
+     *
+     * @return A reference to the attribute.
+     */
     TransferRoleType&
-    TransferRole ();
+    getTransferRole ();
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
     void
-    TransferRole (const TransferRoleType& x);
+    setTransferRole (const TransferRoleType& x);
 
+    /**
+     * @brief Set the attribute value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly
+     * instead of making a copy.
+     */
     void
-    TransferRole (::std::unique_ptr< TransferRoleType > p);
+    setTransferRole (::std::unique_ptr< TransferRoleType > p);
 
-    // Constructors.
-    //
+    //@}
+
+    /**
+     * @name Constructors
+     */
+    //@{
+
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes.
+     */
     DicomTransferCapability (const SopClassType&,
                              const TransferRoleType&);
 
+    /**
+     * @brief Create an instance from a DOM element.
+     *
+     * @param e A DOM element to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     DicomTransferCapability (const ::xercesc::DOMElement& e,
                              ::xml_schema::Flags f = 0,
                              ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy constructor.
+     *
+     * @param x An instance to make a copy of.
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     DicomTransferCapability (const DicomTransferCapability& x,
                              ::xml_schema::Flags f = 0,
                              ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy the instance polymorphically.
+     *
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     * @return A pointer to the dynamically allocated copy.
+     *
+     * This function ensures that the dynamic type of the instance is
+     * used for copying and should be used for polymorphic object
+     * models instead of the copy constructor.
+     */
     virtual DicomTransferCapability*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    /**
+     * @brief Copy assignment operator.
+     *
+     * @param x An instance to make a copy of.
+     * @return A reference to itself.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     DicomTransferCapability&
     operator= (const DicomTransferCapability& x);
 
+    //@}
+
+    /**
+     * @brief Destructor.
+     */
     virtual 
     ~DicomTransferCapability ();
 
     // Implementation.
     //
+
+    //@cond
+
     protected:
     void
     parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -211,168 +512,589 @@ namespace CDM
     TransferSyntaxSequence TransferSyntax_;
     ::xsd::cxx::tree::one< SopClassType > SopClass_;
     ::xsd::cxx::tree::one< TransferRoleType > TransferRole_;
+
+    //@endcond
   };
 
+  /**
+   * @brief Class corresponding to the %DicomNetworkAe schema type.
+   *
+   * A Network AE (Application Entity) is a DICOM network communication
+   * component that is uniquely known on the DICOM network by its AE Ttile.
+   * It refers to a network connection the AE uses for its communication.
+   * The AE is marked whether it initiates and/or receives connections
+   * (associations). Optionally a free text description is given.
+   *
+   * @nosubgrouping
+   */
   class DicomNetworkAe: public ::xml_schema::Type
   {
     public:
-    // TransferCapability
-    //
+    /**
+     * @name TransferCapability
+     *
+     * @brief Accessor and modifier functions for the %TransferCapability
+     * sequence element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::CDM::DicomTransferCapability TransferCapabilityType;
+
+    /**
+     * @brief Element sequence container type.
+     */
     typedef ::xsd::cxx::tree::sequence< TransferCapabilityType > TransferCapabilitySequence;
+
+    /**
+     * @brief Element iterator type.
+     */
     typedef TransferCapabilitySequence::iterator TransferCapabilityIterator;
+
+    /**
+     * @brief Element constant iterator type.
+     */
     typedef TransferCapabilitySequence::const_iterator TransferCapabilityConstIterator;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< TransferCapabilityType, char > TransferCapabilityTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * sequence.
+     *
+     * @return A constant reference to the sequence container.
+     */
     const TransferCapabilitySequence&
-    TransferCapability () const;
+    getTransferCapability () const;
 
+    /**
+     * @brief Return a read-write reference to the element sequence.
+     *
+     * @return A reference to the sequence container.
+     */
     TransferCapabilitySequence&
-    TransferCapability ();
+    getTransferCapability ();
 
+    /**
+     * @brief Copy elements from a given sequence.
+     *
+     * @param s A sequence to copy elements from.
+     *
+     * For each element in @a s this function makes a copy and adds it 
+     * to the sequence. Note that this operation completely changes the 
+     * sequence and all old elements will be lost.
+     */
     void
-    TransferCapability (const TransferCapabilitySequence& s);
+    setTransferCapability (const TransferCapabilitySequence& s);
 
-    // ApplicationCluster
-    //
+    //@}
+
+    /**
+     * @name ApplicationCluster
+     *
+     * @brief Accessor and modifier functions for the %ApplicationCluster
+     * sequence element.
+     *
+     * Can be used to group DICOM Application Entities into a DICOM
+     * Application Clusters
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::CDM::LocalizedText ApplicationClusterType;
+
+    /**
+     * @brief Element sequence container type.
+     */
     typedef ::xsd::cxx::tree::sequence< ApplicationClusterType > ApplicationClusterSequence;
+
+    /**
+     * @brief Element iterator type.
+     */
     typedef ApplicationClusterSequence::iterator ApplicationClusterIterator;
+
+    /**
+     * @brief Element constant iterator type.
+     */
     typedef ApplicationClusterSequence::const_iterator ApplicationClusterConstIterator;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< ApplicationClusterType, char > ApplicationClusterTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * sequence.
+     *
+     * @return A constant reference to the sequence container.
+     */
     const ApplicationClusterSequence&
-    ApplicationCluster () const;
+    getApplicationCluster () const;
 
+    /**
+     * @brief Return a read-write reference to the element sequence.
+     *
+     * @return A reference to the sequence container.
+     */
     ApplicationClusterSequence&
-    ApplicationCluster ();
+    getApplicationCluster ();
 
+    /**
+     * @brief Copy elements from a given sequence.
+     *
+     * @param s A sequence to copy elements from.
+     *
+     * For each element in @a s this function makes a copy and adds it 
+     * to the sequence. Note that this operation completely changes the 
+     * sequence and all old elements will be lost.
+     */
     void
-    ApplicationCluster (const ApplicationClusterSequence& s);
+    setApplicationCluster (const ApplicationClusterSequence& s);
 
-    // SupportedCharacterSet
-    //
+    //@}
+
+    /**
+     * @name SupportedCharacterSet
+     *
+     * @brief Accessor and modifier functions for the %SupportedCharacterSet
+     * sequence element.
+     *
+     * Character set supported by this Application Entity. All permitted
+     * values can be found in part 3 of the DICOM standard (look for
+     * "Specific Charcter Set"). Example: Use "ISO_IR 192" for UTF-8.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::xml_schema::String SupportedCharacterSetType;
+
+    /**
+     * @brief Element sequence container type.
+     */
     typedef ::xsd::cxx::tree::sequence< SupportedCharacterSetType > SupportedCharacterSetSequence;
+
+    /**
+     * @brief Element iterator type.
+     */
     typedef SupportedCharacterSetSequence::iterator SupportedCharacterSetIterator;
+
+    /**
+     * @brief Element constant iterator type.
+     */
     typedef SupportedCharacterSetSequence::const_iterator SupportedCharacterSetConstIterator;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< SupportedCharacterSetType, char > SupportedCharacterSetTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * sequence.
+     *
+     * @return A constant reference to the sequence container.
+     */
     const SupportedCharacterSetSequence&
-    SupportedCharacterSet () const;
+    getSupportedCharacterSet () const;
 
+    /**
+     * @brief Return a read-write reference to the element sequence.
+     *
+     * @return A reference to the sequence container.
+     */
     SupportedCharacterSetSequence&
-    SupportedCharacterSet ();
+    getSupportedCharacterSet ();
 
+    /**
+     * @brief Copy elements from a given sequence.
+     *
+     * @param s A sequence to copy elements from.
+     *
+     * For each element in @a s this function makes a copy and adds it 
+     * to the sequence. Note that this operation completely changes the 
+     * sequence and all old elements will be lost.
+     */
     void
-    SupportedCharacterSet (const SupportedCharacterSetSequence& s);
+    setSupportedCharacterSet (const SupportedCharacterSetSequence& s);
 
-    // Description
-    //
+    //@}
+
+    /**
+     * @name Description
+     *
+     * @brief Accessor and modifier functions for the %Description
+     * sequence element.
+     *
+     * Free text description of this Application Entity
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::CDM::LocalizedText DescriptionType;
+
+    /**
+     * @brief Element sequence container type.
+     */
     typedef ::xsd::cxx::tree::sequence< DescriptionType > DescriptionSequence;
+
+    /**
+     * @brief Element iterator type.
+     */
     typedef DescriptionSequence::iterator DescriptionIterator;
+
+    /**
+     * @brief Element constant iterator type.
+     */
     typedef DescriptionSequence::const_iterator DescriptionConstIterator;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< DescriptionType, char > DescriptionTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * sequence.
+     *
+     * @return A constant reference to the sequence container.
+     */
     const DescriptionSequence&
-    Description () const;
+    getDescription () const;
 
+    /**
+     * @brief Return a read-write reference to the element sequence.
+     *
+     * @return A reference to the sequence container.
+     */
     DescriptionSequence&
-    Description ();
+    getDescription ();
 
+    /**
+     * @brief Copy elements from a given sequence.
+     *
+     * @param s A sequence to copy elements from.
+     *
+     * For each element in @a s this function makes a copy and adds it 
+     * to the sequence. Note that this operation completely changes the 
+     * sequence and all old elements will be lost.
+     */
     void
-    Description (const DescriptionSequence& s);
+    setDescription (const DescriptionSequence& s);
 
-    // AeTitle
-    //
+    //@}
+
+    /**
+     * @name AeTitle
+     *
+     * @brief Accessor and modifier functions for the %AeTitle
+     * required attribute.
+     *
+     * The AE Title defines a DICOM networking component uniquely on a
+     * network.  Maximally 16 characters (ASCII, only upper case characters
+     * and numbers highly recommended)
+     */
+    //@{
+
+    /**
+     * @brief Attribute type.
+     */
     typedef ::xml_schema::String AeTitleType;
+
+    /**
+     * @brief Attribute traits type.
+     */
     typedef ::xsd::cxx::tree::traits< AeTitleType, char > AeTitleTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the attribute.
+     *
+     * @return A constant reference to the attribute.
+     */
     const AeTitleType&
-    AeTitle () const;
+    getAeTitle () const;
 
+    /**
+     * @brief Return a read-write reference to the attribute.
+     *
+     * @return A reference to the attribute.
+     */
     AeTitleType&
-    AeTitle ();
+    getAeTitle ();
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
     void
-    AeTitle (const AeTitleType& x);
+    setAeTitle (const AeTitleType& x);
 
+    /**
+     * @brief Set the attribute value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly
+     * instead of making a copy.
+     */
     void
-    AeTitle (::std::unique_ptr< AeTitleType > p);
+    setAeTitle (::std::unique_ptr< AeTitleType > p);
 
-    // NetworkConnectionReference
-    //
+    //@}
+
+    /**
+     * @name NetworkConnectionReference
+     *
+     * @brief Accessor and modifier functions for the %NetworkConnectionReference
+     * required attribute.
+     *
+     * The network connection that this AE uses
+     */
+    //@{
+
+    /**
+     * @brief Attribute type.
+     */
     typedef ::xml_schema::Idrefs NetworkConnectionReferenceType;
+
+    /**
+     * @brief Attribute traits type.
+     */
     typedef ::xsd::cxx::tree::traits< NetworkConnectionReferenceType, char > NetworkConnectionReferenceTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the attribute.
+     *
+     * @return A constant reference to the attribute.
+     */
     const NetworkConnectionReferenceType&
-    NetworkConnectionReference () const;
+    getNetworkConnectionReference () const;
 
+    /**
+     * @brief Return a read-write reference to the attribute.
+     *
+     * @return A reference to the attribute.
+     */
     NetworkConnectionReferenceType&
-    NetworkConnectionReference ();
+    getNetworkConnectionReference ();
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
     void
-    NetworkConnectionReference (const NetworkConnectionReferenceType& x);
+    setNetworkConnectionReference (const NetworkConnectionReferenceType& x);
 
+    /**
+     * @brief Set the attribute value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly
+     * instead of making a copy.
+     */
     void
-    NetworkConnectionReference (::std::unique_ptr< NetworkConnectionReferenceType > p);
+    setNetworkConnectionReference (::std::unique_ptr< NetworkConnectionReferenceType > p);
 
-    // AssociationInitiator
-    //
+    //@}
+
+    /**
+     * @name AssociationInitiator
+     *
+     * @brief Accessor and modifier functions for the %AssociationInitiator
+     * required attribute.
+     *
+     * TRUE if  this AE may initiate connection (association) requests ,
+     * FALSE otherwise
+     */
+    //@{
+
+    /**
+     * @brief Attribute type.
+     */
     typedef ::xml_schema::Boolean AssociationInitiatorType;
+
+    /**
+     * @brief Attribute traits type.
+     */
     typedef ::xsd::cxx::tree::traits< AssociationInitiatorType, char > AssociationInitiatorTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the attribute.
+     *
+     * @return A constant reference to the attribute.
+     */
     const AssociationInitiatorType&
-    AssociationInitiator () const;
+    getAssociationInitiator () const;
 
+    /**
+     * @brief Return a read-write reference to the attribute.
+     *
+     * @return A reference to the attribute.
+     */
     AssociationInitiatorType&
-    AssociationInitiator ();
+    getAssociationInitiator ();
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
     void
-    AssociationInitiator (const AssociationInitiatorType& x);
+    setAssociationInitiator (const AssociationInitiatorType& x);
 
-    // AssociationAcceptor
-    //
+    //@}
+
+    /**
+     * @name AssociationAcceptor
+     *
+     * @brief Accessor and modifier functions for the %AssociationAcceptor
+     * required attribute.
+     *
+     * TRUE if  this AE may accept connection (association) requests , FALSE
+     * otherwise
+     */
+    //@{
+
+    /**
+     * @brief Attribute type.
+     */
     typedef ::xml_schema::Boolean AssociationAcceptorType;
+
+    /**
+     * @brief Attribute traits type.
+     */
     typedef ::xsd::cxx::tree::traits< AssociationAcceptorType, char > AssociationAcceptorTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the attribute.
+     *
+     * @return A constant reference to the attribute.
+     */
     const AssociationAcceptorType&
-    AssociationAcceptor () const;
+    getAssociationAcceptor () const;
 
+    /**
+     * @brief Return a read-write reference to the attribute.
+     *
+     * @return A reference to the attribute.
+     */
     AssociationAcceptorType&
-    AssociationAcceptor ();
+    getAssociationAcceptor ();
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
     void
-    AssociationAcceptor (const AssociationAcceptorType& x);
+    setAssociationAcceptor (const AssociationAcceptorType& x);
 
-    // Constructors.
-    //
+    //@}
+
+    /**
+     * @name Constructors
+     */
+    //@{
+
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes.
+     */
     DicomNetworkAe (const AeTitleType&,
                     const NetworkConnectionReferenceType&,
                     const AssociationInitiatorType&,
                     const AssociationAcceptorType&);
 
+    /**
+     * @brief Create an instance from a DOM element.
+     *
+     * @param e A DOM element to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     DicomNetworkAe (const ::xercesc::DOMElement& e,
                     ::xml_schema::Flags f = 0,
                     ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy constructor.
+     *
+     * @param x An instance to make a copy of.
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     DicomNetworkAe (const DicomNetworkAe& x,
                     ::xml_schema::Flags f = 0,
                     ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy the instance polymorphically.
+     *
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     * @return A pointer to the dynamically allocated copy.
+     *
+     * This function ensures that the dynamic type of the instance is
+     * used for copying and should be used for polymorphic object
+     * models instead of the copy constructor.
+     */
     virtual DicomNetworkAe*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    /**
+     * @brief Copy assignment operator.
+     *
+     * @param x An instance to make a copy of.
+     * @return A reference to itself.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     DicomNetworkAe&
     operator= (const DicomNetworkAe& x);
 
+    //@}
+
+    /**
+     * @brief Destructor.
+     */
     virtual 
     ~DicomNetworkAe ();
 
     // Implementation.
     //
+
+    //@cond
+
     protected:
     void
     parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -387,105 +1109,353 @@ namespace CDM
     ::xsd::cxx::tree::one< NetworkConnectionReferenceType > NetworkConnectionReference_;
     ::xsd::cxx::tree::one< AssociationInitiatorType > AssociationInitiator_;
     ::xsd::cxx::tree::one< AssociationAcceptorType > AssociationAcceptor_;
+
+    //@endcond
   };
 
+  /**
+   * @brief Class corresponding to the %DicomNetworkConnection schema type.
+   *
+   * A DICOM network connection (identified by its ID for reference
+   * purposes, especially from the DICOMNetworkAE type), is described by a
+   * host name (can be an IP address) and TCP port number.
+   *
+   * @nosubgrouping
+   */
   class DicomNetworkConnection: public ::xml_schema::Type
   {
     public:
-    // TlsCipherSuite
-    //
+    /**
+     * @name TlsCipherSuite
+     *
+     * @brief Accessor and modifier functions for the %TlsCipherSuite
+     * sequence element.
+     *
+     * TLS Cipher Suites supported by this device. See DICOM standard part 15
+     * for valid values (section on "Secure Transport Connection Profiles").
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::xml_schema::String TlsCipherSuiteType;
+
+    /**
+     * @brief Element sequence container type.
+     */
     typedef ::xsd::cxx::tree::sequence< TlsCipherSuiteType > TlsCipherSuiteSequence;
+
+    /**
+     * @brief Element iterator type.
+     */
     typedef TlsCipherSuiteSequence::iterator TlsCipherSuiteIterator;
+
+    /**
+     * @brief Element constant iterator type.
+     */
     typedef TlsCipherSuiteSequence::const_iterator TlsCipherSuiteConstIterator;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< TlsCipherSuiteType, char > TlsCipherSuiteTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * sequence.
+     *
+     * @return A constant reference to the sequence container.
+     */
     const TlsCipherSuiteSequence&
-    TlsCipherSuite () const;
+    getTlsCipherSuite () const;
 
+    /**
+     * @brief Return a read-write reference to the element sequence.
+     *
+     * @return A reference to the sequence container.
+     */
     TlsCipherSuiteSequence&
-    TlsCipherSuite ();
+    getTlsCipherSuite ();
 
+    /**
+     * @brief Copy elements from a given sequence.
+     *
+     * @param s A sequence to copy elements from.
+     *
+     * For each element in @a s this function makes a copy and adds it 
+     * to the sequence. Note that this operation completely changes the 
+     * sequence and all old elements will be lost.
+     */
     void
-    TlsCipherSuite (const TlsCipherSuiteSequence& s);
+    setTlsCipherSuite (const TlsCipherSuiteSequence& s);
 
-    // id
-    //
+    //@}
+
+    /**
+     * @name Id
+     *
+     * @brief Accessor and modifier functions for the %Id
+     * required attribute.
+     *
+     * Unique ID for this network connections. Referenced by DICOMNetworkAE
+     * type in order to bind an AE to a network connection.
+     */
+    //@{
+
+    /**
+     * @brief Attribute type.
+     */
     typedef ::xml_schema::Id IdType;
+
+    /**
+     * @brief Attribute traits type.
+     */
     typedef ::xsd::cxx::tree::traits< IdType, char > IdTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the attribute.
+     *
+     * @return A constant reference to the attribute.
+     */
     const IdType&
-    id () const;
+    getId () const;
 
+    /**
+     * @brief Return a read-write reference to the attribute.
+     *
+     * @return A reference to the attribute.
+     */
     IdType&
-    id ();
+    getId ();
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
     void
-    id (const IdType& x);
+    setId (const IdType& x);
 
+    /**
+     * @brief Set the attribute value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly
+     * instead of making a copy.
+     */
     void
-    id (::std::unique_ptr< IdType > p);
+    setId (::std::unique_ptr< IdType > p);
 
-    // Hostname
-    //
+    //@}
+
+    /**
+     * @name Hostname
+     *
+     * @brief Accessor and modifier functions for the %Hostname
+     * required attribute.
+     *
+     * Hostname or IP address
+     */
+    //@{
+
+    /**
+     * @brief Attribute type.
+     */
     typedef ::xml_schema::String HostnameType;
+
+    /**
+     * @brief Attribute traits type.
+     */
     typedef ::xsd::cxx::tree::traits< HostnameType, char > HostnameTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the attribute.
+     *
+     * @return A constant reference to the attribute.
+     */
     const HostnameType&
-    Hostname () const;
+    getHostname () const;
 
+    /**
+     * @brief Return a read-write reference to the attribute.
+     *
+     * @return A reference to the attribute.
+     */
     HostnameType&
-    Hostname ();
+    getHostname ();
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
     void
-    Hostname (const HostnameType& x);
+    setHostname (const HostnameType& x);
 
+    /**
+     * @brief Set the attribute value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly
+     * instead of making a copy.
+     */
     void
-    Hostname (::std::unique_ptr< HostnameType > p);
+    setHostname (::std::unique_ptr< HostnameType > p);
 
-    // Port
-    //
+    //@}
+
+    /**
+     * @name Port
+     *
+     * @brief Accessor and modifier functions for the %Port
+     * optional attribute.
+     *
+     * TCP-Port
+     */
+    //@{
+
+    /**
+     * @brief Attribute type.
+     */
     typedef ::xml_schema::UnsignedShort PortType;
+
+    /**
+     * @brief Attribute optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< PortType > PortOptional;
+
+    /**
+     * @brief Attribute traits type.
+     */
     typedef ::xsd::cxx::tree::traits< PortType, char > PortTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the attribute
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const PortOptional&
-    Port () const;
+    getPort () const;
 
+    /**
+     * @brief Return a read-write reference to the attribute container.
+     *
+     * @return A reference to the optional container.
+     */
     PortOptional&
-    Port ();
+    getPort ();
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
     void
-    Port (const PortType& x);
+    setPort (const PortType& x);
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the attribute.
+     * Otherwise the attribute container is set the 'not present' state.
+     */
     void
-    Port (const PortOptional& x);
+    setPort (const PortOptional& x);
 
-    // Constructors.
-    //
+    //@}
+
+    /**
+     * @name Constructors
+     */
+    //@{
+
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes.
+     */
     DicomNetworkConnection (const IdType&,
                             const HostnameType&);
 
+    /**
+     * @brief Create an instance from a DOM element.
+     *
+     * @param e A DOM element to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     DicomNetworkConnection (const ::xercesc::DOMElement& e,
                             ::xml_schema::Flags f = 0,
                             ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy constructor.
+     *
+     * @param x An instance to make a copy of.
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     DicomNetworkConnection (const DicomNetworkConnection& x,
                             ::xml_schema::Flags f = 0,
                             ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy the instance polymorphically.
+     *
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     * @return A pointer to the dynamically allocated copy.
+     *
+     * This function ensures that the dynamic type of the instance is
+     * used for copying and should be used for polymorphic object
+     * models instead of the copy constructor.
+     */
     virtual DicomNetworkConnection*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    /**
+     * @brief Copy assignment operator.
+     *
+     * @param x An instance to make a copy of.
+     * @return A reference to itself.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     DicomNetworkConnection&
     operator= (const DicomNetworkConnection& x);
 
+    //@}
+
+    /**
+     * @brief Destructor.
+     */
     virtual 
     ~DicomNetworkConnection ();
 
     // Implementation.
     //
+
+    //@cond
+
     protected:
     void
     parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -493,229 +1463,823 @@ namespace CDM
 
     protected:
     TlsCipherSuiteSequence TlsCipherSuite_;
-    ::xsd::cxx::tree::one< IdType > id_;
+    ::xsd::cxx::tree::one< IdType > Id_;
     ::xsd::cxx::tree::one< HostnameType > Hostname_;
     PortOptional Port_;
+
+    //@endcond
   };
 
+  /**
+   * @brief Class corresponding to the %DicomDeviceDescriptor schema type.
+   *
+   * General description of a DICOM device. Includes basic description of
+   * the device which may also be taken over into any DICOM objects created
+   * by the device.
+   *
+   * @nosubgrouping
+   */
   class DicomDeviceDescriptor: public ::CDM::AbstractComplexDeviceComponentDescriptor
   {
     public:
-    // NetworkAe
-    //
+    /**
+     * @name NetworkAe
+     *
+     * @brief Accessor and modifier functions for the %NetworkAe
+     * sequence element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::CDM::DicomNetworkAe NetworkAeType;
+
+    /**
+     * @brief Element sequence container type.
+     */
     typedef ::xsd::cxx::tree::sequence< NetworkAeType > NetworkAeSequence;
+
+    /**
+     * @brief Element iterator type.
+     */
     typedef NetworkAeSequence::iterator NetworkAeIterator;
+
+    /**
+     * @brief Element constant iterator type.
+     */
     typedef NetworkAeSequence::const_iterator NetworkAeConstIterator;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< NetworkAeType, char > NetworkAeTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * sequence.
+     *
+     * @return A constant reference to the sequence container.
+     */
     const NetworkAeSequence&
-    NetworkAe () const;
+    getNetworkAe () const;
 
+    /**
+     * @brief Return a read-write reference to the element sequence.
+     *
+     * @return A reference to the sequence container.
+     */
     NetworkAeSequence&
-    NetworkAe ();
+    getNetworkAe ();
 
+    /**
+     * @brief Copy elements from a given sequence.
+     *
+     * @param s A sequence to copy elements from.
+     *
+     * For each element in @a s this function makes a copy and adds it 
+     * to the sequence. Note that this operation completely changes the 
+     * sequence and all old elements will be lost.
+     */
     void
-    NetworkAe (const NetworkAeSequence& s);
+    setNetworkAe (const NetworkAeSequence& s);
 
-    // NetworkConnection
-    //
+    //@}
+
+    /**
+     * @name NetworkConnection
+     *
+     * @brief Accessor and modifier functions for the %NetworkConnection
+     * sequence element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::CDM::DicomNetworkConnection NetworkConnectionType;
+
+    /**
+     * @brief Element sequence container type.
+     */
     typedef ::xsd::cxx::tree::sequence< NetworkConnectionType > NetworkConnectionSequence;
+
+    /**
+     * @brief Element iterator type.
+     */
     typedef NetworkConnectionSequence::iterator NetworkConnectionIterator;
+
+    /**
+     * @brief Element constant iterator type.
+     */
     typedef NetworkConnectionSequence::const_iterator NetworkConnectionConstIterator;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< NetworkConnectionType, char > NetworkConnectionTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * sequence.
+     *
+     * @return A constant reference to the sequence container.
+     */
     const NetworkConnectionSequence&
-    NetworkConnection () const;
+    getNetworkConnection () const;
 
+    /**
+     * @brief Return a read-write reference to the element sequence.
+     *
+     * @return A reference to the sequence container.
+     */
     NetworkConnectionSequence&
-    NetworkConnection ();
+    getNetworkConnection ();
 
+    /**
+     * @brief Copy elements from a given sequence.
+     *
+     * @param s A sequence to copy elements from.
+     *
+     * For each element in @a s this function makes a copy and adds it 
+     * to the sequence. Note that this operation completely changes the 
+     * sequence and all old elements will be lost.
+     */
     void
-    NetworkConnection (const NetworkConnectionSequence& s);
+    setNetworkConnection (const NetworkConnectionSequence& s);
 
-    // SoftwareVersion
-    //
+    //@}
+
+    /**
+     * @name SoftwareVersion
+     *
+     * @brief Accessor and modifier functions for the %SoftwareVersion
+     * sequence element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::xml_schema::String SoftwareVersionType;
+
+    /**
+     * @brief Element sequence container type.
+     */
     typedef ::xsd::cxx::tree::sequence< SoftwareVersionType > SoftwareVersionSequence;
+
+    /**
+     * @brief Element iterator type.
+     */
     typedef SoftwareVersionSequence::iterator SoftwareVersionIterator;
+
+    /**
+     * @brief Element constant iterator type.
+     */
     typedef SoftwareVersionSequence::const_iterator SoftwareVersionConstIterator;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< SoftwareVersionType, char > SoftwareVersionTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * sequence.
+     *
+     * @return A constant reference to the sequence container.
+     */
     const SoftwareVersionSequence&
-    SoftwareVersion () const;
+    getSoftwareVersion () const;
 
+    /**
+     * @brief Return a read-write reference to the element sequence.
+     *
+     * @return A reference to the sequence container.
+     */
     SoftwareVersionSequence&
-    SoftwareVersion ();
+    getSoftwareVersion ();
 
+    /**
+     * @brief Copy elements from a given sequence.
+     *
+     * @param s A sequence to copy elements from.
+     *
+     * For each element in @a s this function makes a copy and adds it 
+     * to the sequence. Note that this operation completely changes the 
+     * sequence and all old elements will be lost.
+     */
     void
-    SoftwareVersion (const SoftwareVersionSequence& s);
+    setSoftwareVersion (const SoftwareVersionSequence& s);
 
-    // InstitutionName
-    //
+    //@}
+
+    /**
+     * @name InstitutionName
+     *
+     * @brief Accessor and modifier functions for the %InstitutionName
+     * sequence element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::CDM::LocalizedText InstitutionNameType;
+
+    /**
+     * @brief Element sequence container type.
+     */
     typedef ::xsd::cxx::tree::sequence< InstitutionNameType > InstitutionNameSequence;
+
+    /**
+     * @brief Element iterator type.
+     */
     typedef InstitutionNameSequence::iterator InstitutionNameIterator;
+
+    /**
+     * @brief Element constant iterator type.
+     */
     typedef InstitutionNameSequence::const_iterator InstitutionNameConstIterator;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< InstitutionNameType, char > InstitutionNameTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * sequence.
+     *
+     * @return A constant reference to the sequence container.
+     */
     const InstitutionNameSequence&
-    InstitutionName () const;
+    getInstitutionName () const;
 
+    /**
+     * @brief Return a read-write reference to the element sequence.
+     *
+     * @return A reference to the sequence container.
+     */
     InstitutionNameSequence&
-    InstitutionName ();
+    getInstitutionName ();
 
+    /**
+     * @brief Copy elements from a given sequence.
+     *
+     * @param s A sequence to copy elements from.
+     *
+     * For each element in @a s this function makes a copy and adds it 
+     * to the sequence. Note that this operation completely changes the 
+     * sequence and all old elements will be lost.
+     */
     void
-    InstitutionName (const InstitutionNameSequence& s);
+    setInstitutionName (const InstitutionNameSequence& s);
 
-    // InstitutionAddress
-    //
+    //@}
+
+    /**
+     * @name InstitutionAddress
+     *
+     * @brief Accessor and modifier functions for the %InstitutionAddress
+     * sequence element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::CDM::LocalizedText InstitutionAddressType;
+
+    /**
+     * @brief Element sequence container type.
+     */
     typedef ::xsd::cxx::tree::sequence< InstitutionAddressType > InstitutionAddressSequence;
+
+    /**
+     * @brief Element iterator type.
+     */
     typedef InstitutionAddressSequence::iterator InstitutionAddressIterator;
+
+    /**
+     * @brief Element constant iterator type.
+     */
     typedef InstitutionAddressSequence::const_iterator InstitutionAddressConstIterator;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< InstitutionAddressType, char > InstitutionAddressTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * sequence.
+     *
+     * @return A constant reference to the sequence container.
+     */
     const InstitutionAddressSequence&
-    InstitutionAddress () const;
+    getInstitutionAddress () const;
 
+    /**
+     * @brief Return a read-write reference to the element sequence.
+     *
+     * @return A reference to the sequence container.
+     */
     InstitutionAddressSequence&
-    InstitutionAddress ();
+    getInstitutionAddress ();
 
+    /**
+     * @brief Copy elements from a given sequence.
+     *
+     * @param s A sequence to copy elements from.
+     *
+     * For each element in @a s this function makes a copy and adds it 
+     * to the sequence. Note that this operation completely changes the 
+     * sequence and all old elements will be lost.
+     */
     void
-    InstitutionAddress (const InstitutionAddressSequence& s);
+    setInstitutionAddress (const InstitutionAddressSequence& s);
 
-    // InstitutionalDepartmentName
-    //
+    //@}
+
+    /**
+     * @name InstitutionalDepartmentName
+     *
+     * @brief Accessor and modifier functions for the %InstitutionalDepartmentName
+     * sequence element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::CDM::LocalizedText InstitutionalDepartmentNameType;
+
+    /**
+     * @brief Element sequence container type.
+     */
     typedef ::xsd::cxx::tree::sequence< InstitutionalDepartmentNameType > InstitutionalDepartmentNameSequence;
+
+    /**
+     * @brief Element iterator type.
+     */
     typedef InstitutionalDepartmentNameSequence::iterator InstitutionalDepartmentNameIterator;
+
+    /**
+     * @brief Element constant iterator type.
+     */
     typedef InstitutionalDepartmentNameSequence::const_iterator InstitutionalDepartmentNameConstIterator;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< InstitutionalDepartmentNameType, char > InstitutionalDepartmentNameTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * sequence.
+     *
+     * @return A constant reference to the sequence container.
+     */
     const InstitutionalDepartmentNameSequence&
-    InstitutionalDepartmentName () const;
+    getInstitutionalDepartmentName () const;
 
+    /**
+     * @brief Return a read-write reference to the element sequence.
+     *
+     * @return A reference to the sequence container.
+     */
     InstitutionalDepartmentNameSequence&
-    InstitutionalDepartmentName ();
+    getInstitutionalDepartmentName ();
 
+    /**
+     * @brief Copy elements from a given sequence.
+     *
+     * @param s A sequence to copy elements from.
+     *
+     * For each element in @a s this function makes a copy and adds it 
+     * to the sequence. Note that this operation completely changes the 
+     * sequence and all old elements will be lost.
+     */
     void
-    InstitutionalDepartmentName (const InstitutionalDepartmentNameSequence& s);
+    setInstitutionalDepartmentName (const InstitutionalDepartmentNameSequence& s);
 
-    // PrimaryDeviceType
-    //
+    //@}
+
+    /**
+     * @name PrimaryDeviceType
+     *
+     * @brief Accessor and modifier functions for the %PrimaryDeviceType
+     * sequence element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::CDM::LocalizedText PrimaryDeviceTypeType;
+
+    /**
+     * @brief Element sequence container type.
+     */
     typedef ::xsd::cxx::tree::sequence< PrimaryDeviceTypeType > PrimaryDeviceTypeSequence;
+
+    /**
+     * @brief Element iterator type.
+     */
     typedef PrimaryDeviceTypeSequence::iterator PrimaryDeviceTypeIterator;
+
+    /**
+     * @brief Element constant iterator type.
+     */
     typedef PrimaryDeviceTypeSequence::const_iterator PrimaryDeviceTypeConstIterator;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< PrimaryDeviceTypeType, char > PrimaryDeviceTypeTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * sequence.
+     *
+     * @return A constant reference to the sequence container.
+     */
     const PrimaryDeviceTypeSequence&
-    PrimaryDeviceType () const;
+    getPrimaryDeviceType () const;
 
+    /**
+     * @brief Return a read-write reference to the element sequence.
+     *
+     * @return A reference to the sequence container.
+     */
     PrimaryDeviceTypeSequence&
-    PrimaryDeviceType ();
+    getPrimaryDeviceType ();
 
+    /**
+     * @brief Copy elements from a given sequence.
+     *
+     * @param s A sequence to copy elements from.
+     *
+     * For each element in @a s this function makes a copy and adds it 
+     * to the sequence. Note that this operation completely changes the 
+     * sequence and all old elements will be lost.
+     */
     void
-    PrimaryDeviceType (const PrimaryDeviceTypeSequence& s);
+    setPrimaryDeviceType (const PrimaryDeviceTypeSequence& s);
 
-    // PublicCertificate
-    //
+    //@}
+
+    /**
+     * @name PublicCertificate
+     *
+     * @brief Accessor and modifier functions for the %PublicCertificate
+     * sequence element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::xml_schema::Base64Binary PublicCertificateType;
+
+    /**
+     * @brief Element sequence container type.
+     */
     typedef ::xsd::cxx::tree::sequence< PublicCertificateType > PublicCertificateSequence;
+
+    /**
+     * @brief Element iterator type.
+     */
     typedef PublicCertificateSequence::iterator PublicCertificateIterator;
+
+    /**
+     * @brief Element constant iterator type.
+     */
     typedef PublicCertificateSequence::const_iterator PublicCertificateConstIterator;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< PublicCertificateType, char > PublicCertificateTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * sequence.
+     *
+     * @return A constant reference to the sequence container.
+     */
     const PublicCertificateSequence&
-    PublicCertificate () const;
+    getPublicCertificate () const;
 
+    /**
+     * @brief Return a read-write reference to the element sequence.
+     *
+     * @return A reference to the sequence container.
+     */
     PublicCertificateSequence&
-    PublicCertificate ();
+    getPublicCertificate ();
 
+    /**
+     * @brief Copy elements from a given sequence.
+     *
+     * @param s A sequence to copy elements from.
+     *
+     * For each element in @a s this function makes a copy and adds it 
+     * to the sequence. Note that this operation completely changes the 
+     * sequence and all old elements will be lost.
+     */
     void
-    PublicCertificate (const PublicCertificateSequence& s);
+    setPublicCertificate (const PublicCertificateSequence& s);
 
-    // Description
-    //
+    //@}
+
+    /**
+     * @name Description
+     *
+     * @brief Accessor and modifier functions for the %Description
+     * sequence element.
+     *
+     * Free text description of this device
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::CDM::LocalizedText DescriptionType;
+
+    /**
+     * @brief Element sequence container type.
+     */
     typedef ::xsd::cxx::tree::sequence< DescriptionType > DescriptionSequence;
+
+    /**
+     * @brief Element iterator type.
+     */
     typedef DescriptionSequence::iterator DescriptionIterator;
+
+    /**
+     * @brief Element constant iterator type.
+     */
     typedef DescriptionSequence::const_iterator DescriptionConstIterator;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< DescriptionType, char > DescriptionTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * sequence.
+     *
+     * @return A constant reference to the sequence container.
+     */
     const DescriptionSequence&
-    Description () const;
+    getDescription () const;
 
+    /**
+     * @brief Return a read-write reference to the element sequence.
+     *
+     * @return A reference to the sequence container.
+     */
     DescriptionSequence&
-    Description ();
+    getDescription ();
 
+    /**
+     * @brief Copy elements from a given sequence.
+     *
+     * @param s A sequence to copy elements from.
+     *
+     * For each element in @a s this function makes a copy and adds it 
+     * to the sequence. Note that this operation completely changes the 
+     * sequence and all old elements will be lost.
+     */
     void
-    Description (const DescriptionSequence& s);
+    setDescription (const DescriptionSequence& s);
 
-    // StationName
-    //
+    //@}
+
+    /**
+     * @name StationName
+     *
+     * @brief Accessor and modifier functions for the %StationName
+     * sequence element.
+     *
+     * Free text station name, e.g. "High resolution CT 1"
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::CDM::LocalizedText StationNameType;
+
+    /**
+     * @brief Element sequence container type.
+     */
     typedef ::xsd::cxx::tree::sequence< StationNameType > StationNameSequence;
+
+    /**
+     * @brief Element iterator type.
+     */
     typedef StationNameSequence::iterator StationNameIterator;
+
+    /**
+     * @brief Element constant iterator type.
+     */
     typedef StationNameSequence::const_iterator StationNameConstIterator;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< StationNameType, char > StationNameTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * sequence.
+     *
+     * @return A constant reference to the sequence container.
+     */
     const StationNameSequence&
-    StationName () const;
+    getStationName () const;
 
+    /**
+     * @brief Return a read-write reference to the element sequence.
+     *
+     * @return A reference to the sequence container.
+     */
     StationNameSequence&
-    StationName ();
+    getStationName ();
 
+    /**
+     * @brief Copy elements from a given sequence.
+     *
+     * @param s A sequence to copy elements from.
+     *
+     * For each element in @a s this function makes a copy and adds it 
+     * to the sequence. Note that this operation completely changes the 
+     * sequence and all old elements will be lost.
+     */
     void
-    StationName (const StationNameSequence& s);
+    setStationName (const StationNameSequence& s);
 
-    // IssuerOfPatientID
-    //
+    //@}
+
+    /**
+     * @name IssuerOfPatientID
+     *
+     * @brief Accessor and modifier functions for the %IssuerOfPatientID
+     * optional attribute.
+     *
+     * Issuer of Patient ID as written to the any DICOM objects that are
+     * created by this device.
+     */
+    //@{
+
+    /**
+     * @brief Attribute type.
+     */
     typedef ::xml_schema::String IssuerOfPatientIDType;
+
+    /**
+     * @brief Attribute optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< IssuerOfPatientIDType > IssuerOfPatientIDOptional;
+
+    /**
+     * @brief Attribute traits type.
+     */
     typedef ::xsd::cxx::tree::traits< IssuerOfPatientIDType, char > IssuerOfPatientIDTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the attribute
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const IssuerOfPatientIDOptional&
-    IssuerOfPatientID () const;
+    getIssuerOfPatientID () const;
 
+    /**
+     * @brief Return a read-write reference to the attribute container.
+     *
+     * @return A reference to the optional container.
+     */
     IssuerOfPatientIDOptional&
-    IssuerOfPatientID ();
+    getIssuerOfPatientID ();
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
     void
-    IssuerOfPatientID (const IssuerOfPatientIDType& x);
+    setIssuerOfPatientID (const IssuerOfPatientIDType& x);
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the attribute.
+     * Otherwise the attribute container is set the 'not present' state.
+     */
     void
-    IssuerOfPatientID (const IssuerOfPatientIDOptional& x);
+    setIssuerOfPatientID (const IssuerOfPatientIDOptional& x);
 
+    /**
+     * @brief Set the attribute value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    IssuerOfPatientID (::std::unique_ptr< IssuerOfPatientIDType > p);
+    setIssuerOfPatientID (::std::unique_ptr< IssuerOfPatientIDType > p);
 
-    // Constructors.
-    //
+    //@}
+
+    /**
+     * @name Constructors
+     */
+    //@{
+
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes.
+     */
     DicomDeviceDescriptor (const HandleType&);
 
+    /**
+     * @brief Create an instance from a DOM element.
+     *
+     * @param e A DOM element to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     DicomDeviceDescriptor (const ::xercesc::DOMElement& e,
                            ::xml_schema::Flags f = 0,
                            ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy constructor.
+     *
+     * @param x An instance to make a copy of.
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     DicomDeviceDescriptor (const DicomDeviceDescriptor& x,
                            ::xml_schema::Flags f = 0,
                            ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy the instance polymorphically.
+     *
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     * @return A pointer to the dynamically allocated copy.
+     *
+     * This function ensures that the dynamic type of the instance is
+     * used for copying and should be used for polymorphic object
+     * models instead of the copy constructor.
+     */
     virtual DicomDeviceDescriptor*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    /**
+     * @brief Copy assignment operator.
+     *
+     * @param x An instance to make a copy of.
+     * @return A reference to itself.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     DicomDeviceDescriptor&
     operator= (const DicomDeviceDescriptor& x);
 
+    //@}
+
+    /**
+     * @brief Destructor.
+     */
     virtual 
     ~DicomDeviceDescriptor ();
 
     // Implementation.
     //
+
+    //@cond
+
     protected:
     void
     parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -733,6 +2297,8 @@ namespace CDM
     DescriptionSequence Description_;
     StationNameSequence StationName_;
     IssuerOfPatientIDOptional IssuerOfPatientID_;
+
+    //@endcond
   };
 }
 

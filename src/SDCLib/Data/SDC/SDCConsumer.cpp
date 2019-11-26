@@ -128,32 +128,32 @@ MDM::Activate createRequestMessage(const std::string & p_operationHandle) {
 
 MDM::SetContextState createRequestMessage(const LocationContextState & p_state, const std::string & p_operationHandle) {
 	MDM::SetContextState t_result(p_operationHandle);
-	t_result.ProposedContextState().push_back(ConvertToCDM::convert(p_state));
+	t_result.getProposedContextState().push_back(ConvertToCDM::convert(p_state));
 	return t_result;
 }
 
 
 MDM::SetContextState createRequestMessage(const PatientContextState & p_state, const std::string & p_operationHandle) {
 	MDM::SetContextState t_result(p_operationHandle);
-	t_result.ProposedContextState().push_back(ConvertToCDM::convert(p_state));
+	t_result.getProposedContextState().push_back(ConvertToCDM::convert(p_state));
 	return t_result;
 }
 
 MDM::SetContextState createRequestMessage(const EnsembleContextState & p_state, const std::string & p_operationHandle) {
 	MDM::SetContextState t_result(p_operationHandle);
-	t_result.ProposedContextState().push_back(ConvertToCDM::convert(p_state));
+	t_result.getProposedContextState().push_back(ConvertToCDM::convert(p_state));
 	return t_result;
 }
 
 MDM::SetContextState createRequestMessage(const OperatorContextState & p_state, const std::string & p_operationHandle) {
 	MDM::SetContextState t_result(p_operationHandle);
-	t_result.ProposedContextState().push_back(ConvertToCDM::convert(p_state));
+	t_result.getProposedContextState().push_back(ConvertToCDM::convert(p_state));
 	return t_result;
 }
 
 MDM::SetContextState createRequestMessage(const WorkflowContextState & p_state, const std::string & p_operationHandle) {
 	MDM::SetContextState t_result(p_operationHandle);
-	t_result.ProposedContextState().push_back(ConvertToCDM::convert(p_state));
+	t_result.getProposedContextState().push_back(ConvertToCDM::convert(p_state));
 	return t_result;
 }
 
@@ -254,12 +254,12 @@ MdDescription SDCConsumer::getMdDescription()
 		return MdDescription();
 	}
 
-	const MdDescription t_description(ConvertFromCDM::convert(t_response->MdDescription()));
+	const MdDescription t_description(ConvertFromCDM::convert(t_response->getMdDescription()));
 
 	// refresh cashed version
 	m_mdib->setMdDescription(t_description);
-	if (t_response->MdibVersion().present()) {
-		m_mdib->setMdibVersion(t_response->MdibVersion().get());
+	if (t_response->getMdibVersion().present()) {
+		m_mdib->setMdibVersion(t_response->getMdibVersion().get());
 	}
 
     return t_description;
@@ -288,7 +288,7 @@ MdState SDCConsumer::getMdState()
 		return MdState();
 	}
 
-    return ConvertFromCDM::convert(t_response->MdState());
+    return ConvertFromCDM::convert(t_response->getMdState());
 }
 
 bool SDCConsumer::unregisterFutureInvocationListener(int p_transactionId) {
@@ -331,13 +331,13 @@ bool SDCConsumer::requestMdib()
 
 	std::lock_guard<std::mutex> t_lock(m_requestMutex);
 	m_mdib.reset(new MdibContainer());
-	m_mdib->setMdState(ConvertFromCDM::convert(t_response->Mdib().MdState().get()));
-	if (t_response->Mdib().MdDescription().present()) {
-		m_mdib->setMdDescription(ConvertFromCDM::convert(t_response->Mdib().MdDescription().get()));
+	m_mdib->setMdState(ConvertFromCDM::convert(t_response->getMdib().getMdState().get()));
+	if (t_response->getMdib().getMdDescription().present()) {
+		m_mdib->setMdDescription(ConvertFromCDM::convert(t_response->getMdib().getMdDescription().get()));
 	}
 
-	if (t_response->MdibVersion().present()) {
-		m_mdib->setMdibVersion(t_response->MdibVersion().get());
+	if (t_response->getMdibVersion().present()) {
+		m_mdib->setMdibVersion(t_response->getMdibVersion().get());
 	}
 	return true;
 }
@@ -364,7 +364,7 @@ std::string SDCConsumer::requestRawMdib()
 		std::ostringstream t_result;
 		xml_schema::NamespaceInfomap tl_map;
 
-		CDM::MdibContainer(t_result, t_response->Mdib(), tl_map, OSELib::XML_ENCODING, xercesFlags);
+		CDM::serializeMdibContainer(t_result, t_response->getMdib(), tl_map, OSELib::XML_ENCODING, xercesFlags);
 		return t_result.str();
 	}
 }
@@ -541,8 +541,8 @@ InvocationState SDCConsumer::commitStateImpl(const StateType & p_state, FutureIn
 	if (nullptr == t_response) {
 		return InvocationState::Fail;
 	} else {
-		handleInvocationState(t_response->InvocationInfo().TransactionId(), p_fis);
-		return ConvertFromCDM::convert(t_response->InvocationInfo().InvocationState());
+		handleInvocationState(t_response->getInvocationInfo().getTransactionId(), p_fis);
+		return ConvertFromCDM::convert(t_response->getInvocationInfo().getInvocationState());
 	}
 	// FIXME: Return "else part" here?
 }
@@ -583,8 +583,8 @@ InvocationState SDCConsumer::activate(const std::string & p_handle, FutureInvoca
 	if (nullptr == t_response) {
 		return InvocationState::Fail;
 	} else {
-		handleInvocationState(t_response->InvocationInfo().TransactionId(), p_fis);
-		return ConvertFromCDM::convert(t_response->InvocationInfo().InvocationState());
+		handleInvocationState(t_response->getInvocationInfo().getTransactionId(), p_fis);
+		return ConvertFromCDM::convert(t_response->getInvocationInfo().getInvocationState());
 	}
 	// FIXME: Return "else part" here?
 }
@@ -616,7 +616,7 @@ std::unique_ptr<TStateType> SDCConsumer::requestState(const std::string & p_hand
 	}
 
     MDM::GetMdState t_request;
-    t_request.HandleRef().push_back(p_handle);
+    t_request.getHandleRef().push_back(p_handle);
 
     auto t_response(m_adapter->invoke(t_request, getSDCInstance()->getSSLConfig()->getClientContext()));
     if (nullptr == t_response) {
@@ -624,7 +624,7 @@ std::unique_ptr<TStateType> SDCConsumer::requestState(const std::string & p_hand
     	return nullptr;
     }
 
-	const CDM::MdState::StateSequence & t_resultStates(t_response->MdState().State());
+	const CDM::MdState::StateSequence & t_resultStates(t_response->getMdState().getState());
 	if (t_resultStates.empty()) {
 		log_error([&] { return "requestState failed: Got no response object for handle "  + p_handle; });
 		return nullptr;
@@ -717,11 +717,11 @@ void SDCConsumer::onOperationInvoked(const OperationInvocationContext & p_oic, I
     const auto tl_mdss(t_mdd.collectAllMdsDescriptors());
     for (const auto & mds : tl_mdss) {
     	const auto t_mds_uniquePtr(ConvertToCDM::convert(mds));
-		if (!t_mds_uniquePtr->Sco().present()) {
+		if (!t_mds_uniquePtr->getSco().present()) {
 			continue;
 		}
-		for (const auto & t_operation : t_mds_uniquePtr->Sco().get().Operation()) {
-			if (t_operation.Handle() == p_oic.operationHandle && dynamic_cast<const CDM::ActivateOperationDescriptor *>(&t_operation) != nullptr) {
+		for (const auto & t_operation : t_mds_uniquePtr->getSco().get().getOperation()) {
+			if (t_operation.getHandle() == p_oic.operationHandle && dynamic_cast<const CDM::ActivateOperationDescriptor *>(&t_operation) != nullptr) {
 				t_targetHandle = p_oic.operationHandle;
 				break;
 			}

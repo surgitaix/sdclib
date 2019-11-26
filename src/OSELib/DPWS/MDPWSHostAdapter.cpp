@@ -74,13 +74,13 @@ void MDPWSHostAdapter::sendHello()
 	}
 	HelloType t_hello(m_epr, m_metadataVersion);
 	if (! m_scopes.empty()) {
-		t_hello.Scopes(m_scopes);
+		t_hello.setScopes(m_scopes);
 	}
 	if (! m_types.empty()) {
-		t_hello.Types(m_types);
+		t_hello.setTypes(m_types);
 	}
 	if (! m_xaddresses.empty()) {
-		t_hello.XAddrs(m_xaddresses);
+		t_hello.setXAddrs(m_xaddresses);
 	}
 	m_impl->sendHello(t_hello);
 }
@@ -89,13 +89,13 @@ std::vector<ProbeMatchType> MDPWSHostAdapter::dispatch(const ProbeType & p_filte
 {
 	ProbeMatchType t_match(m_epr, m_metadataVersion);
 	if (! m_scopes.empty()) {
-		t_match.Scopes(m_scopes);
+		t_match.setScopes(m_scopes);
 	}
 	if (! m_types.empty()) {
-		t_match.Types(m_types);
+		t_match.setTypes(m_types);
 	}
 	if (! m_xaddresses.empty()) {
-		t_match.XAddrs(m_xaddresses);
+		t_match.setXAddrs(m_xaddresses);
 	}
 	std::vector<ProbeMatchType> t_result;
 	if (! Impl::compare(p_filter, t_match)) {
@@ -111,13 +111,13 @@ std::unique_ptr<ResolveMatchType> MDPWSHostAdapter::dispatch(const ResolveType &
 {
 	std::unique_ptr<ResolveMatchType> t_result(new ResolveMatchType(m_epr, m_metadataVersion));
 	if (! m_scopes.empty()) {
-		t_result->Scopes(m_scopes);
+		t_result->setScopes(m_scopes);
 	}
 	if (! m_types.empty()) {
-		t_result->Types(m_types);
+		t_result->setTypes(m_types);
 	}
 	if (! m_xaddresses.empty()) {
-		t_result->XAddrs(m_xaddresses);
+		t_result->setXAddrs(m_xaddresses);
 	}
 	if (! Impl::compare(p_filter, *t_result)) {
 		return nullptr;

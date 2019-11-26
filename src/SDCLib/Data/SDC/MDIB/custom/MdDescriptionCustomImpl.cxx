@@ -59,13 +59,13 @@ std::unique_ptr<TDescriptor> MdDescription::findDescriptor(const std::string & h
 
 template<class AlertSystemOwner>
 bool findAlertConditionDescriptorImpl(const AlertSystemOwner & owner, const std::string & handle, AlertConditionDescriptor & outDescriptor) {
-		if (owner.AlertSystem().present()) {
-		const CDM::AlertSystemDescriptor & alertSystem(owner.AlertSystem().get());
-		for (const auto & descriptor : alertSystem.AlertCondition()) {
+		if (owner.getAlertSystem().present()) {
+		const CDM::AlertSystemDescriptor & alertSystem(owner.getAlertSystem().get());
+		for (const auto & descriptor : alertSystem.getAlertCondition()) {
 			if (dynamic_cast<const LimitAlertConditionDescriptor::WrappedType *>(&descriptor)) {
 				continue;
 			}
-			if (descriptor.Handle() == handle) {
+			if (descriptor.getHandle() == handle) {
 				outDescriptor = ConvertFromCDM::convert(descriptor);
 				return true;
 			}
@@ -76,11 +76,11 @@ bool findAlertConditionDescriptorImpl(const AlertSystemOwner & owner, const std:
 
 bool MdDescription::findDescriptor(const std::string & handle, AlertConditionDescriptor & outDescriptor) const {
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
+	for (const auto & mds : mddescription.getMds()) {
 		if (findAlertConditionDescriptorImpl(mds, handle, outDescriptor)) {
 			return true;
 		}
-		for (const auto & vmdDescriptor : mds.Vmd()) {
+		for (const auto & vmdDescriptor : mds.getVmd()) {
 			if (findAlertConditionDescriptorImpl(vmdDescriptor, handle, outDescriptor)) {
 				return true;
 			}
@@ -92,10 +92,10 @@ bool MdDescription::findDescriptor(const std::string & handle, AlertConditionDes
 
 template<class AlertSystemOwner>
 bool findAlertSignalDescriptorImpl(const AlertSystemOwner & owner, const std::string & handle, AlertSignalDescriptor & outDescriptor) {
-	if (owner.AlertSystem().present()) {
-		const CDM::AlertSystemDescriptor & alertSystem(owner.AlertSystem().get());
-		for (const auto & descriptor : alertSystem.AlertSignal()) {
-			if (descriptor.Handle() == handle) {
+	if (owner.getAlertSystem().present()) {
+		const CDM::AlertSystemDescriptor & alertSystem(owner.getAlertSystem().get());
+		for (const auto & descriptor : alertSystem.getAlertSignal()) {
+			if (descriptor.getHandle() == handle) {
 				outDescriptor = ConvertFromCDM::convert(descriptor);
 				return true;
 			}
@@ -106,11 +106,11 @@ bool findAlertSignalDescriptorImpl(const AlertSystemOwner & owner, const std::st
 
 bool MdDescription::findDescriptor(const std::string & handle, AlertSignalDescriptor & outDescriptor) const {
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
+	for (const auto & mds : mddescription.getMds()) {
 		if (findAlertSignalDescriptorImpl(mds, handle, outDescriptor)) {
 			return true;
 		}
-		for (const auto & vmdDescriptor : mds.Vmd()) {
+		for (const auto & vmdDescriptor : mds.getVmd()) {
 			if (findAlertSignalDescriptorImpl(vmdDescriptor, handle, outDescriptor)) {
 				return true;
 			}
@@ -122,9 +122,9 @@ bool MdDescription::findDescriptor(const std::string & handle, AlertSignalDescri
 
 template<class AlertSystemOwner>
 bool findAlertSystemDescriptorImpl(const AlertSystemOwner & owner, const std::string & handle, AlertSystemDescriptor & outDescriptor) {
-	if (owner.AlertSystem().present()) {
-		const CDM::AlertSystemDescriptor & alertSystem(owner.AlertSystem().get());
-		if (alertSystem.Handle() == handle) {
+	if (owner.getAlertSystem().present()) {
+		const CDM::AlertSystemDescriptor & alertSystem(owner.getAlertSystem().get());
+		if (alertSystem.getHandle() == handle) {
 			outDescriptor = ConvertFromCDM::convert(alertSystem);
 			return true;
 		}
@@ -134,11 +134,11 @@ bool findAlertSystemDescriptorImpl(const AlertSystemOwner & owner, const std::st
 
 bool MdDescription::findDescriptor(const std::string & handle, AlertSystemDescriptor & outDescriptor) const {
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
+	for (const auto & mds : mddescription.getMds()) {
 		if (findAlertSystemDescriptorImpl(mds, handle, outDescriptor)) {
 			return true;
 		}
-		for (const auto & vmdDescriptor : mds.Vmd()) {
+		for (const auto & vmdDescriptor : mds.getVmd()) {
 			if (findAlertSystemDescriptorImpl(vmdDescriptor, handle, outDescriptor)) {
 				return true;
 			}
@@ -150,10 +150,10 @@ bool MdDescription::findDescriptor(const std::string & handle, AlertSystemDescri
 
 template<class AlertSystemOwner>
 bool findLimitAlertConditionDescriptorImpl(const AlertSystemOwner & owner, const std::string & handle, LimitAlertConditionDescriptor & outDescriptor) {
-	if (owner.AlertSystem().present()) {
-		const CDM::AlertSystemDescriptor & alertSystem(owner.AlertSystem().get());
-		for (const auto & descriptor : alertSystem.AlertCondition()) {
-			if (descriptor.Handle() == handle) {
+	if (owner.getAlertSystem().present()) {
+		const CDM::AlertSystemDescriptor & alertSystem(owner.getAlertSystem().get());
+		for (const auto & descriptor : alertSystem.getAlertCondition()) {
+			if (descriptor.getHandle() == handle) {
 				if (const CDM::LimitAlertConditionDescriptor * match = dynamic_cast<const CDM::LimitAlertConditionDescriptor *>(&descriptor)) {
 					outDescriptor = ConvertFromCDM::convert(*match);
 					return true;
@@ -166,11 +166,11 @@ bool findLimitAlertConditionDescriptorImpl(const AlertSystemOwner & owner, const
 
 bool MdDescription::findDescriptor(const std::string & handle, LimitAlertConditionDescriptor & outDescriptor) const {
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
+	for (const auto & mds : mddescription.getMds()) {
 		if (findLimitAlertConditionDescriptorImpl(mds, handle, outDescriptor)) {
 			return true;
 		}
-		for (const auto & vmdDescriptor : mds.Vmd()) {
+		for (const auto & vmdDescriptor : mds.getVmd()) {
 			if (findLimitAlertConditionDescriptorImpl(vmdDescriptor, handle, outDescriptor)) {
 				return true;
 			}
@@ -182,10 +182,10 @@ bool MdDescription::findDescriptor(const std::string & handle, LimitAlertConditi
 
 bool MdDescription::findDescriptor(const std::string & handle, ChannelDescriptor & outDescriptor) const {
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
-		for (const auto & vmdDescriptor : mds.Vmd()) {
-			for (const auto & channelDescriptor : vmdDescriptor.Channel()) {
-				if (channelDescriptor.Handle() == handle) {
+	for (const auto & mds : mddescription.getMds()) {
+		for (const auto & vmdDescriptor : mds.getVmd()) {
+			for (const auto & channelDescriptor : vmdDescriptor.getChannel()) {
+				if (channelDescriptor.getHandle() == handle) {
 					outDescriptor = ConvertFromCDM::convert(channelDescriptor);
 					return true;
 				}
@@ -200,11 +200,11 @@ bool MdDescription::findDescriptor(const std::string & handle, ChannelDescriptor
 template<>
 bool MdDescription::findMetricDescriptorImpl(const std::string & handle, StringMetricDescriptor & outMetric) const {
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
-		for (const auto & vmdDescriptor : mds.Vmd()) {
-			for (const auto & channelDescriptor : vmdDescriptor.Channel()) {
-				for (const auto & metricDescriptor : channelDescriptor.Metric()) {
-					if (metricDescriptor.Handle() != handle) {
+	for (const auto & mds : mddescription.getMds()) {
+		for (const auto & vmdDescriptor : mds.getVmd()) {
+			for (const auto & channelDescriptor : vmdDescriptor.getChannel()) {
+				for (const auto & metricDescriptor : channelDescriptor.getMetric()) {
+					if (metricDescriptor.getHandle() != handle) {
 						continue;
 					}
 					if (dynamic_cast<const EnumStringMetricDescriptor::WrappedType *>(&metricDescriptor)) {
@@ -240,9 +240,9 @@ bool MdDescription::findDescriptor(const std::string & handle, StringMetricDescr
 
 bool MdDescription::findDescriptor(const std::string & handle, VmdDescriptor & outDescriptor) const {
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
-		for (const auto & vmdDescriptor : mds.Vmd()) {
-			if (vmdDescriptor.Handle() == handle) {
+	for (const auto & mds : mddescription.getMds()) {
+		for (const auto & vmdDescriptor : mds.getVmd()) {
+			if (vmdDescriptor.getHandle() == handle) {
 				outDescriptor = ConvertFromCDM::convert(vmdDescriptor);
 				return true;
 			}
@@ -257,11 +257,11 @@ bool MdDescription::findDescriptor(const std::string & handle, RealTimeSampleArr
 
 bool MdDescription::findDescriptor(const std::string & handle, EnsembleContextDescriptor & outDescriptor) const {
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
-		if (mds.SystemContext().present()) {
-			if (!mds.SystemContext().get().EnsembleContext().empty()) {
-				for (const auto & descriptor : mds.SystemContext().get().EnsembleContext()) {
-					if (descriptor.Handle() == handle) {
+	for (const auto & mds : mddescription.getMds()) {
+		if (mds.getSystemContext().present()) {
+			if (!mds.getSystemContext().get().getEnsembleContext().empty()) {
+				for (const auto & descriptor : mds.getSystemContext().get().getEnsembleContext()) {
+					if (descriptor.getHandle() == handle) {
 						outDescriptor = ConvertFromCDM::convert(descriptor);
 						return true;
 					}
@@ -277,7 +277,7 @@ bool MdDescription::findDescriptor(const std::string & handle, EnsembleContextDe
 template <class MdsDescriptor>
 void MdDescription::addMdsDescriptor(const MdsDescriptor & source) {
 	CDM::MdDescription & mddescription(*this->data);
-	mddescription.Mds().push_back(ConvertToCDM::convert(source));
+	mddescription.getMds().push_back(ConvertToCDM::convert(source));
 }
 
 template void MdDescription::addMdsDescriptor<MdsDescriptor>(const MdsDescriptor & source);
@@ -289,9 +289,9 @@ template void MdDescription::addMdsDescriptor<MdsDescriptor>(const MdsDescriptor
 template <class MdsDescriptor>
 bool MdDescription::removeMdsDescriptor(const MdsDescriptor & object) {
 	CDM::MdDescription & mddescription(*this->data);
-	for (auto iter = mddescription.Mds().begin(); iter != mddescription.Mds().end(); iter++) {
-		if (iter->Handle() == object.getHandle()) {
-			mddescription.Mds().erase(iter);
+	for (auto iter = mddescription.getMds().begin(); iter != mddescription.getMds().end(); iter++) {
+		if (iter->getHandle() == object.getHandle()) {
+			mddescription.getMds().erase(iter);
 			return true;
 		}
 	}
@@ -304,11 +304,11 @@ template bool MdDescription::removeMdsDescriptor<DicomDeviceDescriptor>(const Di
 
 bool MdDescription::findDescriptor(const std::string & handle, LocationContextDescriptor & outDescriptor) const {
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
-		if (mds.SystemContext().present()) {
-			if (mds.SystemContext().get().LocationContext().present()) {
-				const auto & descriptor(mds.SystemContext().get().LocationContext().get());
-				if (descriptor.Handle() == handle) {
+	for (const auto & mds : mddescription.getMds()) {
+		if (mds.getSystemContext().present()) {
+			if (mds.getSystemContext().get().getLocationContext().present()) {
+				const auto & descriptor(mds.getSystemContext().get().getLocationContext().get());
+				if (descriptor.getHandle() == handle) {
 					outDescriptor = ConvertFromCDM::convert(descriptor);
 					return true;
 				}
@@ -320,11 +320,11 @@ bool MdDescription::findDescriptor(const std::string & handle, LocationContextDe
 
 bool MdDescription::findDescriptor(const std::string & handle, OperatorContextDescriptor & outDescriptor) const {
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
-		if (mds.SystemContext().present()) {
-			if (!mds.SystemContext().get().OperatorContext().empty()) {
-				for (const auto & descriptor : mds.SystemContext().get().OperatorContext()) {
-					if (descriptor.Handle() == handle) {
+	for (const auto & mds : mddescription.getMds()) {
+		if (mds.getSystemContext().present()) {
+			if (!mds.getSystemContext().get().getOperatorContext().empty()) {
+				for (const auto & descriptor : mds.getSystemContext().get().getOperatorContext()) {
+					if (descriptor.getHandle() == handle) {
 						outDescriptor = ConvertFromCDM::convert(descriptor);
 						return true;
 					}
@@ -338,11 +338,11 @@ bool MdDescription::findDescriptor(const std::string & handle, OperatorContextDe
 
 bool MdDescription::findDescriptor(const std::string & handle, PatientContextDescriptor & outDescriptor) const {
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
-		if (mds.SystemContext().present()) {
-			if (mds.SystemContext().get().PatientContext().present()) {
-				const auto & descriptor(mds.SystemContext().get().PatientContext().get());
-				if (descriptor.Handle() == handle) {
+	for (const auto & mds : mddescription.getMds()) {
+		if (mds.getSystemContext().present()) {
+			if (mds.getSystemContext().get().getPatientContext().present()) {
+				const auto & descriptor(mds.getSystemContext().get().getPatientContext().get());
+				if (descriptor.getHandle() == handle) {
 					outDescriptor = ConvertFromCDM::convert(descriptor);
 					return true;
 				}
@@ -355,11 +355,11 @@ bool MdDescription::findDescriptor(const std::string & handle, PatientContextDes
 
 bool MdDescription::findDescriptor(const std::string & handle, WorkflowContextDescriptor & outDescriptor) const {
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
-		if (mds.SystemContext().present()) {
-			if (!mds.SystemContext().get().WorkflowContext().empty()) {
-				for (const auto & descriptor : mds.SystemContext().get().WorkflowContext()) {
-					if (descriptor.Handle() == handle) {
+	for (const auto & mds : mddescription.getMds()) {
+		if (mds.getSystemContext().present()) {
+			if (!mds.getSystemContext().get().getWorkflowContext().empty()) {
+				for (const auto & descriptor : mds.getSystemContext().get().getWorkflowContext()) {
+					if (descriptor.getHandle() == handle) {
 						outDescriptor = ConvertFromCDM::convert(descriptor);
 						return true;
 					}
@@ -373,7 +373,7 @@ bool MdDescription::findDescriptor(const std::string & handle, WorkflowContextDe
 
 bool MdDescription::getFirstMdsDescriptor(MdsDescriptor & outDescriptor) const {
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
+	for (const auto & mds : mddescription.getMds()) {
 		outDescriptor = ConvertFromCDM::convert(mds);
 		return true;
 	}
@@ -382,8 +382,8 @@ bool MdDescription::getFirstMdsDescriptor(MdsDescriptor & outDescriptor) const {
 
 bool MdDescription::findDescriptor(const std::string & handle, MdsDescriptor & outDescriptor) const {
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
-		if (mds.Handle() != handle) {
+	for (const auto & mds : mddescription.getMds()) {
+		if (mds.getHandle() != handle) {
 			continue;
 		}
 		outDescriptor = ConvertFromCDM::convert(mds);
@@ -392,28 +392,29 @@ bool MdDescription::findDescriptor(const std::string & handle, MdsDescriptor & o
 	return false;
 }
 
-std::string MdDescription::getOperationTargetForOperationHandle(const std::string & operationHandle) const {
+std::string MdDescription::getOperationTargetForOperationHandle(const std::string & operationHandle) const
+{
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
 
-		// Mds SCO
-		if (mds.Sco().present()) {
-			for (const auto & operation : mds.Sco().get().Operation()) {
-				if (operation.Handle() == operationHandle) {
-					return operation.OperationTarget();
-				}
+	for (const auto & mds : mddescription.getMds()) {
+		if (!mds.getSco().present()) {
+			continue;
+		}
+		for (const auto & operation : mds.getSco().get().getOperation()) {
+			if (operation.getHandle() == operationHandle) {
+				return operation.getOperationTarget();
 			}
 		}
 
 		// Check Vmds too
-		for(const auto& t_vmd : mds.Vmd())
+		for(const auto& t_vmd : mds.getVmd())
 		{
-			if (!t_vmd.Sco().present()) {
+			if (!t_vmd.getSco().present()) {
 				continue;
 			}
-			for (const auto & t_operation : t_vmd.Sco().get().Operation()) {
-				if (t_operation.Handle() == operationHandle) {
-					return t_operation.OperationTarget();
+			for (const auto & t_operation : t_vmd.getSco().get().getOperation()) {
+				if (t_operation.getHandle() == operationHandle) {
+					return t_operation.getOperationTarget();
 				}
 			}
 
@@ -424,15 +425,16 @@ std::string MdDescription::getOperationTargetForOperationHandle(const std::strin
 	return "";
 }
 
-std::string MdDescription::getFirstOperationHandleForOperationTarget(const std::string & operationTarget) const {
+std::string MdDescription::getFirstOperationHandleForOperationTarget(const std::string & operationTarget) const
+{
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
-		if (!mds.Sco().present()) {
+	for (const auto & mds : mddescription.getMds()) {
+		if (!mds.getSco().present()) {
 			continue;
 		}
-		for (const auto & operation : mds.Sco().get().Operation()) {
-			if (operation.OperationTarget() == operationTarget) {
-				return operation.Handle();
+		for (const auto & operation : mds.getSco().get().getOperation()) {
+			if (operation.getOperationTarget() == operationTarget) {
+				return operation.getHandle();
 			}
 		}
 	}
@@ -442,7 +444,7 @@ std::string MdDescription::getFirstOperationHandleForOperationTarget(const std::
 
 std::vector<AlertConditionDescriptor> MdDescription::collectAllAlertConditionDescriptors() const {
 	auto impl = [](const CDM::AlertSystemDescriptor & owner, std::vector<AlertConditionDescriptor> & out) {
-		for (const auto & descriptor : owner.AlertCondition()) {
+		for (const auto & descriptor : owner.getAlertCondition()) {
 			if (dynamic_cast<const LimitAlertConditionDescriptor *>(&descriptor)) {
 				continue;
 			}
@@ -452,13 +454,13 @@ std::vector<AlertConditionDescriptor> MdDescription::collectAllAlertConditionDes
 
 	std::vector<AlertConditionDescriptor> result;
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
-		if (mds.AlertSystem().present()) {
-			impl(mds.AlertSystem().get(), result);
+	for (const auto & mds : mddescription.getMds()) {
+		if (mds.getAlertSystem().present()) {
+			impl(mds.getAlertSystem().get(), result);
 		}
-		for (const auto & vmdDescriptor : mds.Vmd()) {
-			if (vmdDescriptor.AlertSystem().present()) {
-				impl(vmdDescriptor.AlertSystem().get(), result);
+		for (const auto & vmdDescriptor : mds.getVmd()) {
+			if (vmdDescriptor.getAlertSystem().present()) {
+				impl(vmdDescriptor.getAlertSystem().get(), result);
 			}
 		}
 	}
@@ -467,20 +469,20 @@ std::vector<AlertConditionDescriptor> MdDescription::collectAllAlertConditionDes
 
 std::vector<AlertSignalDescriptor> MdDescription::collectAllAlertSignalDescriptors() const {
 	auto impl = [](const CDM::AlertSystemDescriptor & owner, std::vector<AlertSignalDescriptor> & out) {
-		for (const auto & descriptor : owner.AlertSignal()) {
+		for (const auto & descriptor : owner.getAlertSignal()) {
 			out.push_back(ConvertFromCDM::convert(descriptor));
 		}
 	};
 
 	std::vector<AlertSignalDescriptor> result;
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
-		if (mds.AlertSystem().present()) {
-			impl(mds.AlertSystem().get(), result);
+	for (const auto & mds : mddescription.getMds()) {
+		if (mds.getAlertSystem().present()) {
+			impl(mds.getAlertSystem().get(), result);
 		}
-		for (const auto & vmdDescriptor : mds.Vmd()) {
-			if (vmdDescriptor.AlertSystem().present()) {
-				impl(vmdDescriptor.AlertSystem().get(), result);
+		for (const auto & vmdDescriptor : mds.getVmd()) {
+			if (vmdDescriptor.getAlertSystem().present()) {
+				impl(vmdDescriptor.getAlertSystem().get(), result);
 			}
 		}
 	}
@@ -490,13 +492,13 @@ std::vector<AlertSignalDescriptor> MdDescription::collectAllAlertSignalDescripto
 std::vector<AlertSystemDescriptor> MdDescription::collectAllAlertSystemDescriptors() const {
 	std::vector<AlertSystemDescriptor> result;
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
-		if (mds.AlertSystem().present()) {
-			result.push_back(ConvertFromCDM::convert(mds.AlertSystem().get()));
+	for (const auto & mds : mddescription.getMds()) {
+		if (mds.getAlertSystem().present()) {
+			result.push_back(ConvertFromCDM::convert(mds.getAlertSystem().get()));
 		}
-		for (const auto & vmdDescriptor : mds.Vmd()) {
-			if (vmdDescriptor.AlertSystem().present()) {
-				result.push_back(ConvertFromCDM::convert(vmdDescriptor.AlertSystem().get()));
+		for (const auto & vmdDescriptor : mds.getVmd()) {
+			if (vmdDescriptor.getAlertSystem().present()) {
+				result.push_back(ConvertFromCDM::convert(vmdDescriptor.getAlertSystem().get()));
 			}
 		}
 	}
@@ -505,7 +507,7 @@ std::vector<AlertSystemDescriptor> MdDescription::collectAllAlertSystemDescripto
 
 std::vector<LimitAlertConditionDescriptor> MdDescription::collectAllLimitAlertConditionDescriptors() const {
 	auto impl = [](const CDM::AlertSystemDescriptor & owner, std::vector<LimitAlertConditionDescriptor> & out) {
-		for (const auto & descriptor : owner.AlertCondition()) {
+		for (const auto & descriptor : owner.getAlertCondition()) {
 			if (const CDM::LimitAlertConditionDescriptor * casted = dynamic_cast<const CDM::LimitAlertConditionDescriptor *>(&descriptor)) {
 				out.push_back(ConvertFromCDM::convert(*casted));
 			}
@@ -514,13 +516,13 @@ std::vector<LimitAlertConditionDescriptor> MdDescription::collectAllLimitAlertCo
 
 	std::vector<LimitAlertConditionDescriptor> result;
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
-		if (mds.AlertSystem().present()) {
-			impl(mds.AlertSystem().get(), result);
+	for (const auto & mds : mddescription.getMds()) {
+		if (mds.getAlertSystem().present()) {
+			impl(mds.getAlertSystem().get(), result);
 		}
-		for (const auto & vmdDescriptor : mds.Vmd()) {
-			if (vmdDescriptor.AlertSystem().present()) {
-				impl(vmdDescriptor.AlertSystem().get(), result);
+		for (const auto & vmdDescriptor : mds.getVmd()) {
+			if (vmdDescriptor.getAlertSystem().present()) {
+				impl(vmdDescriptor.getAlertSystem().get(), result);
 			}
 		}
 	}
@@ -531,7 +533,7 @@ std::vector<DicomDeviceDescriptor> MdDescription::collectAllDicomDeviceDescripto
 	std::vector<DicomDeviceDescriptor> result;
 	const CDM::MdDescription & mddescription(*this->data);
 
-	for (const auto & mds : mddescription.Mds()) {
+	for (const auto & mds : mddescription.getMds()) {
 		if (const CDM::DicomDeviceDescriptor * dicomDeviceDescriptor = dynamic_cast<const CDM::DicomDeviceDescriptor *>(&mds)) {
 			result.push_back(ConvertFromCDM::convert(*dicomDeviceDescriptor));
 		}
@@ -543,7 +545,7 @@ std::vector<DicomDeviceDescriptor> MdDescription::collectAllDicomDeviceDescripto
 std::vector<MdsDescriptor> MdDescription::collectAllMdsDescriptors() const {
 	std::vector<MdsDescriptor> result;
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
+	for (const auto & mds : mddescription.getMds()) {
 			result.push_back(ConvertFromCDM::convert(mds));
 	}
 	return result;
@@ -552,8 +554,8 @@ std::vector<MdsDescriptor> MdDescription::collectAllMdsDescriptors() const {
 std::vector<VmdDescriptor> MdDescription::collectAllVmdDescriptors() const {
 	std::vector<VmdDescriptor> result;
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
-		for (const auto & vmdDescriptor : mds.Vmd()) {
+	for (const auto & mds : mddescription.getMds()) {
+		for (const auto & vmdDescriptor : mds.getVmd()) {
 			result.push_back(ConvertFromCDM::convert(vmdDescriptor));
 		}
 	}
@@ -563,9 +565,9 @@ std::vector<VmdDescriptor> MdDescription::collectAllVmdDescriptors() const {
 std::vector<ChannelDescriptor> MdDescription::collectAllChannelDescriptors() const {
 	std::vector<ChannelDescriptor> result;
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
-		for (const auto & vmdDescriptor : mds.Vmd()) {
-			for (const auto & channelDescriptor : vmdDescriptor.Channel()) {
+	for (const auto & mds : mddescription.getMds()) {
+		for (const auto & vmdDescriptor : mds.getVmd()) {
+			for (const auto & channelDescriptor : vmdDescriptor.getChannel()) {
 				result.push_back(ConvertFromCDM::convert(channelDescriptor));
 			}
 		}
@@ -577,11 +579,11 @@ std::vector<ChannelDescriptor> MdDescription::collectAllChannelDescriptors() con
 template<class WrapperMetricDescriptorType>
 bool MdDescription::findMetricDescriptorImpl(const std::string & handle, WrapperMetricDescriptorType & outMetric) const {
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
-		for (const auto & vmdDescriptor : mds.Vmd()) {
-			for (const auto & channelDescriptor : vmdDescriptor.Channel()) {
-				for (const auto & metricDescriptor : channelDescriptor.Metric()) {
-					if (metricDescriptor.Handle() != handle) {
+	for (const auto & mds : mddescription.getMds()) {
+		for (const auto & vmdDescriptor : mds.getVmd()) {
+			for (const auto & channelDescriptor : vmdDescriptor.getChannel()) {
+				for (const auto & metricDescriptor : channelDescriptor.getMetric()) {
+					if (metricDescriptor.getHandle() != handle) {
 						continue;
 					}
 					if (const typename WrapperMetricDescriptorType::WrappedType * foundMetric = dynamic_cast<const typename WrapperMetricDescriptorType::WrappedType *>(&metricDescriptor)) {
@@ -598,10 +600,10 @@ bool MdDescription::findMetricDescriptorImpl(const std::string & handle, Wrapper
 template <class WrapperMetricDescriptorType>
 void MdDescription::collectMetricDescriptorImpl(std::vector<WrapperMetricDescriptorType> & out) const {
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
-		for (const auto & vmdDescriptor : mds.Vmd()) {
-			for (const auto & channelDescriptor : vmdDescriptor.Channel()) {
-				for (const auto & metricDescriptor : channelDescriptor.Metric()) {
+	for (const auto & mds : mddescription.getMds()) {
+		for (const auto & vmdDescriptor : mds.getVmd()) {
+			for (const auto & channelDescriptor : vmdDescriptor.getChannel()) {
+				for (const auto & metricDescriptor : channelDescriptor.getMetric()) {
 					if (const typename WrapperMetricDescriptorType::WrappedType * foundMetric = dynamic_cast<const typename WrapperMetricDescriptorType::WrappedType *>(&metricDescriptor)) {
 						out.push_back(ConvertFromCDM::convert(*foundMetric));
 					}
@@ -614,10 +616,10 @@ void MdDescription::collectMetricDescriptorImpl(std::vector<WrapperMetricDescrip
 template <class WrapperMetricDescriptorType, class ForbiddenType>
 void MdDescription::collectMetricDescriptorImpl(std::vector<WrapperMetricDescriptorType> & out) const {
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
-		for (const auto & vmdDescriptor : mds.Vmd()) {
-			for (const auto & channelDescriptor : vmdDescriptor.Channel()) {
-				for (const auto & metricDescriptor : channelDescriptor.Metric()) {
+	for (const auto & mds : mddescription.getMds()) {
+		for (const auto & vmdDescriptor : mds.getVmd()) {
+			for (const auto & channelDescriptor : vmdDescriptor.getChannel()) {
+				for (const auto & metricDescriptor : channelDescriptor.getMetric()) {
 					if (dynamic_cast<const typename ForbiddenType::WrappedType *>(&metricDescriptor)) {
 						continue;
 					}
@@ -633,9 +635,9 @@ void MdDescription::collectMetricDescriptorImpl(std::vector<WrapperMetricDescrip
 std::vector<ClockDescriptor> MdDescription::collectAllClockDescriptors() const {
 	std::vector<ClockDescriptor> result;
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
-			if (mds.Clock().present()) {
-				result.push_back(ConvertFromCDM::convert(mds.Clock().get()));
+	for (const auto & mds : mddescription.getMds()) {
+			if (mds.getClock().present()) {
+				result.push_back(ConvertFromCDM::convert(mds.getClock().get()));
 			}
 	}
 	return result;
@@ -669,10 +671,10 @@ std::vector<StringMetricDescriptor> MdDescription::collectAllStringMetricDescrip
 std::vector<ActivateOperationDescriptor> MdDescription::collectAllActivateOperationDescriptors() const {
 	std::vector<ActivateOperationDescriptor> result;
 	const CDM::MdDescription & mddescription(*this->data);
-	for (const auto & mds : mddescription.Mds()) {
-		if (mds.Sco().present()) {
-			const CDM::ScoDescriptor & sco(mds.Sco().get());
-			for (const auto & operation : sco.Operation()) {
+	for (const auto & mds : mddescription.getMds()) {
+		if (mds.getSco().present()) {
+			const CDM::ScoDescriptor & sco(mds.getSco().get());
+			for (const auto & operation : sco.getOperation()) {
 				const typename CDM::ActivateOperationDescriptor *desc = dynamic_cast<const typename CDM::ActivateOperationDescriptor*>(&operation);
 				if (desc != nullptr)
 					result.push_back(ConvertFromCDM::convert(*desc));

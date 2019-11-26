@@ -129,9 +129,9 @@ namespace EXT
 namespace EXT
 {
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (const ::std::string& u,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseExtension (const ::std::string& u,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -146,15 +146,15 @@ namespace EXT
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
     return ::std::unique_ptr< ::EXT::ExtensionType > (
-      ::EXT::Extension (
+      ::EXT::parseExtension (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (const ::std::string& u,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseExtension (const ::std::string& u,
+                  ::xml_schema::ErrorHandler& h,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -168,15 +168,15 @@ namespace EXT
       throw ::xsd::cxx::tree::parsing< char > ();
 
     return ::std::unique_ptr< ::EXT::ExtensionType > (
-      ::EXT::Extension (
+      ::EXT::parseExtension (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (const ::std::string& u,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseExtension (const ::std::string& u,
+                  ::xercesc::DOMErrorHandler& h,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::parse< char > (
@@ -186,91 +186,91 @@ namespace EXT
       throw ::xsd::cxx::tree::parsing< char > ();
 
     return ::std::unique_ptr< ::EXT::ExtensionType > (
-      ::EXT::Extension (
+      ::EXT::parseExtension (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (::std::istream& is,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseExtension (::std::istream& is,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::EXT::Extension (isrc, f, p);
+    return ::EXT::parseExtension (isrc, f, p);
   }
 
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (::std::istream& is,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseExtension (::std::istream& is,
+                  ::xml_schema::ErrorHandler& h,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::EXT::Extension (isrc, h, f, p);
+    return ::EXT::parseExtension (isrc, h, f, p);
   }
 
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (::std::istream& is,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseExtension (::std::istream& is,
+                  ::xercesc::DOMErrorHandler& h,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::EXT::Extension (isrc, h, f, p);
+    return ::EXT::parseExtension (isrc, h, f, p);
   }
 
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (::std::istream& is,
-             const ::std::string& sid,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseExtension (::std::istream& is,
+                  const ::std::string& sid,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::EXT::Extension (isrc, f, p);
+    return ::EXT::parseExtension (isrc, f, p);
   }
 
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (::std::istream& is,
-             const ::std::string& sid,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseExtension (::std::istream& is,
+                  const ::std::string& sid,
+                  ::xml_schema::ErrorHandler& h,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::EXT::Extension (isrc, h, f, p);
+    return ::EXT::parseExtension (isrc, h, f, p);
   }
 
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (::std::istream& is,
-             const ::std::string& sid,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseExtension (::std::istream& is,
+                  const ::std::string& sid,
+                  ::xercesc::DOMErrorHandler& h,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::EXT::Extension (isrc, h, f, p);
+    return ::EXT::parseExtension (isrc, h, f, p);
   }
 
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (::xercesc::InputSource& i,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseExtension (::xercesc::InputSource& i,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -281,15 +281,15 @@ namespace EXT
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
     return ::std::unique_ptr< ::EXT::ExtensionType > (
-      ::EXT::Extension (
+      ::EXT::parseExtension (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (::xercesc::InputSource& i,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseExtension (::xercesc::InputSource& i,
+                  ::xml_schema::ErrorHandler& h,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::parse< char > (
@@ -299,15 +299,15 @@ namespace EXT
       throw ::xsd::cxx::tree::parsing< char > ();
 
     return ::std::unique_ptr< ::EXT::ExtensionType > (
-      ::EXT::Extension (
+      ::EXT::parseExtension (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (::xercesc::InputSource& i,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseExtension (::xercesc::InputSource& i,
+                  ::xercesc::DOMErrorHandler& h,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::parse< char > (
@@ -317,14 +317,14 @@ namespace EXT
       throw ::xsd::cxx::tree::parsing< char > ();
 
     return ::std::unique_ptr< ::EXT::ExtensionType > (
-      ::EXT::Extension (
+      ::EXT::parseExtension (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (const ::xercesc::DOMDocument& doc,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseExtension (const ::xercesc::DOMDocument& doc,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties& p)
   {
     if (f & ::xml_schema::Flags::keep_dom)
     {
@@ -332,7 +332,7 @@ namespace EXT
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
       return ::std::unique_ptr< ::EXT::ExtensionType > (
-        ::EXT::Extension (
+        ::EXT::parseExtension (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -368,9 +368,9 @@ namespace EXT
   }
 
   ::std::unique_ptr< ::EXT::ExtensionType >
-  Extension (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties&)
+  parseExtension (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                  ::xml_schema::Flags f,
+                  const ::xml_schema::Properties&)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
       ((f & ::xml_schema::Flags::keep_dom) &&
@@ -385,7 +385,7 @@ namespace EXT
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
+      doc.setUserData (::xml_schema::dom::treeNodeKey,
                        (c.get () ? &c : &d),
                        0);
 
@@ -434,17 +434,17 @@ namespace _xsd
 namespace EXT
 {
   void
-  Extension (::std::ostream& o,
-             const ::EXT::ExtensionType& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+  serializeExtension (::std::ostream& o,
+                      const ::EXT::ExtensionType& s,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      const ::std::string& e,
+                      ::xml_schema::Flags f)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::EXT::Extension (s, m, f));
+      ::EXT::serializeExtension (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -456,18 +456,18 @@ namespace EXT
   }
 
   void
-  Extension (::std::ostream& o,
-             const ::EXT::ExtensionType& s,
-             ::xml_schema::ErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+  serializeExtension (::std::ostream& o,
+                      const ::EXT::ExtensionType& s,
+                      ::xml_schema::ErrorHandler& h,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      const ::std::string& e,
+                      ::xml_schema::Flags f)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::EXT::Extension (s, m, f));
+      ::EXT::serializeExtension (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -476,15 +476,15 @@ namespace EXT
   }
 
   void
-  Extension (::std::ostream& o,
-             const ::EXT::ExtensionType& s,
-             ::xercesc::DOMErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+  serializeExtension (::std::ostream& o,
+                      const ::EXT::ExtensionType& s,
+                      ::xercesc::DOMErrorHandler& h,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      const ::std::string& e,
+                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::EXT::Extension (s, m, f));
+      ::EXT::serializeExtension (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -493,14 +493,14 @@ namespace EXT
   }
 
   void
-  Extension (::xercesc::XMLFormatTarget& t,
-             const ::EXT::ExtensionType& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+  serializeExtension (::xercesc::XMLFormatTarget& t,
+                      const ::EXT::ExtensionType& s,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      const ::std::string& e,
+                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::EXT::Extension (s, m, f));
+      ::EXT::serializeExtension (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -511,15 +511,15 @@ namespace EXT
   }
 
   void
-  Extension (::xercesc::XMLFormatTarget& t,
-             const ::EXT::ExtensionType& s,
-             ::xml_schema::ErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+  serializeExtension (::xercesc::XMLFormatTarget& t,
+                      const ::EXT::ExtensionType& s,
+                      ::xml_schema::ErrorHandler& h,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      const ::std::string& e,
+                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::EXT::Extension (s, m, f));
+      ::EXT::serializeExtension (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -527,15 +527,15 @@ namespace EXT
   }
 
   void
-  Extension (::xercesc::XMLFormatTarget& t,
-             const ::EXT::ExtensionType& s,
-             ::xercesc::DOMErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+  serializeExtension (::xercesc::XMLFormatTarget& t,
+                      const ::EXT::ExtensionType& s,
+                      ::xercesc::DOMErrorHandler& h,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      const ::std::string& e,
+                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::EXT::Extension (s, m, f));
+      ::EXT::serializeExtension (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -543,9 +543,9 @@ namespace EXT
   }
 
   void
-  Extension (::xercesc::DOMDocument& d,
-             const ::EXT::ExtensionType& s,
-             ::xml_schema::Flags)
+  serializeExtension (::xercesc::DOMDocument& d,
+                      const ::EXT::ExtensionType& s,
+                      ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
     const ::xsd::cxx::xml::qualified_name< char > n (
@@ -577,9 +577,9 @@ namespace EXT
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  Extension (const ::EXT::ExtensionType& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             ::xml_schema::Flags f)
+  serializeExtension (const ::EXT::ExtensionType& s,
+                      const ::xml_schema::NamespaceInfomap& m,
+                      ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
 
@@ -598,7 +598,7 @@ namespace EXT
         m, s, f);
     }
 
-    ::EXT::Extension (*d, s, f);
+    ::EXT::serializeExtension (*d, s, f);
     return d;
   }
 

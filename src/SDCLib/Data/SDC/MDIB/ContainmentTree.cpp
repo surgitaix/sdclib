@@ -71,21 +71,21 @@ ContainmentTree & ContainmentTree:: operator=(const ContainmentTree& object) {
 
 
 ContainmentTree & ContainmentTree::addEntry(const ContainmentTreeEntry & value) {
-	data->Entry().push_back(ConvertToCDM::convert(value));
+	data->getEntry().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<ContainmentTreeEntry> ContainmentTree::getEntryList() const {
 	std::vector<ContainmentTreeEntry> result;
-	result.reserve(data->Entry().size());
-	for (const auto & value: data->Entry()) {
+	result.reserve(data->getEntry().size());
+	for (const auto & value: data->getEntry()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void ContainmentTree::clearEntryList() {
-	data->Entry().clear();
+	data->getEntry().clear();
 }
 
 

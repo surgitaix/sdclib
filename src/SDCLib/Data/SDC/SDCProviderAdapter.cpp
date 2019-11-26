@@ -64,7 +64,7 @@ public:
 	std::unique_ptr<DPWS::ProbeTraits::Response> dispatch(const DPWS::ProbeTraits::Request & p_request) override {
 		std::unique_ptr<DPWS::ProbeTraits::Response> t_response(new DPWS::ProbeTraits::Response());
 		for (const auto & t_item : m_host.dispatch(p_request)) {
-			t_response->ProbeMatch().push_back(t_item);
+			t_response->getProbeMatch().push_back(t_item);
 		}
 		return t_response;
 	}

@@ -48,25 +48,25 @@ namespace WS
     // 
 
     const Policy::StreamSourceType& Policy::
-    StreamSource () const
+    getStreamSource () const
     {
       return this->StreamSource_.get ();
     }
 
     Policy::StreamSourceType& Policy::
-    StreamSource ()
+    getStreamSource ()
     {
       return this->StreamSource_.get ();
     }
 
     void Policy::
-    StreamSource (const StreamSourceType& x)
+    setStreamSource (const StreamSourceType& x)
     {
       this->StreamSource_.set (x);
     }
 
     void Policy::
-    StreamSource (::std::unique_ptr< StreamSourceType > x)
+    setStreamSource (::std::unique_ptr< StreamSourceType > x)
     {
       this->StreamSource_.set (std::move (x));
     }
@@ -198,9 +198,9 @@ namespace WS
   namespace POLICY
   {
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (const ::std::string& u,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parsePolicy (const ::std::string& u,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -215,15 +215,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::POLICY::Policy > (
-        ::WS::POLICY::Policy_ (
+        ::WS::POLICY::parsePolicy (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (const ::std::string& u,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parsePolicy (const ::std::string& u,
+                 ::xml_schema::ErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -237,15 +237,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::POLICY::Policy > (
-        ::WS::POLICY::Policy_ (
+        ::WS::POLICY::parsePolicy (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (const ::std::string& u,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parsePolicy (const ::std::string& u,
+                 ::xercesc::DOMErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -255,91 +255,91 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::POLICY::Policy > (
-        ::WS::POLICY::Policy_ (
+        ::WS::POLICY::parsePolicy (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (::std::istream& is,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parsePolicy (::std::istream& is,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::POLICY::Policy_ (isrc, f, p);
+      return ::WS::POLICY::parsePolicy (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (::std::istream& is,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parsePolicy (::std::istream& is,
+                 ::xml_schema::ErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::POLICY::Policy_ (isrc, h, f, p);
+      return ::WS::POLICY::parsePolicy (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (::std::istream& is,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parsePolicy (::std::istream& is,
+                 ::xercesc::DOMErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::POLICY::Policy_ (isrc, h, f, p);
+      return ::WS::POLICY::parsePolicy (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (::std::istream& is,
-             const ::std::string& sid,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parsePolicy (::std::istream& is,
+                 const ::std::string& sid,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::POLICY::Policy_ (isrc, f, p);
+      return ::WS::POLICY::parsePolicy (isrc, f, p);
     }
 
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (::std::istream& is,
-             const ::std::string& sid,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parsePolicy (::std::istream& is,
+                 const ::std::string& sid,
+                 ::xml_schema::ErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0,
         (f & ::xml_schema::Flags::keep_dom) == 0);
 
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::POLICY::Policy_ (isrc, h, f, p);
+      return ::WS::POLICY::parsePolicy (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (::std::istream& is,
-             const ::std::string& sid,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parsePolicy (::std::istream& is,
+                 const ::std::string& sid,
+                 ::xercesc::DOMErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::POLICY::Policy_ (isrc, h, f, p);
+      return ::WS::POLICY::parsePolicy (isrc, h, f, p);
     }
 
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (::xercesc::InputSource& i,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parsePolicy (::xercesc::InputSource& i,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -350,15 +350,15 @@ namespace WS
       h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
       return ::std::unique_ptr< ::WS::POLICY::Policy > (
-        ::WS::POLICY::Policy_ (
+        ::WS::POLICY::parsePolicy (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (::xercesc::InputSource& i,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parsePolicy (::xercesc::InputSource& i,
+                 ::xml_schema::ErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -368,15 +368,15 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::POLICY::Policy > (
-        ::WS::POLICY::Policy_ (
+        ::WS::POLICY::parsePolicy (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (::xercesc::InputSource& i,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parsePolicy (::xercesc::InputSource& i,
+                 ::xercesc::DOMErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::parse< char > (
@@ -386,14 +386,14 @@ namespace WS
         throw ::xsd::cxx::tree::parsing< char > ();
 
       return ::std::unique_ptr< ::WS::POLICY::Policy > (
-        ::WS::POLICY::Policy_ (
+        ::WS::POLICY::parsePolicy (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (const ::xercesc::DOMDocument& doc,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+    parsePolicy (const ::xercesc::DOMDocument& doc,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
     {
       if (f & ::xml_schema::Flags::keep_dom)
       {
@@ -401,7 +401,7 @@ namespace WS
           static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
         return ::std::unique_ptr< ::WS::POLICY::Policy > (
-          ::WS::POLICY::Policy_ (
+          ::WS::POLICY::parsePolicy (
             std::move (d), f | ::xml_schema::Flags::own_dom, p));
       }
 
@@ -426,9 +426,9 @@ namespace WS
     }
 
     ::std::unique_ptr< ::WS::POLICY::Policy >
-    Policy_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties&)
+    parsePolicy (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties&)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
         ((f & ::xml_schema::Flags::keep_dom) &&
@@ -443,7 +443,7 @@ namespace WS
         ::xsd::cxx::xml::dom::name< char > (e));
 
       if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
+        doc.setUserData (::xml_schema::dom::treeNodeKey,
                          (c.get () ? &c : &d),
                          0);
 
@@ -483,17 +483,17 @@ namespace WS
   namespace POLICY
   {
     void
-    Policy_ (::std::ostream& o,
-             const ::WS::POLICY::Policy& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+    serializePolicy (::std::ostream& o,
+                     const ::WS::POLICY::Policy& s,
+                     const ::xml_schema::NamespaceInfomap& m,
+                     const ::std::string& e,
+                     ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::POLICY::Policy_ (s, m, f));
+        ::WS::POLICY::serializePolicy (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -505,18 +505,18 @@ namespace WS
     }
 
     void
-    Policy_ (::std::ostream& o,
-             const ::WS::POLICY::Policy& s,
-             ::xml_schema::ErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+    serializePolicy (::std::ostream& o,
+                     const ::WS::POLICY::Policy& s,
+                     ::xml_schema::ErrorHandler& h,
+                     const ::xml_schema::NamespaceInfomap& m,
+                     const ::std::string& e,
+                     ::xml_schema::Flags f)
     {
       ::xsd::cxx::xml::auto_initializer i (
         (f & ::xml_schema::Flags::dont_initialize) == 0);
 
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::POLICY::Policy_ (s, m, f));
+        ::WS::POLICY::serializePolicy (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -525,15 +525,15 @@ namespace WS
     }
 
     void
-    Policy_ (::std::ostream& o,
-             const ::WS::POLICY::Policy& s,
-             ::xercesc::DOMErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+    serializePolicy (::std::ostream& o,
+                     const ::WS::POLICY::Policy& s,
+                     ::xercesc::DOMErrorHandler& h,
+                     const ::xml_schema::NamespaceInfomap& m,
+                     const ::std::string& e,
+                     ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::POLICY::Policy_ (s, m, f));
+        ::WS::POLICY::serializePolicy (s, m, f));
       ::xsd::cxx::xml::dom::ostream_format_target t (o);
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
@@ -542,14 +542,14 @@ namespace WS
     }
 
     void
-    Policy_ (::xercesc::XMLFormatTarget& t,
-             const ::WS::POLICY::Policy& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+    serializePolicy (::xercesc::XMLFormatTarget& t,
+                     const ::WS::POLICY::Policy& s,
+                     const ::xml_schema::NamespaceInfomap& m,
+                     const ::std::string& e,
+                     ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::POLICY::Policy_ (s, m, f));
+        ::WS::POLICY::serializePolicy (s, m, f));
 
       ::xsd::cxx::tree::error_handler< char > h;
 
@@ -560,15 +560,15 @@ namespace WS
     }
 
     void
-    Policy_ (::xercesc::XMLFormatTarget& t,
-             const ::WS::POLICY::Policy& s,
-             ::xml_schema::ErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+    serializePolicy (::xercesc::XMLFormatTarget& t,
+                     const ::WS::POLICY::Policy& s,
+                     ::xml_schema::ErrorHandler& h,
+                     const ::xml_schema::NamespaceInfomap& m,
+                     const ::std::string& e,
+                     ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::POLICY::Policy_ (s, m, f));
+        ::WS::POLICY::serializePolicy (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -576,15 +576,15 @@ namespace WS
     }
 
     void
-    Policy_ (::xercesc::XMLFormatTarget& t,
-             const ::WS::POLICY::Policy& s,
-             ::xercesc::DOMErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+    serializePolicy (::xercesc::XMLFormatTarget& t,
+                     const ::WS::POLICY::Policy& s,
+                     ::xercesc::DOMErrorHandler& h,
+                     const ::xml_schema::NamespaceInfomap& m,
+                     const ::std::string& e,
+                     ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::POLICY::Policy_ (s, m, f));
+        ::WS::POLICY::serializePolicy (s, m, f));
       if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
       {
         throw ::xsd::cxx::tree::serialization< char > ();
@@ -592,9 +592,9 @@ namespace WS
     }
 
     void
-    Policy_ (::xercesc::DOMDocument& d,
-             const ::WS::POLICY::Policy& s,
-             ::xml_schema::Flags)
+    serializePolicy (::xercesc::DOMDocument& d,
+                     const ::WS::POLICY::Policy& s,
+                     ::xml_schema::Flags)
     {
       ::xercesc::DOMElement& e (*d.getDocumentElement ());
       const ::xsd::cxx::xml::qualified_name< char > n (
@@ -616,9 +616,9 @@ namespace WS
     }
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Policy_ (const ::WS::POLICY::Policy& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             ::xml_schema::Flags f)
+    serializePolicy (const ::WS::POLICY::Policy& s,
+                     const ::xml_schema::NamespaceInfomap& m,
+                     ::xml_schema::Flags f)
     {
       ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
         ::xsd::cxx::xml::dom::serialize< char > (
@@ -626,7 +626,7 @@ namespace WS
           "http://www.w3.org/ns/ws-policy",
           m, f));
 
-      ::WS::POLICY::Policy_ (*d, s, f);
+      ::WS::POLICY::serializePolicy (*d, s, f);
       return d;
     }
 
@@ -644,7 +644,7 @@ namespace WS
             "http://standardized.namespace.org/ws-streaming",
             e));
 
-        s << i.StreamSource ();
+        s << i.getStreamSource ();
       }
     }
   }

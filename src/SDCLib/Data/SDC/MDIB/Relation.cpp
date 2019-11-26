@@ -77,65 +77,65 @@ Relation & Relation:: operator=(const Relation & object) {
 
 
 Relation & Relation::setCode(const CodedValue & value) {
-	data->Code(ConvertToCDM::convert(value));
+	data->setCode(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool Relation::getCode(CodedValue & out) const {
-	if (data->Code().present()) {
-		out = ConvertFromCDM::convert(data->Code().get());
+	if (data->getCode().present()) {
+		out = ConvertFromCDM::convert(data->getCode().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue Relation::getCode() const {
-	return ConvertFromCDM::convert(data->Code().get());
+	return ConvertFromCDM::convert(data->getCode().get());
 }
 
 bool Relation::hasCode() const {
-	return data->Code().present();
+	return data->getCode().present();
 }
 
 Relation & Relation::setIdentification(const InstanceIdentifier & value) {
-	data->Identification(ConvertToCDM::convert(value));
+	data->setIdentification(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool Relation::getIdentification(InstanceIdentifier & out) const {
-	if (data->Identification().present()) {
-		out = ConvertFromCDM::convert(data->Identification().get());
+	if (data->getIdentification().present()) {
+		out = ConvertFromCDM::convert(data->getIdentification().get());
 		return true;
 	}
 	return false;
 }
 
 InstanceIdentifier Relation::getIdentification() const {
-	return ConvertFromCDM::convert(data->Identification().get());
+	return ConvertFromCDM::convert(data->getIdentification().get());
 }
 
 bool Relation::hasIdentification() const {
-	return data->Identification().present();
+	return data->getIdentification().present();
 }
 
 Relation & Relation::setKind(const Kind & value) {
-	data->Kind(ConvertToCDM::convert(value));
+	data->setKind(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 Kind Relation::getKind() const {
-	return ConvertFromCDM::convert(data->Kind());
+	return ConvertFromCDM::convert(data->getKind());
 }
 
 Relation & Relation::setEntries(const EntryRef & value) {
-	data->Entries(ConvertToCDM::convert1(value));
+	data->setEntries(ConvertToCDM::convert1(value));
 	return *this;
 }
 
 
 EntryRef Relation::getEntries() const {
-	return ConvertFromCDM::convert(data->Entries());
+	return ConvertFromCDM::convert(data->getEntries());
 }
 
 

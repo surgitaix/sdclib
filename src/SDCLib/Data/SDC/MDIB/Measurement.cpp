@@ -77,23 +77,23 @@ Measurement & Measurement:: operator=(const Measurement& object) {
 
 
 Measurement & Measurement::setMeasurementUnit(const CodedValue & value) {
-	data->MeasurementUnit(ConvertToCDM::convert(value));
+	data->setMeasurementUnit(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 CodedValue Measurement::getMeasurementUnit() const {
-	return ConvertFromCDM::convert(data->MeasurementUnit());
+	return ConvertFromCDM::convert(data->getMeasurementUnit());
 }
 
 Measurement & Measurement::setMeasuredValue(const double & value) {
-	data->MeasuredValue(ConvertToCDM::convert(value));
+	data->setMeasuredValue(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 double Measurement::getMeasuredValue() const {
-	return ConvertFromCDM::convert(data->MeasuredValue());
+	return ConvertFromCDM::convert(data->getMeasuredValue());
 }
 
 

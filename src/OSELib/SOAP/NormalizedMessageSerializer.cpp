@@ -31,7 +31,7 @@ std::string NormalizedMessageSerializer::serialize(const MESSAGEMODEL::Envelope 
 	 * This means that i.e. DPWS Friendly Name is not localizable with different languages.
 	 */
 
-	MESSAGEMODEL::Envelope_(t_result, p_message, t_map, "UTF-8");
+	MESSAGEMODEL::serializeEnvelope(t_result, p_message, t_map, "UTF-8");
 	return t_result.str();
 }
 

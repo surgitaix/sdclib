@@ -46,301 +46,301 @@ namespace MESSAGEMODEL
   // 
 
   const Header::ActionOptional& Header::
-  Action () const
+  getAction () const
   {
     return this->Action_;
   }
 
   Header::ActionOptional& Header::
-  Action ()
+  getAction ()
   {
     return this->Action_;
   }
 
   void Header::
-  Action (const ActionType& x)
+  setAction (const ActionType& x)
   {
     this->Action_.set (x);
   }
 
   void Header::
-  Action (const ActionOptional& x)
+  setAction (const ActionOptional& x)
   {
     this->Action_ = x;
   }
 
   void Header::
-  Action (::std::unique_ptr< ActionType > x)
+  setAction (::std::unique_ptr< ActionType > x)
   {
     this->Action_.set (std::move (x));
   }
 
   const Header::AppSequenceOptional& Header::
-  AppSequence () const
+  getAppSequence () const
   {
     return this->AppSequence_;
   }
 
   Header::AppSequenceOptional& Header::
-  AppSequence ()
+  getAppSequence ()
   {
     return this->AppSequence_;
   }
 
   void Header::
-  AppSequence (const AppSequenceType& x)
+  setAppSequence (const AppSequenceType& x)
   {
     this->AppSequence_.set (x);
   }
 
   void Header::
-  AppSequence (const AppSequenceOptional& x)
+  setAppSequence (const AppSequenceOptional& x)
   {
     this->AppSequence_ = x;
   }
 
   void Header::
-  AppSequence (::std::unique_ptr< AppSequenceType > x)
+  setAppSequence (::std::unique_ptr< AppSequenceType > x)
   {
     this->AppSequence_.set (std::move (x));
   }
 
   const Header::FaultToOptional& Header::
-  FaultTo () const
+  getFaultTo () const
   {
     return this->FaultTo_;
   }
 
   Header::FaultToOptional& Header::
-  FaultTo ()
+  getFaultTo ()
   {
     return this->FaultTo_;
   }
 
   void Header::
-  FaultTo (const FaultToType& x)
+  setFaultTo (const FaultToType& x)
   {
     this->FaultTo_.set (x);
   }
 
   void Header::
-  FaultTo (const FaultToOptional& x)
+  setFaultTo (const FaultToOptional& x)
   {
     this->FaultTo_ = x;
   }
 
   void Header::
-  FaultTo (::std::unique_ptr< FaultToType > x)
+  setFaultTo (::std::unique_ptr< FaultToType > x)
   {
     this->FaultTo_.set (std::move (x));
   }
 
   const Header::FromOptional& Header::
-  From () const
+  getFrom () const
   {
     return this->From_;
   }
 
   Header::FromOptional& Header::
-  From ()
+  getFrom ()
   {
     return this->From_;
   }
 
   void Header::
-  From (const FromType& x)
+  setFrom (const FromType& x)
   {
     this->From_.set (x);
   }
 
   void Header::
-  From (const FromOptional& x)
+  setFrom (const FromOptional& x)
   {
     this->From_ = x;
   }
 
   void Header::
-  From (::std::unique_ptr< FromType > x)
+  setFrom (::std::unique_ptr< FromType > x)
   {
     this->From_.set (std::move (x));
   }
 
   const Header::MessageIDOptional& Header::
-  MessageID () const
+  getMessageID () const
   {
     return this->MessageID_;
   }
 
   Header::MessageIDOptional& Header::
-  MessageID ()
+  getMessageID ()
   {
     return this->MessageID_;
   }
 
   void Header::
-  MessageID (const MessageIDType& x)
+  setMessageID (const MessageIDType& x)
   {
     this->MessageID_.set (x);
   }
 
   void Header::
-  MessageID (const MessageIDOptional& x)
+  setMessageID (const MessageIDOptional& x)
   {
     this->MessageID_ = x;
   }
 
   void Header::
-  MessageID (::std::unique_ptr< MessageIDType > x)
+  setMessageID (::std::unique_ptr< MessageIDType > x)
   {
     this->MessageID_.set (std::move (x));
   }
 
   const Header::ReferenceParametersOptional& Header::
-  ReferenceParameters () const
+  getReferenceParameters () const
   {
     return this->ReferenceParameters_;
   }
 
   Header::ReferenceParametersOptional& Header::
-  ReferenceParameters ()
+  getReferenceParameters ()
   {
     return this->ReferenceParameters_;
   }
 
   void Header::
-  ReferenceParameters (const ReferenceParametersType& x)
+  setReferenceParameters (const ReferenceParametersType& x)
   {
     this->ReferenceParameters_.set (x);
   }
 
   void Header::
-  ReferenceParameters (const ReferenceParametersOptional& x)
+  setReferenceParameters (const ReferenceParametersOptional& x)
   {
     this->ReferenceParameters_ = x;
   }
 
   void Header::
-  ReferenceParameters (::std::unique_ptr< ReferenceParametersType > x)
+  setReferenceParameters (::std::unique_ptr< ReferenceParametersType > x)
   {
     this->ReferenceParameters_.set (std::move (x));
   }
 
   const Header::RelatesToOptional& Header::
-  RelatesTo () const
+  getRelatesTo () const
   {
     return this->RelatesTo_;
   }
 
   Header::RelatesToOptional& Header::
-  RelatesTo ()
+  getRelatesTo ()
   {
     return this->RelatesTo_;
   }
 
   void Header::
-  RelatesTo (const RelatesToType& x)
+  setRelatesTo (const RelatesToType& x)
   {
     this->RelatesTo_.set (x);
   }
 
   void Header::
-  RelatesTo (const RelatesToOptional& x)
+  setRelatesTo (const RelatesToOptional& x)
   {
     this->RelatesTo_ = x;
   }
 
   void Header::
-  RelatesTo (::std::unique_ptr< RelatesToType > x)
+  setRelatesTo (::std::unique_ptr< RelatesToType > x)
   {
     this->RelatesTo_.set (std::move (x));
   }
 
   const Header::ReplyToOptional& Header::
-  ReplyTo () const
+  getReplyTo () const
   {
     return this->ReplyTo_;
   }
 
   Header::ReplyToOptional& Header::
-  ReplyTo ()
+  getReplyTo ()
   {
     return this->ReplyTo_;
   }
 
   void Header::
-  ReplyTo (const ReplyToType& x)
+  setReplyTo (const ReplyToType& x)
   {
     this->ReplyTo_.set (x);
   }
 
   void Header::
-  ReplyTo (const ReplyToOptional& x)
+  setReplyTo (const ReplyToOptional& x)
   {
     this->ReplyTo_ = x;
   }
 
   void Header::
-  ReplyTo (::std::unique_ptr< ReplyToType > x)
+  setReplyTo (::std::unique_ptr< ReplyToType > x)
   {
     this->ReplyTo_.set (std::move (x));
   }
 
   const Header::ToOptional& Header::
-  To () const
+  getTo () const
   {
     return this->To_;
   }
 
   Header::ToOptional& Header::
-  To ()
+  getTo ()
   {
     return this->To_;
   }
 
   void Header::
-  To (const ToType& x)
+  setTo (const ToType& x)
   {
     this->To_.set (x);
   }
 
   void Header::
-  To (const ToOptional& x)
+  setTo (const ToOptional& x)
   {
     this->To_ = x;
   }
 
   void Header::
-  To (::std::unique_ptr< ToType > x)
+  setTo (::std::unique_ptr< ToType > x)
   {
     this->To_.set (std::move (x));
   }
 
   const Header::IdentifierOptional& Header::
-  Identifier () const
+  getIdentifier () const
   {
     return this->Identifier_;
   }
 
   Header::IdentifierOptional& Header::
-  Identifier ()
+  getIdentifier ()
   {
     return this->Identifier_;
   }
 
   void Header::
-  Identifier (const IdentifierType& x)
+  setIdentifier (const IdentifierType& x)
   {
     this->Identifier_.set (x);
   }
 
   void Header::
-  Identifier (const IdentifierOptional& x)
+  setIdentifier (const IdentifierOptional& x)
   {
     this->Identifier_ = x;
   }
 
   void Header::
-  Identifier (::std::unique_ptr< IdentifierType > x)
+  setIdentifier (::std::unique_ptr< IdentifierType > x)
   {
     this->Identifier_.set (std::move (x));
   }
@@ -350,1321 +350,1321 @@ namespace MESSAGEMODEL
   // 
 
   const Body::ByeOptional& Body::
-  Bye () const
+  getBye () const
   {
     return this->Bye_;
   }
 
   Body::ByeOptional& Body::
-  Bye ()
+  getBye ()
   {
     return this->Bye_;
   }
 
   void Body::
-  Bye (const ByeType& x)
+  setBye (const ByeType& x)
   {
     this->Bye_.set (x);
   }
 
   void Body::
-  Bye (const ByeOptional& x)
+  setBye (const ByeOptional& x)
   {
     this->Bye_ = x;
   }
 
   void Body::
-  Bye (::std::unique_ptr< ByeType > x)
+  setBye (::std::unique_ptr< ByeType > x)
   {
     this->Bye_.set (std::move (x));
   }
 
   const Body::HelloOptional& Body::
-  Hello () const
+  getHello () const
   {
     return this->Hello_;
   }
 
   Body::HelloOptional& Body::
-  Hello ()
+  getHello ()
   {
     return this->Hello_;
   }
 
   void Body::
-  Hello (const HelloType& x)
+  setHello (const HelloType& x)
   {
     this->Hello_.set (x);
   }
 
   void Body::
-  Hello (const HelloOptional& x)
+  setHello (const HelloOptional& x)
   {
     this->Hello_ = x;
   }
 
   void Body::
-  Hello (::std::unique_ptr< HelloType > x)
+  setHello (::std::unique_ptr< HelloType > x)
   {
     this->Hello_.set (std::move (x));
   }
 
   const Body::ProbeOptional& Body::
-  Probe () const
+  getProbe () const
   {
     return this->Probe_;
   }
 
   Body::ProbeOptional& Body::
-  Probe ()
+  getProbe ()
   {
     return this->Probe_;
   }
 
   void Body::
-  Probe (const ProbeType& x)
+  setProbe (const ProbeType& x)
   {
     this->Probe_.set (x);
   }
 
   void Body::
-  Probe (const ProbeOptional& x)
+  setProbe (const ProbeOptional& x)
   {
     this->Probe_ = x;
   }
 
   void Body::
-  Probe (::std::unique_ptr< ProbeType > x)
+  setProbe (::std::unique_ptr< ProbeType > x)
   {
     this->Probe_.set (std::move (x));
   }
 
   const Body::ProbeMatchesOptional& Body::
-  ProbeMatches () const
+  getProbeMatches () const
   {
     return this->ProbeMatches_;
   }
 
   Body::ProbeMatchesOptional& Body::
-  ProbeMatches ()
+  getProbeMatches ()
   {
     return this->ProbeMatches_;
   }
 
   void Body::
-  ProbeMatches (const ProbeMatchesType& x)
+  setProbeMatches (const ProbeMatchesType& x)
   {
     this->ProbeMatches_.set (x);
   }
 
   void Body::
-  ProbeMatches (const ProbeMatchesOptional& x)
+  setProbeMatches (const ProbeMatchesOptional& x)
   {
     this->ProbeMatches_ = x;
   }
 
   void Body::
-  ProbeMatches (::std::unique_ptr< ProbeMatchesType > x)
+  setProbeMatches (::std::unique_ptr< ProbeMatchesType > x)
   {
     this->ProbeMatches_.set (std::move (x));
   }
 
   const Body::ResolveOptional& Body::
-  Resolve () const
+  getResolve () const
   {
     return this->Resolve_;
   }
 
   Body::ResolveOptional& Body::
-  Resolve ()
+  getResolve ()
   {
     return this->Resolve_;
   }
 
   void Body::
-  Resolve (const ResolveType& x)
+  setResolve (const ResolveType& x)
   {
     this->Resolve_.set (x);
   }
 
   void Body::
-  Resolve (const ResolveOptional& x)
+  setResolve (const ResolveOptional& x)
   {
     this->Resolve_ = x;
   }
 
   void Body::
-  Resolve (::std::unique_ptr< ResolveType > x)
+  setResolve (::std::unique_ptr< ResolveType > x)
   {
     this->Resolve_.set (std::move (x));
   }
 
   const Body::ResolveMatchesOptional& Body::
-  ResolveMatches () const
+  getResolveMatches () const
   {
     return this->ResolveMatches_;
   }
 
   Body::ResolveMatchesOptional& Body::
-  ResolveMatches ()
+  getResolveMatches ()
   {
     return this->ResolveMatches_;
   }
 
   void Body::
-  ResolveMatches (const ResolveMatchesType& x)
+  setResolveMatches (const ResolveMatchesType& x)
   {
     this->ResolveMatches_.set (x);
   }
 
   void Body::
-  ResolveMatches (const ResolveMatchesOptional& x)
+  setResolveMatches (const ResolveMatchesOptional& x)
   {
     this->ResolveMatches_ = x;
   }
 
   void Body::
-  ResolveMatches (::std::unique_ptr< ResolveMatchesType > x)
+  setResolveMatches (::std::unique_ptr< ResolveMatchesType > x)
   {
     this->ResolveMatches_.set (std::move (x));
   }
 
   const Body::GetMetadataOptional& Body::
-  GetMetadata () const
+  getGetMetadata () const
   {
     return this->GetMetadata_;
   }
 
   Body::GetMetadataOptional& Body::
-  GetMetadata ()
+  getGetMetadata ()
   {
     return this->GetMetadata_;
   }
 
   void Body::
-  GetMetadata (const GetMetadataType& x)
+  setGetMetadata (const GetMetadataType& x)
   {
     this->GetMetadata_.set (x);
   }
 
   void Body::
-  GetMetadata (const GetMetadataOptional& x)
+  setGetMetadata (const GetMetadataOptional& x)
   {
     this->GetMetadata_ = x;
   }
 
   void Body::
-  GetMetadata (::std::unique_ptr< GetMetadataType > x)
+  setGetMetadata (::std::unique_ptr< GetMetadataType > x)
   {
     this->GetMetadata_.set (std::move (x));
   }
 
   const Body::MetadataOptional& Body::
-  Metadata () const
+  getMetadata () const
   {
     return this->Metadata_;
   }
 
   Body::MetadataOptional& Body::
-  Metadata ()
+  getMetadata ()
   {
     return this->Metadata_;
   }
 
   void Body::
-  Metadata (const MetadataType& x)
+  setMetadata (const MetadataType& x)
   {
     this->Metadata_.set (x);
   }
 
   void Body::
-  Metadata (const MetadataOptional& x)
+  setMetadata (const MetadataOptional& x)
   {
     this->Metadata_ = x;
   }
 
   void Body::
-  Metadata (::std::unique_ptr< MetadataType > x)
+  setMetadata (::std::unique_ptr< MetadataType > x)
   {
     this->Metadata_.set (std::move (x));
   }
 
   const Body::SubscribeOptional& Body::
-  Subscribe () const
+  getSubscribe () const
   {
     return this->Subscribe_;
   }
 
   Body::SubscribeOptional& Body::
-  Subscribe ()
+  getSubscribe ()
   {
     return this->Subscribe_;
   }
 
   void Body::
-  Subscribe (const SubscribeType& x)
+  setSubscribe (const SubscribeType& x)
   {
     this->Subscribe_.set (x);
   }
 
   void Body::
-  Subscribe (const SubscribeOptional& x)
+  setSubscribe (const SubscribeOptional& x)
   {
     this->Subscribe_ = x;
   }
 
   void Body::
-  Subscribe (::std::unique_ptr< SubscribeType > x)
+  setSubscribe (::std::unique_ptr< SubscribeType > x)
   {
     this->Subscribe_.set (std::move (x));
   }
 
   const Body::SubscribeResponseOptional& Body::
-  SubscribeResponse () const
+  getSubscribeResponse () const
   {
     return this->SubscribeResponse_;
   }
 
   Body::SubscribeResponseOptional& Body::
-  SubscribeResponse ()
+  getSubscribeResponse ()
   {
     return this->SubscribeResponse_;
   }
 
   void Body::
-  SubscribeResponse (const SubscribeResponseType& x)
+  setSubscribeResponse (const SubscribeResponseType& x)
   {
     this->SubscribeResponse_.set (x);
   }
 
   void Body::
-  SubscribeResponse (const SubscribeResponseOptional& x)
+  setSubscribeResponse (const SubscribeResponseOptional& x)
   {
     this->SubscribeResponse_ = x;
   }
 
   void Body::
-  SubscribeResponse (::std::unique_ptr< SubscribeResponseType > x)
+  setSubscribeResponse (::std::unique_ptr< SubscribeResponseType > x)
   {
     this->SubscribeResponse_.set (std::move (x));
   }
 
   const Body::UnsubscribeOptional& Body::
-  Unsubscribe () const
+  getUnsubscribe () const
   {
     return this->Unsubscribe_;
   }
 
   Body::UnsubscribeOptional& Body::
-  Unsubscribe ()
+  getUnsubscribe ()
   {
     return this->Unsubscribe_;
   }
 
   void Body::
-  Unsubscribe (const UnsubscribeType& x)
+  setUnsubscribe (const UnsubscribeType& x)
   {
     this->Unsubscribe_.set (x);
   }
 
   void Body::
-  Unsubscribe (const UnsubscribeOptional& x)
+  setUnsubscribe (const UnsubscribeOptional& x)
   {
     this->Unsubscribe_ = x;
   }
 
   void Body::
-  Unsubscribe (::std::unique_ptr< UnsubscribeType > x)
+  setUnsubscribe (::std::unique_ptr< UnsubscribeType > x)
   {
     this->Unsubscribe_.set (std::move (x));
   }
 
   const Body::RenewOptional& Body::
-  Renew () const
+  getRenew () const
   {
     return this->Renew_;
   }
 
   Body::RenewOptional& Body::
-  Renew ()
+  getRenew ()
   {
     return this->Renew_;
   }
 
   void Body::
-  Renew (const RenewType& x)
+  setRenew (const RenewType& x)
   {
     this->Renew_.set (x);
   }
 
   void Body::
-  Renew (const RenewOptional& x)
+  setRenew (const RenewOptional& x)
   {
     this->Renew_ = x;
   }
 
   void Body::
-  Renew (::std::unique_ptr< RenewType > x)
+  setRenew (::std::unique_ptr< RenewType > x)
   {
     this->Renew_.set (std::move (x));
   }
 
   const Body::RenewResponseOptional& Body::
-  RenewResponse () const
+  getRenewResponse () const
   {
     return this->RenewResponse_;
   }
 
   Body::RenewResponseOptional& Body::
-  RenewResponse ()
+  getRenewResponse ()
   {
     return this->RenewResponse_;
   }
 
   void Body::
-  RenewResponse (const RenewResponseType& x)
+  setRenewResponse (const RenewResponseType& x)
   {
     this->RenewResponse_.set (x);
   }
 
   void Body::
-  RenewResponse (const RenewResponseOptional& x)
+  setRenewResponse (const RenewResponseOptional& x)
   {
     this->RenewResponse_ = x;
   }
 
   void Body::
-  RenewResponse (::std::unique_ptr< RenewResponseType > x)
+  setRenewResponse (::std::unique_ptr< RenewResponseType > x)
   {
     this->RenewResponse_.set (std::move (x));
   }
 
   const Body::GetStatusOptional& Body::
-  GetStatus () const
+  getGetStatus () const
   {
     return this->GetStatus_;
   }
 
   Body::GetStatusOptional& Body::
-  GetStatus ()
+  getGetStatus ()
   {
     return this->GetStatus_;
   }
 
   void Body::
-  GetStatus (const GetStatusType& x)
+  setGetStatus (const GetStatusType& x)
   {
     this->GetStatus_.set (x);
   }
 
   void Body::
-  GetStatus (const GetStatusOptional& x)
+  setGetStatus (const GetStatusOptional& x)
   {
     this->GetStatus_ = x;
   }
 
   void Body::
-  GetStatus (::std::unique_ptr< GetStatusType > x)
+  setGetStatus (::std::unique_ptr< GetStatusType > x)
   {
     this->GetStatus_.set (std::move (x));
   }
 
   const Body::GetStatusResponseOptional& Body::
-  GetStatusResponse () const
+  getGetStatusResponse () const
   {
     return this->GetStatusResponse_;
   }
 
   Body::GetStatusResponseOptional& Body::
-  GetStatusResponse ()
+  getGetStatusResponse ()
   {
     return this->GetStatusResponse_;
   }
 
   void Body::
-  GetStatusResponse (const GetStatusResponseType& x)
+  setGetStatusResponse (const GetStatusResponseType& x)
   {
     this->GetStatusResponse_.set (x);
   }
 
   void Body::
-  GetStatusResponse (const GetStatusResponseOptional& x)
+  setGetStatusResponse (const GetStatusResponseOptional& x)
   {
     this->GetStatusResponse_ = x;
   }
 
   void Body::
-  GetStatusResponse (::std::unique_ptr< GetStatusResponseType > x)
+  setGetStatusResponse (::std::unique_ptr< GetStatusResponseType > x)
   {
     this->GetStatusResponse_.set (std::move (x));
   }
 
   const Body::DescriptionModificationReportOptional& Body::
-  DescriptionModificationReport () const
+  getDescriptionModificationReport () const
   {
     return this->DescriptionModificationReport_;
   }
 
   Body::DescriptionModificationReportOptional& Body::
-  DescriptionModificationReport ()
+  getDescriptionModificationReport ()
   {
     return this->DescriptionModificationReport_;
   }
 
   void Body::
-  DescriptionModificationReport (const DescriptionModificationReportType& x)
+  setDescriptionModificationReport (const DescriptionModificationReportType& x)
   {
     this->DescriptionModificationReport_.set (x);
   }
 
   void Body::
-  DescriptionModificationReport (const DescriptionModificationReportOptional& x)
+  setDescriptionModificationReport (const DescriptionModificationReportOptional& x)
   {
     this->DescriptionModificationReport_ = x;
   }
 
   void Body::
-  DescriptionModificationReport (::std::unique_ptr< DescriptionModificationReportType > x)
+  setDescriptionModificationReport (::std::unique_ptr< DescriptionModificationReportType > x)
   {
     this->DescriptionModificationReport_.set (std::move (x));
   }
 
   const Body::GetContextStatesOptional& Body::
-  GetContextStates () const
+  getGetContextStates () const
   {
     return this->GetContextStates_;
   }
 
   Body::GetContextStatesOptional& Body::
-  GetContextStates ()
+  getGetContextStates ()
   {
     return this->GetContextStates_;
   }
 
   void Body::
-  GetContextStates (const GetContextStatesType& x)
+  setGetContextStates (const GetContextStatesType& x)
   {
     this->GetContextStates_.set (x);
   }
 
   void Body::
-  GetContextStates (const GetContextStatesOptional& x)
+  setGetContextStates (const GetContextStatesOptional& x)
   {
     this->GetContextStates_ = x;
   }
 
   void Body::
-  GetContextStates (::std::unique_ptr< GetContextStatesType > x)
+  setGetContextStates (::std::unique_ptr< GetContextStatesType > x)
   {
     this->GetContextStates_.set (std::move (x));
   }
 
   const Body::GetContextStatesResponseOptional& Body::
-  GetContextStatesResponse () const
+  getGetContextStatesResponse () const
   {
     return this->GetContextStatesResponse_;
   }
 
   Body::GetContextStatesResponseOptional& Body::
-  GetContextStatesResponse ()
+  getGetContextStatesResponse ()
   {
     return this->GetContextStatesResponse_;
   }
 
   void Body::
-  GetContextStatesResponse (const GetContextStatesResponseType& x)
+  setGetContextStatesResponse (const GetContextStatesResponseType& x)
   {
     this->GetContextStatesResponse_.set (x);
   }
 
   void Body::
-  GetContextStatesResponse (const GetContextStatesResponseOptional& x)
+  setGetContextStatesResponse (const GetContextStatesResponseOptional& x)
   {
     this->GetContextStatesResponse_ = x;
   }
 
   void Body::
-  GetContextStatesResponse (::std::unique_ptr< GetContextStatesResponseType > x)
+  setGetContextStatesResponse (::std::unique_ptr< GetContextStatesResponseType > x)
   {
     this->GetContextStatesResponse_.set (std::move (x));
   }
 
   const Body::SetContextStateOptional& Body::
-  SetContextState () const
+  getSetContextState () const
   {
     return this->SetContextState_;
   }
 
   Body::SetContextStateOptional& Body::
-  SetContextState ()
+  getSetContextState ()
   {
     return this->SetContextState_;
   }
 
   void Body::
-  SetContextState (const SetContextStateType& x)
+  setSetContextState (const SetContextStateType& x)
   {
     this->SetContextState_.set (x);
   }
 
   void Body::
-  SetContextState (const SetContextStateOptional& x)
+  setSetContextState (const SetContextStateOptional& x)
   {
     this->SetContextState_ = x;
   }
 
   void Body::
-  SetContextState (::std::unique_ptr< SetContextStateType > x)
+  setSetContextState (::std::unique_ptr< SetContextStateType > x)
   {
     this->SetContextState_.set (std::move (x));
   }
 
   const Body::SetContextStateResponseOptional& Body::
-  SetContextStateResponse () const
+  getSetContextStateResponse () const
   {
     return this->SetContextStateResponse_;
   }
 
   Body::SetContextStateResponseOptional& Body::
-  SetContextStateResponse ()
+  getSetContextStateResponse ()
   {
     return this->SetContextStateResponse_;
   }
 
   void Body::
-  SetContextStateResponse (const SetContextStateResponseType& x)
+  setSetContextStateResponse (const SetContextStateResponseType& x)
   {
     this->SetContextStateResponse_.set (x);
   }
 
   void Body::
-  SetContextStateResponse (const SetContextStateResponseOptional& x)
+  setSetContextStateResponse (const SetContextStateResponseOptional& x)
   {
     this->SetContextStateResponse_ = x;
   }
 
   void Body::
-  SetContextStateResponse (::std::unique_ptr< SetContextStateResponseType > x)
+  setSetContextStateResponse (::std::unique_ptr< SetContextStateResponseType > x)
   {
     this->SetContextStateResponse_.set (std::move (x));
   }
 
   const Body::EpisodicContextReportOptional& Body::
-  EpisodicContextReport () const
+  getEpisodicContextReport () const
   {
     return this->EpisodicContextReport_;
   }
 
   Body::EpisodicContextReportOptional& Body::
-  EpisodicContextReport ()
+  getEpisodicContextReport ()
   {
     return this->EpisodicContextReport_;
   }
 
   void Body::
-  EpisodicContextReport (const EpisodicContextReportType& x)
+  setEpisodicContextReport (const EpisodicContextReportType& x)
   {
     this->EpisodicContextReport_.set (x);
   }
 
   void Body::
-  EpisodicContextReport (const EpisodicContextReportOptional& x)
+  setEpisodicContextReport (const EpisodicContextReportOptional& x)
   {
     this->EpisodicContextReport_ = x;
   }
 
   void Body::
-  EpisodicContextReport (::std::unique_ptr< EpisodicContextReportType > x)
+  setEpisodicContextReport (::std::unique_ptr< EpisodicContextReportType > x)
   {
     this->EpisodicContextReport_.set (std::move (x));
   }
 
   const Body::PeriodicContextReportOptional& Body::
-  PeriodicContextReport () const
+  getPeriodicContextReport () const
   {
     return this->PeriodicContextReport_;
   }
 
   Body::PeriodicContextReportOptional& Body::
-  PeriodicContextReport ()
+  getPeriodicContextReport ()
   {
     return this->PeriodicContextReport_;
   }
 
   void Body::
-  PeriodicContextReport (const PeriodicContextReportType& x)
+  setPeriodicContextReport (const PeriodicContextReportType& x)
   {
     this->PeriodicContextReport_.set (x);
   }
 
   void Body::
-  PeriodicContextReport (const PeriodicContextReportOptional& x)
+  setPeriodicContextReport (const PeriodicContextReportOptional& x)
   {
     this->PeriodicContextReport_ = x;
   }
 
   void Body::
-  PeriodicContextReport (::std::unique_ptr< PeriodicContextReportType > x)
+  setPeriodicContextReport (::std::unique_ptr< PeriodicContextReportType > x)
   {
     this->PeriodicContextReport_.set (std::move (x));
   }
 
   const Body::EpisodicAlertReportOptional& Body::
-  EpisodicAlertReport () const
+  getEpisodicAlertReport () const
   {
     return this->EpisodicAlertReport_;
   }
 
   Body::EpisodicAlertReportOptional& Body::
-  EpisodicAlertReport ()
+  getEpisodicAlertReport ()
   {
     return this->EpisodicAlertReport_;
   }
 
   void Body::
-  EpisodicAlertReport (const EpisodicAlertReportType& x)
+  setEpisodicAlertReport (const EpisodicAlertReportType& x)
   {
     this->EpisodicAlertReport_.set (x);
   }
 
   void Body::
-  EpisodicAlertReport (const EpisodicAlertReportOptional& x)
+  setEpisodicAlertReport (const EpisodicAlertReportOptional& x)
   {
     this->EpisodicAlertReport_ = x;
   }
 
   void Body::
-  EpisodicAlertReport (::std::unique_ptr< EpisodicAlertReportType > x)
+  setEpisodicAlertReport (::std::unique_ptr< EpisodicAlertReportType > x)
   {
     this->EpisodicAlertReport_.set (std::move (x));
   }
 
   const Body::EpisodicComponentReportOptional& Body::
-  EpisodicComponentReport () const
+  getEpisodicComponentReport () const
   {
     return this->EpisodicComponentReport_;
   }
 
   Body::EpisodicComponentReportOptional& Body::
-  EpisodicComponentReport ()
+  getEpisodicComponentReport ()
   {
     return this->EpisodicComponentReport_;
   }
 
   void Body::
-  EpisodicComponentReport (const EpisodicComponentReportType& x)
+  setEpisodicComponentReport (const EpisodicComponentReportType& x)
   {
     this->EpisodicComponentReport_.set (x);
   }
 
   void Body::
-  EpisodicComponentReport (const EpisodicComponentReportOptional& x)
+  setEpisodicComponentReport (const EpisodicComponentReportOptional& x)
   {
     this->EpisodicComponentReport_ = x;
   }
 
   void Body::
-  EpisodicComponentReport (::std::unique_ptr< EpisodicComponentReportType > x)
+  setEpisodicComponentReport (::std::unique_ptr< EpisodicComponentReportType > x)
   {
     this->EpisodicComponentReport_.set (std::move (x));
   }
 
   const Body::EpisodicMetricReportOptional& Body::
-  EpisodicMetricReport () const
+  getEpisodicMetricReport () const
   {
     return this->EpisodicMetricReport_;
   }
 
   Body::EpisodicMetricReportOptional& Body::
-  EpisodicMetricReport ()
+  getEpisodicMetricReport ()
   {
     return this->EpisodicMetricReport_;
   }
 
   void Body::
-  EpisodicMetricReport (const EpisodicMetricReportType& x)
+  setEpisodicMetricReport (const EpisodicMetricReportType& x)
   {
     this->EpisodicMetricReport_.set (x);
   }
 
   void Body::
-  EpisodicMetricReport (const EpisodicMetricReportOptional& x)
+  setEpisodicMetricReport (const EpisodicMetricReportOptional& x)
   {
     this->EpisodicMetricReport_ = x;
   }
 
   void Body::
-  EpisodicMetricReport (::std::unique_ptr< EpisodicMetricReportType > x)
+  setEpisodicMetricReport (::std::unique_ptr< EpisodicMetricReportType > x)
   {
     this->EpisodicMetricReport_.set (std::move (x));
   }
 
   const Body::EpisodicOperationalStateReportOptional& Body::
-  EpisodicOperationalStateReport () const
+  getEpisodicOperationalStateReport () const
   {
     return this->EpisodicOperationalStateReport_;
   }
 
   Body::EpisodicOperationalStateReportOptional& Body::
-  EpisodicOperationalStateReport ()
+  getEpisodicOperationalStateReport ()
   {
     return this->EpisodicOperationalStateReport_;
   }
 
   void Body::
-  EpisodicOperationalStateReport (const EpisodicOperationalStateReportType& x)
+  setEpisodicOperationalStateReport (const EpisodicOperationalStateReportType& x)
   {
     this->EpisodicOperationalStateReport_.set (x);
   }
 
   void Body::
-  EpisodicOperationalStateReport (const EpisodicOperationalStateReportOptional& x)
+  setEpisodicOperationalStateReport (const EpisodicOperationalStateReportOptional& x)
   {
     this->EpisodicOperationalStateReport_ = x;
   }
 
   void Body::
-  EpisodicOperationalStateReport (::std::unique_ptr< EpisodicOperationalStateReportType > x)
+  setEpisodicOperationalStateReport (::std::unique_ptr< EpisodicOperationalStateReportType > x)
   {
     this->EpisodicOperationalStateReport_.set (std::move (x));
   }
 
   const Body::PeriodicAlertReportOptional& Body::
-  PeriodicAlertReport () const
+  getPeriodicAlertReport () const
   {
     return this->PeriodicAlertReport_;
   }
 
   Body::PeriodicAlertReportOptional& Body::
-  PeriodicAlertReport ()
+  getPeriodicAlertReport ()
   {
     return this->PeriodicAlertReport_;
   }
 
   void Body::
-  PeriodicAlertReport (const PeriodicAlertReportType& x)
+  setPeriodicAlertReport (const PeriodicAlertReportType& x)
   {
     this->PeriodicAlertReport_.set (x);
   }
 
   void Body::
-  PeriodicAlertReport (const PeriodicAlertReportOptional& x)
+  setPeriodicAlertReport (const PeriodicAlertReportOptional& x)
   {
     this->PeriodicAlertReport_ = x;
   }
 
   void Body::
-  PeriodicAlertReport (::std::unique_ptr< PeriodicAlertReportType > x)
+  setPeriodicAlertReport (::std::unique_ptr< PeriodicAlertReportType > x)
   {
     this->PeriodicAlertReport_.set (std::move (x));
   }
 
   const Body::PeriodicMetricReportOptional& Body::
-  PeriodicMetricReport () const
+  getPeriodicMetricReport () const
   {
     return this->PeriodicMetricReport_;
   }
 
   Body::PeriodicMetricReportOptional& Body::
-  PeriodicMetricReport ()
+  getPeriodicMetricReport ()
   {
     return this->PeriodicMetricReport_;
   }
 
   void Body::
-  PeriodicMetricReport (const PeriodicMetricReportType& x)
+  setPeriodicMetricReport (const PeriodicMetricReportType& x)
   {
     this->PeriodicMetricReport_.set (x);
   }
 
   void Body::
-  PeriodicMetricReport (const PeriodicMetricReportOptional& x)
+  setPeriodicMetricReport (const PeriodicMetricReportOptional& x)
   {
     this->PeriodicMetricReport_ = x;
   }
 
   void Body::
-  PeriodicMetricReport (::std::unique_ptr< PeriodicMetricReportType > x)
+  setPeriodicMetricReport (::std::unique_ptr< PeriodicMetricReportType > x)
   {
     this->PeriodicMetricReport_.set (std::move (x));
   }
 
   const Body::OperationInvokedReportOptional& Body::
-  OperationInvokedReport () const
+  getOperationInvokedReport () const
   {
     return this->OperationInvokedReport_;
   }
 
   Body::OperationInvokedReportOptional& Body::
-  OperationInvokedReport ()
+  getOperationInvokedReport ()
   {
     return this->OperationInvokedReport_;
   }
 
   void Body::
-  OperationInvokedReport (const OperationInvokedReportType& x)
+  setOperationInvokedReport (const OperationInvokedReportType& x)
   {
     this->OperationInvokedReport_.set (x);
   }
 
   void Body::
-  OperationInvokedReport (const OperationInvokedReportOptional& x)
+  setOperationInvokedReport (const OperationInvokedReportOptional& x)
   {
     this->OperationInvokedReport_ = x;
   }
 
   void Body::
-  OperationInvokedReport (::std::unique_ptr< OperationInvokedReportType > x)
+  setOperationInvokedReport (::std::unique_ptr< OperationInvokedReportType > x)
   {
     this->OperationInvokedReport_.set (std::move (x));
   }
 
   const Body::GetMdDescriptionOptional& Body::
-  GetMdDescription () const
+  getGetMdDescription () const
   {
     return this->GetMdDescription_;
   }
 
   Body::GetMdDescriptionOptional& Body::
-  GetMdDescription ()
+  getGetMdDescription ()
   {
     return this->GetMdDescription_;
   }
 
   void Body::
-  GetMdDescription (const GetMdDescriptionType& x)
+  setGetMdDescription (const GetMdDescriptionType& x)
   {
     this->GetMdDescription_.set (x);
   }
 
   void Body::
-  GetMdDescription (const GetMdDescriptionOptional& x)
+  setGetMdDescription (const GetMdDescriptionOptional& x)
   {
     this->GetMdDescription_ = x;
   }
 
   void Body::
-  GetMdDescription (::std::unique_ptr< GetMdDescriptionType > x)
+  setGetMdDescription (::std::unique_ptr< GetMdDescriptionType > x)
   {
     this->GetMdDescription_.set (std::move (x));
   }
 
   const Body::GetMdDescriptionResponseOptional& Body::
-  GetMdDescriptionResponse () const
+  getGetMdDescriptionResponse () const
   {
     return this->GetMdDescriptionResponse_;
   }
 
   Body::GetMdDescriptionResponseOptional& Body::
-  GetMdDescriptionResponse ()
+  getGetMdDescriptionResponse ()
   {
     return this->GetMdDescriptionResponse_;
   }
 
   void Body::
-  GetMdDescriptionResponse (const GetMdDescriptionResponseType& x)
+  setGetMdDescriptionResponse (const GetMdDescriptionResponseType& x)
   {
     this->GetMdDescriptionResponse_.set (x);
   }
 
   void Body::
-  GetMdDescriptionResponse (const GetMdDescriptionResponseOptional& x)
+  setGetMdDescriptionResponse (const GetMdDescriptionResponseOptional& x)
   {
     this->GetMdDescriptionResponse_ = x;
   }
 
   void Body::
-  GetMdDescriptionResponse (::std::unique_ptr< GetMdDescriptionResponseType > x)
+  setGetMdDescriptionResponse (::std::unique_ptr< GetMdDescriptionResponseType > x)
   {
     this->GetMdDescriptionResponse_.set (std::move (x));
   }
 
   const Body::GetMdibOptional& Body::
-  GetMdib () const
+  getGetMdib () const
   {
     return this->GetMdib_;
   }
 
   Body::GetMdibOptional& Body::
-  GetMdib ()
+  getGetMdib ()
   {
     return this->GetMdib_;
   }
 
   void Body::
-  GetMdib (const GetMdibType& x)
+  setGetMdib (const GetMdibType& x)
   {
     this->GetMdib_.set (x);
   }
 
   void Body::
-  GetMdib (const GetMdibOptional& x)
+  setGetMdib (const GetMdibOptional& x)
   {
     this->GetMdib_ = x;
   }
 
   void Body::
-  GetMdib (::std::unique_ptr< GetMdibType > x)
+  setGetMdib (::std::unique_ptr< GetMdibType > x)
   {
     this->GetMdib_.set (std::move (x));
   }
 
   const Body::GetMdibResponseOptional& Body::
-  GetMdibResponse () const
+  getGetMdibResponse () const
   {
     return this->GetMdibResponse_;
   }
 
   Body::GetMdibResponseOptional& Body::
-  GetMdibResponse ()
+  getGetMdibResponse ()
   {
     return this->GetMdibResponse_;
   }
 
   void Body::
-  GetMdibResponse (const GetMdibResponseType& x)
+  setGetMdibResponse (const GetMdibResponseType& x)
   {
     this->GetMdibResponse_.set (x);
   }
 
   void Body::
-  GetMdibResponse (const GetMdibResponseOptional& x)
+  setGetMdibResponse (const GetMdibResponseOptional& x)
   {
     this->GetMdibResponse_ = x;
   }
 
   void Body::
-  GetMdibResponse (::std::unique_ptr< GetMdibResponseType > x)
+  setGetMdibResponse (::std::unique_ptr< GetMdibResponseType > x)
   {
     this->GetMdibResponse_.set (std::move (x));
   }
 
   const Body::GetMdStateOptional& Body::
-  GetMdState () const
+  getGetMdState () const
   {
     return this->GetMdState_;
   }
 
   Body::GetMdStateOptional& Body::
-  GetMdState ()
+  getGetMdState ()
   {
     return this->GetMdState_;
   }
 
   void Body::
-  GetMdState (const GetMdStateType& x)
+  setGetMdState (const GetMdStateType& x)
   {
     this->GetMdState_.set (x);
   }
 
   void Body::
-  GetMdState (const GetMdStateOptional& x)
+  setGetMdState (const GetMdStateOptional& x)
   {
     this->GetMdState_ = x;
   }
 
   void Body::
-  GetMdState (::std::unique_ptr< GetMdStateType > x)
+  setGetMdState (::std::unique_ptr< GetMdStateType > x)
   {
     this->GetMdState_.set (std::move (x));
   }
 
   const Body::GetMdStateResponseOptional& Body::
-  GetMdStateResponse () const
+  getGetMdStateResponse () const
   {
     return this->GetMdStateResponse_;
   }
 
   Body::GetMdStateResponseOptional& Body::
-  GetMdStateResponse ()
+  getGetMdStateResponse ()
   {
     return this->GetMdStateResponse_;
   }
 
   void Body::
-  GetMdStateResponse (const GetMdStateResponseType& x)
+  setGetMdStateResponse (const GetMdStateResponseType& x)
   {
     this->GetMdStateResponse_.set (x);
   }
 
   void Body::
-  GetMdStateResponse (const GetMdStateResponseOptional& x)
+  setGetMdStateResponse (const GetMdStateResponseOptional& x)
   {
     this->GetMdStateResponse_ = x;
   }
 
   void Body::
-  GetMdStateResponse (::std::unique_ptr< GetMdStateResponseType > x)
+  setGetMdStateResponse (::std::unique_ptr< GetMdStateResponseType > x)
   {
     this->GetMdStateResponse_.set (std::move (x));
   }
 
   const Body::ActivateOptional& Body::
-  Activate () const
+  getActivate () const
   {
     return this->Activate_;
   }
 
   Body::ActivateOptional& Body::
-  Activate ()
+  getActivate ()
   {
     return this->Activate_;
   }
 
   void Body::
-  Activate (const ActivateType& x)
+  setActivate (const ActivateType& x)
   {
     this->Activate_.set (x);
   }
 
   void Body::
-  Activate (const ActivateOptional& x)
+  setActivate (const ActivateOptional& x)
   {
     this->Activate_ = x;
   }
 
   void Body::
-  Activate (::std::unique_ptr< ActivateType > x)
+  setActivate (::std::unique_ptr< ActivateType > x)
   {
     this->Activate_.set (std::move (x));
   }
 
   const Body::ActivateResponseOptional& Body::
-  ActivateResponse () const
+  getActivateResponse () const
   {
     return this->ActivateResponse_;
   }
 
   Body::ActivateResponseOptional& Body::
-  ActivateResponse ()
+  getActivateResponse ()
   {
     return this->ActivateResponse_;
   }
 
   void Body::
-  ActivateResponse (const ActivateResponseType& x)
+  setActivateResponse (const ActivateResponseType& x)
   {
     this->ActivateResponse_.set (x);
   }
 
   void Body::
-  ActivateResponse (const ActivateResponseOptional& x)
+  setActivateResponse (const ActivateResponseOptional& x)
   {
     this->ActivateResponse_ = x;
   }
 
   void Body::
-  ActivateResponse (::std::unique_ptr< ActivateResponseType > x)
+  setActivateResponse (::std::unique_ptr< ActivateResponseType > x)
   {
     this->ActivateResponse_.set (std::move (x));
   }
 
   const Body::SetAlertStateOptional& Body::
-  SetAlertState () const
+  getSetAlertState () const
   {
     return this->SetAlertState_;
   }
 
   Body::SetAlertStateOptional& Body::
-  SetAlertState ()
+  getSetAlertState ()
   {
     return this->SetAlertState_;
   }
 
   void Body::
-  SetAlertState (const SetAlertStateType& x)
+  setSetAlertState (const SetAlertStateType& x)
   {
     this->SetAlertState_.set (x);
   }
 
   void Body::
-  SetAlertState (const SetAlertStateOptional& x)
+  setSetAlertState (const SetAlertStateOptional& x)
   {
     this->SetAlertState_ = x;
   }
 
   void Body::
-  SetAlertState (::std::unique_ptr< SetAlertStateType > x)
+  setSetAlertState (::std::unique_ptr< SetAlertStateType > x)
   {
     this->SetAlertState_.set (std::move (x));
   }
 
   const Body::SetAlertStateResponseOptional& Body::
-  SetAlertStateResponse () const
+  getSetAlertStateResponse () const
   {
     return this->SetAlertStateResponse_;
   }
 
   Body::SetAlertStateResponseOptional& Body::
-  SetAlertStateResponse ()
+  getSetAlertStateResponse ()
   {
     return this->SetAlertStateResponse_;
   }
 
   void Body::
-  SetAlertStateResponse (const SetAlertStateResponseType& x)
+  setSetAlertStateResponse (const SetAlertStateResponseType& x)
   {
     this->SetAlertStateResponse_.set (x);
   }
 
   void Body::
-  SetAlertStateResponse (const SetAlertStateResponseOptional& x)
+  setSetAlertStateResponse (const SetAlertStateResponseOptional& x)
   {
     this->SetAlertStateResponse_ = x;
   }
 
   void Body::
-  SetAlertStateResponse (::std::unique_ptr< SetAlertStateResponseType > x)
+  setSetAlertStateResponse (::std::unique_ptr< SetAlertStateResponseType > x)
   {
     this->SetAlertStateResponse_.set (std::move (x));
   }
 
   const Body::SetStringOptional& Body::
-  SetString () const
+  getSetString () const
   {
     return this->SetString_;
   }
 
   Body::SetStringOptional& Body::
-  SetString ()
+  getSetString ()
   {
     return this->SetString_;
   }
 
   void Body::
-  SetString (const SetStringType& x)
+  setSetString (const SetStringType& x)
   {
     this->SetString_.set (x);
   }
 
   void Body::
-  SetString (const SetStringOptional& x)
+  setSetString (const SetStringOptional& x)
   {
     this->SetString_ = x;
   }
 
   void Body::
-  SetString (::std::unique_ptr< SetStringType > x)
+  setSetString (::std::unique_ptr< SetStringType > x)
   {
     this->SetString_.set (std::move (x));
   }
 
   const Body::SetStringResponseOptional& Body::
-  SetStringResponse () const
+  getSetStringResponse () const
   {
     return this->SetStringResponse_;
   }
 
   Body::SetStringResponseOptional& Body::
-  SetStringResponse ()
+  getSetStringResponse ()
   {
     return this->SetStringResponse_;
   }
 
   void Body::
-  SetStringResponse (const SetStringResponseType& x)
+  setSetStringResponse (const SetStringResponseType& x)
   {
     this->SetStringResponse_.set (x);
   }
 
   void Body::
-  SetStringResponse (const SetStringResponseOptional& x)
+  setSetStringResponse (const SetStringResponseOptional& x)
   {
     this->SetStringResponse_ = x;
   }
 
   void Body::
-  SetStringResponse (::std::unique_ptr< SetStringResponseType > x)
+  setSetStringResponse (::std::unique_ptr< SetStringResponseType > x)
   {
     this->SetStringResponse_.set (std::move (x));
   }
 
   const Body::SetValueOptional& Body::
-  SetValue () const
+  getSetValue () const
   {
     return this->SetValue_;
   }
 
   Body::SetValueOptional& Body::
-  SetValue ()
+  getSetValue ()
   {
     return this->SetValue_;
   }
 
   void Body::
-  SetValue (const SetValueType& x)
+  setSetValue (const SetValueType& x)
   {
     this->SetValue_.set (x);
   }
 
   void Body::
-  SetValue (const SetValueOptional& x)
+  setSetValue (const SetValueOptional& x)
   {
     this->SetValue_ = x;
   }
 
   void Body::
-  SetValue (::std::unique_ptr< SetValueType > x)
+  setSetValue (::std::unique_ptr< SetValueType > x)
   {
     this->SetValue_.set (std::move (x));
   }
 
   const Body::SetValueResponseOptional& Body::
-  SetValueResponse () const
+  getSetValueResponse () const
   {
     return this->SetValueResponse_;
   }
 
   Body::SetValueResponseOptional& Body::
-  SetValueResponse ()
+  getSetValueResponse ()
   {
     return this->SetValueResponse_;
   }
 
   void Body::
-  SetValueResponse (const SetValueResponseType& x)
+  setSetValueResponse (const SetValueResponseType& x)
   {
     this->SetValueResponse_.set (x);
   }
 
   void Body::
-  SetValueResponse (const SetValueResponseOptional& x)
+  setSetValueResponse (const SetValueResponseOptional& x)
   {
     this->SetValueResponse_ = x;
   }
 
   void Body::
-  SetValueResponse (::std::unique_ptr< SetValueResponseType > x)
+  setSetValueResponse (::std::unique_ptr< SetValueResponseType > x)
   {
     this->SetValueResponse_.set (std::move (x));
   }
 
   const Body::WaveformStreamOptional& Body::
-  WaveformStream () const
+  getWaveformStream () const
   {
     return this->WaveformStream_;
   }
 
   Body::WaveformStreamOptional& Body::
-  WaveformStream ()
+  getWaveformStream ()
   {
     return this->WaveformStream_;
   }
 
   void Body::
-  WaveformStream (const WaveformStreamType& x)
+  setWaveformStream (const WaveformStreamType& x)
   {
     this->WaveformStream_.set (x);
   }
 
   void Body::
-  WaveformStream (const WaveformStreamOptional& x)
+  setWaveformStream (const WaveformStreamOptional& x)
   {
     this->WaveformStream_ = x;
   }
 
   void Body::
-  WaveformStream (::std::unique_ptr< WaveformStreamType > x)
+  setWaveformStream (::std::unique_ptr< WaveformStreamType > x)
   {
     this->WaveformStream_.set (std::move (x));
   }
@@ -1674,49 +1674,49 @@ namespace MESSAGEMODEL
   // 
 
   const Envelope::HeaderType& Envelope::
-  Header () const
+  getHeader () const
   {
     return this->Header_.get ();
   }
 
   Envelope::HeaderType& Envelope::
-  Header ()
+  getHeader ()
   {
     return this->Header_.get ();
   }
 
   void Envelope::
-  Header (const HeaderType& x)
+  setHeader (const HeaderType& x)
   {
     this->Header_.set (x);
   }
 
   void Envelope::
-  Header (::std::unique_ptr< HeaderType > x)
+  setHeader (::std::unique_ptr< HeaderType > x)
   {
     this->Header_.set (std::move (x));
   }
 
   const Envelope::BodyType& Envelope::
-  Body () const
+  getBody () const
   {
     return this->Body_.get ();
   }
 
   Envelope::BodyType& Envelope::
-  Body ()
+  getBody ()
   {
     return this->Body_.get ();
   }
 
   void Envelope::
-  Body (const BodyType& x)
+  setBody (const BodyType& x)
   {
     this->Body_.set (x);
   }
 
   void Envelope::
-  Body (::std::unique_ptr< BodyType > x)
+  setBody (::std::unique_ptr< BodyType > x)
   {
     this->Body_.set (std::move (x));
   }
@@ -3186,9 +3186,9 @@ namespace MESSAGEMODEL
 namespace MESSAGEMODEL
 {
   ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (const ::std::string& u,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
+  parseHeader (const ::std::string& u,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -3203,15 +3203,15 @@ namespace MESSAGEMODEL
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
     return ::std::unique_ptr< ::MESSAGEMODEL::Header > (
-      ::MESSAGEMODEL::Header_ (
+      ::MESSAGEMODEL::parseHeader (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (const ::std::string& u,
-           ::xml_schema::ErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
+  parseHeader (const ::std::string& u,
+               ::xml_schema::ErrorHandler& h,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -3225,15 +3225,15 @@ namespace MESSAGEMODEL
       throw ::xsd::cxx::tree::parsing< char > ();
 
     return ::std::unique_ptr< ::MESSAGEMODEL::Header > (
-      ::MESSAGEMODEL::Header_ (
+      ::MESSAGEMODEL::parseHeader (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (const ::std::string& u,
-           ::xercesc::DOMErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
+  parseHeader (const ::std::string& u,
+               ::xercesc::DOMErrorHandler& h,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::parse< char > (
@@ -3243,91 +3243,91 @@ namespace MESSAGEMODEL
       throw ::xsd::cxx::tree::parsing< char > ();
 
     return ::std::unique_ptr< ::MESSAGEMODEL::Header > (
-      ::MESSAGEMODEL::Header_ (
+      ::MESSAGEMODEL::parseHeader (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (::std::istream& is,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
+  parseHeader (::std::istream& is,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MESSAGEMODEL::Header_ (isrc, f, p);
+    return ::MESSAGEMODEL::parseHeader (isrc, f, p);
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (::std::istream& is,
-           ::xml_schema::ErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
+  parseHeader (::std::istream& is,
+               ::xml_schema::ErrorHandler& h,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MESSAGEMODEL::Header_ (isrc, h, f, p);
+    return ::MESSAGEMODEL::parseHeader (isrc, h, f, p);
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (::std::istream& is,
-           ::xercesc::DOMErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
+  parseHeader (::std::istream& is,
+               ::xercesc::DOMErrorHandler& h,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MESSAGEMODEL::Header_ (isrc, h, f, p);
+    return ::MESSAGEMODEL::parseHeader (isrc, h, f, p);
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (::std::istream& is,
-           const ::std::string& sid,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
+  parseHeader (::std::istream& is,
+               const ::std::string& sid,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MESSAGEMODEL::Header_ (isrc, f, p);
+    return ::MESSAGEMODEL::parseHeader (isrc, f, p);
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (::std::istream& is,
-           const ::std::string& sid,
-           ::xml_schema::ErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
+  parseHeader (::std::istream& is,
+               const ::std::string& sid,
+               ::xml_schema::ErrorHandler& h,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MESSAGEMODEL::Header_ (isrc, h, f, p);
+    return ::MESSAGEMODEL::parseHeader (isrc, h, f, p);
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (::std::istream& is,
-           const ::std::string& sid,
-           ::xercesc::DOMErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
+  parseHeader (::std::istream& is,
+               const ::std::string& sid,
+               ::xercesc::DOMErrorHandler& h,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MESSAGEMODEL::Header_ (isrc, h, f, p);
+    return ::MESSAGEMODEL::parseHeader (isrc, h, f, p);
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (::xercesc::InputSource& i,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
+  parseHeader (::xercesc::InputSource& i,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -3338,15 +3338,15 @@ namespace MESSAGEMODEL
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
     return ::std::unique_ptr< ::MESSAGEMODEL::Header > (
-      ::MESSAGEMODEL::Header_ (
+      ::MESSAGEMODEL::parseHeader (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (::xercesc::InputSource& i,
-           ::xml_schema::ErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
+  parseHeader (::xercesc::InputSource& i,
+               ::xml_schema::ErrorHandler& h,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::parse< char > (
@@ -3356,15 +3356,15 @@ namespace MESSAGEMODEL
       throw ::xsd::cxx::tree::parsing< char > ();
 
     return ::std::unique_ptr< ::MESSAGEMODEL::Header > (
-      ::MESSAGEMODEL::Header_ (
+      ::MESSAGEMODEL::parseHeader (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (::xercesc::InputSource& i,
-           ::xercesc::DOMErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
+  parseHeader (::xercesc::InputSource& i,
+               ::xercesc::DOMErrorHandler& h,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::parse< char > (
@@ -3374,14 +3374,14 @@ namespace MESSAGEMODEL
       throw ::xsd::cxx::tree::parsing< char > ();
 
     return ::std::unique_ptr< ::MESSAGEMODEL::Header > (
-      ::MESSAGEMODEL::Header_ (
+      ::MESSAGEMODEL::parseHeader (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (const ::xercesc::DOMDocument& doc,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
+  parseHeader (const ::xercesc::DOMDocument& doc,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties& p)
   {
     if (f & ::xml_schema::Flags::keep_dom)
     {
@@ -3389,7 +3389,7 @@ namespace MESSAGEMODEL
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
       return ::std::unique_ptr< ::MESSAGEMODEL::Header > (
-        ::MESSAGEMODEL::Header_ (
+        ::MESSAGEMODEL::parseHeader (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -3414,9 +3414,9 @@ namespace MESSAGEMODEL
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties&)
+  parseHeader (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+               ::xml_schema::Flags f,
+               const ::xml_schema::Properties&)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
       ((f & ::xml_schema::Flags::keep_dom) &&
@@ -3431,7 +3431,7 @@ namespace MESSAGEMODEL
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
+      doc.setUserData (::xml_schema::dom::treeNodeKey,
                        (c.get () ? &c : &d),
                        0);
 
@@ -3452,9 +3452,9 @@ namespace MESSAGEMODEL
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (const ::std::string& u,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
+  parseBody (const ::std::string& u,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -3469,15 +3469,15 @@ namespace MESSAGEMODEL
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
     return ::std::unique_ptr< ::MESSAGEMODEL::Body > (
-      ::MESSAGEMODEL::Body_ (
+      ::MESSAGEMODEL::parseBody (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (const ::std::string& u,
-         ::xml_schema::ErrorHandler& h,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
+  parseBody (const ::std::string& u,
+             ::xml_schema::ErrorHandler& h,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -3491,15 +3491,15 @@ namespace MESSAGEMODEL
       throw ::xsd::cxx::tree::parsing< char > ();
 
     return ::std::unique_ptr< ::MESSAGEMODEL::Body > (
-      ::MESSAGEMODEL::Body_ (
+      ::MESSAGEMODEL::parseBody (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (const ::std::string& u,
-         ::xercesc::DOMErrorHandler& h,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
+  parseBody (const ::std::string& u,
+             ::xercesc::DOMErrorHandler& h,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::parse< char > (
@@ -3509,91 +3509,91 @@ namespace MESSAGEMODEL
       throw ::xsd::cxx::tree::parsing< char > ();
 
     return ::std::unique_ptr< ::MESSAGEMODEL::Body > (
-      ::MESSAGEMODEL::Body_ (
+      ::MESSAGEMODEL::parseBody (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (::std::istream& is,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
+  parseBody (::std::istream& is,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MESSAGEMODEL::Body_ (isrc, f, p);
+    return ::MESSAGEMODEL::parseBody (isrc, f, p);
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (::std::istream& is,
-         ::xml_schema::ErrorHandler& h,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
+  parseBody (::std::istream& is,
+             ::xml_schema::ErrorHandler& h,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MESSAGEMODEL::Body_ (isrc, h, f, p);
+    return ::MESSAGEMODEL::parseBody (isrc, h, f, p);
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (::std::istream& is,
-         ::xercesc::DOMErrorHandler& h,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
+  parseBody (::std::istream& is,
+             ::xercesc::DOMErrorHandler& h,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MESSAGEMODEL::Body_ (isrc, h, f, p);
+    return ::MESSAGEMODEL::parseBody (isrc, h, f, p);
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (::std::istream& is,
-         const ::std::string& sid,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
+  parseBody (::std::istream& is,
+             const ::std::string& sid,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MESSAGEMODEL::Body_ (isrc, f, p);
+    return ::MESSAGEMODEL::parseBody (isrc, f, p);
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (::std::istream& is,
-         const ::std::string& sid,
-         ::xml_schema::ErrorHandler& h,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
+  parseBody (::std::istream& is,
+             const ::std::string& sid,
+             ::xml_schema::ErrorHandler& h,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MESSAGEMODEL::Body_ (isrc, h, f, p);
+    return ::MESSAGEMODEL::parseBody (isrc, h, f, p);
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (::std::istream& is,
-         const ::std::string& sid,
-         ::xercesc::DOMErrorHandler& h,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
+  parseBody (::std::istream& is,
+             const ::std::string& sid,
+             ::xercesc::DOMErrorHandler& h,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MESSAGEMODEL::Body_ (isrc, h, f, p);
+    return ::MESSAGEMODEL::parseBody (isrc, h, f, p);
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (::xercesc::InputSource& i,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
+  parseBody (::xercesc::InputSource& i,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -3604,15 +3604,15 @@ namespace MESSAGEMODEL
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
     return ::std::unique_ptr< ::MESSAGEMODEL::Body > (
-      ::MESSAGEMODEL::Body_ (
+      ::MESSAGEMODEL::parseBody (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (::xercesc::InputSource& i,
-         ::xml_schema::ErrorHandler& h,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
+  parseBody (::xercesc::InputSource& i,
+             ::xml_schema::ErrorHandler& h,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::parse< char > (
@@ -3622,15 +3622,15 @@ namespace MESSAGEMODEL
       throw ::xsd::cxx::tree::parsing< char > ();
 
     return ::std::unique_ptr< ::MESSAGEMODEL::Body > (
-      ::MESSAGEMODEL::Body_ (
+      ::MESSAGEMODEL::parseBody (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (::xercesc::InputSource& i,
-         ::xercesc::DOMErrorHandler& h,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
+  parseBody (::xercesc::InputSource& i,
+             ::xercesc::DOMErrorHandler& h,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::parse< char > (
@@ -3640,14 +3640,14 @@ namespace MESSAGEMODEL
       throw ::xsd::cxx::tree::parsing< char > ();
 
     return ::std::unique_ptr< ::MESSAGEMODEL::Body > (
-      ::MESSAGEMODEL::Body_ (
+      ::MESSAGEMODEL::parseBody (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (const ::xercesc::DOMDocument& doc,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
+  parseBody (const ::xercesc::DOMDocument& doc,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties& p)
   {
     if (f & ::xml_schema::Flags::keep_dom)
     {
@@ -3655,7 +3655,7 @@ namespace MESSAGEMODEL
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
       return ::std::unique_ptr< ::MESSAGEMODEL::Body > (
-        ::MESSAGEMODEL::Body_ (
+        ::MESSAGEMODEL::parseBody (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -3680,9 +3680,9 @@ namespace MESSAGEMODEL
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties&)
+  parseBody (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+             ::xml_schema::Flags f,
+             const ::xml_schema::Properties&)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
       ((f & ::xml_schema::Flags::keep_dom) &&
@@ -3697,7 +3697,7 @@ namespace MESSAGEMODEL
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
+      doc.setUserData (::xml_schema::dom::treeNodeKey,
                        (c.get () ? &c : &d),
                        0);
 
@@ -3718,9 +3718,9 @@ namespace MESSAGEMODEL
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (const ::std::string& u,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseEnvelope (const ::std::string& u,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -3735,15 +3735,15 @@ namespace MESSAGEMODEL
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
     return ::std::unique_ptr< ::MESSAGEMODEL::Envelope > (
-      ::MESSAGEMODEL::Envelope_ (
+      ::MESSAGEMODEL::parseEnvelope (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (const ::std::string& u,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseEnvelope (const ::std::string& u,
+                 ::xml_schema::ErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -3757,15 +3757,15 @@ namespace MESSAGEMODEL
       throw ::xsd::cxx::tree::parsing< char > ();
 
     return ::std::unique_ptr< ::MESSAGEMODEL::Envelope > (
-      ::MESSAGEMODEL::Envelope_ (
+      ::MESSAGEMODEL::parseEnvelope (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (const ::std::string& u,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseEnvelope (const ::std::string& u,
+                 ::xercesc::DOMErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::parse< char > (
@@ -3775,91 +3775,91 @@ namespace MESSAGEMODEL
       throw ::xsd::cxx::tree::parsing< char > ();
 
     return ::std::unique_ptr< ::MESSAGEMODEL::Envelope > (
-      ::MESSAGEMODEL::Envelope_ (
+      ::MESSAGEMODEL::parseEnvelope (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (::std::istream& is,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseEnvelope (::std::istream& is,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MESSAGEMODEL::Envelope_ (isrc, f, p);
+    return ::MESSAGEMODEL::parseEnvelope (isrc, f, p);
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (::std::istream& is,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseEnvelope (::std::istream& is,
+                 ::xml_schema::ErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MESSAGEMODEL::Envelope_ (isrc, h, f, p);
+    return ::MESSAGEMODEL::parseEnvelope (isrc, h, f, p);
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (::std::istream& is,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseEnvelope (::std::istream& is,
+                 ::xercesc::DOMErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MESSAGEMODEL::Envelope_ (isrc, h, f, p);
+    return ::MESSAGEMODEL::parseEnvelope (isrc, h, f, p);
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (::std::istream& is,
-             const ::std::string& sid,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseEnvelope (::std::istream& is,
+                 const ::std::string& sid,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MESSAGEMODEL::Envelope_ (isrc, f, p);
+    return ::MESSAGEMODEL::parseEnvelope (isrc, f, p);
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (::std::istream& is,
-             const ::std::string& sid,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseEnvelope (::std::istream& is,
+                 const ::std::string& sid,
+                 ::xml_schema::ErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MESSAGEMODEL::Envelope_ (isrc, h, f, p);
+    return ::MESSAGEMODEL::parseEnvelope (isrc, h, f, p);
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (::std::istream& is,
-             const ::std::string& sid,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseEnvelope (::std::istream& is,
+                 const ::std::string& sid,
+                 ::xercesc::DOMErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MESSAGEMODEL::Envelope_ (isrc, h, f, p);
+    return ::MESSAGEMODEL::parseEnvelope (isrc, h, f, p);
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (::xercesc::InputSource& i,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseEnvelope (::xercesc::InputSource& i,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -3870,15 +3870,15 @@ namespace MESSAGEMODEL
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
     return ::std::unique_ptr< ::MESSAGEMODEL::Envelope > (
-      ::MESSAGEMODEL::Envelope_ (
+      ::MESSAGEMODEL::parseEnvelope (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (::xercesc::InputSource& i,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseEnvelope (::xercesc::InputSource& i,
+                 ::xml_schema::ErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::parse< char > (
@@ -3888,15 +3888,15 @@ namespace MESSAGEMODEL
       throw ::xsd::cxx::tree::parsing< char > ();
 
     return ::std::unique_ptr< ::MESSAGEMODEL::Envelope > (
-      ::MESSAGEMODEL::Envelope_ (
+      ::MESSAGEMODEL::parseEnvelope (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (::xercesc::InputSource& i,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseEnvelope (::xercesc::InputSource& i,
+                 ::xercesc::DOMErrorHandler& h,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::parse< char > (
@@ -3906,14 +3906,14 @@ namespace MESSAGEMODEL
       throw ::xsd::cxx::tree::parsing< char > ();
 
     return ::std::unique_ptr< ::MESSAGEMODEL::Envelope > (
-      ::MESSAGEMODEL::Envelope_ (
+      ::MESSAGEMODEL::parseEnvelope (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (const ::xercesc::DOMDocument& doc,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
+  parseEnvelope (const ::xercesc::DOMDocument& doc,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties& p)
   {
     if (f & ::xml_schema::Flags::keep_dom)
     {
@@ -3921,7 +3921,7 @@ namespace MESSAGEMODEL
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
       return ::std::unique_ptr< ::MESSAGEMODEL::Envelope > (
-        ::MESSAGEMODEL::Envelope_ (
+        ::MESSAGEMODEL::parseEnvelope (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -3946,9 +3946,9 @@ namespace MESSAGEMODEL
   }
 
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties&)
+  parseEnvelope (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                 ::xml_schema::Flags f,
+                 const ::xml_schema::Properties&)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
       ((f & ::xml_schema::Flags::keep_dom) &&
@@ -3963,7 +3963,7 @@ namespace MESSAGEMODEL
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
+      doc.setUserData (::xml_schema::dom::treeNodeKey,
                        (c.get () ? &c : &d),
                        0);
 
@@ -4000,17 +4000,17 @@ namespace _xsd
 namespace MESSAGEMODEL
 {
   void
-  Header_ (::std::ostream& o,
-           const ::MESSAGEMODEL::Header& s,
-           const ::xml_schema::NamespaceInfomap& m,
-           const ::std::string& e,
-           ::xml_schema::Flags f)
+  serializeHeader (::std::ostream& o,
+                   const ::MESSAGEMODEL::Header& s,
+                   const ::xml_schema::NamespaceInfomap& m,
+                   const ::std::string& e,
+                   ::xml_schema::Flags f)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MESSAGEMODEL::Header_ (s, m, f));
+      ::MESSAGEMODEL::serializeHeader (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -4022,18 +4022,18 @@ namespace MESSAGEMODEL
   }
 
   void
-  Header_ (::std::ostream& o,
-           const ::MESSAGEMODEL::Header& s,
-           ::xml_schema::ErrorHandler& h,
-           const ::xml_schema::NamespaceInfomap& m,
-           const ::std::string& e,
-           ::xml_schema::Flags f)
+  serializeHeader (::std::ostream& o,
+                   const ::MESSAGEMODEL::Header& s,
+                   ::xml_schema::ErrorHandler& h,
+                   const ::xml_schema::NamespaceInfomap& m,
+                   const ::std::string& e,
+                   ::xml_schema::Flags f)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MESSAGEMODEL::Header_ (s, m, f));
+      ::MESSAGEMODEL::serializeHeader (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -4042,15 +4042,15 @@ namespace MESSAGEMODEL
   }
 
   void
-  Header_ (::std::ostream& o,
-           const ::MESSAGEMODEL::Header& s,
-           ::xercesc::DOMErrorHandler& h,
-           const ::xml_schema::NamespaceInfomap& m,
-           const ::std::string& e,
-           ::xml_schema::Flags f)
+  serializeHeader (::std::ostream& o,
+                   const ::MESSAGEMODEL::Header& s,
+                   ::xercesc::DOMErrorHandler& h,
+                   const ::xml_schema::NamespaceInfomap& m,
+                   const ::std::string& e,
+                   ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MESSAGEMODEL::Header_ (s, m, f));
+      ::MESSAGEMODEL::serializeHeader (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -4059,14 +4059,14 @@ namespace MESSAGEMODEL
   }
 
   void
-  Header_ (::xercesc::XMLFormatTarget& t,
-           const ::MESSAGEMODEL::Header& s,
-           const ::xml_schema::NamespaceInfomap& m,
-           const ::std::string& e,
-           ::xml_schema::Flags f)
+  serializeHeader (::xercesc::XMLFormatTarget& t,
+                   const ::MESSAGEMODEL::Header& s,
+                   const ::xml_schema::NamespaceInfomap& m,
+                   const ::std::string& e,
+                   ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MESSAGEMODEL::Header_ (s, m, f));
+      ::MESSAGEMODEL::serializeHeader (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -4077,15 +4077,15 @@ namespace MESSAGEMODEL
   }
 
   void
-  Header_ (::xercesc::XMLFormatTarget& t,
-           const ::MESSAGEMODEL::Header& s,
-           ::xml_schema::ErrorHandler& h,
-           const ::xml_schema::NamespaceInfomap& m,
-           const ::std::string& e,
-           ::xml_schema::Flags f)
+  serializeHeader (::xercesc::XMLFormatTarget& t,
+                   const ::MESSAGEMODEL::Header& s,
+                   ::xml_schema::ErrorHandler& h,
+                   const ::xml_schema::NamespaceInfomap& m,
+                   const ::std::string& e,
+                   ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MESSAGEMODEL::Header_ (s, m, f));
+      ::MESSAGEMODEL::serializeHeader (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -4093,15 +4093,15 @@ namespace MESSAGEMODEL
   }
 
   void
-  Header_ (::xercesc::XMLFormatTarget& t,
-           const ::MESSAGEMODEL::Header& s,
-           ::xercesc::DOMErrorHandler& h,
-           const ::xml_schema::NamespaceInfomap& m,
-           const ::std::string& e,
-           ::xml_schema::Flags f)
+  serializeHeader (::xercesc::XMLFormatTarget& t,
+                   const ::MESSAGEMODEL::Header& s,
+                   ::xercesc::DOMErrorHandler& h,
+                   const ::xml_schema::NamespaceInfomap& m,
+                   const ::std::string& e,
+                   ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MESSAGEMODEL::Header_ (s, m, f));
+      ::MESSAGEMODEL::serializeHeader (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -4109,9 +4109,9 @@ namespace MESSAGEMODEL
   }
 
   void
-  Header_ (::xercesc::DOMDocument& d,
-           const ::MESSAGEMODEL::Header& s,
-           ::xml_schema::Flags)
+  serializeHeader (::xercesc::DOMDocument& d,
+                   const ::MESSAGEMODEL::Header& s,
+                   ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
     const ::xsd::cxx::xml::qualified_name< char > n (
@@ -4133,9 +4133,9 @@ namespace MESSAGEMODEL
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  Header_ (const ::MESSAGEMODEL::Header& s,
-           const ::xml_schema::NamespaceInfomap& m,
-           ::xml_schema::Flags f)
+  serializeHeader (const ::MESSAGEMODEL::Header& s,
+                   const ::xml_schema::NamespaceInfomap& m,
+                   ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
@@ -4143,22 +4143,22 @@ namespace MESSAGEMODEL
         "http://www.w3.org/2003/05/soap-envelope",
         m, f));
 
-    ::MESSAGEMODEL::Header_ (*d, s, f);
+    ::MESSAGEMODEL::serializeHeader (*d, s, f);
     return d;
   }
 
   void
-  Body_ (::std::ostream& o,
-         const ::MESSAGEMODEL::Body& s,
-         const ::xml_schema::NamespaceInfomap& m,
-         const ::std::string& e,
-         ::xml_schema::Flags f)
+  serializeBody (::std::ostream& o,
+                 const ::MESSAGEMODEL::Body& s,
+                 const ::xml_schema::NamespaceInfomap& m,
+                 const ::std::string& e,
+                 ::xml_schema::Flags f)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MESSAGEMODEL::Body_ (s, m, f));
+      ::MESSAGEMODEL::serializeBody (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -4170,18 +4170,18 @@ namespace MESSAGEMODEL
   }
 
   void
-  Body_ (::std::ostream& o,
-         const ::MESSAGEMODEL::Body& s,
-         ::xml_schema::ErrorHandler& h,
-         const ::xml_schema::NamespaceInfomap& m,
-         const ::std::string& e,
-         ::xml_schema::Flags f)
+  serializeBody (::std::ostream& o,
+                 const ::MESSAGEMODEL::Body& s,
+                 ::xml_schema::ErrorHandler& h,
+                 const ::xml_schema::NamespaceInfomap& m,
+                 const ::std::string& e,
+                 ::xml_schema::Flags f)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MESSAGEMODEL::Body_ (s, m, f));
+      ::MESSAGEMODEL::serializeBody (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -4190,15 +4190,15 @@ namespace MESSAGEMODEL
   }
 
   void
-  Body_ (::std::ostream& o,
-         const ::MESSAGEMODEL::Body& s,
-         ::xercesc::DOMErrorHandler& h,
-         const ::xml_schema::NamespaceInfomap& m,
-         const ::std::string& e,
-         ::xml_schema::Flags f)
+  serializeBody (::std::ostream& o,
+                 const ::MESSAGEMODEL::Body& s,
+                 ::xercesc::DOMErrorHandler& h,
+                 const ::xml_schema::NamespaceInfomap& m,
+                 const ::std::string& e,
+                 ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MESSAGEMODEL::Body_ (s, m, f));
+      ::MESSAGEMODEL::serializeBody (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -4207,14 +4207,14 @@ namespace MESSAGEMODEL
   }
 
   void
-  Body_ (::xercesc::XMLFormatTarget& t,
-         const ::MESSAGEMODEL::Body& s,
-         const ::xml_schema::NamespaceInfomap& m,
-         const ::std::string& e,
-         ::xml_schema::Flags f)
+  serializeBody (::xercesc::XMLFormatTarget& t,
+                 const ::MESSAGEMODEL::Body& s,
+                 const ::xml_schema::NamespaceInfomap& m,
+                 const ::std::string& e,
+                 ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MESSAGEMODEL::Body_ (s, m, f));
+      ::MESSAGEMODEL::serializeBody (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -4225,15 +4225,15 @@ namespace MESSAGEMODEL
   }
 
   void
-  Body_ (::xercesc::XMLFormatTarget& t,
-         const ::MESSAGEMODEL::Body& s,
-         ::xml_schema::ErrorHandler& h,
-         const ::xml_schema::NamespaceInfomap& m,
-         const ::std::string& e,
-         ::xml_schema::Flags f)
+  serializeBody (::xercesc::XMLFormatTarget& t,
+                 const ::MESSAGEMODEL::Body& s,
+                 ::xml_schema::ErrorHandler& h,
+                 const ::xml_schema::NamespaceInfomap& m,
+                 const ::std::string& e,
+                 ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MESSAGEMODEL::Body_ (s, m, f));
+      ::MESSAGEMODEL::serializeBody (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -4241,15 +4241,15 @@ namespace MESSAGEMODEL
   }
 
   void
-  Body_ (::xercesc::XMLFormatTarget& t,
-         const ::MESSAGEMODEL::Body& s,
-         ::xercesc::DOMErrorHandler& h,
-         const ::xml_schema::NamespaceInfomap& m,
-         const ::std::string& e,
-         ::xml_schema::Flags f)
+  serializeBody (::xercesc::XMLFormatTarget& t,
+                 const ::MESSAGEMODEL::Body& s,
+                 ::xercesc::DOMErrorHandler& h,
+                 const ::xml_schema::NamespaceInfomap& m,
+                 const ::std::string& e,
+                 ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MESSAGEMODEL::Body_ (s, m, f));
+      ::MESSAGEMODEL::serializeBody (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -4257,9 +4257,9 @@ namespace MESSAGEMODEL
   }
 
   void
-  Body_ (::xercesc::DOMDocument& d,
-         const ::MESSAGEMODEL::Body& s,
-         ::xml_schema::Flags)
+  serializeBody (::xercesc::DOMDocument& d,
+                 const ::MESSAGEMODEL::Body& s,
+                 ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
     const ::xsd::cxx::xml::qualified_name< char > n (
@@ -4281,9 +4281,9 @@ namespace MESSAGEMODEL
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  Body_ (const ::MESSAGEMODEL::Body& s,
-         const ::xml_schema::NamespaceInfomap& m,
-         ::xml_schema::Flags f)
+  serializeBody (const ::MESSAGEMODEL::Body& s,
+                 const ::xml_schema::NamespaceInfomap& m,
+                 ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
@@ -4291,22 +4291,22 @@ namespace MESSAGEMODEL
         "http://www.w3.org/2003/05/soap-envelope",
         m, f));
 
-    ::MESSAGEMODEL::Body_ (*d, s, f);
+    ::MESSAGEMODEL::serializeBody (*d, s, f);
     return d;
   }
 
   void
-  Envelope_ (::std::ostream& o,
-             const ::MESSAGEMODEL::Envelope& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+  serializeEnvelope (::std::ostream& o,
+                     const ::MESSAGEMODEL::Envelope& s,
+                     const ::xml_schema::NamespaceInfomap& m,
+                     const ::std::string& e,
+                     ::xml_schema::Flags f)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MESSAGEMODEL::Envelope_ (s, m, f));
+      ::MESSAGEMODEL::serializeEnvelope (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -4318,18 +4318,18 @@ namespace MESSAGEMODEL
   }
 
   void
-  Envelope_ (::std::ostream& o,
-             const ::MESSAGEMODEL::Envelope& s,
-             ::xml_schema::ErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+  serializeEnvelope (::std::ostream& o,
+                     const ::MESSAGEMODEL::Envelope& s,
+                     ::xml_schema::ErrorHandler& h,
+                     const ::xml_schema::NamespaceInfomap& m,
+                     const ::std::string& e,
+                     ::xml_schema::Flags f)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MESSAGEMODEL::Envelope_ (s, m, f));
+      ::MESSAGEMODEL::serializeEnvelope (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -4338,15 +4338,15 @@ namespace MESSAGEMODEL
   }
 
   void
-  Envelope_ (::std::ostream& o,
-             const ::MESSAGEMODEL::Envelope& s,
-             ::xercesc::DOMErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+  serializeEnvelope (::std::ostream& o,
+                     const ::MESSAGEMODEL::Envelope& s,
+                     ::xercesc::DOMErrorHandler& h,
+                     const ::xml_schema::NamespaceInfomap& m,
+                     const ::std::string& e,
+                     ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MESSAGEMODEL::Envelope_ (s, m, f));
+      ::MESSAGEMODEL::serializeEnvelope (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -4355,14 +4355,14 @@ namespace MESSAGEMODEL
   }
 
   void
-  Envelope_ (::xercesc::XMLFormatTarget& t,
-             const ::MESSAGEMODEL::Envelope& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+  serializeEnvelope (::xercesc::XMLFormatTarget& t,
+                     const ::MESSAGEMODEL::Envelope& s,
+                     const ::xml_schema::NamespaceInfomap& m,
+                     const ::std::string& e,
+                     ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MESSAGEMODEL::Envelope_ (s, m, f));
+      ::MESSAGEMODEL::serializeEnvelope (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -4373,15 +4373,15 @@ namespace MESSAGEMODEL
   }
 
   void
-  Envelope_ (::xercesc::XMLFormatTarget& t,
-             const ::MESSAGEMODEL::Envelope& s,
-             ::xml_schema::ErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+  serializeEnvelope (::xercesc::XMLFormatTarget& t,
+                     const ::MESSAGEMODEL::Envelope& s,
+                     ::xml_schema::ErrorHandler& h,
+                     const ::xml_schema::NamespaceInfomap& m,
+                     const ::std::string& e,
+                     ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MESSAGEMODEL::Envelope_ (s, m, f));
+      ::MESSAGEMODEL::serializeEnvelope (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -4389,15 +4389,15 @@ namespace MESSAGEMODEL
   }
 
   void
-  Envelope_ (::xercesc::XMLFormatTarget& t,
-             const ::MESSAGEMODEL::Envelope& s,
-             ::xercesc::DOMErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
+  serializeEnvelope (::xercesc::XMLFormatTarget& t,
+                     const ::MESSAGEMODEL::Envelope& s,
+                     ::xercesc::DOMErrorHandler& h,
+                     const ::xml_schema::NamespaceInfomap& m,
+                     const ::std::string& e,
+                     ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MESSAGEMODEL::Envelope_ (s, m, f));
+      ::MESSAGEMODEL::serializeEnvelope (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -4405,9 +4405,9 @@ namespace MESSAGEMODEL
   }
 
   void
-  Envelope_ (::xercesc::DOMDocument& d,
-             const ::MESSAGEMODEL::Envelope& s,
-             ::xml_schema::Flags)
+  serializeEnvelope (::xercesc::DOMDocument& d,
+                     const ::MESSAGEMODEL::Envelope& s,
+                     ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
     const ::xsd::cxx::xml::qualified_name< char > n (
@@ -4429,9 +4429,9 @@ namespace MESSAGEMODEL
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  Envelope_ (const ::MESSAGEMODEL::Envelope& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             ::xml_schema::Flags f)
+  serializeEnvelope (const ::MESSAGEMODEL::Envelope& s,
+                     const ::xml_schema::NamespaceInfomap& m,
+                     ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::serialize< char > (
@@ -4439,7 +4439,7 @@ namespace MESSAGEMODEL
         "http://www.w3.org/2003/05/soap-envelope",
         m, f));
 
-    ::MESSAGEMODEL::Envelope_ (*d, s, f);
+    ::MESSAGEMODEL::serializeEnvelope (*d, s, f);
     return d;
   }
 
@@ -4454,9 +4454,9 @@ namespace MESSAGEMODEL
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Action ())
+      if (i.getAction ())
       {
-        const Header::ActionType& x (*i.Action ());
+        const Header::ActionType& x (*i.getAction ());
         if (typeid (Header::ActionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -4481,9 +4481,9 @@ namespace MESSAGEMODEL
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.AppSequence ())
+      if (i.getAppSequence ())
       {
-        const Header::AppSequenceType& x (*i.AppSequence ());
+        const Header::AppSequenceType& x (*i.getAppSequence ());
         if (typeid (Header::AppSequenceType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -4508,9 +4508,9 @@ namespace MESSAGEMODEL
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.FaultTo ())
+      if (i.getFaultTo ())
       {
-        const Header::FaultToType& x (*i.FaultTo ());
+        const Header::FaultToType& x (*i.getFaultTo ());
         if (typeid (Header::FaultToType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -4535,9 +4535,9 @@ namespace MESSAGEMODEL
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.From ())
+      if (i.getFrom ())
       {
-        const Header::FromType& x (*i.From ());
+        const Header::FromType& x (*i.getFrom ());
         if (typeid (Header::FromType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -4562,9 +4562,9 @@ namespace MESSAGEMODEL
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.MessageID ())
+      if (i.getMessageID ())
       {
-        const Header::MessageIDType& x (*i.MessageID ());
+        const Header::MessageIDType& x (*i.getMessageID ());
         if (typeid (Header::MessageIDType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -4589,9 +4589,9 @@ namespace MESSAGEMODEL
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.ReferenceParameters ())
+      if (i.getReferenceParameters ())
       {
-        const Header::ReferenceParametersType& x (*i.ReferenceParameters ());
+        const Header::ReferenceParametersType& x (*i.getReferenceParameters ());
         if (typeid (Header::ReferenceParametersType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -4616,9 +4616,9 @@ namespace MESSAGEMODEL
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.RelatesTo ())
+      if (i.getRelatesTo ())
       {
-        const Header::RelatesToType& x (*i.RelatesTo ());
+        const Header::RelatesToType& x (*i.getRelatesTo ());
         if (typeid (Header::RelatesToType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -4643,9 +4643,9 @@ namespace MESSAGEMODEL
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.ReplyTo ())
+      if (i.getReplyTo ())
       {
-        const Header::ReplyToType& x (*i.ReplyTo ());
+        const Header::ReplyToType& x (*i.getReplyTo ());
         if (typeid (Header::ReplyToType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -4670,9 +4670,9 @@ namespace MESSAGEMODEL
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.To ())
+      if (i.getTo ())
       {
-        const Header::ToType& x (*i.To ());
+        const Header::ToType& x (*i.getTo ());
         if (typeid (Header::ToType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -4693,7 +4693,7 @@ namespace MESSAGEMODEL
 
     // Identifier
     //
-    if (i.Identifier ())
+    if (i.getIdentifier ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -4701,7 +4701,7 @@ namespace MESSAGEMODEL
           "http://schemas.xmlsoap.org/ws/2004/08/eventing",
           e));
 
-      s << *i.Identifier ();
+      s << *i.getIdentifier ();
     }
   }
 
@@ -4716,9 +4716,9 @@ namespace MESSAGEMODEL
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Bye ())
+      if (i.getBye ())
       {
-        const Body::ByeType& x (*i.Bye ());
+        const Body::ByeType& x (*i.getBye ());
         if (typeid (Body::ByeType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -4743,9 +4743,9 @@ namespace MESSAGEMODEL
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Hello ())
+      if (i.getHello ())
       {
-        const Body::HelloType& x (*i.Hello ());
+        const Body::HelloType& x (*i.getHello ());
         if (typeid (Body::HelloType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -4770,9 +4770,9 @@ namespace MESSAGEMODEL
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Probe ())
+      if (i.getProbe ())
       {
-        const Body::ProbeType& x (*i.Probe ());
+        const Body::ProbeType& x (*i.getProbe ());
         if (typeid (Body::ProbeType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -4797,9 +4797,9 @@ namespace MESSAGEMODEL
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.ProbeMatches ())
+      if (i.getProbeMatches ())
       {
-        const Body::ProbeMatchesType& x (*i.ProbeMatches ());
+        const Body::ProbeMatchesType& x (*i.getProbeMatches ());
         if (typeid (Body::ProbeMatchesType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -4824,9 +4824,9 @@ namespace MESSAGEMODEL
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Resolve ())
+      if (i.getResolve ())
       {
-        const Body::ResolveType& x (*i.Resolve ());
+        const Body::ResolveType& x (*i.getResolve ());
         if (typeid (Body::ResolveType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -4851,9 +4851,9 @@ namespace MESSAGEMODEL
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.ResolveMatches ())
+      if (i.getResolveMatches ())
       {
-        const Body::ResolveMatchesType& x (*i.ResolveMatches ());
+        const Body::ResolveMatchesType& x (*i.getResolveMatches ());
         if (typeid (Body::ResolveMatchesType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -4874,7 +4874,7 @@ namespace MESSAGEMODEL
 
     // GetMetadata
     //
-    if (i.GetMetadata ())
+    if (i.getGetMetadata ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -4882,12 +4882,12 @@ namespace MESSAGEMODEL
           "http://schemas.xmlsoap.org/ws/2004/09/mex",
           e));
 
-      s << *i.GetMetadata ();
+      s << *i.getGetMetadata ();
     }
 
     // Metadata
     //
-    if (i.Metadata ())
+    if (i.getMetadata ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -4895,12 +4895,12 @@ namespace MESSAGEMODEL
           "http://schemas.xmlsoap.org/ws/2004/09/mex",
           e));
 
-      s << *i.Metadata ();
+      s << *i.getMetadata ();
     }
 
     // Subscribe
     //
-    if (i.Subscribe ())
+    if (i.getSubscribe ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -4908,12 +4908,12 @@ namespace MESSAGEMODEL
           "http://schemas.xmlsoap.org/ws/2004/08/eventing",
           e));
 
-      s << *i.Subscribe ();
+      s << *i.getSubscribe ();
     }
 
     // SubscribeResponse
     //
-    if (i.SubscribeResponse ())
+    if (i.getSubscribeResponse ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -4921,12 +4921,12 @@ namespace MESSAGEMODEL
           "http://schemas.xmlsoap.org/ws/2004/08/eventing",
           e));
 
-      s << *i.SubscribeResponse ();
+      s << *i.getSubscribeResponse ();
     }
 
     // Unsubscribe
     //
-    if (i.Unsubscribe ())
+    if (i.getUnsubscribe ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -4934,12 +4934,12 @@ namespace MESSAGEMODEL
           "http://schemas.xmlsoap.org/ws/2004/08/eventing",
           e));
 
-      s << *i.Unsubscribe ();
+      s << *i.getUnsubscribe ();
     }
 
     // Renew
     //
-    if (i.Renew ())
+    if (i.getRenew ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -4947,12 +4947,12 @@ namespace MESSAGEMODEL
           "http://schemas.xmlsoap.org/ws/2004/08/eventing",
           e));
 
-      s << *i.Renew ();
+      s << *i.getRenew ();
     }
 
     // RenewResponse
     //
-    if (i.RenewResponse ())
+    if (i.getRenewResponse ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -4960,12 +4960,12 @@ namespace MESSAGEMODEL
           "http://schemas.xmlsoap.org/ws/2004/08/eventing",
           e));
 
-      s << *i.RenewResponse ();
+      s << *i.getRenewResponse ();
     }
 
     // GetStatus
     //
-    if (i.GetStatus ())
+    if (i.getGetStatus ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -4973,12 +4973,12 @@ namespace MESSAGEMODEL
           "http://schemas.xmlsoap.org/ws/2004/08/eventing",
           e));
 
-      s << *i.GetStatus ();
+      s << *i.getGetStatus ();
     }
 
     // GetStatusResponse
     //
-    if (i.GetStatusResponse ())
+    if (i.getGetStatusResponse ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -4986,12 +4986,12 @@ namespace MESSAGEMODEL
           "http://schemas.xmlsoap.org/ws/2004/08/eventing",
           e));
 
-      s << *i.GetStatusResponse ();
+      s << *i.getGetStatusResponse ();
     }
 
     // DescriptionModificationReport
     //
-    if (i.DescriptionModificationReport ())
+    if (i.getDescriptionModificationReport ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -4999,12 +4999,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.DescriptionModificationReport ();
+      s << *i.getDescriptionModificationReport ();
     }
 
     // GetContextStates
     //
-    if (i.GetContextStates ())
+    if (i.getGetContextStates ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5012,12 +5012,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.GetContextStates ();
+      s << *i.getGetContextStates ();
     }
 
     // GetContextStatesResponse
     //
-    if (i.GetContextStatesResponse ())
+    if (i.getGetContextStatesResponse ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5025,12 +5025,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.GetContextStatesResponse ();
+      s << *i.getGetContextStatesResponse ();
     }
 
     // SetContextState
     //
-    if (i.SetContextState ())
+    if (i.getSetContextState ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5038,12 +5038,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.SetContextState ();
+      s << *i.getSetContextState ();
     }
 
     // SetContextStateResponse
     //
-    if (i.SetContextStateResponse ())
+    if (i.getSetContextStateResponse ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5051,12 +5051,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.SetContextStateResponse ();
+      s << *i.getSetContextStateResponse ();
     }
 
     // EpisodicContextReport
     //
-    if (i.EpisodicContextReport ())
+    if (i.getEpisodicContextReport ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5064,12 +5064,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.EpisodicContextReport ();
+      s << *i.getEpisodicContextReport ();
     }
 
     // PeriodicContextReport
     //
-    if (i.PeriodicContextReport ())
+    if (i.getPeriodicContextReport ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5077,12 +5077,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.PeriodicContextReport ();
+      s << *i.getPeriodicContextReport ();
     }
 
     // EpisodicAlertReport
     //
-    if (i.EpisodicAlertReport ())
+    if (i.getEpisodicAlertReport ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5090,12 +5090,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.EpisodicAlertReport ();
+      s << *i.getEpisodicAlertReport ();
     }
 
     // EpisodicComponentReport
     //
-    if (i.EpisodicComponentReport ())
+    if (i.getEpisodicComponentReport ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5103,12 +5103,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.EpisodicComponentReport ();
+      s << *i.getEpisodicComponentReport ();
     }
 
     // EpisodicMetricReport
     //
-    if (i.EpisodicMetricReport ())
+    if (i.getEpisodicMetricReport ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5116,12 +5116,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.EpisodicMetricReport ();
+      s << *i.getEpisodicMetricReport ();
     }
 
     // EpisodicOperationalStateReport
     //
-    if (i.EpisodicOperationalStateReport ())
+    if (i.getEpisodicOperationalStateReport ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5129,12 +5129,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.EpisodicOperationalStateReport ();
+      s << *i.getEpisodicOperationalStateReport ();
     }
 
     // PeriodicAlertReport
     //
-    if (i.PeriodicAlertReport ())
+    if (i.getPeriodicAlertReport ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5142,12 +5142,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.PeriodicAlertReport ();
+      s << *i.getPeriodicAlertReport ();
     }
 
     // PeriodicMetricReport
     //
-    if (i.PeriodicMetricReport ())
+    if (i.getPeriodicMetricReport ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5155,12 +5155,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.PeriodicMetricReport ();
+      s << *i.getPeriodicMetricReport ();
     }
 
     // OperationInvokedReport
     //
-    if (i.OperationInvokedReport ())
+    if (i.getOperationInvokedReport ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5168,12 +5168,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.OperationInvokedReport ();
+      s << *i.getOperationInvokedReport ();
     }
 
     // GetMdDescription
     //
-    if (i.GetMdDescription ())
+    if (i.getGetMdDescription ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5181,12 +5181,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.GetMdDescription ();
+      s << *i.getGetMdDescription ();
     }
 
     // GetMdDescriptionResponse
     //
-    if (i.GetMdDescriptionResponse ())
+    if (i.getGetMdDescriptionResponse ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5194,12 +5194,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.GetMdDescriptionResponse ();
+      s << *i.getGetMdDescriptionResponse ();
     }
 
     // GetMdib
     //
-    if (i.GetMdib ())
+    if (i.getGetMdib ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5207,12 +5207,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.GetMdib ();
+      s << *i.getGetMdib ();
     }
 
     // GetMdibResponse
     //
-    if (i.GetMdibResponse ())
+    if (i.getGetMdibResponse ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5220,12 +5220,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.GetMdibResponse ();
+      s << *i.getGetMdibResponse ();
     }
 
     // GetMdState
     //
-    if (i.GetMdState ())
+    if (i.getGetMdState ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5233,12 +5233,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.GetMdState ();
+      s << *i.getGetMdState ();
     }
 
     // GetMdStateResponse
     //
-    if (i.GetMdStateResponse ())
+    if (i.getGetMdStateResponse ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5246,12 +5246,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.GetMdStateResponse ();
+      s << *i.getGetMdStateResponse ();
     }
 
     // Activate
     //
-    if (i.Activate ())
+    if (i.getActivate ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5259,12 +5259,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.Activate ();
+      s << *i.getActivate ();
     }
 
     // ActivateResponse
     //
-    if (i.ActivateResponse ())
+    if (i.getActivateResponse ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5272,12 +5272,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.ActivateResponse ();
+      s << *i.getActivateResponse ();
     }
 
     // SetAlertState
     //
-    if (i.SetAlertState ())
+    if (i.getSetAlertState ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5285,12 +5285,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.SetAlertState ();
+      s << *i.getSetAlertState ();
     }
 
     // SetAlertStateResponse
     //
-    if (i.SetAlertStateResponse ())
+    if (i.getSetAlertStateResponse ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5298,12 +5298,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.SetAlertStateResponse ();
+      s << *i.getSetAlertStateResponse ();
     }
 
     // SetString
     //
-    if (i.SetString ())
+    if (i.getSetString ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5311,12 +5311,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.SetString ();
+      s << *i.getSetString ();
     }
 
     // SetStringResponse
     //
-    if (i.SetStringResponse ())
+    if (i.getSetStringResponse ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5324,12 +5324,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.SetStringResponse ();
+      s << *i.getSetStringResponse ();
     }
 
     // SetValue
     //
-    if (i.SetValue ())
+    if (i.getSetValue ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5337,12 +5337,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.SetValue ();
+      s << *i.getSetValue ();
     }
 
     // SetValueResponse
     //
-    if (i.SetValueResponse ())
+    if (i.getSetValueResponse ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5350,12 +5350,12 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.SetValueResponse ();
+      s << *i.getSetValueResponse ();
     }
 
     // WaveformStream
     //
-    if (i.WaveformStream ())
+    if (i.getWaveformStream ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -5363,7 +5363,7 @@ namespace MESSAGEMODEL
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << *i.WaveformStream ();
+      s << *i.getWaveformStream ();
     }
   }
 
@@ -5381,7 +5381,7 @@ namespace MESSAGEMODEL
           "http://www.w3.org/2003/05/soap-envelope",
           e));
 
-      s << i.Header ();
+      s << i.getHeader ();
     }
 
     // Body
@@ -5393,7 +5393,7 @@ namespace MESSAGEMODEL
           "http://www.w3.org/2003/05/soap-envelope",
           e));
 
-      s << i.Body ();
+      s << i.getBody ();
     }
   }
 }

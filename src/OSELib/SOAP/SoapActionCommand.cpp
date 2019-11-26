@@ -72,10 +72,10 @@ std::unique_ptr<MESSAGEMODEL::Envelope> SoapActionCommand::createResponseMessage
 {
 	std::unique_ptr<MESSAGEMODEL::Envelope::HeaderType> t_header(new MESSAGEMODEL::Envelope::HeaderType());
 	using MessageIDType = MESSAGEMODEL::Envelope::HeaderType::MessageIDType;
-	t_header->MessageID().set(MessageIDType(SDCLib::SDCInstance::calcMSGID()));
+	t_header->getMessageID().set(MessageIDType(SDCLib::SDCInstance::calcMSGID()));
 	// Only if the request had a MessageID to relate to (OPTIONAL under some conditions)
-	if(p_request.Header().MessageID().present()) {
-		t_header->RelatesTo().set(p_request.Header().MessageID().get());
+	if(p_request.getHeader().getMessageID().present()) {
+		t_header->getRelatesTo().set(p_request.getHeader().getMessageID().get());
 	}
 	std::unique_ptr<MESSAGEMODEL::Envelope::BodyType> t_body(new MESSAGEMODEL::Envelope::BodyType());
 	return std::unique_ptr<MESSAGEMODEL::Envelope>(new MESSAGEMODEL::Envelope(std::move(t_header), std::move(t_body)));

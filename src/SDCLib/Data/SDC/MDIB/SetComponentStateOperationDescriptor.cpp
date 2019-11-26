@@ -77,188 +77,188 @@ SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor:: op
 
 
 SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
+	data->setType(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetComponentStateOperationDescriptor::getType(CodedValue & out) const {
-	if (data->Type().present()) {
-		out = ConvertFromCDM::convert(data->Type().get());
+	if (data->getType().present()) {
+		out = ConvertFromCDM::convert(data->getType().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue SetComponentStateOperationDescriptor::getType() const {
-	return ConvertFromCDM::convert(data->Type().get());
+	return ConvertFromCDM::convert(data->getType().get());
 }
 
 bool SetComponentStateOperationDescriptor::hasType() const {
-	return data->Type().present();
+	return data->getType().present();
 }
 
 SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::setHandle(const Handle & value) {
-	data->Handle(ConvertToCDM::convert(value));
+	data->setHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 Handle SetComponentStateOperationDescriptor::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle());
+	return ConvertFromCDM::convert(data->getHandle());
 }
 
 SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::setDescriptorVersion(const VersionCounter & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetComponentStateOperationDescriptor::getDescriptorVersion(VersionCounter & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter SetComponentStateOperationDescriptor::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool SetComponentStateOperationDescriptor::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::setSafetyClassification(const SafetyClassification & value) {
-	data->SafetyClassification(ConvertToCDM::convert(value));
+	data->setSafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetComponentStateOperationDescriptor::getSafetyClassification(SafetyClassification & out) const {
-	if (data->SafetyClassification().present()) {
-		out = ConvertFromCDM::convert(data->SafetyClassification().get());
+	if (data->getSafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->getSafetyClassification().get());
 		return true;
 	}
 	return false;
 }
 
 SafetyClassification SetComponentStateOperationDescriptor::getSafetyClassification() const {
-	return ConvertFromCDM::convert(data->SafetyClassification().get());
+	return ConvertFromCDM::convert(data->getSafetyClassification().get());
 }
 
 bool SetComponentStateOperationDescriptor::hasSafetyClassification() const {
-	return data->SafetyClassification().present();
+	return data->getSafetyClassification().present();
 }
 
 SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::setOperationTarget(const HandleRef & value) {
-	data->OperationTarget(ConvertToCDM::convert(value));
+	data->setOperationTarget(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 HandleRef SetComponentStateOperationDescriptor::getOperationTarget() const {
-	return ConvertFromCDM::convert(data->OperationTarget());
+	return ConvertFromCDM::convert(data->getOperationTarget());
 }
 
 SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::setMaxTimeToFinish(const xml_schema::Duration & value) {
-	data->MaxTimeToFinish(ConvertToCDM::convert(value));
+	data->setMaxTimeToFinish(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetComponentStateOperationDescriptor::getMaxTimeToFinish(xml_schema::Duration & out) const {
-	if (data->MaxTimeToFinish().present()) {
-		out = ConvertFromCDM::convert(data->MaxTimeToFinish().get());
+	if (data->getMaxTimeToFinish().present()) {
+		out = ConvertFromCDM::convert(data->getMaxTimeToFinish().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::Duration SetComponentStateOperationDescriptor::getMaxTimeToFinish() const {
-	return ConvertFromCDM::convert(data->MaxTimeToFinish().get());
+	return ConvertFromCDM::convert(data->getMaxTimeToFinish().get());
 }
 
 bool SetComponentStateOperationDescriptor::hasMaxTimeToFinish() const {
-	return data->MaxTimeToFinish().present();
+	return data->getMaxTimeToFinish().present();
 }
 
 SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::setInvocationEffectiveTimeout(const xml_schema::Duration & value) {
-	data->InvocationEffectiveTimeout(ConvertToCDM::convert(value));
+	data->setInvocationEffectiveTimeout(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetComponentStateOperationDescriptor::getInvocationEffectiveTimeout(xml_schema::Duration & out) const {
-	if (data->InvocationEffectiveTimeout().present()) {
-		out = ConvertFromCDM::convert(data->InvocationEffectiveTimeout().get());
+	if (data->getInvocationEffectiveTimeout().present()) {
+		out = ConvertFromCDM::convert(data->getInvocationEffectiveTimeout().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::Duration SetComponentStateOperationDescriptor::getInvocationEffectiveTimeout() const {
-	return ConvertFromCDM::convert(data->InvocationEffectiveTimeout().get());
+	return ConvertFromCDM::convert(data->getInvocationEffectiveTimeout().get());
 }
 
 bool SetComponentStateOperationDescriptor::hasInvocationEffectiveTimeout() const {
-	return data->InvocationEffectiveTimeout().present();
+	return data->getInvocationEffectiveTimeout().present();
 }
 
 SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::setRetriggerable(const bool & value) {
-	data->Retriggerable(ConvertToCDM::convert(value));
+	data->setRetriggerable(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetComponentStateOperationDescriptor::getRetriggerable(bool & out) const {
-	if (data->Retriggerable().present()) {
-		out = ConvertFromCDM::convert(data->Retriggerable().get());
+	if (data->getRetriggerable().present()) {
+		out = ConvertFromCDM::convert(data->getRetriggerable().get());
 		return true;
 	}
 	return false;
 }
 
 bool SetComponentStateOperationDescriptor::getRetriggerable() const {
-	return ConvertFromCDM::convert(data->Retriggerable().get());
+	return ConvertFromCDM::convert(data->getRetriggerable().get());
 }
 
 bool SetComponentStateOperationDescriptor::hasRetriggerable() const {
-	return data->Retriggerable().present();
+	return data->getRetriggerable().present();
 }
 
 SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::setAccessLevel(const AccessLevel & value) {
-	data->AccessLevel(ConvertToCDM::convert(value));
+	data->setAccessLevel(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetComponentStateOperationDescriptor::getAccessLevel(AccessLevel & out) const {
-	if (data->AccessLevel().present()) {
-		out = ConvertFromCDM::convert(data->AccessLevel().get());
+	if (data->getAccessLevel().present()) {
+		out = ConvertFromCDM::convert(data->getAccessLevel().get());
 		return true;
 	}
 	return false;
 }
 
 AccessLevel SetComponentStateOperationDescriptor::getAccessLevel() const {
-	return ConvertFromCDM::convert(data->AccessLevel().get());
+	return ConvertFromCDM::convert(data->getAccessLevel().get());
 }
 
 bool SetComponentStateOperationDescriptor::hasAccessLevel() const {
-	return data->AccessLevel().present();
+	return data->getAccessLevel().present();
 }
 
 SetComponentStateOperationDescriptor & SetComponentStateOperationDescriptor::addModifiableData(const std::string & value) {
-	data->ModifiableData().push_back(ConvertToCDM::convert(value));
+	data->getModifiableData().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<std::string> SetComponentStateOperationDescriptor::getModifiableDataList() const {
 	std::vector<std::string> result;
-	result.reserve(data->ModifiableData().size());
-	for (const auto & value: data->ModifiableData()) {
+	result.reserve(data->getModifiableData().size());
+	for (const auto & value: data->getModifiableData()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void SetComponentStateOperationDescriptor::clearModifiableDataList() {
-	data->ModifiableData().clear();
+	data->getModifiableData().clear();
 }
 
 

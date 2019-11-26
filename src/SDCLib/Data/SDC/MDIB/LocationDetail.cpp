@@ -70,129 +70,129 @@ LocationDetail & LocationDetail:: operator=(const LocationDetail& object) {
 
 
 LocationDetail & LocationDetail::setPoC(const std::string & value) {
-	data->PoC(ConvertToCDM::convert(value));
+	data->setPoC(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool LocationDetail::getPoC(std::string & out) const {
-	if (data->PoC().present()) {
-		out = ConvertFromCDM::convert(data->PoC().get());
+	if (data->getPoC().present()) {
+		out = ConvertFromCDM::convert(data->getPoC().get());
 		return true;
 	}
 	return false;
 }
 
 std::string LocationDetail::getPoC() const {
-	return ConvertFromCDM::convert(data->PoC().get());
+	return ConvertFromCDM::convert(data->getPoC().get());
 }
 
 bool LocationDetail::hasPoC() const {
-	return data->PoC().present();
+	return data->getPoC().present();
 }
 
 LocationDetail & LocationDetail::setRoom(const std::string & value) {
-	data->Room(ConvertToCDM::convert(value));
+	data->setRoom(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool LocationDetail::getRoom(std::string & out) const {
-	if (data->Room().present()) {
-		out = ConvertFromCDM::convert(data->Room().get());
+	if (data->getRoom().present()) {
+		out = ConvertFromCDM::convert(data->getRoom().get());
 		return true;
 	}
 	return false;
 }
 
 std::string LocationDetail::getRoom() const {
-	return ConvertFromCDM::convert(data->Room().get());
+	return ConvertFromCDM::convert(data->getRoom().get());
 }
 
 bool LocationDetail::hasRoom() const {
-	return data->Room().present();
+	return data->getRoom().present();
 }
 
 LocationDetail & LocationDetail::setBed(const std::string & value) {
-	data->Bed(ConvertToCDM::convert(value));
+	data->setBed(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool LocationDetail::getBed(std::string & out) const {
-	if (data->Bed().present()) {
-		out = ConvertFromCDM::convert(data->Bed().get());
+	if (data->getBed().present()) {
+		out = ConvertFromCDM::convert(data->getBed().get());
 		return true;
 	}
 	return false;
 }
 
 std::string LocationDetail::getBed() const {
-	return ConvertFromCDM::convert(data->Bed().get());
+	return ConvertFromCDM::convert(data->getBed().get());
 }
 
 bool LocationDetail::hasBed() const {
-	return data->Bed().present();
+	return data->getBed().present();
 }
 
 LocationDetail & LocationDetail::setFacility(const std::string & value) {
-	data->Facility(ConvertToCDM::convert(value));
+	data->setFacility(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool LocationDetail::getFacility(std::string & out) const {
-	if (data->Facility().present()) {
-		out = ConvertFromCDM::convert(data->Facility().get());
+	if (data->getFacility().present()) {
+		out = ConvertFromCDM::convert(data->getFacility().get());
 		return true;
 	}
 	return false;
 }
 
 std::string LocationDetail::getFacility() const {
-	return ConvertFromCDM::convert(data->Facility().get());
+	return ConvertFromCDM::convert(data->getFacility().get());
 }
 
 bool LocationDetail::hasFacility() const {
-	return data->Facility().present();
+	return data->getFacility().present();
 }
 
 LocationDetail & LocationDetail::setBuilding(const std::string & value) {
-	data->Building(ConvertToCDM::convert(value));
+	data->setBuilding(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool LocationDetail::getBuilding(std::string & out) const {
-	if (data->Building().present()) {
-		out = ConvertFromCDM::convert(data->Building().get());
+	if (data->getBuilding().present()) {
+		out = ConvertFromCDM::convert(data->getBuilding().get());
 		return true;
 	}
 	return false;
 }
 
 std::string LocationDetail::getBuilding() const {
-	return ConvertFromCDM::convert(data->Building().get());
+	return ConvertFromCDM::convert(data->getBuilding().get());
 }
 
 bool LocationDetail::hasBuilding() const {
-	return data->Building().present();
+	return data->getBuilding().present();
 }
 
 LocationDetail & LocationDetail::setFloor(const std::string & value) {
-	data->Floor(ConvertToCDM::convert(value));
+	data->setFloor(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool LocationDetail::getFloor(std::string & out) const {
-	if (data->Floor().present()) {
-		out = ConvertFromCDM::convert(data->Floor().get());
+	if (data->getFloor().present()) {
+		out = ConvertFromCDM::convert(data->getFloor().get());
 		return true;
 	}
 	return false;
 }
 
 std::string LocationDetail::getFloor() const {
-	return ConvertFromCDM::convert(data->Floor().get());
+	return ConvertFromCDM::convert(data->getFloor().get());
 }
 
 bool LocationDetail::hasFloor() const {
-	return data->Floor().present();
+	return data->getFloor().present();
 }
 
 

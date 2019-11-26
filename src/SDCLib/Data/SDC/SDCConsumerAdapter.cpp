@@ -80,13 +80,13 @@ public:
 
 	void dispatch(const SDC::OperationInvokedReportTraits::ReportType & p_report) override {
 		// fixme move all to SDCConsumer and change interface, so this method here only delegates. This should be done for all events
-		if (p_report.MdibVersion().present()) {
-			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
+		if (p_report.getMdibVersion().present()) {
+			m_consumer.updateLastKnownMdibVersion(p_report.getMdibVersion().get());
 		}
-		for (const auto & t_irp : p_report.ReportPart()) {
+		for (const auto & t_irp : p_report.getReportPart()) {
 			m_consumer.onOperationInvoked(
-				SDCLib::Data::SDC::OperationInvocationContext(t_irp.OperationHandleRef(), t_irp.InvocationInfo().TransactionId()),
-				SDCLib::Data::SDC::ConvertFromCDM::convert(t_irp.InvocationInfo().InvocationState()));
+				SDCLib::Data::SDC::OperationInvocationContext(t_irp.getOperationHandleRef(), t_irp.getInvocationInfo().getTransactionId()),
+				SDCLib::Data::SDC::ConvertFromCDM::convert(t_irp.getInvocationInfo().getInvocationState()));
 		}
 	}
 };
@@ -117,66 +117,66 @@ public:
 	// StateEvent
 	void dispatch(const SDC::EpisodicAlertReportTraits::ReportType & p_report) override
 	{
-		if (p_report.MdibVersion().present()) {
-			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
+		if (p_report.getMdibVersion().present()) {
+			m_consumer.updateLastKnownMdibVersion(p_report.getMdibVersion().get());
 		}
-		for (const auto & t_reportPart : p_report.ReportPart()) {
-			for (const auto & t_state : t_reportPart.AlertState()) {
+		for (const auto & t_reportPart : p_report.getReportPart()) {
+			for (const auto & t_state : t_reportPart.getAlertState()) {
 				dispatchAlertState(t_state);
 			}
 		}
 	}
 
 	void dispatch(const SDC::EpisodicComponentReportTraits::ReportType & p_report) override {
-		if (p_report.MdibVersion().present()) {
-			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
+		if (p_report.getMdibVersion().present()) {
+			m_consumer.updateLastKnownMdibVersion(p_report.getMdibVersion().get());
 		}
-		for (const auto & t_reportPart : p_report.ReportPart()) {
-			for (const auto & t_state : t_reportPart.ComponentState()) {
+		for (const auto & t_reportPart : p_report.getReportPart()) {
+			for (const auto & t_state : t_reportPart.getComponentState()) {
 				dispatchComponentState(t_state);
 			}
 		}
 	}
 
 	void dispatch(const SDC::EpisodicMetricReportTraits::ReportType& p_report) override {
-		if (p_report.MdibVersion().present()) {
-			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
+		if (p_report.getMdibVersion().present()) {
+			m_consumer.updateLastKnownMdibVersion(p_report.getMdibVersion().get());
 		}
-		for (const auto & t_reportPart : p_report.ReportPart()) {
-			for (const auto & t_state : t_reportPart.MetricState()) {
+		for (const auto & t_reportPart : p_report.getReportPart()) {
+			for (const auto & t_state : t_reportPart.getMetricState()) {
 				dispatchMetricState(t_state);
 			}
 		}
 	}
 
 	void dispatch(const SDC::EpisodicOperationalStateReportTraits::ReportType& p_report) override {
-		if (p_report.MdibVersion().present()) {
-			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
+		if (p_report.getMdibVersion().present()) {
+			m_consumer.updateLastKnownMdibVersion(p_report.getMdibVersion().get());
 		}
-		for (const auto & t_reportPart : p_report.ReportPart()) {
-			for (const auto & t_state : t_reportPart.OperationState()) {
+		for (const auto & t_reportPart : p_report.getReportPart()) {
+			for (const auto & t_state : t_reportPart.getOperationState()) {
 				dispatchOperationState(t_state);
 			}
 		}
 	}
 
 	void dispatch(const SDC::PeriodicAlertReportTraits::ReportType & p_report) override {
-		if (p_report.MdibVersion().present()) {
-			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
+		if (p_report.getMdibVersion().present()) {
+			m_consumer.updateLastKnownMdibVersion(p_report.getMdibVersion().get());
 		}
-		for (const auto & reportPart : p_report.ReportPart()) {
-			for (const auto & state : reportPart.AlertState()) {
+		for (const auto & reportPart : p_report.getReportPart()) {
+			for (const auto & state : reportPart.getAlertState()) {
 				dispatchAlertState(state);
 			}
 		}
 	}
 
 	void dispatch(const SDC::PeriodicMetricReportTraits::ReportType & p_report) override {
-		if (p_report.MdibVersion().present()) {
-			m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
+		if (p_report.getMdibVersion().present()) {
+			m_consumer.updateLastKnownMdibVersion(p_report.getMdibVersion().get());
 		}
-		for (const auto & t_reportPart : p_report.ReportPart()) {
-			for (const auto & t_state : t_reportPart.MetricState()) {
+		for (const auto & t_reportPart : p_report.getReportPart()) {
+			for (const auto & t_state : t_reportPart.getMetricState()) {
 				dispatchMetricState(t_state);
 			}
 		}
@@ -242,15 +242,15 @@ public:
 		// dispatch episodic reports and delegate the contained context states
 		void dispatch(const SDC::EpisodicContextReportTraits::ReportType & p_report) override {
 
-			if (p_report.MdibVersion().present()) {
-				m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
+			if (p_report.getMdibVersion().present()) {
+				m_consumer.updateLastKnownMdibVersion(p_report.getMdibVersion().get());
 			}
 
-			for (const auto & t_reportPart: p_report.ReportPart()) {
+			for (const auto & t_reportPart: p_report.getReportPart()) {
 				// get the part of the report, as defined by the message model
 				if (const auto part = dynamic_cast<const MDM::ReportPart *>(&t_reportPart)) { // FIXME: std::addressof?
 					// get all ContextStates. ContextStates are all states inheriting from AbstractContextState
-					for (const auto & t_contextState : part->ContextState()) {
+					for (const auto & t_contextState : part->getContextState()) {
 						delegateContextState(t_contextState);
 					}
 				}
@@ -259,15 +259,15 @@ public:
 
 		// dispatch periodic reports and delegate the contained context states
 		void dispatch(const SDC::PeriodicContextReportTraits::ReportType & p_report) override {
-			if (p_report.MdibVersion().present()) {
-				m_consumer.updateLastKnownMdibVersion(p_report.MdibVersion().get());
+			if (p_report.getMdibVersion().present()) {
+				m_consumer.updateLastKnownMdibVersion(p_report.getMdibVersion().get());
 			}
 
-			for (const auto & t_reportPart: p_report.ReportPart()) { // FIXME: Nested for loops AND dynamic_cast! -> REFACTOR!
+			for (const auto & t_reportPart: p_report.getReportPart()) { // FIXME: Nested for loops AND dynamic_cast! -> REFACTOR!
 				// get the part of the report, that is defined by the message model
 				if (const auto t_part = dynamic_cast<const MDM::ReportPart *>(&t_reportPart)) { // FIXME: std::addressif?
 					// get all ContextStates. ContextStates are all states inheriting from AbstractContextState
-					for (const auto & t_contextState : t_part->ContextState()) {
+					for (const auto & t_contextState : t_part->getContextState()) {
 						delegateContextState(t_contextState);
 					}
 				}
@@ -559,8 +559,8 @@ std::unique_ptr<typename TraitsType::Response> SDCConsumerAdapter::invokeImpl(co
 
 	auto t_response(t_invoker->invoke(p_request, p_context));
 	if (t_response != nullptr) {
-		if (t_response->MdibVersion().present()) {
-			m_consumer.updateLastKnownMdibVersion(t_response->MdibVersion().get());
+		if (t_response->getMdibVersion().present()) {
+			m_consumer.updateLastKnownMdibVersion(t_response->getMdibVersion().get());
 		}
 		return t_response;
 	}
@@ -568,7 +568,7 @@ std::unique_ptr<typename TraitsType::Response> SDCConsumerAdapter::invokeImpl(co
 }
 
 void SDCConsumerAdapter::dispatch(const OSELib::DPWS::WaveformStreamType & p_notification) {
-	m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(p_notification.State().front()));
+	m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(p_notification.getState().front()));
 }
 
 

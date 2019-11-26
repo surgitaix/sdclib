@@ -67,11 +67,11 @@ void CommonSoapPreprocessing::commonParsing()
 		log_trace([] { return "Building object model successful."; });
 	}
 
-	if (!normalizedMessage->Header().Action().present()) {
+	if (!normalizedMessage->getHeader().getAction().present()) {
 		log_error([] { return "No action."; });
 		throw SoapFaultException();
 	} else {
-		log_debug([&] { return "Message action: " + normalizedMessage->Header().Action().get(); });
+		log_debug([&] { return "Message action: " + normalizedMessage->getHeader().getAction().get(); });
 	}
 }
 

@@ -23,7 +23,7 @@ std::unique_ptr<MESSAGEMODEL::Envelope> SubscribeActionCommand::postprocessRespo
 {
 	NormalizedMessageAdapter<DPWS::SubscribeTraits::Response> t_responseAdapter;
 	std::unique_ptr<DPWS::SubscribeTraits::Response> t_responseBody(new DPWS::SubscribeTraits::Response(t_responseAdapter.get(*p_response)));
-	t_responseBody->SubscriptionManager().Address(m_subscriptionManagerAddress);
+	t_responseBody->getSubscriptionManager().setAddress(m_subscriptionManagerAddress);
 	t_responseAdapter.set(*p_response, std::move(t_responseBody));
 	return p_response;
 }

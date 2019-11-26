@@ -26,38 +26,38 @@ std::unique_ptr<MESSAGEMODEL::Envelope> NormalizeMessageFilter::apply(const Help
 	// We do this manually because the fields might appear in any order,
 	// which is not supported by the xsd generated classes from the current model
 	if (const auto t_filterResult = t_filter.apply(SDC::NS_ADDRESSING, "Action")) {
-		t_result->Header().Action().set(WS::ADDRESSING::AttributedURIType(*t_filterResult));
+		t_result->getHeader().getAction().set(WS::ADDRESSING::AttributedURIType(*t_filterResult));
 	}
 	if (const auto t_filterResult = t_filter.apply(WS_NS_DISCOVERY, "AppSequence")) {
-		t_result->Header().AppSequence().set(WS::DISCOVERY::AppSequenceType(*t_filterResult));
+		t_result->getHeader().getAppSequence().set(WS::DISCOVERY::AppSequenceType(*t_filterResult));
 	}
 	if (const auto t_filterResult = t_filter.apply(SDC::NS_ADDRESSING, "FaultTo")) {
-		t_result->Header().FaultTo().set(WS::ADDRESSING::EndpointReferenceType(*t_filterResult));
+		t_result->getHeader().getFaultTo().set(WS::ADDRESSING::EndpointReferenceType(*t_filterResult));
 	}
 	if (const auto t_filterResult = t_filter.apply(SDC::NS_ADDRESSING, "From")) {
-		t_result->Header().From().set(WS::ADDRESSING::EndpointReferenceType(*t_filterResult));
+		t_result->getHeader().getFrom().set(WS::ADDRESSING::EndpointReferenceType(*t_filterResult));
 	}
 	if (const auto t_filterResult = t_filter.apply(SDC::NS_ADDRESSING, "MessageID")) {
-		t_result->Header().MessageID().set(WS::ADDRESSING::AttributedURIType(*t_filterResult));
+		t_result->getHeader().getMessageID().set(WS::ADDRESSING::AttributedURIType(*t_filterResult));
 	}
 	if (const auto t_filterResult = t_filter.apply(SDC::NS_ADDRESSING, "ReferenceParameters")) {
-		t_result->Header().ReferenceParameters().set(WS::ADDRESSING::ReferenceParametersType(*t_filterResult));
+		t_result->getHeader().getReferenceParameters().set(WS::ADDRESSING::ReferenceParametersType(*t_filterResult));
 	}
 	if (const auto t_filterResult = t_filter.apply(SDC::NS_ADDRESSING, "RelatesTo")) {
-		t_result->Header().RelatesTo().set(WS::ADDRESSING::RelatesToType(*t_filterResult));
+		t_result->getHeader().getRelatesTo().set(WS::ADDRESSING::RelatesToType(*t_filterResult));
 	}
 	if (const auto t_filterResult = t_filter.apply(SDC::NS_ADDRESSING, "ReplyTo")) {
-		t_result->Header().ReplyTo().set(WS::ADDRESSING::EndpointReferenceType(*t_filterResult));
+		t_result->getHeader().getReplyTo().set(WS::ADDRESSING::EndpointReferenceType(*t_filterResult));
 	}
 	if (const auto t_filterResult = t_filter.apply(SDC::NS_ADDRESSING, "To")) {
-		t_result->Header().To().set(WS::ADDRESSING::AttributedURIType(*t_filterResult));
+		t_result->getHeader().getTo().set(WS::ADDRESSING::AttributedURIType(*t_filterResult));
 	}
 	if (const auto t_filterResult = t_filter.apply(SDC::NS_EVENTING, "Identifier")) {
-		t_result->Header().Identifier().set(::xml_schema::Uri(*t_filterResult));
+		t_result->getHeader().getIdentifier().set(::xml_schema::Uri(*t_filterResult));
 	}
 
 	if (const auto t_filterResult = t_filter.apply(OSELib::WS_NS_SOAP_ENVELOPE, "Body")) {
-		t_result->Body(MESSAGEMODEL::Body(*t_filterResult));
+		t_result->setBody(MESSAGEMODEL::Body(*t_filterResult));
 	}
 
 	return t_result;

@@ -71,115 +71,115 @@ ScoState & ScoState:: operator=(const ScoState & object) {
 
 
 ScoState & ScoState::setStateVersion(const VersionCounter & value) {
-	data->StateVersion(ConvertToCDM::convert(value));
+	data->setStateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ScoState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
+	if (data->getStateVersion().present()) {
+		out = ConvertFromCDM::convert(data->getStateVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter ScoState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+	return ConvertFromCDM::convert(data->getStateVersion().get());
 }
 	
 bool ScoState::hasStateVersion() const {
-	return data->StateVersion().present();
+	return data->getStateVersion().present();
 }
 	
 ScoState & ScoState::setDescriptorHandle(const HandleRef & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
+	data->setDescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 HandleRef ScoState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
+	return ConvertFromCDM::convert(data->getDescriptorHandle());
 }
 	
 ScoState & ScoState::setDescriptorVersion(const ReferencedVersion & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ScoState::getDescriptorVersion(ReferencedVersion & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 ReferencedVersion ScoState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 	
 bool ScoState::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 	
 ScoState & ScoState::setInvocationRequested(const OperationRef & value) {
-	data->InvocationRequested(ConvertToCDM::convert2(value));
+	data->setInvocationRequested(ConvertToCDM::convert2(value));
 	return *this;
 }
 
 bool ScoState::getInvocationRequested(OperationRef & out) const {
-	if (data->InvocationRequested().present()) {
-		out = ConvertFromCDM::convert(data->InvocationRequested().get());
+	if (data->getInvocationRequested().present()) {
+		out = ConvertFromCDM::convert(data->getInvocationRequested().get());
 		return true;
 	}
 	return false;
 }
 
 OperationRef ScoState::getInvocationRequested() const {
-	return ConvertFromCDM::convert(data->InvocationRequested().get());
+	return ConvertFromCDM::convert(data->getInvocationRequested().get());
 }
 	
 bool ScoState::hasInvocationRequested() const {
-	return data->InvocationRequested().present();
+	return data->getInvocationRequested().present();
 }
 	
 ScoState & ScoState::setInvocationRequired(const OperationRef & value) {
-	data->InvocationRequired(ConvertToCDM::convert2(value));
+	data->setInvocationRequired(ConvertToCDM::convert2(value));
 	return *this;
 }
 
 bool ScoState::getInvocationRequired(OperationRef & out) const {
-	if (data->InvocationRequired().present()) {
-		out = ConvertFromCDM::convert(data->InvocationRequired().get());
+	if (data->getInvocationRequired().present()) {
+		out = ConvertFromCDM::convert(data->getInvocationRequired().get());
 		return true;
 	}
 	return false;
 }
 
 OperationRef ScoState::getInvocationRequired() const {
-	return ConvertFromCDM::convert(data->InvocationRequired().get());
+	return ConvertFromCDM::convert(data->getInvocationRequired().get());
 }
 	
 bool ScoState::hasInvocationRequired() const {
-	return data->InvocationRequired().present();
+	return data->getInvocationRequired().present();
 }
 	
 ScoState & ScoState::addOperationGroup(const OperationGroup & value) {
-	data->OperationGroup().push_back(ConvertToCDM::convert(value));
+	data->getOperationGroup().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<OperationGroup> ScoState::getOperationGroupList() const {
 	std::vector<OperationGroup> result;
-	result.reserve(data->OperationGroup().size());
-	for (const auto & value: data->OperationGroup()) {
+	result.reserve(data->getOperationGroup().size());
+	for (const auto & value: data->getOperationGroup()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void ScoState::clearOperationGroupList() {
-	data->OperationGroup().clear();
+	data->getOperationGroup().clear();
 }
 
 

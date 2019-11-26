@@ -31,6 +31,11 @@
 // in the accompanying FLOSSE file.
 //
 
+/**
+ * @file
+ * @brief Generated from ws-streaming.xsd.
+ */
+
 #ifndef WS_STREAMING_HXX
 #define WS_STREAMING_HXX
 
@@ -65,119 +70,399 @@
 
 namespace WS
 {
+  /**
+   * @brief C++ namespace for the %http://standardized.namespace.org/ws-streaming
+   * schema namespace.
+   */
   namespace STREAMING
   {
+    /**
+     * @brief Class corresponding to the %tStreamType schema type.
+     *
+     * @nosubgrouping
+     */
     class TStreamType: public ::xml_schema::Type
     {
       public:
-      // actionURI
-      //
+      /**
+       * @name actionURI
+       *
+       * @brief Accessor and modifier functions for the %actionURI
+       * optional attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Uri ActionURIType;
+
+      /**
+       * @brief Attribute optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< ActionURIType > ActionURIOptional;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< ActionURIType, char > ActionURITraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const ActionURIOptional&
-      actionURI () const;
+      getActionURI () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute container.
+       *
+       * @return A reference to the optional container.
+       */
       ActionURIOptional&
-      actionURI ();
+      getActionURI ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      actionURI (const ActionURIType& x);
+      setActionURI (const ActionURIType& x);
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the attribute.
+       * Otherwise the attribute container is set the 'not present' state.
+       */
       void
-      actionURI (const ActionURIOptional& x);
+      setActionURI (const ActionURIOptional& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      actionURI (::std::unique_ptr< ActionURIType > p);
+      setActionURI (::std::unique_ptr< ActionURIType > p);
 
-      // element
-      //
+      //@}
+
+      /**
+       * @name element
+       *
+       * @brief Accessor and modifier functions for the %element
+       * optional attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Qname ElementType;
+
+      /**
+       * @brief Attribute optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< ElementType > ElementOptional;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< ElementType, char > ElementTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const ElementOptional&
-      element () const;
+      getElement () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute container.
+       *
+       * @return A reference to the optional container.
+       */
       ElementOptional&
-      element ();
+      getElement ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      element (const ElementType& x);
+      setElement (const ElementType& x);
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the attribute.
+       * Otherwise the attribute container is set the 'not present' state.
+       */
       void
-      element (const ElementOptional& x);
+      setElement (const ElementOptional& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      element (::std::unique_ptr< ElementType > p);
+      setElement (::std::unique_ptr< ElementType > p);
 
-      // id
-      //
+      //@}
+
+      /**
+       * @name id
+       *
+       * @brief Accessor and modifier functions for the %id
+       * optional attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::String IdType;
+
+      /**
+       * @brief Attribute optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< IdType > IdOptional;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< IdType, char > IdTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const IdOptional&
-      id () const;
+      getId () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute container.
+       *
+       * @return A reference to the optional container.
+       */
       IdOptional&
-      id ();
+      getId ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      id (const IdType& x);
+      setId (const IdType& x);
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the attribute.
+       * Otherwise the attribute container is set the 'not present' state.
+       */
       void
-      id (const IdOptional& x);
+      setId (const IdOptional& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      id (::std::unique_ptr< IdType > p);
+      setId (::std::unique_ptr< IdType > p);
 
-      // streamType
-      //
+      //@}
+
+      /**
+       * @name streamType
+       *
+       * @brief Accessor and modifier functions for the %streamType
+       * optional attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Uri StreamTypeType;
+
+      /**
+       * @brief Attribute optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< StreamTypeType > StreamTypeOptional;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< StreamTypeType, char > StreamTypeTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const StreamTypeOptional&
-      streamType () const;
+      getStreamType () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute container.
+       *
+       * @return A reference to the optional container.
+       */
       StreamTypeOptional&
-      streamType ();
+      getStreamType ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      streamType (const StreamTypeType& x);
+      setStreamType (const StreamTypeType& x);
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the attribute.
+       * Otherwise the attribute container is set the 'not present' state.
+       */
       void
-      streamType (const StreamTypeOptional& x);
+      setStreamType (const StreamTypeOptional& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      streamType (::std::unique_ptr< StreamTypeType > p);
+      setStreamType (::std::unique_ptr< StreamTypeType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       TStreamType ();
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       TStreamType (const ::xercesc::DOMElement& e,
                    ::xml_schema::Flags f = 0,
                    ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TStreamType (const TStreamType& x,
                    ::xml_schema::Flags f = 0,
                    ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual TStreamType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TStreamType&
       operator= (const TStreamType& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~TStreamType ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -188,75 +473,237 @@ namespace WS
       ElementOptional element_;
       IdOptional id_;
       StreamTypeOptional streamType_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %tStreamDescriptions schema type.
+     *
+     * @nosubgrouping
+     */
     class TStreamDescriptions: public ::xml_schema::Type
     {
       public:
-      // streamType
-      //
+      /**
+       * @name streamType
+       *
+       * @brief Accessor and modifier functions for the %streamType
+       * required element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::STREAMING::TStreamType StreamTypeType;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< StreamTypeType, char > StreamTypeTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element.
+       *
+       * @return A constant reference to the element.
+       */
       const StreamTypeType&
-      streamType () const;
+      getStreamType () const;
 
+      /**
+       * @brief Return a read-write reference to the element.
+       *
+       * @return A reference to the element.
+       */
       StreamTypeType&
-      streamType ();
+      getStreamType ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      streamType (const StreamTypeType& x);
+      setStreamType (const StreamTypeType& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      streamType (::std::unique_ptr< StreamTypeType > p);
+      setStreamType (::std::unique_ptr< StreamTypeType > p);
 
-      // targetNamespace
-      //
+      //@}
+
+      /**
+       * @name targetNamespace
+       *
+       * @brief Accessor and modifier functions for the %targetNamespace
+       * optional attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::String TargetNamespaceType;
+
+      /**
+       * @brief Attribute optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< TargetNamespaceType > TargetNamespaceOptional;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< TargetNamespaceType, char > TargetNamespaceTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const TargetNamespaceOptional&
-      targetNamespace () const;
+      getTargetNamespace () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute container.
+       *
+       * @return A reference to the optional container.
+       */
       TargetNamespaceOptional&
-      targetNamespace ();
+      getTargetNamespace ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      targetNamespace (const TargetNamespaceType& x);
+      setTargetNamespace (const TargetNamespaceType& x);
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the attribute.
+       * Otherwise the attribute container is set the 'not present' state.
+       */
       void
-      targetNamespace (const TargetNamespaceOptional& x);
+      setTargetNamespace (const TargetNamespaceOptional& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      targetNamespace (::std::unique_ptr< TargetNamespaceType > p);
+      setTargetNamespace (::std::unique_ptr< TargetNamespaceType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       TStreamDescriptions (const StreamTypeType&);
 
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes
+       * (::std::unique_ptr version).
+       *
+       * This constructor will try to use the passed values directly
+       * instead of making copies.
+       */
       TStreamDescriptions (::std::unique_ptr< StreamTypeType >);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       TStreamDescriptions (const ::xercesc::DOMElement& e,
                            ::xml_schema::Flags f = 0,
                            ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TStreamDescriptions (const TStreamDescriptions& x,
                            ::xml_schema::Flags f = 0,
                            ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual TStreamDescriptions*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       TStreamDescriptions&
       operator= (const TStreamDescriptions& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~TStreamDescriptions ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -265,54 +712,161 @@ namespace WS
       protected:
       ::xsd::cxx::tree::one< StreamTypeType > streamType_;
       TargetNamespaceOptional targetNamespace_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %StreamSource schema type.
+     *
+     * @nosubgrouping
+     */
     class StreamSource: public ::xml_schema::Type
     {
       public:
-      // StreamDescriptions
-      //
+      /**
+       * @name StreamDescriptions
+       *
+       * @brief Accessor and modifier functions for the %StreamDescriptions
+       * required element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::STREAMING::TStreamDescriptions StreamDescriptionsType;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< StreamDescriptionsType, char > StreamDescriptionsTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element.
+       *
+       * @return A constant reference to the element.
+       */
       const StreamDescriptionsType&
-      StreamDescriptions () const;
+      getStreamDescriptions () const;
 
+      /**
+       * @brief Return a read-write reference to the element.
+       *
+       * @return A reference to the element.
+       */
       StreamDescriptionsType&
-      StreamDescriptions ();
+      getStreamDescriptions ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      StreamDescriptions (const StreamDescriptionsType& x);
+      setStreamDescriptions (const StreamDescriptionsType& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      StreamDescriptions (::std::unique_ptr< StreamDescriptionsType > p);
+      setStreamDescriptions (::std::unique_ptr< StreamDescriptionsType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       StreamSource (const StreamDescriptionsType&);
 
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes
+       * (::std::unique_ptr version).
+       *
+       * This constructor will try to use the passed values directly
+       * instead of making copies.
+       */
       StreamSource (::std::unique_ptr< StreamDescriptionsType >);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       StreamSource (const ::xercesc::DOMElement& e,
                     ::xml_schema::Flags f = 0,
                     ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       StreamSource (const StreamSource& x,
                     ::xml_schema::Flags f = 0,
                     ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual StreamSource*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       StreamSource&
       operator= (const StreamSource& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~StreamSource ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -320,6 +874,8 @@ namespace WS
 
       protected:
       ::xsd::cxx::tree::one< StreamDescriptionsType > StreamDescriptions_;
+
+      //@endcond
     };
   }
 }
@@ -334,98 +890,258 @@ namespace WS
 {
   namespace STREAMING
   {
-    // Parse a URI or a local file.
-    //
+    /**
+     * @name Parsing functions for the %StreamSource document root.
+     */
+    //@{
 
+    /**
+     * @brief Parse a URI or a local file.
+     *
+     * @param uri A URI or a local file name.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (const ::std::string& uri,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseStreamSource (const ::std::string& uri,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a URI or a local file with an error handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (const ::std::string& uri,
-                   ::xml_schema::ErrorHandler& eh,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseStreamSource (const ::std::string& uri,
+                       ::xml_schema::ErrorHandler& eh,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a URI or a local file with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param uri A URI or a local file name.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (const ::std::string& uri,
-                   ::xercesc::DOMErrorHandler& eh,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseStreamSource (const ::std::string& uri,
+                       ::xercesc::DOMErrorHandler& eh,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    // Parse std::istream.
-    //
-
+    /**
+     * @brief Parse a standard input stream.
+     *
+     * @param is A standrad input stream.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (::std::istream& is,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseStreamSource (::std::istream& is,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a standard input stream with an error handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (::std::istream& is,
-                   ::xml_schema::ErrorHandler& eh,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseStreamSource (::std::istream& is,
+                       ::xml_schema::ErrorHandler& eh,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a standard input stream with a Xerces-C++ DOM error
+     * handler.
+     *
+     * @param is A standrad input stream.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (::std::istream& is,
-                   ::xercesc::DOMErrorHandler& eh,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseStreamSource (::std::istream& is,
+                       ::xercesc::DOMErrorHandler& eh,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a standard input stream with a resource id.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (::std::istream& is,
-                   const ::std::string& id,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseStreamSource (::std::istream& is,
+                       const ::std::string& id,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a standard input stream with a resource id and an
+     * error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (::std::istream& is,
-                   const ::std::string& id,
-                   ::xml_schema::ErrorHandler& eh,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseStreamSource (::std::istream& is,
+                       const ::std::string& id,
+                       ::xml_schema::ErrorHandler& eh,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a standard input stream with a resource id and a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param is A standrad input stream.
+     * @param id A resource id.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * The resource id is used to identify the document being parsed in
+     * diagnostics as well as to resolve relative paths.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (::std::istream& is,
-                   const ::std::string& id,
-                   ::xercesc::DOMErrorHandler& eh,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseStreamSource (::std::istream& is,
+                       const ::std::string& id,
+                       ::xercesc::DOMErrorHandler& eh,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    // Parse xercesc::InputSource.
-    //
-
+    /**
+     * @brief Parse a Xerces-C++ input source.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function uses exceptions to report parsing errors.
+     */
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (::xercesc::InputSource& is,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseStreamSource (::xercesc::InputSource& is,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a Xerces-C++ input source with an error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh An error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (::xercesc::InputSource& is,
-                   ::xml_schema::ErrorHandler& eh,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseStreamSource (::xercesc::InputSource& is,
+                       ::xml_schema::ErrorHandler& eh,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a Xerces-C++ input source with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param is A Xerces-C++ input source.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function reports parsing errors by calling the error handler.
+     */
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (::xercesc::InputSource& is,
-                   ::xercesc::DOMErrorHandler& eh,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseStreamSource (::xercesc::InputSource& is,
+                       ::xercesc::DOMErrorHandler& eh,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-    // Parse xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     */
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (const ::xercesc::DOMDocument& d,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseStreamSource (const ::xercesc::DOMDocument& d,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+    /**
+     * @brief Parse a Xerces-C++ DOM document.
+     *
+     * @param d A pointer to the Xerces-C++ DOM document.
+     * @param f Parsing flags.
+     * @param p Parsing properties. 
+     * @return A pointer to the root of the object model.
+     *
+     * This function is normally used together with the keep_dom and
+     * own_dom parsing flags to assign ownership of the DOM document
+     * to the object model.
+     */
     ::std::unique_ptr< ::WS::STREAMING::StreamSource >
-    StreamSource_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+    parseStreamSource (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                       ::xml_schema::Flags f = 0,
+                       const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+    //@}
   }
 }
 
@@ -447,73 +1163,164 @@ namespace WS
     void
     operator<< (::xercesc::DOMElement&, const TStreamDescriptions&);
 
-    // Serialize to std::ostream.
-    //
+    /**
+     * @name Serialization functions for the %StreamSource document root.
+     */
+    //@{
 
+    /**
+     * @brief Serialize to a standard output stream.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    StreamSource_ (::std::ostream& os,
-                   const ::WS::STREAMING::StreamSource& x, 
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
+    serializeStreamSource (::std::ostream& os,
+                           const ::WS::STREAMING::StreamSource& x, 
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with an error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    StreamSource_ (::std::ostream& os,
-                   const ::WS::STREAMING::StreamSource& x, 
-                   ::xml_schema::ErrorHandler& eh,
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
+    serializeStreamSource (::std::ostream& os,
+                           const ::WS::STREAMING::StreamSource& x, 
+                           ::xml_schema::ErrorHandler& eh,
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a standard output stream with a Xerces-C++ DOM
+     * error handler.
+     *
+     * @param os A standrad output stream.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    StreamSource_ (::std::ostream& os,
-                   const ::WS::STREAMING::StreamSource& x, 
-                   ::xercesc::DOMErrorHandler& eh,
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
+    serializeStreamSource (::std::ostream& os,
+                           const ::WS::STREAMING::StreamSource& x, 
+                           ::xercesc::DOMErrorHandler& eh,
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
 
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function uses exceptions to report serialization errors.
+     */
     void
-    StreamSource_ (::xercesc::XMLFormatTarget& ft,
-                   const ::WS::STREAMING::StreamSource& x, 
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
+    serializeStreamSource (::xercesc::XMLFormatTarget& ft,
+                           const ::WS::STREAMING::StreamSource& x, 
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with an error
+     * handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh An error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    StreamSource_ (::xercesc::XMLFormatTarget& ft,
-                   const ::WS::STREAMING::StreamSource& x, 
-                   ::xml_schema::ErrorHandler& eh,
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
+    serializeStreamSource (::xercesc::XMLFormatTarget& ft,
+                           const ::WS::STREAMING::StreamSource& x, 
+                           ::xml_schema::ErrorHandler& eh,
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
 
+    /**
+     * @brief Serialize to a Xerces-C++ XML format target with a
+     * Xerces-C++ DOM error handler.
+     *
+     * @param ft A Xerces-C++ XML format target.
+     * @param x An object model to serialize.
+     * @param eh A Xerces-C++ DOM error handler.
+     * @param m A namespace information map.
+     * @param e A character encoding to produce XML in.
+     * @param f Serialization flags.
+     *
+     * This function reports serialization errors by calling the error
+     * handler.
+     */
     void
-    StreamSource_ (::xercesc::XMLFormatTarget& ft,
-                   const ::WS::STREAMING::StreamSource& x, 
-                   ::xercesc::DOMErrorHandler& eh,
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
+    serializeStreamSource (::xercesc::XMLFormatTarget& ft,
+                           const ::WS::STREAMING::StreamSource& x, 
+                           ::xercesc::DOMErrorHandler& eh,
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           const ::std::string& e = "UTF-8",
+                           ::xml_schema::Flags f = 0);
 
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to an existing Xerces-C++ DOM document.
+     *
+     * @param d A Xerces-C++ DOM document.
+     * @param x An object model to serialize.
+     * @param f Serialization flags.
+     *
+     * Note that it is your responsibility to create the DOM document
+     * with the correct root element as well as set the necessary
+     * namespace mapping attributes.
+     */
     void
-    StreamSource_ (::xercesc::DOMDocument& d,
-                   const ::WS::STREAMING::StreamSource& x,
-                   ::xml_schema::Flags f = 0);
+    serializeStreamSource (::xercesc::DOMDocument& d,
+                           const ::WS::STREAMING::StreamSource& x,
+                           ::xml_schema::Flags f = 0);
 
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
+    /**
+     * @brief Serialize to a new Xerces-C++ DOM document.
+     *
+     * @param x An object model to serialize.
+     * @param m A namespace information map.
+     * @param f Serialization flags.
+     * @return A pointer to the new Xerces-C++ DOM document.
+     */
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    StreamSource_ (const ::WS::STREAMING::StreamSource& x, 
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   ::xml_schema::Flags f = 0);
+    serializeStreamSource (const ::WS::STREAMING::StreamSource& x, 
+                           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                           ::xml_schema::Flags f = 0);
+
+    //@}
 
     void
     operator<< (::xercesc::DOMElement&, const StreamSource&);

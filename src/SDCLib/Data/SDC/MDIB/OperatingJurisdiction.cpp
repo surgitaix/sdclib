@@ -70,84 +70,84 @@ OperatingJurisdiction & OperatingJurisdiction:: operator=(const OperatingJurisdi
 
 
 OperatingJurisdiction & OperatingJurisdiction::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
+	data->setType(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool OperatingJurisdiction::getType(CodedValue & out) const {
-	if (data->Type().present()) {
-		out = ConvertFromCDM::convert(data->Type().get());
+	if (data->getType().present()) {
+		out = ConvertFromCDM::convert(data->getType().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue OperatingJurisdiction::getType() const {
-	return ConvertFromCDM::convert(data->Type().get());
+	return ConvertFromCDM::convert(data->getType().get());
 }
 	
 bool OperatingJurisdiction::hasType() const {
-	return data->Type().present();
+	return data->getType().present();
 }
 	
 OperatingJurisdiction & OperatingJurisdiction::setRoot(const Root & value) {
-	data->Root(ConvertToCDM::convert(value));
+	data->setRoot(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool OperatingJurisdiction::getRoot(Root & out) const {
-	if (data->Root().present()) {
-		out = ConvertFromCDM::convert(data->Root().get());
+	if (data->getRoot().present()) {
+		out = ConvertFromCDM::convert(data->getRoot().get());
 		return true;
 	}
 	return false;
 }
 
 Root OperatingJurisdiction::getRoot() const {
-	return ConvertFromCDM::convert(data->Root().get());
+	return ConvertFromCDM::convert(data->getRoot().get());
 }
 	
 bool OperatingJurisdiction::hasRoot() const {
-	return data->Root().present();
+	return data->getRoot().present();
 }
 	
 OperatingJurisdiction & OperatingJurisdiction::setExtension(const Extension & value) {
-	data->Extension1(ConvertToCDM::convert(value));
+	data->setExtension1(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool OperatingJurisdiction::getExtension(Extension & out) const {
-	if (data->Extension1().present()) {
-		out = ConvertFromCDM::convert(data->Extension1().get());
+	if (data->getExtension1().present()) {
+		out = ConvertFromCDM::convert(data->getExtension1().get());
 		return true;
 	}
 	return false;
 }
 
 Extension OperatingJurisdiction::getExtension() const {
-	return ConvertFromCDM::convert(data->Extension1().get());
+	return ConvertFromCDM::convert(data->getExtension1().get());
 }
 	
 bool OperatingJurisdiction::hasExtension() const {
-	return data->Extension1().present();
+	return data->getExtension1().present();
 }
 	
 OperatingJurisdiction & OperatingJurisdiction::addIdentifierName(const LocalizedText & value) {
-	data->IdentifierName().push_back(ConvertToCDM::convert(value));
+	data->getIdentifierName().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<LocalizedText> OperatingJurisdiction::getIdentifierNameList() const {
 	std::vector<LocalizedText> result;
-	result.reserve(data->IdentifierName().size());
-	for (const auto & value: data->IdentifierName()) {
+	result.reserve(data->getIdentifierName().size());
+	for (const auto & value: data->getIdentifierName()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void OperatingJurisdiction::clearIdentifierNameList() {
-	data->IdentifierName().clear();
+	data->getIdentifierName().clear();
 }
 
 

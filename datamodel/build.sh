@@ -30,6 +30,8 @@ xsdcxx cxx-tree \
 	--show-sloc \
 	--type-naming ucc \
 	--generate-polymorphic \
+	--generate-doxygen \
+	--function-naming java \
 	--polymorphic-type-all \
 	--generate-forward \
 	--generate-serialization \

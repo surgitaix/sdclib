@@ -848,7 +848,7 @@
 	</class>
 
 	<class name = "DicomNetworkConnection" parent = "NULL" abstract = "false">
-		<property name = "id" type = "xml_schema::Id" optional = "false" />
+		<property name = "Id" type = "xml_schema::Id" optional = "false" />
 		<property name = "Hostname" type = "std::string" optional = "false" />
 		<property name = "Port" type = "unsigned short" optional = "true" />
 		<propertyList nameSingle = "TlsCipherSuite" nameSeveral = "TlsCipherSuiteList" type = "std::string" />

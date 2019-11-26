@@ -74,34 +74,34 @@ ReferenceRange & ReferenceRange:: operator=(const ReferenceRange& object) {
 
 
 ReferenceRange & ReferenceRange::setRange(const Range & value) {
-	data->Range(ConvertToCDM::convert(value));
+	data->setRange(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 Range ReferenceRange::getRange() const {
-	return ConvertFromCDM::convert(data->Range());
+	return ConvertFromCDM::convert(data->getRange());
 }
 
 ReferenceRange & ReferenceRange::setMeaning(const CodedValue & value) {
-	data->Meaning(ConvertToCDM::convert(value));
+	data->setMeaning(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ReferenceRange::getMeaning(CodedValue & out) const {
-	if (data->Meaning().present()) {
-		out = ConvertFromCDM::convert(data->Meaning().get());
+	if (data->getMeaning().present()) {
+		out = ConvertFromCDM::convert(data->getMeaning().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue ReferenceRange::getMeaning() const {
-	return ConvertFromCDM::convert(data->Meaning().get());
+	return ConvertFromCDM::convert(data->getMeaning().get());
 }
 
 bool ReferenceRange::hasMeaning() const {
-	return data->Meaning().present();
+	return data->getMeaning().present();
 }
 
 

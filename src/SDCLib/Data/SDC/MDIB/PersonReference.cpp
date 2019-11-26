@@ -72,42 +72,42 @@ PersonReference & PersonReference:: operator=(const PersonReference& object) {
 
 
 PersonReference & PersonReference::setName(const BaseDemographics & value) {
-	data->Name(ConvertToCDM::convert(value));
+	data->setName(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool PersonReference::getName(BaseDemographics & out) const {
-	if (data->Name().present()) {
-		out = ConvertFromCDM::convert(data->Name().get());
+	if (data->getName().present()) {
+		out = ConvertFromCDM::convert(data->getName().get());
 		return true;
 	}
 	return false;
 }
 
 BaseDemographics PersonReference::getName() const {
-	return ConvertFromCDM::convert(data->Name().get());
+	return ConvertFromCDM::convert(data->getName().get());
 }
 
 bool PersonReference::hasName() const {
-	return data->Name().present();
+	return data->getName().present();
 }
 
 PersonReference & PersonReference::addIdentification(const InstanceIdentifier & value) {
-	data->Identification().push_back(ConvertToCDM::convert(value));
+	data->getIdentification().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<InstanceIdentifier> PersonReference::getIdentificationList() const {
 	std::vector<InstanceIdentifier> result;
-	result.reserve(data->Identification().size());
-	for (const auto & value: data->Identification()) {
+	result.reserve(data->getIdentification().size());
+	for (const auto & value: data->getIdentification()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void PersonReference::clearIdentificationList() {
-	data->Identification().clear();
+	data->getIdentification().clear();
 }
 
 

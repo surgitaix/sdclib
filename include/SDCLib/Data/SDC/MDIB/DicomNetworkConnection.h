@@ -68,8 +68,8 @@ public:
 
     typedef CDM::DicomNetworkConnection WrappedType;
 
-	DicomNetworkConnection & setid(const xml_schema::Id & value);
-	xml_schema::Id getid() const;
+	DicomNetworkConnection & setId(const xml_schema::Id & value);
+	xml_schema::Id getId() const;
 
 	DicomNetworkConnection & setHostname(const std::string & value);
 	std::string getHostname() const;

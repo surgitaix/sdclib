@@ -78,23 +78,23 @@ CalibrationResult & CalibrationResult:: operator=(const CalibrationResult& objec
 
 
 CalibrationResult & CalibrationResult::setCode(const CodedValue & value) {
-	data->Code(ConvertToCDM::convert(value));
+	data->setCode(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 CodedValue CalibrationResult::getCode() const {
-	return ConvertFromCDM::convert(data->Code());
+	return ConvertFromCDM::convert(data->getCode());
 }
 
 CalibrationResult & CalibrationResult::setValue(const Measurement & value) {
-	data->Value(ConvertToCDM::convert(value));
+	data->setValue(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 Measurement CalibrationResult::getValue() const {
-	return ConvertFromCDM::convert(data->Value());
+	return ConvertFromCDM::convert(data->getValue());
 }
 
 

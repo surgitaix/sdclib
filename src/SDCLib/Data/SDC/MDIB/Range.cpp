@@ -70,108 +70,108 @@ Range & Range:: operator=(const Range& object) {
 
 
 Range & Range::setLower(const double & value) {
-	data->Lower(ConvertToCDM::convert(value));
+	data->setLower(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool Range::getLower(double & out) const {
-	if (data->Lower().present()) {
-		out = ConvertFromCDM::convert(data->Lower().get());
+	if (data->getLower().present()) {
+		out = ConvertFromCDM::convert(data->getLower().get());
 		return true;
 	}
 	return false;
 }
 
 double Range::getLower() const {
-	return ConvertFromCDM::convert(data->Lower().get());
+	return ConvertFromCDM::convert(data->getLower().get());
 }
 
 bool Range::hasLower() const {
-	return data->Lower().present();
+	return data->getLower().present();
 }
 
 Range & Range::setUpper(const double & value) {
-	data->Upper(ConvertToCDM::convert(value));
+	data->setUpper(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool Range::getUpper(double & out) const {
-	if (data->Upper().present()) {
-		out = ConvertFromCDM::convert(data->Upper().get());
+	if (data->getUpper().present()) {
+		out = ConvertFromCDM::convert(data->getUpper().get());
 		return true;
 	}
 	return false;
 }
 
 double Range::getUpper() const {
-	return ConvertFromCDM::convert(data->Upper().get());
+	return ConvertFromCDM::convert(data->getUpper().get());
 }
 
 bool Range::hasUpper() const {
-	return data->Upper().present();
+	return data->getUpper().present();
 }
 
 Range & Range::setStepWidth(const double & value) {
-	data->StepWidth(ConvertToCDM::convert(value));
+	data->setStepWidth(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool Range::getStepWidth(double & out) const {
-	if (data->StepWidth().present()) {
-		out = ConvertFromCDM::convert(data->StepWidth().get());
+	if (data->getStepWidth().present()) {
+		out = ConvertFromCDM::convert(data->getStepWidth().get());
 		return true;
 	}
 	return false;
 }
 
 double Range::getStepWidth() const {
-	return ConvertFromCDM::convert(data->StepWidth().get());
+	return ConvertFromCDM::convert(data->getStepWidth().get());
 }
 
 bool Range::hasStepWidth() const {
-	return data->StepWidth().present();
+	return data->getStepWidth().present();
 }
 
 Range & Range::setRelativeAccuracy(const double & value) {
-	data->RelativeAccuracy(ConvertToCDM::convert(value));
+	data->setRelativeAccuracy(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool Range::getRelativeAccuracy(double & out) const {
-	if (data->RelativeAccuracy().present()) {
-		out = ConvertFromCDM::convert(data->RelativeAccuracy().get());
+	if (data->getRelativeAccuracy().present()) {
+		out = ConvertFromCDM::convert(data->getRelativeAccuracy().get());
 		return true;
 	}
 	return false;
 }
 
 double Range::getRelativeAccuracy() const {
-	return ConvertFromCDM::convert(data->RelativeAccuracy().get());
+	return ConvertFromCDM::convert(data->getRelativeAccuracy().get());
 }
 
 bool Range::hasRelativeAccuracy() const {
-	return data->RelativeAccuracy().present();
+	return data->getRelativeAccuracy().present();
 }
 
 Range & Range::setAbsoluteAccuracy(const double & value) {
-	data->AbsoluteAccuracy(ConvertToCDM::convert(value));
+	data->setAbsoluteAccuracy(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool Range::getAbsoluteAccuracy(double & out) const {
-	if (data->AbsoluteAccuracy().present()) {
-		out = ConvertFromCDM::convert(data->AbsoluteAccuracy().get());
+	if (data->getAbsoluteAccuracy().present()) {
+		out = ConvertFromCDM::convert(data->getAbsoluteAccuracy().get());
 		return true;
 	}
 	return false;
 }
 
 double Range::getAbsoluteAccuracy() const {
-	return ConvertFromCDM::convert(data->AbsoluteAccuracy().get());
+	return ConvertFromCDM::convert(data->getAbsoluteAccuracy().get());
 }
 
 bool Range::hasAbsoluteAccuracy() const {
-	return data->AbsoluteAccuracy().present();
+	return data->getAbsoluteAccuracy().present();
 }
 
 

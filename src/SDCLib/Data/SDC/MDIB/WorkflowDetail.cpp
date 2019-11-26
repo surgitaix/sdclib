@@ -79,133 +79,133 @@ WorkflowDetail & WorkflowDetail:: operator=(const WorkflowDetail& object) {
 
 
 WorkflowDetail & WorkflowDetail::setPatient(const PersonReference & value) {
-	data->Patient(ConvertToCDM::convert(value));
+	data->setPatient(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 PersonReference WorkflowDetail::getPatient() const {
-	return ConvertFromCDM::convert(data->Patient());
+	return ConvertFromCDM::convert(data->getPatient());
 }
 
 WorkflowDetail & WorkflowDetail::setAssignedLocation(const LocationReference & value) {
-	data->AssignedLocation(ConvertToCDM::convert(value));
+	data->setAssignedLocation(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool WorkflowDetail::getAssignedLocation(LocationReference & out) const {
-	if (data->AssignedLocation().present()) {
-		out = ConvertFromCDM::convert(data->AssignedLocation().get());
+	if (data->getAssignedLocation().present()) {
+		out = ConvertFromCDM::convert(data->getAssignedLocation().get());
 		return true;
 	}
 	return false;
 }
 
 LocationReference WorkflowDetail::getAssignedLocation() const {
-	return ConvertFromCDM::convert(data->AssignedLocation().get());
+	return ConvertFromCDM::convert(data->getAssignedLocation().get());
 }
 
 bool WorkflowDetail::hasAssignedLocation() const {
-	return data->AssignedLocation().present();
+	return data->getAssignedLocation().present();
 }
 
 WorkflowDetail & WorkflowDetail::setVisitNumber(const InstanceIdentifier & value) {
-	data->VisitNumber(ConvertToCDM::convert(value));
+	data->setVisitNumber(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool WorkflowDetail::getVisitNumber(InstanceIdentifier & out) const {
-	if (data->VisitNumber().present()) {
-		out = ConvertFromCDM::convert(data->VisitNumber().get());
+	if (data->getVisitNumber().present()) {
+		out = ConvertFromCDM::convert(data->getVisitNumber().get());
 		return true;
 	}
 	return false;
 }
 
 InstanceIdentifier WorkflowDetail::getVisitNumber() const {
-	return ConvertFromCDM::convert(data->VisitNumber().get());
+	return ConvertFromCDM::convert(data->getVisitNumber().get());
 }
 
 bool WorkflowDetail::hasVisitNumber() const {
-	return data->VisitNumber().present();
+	return data->getVisitNumber().present();
 }
 
 WorkflowDetail & WorkflowDetail::setRequestedOrderDetail(const RequestedOrderDetail & value) {
-	data->RequestedOrderDetail(ConvertToCDM::convert(value));
+	data->setRequestedOrderDetail(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool WorkflowDetail::getRequestedOrderDetail(RequestedOrderDetail & out) const {
-	if (data->RequestedOrderDetail().present()) {
-		out = ConvertFromCDM::convert(data->RequestedOrderDetail().get());
+	if (data->getRequestedOrderDetail().present()) {
+		out = ConvertFromCDM::convert(data->getRequestedOrderDetail().get());
 		return true;
 	}
 	return false;
 }
 
 RequestedOrderDetail WorkflowDetail::getRequestedOrderDetail() const {
-	return ConvertFromCDM::convert(data->RequestedOrderDetail().get());
+	return ConvertFromCDM::convert(data->getRequestedOrderDetail().get());
 }
 
 bool WorkflowDetail::hasRequestedOrderDetail() const {
-	return data->RequestedOrderDetail().present();
+	return data->getRequestedOrderDetail().present();
 }
 
 WorkflowDetail & WorkflowDetail::setPerformedOrderDetail(const PerformedOrderDetail & value) {
-	data->PerformedOrderDetail(ConvertToCDM::convert(value));
+	data->setPerformedOrderDetail(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool WorkflowDetail::getPerformedOrderDetail(PerformedOrderDetail & out) const {
-	if (data->PerformedOrderDetail().present()) {
-		out = ConvertFromCDM::convert(data->PerformedOrderDetail().get());
+	if (data->getPerformedOrderDetail().present()) {
+		out = ConvertFromCDM::convert(data->getPerformedOrderDetail().get());
 		return true;
 	}
 	return false;
 }
 
 PerformedOrderDetail WorkflowDetail::getPerformedOrderDetail() const {
-	return ConvertFromCDM::convert(data->PerformedOrderDetail().get());
+	return ConvertFromCDM::convert(data->getPerformedOrderDetail().get());
 }
 
 bool WorkflowDetail::hasPerformedOrderDetail() const {
-	return data->PerformedOrderDetail().present();
+	return data->getPerformedOrderDetail().present();
 }
 
 WorkflowDetail & WorkflowDetail::addDangerCode(const CodedValue & value) {
-	data->DangerCode().push_back(ConvertToCDM::convert(value));
+	data->getDangerCode().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<CodedValue> WorkflowDetail::getDangerCodeList() const {
 	std::vector<CodedValue> result;
-	result.reserve(data->DangerCode().size());
-	for (const auto & value: data->DangerCode()) {
+	result.reserve(data->getDangerCode().size());
+	for (const auto & value: data->getDangerCode()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void WorkflowDetail::clearDangerCodeList() {
-	data->DangerCode().clear();
+	data->getDangerCode().clear();
 }
 
 WorkflowDetail & WorkflowDetail::addRelevantClinicalInfo(const ClinicalInfo & value) {
-	data->RelevantClinicalInfo().push_back(ConvertToCDM::convert(value));
+	data->getRelevantClinicalInfo().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<ClinicalInfo> WorkflowDetail::getRelevantClinicalInfoList() const {
 	std::vector<ClinicalInfo> result;
-	result.reserve(data->RelevantClinicalInfo().size());
-	for (const auto & value: data->RelevantClinicalInfo()) {
+	result.reserve(data->getRelevantClinicalInfo().size());
+	for (const auto & value: data->getRelevantClinicalInfo()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void WorkflowDetail::clearRelevantClinicalInfoList() {
-	data->RelevantClinicalInfo().clear();
+	data->getRelevantClinicalInfo().clear();
 }
 
 

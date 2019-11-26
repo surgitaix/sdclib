@@ -40,7 +40,7 @@ std::unique_ptr<MESSAGEMODEL::Envelope> RenewActionCommand::dispatch(const MESSA
 	}
 
 	auto t_responseMessage(createResponseMessageFromRequestMessage(p_request));
-	t_responseMessage->Header().Action().set(WS::ADDRESSING::AttributedURIType(DPWS::RenewTraits::ResponseAction()));
+	t_responseMessage->getHeader().getAction().set(WS::ADDRESSING::AttributedURIType(DPWS::RenewTraits::ResponseAction()));
 
 	NormalizedMessageAdapter<DPWS::RenewTraits::Response> t_responseAdapter;
 	t_responseAdapter.set(*t_responseMessage, std::move(t_responseBody));

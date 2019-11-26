@@ -35,29 +35,30 @@ std::unique_ptr<SubscribeTraits::Response> SubscriptionManager::dispatch(const S
 {
 	using ResponseType = SubscribeTraits::Response;
 
-	const std::string t_expiresString(p_request.Expires().present() ? p_request.Expires().get() : "PT60S"); // TODO: MAGIC NUMBER PT'60'S
+	const std::string t_expiresString(p_request.getExpires().present() ? p_request.getExpires().get() : "PT60S"); // TODO: MAGIC NUMBER PT'60'S
+
 	Helper::DurationWrapper t_expiresDuration(t_expiresString);
 
 	if (t_expiresDuration.toDuration_s().second == std::chrono::seconds(0) || t_expiresDuration.negative()) {
-		if(p_request.Expires().present()) {
+		if(p_request.getExpires().present()) {
 			// NOTE: THIS MUST FAIL! See WS-Eventing wse:InvalidExpirationTime ?
 		}
 		// Falling back to default
 		t_expiresDuration = Helper::DurationWrapper(DEFAULT_DURATION_S);
 	}
 
-	if (p_request.Delivery().Mode().present() && p_request.Delivery().Mode().get() != OSELib::WS_EVENTING_DELIVERYMODE_PUSH) {
-		throw SOAP::SoapActionCommand::DispatchingFailed("Delivery mode not supported: " + p_request.Delivery().Mode().get());
+	if (p_request.getDelivery().getMode().present() && p_request.getDelivery().getMode().get() != OSELib::WS_EVENTING_DELIVERYMODE_PUSH) {
+		throw SOAP::SoapActionCommand::DispatchingFailed("Delivery mode not supported: " + p_request.getDelivery().getMode().get());
 	}
 
-	if (!p_request.Filter().present()) {
+	if (!p_request.getFilter().present()) {
 		throw SOAP::SoapActionCommand::DispatchingFailed("No filter specified");
 	}
 
-	if (p_request.Filter().get().Dialect() != OSELib::WS_EVENTING_FILTER_ACTION) {
-		throw SOAP::SoapActionCommand::DispatchingFailed("Filter mode not supported: " + p_request.Filter().get().Dialect());
+	if (p_request.getFilter().get().getDialect() != OSELib::WS_EVENTING_FILTER_ACTION) {
+		throw SOAP::SoapActionCommand::DispatchingFailed("Filter mode not supported: " + p_request.getFilter().get().getDialect());
 	}
-	for (const auto & t_filterAction : p_request.Filter().get()) {
+	for (const auto & t_filterAction : p_request.getFilter().get()) {
 		if (std::find(ml_allowedEventActions.begin(), ml_allowedEventActions.end(), t_filterAction) == ml_allowedEventActions.end()) {
 			log_debug([&] { return "Unknown event action: " + t_filterAction; });
 			throw SOAP::SoapActionCommand::DispatchingFailed("Unknown event action: " + t_filterAction);
@@ -71,7 +72,7 @@ std::unique_ptr<SubscribeTraits::Response> SubscriptionManager::dispatch(const S
 	}
 
 
-	ActiveSubscriptions::SubscriptionInformation t_info(p_request.Delivery().NotifyTo(), t_result_TimePoint.second, p_request.Filter().get());
+	ActiveSubscriptions::SubscriptionInformation t_info(p_request.getDelivery().getNotifyTo(), t_result_TimePoint.second, p_request.getFilter().get());
 	const auto t_mySubscriptionID(m_subscriptions.subscribe(t_info));
 
 	log_debug([&] { return "Subscribing " + t_mySubscriptionID; });
@@ -80,8 +81,8 @@ std::unique_ptr<SubscribeTraits::Response> SubscriptionManager::dispatch(const S
 	ResponseType::SubscriptionManagerType t_subscriptionManager(WS::ADDRESSING::AttributedURIType("To be defined by ServiceHandler"));
 	ResponseType::SubscriptionManagerType::ReferenceParametersType::IdentifierType t_myID(t_mySubscriptionID);
 	ResponseType::SubscriptionManagerType::ReferenceParametersType t_referenceParameters;
-	t_referenceParameters.Identifier().set(t_myID);
-	t_subscriptionManager.ReferenceParameters().set(t_referenceParameters);
+	t_referenceParameters.getIdentifier().set(t_myID);
+	t_subscriptionManager.getReferenceParameters().set(t_referenceParameters);
 	std::unique_ptr<ResponseType> t_response(new ResponseType(t_subscriptionManager, t_expiresDuration.toString()));
 
 	m_subscriptions.printSubscriptions();
@@ -111,7 +112,9 @@ std::unique_ptr<RenewTraits::Response> SubscriptionManager::dispatch(const Renew
 	}
 
 	using ResponseType = RenewTraits::Response;
-	const std::string t_expiresString(p_request.Expires().present() ? p_request.Expires().get() : "PT60S"); // TODO: MAGIC NUMBER PT'60'S
+
+	const std::string t_expiresString(p_request.getExpires().present() ? p_request.getExpires().get() : "PT60S"); // TODO: MAGIC NUMBER PT'60'S
+
 	Helper::DurationWrapper t_expiresDuration(t_expiresString);
 
 	auto t_duration = t_expiresDuration.toDuration_s();
@@ -120,7 +123,7 @@ std::unique_ptr<RenewTraits::Response> SubscriptionManager::dispatch(const Renew
 	}
 
 	std::unique_ptr<ResponseType> t_response(new ResponseType());
-	t_response->Expires().set(t_expiresDuration.toString());
+	t_response->getExpires().set(t_expiresDuration.toString());
 
 	auto t_result_TimePoint = t_expiresDuration.toExpirationTimePoint();
 	if(t_result_TimePoint.first) {
@@ -155,7 +158,7 @@ std::unique_ptr<GetStatusTraits::Response> SubscriptionManager::dispatch(const G
 	// Create the Response
 	using ResponseType = GetStatusTraits::Response;
 	std::unique_ptr<ResponseType> t_response(new ResponseType());
-	t_response->Expires().set(t_expiresDuration.toString());
+	t_response->getExpires().set(t_expiresDuration.toString());
 
 	m_subscriptions.printSubscriptions();
 	return t_response;
@@ -166,10 +169,10 @@ void SubscriptionManager::fireEvent(const typename TraitsType::ReportType & p_re
 {
 	std::unique_ptr<MESSAGEMODEL::Envelope::HeaderType> t_header(new MESSAGEMODEL::Envelope::HeaderType());
 	using MessageIDType = MESSAGEMODEL::Envelope::HeaderType::MessageIDType;
-	t_header->MessageID().set(MessageIDType(SDCLib::SDCInstance::calcMSGID()));
+	t_header->getMessageID().set(MessageIDType(SDCLib::SDCInstance::calcMSGID()));
 
 	using ActionType = MESSAGEMODEL::Envelope::HeaderType::ActionType;
-	t_header->Action().set(ActionType(TraitsType::Action()));
+	t_header->getAction().set(ActionType(TraitsType::Action()));
 
 	std::unique_ptr<MESSAGEMODEL::Envelope::BodyType> t_body(new MESSAGEMODEL::Envelope::BodyType());
 
@@ -181,14 +184,14 @@ void SubscriptionManager::fireEvent(const typename TraitsType::ReportType & p_re
 	SOAP::NormalizedMessageSerializer t_serializer;
 	for (const auto & t_epr : m_subscriptions.getSubscriptions(TraitsType::Action()))
 	{
-		t_eventMessage->Header().To(t_epr.second.Address());
-		t_eventMessage->Header().Identifier().reset();
+		t_eventMessage->getHeader().setTo(t_epr.second.getAddress());
+		t_eventMessage->getHeader().getIdentifier().reset();
 
-		if (t_epr.second.ReferenceParameters().present() && t_epr.second.ReferenceParameters().get().Identifier().present()) {
-			t_eventMessage->Header().Identifier(t_epr.second.ReferenceParameters().get().Identifier().get());
+		if (t_epr.second.getReferenceParameters().present() && t_epr.second.getReferenceParameters().get().getIdentifier().present()) {
+			t_eventMessage->getHeader().setIdentifier(t_epr.second.getReferenceParameters().get().getIdentifier().get());
 		}
 
-		const Poco::URI t_uri(t_epr.second.Address());
+		const Poco::URI t_uri(t_epr.second.getAddress());
 
 		log_trace([&] { return "Enqueuing event for " + t_epr.first; });
 

@@ -71,21 +71,21 @@ RemedyInfo & RemedyInfo:: operator=(const RemedyInfo& object) {
 
 
 RemedyInfo & RemedyInfo::addDescription(const LocalizedText & value) {
-	data->Description().push_back(ConvertToCDM::convert(value));
+	data->getDescription().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<LocalizedText> RemedyInfo::getDescriptionList() const {
 	std::vector<LocalizedText> result;
-	result.reserve(data->Description().size());
-	for (const auto & value: data->Description()) {
+	result.reserve(data->getDescription().size());
+	for (const auto & value: data->getDescription()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void RemedyInfo::clearDescriptionList() {
-	data->Description().clear();
+	data->getDescription().clear();
 }
 
 

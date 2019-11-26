@@ -73,60 +73,60 @@ PersonParticipation & PersonParticipation:: operator=(const PersonParticipation&
 
 
 PersonParticipation & PersonParticipation::setName(const BaseDemographics & value) {
-	data->Name(ConvertToCDM::convert(value));
+	data->setName(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool PersonParticipation::getName(BaseDemographics & out) const {
-	if (data->Name().present()) {
-		out = ConvertFromCDM::convert(data->Name().get());
+	if (data->getName().present()) {
+		out = ConvertFromCDM::convert(data->getName().get());
 		return true;
 	}
 	return false;
 }
 
 BaseDemographics PersonParticipation::getName() const {
-	return ConvertFromCDM::convert(data->Name().get());
+	return ConvertFromCDM::convert(data->getName().get());
 }
 
 bool PersonParticipation::hasName() const {
-	return data->Name().present();
+	return data->getName().present();
 }
 
 PersonParticipation & PersonParticipation::addIdentification(const InstanceIdentifier & value) {
-	data->Identification().push_back(ConvertToCDM::convert(value));
+	data->getIdentification().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<InstanceIdentifier> PersonParticipation::getIdentificationList() const {
 	std::vector<InstanceIdentifier> result;
-	result.reserve(data->Identification().size());
-	for (const auto & value: data->Identification()) {
+	result.reserve(data->getIdentification().size());
+	for (const auto & value: data->getIdentification()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void PersonParticipation::clearIdentificationList() {
-	data->Identification().clear();
+	data->getIdentification().clear();
 }
 
 PersonParticipation & PersonParticipation::addRole(const CodedValue & value) {
-	data->Role().push_back(ConvertToCDM::convert(value));
+	data->getRole().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<CodedValue> PersonParticipation::getRoleList() const {
 	std::vector<CodedValue> result;
-	result.reserve(data->Role().size());
-	for (const auto & value: data->Role()) {
+	result.reserve(data->getRole().size());
+	for (const auto & value: data->getRole()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void PersonParticipation::clearRoleList() {
-	data->Role().clear();
+	data->getRole().clear();
 }
 
 

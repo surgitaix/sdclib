@@ -74,52 +74,52 @@ RelatedMeasurement & RelatedMeasurement:: operator=(const RelatedMeasurement& ob
 
 
 RelatedMeasurement & RelatedMeasurement::setValue(const Measurement & value) {
-	data->Value(ConvertToCDM::convert(value));
+	data->setValue(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 Measurement RelatedMeasurement::getValue() const {
-	return ConvertFromCDM::convert(data->Value());
+	return ConvertFromCDM::convert(data->getValue());
 }
 
 RelatedMeasurement & RelatedMeasurement::setValidity(const MeasurementValidity & value) {
-	data->Validity(ConvertToCDM::convert(value));
+	data->setValidity(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool RelatedMeasurement::getValidity(MeasurementValidity & out) const {
-	if (data->Validity().present()) {
-		out = ConvertFromCDM::convert(data->Validity().get());
+	if (data->getValidity().present()) {
+		out = ConvertFromCDM::convert(data->getValidity().get());
 		return true;
 	}
 	return false;
 }
 
 MeasurementValidity RelatedMeasurement::getValidity() const {
-	return ConvertFromCDM::convert(data->Validity().get());
+	return ConvertFromCDM::convert(data->getValidity().get());
 }
 
 bool RelatedMeasurement::hasValidity() const {
-	return data->Validity().present();
+	return data->getValidity().present();
 }
 
 RelatedMeasurement & RelatedMeasurement::addReferenceRange(const ReferenceRange & value) {
-	data->ReferenceRange().push_back(ConvertToCDM::convert(value));
+	data->getReferenceRange().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<ReferenceRange> RelatedMeasurement::getReferenceRangeList() const {
 	std::vector<ReferenceRange> result;
-	result.reserve(data->ReferenceRange().size());
-	for (const auto & value: data->ReferenceRange()) {
+	result.reserve(data->getReferenceRange().size());
+	for (const auto & value: data->getReferenceRange()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void RelatedMeasurement::clearReferenceRangeList() {
-	data->ReferenceRange().clear();
+	data->getReferenceRange().clear();
 }
 
 

@@ -76,196 +76,196 @@ DistributionSampleArrayMetricState & DistributionSampleArrayMetricState:: operat
 
 
 DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setStateVersion(const VersionCounter & value) {
-	data->StateVersion(ConvertToCDM::convert(value));
+	data->setStateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool DistributionSampleArrayMetricState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
+	if (data->getStateVersion().present()) {
+		out = ConvertFromCDM::convert(data->getStateVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter DistributionSampleArrayMetricState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+	return ConvertFromCDM::convert(data->getStateVersion().get());
 }
 
 bool DistributionSampleArrayMetricState::hasStateVersion() const {
-	return data->StateVersion().present();
+	return data->getStateVersion().present();
 }
 
 DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setDescriptorHandle(const HandleRef & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
+	data->setDescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 HandleRef DistributionSampleArrayMetricState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
+	return ConvertFromCDM::convert(data->getDescriptorHandle());
 }
 
 DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setDescriptorVersion(const ReferencedVersion & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool DistributionSampleArrayMetricState::getDescriptorVersion(ReferencedVersion & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 ReferencedVersion DistributionSampleArrayMetricState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool DistributionSampleArrayMetricState::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setPhysicalConnector(const PhysicalConnectorInfo & value) {
-	data->PhysicalConnector(ConvertToCDM::convert(value));
+	data->setPhysicalConnector(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool DistributionSampleArrayMetricState::getPhysicalConnector(PhysicalConnectorInfo & out) const {
-	if (data->PhysicalConnector().present()) {
-		out = ConvertFromCDM::convert(data->PhysicalConnector().get());
+	if (data->getPhysicalConnector().present()) {
+		out = ConvertFromCDM::convert(data->getPhysicalConnector().get());
 		return true;
 	}
 	return false;
 }
 
 PhysicalConnectorInfo DistributionSampleArrayMetricState::getPhysicalConnector() const {
-	return ConvertFromCDM::convert(data->PhysicalConnector().get());
+	return ConvertFromCDM::convert(data->getPhysicalConnector().get());
 }
 
 bool DistributionSampleArrayMetricState::hasPhysicalConnector() const {
-	return data->PhysicalConnector().present();
+	return data->getPhysicalConnector().present();
 }
 
 DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setActivationState(const ComponentActivation & value) {
-	data->ActivationState(ConvertToCDM::convert(value));
+	data->setActivationState(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool DistributionSampleArrayMetricState::getActivationState(ComponentActivation & out) const {
-	if (data->ActivationState().present()) {
-		out = ConvertFromCDM::convert(data->ActivationState().get());
+	if (data->getActivationState().present()) {
+		out = ConvertFromCDM::convert(data->getActivationState().get());
 		return true;
 	}
 	return false;
 }
 
 ComponentActivation DistributionSampleArrayMetricState::getActivationState() const {
-	return ConvertFromCDM::convert(data->ActivationState().get());
+	return ConvertFromCDM::convert(data->getActivationState().get());
 }
 
 bool DistributionSampleArrayMetricState::hasActivationState() const {
-	return data->ActivationState().present();
+	return data->getActivationState().present();
 }
 
 DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setActiveDeterminationPeriod(const xml_schema::Duration & value) {
-	data->ActiveDeterminationPeriod(ConvertToCDM::convert(value));
+	data->setActiveDeterminationPeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool DistributionSampleArrayMetricState::getActiveDeterminationPeriod(xml_schema::Duration & out) const {
-	if (data->ActiveDeterminationPeriod().present()) {
-		out = ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
+	if (data->getActiveDeterminationPeriod().present()) {
+		out = ConvertFromCDM::convert(data->getActiveDeterminationPeriod().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::Duration DistributionSampleArrayMetricState::getActiveDeterminationPeriod() const {
-	return ConvertFromCDM::convert(data->ActiveDeterminationPeriod().get());
+	return ConvertFromCDM::convert(data->getActiveDeterminationPeriod().get());
 }
 
 bool DistributionSampleArrayMetricState::hasActiveDeterminationPeriod() const {
-	return data->ActiveDeterminationPeriod().present();
+	return data->getActiveDeterminationPeriod().present();
 }
 
 DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setLifeTimePeriod(const xml_schema::Duration & value) {
-	data->LifeTimePeriod(ConvertToCDM::convert(value));
+	data->setLifeTimePeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool DistributionSampleArrayMetricState::getLifeTimePeriod(xml_schema::Duration & out) const {
-	if (data->LifeTimePeriod().present()) {
-		out = ConvertFromCDM::convert(data->LifeTimePeriod().get());
+	if (data->getLifeTimePeriod().present()) {
+		out = ConvertFromCDM::convert(data->getLifeTimePeriod().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::Duration DistributionSampleArrayMetricState::getLifeTimePeriod() const {
-	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
+	return ConvertFromCDM::convert(data->getLifeTimePeriod().get());
 }
 
 bool DistributionSampleArrayMetricState::hasLifeTimePeriod() const {
-	return data->LifeTimePeriod().present();
+	return data->getLifeTimePeriod().present();
 }
 
 DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::addBodySite(const CodedValue & value) {
-	data->BodySite().push_back(ConvertToCDM::convert(value));
+	data->getBodySite().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<CodedValue> DistributionSampleArrayMetricState::getBodySiteList() const {
 	std::vector<CodedValue> result;
-	result.reserve(data->BodySite().size());
-	for (const auto & value: data->BodySite()) {
+	result.reserve(data->getBodySite().size());
+	for (const auto & value: data->getBodySite()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void DistributionSampleArrayMetricState::clearBodySiteList() {
-	data->BodySite().clear();
+	data->getBodySite().clear();
 }
 
 DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::setMetricValue(const SampleArrayValue & value) {
-	data->MetricValue(ConvertToCDM::convert(value));
+	data->setMetricValue(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool DistributionSampleArrayMetricState::getMetricValue(SampleArrayValue & out) const {
-	if (data->MetricValue().present()) {
-		out = ConvertFromCDM::convert(data->MetricValue().get());
+	if (data->getMetricValue().present()) {
+		out = ConvertFromCDM::convert(data->getMetricValue().get());
 		return true;
 	}
 	return false;
 }
 
 SampleArrayValue DistributionSampleArrayMetricState::getMetricValue() const {
-	return ConvertFromCDM::convert(data->MetricValue().get());
+	return ConvertFromCDM::convert(data->getMetricValue().get());
 }
 
 bool DistributionSampleArrayMetricState::hasMetricValue() const {
-	return data->MetricValue().present();
+	return data->getMetricValue().present();
 }
 
 DistributionSampleArrayMetricState & DistributionSampleArrayMetricState::addPhysiologicalRange(const Range & value) {
-	data->PhysiologicalRange().push_back(ConvertToCDM::convert(value));
+	data->getPhysiologicalRange().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<Range> DistributionSampleArrayMetricState::getPhysiologicalRangeList() const {
 	std::vector<Range> result;
-	result.reserve(data->PhysiologicalRange().size());
-	for (const auto & value: data->PhysiologicalRange()) {
+	result.reserve(data->getPhysiologicalRange().size());
+	for (const auto & value: data->getPhysiologicalRange()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void DistributionSampleArrayMetricState::clearPhysiologicalRangeList() {
-	data->PhysiologicalRange().clear();
+	data->getPhysiologicalRange().clear();
 }
 
 

@@ -71,21 +71,21 @@ ApprovedJurisdictions & ApprovedJurisdictions:: operator=(const ApprovedJurisdic
 
 
 ApprovedJurisdictions & ApprovedJurisdictions::addApprovedJurisdiction(const InstanceIdentifier & value) {
-	data->ApprovedJurisdiction().push_back(ConvertToCDM::convert(value));
+	data->getApprovedJurisdiction().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<InstanceIdentifier> ApprovedJurisdictions::getApprovedJurisdictionList() const {
 	std::vector<InstanceIdentifier> result;
-	result.reserve(data->ApprovedJurisdiction().size());
-	for (const auto & value: data->ApprovedJurisdiction()) {
+	result.reserve(data->getApprovedJurisdiction().size());
+	for (const auto & value: data->getApprovedJurisdiction()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void ApprovedJurisdictions::clearApprovedJurisdictionList() {
-	data->ApprovedJurisdiction().clear();
+	data->getApprovedJurisdiction().clear();
 }
 
 
