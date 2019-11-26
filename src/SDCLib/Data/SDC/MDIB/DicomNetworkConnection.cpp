@@ -78,13 +78,13 @@ DicomNetworkConnection & DicomNetworkConnection:: operator=(const DicomNetworkCo
 }
 
 
-DicomNetworkConnection & DicomNetworkConnection::setid(const xml_schema::Id & value) {
+DicomNetworkConnection & DicomNetworkConnection::setId(const xml_schema::Id & value) {
 	data->setId(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-xml_schema::Id DicomNetworkConnection::getid() const {
+xml_schema::Id DicomNetworkConnection::getId() const {
 	return ConvertFromCDM::convert(data->getId());
 }
 

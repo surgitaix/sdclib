@@ -341,25 +341,25 @@ namespace CDM
   const DicomNetworkConnection::IdType& DicomNetworkConnection::
   getId () const
   {
-    return this->id_.get ();
+    return this->Id_.get ();
   }
 
   DicomNetworkConnection::IdType& DicomNetworkConnection::
   getId ()
   {
-    return this->id_.get ();
+    return this->Id_.get ();
   }
 
   void DicomNetworkConnection::
   setId (const IdType& x)
   {
-    this->id_.set (x);
+    this->Id_.set (x);
   }
 
   void DicomNetworkConnection::
   setId (::std::unique_ptr< IdType > x)
   {
-    this->id_.set (std::move (x));
+    this->Id_.set (std::move (x));
   }
 
   const DicomNetworkConnection::HostnameType& DicomNetworkConnection::
@@ -1129,11 +1129,11 @@ namespace CDM
   //
 
   DicomNetworkConnection::
-  DicomNetworkConnection (const IdType& id,
+  DicomNetworkConnection (const IdType& Id,
                           const HostnameType& Hostname)
   : ::xml_schema::Type (),
     TlsCipherSuite_ (this),
-    id_ (id, this),
+    Id_ (Id, this),
     Hostname_ (Hostname, this),
     Port_ (this)
   {
@@ -1145,7 +1145,7 @@ namespace CDM
                           ::xml_schema::Container* c)
   : ::xml_schema::Type (x, f, c),
     TlsCipherSuite_ (x.TlsCipherSuite_, f, this),
-    id_ (x.id_, f, this),
+    Id_ (x.Id_, f, this),
     Hostname_ (x.Hostname_, f, this),
     Port_ (x.Port_, f, this)
   {
@@ -1157,7 +1157,7 @@ namespace CDM
                           ::xml_schema::Container* c)
   : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
     TlsCipherSuite_ (this),
-    id_ (this),
+    Id_ (this),
     Hostname_ (this),
     Port_ (this)
   {
@@ -1212,9 +1212,9 @@ namespace CDM
       const ::xsd::cxx::xml::qualified_name< char > n (
         ::xsd::cxx::xml::dom::name< char > (i));
 
-      if (n.name () == "id" && n.namespace_ ().empty ())
+      if (n.name () == "Id" && n.namespace_ ().empty ())
       {
-        this->id_.set (IdTraits::create (i, f, this));
+        this->Id_.set (IdTraits::create (i, f, this));
         continue;
       }
 
@@ -1231,10 +1231,10 @@ namespace CDM
       }
     }
 
-    if (!id_.present ())
+    if (!Id_.present ())
     {
       throw ::xsd::cxx::tree::expected_attribute< char > (
-        "id",
+        "Id",
         "");
     }
 
@@ -1260,7 +1260,7 @@ namespace CDM
     {
       static_cast< ::xml_schema::Type& > (*this) = x;
       this->TlsCipherSuite_ = x.TlsCipherSuite_;
-      this->id_ = x.id_;
+      this->Id_ = x.Id_;
       this->Hostname_ = x.Hostname_;
       this->Port_ = x.Port_;
     }
@@ -1978,12 +1978,12 @@ namespace CDM
       }
     }
 
-    // id
+    // Id
     //
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
-          "id",
+          "Id",
           e));
 
       a << i.getId ();

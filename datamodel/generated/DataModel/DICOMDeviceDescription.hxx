@@ -1193,9 +1193,9 @@ namespace CDM
     //@}
 
     /**
-     * @name id
+     * @name Id
      *
-     * @brief Accessor and modifier functions for the %id
+     * @brief Accessor and modifier functions for the %Id
      * required attribute.
      *
      * Unique ID for this network connections. Referenced by DICOMNetworkAE
@@ -1463,7 +1463,7 @@ namespace CDM
 
     protected:
     TlsCipherSuiteSequence TlsCipherSuite_;
-    ::xsd::cxx::tree::one< IdType > id_;
+    ::xsd::cxx::tree::one< IdType > Id_;
     ::xsd::cxx::tree::one< HostnameType > Hostname_;
     PortOptional Port_;
 
