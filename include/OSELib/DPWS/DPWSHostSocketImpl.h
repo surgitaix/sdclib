@@ -47,6 +47,7 @@ public:
 	void sendHello(const HelloType & hello);
 	void sendStream(const MDM::WaveformStream & stream, const AddressType epr);
 
+
 private:
 
     std::mutex m_mutex;
@@ -84,6 +85,7 @@ private:
 
     bool m_SO_REUSEADDR_FLAG = true;
     bool m_SO_REUSEPORT_FLAG = true;
+
 };
 
 } /* namespace Impl */

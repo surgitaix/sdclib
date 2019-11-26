@@ -60,6 +60,7 @@ public:
 	void addByeEventHandler(ByeCallback & callback);
 	void removeByeEventHandler(ByeCallback & callback);
 
+
 private:
 	void dispatch(const ProbeMatchType & notification) override;
 	void dispatch(const ResolveMatchType & notification) override;

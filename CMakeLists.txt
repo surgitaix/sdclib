@@ -259,8 +259,16 @@ add_subdirectory(${PATH_SRC_ROOT})
 if(SDC_EXAMPLES)
     add_subdirectory(${PATH_EXAMPLES_ROOT})
 endif()
+
 # Tests
 if(SDC_TESTS)
     add_subdirectory(${PATH_TESTS_ROOT})
 ENDIF()
-#...
+
+
+#run tests
+#currently not working!!! CTestCases need to be fixed!!!
+#include(CTest)
+#enable_testing()
+#add_subdirectory(CTestCases)
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wsd="http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01" targetNamespace="http://www.w3.org/2003/05/soap-envelope" elementFormDefault="qualified" attributeFormDefault="unqualified" xml:lang="en">
+   <xs:import namespace="http://www.w3.org/2005/08/addressing" schemaLocation="ws-addressing.xsd" />
+   <xs:import namespace="http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01" schemaLocation="wsdd-discovery-1.1-schema-os.xsd" />
+   <xs:element name="Envelope">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="Header">
+               <xs:complexType>
+                  <xs:all>
+                     <xs:element ref="wsa:Action" minOccurs="0" />
+                     <xs:element ref="wsd:AppSequence" minOccurs="0" />
+                     <xs:element ref="wsa:From" minOccurs="0" />
+                     <xs:element ref="wsa:MessageID" minOccurs="0" />
+                     <xs:element ref="wsa:ReferenceParameters" minOccurs="0" />
+                     <xs:element ref="wsa:RelatesTo" minOccurs="0" />
+                     <xs:element ref="wsa:ReplyTo" minOccurs="0" />
+                     <xs:element ref="wsa:To" />                     
+                  </xs:all>
+               </xs:complexType>
+            </xs:element>
+            <xs:element name="Body">
+               <xs:complexType>
+                  <xs:sequence>
+                     <xs:element ref="wsd:Hello" />
+                  </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>
+
