@@ -47,7 +47,7 @@ bool SSLConfig::_initClientSide(const Poco::Net::Context::VerificationMode p_mod
     try {
         Poco::SharedPtr<Poco::Net::PrivateKeyPassphraseHandler> pConsoleHandler = new Poco::Net::KeyConsoleHandler(false);
         Poco::SharedPtr<Poco::Net::InvalidCertificateHandler> pInvalidCertHandler = new Poco::Net::ConsoleCertificateHandler(false);
-        m_context_client = new Poco::Net::Context(Poco::Net::Context::TLSV1_2_CLIENT_USE, "","","", p_mode, 9, false, "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH");
+        m_context_client = new Poco::Net::Context(Poco::Net::Context::TLSV1_2_CLIENT_USE, "","","", p_mode, 9, false, CIPHERSTRING);
 
         Poco::Net::SSLManager::instance().initializeClient(pConsoleHandler, pInvalidCertHandler, m_context_client);
         return true;
@@ -62,7 +62,7 @@ bool SSLConfig::_initServerSide(const Poco::Net::Context::VerificationMode p_mod
     try {
         Poco::SharedPtr<Poco::Net::PrivateKeyPassphraseHandler> pConsoleHandler = new Poco::Net::KeyConsoleHandler(true);
         Poco::SharedPtr<Poco::Net::InvalidCertificateHandler> pInvalidCertHandler = new Poco::Net::ConsoleCertificateHandler(true);
-        m_context_server = new Poco::Net::Context(Poco::Net::Context::TLSV1_2_SERVER_USE, "","","", p_mode, 9, false, "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH");
+        m_context_server = new Poco::Net::Context(Poco::Net::Context::TLSV1_2_SERVER_USE, "","","", p_mode, 9, false, CIPHERSTRING);
 
         Poco::Net::SSLManager::instance().initializeServer(pConsoleHandler, pInvalidCertHandler, m_context_server);
         return true;
