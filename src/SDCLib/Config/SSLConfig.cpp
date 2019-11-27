@@ -9,6 +9,9 @@
 #include <Poco/Net/PrivateKeyPassphraseHandler.h>
 #include <Poco/Crypto/X509Certificate.h>
 
+// IDEA: Maybe add to an abstraction layer, to enable other SSL variants
+#include <openssl/ssl.h>
+
 #include <iostream>
 
 using namespace SDCLib;
@@ -42,12 +45,26 @@ bool SSLConfig::init(const Poco::Net::Context::VerificationMode p_modeClient, co
     m_init = true;
     return true;
 }
+
 bool SSLConfig::_initClientSide(const Poco::Net::Context::VerificationMode p_mode)
 {
     try {
         Poco::SharedPtr<Poco::Net::PrivateKeyPassphraseHandler> pConsoleHandler = new Poco::Net::KeyConsoleHandler(false);
         Poco::SharedPtr<Poco::Net::InvalidCertificateHandler> pInvalidCertHandler = new Poco::Net::ConsoleCertificateHandler(false);
         m_context_client = new Poco::Net::Context(Poco::Net::Context::TLSV1_2_CLIENT_USE, "","","", p_mode, 9, false, CIPHERSTRING);
+
+        // Workarounds, Migitations and Countermeasures
+        // Enable all built-in workarounds
+        SSL_CTX_set_options(m_context_client->sslContext(), SSL_OP_ALL);
+
+        // Disable everything except TLS 1.2 and higher
+        SSL_CTX_set_options(m_context_client->sslContext(), SSL_OP_NO_SSLv2);
+        SSL_CTX_set_options(m_context_client->sslContext(), SSL_OP_NO_SSLv3);
+        SSL_CTX_set_options(m_context_client->sslContext(), SSL_OP_NO_TLSv1);
+        SSL_CTX_set_options(m_context_client->sslContext(), SSL_OP_NO_TLSv1_1);
+
+        // Disable compression
+        SSL_CTX_set_options(m_context_client->sslContext(), SSL_OP_NO_COMPRESSION);
 
         Poco::Net::SSLManager::instance().initializeClient(pConsoleHandler, pInvalidCertHandler, m_context_client);
         return true;
@@ -63,6 +80,22 @@ bool SSLConfig::_initServerSide(const Poco::Net::Context::VerificationMode p_mod
         Poco::SharedPtr<Poco::Net::PrivateKeyPassphraseHandler> pConsoleHandler = new Poco::Net::KeyConsoleHandler(true);
         Poco::SharedPtr<Poco::Net::InvalidCertificateHandler> pInvalidCertHandler = new Poco::Net::ConsoleCertificateHandler(true);
         m_context_server = new Poco::Net::Context(Poco::Net::Context::TLSV1_2_SERVER_USE, "","","", p_mode, 9, false, CIPHERSTRING);
+
+        // Workarounds, migitations and countermeasures
+        // Enable all built-in workarounds
+        SSL_CTX_set_options(m_context_server->sslContext(), SSL_OP_ALL);
+
+        // Disable everything except TLS 1.2 and higher
+        SSL_CTX_set_options(m_context_server->sslContext(), SSL_OP_NO_SSLv2);
+        SSL_CTX_set_options(m_context_server->sslContext(), SSL_OP_NO_SSLv3);
+        SSL_CTX_set_options(m_context_server->sslContext(), SSL_OP_NO_TLSv1);
+        SSL_CTX_set_options(m_context_server->sslContext(), SSL_OP_NO_TLSv1_1);
+
+        // Disable compression
+        SSL_CTX_set_options(m_context_client->sslContext(), SSL_OP_NO_COMPRESSION);
+
+        // Start a new session on renegotiation, preventing Triple Handshake and Renegotiation Attack (server only)
+        SSL_CTX_set_options(m_context_server->sslContext(), SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION);
 
         Poco::Net::SSLManager::instance().initializeServer(pConsoleHandler, pInvalidCertHandler, m_context_server);
         return true;
