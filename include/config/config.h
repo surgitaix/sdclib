@@ -53,9 +53,15 @@ namespace SDCLib
         const bool SDC_IP_V4_ENABLED = true;
         const bool SDC_IP_V6_ENABLED = false;
 
-
         const unsigned int SDC_MAX_KNOWN_MESSAGE_IDS = 200;
-    }
+        
+        // OpenSSL minimal verion check 
+         const unsigned int SDC_MINIMAL_OPENSSL_VERSION_MAJOR = 1;
+         const unsigned int SDC_MINIMAL_OPENSSL_VERSION_MINOR = 0;
+         const unsigned int SDC_MINIMAL_OPENSSL_VERSION_FIX = 1;
+         const unsigned int SDC_MINIMAL_OPENSSL_VERSION_PATCH = 3;
+         
+     }
 }
 
 

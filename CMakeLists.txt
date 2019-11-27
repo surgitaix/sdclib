@@ -175,6 +175,19 @@ mark_as_advanced(SDC_IP_V4_ENABLED)
 mark_as_advanced(SDC_IP_V6_ENABLED)
 ################################################################################
 
+################################################################################
+# OpenSSL - Version Check
+# Note: Must be placed here in order to be added to the config file. Patch 
+# version is set to a number, where (1 = a, 2 = b, ...) 
+# In the following, the variables for the supported OpenSSL minimal version are
+# defined. The OpenSSL version is defined by major version, minor, fix, patch
+# and a status (release / development, ...) 
+################################################################################
+set (SDCLibrary_Minimal_OpenSSL_Version_Major          1)
+set (SDCLibrary_Minimal_OpenSSL_Version_Minor          0)
+set (SDCLibrary_Minimal_OpenSSL_Version_Fix            1)
+set (SDCLibrary_Minimal_OpenSSL_Version_Patch          3)
+# TODO: Should status be included? 
 
 ################################################################################
 # Some more paths - cleaned from symlinks
