@@ -183,6 +183,14 @@ mark_as_advanced(SDC_IP_V6_ENABLED)
 # defined. The OpenSSL version is defined by major version, minor, fix, patch
 # and a status (release / development, ...) 
 ################################################################################
+
+# Enable static build of OpenSSL
+# Taken from https://cmake.org/cmake/help/v3.4/module/FindOpenSSL.html#hints
+# TODO: Required here? Or should it be moved to POCO inclusion of OpenSSL? SDCLib
+# does not include OpenSSL directly
+set (OPENSSL_USE_STATIC_LIBS TRUE)
+
+# Define minimal version
 set (SDCLibrary_Minimal_OpenSSL_Version_Major          1)
 set (SDCLibrary_Minimal_OpenSSL_Version_Minor          0)
 set (SDCLibrary_Minimal_OpenSSL_Version_Fix            1)
@@ -195,7 +203,7 @@ if(NOT OPENSSL_FOUND)
     message(FATAL_ERROR "OpenSSL not found!")
 else ()
     
-    message(STATUS "======== Found OpenSSL version ${OPENSSL_VERSION} =========")
+    message(STATUS "Found OpenSSL version ${OPENSSL_VERSION}")
 
     # Build substrings containing the version level information
     string(SUBSTRING ${OPENSSL_VERSION} 0 1 MAJOR_VERSION)
@@ -235,7 +243,6 @@ else ()
         endif()
     endif()   
 endif()
-
 
 
 
