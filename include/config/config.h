@@ -60,7 +60,6 @@ namespace SDCLib
         const unsigned int SDC_MINIMAL_OPENSSL_VERSION_MINOR = 0;
         const unsigned int SDC_MINIMAL_OPENSSL_VERSION_FIX = 1;
         const unsigned int SDC_MINIMAL_OPENSSL_VERSION_PATCH = 3;
-         
      }
 }
 

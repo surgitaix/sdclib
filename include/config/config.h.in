@@ -53,9 +53,14 @@ namespace SDCLib
         const bool SDC_IP_V4_ENABLED = @SDC_IP_V4_ENABLED@;
         const bool SDC_IP_V6_ENABLED = @SDC_IP_V6_ENABLED@;
 
-
         const unsigned int SDC_MAX_KNOWN_MESSAGE_IDS = @SDC_MAX_KNOWN_MESSAGE_IDS@;
-    }
+        
+        // OpenSSL minimal verion check 
+        const unsigned int SDC_MINIMAL_OPENSSL_VERSION_MAJOR = @SDCLibrary_Minimal_OpenSSL_Version_Major@;
+        const unsigned int SDC_MINIMAL_OPENSSL_VERSION_MINOR = @SDCLibrary_Minimal_OpenSSL_Version_Minor@;
+        const unsigned int SDC_MINIMAL_OPENSSL_VERSION_FIX = @SDCLibrary_Minimal_OpenSSL_Version_Fix@;
+        const unsigned int SDC_MINIMAL_OPENSSL_VERSION_PATCH = @SDCLibrary_Minimal_OpenSSL_Version_Patch@;
+     }
 }
 
 

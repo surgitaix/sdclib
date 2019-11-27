@@ -54,7 +54,7 @@ namespace SDCLib
              * 	 - !eNULL, !aNULL: No ciphers without encryption or authentication
              * 	 - !DES, !3DES: No DES variant
              * 	 - !DH, No Diffie Hellman variant (excluding elliptic curves)
-             * 	 - aRSA: No RSA variant <-- Currently missing
+             * 	 - aRSA: No RSA variant <-- TODO: Currently missing, as it would break the SSL examples
              */
             const std::string CIPHERSTRING = "HIGH:ECDH:SHA256:SHA384:!eNULL:!aNULL:!DES:!3DES:!DH:@STRENGTH";
 
@@ -84,6 +84,12 @@ namespace SDCLib
 
             bool _initClientSide(const Poco::Net::Context::VerificationMode p_mode);
             bool _initServerSide(const Poco::Net::Context::VerificationMode p_mode);
+
+            /**
+             * @brief Validate, that the used version of OpenSSL is higher than the minimal version allowed
+             * @returns True, if version is above the minimal version. False, if it is below
+             */
+            bool openSSLVersionCheck();
         };
     }
 }
