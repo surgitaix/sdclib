@@ -54,7 +54,8 @@ namespace SDCLib
              * 	 - !eNULL, !aNULL: No ciphers without encryption or authentication
              * 	 - !DES, !3DES: No DES variant
              * 	 - !DH, No Diffie Hellman variant (excluding elliptic curves)
-             * 	 - aRSA: No RSA variant <-- TODO: Currently missing, as it would break the SSL examples
+             * 	 - aRSA: No RSA variant <-- TODO: Currently missing, as the used POCO version does not support ECDA
+             * 	   								  key files. Consider to patch!
              */
             const std::string CIPHERSTRING = "HIGH:ECDH:SHA256:SHA384:!eNULL:!aNULL:!DES:!3DES:!DH:@STRENGTH";
 

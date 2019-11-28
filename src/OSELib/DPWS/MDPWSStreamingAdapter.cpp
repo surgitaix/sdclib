@@ -179,7 +179,7 @@ void MDPWSStreamingAdapter::onMulticastSocketReadable(Poco::Net::ReadableNotific
 		if (message->Header().From().get().Address() == m_deviceDescription->getEPR()) {
 			m_streamNotificationDispatcher.dispatch(message->Body().WaveformStream().get());
 		} else {
-			log_error([&]{return "Message has wrong endpoint reference. Message not dispatched.";});
+			log_error([&]{return "Message has wrong endpoint reference. Message not dispatched. Message header: " + message->Header().From().get().Address() + ", Expected: " + m_deviceDescription->getEPR() ;});
 		}
 	}
 }
