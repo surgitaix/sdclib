@@ -156,8 +156,8 @@ list(APPEND SDCLib_DEFINITIONS $<$<CXX_COMPILER_ID:MSVC>:_WIN32>)
 list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Debug>,$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>>:-ggdb -g>)
 list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Debug>,$<OR:$<CXX_COMPILER_ID:ARMCC>,$<CXX_COMPILER_ID:ARMClang>>>:-ggdb -g>)
 # Warnings
-list(APPEND SDCLib_OPTIONS $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-Wall -Wextra -pedantic>)
-list(APPEND SDCLib_OPTIONS $<$<OR:$<CXX_COMPILER_ID:ARMCC>,$<CXX_COMPILER_ID:ARMClang>>:-Wall -Wextra -pedantic>)
+list(APPEND SDCLib_OPTIONS $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-Wall -Wextra -Wshadow -Wnon-virtual-dtor -pedantic>)
+list(APPEND SDCLib_OPTIONS $<$<OR:$<CXX_COMPILER_ID:ARMCC>,$<CXX_COMPILER_ID:ARMClang>>:-Wall -Wextra -Wshadow -Wnon-virtual-dtor -pedantic>)
 list(APPEND SDCLib_OPTIONS $<$<CXX_COMPILER_ID:MSVC>:/W4>)
 # Optimization
 # (Release)

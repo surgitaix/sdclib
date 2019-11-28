@@ -170,7 +170,7 @@ public:
 	ExampleConsumerNumericHandler(const std::string & descriptorHandle)
     : SDCConsumerMDStateHandler(descriptorHandle)
 	{ }
-    virtual ~ExampleConsumerNumericHandler() = default;
+    virtual ~ExampleConsumerNumericHandler() = default; // TODO: Why virtual?
 
     void onStateChanged(const NumericMetricState & state) override {
         auto t_val = state.getMetricValue().getValue();
@@ -194,17 +194,17 @@ private:
     Poco::Event eventEMR;
 };
 
-class ExampleConsumerEnumStringMetricHandler : public SDCConsumerMDStateHandler<EnumStringMetricState> {
+class ExampleConsumerEnumStringMetricHandler : public SDCConsumerMDStateHandler<EnumStringMetricState>
+{
 public:
-	ExampleConsumerEnumStringMetricHandler(const std::string & descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle)
-	{
-	}
+	ExampleConsumerEnumStringMetricHandler(const std::string& p_descriptorHandle)
+	: SDCConsumerMDStateHandler(p_descriptorHandle)
+	{ }
 
-    virtual ~ExampleConsumerEnumStringMetricHandler() {
+    virtual ~ExampleConsumerEnumStringMetricHandler() = default; // TODO: Why virtual?
 
-    }
-
-    void onStateChanged(const EnumStringMetricState & state) override {
+    void onStateChanged(const EnumStringMetricState & state) override
+    {
     	const std::string val(state.getMetricValue().getValue());
         DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received value changed of " << descriptorHandle << ": " << val << std::endl;
         eventEMR.set();
@@ -224,13 +224,11 @@ private:
 
 class ExampleConsumerStringMetricHandler : public SDCConsumerMDStateHandler<StringMetricState> {
 public:
-	ExampleConsumerStringMetricHandler(const std::string & descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle)
-	{
-	}
+	ExampleConsumerStringMetricHandler(const std::string& p_descriptorHandle)
+	: SDCConsumerMDStateHandler(p_descriptorHandle)
+	{ }
 
-    virtual ~ExampleConsumerStringMetricHandler() {
-
-    }
+    virtual ~ExampleConsumerStringMetricHandler() = default; // TODO: Why virtual?
 
     void onStateChanged(const StringMetricState & state) override {
     	const std::string val(state.getMetricValue().getValue());
@@ -253,13 +251,11 @@ private:
 
 class ExampleConsumerAlertSignalHandler : public SDCConsumerMDStateHandler<AlertSignalState> {
 public:
-	ExampleConsumerAlertSignalHandler(const std::string & descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle)
-	{
-	}
+	ExampleConsumerAlertSignalHandler(const std::string& p_descriptorHandle)
+	: SDCConsumerMDStateHandler(p_descriptorHandle)
+	{ }
 
-    virtual ~ExampleConsumerAlertSignalHandler() {
-
-    }
+    virtual ~ExampleConsumerAlertSignalHandler() = default; // TODO: Why virtual?
 
     void onStateChanged(const AlertSignalState & state) override {
         DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received alert signal changed of " << descriptorHandle << ", presence = " << EnumToString::convert(state.getPresence()) << std::endl;
@@ -301,8 +297,9 @@ private:
 class ExampleLocationContextEventHandler : public SDCConsumerMDStateHandler<LocationContextState> {
 public:
 
-	ExampleLocationContextEventHandler(std::string descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle) {
-	}
+	ExampleLocationContextEventHandler(const std::string& p_descriptorHandle)
+	: SDCConsumerMDStateHandler(p_descriptorHandle)
+	{ }
 
 	virtual void onStateChanged(const LocationContextState & state) override {
         DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received location context values changed for handle" << state.getHandle() << std::endl;
@@ -318,13 +315,15 @@ private:
 };
 
 
-class ExamplePatientContextEventHandler : public SDCConsumerMDStateHandler<PatientContextState> {
+class ExamplePatientContextEventHandler : public SDCConsumerMDStateHandler<PatientContextState>
+{
 public:
 
-	ExamplePatientContextEventHandler(std::string descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle) {
-	}
+	ExamplePatientContextEventHandler(const std::string& p_descriptorHandle)
+	: SDCConsumerMDStateHandler(p_descriptorHandle)
+	{ }
 
-	virtual void onStateChanged(const PatientContextState & state) override {
+	void onStateChanged(const PatientContextState & state) override {
         DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received patient context values changed for handle" << state.getHandle() << std::endl;
   		eventEMR.set();
 	}
@@ -765,8 +764,9 @@ public:
 
 class AlwaysOnMdsStateHandler : public SDCProviderComponentStateHandler<MdsState> {
 public:
-    AlwaysOnMdsStateHandler(const std::string & descriptorHandle) : SDCProviderComponentStateHandler(descriptorHandle){
-    }
+    AlwaysOnMdsStateHandler(const std::string & p_descriptorHandle)
+	: SDCProviderComponentStateHandler(p_descriptorHandle)
+	{ }
 
     // Helper method
     MdsState createState() {

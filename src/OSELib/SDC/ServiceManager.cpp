@@ -269,10 +269,12 @@ bool ServiceManager::resolveServiceURIsFromMetadata(const WS::MEX::MetadataSecti
 
 std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(const SDCLib::StringVector& pl_xAddresses, const std::string & p_epr)
 {
-	if(pl_xAddresses.empty()) {
+	if(pl_xAddresses.empty())
+	{
 		return nullptr;
 	}
-	if(p_epr.empty()) {
+	if(p_epr.empty())
+	{
 		return nullptr;
 	}
 
@@ -280,48 +282,57 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 	auto t_deviceDescription = std::make_shared<DPWS::DeviceDescription>(SSL_INIT);
 
 	bool t_connectionPossible_flag = false;
-	for (const auto t_xaddress : pl_xAddresses) {
+	for (const auto t_xaddress : pl_xAddresses)
+	{
 		try
 		{
 			t_deviceDescription->addDeviceURI(Poco::URI(t_xaddress));
 			log_debug([&] { return "XAddress reachable: " + t_xaddress; });
 			t_connectionPossible_flag = true;
-		} catch (...) {
+		}
+		catch (...)
+		{
 			log_debug([&] { return "XAddress not reachable: " + t_xaddress; });
 		}
 	}
 
-	if (t_connectionPossible_flag) {
+	if (t_connectionPossible_flag)
+	{
 		t_deviceDescription->setEPR(p_epr);
-	} else {
+	}
+	else
+	{
 		return nullptr;
 	}
 
-
-
-	try {
+	try
+	{
 		const Poco::URI t_remoteURI(t_deviceDescription->getDeviceURI());
-
-		if(SSL_INIT) {
+		if(SSL_INIT)
+		{
 			Poco::Net::SecureStreamSocket t_connection;
 			t_connection.connect(Poco::Net::SocketAddress(t_remoteURI.getHost(), t_remoteURI.getPort()), Poco::Timespan(1, 0));
 			t_deviceDescription->setLocalIP(t_connection.address().host());
 			t_connection.shutdown();
 			t_connection.close();
 		}
-		else {
+		else
+		{
 			Poco::Net::StreamSocket t_connection;
 			t_connection.connect(Poco::Net::SocketAddress(t_remoteURI.getHost(), t_remoteURI.getPort()), Poco::Timespan(1, 0));
 			t_deviceDescription->setLocalIP(t_connection.address().host());
 			t_connection.shutdown();
 			t_connection.close();
 		}
-	} catch (...) {
+	}
+	catch (...)
+	{
 		log_debug([&] { return "Contacting xAddress failed: " + t_deviceDescription->getDeviceURI().toString(); });
 		return nullptr;
 	}
 
-	try {
+	try
+	{
 		// get metadata for services
 		const DPWS::GetTraits::Request t_request;
 		using Invoker = OSELib::SOAP::GenericSoapInvoke<DPWS::GetTraits>;
@@ -332,8 +343,10 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 		auto t_response(t_invoker->invoke(t_request, m_SDCInstance->getSSLConfig()->getClientContext()));
 
 		bool t_metadataFound = false;
-		if (t_response != nullptr) {
-			for (const auto & t_metadata : t_response->getMetadataSection()) {
+		if (t_response != nullptr)
+		{
+			for (const auto & t_metadata : t_response->getMetadataSection())
+			{
 				if(t_metadata.getDialect() != OSELib::WS_MEX_DIALECT_REL) {
 					continue;
 				}
@@ -357,7 +370,8 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 		}
 
 		// No metadata -> violating R5020 of DPWS 1.1
-		if(!t_metadataFound) {
+		if(!t_metadataFound)
+		{
 			log_error([&] { return "## No Metadata found. Violating R5020 of DPWS 1.1. !"; }); // Todo: Is that fully correct?
 			return nullptr;
 		}
@@ -370,27 +384,30 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 
 		auto t_response_metadata(t_invoker_metadata->invoke(t_request_metadata, m_SDCInstance->getSSLConfig()->getClientContext()));
 
-		if (t_response_metadata != nullptr) {
-
-			for (const auto & t_metadata_iter : t_response_metadata->getMetadataSection()) {
+		if (t_response_metadata != nullptr)
+		{
+			for (const auto & t_metadata_iter : t_response_metadata->getMetadataSection())
+			{
 				if (t_metadata_iter.getDialect() != SDC::WS_MEX_DIALECT_STREAM
 					|| !t_metadata_iter.getStreamDescriptions().present()
 					|| t_metadata_iter.getStreamDescriptions()->getStreamType().empty()
-					|| !t_metadata_iter.getStreamDescriptions()->getStreamType().front().getStreamTransmission().getStreamAddress().present()
-					) {
+					|| !t_metadata_iter.getStreamDescriptions()->getStreamType().front().getStreamTransmission().getStreamAddress().present())
+				{
 					continue;
 				}
 				t_deviceDescription->addStreamMulticastAddressURI(Poco::URI(t_metadata_iter.getStreamDescriptions()->getStreamType().front().getStreamTransmission().getStreamAddress().get()));
 			}
 		}
-
-	} catch (...) {
+	}
+	catch (...)
+	{
 		log_debug([&] { return "Retrieving Device Metadata failed: " + t_deviceDescription->getDeviceURI().toString(); });
 		return nullptr;
 	}
 
 	// GetService is the only mandatory service
-	if (t_deviceDescription->getDeviceURI().empty() || t_deviceDescription->getGetServiceURI().empty()) {
+	if (t_deviceDescription->getDeviceURI().empty() || t_deviceDescription->getGetServiceURI().empty())
+	{
 		log_error([&] { return "Missing get-service uri! Discovery incomplete for device with uri: " + t_deviceDescription->getDeviceURI().toString(); });
 		return nullptr;
 	}

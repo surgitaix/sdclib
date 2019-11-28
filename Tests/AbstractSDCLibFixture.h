@@ -20,9 +20,9 @@ namespace Tests {
 struct AbstractSDCLibFixture : public OSELib::Helper::WithLogger
 {
 public:
-	AbstractSDCLibFixture(const std::string & testname, OSELib::LogLevel debuglevel) :
+	AbstractSDCLibFixture(const std::string & p_testname, OSELib::LogLevel debuglevel) :
 		OSELib::Helper::WithLogger(OSELib::Log::BASE),
-		testname(testname)
+		testname(p_testname)
 	{
 		log_notice([&]{ return std::string(testname + ":  Startup."); });
 		SDCLibrary::getInstance().startup(debuglevel);

@@ -131,8 +131,9 @@ private:
 class StreamProviderStateHandler : public SDCProviderMDStateHandler<RealTimeSampleArrayMetricState> {
 public:
 
-    StreamProviderStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
-    }
+    StreamProviderStateHandler(std::string p_descriptorHandle)
+	: SDCProviderMDStateHandler(p_descriptorHandle)
+	{ }
 
     // Helper method
     RealTimeSampleArrayMetricState createState() {
@@ -163,8 +164,9 @@ public:
 class DistributionProviderStateHandler : public SDCProviderMDStateHandler<DistributionSampleArrayMetricState> {
 public:
 
-	DistributionProviderStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
-    }
+	DistributionProviderStateHandler(std::string p_descriptorHandle)
+	: SDCProviderMDStateHandler(p_descriptorHandle)
+	{ }
 
     // Helper method
     DistributionSampleArrayMetricState createState() {

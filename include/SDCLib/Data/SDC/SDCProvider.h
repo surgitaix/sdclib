@@ -395,7 +395,7 @@ namespace SDCLib
 				void SetStringImpl(const T & p_state, const OperationInvocationContext & p_oic);
 
 				MDM::SetAlertStateResponse SetAlertStateAsync(const MDM::SetAlertState & p_request);
-				void SetAlertState(const MDM::SetAlertState & p_request, const OperationInvocationContext & p_oic);
+				void SetAlertState(const MDM::SetAlertState& p_request, const OperationInvocationContext& p_oic);
 				template<typename StateType>
 				void SetAlertStateImpl(const StateType & p_state, const OperationInvocationContext & p_oic);
 

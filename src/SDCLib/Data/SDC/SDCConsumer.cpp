@@ -79,7 +79,6 @@
 #include "SDCLib/Data/SDC/MDIB/SetAlertStateOperationState.h"
 #include "OSELib/SDC/SDCConstants.h"
 #include "OSELib/DPWS/DeviceDescription.h"
-#include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/SDC/OperationTraits.h"
 
 #include "DataModel/osdm.hxx"
@@ -284,7 +283,7 @@ MdState SDCConsumer::getMdState()
 
 	if (nullptr == t_response) {
 		log_error([] { return "GetMdState request failed!"; });
-		onConnectionLost(); // Todo: Why? Unclear handling of connecion!
+		onConnectionLost(); // Todo: Why? Unclear handling of connection!
 		return MdState();
 	}
 
@@ -298,6 +297,10 @@ bool SDCConsumer::unregisterFutureInvocationListener(int p_transactionId) {
 
 bool SDCConsumer::registerStateEventHandler(SDCConsumerOperationInvokedHandler * p_handler)
 {
+	if(nullptr == m_adapter) {
+		return false;
+	}
+
     assert(p_handler != nullptr);
 
     std::lock_guard<std::mutex> t_lock(m_eventMutex);
@@ -311,6 +314,10 @@ bool SDCConsumer::registerStateEventHandler(SDCConsumerOperationInvokedHandler *
 
 bool SDCConsumer::unregisterStateEventHandler(SDCConsumerOperationInvokedHandler * p_handler)
 {
+	if(nullptr == m_adapter) {
+		return false;
+	}
+
 	assert(p_handler != nullptr);
 
 	std::lock_guard<std::mutex> t_lock(m_eventMutex);
@@ -522,14 +529,12 @@ InvocationState SDCConsumer::commitStateImpl(const StateType & p_state, FutureIn
 
 
 	// Check for operation that targets the descriptor for this state.
+	// FIXME: Type needs to be considered here!
 	auto t_operationHandle(t_mddescription.getFirstOperationHandleForOperationTarget(p_state.getDescriptorHandle()));
-
-
-
 	if (t_operationHandle.empty()) {
 		// No operation targeting this state was found.
 		// check for operation that targets state
-		t_operationHandle = t_mddescription.getFirstOperationHandleForOperationTarget(p_state.getDescriptorHandle());
+		t_operationHandle = t_mddescription.getFirstOperationHandleForOperationTarget(p_state.getDescriptorHandle()); // FIXME: duplicated code?
 	}
 	if (t_operationHandle.empty()) {
 		log_error([&] { return "Commit failed: No set operation found to modify given state! State has descriptor handle " + p_state.getDescriptorHandle(); });
@@ -540,11 +545,10 @@ InvocationState SDCConsumer::commitStateImpl(const StateType & p_state, FutureIn
 	auto t_response(m_adapter->invoke(t_request, getSDCInstance()->getSSLConfig()->getClientContext()));
 	if (nullptr == t_response) {
 		return InvocationState::Fail;
-	} else {
-		handleInvocationState(t_response->getInvocationInfo().getTransactionId(), p_fis);
-		return ConvertFromCDM::convert(t_response->getInvocationInfo().getInvocationState());
 	}
-	// FIXME: Return "else part" here?
+
+	handleInvocationState(t_response->getInvocationInfo().getTransactionId(), p_fis);
+	return ConvertFromCDM::convert(t_response->getInvocationInfo().getInvocationState());
 }
 
 void SDCConsumer::handleInvocationState(int p_transactionId, FutureInvocationState & p_fis)
@@ -582,11 +586,10 @@ InvocationState SDCConsumer::activate(const std::string & p_handle, FutureInvoca
 	auto t_response(m_adapter->invoke(t_request, getSDCInstance()->getSSLConfig()->getClientContext()));
 	if (nullptr == t_response) {
 		return InvocationState::Fail;
-	} else {
-		handleInvocationState(t_response->getInvocationInfo().getTransactionId(), p_fis);
-		return ConvertFromCDM::convert(t_response->getInvocationInfo().getInvocationState());
 	}
-	// FIXME: Return "else part" here?
+
+	handleInvocationState(t_response->getInvocationInfo().getTransactionId(), p_fis);
+	return ConvertFromCDM::convert(t_response->getInvocationInfo().getInvocationState());
 }
 
 //// specialization needed for API
