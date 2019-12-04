@@ -27,6 +27,8 @@ SerialConnection::SerialConnection(std::string port, unsigned int baud_rate) :
 	m_reconnectThread  = std::thread([&] {
 		while(true)
 		{
+			std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
 			auto t_now = std::chrono::steady_clock::now();
 			auto t_elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(t_now - m_lastReceive);
 

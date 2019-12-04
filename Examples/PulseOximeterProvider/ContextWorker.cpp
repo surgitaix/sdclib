@@ -50,6 +50,7 @@ namespace Network {
     {
         try
         {
+        	std::this_thread::sleep_for(std::chrono::milliseconds(500));
             asio::io_context::work work(*context);
             do
             {
