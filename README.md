@@ -16,6 +16,10 @@
     - **sudo apt-get install xsdcxx**  
     - **sudo apt-get install libxerces-c-dev**  
     - **sudo apt-get install libssl-dev**  
+- Examples for Manjaro:  
+    - **pamac install xerces-c**  
+    - **pamac install xsd**  
+    
 <br/>
 
 ## Build SDCLib using CMake
