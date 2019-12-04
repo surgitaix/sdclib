@@ -17,6 +17,7 @@
 #include "SDCLib/Data/SDC/MDIB/OperatorContextDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/PatientContextDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/DistributionSampleArrayMetricDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/ActivateOperationDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/VmdDescriptor.h"
@@ -45,6 +46,7 @@ template std::unique_ptr<NumericMetricDescriptor>  MdDescription::findDescriptor
 template std::unique_ptr<OperatorContextDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
 template std::unique_ptr<PatientContextDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
 template std::unique_ptr<RealTimeSampleArrayMetricDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
+template std::unique_ptr<DistributionSampleArrayMetricDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
 template std::unique_ptr<StringMetricDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
 template std::unique_ptr<VmdDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
 template std::unique_ptr<WorkflowContextDescriptor>  MdDescription::findDescriptor(const std::string & handle) const;
@@ -256,6 +258,10 @@ bool MdDescription::findDescriptor(const std::string & handle, VmdDescriptor & o
 }
 
 bool MdDescription::findDescriptor(const std::string & handle, RealTimeSampleArrayMetricDescriptor & outDescriptor) const {
+	return findMetricDescriptorImpl(handle, outDescriptor);
+}
+
+bool MdDescription::findDescriptor(const std::string & handle, DistributionSampleArrayMetricDescriptor & outDescriptor) const {
 	return findMetricDescriptorImpl(handle, outDescriptor);
 }
 
@@ -643,6 +649,12 @@ std::vector<NumericMetricDescriptor> MdDescription::collectAllNumericMetricDescr
 
 std::vector<RealTimeSampleArrayMetricDescriptor> MdDescription::collectAllRealTimeSampleArrayMetricDescriptors() const {
 	std::vector<RealTimeSampleArrayMetricDescriptor> result;
+	collectMetricDescriptorImpl(result);
+	return result;
+}
+
+std::vector<DistributionSampleArrayMetricDescriptor> MdDescription::collectAllDistributionSampleArrayMetricDescriptors() const {
+	std::vector<DistributionSampleArrayMetricDescriptor> result;
 	collectMetricDescriptorImpl(result);
 	return result;
 }
