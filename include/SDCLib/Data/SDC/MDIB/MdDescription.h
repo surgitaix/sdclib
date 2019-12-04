@@ -96,6 +96,8 @@ public:
 	std::vector<MdsDescriptor> collectAllMdsDescriptors() const;
 	std::vector<NumericMetricDescriptor> collectAllNumericMetricDescriptors() const;
 	std::vector<RealTimeSampleArrayMetricDescriptor> collectAllRealTimeSampleArrayMetricDescriptors() const;
+    std::vector<DistributionSampleArrayMetricDescriptor> collectAllDistributionSampleArrayMetricDescriptors() const;
+    
 	std::vector<StringMetricDescriptor> collectAllStringMetricDescriptors() const;
 	std::vector<ActivateOperationDescriptor> collectAllActivateOperationDescriptors() const;
 	std::vector<VmdDescriptor> collectAllVmdDescriptors() const;
@@ -117,6 +119,7 @@ private:
 	bool findDescriptor(const std::string & handle, OperatorContextDescriptor & outDescriptor) const;
 	bool findDescriptor(const std::string & handle, PatientContextDescriptor & outDescriptor) const;
 	bool findDescriptor(const std::string & handle, RealTimeSampleArrayMetricDescriptor & outDescriptor) const;
+    bool findDescriptor(const std::string & handle, DistributionSampleArrayMetricDescriptor & outDescriptor) const;
 	bool findDescriptor(const std::string & handle, StringMetricDescriptor & outDescriptor) const;
 	bool findDescriptor(const std::string & handle, VmdDescriptor & outDescriptor) const;
 	bool findDescriptor(const std::string & handle, WorkflowContextDescriptor & outDescriptor) const;
