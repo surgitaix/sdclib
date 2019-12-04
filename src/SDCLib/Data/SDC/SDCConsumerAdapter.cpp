@@ -429,13 +429,34 @@ SDCConsumerAdapter::SDCConsumerAdapter(SDCConsumer & p_consumer, OSELib::DPWS::D
 }
 SDCConsumerAdapter::~SDCConsumerAdapter()
 {
-	stop();
+	std::lock_guard<std::mutex> t_lock(m_mutex);
+
+	// No more listening to events
+	unsubscribeEvents();
+
+	if (m_httpServer)
+	{
+		m_httpServer->stopAll(false); // Comment: Why false?
+		// TODO: Why wait here?
+		while (m_httpServer->currentConnections() != 0)
+		{
+			std::this_thread::sleep_for(std::chrono::milliseconds(25));
+		}
+		m_httpServer.reset();
+	}
+
+	if (m_pingManager) // Todo: Why dump it? -> PINGMANAGER: FIX CLEANUP / RAII... FIXME
+	{
+		m_pingManager->disable();
+		m_consumer.getSDCInstance()->dumpPingManager(std::move(m_pingManager));
+	}
 }
 
 bool SDCConsumerAdapter::start()
 {
 	std::lock_guard<std::mutex> t_lock(m_mutex);
-	if (m_httpServer) {
+	if (m_httpServer)
+	{
 		return false;
 	}
 
@@ -456,7 +477,8 @@ bool SDCConsumerAdapter::start()
     }
 	m_httpServer->start();
 
-	if (m_pingManager) {
+	if (m_pingManager)
+	{
 		//todo maybe throw because starting twice is clearly an error
         // FIXME:
         // (ERROR != THROWING) DONT USE EXCEPTIONS AS FLOW CONTROL... assert, static_assert + logging etc.
@@ -464,27 +486,12 @@ bool SDCConsumerAdapter::start()
 	}
 
 	m_pingManager = std::unique_ptr<OSELib::DPWS::PingManager>(new OSELib::DPWS::PingManager(m_consumer));
+
+
+	// Event Handling
+	subscribeEvents();
+
     return true;
-}
-
-
-void SDCConsumerAdapter::stop()
-{
-	std::lock_guard<std::mutex> t_lock(m_mutex);
-
-	if (m_httpServer) {
-		m_httpServer->stopAll(false); // Comment: Why false?
-		// TODO: Why wait here?
-		while (m_httpServer->currentConnections() != 0) {
-			std::this_thread::sleep_for(std::chrono::milliseconds(50));
-		}
-		m_httpServer.reset();
-	}
-
-	if (m_pingManager) { // Todo: Why dump it? -> PINGMANAGER: FIX CLEANUP / RAII... FIXME
-		m_pingManager->disable();
-		m_consumer.getSDCInstance()->dumpPingManager(std::move(m_pingManager));
-	}
 }
 
 void SDCConsumerAdapter::subscribeEvents()
@@ -538,7 +545,8 @@ void SDCConsumerAdapter::subscribeEvents()
 	m_subscriptionClient = std::unique_ptr<OSELib::DPWS::SubscriptionClient>(new OSELib::DPWS::SubscriptionClient(tl_subscriptions, m_consumer.getSDCInstance()->getSSLConfig()->getClientContext()));
 }
 
-void SDCConsumerAdapter::unsubscribeEvents() {
+void SDCConsumerAdapter::unsubscribeEvents()
+{
 	if (m_subscriptionClient) {
 		m_subscriptionClient.reset();
 	}

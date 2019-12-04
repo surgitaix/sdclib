@@ -30,8 +30,8 @@ namespace OSELib
 				std::mutex m_mutex_messageID;
 				std::mutex m_mutex_appSequence;
 
-				std::atomic_ullong m_instanceId = ATOMIC_VAR_INIT(0);
-				std::atomic_ullong m_messageCounter = ATOMIC_VAR_INIT(0);
+				std::atomic_ullong m_instanceId{0};
+				std::atomic_ullong m_messageCounter{0};
 
 				std::deque<std::string> ml_knownMessageIds;
 				using SequenceMapping = std::map<std::string, unsigned long long int>;

@@ -25,14 +25,14 @@ namespace OSELib
 		class MDPWSHostAdapter : public ProbeNotificationDispatcher, public ResolveNotificationDispatcher
 		{
 		private:
-			std::atomic<bool> m_started = ATOMIC_VAR_INIT(false);
+			std::atomic<bool> m_started{false};
 			const AddressType m_epr;
 			ScopesType m_scopes;
 			TypesType m_types;
 			XAddressesType m_xaddresses;
-			std::atomic<int> m_metadataVersion = ATOMIC_VAR_INIT(1);
+			std::atomic<int> m_metadataVersion{1};
 
-			std::unique_ptr<Impl::DPWSHostSocketImpl> m_impl = nullptr;
+			std::unique_ptr<Impl::DPWSHostSocketImpl> m_impl{nullptr};
 
 		public:
 			MDPWSHostAdapter(

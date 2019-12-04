@@ -48,11 +48,11 @@ namespace SDCLib
 
         mutable std::mutex m_mutex;
 
-        std::atomic<bool> m_init = ATOMIC_VAR_INIT(false);
+        std::atomic<bool> m_init{false};
 
-        Config::SDCConfig_shared_ptr m_SDCConfig = nullptr;
+        Config::SDCConfig_shared_ptr m_SDCConfig{nullptr};
 
-        std::unique_ptr<OSELib::DPWS::PingManager> m_latestPingManager = nullptr;
+        std::unique_ptr<OSELib::DPWS::PingManager> m_latestPingManager{nullptr};
 
     public:
 

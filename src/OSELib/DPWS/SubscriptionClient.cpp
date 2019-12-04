@@ -103,7 +103,8 @@ void SubscriptionClient::run() {
 
 	std::size_t t_sleepQueryGetStatus_ms = 2000; // TODO: MAGIC NUMBER
 
-	for (const auto & t_subscription : m_subscriptions) {
+	for (const auto & t_subscription : m_subscriptions)
+	{
 		// get information
 		const WS::ADDRESSING::AttributedURIType t_address(t_subscription.second.m_sinkURI.toString());
 		WS::ADDRESSING::EndpointReferenceType t_epr(t_address);
@@ -123,11 +124,14 @@ void SubscriptionClient::run() {
 
 		if (!t_response
 			|| !t_response->getSubscriptionManager().getReferenceParameters().present()
-			|| !t_response->getSubscriptionManager().getReferenceParameters().get().getIdentifier().present()) {
+			|| !t_response->getSubscriptionManager().getReferenceParameters().get().getIdentifier().present())
+		{
 			log_fatal([&] { return "Subscribing failed."; });
 			continue;
-		} else {
-			log_information([] { return "Subscription accomplished"; });
+		}
+		else
+		{
+			log_debug([] { return "Subscription accomplished"; });
 		}
 
 		m_subscriptionIdentifiers.emplace(t_subscription.first, t_response->getSubscriptionManager().getReferenceParameters().get().getIdentifier().get());
@@ -143,11 +147,11 @@ void SubscriptionClient::run() {
 			OSELib::Helper::DurationWrapper t_expireDuration(t_expireString); // Init to default
 
 			GetStatusInvoke t_getStatusInvoke(subscription.second.m_sourceURI, m_subscriptionIdentifiers.at(subscription.first), t_grammarProvider);
-			auto t_response(t_getStatusInvoke.invoke(t_getStatusRequest, m_SSLContext));
+			auto t_response_Status(t_getStatusInvoke.invoke(t_getStatusRequest, m_SSLContext));
 
 			// Valid response - Init
-			if (t_response != nullptr) {
-				t_expireDuration = OSELib::Helper::DurationWrapper(t_response.get()->getExpires().get());
+			if (t_response_Status != nullptr) {
+				t_expireDuration = OSELib::Helper::DurationWrapper(t_response_Status.get()->getExpires().get());
 				log_debug([&] { return "GetStatus " + m_subscriptionIdentifiers.at(subscription.first) + ": " + t_expireDuration.toString() + "."; });
 			}
 			else {
@@ -163,9 +167,9 @@ void SubscriptionClient::run() {
 				OSELib::DPWS::RenewTraits::Request t_request;
 				t_request.setExpires(t_defaultExpires);
 				RenewInvoke t_renewInvoke(subscription.second.m_sourceURI, m_subscriptionIdentifiers.at(subscription.first), t_grammarProvider);
-				auto t_response(t_renewInvoke.invoke(t_request, m_SSLContext));
+				auto t_response_Renew(t_renewInvoke.invoke(t_request, m_SSLContext));
 
-				if (!t_response) {
+				if (!t_response_Renew) {
 					log_fatal([] { return "Renew failed."; });
 				}
 			}

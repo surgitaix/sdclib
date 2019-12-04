@@ -102,13 +102,13 @@ using namespace SDCLib::Data::SDC;
 
 
 // Some values to configure the test
-const int LOOP_SLEEP = 200;
-const int NUM_LOOPS_SLEEP = 2; // The number of loops to wait and let the provider run
+const int LOOP_SLEEP{200};
+const int NUM_LOOPS_SLEEP{2}; // The number of loops to wait and let the provider run
 
-const double WEIGHT_LOWER = 0.0;
-const double WEIGHT_UPPER = 2.0;
-const double WEIGHT_MAX = 2.5;
-const double WEIGHT_INCR_PER_LOOP = 0.2;
+const double WEIGHT_LOWER{0.0};
+const double WEIGHT_UPPER{2.0};
+const double WEIGHT_MAX{2.5};
+const double WEIGHT_INCR_PER_LOOP{0.2};
 
 namespace SDCLib {
 namespace Tests {
@@ -118,200 +118,219 @@ namespace SimpleSDC {
 // define handles and IDs
 //
 
-const std::string DEVICE_ENDPOINT_REFERENCE("EPR_1234");
-const int DEFAULT_TIMEOUT(5000);
+const std::string DEVICE_ENDPOINT_REFERENCE{"EPR_1234"};
+const int DEFAULT_TIMEOUT{5000};
 
 // Device's taxonomic description
-const std::string MDS_HANDLE("sampleMDS");
-const std::string VMD_DESCRIPTOR_HANDLE("vmd_descriptor");
-const std::string CHANNEL_DESCRIPTOR_HANDLE("first_channel");
+const std::string MDS_HANDLE{"sampleMDS"};
+const std::string VMD_DESCRIPTOR_HANDLE{"vmd_descriptor"};
+const std::string CHANNEL_DESCRIPTOR_HANDLE{"first_channel"};
 
 // Metrices
 //
 // all metrices are tested to be succesfully requested by the consumer from the provider
 //
 // 1. a provider side changing numeric metric representing a measured value
-const std::string NUMERIC_METRIC_CURRENT_HANDLE("handle_cur");
+const std::string NUMERIC_METRIC_CURRENT_HANDLE{"handle_cur"};
 // 2. a numeric metric representing a a limit for this changing value
 // this value is set writable, thus the consumer is able to set it
-const std::string NUMERIC_METRIC_MAX_HANDLE("handle_max");
+const std::string NUMERIC_METRIC_MAX_HANDLE{"handle_max"};
 // 3. a string metric which is also set by the consumer
-const std::string STRING_METRIC_HANDLE("handle_str");
+const std::string STRING_METRIC_HANDLE{"handle_str"};
 // 4. an enum metric is also tried to be set by the consumer with legal an illegal values
-const std::string ENUM_METRIC_HANDLE("handle_enum");
+const std::string ENUM_METRIC_HANDLE{"handle_enum"};
 
 // AlertSystem
 //
 // 1. a limit alert condition that consists of the bounds which must be kept by the handle_cur numeric metric state
 // 		a LimitAlertConditionStateHandler with the same name checks compliance
-const std::string ALERT_CONDITION_HANDLE("handle_alert_condition_limit");
+const std::string ALERT_CONDITION_HANDLE{"handle_alert_condition_limit"};
 // 2. an alert signal whose attribute presents is changed
-const std::string ALERT_SIGNAL_HANDLE("handle_alert_signal");
+const std::string ALERT_SIGNAL_HANDLE{"handle_alert_signal"};
 // 3. an latching alert signal which latched state is checked
-const std::string ALERT_SIGNAL_LATCHING_HANDLE("handle_alert_signal_latching");
+const std::string ALERT_SIGNAL_LATCHING_HANDLE{"handle_alert_signal_latching"};
 
 
 // component state handler
-const std::string ALERT_SYSTEM_HANDLE("handle_alert_system");
-const std::string CMD_HANDLE("cmd_handle");
+const std::string ALERT_SYSTEM_HANDLE{"handle_alert_system"};
+const std::string CMD_HANDLE{"cmd_handle"};
 
 
 // context states
-const std::string LOCATION_CONTEXT_HANDLE("location_context");
-const std::string PATIENT_CONTEXT_HANDLE("patient_context");
+const std::string LOCATION_CONTEXT_HANDLE{"location_context"};
+const std::string PATIENT_CONTEXT_HANDLE{"patient_context"};
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Consumer event handlers
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-class ExampleConsumerNumericHandler : public SDCConsumerMDStateHandler<NumericMetricState> {
+class ExampleConsumerNumericHandler : public SDCConsumerMDStateHandler<NumericMetricState>
+{
 public:
-	ExampleConsumerNumericHandler(const std::string & descriptorHandle)
-    : SDCConsumerMDStateHandler(descriptorHandle)
+	ExampleConsumerNumericHandler(const std::string p_descriptorHandle)
+    : SDCConsumerMDStateHandler(p_descriptorHandle)
 	{ }
-    virtual ~ExampleConsumerNumericHandler() = default; // TODO: Why virtual?
 
-    void onStateChanged(const NumericMetricState & state) override {
-        auto t_val = state.getMetricValue().getValue();
-        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received value changed of " << descriptorHandle << ": " << t_val << std::endl;
-        m_weight = t_val;
-        eventEMR.set();
+    void onStateChanged(const NumericMetricState& p_changedState) override
+    {
+        auto t_metricValue{p_changedState.getMetricValue().getValue()};
+        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received value changed of " << getDescriptorHandle() << ": " << t_metricValue << std::endl;
+        m_weight = t_metricValue;
+        m_eventEMR.set();
     }
 
-    void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) override {
-        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received operation invoked (ID, STATE) of " << descriptorHandle << ": " << oic.transactionId << ", " << EnumToString::convert(is) << std::endl;
+    void onOperationInvoked(const OperationInvocationContext& oic, InvocationState is) override
+    {
+        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received operation invoked (ID, STATE) of " << getDescriptorHandle() << ": " << oic.transactionId << ", " << EnumToString::convert(is) << std::endl;
     }
 
-    double getWeight() const { return m_weight; }
+    double getWeight() const
+    {
+    	return m_weight;
+    }
 
-	Poco::Event & getEventEMR() {
-		return eventEMR;
+	Poco::Event& getEventEMR()
+	{
+		return m_eventEMR;
 	}
 
 private:
-    std::atomic<double> m_weight = ATOMIC_VAR_INIT(0.0);
-    Poco::Event eventEMR;
+    std::atomic<double> m_weight{0.0};
+    Poco::Event m_eventEMR;
 };
 
 class ExampleConsumerEnumStringMetricHandler : public SDCConsumerMDStateHandler<EnumStringMetricState>
 {
 public:
-	ExampleConsumerEnumStringMetricHandler(const std::string& p_descriptorHandle)
+	ExampleConsumerEnumStringMetricHandler(const std::string p_descriptorHandle)
 	: SDCConsumerMDStateHandler(p_descriptorHandle)
 	{ }
 
-    virtual ~ExampleConsumerEnumStringMetricHandler() = default; // TODO: Why virtual?
-
-    void onStateChanged(const EnumStringMetricState & state) override
+    void onStateChanged(const EnumStringMetricState& p_changedState) override
     {
-    	const std::string val(state.getMetricValue().getValue());
-        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received value changed of " << descriptorHandle << ": " << val << std::endl;
-        eventEMR.set();
+    	const std::string t_metricValue{p_changedState.getMetricValue().getValue()};
+        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received value changed of " << getDescriptorHandle() << ": " << t_metricValue << std::endl;
+        m_eventEMR.set();
     }
 
-    void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) override {
-        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received operation invoked (ID, STATE) of " << descriptorHandle << ": " << oic.transactionId << ", " << EnumToString::convert(is) << std::endl;
+    void onOperationInvoked(const OperationInvocationContext& p_oic, InvocationState p_is) override
+    {
+        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received operation invoked (ID, STATE) of " << getDescriptorHandle() << ": " << p_oic.transactionId << ", " << EnumToString::convert(p_is) << std::endl;
     }
 
-	Poco::Event & getEventEMR() {
-		return eventEMR;
+	Poco::Event& getEventEMR()
+	{
+		return m_eventEMR;
 	}
 
 private:
-    Poco::Event eventEMR;
+    Poco::Event m_eventEMR;
 };
 
-class ExampleConsumerStringMetricHandler : public SDCConsumerMDStateHandler<StringMetricState> {
+
+class ExampleConsumerStringMetricHandler : public SDCConsumerMDStateHandler<StringMetricState>
+{
 public:
-	ExampleConsumerStringMetricHandler(const std::string& p_descriptorHandle)
+	ExampleConsumerStringMetricHandler(const std::string p_descriptorHandle)
 	: SDCConsumerMDStateHandler(p_descriptorHandle)
 	{ }
 
-    virtual ~ExampleConsumerStringMetricHandler() = default; // TODO: Why virtual?
-
-    void onStateChanged(const StringMetricState & state) override {
-    	const std::string val(state.getMetricValue().getValue());
-        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received value changed of " << handle << ": " << val << std::endl;
-        eventEMR.set();
+    void onStateChanged(const StringMetricState& p_changedState) override
+    {
+    	const std::string t_changedValue{p_changedState.getMetricValue().getValue()};
+        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received value changed of " << getDescriptorHandle() << ": " << t_changedValue << std::endl;
+        m_eventEMR.set();
     }
 
-    void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) override {
-        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received operation invoked (ID, STATE) of " << handle << ": " << oic.transactionId << ", " << EnumToString::convert(is) << std::endl;
+    void onOperationInvoked(const OperationInvocationContext& p_oic, InvocationState p_is) override
+    {
+        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received operation invoked (ID, STATE) of " << getDescriptorHandle() << ": " << p_oic.transactionId << ", " << EnumToString::convert(p_is) << std::endl;
     }
 
-	Poco::Event & getEventEMR() {
-		return eventEMR;
+	Poco::Event& getEventEMR()
+	{
+		return m_eventEMR;
 	}
 
 private:
-    const std::string handle;
-    Poco::Event eventEMR;
+    Poco::Event m_eventEMR;
 };
 
-class ExampleConsumerAlertSignalHandler : public SDCConsumerMDStateHandler<AlertSignalState> {
+
+class ExampleConsumerAlertSignalHandler : public SDCConsumerMDStateHandler<AlertSignalState>
+{
 public:
 	ExampleConsumerAlertSignalHandler(const std::string& p_descriptorHandle)
 	: SDCConsumerMDStateHandler(p_descriptorHandle)
 	{ }
 
-    virtual ~ExampleConsumerAlertSignalHandler() = default; // TODO: Why virtual?
-
-    void onStateChanged(const AlertSignalState & state) override {
-        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received alert signal changed of " << descriptorHandle << ", presence = " << EnumToString::convert(state.getPresence()) << std::endl;
-        if (state.getPresence() == AlertSignalPresence::Off) {
-        	eventEAROff.set();
+    void onStateChanged(const AlertSignalState& p_changedState) override
+    {
+        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received alert signal changed of " << getDescriptorHandle() << ", presence = " << EnumToString::convert(p_changedState.getPresence()) << std::endl;
+        if (AlertSignalPresence::Off == p_changedState.getPresence())
+        {
+        	m_eventEAROff.set();
         }
-        if (state.getPresence() == AlertSignalPresence::On) {
-        	eventEAROn.set();
+        if (AlertSignalPresence::On == p_changedState.getPresence())
+        {
+        	m_eventEAROn.set();
         }
-        if (state.getPresence() == AlertSignalPresence::Latch) {
-        	eventEARLatch.set();
+        if (AlertSignalPresence::Latch == p_changedState.getPresence())
+        {
+        	m_eventEARLatch.set();
         }
     }
 
-    void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) override {
-        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received operation invoked (ID, STATE) of " << descriptorHandle << ": " << oic.transactionId << ", " << EnumToString::convert(is) << std::endl;
+    void onOperationInvoked(const OperationInvocationContext& p_oic, InvocationState p_is) override
+    {
+        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received operation invoked (ID, STATE) of " << getDescriptorHandle() << ": " << p_oic.transactionId << ", " << EnumToString::convert(p_is) << std::endl;
     }
 
-	Poco::Event & getEventEAROff() {
-		return eventEAROff;
+	Poco::Event& getEventEAROff()
+	{
+		return m_eventEAROff;
 	}
 
-	Poco::Event & getEventEAROn() {
-		return eventEAROn;
+	Poco::Event& getEventEAROn()
+	{
+		return m_eventEAROn;
 	}
 
-	Poco::Event & getEventEARLatch() {
-		return eventEARLatch;
+	Poco::Event& getEventEARLatch()
+	{
+		return m_eventEARLatch;
 	}
 
 private:
-    Poco::Event eventEAROff;
-    Poco::Event eventEAROn;
-    Poco::Event eventEARLatch;
+    Poco::Event m_eventEAROff;
+    Poco::Event m_eventEAROn;
+    Poco::Event m_eventEARLatch;
 };
 
 // context state handlers
 
-class ExampleLocationContextEventHandler : public SDCConsumerMDStateHandler<LocationContextState> {
+class ExampleLocationContextEventHandler : public SDCConsumerMDStateHandler<LocationContextState>
+{
 public:
 
-	ExampleLocationContextEventHandler(const std::string& p_descriptorHandle)
+	ExampleLocationContextEventHandler(const std::string p_descriptorHandle)
 	: SDCConsumerMDStateHandler(p_descriptorHandle)
 	{ }
 
-	virtual void onStateChanged(const LocationContextState & state) override {
-        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received location context values changed for handle" << state.getHandle() << std::endl;
-  		eventEMR.set();
+	void onStateChanged(const LocationContextState& p_changedState) override
+	{
+        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received location context values changed for handle" << p_changedState.getHandle() << std::endl;
+  		m_eventEMR.set();
 	}
 
-	Poco::Event & getEventEMR() {
-		return eventEMR;
+	Poco::Event& getEventEMR()
+	{
+		return m_eventEMR;
 	}
 
 private:
-	Poco::Event eventEMR;
+	Poco::Event m_eventEMR;
 };
 
 
@@ -319,21 +338,23 @@ class ExamplePatientContextEventHandler : public SDCConsumerMDStateHandler<Patie
 {
 public:
 
-	ExamplePatientContextEventHandler(const std::string& p_descriptorHandle)
+	ExamplePatientContextEventHandler(const std::string p_descriptorHandle)
 	: SDCConsumerMDStateHandler(p_descriptorHandle)
 	{ }
 
-	void onStateChanged(const PatientContextState & state) override {
-        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received patient context values changed for handle" << state.getHandle() << std::endl;
-  		eventEMR.set();
+	void onStateChanged(const PatientContextState& p_changedState) override
+	{
+        DebugOut(DebugOut::Default, "SimpleSDC") << "Consumer: Received patient context values changed for handle" << p_changedState.getHandle() << std::endl;
+        m_eventEMR.set();
 	}
 
-	Poco::Event & getEventEMR() {
-		return eventEMR;
+	Poco::Event& getEventEMR()
+	{
+		return m_eventEMR;
 	}
 
 private:
-	Poco::Event eventEMR;
+	Poco::Event m_eventEMR;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -347,38 +368,50 @@ private:
 // each time a multi state (which has the same descritptor handle but differs in the handle attribute) changes,
 // the state hander is called. The user has to destinguish!
 
-class LocationContextStateHandler : public SDCProviderMDStateHandler<LocationContextState> {
+class LocationContextStateHandler : public SDCProviderMDStateHandler<LocationContextState>
+{
 public:
-	LocationContextStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {}
-	virtual InvocationState onStateChangeRequest(const LocationContextState & state,  const OperationInvocationContext&) override {
-		if (state.getDescriptorHandle() !=  LOCATION_CONTEXT_HANDLE)
-			return InvocationState::Fail;
+	LocationContextStateHandler(const std::string p_descriptorHandle)
+	: SDCProviderMDStateHandler(p_descriptorHandle)
+	{ }
 
+	InvocationState onStateChangeRequest(const LocationContextState& p_changedState,  const OperationInvocationContext&) override
+	{
+		if (LOCATION_CONTEXT_HANDLE != p_changedState.getDescriptorHandle())
+		{
+			return InvocationState::Fail;
+		}
 		DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: ContextHandler received state change request" << std::endl;
 		return InvocationState::Fin;
 	}
 
-	virtual LocationContextState getInitialState() override {
-		LocationContextState locationContextState(descriptorHandle, "multistate1");
-		return locationContextState;
+	LocationContextState getInitialState() override
+	{
+		return {getDescriptorHandle(), "multistate1"};
 	}
 
 };
 
-class PatientContextStateHandler : public SDCProviderMDStateHandler<PatientContextState> {
+class PatientContextStateHandler : public SDCProviderMDStateHandler<PatientContextState>
+{
 public:
-	PatientContextStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {}
-	virtual InvocationState onStateChangeRequest(const PatientContextState & state,  const OperationInvocationContext&) override {
-		if (state.getDescriptorHandle() !=  PATIENT_CONTEXT_HANDLE)
-			return InvocationState::Fail;
+	PatientContextStateHandler(const std::string p_descriptorHandle)
+	: SDCProviderMDStateHandler(p_descriptorHandle)
+	{ }
 
+	InvocationState onStateChangeRequest(const PatientContextState& p_changedState,  const OperationInvocationContext&) override
+	{
+		if (PATIENT_CONTEXT_HANDLE != p_changedState.getDescriptorHandle())
+		{
+			return InvocationState::Fail;
+		}
 		DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: ContextHandler received state change request" << std::endl;
 		return InvocationState::Fin;
 	}
 
-	virtual PatientContextState getInitialState() override {
-		PatientContextState patientContextState(descriptorHandle, "multistate1");
-		return patientContextState;
+	PatientContextState getInitialState() override
+	{
+		return {getDescriptorHandle(), "multistate1"};
 	}
 
 };
@@ -388,18 +421,19 @@ class MaxValueStateHandler : public SDCProviderMDStateHandler<NumericMetricState
 {
 public:
 
-    MaxValueStateHandler(std::string descriptorHandle)
-	: SDCProviderMDStateHandler(descriptorHandle)
+    MaxValueStateHandler(const std::string p_descriptorHandle)
+	: SDCProviderMDStateHandler(p_descriptorHandle)
 	{ }
 
-    InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const NumericMetricState& p_changedState, const OperationInvocationContext& p_oic) override
+    {
         // Invocation has been fired as WAITING when entering this method
     	DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: MaxValueStateHandler received state change request" << std::endl;
 
-    	notifyOperationInvoked(oic, InvocationState::Start);
+    	notifyOperationInvoked(p_oic, InvocationState::Start);
 
         // we can update here, but if we return Fin, the framework will also update
-        updateState(state);
+        updateState(p_changedState);
 
         // Usually, update the real device's state here.
 
@@ -408,27 +442,31 @@ public:
     }
 
     // Helper method
-    NumericMetricState createState() {
-        auto t_result = NumericMetricState(descriptorHandle);
-        t_result.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(2.0))
+    NumericMetricState createState()
+    {
+        NumericMetricState t_newState{getDescriptorHandle()};
+        t_newState.setMetricValue(NumericMetricValue{MetricQuality{MeasurementValidity::Vld}}.setValue(2.0))
                 .setActivationState(ComponentActivation::On);
-        return t_result;
+        return t_newState;
     }
 
-    NumericMetricState getInitialState() override {
+    NumericMetricState getInitialState() override
+    {
         return createState();
     }
 
     // Convenience value getter
-    double getMaxWeight() {
-    	std::unique_ptr<NumericMetricState> result(getParentProvider().getMdState().findState<NumericMetricState>(NUMERIC_METRIC_MAX_HANDLE));
+    double getMaxWeight()
+    {
+    	auto t_numericMaxState{getParentProvider().getMdState().findState<NumericMetricState>(NUMERIC_METRIC_MAX_HANDLE)};
         // check if result is valid
-        if (result != nullptr) {
-        	// In real applications, check if state has an observed value and if the observed value has a value!
-        	return result->getMetricValue().getValue();
+        if ((nullptr != t_numericMaxState) && (t_numericMaxState->hasMetricValue()))
+        {
+        	// In real applications, check if state has an observed value!
+        	return t_numericMaxState->getMetricValue().getValue();
         }
         DebugOut(DebugOut::Default, "SimpleSDC") << "Maximum weight metric not found." << std::endl;
-        return 0;
+        return {0};
     }
 };
 
@@ -440,46 +478,53 @@ class CurValueStateHandler : public SDCProviderMDStateHandler<NumericMetricState
 {
 public:
 
-    CurValueStateHandler(std::string descriptorHandle)
-	: SDCProviderMDStateHandler(descriptorHandle)
+    CurValueStateHandler(const std::string p_descriptorHandle)
+	: SDCProviderMDStateHandler(p_descriptorHandle)
 	{ }
 
 	// define how to react on a request for a state change. This handler should not be set, thus always return Fail.
-	InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext&) override {
+	InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext&) override
+	{
 		return InvocationState::Fail;
 	}
     // Helper method
-    NumericMetricState createState(double value) {
-        auto t_result = NumericMetricState(descriptorHandle);
-        t_result
-            .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
+    NumericMetricState createState(double p_initialValue)
+    {
+        NumericMetricState t_newState{getDescriptorHandle()};
+        t_newState
+            .setMetricValue(NumericMetricValue{MetricQuality{MeasurementValidity::Vld}}.setValue(p_initialValue))
             .setActivationState(ComponentActivation::On)
             .setDescriptorHandle(NUMERIC_METRIC_CURRENT_HANDLE)
-            .setLifeTimePeriod(xml_schema::Duration(0,0,0,0,0,0,1));
-        return t_result;
+            .setLifeTimePeriod(xml_schema::Duration{0,0,0,0,0,0,1});
+        return t_newState;
     }
 
-    NumericMetricState getInitialState() override {
-        return createState(0);
+    NumericMetricState getInitialState() override
+    {
+        return createState(0.0);
     }
 
-    void setNumericValue(double value) {
-        NumericMetricState currentWeightState = createState(value);
+    void setNumericValue(double p_newValue)
+    {
+        auto currentWeightState{createState(p_newValue)};
         // Call update function (this will update internal MDIB and increase MDIB version number)
         updateState(currentWeightState);
     }
 };
 
-class EnumStringMetricStateHandler : public SDCProviderMDStateHandler<EnumStringMetricState> {
+class EnumStringMetricStateHandler : public SDCProviderMDStateHandler<EnumStringMetricState>
+{
 public:
 
-	EnumStringMetricStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
-    }
+	EnumStringMetricStateHandler(const std::string p_descriptorHandle)
+	: SDCProviderMDStateHandler(p_descriptorHandle)
+	{ }
 
-    InvocationState onStateChangeRequest(const EnumStringMetricState&, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const EnumStringMetricState&, const OperationInvocationContext& p_oic) override
+    {
         // Invocation has been fired as WAITING when entering this method
     	DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: EnumStringMetricStateHandler received state change request" << std::endl;
-    	notifyOperationInvoked(oic, InvocationState::Start);
+    	notifyOperationInvoked(p_oic, InvocationState::Start);
 
         // we can update here, but if we return Fin, the framework will also notify
         //updateState(currentStringState);
@@ -490,30 +535,35 @@ public:
     }
 
     // Helper method
-    EnumStringMetricState createState(const std::string & value) {
-        EnumStringMetricState result(descriptorHandle);
-        result
-            .setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
+    EnumStringMetricState createState(const std::string& p_initialValue)
+    {
+        EnumStringMetricState t_newState{getDescriptorHandle()};
+        t_newState
+            .setMetricValue(StringMetricValue{MetricQuality{MeasurementValidity::Vld}}.setValue(p_initialValue))
             .setActivationState(ComponentActivation::On);
-        return result;
+        return t_newState;
     }
 
-    EnumStringMetricState getInitialState() override {
+    EnumStringMetricState getInitialState() override
+    {
         return createState("hello");
     }
 
 };
 
-class StrValueStateHandler : public SDCProviderMDStateHandler<StringMetricState> {
+class StrValueStateHandler : public SDCProviderMDStateHandler<StringMetricState>
+{
 public:
 
-    StrValueStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
-    }
+    StrValueStateHandler(const std::string p_descriptorHandle)
+	: SDCProviderMDStateHandler(p_descriptorHandle)
+	{ }
 
-    InvocationState onStateChangeRequest(const StringMetricState&, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const StringMetricState&, const OperationInvocationContext& p_oic) override
+    {
         // Invocation has been fired as WAITING when entering this method
     	DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: StrValueStateHandler received state change request" << std::endl;
-    	notifyOperationInvoked(oic, InvocationState::Start);
+    	notifyOperationInvoked(p_oic, InvocationState::Start);
 
         // we can update here, but if we return Fin, the framework will also notify
         //updateState(currentStringState);
@@ -524,37 +574,43 @@ public:
     }
 
     // Helper method
-    StringMetricState createState(const std::string & value) {
-        StringMetricState result(STRING_METRIC_HANDLE);
-        result
-            .setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
+    StringMetricState createState(const std::string& p_initialValue)
+    {
+        StringMetricState t_newState{STRING_METRIC_HANDLE};
+        t_newState
+            .setMetricValue(StringMetricValue{MetricQuality{MeasurementValidity::Vld}}.setValue(p_initialValue))
             .setActivationState(ComponentActivation::On);
-        return result;
+        return t_newState;
     }
 
-    StringMetricState getInitialState() override {
+    StringMetricState getInitialState() override
+    {
         return createState("Test");
     }
 
     // Convenience setter
-    void setStringValue(const std::string & value) {
-        StringMetricState currentState = createState(value);
+    void setStringValue(const std::string & p_newValue)
+    {
+        StringMetricState currentState{createState(p_newValue)};
         updateState(currentState);
     }
 
 };
 
-class AlertSignalStateHandler : public SDCProviderMDStateHandler<AlertSignalState> {
+class AlertSignalStateHandler : public SDCProviderMDStateHandler<AlertSignalState>
+{
 public:
 
-	AlertSignalStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
-    }
+	AlertSignalStateHandler(const std::string p_descriptorHandle)
+	: SDCProviderMDStateHandler(p_descriptorHandle)
+	{ }
 
-    InvocationState onStateChangeRequest(const AlertSignalState & state, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const AlertSignalState& p_changedState, const OperationInvocationContext & p_oic) override
+    {
         // Invocation has been fired as WAITING when entering this method
-    	DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: AlertSignalStateHandler received state change: " << EnumToString::convert(state.getPresence()) << std::endl;
+    	DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: AlertSignalStateHandler received state change: " << EnumToString::convert(p_changedState.getPresence()) << std::endl;
 
-    	notifyOperationInvoked(oic, InvocationState::Start);
+    	notifyOperationInvoked(p_oic, InvocationState::Start);
 
     	// Update the real device's state here (update device alarms)! Check state's presence and alertSignalState's presence values!
 
@@ -564,31 +620,29 @@ public:
         return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
     }
 
-    // Helper method
-    AlertSignalState createState() {
-        AlertSignalState result(ALERT_SIGNAL_HANDLE, AlertActivation::On); // Reference alert signal descriptor's handle // Component is working
-        result
-            .setPresence(AlertSignalPresence::Off);  // No alarm signal
-        return result;
-    }
-
-    AlertSignalState getInitialState() override {
-        return createState();
+    AlertSignalState getInitialState() override
+    {
+        AlertSignalState t_initialState{ALERT_SIGNAL_HANDLE, AlertActivation::On}; // Reference alert signal descriptor's handle // Component is working
+        t_initialState.setPresence(AlertSignalPresence::Off);  // No alarm signal
+        return t_initialState;
     }
 
 };
 
-class LatchingAlertSignalStateHandler : public SDCProviderMDStateHandler<AlertSignalState> {
+class LatchingAlertSignalStateHandler : public SDCProviderMDStateHandler<AlertSignalState>
+{
 public:
 
-	LatchingAlertSignalStateHandler(std::string descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle) {
-    }
+	LatchingAlertSignalStateHandler(const std::string p_descriptorHandle)
+	: SDCProviderMDStateHandler(p_descriptorHandle)
+	{ }
 
-    InvocationState onStateChangeRequest(const AlertSignalState & state, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const AlertSignalState& p_changedState, const OperationInvocationContext& p_oic) override
+    {
         // Invocation has been fired as WAITING when entering this method
-    	DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: LatchingAlertSignalStateHandler received state change: " << EnumToString::convert(state.getPresence()) << std::endl;
+    	DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: LatchingAlertSignalStateHandler received state change: " << EnumToString::convert(p_changedState.getPresence()) << std::endl;
 
-    	notifyOperationInvoked(oic, InvocationState::Start);
+    	notifyOperationInvoked(p_oic, InvocationState::Start);
 
     	// Update the real device's state here (update device alarms)! Check state's presence and alertSignalState's presence values!
 
@@ -598,38 +652,36 @@ public:
         return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
     }
 
-    // Helper method
-    AlertSignalState createState() {
-        AlertSignalState result(ALERT_SIGNAL_LATCHING_HANDLE, AlertActivation::On); // Reference alert signal descriptor's handle // Component is working
-        result
-            .setPresence(AlertSignalPresence::Off);  // No alarm signal
-        return result;
-    }
-
-    AlertSignalState getInitialState() override {
-        return createState();
+    AlertSignalState getInitialState() override
+    {
+        AlertSignalState t_initialState{ALERT_SIGNAL_LATCHING_HANDLE, AlertActivation::On}; // Reference alert signal descriptor's handle // Component is working
+        t_initialState.setPresence(AlertSignalPresence::Off);  // No alarm signal
+        return t_initialState;
     }
 
 };
 
-class LimitAlertConditionStateHandler : public SDCProviderAlertConditionStateHandler<LimitAlertConditionState> {
+class LimitAlertConditionStateHandler : public SDCProviderAlertConditionStateHandler<LimitAlertConditionState>
+{
 public:
 
-	LimitAlertConditionStateHandler(std::string descriptorHandle)
-	: SDCProviderAlertConditionStateHandler(descriptorHandle)
+	LimitAlertConditionStateHandler(const std::string p_descriptorHandle)
+	: SDCProviderAlertConditionStateHandler(p_descriptorHandle)
 	{ }
 
-    InvocationState onStateChangeRequest(const LimitAlertConditionState & state, const OperationInvocationContext & ) override {
+    InvocationState onStateChangeRequest(const LimitAlertConditionState& p_changedState, const OperationInvocationContext&) override
+    {
 
         // Invocation has been fired as WAITING when entering this method
-    	std::unique_ptr<LimitAlertConditionState> pCurrentState(getParentProvider().getMdState().findState<LimitAlertConditionState>(state.getDescriptorHandle()));
-        if(!pCurrentState) {
+    	auto t_limitAlertConditionState{getParentProvider().getMdState().findState<LimitAlertConditionState>(p_changedState.getDescriptorHandle())};
+        if(nullptr == t_limitAlertConditionState)
+        {
             return InvocationState::Fail;
         }
 
-    	DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: LimitAlertConditionStateHandler received state change, presence = " << state.getPresence() << std::endl;
-        if (state.getPresence() != pCurrentState->getPresence()) {
-    		DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: LimitAlertConditionStateHandler detected presence change to: " << state.getPresence() << std::endl;
+    	DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: LimitAlertConditionStateHandler received state change, presence = " << p_changedState.getPresence() << std::endl;
+        if (p_changedState.getPresence() != t_limitAlertConditionState->getPresence()) {
+    		DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: LimitAlertConditionStateHandler detected presence change to: " << p_changedState.getPresence() << std::endl;
     		// do something...
     	}
 
@@ -640,145 +692,140 @@ public:
     }
 
     // this function monitors the observered metric which is defined by the Source attribute of the corresponding LimitAlertConditionDescriptor
-    void sourceHasChanged(const std::string & sourceHandle) override {
+    void sourceHasChanged(const std::string& sourceHandle) override
+    {
     	DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: LimitAlertConditionStateHandler monitored source state changed." << std::endl;
 
     	// Check limit and trigger alarm condition, if needed (this method will then take care of handling all signal states)
-        std::unique_ptr<NumericMetricState> pSourceState(getParentProvider().getMdState().findState<NumericMetricState>(sourceHandle));
-
-        std::unique_ptr<LimitAlertConditionState> pLimitAlertConditionState(getParentProvider().getMdState().findState<LimitAlertConditionState>(ALERT_CONDITION_HANDLE));
-        if (pSourceState->getDescriptorHandle() != sourceHandle) {
+        auto t_sourceState{getParentProvider().getMdState().findState<NumericMetricState>(sourceHandle)};
+        if (t_sourceState->getDescriptorHandle() != sourceHandle)
+        {
     		return;
     	}
-    	if (!pSourceState->hasMetricValue()) {
+    	if (!t_sourceState->hasMetricValue())
+    	{
     		return;
     	}
-    	const auto sourceValue(pSourceState->getMetricValue());
-    	if (!sourceValue.hasValue()) {
+    	const auto sourceValue(t_sourceState->getMetricValue());
+    	if (!sourceValue.hasValue())
+    	{
     		return;
     	}
-    	const auto limits(pLimitAlertConditionState->getLimits());
-    	if (!limits.hasUpper()) {
+    	// Find Limit AlertConditionState and check
+    	auto t_imitAlertConditionState{getParentProvider().getMdState().findState<LimitAlertConditionState>(ALERT_CONDITION_HANDLE)};
+    	const auto limits{t_imitAlertConditionState->getLimits()};
+    	if (!limits.hasUpper())
+    	{
     		return;
     	}
-    	if (!limits.hasLower()) {
+    	if (!limits.hasLower())
+    	{
     		return;
     	}
-    	const bool triggerAlarm(sourceValue.getValue() > limits.getUpper() || sourceValue.getValue() < limits.getLower());
-   		setAlertConditionPresence(pLimitAlertConditionState->getDescriptorHandle(), triggerAlarm, OperationInvocationContext::none());
+    	const bool triggerAlarm{(sourceValue.getValue() > limits.getUpper()) || (sourceValue.getValue() < limits.getLower())};
+   		setAlertConditionPresence(t_imitAlertConditionState->getDescriptorHandle(), triggerAlarm, OperationInvocationContext::none());
     }
 
 	// Can be used to switch condition on and off (e.g. propagate input from real device). Currently not used in this test.
-	void setPresence(bool presence) {
+	void setPresence(bool p_newPresence)
+	{
 		// We do not need to update our state here, this will be done in onStateChangeRequest (will be called by the method we invoke next)
-		setAlertConditionPresence(getDescriptorHandle(), presence, OperationInvocationContext::none());
+		setAlertConditionPresence(getDescriptorHandle(), p_newPresence, OperationInvocationContext::none());
 	}
 
-    // Helper method
-    LimitAlertConditionState createState() {
-        LimitAlertConditionState result(ALERT_CONDITION_HANDLE, AlertActivation::On, Range().setLower(0.0).setUpper(2.0), AlertConditionMonitoredLimits::All); // Reference alert signal descriptor's handle
-        result
-            .setPresence(false);
-        return result;
-    }
-
-    LimitAlertConditionState getInitialState() override {
-        return createState();
+    LimitAlertConditionState getInitialState() override
+    {
+    	// Reference alert signal descriptor's handle
+        LimitAlertConditionState t_initialState{ALERT_CONDITION_HANDLE, AlertActivation::On, Range().setLower(0.0).setUpper(2.0), AlertConditionMonitoredLimits::All};
+        t_initialState.setPresence(false);
+        return t_initialState;
     }
 
 };
 
 
-class AlertSystemStateHandler : public SDCProviderMDStateHandler<AlertSystemState> {
+class AlertSystemStateHandler : public SDCProviderMDStateHandler<AlertSystemState>
+{
 public:
 
-	AlertSystemStateHandler(std::string descriptorHandle)
-	: SDCProviderMDStateHandler(descriptorHandle)
+	AlertSystemStateHandler(const std::string p_descriptorHandle)
+	: SDCProviderMDStateHandler(p_descriptorHandle)
 	{ }
 
-	AlertSystemState getInitialState() override {
-        AlertSystemState alertSystemState(descriptorHandle, AlertActivation::On);  // reference alert system descriptor's handle // Alert is activated
-        return alertSystemState;
+	AlertSystemState getInitialState() override
+	{
+        return {getDescriptorHandle(), AlertActivation::On};  // reference alert system descriptor's handle // Alert is activated
     }
 
 	// define how to react on a request for a state change. This handler should not be set, thus always return Fail.
-	InvocationState onStateChangeRequest(const AlertSystemState&, const OperationInvocationContext&) override {
+	InvocationState onStateChangeRequest(const AlertSystemState&, const OperationInvocationContext&) override
+	{
 		return InvocationState::Fail;
 	}
 };
 
 
 // use this state handler for remote function calls
-class CommandHandler : public SDCProviderActivateOperationHandler {
+class CommandHandler : public SDCProviderActivateOperationHandler
+{
 public:
 
-	CommandHandler(std::string descriptorHandle) : SDCProviderActivateOperationHandler(descriptorHandle) {
-    }
+	CommandHandler(const std::string p_descriptorHandle)
+	: SDCProviderActivateOperationHandler(p_descriptorHandle)
+	{ }
 
-	InvocationState onActivateRequest(const OperationInvocationContext&) override {
+	InvocationState onActivateRequest(const OperationInvocationContext&) override
+	{
 		DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: Received command!" << std::endl;
 		return InvocationState::Fin;
 	}
 };
 
-class AlwaysOnChannelStateHandler : public SDCProviderComponentStateHandler<ChannelState> {
+class AlwaysOnChannelStateHandler : public SDCProviderComponentStateHandler<ChannelState>
+{
 public:
-	AlwaysOnChannelStateHandler(const std::string & descriptorHandle) : SDCProviderComponentStateHandler(descriptorHandle){
-    }
-
-    // Helper method
-    ChannelState createState() {
-    	auto t_result = ChannelState(descriptorHandle);
-        t_result
-            .setActivationState(ComponentActivation::On);
-        return t_result;
-    }
-
-    virtual ChannelState getInitialState() override {
-    	ChannelState state = createState();
-        return state;
-    }
-};
-
-
-class AlwaysOnVmdStateHandler : public SDCProviderComponentStateHandler<VmdState> {
-public:
-	AlwaysOnVmdStateHandler(const std::string & descriptorHandle) : SDCProviderComponentStateHandler(descriptorHandle){
-    }
-
-    // Helper method
-    VmdState createState() {
-    	auto t_result = VmdState(descriptorHandle);
-        t_result
-            .setActivationState(ComponentActivation::On);
-        return t_result;
-    }
-
-    virtual VmdState getInitialState() override {
-    	VmdState state = createState();
-        return state;
-    }
-};
-
-
-
-class AlwaysOnMdsStateHandler : public SDCProviderComponentStateHandler<MdsState> {
-public:
-    AlwaysOnMdsStateHandler(const std::string & p_descriptorHandle)
+	AlwaysOnChannelStateHandler(const std::string p_descriptorHandle)
 	: SDCProviderComponentStateHandler(p_descriptorHandle)
 	{ }
 
-    // Helper method
-    MdsState createState() {
-        auto t_result = MdsState(descriptorHandle);
-        t_result
-            .setActivationState(ComponentActivation::On);
-        return t_result;
+    ChannelState getInitialState() override
+    {
+    	ChannelState t_initialState{getDescriptorHandle()};
+    	t_initialState.setActivationState(ComponentActivation::On);
+		return t_initialState;
     }
+};
 
-    virtual MdsState getInitialState() override {
-        MdsState state = createState();
-        return state;
+
+class AlwaysOnVmdStateHandler : public SDCProviderComponentStateHandler<VmdState>
+{
+public:
+	AlwaysOnVmdStateHandler(const std::string p_descriptorHandle)
+	: SDCProviderComponentStateHandler(p_descriptorHandle)
+	{ }
+
+    VmdState getInitialState() override
+    {
+    	VmdState t_initialState{getDescriptorHandle()};
+    	t_initialState.setActivationState(ComponentActivation::On);
+		return t_initialState;
+    }
+};
+
+
+
+class AlwaysOnMdsStateHandler : public SDCProviderComponentStateHandler<MdsState>
+{
+public:
+    AlwaysOnMdsStateHandler(const std::string p_descriptorHandle)
+	: SDCProviderComponentStateHandler(p_descriptorHandle)
+	{ }
+
+    MdsState getInitialState() override
+    {
+        MdsState t_initialState{getDescriptorHandle()};
+        t_initialState.setActivationState(ComponentActivation::On);
+        return t_initialState;
     }
 };
 
@@ -788,31 +835,17 @@ public:
 // Provider
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class SDCHoldingDeviceProvider : public Util::Task {
+class SDCHoldingDeviceProvider : public Util::Task
+{
 public:
     SDCHoldingDeviceProvider(SDCInstance_shared_ptr p_SDCInstance)
-    :
-    	m_sdcProvider(p_SDCInstance),
-    	locationContextStateHandler(LOCATION_CONTEXT_HANDLE),
-    	patientContextStateHandler(PATIENT_CONTEXT_HANDLE),
-    	curValueState(NUMERIC_METRIC_CURRENT_HANDLE),
-    	maxValueState(NUMERIC_METRIC_MAX_HANDLE),
-    	enumState(ENUM_METRIC_HANDLE),
-    	strValueState(STRING_METRIC_HANDLE),
-    	alertSigHandler(ALERT_SIGNAL_HANDLE),
-    	latchingAlertSigHandler(ALERT_SIGNAL_LATCHING_HANDLE),
-    	limitAlertConditionHandler(ALERT_CONDITION_HANDLE),
-    	alertSysHandler(ALERT_SYSTEM_HANDLE),
-    	cmdHandler(CMD_HANDLE),
-    	channelStateHandler(CHANNEL_DESCRIPTOR_HANDLE),
-    	mdsStateHandler(MDS_HANDLE),
-    	vmdStateHandler(VMD_DESCRIPTOR_HANDLE)
+    : m_sdcProvider(p_SDCInstance)
 	{
     	m_sdcProvider.setEndpointReferenceByName(DEVICE_ENDPOINT_REFERENCE);
 
         // Define semantic meaning of weight unit "kg", which will be used for defining the
         // current weight and the max weight below.
-        CodedValue unit(CodeIdentifier("MDCX_CODE_ID_KG"));
+        CodedValue unit{CodeIdentifier{"MDCX_CODE_ID_KG"}};
         unit	.setCodingSystem("OR.NET.Codings")
 				.addConceptDescription(LocalizedText("Current Weight Handle in KG").setLang("en"));
 
@@ -822,22 +855,22 @@ public:
         //
 
         // define properties of current weight metric
-        NumericMetricDescriptor currentWeightMetric(NUMERIC_METRIC_CURRENT_HANDLE,
+        NumericMetricDescriptor currentWeightMetric{NUMERIC_METRIC_CURRENT_HANDLE,
         		unit,
         		MetricCategory::Msrmt,
         		MetricAvailability::Cont,
-        		2);
+        		2};
 
         // add additional information: averaging period of the measurement
         currentWeightMetric.setAveragingPeriod(xml_schema::Duration(0,0,0,0,0,1,0));
 
         //  define properties of enum metric
-        EnumStringMetricDescriptor testEnumMetric(ENUM_METRIC_HANDLE,
-        		CodedValue("MDCX_CODE_ID_ENUM")
+        EnumStringMetricDescriptor testEnumMetric{ENUM_METRIC_HANDLE,
+        		CodedValue{"MDCX_CODE_ID_ENUM"}
         			.setCodingSystem("OR.NET.Codings")
         			.addConceptDescription(LocalizedText("Test Enum").setLang("en")),
         		MetricCategory::Set,
-        		MetricAvailability::Cont);
+        		MetricAvailability::Cont};
 
         testEnumMetric
 			.addAllowedValue(AllowedValue("hello"))
@@ -846,17 +879,18 @@ public:
 
 
         // define properties of max weight metric
-        NumericMetricDescriptor maxWeightMetric(NUMERIC_METRIC_MAX_HANDLE,
+        NumericMetricDescriptor maxWeightMetric{NUMERIC_METRIC_MAX_HANDLE,
         		unit,
         		MetricCategory::Set,
         		MetricAvailability::Cont,
-        		1);
+        		1};
 
         // define properties of test string metric
-        StringMetricDescriptor testStringMetric(STRING_METRIC_HANDLE,
-        		CodedValue("MDCX_CODE_ID_STRING"),
+        StringMetricDescriptor testStringMetric{STRING_METRIC_HANDLE,
+        		CodedValue{"MDCX_CODE_ID_STRING"},
         		MetricCategory::Set,
-        		MetricAvailability::Cont);
+        		MetricAvailability::Cont
+        		};
 
 
         //
@@ -864,8 +898,8 @@ public:
         //
 
         // Location context
-        LocationContextDescriptor location("location_context");
-        PatientContextDescriptor patient("patient_context");
+        LocationContextDescriptor location{"location_context"};
+        PatientContextDescriptor patient{"patient_context"};
 
 
         //
@@ -873,27 +907,25 @@ public:
 		//
 
         // alert condition that is monitoring the handle_cur
-        LimitAlertConditionDescriptor limitAlertCondition(ALERT_CONDITION_HANDLE,
+        LimitAlertConditionDescriptor limitAlertCondition{ALERT_CONDITION_HANDLE,
         		AlertConditionKind::Tec,
         		AlertConditionPriority::Me,
-        		Range()
+        		Range{}
         			.setLower(WEIGHT_LOWER)
         			.setUpper(WEIGHT_UPPER)
-        		);
+        		};
 
-        limitAlertCondition.setType(CodedValue("MDCX_CODE_ID_ALERT_WEIGHT_CONDITION").setCodingSystem("OR.NET.Codings")).addSource(NUMERIC_METRIC_CURRENT_HANDLE);
+        limitAlertCondition.setType(CodedValue{"MDCX_CODE_ID_ALERT_WEIGHT_CONDITION"}.setCodingSystem("OR.NET.Codings")).addSource(NUMERIC_METRIC_CURRENT_HANDLE);
 
         // create signal for condition
-        AlertSignalDescriptor alertSignal(ALERT_SIGNAL_HANDLE, AlertSignalManifestation::Vis, false);
-        alertSignal
-        	.setConditionSignaled(ALERT_CONDITION_HANDLE);
+        AlertSignalDescriptor alertSignal{ALERT_SIGNAL_HANDLE, AlertSignalManifestation::Vis, false};
+        alertSignal.setConditionSignaled(ALERT_CONDITION_HANDLE);
 
-        AlertSignalDescriptor latchingAlertSignal(ALERT_SIGNAL_LATCHING_HANDLE, AlertSignalManifestation::Vis, true);
-        latchingAlertSignal
-			.setConditionSignaled(ALERT_CONDITION_HANDLE);
+        AlertSignalDescriptor latchingAlertSignal{ALERT_SIGNAL_LATCHING_HANDLE, AlertSignalManifestation::Vis, true};
+        latchingAlertSignal.setConditionSignaled(ALERT_CONDITION_HANDLE);
 
         // Alerts
-        AlertSystemDescriptor alertSystem(ALERT_SYSTEM_HANDLE);
+        AlertSystemDescriptor alertSystem{ALERT_SYSTEM_HANDLE};
         alertSystem
 			.addAlertSignal(alertSignal)
 			.addAlertSignal(latchingAlertSignal)
@@ -905,7 +937,7 @@ public:
         //
 
         // Channel
-        ChannelDescriptor holdingDeviceChannel(CHANNEL_DESCRIPTOR_HANDLE);
+        ChannelDescriptor holdingDeviceChannel{CHANNEL_DESCRIPTOR_HANDLE};
         holdingDeviceChannel
 			.addMetric(currentWeightMetric)
 			.addMetric(testEnumMetric)
@@ -914,22 +946,22 @@ public:
 			.setSafetyClassification(SafetyClassification::MedA);
 
         // VMD
-        VmdDescriptor holdingDeviceModule(VMD_DESCRIPTOR_HANDLE);
+        VmdDescriptor holdingDeviceModule{VMD_DESCRIPTOR_HANDLE};
         holdingDeviceModule
         	.setAlertSystem(alertSystem)
 			.setHandle(VMD_DESCRIPTOR_HANDLE)
 			.addChannel(holdingDeviceChannel);
 
         // MDS
-        MdsDescriptor holdingDeviceSystem(MDS_HANDLE);
+        MdsDescriptor holdingDeviceSystem{MDS_HANDLE};
         holdingDeviceSystem
         	.setMetaData(
-        		MetaData().addManufacturer(LocalizedText("SurgiTAIX AG"))
+        		MetaData().addManufacturer(LocalizedText{"SurgiTAIX AG"})
         		.setModelNumber("1")
-        		.addModelName(LocalizedText("EndoTAIX"))
+        		.addModelName(LocalizedText{"EndoTAIX"})
         		.addSerialNumber("1234-5678"))
 			.setSystemContext(
-				SystemContextDescriptor("MDC_SYS_CON")
+				SystemContextDescriptor{"MDC_SYS_CON"}
 			    .setPatientContext(
 			    		patient)
 				.setLocationContext(
@@ -937,7 +969,7 @@ public:
 				)
 			.addVmd(holdingDeviceModule)
 			.setType(
-                CodedValue("MDCX_CODE_ID_MDS")
+                CodedValue{"MDCX_CODE_ID_MDS"}
                 .setCodingSystem("OR.NET.Codings"));
 
         m_sdcProvider.createSetOperationForDescriptor(alertSignal, holdingDeviceSystem);
@@ -947,7 +979,7 @@ public:
         m_sdcProvider.createSetOperationForDescriptor(location, holdingDeviceSystem);
         m_sdcProvider.createSetOperationForDescriptor(patient, holdingDeviceSystem);
 
-        ActivateOperationDescriptor aod(CMD_HANDLE, NUMERIC_METRIC_MAX_HANDLE);
+        ActivateOperationDescriptor aod{CMD_HANDLE, NUMERIC_METRIC_MAX_HANDLE};
         aod.setRetriggerable(true);
 
 		m_sdcProvider.addActivateOperationForDescriptor(aod, holdingDeviceSystem);
@@ -959,7 +991,6 @@ public:
 		m_sdcProvider.setMdDescription(mdDescription);
 
         // State handlers
-
 		m_sdcProvider.addMdStateHandler(&locationContextStateHandler);
 		m_sdcProvider.addMdStateHandler(&patientContextStateHandler);
 		m_sdcProvider.addMdStateHandler(&curValueState);
@@ -976,20 +1007,19 @@ public:
 		m_sdcProvider.addMdStateHandler(&vmdStateHandler);
 	}
 
-    MdDescription getMdDescription() {
+    MdDescription getMdDescription()
+    {
     	return m_sdcProvider.getMdDescription();
     }
 
-    void startup() {
+    void startup()
+    {
     	m_sdcProvider.startup();
     }
 
-    void shutdown() {
-    	m_sdcProvider.shutdown();
-    }
-
     // Update weight periodically
-    virtual void runImpl() override {
+    virtual void runImpl() override
+    {
     	auto nextWeight = m_currentWeight + WEIGHT_INCR_PER_LOOP;
     	if (nextWeight > WEIGHT_MAX) {
     		nextWeight = 0.0;
@@ -998,12 +1028,12 @@ public:
 		std::this_thread::sleep_for(std::chrono::milliseconds(LOOP_SLEEP));
     }
 
-    void setCurrentWeight(double p_value)
+    void setCurrentWeight(double p_newWeight)
     {
-        m_currentWeight = p_value;
-        curValueState.setNumericValue(p_value);
+        m_currentWeight = p_newWeight;
+        curValueState.setNumericValue(p_newWeight);
         DebugOut(DebugOut::Default, "SimpleSDC") << "Changed value: " << m_currentWeight << std::endl;
-        strValueState.setStringValue(std::string("Test ") + std::to_string(p_value));
+        strValueState.setStringValue(std::string("Test ") + std::to_string(p_newWeight));
     }
 
 private:
@@ -1011,25 +1041,26 @@ private:
     // Provider object
     SDCProvider m_sdcProvider;
 
-    double m_currentWeight = 0;
+    double m_currentWeight{0};
 
     // State (handlers)
-    LocationContextStateHandler locationContextStateHandler;
-    PatientContextStateHandler patientContextStateHandler;
+    LocationContextStateHandler locationContextStateHandler{LOCATION_CONTEXT_HANDLE};
+    PatientContextStateHandler patientContextStateHandler{PATIENT_CONTEXT_HANDLE};
 
-    CurValueStateHandler curValueState;
-    MaxValueStateHandler maxValueState;
-    EnumStringMetricStateHandler enumState;
-    StrValueStateHandler strValueState;
+    CurValueStateHandler curValueState{NUMERIC_METRIC_CURRENT_HANDLE};
+    MaxValueStateHandler maxValueState{NUMERIC_METRIC_MAX_HANDLE};
+    EnumStringMetricStateHandler enumState{ENUM_METRIC_HANDLE};
+    StrValueStateHandler strValueState{STRING_METRIC_HANDLE};
 
-    AlertSignalStateHandler alertSigHandler;
-    LatchingAlertSignalStateHandler latchingAlertSigHandler;
-    LimitAlertConditionStateHandler limitAlertConditionHandler;
-    AlertSystemStateHandler alertSysHandler;
-    CommandHandler cmdHandler;
-    AlwaysOnChannelStateHandler channelStateHandler;
-    AlwaysOnMdsStateHandler mdsStateHandler;
-    AlwaysOnVmdStateHandler vmdStateHandler;
+    AlertSignalStateHandler alertSigHandler{ALERT_SIGNAL_HANDLE};
+    LatchingAlertSignalStateHandler latchingAlertSigHandler{ALERT_SIGNAL_LATCHING_HANDLE};
+	LimitAlertConditionStateHandler limitAlertConditionHandler{ALERT_CONDITION_HANDLE};
+    AlertSystemStateHandler alertSysHandler{ALERT_SYSTEM_HANDLE};
+
+    CommandHandler cmdHandler{CMD_HANDLE};
+    AlwaysOnChannelStateHandler channelStateHandler{CHANNEL_DESCRIPTOR_HANDLE};
+    AlwaysOnMdsStateHandler mdsStateHandler{MDS_HANDLE};
+	AlwaysOnVmdStateHandler vmdStateHandler{VMD_DESCRIPTOR_HANDLE};
 };
 
 }
@@ -1040,8 +1071,11 @@ private:
 // Test
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-struct FixtureSimpleSDC : Tests::AbstractSDCLibFixture {
-	FixtureSimpleSDC() : AbstractSDCLibFixture("FixtureSimpleSDC", OSELib::LogLevel::Error) {}
+struct FixtureSimpleSDC : Tests::AbstractSDCLibFixture
+{
+	FixtureSimpleSDC()
+	: AbstractSDCLibFixture("FixtureSimpleSDC", OSELib::LogLevel::Error)
+	{ }
 };
 
 SUITE(SDC) {
@@ -1050,74 +1084,79 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 	DebugOut::openLogFile("Test.log.txt", true);
 	try
 	{
-        auto t_SDCInstance = createSDCInstance();
+        auto t_SDCInstance{createSDCInstance()};
 
         // Provider
-        Tests::SimpleSDC::SDCHoldingDeviceProvider provider(t_SDCInstance);
-        provider.startup();
-        provider.start();
+        Tests::SimpleSDC::SDCHoldingDeviceProvider t_provider{t_SDCInstance};
+        t_provider.startup();
+        t_provider.start();
 
         // MdDescription test
-        MdDescription mdDescription =  provider.getMdDescription();
+        MdDescription mdDescription{t_provider.getMdDescription()};
         // add and remove a test MDS
-        MdsDescriptor mds_test("MDC_MDS_HANDLE");
+        MdsDescriptor mds_test{"MDC_MDS_HANDLE"};
         mdDescription.addMdsDescriptor(mds_test);
         CHECK_EQUAL(true, mdDescription.removeMdsDescriptor(mds_test));
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Discover EPR...";
 
         // Consumer
-        OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
-        auto t_consumer(t_serviceManager.discoverEndpointReference(SDCLib::SDCInstance::calcUUIDv5(Tests::SimpleSDC::DEVICE_ENDPOINT_REFERENCE, true)));
+        OSELib::SDC::ServiceManager t_serviceManager{t_SDCInstance};
+        auto t_consumer{t_serviceManager.discoverEndpointReference(SDCLib::SDCInstance::calcUUIDv5(Tests::SimpleSDC::DEVICE_ENDPOINT_REFERENCE, true))};
 
         // create state handlers
-        Tests::SimpleSDC::ExampleConsumerNumericHandler eces1(Tests::SimpleSDC::NUMERIC_METRIC_CURRENT_HANDLE);
-        Tests::SimpleSDC::ExampleConsumerNumericHandler eces2(Tests::SimpleSDC::NUMERIC_METRIC_MAX_HANDLE);
-        Tests::SimpleSDC::ExampleConsumerStringMetricHandler eces3(Tests::SimpleSDC::STRING_METRIC_HANDLE);
-        Tests::SimpleSDC::ExampleConsumerEnumStringMetricHandler eces4(Tests::SimpleSDC::ENUM_METRIC_HANDLE);
-        Tests::SimpleSDC::ExampleConsumerAlertSignalHandler alertSignalsink(Tests::SimpleSDC::ALERT_SIGNAL_HANDLE);
-        Tests::SimpleSDC::ExampleConsumerAlertSignalHandler latchingAlertSignalsink(Tests::SimpleSDC::ALERT_SIGNAL_LATCHING_HANDLE);
-        Tests::SimpleSDC::ExampleLocationContextEventHandler locationEventHandler(Tests::SimpleSDC::LOCATION_CONTEXT_HANDLE);
-        Tests::SimpleSDC::ExamplePatientContextEventHandler  patientEventHandler(Tests::SimpleSDC::PATIENT_CONTEXT_HANDLE);
+        Tests::SimpleSDC::ExampleConsumerNumericHandler eces1{Tests::SimpleSDC::NUMERIC_METRIC_CURRENT_HANDLE};
+        Tests::SimpleSDC::ExampleConsumerNumericHandler eces2{Tests::SimpleSDC::NUMERIC_METRIC_MAX_HANDLE};
+        Tests::SimpleSDC::ExampleConsumerStringMetricHandler eces3{Tests::SimpleSDC::STRING_METRIC_HANDLE};
+        Tests::SimpleSDC::ExampleConsumerEnumStringMetricHandler eces4{Tests::SimpleSDC::ENUM_METRIC_HANDLE};
+        Tests::SimpleSDC::ExampleConsumerAlertSignalHandler alertSignalsink{Tests::SimpleSDC::ALERT_SIGNAL_HANDLE};
+        Tests::SimpleSDC::ExampleConsumerAlertSignalHandler latchingAlertSignalsink{Tests::SimpleSDC::ALERT_SIGNAL_LATCHING_HANDLE};
+        Tests::SimpleSDC::ExampleLocationContextEventHandler locationEventHandler{Tests::SimpleSDC::LOCATION_CONTEXT_HANDLE};
+        Tests::SimpleSDC::ExamplePatientContextEventHandler  patientEventHandler{Tests::SimpleSDC::PATIENT_CONTEXT_HANDLE};
 
 
         // Discovery test
         CHECK_EQUAL(true, t_consumer != nullptr);
 
-		if (t_consumer != nullptr) {
+		if (nullptr != t_consumer)
+		{
             // MDIB test
-            MdibContainer mdib(t_consumer->getMdib());
+            MdibContainer mdib{t_consumer->getMdib()};
 
             { // test access to system metadata of mds implemented by provider above
-            	std::unique_ptr<MdsDescriptor> pMdsDescriptor(mdib.getMdDescription().findDescriptor<MdsDescriptor>(Tests::SimpleSDC::MDS_HANDLE));
-            	if (pMdsDescriptor != nullptr) {
-            		if (pMdsDescriptor->hasMetaData()) {
-            			const MetaData metadata(pMdsDescriptor->getMetaData());
+            	auto t_MdsDescriptor{mdib.getMdDescription().findDescriptor<MdsDescriptor>(Tests::SimpleSDC::MDS_HANDLE)};
+            	if (t_MdsDescriptor != nullptr)
+            	{
+            		if (t_MdsDescriptor->hasMetaData())
+            		{
+            			const MetaData metadata{t_MdsDescriptor->getMetaData()};
 
-            			if (!metadata.getUdiList().empty()) {
-							const std::string serialNumber(metadata.getSerialNumberList().at(0));
+            			if (!metadata.getUdiList().empty())
+            			{
+							const auto serialNumber{metadata.getSerialNumberList().at(0)};
 							CHECK_EQUAL("1234-5678",serialNumber);
             			}
-
             		}
             	}
             }
 
             { // test presence of system context descriptors
-            	std::unique_ptr<MdsDescriptor> pMdsDescriptor(mdib.getMdDescription().findDescriptor<MdsDescriptor>(Tests::SimpleSDC::MDS_HANDLE));
-            	if (pMdsDescriptor != nullptr) {
-            		SystemContextDescriptor sc(pMdsDescriptor->getSystemContext());
+            	auto t_MdsDescriptor{mdib.getMdDescription().findDescriptor<MdsDescriptor>(Tests::SimpleSDC::MDS_HANDLE)};
+            	if (t_MdsDescriptor != nullptr)
+            	{
+            		SystemContextDescriptor sc(t_MdsDescriptor->getSystemContext());
             		CHECK_EQUAL(true, sc.hasPatientContext());
             		CHECK_EQUAL(true, sc.getOperatorContextList().empty());
             	}
             }
             {	// lookup descriptors that should exist for the provider implemented above
-            	std::unique_ptr<NumericMetricDescriptor> pNumericMetricDescriptor(mdib.getMdDescription().findDescriptor<NumericMetricDescriptor>(Tests::SimpleSDC::NUMERIC_METRIC_CURRENT_HANDLE));
-            	if (pNumericMetricDescriptor != nullptr) {
-				CHECK_EQUAL("en", pNumericMetricDescriptor->getUnit().getConceptDescriptionList()[0].getLang());
+            	auto t_numericMetricDescriptor{mdib.getMdDescription().findDescriptor<NumericMetricDescriptor>(Tests::SimpleSDC::NUMERIC_METRIC_CURRENT_HANDLE)};
+            	if (t_numericMetricDescriptor != nullptr)
+            	{
+            		CHECK_EQUAL("en", t_numericMetricDescriptor->getUnit().getConceptDescriptionList()[0].getLang());
 				}
-				std::unique_ptr<StringMetricDescriptor> pStringMetricDescriptor(mdib.getMdDescription().findDescriptor<StringMetricDescriptor>(Tests::SimpleSDC::STRING_METRIC_HANDLE));
-				CHECK_EQUAL(true, pStringMetricDescriptor != nullptr);
-				CHECK_EQUAL(Tests::SimpleSDC::STRING_METRIC_HANDLE, pStringMetricDescriptor->getHandle());
+				auto t_stringMetricDescriptor{mdib.getMdDescription().findDescriptor<StringMetricDescriptor>(Tests::SimpleSDC::STRING_METRIC_HANDLE)};
+				CHECK_EQUAL(true, t_stringMetricDescriptor != nullptr);
+				CHECK_EQUAL(Tests::SimpleSDC::STRING_METRIC_HANDLE, t_stringMetricDescriptor->getHandle());
             }
 
             // Register for consumer events
@@ -1140,11 +1179,11 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
                 DebugOut(DebugOut::Default, m_details.testName) << "Numeric test..." << std::endl;
                 DebugOut(DebugOut::Default, m_details.testName) << "SHOULD FAIL: " << std::endl;
 				NumericMetricState tempState(" ");
-				std::unique_ptr<NumericMetricState> pTempNMS(t_consumer->requestState<NumericMetricState>("unknown"));
+				auto pTempNMS{t_consumer->requestState<NumericMetricState>("unknown")};
             	CHECK_EQUAL(false, pTempNMS != nullptr);
             }
             {	// Request state of current weight
-                std::unique_ptr<NumericMetricState> pTempNMS(t_consumer->requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_CURRENT_HANDLE));
+            	auto pTempNMS{t_consumer->requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_CURRENT_HANDLE)};
 				CHECK_EQUAL(true, pTempNMS != nullptr);
 				CHECK_EQUAL(true, pTempNMS->hasMetricValue());
 				if (pTempNMS->hasMetricValue()) {
@@ -1154,24 +1193,24 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
             }
             {	// Ensure that (read-only) metrics without matching SetOperation cannot be set.
                 DebugOut(DebugOut::Default, m_details.testName) << "SHOULD FAIL: " << std::endl;
-                std::unique_ptr<NumericMetricState> pTempNMS(t_consumer->requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_CURRENT_HANDLE));
+                auto pTempNMS{t_consumer->requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_CURRENT_HANDLE)};
             	CHECK_EQUAL(true, pTempNMS != nullptr);
                 CHECK_EQUAL(true, InvocationState::Fail == t_consumer->commitState(*pTempNMS));
             }
             {	// Get state of maximum weight
-                std::unique_ptr<NumericMetricState> pTempNMS(t_consumer->requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_MAX_HANDLE));
+            	auto pTempNMS{t_consumer->requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_MAX_HANDLE)};
 				CHECK_EQUAL(true, pTempNMS != nullptr);
 				double maxWeight = pTempNMS->getMetricValue().getValue();
 				CHECK_EQUAL(2.0, maxWeight);
             }
             {	// Get state of test enum
-                std::unique_ptr<EnumStringMetricState> pTempESMS(t_consumer->requestState<EnumStringMetricState>(Tests::SimpleSDC::ENUM_METRIC_HANDLE));
+                auto pTempESMS{t_consumer->requestState<EnumStringMetricState>(Tests::SimpleSDC::ENUM_METRIC_HANDLE)};
 				CHECK_EQUAL(true, pTempESMS != nullptr);
 				const std::string enumValue(pTempESMS->getMetricValue().getValue());
 				CHECK_EQUAL("hello", enumValue);
             }
             {	// Set state of test enum with allowed enum value
-                std::unique_ptr<EnumStringMetricState> pTempESMS(t_consumer->requestState<EnumStringMetricState>(Tests::SimpleSDC::ENUM_METRIC_HANDLE));
+                auto pTempESMS{t_consumer->requestState<EnumStringMetricState>(Tests::SimpleSDC::ENUM_METRIC_HANDLE)};
             	CHECK_EQUAL(true, pTempESMS != nullptr);
 
             	pTempESMS->setMetricValue(pTempESMS->getMetricValue().setValue("bon jour"));
@@ -1180,7 +1219,7 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleSDC::DEFAULT_TIMEOUT));
             }
             {	// Set state of test enum with illegal enum value
-                std::unique_ptr<EnumStringMetricState> pTempESMS(t_consumer->requestState<EnumStringMetricState>(Tests::SimpleSDC::ENUM_METRIC_HANDLE));
+                auto pTempESMS{t_consumer->requestState<EnumStringMetricState>(Tests::SimpleSDC::ENUM_METRIC_HANDLE)};
             	CHECK_EQUAL(true, pTempESMS != nullptr);
 
 				const std::string enumValue(pTempESMS->getMetricValue().getValue());
@@ -1198,7 +1237,7 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 			std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(t_waitTime0)));
 
 			{	// Set state test for a numeric metric state (must succeed, use state handle instead of descriptor handle)
-                std::unique_ptr<NumericMetricState> pTempNMS(t_consumer->requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_MAX_HANDLE));
+                auto pTempNMS{t_consumer->requestState<NumericMetricState>(Tests::SimpleSDC::NUMERIC_METRIC_MAX_HANDLE)};
 				CHECK_EQUAL(true, pTempNMS != nullptr);
 
 				// Here, we increase max weight to switch condition presence => results in alert signal presence
@@ -1210,7 +1249,7 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 
             {	// Set state test for a string metric state (must succeed)
                 DebugOut(DebugOut::Default, m_details.testName) << "String test...";
-                std::unique_ptr<StringMetricState> pTempNMS(t_consumer->requestState<StringMetricState>(Tests::SimpleSDC::STRING_METRIC_HANDLE));
+                auto pTempNMS{t_consumer->requestState<StringMetricState>(Tests::SimpleSDC::STRING_METRIC_HANDLE)};
 				CHECK_EQUAL(true, pTempNMS != nullptr);
 
 				pTempNMS->setMetricValue(pTempNMS->getMetricValue().setValue("Test2"));
@@ -1229,9 +1268,9 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
             {	// Location context test
                 DebugOut(DebugOut::Default, m_details.testName) << "Location context test...";
                 // todo: check here if working!
-                LocationContextState lcs(Tests::SimpleSDC::LOCATION_CONTEXT_HANDLE, "location_context_state");
+                LocationContextState lcs{Tests::SimpleSDC::LOCATION_CONTEXT_HANDLE, "location_context_state"};
                 lcs.setContextAssociation(ContextAssociation::Assoc);
-                lcs.addIdentification(InstanceIdentifier().setRoot("hello").setExtension("world"));
+                lcs.addIdentification(InstanceIdentifier{}.setRoot("hello").setExtension("world"));
                 FutureInvocationState fis;
                 locationEventHandler.getEventEMR().reset();
                 CHECK_EQUAL(true, InvocationState::Wait == t_consumer->commitState(lcs, fis));
@@ -1241,10 +1280,10 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
             }
             {	// Patient context test
                 DebugOut(DebugOut::Default, m_details.testName) << "Patient context test...";
-				PatientContextState pcs(Tests::SimpleSDC::PATIENT_CONTEXT_HANDLE, "patient_context_state");
+				PatientContextState pcs{Tests::SimpleSDC::PATIENT_CONTEXT_HANDLE, "patient_context_state"};
 				pcs.setContextAssociation(ContextAssociation::Assoc);
-				pcs.addIdentification(InstanceIdentifier().setRoot("hello").setExtension("world"));
-				pcs.setCoreData(PatientDemographicsCoreData()
+				pcs.addIdentification(InstanceIdentifier{}.setRoot("hello").setExtension("world"));
+				pcs.setCoreData(PatientDemographicsCoreData{}
 						.setGivenname("Max")
 						.setBirthname("-")
 						.setFamilyname("Mustermann")
@@ -1259,14 +1298,14 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 				DebugOut(DebugOut::Default, m_details.testName) << "Patient context test done...";
 			}
             // Run for some time to receive and display incoming metric events.
-            auto t_waitTime1 = LOOP_SLEEP * (WEIGHT_UPPER / WEIGHT_INCR_PER_LOOP)*NUM_LOOPS_SLEEP;
+            auto t_waitTime1{LOOP_SLEEP * (WEIGHT_UPPER / WEIGHT_INCR_PER_LOOP)*NUM_LOOPS_SLEEP};
 			std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(t_waitTime1)));
 
 			// Stop dummy events created by provider
-			provider.interrupt();
+			t_provider.interrupt();
 
 			{	// Switch alert signal state off
-                std::unique_ptr<AlertSignalState> pTempASS(t_consumer->requestState<AlertSignalState>(Tests::SimpleSDC::ALERT_SIGNAL_HANDLE));
+                auto pTempASS{t_consumer->requestState<AlertSignalState>(Tests::SimpleSDC::ALERT_SIGNAL_HANDLE)};
 				CHECK_EQUAL(true, pTempASS != nullptr);
 
 
@@ -1276,7 +1315,7 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 				CHECK_EQUAL(true, fis.waitReceived(InvocationState::Fin, Tests::SimpleSDC::DEFAULT_TIMEOUT));
 			}
 
-            auto t_waitTime2 = LOOP_SLEEP * (WEIGHT_UPPER / WEIGHT_INCR_PER_LOOP)*NUM_LOOPS_SLEEP;
+            auto t_waitTime2{LOOP_SLEEP * (WEIGHT_UPPER / WEIGHT_INCR_PER_LOOP)*NUM_LOOPS_SLEEP};
 			std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(t_waitTime2)));
 
             CHECK_EQUAL(true, eces1.getWeight() > 0);
@@ -1303,10 +1342,13 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 
             t_consumer->disconnect();
         }
-        provider.shutdown();
-    } catch (char const* exc) {
+    }
+	catch (char const* exc)
+	{
 		DebugOut(DebugOut::Default, std::cerr, m_details.testName) << exc;
-	} catch (...) {
+	}
+	catch (...)
+	{
 		DebugOut(DebugOut::Default, std::cerr, m_details.testName) << "Unknown exception occurred!";
 	}
 	DebugOut::closeLogFile();

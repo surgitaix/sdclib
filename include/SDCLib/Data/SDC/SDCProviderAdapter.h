@@ -52,7 +52,6 @@ namespace SDCLib
 				~SDCProviderAdapter();
 
 				bool start();
-				void stop();
 
 				// DescriptionEvent
 				void notifyEvent(const MDM::DescriptionModificationReport & p_report);

@@ -41,9 +41,9 @@ namespace SDCLib
             std::mutex m_mutex;
 
             // Poco does not allow OpenSSL SSLv23_method(). One Context for Client and one for Server Side.
-            std::atomic<bool> m_init = ATOMIC_VAR_INIT(false);
-            Poco::Net::Context::Ptr m_context_client = nullptr;
-            Poco::Net::Context::Ptr m_context_server = nullptr;
+            std::atomic<bool> m_init{false};
+            Poco::Net::Context::Ptr m_context_client{nullptr};
+            Poco::Net::Context::Ptr m_context_server{nullptr};
 
         public:
 

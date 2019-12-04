@@ -65,189 +65,207 @@ using namespace SDCLib::Data::SDC;
 
 
 // Some values to configure the test
-const int LOOP_SLEEP = 250;
-const int NUM_LOOPS_SLEEP = 10; // The number of loops to wait and let the provider run
+const int LOOP_SLEEP{250};
+const int NUM_LOOPS_SLEEP{10}; // The number of loops to wait and let the provider run
 
 namespace SDCLib {
 namespace Tests {
 namespace StreamSDC {
 
-const std::string deviceEPR("UDI_STREAMINGTEST");
+const std::string deviceEPR{"UDI_STREAMINGTEST"};
 
 
 class StreamConsumerEventHandler : public SDCConsumerMDStateHandler<RealTimeSampleArrayMetricState>
 {
 public:
-	StreamConsumerEventHandler(const std::string & handle)
-    : SDCConsumerMDStateHandler(handle)
+	StreamConsumerEventHandler(const std::string p_descriptorHandle)
+    : SDCConsumerMDStateHandler(p_descriptorHandle)
     { }
 
-    void onStateChanged(const RealTimeSampleArrayMetricState & state) override
+    void onStateChanged(const RealTimeSampleArrayMetricState& changedState) override
     {
-        DebugOut(DebugOut::Default, "StreamSDC") << "Received chunk! Handle: " << descriptorHandle << std::endl;
-        auto tl_values = state.getMetricValue().getSamples();
-        m_verifiedChunks = true;
+        DebugOut(DebugOut::Default, "StreamSDC") << "Received chunk! Handle: " << getDescriptorHandle() << std::endl;
+        auto t_sampleValues = changedState.getMetricValue().getSamples();
+        m_chunksVerified = true;
 
-        for (size_t i = 0; i < tl_values.size(); ++i) {
-            if (tl_values[i] != static_cast<double>(i))
-                m_verifiedChunks = false;
+        for (std::size_t i = 0; i < t_sampleValues.size(); ++i)
+        {
+            if (t_sampleValues[i] != static_cast<double>(i))
+            {
+            	m_chunksVerified = false;
+            }
         }
     }
 
-    bool getVerifiedChunks() const { return m_verifiedChunks; }
+    bool chunksVerified() const
+    {
+    	return m_chunksVerified;
+    }
 
 private:
-    std::atomic<bool> m_verifiedChunks = ATOMIC_VAR_INIT(false);
+    std::atomic<bool> m_chunksVerified{false};
 };
 
 
 class StreamDistributionConsumerEventHandler : public SDCConsumerMDStateHandler<DistributionSampleArrayMetricState>
 {
 public:
-	StreamDistributionConsumerEventHandler(const std::string & handle)
-    :SDCConsumerMDStateHandler(handle)
+	StreamDistributionConsumerEventHandler(const std::string p_descriptorHandle)
+    :SDCConsumerMDStateHandler(p_descriptorHandle)
     { }
 
-    void onStateChanged(const DistributionSampleArrayMetricState & state) override
+    void onStateChanged(const DistributionSampleArrayMetricState& changedState) override
     {
-        DebugOut(DebugOut::Default, "StreamSDC") << "Received chunk of a distribution! Handle: " << descriptorHandle << std::endl;
-        auto tl_values = state.getMetricValue().getSamples();
-        m_verifiedChunks = true;
+        DebugOut(DebugOut::Default, "StreamSDC") << "Received chunk of a distribution! Handle: " << getDescriptorHandle() << std::endl;
+        auto t_sampleValues = changedState.getMetricValue().getSamples();
+        m_chunksVerified = true;
 
-        for (size_t i = 0; i < tl_values.size(); ++i) {
-            if (tl_values[i] != static_cast<double>(i))
-                m_verifiedChunks = false;
+        for (std::size_t i = 0; i < t_sampleValues.size(); ++i)
+        {
+            if (t_sampleValues[i] != static_cast<double>(i))
+            {
+            	m_chunksVerified = false;
+            }
         }
     }
 
-    bool getVerifiedChunks() const { return m_verifiedChunks; }
+    bool chunksVerified() const
+    {
+    	return m_chunksVerified;
+    }
 
 private:
-    std::atomic<bool> m_verifiedChunks = ATOMIC_VAR_INIT(false);
+    std::atomic<bool> m_chunksVerified{false};
 };
 
 
 
-class StreamProviderStateHandler : public SDCProviderMDStateHandler<RealTimeSampleArrayMetricState> {
+class StreamProviderStateHandler : public SDCProviderMDStateHandler<RealTimeSampleArrayMetricState>
+{
 public:
 
-    StreamProviderStateHandler(std::string p_descriptorHandle)
+    StreamProviderStateHandler(const std::string p_descriptorHandle)
 	: SDCProviderMDStateHandler(p_descriptorHandle)
 	{ }
 
     // Helper method
-    RealTimeSampleArrayMetricState createState() {
-        RealTimeSampleArrayMetricState realTimeSampleArrayState(descriptorHandle);
-        realTimeSampleArrayState
-        	.setActivationState(ComponentActivation::On);
-        return realTimeSampleArrayState;
+    RealTimeSampleArrayMetricState createState()
+    {
+        RealTimeSampleArrayMetricState t_newState{getDescriptorHandle()};
+        t_newState.setActivationState(ComponentActivation::On);
+
+        return t_newState;
     }
 
 
-    RealTimeSampleArrayMetricState getInitialState() override {
+    RealTimeSampleArrayMetricState getInitialState() override
+    {
         return createState();
     }
 
-    void updateStateValue(const SampleArrayValue & rtsav) {
-        RealTimeSampleArrayMetricState realTimeSampleArrayState = createState();
-        realTimeSampleArrayState
-            .setMetricValue(rtsav);
-        updateState(realTimeSampleArrayState);
+    void updateStateValue(const SampleArrayValue& p_newValue)
+    {
+        auto t_newState{createState()};
+        t_newState.setMetricValue(p_newValue);
+
+        updateState(t_newState);
     }
 
     // do nothing when a consumer ask to change the value -> return Fail
-    InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState&, const OperationInvocationContext&) override {
+    InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState&, const OperationInvocationContext&) override
+    {
     	return InvocationState::Fail;
     }
 };
 
-class DistributionProviderStateHandler : public SDCProviderMDStateHandler<DistributionSampleArrayMetricState> {
+class DistributionProviderStateHandler : public SDCProviderMDStateHandler<DistributionSampleArrayMetricState>
+{
 public:
 
-	DistributionProviderStateHandler(std::string p_descriptorHandle)
+	DistributionProviderStateHandler(const std::string p_descriptorHandle)
 	: SDCProviderMDStateHandler(p_descriptorHandle)
 	{ }
 
     // Helper method
-    DistributionSampleArrayMetricState createState() {
-    	DistributionSampleArrayMetricState distributionSampleArrayState(descriptorHandle);
-    	distributionSampleArrayState
-        	.setActivationState(ComponentActivation::On);
-        return distributionSampleArrayState;
+    DistributionSampleArrayMetricState createState()
+    {
+    	DistributionSampleArrayMetricState t_newState{getDescriptorHandle()};
+    	t_newState.setActivationState(ComponentActivation::On);
+
+        return t_newState;
     }
 
 
-    DistributionSampleArrayMetricState getInitialState() override {
+    DistributionSampleArrayMetricState getInitialState() override
+    {
         return createState();
     }
 
-    void updateStateValue(const SampleArrayValue & rtsav) {
-    	DistributionSampleArrayMetricState distributionSampleArrayState = createState();
-    	distributionSampleArrayState
-            .setMetricValue(rtsav);
-        updateState(distributionSampleArrayState);
+    void updateStateValue(const SampleArrayValue& p_newValue)
+    {
+    	auto t_newState{createState()};
+    	t_newState.setMetricValue(p_newValue);
+
+        updateState(t_newState);
     }
 
     // do nothing when a consumer ask to change the value -> return Fail
-    InvocationState onStateChangeRequest(const DistributionSampleArrayMetricState&, const OperationInvocationContext&) override {
+    InvocationState onStateChangeRequest(const DistributionSampleArrayMetricState&, const OperationInvocationContext&) override
+    {
     	return InvocationState::Fail;
     }
 };
 
 
 
-class SDCStreamHoldingDeviceProvider : public Util::Task {
+class SDCStreamHoldingDeviceProvider : public Util::Task
+{
 public:
 
-    SDCStreamHoldingDeviceProvider(SDCInstance_shared_ptr p_SDCInstance) :
-        sdcProvider(p_SDCInstance),
-    	streamEventHandler("handle_plethysmogram_stream"),
-    	streamEventHandlerAlt("handle_plethysmogram_stream_alt"),
-    	distributionEventHandler("handle_distribution_stream")
+    SDCStreamHoldingDeviceProvider(SDCInstance_shared_ptr p_SDCInstance)
+	: m_sdcProvider(p_SDCInstance)
 	{
-
-		sdcProvider.setEndpointReferenceByName(SDCLib::Tests::StreamSDC::deviceEPR);
-
+    	m_sdcProvider.setEndpointReferenceByName(SDCLib::Tests::StreamSDC::deviceEPR);
 
 		// Current weight stream metric (read-only)
 		// Metric references the handler
-		RealTimeSampleArrayMetricDescriptor currentMetric("handle_plethysmogram_stream",
-				CodedValue(CodeIdentifier("MDCX_VOLTAGE")).addConceptDescription(LocalizedText("Concept Description on MDCX_VOLTAGE.").setLang("en")),
+		RealTimeSampleArrayMetricDescriptor currentMetric{"handle_plethysmogram_stream",
+				CodedValue{CodeIdentifier{"MDCX_VOLTAGE"}}.addConceptDescription(LocalizedText{"Concept Description on MDCX_VOLTAGE."}.setLang("en")),
 				MetricCategory::Msrmt,
 				MetricAvailability::Cont,
 				1,
-				xml_schema::Duration(0,0,0,0,0,0,1));
+				xml_schema::Duration{0,0,0,0,0,0,1}};
 
 
 	    // alternative current matrix
 		// Metric references the handler
-		RealTimeSampleArrayMetricDescriptor currentMetricAlt("handle_plethysmogram_stream_alt",
-				CodedValue(CodeIdentifier("MDCS_VOLTAGE")).addConceptDescription(LocalizedText("Concept Description on MDCS_VOLTAGE.").setLang("en")),
+		RealTimeSampleArrayMetricDescriptor currentMetricAlt{"handle_plethysmogram_stream_alt",
+				CodedValue(CodeIdentifier{"MDCS_VOLTAGE"}).addConceptDescription(LocalizedText{"Concept Description on MDCS_VOLTAGE."}.setLang("en")),
 				MetricCategory::Msrmt,
 				MetricAvailability::Cont,
 				1,
-				xml_schema::Duration(0,0,0,0,0,0,1));
+				xml_schema::Duration{0,0,0,0,0,0,1}};
 
 
 		// set up a distribution metric
 		// Declares a sample array that represents linear value distributions in the form of arrays containing scaled sample values.
 		// In contrast to real-time sample arrays, distribution sample arrays provide observed spatial values, not time points.
 		// An example for a distribution sample array metric might be a fourier-transformed electroencephalogram to derive frequency distribution.
-		DistributionSampleArrayMetricDescriptor distributionMetric("handle_FFT_stream",
-				CodedValue(CodeIdentifier("MDCX_FFT_VOLTAGE_SQUARED")),
+		DistributionSampleArrayMetricDescriptor distributionMetric{"handle_FFT_stream",
+				CodedValue(CodeIdentifier{"MDCX_FFT_VOLTAGE_SQUARED"}),
 				MetricCategory::Msrmt,
 				MetricAvailability::Cont,
-				CodedValue(CodeIdentifier("MDCX_FREQUENCY")),
-				Range().setUpper(3.1415).setLower(-3.1415),
-				1);
+				CodedValue{CodeIdentifier{"MDCX_FREQUENCY"}},
+				Range{}.setUpper(3.1415).setLower(-3.1415),
+				1};
 
 
         // alternative current matrix: non-mandatory information
-        currentMetricAlt.addTechnicalRange(Range().setLower(0).setUpper(2));
+        currentMetricAlt.addTechnicalRange(Range{}.setLower(0).setUpper(2));
 
 
         // Channel
-        ChannelDescriptor holdingDeviceParameters("handle_channel");
+        ChannelDescriptor holdingDeviceParameters{"handle_channel"};
         holdingDeviceParameters
 			.addMetric(currentMetric)
             .addMetric(currentMetricAlt)
@@ -255,78 +273,77 @@ public:
 			.setSafetyClassification(SafetyClassification::Inf);
 
         // VMD
-        VmdDescriptor holdingDeviceModule("handle_vmd");
+        VmdDescriptor holdingDeviceModule{"handle_vmd"};
         holdingDeviceModule.addChannel(holdingDeviceParameters);
 
         // MDS
-        MdsDescriptor holdingDeviceSystem("handle_mds");
+        MdsDescriptor holdingDeviceSystem{"handle_mds"};
         holdingDeviceSystem
 			.setMetaData(
 				MetaData()
-					.addManufacturer(LocalizedText("SurgiTAIX AG"))
+					.addManufacturer(LocalizedText{"SurgiTAIX AG"})
 	        		.setModelNumber("1")
-	        		.addModelName(LocalizedText("EndoTAIX"))
+	        		.addModelName(LocalizedText{"EndoTAIX"})
 	        		.addSerialNumber("1234"))
-            .setType(CodedValue(CodeIdentifier("MDC_DEV_ANALY_SAT_O2_MDS")))
+            .setType(CodedValue{CodeIdentifier{"MDC_DEV_ANALY_SAT_O2_MDS"}})
 			.addVmd(holdingDeviceModule);
 
         // create and add description
 		MdDescription mdDescription;
 		mdDescription.addMdsDescriptor(holdingDeviceSystem);
 
-		sdcProvider.setMdDescription(mdDescription);
+		m_sdcProvider.setMdDescription(mdDescription);
 
         // Add handler
-        sdcProvider.addMdStateHandler(&streamEventHandler);
-        sdcProvider.addMdStateHandler(&streamEventHandlerAlt);
-        sdcProvider.addMdStateHandler(&distributionEventHandler);
+		m_sdcProvider.addMdStateHandler(&m_streamEventHandler);
+		m_sdcProvider.addMdStateHandler(&m_streamEventHandlerAlt);
+		m_sdcProvider.addMdStateHandler(&m_distributionEventHandler);
     }
 
-    void startup() {
-    	sdcProvider.startup();
+    void startup()
+    {
+    	m_sdcProvider.startup();
     }
 
-    void shutdown() {
-    	sdcProvider.shutdown();
-    }
-
-    void updateStateValue(const SampleArrayValue & rtsav) {
-        streamEventHandler.updateStateValue(rtsav); // updates handles and the parent provider
-        streamEventHandlerAlt.updateStateValue(rtsav);
-        distributionEventHandler.updateStateValue(rtsav);
+    void updateStateValue(const SampleArrayValue& p_newValue)
+    {
+    	m_streamEventHandler.updateStateValue(p_newValue); // updates handles and the parent provider
+    	m_streamEventHandlerAlt.updateStateValue(p_newValue);
+    	m_distributionEventHandler.updateStateValue(p_newValue);
     }
 
 private:
 
-    SDCProvider sdcProvider;
+    SDCProvider m_sdcProvider;
 
-    StreamProviderStateHandler streamEventHandler;
-    StreamProviderStateHandler streamEventHandlerAlt;
-    DistributionProviderStateHandler distributionEventHandler;
+    StreamProviderStateHandler m_streamEventHandler{"handle_plethysmogram_stream"};
+    StreamProviderStateHandler m_streamEventHandlerAlt{"handle_plethysmogram_stream_alt"};
+    DistributionProviderStateHandler m_distributionEventHandler{"handle_distribution_stream"};
 
 
 public:
 
     // Produce stream values
     // runImpl() gets called when starting the provider thread by the inherited function start()
-    virtual void runImpl() override {
+    void runImpl() override
+    {
     	DebugOut(DebugOut::Default, "StreamSDC") << "\nPoducer thread started." << std::endl;
-		const std::size_t size(1000);
+
+		const auto t_chunkSizePerSample{1000};
 		std::vector<double> samples;
-		for (std::size_t i = 0; i < size; i++) {
+		for (auto i = 0; i < t_chunkSizePerSample; ++i)
+		{
 			samples.push_back(i);
 		}
-		long index(0);
-		while (!isInterrupted()) {
+		auto t_sampleIndex{0};
+		while (!isInterrupted())
+		{
 			{
-                updateStateValue(
-						SampleArrayValue(MetricQuality(MeasurementValidity::Vld))
-						.setSamples(samples));
-
+                updateStateValue(SampleArrayValue{MetricQuality{MeasurementValidity::Vld}}.setSamples(samples));
 			}
-			DebugOut(DebugOut::Default, "StreamSDC") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
+			DebugOut(DebugOut::Default, "StreamSDC") << "Produced stream chunk of size " << t_chunkSizePerSample << ", index " << t_sampleIndex << std::endl;
 			std::this_thread::sleep_for(std::chrono::milliseconds(LOOP_SLEEP));
-			index += size;
+			t_sampleIndex += t_chunkSizePerSample;
 		}
     }
 };
@@ -335,27 +352,33 @@ public:
 }
 }
 
-struct FixtureStreamSDC : Tests::AbstractSDCLibFixture {
-	FixtureStreamSDC() : AbstractSDCLibFixture("FixtureStreamSDC", OSELib::LogLevel::Notice) {}
+struct FixtureStreamSDC : Tests::AbstractSDCLibFixture
+{
+	FixtureStreamSDC()
+	: AbstractSDCLibFixture("FixtureStreamSDC", OSELib::LogLevel::Notice)
+	{ }
 };
 
-SUITE(SDC) {
+SUITE(SDC)
+{
 TEST_FIXTURE(FixtureStreamSDC, StreamSDC)
 {
 	DebugOut::openLogFile("TestStream.log.txt", true);
 	try
 	{
-        auto t_SDCInstance = createSDCInstance();
+        auto t_SDCInstance{createSDCInstance()};
 
         // Provider
-		Tests::StreamSDC::SDCStreamHoldingDeviceProvider t_provider(t_SDCInstance);
+		Tests::StreamSDC::SDCStreamHoldingDeviceProvider t_provider{t_SDCInstance};
 		DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Provider init.." << std::endl;
 		t_provider.startup();
 
         // Consumer
-        OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
+        OSELib::SDC::ServiceManager t_serviceManager{t_SDCInstance};
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Consumer discovery..." << std::endl;
-        auto t_consumer(t_serviceManager.discoverEndpointReference(SDCLib::SDCInstance::calcUUIDv5(SDCLib::Tests::StreamSDC::deviceEPR, true)));
+
+        auto t_consumer{t_serviceManager.discoverEndpointReference(SDCLib::SDCInstance::calcUUIDv5(SDCLib::Tests::StreamSDC::deviceEPR, true))};
+
         auto eventHandler = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream");
         auto eventHandlerAlt = std::make_shared<Tests::StreamSDC::StreamConsumerEventHandler>("handle_plethysmogram_stream_alt");
         auto eventHandlerDistribution = std::make_shared<Tests::StreamSDC::StreamDistributionConsumerEventHandler>("handle_distribution_stream");
@@ -363,7 +386,8 @@ TEST_FIXTURE(FixtureStreamSDC, StreamSDC)
         // Discovery test
         CHECK_EQUAL(true, t_consumer != nullptr);
 
-        if (t_consumer != nullptr) {
+        if (t_consumer != nullptr)
+        {
             t_consumer->registerStateEventHandler(eventHandler.get());
             t_consumer->registerStateEventHandler(eventHandlerAlt.get());
             t_consumer->registerStateEventHandler(eventHandlerDistribution.get());
@@ -372,18 +396,18 @@ TEST_FIXTURE(FixtureStreamSDC, StreamSDC)
 
 			// Metric event reception test
             std::this_thread::sleep_for(std::chrono::milliseconds(LOOP_SLEEP*NUM_LOOPS_SLEEP));
-            CHECK_EQUAL(true, eventHandler->getVerifiedChunks());
-            CHECK_EQUAL(true, eventHandlerAlt->getVerifiedChunks());
-            CHECK_EQUAL(true, eventHandlerDistribution->getVerifiedChunks());
-
+            CHECK_EQUAL(true, eventHandler->chunksVerified());
+            CHECK_EQUAL(true, eventHandlerAlt->chunksVerified());
+            CHECK_EQUAL(true, eventHandlerDistribution->chunksVerified());
 
             t_consumer->unregisterStateEventHandler(eventHandler.get());
             t_consumer->unregisterStateEventHandler(eventHandlerAlt.get());
             t_consumer->unregisterStateEventHandler(eventHandlerDistribution.get());
+
             t_consumer->disconnect();
-            t_provider.interrupt();
+
+            t_provider.interrupt();// TODO: Better solution?
         }
-        t_provider.shutdown();
 	}
 	catch (char const* exc)
 	{

@@ -12,7 +12,6 @@ using namespace SDCLib::Data::SDC;
 
 int main(int argc, char* argv[])
 {
-
 	// Startup
 	DebugOut(DebugOut::Default, "PulseOximeterProvider") << "Startup" << std::endl;
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
@@ -40,5 +39,6 @@ int main(int argc, char* argv[])
 	// Shutdown
 	DebugOut(DebugOut::Default, "PulseOximeterProvider") << "Shutdown." << std::endl;
 	provider.shutdown();
-    SDCLibrary::getInstance().shutdown();
+
+	return 0;
 }

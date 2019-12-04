@@ -41,7 +41,7 @@ namespace SDCLib
     {
     private:
 
-        std::atomic<bool> m_initialized = ATOMIC_VAR_INIT(false);
+        std::atomic<bool> m_initialized{false};
 
     public:
 

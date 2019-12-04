@@ -46,56 +46,57 @@ using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
-//SDCLib/C
-const std::string deviceEPR("UDI-ExampleProvider");
-const std::string HANDLE_SET_METRIC("handle_set");
-const std::string HANDLE_GET_METRIC("handle_get");
-const std::string HANDLE_STREAM_METRIC("handle_stream");
-
-
-
+const std::string DEVICE_EPR{"UDI-ExampleProvider"};
+const std::string HANDLE_SET_METRIC{"handle_set"};
+const std::string HANDLE_GET_METRIC{"handle_get"};
+const std::string HANDLE_STREAM_METRIC{"handle_stream"};
 
 class ExampleConsumerEventHandler : public SDCConsumerMDStateHandler<NumericMetricState>
 {
 private:
-    double currentWeight = 0;
+    double currentWeight{0};
 
 public:
-    ExampleConsumerEventHandler(const std::string & handle)
-	: SDCConsumerMDStateHandler(handle)
+    ExampleConsumerEventHandler(std::string p_descriptorHandle)
+	: SDCConsumerMDStateHandler(p_descriptorHandle)
 	{ }
 
-    void onStateChanged(const NumericMetricState & state) override {
-        double t_value = state.getMetricValue().getValue();
-        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received value changed of " << this->getDescriptorHandle() << ": " << t_value << std::endl;
-        currentWeight = t_value;
+    void onStateChanged(const NumericMetricState& p_changedState) override
+    {
+        auto t_newValue{p_changedState.getMetricValue().getValue()};
+        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received value changed of " << getDescriptorHandle() << ": " << t_newValue << std::endl;
+        currentWeight = t_newValue;
     }
 
-    void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) override {
-        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received operation invoked (numeric metric) (ID, STATE) of " << this->getDescriptorHandle() << ": " << oic.transactionId << ", " << Data::SDC::EnumToString::convert(is) << std::endl;
+    void onOperationInvoked(const OperationInvocationContext& oic, InvocationState p_is) override
+    {
+        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received operation invoked (numeric metric) (ID, STATE) of " << getDescriptorHandle() << ": " << oic.transactionId << ", " << Data::SDC::EnumToString::convert(p_is) << std::endl;
     }
 
-    double getCurrentWeight() {
+    double getCurrentWeight() const
+    {
         return currentWeight;
     }
 };
 
 
 // state handler for array values, uses udp instead of tcp. Faster. Considered for real time applications
-class StreamConsumerStateHandler : public SDCConsumerMDStateHandler<RealTimeSampleArrayMetricState> {
+class StreamConsumerStateHandler : public SDCConsumerMDStateHandler<RealTimeSampleArrayMetricState>
+{
 public:
-	StreamConsumerStateHandler(std::string descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle) {}
+	StreamConsumerStateHandler(std::string p_descriptorHandle)
+	: SDCConsumerMDStateHandler(p_descriptorHandle)
+	{ }
 
-	void onStateChanged(const RealTimeSampleArrayMetricState & state) override {
-		std::vector<double> values = state.getMetricValue().getSamples();
+	void onStateChanged(const RealTimeSampleArrayMetricState& p_changedState) override
+	{
+		std::vector<double> t_samples = p_changedState.getMetricValue().getSamples();
 
-		// simple check if the data is valid:
-		// assumption: sequence of values, increased by 1
-
+		DebugOut(DebugOut::Default, "ExampleConsumer") << "Received chunk! Handle: " << p_changedState.getDescriptorHandle() << std::endl;
 		std::string out("Content: ");
-		DebugOut(DebugOut::Default, "ExampleConsumer") << "Received chunk! Handle: " << state.getDescriptorHandle() << std::endl;
-		for (size_t i = 0; i < values.size(); i++) {
-			out.append(" " + std::to_string(values[i]));
+		for (const auto t_sampleValue : t_samples)
+		{
+			out.append(" " + std::to_string(t_sampleValue));
 		}
 		DebugOut(DebugOut::Default, "ExampleConsumer") << out;
 	}
@@ -103,32 +104,33 @@ public:
 
 
 
-
-void waitForUserInput() {
+void waitForUserInput()
+{
 	Util::DebugOut(Util::DebugOut::Default, "") << "Press key to proceed.";
 	std::cin.get();
 }
 
-
+class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler
+{
+public:
+	MyConnectionLostHandler(Data::SDC::SDCConsumer& p_consumer)
+	: m_consumer(p_consumer)
+	{ }
+	void onConnectionLost() override
+	{
+		std::cerr << "Connection lost, disconnecting... ";
+		m_consumer.disconnect();
+		std::cerr << "Disconnected. Press key to proceed." << std::endl;
+	}
+private:
+	Data::SDC::SDCConsumer& m_consumer;
+};
 
 
 int main()
 {
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
-
-    class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
-    public:
-    	MyConnectionLostHandler(Data::SDC::SDCConsumer & consumer) : consumer(consumer) {
-    	}
-    	void onConnectionLost() override {
-    		std::cerr << "Connection lost, disconnecting... ";
-    		consumer.disconnect();
-    		std::cerr << "Disconnected. Press key to proceed." << std::endl;
-    	}
-    private:
-    	Data::SDC::SDCConsumer & consumer;
-    };
 
     // Create a new SDCInstance (no flag will auto init)
     auto t_SDCInstance = std::make_shared<SDCInstance>(true);
@@ -142,55 +144,79 @@ int main()
     }
 
 	// Discovery
-	OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
+	OSELib::SDC::ServiceManager t_serviceManager{t_SDCInstance};
 
 	// Note: Calculate a UUIDv5 and apply prefix to it!
-	auto t_consumer(t_serviceManager.discoverEndpointReference(SDCInstance::calcUUIDv5(deviceEPR, true)));
+	auto t_consumer{t_serviceManager.discoverEndpointReference(SDCInstance::calcUUIDv5(DEVICE_EPR, true))};
 
-	// state handler
-	auto eh_get = std::make_shared<ExampleConsumerEventHandler>(HANDLE_GET_METRIC);
-	auto eh_set = std::make_shared<ExampleConsumerEventHandler>(HANDLE_SET_METRIC);
-	auto eh_stream = std::make_shared<StreamConsumerStateHandler>(HANDLE_STREAM_METRIC);
-
-	try {
-		if (t_consumer != nullptr) {
+	try
+	{
+		// Connected to Provider?
+		if (t_consumer != nullptr)
+		{
+			// Get notified on Lost Connection
 			std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(*t_consumer));
 			t_consumer->setConnectionLostHandler(myHandler.get());
 
+			// Create StateEventHandler to "Consume" Events from Provider
+			auto eh_get = std::make_shared<ExampleConsumerEventHandler>(HANDLE_GET_METRIC);
+			auto eh_set = std::make_shared<ExampleConsumerEventHandler>(HANDLE_SET_METRIC);
+			auto eh_stream = std::make_shared<StreamConsumerStateHandler>(HANDLE_STREAM_METRIC);
+
+			// Register StateEventHandlers to get updates
 			t_consumer->registerStateEventHandler(eh_get.get());
 			t_consumer->registerStateEventHandler(eh_set.get());
 			t_consumer->registerStateEventHandler(eh_stream.get());
 
-			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery succeeded." << std::endl << std::endl << "Waiting 5 sec. for the subscriptions to beeing finished";
-
 			// wait for the subscriptions to be completed
-            std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+			Util::DebugOut(Util::DebugOut::Default, "ExampleProject") << "Discovery succeeded.\n\nWaiting 2 sec. for the subscriptions to beeing finished" << std::endl;
+	        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 
-			auto t_getMetricState(t_consumer->requestState<NumericMetricState>(HANDLE_GET_METRIC));
-			if(t_getMetricState) {
+            // Simple Test(1):
+            // Search for the "Get"-State
+			auto t_getMetricState{t_consumer->requestState<NumericMetricState>(HANDLE_GET_METRIC)};
+			// If found: Print the current(!) value
+			if(t_getMetricState)
+			{
 				Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested get metrics value: " << t_getMetricState->getMetricValue().getValue();
 			}
 
-			// set numeric metric
-			auto t_setMetricState(t_consumer->requestState<NumericMetricState>(HANDLE_SET_METRIC));
-			if(t_setMetricState) {
-				t_setMetricState->setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(10));
+			// Simple Test(2):
+			// Search for the "Set"-State
+			auto t_setMetricState{t_consumer->requestState<NumericMetricState>(HANDLE_SET_METRIC)};
+			// If found: Set it to a given value
+			if(t_setMetricState)
+			{
+				double t_newValue{10.0};
+				// Use the returned state, set the value and "commit" it
+				t_setMetricState->setMetricValue(NumericMetricValue{MetricQuality{MeasurementValidity::Vld}}.setValue(t_newValue));
+				// Now
 				FutureInvocationState fis;
 				t_consumer->commitState(*t_setMetricState, fis);
-				Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result metric state: " << fis.waitReceived(InvocationState::Fin, 10000);
+				// Now wait for "InvocationState::Fin" (=> Success)
+				Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result metric state: " << (fis.waitReceived(InvocationState::Fin, 2000) ? std::string("TRUE") : std::string("FALSE"));
 			}
+
+			// From here on the registered StateEventHandlers (SDCLib Threads / background) will provide information
+			// on "state changes" until the user enters a key ("waitForUserInput") or exception is thrown.
 			waitForUserInput();
+			// Unregister and disconnect
 			t_consumer->unregisterStateEventHandler(eh_get.get());
 			t_consumer->unregisterStateEventHandler(eh_set.get());
 			t_consumer->unregisterStateEventHandler(eh_stream.get());
 			t_consumer->disconnect();
-		} else {
+		}
+		else
+		{
+			// Something went wrong -> Exit!
 			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery failed.";
 		}
-
-	} catch (std::exception & e){
+	}
+	catch (std::exception& e)
+	{
 		Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Exception: " << e.what() << std::endl;
 	}
-    SDCLibrary::getInstance().shutdown();
-    Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Shutdown." << std::endl;
+
+	DebugOut(DebugOut::Default, "\nExampleConsumer") << "Shutdown.\n" << std::endl;
+    return 0;
 }

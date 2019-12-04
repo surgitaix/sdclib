@@ -23,13 +23,13 @@ namespace OSELib
 		{
 		private:
 			
-			SDCLib::Config::NetworkConfig_shared_ptr m_networkConfig = nullptr;
-			SDCLib::Config::SSLConfig_shared_ptr m_SSLConfig = nullptr;
+			SDCLib::Config::NetworkConfig_shared_ptr m_networkConfig{nullptr};
+			SDCLib::Config::SSLConfig_shared_ptr m_SSLConfig{nullptr};
 
-			std::atomic<bool> m_init = ATOMIC_VAR_INIT(false);
+			std::atomic<bool> m_init{false};
 
-			std::unique_ptr<Poco::Net::HTTPServer> m_httpServer = nullptr;
-			std::unique_ptr<Poco::ThreadPool> m_threadPool = nullptr;
+			std::unique_ptr<Poco::Net::HTTPServer> m_httpServer{nullptr};
+			std::unique_ptr<Poco::ThreadPool> m_threadPool{nullptr};
 
 		public:
 			HTTPServer(SDCLib::Config::NetworkConfig_shared_ptr p_networkConfig, SDCLib::Config::SSLConfig_shared_ptr p_SSLConfig);

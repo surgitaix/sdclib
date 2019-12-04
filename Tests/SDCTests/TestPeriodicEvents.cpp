@@ -43,46 +43,52 @@ namespace Tests {
 namespace PeriodicEvents {
 
 
-const std::string DEVICE_ENDPOINT_REFERENCE("EPR_PERIODIC_EVENT_TEST");
-const std::string DEVICE_UDI("UDI_PERIODIC_EVENT_TEST");
-const int DEFAULT_TIMEOUT(5000);
+const std::string DEVICE_ENDPOINT_REFERENCE{"EPR_PERIODIC_EVENT_TEST"};
+const std::string DEVICE_UDI{"UDI_PERIODIC_EVENT_TEST"};
+const int DEFAULT_TIMEOUT{5000};
 
-const std::string ALERT_CONDITION_HANDLE("handle_alert_condition");
-const std::string ALERT_SYSTEM_HANDLE("handle_alert_system");
-const std::string CHANNEL_DESCRIPTOR_HANDLE("channel_handle");
-const std::string LOCATION_CONTEXT_DESCRIPTOR_HANDLE("location_context");
-const std::string LOCATION_CONTEXT_HANDLE("location_context_state_handle");
-const std::string MDS_HANDLE("mds_handle");
-const std::string METRIC_DUMMY_HANDLE("metric_dummy_handle");
-const std::string VMD_DESCRIPTOR_HANDLE("vmd_handle");
+const std::string ALERT_CONDITION_HANDLE{"handle_alert_condition"};
+const std::string ALERT_SYSTEM_HANDLE{"handle_alert_system"};
+const std::string CHANNEL_DESCRIPTOR_HANDLE{"channel_handle"};
+const std::string LOCATION_CONTEXT_DESCRIPTOR_HANDLE{"location_context"};
+const std::string LOCATION_CONTEXT_HANDLE{"location_context_state_handle"};
+const std::string MDS_HANDLE{"mds_handle"};
+const std::string METRIC_DUMMY_HANDLE{"metric_dummy_handle"};
+const std::string VMD_DESCRIPTOR_HANDLE{"vmd_handle"};
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Consumer event handlers
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-class ConsumerAlertConditionHandler : public SDCConsumerMDStateHandler<AlertConditionState> {
+class ConsumerAlertConditionHandler : public SDCConsumerMDStateHandler<AlertConditionState>
+{
 public:
-	ConsumerAlertConditionHandler(const std::string descriptorHandle)
-	: SDCConsumerMDStateHandler(descriptorHandle)
+	ConsumerAlertConditionHandler(const std::string p_descriptorHandle)
+	: SDCConsumerMDStateHandler(p_descriptorHandle)
 	{ }
 
-    void onStateChanged(const AlertConditionState & ) override {
-    	++counter;
-		if (counter < 5) {
-			Util::DebugOut(Util::DebugOut::Default, "PeriodicEvents") << "Consumer: Received alert condition change of " << descriptorHandle << std::endl;
-		} else {
-			event.set();
+    void onStateChanged(const AlertConditionState&) override
+    {
+    	++m_counter;
+		if (m_counter < 5)
+		{
+			Util::DebugOut(Util::DebugOut::Default, "PeriodicEvents") << "Consumer: Received alert condition change of " << getDescriptorHandle() << std::endl;
+		}
+		else
+		{
+			m_event.set();
 		}
     }
 
-	Poco::Event & getEvent() {
-		return event;
+	Poco::Event& getEvent()
+	{
+		return m_event;
 	}
 
 private:
-	std::atomic<int> counter = ATOMIC_VAR_INIT(0);
-    Poco::Event event;
+	std::atomic<int> m_counter{0};
+    Poco::Event m_event;
 };
 
 
@@ -90,205 +96,223 @@ private:
 class ConsumerContextEventHandler : public SDCConsumerMDStateHandler<LocationContextState>
 {
 public:
-	ConsumerContextEventHandler(const std::string descriptorHandle)
-	: SDCConsumerMDStateHandler<LocationContextState>(descriptorHandle)
+	ConsumerContextEventHandler(const std::string p_descriptorHandle)
+	: SDCConsumerMDStateHandler<LocationContextState>(p_descriptorHandle)
 	{ }
 
-	virtual void onStateChanged(const LocationContextState&) override {
-		++counter;
-		if (counter < 5) {
+	virtual void onStateChanged(const LocationContextState&) override
+	{
+		++m_counter;
+		if (m_counter < 5)
+		{
 			Util::DebugOut(Util::DebugOut::Default, "PeriodicEvents") << "Consumer: Received locationContextDescriptor context values changed! Handle: " << getDescriptorHandle() <<std::endl;
-		} else {
-			event.set();
+		}
+		else
+		{
+			m_event.set();
 		}
 	}
 
-	Poco::Event & getEvent() {
-		return event;
+	Poco::Event& getEvent()
+	{
+		return m_event;
 	}
 
 private:
-	std::atomic<int> counter = ATOMIC_VAR_INIT(0);
-	Poco::Event event;
+	std::atomic<int> m_counter{0};
+	Poco::Event m_event;
 };
 
-class ConsumerDummyHandler : public SDCConsumerMDStateHandler<NumericMetricState> {
+class ConsumerDummyHandler : public SDCConsumerMDStateHandler<NumericMetricState>
+{
 public:
-	ConsumerDummyHandler(const std::string descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle)
+	ConsumerDummyHandler(const std::string p_descriptorHandle)
+	: SDCConsumerMDStateHandler(p_descriptorHandle)
 	{ }
 
-    void onStateChanged(const NumericMetricState & ) override {
-        ++counter;
-    	if (counter < 5) {
+    void onStateChanged(const NumericMetricState& ) override
+    {
+        ++m_counter;
+    	if (m_counter < 5)
+    	{
         	Util::DebugOut(Util::DebugOut::Default, "PeriodicEvents") << "Consumer: Received metric changed event of " << getDescriptorHandle() << std::endl;
-        } else {
-        	event.set();
+        }
+    	else
+        {
+        	m_event.set();
         }
     }
 
-	Poco::Event & getEvent() {
-		return event;
+	Poco::Event& getEvent()
+	{
+		return m_event;
 	}
 
 private:
-    std::atomic<int> counter = ATOMIC_VAR_INIT(0);
-    Poco::Event event;
+    std::atomic<int> m_counter{0};
+    Poco::Event m_event;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Provider handlers
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class AlertConditionStateHandler : public SDCProviderAlertConditionStateHandler<AlertConditionState> {
+class AlertConditionStateHandler : public SDCProviderAlertConditionStateHandler<AlertConditionState>
+{
 public:
-	AlertConditionStateHandler(const std::string descriptorHandle) : SDCProviderAlertConditionStateHandler<AlertConditionState>(descriptorHandle) {
-	}
+	AlertConditionStateHandler(const std::string p_descriptorHandle)
+	: SDCProviderAlertConditionStateHandler<AlertConditionState>(p_descriptorHandle)
+	{ }
 
-    // Helper method
-    AlertConditionState createState() {
-        AlertConditionState result(ALERT_CONDITION_HANDLE, AlertActivation::On);
-        return result;
-    }
-
-	AlertConditionState getInitialState() override {
-        return createState();
+	AlertConditionState getInitialState() override
+	{
+        return {ALERT_CONDITION_HANDLE, AlertActivation::On};
     }
 
 	// not allowed to change the state
-	InvocationState onStateChangeRequest(const AlertConditionState&, const OperationInvocationContext&) override {
+	InvocationState onStateChangeRequest(const AlertConditionState&, const OperationInvocationContext&) override
+	{
 		return InvocationState::Fail;
 	}
 
 	// ignore
-	void sourceHasChanged(const std::string&) override {
+	void sourceHasChanged(const std::string&) override
+	{
 		return;
 	}
 
 };
 
 
-class AlertSystemStateHandler : public  SDCProviderMDStateHandler<AlertSystemState> {
+class AlertSystemStateHandler : public  SDCProviderMDStateHandler<AlertSystemState>
+{
 public:
-	AlertSystemStateHandler(const std::string descriptorHandle) : SDCProviderMDStateHandler<AlertSystemState>(descriptorHandle) {
+	AlertSystemStateHandler(const std::string p_descriptorHandle)
+	: SDCProviderMDStateHandler<AlertSystemState>(p_descriptorHandle)
+	{ }
+
+	AlertSystemState getInitialState() override
+	{
+        return {ALERT_SYSTEM_HANDLE, AlertActivation::On};
     }
 
-    // Helper method
-    AlertSystemState createState() {
-    	// reference alert system descriptor's handle
-    	AlertSystemState result(ALERT_SYSTEM_HANDLE, AlertActivation::On);
-        return result;
-    }
-
-	AlertSystemState getInitialState() override {
-        return createState();
-    }
-
-	InvocationState onStateChangeRequest(const AlertSystemState&, const OperationInvocationContext&) override {
+	InvocationState onStateChangeRequest(const AlertSystemState&, const OperationInvocationContext&) override
+	{
 		return InvocationState::Fail;
 	}
 
 };
 
-class LocationContextHandler : public SDCProviderMDStateHandler<LocationContextState> {
+class LocationContextHandler : public SDCProviderMDStateHandler<LocationContextState>
+{
 public:
-	LocationContextHandler(const std::string descriptorHandle) : SDCProviderMDStateHandler<LocationContextState>(descriptorHandle) {
-	}
+	LocationContextHandler(const std::string p_descriptorHandle)
+	: SDCProviderMDStateHandler<LocationContextState>(p_descriptorHandle)
+    { }
 
-    // Helper method
-    LocationContextState createState() {
-        LocationContextState result(LOCATION_CONTEXT_DESCRIPTOR_HANDLE, LOCATION_CONTEXT_HANDLE);
-        return result;
-    }
-
-    LocationContextState getInitialState() override	{
-    	return createState();
+    LocationContextState getInitialState() override
+    {
+    	return {LOCATION_CONTEXT_DESCRIPTOR_HANDLE, LOCATION_CONTEXT_HANDLE};
     }
 
     // not allowed
-    InvocationState onStateChangeRequest(const LocationContextState&, const OperationInvocationContext&) override {
+    InvocationState onStateChangeRequest(const LocationContextState&, const OperationInvocationContext&) override
+    {
     	return InvocationState::Fail;
     }
 };
 
-class ProviderNumericStateHandler : public SDCProviderMDStateHandler<NumericMetricState> {
+class ProviderNumericStateHandler : public SDCProviderMDStateHandler<NumericMetricState>
+{
 public:
-    ProviderNumericStateHandler(const std::string descriptorHandle) : SDCProviderMDStateHandler<NumericMetricState>(descriptorHandle) {
-    }
-
-    // Helper method
-    NumericMetricState createState() {
-        NumericMetricState result(METRIC_DUMMY_HANDLE);
-        result
-            .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(0.0))
-            .setActivationState(ComponentActivation::On);
-        return result;
-    }
-
-    NumericMetricState getInitialState() override {
-        return createState();
-    }
-
-    // not allowed
-    InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext&) override {
-    	return InvocationState::Fail;
-    }
-};
-
-
-class AlwaysOnMdsStateHandler : public SDCProviderComponentStateHandler<MdsState> {
-public:
-	AlwaysOnMdsStateHandler(const std::string & descriptorHandle) : SDCProviderComponentStateHandler<MdsState>(descriptorHandle) {
-	}
-
-    // Helper method
-    MdsState createState() {
-        MdsState result(descriptorHandle);
-        result
-            .setActivationState(ComponentActivation::On);
-        return result;
-    }
-
-	virtual MdsState getInitialState() override {
-        return createState();
-	}
-};
-
-
-class AlwaysOnVmdStateHandler : public SDCProviderComponentStateHandler<VmdState> {
-public:
-	AlwaysOnVmdStateHandler(const std::string & descriptorHandle)
-	: SDCProviderComponentStateHandler<VmdState>(descriptorHandle)
+    ProviderNumericStateHandler(const std::string p_descriptorHandle)
+	: SDCProviderMDStateHandler<NumericMetricState>(p_descriptorHandle)
 	{ }
 
     // Helper method
-    VmdState createState() {
-        VmdState result(descriptorHandle);
-        result
+    NumericMetricState createState()
+    {
+        NumericMetricState t_newState{METRIC_DUMMY_HANDLE};
+        t_newState
+            .setMetricValue(NumericMetricValue{MetricQuality{MeasurementValidity::Vld}}.setValue(0.0))
             .setActivationState(ComponentActivation::On);
-        return result;
+        return t_newState;
     }
 
-	virtual VmdState getInitialState() override {
+    NumericMetricState getInitialState() override
+    {
+        return createState();
+    }
+
+    // not allowed
+    InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext&) override
+    {
+    	return InvocationState::Fail;
+    }
+};
+
+
+class AlwaysOnMdsStateHandler : public SDCProviderComponentStateHandler<MdsState>
+{
+public:
+	AlwaysOnMdsStateHandler(const std::string p_descriptorHandle)
+	: SDCProviderComponentStateHandler<MdsState>(p_descriptorHandle)
+	{ }
+
+    // Helper method
+    MdsState createState()
+    {
+        MdsState t_newState{getDescriptorHandle()};
+        t_newState.setActivationState(ComponentActivation::On);
+        return t_newState;
+    }
+
+	MdsState getInitialState() override
+	{
         return createState();
 	}
 };
 
-class AlwaysOnChannelStateHandler : public SDCProviderComponentStateHandler<ChannelState>  {
+
+class AlwaysOnVmdStateHandler : public SDCProviderComponentStateHandler<VmdState>
+{
 public:
-	AlwaysOnChannelStateHandler(const std::string & descriptorHandle) : SDCProviderComponentStateHandler<ChannelState>(descriptorHandle)  {
-	}
+	AlwaysOnVmdStateHandler(const std::string p_descriptorHandle)
+	: SDCProviderComponentStateHandler<VmdState>(p_descriptorHandle)
+	{ }
 
     // Helper method
-    ChannelState createState() {
-    	ChannelState result(descriptorHandle);
-        result
-            .setActivationState(ComponentActivation::On);
-        return result;
+    VmdState createState()
+    {
+        VmdState t_newState{getDescriptorHandle()};
+        t_newState.setActivationState(ComponentActivation::On);
+        return t_newState;
     }
 
-	virtual ChannelState getInitialState() override {
-		ChannelState state = createState();
-        return state;
+	VmdState getInitialState() override
+	{
+        return createState();
+	}
+};
+
+class AlwaysOnChannelStateHandler : public SDCProviderComponentStateHandler<ChannelState>
+{
+public:
+	AlwaysOnChannelStateHandler(const std::string p_descriptorHandle)
+	: SDCProviderComponentStateHandler<ChannelState>(p_descriptorHandle)
+	{ }
+
+    // Helper method
+    ChannelState createState()
+    {
+    	ChannelState t_newState{getDescriptorHandle()};
+    	t_newState.setActivationState(ComponentActivation::On);
+        return t_newState;
+    }
+
+	ChannelState getInitialState() override
+	{
+		return createState();
 	}
 };
 
@@ -296,55 +320,43 @@ public:
 // Provider
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class SDCDeviceProvider {
+class SDCDeviceProvider
+{
 public:
 	// the mandatory fields of the states and descriptors MUST be initialized in the constructor initializer list,
 	// the state handlers are recommended to be initialized in the constructor initializer list
-	SDCDeviceProvider(SDCInstance_shared_ptr p_SDCInstance) :
-		sdcProvider(p_SDCInstance),
-
-		alertCondition(ALERT_CONDITION_HANDLE, AlertConditionKind::Tec, AlertConditionPriority::Me),
-		dummyMetricDescriptor(METRIC_DUMMY_HANDLE, CodedValue(CodeIdentifier("codedvalue_dummy_handle")), MetricCategory::Msrmt, MetricAvailability::Cont, 1.0),
-		locationContextDescriptor(LOCATION_CONTEXT_DESCRIPTOR_HANDLE),
-
-		locationContextState(LOCATION_CONTEXT_DESCRIPTOR_HANDLE),
-		alertConditionState(ALERT_CONDITION_HANDLE),
-		alertSystemState(ALERT_SYSTEM_HANDLE),
-
-		channelState(CHANNEL_DESCRIPTOR_HANDLE),
-		dummyState(METRIC_DUMMY_HANDLE),
-		mdsState(MDS_HANDLE),
-		vmdState(VMD_DESCRIPTOR_HANDLE)
+	SDCDeviceProvider(SDCInstance_shared_ptr p_SDCInstance)
+	: m_sdcProvider(p_SDCInstance)
 	{
-		sdcProvider.setEndpointReferenceByName(DEVICE_ENDPOINT_REFERENCE);
+		m_sdcProvider.setEndpointReferenceByName(DEVICE_ENDPOINT_REFERENCE);
 
     	// Alerts
-        AlertSystemDescriptor alertSystem(ALERT_SYSTEM_HANDLE);
+        AlertSystemDescriptor alertSystem{ALERT_SYSTEM_HANDLE};
         alertSystem
-			.addAlertCondition(alertCondition);
+			.addAlertCondition(m_alertCondition);
 
     	// Channel
-        ChannelDescriptor deviceChannel(CHANNEL_DESCRIPTOR_HANDLE);
+        ChannelDescriptor deviceChannel{CHANNEL_DESCRIPTOR_HANDLE};
         deviceChannel
-			.addMetric(dummyMetricDescriptor)
+			.addMetric(m_dummyMetricDescriptor)
 			.setSafetyClassification(SafetyClassification::MedA);
 
         // VMD
-        VmdDescriptor deviceModule(VMD_DESCRIPTOR_HANDLE);
+        VmdDescriptor deviceModule{VMD_DESCRIPTOR_HANDLE};
         deviceModule
 			.addChannel(deviceChannel);
 
         // MDS
-        MdsDescriptor deviceSystem(MDS_HANDLE);
+        MdsDescriptor deviceSystem{MDS_HANDLE};
         deviceSystem
-			.setMetaData(MetaData()
-				.addManufacturer(LocalizedText("SurgiTAIX AG"))
+			.setMetaData(MetaData{}
+				.addManufacturer(LocalizedText{"SurgiTAIX AG"})
 				.setModelNumber("1")
-				.addModelName(LocalizedText("EndoTAIX"))
+				.addModelName(LocalizedText{"EndoTAIX"})
 				.addSerialNumber("1234"))
 			.setSystemContext(
-				SystemContextDescriptor("systemcontext_handle")
-					.setLocationContext(locationContextDescriptor))
+				SystemContextDescriptor{"systemcontext_handle"}
+					.setLocationContext(m_locationContextDescriptor))
 			.addVmd(deviceModule)
 			.setAlertSystem(alertSystem);
 
@@ -352,54 +364,53 @@ public:
 		MdDescription mdDescription;
 		mdDescription.addMdsDescriptor(deviceSystem);
 
-		sdcProvider.setMdDescription(mdDescription);
+		m_sdcProvider.setMdDescription(mdDescription);
 
         // State handlers
-        sdcProvider.addMdStateHandler(&alertSystemState);
-        sdcProvider.addMdStateHandler(&alertConditionState);
-        sdcProvider.addMdStateHandler(&channelState);
-        sdcProvider.addMdStateHandler(&locationContextState);
-        sdcProvider.addMdStateHandler(&dummyState);
-        sdcProvider.addMdStateHandler(&mdsState);
-        sdcProvider.addMdStateHandler(&vmdState);
+		m_sdcProvider.addMdStateHandler(&m_alertSystemState);
+		m_sdcProvider.addMdStateHandler(&m_alertConditionState);
+		m_sdcProvider.addMdStateHandler(&m_channelState);
+		m_sdcProvider.addMdStateHandler(&m_locationContextState);
+		m_sdcProvider.addMdStateHandler(&m_dummyState);
+		m_sdcProvider.addMdStateHandler(&m_mdsState);
+		m_sdcProvider.addMdStateHandler(&m_vmdState);
 	}
 
-	void startup() {
-		sdcProvider.startup();
+	void startup()
+	{
+		m_sdcProvider.startup();
 	}
 
-	void shutdown() {
-		sdcProvider.shutdown();
+	void addHandleForPeriodicEvent(const std::string& p_handle)
+	{
+		m_sdcProvider.addHandleForPeriodicEvent(p_handle);
 	}
 
-	void addHandleForPeriodicEvent(const std::string & handle) {
-		sdcProvider.addHandleForPeriodicEvent(handle);
-	}
-
-	void setPeriodicEventInterval(std::chrono::milliseconds p_milliseconds) {
-		sdcProvider.setPeriodicEventInterval(p_milliseconds);
+	void setPeriodicEventInterval(std::chrono::milliseconds p_milliseconds)
+	{
+		m_sdcProvider.setPeriodicEventInterval(p_milliseconds);
 	}
 
 private:
 	// Provider
-	SDCProvider sdcProvider;
+	SDCProvider m_sdcProvider;
 
     // alert descriptors
-	AlertConditionDescriptor alertCondition;
+	AlertConditionDescriptor m_alertCondition{ALERT_CONDITION_HANDLE, AlertConditionKind::Tec, AlertConditionPriority::Me};
     // metric descriptors
-    NumericMetricDescriptor dummyMetricDescriptor;
+    NumericMetricDescriptor m_dummyMetricDescriptor{METRIC_DUMMY_HANDLE, CodedValue(CodeIdentifier("codedvalue_dummy_handle")), MetricCategory::Msrmt, MetricAvailability::Cont, 1.0};
     // context descriptors
-    LocationContextDescriptor locationContextDescriptor;
+    LocationContextDescriptor m_locationContextDescriptor{LOCATION_CONTEXT_DESCRIPTOR_HANDLE};
 
     // State handler
-    LocationContextHandler locationContextState;
-    AlertConditionStateHandler alertConditionState;
-    AlertSystemStateHandler alertSystemState;
+    LocationContextHandler m_locationContextState{LOCATION_CONTEXT_DESCRIPTOR_HANDLE};
+    AlertConditionStateHandler m_alertConditionState{ALERT_CONDITION_HANDLE};
+    AlertSystemStateHandler m_alertSystemState{ALERT_SYSTEM_HANDLE};
 
-    AlwaysOnChannelStateHandler channelState;
-    ProviderNumericStateHandler dummyState;
-    AlwaysOnMdsStateHandler mdsState;
-    AlwaysOnVmdStateHandler vmdState;
+    AlwaysOnMdsStateHandler m_mdsState{MDS_HANDLE};
+    AlwaysOnVmdStateHandler m_vmdState{VMD_DESCRIPTOR_HANDLE};
+    AlwaysOnChannelStateHandler m_channelState{CHANNEL_DESCRIPTOR_HANDLE};
+    ProviderNumericStateHandler m_dummyState{METRIC_DUMMY_HANDLE};
 };
 
 }
@@ -410,8 +421,11 @@ private:
 // Test
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-struct FixturePeriodicEvents : Tests::AbstractSDCLibFixture {
-	FixturePeriodicEvents() : AbstractSDCLibFixture("FixturePeriodicEvents", OSELib::LogLevel::Error) {}
+struct FixturePeriodicEvents : Tests::AbstractSDCLibFixture // FIXME: Why struct?
+{
+	FixturePeriodicEvents()
+	: AbstractSDCLibFixture("FixturePeriodicEvents", OSELib::LogLevel::Error)
+	{ }
 };
 
 SUITE(SDC) {
@@ -419,18 +433,18 @@ TEST_FIXTURE(FixturePeriodicEvents, PeriodicEvents)
 {
 	try
 	{
-        auto t_SDCInstance = createSDCInstance();
+        auto t_SDCInstance{createSDCInstance()};
 
         // Provider
-        Tests::PeriodicEvents::SDCDeviceProvider provider(t_SDCInstance);
-        provider.startup();
+        Tests::PeriodicEvents::SDCDeviceProvider t_provider{t_SDCInstance};
+        t_provider.startup();
 
         // enable periodic event for metrics
-        provider.addHandleForPeriodicEvent(Tests::PeriodicEvents::ALERT_CONDITION_HANDLE);
-        provider.addHandleForPeriodicEvent(Tests::PeriodicEvents::LOCATION_CONTEXT_DESCRIPTOR_HANDLE);
-        provider.addHandleForPeriodicEvent(Tests::PeriodicEvents::METRIC_DUMMY_HANDLE);
+        t_provider.addHandleForPeriodicEvent(Tests::PeriodicEvents::ALERT_CONDITION_HANDLE);
+        t_provider.addHandleForPeriodicEvent(Tests::PeriodicEvents::LOCATION_CONTEXT_DESCRIPTOR_HANDLE);
+        t_provider.addHandleForPeriodicEvent(Tests::PeriodicEvents::METRIC_DUMMY_HANDLE);
         // and set custom periodic event interval to 0.5s
-        provider.setPeriodicEventInterval(std::chrono::milliseconds(500));
+        t_provider.setPeriodicEventInterval(std::chrono::milliseconds(500));
 
         // Consumer
         OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
@@ -439,7 +453,8 @@ TEST_FIXTURE(FixturePeriodicEvents, PeriodicEvents)
         // Make test fail if discovery fails
         CHECK_EQUAL(true, consumer != nullptr);
 
-		if (consumer != nullptr) {
+		if (consumer != nullptr)
+		{
             // Register for metric events
 	        Tests::PeriodicEvents::ConsumerDummyHandler dummyMetricHandler(Tests::PeriodicEvents::METRIC_DUMMY_HANDLE);
 	        Tests::PeriodicEvents::ConsumerAlertConditionHandler alertConditionHandler(Tests::PeriodicEvents::ALERT_CONDITION_HANDLE);
@@ -463,13 +478,17 @@ TEST_FIXTURE(FixturePeriodicEvents, PeriodicEvents)
             CHECK_EQUAL(true, consumer->unregisterStateEventHandler(&locationContextStateHandler));
             consumer->disconnect();
 		}
-
-        provider.shutdown();
-    } catch (char const* exc) {
+    }
+	catch (char const* exc)
+	{
         Util::DebugOut(Util::DebugOut::Default, std::cerr, m_details.testName) << exc;
-    }catch (Poco::SystemException *e){
+    }
+	catch (Poco::SystemException *e)
+	{
         Util::DebugOut(Util::DebugOut::Default, std::cerr, m_details.testName) << e->message();
-	} catch (...) {
+	}
+	catch (...)
+	{
         Util::DebugOut(Util::DebugOut::Default, std::cerr, m_details.testName) << "Unknown exception occurred!";
 	}
 }

@@ -63,7 +63,6 @@ namespace SDCLib
 				~SDCConsumerAdapter();
 
 				bool start();
-				void stop();
 
 				std::unique_ptr<MDM::GetMdDescriptionResponse> invoke(const MDM::GetMdDescription & p_request, Poco::Net::Context::Ptr p_context);
 				std::unique_ptr<MDM::GetMdibResponse> invoke(const MDM::GetMdib & p_request, Poco::Net::Context::Ptr p_context);

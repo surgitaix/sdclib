@@ -134,7 +134,7 @@ class AsyncProviderInvoker : public Util::Task, OSELib::Helper::WithLogger
 {
 private:
     SDCProvider & m_provider;
-    Poco::NotificationQueue & m_queue;
+    Poco::NotificationQueue & m_queue; // FIXME: Non const ref to notification queue! -> Who is the "owner" and syncs the read/write access?
 
 public:
 	AsyncProviderInvoker(SDCProvider & p_provider, Poco::NotificationQueue & p_queue)
@@ -176,16 +176,19 @@ public:
 					// FIXME: What to do here?
 				}
 			}
-			catch (...) {
+			catch (...)
+			{
 				log_error([] { return "Exception caught during async provider invoke."; });
 			}
 		}
 
-		if (this->isInterrupted()) {
+		if (this->isInterrupted())
+		{
 			return;
 		}
 
-		if (m_provider.getPeriodicEventInterval() < (std::chrono::system_clock::now() - m_provider.getLastPeriodicEvent())) {
+		if (m_provider.getPeriodicEventInterval() < (std::chrono::system_clock::now() - m_provider.getLastPeriodicEvent()))
+		{
 			m_provider.firePeriodicReportImpl();
 			m_provider.setLastPeriodicEvent(m_provider.getLastPeriodicEvent());
 		}
@@ -198,20 +201,25 @@ public:
 template<class StateType>
 bool SDCProvider::isMetricChangeAllowed(const StateType & p_state, SDCProvider & p_provider)
 {
-    if(!isStarted()) {
+    if(!isStarted())
+    {
         return false;
     }
+
 	typename StateType::DescriptorType t_descriptor;
-	if (!p_provider.getMdDescription().findDescriptor(p_state.getDescriptorHandle(), t_descriptor)) {
+	if (!p_provider.getMdDescription().findDescriptor(p_state.getDescriptorHandle(), t_descriptor)) // FIXME: Put this logic somewhere else!
+	{
 		return false;
 	}
-	if (t_descriptor.getMetricCategory() == MetricCategory::Msrmt) {
+	if (t_descriptor.getMetricCategory() == MetricCategory::Msrmt) // FIXME: Put this logic somewhere else!
+	{
 		return false;
+	}
+	if (p_state.hasActivationState()) // FIXME: Put this logic somewhere else!
+	{
+		return (p_state.getActivationState() == ComponentActivation::On);
 	}
 
-	if (p_state.hasActivationState()) {
-		return p_state.getActivationState() == ComponentActivation::On;
-	}
 	return true;
 }
 
@@ -230,10 +238,23 @@ SDCProvider::SDCProvider(SDCInstance_shared_ptr p_SDCInstance)
 
 SDCProvider::~SDCProvider()
 {
-    if (m_SDCInstance->isInit() && m_adapter)
-    {
-        log_warning([] { return "SDCProvider deleted before shutdown. For proper handling please shutdown the provider first"; });
-        shutdown();
+    std::lock_guard<std::mutex> t_lock{m_mutex};
+
+    // FIXME: This really needs to be fixed... Shutdown takes some time, synchro etc...
+    stopAsyncProviderInvoker();
+
+	if (m_adapter)
+	{
+		m_adapter.reset();
+	}
+
+	{ // LOCK - Clear MdDescription
+        std::lock_guard<std::mutex> t_lockDesc{m_mutex_MdDescription};
+        if(m_MdDescription != nullptr)
+        {
+            m_MdDescription->clearMdsList();
+            m_MdDescription.reset();
+        }
     }
 }
 
@@ -244,7 +265,9 @@ unsigned int SDCProvider::incrementAndGetTransactionId()
 }
 
 template<class T>
-void SDCProvider::enqueueInvokeNotification(const T & p_request, const OperationInvocationContext & p_oic) {
+void SDCProvider::enqueueInvokeNotification(const T & p_request, const OperationInvocationContext & p_oic)
+{
+	std::lock_guard<std::mutex> t_lock{m_mutex_invokeQueue};
 	m_invokeQueue.enqueueNotification(new SetNotification<T>(p_request, p_oic));
 }
 
@@ -880,6 +903,11 @@ void SDCProvider::updateMDIB(const T & p_object)
 template<class T>
 void SDCProvider::notifyAlertEventImpl(const T & p_object)
 {
+	if(nullptr == m_adapter) // FIXME: Should not be necessary: Fix Provider thread handling on shutdown!
+	{
+		return;
+	}
+
 	if (p_object.getDescriptorHandle().empty())
 	{
 		log_error([] { return "State's descriptor handle is empty, event will not be fired!"; });
@@ -899,6 +927,11 @@ void SDCProvider::notifyAlertEventImpl(const T & p_object)
 
 template<class T> void SDCProvider::notifyContextEventImpl(const T& p_object)
 {
+	if(nullptr == m_adapter) // FIXME: Should not be necessary: Fix Provider thread handling on shutdown!
+	{
+		return;
+	}
+
 	if (p_object.getDescriptorHandle().empty())
 	{
 		log_error([] { return "State's descriptor handle is empty, event will not be fired!"; });
@@ -918,6 +951,11 @@ template<class T> void SDCProvider::notifyContextEventImpl(const T& p_object)
 template<class T>
 void SDCProvider::notifyEpisodicMetricImpl(const T & p_object)
 {
+	if(nullptr == m_adapter) // FIXME: Should not be necessary: Fix Provider thread handling on shutdown!
+	{
+		return;
+	}
+
 	if (p_object.getDescriptorHandle().empty())
 	{
 		log_error([] { return "State's descriptor handle is empty, event will not be fired!"; });
@@ -938,6 +976,11 @@ void SDCProvider::notifyEpisodicMetricImpl(const T & p_object)
 template<class T>
 void SDCProvider::notifyEpisodicOperationalStateImpl(const T & p_object)
 {
+	if(nullptr == m_adapter) // FIXME: Should not be necessary: Fix Provider thread handling on shutdown!
+	{
+		return;
+	}
+
 	if (p_object.getDescriptorHandle().empty())
 	{
 		log_error([] { return "State's descriptor handle is empty, event will not be fired!"; });
@@ -958,6 +1001,11 @@ void SDCProvider::notifyEpisodicOperationalStateImpl(const T & p_object)
 template<class T>
 void SDCProvider::notifyStreamMetricImpl(const T & p_object)
 {
+	if(nullptr == m_adapter) // FIXME: Should not be necessary: Fix Provider thread handling on shutdown!
+	{
+		return;
+	}
+
 	if (p_object.getDescriptorHandle().empty())
 	{
 		log_error([] { return "State's descriptor handle is empty, event will not be fired!"; });
@@ -978,6 +1026,11 @@ void SDCProvider::notifyStreamMetricImpl(const T & p_object)
 
 void SDCProvider::firePeriodicReportImpl()
 {
+	if(nullptr == m_adapter) // FIXME: Should not be necessary: Fix Provider thread handling on shutdown!
+	{
+		return;
+	}
+
     std::lock_guard<std::mutex> t_lock{m_mutex_PeriodicUpdateHandles};
 
 	if (ml_handlesForPeriodicUpdates.empty())
@@ -1486,23 +1539,7 @@ bool SDCProvider::startup()
 
 void SDCProvider::shutdown()
 {
-    std::lock_guard<std::mutex> t_lock{m_mutex};
-    // FIXME: This really needs to be fixed... Shutdown takes some time, synchro etc...
-    stopAsyncProviderInvoker();
-
-	if (m_adapter)
-	{
-		m_adapter.reset();
-	}
-
-	{ // LOCK - Clear MdDescription
-        std::lock_guard<std::mutex> t_lockDesc{m_mutex_MdDescription};
-        if(m_MdDescription != nullptr)
-        {
-            m_MdDescription->clearMdsList();
-            m_MdDescription.reset();
-        }
-    }
+	log_information([] { return "######### SDCProvider::shutdown is deprecated and will be removed in future versions! SDCProvider Destructor handles this functionality now."; });
 }
 
 template<class T> void SDCProvider::replaceState(T p_object) // FIXME: return value (bool)?
@@ -1684,19 +1721,32 @@ std::string SDCProvider::getEndpointReference() const
 
 template<typename T> InvocationState SDCProvider::onStateChangeRequest(const T & p_state, const OperationInvocationContext& p_oic)
 {
-    const auto t_iter(ml_stateHandlers.find(p_state.getDescriptorHandle()));
-    if (t_iter != ml_stateHandlers.end())
-    {
-    	if (SDCProviderMDStateHandler<T> * t_handler = dynamic_cast<SDCProviderMDStateHandler<T> *>(t_iter->second))
-    	{
-        	return t_handler->onStateChangeRequest(p_state, p_oic);
-    	}
-    }
+	// Try to find the StateHandler
+	std::map<std::string, SDCProviderStateHandler *>::const_iterator t_iter = ml_stateHandlers.end();
+	{ // LOCK
+		std::lock_guard<std::mutex> t_lock{m_mutex_MdStateHandler};
+		t_iter = ml_stateHandlers.find(p_state.getDescriptorHandle());
+		if (t_iter == ml_stateHandlers.end())
+		{
+			return InvocationState::Fail;
+		}
+	} // UNLOCK
+
+	// Send the StateChangeRequest
+	if (auto t_handler = dynamic_cast<SDCProviderMDStateHandler<T> *>(t_iter->second))
+	{
+		return t_handler->onStateChangeRequest(p_state, p_oic);
+	}
     return InvocationState::Fail;
 }
 
 void SDCProvider::notifyOperationInvoked(const OperationInvocationContext& p_oic, Data::SDC::InvocationState p_is)
 {
+	if(nullptr == m_adapter) // FIXME: Should not be necessary: Fix Provider thread handling on shutdown!
+	{
+		return;
+	}
+
 	if (p_oic.transactionId == 0 && p_oic.operationHandle.empty())
 	{
 		return;

@@ -54,9 +54,6 @@
 
 #include "SDCLib/Data/SDC/MDIB/CodedValue.h"
 #include "SDCLib/Data/SDC/MDIB/LocalizedText.h"
-#include "SDCLib/Data/SDC/MDIB/Measurement.h"
-#include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
-#include "SDCLib/Data/SDC/MDIB/Range.h"
 
 #include "SDCLib/Util/DebugOut.h"
 
@@ -80,86 +77,87 @@ const std::string deviceEPR("UDI_MULTISTATESTEST");
 
 // a provider side multi state handler is defined just the same way as a single state handler.
 // But pay attention: the optional handle attribute must be set!
-class MultistateProviderStateHandler : public SDCProviderMDStateHandler<LocationContextState> {
+class MultistateProviderStateHandler : public SDCProviderMDStateHandler<LocationContextState>
+{
 public:
 
-	MultistateProviderStateHandler(std::string descriptorHandle, std::string handle) : SDCProviderMDStateHandler(descriptorHandle), handle(handle) {
-    }
+	MultistateProviderStateHandler(const std::string p_descriptorHandle, const std::string p_handle)
+	: SDCProviderMDStateHandler(p_descriptorHandle)
+	, m_handle(p_handle)
+	{ }
 
     // Helper method
-	LocationContextState createMultiState() {
-    	LocationContextState locationContextState(descriptorHandle, handle);
-    	locationContextState
-        	.setLocationDetail(LocationDetail()
+	LocationContextState createMultiState()
+	{
+    	LocationContextState t_newState{descriptorHandle, m_handle};
+    	t_newState.setLocationDetail(LocationDetail()
         			.setFloor("Floor1")
         			.setRoom("Room1"));
-        return locationContextState;
+        return t_newState;
     }
 
 	// the initial state has to be defined.
 	// It is called from within the framework
-	LocationContextState getInitialState() override {
+	LocationContextState getInitialState() override
+	{
         return createMultiState();
     }
 
 	// convenience function for changing the room value
-    void updateMultiStateValue(std::string room) {
-    	LocationContextState locationContextState = createMultiState();
-    	locationContextState
-        	.setLocationDetail(LocationDetail().setRoom(room));
-        updateState(locationContextState);
+    void updateMultiStateValue(const std::string p_newRoom)
+    {
+    	auto t_newState{createMultiState()};
+    	t_newState.setLocationDetail(LocationDetail().setRoom(p_newRoom));
+
+        updateState(t_newState);
     }
 
     // read-only state
     // do nothing when a consumer ask to change the value -> return Fail
-    InvocationState onStateChangeRequest(const LocationContextState & state, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const LocationContextState&, const OperationInvocationContext&) override
+    {
     	return InvocationState::Fail;
     }
 
 public:
-    std::string handle;
+    std::string m_handle; // Multistate Handle
 };
 
 
 
-class SDCMultiStateTestProviders {
+class SDCMultiStateTestProviders
+{
 public:
 
-    SDCMultiStateTestProviders() :
-    	sdcProvider(),
-    	multistateProviderStateHandler1_1("locationStateLikeSingleState_handle", "does_not_matter"),
-    	// this medical device has two states: one that contains information about the current room and one that contains information about the next room (at the same Floor)
-    	multistateProviderStateHandler2_1("locationContextAbitious_handle", "actualRoom_handle"),
-    	multistateProviderStateHandler2_2("locationContextAbitious_handle", "nextRoom_handle")
+    SDCMultiStateTestProviders()
+	: m_sdcProvider()
 	{
 
-		sdcProvider.setEndpointReferenceByName(SDCLib::Tests::multiStatesSDC::deviceEPR);
+    	m_sdcProvider.setEndpointReferenceByName(SDCLib::Tests::multiStatesSDC::deviceEPR);
 
 
-		LocationContextDescriptor locationContextDescriptor1("locationStateLikeSingleState_handle");
-		LocationContextDescriptor locationContextDescriptor2("locationContextAbitious_handle");
-
-
+		LocationContextDescriptor locationContextDescriptor1{"locationStateLikeSingleState_handle"};
+		LocationContextDescriptor locationContextDescriptor2{"locationContextAbitious_handle"};
 
         // Channel
-        ChannelDescriptor holdingDeviceParameters("handle_channel");
+        ChannelDescriptor holdingDeviceParameters{"handle_channel"};
 
         // VMD
-        VmdDescriptor holdingDeviceModule("handle_vmd");
+        VmdDescriptor holdingDeviceModule{"handle_vmd"};
         holdingDeviceModule.addChannel(holdingDeviceParameters);
 
         // MDS
-        MdsDescriptor holdingDeviceSystem("handle_mds");
+        MdsDescriptor holdingDeviceSystem{"handle_mds"};
         holdingDeviceSystem
 			.setSystemContext(
-					SystemContextDescriptor("MDC_SYS_CON")
+					SystemContextDescriptor{"MDC_SYS_CON"}
 					.setLocationContext(locationContextDescriptor1)
 					.setLocationContext(locationContextDescriptor2))
 			.setMetaData(
 				MetaData()
-					.addManufacturer(LocalizedText("SurgiTAIX AG"))
+					.addManufacturer(LocalizedText{"SurgiTAIX AG"})
 	        		.setModelNumber("1")
-	        		.addModelName(LocalizedText("EndoTAIX"))
+	        		.addModelName(LocalizedText{"EndoTAIX"})
 	        		.addSerialNumber("1234"))
             .setType(CodedValue(CodeIdentifier("MDC_DEV_ANALY_SAT_O2_MDS")))
 			.addVmd(holdingDeviceModule);
@@ -168,37 +166,41 @@ public:
 		MdDescription mdDescription;
 		mdDescription.addMdsDescriptor(holdingDeviceSystem);
 
-		sdcProvider.setMdDescription(mdDescription);
+		m_sdcProvider.setMdDescription(mdDescription);
 
         // Add handler
-        sdcProvider.addMdStateHandler(&multistateProviderStateHandler1_1);
-        sdcProvider.addMdStateHandler(&multistateProviderStateHandler2_1);
-        sdcProvider.addMdStateHandler(&multistateProviderStateHandler2_2);
+		m_sdcProvider.addMdStateHandler(&m_multistateProviderStateHandler1_1);
+		m_sdcProvider.addMdStateHandler(&m_multistateProviderStateHandler2_1);
+		m_sdcProvider.addMdStateHandler(&m_multistateProviderStateHandler2_2);
     }
 
-    void startup() {
-    	sdcProvider.startup();
+    void startup()
+    {
+    	m_sdcProvider.startup();
     }
 
-    void shutdown() {
-    	sdcProvider.shutdown();
+    void shutdown()
+    {
+    	m_sdcProvider.shutdown();
     }
 
-    void updateStateValue(std::string room) {
-    	multistateProviderStateHandler1_1.updateMultiStateValue(room);
-    	multistateProviderStateHandler2_1.updateMultiStateValue(room);
-    	multistateProviderStateHandler2_2.updateMultiStateValue(std::string(room + "1"));
+    void updateStateValue(std::string p_newRoom)
+    {
+    	m_multistateProviderStateHandler1_1.updateMultiStateValue(p_newRoom);
+    	m_multistateProviderStateHandler2_1.updateMultiStateValue(p_newRoom);
+    	m_multistateProviderStateHandler2_2.updateMultiStateValue(std::string(p_newRoom + "1"));
     }
 
 private:
 
-    SDCProvider sdcProvider;
+    SDCProvider m_sdcProvider;
 
     // Test case 1
-    MultistateProviderStateHandler multistateProviderStateHandler1_1;
+    MultistateProviderStateHandler m_multistateProviderStateHandler1_1{"locationStateLikeSingleState_handle", "does_not_matter"};
     // Test case 2 & 3 (three only needs a consumer state handle referencing some non existing room)
-    MultistateProviderStateHandler multistateProviderStateHandler2_1;
-    MultistateProviderStateHandler multistateProviderStateHandler2_2;
+    // this medical device has two states: one that contains information about the current room and one that contains information about the next room (at the same Floor)
+    MultistateProviderStateHandler m_multistateProviderStateHandler2_1{"locationContextAbitious_handle", "actualRoom_handle"};
+    MultistateProviderStateHandler m_multistateProviderStateHandler2_2{"locationContextAbitious_handle", "nextRoom_handle"};
 
 
 };
@@ -207,8 +209,11 @@ private:
 }
 }
 
-struct FixtureMultiStatesTest: Tests::AbstractSDCLibFixture {
-	FixtureMultiStatesTest() : AbstractSDCLibFixture("FixtureMultiStateTest", OSELib::LogLevel::Notice, SDCLib::Config::SDC_ALLOWED_PORT_START + 60) {}
+struct FixtureMultiStatesTest: Tests::AbstractSDCLibFixture
+{
+	FixtureMultiStatesTest()
+	: AbstractSDCLibFixture("FixtureMultiStateTest", OSELib::LogLevel::Notice)
+	{ }
 };
 
 SUITE(SDC) {
@@ -217,7 +222,7 @@ TEST_FIXTURE(FixtureMultiStatesTest, multistates)
 	DebugOut::openLogFile("TestMultiState.log", true);
 	try
 	{
-        auto t_SDCInstance = getSDCInstance();
+        auto t_SDCInstance{getSDCInstance()};
 
         // Provider
 		Tests::multiStatesSDC::SDCMultiStateTestProviders provider;

@@ -23,41 +23,47 @@ namespace SDCLib {
 namespace Tests {
 namespace MultiSDC {
 
-class SDCTestDeviceProvider {
+class SDCTestDeviceProvider
+{
 public:
 
-    SDCTestDeviceProvider(SDCInstance_shared_ptr p_SDCInstance, const std::size_t number, const std::size_t metricCount)
-    : sdcProvider(p_SDCInstance)
-    , m_eprID(number)
-    , metrics(metricCount)
+    SDCTestDeviceProvider(SDCInstance_shared_ptr p_SDCInstance, const std::size_t p_eprID, const std::size_t p_metricCount)
+    : m_sdcProvider(p_SDCInstance)
+    , m_eprID(p_eprID)
+    , m_metricCount(p_metricCount)
     {
 
-        sdcProvider.setEndpointReferenceByName(std::string("UDI_") + std::to_string(m_eprID));
+    	m_sdcProvider.setEndpointReferenceByName(std::string{"UDI_"} + std::to_string(m_eprID));
 
         Dev::DeviceCharacteristics devChar;
 		devChar.addFriendlyName("en", "Test TestMultiSDC " + std::to_string(m_eprID));
-		sdcProvider.setDeviceCharacteristics(devChar);
+		m_sdcProvider.setDeviceCharacteristics(devChar);
 
         // Channel
-        ChannelDescriptor testChannel(std::string("channel_handle") + std::to_string(m_eprID));
+        ChannelDescriptor testChannel{std::string{"channel_handle"} + std::to_string(m_eprID)};
         testChannel.setSafetyClassification(SafetyClassification::MedA);
-        for (std::size_t i = 0; i < metrics; i++) {
-        	NumericMetricDescriptor nmd("handle_cur" + std::to_string(i), CodedValue(CodeIdentifier("MDCX_CODE_ID_WEIGHT")), MetricCategory::Msrmt, MetricAvailability::Cont, 1.0);
-    		testChannel.addMetric(nmd);
+        for (std::size_t i = 0; i < m_metricCount; ++i)
+        {
+        	NumericMetricDescriptor t_numericMetric{"handle_cur" + std::to_string(i),
+        			CodedValue(CodeIdentifier{"MDCX_CODE_ID_WEIGHT"}),
+					MetricCategory::Msrmt,
+					MetricAvailability::Cont,
+					1.0};
+    		testChannel.addMetric(t_numericMetric);
         }
 
         // VMD
-        VmdDescriptor t_vmd(std::string("vmd_handle_") + std::to_string(m_eprID));
+        VmdDescriptor t_vmd{std::string{"vmd_handle_"} + std::to_string(m_eprID)};
         t_vmd.addChannel(testChannel);
 
         // MDS
-        MdsDescriptor t_Mds(std::string("mds_handle_") + std::to_string(m_eprID));
-        t_Mds.setType(CodedValue("MDC_DEV_DOCU_POSE_MDS")
-            .addConceptDescription(LocalizedText("DOCU POSE").setLang("en")))
+        MdsDescriptor t_Mds{std::string{"mds_handle_"} + std::to_string(m_eprID)};
+        t_Mds.setType(CodedValue{"MDC_DEV_DOCU_POSE_MDS"}
+            .addConceptDescription(LocalizedText{"DOCU POSE"}.setLang("en")))
             .setMetaData(
-                MetaData().addManufacturer(LocalizedText(SDCLib::Config::STR_SURGITAIX))
+                MetaData().addManufacturer(LocalizedText{SDCLib::Config::STR_SURGITAIX})
                           .setModelNumber("1")
-                          .addModelName(LocalizedText("EndoTAIX"))
+                          .addModelName(LocalizedText{"EndoTAIX"})
                           .addSerialNumber(SDCLib::Config::CURRENT_C_YEAR))
             .addVmd(t_vmd);
 
@@ -65,94 +71,110 @@ public:
 		MdDescription mdDescription;
 		mdDescription.addMdsDescriptor(t_Mds);
 
-		sdcProvider.setMdDescription(mdDescription);
+		m_sdcProvider.setMdDescription(mdDescription);
     }
 
-    void startup() {
-    	sdcProvider.startup();
+    void startup()
+    {
+    	m_sdcProvider.startup();
     }
 
-    void shutdown() {
-    	sdcProvider.shutdown();
+    const std::string getEndpointReference() const
+    {
+    	return m_sdcProvider.getEndpointReference();
     }
-
-    const std::string getEndpointReference() const {
-    	return sdcProvider.getEndpointReference();
-    }
-
-
 
 private:
-    SDCProvider sdcProvider;
 
-    const std::size_t m_eprID;
-    const std::size_t metrics;
+    SDCProvider m_sdcProvider;
+
+    const std::size_t m_eprID{};
+    const std::size_t m_metricCount{};
 };
 
-} /* namespace MultiSDC */
-} /* namespace Tests */
-} /* namespace SDCLib */
+}
+}
+}
 
-struct FixtureMultiSDC : Tests::AbstractSDCLibFixture {
-	FixtureMultiSDC() : AbstractSDCLibFixture("FixtureMultiSDC", OSELib::LogLevel::Notice) {}
+struct FixtureMultiSDC : Tests::AbstractSDCLibFixture
+{
+	FixtureMultiSDC()
+	: AbstractSDCLibFixture("FixtureMultiSDC", OSELib::LogLevel::Notice)
+	{ }
 };
 
 
-SUITE(SDC) {
+SUITE(SDC)
+{
 TEST_FIXTURE(FixtureMultiSDC, MultiSDC)
 {
 	try
 	{
-		std::size_t providerCount(10);
-		std::size_t metricCount(10);
+		// Specify number of providers and metrics per provider to spin up
+		const std::size_t providerCount{10};
+		const std::size_t metricCount{10};
 
-		std::vector<std::shared_ptr<Tests::MultiSDC::SDCTestDeviceProvider>> providers;
-		std::vector<std::string> providerEPRs;
+		std::vector<std::shared_ptr<Tests::MultiSDC::SDCTestDeviceProvider>> t_testProviders;
+		std::vector<std::string> t_testProviderEPRs;
 
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting for the Providers to startup...";
-		for (std::size_t i = 0; i < providerCount; i++) {
-			std::shared_ptr<Tests::MultiSDC::SDCTestDeviceProvider> p(new Tests::MultiSDC::SDCTestDeviceProvider(createSDCInstance(), i, metricCount));
-			providers.push_back(p);
-            providerEPRs.push_back(p->getEndpointReference());
-			p->startup();
+		for (std::size_t i = 0; i < providerCount; ++i)
+		{
+			auto t_provider = std::make_shared<Tests::MultiSDC::SDCTestDeviceProvider>(createSDCInstance(), i, metricCount);
+			t_testProviders.push_back(t_provider);
+			t_testProviderEPRs.push_back(t_provider->getEndpointReference());
+            t_provider->startup();
 		}
 
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Starting discovery test...";
 
-        OSELib::SDC::ServiceManager sm(createSDCInstance());
-        auto tl_consumers(sm.discover());
+        OSELib::SDC::ServiceManager sm{createSDCInstance()};
+        auto t_discoveredConsumers{sm.discover()};
 
-        bool foundAll = true;
-        for (const auto & providerEPR : providerEPRs) {
-        	bool foundOne = false;
-			for (const auto & consumer : tl_consumers) {
-				if (consumer->getEndpointReference() == providerEPR) {
-					foundOne = true;
+        // Search for Providers by EPR
+        bool t_allFound{true};
+        for (const auto& providerEPR : t_testProviderEPRs)
+        {
+        	bool t_oneFound{false};
+			for (const auto& consumer : t_discoveredConsumers)
+			{
+				if (consumer->getEndpointReference() == providerEPR)
+				{
+					t_oneFound = true;
 					break;
 				}
 			}
-			if (!foundOne) {
+			if (!t_oneFound)
+			{
 				DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Missing epr: " << providerEPR << std::endl;
 			}
-			foundAll &= foundOne;
+			t_allFound &= t_oneFound;
         }
-        CHECK_EQUAL(true, foundAll);
+        CHECK_EQUAL(true, t_allFound);
 
-        for (auto & nextConsumer : tl_consumers) {
-            DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Found " << nextConsumer->getEndpointReference();
+        for (const auto& t_consumer : t_discoveredConsumers)
+        {
+            DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Found " << t_consumer->getEndpointReference();
         }
-
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting...";
 
-        for (auto & next : tl_consumers) {
-        	next->disconnect();
+        for (auto & t_consumer : t_discoveredConsumers)
+        {
+        	t_consumer->disconnect();
         }
-        for (auto & next : providers) {
-        	next->shutdown();
-        }
-    } catch (char const* exc) {
+        // Delete all Consumer
+        t_discoveredConsumers.clear();
+
+        // Delete all Provider
+        t_testProviders.clear();
+
+    }
+	catch (char const* exc)
+	{
 		DebugOut(DebugOut::Default, std::cerr, m_details.testName) << exc;
-	} catch (...) {
+	}
+	catch (...)
+	{
 		DebugOut(DebugOut::Default, std::cerr, m_details.testName) << "Unknown exception occurred!";
 	}
 	DebugOut::closeLogFile();

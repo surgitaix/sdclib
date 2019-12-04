@@ -2,7 +2,7 @@ Update to 4.4.2
 
 - Underlying datamodel functions renamed (getter/setter)
 - CMake no longer needs Additional search dirs
-- Some bugfixes and convinience functions added (see gitlog for more details)
+- Some bugfixes and convenience functions added (see gitlog for more details)
 
 Update to 4.4.1
 

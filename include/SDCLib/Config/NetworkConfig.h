@@ -80,11 +80,11 @@ namespace SDCLib
             NetInterface_shared_ptr m_MDPWSInterface = nullptr;
             SDCPort m_MDPWSPort = 0;
 
-            std::atomic<bool> m_IP4enabled = ATOMIC_VAR_INIT(Config::SDC_IP_V4_ENABLED);
-            std::atomic<bool> m_IP6enabled = ATOMIC_VAR_INIT(Config::SDC_IP_V6_ENABLED);
+            std::atomic<bool> m_IP4enabled{Config::SDC_IP_V4_ENABLED};
+            std::atomic<bool> m_IP6enabled{Config::SDC_IP_V6_ENABLED};
 
             // Discovery
-            std::atomic<std::chrono::milliseconds> m_discoveryTime = ATOMIC_VAR_INIT(std::chrono::milliseconds(Config::SDC_DISCOVERY_TIMEOUT_MS));
+            std::atomic<std::chrono::milliseconds> m_discoveryTime{std::chrono::milliseconds(Config::SDC_DISCOVERY_TIMEOUT_MS)};
 
             // Network settings
             std::string m_MULTICAST_IPv4 = OSELib::UDP_MULTICAST_DISCOVERY_IP_V4;

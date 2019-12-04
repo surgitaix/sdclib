@@ -98,11 +98,11 @@ public:
 	}
 
 private:
-	std::atomic<bool> m_running = ATOMIC_VAR_INIT(false);
+	std::atomic<bool> m_running{false};
 	const Poco::URI m_destinationURI;
 	std::shared_ptr<Poco::NotificationQueue> m_queue;
 	DPWS::ActiveSubscriptions & m_subscriptions;
-	Poco::Net::Context::Ptr m_context = nullptr;
+	Poco::Net::Context::Ptr m_context{nullptr};
 };
 
 HTTPSessionManager::HTTPSessionManager(DPWS::ActiveSubscriptions & p_subscriptions, SDCLib::Config::SSLConfig_shared_ptr p_SSLConfig)
