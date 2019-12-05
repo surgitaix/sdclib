@@ -366,14 +366,14 @@ std::string SDCConsumer::requestRawMdib()
 	if (t_response == nullptr) {
 		log_error([] { return "MDIB request failed!"; });
 		return "";
-	} else {
-		const xml_schema::Flags xercesFlags(xml_schema::Flags::dont_validate | xml_schema::Flags::no_xml_declaration | xml_schema::Flags::dont_initialize);
-		std::ostringstream t_result;
-		xml_schema::NamespaceInfomap tl_map;
-
-		CDM::serializeMdibContainer(t_result, t_response->getMdib(), tl_map, OSELib::XML_ENCODING, xercesFlags);
-		return t_result.str();
 	}
+	const xml_schema::Flags xercesFlags(xml_schema::Flags::dont_validate | xml_schema::Flags::no_xml_declaration | xml_schema::Flags::dont_initialize);
+	std::ostringstream t_result;
+	xml_schema::NamespaceInfomap tl_map;
+
+	CDM::serializeMdibContainer(t_result, t_response->getMdib(), tl_map, OSELib::XML_ENCODING, xercesFlags);
+	return t_result.str();
+
 }
 
 // TODO: delete commitStateImpl() use one template class, use traits for Metrices: https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Member_Detector

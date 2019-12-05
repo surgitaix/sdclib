@@ -82,7 +82,7 @@ bool ActiveSubscriptions::renew(const WS::EVENTING::Identifier & p_identifier, s
 void ActiveSubscriptions::houseKeeping()
 {
 	// Protect from double execution
-	std::lock_guard<std::mutex> t_lock(m_mutex_houseKeeping);
+	std::lock_guard<std::mutex> t_lockHouseKeeping{m_mutex_houseKeeping};
 
 	std::vector<WS::EVENTING::Identifier> tl_expiredSubscriptions;
 
