@@ -3,6 +3,7 @@
 
 # NOTE: TEMPORARY WORK! WIP!
 # SDCLib_SEARCH_DIRS (Optional) -> Will be set to CMAKE_SOURCE_DIR if not set
+# You can provide SDCLib_EXTERNAL_LIBRARY_DIRS to specify an external binary dir
 
 # - Find SDCLib
 # Find the SDCLib includes and libraries
@@ -44,23 +45,20 @@ message(STATUS "Searching for SDCLib in ${CMAKE_SOURCE_DIR} ...")
 # Set Bin folder and manage library dirs
 if (SDCLib_ROOT_DIR)
     message(STATUS "-Found SDC Root Folder: ${SDCLib_ROOT_DIR}!")
-    # Out of source?
-    if (NOT(${CMAKE_BINARY_DIR} STREQUAL ${CMAKE_SOURCE_DIR}))
+    if(DEFINED SDCLib_EXTERNAL_LIBRARY_DIRS) 								# OVERRIDE: SDCLib_EXTERNAL_LIBRARY_DIRS
+		message(STATUS "-Using SDCLib_EXTERNAL_LIBRARY_DIRS!")
+		message(STATUS "-Setting ${SDCLib_EXTERNAL_LIBRARY_DIRS} to SDCLib_LIBRARY_DIRS!")
+		set(SDCLib_LIBRARY_DIRS ${SDCLib_EXTERNAL_LIBRARY_DIRS})
+    elseif(NOT(${CMAKE_BINARY_DIR} STREQUAL ${CMAKE_SOURCE_DIR}))			# Out of source?
 		message(STATUS "-Out of source build detected!")
-		if(SDCLib_ADDITIONAL_LIBRARY_DIRS)
-			message(STATUS "Using SDCLib_ADDITIONAL_LIBRARY_DIRS!")
-			message(STATUS "Setting ${SDCLib_ADDITIONAL_LIBRARY_DIRS} to SDCLib_LIBRARY_DIRS!")
-			set(SDCLib_LIBRARY_DIRS ${SDCLib_ADDITIONAL_LIBRARY_DIRS})
-		else()
-			message(STATUS "Setting ${CMAKE_BINARY_DIR} to SDCLib_LIBRARY_DIRS!")
-			set(SDCLib_LIBRARY_DIRS ${CMAKE_BINARY_DIR})
-		endif()
-    else()
+		message(STATUS "-Setting ${CMAKE_BINARY_DIR}/bin to SDCLib_LIBRARY_DIRS!")
+		set(SDCLib_LIBRARY_DIRS ${CMAKE_BINARY_DIR}/bin)
+    else() 																	# In source
         message(STATUS "-Setting ${CMAKE_SOURCE_DIR}/bin to SDCLib_LIBRARY_DIRS...")
         set(SDCLib_LIBRARY_DIRS ${CMAKE_SOURCE_DIR}/bin)
     endif()
 else ()
-    message(SEND_ERROR "Could not find SDC Root folder!")
+    message(SEND_ERROR "## Could not find SDC Root folder!")
     RETURN()
 endif ()
 ################################################################################

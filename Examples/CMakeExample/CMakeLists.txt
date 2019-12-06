@@ -120,6 +120,9 @@ get_filename_component(PATH_DEPS_ROOT ${CMAKE_CURRENT_LIST_DIR}/../../../ REALPA
 # 		in the sample project file structure above!
 set(SDCLib_SEARCH_DIRS ${PATH_DEPS_ROOT}/sdclib)
 
+# Specify external binary Dir (Out of source build)
+# set(SDCLib_EXTERNAL_LIBRARY_DIRS ${PATH_DEPS_ROOT}/sdclib_build/bin)
+
 # Add SDCLib modules folder to CMake Modules Path
 get_filename_component(PROJECT_CMAKE_MODULES ${SDCLib_SEARCH_DIRS}/cmake/Modules REALPATH)
 message(STATUS "Adding ${PROJECT_CMAKE_MODULES} to Modules Path...")

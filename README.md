@@ -82,9 +82,13 @@ You can include the following lines inside your CMakeLists file (Change the vari
 ```cmake
 ###### Set the Search Path - FindSDCLib.cmake requires this variable as "entry point"
 set(SDCLib_SEARCH_DIRS "<ABSOLUTE PATH TO SDCLIB FOLDER>" CACHE STRING "SDCLib root dir")
-###### Out of Source build - The the additional search path manually (dont change build folder later or change this too)
-set(SDCLib_ADDITIONAL_LIBRARY_DIRS "<ABSOLUTE PATH TO SDCLIB BUILD FOLDER>/bin" CACHE STRING "Additional Dirs")
-include(${SDCLib_SEARCH_DIRS}/FindSDCLib.cmake)
+# Add SDCLib modules folder to CMake Modules Path
+get_filename_component(PROJECT_CMAKE_MODULES ${SDCLib_SEARCH_DIRS}/cmake/Modules REALPATH)
+message(STATUS "Adding ${PROJECT_CMAKE_MODULES} to Modules Path...")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_CMAKE_MODULES})
+###### Out of Source build - Set the additional search path manually (dont change build folder later or change this too)
+set(SDCLib_EXTERNAL_LIBRARY_DIRS "<ABSOLUTE PATH TO SDCLIB BUILD FOLDER>/bin" CACHE STRING "External Dirs")
+find_package(SDCLib)
 if(NOT SDCLib_FOUND)
     message(FATAL_ERROR "SDC not found, build it first or specify correct path!")
 endif()
