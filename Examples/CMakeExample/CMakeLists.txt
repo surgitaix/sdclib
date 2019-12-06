@@ -9,13 +9,6 @@ cmake_minimum_required(VERSION 3.5.0)
 
 
 ################################################################################
-# Using the sdclib modules folder and add to CMake Modules
-get_filename_component(PROJECT_CMAKE_MODULES ${CMAKE_CURRENT_LIST_DIR}/../../cmake/Modules REALPATH)
-message(STATUS "Adding ${PROJECT_CMAKE_MODULES} to Modules Path...")
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_CMAKE_MODULES})
-################################################################################
-
-################################################################################
 # C++ standard
 ################################################################################
 message(STATUS "Setting CXX_STANDARD...")
@@ -23,7 +16,6 @@ set(CMAKE_CXX_STANDARD 11 CACHE STRING "C++ Standard" FORCE)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #set(CMAKE_CXX_EXTENSIONS OFF)
 ################################################################################
-
 
 
 ################################################################################
@@ -108,6 +100,7 @@ endif()
 #       - sdclib_build (Set to ignore by git or exclude in .git/info/exclude)
 #       - ...
 #   - dev/
+# CHANGE THIS PATH: SDCLib currently needs to be placed in a subdirectory!
 get_filename_component(PATH_DEPS_ROOT ${CMAKE_CURRENT_LIST_DIR}/../../../ REALPATH)
 # Note: PATH_DEPS_ROOT is an absolute path pointing to the sdc root directory.
 #       The Example project structure does not match the one in this example,
@@ -122,12 +115,18 @@ get_filename_component(PATH_DEPS_ROOT ${CMAKE_CURRENT_LIST_DIR}/../../../ REALPA
 # Here we have to specify the SDC Folders root path
 ################################################################################
 
-# This variable is needed by the FindSDCLib.cmake module. Set it to the SDCLib
-# root dir.
-set(SDCLib_SEARCH_DIRS "${PATH_DEPS_ROOT}/sdclib" CACHE STRING "SDCLib root dir")
+# Specify Directory to search for
+# NOTE: Currently needs to be in a subdirectory of THIS CMakeLists file as shown
+# 		in the sample project file structure above!
+set(SDCLib_SEARCH_DIRS ${PATH_DEPS_ROOT}/sdclib)
 
-# FindSDCLib.cmake will set all necessary variables, Prefix: SDCLib_
-include(${SDCLib_SEARCH_DIRS}/FindSDCLib.cmake)
+# Add SDCLib modules folder to CMake Modules Path
+get_filename_component(PROJECT_CMAKE_MODULES ${SDCLib_SEARCH_DIRS}/cmake/Modules REALPATH)
+message(STATUS "Adding ${PROJECT_CMAKE_MODULES} to Modules Path...")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_CMAKE_MODULES})
+
+# Search for SDCLib Package
+find_package(SDCLib)
 if(NOT SDCLib_FOUND)
     message(FATAL_ERROR "SDC not found, build it first or specify correct path!")
 endif()
