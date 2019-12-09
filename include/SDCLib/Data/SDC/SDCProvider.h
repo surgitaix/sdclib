@@ -118,6 +118,14 @@ public:
     MdState getMdState() const;
 
     /**
+    * @brief Set the (dynamic and static) description
+    *
+    * @param MDIB as xml string
+    */
+    bool setMdib(std::string p_xml);
+
+
+    /**
     * @brief Activates the SetOperation of a state defined in descriptor in the ownerMDS.
     * Comparable to createSetOperationForDescriptor, but with more flexibility regarding the described state
     *
