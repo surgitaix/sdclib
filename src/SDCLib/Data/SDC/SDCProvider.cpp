@@ -1250,9 +1250,52 @@ bool SDCProvider::setMdDescription(std::string p_xml)
         m_MdDescription = std::move(t_MdDescription);
         return true;
     }
-    log_fatal([&] { return " Fatal error, can't create MDIB - schema validation error! Offending MDIB: \n" + p_xml; });
-    return false;
+	log_fatal([&] { return " Fatal error, can't create MDIB - schema validation error! Offending MDIB: \n" + p_xml; });
+	return false;
 }
+
+bool SDCProvider::setMdib(std::string p_xml)
+{
+    if(p_xml.empty()) {
+        return false;
+    }
+
+    std::lock_guard<std::mutex> t_lock{m_mutex_MdDescription};
+	OSELib::SDC::DefaultSDCSchemaGrammarProvider grammarProvider;
+	auto rawMessage = OSELib::Helper::Message::create(p_xml);
+	auto xercesDocument = OSELib::Helper::XercesDocumentWrapper::create(*rawMessage, grammarProvider);
+
+	std::unique_ptr<CDM::Mdib> result(CDM::MdibContainer(xercesDocument->getDocument()));
+
+	bool t_success = false;
+
+	if ((result != nullptr) && (result->MdDescription().present())) {
+        std::unique_ptr<MdDescription> t_MdDescription(new MdDescription(ConvertFromCDM::convert(result->MdDescription().get())));
+        if(t_MdDescription == nullptr) {
+            return false;
+        }
+        m_MdDescription = std::move(t_MdDescription);
+        t_success = true;
+    }
+	// Also parse the states
+	if((result != nullptr) && result->MdState().present())
+	{
+        m_MdState.copyFrom(ConvertFromCDM::convert(result->MdState().get()));
+        t_success = true;
+	}
+
+	if(t_success)
+	{
+		return true;
+	}
+	else
+	{
+	    log_fatal([&] { return " Fatal error, can't create MDIB - schema validation error! Offending MDIB: \n" + p_xml; });
+	    return false;
+	}
+}
+
+
 MdDescription SDCProvider::getMdDescription() const
 {
     std::lock_guard<std::mutex> t_lock{m_mutex_MdDescription};
