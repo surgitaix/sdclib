@@ -723,7 +723,8 @@ void SDCConsumer::onOperationInvoked(const OperationInvocationContext & p_oic, I
 		if (!t_mds_uniquePtr->getSco().present()) {
 			continue;
 		}
-		for (const auto & t_operation : t_mds_uniquePtr->getSco().get().getOperation()) {
+		for (const auto & t_operation : t_mds_uniquePtr->getSco().get().getOperation()) // TODO: Check on temporary return value in chaining
+		{
 			if (t_operation.getHandle() == p_oic.operationHandle && dynamic_cast<const CDM::ActivateOperationDescriptor *>(&t_operation) != nullptr) {
 				t_targetHandle = p_oic.operationHandle;
 				break;

@@ -20,7 +20,7 @@ using namespace SDCLib;
 std::atomic_uint SDCInstance::s_IDcounter{0};
 
 SDCInstance::SDCInstance(bool p_init)
- : m_SDCConfig([]() { return std::make_shared<Config::SDCConfig>(); } ())
+ : m_SDCConfig(std::make_shared<Config::SDCConfig>())
 {
     if(p_init) {
         init();

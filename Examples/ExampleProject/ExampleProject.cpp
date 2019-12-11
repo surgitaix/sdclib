@@ -1,5 +1,6 @@
 
 #include "SDCLib/SDCLibrary.h"
+#include "SDCLib/SDCInstance.h"
 #include "OSELib/SDC/SDCConstants.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 #include "SDCLib/Data/SDC/SDCConsumerMDStateHandler.h"

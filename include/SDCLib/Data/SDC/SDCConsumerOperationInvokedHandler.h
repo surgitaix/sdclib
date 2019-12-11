@@ -30,8 +30,7 @@
 
 #include <string>
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
-#include "SDCLib/Data/SDC/MDIB/MDIB-fwd.h"
-#include "SDCLib/Data/SDC/SDCConsumer.h"
+#include "SDCLib/Data/SDC/SDC-fwd.h"
 
 
 namespace SDCLib
@@ -74,7 +73,7 @@ namespace SDCLib
 				*
 				* @return The handle
 				*/
-				std::string getDescriptorHandle() { return descriptorHandle; }
+				std::string getDescriptorHandle() const { return descriptorHandle; }
 			};
 
 		}

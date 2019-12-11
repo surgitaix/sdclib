@@ -64,34 +64,35 @@ namespace SDCLib
 				friend class OSELib::SDC::ServiceManager;
 
 			private:
-				struct TransactionState {
+				struct TransactionState
+				{
 					TransactionState(int p_id, InvocationState p_is)
 					: m_transactionId(p_id)
 					, m_invocationState(p_is)
 					{ }
-					const int m_transactionId = 0;
-					const InvocationState m_invocationState;
+					const int m_transactionId{0}; // TODO: int sufficient? "Portable enough"? Or unsigned int / std::size_t?
+					const InvocationState m_invocationState{InvocationState::Fail};
 				};
 
-				SDCInstance_shared_ptr m_SDCInstance = nullptr;
-				OSELib::DPWS::DeviceDescription_shared_ptr m_deviceDescription = nullptr;
+				SDCInstance_shared_ptr m_SDCInstance{nullptr};
+				OSELib::DPWS::DeviceDescription_shared_ptr m_deviceDescription{nullptr};
 
-				std::map<int, FutureInvocationState *> ml_fisMap;
+				std::map<int, FutureInvocationState*> ml_fisMap;
 				std::mutex m_transactionMutex;
 
-				std::shared_ptr<MdibContainer> m_mdib = nullptr;
+				std::shared_ptr<MdibContainer> m_mdib{nullptr};
 				std::deque<TransactionState> ml_transactionQueue;
 				std::mutex m_mdibVersionMutex;
 				std::mutex m_requestMutex;
 				std::mutex m_eventMutex;
-				std::map<std::string, SDCConsumerOperationInvokedHandler *> ml_eventHandlers;
-				SDCConsumerConnectionLostHandler * m_connectionLostHandler = nullptr;
+				std::map<std::string, SDCConsumerOperationInvokedHandler*> ml_eventHandlers;
+				SDCConsumerConnectionLostHandler* m_connectionLostHandler{nullptr};
 
-				SDCConsumerSubscriptionLostHandler * m_subscriptionLostHandler = nullptr;
+				SDCConsumerSubscriptionLostHandler* m_subscriptionLostHandler{nullptr};
 
-				unsigned long long int m_lastKnownMDIBVersion = 0;
+				unsigned long long int m_lastKnownMDIBVersion{0};
 
-				std::unique_ptr<SDCConsumerAdapter> m_adapter = nullptr;
+				std::unique_ptr<SDCConsumerAdapter> m_adapter{nullptr};
 
 			public:
 

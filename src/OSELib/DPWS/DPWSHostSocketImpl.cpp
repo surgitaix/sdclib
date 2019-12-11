@@ -181,7 +181,7 @@ DPWSHostSocketImpl::DPWSHostSocketImpl(SDCLib::Config::NetworkConfig_shared_ptr 
                 }
                 catch (...) {
                     log_error([&] { return "Something went wrong in binding to : " + t_interface->m_name; });
-                    continue;
+                    throw;
                 }
             }
         }
@@ -205,7 +205,7 @@ DPWSHostSocketImpl::DPWSHostSocketImpl(SDCLib::Config::NetworkConfig_shared_ptr 
                     }
                     catch (...) {
                         log_error([&] { return "Something went wrong in binding to : " + t_nextIf.adapterName(); });
-                        continue;
+                        throw;
                     }
                 }
             }
@@ -241,7 +241,7 @@ DPWSHostSocketImpl::DPWSHostSocketImpl(SDCLib::Config::NetworkConfig_shared_ptr 
                 catch (...) {
                     // todo fixme. This loop fails, when a network interface has serveral network addresses, i.e. 2 IPv6 global scoped addresses
                     log_error([&] { return "Something went wrong in binding to : " + t_interface->m_name; });
-                    continue;
+                    throw;
                 }
             }
         }
@@ -262,7 +262,8 @@ DPWSHostSocketImpl::DPWSHostSocketImpl(SDCLib::Config::NetworkConfig_shared_ptr 
                         ml_socketSendMessageQueue[t_datagramSocket].clear();
                     } catch (...) {
                         // todo fixme. This loop fails, when a network interface has several network addresses, i.e. 2 IPv6 global scoped addresses
-                        log_error([&] { return "Another thing went wrong"; });
+                        log_error([&] { return "Another thing went wrong"; }); // FIXME: What does this tell us?
+                        throw;
                     }
                 }
             }

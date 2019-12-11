@@ -66,10 +66,10 @@ class SetServiceEventSink : public SDC::ISetServiceEventSink, public OSELib::Hel
 {
 private:
 
-	SDCLib::Data::SDC::SDCConsumer & m_consumer;
+	SDCLib::Data::SDC::SDCConsumer& m_consumer;
 public:
 
-	SetServiceEventSink(SDCLib::Data::SDC::SDCConsumer & p_consumer)
+	SetServiceEventSink(SDCLib::Data::SDC::SDCConsumer& p_consumer)
 	: OSELib::Helper::WithLogger(Log::EVENTSINK)
 	, m_consumer(p_consumer)
 	{ }
@@ -78,12 +78,12 @@ public:
 		return "/" + OSELib::SDC::QNAME_SETSERVICE_PORTTYPE;
 	}
 
-	void dispatch(const SDC::OperationInvokedReportTraits::ReportType & p_report) override {
+	void dispatch(const SDC::OperationInvokedReportTraits::ReportType& p_report) override {
 		// fixme move all to SDCConsumer and change interface, so this method here only delegates. This should be done for all events
 		if (p_report.getMdibVersion().present()) {
 			m_consumer.updateLastKnownMdibVersion(p_report.getMdibVersion().get());
 		}
-		for (const auto & t_irp : p_report.getReportPart()) {
+		for (const auto& t_irp : p_report.getReportPart()) {
 			m_consumer.onOperationInvoked(
 				SDCLib::Data::SDC::OperationInvocationContext(t_irp.getOperationHandleRef(), t_irp.getInvocationInfo().getTransactionId()),
 				SDCLib::Data::SDC::ConvertFromCDM::convert(t_irp.getInvocationInfo().getInvocationState()));
@@ -115,35 +115,43 @@ public:
 	}
 
 	// StateEvent
-	void dispatch(const SDC::EpisodicAlertReportTraits::ReportType & p_report) override
+	void dispatch(const SDC::EpisodicAlertReportTraits::ReportType& p_report) override
 	{
 		if (p_report.getMdibVersion().present()) {
 			m_consumer.updateLastKnownMdibVersion(p_report.getMdibVersion().get());
 		}
-		for (const auto & t_reportPart : p_report.getReportPart()) {
-			for (const auto & t_state : t_reportPart.getAlertState()) {
+		for (const auto& t_reportPart : p_report.getReportPart()) {
+			for (const auto& t_state : t_reportPart.getAlertState()) {
 				dispatchAlertState(t_state);
 			}
 		}
 	}
 
-	void dispatch(const SDC::EpisodicComponentReportTraits::ReportType & p_report) override {
-		if (p_report.getMdibVersion().present()) {
+	void dispatch(const SDC::EpisodicComponentReportTraits::ReportType& p_report) override
+	{
+		if (p_report.getMdibVersion().present())
+		{
 			m_consumer.updateLastKnownMdibVersion(p_report.getMdibVersion().get());
 		}
-		for (const auto & t_reportPart : p_report.getReportPart()) {
-			for (const auto & t_state : t_reportPart.getComponentState()) {
+		for (const auto& t_reportPart : p_report.getReportPart())
+		{
+			for (const auto& t_state : t_reportPart.getComponentState())
+			{
 				dispatchComponentState(t_state);
 			}
 		}
 	}
 
-	void dispatch(const SDC::EpisodicMetricReportTraits::ReportType& p_report) override {
-		if (p_report.getMdibVersion().present()) {
+	void dispatch(const SDC::EpisodicMetricReportTraits::ReportType& p_report) override
+	{
+		if (p_report.getMdibVersion().present())
+		{
 			m_consumer.updateLastKnownMdibVersion(p_report.getMdibVersion().get());
 		}
-		for (const auto & t_reportPart : p_report.getReportPart()) {
-			for (const auto & t_state : t_reportPart.getMetricState()) {
+		for (const auto& t_reportPart : p_report.getReportPart())
+		{
+			for (const auto& t_state : t_reportPart.getMetricState())
+			{
 				dispatchMetricState(t_state);
 			}
 		}
@@ -153,30 +161,30 @@ public:
 		if (p_report.getMdibVersion().present()) {
 			m_consumer.updateLastKnownMdibVersion(p_report.getMdibVersion().get());
 		}
-		for (const auto & t_reportPart : p_report.getReportPart()) {
-			for (const auto & t_state : t_reportPart.getOperationState()) {
+		for (const auto& t_reportPart : p_report.getReportPart()) {
+			for (const auto& t_state : t_reportPart.getOperationState()) {
 				dispatchOperationState(t_state);
 			}
 		}
 	}
 
-	void dispatch(const SDC::PeriodicAlertReportTraits::ReportType & p_report) override {
+	void dispatch(const SDC::PeriodicAlertReportTraits::ReportType& p_report) override {
 		if (p_report.getMdibVersion().present()) {
 			m_consumer.updateLastKnownMdibVersion(p_report.getMdibVersion().get());
 		}
-		for (const auto & reportPart : p_report.getReportPart()) {
-			for (const auto & state : reportPart.getAlertState()) {
+		for (const auto& reportPart : p_report.getReportPart()) {
+			for (const auto& state : reportPart.getAlertState()) {
 				dispatchAlertState(state);
 			}
 		}
 	}
 
-	void dispatch(const SDC::PeriodicMetricReportTraits::ReportType & p_report) override {
+	void dispatch(const SDC::PeriodicMetricReportTraits::ReportType& p_report) override {
 		if (p_report.getMdibVersion().present()) {
 			m_consumer.updateLastKnownMdibVersion(p_report.getMdibVersion().get());
 		}
-		for (const auto & t_reportPart : p_report.getReportPart()) {
-			for (const auto & t_state : t_reportPart.getMetricState()) {
+		for (const auto& t_reportPart : p_report.getReportPart()) {
+			for (const auto& t_state : t_reportPart.getMetricState()) {
 				dispatchMetricState(t_state);
 			}
 		}
@@ -192,7 +200,7 @@ public:
 		// this is not right.
 
 		// casts to right inherited type and call the regarding method of the consumer
-		void delegateContextState(const CDM::AbstractContextState & p_contextState) {
+		void delegateContextState(const CDM::AbstractContextState& p_contextState) {
 			if (const auto t_state = dynamic_cast<const CDM::LocationContextState *>(&p_contextState)) {
 				// dispatch to multi state callback
 	//			_consumer.onMultiStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*state));
@@ -240,17 +248,17 @@ public:
 
 
 		// dispatch episodic reports and delegate the contained context states
-		void dispatch(const SDC::EpisodicContextReportTraits::ReportType & p_report) override {
+		void dispatch(const SDC::EpisodicContextReportTraits::ReportType& p_report) override {
 
 			if (p_report.getMdibVersion().present()) {
 				m_consumer.updateLastKnownMdibVersion(p_report.getMdibVersion().get());
 			}
 
-			for (const auto & t_reportPart: p_report.getReportPart()) {
+			for (const auto& t_reportPart: p_report.getReportPart()) {
 				// get the part of the report, as defined by the message model
 				if (const auto part = dynamic_cast<const MDM::ReportPart *>(&t_reportPart)) { // FIXME: std::addressof?
 					// get all ContextStates. ContextStates are all states inheriting from AbstractContextState
-					for (const auto & t_contextState : part->getContextState()) {
+					for (const auto& t_contextState : part->getContextState()) {
 						delegateContextState(t_contextState);
 					}
 				}
@@ -258,16 +266,16 @@ public:
 		}
 
 		// dispatch periodic reports and delegate the contained context states
-		void dispatch(const SDC::PeriodicContextReportTraits::ReportType & p_report) override {
+		void dispatch(const SDC::PeriodicContextReportTraits::ReportType& p_report) override {
 			if (p_report.getMdibVersion().present()) {
 				m_consumer.updateLastKnownMdibVersion(p_report.getMdibVersion().get());
 			}
 
-			for (const auto & t_reportPart: p_report.getReportPart()) { // FIXME: Nested for loops AND dynamic_cast! -> REFACTOR!
+			for (const auto& t_reportPart: p_report.getReportPart()) { // FIXME: Nested for loops AND dynamic_cast! -> REFACTOR!
 				// get the part of the report, that is defined by the message model
 				if (const auto t_part = dynamic_cast<const MDM::ReportPart *>(&t_reportPart)) { // FIXME: std::addressif?
 					// get all ContextStates. ContextStates are all states inheriting from AbstractContextState
-					for (const auto & t_contextState : t_part->getContextState()) {
+					for (const auto& t_contextState : t_part->getContextState()) {
 						delegateContextState(t_contextState);
 					}
 				}
@@ -277,7 +285,7 @@ public:
 
 	private:
 
-		void dispatchAlertState(const CDM::AbstractAlertState & p_alertState) {
+		void dispatchAlertState(const CDM::AbstractAlertState& p_alertState) {
 			if (const auto t_state = dynamic_cast<const CDM::AlertSystemState *>(&p_alertState)) {
 				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
 				return;
@@ -298,7 +306,7 @@ public:
 			log_error([] { return "Unknown alert state type, event will not be forwarded to handler!"; });
 		}
 
-		void dispatchComponentState(const CDM::AbstractDeviceComponentState & p_state)
+		void dispatchComponentState(const CDM::AbstractDeviceComponentState& p_state)
 		{
 			if (const auto t_state = dynamic_cast<const CDM::ScoState *>(&p_state)) {
 				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
@@ -325,7 +333,7 @@ public:
 			log_error([] { return "Unknown component state type, event will not be forwarded to handler!"; });
 		}
 
-		void dispatchMetricState(const CDM::AbstractMetricState & p_metricState) {
+		void dispatchMetricState(const CDM::AbstractMetricState& p_metricState) {
 			if (const auto t_state = dynamic_cast<const CDM::EnumStringMetricState *>(&p_metricState)) {
 				m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(*t_state));
 				return;
@@ -419,7 +427,7 @@ public:
 
 
 
-SDCConsumerAdapter::SDCConsumerAdapter(SDCConsumer & p_consumer, OSELib::DPWS::DeviceDescription_shared_ptr p_deviceDescription)
+SDCConsumerAdapter::SDCConsumerAdapter(SDCConsumer& p_consumer, OSELib::DPWS::DeviceDescription_shared_ptr p_deviceDescription)
 : OSELib::Helper::WithLogger(OSELib::Log::SDCCONSUMERADAPTER)
 , m_consumer(p_consumer)
 , m_deviceDescription(p_deviceDescription)
@@ -553,19 +561,19 @@ void SDCConsumerAdapter::unsubscribeEvents()
 }
 
 template<class TraitsType>
-std::unique_ptr<typename TraitsType::Response> SDCConsumerAdapter::invokeImplWithEventSubscription(const typename TraitsType::Request & p_request, const Poco::URI & p_requestURI, Poco::Net::Context::Ptr p_context) {
+std::unique_ptr<typename TraitsType::Response> SDCConsumerAdapter::invokeImplWithEventSubscription(const typename TraitsType::Request& p_request, const Poco::URI& p_requestURI, Poco::Net::Context::Ptr p_context) {
 	// We need to receive operation invoked events, so we do kind of emergency subscriptions here
 	subscribeEvents();
 	return invokeImpl<TraitsType>(p_request, p_requestURI, p_context);
 }
 
 template<class TraitsType>
-std::unique_ptr<typename TraitsType::Response> SDCConsumerAdapter::invokeImpl(const typename TraitsType::Request & p_request, const Poco::URI & p_requestURI, Poco::Net::Context::Ptr p_context) {
+std::unique_ptr<typename TraitsType::Response> SDCConsumerAdapter::invokeImpl(const typename TraitsType::Request& p_request, const Poco::URI& p_requestURI, Poco::Net::Context::Ptr p_context) {
 
 	using Invoker = OSELib::SOAP::GenericSoapInvoke<TraitsType>;
 	std::unique_ptr<Invoker> t_invoker(new Invoker(p_requestURI, m_grammarProvider));
 
-	auto t_response(t_invoker->invoke(p_request, p_context));
+	auto t_response{t_invoker->invoke(p_request, p_context)};
 	if (t_response != nullptr) {
 		if (t_response->getMdibVersion().present()) {
 			m_consumer.updateLastKnownMdibVersion(t_response->getMdibVersion().get());
@@ -575,82 +583,82 @@ std::unique_ptr<typename TraitsType::Response> SDCConsumerAdapter::invokeImpl(co
 	return nullptr;
 }
 
-void SDCConsumerAdapter::dispatch(const OSELib::DPWS::WaveformStreamType & p_notification) {
+void SDCConsumerAdapter::dispatch(const OSELib::DPWS::WaveformStreamType& p_notification) {
 	m_consumer.onStateChanged(SDCLib::Data::SDC::ConvertFromCDM::convert(p_notification.getState().front()));
 }
 
 
 template<>
-Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::SDC::GetMDDescriptionTraits::Request & ) const {
+Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::SDC::GetMDDescriptionTraits::Request&) const {
 	return m_deviceDescription->getGetServiceURI();
 }
 
 template<>
-Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::SDC::GetMDIBTraits::Request & ) const {
+Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::SDC::GetMDIBTraits::Request&) const {
 	return m_deviceDescription->getGetServiceURI();
 }
 
 template<>
-Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::SDC::GetMdStateTraits::Request & ) const {
+Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::SDC::GetMdStateTraits::Request&) const {
 	return m_deviceDescription->getGetServiceURI();
 }
 
 template<>
-Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::SDC::ActivateTraits::Request & ) const {
+Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::SDC::ActivateTraits::Request&) const {
 	return m_deviceDescription->getSetServiceURI();
 }
 
 template<>
-Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::SDC::SetAlertStateTraits::Request & ) const {
+Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::SDC::SetAlertStateTraits::Request&) const {
 	return m_deviceDescription->getSetServiceURI();
 }
 
 template<>
-Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::SDC::SetStringTraits::Request & ) const {
+Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::SDC::SetStringTraits::Request&) const {
 	return m_deviceDescription->getSetServiceURI();
 }
 
 template<>
-Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::SDC::SetValueTraits::Request & ) const {
+Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::SDC::SetValueTraits::Request&) const {
 	return m_deviceDescription->getSetServiceURI();
 }
 
 template<>
-Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::SDC::SetContextStateTraits::Request & ) const {
+Poco::URI SDCConsumerAdapter::getRequestURIFromDeviceDescription(const OSELib::SDC::SetContextStateTraits::Request&) const {
 	return m_deviceDescription->getContextServiceURI();
 }
 
-std::unique_ptr<MDM::GetMdDescriptionResponse> SDCConsumerAdapter::invoke(const MDM::GetMdDescription & p_request, Poco::Net::Context::Ptr p_context) {
+std::unique_ptr<MDM::GetMdDescriptionResponse> SDCConsumerAdapter::invoke(const MDM::GetMdDescription& p_request, Poco::Net::Context::Ptr p_context) {
 	return invokeImpl<OSELib::SDC::GetMDDescriptionTraits>(p_request, getRequestURIFromDeviceDescription(p_request), p_context);
 }
 
-std::unique_ptr<MDM::GetMdibResponse> SDCConsumerAdapter::invoke(const MDM::GetMdib & p_request, Poco::Net::Context::Ptr p_context) {
+std::unique_ptr<MDM::GetMdibResponse> SDCConsumerAdapter::invoke(const MDM::GetMdib& p_request, Poco::Net::Context::Ptr p_context) {
 	return invokeImpl<OSELib::SDC::GetMDIBTraits>(p_request, getRequestURIFromDeviceDescription(p_request), p_context);
 }
 
-std::unique_ptr<MDM::GetMdStateResponse> SDCConsumerAdapter::invoke(const MDM::GetMdState & p_request, Poco::Net::Context::Ptr p_context) {
+std::unique_ptr<MDM::GetMdStateResponse> SDCConsumerAdapter::invoke(const MDM::GetMdState& p_request, Poco::Net::Context::Ptr p_context) {
 	return invokeImpl<OSELib::SDC::GetMdStateTraits>(p_request, getRequestURIFromDeviceDescription(p_request), p_context);
 }
 
 
-std::unique_ptr<MDM::ActivateResponse> SDCConsumerAdapter::invoke(const MDM::Activate & p_request, Poco::Net::Context::Ptr p_context) {
+std::unique_ptr<MDM::ActivateResponse> SDCConsumerAdapter::invoke(const MDM::Activate& p_request, Poco::Net::Context::Ptr p_context) {
 	return invokeImplWithEventSubscription<OSELib::SDC::ActivateTraits>(p_request, getRequestURIFromDeviceDescription(p_request), p_context);
 }
 
-std::unique_ptr<MDM::SetAlertStateResponse> SDCConsumerAdapter::invoke(const MDM::SetAlertState & p_request, Poco::Net::Context::Ptr p_context) {
+std::unique_ptr<MDM::SetAlertStateResponse> SDCConsumerAdapter::invoke(const MDM::SetAlertState& p_request, Poco::Net::Context::Ptr p_context) {
 	return invokeImplWithEventSubscription<OSELib::SDC::SetAlertStateTraits>(p_request, getRequestURIFromDeviceDescription(p_request), p_context);
 }
 
-std::unique_ptr<MDM::SetValueResponse> SDCConsumerAdapter::invoke(const MDM::SetValue & p_request, Poco::Net::Context::Ptr p_context) {
+std::unique_ptr<MDM::SetValueResponse> SDCConsumerAdapter::invoke(const MDM::SetValue& p_request, Poco::Net::Context::Ptr p_context) {
 	return invokeImplWithEventSubscription<OSELib::SDC::SetValueTraits>(p_request, getRequestURIFromDeviceDescription(p_request), p_context);
 }
 
-std::unique_ptr<MDM::SetStringResponse> SDCConsumerAdapter::invoke(const MDM::SetString & p_request, Poco::Net::Context::Ptr p_context) {
+std::unique_ptr<MDM::SetStringResponse> SDCConsumerAdapter::invoke(const MDM::SetString& p_request, Poco::Net::Context::Ptr p_context) {
 	return invokeImplWithEventSubscription<OSELib::SDC::SetStringTraits>(p_request, getRequestURIFromDeviceDescription(p_request), p_context);
 }
 
 
-std::unique_ptr<MDM::SetContextStateResponse> SDCConsumerAdapter::invoke(const MDM::SetContextState & p_request, Poco::Net::Context::Ptr p_context) {
+std::unique_ptr<MDM::SetContextStateResponse> SDCConsumerAdapter::invoke(const MDM::SetContextState& p_request, Poco::Net::Context::Ptr p_context) {
 	return invokeImplWithEventSubscription<OSELib::SDC::SetContextStateTraits>(p_request, getRequestURIFromDeviceDescription(p_request), p_context);
 }
 

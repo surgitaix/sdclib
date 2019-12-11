@@ -28,6 +28,7 @@
 
 
 #include "SDCLib/SDCLibrary.h"
+#include "SDCLib/SDCInstance.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 #include "SDCLib/Data/SDC/SDCConsumerConnectionLostHandler.h"
 #include "SDCLib/Data/SDC/SDCConsumerMDStateHandler.h"

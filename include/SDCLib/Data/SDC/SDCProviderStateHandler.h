@@ -41,8 +41,8 @@ namespace SDCLib
 			{
 				friend class SDCProvider;
 			protected:
-				std::string descriptorHandle;
-				SDCProvider * parentProvider = nullptr;
+				const std::string descriptorHandle;
+				SDCProvider* parentProvider = nullptr;
 
 			public:
 				SDCProviderStateHandler(std::string p_desriptorHandle);
@@ -66,7 +66,7 @@ namespace SDCLib
 				*
 				* @return The handle
 				*/
-				std::string getDescriptorHandle();
+				std::string getDescriptorHandle() const;
 
 				/**
 				* @brief Notify all registered consumers about an operation changed event

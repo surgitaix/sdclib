@@ -106,7 +106,6 @@
 #include <sstream>
 
 #include <Poco/AutoPtr.h>
-#include <Poco/Net/NetException.h>
 #include <Poco/Notification.h>
 
 const std::size_t INITIAL_STATE_VERSION = 0;
@@ -190,7 +189,7 @@ public:
 		if (m_provider.getPeriodicEventInterval() < (std::chrono::system_clock::now() - m_provider.getLastPeriodicEvent()))
 		{
 			m_provider.firePeriodicReportImpl();
-			m_provider.setLastPeriodicEvent(m_provider.getLastPeriodicEvent());
+			m_provider.setLastPeriodicEvent(m_provider.getLastPeriodicEvent()); // FIXME: Correct impl?
 		}
     }
 };
@@ -679,7 +678,7 @@ MDM::GetContextStatesResponse SDCProvider::GetContextStates(const MDM::GetContex
 	}
 	// TODO: 0 = replace with real sequence ID
 	MDM::GetContextStatesResponse t_result(xml_schema::Uri("0"));
-	log_warning([&] { return "The requested states handle or descriptor handle does not fit any of the provider's states"; });
+	log_warning([] { return "The requested states handle or descriptor handle does not fit any of the provider's states"; });
 	t_result.setMdibVersion(getMdibVersion());
 	return t_result;
 }
@@ -1252,20 +1251,25 @@ MdState SDCProvider::getMdState() const
 
 bool SDCProvider::startup()
 {
-    if(isStarted()) {
+    if(isStarted())
+    {
         log_error([] { return "Provider already started!";});
         return false;
     }
 
     std::lock_guard<std::mutex> t_lock{m_mutex};
-    try {
+    try
+    {
         m_adapter->start();
-    } catch (const Poco::Net::NetException & e) {
-        log_error([&] { return "Net Exception: " + std::string(e.what()) + " Socket unable to be opened. Provider startup aborted.";});
-        return false;
-    } catch (std::runtime_error & ex_re) {
+    }
+    catch (std::runtime_error& ex_re)
+    {
         log_error([&] { return ex_re.what(); });
         return false;
+    }
+    catch(...)
+    {
+    	throw;
     }
 
     // Grab all states (start with all operation states and add states from user handlers)

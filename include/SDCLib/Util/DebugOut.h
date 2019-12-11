@@ -42,7 +42,8 @@ namespace SDCLib
 		{
 		public:
 
-			enum LogLevel {
+			enum LogLevel // TODO: Change to enum 'class' -> Will probably break some code...
+			{
 				Silent,
 				Default,
 				Error,
@@ -53,28 +54,31 @@ namespace SDCLib
 
 			static LogLevel DEBUG_LEVEL;
 
-			DebugOut(LogLevel level, std::ostream & s, const std::string & prefix = "");
-			DebugOut(std::ostream & s, const std::string & prefix = "");
-			DebugOut(LogLevel level, const std::string & prefix = "");
+			DebugOut(LogLevel level, std::ostream& s, const std::string& prefix = "");
+			DebugOut(std::ostream& s, const std::string& prefix = "");
+			DebugOut(LogLevel level, const std::string& prefix = "");
 			virtual ~DebugOut();
 
-			static bool openLogFile(const std::string & filename, bool truncateFile = false);
+			static bool openLogFile(const std::string& filename, bool truncateFile = false);
 			static void closeLogFile();
 
 			void flush();
 
-			DebugOut & operator<<(std::ostream & (*pf)(std::ostream&));
+			DebugOut& operator<<(std::ostream& (*pf)(std::ostream&)); // TODO: ???
 
 			template<typename T>
-			DebugOut & operator<<(T & item) {
+			DebugOut& operator<<(T & item)
+			{
 				const T & constItem(item);
 				return operator <<(constItem);
 			}
 
 			template<typename T>
-			DebugOut & operator<<(const T & item) {
-				if (showMessage) {
-					logBuffer << item;
+			DebugOut& operator<<(const T& item)
+			{
+				if(m_showMessage)
+				{
+					m_logBuffer << item;
 				}
 				return *this;
 			}
@@ -84,16 +88,16 @@ namespace SDCLib
 			void outputOnCreate();
 			void outputOnDestroy();
 
-			std::ostringstream logBuffer;
-			std::ostream & stream;
+			std::ostringstream m_logBuffer;
+			std::ostream& m_stream;
 
-			const LogLevel level;
-			const std::string prefix;
-			bool showMessage;
+			const LogLevel m_level;
+			const std::string m_prefix;
+			bool m_showMessage;
 
-			static std::mutex globalOutputLock;
-			static std::ofstream * fileOut;
-			static bool isLogFileGood();
+			static std::mutex m_globalOutputLock;
+			static std::ofstream* m_fileOut; // TODO: smart pointer?
+			static bool isLogFileGood(); // TODO: Mixing member functions and variables?
 		};
 
 	} /* namespace Util */

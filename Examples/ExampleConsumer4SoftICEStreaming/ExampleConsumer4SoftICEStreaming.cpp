@@ -27,6 +27,7 @@
  */
 
 #include "SDCLib/SDCLibrary.h"
+#include "SDCLib/SDCInstance.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 #include "SDCLib/Data/SDC/SDCConsumerMDStateHandler.h"
 #include "SDCLib/Data/SDC/MDIB/MetricQuality.h"

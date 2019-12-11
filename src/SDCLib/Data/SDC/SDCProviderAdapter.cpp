@@ -35,6 +35,8 @@
 
 #include "DataModel/NormalizedMessageModel.hxx"
 
+#include <Poco/Net/NetException.h>
+
 namespace OSELib {
 
 using GetServiceController = SDC::SDCServiceController<SDC::IGetService, SDC::GetServiceHandler>;
@@ -332,11 +334,23 @@ bool SDCProviderAdapter::start()
 	t_types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_DPWS, "Device"));
 	t_types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_MDPWS, "MedicalDevice"));
 
+	try
+	{
 	m_dpwsHost = std::unique_ptr<OSELib::DPWS::MDPWSHostAdapter>(new OSELib::DPWS::MDPWSHostAdapter(m_provider.getSDCInstance()->getNetworkConfig(),
 			OSELib::DPWS::AddressType(m_provider.getEndpointReference()),
 			OSELib::DPWS::ScopesType(),
 			t_types,
 			t_xAddresses));
+	}
+	catch (const Poco::Net::NetException & e)
+	{
+		OSELib::Helper::WithLogger(OSELib::Log::sdcProvider).log_error([&] { return "Net Exception: " + std::string(e.what()) + " Socket unable to be opened. Provider startup aborted.";});
+		return false;
+	}
+	catch(...)
+	{
+		throw;
+	}
 
 	const std::vector<xml_schema::Uri> tl_allowedSubscriptionEventActions {
 				OSELib::SDC::DescriptionModificationReportTraits::Action(),

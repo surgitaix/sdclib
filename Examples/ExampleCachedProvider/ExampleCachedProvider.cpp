@@ -15,6 +15,7 @@
 #include <thread>
 
 #include "SDCLib/SDCLibrary.h"
+#include "SDCLib/SDCInstance.h"
 #include "SDCLib/Data/SDC/SDCProvider.h"
 #include "SDCLib/Data/SDC/SDCProviderMDStateHandler.h"
 #include "SDCLib/Data/SDC/MDIB/MetricQuality.h"

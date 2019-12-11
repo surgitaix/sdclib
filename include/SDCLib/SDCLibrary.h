@@ -33,7 +33,6 @@
 
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
-#include "SDCInstance.h"
 
 namespace SDCLib
 {
@@ -53,7 +52,7 @@ namespace SDCLib
         SDCLibrary& operator=(SDCLibrary&& p_obj) = delete;
         ~SDCLibrary();
 
-        static SDCLibrary & getInstance();
+        static SDCLibrary& getInstance();
 
         /**
         * Startup framework.
@@ -66,9 +65,12 @@ namespace SDCLib
         * Shutdown framework.
         *
         */
-        void shutdown();
+        void shutdown() { }
 
-        bool isInitialized();
+        bool isInitialized() const
+        {
+        	return m_initialized;
+        }
     };
 
 }

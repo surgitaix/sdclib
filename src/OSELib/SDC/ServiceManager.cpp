@@ -105,15 +105,19 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpoint
 	Poco::Event t_matchEvent;
 	ResolveMatchCallback t_resolveCb(t_matchEvent);
 
-	DPWS::ResolveType resolveFilter((WS::ADDRESSING::EndpointReferenceType(WS::ADDRESSING::AttributedURIType(p_epr))));
+	DPWS::ResolveType resolveFilter{{WS::ADDRESSING::EndpointReferenceType{WS::ADDRESSING::AttributedURIType{p_epr}}}};
 	m_dpwsClient->addResolveMatchEventHandler(resolveFilter, t_resolveCb);
-	try {
-		// FIXME: CRASH HERE... MUTEX ISSUE? WAKEUP (UNLOCK) FROM DIFFERENT THREAD NOT ALLOWED? OWNER PROBLEM?
+
+	try
+	{
+		// FIXME: CRASH HERE (???)... MUTEX ISSUE? WAKEUP (UNLOCK) FROM DIFFERENT THREAD NOT ALLOWED? OWNER PROBLEM?
+		// NOTE: STILL AN ISSUE IN IN POCO 1.9.2 ?
 		bool t_result = t_matchEvent.tryWait(m_SDCInstance->getDiscoveryTime().count());
 		if (!t_result) {
 			log_debug([] { return "ServiceManager: discoverEndpointReference::TIMEOUT."; });
 		}
-		if(nullptr != t_resolveCb.m_result) {
+		if(nullptr != t_resolveCb.m_result)
+		{
 			log_debug([&] { return "Received ResolveMatch for: " + t_resolveCb.m_result->getEndpointReference().getAddress(); });
 		}
 	}
@@ -125,19 +129,24 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpoint
 
 	m_dpwsClient->removeResolveMatchEventHandler(t_resolveCb);
 
-	if(nullptr == t_resolveCb.m_result) {
+	if(nullptr == t_resolveCb.m_result)
+	{
 		return nullptr;
 	}
+    if (!t_resolveCb.m_result->getXAddrs().present())
+    {
+    	return nullptr;
+    }
 
 	SDCLib::StringVector tl_xAddresses;
-    if (t_resolveCb.m_result && t_resolveCb.m_result->getXAddrs().present()) {
-		for (const auto & t_xaddr : t_resolveCb.m_result->getXAddrs().get()) {
-			tl_xAddresses.emplace_back(t_xaddr);
-		}
-		auto t_result(connectXAddress(tl_xAddresses, t_resolveCb.m_result->getEndpointReference().getAddress()));
-		if (t_result) {
-			return t_result;
-		}
+	for (const auto& t_xaddr : t_resolveCb.m_result->getXAddrs().get()) // TODO: Check on temporary return value in chaining
+	{
+		tl_xAddresses.emplace_back(t_xaddr);
+	}
+	auto t_result{connectXAddress(tl_xAddresses, t_resolveCb.m_result->getEndpointReference().getAddress())};
+	if (t_result)
+	{
+		return t_result;
 	}
 
 	return nullptr;
@@ -189,7 +198,8 @@ ServiceManager::DiscoverResults ServiceManager::discover()
 		}
 
 		// one EPR may be connected via multiple network interfaces
-		for (const auto & t_xaddr : t_probeResult.getXAddrs().get()) {
+		for (const auto & t_xaddr : t_probeResult.getXAddrs().get()) // TODO: Check on temporary return value in chaining
+		{
 			log_notice([&] { return "Trying xAddress: " + t_xaddr; });
 			tl_xAddresses.emplace_back(t_xaddr);
 		}
@@ -209,7 +219,7 @@ bool ServiceManager::resolveServiceURIsFromMetadata(const WS::MEX::MetadataSecti
 
 	bool t_getServiceFound = false;
 
-	for (const auto & t_hosted : p_metadata.getRelationship().get().getHosted())
+	for (const auto & t_hosted : p_metadata.getRelationship().get().getHosted()) // TODO: Check on temporary return value in chaining
 	{
 
 		// NOTE: GetService is MANDATORY!
