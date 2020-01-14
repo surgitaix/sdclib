@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class EnsembleContextState {
+class EnsembleContextState
+{
 private:
 	EnsembleContextState(const CDM::EnsembleContextState & object);
 	operator CDM::EnsembleContextState() const;
@@ -59,11 +60,11 @@ public:
 private:
 	EnsembleContextState(){};
 public:
-	EnsembleContextState(const EnsembleContextState & object);
-	virtual ~EnsembleContextState();
+	EnsembleContextState(const EnsembleContextState& object);
+	virtual ~EnsembleContextState() = default;
 
-    void copyFrom(const EnsembleContextState & object);
-    EnsembleContextState & operator=(const EnsembleContextState & object);
+    void copyFrom(const EnsembleContextState& object);
+    EnsembleContextState & operator=(const EnsembleContextState& object);
 
     typedef CDM::EnsembleContextState WrappedType;
     typedef EnsembleContextDescriptor DescriptorType;
@@ -123,7 +124,7 @@ public:
 	void clearIdentificationList();
 
 private:
-	std::shared_ptr<CDM::EnsembleContextState> data;
+	std::shared_ptr<CDM::EnsembleContextState> data = nullptr;
 };
 
 } /* namespace SDC */

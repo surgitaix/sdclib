@@ -1,125 +1,128 @@
 /*
  * MDPWSHostAdapter.cpp
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 20.08.2019, baumeister
+ *
  */
 
-#include "OSELib/DPWS/DPWSHostSocketImpl.h"
-#include "OSELib/DPWS/MessageAdapter.h"
-
-#include "wsdd-discovery-1.1-schema-os.hxx"
-
-#include "OSELib/DPWS/DPWSCommon.h"
 #include "OSELib/DPWS/MDPWSHostAdapter.h"
+#include "OSELib/DPWS/DPWSCommon.h"
+
 
 using namespace OSELib::DPWS;
 
-MDPWSHostAdapter::MDPWSHostAdapter(
-        SDCLib::Config::NetworkConfig_shared_ptr p_config,
-		const AddressType & epr,
-		const ScopesType & scopes,
-		const TypesType & types,
-		const XAddressesType & xaddresses,
-		int metadataVersion) :
-	_epr(epr),
-	_scopes(scopes),
-	_types(types),
-	_xaddresses(xaddresses),
-	_metadataVersion(metadataVersion),
-    _impl(new Impl::DPWSHostSocketImpl(p_config, *this, *this))
+MDPWSHostAdapter::MDPWSHostAdapter(SDCLib::Config::NetworkConfig_shared_ptr p_config,
+		const AddressType & p_epr,
+		const ScopesType & p_scopes,
+		const TypesType & p_types,
+		const XAddressesType & p_xaddresses,
+		int p_metadataVersion)
+: m_epr(p_epr)
+, m_scopes(p_scopes)
+, m_types(p_types)
+, m_xaddresses(p_xaddresses)
+, m_metadataVersion(p_metadataVersion)
+, m_impl(new Impl::DPWSHostSocketImpl(p_config, *this, *this))
+{ }
+
+void MDPWSHostAdapter::start()
 {
-}
-MDPWSHostAdapter::~MDPWSHostAdapter() = default;
-
-void MDPWSHostAdapter::start() {
-	_started = true;
+	m_started = true;
 	sendHello();
 }
 
-void MDPWSHostAdapter::stop() {
-	EndpointReferenceType epr(_epr);
-	ByeType bye(epr);
-	_impl->sendBye(bye);
-	_started = false;
+void MDPWSHostAdapter::stop()
+{
+	EndpointReferenceType t_epr(m_epr);
+	ByeType t_bye(t_epr);
+	m_impl->sendBye(t_bye);
+	m_started = false;
 }
 
-void MDPWSHostAdapter::setScopes(const ScopesType & scopes) {
-	_scopes = scopes;
-	++_metadataVersion;
+void MDPWSHostAdapter::setScopes(const ScopesType & p_scopes)
+{
+	m_scopes = p_scopes;
+	++m_metadataVersion;
 	sendHello();
 }
 
-void MDPWSHostAdapter::setTypes(const TypesType & types) {
-	_types.clear();
-	std::copy(types.begin(), types.end(), std::back_inserter(_types));
-	++_metadataVersion;
+void MDPWSHostAdapter::setTypes(const TypesType & p_types)
+{
+	m_types.clear();
+	std::copy(p_types.begin(), p_types.end(), std::back_inserter(m_types));
+	++m_metadataVersion;
 	sendHello();
 }
 
-void MDPWSHostAdapter::setXAddresses(const XAddressesType & xaddresses) {
-	_xaddresses = xaddresses;
-	++_metadataVersion;
+void MDPWSHostAdapter::setXAddresses(const XAddressesType & p_xaddresses)
+{
+	m_xaddresses = p_xaddresses;
+	++m_metadataVersion;
 	sendHello();
 }
 
-void MDPWSHostAdapter::sendStream(const MDM::WaveformStream & stream) {
-	_impl->sendStream(stream, AddressType(_epr));
+void MDPWSHostAdapter::sendStream(const MDM::WaveformStream & p_stream)
+{
+	m_impl->sendStream(p_stream, AddressType(m_epr));
 }
 
-void MDPWSHostAdapter::sendHello() {
-	if (! _started) {
+void MDPWSHostAdapter::sendHello()
+{
+	if (! m_started) {
 		return;
 	}
-	HelloType hello(
-			_epr,
-			_metadataVersion);
-	if (! _scopes.empty()) {
-		hello.Scopes(_scopes);
+	HelloType t_hello(m_epr, m_metadataVersion);
+	if (! m_scopes.empty()) {
+		t_hello.setScopes(m_scopes);
 	}
-	if (! _types.empty()) {
-		hello.Types(_types);
+	if (! m_types.empty()) {
+		t_hello.setTypes(m_types);
 	}
-	if (! _xaddresses.empty()) {
-		hello.XAddrs(_xaddresses);
+	if (! m_xaddresses.empty()) {
+		t_hello.setXAddrs(m_xaddresses);
 	}
-	_impl->sendHello(hello);
+	m_impl->sendHello(t_hello);
 }
 
-std::vector<ProbeMatchType> MDPWSHostAdapter::dispatch(const ProbeType & filter) {
-	ProbeMatchType match(_epr, _metadataVersion);
-	if (! _scopes.empty()) {
-		match.Scopes(_scopes);
+std::vector<ProbeMatchType> MDPWSHostAdapter::dispatch(const ProbeType & p_filter)
+{
+	ProbeMatchType t_match(m_epr, m_metadataVersion);
+	if (! m_scopes.empty()) {
+		t_match.setScopes(m_scopes);
 	}
-	if (! _types.empty()) {
-		match.Types(_types);
+	if (! m_types.empty()) {
+		t_match.setTypes(m_types);
 	}
-	if (! _xaddresses.empty()) {
-		match.XAddrs(_xaddresses);
+	if (! m_xaddresses.empty()) {
+		t_match.setXAddrs(m_xaddresses);
 	}
-	std::vector<ProbeMatchType> result;
-	if (! Impl::compare(filter, match)) {
-		return result;
+	std::vector<ProbeMatchType> t_result;
+	if (! Impl::compare(p_filter, t_match)) {
+		return t_result;
 	} else {
-		result.push_back(match);
-		return result;
+		t_result.push_back(t_match);
+		return t_result;
 	}
+	// fixme: explicit return "else part" here
 }
 
-std::unique_ptr<ResolveMatchType> MDPWSHostAdapter::dispatch(const ResolveType & filter) {
-	std::unique_ptr<ResolveMatchType> result(new ResolveMatchType(_epr, _metadataVersion));
-	if (! _scopes.empty()) {
-		result->Scopes(_scopes);
+std::unique_ptr<ResolveMatchType> MDPWSHostAdapter::dispatch(const ResolveType & p_filter)
+{
+	std::unique_ptr<ResolveMatchType> t_result(new ResolveMatchType(m_epr, m_metadataVersion));
+	if (! m_scopes.empty()) {
+		t_result->setScopes(m_scopes);
 	}
-	if (! _types.empty()) {
-		result->Types(_types);
+	if (! m_types.empty()) {
+		t_result->setTypes(m_types);
 	}
-	if (! _xaddresses.empty()) {
-		result->XAddrs(_xaddresses);
+	if (! m_xaddresses.empty()) {
+		t_result->setXAddrs(m_xaddresses);
 	}
-	if (! Impl::compare(filter, *result)) {
+	if (! Impl::compare(p_filter, *t_result)) {
 		return nullptr;
 	} else {
-		return result;
+		return t_result;
 	}
+	// fixme: explicit return "else part" here
 }

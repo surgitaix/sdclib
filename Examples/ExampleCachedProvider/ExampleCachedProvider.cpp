@@ -13,7 +13,6 @@
 #include <string>
 #include <fstream>
 #include <thread>
-#include <numeric>
 
 #include "SDCLib/SDCLibrary.h"
 #include "SDCLib/Data/SDC/SDCProvider.h"
@@ -30,46 +29,48 @@ using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
-const std::string ts_file("cachedMdib.xml");
+const std::string FILE_CACHED_MDIB{"cachedMdib.xml"};
 
 
-const std::string DEVICE_EPR("UDI-EXAMPLE_CACHED_PROVIDER");
+const std::string DEVICE_EPR{"UDI-EXAMPLE_CACHED_PROVIDER"};
 
-const std::string HANDLE_SET_METRIC("handle_set");
-const std::string HANDLE_GET_METRIC("handle_get");
-const std::string HANDLE_STREAM_METRIC("handle_stream");
+const std::string HANDLE_SET_METRIC{"handle_set"};
+const std::string HANDLE_GET_METRIC{"handle_get"};
+const std::string HANDLE_STREAM_METRIC{"handle_stream"};
 
 class GetNumericMetricStateHandler : public SDCProviderMDStateHandler<NumericMetricState>
 {
 public:
 
 	// The state handler take a string named as the descriptor for referencing
-	GetNumericMetricStateHandler(std::string descriptorHandle)
-    : SDCProviderMDStateHandler(descriptorHandle)
+	GetNumericMetricStateHandler(const std::string p_descriptorHandle)
+    : SDCProviderMDStateHandler(p_descriptorHandle)
     { }
 
-
 	// Helper method
-	NumericMetricState createState(double value) {
-		NumericMetricState result(descriptorHandle);
-		result
-			.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
+	NumericMetricState createState(double p_newValue)
+	{
+		NumericMetricState t_newState{getDescriptorHandle()};
+		t_newState
+			.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(p_newValue))
 			.setActivationState(ComponentActivation::On);
-		return result;
+		return t_newState;
 	}
 
-	NumericMetricState getInitialState() override {
-		NumericMetricState nms = createState(42.0);
-		return nms;
+	NumericMetricState getInitialState() override
+	{
+		return createState(42.0);
 	}
 
-	void setNumericValue(double value) {
-		NumericMetricState nms = createState(value);
-		updateState(nms);
+	void setNumericValue(double p_newValue)
+	{
+		auto t_newState{createState(p_newValue)};
+		updateState(t_newState);
 	}
 
     // do nothing when a consumer ask to change the value -> return Fail
-    InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext&) override {
+    InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext&) override
+    {
     	return InvocationState::Fail;
     }
 };
@@ -80,75 +81,86 @@ class SetNumericMetricStateHandler : public SDCProviderMDStateHandler<NumericMet
 {
 public:
 	// The state handler take a string named as the descriptor for referencing
-    SetNumericMetricStateHandler(const std::string descriptorHandle)
-    : SDCProviderMDStateHandler(descriptorHandle)
+    SetNumericMetricStateHandler(const std::string p_descriptorHandle)
+    : SDCProviderMDStateHandler(p_descriptorHandle)
     { }
 
-    InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override
+    InvocationState onStateChangeRequest(const NumericMetricState& p_changedState, const OperationInvocationContext& p_oic) override
     {
         // Invocation has been fired as WAITING when entering this method
-        DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: handle_set received state change request. State's value: " << state.getMetricValue().getValue() << std::endl;
+        DebugOut(DebugOut::Default, "SimpleSDC") << "Provider: handle_set received state change request. State's value: " << p_changedState.getMetricValue().getValue() << std::endl;
 
-        notifyOperationInvoked(oic, InvocationState::Start);
+
+        notifyOperationInvoked(p_oic, InvocationState::Start);
+
         return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
     }
 
     // Helper method
-    NumericMetricState createState() {
-		NumericMetricState result(descriptorHandle);
-		result .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(2.0))
+    NumericMetricState createState()
+    {
+		NumericMetricState t_newState{getDescriptorHandle()};
+		t_newState.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(2.0))
 			   .setActivationState(ComponentActivation::On);
-        return result;
+        return t_newState;
     }
 
-    NumericMetricState getInitialState() override { return createState(); }
+    NumericMetricState getInitialState() override
+    {
+    	return createState();
+    }
 
     // Convenience value getter
-    float getMaxWeight() {
-        std::unique_ptr<NumericMetricState> result(getParentProvider().getMdState().findState<NumericMetricState>(HANDLE_SET_METRIC));
+    double getMaxWeight()
+    {
+        auto t_weightState{getParentProvider().getMdState().findState<NumericMetricState>(HANDLE_SET_METRIC)};
 
         // check if result is valid
-        if (result != nullptr) {
-        	// In real applications, check if state has an observed value and if the observed value has a value!
-        	return (float)result->getMetricValue().getValue();
-        } else {
-        	DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Maximum weight metric not found." << std::endl;
+        if ((nullptr == t_weightState) && (!t_weightState->hasMetricValue()))
+        {
+        	DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Maximum weight metric state not found." << std::endl;
         	return 0;
         }
+        // In real applications, check if state has an observed value and if the observed value has a value!
+        return t_weightState->getMetricValue().getValue();
     }
 };
 
 
 // implements a measurement state of several measured values
-class StreamProviderStateHandler : public SDCProviderMDStateHandler<RealTimeSampleArrayMetricState> {
+class StreamProviderStateHandler : public SDCProviderMDStateHandler<RealTimeSampleArrayMetricState>
+{
 public:
 	// The state handler take a string named as the descriptor for referencing
-    StreamProviderStateHandler(std::string descriptorHandle)
-    : SDCProviderMDStateHandler(descriptorHandle)
+    StreamProviderStateHandler(std::string p_descriptorHandle)
+    : SDCProviderMDStateHandler(p_descriptorHandle)
     { }
 
     // Helper method
-    RealTimeSampleArrayMetricState createState() {
-        RealTimeSampleArrayMetricState realTimeSampleArrayState(descriptorHandle);
-        realTimeSampleArrayState
-            .setActivationState(ComponentActivation::On);
-        return realTimeSampleArrayState;
+    RealTimeSampleArrayMetricState createState()
+    {
+        RealTimeSampleArrayMetricState t_newState{getDescriptorHandle()};
+        t_newState.setActivationState(ComponentActivation::On);
+        return t_newState;
     }
 
 
-    RealTimeSampleArrayMetricState getInitialState() override {
-        return createState();
+    RealTimeSampleArrayMetricState getInitialState() override
+    {
+    	return createState();
     }
 
-    void updateStateValue(const SampleArrayValue & sav) {
-        RealTimeSampleArrayMetricState realTimeSampleArrayState = createState();
-        realTimeSampleArrayState
-            .setMetricValue(sav);
-        updateState(realTimeSampleArrayState);
+    void updateStateValue(const SampleArrayValue& p_newValue)
+    {
+        auto t_newState{createState()};
+        t_newState.setMetricValue(p_newValue);
+
+        updateState(t_newState);
     }
 
     // do nothing when a consumer ask to change the value -> return Fail
-    InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState&, const OperationInvocationContext&) override {
+    InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState&, const OperationInvocationContext&) override
+    {
     	return InvocationState::Fail;
     }
 };
@@ -158,16 +170,11 @@ class SDCStreamProvider : public Util::Task
 public:
 
     SDCStreamProvider(SDCInstance_shared_ptr p_SDCInstance, std::ifstream& p_stream)
-    : sdcProvider(p_SDCInstance)
-    , streamHandler(HANDLE_STREAM_METRIC)
-    , getNumericHandler(HANDLE_GET_METRIC)
-    , setNumericHandler(HANDLE_SET_METRIC)
+    : m_sdcProvider(p_SDCInstance)
     {
-
         assert(p_stream.is_open());
 
-		sdcProvider.setEndpointReferenceByName(DEVICE_EPR);
-
+        m_sdcProvider.setEndpointReferenceByName(DEVICE_EPR);
 
 		std::stringstream buffer;
 		buffer << p_stream.rdbuf();
@@ -179,63 +186,63 @@ public:
 		// set DPWS metadata, e.g. for the displayed friendly name
 		Dev::DeviceCharacteristics devChar;
 		devChar.addFriendlyName("en", "SDCLib ExampleProvider");
-		sdcProvider.setDeviceCharacteristics(devChar);
+		m_sdcProvider.setDeviceCharacteristics(devChar);
 
-		sdcProvider.setMdDescription(mdDesciption_xml);
+		m_sdcProvider.setMdDescription(mdDesciption_xml);
 
         // Add handler
-		sdcProvider.addMdStateHandler(&streamHandler);
-		sdcProvider.addMdStateHandler(&getNumericHandler);
-		sdcProvider.addMdStateHandler(&setNumericHandler);
+		m_sdcProvider.addMdStateHandler(&m_streamHandler);
+		m_sdcProvider.addMdStateHandler(&m_getNumericHandler);
+		m_sdcProvider.addMdStateHandler(&m_setNumericHandler);
     }
 
-    void startup() {
-    	sdcProvider.startup();
+    void startup()
+    {
+    	m_sdcProvider.startup();
     }
 
-    void shutdown() {
-    	sdcProvider.shutdown();
-    }
-
-    void updateStateValue(const SampleArrayValue & sav) {
-        streamHandler.updateStateValue(sav); // updates handles and the parent provider
+    void updateStateValue(const SampleArrayValue& p_newValue)
+    {
+    	m_streamHandler.updateStateValue(p_newValue); // updates handles and the parent provider
     }
 
 private:
 
     // API provider class
-    SDCProvider sdcProvider;
+    SDCProvider m_sdcProvider;
 
     // State Handlers
     // each state handler ist named the same way as regarding descriptor
-    StreamProviderStateHandler streamHandler;
-    GetNumericMetricStateHandler getNumericHandler;
-    SetNumericMetricStateHandler setNumericHandler;
+    StreamProviderStateHandler m_streamHandler{HANDLE_STREAM_METRIC};
+    GetNumericMetricStateHandler m_getNumericHandler{HANDLE_GET_METRIC};
+    SetNumericMetricStateHandler m_setNumericHandler{HANDLE_SET_METRIC};
 
 public:
 
     // Produce stream values
     // runImpl() gets called when starting the provider thread by the inherited function start()
-    virtual void runImpl() override {
-
+    void runImpl() override
+    {
     	// Streaming init
-		const std::size_t size(1);
-		std::vector<double> samples;
-        std::iota(samples.begin(), samples.end(), 0);
 
-		long index(0);
+		const auto t_chunkSize{1000};
+		std::vector<double> t_samples;
+        std::iota(t_samples.begin(), t_samples.end(), 0);
 
-		while (!isInterrupted()) {
+		auto t_sampleIndex{0};
+
+		while (!isInterrupted())
+		{
 			{
-                //updateStateValue(SampleArrayValue(MetricQuality(MeasurementValidity::Vld)).setSamples(RealTimeValueType(samples)));
+                updateStateValue(SampleArrayValue{MetricQuality{MeasurementValidity::Vld}}.setSamples(RealTimeValueType{t_samples}));
 			}
-			//DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Produced stream chunk of size " << size << ", index " << index << std::endl;
+			DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Produced stream chunk of size " << t_chunkSize << ", index " << t_sampleIndex << std::endl;
 
 			// generate NumericMetricState
-			getNumericHandler.setNumericValue(42.0);
+			m_getNumericHandler.setNumericValue(42.0);
 			DebugOut(DebugOut::Default, "ExampleCachedProvider") << "NumericMetric: value changed to 42.0" << std::endl;
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-			index += size;
+            t_sampleIndex += t_chunkSize;
 		}
     }
 };
@@ -246,10 +253,10 @@ int main()
 {
     // Load cached Mdib from file system
     // Mdib is specified in xml
-    std::ifstream t_stream(ts_file);
+    std::ifstream t_mdibFilestream(FILE_CACHED_MDIB);
     // Found?
-    if(!t_stream.is_open()) {
-        DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Could not open " << ts_file << "\n";
+    if(!t_mdibFilestream.is_open()) {
+        DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Could not open " << FILE_CACHED_MDIB << "\n";
         return -1;
     }
 
@@ -268,17 +275,15 @@ int main()
         return -1;
     }
 
-	SDCStreamProvider provider(t_SDCInstance, t_stream);
-	provider.startup();
-	provider.start();
+	SDCStreamProvider t_provider(t_SDCInstance, t_mdibFilestream);
+	t_provider.startup();
+	t_provider.start();
 
 	DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Press key to exit program.";
 	std::cin.get();
 
 	// Shutdown
 	DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Shutdown." << std::endl;
-	provider.shutdown();
-    SDCLibrary::getInstance().shutdown();
 
     return 0;
 }

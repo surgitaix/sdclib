@@ -34,7 +34,7 @@
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/Defaults.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 #include "SDCLib/Data/SDC/MDIB/LocationDetail.h"
 #include "SDCLib/Data/SDC/MDIB/InstanceIdentifier.h"
@@ -53,277 +53,274 @@ LocationContextState::LocationContextState(
 		descriptorhandle
 		,
 		handle
-)) {}
+))
+{}
 
 LocationContextState::operator CDM::LocationContextState() const {
 	return *data;
 }
 
-LocationContextState::LocationContextState(const CDM::LocationContextState & object) : data(new CDM::LocationContextState(object)) {
+LocationContextState::LocationContextState(const CDM::LocationContextState & object)
+: data(new CDM::LocationContextState(object))
+{ }
 
-}
-
-LocationContextState::LocationContextState(const LocationContextState & object) : data(new CDM::LocationContextState(*object.data)) {
-
-}
-
-LocationContextState::~LocationContextState() {
-
-}
+LocationContextState::LocationContextState(const LocationContextState & object)
+: data(std::make_shared<CDM::LocationContextState>(*object.data))
+{ }
 
 void LocationContextState::copyFrom(const LocationContextState & object) {
-	data = std::shared_ptr<CDM::LocationContextState>( new CDM::LocationContextState(*object.data));
+	data = std::make_shared<CDM::LocationContextState>(*object.data);
 }
 
-LocationContextState & LocationContextState:: operator=(const LocationContextState & object) {
+LocationContextState & LocationContextState:: operator=(const LocationContextState& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 LocationContextState & LocationContextState::setStateVersion(const VersionCounter & value) {
-	data->StateVersion(ConvertToCDM::convert(value));
+	data->setStateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool LocationContextState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
+	if (data->getStateVersion().present()) {
+		out = ConvertFromCDM::convert(data->getStateVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter LocationContextState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+	return ConvertFromCDM::convert(data->getStateVersion().get());
 }
 
 bool LocationContextState::hasStateVersion() const {
-	return data->StateVersion().present();
+	return data->getStateVersion().present();
 }
 
 LocationContextState & LocationContextState::setDescriptorHandle(const HandleRef & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
+	data->setDescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 HandleRef LocationContextState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
+	return ConvertFromCDM::convert(data->getDescriptorHandle());
 }
 
 LocationContextState & LocationContextState::setDescriptorVersion(const ReferencedVersion & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool LocationContextState::getDescriptorVersion(ReferencedVersion & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 ReferencedVersion LocationContextState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool LocationContextState::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 LocationContextState & LocationContextState::setCategory(const CodedValue & value) {
-	data->Category(ConvertToCDM::convert(value));
+	data->setCategory(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool LocationContextState::getCategory(CodedValue & out) const {
-	if (data->Category().present()) {
-		out = ConvertFromCDM::convert(data->Category().get());
+	if (data->getCategory().present()) {
+		out = ConvertFromCDM::convert(data->getCategory().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue LocationContextState::getCategory() const {
-	return ConvertFromCDM::convert(data->Category().get());
+	return ConvertFromCDM::convert(data->getCategory().get());
 }
 
 bool LocationContextState::hasCategory() const {
-	return data->Category().present();
+	return data->getCategory().present();
 }
 
 LocationContextState & LocationContextState::setHandle(const Handle & value) {
-	data->Handle(ConvertToCDM::convert(value));
+	data->setHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 Handle LocationContextState::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle());
+	return ConvertFromCDM::convert(data->getHandle());
 }
 
 LocationContextState & LocationContextState::setContextAssociation(const ContextAssociation & value) {
-	data->ContextAssociation(ConvertToCDM::convert(value));
+	data->setContextAssociation(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool LocationContextState::getContextAssociation(ContextAssociation & out) const {
-	if (data->ContextAssociation().present()) {
-		out = ConvertFromCDM::convert(data->ContextAssociation().get());
+	if (data->getContextAssociation().present()) {
+		out = ConvertFromCDM::convert(data->getContextAssociation().get());
 		return true;
 	}
 	return false;
 }
 
 ContextAssociation LocationContextState::getContextAssociation() const {
-	return ConvertFromCDM::convert(data->ContextAssociation().get());
+	return ConvertFromCDM::convert(data->getContextAssociation().get());
 }
 
 bool LocationContextState::hasContextAssociation() const {
-	return data->ContextAssociation().present();
+	return data->getContextAssociation().present();
 }
 
 LocationContextState & LocationContextState::setBindingMdibVersion(const ReferencedVersion & value) {
-	data->BindingMdibVersion(ConvertToCDM::convert(value));
+	data->setBindingMdibVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool LocationContextState::getBindingMdibVersion(ReferencedVersion & out) const {
-	if (data->BindingMdibVersion().present()) {
-		out = ConvertFromCDM::convert(data->BindingMdibVersion().get());
+	if (data->getBindingMdibVersion().present()) {
+		out = ConvertFromCDM::convert(data->getBindingMdibVersion().get());
 		return true;
 	}
 	return false;
 }
 
 ReferencedVersion LocationContextState::getBindingMdibVersion() const {
-	return ConvertFromCDM::convert(data->BindingMdibVersion().get());
+	return ConvertFromCDM::convert(data->getBindingMdibVersion().get());
 }
 
 bool LocationContextState::hasBindingMdibVersion() const {
-	return data->BindingMdibVersion().present();
+	return data->getBindingMdibVersion().present();
 }
 
 LocationContextState & LocationContextState::setUnbindingMdibVersion(const ReferencedVersion & value) {
-	data->UnbindingMdibVersion(ConvertToCDM::convert(value));
+	data->setUnbindingMdibVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool LocationContextState::getUnbindingMdibVersion(ReferencedVersion & out) const {
-	if (data->UnbindingMdibVersion().present()) {
-		out = ConvertFromCDM::convert(data->UnbindingMdibVersion().get());
+	if (data->getUnbindingMdibVersion().present()) {
+		out = ConvertFromCDM::convert(data->getUnbindingMdibVersion().get());
 		return true;
 	}
 	return false;
 }
 
 ReferencedVersion LocationContextState::getUnbindingMdibVersion() const {
-	return ConvertFromCDM::convert(data->UnbindingMdibVersion().get());
+	return ConvertFromCDM::convert(data->getUnbindingMdibVersion().get());
 }
 
 bool LocationContextState::hasUnbindingMdibVersion() const {
-	return data->UnbindingMdibVersion().present();
+	return data->getUnbindingMdibVersion().present();
 }
 
 LocationContextState & LocationContextState::setBindingStartTime(const Timestamp & value) {
-	data->BindingStartTime(ConvertToCDM::convert(value));
+	data->setBindingStartTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool LocationContextState::getBindingStartTime(Timestamp & out) const {
-	if (data->BindingStartTime().present()) {
-		out = ConvertFromCDM::convert(data->BindingStartTime().get());
+	if (data->getBindingStartTime().present()) {
+		out = ConvertFromCDM::convert(data->getBindingStartTime().get());
 		return true;
 	}
 	return false;
 }
 
 Timestamp LocationContextState::getBindingStartTime() const {
-	return ConvertFromCDM::convert(data->BindingStartTime().get());
+	return ConvertFromCDM::convert(data->getBindingStartTime().get());
 }
 
 bool LocationContextState::hasBindingStartTime() const {
-	return data->BindingStartTime().present();
+	return data->getBindingStartTime().present();
 }
 
 LocationContextState & LocationContextState::setBindingEndTime(const Timestamp & value) {
-	data->BindingEndTime(ConvertToCDM::convert(value));
+	data->setBindingEndTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool LocationContextState::getBindingEndTime(Timestamp & out) const {
-	if (data->BindingEndTime().present()) {
-		out = ConvertFromCDM::convert(data->BindingEndTime().get());
+	if (data->getBindingEndTime().present()) {
+		out = ConvertFromCDM::convert(data->getBindingEndTime().get());
 		return true;
 	}
 	return false;
 }
 
 Timestamp LocationContextState::getBindingEndTime() const {
-	return ConvertFromCDM::convert(data->BindingEndTime().get());
+	return ConvertFromCDM::convert(data->getBindingEndTime().get());
 }
 
 bool LocationContextState::hasBindingEndTime() const {
-	return data->BindingEndTime().present();
+	return data->getBindingEndTime().present();
 }
 
 LocationContextState & LocationContextState::addValidator(const InstanceIdentifier & value) {
-	data->Validator().push_back(ConvertToCDM::convert(value));
+	data->getValidator().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<InstanceIdentifier> LocationContextState::getValidatorList() const {
 	std::vector<InstanceIdentifier> result;
-	result.reserve(data->Validator().size());
-	for (const auto & value: data->Validator()) {
+	result.reserve(data->getValidator().size());
+	for (const auto & value: data->getValidator()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void LocationContextState::clearValidatorList() {
-	data->Validator().clear();
+	data->getValidator().clear();
 }
 
 LocationContextState & LocationContextState::addIdentification(const InstanceIdentifier & value) {
-	data->Identification().push_back(ConvertToCDM::convert(value));
+	data->getIdentification().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<InstanceIdentifier> LocationContextState::getIdentificationList() const {
 	std::vector<InstanceIdentifier> result;
-	result.reserve(data->Identification().size());
-	for (const auto & value: data->Identification()) {
+	result.reserve(data->getIdentification().size());
+	for (const auto & value: data->getIdentification()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void LocationContextState::clearIdentificationList() {
-	data->Identification().clear();
+	data->getIdentification().clear();
 }
 
 LocationContextState & LocationContextState::setLocationDetail(const LocationDetail & value) {
-	data->LocationDetail(ConvertToCDM::convert(value));
+	data->setLocationDetail(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool LocationContextState::getLocationDetail(LocationDetail & out) const {
-	if (data->LocationDetail().present()) {
-		out = ConvertFromCDM::convert(data->LocationDetail().get());
+	if (data->getLocationDetail().present()) {
+		out = ConvertFromCDM::convert(data->getLocationDetail().get());
 		return true;
 	}
 	return false;
 }
 
 LocationDetail LocationContextState::getLocationDetail() const {
-	return ConvertFromCDM::convert(data->LocationDetail().get());
+	return ConvertFromCDM::convert(data->getLocationDetail().get());
 }
 
 bool LocationContextState::hasLocationDetail() const {
-	return data->LocationDetail().present();
+	return data->getLocationDetail().present();
 }
 
 

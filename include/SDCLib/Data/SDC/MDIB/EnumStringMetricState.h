@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class EnumStringMetricState {
+class EnumStringMetricState
+{
 private:
 	EnumStringMetricState(const CDM::EnumStringMetricState & object);
 	operator CDM::EnumStringMetricState() const;
@@ -57,11 +58,11 @@ public:
 private:
 	EnumStringMetricState(){};
 public:
-	EnumStringMetricState(const EnumStringMetricState & object);
-	virtual ~EnumStringMetricState();
+	EnumStringMetricState(const EnumStringMetricState& object);
+	virtual ~EnumStringMetricState() = default;
 
-    void copyFrom(const EnumStringMetricState & object);
-    EnumStringMetricState & operator=(const EnumStringMetricState & object);
+    void copyFrom(const EnumStringMetricState& object);
+    EnumStringMetricState & operator=(const EnumStringMetricState& object);
 
     typedef CDM::EnumStringMetricState WrappedType;
     typedef EnumStringMetricDescriptor DescriptorType;
@@ -109,7 +110,7 @@ public:
 	bool hasMetricValue() const;
 
 private:
-	std::shared_ptr<CDM::EnumStringMetricState> data;
+	std::shared_ptr<CDM::EnumStringMetricState> data = nullptr;
 };
 
 } /* namespace SDC */

@@ -151,14 +151,14 @@
 .endif
 .   for property
 $(my.childclass:) & $(my.childclass:)::set$(property.name:)(const $(property.type:) & value) {
-	data->$(property.name:)(ConvertToCDM::convert(value));
+	data->set$(property.name:)(ConvertToCDM::convert(value));
 	return *this;
 }
 
 .   if property.optional="true"
 bool $(my.childclass:)::get$(property.name:)($(property.type:) & out) const {
-	if (data->$(property.name:)().present()) {
-		out = ConvertFromCDM::convert(data->$(property.name:)().get());
+	if (data->get$(property.name:)().present()) {
+		out = ConvertFromCDM::convert(data->get$(property.name:)().get());
 		return true;
 	}
 	return false;
@@ -167,36 +167,36 @@ bool $(my.childclass:)::get$(property.name:)($(property.type:) & out) const {
 
 $(property.type:) $(my.childclass:)::get$(property.name:)() const {
 .   if property.optional="true"
-	return ConvertFromCDM::convert(data->$(property.name:)().get());
+	return ConvertFromCDM::convert(data->get$(property.name:)().get());
 .   else
-	return ConvertFromCDM::convert(data->$(property.name:)());
+	return ConvertFromCDM::convert(data->get$(property.name:)());
 .   endif
 }
 	
 .   if property.optional="true"
 bool $(my.childclass:)::has$(property.name:)() const {
-	return data->$(property.name:)().present();
+	return data->get$(property.name:)().present();
 }
 	
 .   endif
 .   endfor
 .   for propertyList
 $(my.childclass:) & $(my.childclass:)::add$(propertyList.nameSingle:)(const $(propertyList.type:) & value) {
-	data->$(propertyList.nameSingle:)().push_back(ConvertToCDM::convert(value));
+	data->get$(propertyList.nameSingle:)().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<$(propertyList.type:)> $(my.childclass:)::get$(propertyList.nameSeveral:)() const {
 	std::vector<$(propertyList.type:)> result;
-	result.reserve(data->$(propertyList.nameSingle:)().size());
-	for (const auto & value: data->$(propertyList.nameSingle:)()) {
+	result.reserve(data->get$(propertyList.nameSingle:)().size());
+	for (const auto & value: data->get$(propertyList.nameSingle:)()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void $(my.childclass:)::clear$(propertyList.nameSeveral:)() {
-	data->$(propertyList.nameSingle:)().clear();
+	data->get$(propertyList.nameSingle:)().clear();
 }
 
 .   endfor
@@ -237,13 +237,14 @@ void $(my.childclass:)::clear$(propertyList.nameSeveral:)() {
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class $(class.name:) {
+class $(class.name:)
+{
 private:
 	$(class.name:)(const CDM::$(class.name:) & object);
 	operator CDM::$(class.name:)() const;
@@ -267,12 +268,12 @@ private:
 	$(class.name:)(){};
 public:
 .endif
-	$(class.name:)(const $(class.name:) & object);
-	virtual ~$(class.name:)();
-    
-    void copyFrom(const $(class.name:) & object);
-    $(class.name:) & operator=(const $(class.name:) & object);
-    
+	$(class.name:)(const $(class.name:)& object);
+	virtual ~$(class.name:)() = default;
+
+    void copyFrom(const $(class.name:)& object);
+    $(class.name:) & operator=(const $(class.name:)& object);
+
     typedef CDM::$(class.name:) WrappedType;
 .   for typedef
     typedef $(typedef.type:) $(typedef.name:);
@@ -283,7 +284,7 @@ public:
 . literal from "$(class.name:)CustomImpl.hxx"
 .endif
 private:
-	std::shared_ptr<CDM::$(class.name:)> data;
+	std::shared_ptr<CDM::$(class.name:)> data = nullptr;
 .   close
 .endfor
 . ###################################
@@ -319,7 +320,7 @@ private:
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/Defaults.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 .printincludes ("$(class.name:)")
 
@@ -339,31 +340,28 @@ $(class.name:)::$(class.name:)(
 .printancestorsconstructorarguments("$(class.name:)", "$(class.name:)")
 ) : data(Defaults::$(class.name:)Init(
 .printancestorsconstructorargumentswithouttype("$(class.name:)", "$(class.name:)")
-)) {}
+))
+{}
 
 $(class.name:)::operator CDM::$(class.name:)() const {
 	return *data;
 }
 
 .   if "$(class.name:)"<>"MDIBObject"
-$(class.name:)::$(class.name:)(const CDM::$(class.name:) & object) : data(new CDM::$(class.name:)(object)) {
-
-}
+$(class.name:)::$(class.name:)(const CDM::$(class.name:) & object)
+: data(new CDM::$(class.name:)(object))
+{ }
 
 .   endif
-$(class.name:)::$(class.name:)(const $(class.name:) & object) : data(new CDM::$(class.name:)(*object.data)) {
-
-}
-
-$(class.name:)::~$(class.name:)() {
-
-}
+$(class.name:)::$(class.name:)(const $(class.name:) & object)
+: data(std::make_shared<CDM::$(class.name:)>(*object.data))
+{ }
 
 void $(class.name:)::copyFrom(const $(class.name:) & object) {
-	data = std::shared_ptr<CDM::$(class.name:)>( new CDM::$(class.name:)(*object.data));
+	data = std::make_shared<CDM::$(class.name:)>(*object.data);
 }
 
-$(class.name:) & $(class.name:):: operator=(const $(class.name:) & object) {
+$(class.name:) & $(class.name:):: operator=(const $(class.name:)& object) {
 	copyFrom(object);
 	return *this;
 }
@@ -373,7 +371,7 @@ $(class.valuetype:) $(class.name:)::get() const {
 	return *data;
 }
 	
-$(class.name:) & $(class.name:)::set(const $(class.valuetype:) & value) {
+$(class.name:) & $(class.name:)::set(const $(class.valuetype:)& value) {
 	*data = value;
 	return *this;
 } 

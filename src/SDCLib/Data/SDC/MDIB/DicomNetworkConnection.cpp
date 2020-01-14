@@ -34,7 +34,7 @@
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/Defaults.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 
 namespace SDCLib {
@@ -50,91 +50,88 @@ DicomNetworkConnection::DicomNetworkConnection(
 		id
 		,
 		hostname
-)) {}
+))
+{}
 
 DicomNetworkConnection::operator CDM::DicomNetworkConnection() const {
 	return *data;
 }
 
-DicomNetworkConnection::DicomNetworkConnection(const CDM::DicomNetworkConnection & object) : data(new CDM::DicomNetworkConnection(object)) {
+DicomNetworkConnection::DicomNetworkConnection(const CDM::DicomNetworkConnection & object)
+: data(new CDM::DicomNetworkConnection(object))
+{ }
 
-}
-
-DicomNetworkConnection::DicomNetworkConnection(const DicomNetworkConnection & object) : data(new CDM::DicomNetworkConnection(*object.data)) {
-
-}
-
-DicomNetworkConnection::~DicomNetworkConnection() {
-
-}
+DicomNetworkConnection::DicomNetworkConnection(const DicomNetworkConnection & object)
+: data(std::make_shared<CDM::DicomNetworkConnection>(*object.data))
+{ }
 
 void DicomNetworkConnection::copyFrom(const DicomNetworkConnection & object) {
-	data = std::shared_ptr<CDM::DicomNetworkConnection>( new CDM::DicomNetworkConnection(*object.data));
+	data = std::make_shared<CDM::DicomNetworkConnection>(*object.data);
 }
 
-DicomNetworkConnection & DicomNetworkConnection:: operator=(const DicomNetworkConnection & object) {
+DicomNetworkConnection & DicomNetworkConnection:: operator=(const DicomNetworkConnection& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
-DicomNetworkConnection & DicomNetworkConnection::setid(const xml_schema::Id & value) {
-	data->id(ConvertToCDM::convert(value));
+DicomNetworkConnection & DicomNetworkConnection::setId(const xml_schema::Id & value) {
+	data->setId(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
-xml_schema::Id DicomNetworkConnection::getid() const {
-	return ConvertFromCDM::convert(data->id());
+xml_schema::Id DicomNetworkConnection::getId() const {
+	return ConvertFromCDM::convert(data->getId());
 }
 
 DicomNetworkConnection & DicomNetworkConnection::setHostname(const std::string & value) {
-	data->Hostname(ConvertToCDM::convert(value));
+	data->setHostname(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 std::string DicomNetworkConnection::getHostname() const {
-	return ConvertFromCDM::convert(data->Hostname());
+	return ConvertFromCDM::convert(data->getHostname());
 }
 
 DicomNetworkConnection & DicomNetworkConnection::setPort(const unsigned short & value) {
-	data->Port(ConvertToCDM::convert(value));
+	data->setPort(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool DicomNetworkConnection::getPort(unsigned short & out) const {
-	if (data->Port().present()) {
-		out = ConvertFromCDM::convert(data->Port().get());
+	if (data->getPort().present()) {
+		out = ConvertFromCDM::convert(data->getPort().get());
 		return true;
 	}
 	return false;
 }
 
 unsigned short DicomNetworkConnection::getPort() const {
-	return ConvertFromCDM::convert(data->Port().get());
+	return ConvertFromCDM::convert(data->getPort().get());
 }
 
 bool DicomNetworkConnection::hasPort() const {
-	return data->Port().present();
+	return data->getPort().present();
 }
 
 DicomNetworkConnection & DicomNetworkConnection::addTlsCipherSuite(const std::string & value) {
-	data->TlsCipherSuite().push_back(ConvertToCDM::convert(value));
+	data->getTlsCipherSuite().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<std::string> DicomNetworkConnection::getTlsCipherSuiteList() const {
 	std::vector<std::string> result;
-	result.reserve(data->TlsCipherSuite().size());
-	for (const auto & value: data->TlsCipherSuite()) {
+	result.reserve(data->getTlsCipherSuite().size());
+	for (const auto & value: data->getTlsCipherSuite()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void DicomNetworkConnection::clearTlsCipherSuiteList() {
-	data->TlsCipherSuite().clear();
+	data->getTlsCipherSuite().clear();
 }
 
 

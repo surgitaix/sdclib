@@ -1,8 +1,9 @@
 /*
  * DefaultSDCSchemaGrammarProvider.cpp
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 21.08.2019, baumeister
+ *
  */
 
 #include "OSELib/SDC/DefaultSDCSchemaGrammarProvider.h"
@@ -12,11 +13,13 @@
 namespace OSELib {
 namespace SDC {
 
-DefaultSDCSchemaGrammarProvider::DefaultSDCSchemaGrammarProvider() : WithLogger(Log::SCHEMA) {
+DefaultSDCSchemaGrammarProvider::DefaultSDCSchemaGrammarProvider()
+: OSELib::Helper::WithLogger(Log::SCHEMA)
+{
 
-	auto addSchemaWithErrorHandling([this](const std::string & name, const std::string & schema) {
-		if (!addSchema(name, schema)) {
-			log_error([&]{ return "Error loading schema: " + name + "\n" + schema; });
+	auto addSchemaWithErrorHandling([this](const std::string & p_name, const std::string & p_schema) {
+		if (!addSchema(p_name, p_schema)) {
+			log_error([&]{ return "Error loading schema: " + p_name + "\n" + p_schema; });
 		}
 	});
 
@@ -33,7 +36,5 @@ DefaultSDCSchemaGrammarProvider::DefaultSDCSchemaGrammarProvider() : WithLogger(
 	seal();
 }
 
-DefaultSDCSchemaGrammarProvider::~DefaultSDCSchemaGrammarProvider() = default;
-
-} /* namespace Helper */
-} /* namespace OSELib */
+}
+}

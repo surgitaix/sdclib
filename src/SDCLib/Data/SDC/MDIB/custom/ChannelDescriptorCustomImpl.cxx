@@ -10,7 +10,7 @@
 
 #include <vector>
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 namespace SDCLib {
 namespace Data {
@@ -18,7 +18,7 @@ namespace SDC {
 
 template<class U, class V>
 void ChannelDescriptor::getMetricDescriptors(std::vector<U> & result) const {
-	for (const auto & metric : data->Metric()) {
+	for (const auto & metric : data->getMetric()) {
 		if (const V * m = dynamic_cast<const V *>(&metric)) {
 			result.push_back(ConvertFromCDM::convert(*m));
 		}
@@ -77,7 +77,7 @@ ChannelDescriptor & ChannelDescriptor::addMetric(const DistributionSampleArrayMe
 
 template<class T>
 ChannelDescriptor & ChannelDescriptor::addMetricImpl(const T & source) {
-	data->Metric().push_back(ConvertToCDM::convert(source));
+	data->getMetric().push_back(ConvertToCDM::convert(source));
 	return *this;
 }
 

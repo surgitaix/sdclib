@@ -3,17 +3,40 @@
 
 #include <Poco/Net/ServerSocket.h>
 
-#include <iostream>
-
 using namespace SDCLib;
 using namespace SDCLib::Config;
 
 
 NetworkConfig::NetworkConfig()
-: OSELib::WithLogger(OSELib::Log::BASE)
+: OSELib::Helper::WithLogger(OSELib::Log::BASE)
 {
     // TODO: PortList
 }
+
+
+NetworkConfig::NetworkConfig(const NetworkConfig& p_obj)
+: OSELib::Helper::WithLogger(OSELib::Log::BASE)
+{
+	ml_networkInterfaces = p_obj.ml_networkInterfaces;
+	m_MDPWSInterface = p_obj.m_MDPWSInterface;
+	m_MDPWSPort = p_obj.m_MDPWSPort;
+
+
+	m_IP4enabled = p_obj.getIP4enabled();
+	m_IP6enabled = p_obj.getIP6enabled();
+	m_discoveryTime = p_obj.getDiscoveryTime();
+
+
+	m_MULTICAST_IPv4 = p_obj.m_MULTICAST_IPv4;
+	m_MULTICAST_IPv6 = p_obj.m_MULTICAST_IPv6;
+	m_STREAMING_IPv4 = p_obj.m_STREAMING_IPv4;
+	m_STREAMING_IPv6 = p_obj.m_STREAMING_IPv6;
+	m_PORT_MULTICASTv4 = p_obj.m_PORT_MULTICASTv4;
+	m_PORT_MULTICASTv6 = p_obj.m_PORT_MULTICASTv6;
+	m_PORT_STREAMINGv4 = p_obj.m_PORT_STREAMINGv4;
+	m_PORT_STREAMINGv6 = p_obj.m_PORT_STREAMINGv6;
+}
+
 
 bool NetworkConfig::bindToDefaultNetworkInterface(bool p_useAsMDPWS)
 {
@@ -75,9 +98,14 @@ bool NetworkConfig::bindToInterface(const std::string& ps_networkInterfaceName, 
                     t_interface.firstAddress(t_IPv4, Poco::Net::IPAddress::IPv4);
                     t_if->m_IPv4 = t_IPv4;
                 }
-                catch (...) { setIP4enabled(false); }
+                catch (...) { }
             }
-            else { setIP4enabled(false); }
+            else {
+            	// This is the only interface (so far) -> Disable
+            	if(ml_networkInterfaces.size() == 0) {
+            		setIP4enabled(false);
+            	}
+            }
 
 
             // IPv6? Else disable!
@@ -87,9 +115,14 @@ bool NetworkConfig::bindToInterface(const std::string& ps_networkInterfaceName, 
                     t_interface.firstAddress(t_IPv6, Poco::Net::IPAddress::IPv6);
                     t_if->m_IPv6 = t_IPv6;
                 }
-                catch (...) { setIP6enabled(false); }
+                catch (...) { }
             }
-            else { setIP6enabled(false); }
+            else {
+            	// This is the only interface (so far) -> Disable
+				if(ml_networkInterfaces.size() == 0) {
+					setIP6enabled(false);
+				}
+            }
 
             // Add
             ml_networkInterfaces.push_back(t_if);
@@ -107,7 +140,7 @@ bool NetworkConfig::bindToInterface(const std::string& ps_networkInterfaceName, 
                     throw std::runtime_error("NO FREE PORTS FOUND!");
                 }
 
-                log_debug([&] { return "SDCInstance bound to: " +  m_MDPWSInterface->m_name +  " ("
+                log_notice([&] { return "SDCInstance bound to: " +  m_MDPWSInterface->m_name +  " ("
                 		+ (m_MDPWSInterface->m_if.supportsIPv4() ? "IPv4: " + m_MDPWSInterface->m_IPv4.toString() : "")
 						+ ((m_MDPWSInterface->m_if.supportsIPv4() && m_MDPWSInterface->m_if.supportsIPv6()) ? "|" : "")
 						+ (m_MDPWSInterface->m_if.supportsIPv6() ? "IPv6: "+  m_MDPWSInterface->m_IPv6.toString() : "")
@@ -141,29 +174,6 @@ bool NetworkConfig::isBound() const
     return !ml_networkInterfaces.empty();
 }
 
-bool NetworkConfig::belongsTo(Poco::Net::IPAddress p_IP) const
-{
-    // Unicast
-    for (const auto& t_if : ml_networkInterfaces)
-    {
-        // Default to IPv4
-        auto t_networkInterfaceIP = t_if->m_IPv4;
-        // IPv6?
-        if(t_if->m_if.supportsIPv6() && (p_IP.family() == Poco::Net::AddressFamily::IPv6)) {
-            t_networkInterfaceIP = t_if->m_IPv6;
-        }
-        /*auto t_subnetMask = t_if->m_if.subnetMask();
-        t_networkInterfaceIP.mask(t_subnetMask);
-        p_IP.mask(t_subnetMask);*/
-        // Compare - Found one?
-        if (t_networkInterfaceIP == p_IP) {
-            return true;
-        }
-    }
-    // No match
-    return false;
-}
-
 // DiscoveryTime
 std::chrono::milliseconds NetworkConfig::getDiscoveryTime() const
 {
@@ -178,6 +188,7 @@ void NetworkConfig::setDiscoveryTime(std::chrono::milliseconds p_time)
 std::pair<bool, SDCPort> NetworkConfig::findFreePort() const
 {
     // TODO: Rework for Portrange
+	// TODO: Consider Exceptions instead of pair!
     Poco::Net::SocketAddress socketAddress(0);
     Poco::Net::ServerSocket socket(socketAddress);
     unsigned short portNumber = socket.address().port();

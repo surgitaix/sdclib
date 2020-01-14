@@ -14,7 +14,7 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/MDIB/MDIB-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 #include "SDCLib/Data/SDC/MDIB/custom/MdibContainer.h"
 
@@ -28,15 +28,15 @@ public:
 	virtual ~ConvertToCDM();
 
 	// build-in type conversions for the basetyes (see typedefs in SimpleTypesMapping.h)
-	static bool convert(const bool& source);
-	static double convert(const double& source);
-	static unsigned int convert(const unsigned int& source);
-	static int convert(const int& source);
-	static long convert(const long& source);
-	static long long convert(const long long& source);
-	static unsigned short int convert(const unsigned short int& source);
-	static unsigned long convert(const unsigned long& source);
-	static unsigned long long convert(const unsigned long long& source);
+	static bool convert(const bool source);
+	static double convert(const double source);
+	static unsigned int convert(const unsigned int source);
+	static int convert(const int source);
+	static long convert(const long source);
+	static long long convert(const long long source);
+	static unsigned short int convert(const unsigned short int source);
+	static unsigned long convert(const unsigned long source);
+	static unsigned long long convert(const unsigned long long source);
     static std::string convert(const std::string & source);
 	static xml_schema::Duration convert(const xml_schema::Duration & source);
 	static xml_schema::Qname convert(const xml_schema::Qname & source);
@@ -52,7 +52,6 @@ public:
 	// please keep in mind that there are some slightly changes beeing made after autogeneration:
 	// the convert(...) function with the same signature but different typedef are named convert1, convert2 ...
 	// do not forget to also edit these functions in the classes where they are used, i.e. OperationGroups, Relation, ScoState
-	static CDM::DicomTransferRole convert(const DicomTransferRole & source);
 	static CDM::MeasurementValidity convert(const MeasurementValidity & source);
 	static CDM::LocalizedTextWidth convert(const LocalizedTextWidth & source);
 	static CDM::SafetyClassification convert(const SafetyClassification & source);
@@ -79,6 +78,7 @@ public:
 	static CDM::ContextAssociation convert(const ContextAssociation & source);
 	static CDM::Sex convert(const Sex & source);
 	static CDM::PatientType convert(const PatientType & source);
+	static CDM::DicomTransferRole convert(const DicomTransferRole & source);
 	static CDM::CanEscalate convert(const CanEscalate & source);
 	static CDM::CanDeescalate convert(const CanDeescalate & source);
 	static CDM::Kind convert(const Kind & source);

@@ -34,7 +34,7 @@
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/Defaults.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 #include "SDCLib/Data/SDC/MDIB/Measurement.h"
 #include "SDCLib/Data/SDC/MDIB/ReferenceRange.h"
@@ -48,81 +48,78 @@ RelatedMeasurement::RelatedMeasurement(
 		Measurement value
 ) : data(Defaults::RelatedMeasurementInit(
 		value
-)) {}
+))
+{}
 
 RelatedMeasurement::operator CDM::RelatedMeasurement() const {
 	return *data;
 }
 
-RelatedMeasurement::RelatedMeasurement(const CDM::RelatedMeasurement & object) : data(new CDM::RelatedMeasurement(object)) {
+RelatedMeasurement::RelatedMeasurement(const CDM::RelatedMeasurement & object)
+: data(new CDM::RelatedMeasurement(object))
+{ }
 
-}
-
-RelatedMeasurement::RelatedMeasurement(const RelatedMeasurement & object) : data(new CDM::RelatedMeasurement(*object.data)) {
-
-}
-
-RelatedMeasurement::~RelatedMeasurement() {
-
-}
+RelatedMeasurement::RelatedMeasurement(const RelatedMeasurement & object)
+: data(std::make_shared<CDM::RelatedMeasurement>(*object.data))
+{ }
 
 void RelatedMeasurement::copyFrom(const RelatedMeasurement & object) {
-	data = std::shared_ptr<CDM::RelatedMeasurement>( new CDM::RelatedMeasurement(*object.data));
+	data = std::make_shared<CDM::RelatedMeasurement>(*object.data);
 }
 
-RelatedMeasurement & RelatedMeasurement:: operator=(const RelatedMeasurement & object) {
+RelatedMeasurement & RelatedMeasurement:: operator=(const RelatedMeasurement& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 RelatedMeasurement & RelatedMeasurement::setValue(const Measurement & value) {
-	data->Value(ConvertToCDM::convert(value));
+	data->setValue(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 Measurement RelatedMeasurement::getValue() const {
-	return ConvertFromCDM::convert(data->Value());
+	return ConvertFromCDM::convert(data->getValue());
 }
 
 RelatedMeasurement & RelatedMeasurement::setValidity(const MeasurementValidity & value) {
-	data->Validity(ConvertToCDM::convert(value));
+	data->setValidity(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool RelatedMeasurement::getValidity(MeasurementValidity & out) const {
-	if (data->Validity().present()) {
-		out = ConvertFromCDM::convert(data->Validity().get());
+	if (data->getValidity().present()) {
+		out = ConvertFromCDM::convert(data->getValidity().get());
 		return true;
 	}
 	return false;
 }
 
 MeasurementValidity RelatedMeasurement::getValidity() const {
-	return ConvertFromCDM::convert(data->Validity().get());
+	return ConvertFromCDM::convert(data->getValidity().get());
 }
 
 bool RelatedMeasurement::hasValidity() const {
-	return data->Validity().present();
+	return data->getValidity().present();
 }
 
 RelatedMeasurement & RelatedMeasurement::addReferenceRange(const ReferenceRange & value) {
-	data->ReferenceRange().push_back(ConvertToCDM::convert(value));
+	data->getReferenceRange().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<ReferenceRange> RelatedMeasurement::getReferenceRangeList() const {
 	std::vector<ReferenceRange> result;
-	result.reserve(data->ReferenceRange().size());
-	for (const auto & value: data->ReferenceRange()) {
+	result.reserve(data->getReferenceRange().size());
+	for (const auto & value: data->getReferenceRange()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void RelatedMeasurement::clearReferenceRangeList() {
-	data->ReferenceRange().clear();
+	data->getReferenceRange().clear();
 }
 
 

@@ -12,5 +12,5 @@ namespace SOAP {
 
 // todo move implementation here from header file
 
-} /* namespace SOAP */
-} /* namespace OSELib */
+}
+}

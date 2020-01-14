@@ -1,86 +1,92 @@
 /*
- * DPWSClient.h
+ * MDPWSDiscoveryClientAdapter.h
  *
- *  Created on: 11.12.2015
- *      Author: matthias
+ *  Created on: 11.12.2015, matthias
+ *  Modified on: 23.08.2019, baumeister
+ *
  */
 
-#ifndef OSELIB_DPWS_DPWSCLIENT_H_
-#define OSELIB_DPWS_DPWSCLIENT_H_
+#ifndef OSELIB_DPWS_MDPWSDISCOVERYCLIENTADAPTER_H_
+#define OSELIB_DPWS_MDPWSDISCOVERYCLIENTADAPTER_H_
 
-#include <mutex>
-#include <tuple>
-
-#include "SDCLib/Prerequisites.h"
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/Types.h"
+#include "SDCLib/Prerequisites.h"
+#include "OSELib/DPWS/DPWSDiscoveryClientSocketImpl.h"
 
-namespace OSELib {
-namespace DPWS {
-
-struct ByeCallback {
-	virtual ~ByeCallback() = default;
-	virtual void bye(const ByeType & notification) = 0;
-};
-
-struct HelloCallback {
-	virtual ~HelloCallback() = default;
-	virtual void hello(const HelloType & notification) = 0;
-};
-
-struct ProbeMatchCallback {
-	virtual ~ProbeMatchCallback() = default;
-	virtual void probeMatch(const ProbeMatchType & notification) = 0;
-};
-
-struct ResolveMatchCallback {
-	virtual ~ResolveMatchCallback() = default;
-	virtual void resolveMatch(const ResolveMatchType & notification) = 0;
-};
-
-class MDPWSDiscoveryClientAdapter :
-		public ByeNotificationDispatcher,
-		public HelloNotificationDispatcher,
-		public ProbeMatchNotificationDispatcher,
-		public ResolveMatchNotificationDispatcher
+namespace OSELib
 {
-public:
-    MDPWSDiscoveryClientAdapter(SDCLib::Config::NetworkConfig_shared_ptr p_config);
-	virtual ~MDPWSDiscoveryClientAdapter();
+	namespace DPWS
+	{
 
-	void addProbeMatchEventHandler(const ProbeType filter, ProbeMatchCallback & callback);
-	void removeProbeMatchEventHandler(ProbeMatchCallback & callback);
+		struct ByeCallback {
+			virtual ~ByeCallback() = default;
+			virtual void bye(const ByeType & p_notification) = 0;
+		};
 
-	void addResolveMatchEventHandler(const ResolveType filter, ResolveMatchCallback & callback);
-	void removeResolveMatchEventHandler(ResolveMatchCallback & callback);
+		struct HelloCallback {
+			virtual ~HelloCallback() = default;
+			virtual void hello(const HelloType & p_notification) = 0;
+		};
 
-	void addHelloEventHandler(HelloCallback & callback);
-	void removeHelloEventHandler(HelloCallback & callback);
+		struct ProbeMatchCallback {
+			virtual ~ProbeMatchCallback() = default;
+			virtual void probeMatch(const ProbeMatchType & p_notification) = 0;
+		};
 
-	void addByeEventHandler(ByeCallback & callback);
-	void removeByeEventHandler(ByeCallback & callback);
+		struct ResolveMatchCallback {
+			virtual ~ResolveMatchCallback() = default;
+			virtual void resolveMatch(const ResolveMatchType & p_notification) = 0;
+		};
+
+		class MDPWSDiscoveryClientAdapter :
+				public ByeNotificationDispatcher,
+				public HelloNotificationDispatcher,
+				public ProbeMatchNotificationDispatcher,
+				public ResolveMatchNotificationDispatcher
+		{
+		private:
+
+			std::mutex m_mutex;
+
+			std::unique_ptr<Impl::DPWSDiscoveryClientSocketImpl> m_impl = nullptr;
+
+			typedef std::tuple<ProbeType, ProbeMatchCallback *> ProbeMatchHandler;
+			typedef std::tuple<ResolveType, ResolveMatchCallback *> ResolveMatchHandler;
+			std::vector<ProbeMatchHandler> ml_probeMatchHandlers;
+			std::vector<ResolveMatchHandler> ml_resolveMatchHandlers;
+			std::vector<HelloCallback*> ml_helloHandlers;
+			std::vector<ByeCallback*> ml_byeHandlers;
+
+		public:
+			MDPWSDiscoveryClientAdapter(SDCLib::Config::NetworkConfig_shared_ptr p_config);
+			// Special Member Functions
+			MDPWSDiscoveryClientAdapter(const MDPWSDiscoveryClientAdapter& p_obj) = delete;
+			MDPWSDiscoveryClientAdapter(MDPWSDiscoveryClientAdapter&& p_obj) = delete;
+			MDPWSDiscoveryClientAdapter& operator=(const MDPWSDiscoveryClientAdapter& p_obj) = delete;
+			MDPWSDiscoveryClientAdapter& operator=(MDPWSDiscoveryClientAdapter&& p_obj) = delete;
+			virtual ~MDPWSDiscoveryClientAdapter() = default;
 
 
-private:
-	void dispatch(const ProbeMatchType & notification) override;
-	void dispatch(const ResolveMatchType & notification) override;
-	void dispatch(const ByeType & notification) override;
-	void dispatch(const HelloType & notification) override;
+			void addProbeMatchEventHandler(const ProbeType p_filter, ProbeMatchCallback & p_callback);
+			void removeProbeMatchEventHandler(ProbeMatchCallback & p_callback);
 
-    std::unique_ptr<Impl::DPWSDiscoveryClientSocketImpl> _impl;
+			void addResolveMatchEventHandler(const ResolveType p_filter, ResolveMatchCallback & p_callback);
+			void removeResolveMatchEventHandler(ResolveMatchCallback & p_callback);
 
-	typedef std::tuple<ProbeType, ProbeMatchCallback *> ProbeMatchHandler;
-	typedef std::tuple<ResolveType, ResolveMatchCallback *> ResolveMatchHandler;
-	std::vector<ProbeMatchHandler> _probeMatchHandlers;
-	std::vector<ResolveMatchHandler> _resolveMatchHandlers;
-	std::vector<HelloCallback*> _helloHandlers;
-	std::vector<ByeCallback*> _byeHandlers;
+			void addHelloEventHandler(HelloCallback & p_callback);
+			void removeHelloEventHandler(HelloCallback & p_callback);
 
-	std::mutex _mutex;
+			void addByeEventHandler(ByeCallback & p_callback);
+			void removeByeEventHandler(ByeCallback & p_callback);
 
-};
+		private:
+			void dispatch(const ProbeMatchType & p_notification) override;
+			void dispatch(const ResolveMatchType & p_notification) override;
+			void dispatch(const ByeType & p_notification) override;
+			void dispatch(const HelloType & p_notification) override;
+		};
+	}
+}
 
-} /* namespace DPWS */
-} /* namespace OSELib */
-
-#endif /* OSELIB_DPWS_DPWSCLIENT_H_ */
+#endif

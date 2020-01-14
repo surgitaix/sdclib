@@ -1,30 +1,37 @@
 /*
- * DPWSGetMetadataRequestHandler.h
+ * GenericFileHandler.h
  *
- *  Created on: 25.07.2014
- *      Author: roehser
+ *  Created on: 25.07.2014, roehser
+ *  Modified on: 20.08.2019, baumeister
+ *
  */
 
-#ifndef GENERICWSDLHANDLER_H_
-#define GENERICWSDLHANDLER_H_
+#ifndef OSELIB_HTTP_GENERICFILEHANDLER_H_
+#define OSELIB_HTTP_GENERICFILEHANDLER_H_
 
 #include <string>
+#include <Poco/Net/HTTPRequestHandler.h>
 
-#include "Poco/Net/HTTPRequestHandler.h"
+namespace OSELib
+{
+	namespace HTTP
+	{
+		class GenericFileHandler : public Poco::Net::HTTPRequestHandler
+		{
+		private:
+			const std::string m_fileName;
+		public:
+			GenericFileHandler(const std::string & p_fileName);
+			// Special Member Functions
+			GenericFileHandler(const GenericFileHandler& p_obj) = default;
+			GenericFileHandler(GenericFileHandler&& p_obj) = default;
+			GenericFileHandler& operator=(const GenericFileHandler& p_obj) = default;
+			GenericFileHandler& operator=(GenericFileHandler&& p_obj) = default;
+			~GenericFileHandler() = default;
 
-namespace OSELib {
-namespace HTTP {
-
-class GenericFileHandler : public Poco::Net::HTTPRequestHandler {
-public:
-	GenericFileHandler(const std::string & fileName);
-	void handleRequest(Poco::Net::HTTPServerRequest &req, Poco::Net::HTTPServerResponse & resp);
-
-private:
-	const std::string fileName;
-};
-
+			void handleRequest(Poco::Net::HTTPServerRequest& p_request, Poco::Net::HTTPServerResponse & p_response);
+		};
+	}
 }
-} /* namespace SDCLib */
 
-#endif /* GENERICWSDLHANDLER_H_ */
+#endif

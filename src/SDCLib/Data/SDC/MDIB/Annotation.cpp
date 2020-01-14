@@ -34,7 +34,7 @@
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/Defaults.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 #include "SDCLib/Data/SDC/MDIB/CodedValue.h"
 
@@ -47,42 +47,39 @@ Annotation::Annotation(
 		CodedValue type
 ) : data(Defaults::AnnotationInit(
 		type
-)) {}
+))
+{}
 
 Annotation::operator CDM::Annotation() const {
 	return *data;
 }
 
-Annotation::Annotation(const CDM::Annotation & object) : data(new CDM::Annotation(object)) {
+Annotation::Annotation(const CDM::Annotation & object)
+: data(new CDM::Annotation(object))
+{ }
 
-}
-
-Annotation::Annotation(const Annotation & object) : data(new CDM::Annotation(*object.data)) {
-
-}
-
-Annotation::~Annotation() {
-
-}
+Annotation::Annotation(const Annotation & object)
+: data(std::make_shared<CDM::Annotation>(*object.data))
+{ }
 
 void Annotation::copyFrom(const Annotation & object) {
-	data = std::shared_ptr<CDM::Annotation>( new CDM::Annotation(*object.data));
+	data = std::make_shared<CDM::Annotation>(*object.data);
 }
 
-Annotation & Annotation:: operator=(const Annotation & object) {
+Annotation & Annotation:: operator=(const Annotation& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 Annotation & Annotation::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
+	data->setType(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 CodedValue Annotation::getType() const {
-	return ConvertFromCDM::convert(data->Type());
+	return ConvertFromCDM::convert(data->getType());
 }
 
 

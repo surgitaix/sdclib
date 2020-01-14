@@ -34,7 +34,7 @@
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/Defaults.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 #include "SDCLib/Data/SDC/MDIB/CodedValue.h"
 
@@ -47,105 +47,102 @@ OperatorContextDescriptor::OperatorContextDescriptor(
 		Handle handle
 ) : data(Defaults::OperatorContextDescriptorInit(
 		handle
-)) {}
+))
+{}
 
 OperatorContextDescriptor::operator CDM::OperatorContextDescriptor() const {
 	return *data;
 }
 
-OperatorContextDescriptor::OperatorContextDescriptor(const CDM::OperatorContextDescriptor & object) : data(new CDM::OperatorContextDescriptor(object)) {
+OperatorContextDescriptor::OperatorContextDescriptor(const CDM::OperatorContextDescriptor & object)
+: data(new CDM::OperatorContextDescriptor(object))
+{ }
 
-}
-
-OperatorContextDescriptor::OperatorContextDescriptor(const OperatorContextDescriptor & object) : data(new CDM::OperatorContextDescriptor(*object.data)) {
-
-}
-
-OperatorContextDescriptor::~OperatorContextDescriptor() {
-
-}
+OperatorContextDescriptor::OperatorContextDescriptor(const OperatorContextDescriptor & object)
+: data(std::make_shared<CDM::OperatorContextDescriptor>(*object.data))
+{ }
 
 void OperatorContextDescriptor::copyFrom(const OperatorContextDescriptor & object) {
-	data = std::shared_ptr<CDM::OperatorContextDescriptor>( new CDM::OperatorContextDescriptor(*object.data));
+	data = std::make_shared<CDM::OperatorContextDescriptor>(*object.data);
 }
 
-OperatorContextDescriptor & OperatorContextDescriptor:: operator=(const OperatorContextDescriptor & object) {
+OperatorContextDescriptor & OperatorContextDescriptor:: operator=(const OperatorContextDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 OperatorContextDescriptor & OperatorContextDescriptor::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
+	data->setType(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool OperatorContextDescriptor::getType(CodedValue & out) const {
-	if (data->Type().present()) {
-		out = ConvertFromCDM::convert(data->Type().get());
+	if (data->getType().present()) {
+		out = ConvertFromCDM::convert(data->getType().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue OperatorContextDescriptor::getType() const {
-	return ConvertFromCDM::convert(data->Type().get());
+	return ConvertFromCDM::convert(data->getType().get());
 }
 
 bool OperatorContextDescriptor::hasType() const {
-	return data->Type().present();
+	return data->getType().present();
 }
 
 OperatorContextDescriptor & OperatorContextDescriptor::setHandle(const Handle & value) {
-	data->Handle(ConvertToCDM::convert(value));
+	data->setHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 Handle OperatorContextDescriptor::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle());
+	return ConvertFromCDM::convert(data->getHandle());
 }
 
 OperatorContextDescriptor & OperatorContextDescriptor::setDescriptorVersion(const VersionCounter & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool OperatorContextDescriptor::getDescriptorVersion(VersionCounter & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter OperatorContextDescriptor::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool OperatorContextDescriptor::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 OperatorContextDescriptor & OperatorContextDescriptor::setSafetyClassification(const SafetyClassification & value) {
-	data->SafetyClassification(ConvertToCDM::convert(value));
+	data->setSafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool OperatorContextDescriptor::getSafetyClassification(SafetyClassification & out) const {
-	if (data->SafetyClassification().present()) {
-		out = ConvertFromCDM::convert(data->SafetyClassification().get());
+	if (data->getSafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->getSafetyClassification().get());
 		return true;
 	}
 	return false;
 }
 
 SafetyClassification OperatorContextDescriptor::getSafetyClassification() const {
-	return ConvertFromCDM::convert(data->SafetyClassification().get());
+	return ConvertFromCDM::convert(data->getSafetyClassification().get());
 }
 
 bool OperatorContextDescriptor::hasSafetyClassification() const {
-	return data->SafetyClassification().present();
+	return data->getSafetyClassification().present();
 }
 
 

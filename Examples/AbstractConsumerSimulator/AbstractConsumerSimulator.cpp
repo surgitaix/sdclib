@@ -11,7 +11,6 @@
  *
  */
 
-#include "osdm.hxx"
 
 #include "OSELib/DPWS/DPWS11Constants.h"
 

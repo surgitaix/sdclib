@@ -38,7 +38,8 @@ using namespace SDCLib::Data::SDC;
 
 class PulseOximeterProvider : public SDCLib::Util::Task{
 public:
-	PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance> p_SDCInstance);
+
+	PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance> p_SDCInstance, const std::string& port);
 	virtual ~PulseOximeterProvider();
 
 	void setPort(int port);
@@ -63,6 +64,7 @@ private:
 	void addFingerOutAlertCondition(AlertSystemDescriptor &alertSystemDesc);
 
 	SDCLib::Data::SDC::SDCProvider sdcProvider;
+	const std::string COMport;
 
 	std::shared_ptr<PulseOximeterFingerOutGetHandler> fingerOutStatusHandler;
 	std::shared_ptr<PulseOximeterSatO2GetHandler> satO2GetHandler;

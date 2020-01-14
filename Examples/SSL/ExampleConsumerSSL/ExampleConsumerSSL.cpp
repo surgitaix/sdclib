@@ -31,15 +31,11 @@
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 #include "SDCLib/Data/SDC/SDCConsumerConnectionLostHandler.h"
 #include "SDCLib/Data/SDC/SDCConsumerMDStateHandler.h"
-#include "SDCLib/Data/SDC/MDIB/MdsDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricValue.h"
 #include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/SampleArrayValue.h"
-#include "SDCLib/Data/SDC/MDIB/LocationContextState.h"
-#include "SDCLib/Data/SDC/MDIB/LocationDetail.h"
-#include "SDCLib/Data/SDC/MDIB/AlertSignalState.h"
 #include "SDCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
 #include "SDCLib/Data/SDC/FutureInvocationState.h"
 #include "SDCLib/Util/DebugOut.h"
@@ -50,62 +46,61 @@ using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
-//SDCLib/C
-const std::string deviceEPR("UDI-1234567890-SSL");
-const std::string HANDLE_SET_METRIC("handle_set");
-const std::string HANDLE_GET_METRIC("handle_get");
-const std::string HANDLE_STREAM_METRIC("handle_stream");
+const std::string DEVICE_EPR{"UDI-ExampleProvider"};
+const std::string HANDLE_SET_METRIC{"handle_set"};
+const std::string HANDLE_GET_METRIC{"handle_get"};
+const std::string HANDLE_STREAM_METRIC{"handle_stream"};
 
+class ExampleConsumerEventHandler : public SDCConsumerMDStateHandler<NumericMetricState>
+{
+private:
+    double currentWeight{0};
 
-
-
-class ExampleConsumerEventHandler : public SDCConsumerMDStateHandler<NumericMetricState> {
 public:
-    ExampleConsumerEventHandler(const std::string & handle) : SDCConsumerMDStateHandler(handle),
-    	currentWeight(0)
-	{
+    ExampleConsumerEventHandler(std::string p_descriptorHandle)
+	: SDCConsumerMDStateHandler(p_descriptorHandle)
+	{ }
+
+    void onStateChanged(const NumericMetricState& p_changedState) override
+    {
+        auto t_newValue{p_changedState.getMetricValue().getValue()};
+        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received value changed of " << getDescriptorHandle() << ": " << t_newValue << std::endl;
+        currentWeight = t_newValue;
     }
 
-
-    void onStateChanged(const NumericMetricState & state) override {
-        double val = state.getMetricValue().getValue();
-        DebugOut(DebugOut::Default, "ExampleConsumerSSL") << "Consumer: Received value changed of " << this->getDescriptorHandle() << ": " << val << std::endl;
-        currentWeight = (float)val;
+    void onOperationInvoked(const OperationInvocationContext& oic, InvocationState p_is) override
+    {
+        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received operation invoked (numeric metric) (ID, STATE) of " << getDescriptorHandle() << ": " << oic.transactionId << ", " << Data::SDC::EnumToString::convert(p_is) << std::endl;
     }
 
-    void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) override {
-        DebugOut(DebugOut::Default, "ExampleConsumerSSL") << "Consumer: Received operation invoked (numeric metric) (ID, STATE) of " << this->getDescriptorHandle() << ": " << oic.transactionId << ", " << Data::SDC::EnumToString::convert(is) << std::endl;
-    }
-
-    float getCurrentWeight() {
+    double getCurrentWeight() const
+    {
         return currentWeight;
     }
-
-private:
-    float currentWeight;
 };
 
 
 // state handler for array values, uses udp instead of tcp. Faster. Considered for real time applications
-class StreamConsumerStateHandler : public SDCConsumerMDStateHandler<RealTimeSampleArrayMetricState> {
+class StreamConsumerStateHandler : public SDCConsumerMDStateHandler<RealTimeSampleArrayMetricState>
+{
 public:
-	StreamConsumerStateHandler(std::string descriptorHandle) : SDCConsumerMDStateHandler(descriptorHandle) {}
+	StreamConsumerStateHandler(std::string p_descriptorHandle)
+	: SDCConsumerMDStateHandler(p_descriptorHandle)
+	{ }
 
-	void onStateChanged(const RealTimeSampleArrayMetricState & state) override {
-		std::vector<double> values = state.getMetricValue().getSamples();
+	void onStateChanged(const RealTimeSampleArrayMetricState& p_changedState) override
+	{
+		std::vector<double> t_sampleValues = p_changedState.getMetricValue().getSamples();
 
-		// simple check if the data is valid:
-		// assumption: sequence of values, increased by 1
-
+		DebugOut(DebugOut::Default, "ExampleConsumer") << "Received chunk! Handle: " << p_changedState.getDescriptorHandle() << std::endl;
 		std::string out("Content: ");
-		DebugOut(DebugOut::Default, "ExampleConsumerSSL") << "Received chunk! Handle: " << state.getDescriptorHandle() << std::endl;
-		for (size_t i = 0; i < values.size(); i++) {
-			out.append(" " + std::to_string(values[i]));
+		for (const auto t_value : t_sampleValues)
+		{
+			out.append(" " + std::to_string(t_value));
 		}
-		DebugOut(DebugOut::Default, "ExampleConsumerSSL") << out;
+		DebugOut(DebugOut::Default, "ExampleConsumer") << out;
 	}
 };
-
 
 
 
@@ -115,26 +110,27 @@ void waitForUserInput() {
 	std::cin >> temp;
 }
 
-
+class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler
+{
+public:
+	MyConnectionLostHandler(Data::SDC::SDCConsumer& p_consumer)
+	: m_consumer(p_consumer)
+	{ }
+	void onConnectionLost() override
+	{
+		std::cerr << "Connection lost, disconnecting... ";
+		m_consumer.disconnect();
+		std::cerr << "Disconnected. Press key to proceed." << std::endl;
+	}
+private:
+	Data::SDC::SDCConsumer& m_consumer;
+};
 
 
 int main()
 {
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumerSSL") << "Startup";
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
-
-    class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
-    public:
-    	MyConnectionLostHandler(Data::SDC::SDCConsumer & consumer) : consumer(consumer) {
-    	}
-    	void onConnectionLost() override {
-    		std::cerr << "Connection lost, disconnecting... ";
-    		consumer.disconnect();
-    		std::cerr << "disconnected." << std::endl;
-    	}
-    private:
-    	Data::SDC::SDCConsumer & consumer;
-    };
 
     // Create a new SDCInstance (no flag will auto init)
     auto t_SDCInstance = std::make_shared<SDCInstance>(true);
@@ -146,68 +142,95 @@ int main()
         std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
         return -1;
     }
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // <SSL> ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     // Init SSL (Default Params should be fine)
     if(!t_SDCInstance->initSSL()) {
         std::cout << "Failed to init SSL!" << std::endl;
         return -1;
     }
-
     // Configure SSL
     auto t_SSLConfig = t_SDCInstance->getSSLConfig();
     t_SSLConfig->addCertificateAuthority("rootCA.pem");
     t_SSLConfig->useCertificate("leaf.pem");
     t_SSLConfig->useKeyFiles(/*Public Key*/"", "leafkey.pem", ""/* Password for Private Keyfile */);
 
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // </SSL> +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 	// Discovery
 	OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
 
 	// Note: Calculate a UUIDv5 and apply prefix to it!
-	std::unique_ptr<Data::SDC::SDCConsumer> c(t_serviceManager.discoverEndpointReference(SDCInstance::calcUUIDv5(deviceEPR, true)));
+	auto t_consumer{t_serviceManager.discoverEndpointReference(SDCInstance::calcUUIDv5(DEVICE_EPR, true))};
 
-	// state handler
-	auto eh_get = std::make_shared<ExampleConsumerEventHandler>(HANDLE_GET_METRIC);
-	auto eh_set = std::make_shared<ExampleConsumerEventHandler>(HANDLE_SET_METRIC);
-	auto eh_stream = std::make_shared<StreamConsumerStateHandler>(HANDLE_STREAM_METRIC);
+	try
+	{
+		// Connected to Provider?
+		if (t_consumer != nullptr)
+		{
+			// Get notified on Lost Connection
+			std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(*t_consumer));
+			t_consumer->setConnectionLostHandler(myHandler.get());
 
-	try {
-		if (c != nullptr) {
-			Data::SDC::SDCConsumer & consumer = *c;
-			std::unique_ptr<MyConnectionLostHandler> myHandler(new MyConnectionLostHandler(consumer));
-			consumer.setConnectionLostHandler(myHandler.get());
+			// Create StateEventHandler to "Consume" Events from Provider
+			auto eh_get = std::make_shared<ExampleConsumerEventHandler>(HANDLE_GET_METRIC);
+			auto eh_set = std::make_shared<ExampleConsumerEventHandler>(HANDLE_SET_METRIC);
+			auto eh_stream = std::make_shared<StreamConsumerStateHandler>(HANDLE_STREAM_METRIC);
 
-			consumer.registerStateEventHandler(eh_get.get());
-			consumer.registerStateEventHandler(eh_set.get());
-			consumer.registerStateEventHandler(eh_stream.get());
+			// Register StateEventHandlers to get updates
+			t_consumer->registerStateEventHandler(eh_get.get());
+			t_consumer->registerStateEventHandler(eh_set.get());
+			t_consumer->registerStateEventHandler(eh_stream.get());
 
-			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumerSSL") << "Discovery succeeded." << std::endl << std::endl << "Waiting 5 sec. for the subscriptions to beeing finished";
+			// Simple Test(1):
+			// Search for the "Get"-State
+			auto t_getMetricState{t_consumer->requestState<NumericMetricState>(HANDLE_GET_METRIC)};
+			// If found: Print the current(!) value
+			if(t_getMetricState)
+			{
+				Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested get metrics value: " << t_getMetricState->getMetricValue().getValue();
+			}
 
-			// wait for the subscriptions to be completed
-			std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+			// Simple Test(2):
+			// Search for the "Set"-State
+			auto t_setMetricState{t_consumer->requestState<NumericMetricState>(HANDLE_SET_METRIC)};
+			// If found: Set it to a given value
+			if(t_setMetricState)
+			{
+				double t_newValue{10.0};
+				// Use the returned state, set the value and "commit" it
+				t_setMetricState->setMetricValue(NumericMetricValue{MetricQuality{MeasurementValidity::Vld}}.setValue(t_newValue));
+				// Now
+				FutureInvocationState fis;
+				t_consumer->commitState(*t_setMetricState, fis);
+				// Now wait for "InvocationState::Fin" (=> Success)
+				Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result metric state: " << fis.waitReceived(InvocationState::Fin, 2000);
+			}
 
-			std::unique_ptr<NumericMetricState> pGetMetricState(consumer.requestState<NumericMetricState>(HANDLE_GET_METRIC));
-			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumerSSL") << "Requested get metrics value: " << pGetMetricState->getMetricValue().getValue();
-
-			// set numeric metric
-			std::unique_ptr<NumericMetricState> pMetricState(consumer.requestState<NumericMetricState>(HANDLE_SET_METRIC));
-			pMetricState->setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(10));
-
-			FutureInvocationState fis;
-			consumer.commitState(*pMetricState, fis);
-			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumerSSL") << "Commit result metric state: " << fis.waitReceived(InvocationState::Fin, 10000);
-
+			// From here on the registered StateEventHandlers (SDCLib Threads / background) will provide information
+			// on "state changes" until the user enters a key ("waitForUserInput") or exception is thrown.
 			waitForUserInput();
-			consumer.unregisterStateEventHandler(eh_get.get());
-			consumer.unregisterStateEventHandler(eh_set.get());
-			consumer.unregisterStateEventHandler(eh_stream.get());
-			consumer.disconnect();
-		} else {
-			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumerSSL") << "Discovery failed.";
+			// Unregister and disconnect
+			t_consumer->unregisterStateEventHandler(eh_get.get());
+			t_consumer->unregisterStateEventHandler(eh_set.get());
+			t_consumer->unregisterStateEventHandler(eh_stream.get());
+			t_consumer->disconnect();
 		}
-
-	} catch (std::exception & e){
-		Util::DebugOut(Util::DebugOut::Default, "ExampleConsumerSSL") << "Exception: " << e.what() << std::endl;
+		else
+		{
+			// Something went wrong -> Exit!
+			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery failed.";
+		}
 	}
-    SDCLibrary::getInstance().shutdown();
-    Util::DebugOut(Util::DebugOut::Default, "ExampleConsumerSSL") << "Shutdown." << std::endl;
+	catch (std::exception& e)
+	{
+		Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Exception: " << e.what() << std::endl;
+	}
+
+	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Shutdown." << std::endl;
+	return 0;
 }

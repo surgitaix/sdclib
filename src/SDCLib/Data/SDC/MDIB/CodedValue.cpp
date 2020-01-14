@@ -34,7 +34,7 @@
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/Defaults.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 #include "SDCLib/Data/SDC/MDIB/LocalizedText.h"
 #include "SDCLib/Data/SDC/MDIB/Translation.h"
@@ -48,159 +48,156 @@ CodedValue::CodedValue(
 		CodeIdentifier code
 ) : data(Defaults::CodedValueInit(
 		code
-)) {}
+))
+{}
 
 CodedValue::operator CDM::CodedValue() const {
 	return *data;
 }
 
-CodedValue::CodedValue(const CDM::CodedValue & object) : data(new CDM::CodedValue(object)) {
+CodedValue::CodedValue(const CDM::CodedValue & object)
+: data(new CDM::CodedValue(object))
+{ }
 
-}
-
-CodedValue::CodedValue(const CodedValue & object) : data(new CDM::CodedValue(*object.data)) {
-
-}
-
-CodedValue::~CodedValue() {
-
-}
+CodedValue::CodedValue(const CodedValue & object)
+: data(std::make_shared<CDM::CodedValue>(*object.data))
+{ }
 
 void CodedValue::copyFrom(const CodedValue & object) {
-	data = std::shared_ptr<CDM::CodedValue>( new CDM::CodedValue(*object.data));
+	data = std::make_shared<CDM::CodedValue>(*object.data);
 }
 
-CodedValue & CodedValue:: operator=(const CodedValue & object) {
+CodedValue & CodedValue:: operator=(const CodedValue& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 CodedValue & CodedValue::setCode(const CodeIdentifier & value) {
-	data->Code(ConvertToCDM::convert(value));
+	data->setCode(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 CodeIdentifier CodedValue::getCode() const {
-	return ConvertFromCDM::convert(data->Code());
+	return ConvertFromCDM::convert(data->getCode());
 }
 
 CodedValue & CodedValue::setCodingSystem(const xml_schema::Uri & value) {
-	data->CodingSystem(ConvertToCDM::convert(value));
+	data->setCodingSystem(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool CodedValue::getCodingSystem(xml_schema::Uri & out) const {
-	if (data->CodingSystem().present()) {
-		out = ConvertFromCDM::convert(data->CodingSystem().get());
+	if (data->getCodingSystem().present()) {
+		out = ConvertFromCDM::convert(data->getCodingSystem().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::Uri CodedValue::getCodingSystem() const {
-	return ConvertFromCDM::convert(data->CodingSystem().get());
+	return ConvertFromCDM::convert(data->getCodingSystem().get());
 }
 
 bool CodedValue::hasCodingSystem() const {
-	return data->CodingSystem().present();
+	return data->getCodingSystem().present();
 }
 
 CodedValue & CodedValue::setCodingSystemVersion(const std::string & value) {
-	data->CodingSystemVersion(ConvertToCDM::convert(value));
+	data->setCodingSystemVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool CodedValue::getCodingSystemVersion(std::string & out) const {
-	if (data->CodingSystemVersion().present()) {
-		out = ConvertFromCDM::convert(data->CodingSystemVersion().get());
+	if (data->getCodingSystemVersion().present()) {
+		out = ConvertFromCDM::convert(data->getCodingSystemVersion().get());
 		return true;
 	}
 	return false;
 }
 
 std::string CodedValue::getCodingSystemVersion() const {
-	return ConvertFromCDM::convert(data->CodingSystemVersion().get());
+	return ConvertFromCDM::convert(data->getCodingSystemVersion().get());
 }
 
 bool CodedValue::hasCodingSystemVersion() const {
-	return data->CodingSystemVersion().present();
+	return data->getCodingSystemVersion().present();
 }
 
 CodedValue & CodedValue::setSymbolicCodeName(const SymbolicCodeName & value) {
-	data->SymbolicCodeName(ConvertToCDM::convert(value));
+	data->setSymbolicCodeName(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool CodedValue::getSymbolicCodeName(SymbolicCodeName & out) const {
-	if (data->SymbolicCodeName().present()) {
-		out = ConvertFromCDM::convert(data->SymbolicCodeName().get());
+	if (data->getSymbolicCodeName().present()) {
+		out = ConvertFromCDM::convert(data->getSymbolicCodeName().get());
 		return true;
 	}
 	return false;
 }
 
 SymbolicCodeName CodedValue::getSymbolicCodeName() const {
-	return ConvertFromCDM::convert(data->SymbolicCodeName().get());
+	return ConvertFromCDM::convert(data->getSymbolicCodeName().get());
 }
 
 bool CodedValue::hasSymbolicCodeName() const {
-	return data->SymbolicCodeName().present();
+	return data->getSymbolicCodeName().present();
 }
 
 CodedValue & CodedValue::addCodingSystemName(const LocalizedText & value) {
-	data->CodingSystemName().push_back(ConvertToCDM::convert(value));
+	data->getCodingSystemName().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<LocalizedText> CodedValue::getCodingSystemNameList() const {
 	std::vector<LocalizedText> result;
-	result.reserve(data->CodingSystemName().size());
-	for (const auto & value: data->CodingSystemName()) {
+	result.reserve(data->getCodingSystemName().size());
+	for (const auto & value: data->getCodingSystemName()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void CodedValue::clearCodingSystemNameList() {
-	data->CodingSystemName().clear();
+	data->getCodingSystemName().clear();
 }
 
 CodedValue & CodedValue::addConceptDescription(const LocalizedText & value) {
-	data->ConceptDescription().push_back(ConvertToCDM::convert(value));
+	data->getConceptDescription().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<LocalizedText> CodedValue::getConceptDescriptionList() const {
 	std::vector<LocalizedText> result;
-	result.reserve(data->ConceptDescription().size());
-	for (const auto & value: data->ConceptDescription()) {
+	result.reserve(data->getConceptDescription().size());
+	for (const auto & value: data->getConceptDescription()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void CodedValue::clearConceptDescriptionList() {
-	data->ConceptDescription().clear();
+	data->getConceptDescription().clear();
 }
 
 CodedValue & CodedValue::addTranslation(const Translation & value) {
-	data->Translation().push_back(ConvertToCDM::convert(value));
+	data->getTranslation().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<Translation> CodedValue::getTranslationList() const {
 	std::vector<Translation> result;
-	result.reserve(data->Translation().size());
-	for (const auto & value: data->Translation()) {
+	result.reserve(data->getTranslation().size());
+	for (const auto & value: data->getTranslation()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void CodedValue::clearTranslationList() {
-	data->Translation().clear();
+	data->getTranslation().clear();
 }
 
 

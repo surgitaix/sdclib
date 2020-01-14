@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class ClinicalInfo {
+class ClinicalInfo
+{
 private:
 	ClinicalInfo(const CDM::ClinicalInfo & object);
 	operator CDM::ClinicalInfo() const;
@@ -53,11 +54,11 @@ private:
 public:
 	ClinicalInfo(
 	);
-	ClinicalInfo(const ClinicalInfo & object);
-	virtual ~ClinicalInfo();
+	ClinicalInfo(const ClinicalInfo& object);
+	virtual ~ClinicalInfo() = default;
 
-    void copyFrom(const ClinicalInfo & object);
-    ClinicalInfo & operator=(const ClinicalInfo & object);
+    void copyFrom(const ClinicalInfo& object);
+    ClinicalInfo & operator=(const ClinicalInfo& object);
 
     typedef CDM::ClinicalInfo WrappedType;
 
@@ -85,7 +86,7 @@ public:
 	void clearRelatedMeasurementList();
 
 private:
-	std::shared_ptr<CDM::ClinicalInfo> data;
+	std::shared_ptr<CDM::ClinicalInfo> data = nullptr;
 };
 
 } /* namespace SDC */

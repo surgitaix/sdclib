@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class BatteryDescriptor {
+class BatteryDescriptor
+{
 private:
 	BatteryDescriptor(const CDM::BatteryDescriptor & object);
 	operator CDM::BatteryDescriptor() const;
@@ -57,11 +58,11 @@ public:
 private:
 	BatteryDescriptor(){};
 public:
-	BatteryDescriptor(const BatteryDescriptor & object);
-	virtual ~BatteryDescriptor();
+	BatteryDescriptor(const BatteryDescriptor& object);
+	virtual ~BatteryDescriptor() = default;
 
-    void copyFrom(const BatteryDescriptor & object);
-    BatteryDescriptor & operator=(const BatteryDescriptor & object);
+    void copyFrom(const BatteryDescriptor& object);
+    BatteryDescriptor & operator=(const BatteryDescriptor& object);
 
     typedef CDM::BatteryDescriptor WrappedType;
 
@@ -103,7 +104,7 @@ public:
 	bool hasVoltageSpecified() const;
 
 private:
-	std::shared_ptr<CDM::BatteryDescriptor> data;
+	std::shared_ptr<CDM::BatteryDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

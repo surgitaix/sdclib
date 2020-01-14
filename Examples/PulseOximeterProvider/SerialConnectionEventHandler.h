@@ -29,11 +29,10 @@ protected:
     void onError(const std::string& category, const std::string& message) override;
 
 private:
-    bool fingerOut;
     int spo2;
     int pulseRate;
     int dataPackage;
-
+    bool fingerOut;
 };
 
 } /* namespace Serial */

@@ -1,3 +1,27 @@
+Update to 4.4.2
+
+- Underlying datamodel functions renamed (getter/setter)
+- CMake no longer needs Additional search dirs
+- Some bugfixes and convenience functions added (see gitlog for more details)
+
+Update to 4.4.1
+
+- Added 'SetOperation'-Handling for Activates
+- Added DescriptionEventService to BICEPSSerive (no Events emitted yet)
+- Adding missing MdStates on Provider startup (WIP)
+- Small bugfixes related to Event handling
+
+Update to 4.4.0
+
+- Complete Coding style reworked
+- Requirement R0034 -> Regrouped DescriptionEventService, StateEventService, ContextService, WaveformService under one Hosted Service
+- Started Service Refactoring
+- WSDL Refactoring
+- HTTPServer Wrapper class
+- Dummy Implementation of EpisodicComponentReport and EpisodicOperationalStateReport
+- Moved DataModel into dedicated folder
+- CMake Find script changes to use generator expressions
+
 Update to 4.3.8
 
 - Fixed Schema Bugs.

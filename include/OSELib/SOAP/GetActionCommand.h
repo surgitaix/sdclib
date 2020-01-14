@@ -1,31 +1,37 @@
 /*
  * GetActionCommand.h
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 21.08.2019, baumeister
+ *
  */
 
-#ifndef SOAP_GETACTIONCOMMAND_H_
-#define SOAP_GETACTIONCOMMAND_H_
+#ifndef OSELIB_SOAP_GETACTIONCOMMAND_H_
+#define OSELIB_SOAP_GETACTIONCOMMAND_H_
 
-#include "OSELib/fwd.h"
 #include "OSELib/SOAP/SoapActionCommand.h"
 
-namespace OSELib {
-namespace SOAP {
+namespace OSELib
+{
+	namespace SOAP
+	{
 
-class GetActionCommand : public SoapActionCommand {
-public:
-	GetActionCommand(std::unique_ptr<MESSAGEMODEL::Envelope> requestMessage, const WS::MEX::Metadata & metadata);
-	virtual ~GetActionCommand();
+		class GetActionCommand : public SoapActionCommand
+		{
+		private:
+			std::unique_ptr<WS::MEX::Metadata> m_metadata = nullptr;
+		public:
+			GetActionCommand(std::unique_ptr<MESSAGEMODEL::Envelope> p_requestMessage, const WS::MEX::Metadata & p_metadata);
+			// Special Member Functions
+			GetActionCommand(const GetActionCommand& p_obj) = default;
+			GetActionCommand(GetActionCommand&& p_obj) = default;
+			GetActionCommand& operator=(const GetActionCommand& p_obj) = default;
+			GetActionCommand& operator=(GetActionCommand&& p_obj) = default;
+			virtual ~GetActionCommand() = default;
 
-	std::unique_ptr<MESSAGEMODEL::Envelope> dispatch(const MESSAGEMODEL::Envelope & request) override;
+			std::unique_ptr<MESSAGEMODEL::Envelope> dispatch(const MESSAGEMODEL::Envelope & p_request) override;
+		};
+	}
+}
 
-private:
-	std::unique_ptr<WS::MEX::Metadata> _metadata;
-};
-
-} /* namespace SOAP */
-} /* namespace OSELib */
-
-#endif /* SOAP_GETACTIONCOMMAND_H_ */
+#endif

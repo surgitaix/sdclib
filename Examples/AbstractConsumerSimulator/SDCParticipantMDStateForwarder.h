@@ -35,7 +35,7 @@ namespace ACS {
 template<typename TState>
 class SDCParticipantMDStateForwarder : public SDCConsumerMDStateHandler<TState>, public SDCProviderMDStateHandler<TState> {
 public:
-	SDCParticipantMDStateForwarder(const std::string descriptorHandle) : SDCConsumerMDStateHandler<TState>(descriptorHandle), SDCProviderMDStateHandler<TState>(descriptorHandle) {}
+	SDCParticipantMDStateForwarder(const std::string p_descriptorHandle) : SDCConsumerMDStateHandler<TState>(p_descriptorHandle), SDCProviderMDStateHandler<TState>(p_descriptorHandle) {}
 	virtual ~SDCParticipantMDStateForwarder() = default;
 
 	void onStateChanged(const TState & state) override {
@@ -53,12 +53,12 @@ public:
 class SDCParticipantNumericMetricStateForwarder : public SDCParticipantMDStateForwarder<NumericMetricState>
 {
 public:
-	SDCParticipantNumericMetricStateForwarder(const std::string descriptorHandle) : SDCParticipantMDStateForwarder(descriptorHandle) {
+	SDCParticipantNumericMetricStateForwarder(const std::string p_descriptorHandle) : SDCParticipantMDStateForwarder(p_descriptorHandle) {
 
 	}
 	NumericMetricState getInitialState() override
 	{
-		NumericMetricState numericMetricState(SDCProviderMDStateHandler::descriptorHandle);
+		NumericMetricState numericMetricState(SDCProviderMDStateHandler::m_descriptorHandle);
 		numericMetricState.setActivationState(ComponentActivation::On);
 		numericMetricState.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(0));
 		return numericMetricState;
@@ -74,12 +74,12 @@ public:
 class SDCParticipantNumericMetricSetStateForwarder : public SDCParticipantMDStateForwarder<NumericMetricState>
 {
 public:
-	SDCParticipantNumericMetricSetStateForwarder(const std::string descriptorHandle) : SDCParticipantMDStateForwarder(descriptorHandle) {
+	SDCParticipantNumericMetricSetStateForwarder(const std::string p_descriptorHandle) : SDCParticipantMDStateForwarder(p_descriptorHandle) {
 
 	}
 	NumericMetricState getInitialState() override
 	{
-		NumericMetricState numericMetricState(SDCProviderMDStateHandler::descriptorHandle);
+		NumericMetricState numericMetricState(SDCProviderMDStateHandler::m_descriptorHandle);
 		numericMetricState.setActivationState(ComponentActivation::On);
 		numericMetricState.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(0));
 		return numericMetricState;
@@ -94,10 +94,10 @@ public:
 
 class SDCParticipantRealTimeSampleArrayMetricStateForwarder : public SDCParticipantMDStateForwarder<RealTimeSampleArrayMetricState> {
 public:
-	SDCParticipantRealTimeSampleArrayMetricStateForwarder(const std::string descriptorHandle) : SDCParticipantMDStateForwarder(descriptorHandle) {}
+	SDCParticipantRealTimeSampleArrayMetricStateForwarder(const std::string p_descriptorHandle) : SDCParticipantMDStateForwarder(p_descriptorHandle) {}
 
 	RealTimeSampleArrayMetricState getInitialState() override {
-		RealTimeSampleArrayMetricState realTimeSampleArrayState(SDCProviderMDStateHandler::descriptorHandle);
+		RealTimeSampleArrayMetricState realTimeSampleArrayState(SDCProviderMDStateHandler::m_descriptorHandle);
 		realTimeSampleArrayState.setActivationState(ComponentActivation::On);
 		return realTimeSampleArrayState;
 	}
@@ -106,10 +106,10 @@ public:
 
 class SDCParticipantStringMetricStateForwarder : public SDCParticipantMDStateForwarder<StringMetricState> {
 public:
-	SDCParticipantStringMetricStateForwarder(const std::string descriptorHandle) : SDCParticipantMDStateForwarder(descriptorHandle) {}
+	SDCParticipantStringMetricStateForwarder(const std::string p_descriptorHandle) : SDCParticipantMDStateForwarder(p_descriptorHandle) {}
 
 	StringMetricState getInitialState() override{
-		StringMetricState stringMetricState(SDCProviderMDStateHandler::descriptorHandle);
+		StringMetricState stringMetricState(SDCProviderMDStateHandler::m_descriptorHandle);
 		stringMetricState.setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(""));
 		return stringMetricState;
 	}
@@ -120,7 +120,7 @@ public:
 	SDCParticipantStringMetricStateSetForwarder(const std::string descriptorHandle) : SDCParticipantMDStateForwarder(descriptorHandle) {}
 
 	StringMetricState getInitialState() override{
-		StringMetricState stringMetricState(SDCProviderMDStateHandler::descriptorHandle);
+		StringMetricState stringMetricState(SDCProviderMDStateHandler::m_descriptorHandle);
 		stringMetricState.setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(""));
 		return stringMetricState;
 	}
@@ -129,7 +129,7 @@ public:
 		// extract information from the incoming operation
 		SDCProviderStateHandler::notifyOperationInvoked(oic, InvocationState::Start);
 		FutureInvocationState fis;
-		std::cout << "Setting " << SDCProviderMDStateHandler::descriptorHandle << " with " << state.getMetricValue().getValue() << std::endl;
+		std::cout << "Setting " << SDCProviderMDStateHandler::m_descriptorHandle << " with " << state.getMetricValue().getValue() << std::endl;
 		return getParentConsumer().commitState(state, fis);
 	}
 };
@@ -187,11 +187,11 @@ private:
 
 class SDCParticipantGetMDIBCaller : public SDCProviderActivateOperationHandler, public SDCConsumerOperationInvokedHandler {
 public:
-	SDCParticipantGetMDIBCaller(const std::string descriptorHandle) :
-		SDCProviderActivateOperationHandler(descriptorHandle + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX),
-		SDCConsumerOperationInvokedHandler(descriptorHandle + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX),
-		activateDescriptorHandle(descriptorHandle + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX),
-		MDIBDescriptorHandle(descriptorHandle)
+	SDCParticipantGetMDIBCaller(const std::string p_descriptorHandle) :
+		SDCProviderActivateOperationHandler(p_descriptorHandle + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX),
+		SDCConsumerOperationInvokedHandler(p_descriptorHandle + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX),
+		activateDescriptorHandle(p_descriptorHandle + ACTIVATE_FOR_GET_OPERATION_ON_DUT_POSTFIX),
+		MDIBDescriptorHandle(p_descriptorHandle)
 	{
 
 	}
@@ -211,7 +211,7 @@ public:
 				StringMetricValue stringValue(MetricQuality(MeasurementValidity::Vld));
 				stringValue.setValue(Mdib);
 				stringState.setMetricValue(stringValue);
-				parentProvider->updateState(stringState);
+				m_parentProvider->updateState(stringState);
 				return InvocationState::Fin;
 			}
 		}
@@ -272,7 +272,7 @@ public:
 
 	StringMetricState getInitialState() override
 	{
-		StringMetricState initialState(descriptorHandle);
+		StringMetricState initialState(m_descriptorHandle);
 		StringMetricValue initialStringValue(MetricQuality(MeasurementValidity::Vld));
 		initialStringValue.setValue("");
 		initialState.setMetricValue(initialStringValue);
@@ -284,7 +284,7 @@ public:
 		std::string functionParameterString = "";
 		if(state.getMetricValue().getValue(functionParameterString))
 		{
-			std::cout << descriptorHandle << " called with " << functionParameterString << std::endl;
+			std::cout << m_descriptorHandle << " called with " << functionParameterString << std::endl;
 			if(functionParameterString == "")
 			{
 				return InvocationState::Fail;
@@ -305,7 +305,7 @@ public:
 
 	StringMetricState getInitialState() override
 	{
-		StringMetricState initialState(descriptorHandle);
+		StringMetricState initialState(m_descriptorHandle);
 		StringMetricValue initialStringValue(MetricQuality(MeasurementValidity::Vld));
 		initialStringValue.setValue("");
 		initialState.setMetricValue(initialStringValue);
@@ -319,11 +319,11 @@ public:
 
 	void updateStateValue(const std::string &str)
 	{
-		StringMetricState stringState(descriptorHandle);
+		StringMetricState stringState(m_descriptorHandle);
 		StringMetricValue stringValue(MetricQuality(MeasurementValidity::Vld));
 		stringValue.setValue(str);
 		stringState.setMetricValue(stringValue);
-		parentProvider->updateState(stringState);
+		m_parentProvider->updateState(stringState);
 	}
 };
 
@@ -333,7 +333,7 @@ public:
 
 	EnumStringMetricState getInitialState() override
 	{
-		EnumStringMetricState initialState(descriptorHandle);
+		EnumStringMetricState initialState(m_descriptorHandle);
 		StringMetricValue initialStringValue(MetricQuality(MeasurementValidity::Vld));
 		initialStringValue.setValue(MM_BB_CONTROL_DO_NOTHING);
 		initialState.setMetricValue(initialStringValue);
@@ -356,11 +356,11 @@ public:
 
 	void updateStateValue(const std::string &str)
 	{
-        EnumStringMetricState result(descriptorHandle);
+        EnumStringMetricState result(m_descriptorHandle);
         result
             .setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(str))
             .setActivationState(ComponentActivation::On);
-		parentProvider->updateState(result);
+		m_parentProvider->updateState(result);
 	}
 };
 

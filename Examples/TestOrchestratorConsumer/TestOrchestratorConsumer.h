@@ -9,7 +9,6 @@
 #define EXAMPLES_ABSTRACTCONSUMERSIMULATOR_TESTORCHESTRATORCONSUMER_H_
 
 #include <iostream>
-#include "osdm.hxx"
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
 #include "SDCLib/Data/SDC/SDCConsumerConnectionLostHandler.h"

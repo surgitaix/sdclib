@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class PersonParticipation {
+class PersonParticipation
+{
 private:
 	PersonParticipation(const CDM::PersonParticipation & object);
 	operator CDM::PersonParticipation() const;
@@ -53,11 +54,11 @@ private:
 public:
 	PersonParticipation(
 	);
-	PersonParticipation(const PersonParticipation & object);
-	virtual ~PersonParticipation();
+	PersonParticipation(const PersonParticipation& object);
+	virtual ~PersonParticipation() = default;
 
-    void copyFrom(const PersonParticipation & object);
-    PersonParticipation & operator=(const PersonParticipation & object);
+    void copyFrom(const PersonParticipation& object);
+    PersonParticipation & operator=(const PersonParticipation& object);
 
     typedef CDM::PersonParticipation WrappedType;
 
@@ -75,7 +76,7 @@ public:
 	void clearRoleList();
 
 private:
-	std::shared_ptr<CDM::PersonParticipation> data;
+	std::shared_ptr<CDM::PersonParticipation> data = nullptr;
 };
 
 } /* namespace SDC */

@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class MeansContextDescriptor {
+class MeansContextDescriptor
+{
 private:
 	MeansContextDescriptor(const CDM::MeansContextDescriptor & object);
 	operator CDM::MeansContextDescriptor() const;
@@ -57,11 +58,11 @@ public:
 private:
 	MeansContextDescriptor(){};
 public:
-	MeansContextDescriptor(const MeansContextDescriptor & object);
-	virtual ~MeansContextDescriptor();
+	MeansContextDescriptor(const MeansContextDescriptor& object);
+	virtual ~MeansContextDescriptor() = default;
 
-    void copyFrom(const MeansContextDescriptor & object);
-    MeansContextDescriptor & operator=(const MeansContextDescriptor & object);
+    void copyFrom(const MeansContextDescriptor& object);
+    MeansContextDescriptor & operator=(const MeansContextDescriptor& object);
 
     typedef CDM::MeansContextDescriptor WrappedType;
 
@@ -84,7 +85,7 @@ public:
 	bool hasSafetyClassification() const;
 
 private:
-	std::shared_ptr<CDM::MeansContextDescriptor> data;
+	std::shared_ptr<CDM::MeansContextDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

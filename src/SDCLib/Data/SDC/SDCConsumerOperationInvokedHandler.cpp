@@ -39,7 +39,6 @@ SDCConsumerOperationInvokedHandler::SDCConsumerOperationInvokedHandler(const std
 { }
 
 
-
-} /* namespace SDC */
-} /* namespace Data */
-} /* namespace SDCLib */
+}
+}
+}

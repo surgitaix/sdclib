@@ -34,7 +34,7 @@
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/Defaults.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 #include "SDCLib/Data/SDC/MDIB/InstanceIdentifier.h"
 
@@ -45,50 +45,47 @@ namespace SDC {
 
 ApprovedJurisdictions::ApprovedJurisdictions(
 ) : data(Defaults::ApprovedJurisdictionsInit(
-)) {}
+))
+{}
 
 ApprovedJurisdictions::operator CDM::ApprovedJurisdictions() const {
 	return *data;
 }
 
-ApprovedJurisdictions::ApprovedJurisdictions(const CDM::ApprovedJurisdictions & object) : data(new CDM::ApprovedJurisdictions(object)) {
+ApprovedJurisdictions::ApprovedJurisdictions(const CDM::ApprovedJurisdictions & object)
+: data(new CDM::ApprovedJurisdictions(object))
+{ }
 
-}
-
-ApprovedJurisdictions::ApprovedJurisdictions(const ApprovedJurisdictions & object) : data(new CDM::ApprovedJurisdictions(*object.data)) {
-
-}
-
-ApprovedJurisdictions::~ApprovedJurisdictions() {
-
-}
+ApprovedJurisdictions::ApprovedJurisdictions(const ApprovedJurisdictions & object)
+: data(std::make_shared<CDM::ApprovedJurisdictions>(*object.data))
+{ }
 
 void ApprovedJurisdictions::copyFrom(const ApprovedJurisdictions & object) {
-	data = std::shared_ptr<CDM::ApprovedJurisdictions>( new CDM::ApprovedJurisdictions(*object.data));
+	data = std::make_shared<CDM::ApprovedJurisdictions>(*object.data);
 }
 
-ApprovedJurisdictions & ApprovedJurisdictions:: operator=(const ApprovedJurisdictions & object) {
+ApprovedJurisdictions & ApprovedJurisdictions:: operator=(const ApprovedJurisdictions& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 ApprovedJurisdictions & ApprovedJurisdictions::addApprovedJurisdiction(const InstanceIdentifier & value) {
-	data->ApprovedJurisdiction().push_back(ConvertToCDM::convert(value));
+	data->getApprovedJurisdiction().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<InstanceIdentifier> ApprovedJurisdictions::getApprovedJurisdictionList() const {
 	std::vector<InstanceIdentifier> result;
-	result.reserve(data->ApprovedJurisdiction().size());
-	for (const auto & value: data->ApprovedJurisdiction()) {
+	result.reserve(data->getApprovedJurisdiction().size());
+	for (const auto & value: data->getApprovedJurisdiction()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void ApprovedJurisdictions::clearApprovedJurisdictionList() {
-	data->ApprovedJurisdiction().clear();
+	data->getApprovedJurisdiction().clear();
 }
 
 

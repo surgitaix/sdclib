@@ -1,5 +1,6 @@
 # Current Target
 set( CURRENT_TARGET_NAME PulseOximeterProvider )
+
 # Add this for better project structure after cmake generation
 project(${CURRENT_TARGET_NAME})
 
@@ -18,14 +19,23 @@ target_sources(${CURRENT_TARGET_NAME}
         ${SRC_DIR}/PulseOximeterProviderMain.cpp
         ${SRC_DIR}/SerialConnection.cpp
         ${SRC_DIR}/SerialConnectionEventHandler.cpp
+
+        ${SRC_DIR}/ContextWorker.cpp
         # Add the includes too (for better generation)
         #...
 )
+
+
+get_filename_component(PATH_ASIO_ROOT ${CMAKE_SOURCE_DIR}/Dependencies/asio/asio/include REALPATH)
+target_include_directories(${CURRENT_TARGET_NAME} PUBLIC ${PATH_ASIO_ROOT})
+target_compile_definitions(${CURRENT_TARGET_NAME} PUBLIC ASIO_STANDALONE)
+
 
 # Make sure this include dir can be found inside the project to include
 target_include_directories(${CURRENT_TARGET_NAME} PUBLIC ${SRC_DIR})
 # Additional include directories
 target_include_directories(${CURRENT_TARGET_NAME} PUBLIC ${PATH_INCLUDE_ROOT})
+
 
 # link libraries
 target_link_libraries(${CURRENT_TARGET_NAME} PRIVATE SDCLib)

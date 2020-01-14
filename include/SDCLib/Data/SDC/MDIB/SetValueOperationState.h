@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class SetValueOperationState {
+class SetValueOperationState
+{
 private:
 	SetValueOperationState(const CDM::SetValueOperationState & object);
 	operator CDM::SetValueOperationState() const;
@@ -59,11 +60,11 @@ public:
 private:
 	SetValueOperationState(){};
 public:
-	SetValueOperationState(const SetValueOperationState & object);
-	virtual ~SetValueOperationState();
+	SetValueOperationState(const SetValueOperationState& object);
+	virtual ~SetValueOperationState() = default;
 
-    void copyFrom(const SetValueOperationState & object);
-    SetValueOperationState & operator=(const SetValueOperationState & object);
+    void copyFrom(const SetValueOperationState& object);
+    SetValueOperationState & operator=(const SetValueOperationState& object);
 
     typedef CDM::SetValueOperationState WrappedType;
 
@@ -88,7 +89,7 @@ public:
 	void clearAllowedRangeList();
 
 private:
-	std::shared_ptr<CDM::SetValueOperationState> data;
+	std::shared_ptr<CDM::SetValueOperationState> data = nullptr;
 };
 
 } /* namespace SDC */

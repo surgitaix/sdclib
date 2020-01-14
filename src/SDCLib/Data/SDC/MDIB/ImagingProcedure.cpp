@@ -34,7 +34,7 @@
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/Defaults.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 #include "SDCLib/Data/SDC/MDIB/InstanceIdentifier.h"
 #include "SDCLib/Data/SDC/MDIB/CodedValue.h"
@@ -60,114 +60,111 @@ ImagingProcedure::ImagingProcedure(
 		studyinstanceuid
 		,
 		scheduledprocedurestepid
-)) {}
+))
+{}
 
 ImagingProcedure::operator CDM::ImagingProcedure() const {
 	return *data;
 }
 
-ImagingProcedure::ImagingProcedure(const CDM::ImagingProcedure & object) : data(new CDM::ImagingProcedure(object)) {
+ImagingProcedure::ImagingProcedure(const CDM::ImagingProcedure & object)
+: data(new CDM::ImagingProcedure(object))
+{ }
 
-}
-
-ImagingProcedure::ImagingProcedure(const ImagingProcedure & object) : data(new CDM::ImagingProcedure(*object.data)) {
-
-}
-
-ImagingProcedure::~ImagingProcedure() {
-
-}
+ImagingProcedure::ImagingProcedure(const ImagingProcedure & object)
+: data(std::make_shared<CDM::ImagingProcedure>(*object.data))
+{ }
 
 void ImagingProcedure::copyFrom(const ImagingProcedure & object) {
-	data = std::shared_ptr<CDM::ImagingProcedure>( new CDM::ImagingProcedure(*object.data));
+	data = std::make_shared<CDM::ImagingProcedure>(*object.data);
 }
 
-ImagingProcedure & ImagingProcedure:: operator=(const ImagingProcedure & object) {
+ImagingProcedure & ImagingProcedure:: operator=(const ImagingProcedure& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 ImagingProcedure & ImagingProcedure::setAccessionIdentifier(const InstanceIdentifier & value) {
-	data->AccessionIdentifier(ConvertToCDM::convert(value));
+	data->setAccessionIdentifier(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 InstanceIdentifier ImagingProcedure::getAccessionIdentifier() const {
-	return ConvertFromCDM::convert(data->AccessionIdentifier());
+	return ConvertFromCDM::convert(data->getAccessionIdentifier());
 }
 
 ImagingProcedure & ImagingProcedure::setRequestedProcedureId(const InstanceIdentifier & value) {
-	data->RequestedProcedureId(ConvertToCDM::convert(value));
+	data->setRequestedProcedureId(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 InstanceIdentifier ImagingProcedure::getRequestedProcedureId() const {
-	return ConvertFromCDM::convert(data->RequestedProcedureId());
+	return ConvertFromCDM::convert(data->getRequestedProcedureId());
 }
 
 ImagingProcedure & ImagingProcedure::setStudyInstanceUid(const InstanceIdentifier & value) {
-	data->StudyInstanceUid(ConvertToCDM::convert(value));
+	data->setStudyInstanceUid(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 InstanceIdentifier ImagingProcedure::getStudyInstanceUid() const {
-	return ConvertFromCDM::convert(data->StudyInstanceUid());
+	return ConvertFromCDM::convert(data->getStudyInstanceUid());
 }
 
 ImagingProcedure & ImagingProcedure::setScheduledProcedureStepId(const InstanceIdentifier & value) {
-	data->ScheduledProcedureStepId(ConvertToCDM::convert(value));
+	data->setScheduledProcedureStepId(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 InstanceIdentifier ImagingProcedure::getScheduledProcedureStepId() const {
-	return ConvertFromCDM::convert(data->ScheduledProcedureStepId());
+	return ConvertFromCDM::convert(data->getScheduledProcedureStepId());
 }
 
 ImagingProcedure & ImagingProcedure::setModality(const CodedValue & value) {
-	data->Modality(ConvertToCDM::convert(value));
+	data->setModality(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ImagingProcedure::getModality(CodedValue & out) const {
-	if (data->Modality().present()) {
-		out = ConvertFromCDM::convert(data->Modality().get());
+	if (data->getModality().present()) {
+		out = ConvertFromCDM::convert(data->getModality().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue ImagingProcedure::getModality() const {
-	return ConvertFromCDM::convert(data->Modality().get());
+	return ConvertFromCDM::convert(data->getModality().get());
 }
 
 bool ImagingProcedure::hasModality() const {
-	return data->Modality().present();
+	return data->getModality().present();
 }
 
 ImagingProcedure & ImagingProcedure::setProtocolCode(const CodedValue & value) {
-	data->ProtocolCode(ConvertToCDM::convert(value));
+	data->setProtocolCode(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ImagingProcedure::getProtocolCode(CodedValue & out) const {
-	if (data->ProtocolCode().present()) {
-		out = ConvertFromCDM::convert(data->ProtocolCode().get());
+	if (data->getProtocolCode().present()) {
+		out = ConvertFromCDM::convert(data->getProtocolCode().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue ImagingProcedure::getProtocolCode() const {
-	return ConvertFromCDM::convert(data->ProtocolCode().get());
+	return ConvertFromCDM::convert(data->getProtocolCode().get());
 }
 
 bool ImagingProcedure::hasProtocolCode() const {
-	return data->ProtocolCode().present();
+	return data->getProtocolCode().present();
 }
 
 

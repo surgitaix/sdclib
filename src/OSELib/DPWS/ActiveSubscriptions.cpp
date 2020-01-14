@@ -2,7 +2,7 @@
  * ActiveSubscriptions.cpp
  *
  *  Created on: 07.12.2015, matthias
- *  Modified on: 01.08.2019, baumeister
+ *  Modified on: 23.08.2019, baumeister
  */
 
 #include "OSELib/DPWS/ActiveSubscriptions.h"
@@ -15,7 +15,7 @@ using namespace OSELib;
 using namespace OSELib::DPWS;
 
 ActiveSubscriptions::ActiveSubscriptions()
-: WithLogger(Log::EVENTSOURCE)
+: Helper::WithLogger(Log::EVENTSOURCE)
 , m_runnableAdapter(*this, &ActiveSubscriptions::run)
 {
     m_thread.start(m_runnableAdapter);
@@ -38,7 +38,7 @@ void ActiveSubscriptions::printSubscriptions() const
 		logInfo << std::endl;
 		for (const auto & t_item : ml_subscriptions) {
 			logInfo << "Subscription with my id: " << t_item.first << std::endl;
-			logInfo << "Sink: " << t_item.second.m_notifyTo.Address() << std::endl;
+			logInfo << "Sink: " << t_item.second.m_notifyTo.getAddress() << std::endl;
 			logInfo << "Actions: " << std::endl;
 			for (const auto & t_action : t_item.second.m_actions) {
 				logInfo << "" << t_action << std::endl;
@@ -58,20 +58,20 @@ void ActiveSubscriptions::unsubscribe(const WS::EVENTING::Identifier & p_identif
 	}
 }
 
-std::string ActiveSubscriptions::subscribe(const SubscriptionInformation & subscription)
+std::string ActiveSubscriptions::subscribe(const SubscriptionInformation & p_subscription)
 {
 	std::lock_guard<std::mutex> t_lock(m_mutex);
 
 	const auto mySubscriptionID(SDCLib::SDCInstance::calcUUID());
-	ml_subscriptions.emplace(mySubscriptionID, subscription);
+	ml_subscriptions.emplace(mySubscriptionID, p_subscription);
 	return mySubscriptionID;
 }
 
-bool ActiveSubscriptions::renew(const WS::EVENTING::Identifier & identifier, std::chrono::system_clock::time_point p_timestamp)
+bool ActiveSubscriptions::renew(const WS::EVENTING::Identifier & p_identifier, std::chrono::system_clock::time_point p_timestamp)
 {
 	std::lock_guard<std::mutex> t_lock(m_mutex);
 
-	auto subscription = ml_subscriptions.find(identifier);
+	auto subscription = ml_subscriptions.find(p_identifier);
 	if (subscription != ml_subscriptions.end()) {
 		subscription->second.m_expirationTime = p_timestamp;
 		return true;
@@ -81,17 +81,25 @@ bool ActiveSubscriptions::renew(const WS::EVENTING::Identifier & identifier, std
 
 void ActiveSubscriptions::houseKeeping()
 {
+	// Protect from double execution
+	std::lock_guard<std::mutex> t_lockHouseKeeping{m_mutex_houseKeeping};
+
 	std::vector<WS::EVENTING::Identifier> tl_expiredSubscriptions;
 
-	std::lock_guard<std::mutex> t_lock(m_mutex);
-	auto t_now = std::chrono::system_clock::now();
-
-	// 1. Collect all expired
-	for (auto & t_item : ml_subscriptions) {
-		if (t_item.second.m_expirationTime.time_since_epoch() < t_now.time_since_epoch()) {
-			tl_expiredSubscriptions.emplace_back(t_item.first);
+	{ // LOCK - Protect the subscriptions
+		std::lock_guard<std::mutex> t_lock(m_mutex);
+		if(ml_subscriptions.empty()) {
+			return;
 		}
-	}
+
+		// 1. Collect all expired
+		auto t_now = std::chrono::system_clock::now();
+		for (auto & t_item : ml_subscriptions) {
+			if (t_item.second.m_expirationTime.time_since_epoch() < t_now.time_since_epoch()) {
+				tl_expiredSubscriptions.emplace_back(t_item.first);
+			}
+		}
+	} // UNLOCK
 
 	// 2. Unsubscribe all
 	for (const auto & t_item : tl_expiredSubscriptions) {
@@ -102,8 +110,8 @@ void ActiveSubscriptions::houseKeeping()
 
 void ActiveSubscriptions::run()
 {
-	while (Poco::Thread::trySleep(8000)) {
-		log_debug([&] { return "Checking for expired subscription"; });
+	while (Poco::Thread::trySleep(6000)) {
+		log_debug([] { return "Checking for expired subscriptions..."; });
 		houseKeeping();
 	}
 }
@@ -124,10 +132,10 @@ std::map<xml_schema::Uri, WS::ADDRESSING::EndpointReferenceType> ActiveSubscript
 	}
 	return t_result;
 }
-ActiveSubscriptions::GetStatusResult ActiveSubscriptions::getStatus(const WS::EVENTING::Identifier & identifier) const
+ActiveSubscriptions::GetStatusResult ActiveSubscriptions::getStatus(const WS::EVENTING::Identifier & p_identifier) const
 {
 	std::lock_guard<std::mutex> t_lock(m_mutex);
-	auto t_subscription = ml_subscriptions.find(identifier);
+	auto t_subscription = ml_subscriptions.find(p_identifier);
 	if (t_subscription != ml_subscriptions.end()) {
 		return {true, t_subscription->second};
 	}

@@ -14,7 +14,7 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/MDIB/MDIB-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 #include "SDCLib/Data/SDC/MDIB/custom/MdibContainer.h"
 

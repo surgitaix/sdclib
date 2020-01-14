@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class DicomTransferCapability {
+class DicomTransferCapability
+{
 private:
 	DicomTransferCapability(const CDM::DicomTransferCapability & object);
 	operator CDM::DicomTransferCapability() const;
@@ -59,11 +60,11 @@ public:
 private:
 	DicomTransferCapability(){};
 public:
-	DicomTransferCapability(const DicomTransferCapability & object);
-	virtual ~DicomTransferCapability();
+	DicomTransferCapability(const DicomTransferCapability& object);
+	virtual ~DicomTransferCapability() = default;
 
-    void copyFrom(const DicomTransferCapability & object);
-    DicomTransferCapability & operator=(const DicomTransferCapability & object);
+    void copyFrom(const DicomTransferCapability& object);
+    DicomTransferCapability & operator=(const DicomTransferCapability& object);
 
     typedef CDM::DicomTransferCapability WrappedType;
 
@@ -78,7 +79,7 @@ public:
 	void clearTransferSyntaxList();
 
 private:
-	std::shared_ptr<CDM::DicomTransferCapability> data;
+	std::shared_ptr<CDM::DicomTransferCapability> data = nullptr;
 };
 
 } /* namespace SDC */

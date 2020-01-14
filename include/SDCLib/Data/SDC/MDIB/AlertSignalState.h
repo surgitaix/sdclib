@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class AlertSignalState {
+class AlertSignalState
+{
 private:
 	AlertSignalState(const CDM::AlertSignalState & object);
 	operator CDM::AlertSignalState() const;
@@ -59,11 +60,11 @@ public:
 private:
 	AlertSignalState(){};
 public:
-	AlertSignalState(const AlertSignalState & object);
-	virtual ~AlertSignalState();
+	AlertSignalState(const AlertSignalState& object);
+	virtual ~AlertSignalState() = default;
 
-    void copyFrom(const AlertSignalState & object);
-    AlertSignalState & operator=(const AlertSignalState & object);
+    void copyFrom(const AlertSignalState& object);
+    AlertSignalState & operator=(const AlertSignalState& object);
 
     typedef CDM::AlertSignalState WrappedType;
     typedef AlertSignalDescriptor DescriptorType;
@@ -105,7 +106,7 @@ public:
 	bool hasSlot() const;
 
 private:
-	std::shared_ptr<CDM::AlertSignalState> data;
+	std::shared_ptr<CDM::AlertSignalState> data = nullptr;
 };
 
 } /* namespace SDC */

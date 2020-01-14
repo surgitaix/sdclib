@@ -34,7 +34,7 @@
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/Defaults.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 #include "SDCLib/Data/SDC/MDIB/CodedValue.h"
 #include "SDCLib/Data/SDC/MDIB/Measurement.h"
@@ -52,52 +52,49 @@ CalibrationResult::CalibrationResult(
 		code
 		,
 		value
-)) {}
+))
+{}
 
 CalibrationResult::operator CDM::CalibrationResult() const {
 	return *data;
 }
 
-CalibrationResult::CalibrationResult(const CDM::CalibrationResult & object) : data(new CDM::CalibrationResult(object)) {
+CalibrationResult::CalibrationResult(const CDM::CalibrationResult & object)
+: data(new CDM::CalibrationResult(object))
+{ }
 
-}
-
-CalibrationResult::CalibrationResult(const CalibrationResult & object) : data(new CDM::CalibrationResult(*object.data)) {
-
-}
-
-CalibrationResult::~CalibrationResult() {
-
-}
+CalibrationResult::CalibrationResult(const CalibrationResult & object)
+: data(std::make_shared<CDM::CalibrationResult>(*object.data))
+{ }
 
 void CalibrationResult::copyFrom(const CalibrationResult & object) {
-	data = std::shared_ptr<CDM::CalibrationResult>( new CDM::CalibrationResult(*object.data));
+	data = std::make_shared<CDM::CalibrationResult>(*object.data);
 }
 
-CalibrationResult & CalibrationResult:: operator=(const CalibrationResult & object) {
+CalibrationResult & CalibrationResult:: operator=(const CalibrationResult& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 CalibrationResult & CalibrationResult::setCode(const CodedValue & value) {
-	data->Code(ConvertToCDM::convert(value));
+	data->setCode(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 CodedValue CalibrationResult::getCode() const {
-	return ConvertFromCDM::convert(data->Code());
+	return ConvertFromCDM::convert(data->getCode());
 }
 
 CalibrationResult & CalibrationResult::setValue(const Measurement & value) {
-	data->Value(ConvertToCDM::convert(value));
+	data->setValue(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 Measurement CalibrationResult::getValue() const {
-	return ConvertFromCDM::convert(data->Value());
+	return ConvertFromCDM::convert(data->getValue());
 }
 
 

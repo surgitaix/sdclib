@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class AlertConditionState {
+class AlertConditionState
+{
 private:
 	AlertConditionState(const CDM::AlertConditionState & object);
 	operator CDM::AlertConditionState() const;
@@ -59,11 +60,11 @@ public:
 private:
 	AlertConditionState(){};
 public:
-	AlertConditionState(const AlertConditionState & object);
-	virtual ~AlertConditionState();
+	AlertConditionState(const AlertConditionState& object);
+	virtual ~AlertConditionState() = default;
 
-    void copyFrom(const AlertConditionState & object);
-    AlertConditionState & operator=(const AlertConditionState & object);
+    void copyFrom(const AlertConditionState& object);
+    AlertConditionState & operator=(const AlertConditionState& object);
 
     typedef CDM::AlertConditionState WrappedType;
     typedef AlertConditionDescriptor DescriptorType;
@@ -110,7 +111,7 @@ public:
 	bool hasDeterminationTime() const;
 
 private:
-	std::shared_ptr<CDM::AlertConditionState> data;
+	std::shared_ptr<CDM::AlertConditionState> data = nullptr;
 };
 
 } /* namespace SDC */

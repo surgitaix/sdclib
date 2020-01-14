@@ -1,12 +1,13 @@
 /*
  * OperationTraits.h
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 22.08.2019, baumeister
+ *
  */
 
-#ifndef DPWS_OPERATIONTRAITS_H_
-#define DPWS_OPERATIONTRAITS_H_
+#ifndef OSELIB_DPWS_OPERATIONTRAITS_H_
+#define OSELIB_DPWS_OPERATIONTRAITS_H_
 
 #include "OSELib/fwd.h"
 
@@ -39,7 +40,7 @@ struct ProbeTraits {
 	static std::string OperationName();
 	static std::string RequestAction();
 	static std::string ResponseAction();
-	static std::unique_ptr<Response> dispatch(Dispatcher & dispatcher, const Request & request);
+	static std::unique_ptr<Response> dispatch(Dispatcher & p_dispatcher, const Request & p_request);
 };
 
 struct RenewTraits {
@@ -52,7 +53,7 @@ struct RenewTraits {
 	static xml_schema::Qname RequestType();
 	static std::string ResponseAction();
 	static xml_schema::Qname ResponseType();
-	static std::unique_ptr<Response> dispatch(Dispatcher & dispatcher, const Request & request, const RequestIdentifier & identifier);
+	static std::unique_ptr<Response> dispatch(Dispatcher & p_dispatcher, const Request & p_request, const RequestIdentifier & p_identifier);
 };
 
 struct SubscribeTraits {
@@ -64,7 +65,7 @@ struct SubscribeTraits {
 	static xml_schema::Qname RequestType();
 	static std::string ResponseAction();
 	static xml_schema::Qname ResponseType();
-	static std::unique_ptr<Response> dispatch(Dispatcher & dispatcher, const Request & request);
+	static std::unique_ptr<Response> dispatch(Dispatcher & p_dispatcher, const Request & p_request);
 };
 
 struct UnsubscribeTraits {
@@ -77,7 +78,7 @@ struct UnsubscribeTraits {
 	static xml_schema::Qname RequestType();
 	static std::string ResponseAction();
 	static xml_schema::Qname ResponseType();
-	static std::unique_ptr<Response> dispatch(Dispatcher & dispatcher, const Request & request, const RequestIdentifier & identifier);
+	static std::unique_ptr<Response> dispatch(Dispatcher & p_dispatcher, const Request & p_request, const RequestIdentifier & p_identifier);
 };
 
 struct GetStatusTraits {
@@ -90,10 +91,10 @@ struct GetStatusTraits {
 	static xml_schema::Qname RequestType();
 	static std::string ResponseAction();
 	static xml_schema::Qname ResponseType();
-	static std::unique_ptr<Response> dispatch(Dispatcher & dispatcher, const Request & request, const RequestIdentifier & identifier);
+	static std::unique_ptr<Response> dispatch(Dispatcher & p_dispatcher, const Request & p_request, const RequestIdentifier & p_identifier);
 };
 
-} /* namespace DPWS */
-} /* namespace OSELib */
+}
+}
 
-#endif /* DPWS_OPERATIONTRAITS_H_ */
+#endif

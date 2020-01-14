@@ -1,7 +1,7 @@
 #ifndef SCHEMA_WSADDRESSING_H
 #define SCHEMA_WSADDRESSING_H
 
-#include <string.h>
+#include <string>
 
 namespace SCHEMA
 {

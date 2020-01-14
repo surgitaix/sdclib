@@ -39,8 +39,9 @@ const int DEFAULT_PORT(0);
 const std::string DEFAULT_ENDPOINT_REFERENCE("PulseOximeter");
 
 
-PulseOximeterProvider::PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance> p_SDCInstance) :
+PulseOximeterProvider::PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance> p_SDCInstance, const std::string& port) :
 	sdcProvider(p_SDCInstance),
+	COMport(port),
 	//Metric state handler initialization
 	fingerOutStatusHandler(new PulseOximeterFingerOutGetHandler(PULSE_OXIMETER_FINGER_STATUS_GET_HANDLE)),
 	satO2GetHandler(new PulseOximeterSatO2GetHandler(PULSE_OXIMETER_SAT_O2_GET_HANDLE)),
@@ -126,7 +127,7 @@ PulseOximeterProvider::PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance
 		sdcProvider.setEndpointReference(endPointReference);
 	}
 
-	void PulseOximeterProvider::setPort(int port) {
+	void PulseOximeterProvider::setPort(int ) {
 		//Network configuration
 
 	}
@@ -139,6 +140,7 @@ PulseOximeterProvider::PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance
 
 	void PulseOximeterProvider::shutdown() {
 		//forwarding of the shutdown function
+
 		sdcProvider.shutdown();
 		serial->stop();
 	}
@@ -153,8 +155,10 @@ PulseOximeterProvider::PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance
 				fingerOutStatusHandler->setCurrentStatus(fingerIsOut);
 				satO2GetHandler->setCurrentValue(satO2);
 				pulseRateGetHandler->setCurrentValue(pulseRate);
-				DebugOut(DebugOut::Default, "ExampleProvider") << "satO2: value changed to " << satO2 << std::endl;
-				DebugOut(DebugOut::Default, "ExampleProvider") << "PulseRate: value changed to " << pulseRate << std::endl;
+
+				DebugOut(DebugOut::Default, "PulseOximeterProvider") << "satO2: value changed to " << satO2 << std::endl;
+				DebugOut(DebugOut::Default, "PulseOximeterProvider") << "PulseRate: value changed to " << pulseRate << std::endl;
+
 
 			}
 			Poco::Thread::sleep(1000);
@@ -191,7 +195,8 @@ PulseOximeterProvider::PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance
 		CauseInfo satO2LimitCauseInfo;
 		LocalizedText satO2InfoDescriptor;
 		satO2InfoDescriptor.setLang("en");
-		satO2InfoDescriptor.setRef("O2 saturation outside of limit");
+
+		satO2InfoDescriptor.setText("O2 saturation outside of limit");
 		satO2LimitCauseInfo.addDescription(satO2InfoDescriptor);
 		satO2AlarmLimitDescriptor.getCauseInfoList().push_back(satO2LimitCauseInfo);
 		alertSystemDesc.addLimitAlertCondition(satO2AlarmLimitDescriptor);
@@ -219,7 +224,8 @@ PulseOximeterProvider::PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance
 		CauseInfo pulseRateLimitCauseInfo;
 		LocalizedText pulseRateInfoDescriptor;
 		pulseRateInfoDescriptor.setLang("en");
-		pulseRateInfoDescriptor.setRef("Pulse Rate outside of limit");
+
+		pulseRateInfoDescriptor.setText("Pulse Rate outside of limit");
 		pulseRateLimitCauseInfo.addDescription(pulseRateInfoDescriptor);
 		pulseRateAlarmLimitDescriptor.getCauseInfoList().push_back(pulseRateLimitCauseInfo);
 		alertSystemDesc.addLimitAlertCondition(pulseRateAlarmLimitDescriptor);
@@ -242,7 +248,8 @@ PulseOximeterProvider::PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance
 		CauseInfo fingerOutCauseInfo;
 		LocalizedText fingerOutInfoDescriptor;
 		fingerOutInfoDescriptor.setLang("en");
-		fingerOutInfoDescriptor.setRef("Patient Finger is Out");
+
+		fingerOutInfoDescriptor.setText("Patient Finger is Out");
 		fingerOutCauseInfo.addDescription(fingerOutInfoDescriptor);
 		fingerOutAlarmDescriptor.getCauseInfoList().push_back(fingerOutCauseInfo);
 		alertSystemDesc.addAlertCondition(fingerOutAlarmDescriptor);
@@ -267,9 +274,7 @@ PulseOximeterProvider::PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance
 
 	void PulseOximeterProvider::startMedicalDevice() {
 	    try {
-
-	    	serial = std::make_shared<Serial::SerialConnectionEventHandler>("/dev/ttyS0", 115200);
-
+	    	serial = std::make_shared<Serial::SerialConnectionEventHandler>(COMport, 115200);
 	    	serial->start();
 
 			std::string hex = "7d81a1808080808080";

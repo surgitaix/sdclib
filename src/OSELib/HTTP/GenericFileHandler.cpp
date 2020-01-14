@@ -1,57 +1,54 @@
 /*
  * DPWSGetMetadataRequestHandler.cpp
  *
- *  Created on: 25.07.2014
- *      Author: roehser
+ *  Created on: 25.07.2014, roehser
+ *  Modified on: 20.08.2019, baumeister
+ *
  */
-
-#include <fstream>
-
-#include "Poco/Net/HTTPServerRequest.h"
-#include "Poco/Net/HTTPServerResponse.h"
 
 #include "OSELib/HTTP/GenericFileHandler.h"
 
-namespace OSELib {
-namespace HTTP {
+#include <fstream>
 
-GenericFileHandler::GenericFileHandler(const std::string & fileName) :
-		fileName(fileName)
-{
+#include <Poco/Net/HTTPServerRequest.h>
+#include <Poco/Net/HTTPServerResponse.h>
 
-}
 
-void GenericFileHandler::handleRequest(Poco::Net::HTTPServerRequest&, Poco::Net::HTTPServerResponse & resp) {
+using namespace OSELib;
+using namespace OSELib::HTTP;
 
-	std::ifstream file;
+GenericFileHandler::GenericFileHandler(const std::string & p_fileName)
+: m_fileName(p_fileName)
+{ }
+
+void GenericFileHandler::handleRequest(Poco::Net::HTTPServerRequest&, Poco::Net::HTTPServerResponse & p_response) {
+
+	std::ifstream t_file;
 
 	try {
-		file.open(fileName.c_str(), std::ifstream::in);
+		t_file.open(m_fileName.c_str(), std::ifstream::in);
 	} catch (...) {
 	}
 
-	if (!file.is_open()) {
-		resp.setStatus(Poco::Net::HTTPResponse::HTTP_NOT_FOUND);
-		resp.send();
+	if (!t_file.is_open()) {
+		p_response.setStatus(Poco::Net::HTTPResponse::HTTP_NOT_FOUND);
+		p_response.send();
 		return;
 	}
 
-	std::string wsdl;
-	while (!file.eof()) {
+	std::string t_wsdl;
+	while (!t_file.eof()) {
 		std::string tmp;
-		std::getline(file, tmp);
-		wsdl += tmp;
+		std::getline(t_file, tmp);
+		t_wsdl += tmp;
 	}
-	file.close();
+	t_file.close();
 
-	resp.setStatus(Poco::Net::HTTPResponse::HTTP_OK);
-	resp.setContentType("application/xml");
-	resp.setChunkedTransferEncoding(false);
-	resp.setContentLength(wsdl.length());
+	p_response.setStatus(Poco::Net::HTTPResponse::HTTP_OK);
+	p_response.setContentType("application/xml");
+	p_response.setChunkedTransferEncoding(false);
+	p_response.setContentLength(t_wsdl.length());
 
-	std::ostream & out = resp.send();
-	out << wsdl << std::flush;
+	std::ostream & t_out = p_response.send();
+	t_out << t_wsdl << std::flush;
 }
-
-}
-} /* namespace OSELib */

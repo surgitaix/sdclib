@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class RemedyInfo {
+class RemedyInfo
+{
 private:
 	RemedyInfo(const CDM::RemedyInfo & object);
 	operator CDM::RemedyInfo() const;
@@ -53,11 +54,11 @@ private:
 public:
 	RemedyInfo(
 	);
-	RemedyInfo(const RemedyInfo & object);
-	virtual ~RemedyInfo();
+	RemedyInfo(const RemedyInfo& object);
+	virtual ~RemedyInfo() = default;
 
-    void copyFrom(const RemedyInfo & object);
-    RemedyInfo & operator=(const RemedyInfo & object);
+    void copyFrom(const RemedyInfo& object);
+    RemedyInfo & operator=(const RemedyInfo& object);
 
     typedef CDM::RemedyInfo WrappedType;
 
@@ -66,7 +67,7 @@ public:
 	void clearDescriptionList();
 
 private:
-	std::shared_ptr<CDM::RemedyInfo> data;
+	std::shared_ptr<CDM::RemedyInfo> data = nullptr;
 };
 
 } /* namespace SDC */

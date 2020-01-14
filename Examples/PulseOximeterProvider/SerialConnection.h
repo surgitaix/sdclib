@@ -8,8 +8,9 @@
 #ifndef EXAMPLES_PULSEOXIMETERPROVIDER_SERIALCONNECTION_H_
 #define EXAMPLES_PULSEOXIMETERPROVIDER_SERIALCONNECTION_H_
 
-#include <asio.hpp>
-#include "OSELib/TCP/ContextWorker.h"
+#include <iostream>
+#include "asio.hpp"
+#include "ContextWorker.h"
 
 namespace Serial {
 

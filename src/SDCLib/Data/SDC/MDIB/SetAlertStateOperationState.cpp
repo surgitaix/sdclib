@@ -34,7 +34,7 @@
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/Defaults.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 
 namespace SDCLib {
@@ -50,94 +50,91 @@ SetAlertStateOperationState::SetAlertStateOperationState(
 		descriptorhandle
 		,
 		operatingmode
-)) {}
+))
+{}
 
 SetAlertStateOperationState::operator CDM::SetAlertStateOperationState() const {
 	return *data;
 }
 
-SetAlertStateOperationState::SetAlertStateOperationState(const CDM::SetAlertStateOperationState & object) : data(new CDM::SetAlertStateOperationState(object)) {
+SetAlertStateOperationState::SetAlertStateOperationState(const CDM::SetAlertStateOperationState & object)
+: data(new CDM::SetAlertStateOperationState(object))
+{ }
 
-}
-
-SetAlertStateOperationState::SetAlertStateOperationState(const SetAlertStateOperationState & object) : data(new CDM::SetAlertStateOperationState(*object.data)) {
-
-}
-
-SetAlertStateOperationState::~SetAlertStateOperationState() {
-
-}
+SetAlertStateOperationState::SetAlertStateOperationState(const SetAlertStateOperationState & object)
+: data(std::make_shared<CDM::SetAlertStateOperationState>(*object.data))
+{ }
 
 void SetAlertStateOperationState::copyFrom(const SetAlertStateOperationState & object) {
-	data = std::shared_ptr<CDM::SetAlertStateOperationState>( new CDM::SetAlertStateOperationState(*object.data));
+	data = std::make_shared<CDM::SetAlertStateOperationState>(*object.data);
 }
 
-SetAlertStateOperationState & SetAlertStateOperationState:: operator=(const SetAlertStateOperationState & object) {
+SetAlertStateOperationState & SetAlertStateOperationState:: operator=(const SetAlertStateOperationState& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 SetAlertStateOperationState & SetAlertStateOperationState::setStateVersion(const VersionCounter & value) {
-	data->StateVersion(ConvertToCDM::convert(value));
+	data->setStateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetAlertStateOperationState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
+	if (data->getStateVersion().present()) {
+		out = ConvertFromCDM::convert(data->getStateVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter SetAlertStateOperationState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+	return ConvertFromCDM::convert(data->getStateVersion().get());
 }
 
 bool SetAlertStateOperationState::hasStateVersion() const {
-	return data->StateVersion().present();
+	return data->getStateVersion().present();
 }
 
 SetAlertStateOperationState & SetAlertStateOperationState::setDescriptorHandle(const HandleRef & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
+	data->setDescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 HandleRef SetAlertStateOperationState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
+	return ConvertFromCDM::convert(data->getDescriptorHandle());
 }
 
 SetAlertStateOperationState & SetAlertStateOperationState::setDescriptorVersion(const ReferencedVersion & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetAlertStateOperationState::getDescriptorVersion(ReferencedVersion & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 ReferencedVersion SetAlertStateOperationState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool SetAlertStateOperationState::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 SetAlertStateOperationState & SetAlertStateOperationState::setOperatingMode(const OperatingMode & value) {
-	data->OperatingMode(ConvertToCDM::convert(value));
+	data->setOperatingMode(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 OperatingMode SetAlertStateOperationState::getOperatingMode() const {
-	return ConvertFromCDM::convert(data->OperatingMode());
+	return ConvertFromCDM::convert(data->getOperatingMode());
 }
 
 

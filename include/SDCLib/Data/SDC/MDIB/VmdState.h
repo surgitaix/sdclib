@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class VmdState {
+class VmdState
+{
 private:
 	VmdState(const CDM::VmdState & object);
 	operator CDM::VmdState() const;
@@ -57,11 +58,11 @@ public:
 private:
 	VmdState(){};
 public:
-	VmdState(const VmdState & object);
-	virtual ~VmdState();
+	VmdState(const VmdState& object);
+	virtual ~VmdState() = default;
 
-    void copyFrom(const VmdState & object);
-    VmdState & operator=(const VmdState & object);
+    void copyFrom(const VmdState& object);
+    VmdState & operator=(const VmdState& object);
 
     typedef CDM::VmdState WrappedType;
 
@@ -114,7 +115,7 @@ public:
 	bool hasOperatingJurisdiction() const;
 
 private:
-	std::shared_ptr<CDM::VmdState> data;
+	std::shared_ptr<CDM::VmdState> data = nullptr;
 };
 
 } /* namespace SDC */

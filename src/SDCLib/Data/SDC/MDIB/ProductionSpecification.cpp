@@ -34,7 +34,7 @@
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/Defaults.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 #include "SDCLib/Data/SDC/MDIB/CodedValue.h"
 #include "SDCLib/Data/SDC/MDIB/InstanceIdentifier.h"
@@ -52,73 +52,70 @@ ProductionSpecification::ProductionSpecification(
 		spectype
 		,
 		productionspec
-)) {}
+))
+{}
 
 ProductionSpecification::operator CDM::ProductionSpecification() const {
 	return *data;
 }
 
-ProductionSpecification::ProductionSpecification(const CDM::ProductionSpecification & object) : data(new CDM::ProductionSpecification(object)) {
+ProductionSpecification::ProductionSpecification(const CDM::ProductionSpecification & object)
+: data(new CDM::ProductionSpecification(object))
+{ }
 
-}
-
-ProductionSpecification::ProductionSpecification(const ProductionSpecification & object) : data(new CDM::ProductionSpecification(*object.data)) {
-
-}
-
-ProductionSpecification::~ProductionSpecification() {
-
-}
+ProductionSpecification::ProductionSpecification(const ProductionSpecification & object)
+: data(std::make_shared<CDM::ProductionSpecification>(*object.data))
+{ }
 
 void ProductionSpecification::copyFrom(const ProductionSpecification & object) {
-	data = std::shared_ptr<CDM::ProductionSpecification>( new CDM::ProductionSpecification(*object.data));
+	data = std::make_shared<CDM::ProductionSpecification>(*object.data);
 }
 
-ProductionSpecification & ProductionSpecification:: operator=(const ProductionSpecification & object) {
+ProductionSpecification & ProductionSpecification:: operator=(const ProductionSpecification& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 ProductionSpecification & ProductionSpecification::setSpecType(const CodedValue & value) {
-	data->SpecType(ConvertToCDM::convert(value));
+	data->setSpecType(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 CodedValue ProductionSpecification::getSpecType() const {
-	return ConvertFromCDM::convert(data->SpecType());
+	return ConvertFromCDM::convert(data->getSpecType());
 }
 
 ProductionSpecification & ProductionSpecification::setProductionSpec(const std::string & value) {
-	data->ProductionSpec(ConvertToCDM::convert(value));
+	data->setProductionSpec(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 std::string ProductionSpecification::getProductionSpec() const {
-	return ConvertFromCDM::convert(data->ProductionSpec());
+	return ConvertFromCDM::convert(data->getProductionSpec());
 }
 
 ProductionSpecification & ProductionSpecification::setComponentId(const InstanceIdentifier & value) {
-	data->ComponentId(ConvertToCDM::convert(value));
+	data->setComponentId(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ProductionSpecification::getComponentId(InstanceIdentifier & out) const {
-	if (data->ComponentId().present()) {
-		out = ConvertFromCDM::convert(data->ComponentId().get());
+	if (data->getComponentId().present()) {
+		out = ConvertFromCDM::convert(data->getComponentId().get());
 		return true;
 	}
 	return false;
 }
 
 InstanceIdentifier ProductionSpecification::getComponentId() const {
-	return ConvertFromCDM::convert(data->ComponentId().get());
+	return ConvertFromCDM::convert(data->getComponentId().get());
 }
 
 bool ProductionSpecification::hasComponentId() const {
-	return data->ComponentId().present();
+	return data->getComponentId().present();
 }
 
 

@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class WorkflowContextDescriptor {
+class WorkflowContextDescriptor
+{
 private:
 	WorkflowContextDescriptor(const CDM::WorkflowContextDescriptor & object);
 	operator CDM::WorkflowContextDescriptor() const;
@@ -57,11 +58,11 @@ public:
 private:
 	WorkflowContextDescriptor(){};
 public:
-	WorkflowContextDescriptor(const WorkflowContextDescriptor & object);
-	virtual ~WorkflowContextDescriptor();
+	WorkflowContextDescriptor(const WorkflowContextDescriptor& object);
+	virtual ~WorkflowContextDescriptor() = default;
 
-    void copyFrom(const WorkflowContextDescriptor & object);
-    WorkflowContextDescriptor & operator=(const WorkflowContextDescriptor & object);
+    void copyFrom(const WorkflowContextDescriptor& object);
+    WorkflowContextDescriptor & operator=(const WorkflowContextDescriptor& object);
 
     typedef CDM::WorkflowContextDescriptor WrappedType;
     typedef WorkflowContextState StateType;
@@ -85,7 +86,7 @@ public:
 	bool hasSafetyClassification() const;
 
 private:
-	std::shared_ptr<CDM::WorkflowContextDescriptor> data;
+	std::shared_ptr<CDM::WorkflowContextDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

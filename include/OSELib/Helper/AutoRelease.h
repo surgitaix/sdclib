@@ -5,18 +5,22 @@
  *      Author: matthias
  */
 
-#ifndef HELPER_AUTORELEASE_H_
-#define HELPER_AUTORELEASE_H_
+#ifndef OSELIB_HELPER_AUTORELEASE_H_
+#define OSELIB_HELPER_AUTORELEASE_H_
 
-namespace OSELib {
-namespace Helper {
+#include <assert.h>
 
-template<class T>
-struct AutoRelease {
-	void operator()(T * object) { object->release(); }
-};
+namespace OSELib
+{
+	namespace Helper
+	{
+		template<class T>
+		struct AutoRelease
+		{
+			void operator()(T * object) { assert(nullptr != object); object->release(); }
+		};
 
+	}
 }
-}
 
-#endif /* HELPER_AUTORELEASE_H_ */
+#endif

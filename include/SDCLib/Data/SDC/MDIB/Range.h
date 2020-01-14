@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class Range {
+class Range
+{
 private:
 	Range(const CDM::Range & object);
 	operator CDM::Range() const;
@@ -53,11 +54,11 @@ private:
 public:
 	Range(
 	);
-	Range(const Range & object);
-	virtual ~Range();
+	Range(const Range& object);
+	virtual ~Range() = default;
 
-    void copyFrom(const Range & object);
-    Range & operator=(const Range & object);
+    void copyFrom(const Range& object);
+    Range & operator=(const Range& object);
 
     typedef CDM::Range WrappedType;
 
@@ -87,7 +88,7 @@ public:
 	bool hasAbsoluteAccuracy() const;
 
 private:
-	std::shared_ptr<CDM::Range> data;
+	std::shared_ptr<CDM::Range> data = nullptr;
 };
 
 } /* namespace SDC */

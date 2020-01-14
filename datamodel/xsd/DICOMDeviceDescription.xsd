@@ -95,7 +95,7 @@
 				</xsd:annotation>
 			</xsd:element>
 		</xsd:sequence>
-		<xsd:attribute name="id" type="xsd:ID" use="required">
+		<xsd:attribute name="Id" type="xsd:ID" use="required">
 			<xsd:annotation>
 				<xsd:documentation>Unique ID for this network connections. Referenced by DICOMNetworkAE type in order to bind an AE to a network connection.</xsd:documentation>
 			</xsd:annotation>

@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class Relation {
+class Relation
+{
 private:
 	Relation(const CDM::Relation & object);
 	operator CDM::Relation() const;
@@ -59,11 +60,11 @@ public:
 private:
 	Relation(){};
 public:
-	Relation(const Relation & object);
-	virtual ~Relation();
+	Relation(const Relation& object);
+	virtual ~Relation() = default;
 
-    void copyFrom(const Relation & object);
-    Relation & operator=(const Relation & object);
+    void copyFrom(const Relation& object);
+    Relation & operator=(const Relation& object);
 
     typedef CDM::Relation WrappedType;
 
@@ -84,7 +85,7 @@ public:
 	EntryRef getEntries() const;
 
 private:
-	std::shared_ptr<CDM::Relation> data;
+	std::shared_ptr<CDM::Relation> data = nullptr;
 };
 
 } /* namespace SDC */

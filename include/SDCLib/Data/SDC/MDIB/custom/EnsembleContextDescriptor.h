@@ -32,9 +32,8 @@
 #ifndef ENSEMBLECONTEXTDESCRIPTOR_H_
 #define ENSEMBLECONTEXTDESCRIPTOR_H_
 
-#include "SDCLib/Data/SDC/MDIB/EnumMappings.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {

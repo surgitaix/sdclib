@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class DistributionSampleArrayMetricState {
+class DistributionSampleArrayMetricState
+{
 private:
 	DistributionSampleArrayMetricState(const CDM::DistributionSampleArrayMetricState & object);
 	operator CDM::DistributionSampleArrayMetricState() const;
@@ -57,11 +58,11 @@ public:
 private:
 	DistributionSampleArrayMetricState(){};
 public:
-	DistributionSampleArrayMetricState(const DistributionSampleArrayMetricState & object);
-	virtual ~DistributionSampleArrayMetricState();
+	DistributionSampleArrayMetricState(const DistributionSampleArrayMetricState& object);
+	virtual ~DistributionSampleArrayMetricState() = default;
 
-    void copyFrom(const DistributionSampleArrayMetricState & object);
-    DistributionSampleArrayMetricState & operator=(const DistributionSampleArrayMetricState & object);
+    void copyFrom(const DistributionSampleArrayMetricState& object);
+    DistributionSampleArrayMetricState & operator=(const DistributionSampleArrayMetricState& object);
 
     typedef CDM::DistributionSampleArrayMetricState WrappedType;
 
@@ -112,7 +113,7 @@ public:
 	void clearPhysiologicalRangeList();
 
 private:
-	std::shared_ptr<CDM::DistributionSampleArrayMetricState> data;
+	std::shared_ptr<CDM::DistributionSampleArrayMetricState> data = nullptr;
 };
 
 } /* namespace SDC */

@@ -2,17 +2,20 @@
 #ifndef OSELIB_SDC_REPORTRAITS_H_
 #define OSELIB_SDC_REPORTRAITS_H_
 
-#include "osdm-fwd.hxx"
+#include "OSELib/fwd.h"
+#include "DataModel/BICEPS_MessageModel.hxx"
 
 namespace OSELib {
 namespace SDC {
 
 struct DescriptionModificationReportTraits {
 	typedef MDM::DescriptionModificationReport ReportType;
+	typedef IDescriptionEventServiceEventSink Dispatcher;
 	static xml_schema::Qname MessageType();
 	static std::string NotificationName();
 	static xml_schema::Qname PortType();
 	static std::string Action();
+	static void dispatch(Dispatcher& p_dispatcher, const ReportType& p_request);
 };
 
 struct EpisodicAlertReportTraits {
@@ -22,17 +25,27 @@ struct EpisodicAlertReportTraits {
 	static std::string NotificationName();
 	static xml_schema::Qname PortType();
 	static std::string Action();
-	static void dispatch(Dispatcher & dispatcher, const ReportType & request);
+	static void dispatch(Dispatcher& p_dispatcher, const ReportType& p_request);
 };
 
-struct EpisodicContextChangedReportTraits {
+struct EpisodicComponentReportTraits {
+	typedef MDM::EpisodicComponentReport ReportType;
+	typedef IStateEventServiceEventSink Dispatcher;
+	static xml_schema::Qname MessageType();
+	static std::string NotificationName();
+	static xml_schema::Qname PortType();
+	static std::string Action();
+	static void dispatch(Dispatcher& p_dispatcher, const ReportType& p_request);
+};
+
+struct EpisodicContextReportTraits {
 	typedef MDM::EpisodicContextReport ReportType;
 	typedef IContextServiceEventSink Dispatcher;
 	static xml_schema::Qname MessageType();
 	static std::string NotificationName();	
 	static xml_schema::Qname PortType();
 	static std::string Action();
-	static void dispatch(Dispatcher & dispatcher, const ReportType & request);
+	static void dispatch(Dispatcher & p_dispatcher, const ReportType & p_request);
 };
 
 struct EpisodicMetricReportTraits {
@@ -42,7 +55,17 @@ struct EpisodicMetricReportTraits {
 	static std::string NotificationName();
 	static xml_schema::Qname PortType();
 	static std::string Action();
-	static void dispatch(Dispatcher & dispatcher, const ReportType & request);
+	static void dispatch(Dispatcher & p_dispatcher, const ReportType & p_request);
+};
+
+struct EpisodicOperationalStateReportTraits {
+	typedef MDM::EpisodicOperationalStateReport ReportType;
+	typedef IStateEventServiceEventSink Dispatcher;
+	static xml_schema::Qname MessageType();
+	static std::string NotificationName();
+	static xml_schema::Qname PortType();
+	static std::string Action();
+	static void dispatch(Dispatcher& p_dispatcher, const ReportType& p_request);
 };
 
 struct OperationInvokedReportTraits {
@@ -52,7 +75,7 @@ struct OperationInvokedReportTraits {
 	static std::string NotificationName();
 	static xml_schema::Qname PortType();
 	static std::string Action();
-	static void dispatch(Dispatcher & dispatcher, const ReportType & request);
+	static void dispatch(Dispatcher & p_dispatcher, const ReportType & p_request);
 };
 
 struct PeriodicAlertReportTraits {
@@ -62,17 +85,17 @@ struct PeriodicAlertReportTraits {
 	static std::string NotificationName();
 	static xml_schema::Qname PortType();
 	static std::string Action();
-	static void dispatch(Dispatcher & dispatcher, const ReportType & request);
+	static void dispatch(Dispatcher & p_dispatcher, const ReportType & p_request);
 };
 
-struct PeriodicContextChangedReportTraits {
+struct PeriodicContextReportTraits {
 	typedef MDM::PeriodicContextReport ReportType;
 	typedef IContextServiceEventSink Dispatcher;
 	static xml_schema::Qname MessageType();
 	static std::string NotificationName();	
 	static xml_schema::Qname PortType();
 	static std::string Action();
-	static void dispatch(Dispatcher & dispatcher, const ReportType & request);
+	static void dispatch(Dispatcher & p_dispatcher, const ReportType & p_request);
 };
 
 struct PeriodicMetricReportTraits {
@@ -82,7 +105,7 @@ struct PeriodicMetricReportTraits {
 	static std::string NotificationName();
 	static xml_schema::Qname PortType();
 	static std::string Action();
-	static void dispatch(Dispatcher & dispatcher, const ReportType & request);
+	static void dispatch(Dispatcher & p_dispatcher, const ReportType & p_request);
 };
 
 struct WaveformStreamTraits {
@@ -92,9 +115,9 @@ struct WaveformStreamTraits {
 	static std::string NotificationName();
 	static xml_schema::Qname PortType();
 	static std::string Action();
-	static void dispatch(Dispatcher & dispatcher, const ReportType & request);
+	static void dispatch(Dispatcher & p_dispatcher, const ReportType & p_request);
 };
 
 }
 }
-#endif /* OSELIB_SDC_REPORTRAITS_H_ */
+#endif

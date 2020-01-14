@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class Translation {
+class Translation
+{
 private:
 	Translation(const CDM::Translation & object);
 	operator CDM::Translation() const;
@@ -57,11 +58,11 @@ public:
 private:
 	Translation(){};
 public:
-	Translation(const Translation & object);
-	virtual ~Translation();
+	Translation(const Translation& object);
+	virtual ~Translation() = default;
 
-    void copyFrom(const Translation & object);
-    Translation & operator=(const Translation & object);
+    void copyFrom(const Translation& object);
+    Translation & operator=(const Translation& object);
 
     typedef CDM::Translation WrappedType;
 
@@ -79,7 +80,7 @@ public:
 	bool hasCodingSystemVersion() const;
 
 private:
-	std::shared_ptr<CDM::Translation> data;
+	std::shared_ptr<CDM::Translation> data = nullptr;
 };
 
 } /* namespace SDC */

@@ -1,7 +1,7 @@
 # Current Target
 set( CURRENT_TARGET_NAME SDCLib )
 # Add this for better project structure after cmake generation
-project(${CURRENT_TARGET_NAME})
+project(${CURRENT_TARGET_NAME} "CXX")
 
 # Add an empty target first - FIXME: Why distinguish here. Does PIC flag solve it?
 if(WIN32)
@@ -48,11 +48,9 @@ set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             # WSDL
                             ${INCLUDE_DIR}/OSELib/WSDL/WSDLLoader.h
                             # Service
-                            ${INCLUDE_DIR}/OSELib/WSDL/ContextServiceWSDL.h
                             ${INCLUDE_DIR}/OSELib/WSDL/GetServiceWSDL.h
                             ${INCLUDE_DIR}/OSELib/WSDL/SetServiceWSDL.h
-                            ${INCLUDE_DIR}/OSELib/WSDL/StateEventServiceWSDL.h
-                            ${INCLUDE_DIR}/OSELib/WSDL/WaveformServiceWSDL.h
+                            ${INCLUDE_DIR}/OSELib/WSDL/BICEPSServiceWSDL.h
                             # DPWS
                             ${INCLUDE_DIR}/OSELib/DPWS/Types.h
                             ${INCLUDE_DIR}/OSELib/DPWS/MDPWSHostAdapter.h
@@ -81,11 +79,13 @@ set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             ${INCLUDE_DIR}/OSELib/SDC/ServiceManager.h
                             ${INCLUDE_DIR}/OSELib/SDC/DefaultSDCSchemaGrammarProvider.h
                             ${INCLUDE_DIR}/OSELib/SDC/OperationTraits.h
-                            ${INCLUDE_DIR}/OSELib/SDC/WaveformReportServiceHandler.h
                             ${INCLUDE_DIR}/OSELib/SDC/IStateEventServiceEventSink.h
+                            ${INCLUDE_DIR}/OSELib/SDC/IDescriptionEventServiceEventSink.h
                             ${INCLUDE_DIR}/OSELib/SDC/IEventReport.h
                             ${INCLUDE_DIR}/OSELib/SDC/GetServiceHandler.h
                             ${INCLUDE_DIR}/OSELib/SDC/SetServiceHandler.h
+                            ${INCLUDE_DIR}/OSELib/SDC/BICEPSServiceHandler.h
+                            ${INCLUDE_DIR}/OSELib/SDC/BICEPSServiceEventSinkHandler.h
                             ${INCLUDE_DIR}/OSELib/SDC/ISetServiceEventSink.h
                             ${INCLUDE_DIR}/OSELib/SDC/SDCConstants.h
                             ${INCLUDE_DIR}/OSELib/SDC/IContextServiceEventSink.h
@@ -93,16 +93,16 @@ set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             ${INCLUDE_DIR}/OSELib/SDC/IGetService.h
                             ${INCLUDE_DIR}/OSELib/SDC/IContextService.h
                             ${INCLUDE_DIR}/OSELib/SDC/SDCServiceController.h
-                            ${INCLUDE_DIR}/OSELib/SDC/ContextServiceHandler.h
                             ${INCLUDE_DIR}/OSELib/SDC/ISetService.h
-                            ${INCLUDE_DIR}/OSELib/SDC/ContextEventSinkHandler.h
-                            ${INCLUDE_DIR}/OSELib/SDC/StateEventServiceEventSinkHandler.h
+                            ${INCLUDE_DIR}/OSELib/SDC/IBICEPSService.h
+                            ${INCLUDE_DIR}/OSELib/SDC/IBICEPSServiceEventSink.h
                             ${INCLUDE_DIR}/OSELib/SDC/ReportTraits.h
                             ${INCLUDE_DIR}/OSELib/SDC/IWaveformService.h
                             ${INCLUDE_DIR}/OSELib/SDC/SetServiceEventSinkHandler.h
-                            ${INCLUDE_DIR}/OSELib/SDC/EventReportServiceHandler.h
                             ${INCLUDE_DIR}/OSELib/HTTP/Service.h
                             ${INCLUDE_DIR}/OSELib/HTTP/FrontController.h
+                            ${INCLUDE_DIR}/OSELib/HTTP/HTTPServer.h
+                            ${INCLUDE_DIR}/OSELib/HTTP/HTTPRequestHandlerFactory.h
                             ${INCLUDE_DIR}/OSELib/HTTP/GenericFileHandler.h
                             ${INCLUDE_DIR}/OSELib/HTTP/HTTPClientSessionWrapper.h
                             ${INCLUDE_DIR}/OSELib/HTTP/HTTPSessionManager.h
@@ -116,6 +116,7 @@ set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             ${INCLUDE_DIR}/OSELib/Helper/WithLogger.h
                             ${INCLUDE_DIR}/OSELib/Helper/AutoRelease.h
                             ${INCLUDE_DIR}/OSELib/Helper/DurationWrapper.h
+                            ${INCLUDE_DIR}/OSELib/Helper/DateWrapper.h
                             ${INCLUDE_DIR}/OSELib/Helper/XercesDocumentWrapper.h
                             ${INCLUDE_DIR}/OSELib/Helper/XercesUniqueElementByTagNameFilter.h
                             ${INCLUDE_DIR}/OSELib/Helper/XercesParserWrapper.h
@@ -274,11 +275,6 @@ set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             ${INCLUDE_DIR}/SDCLib/Data/SDC/SDCConsumer.h
                             ${INCLUDE_DIR}/SDCLib/Data/SDC/SDCProviderActivateOperationHandler.h
                             ${INCLUDE_DIR}/SDCLib/Data/SDC/SDCConsumerAdapter.h
-                            ${INCLUDE_DIR}/SDCLib/Data/SDC/WSDL/StateEventServiceWSDL.h
-                            ${INCLUDE_DIR}/SDCLib/Data/SDC/WSDL/SetServiceWSDL.h
-                            ${INCLUDE_DIR}/SDCLib/Data/SDC/WSDL/GetServiceWSDL.h
-                            ${INCLUDE_DIR}/SDCLib/Data/SDC/WSDL/WaveformServiceWSDL.h
-                            ${INCLUDE_DIR}/SDCLib/Data/SDC/WSDL/ContextServiceWSDL.h
                             ${INCLUDE_DIR}/SDCLib/Data/SDC/SDCProvider.h
 )
 
@@ -451,6 +447,7 @@ target_sources(${CURRENT_TARGET_NAME}
         ${SRC_DIR}/OSELib/DPWS/SubscriptionManager.cpp
         ${SRC_DIR}/OSELib/Helper/BufferAdapter.cpp
         ${SRC_DIR}/OSELib/Helper/DurationWrapper.cpp
+        ${SRC_DIR}/OSELib/Helper/DateWrapper.cpp
         ${SRC_DIR}/OSELib/Helper/Message.cpp
         ${SRC_DIR}/OSELib/Helper/SchemaGrammarProvider.cpp
         ${SRC_DIR}/OSELib/Helper/StreamReader.cpp
@@ -460,6 +457,8 @@ target_sources(${CURRENT_TARGET_NAME}
         ${SRC_DIR}/OSELib/Helper/XercesUniqueElementByTagNameFilter.cpp
         ${SRC_DIR}/OSELib/HTTP/FrontControllerAdapter.cpp
         ${SRC_DIR}/OSELib/HTTP/FrontController.cpp
+        ${SRC_DIR}/OSELib/HTTP/HTTPServer.cpp
+		${SRC_DIR}/OSELib/HTTP/HTTPRequestHandlerFactory.cpp
         ${SRC_DIR}/OSELib/HTTP/GenericContentHandler.cpp
         ${SRC_DIR}/OSELib/HTTP/GenericFileHandler.cpp
         ${SRC_DIR}/OSELib/HTTP/HTTPClientExchanger.cpp
@@ -467,17 +466,15 @@ target_sources(${CURRENT_TARGET_NAME}
         ${SRC_DIR}/OSELib/HTTP/HTTPSessionManager.cpp
         ${SRC_DIR}/OSELib/HTTP/Service.cpp
         ${SRC_DIR}/OSELib/HTTP/StaticContentController.cpp
-        ${SRC_DIR}/OSELib/SDC/ContextEventSinkHandler.cpp
-        ${SRC_DIR}/OSELib/SDC/ContextServiceHandler.cpp
         ${SRC_DIR}/OSELib/SDC/DefaultSDCSchemaGrammarProvider.cpp
-        ${SRC_DIR}/OSELib/SDC/StateEventServiceEventSinkHandler.cpp
-        ${SRC_DIR}/OSELib/SDC/EventReportServiceHandler.cpp
         ${SRC_DIR}/OSELib/SDC/GetServiceHandler.cpp
         ${SRC_DIR}/OSELib/SDC/OperationTraits.cpp
         ${SRC_DIR}/OSELib/SDC/ReportTraits.cpp
         ${SRC_DIR}/OSELib/SDC/ServiceManager.cpp
         ${SRC_DIR}/OSELib/SDC/SetServiceHandler.cpp
         ${SRC_DIR}/OSELib/SDC/SetServiceEventSinkHandler.cpp
+        ${SRC_DIR}/OSELib/SDC/BICEPSServiceHandler.cpp
+        ${SRC_DIR}/OSELib/SDC/BICEPSServiceEventSinkHandler.cpp
         ${SRC_DIR}/OSELib/SOAP/CommonSoapPreprocessing.cpp
         ${SRC_DIR}/OSELib/SOAP/GetActionCommand.cpp
         ${SRC_DIR}/OSELib/SOAP/GetMetadataActionCommand.cpp
@@ -493,7 +490,6 @@ target_sources(${CURRENT_TARGET_NAME}
         ${SRC_DIR}/OSELib/SOAP/SoapInvoke.cpp
         ${SRC_DIR}/OSELib/SOAP/SubscribeActionCommand.cpp
         ${SRC_DIR}/OSELib/SOAP/UnsubscribeActionCommand.cpp
-        ${SRC_DIR}/OSELib/SDC/WaveformReportServiceHandler.cpp
         ${SRC_DIR}/OSELib/WSDL/WSDLLoader.cpp
         #
         # Add the includes too (for better generation)
@@ -557,6 +553,21 @@ install(TARGETS ${CURRENT_TARGET_NAME} CONFIGURATIONS ${CMAKE_BUILD_TYPE}
             ARCHIVE DESTINATION ${PATH_INSTALL_ARCHIVE}
 )
 install(DIRECTORY ${INCLUDE_DIR}/ DESTINATION ${PATH_INSTALL_INCLUDE}/${CURRENT_TARGET_NAME})
+
+
+# CPPCHECK - Only for CMake Version 3.10 and higher
+if((NOT (${CMAKE_VERSION} VERSION_LESS "3.10.0")) AND SDC_CPPCHECK)
+	find_program(CMAKE_CXX_CPPCHECK NAMES cppcheck)
+	if (CMAKE_CXX_CPPCHECK)
+		message(STATUS "Enabling CPPCHECK...")
+		list(
+			APPEND CMAKE_CXX_CPPCHECK
+				"--inconclusive"
+				"--force"
+				"--suppressions-list=${CMAKE_SOURCE_DIR}/cppcheck/CppCheckSuppressions.txt"
+		)
+	endif()
+endif()
 
 # ...
 

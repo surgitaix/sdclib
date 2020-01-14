@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class CodedValue {
+class CodedValue
+{
 private:
 	CodedValue(const CDM::CodedValue & object);
 	operator CDM::CodedValue() const;
@@ -57,11 +58,11 @@ public:
 private:
 	CodedValue(){};
 public:
-	CodedValue(const CodedValue & object);
-	virtual ~CodedValue();
+	CodedValue(const CodedValue& object);
+	virtual ~CodedValue() = default;
 
-    void copyFrom(const CodedValue & object);
-    CodedValue & operator=(const CodedValue & object);
+    void copyFrom(const CodedValue& object);
+    CodedValue & operator=(const CodedValue& object);
 
     typedef CDM::CodedValue WrappedType;
 
@@ -96,7 +97,7 @@ public:
 	void clearTranslationList();
 
 private:
-	std::shared_ptr<CDM::CodedValue> data;
+	std::shared_ptr<CDM::CodedValue> data = nullptr;
 };
 
 } /* namespace SDC */

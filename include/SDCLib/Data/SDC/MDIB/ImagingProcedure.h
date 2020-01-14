@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class ImagingProcedure {
+class ImagingProcedure
+{
 private:
 	ImagingProcedure(const CDM::ImagingProcedure & object);
 	operator CDM::ImagingProcedure() const;
@@ -63,11 +64,11 @@ public:
 private:
 	ImagingProcedure(){};
 public:
-	ImagingProcedure(const ImagingProcedure & object);
-	virtual ~ImagingProcedure();
+	ImagingProcedure(const ImagingProcedure& object);
+	virtual ~ImagingProcedure() = default;
 
-    void copyFrom(const ImagingProcedure & object);
-    ImagingProcedure & operator=(const ImagingProcedure & object);
+    void copyFrom(const ImagingProcedure& object);
+    ImagingProcedure & operator=(const ImagingProcedure& object);
 
     typedef CDM::ImagingProcedure WrappedType;
 
@@ -94,7 +95,7 @@ public:
 	bool hasProtocolCode() const;
 
 private:
-	std::shared_ptr<CDM::ImagingProcedure> data;
+	std::shared_ptr<CDM::ImagingProcedure> data = nullptr;
 };
 
 } /* namespace SDC */

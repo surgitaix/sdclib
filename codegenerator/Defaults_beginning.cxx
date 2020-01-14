@@ -14,7 +14,7 @@
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/ConvertToCDM.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 namespace SDCLib {
 namespace Data {

@@ -7,7 +7,7 @@
 #include "SDCLib/Data/SDC/MDIB/SetStringOperationDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/SetValueOperationDescriptor.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 namespace SDCLib {
 namespace Data {
@@ -16,7 +16,7 @@ namespace SDC {
 template <class WrapperOperationDescriptorType>
 void ScoDescriptor::collectOperationDescriptorImpl(std::vector<WrapperOperationDescriptorType> & out) const {
 	const CDM::ScoDescriptor & sco(*this->data);
-	for (const auto & operation : sco.Operation()) {
+	for (const auto & operation : sco.getOperation()) {
 		if (const auto foundDescriptor = dynamic_cast<const typename WrapperOperationDescriptorType::WrappedType *>(&operation)) {
 			out.push_back(ConvertFromCDM::convert(*foundDescriptor));
 		}

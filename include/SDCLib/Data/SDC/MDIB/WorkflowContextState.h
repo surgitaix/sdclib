@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class WorkflowContextState {
+class WorkflowContextState
+{
 private:
 	WorkflowContextState(const CDM::WorkflowContextState & object);
 	operator CDM::WorkflowContextState() const;
@@ -59,11 +60,11 @@ public:
 private:
 	WorkflowContextState(){};
 public:
-	WorkflowContextState(const WorkflowContextState & object);
-	virtual ~WorkflowContextState();
+	WorkflowContextState(const WorkflowContextState& object);
+	virtual ~WorkflowContextState() = default;
 
-    void copyFrom(const WorkflowContextState & object);
-    WorkflowContextState & operator=(const WorkflowContextState & object);
+    void copyFrom(const WorkflowContextState& object);
+    WorkflowContextState & operator=(const WorkflowContextState& object);
 
     typedef CDM::WorkflowContextState WrappedType;
     typedef WorkflowContextDescriptor DescriptorType;
@@ -128,7 +129,7 @@ public:
 	bool hasWorkflowDetail() const;
 
 private:
-	std::shared_ptr<CDM::WorkflowContextState> data;
+	std::shared_ptr<CDM::WorkflowContextState> data = nullptr;
 };
 
 } /* namespace SDC */

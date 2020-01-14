@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class InstanceIdentifier {
+class InstanceIdentifier
+{
 private:
 	InstanceIdentifier(const CDM::InstanceIdentifier & object);
 	operator CDM::InstanceIdentifier() const;
@@ -53,11 +54,11 @@ private:
 public:
 	InstanceIdentifier(
 	);
-	InstanceIdentifier(const InstanceIdentifier & object);
-	virtual ~InstanceIdentifier();
+	InstanceIdentifier(const InstanceIdentifier& object);
+	virtual ~InstanceIdentifier() = default;
 
-    void copyFrom(const InstanceIdentifier & object);
-    InstanceIdentifier & operator=(const InstanceIdentifier & object);
+    void copyFrom(const InstanceIdentifier& object);
+    InstanceIdentifier & operator=(const InstanceIdentifier& object);
 
     typedef CDM::InstanceIdentifier WrappedType;
 
@@ -81,7 +82,7 @@ public:
 	void clearIdentifierNameList();
 
 private:
-	std::shared_ptr<CDM::InstanceIdentifier> data;
+	std::shared_ptr<CDM::InstanceIdentifier> data = nullptr;
 };
 
 } /* namespace SDC */

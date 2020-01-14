@@ -34,7 +34,7 @@
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/Defaults.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 #include "SDCLib/Data/SDC/MDIB/CodedValue.h"
 #include "SDCLib/Data/SDC/MDIB/CalibrationInfo.h"
@@ -53,364 +53,361 @@ ClockState::ClockState(
 		descriptorhandle
 		,
 		remotesync
-)) {}
+))
+{}
 
 ClockState::operator CDM::ClockState() const {
 	return *data;
 }
 
-ClockState::ClockState(const CDM::ClockState & object) : data(new CDM::ClockState(object)) {
+ClockState::ClockState(const CDM::ClockState & object)
+: data(new CDM::ClockState(object))
+{ }
 
-}
-
-ClockState::ClockState(const ClockState & object) : data(new CDM::ClockState(*object.data)) {
-
-}
-
-ClockState::~ClockState() {
-
-}
+ClockState::ClockState(const ClockState & object)
+: data(std::make_shared<CDM::ClockState>(*object.data))
+{ }
 
 void ClockState::copyFrom(const ClockState & object) {
-	data = std::shared_ptr<CDM::ClockState>( new CDM::ClockState(*object.data));
+	data = std::make_shared<CDM::ClockState>(*object.data);
 }
 
-ClockState & ClockState:: operator=(const ClockState & object) {
+ClockState & ClockState:: operator=(const ClockState& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 ClockState & ClockState::setStateVersion(const VersionCounter & value) {
-	data->StateVersion(ConvertToCDM::convert(value));
+	data->setStateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ClockState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
+	if (data->getStateVersion().present()) {
+		out = ConvertFromCDM::convert(data->getStateVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter ClockState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+	return ConvertFromCDM::convert(data->getStateVersion().get());
 }
 
 bool ClockState::hasStateVersion() const {
-	return data->StateVersion().present();
+	return data->getStateVersion().present();
 }
 
 ClockState & ClockState::setDescriptorHandle(const HandleRef & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
+	data->setDescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 HandleRef ClockState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
+	return ConvertFromCDM::convert(data->getDescriptorHandle());
 }
 
 ClockState & ClockState::setDescriptorVersion(const ReferencedVersion & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ClockState::getDescriptorVersion(ReferencedVersion & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 ReferencedVersion ClockState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool ClockState::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 ClockState & ClockState::setCalibrationInfo(const CalibrationInfo & value) {
-	data->CalibrationInfo(ConvertToCDM::convert(value));
+	data->setCalibrationInfo(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ClockState::getCalibrationInfo(CalibrationInfo & out) const {
-	if (data->CalibrationInfo().present()) {
-		out = ConvertFromCDM::convert(data->CalibrationInfo().get());
+	if (data->getCalibrationInfo().present()) {
+		out = ConvertFromCDM::convert(data->getCalibrationInfo().get());
 		return true;
 	}
 	return false;
 }
 
 CalibrationInfo ClockState::getCalibrationInfo() const {
-	return ConvertFromCDM::convert(data->CalibrationInfo().get());
+	return ConvertFromCDM::convert(data->getCalibrationInfo().get());
 }
 
 bool ClockState::hasCalibrationInfo() const {
-	return data->CalibrationInfo().present();
+	return data->getCalibrationInfo().present();
 }
 
 ClockState & ClockState::setNextCalibration(const CalibrationInfo & value) {
-	data->NextCalibration(ConvertToCDM::convert(value));
+	data->setNextCalibration(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ClockState::getNextCalibration(CalibrationInfo & out) const {
-	if (data->NextCalibration().present()) {
-		out = ConvertFromCDM::convert(data->NextCalibration().get());
+	if (data->getNextCalibration().present()) {
+		out = ConvertFromCDM::convert(data->getNextCalibration().get());
 		return true;
 	}
 	return false;
 }
 
 CalibrationInfo ClockState::getNextCalibration() const {
-	return ConvertFromCDM::convert(data->NextCalibration().get());
+	return ConvertFromCDM::convert(data->getNextCalibration().get());
 }
 
 bool ClockState::hasNextCalibration() const {
-	return data->NextCalibration().present();
+	return data->getNextCalibration().present();
 }
 
 ClockState & ClockState::setPhysicalConnector(const PhysicalConnectorInfo & value) {
-	data->PhysicalConnector(ConvertToCDM::convert(value));
+	data->setPhysicalConnector(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ClockState::getPhysicalConnector(PhysicalConnectorInfo & out) const {
-	if (data->PhysicalConnector().present()) {
-		out = ConvertFromCDM::convert(data->PhysicalConnector().get());
+	if (data->getPhysicalConnector().present()) {
+		out = ConvertFromCDM::convert(data->getPhysicalConnector().get());
 		return true;
 	}
 	return false;
 }
 
 PhysicalConnectorInfo ClockState::getPhysicalConnector() const {
-	return ConvertFromCDM::convert(data->PhysicalConnector().get());
+	return ConvertFromCDM::convert(data->getPhysicalConnector().get());
 }
 
 bool ClockState::hasPhysicalConnector() const {
-	return data->PhysicalConnector().present();
+	return data->getPhysicalConnector().present();
 }
 
 ClockState & ClockState::setActivationState(const ComponentActivation & value) {
-	data->ActivationState(ConvertToCDM::convert(value));
+	data->setActivationState(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ClockState::getActivationState(ComponentActivation & out) const {
-	if (data->ActivationState().present()) {
-		out = ConvertFromCDM::convert(data->ActivationState().get());
+	if (data->getActivationState().present()) {
+		out = ConvertFromCDM::convert(data->getActivationState().get());
 		return true;
 	}
 	return false;
 }
 
 ComponentActivation ClockState::getActivationState() const {
-	return ConvertFromCDM::convert(data->ActivationState().get());
+	return ConvertFromCDM::convert(data->getActivationState().get());
 }
 
 bool ClockState::hasActivationState() const {
-	return data->ActivationState().present();
+	return data->getActivationState().present();
 }
 
 ClockState & ClockState::setOperatingHours(const unsigned int & value) {
-	data->OperatingHours(ConvertToCDM::convert(value));
+	data->setOperatingHours(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ClockState::getOperatingHours(unsigned int & out) const {
-	if (data->OperatingHours().present()) {
-		out = ConvertFromCDM::convert(data->OperatingHours().get());
+	if (data->getOperatingHours().present()) {
+		out = ConvertFromCDM::convert(data->getOperatingHours().get());
 		return true;
 	}
 	return false;
 }
 
 unsigned int ClockState::getOperatingHours() const {
-	return ConvertFromCDM::convert(data->OperatingHours().get());
+	return ConvertFromCDM::convert(data->getOperatingHours().get());
 }
 
 bool ClockState::hasOperatingHours() const {
-	return data->OperatingHours().present();
+	return data->getOperatingHours().present();
 }
 
 ClockState & ClockState::setOperatingCycles(const int & value) {
-	data->OperatingCycles(ConvertToCDM::convert(value));
+	data->setOperatingCycles(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ClockState::getOperatingCycles(int & out) const {
-	if (data->OperatingCycles().present()) {
-		out = ConvertFromCDM::convert(data->OperatingCycles().get());
+	if (data->getOperatingCycles().present()) {
+		out = ConvertFromCDM::convert(data->getOperatingCycles().get());
 		return true;
 	}
 	return false;
 }
 
 int ClockState::getOperatingCycles() const {
-	return ConvertFromCDM::convert(data->OperatingCycles().get());
+	return ConvertFromCDM::convert(data->getOperatingCycles().get());
 }
 
 bool ClockState::hasOperatingCycles() const {
-	return data->OperatingCycles().present();
+	return data->getOperatingCycles().present();
 }
 
 ClockState & ClockState::setActiveSyncProtocol(const CodedValue & value) {
-	data->ActiveSyncProtocol(ConvertToCDM::convert(value));
+	data->setActiveSyncProtocol(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ClockState::getActiveSyncProtocol(CodedValue & out) const {
-	if (data->ActiveSyncProtocol().present()) {
-		out = ConvertFromCDM::convert(data->ActiveSyncProtocol().get());
+	if (data->getActiveSyncProtocol().present()) {
+		out = ConvertFromCDM::convert(data->getActiveSyncProtocol().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue ClockState::getActiveSyncProtocol() const {
-	return ConvertFromCDM::convert(data->ActiveSyncProtocol().get());
+	return ConvertFromCDM::convert(data->getActiveSyncProtocol().get());
 }
 
 bool ClockState::hasActiveSyncProtocol() const {
-	return data->ActiveSyncProtocol().present();
+	return data->getActiveSyncProtocol().present();
 }
 
 ClockState & ClockState::setDateAndTime(const Timestamp & value) {
-	data->DateAndTime(ConvertToCDM::convert(value));
+	data->setDateAndTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ClockState::getDateAndTime(Timestamp & out) const {
-	if (data->DateAndTime().present()) {
-		out = ConvertFromCDM::convert(data->DateAndTime().get());
+	if (data->getDateAndTime().present()) {
+		out = ConvertFromCDM::convert(data->getDateAndTime().get());
 		return true;
 	}
 	return false;
 }
 
 Timestamp ClockState::getDateAndTime() const {
-	return ConvertFromCDM::convert(data->DateAndTime().get());
+	return ConvertFromCDM::convert(data->getDateAndTime().get());
 }
 
 bool ClockState::hasDateAndTime() const {
-	return data->DateAndTime().present();
+	return data->getDateAndTime().present();
 }
 
 ClockState & ClockState::setRemoteSync(const bool & value) {
-	data->RemoteSync(ConvertToCDM::convert(value));
+	data->setRemoteSync(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 bool ClockState::getRemoteSync() const {
-	return ConvertFromCDM::convert(data->RemoteSync());
+	return ConvertFromCDM::convert(data->getRemoteSync());
 }
 
 ClockState & ClockState::setAccuracy(const double & value) {
-	data->Accuracy(ConvertToCDM::convert(value));
+	data->setAccuracy(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ClockState::getAccuracy(double & out) const {
-	if (data->Accuracy().present()) {
-		out = ConvertFromCDM::convert(data->Accuracy().get());
+	if (data->getAccuracy().present()) {
+		out = ConvertFromCDM::convert(data->getAccuracy().get());
 		return true;
 	}
 	return false;
 }
 
 double ClockState::getAccuracy() const {
-	return ConvertFromCDM::convert(data->Accuracy().get());
+	return ConvertFromCDM::convert(data->getAccuracy().get());
 }
 
 bool ClockState::hasAccuracy() const {
-	return data->Accuracy().present();
+	return data->getAccuracy().present();
 }
 
 ClockState & ClockState::setLastSet(const Timestamp & value) {
-	data->LastSet(ConvertToCDM::convert(value));
+	data->setLastSet(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ClockState::getLastSet(Timestamp & out) const {
-	if (data->LastSet().present()) {
-		out = ConvertFromCDM::convert(data->LastSet().get());
+	if (data->getLastSet().present()) {
+		out = ConvertFromCDM::convert(data->getLastSet().get());
 		return true;
 	}
 	return false;
 }
 
 Timestamp ClockState::getLastSet() const {
-	return ConvertFromCDM::convert(data->LastSet().get());
+	return ConvertFromCDM::convert(data->getLastSet().get());
 }
 
 bool ClockState::hasLastSet() const {
-	return data->LastSet().present();
+	return data->getLastSet().present();
 }
 
 ClockState & ClockState::setTimeZone(const TimeZone & value) {
-	data->TimeZone(ConvertToCDM::convert(value));
+	data->setTimeZone(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ClockState::getTimeZone(TimeZone & out) const {
-	if (data->TimeZone().present()) {
-		out = ConvertFromCDM::convert(data->TimeZone().get());
+	if (data->getTimeZone().present()) {
+		out = ConvertFromCDM::convert(data->getTimeZone().get());
 		return true;
 	}
 	return false;
 }
 
 TimeZone ClockState::getTimeZone() const {
-	return ConvertFromCDM::convert(data->TimeZone().get());
+	return ConvertFromCDM::convert(data->getTimeZone().get());
 }
 
 bool ClockState::hasTimeZone() const {
-	return data->TimeZone().present();
+	return data->getTimeZone().present();
 }
 
 ClockState & ClockState::setCriticalUse(const bool & value) {
-	data->CriticalUse(ConvertToCDM::convert(value));
+	data->setCriticalUse(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ClockState::getCriticalUse(bool & out) const {
-	if (data->CriticalUse().present()) {
-		out = ConvertFromCDM::convert(data->CriticalUse().get());
+	if (data->getCriticalUse().present()) {
+		out = ConvertFromCDM::convert(data->getCriticalUse().get());
 		return true;
 	}
 	return false;
 }
 
 bool ClockState::getCriticalUse() const {
-	return ConvertFromCDM::convert(data->CriticalUse().get());
+	return ConvertFromCDM::convert(data->getCriticalUse().get());
 }
 
 bool ClockState::hasCriticalUse() const {
-	return data->CriticalUse().present();
+	return data->getCriticalUse().present();
 }
 
 ClockState & ClockState::addReferenceSource(const std::string & value) {
-	data->ReferenceSource().push_back(ConvertToCDM::convert(value));
+	data->getReferenceSource().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<std::string> ClockState::getReferenceSourceList() const {
 	std::vector<std::string> result;
-	result.reserve(data->ReferenceSource().size());
-	for (const auto & value: data->ReferenceSource()) {
+	result.reserve(data->getReferenceSource().size());
+	for (const auto & value: data->getReferenceSource()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void ClockState::clearReferenceSourceList() {
-	data->ReferenceSource().clear();
+	data->getReferenceSource().clear();
 }
 
 

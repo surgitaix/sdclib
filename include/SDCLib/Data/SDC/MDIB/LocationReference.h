@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class LocationReference {
+class LocationReference
+{
 private:
 	LocationReference(const CDM::LocationReference & object);
 	operator CDM::LocationReference() const;
@@ -53,11 +54,11 @@ private:
 public:
 	LocationReference(
 	);
-	LocationReference(const LocationReference & object);
-	virtual ~LocationReference();
+	LocationReference(const LocationReference& object);
+	virtual ~LocationReference() = default;
 
-    void copyFrom(const LocationReference & object);
-    LocationReference & operator=(const LocationReference & object);
+    void copyFrom(const LocationReference& object);
+    LocationReference & operator=(const LocationReference& object);
 
     typedef CDM::LocationReference WrappedType;
 
@@ -71,7 +72,7 @@ public:
 	void clearIdentificationList();
 
 private:
-	std::shared_ptr<CDM::LocationReference> data;
+	std::shared_ptr<CDM::LocationReference> data = nullptr;
 };
 
 } /* namespace SDC */

@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class SetContextStateOperationState {
+class SetContextStateOperationState
+{
 private:
 	SetContextStateOperationState(const CDM::SetContextStateOperationState & object);
 	operator CDM::SetContextStateOperationState() const;
@@ -59,11 +60,11 @@ public:
 private:
 	SetContextStateOperationState(){};
 public:
-	SetContextStateOperationState(const SetContextStateOperationState & object);
-	virtual ~SetContextStateOperationState();
+	SetContextStateOperationState(const SetContextStateOperationState& object);
+	virtual ~SetContextStateOperationState() = default;
 
-    void copyFrom(const SetContextStateOperationState & object);
-    SetContextStateOperationState & operator=(const SetContextStateOperationState & object);
+    void copyFrom(const SetContextStateOperationState& object);
+    SetContextStateOperationState & operator=(const SetContextStateOperationState& object);
 
     typedef CDM::SetContextStateOperationState WrappedType;
 
@@ -84,7 +85,7 @@ public:
 	OperatingMode getOperatingMode() const;
 
 private:
-	std::shared_ptr<CDM::SetContextStateOperationState> data;
+	std::shared_ptr<CDM::SetContextStateOperationState> data = nullptr;
 };
 
 } /* namespace SDC */

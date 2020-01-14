@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class ActivateOperationState {
+class ActivateOperationState
+{
 private:
 	ActivateOperationState(const CDM::ActivateOperationState & object);
 	operator CDM::ActivateOperationState() const;
@@ -59,11 +60,11 @@ public:
 private:
 	ActivateOperationState(){};
 public:
-	ActivateOperationState(const ActivateOperationState & object);
-	virtual ~ActivateOperationState();
+	ActivateOperationState(const ActivateOperationState& object);
+	virtual ~ActivateOperationState() = default;
 
-    void copyFrom(const ActivateOperationState & object);
-    ActivateOperationState & operator=(const ActivateOperationState & object);
+    void copyFrom(const ActivateOperationState& object);
+    ActivateOperationState & operator=(const ActivateOperationState& object);
 
     typedef CDM::ActivateOperationState WrappedType;
 
@@ -84,7 +85,7 @@ public:
 	OperatingMode getOperatingMode() const;
 
 private:
-	std::shared_ptr<CDM::ActivateOperationState> data;
+	std::shared_ptr<CDM::ActivateOperationState> data = nullptr;
 };
 
 } /* namespace SDC */

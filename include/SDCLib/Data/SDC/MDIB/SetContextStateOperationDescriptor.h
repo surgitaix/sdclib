@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class SetContextStateOperationDescriptor {
+class SetContextStateOperationDescriptor
+{
 private:
 	SetContextStateOperationDescriptor(const CDM::SetContextStateOperationDescriptor & object);
 	operator CDM::SetContextStateOperationDescriptor() const;
@@ -59,11 +60,11 @@ public:
 private:
 	SetContextStateOperationDescriptor(){};
 public:
-	SetContextStateOperationDescriptor(const SetContextStateOperationDescriptor & object);
-	virtual ~SetContextStateOperationDescriptor();
+	SetContextStateOperationDescriptor(const SetContextStateOperationDescriptor& object);
+	virtual ~SetContextStateOperationDescriptor() = default;
 
-    void copyFrom(const SetContextStateOperationDescriptor & object);
-    SetContextStateOperationDescriptor & operator=(const SetContextStateOperationDescriptor & object);
+    void copyFrom(const SetContextStateOperationDescriptor& object);
+    SetContextStateOperationDescriptor & operator=(const SetContextStateOperationDescriptor& object);
 
     typedef CDM::SetContextStateOperationDescriptor WrappedType;
 
@@ -113,7 +114,7 @@ public:
 	void clearModifiableDataList();
 
 private:
-	std::shared_ptr<CDM::SetContextStateOperationDescriptor> data;
+	std::shared_ptr<CDM::SetContextStateOperationDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

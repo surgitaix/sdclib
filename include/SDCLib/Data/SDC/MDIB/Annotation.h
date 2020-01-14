@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class Annotation {
+class Annotation
+{
 private:
 	Annotation(const CDM::Annotation & object);
 	operator CDM::Annotation() const;
@@ -57,11 +58,11 @@ public:
 private:
 	Annotation(){};
 public:
-	Annotation(const Annotation & object);
-	virtual ~Annotation();
+	Annotation(const Annotation& object);
+	virtual ~Annotation() = default;
 
-    void copyFrom(const Annotation & object);
-    Annotation & operator=(const Annotation & object);
+    void copyFrom(const Annotation& object);
+    Annotation & operator=(const Annotation& object);
 
     typedef CDM::Annotation WrappedType;
 
@@ -69,7 +70,7 @@ public:
 	CodedValue getType() const;
 
 private:
-	std::shared_ptr<CDM::Annotation> data;
+	std::shared_ptr<CDM::Annotation> data = nullptr;
 };
 
 } /* namespace SDC */

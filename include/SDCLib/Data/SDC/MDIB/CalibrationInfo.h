@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class CalibrationInfo {
+class CalibrationInfo
+{
 private:
 	CalibrationInfo(const CDM::CalibrationInfo & object);
 	operator CDM::CalibrationInfo() const;
@@ -53,11 +54,11 @@ private:
 public:
 	CalibrationInfo(
 	);
-	CalibrationInfo(const CalibrationInfo & object);
-	virtual ~CalibrationInfo();
+	CalibrationInfo(const CalibrationInfo& object);
+	virtual ~CalibrationInfo() = default;
 
-    void copyFrom(const CalibrationInfo & object);
-    CalibrationInfo & operator=(const CalibrationInfo & object);
+    void copyFrom(const CalibrationInfo& object);
+    CalibrationInfo & operator=(const CalibrationInfo& object);
 
     typedef CDM::CalibrationInfo WrappedType;
 
@@ -81,7 +82,7 @@ public:
 	void clearCalibrationDocumentationList();
 
 private:
-	std::shared_ptr<CDM::CalibrationInfo> data;
+	std::shared_ptr<CDM::CalibrationInfo> data = nullptr;
 };
 
 } /* namespace SDC */

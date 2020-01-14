@@ -34,7 +34,7 @@
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/Defaults.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 #include "SDCLib/Data/SDC/MDIB/CodedValue.h"
 
@@ -47,105 +47,102 @@ EnsembleContextDescriptor::EnsembleContextDescriptor(
 		Handle handle
 ) : data(Defaults::EnsembleContextDescriptorInit(
 		handle
-)) {}
+))
+{}
 
 EnsembleContextDescriptor::operator CDM::EnsembleContextDescriptor() const {
 	return *data;
 }
 
-EnsembleContextDescriptor::EnsembleContextDescriptor(const CDM::EnsembleContextDescriptor & object) : data(new CDM::EnsembleContextDescriptor(object)) {
+EnsembleContextDescriptor::EnsembleContextDescriptor(const CDM::EnsembleContextDescriptor & object)
+: data(new CDM::EnsembleContextDescriptor(object))
+{ }
 
-}
-
-EnsembleContextDescriptor::EnsembleContextDescriptor(const EnsembleContextDescriptor & object) : data(new CDM::EnsembleContextDescriptor(*object.data)) {
-
-}
-
-EnsembleContextDescriptor::~EnsembleContextDescriptor() {
-
-}
+EnsembleContextDescriptor::EnsembleContextDescriptor(const EnsembleContextDescriptor & object)
+: data(std::make_shared<CDM::EnsembleContextDescriptor>(*object.data))
+{ }
 
 void EnsembleContextDescriptor::copyFrom(const EnsembleContextDescriptor & object) {
-	data = std::shared_ptr<CDM::EnsembleContextDescriptor>( new CDM::EnsembleContextDescriptor(*object.data));
+	data = std::make_shared<CDM::EnsembleContextDescriptor>(*object.data);
 }
 
-EnsembleContextDescriptor & EnsembleContextDescriptor:: operator=(const EnsembleContextDescriptor & object) {
+EnsembleContextDescriptor & EnsembleContextDescriptor:: operator=(const EnsembleContextDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 EnsembleContextDescriptor & EnsembleContextDescriptor::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
+	data->setType(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool EnsembleContextDescriptor::getType(CodedValue & out) const {
-	if (data->Type().present()) {
-		out = ConvertFromCDM::convert(data->Type().get());
+	if (data->getType().present()) {
+		out = ConvertFromCDM::convert(data->getType().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue EnsembleContextDescriptor::getType() const {
-	return ConvertFromCDM::convert(data->Type().get());
+	return ConvertFromCDM::convert(data->getType().get());
 }
 
 bool EnsembleContextDescriptor::hasType() const {
-	return data->Type().present();
+	return data->getType().present();
 }
 
 EnsembleContextDescriptor & EnsembleContextDescriptor::setHandle(const Handle & value) {
-	data->Handle(ConvertToCDM::convert(value));
+	data->setHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 Handle EnsembleContextDescriptor::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle());
+	return ConvertFromCDM::convert(data->getHandle());
 }
 
 EnsembleContextDescriptor & EnsembleContextDescriptor::setDescriptorVersion(const VersionCounter & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool EnsembleContextDescriptor::getDescriptorVersion(VersionCounter & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter EnsembleContextDescriptor::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool EnsembleContextDescriptor::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 EnsembleContextDescriptor & EnsembleContextDescriptor::setSafetyClassification(const SafetyClassification & value) {
-	data->SafetyClassification(ConvertToCDM::convert(value));
+	data->setSafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool EnsembleContextDescriptor::getSafetyClassification(SafetyClassification & out) const {
-	if (data->SafetyClassification().present()) {
-		out = ConvertFromCDM::convert(data->SafetyClassification().get());
+	if (data->getSafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->getSafetyClassification().get());
 		return true;
 	}
 	return false;
 }
 
 SafetyClassification EnsembleContextDescriptor::getSafetyClassification() const {
-	return ConvertFromCDM::convert(data->SafetyClassification().get());
+	return ConvertFromCDM::convert(data->getSafetyClassification().get());
 }
 
 bool EnsembleContextDescriptor::hasSafetyClassification() const {
-	return data->SafetyClassification().present();
+	return data->getSafetyClassification().present();
 }
 
 

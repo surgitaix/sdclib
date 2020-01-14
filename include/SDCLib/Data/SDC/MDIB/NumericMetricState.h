@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class NumericMetricState {
+class NumericMetricState
+{
 private:
 	NumericMetricState(const CDM::NumericMetricState & object);
 	operator CDM::NumericMetricState() const;
@@ -57,11 +58,11 @@ public:
 private:
 	NumericMetricState(){};
 public:
-	NumericMetricState(const NumericMetricState & object);
-	virtual ~NumericMetricState();
+	NumericMetricState(const NumericMetricState& object);
+	virtual ~NumericMetricState() = default;
 
-    void copyFrom(const NumericMetricState & object);
-    NumericMetricState & operator=(const NumericMetricState & object);
+    void copyFrom(const NumericMetricState& object);
+    NumericMetricState & operator=(const NumericMetricState& object);
 
     typedef CDM::NumericMetricState WrappedType;
     typedef NumericMetricDescriptor DescriptorType;
@@ -118,7 +119,7 @@ public:
 	void clearPhysiologicalRangeList();
 
 private:
-	std::shared_ptr<CDM::NumericMetricState> data;
+	std::shared_ptr<CDM::NumericMetricState> data = nullptr;
 };
 
 } /* namespace SDC */

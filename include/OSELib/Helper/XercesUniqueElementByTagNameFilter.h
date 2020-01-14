@@ -1,36 +1,38 @@
 /*
  * XercesUniqueElementByTagNameFilter.h
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 21.08.2019, baumeister
+ *
  */
 
-#ifndef HELPER_XERCESUNIQUEELEMENTBYTAGNAMEFILTER_H_
-#define HELPER_XERCESUNIQUEELEMENTBYTAGNAMEFILTER_H_
-
-#include <string>
+#ifndef OSELIB_HELPER_XERCESUNIQUEELEMENTBYTAGNAMEFILTER_H_
+#define OSELIB_HELPER_XERCESUNIQUEELEMENTBYTAGNAMEFILTER_H_
 
 #include "OSELib/fwd.h"
+
+#include <string>
 
 namespace XERCES_CPP_NAMESPACE
 {
     class DOMElement;
 }
 
-namespace OSELib {
-namespace Helper {
+namespace OSELib
+{
+	namespace Helper
+	{
+		class XercesUniqueElementByTagNameFilter
+		{
+		private:
+			const XercesDocumentWrapper & m_document;
 
-class XercesUniqueElementByTagNameFilter {
-public:
-	XercesUniqueElementByTagNameFilter(const XercesDocumentWrapper & document);
+		public:
+			XercesUniqueElementByTagNameFilter(const XercesDocumentWrapper & p_document);
 
-	const xercesc::DOMElement * apply(const std::string & ns, const std::string & elementName);
+			const xercesc::DOMElement * apply(const std::string & p_ns, const std::string & p_elementName);
+		};
+	}
+}
 
-private:
-	const XercesDocumentWrapper & _document;
-};
-
-} /* namespace Helper */
-} /* namespace OSELib */
-
-#endif /* HELPER_XERCESUNIQUEELEMENTBYTAGNAMEFILTER_H_ */
+#endif

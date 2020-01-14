@@ -9,7 +9,6 @@
 #define EXAMPLES_ABSTRACTCONSUMERSIMULATOR_ABSTRACTCONSUMER_H_
 
 #include <iostream>
-#include "osdm.hxx"
 #include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/SDC/SDCConstants.h"
 
@@ -56,15 +55,15 @@ class BackBoneTestCaseEnum;
 
 class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler {
 public:
-	MyConnectionLostHandler(Data::SDC::SDCConsumer & consumer) : consumer(consumer) {
+	MyConnectionLostHandler(Data::SDC::SDCConsumer & p_consumer) : m_consumer(p_consumer) {
 	}
 	void onConnectionLost() override {
 		std::cerr << "Connection lost, disconnecting... ";
-		consumer.disconnect();
+		m_consumer.disconnect();
 		std::cerr << "disconnected." << std::endl;
 	}
 private:
-	Data::SDC::SDCConsumer & consumer;
+	Data::SDC::SDCConsumer& m_consumer;
 };
 
 

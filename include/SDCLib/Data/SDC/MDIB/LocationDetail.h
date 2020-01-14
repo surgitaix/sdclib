@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class LocationDetail {
+class LocationDetail
+{
 private:
 	LocationDetail(const CDM::LocationDetail & object);
 	operator CDM::LocationDetail() const;
@@ -53,11 +54,11 @@ private:
 public:
 	LocationDetail(
 	);
-	LocationDetail(const LocationDetail & object);
-	virtual ~LocationDetail();
+	LocationDetail(const LocationDetail& object);
+	virtual ~LocationDetail() = default;
 
-    void copyFrom(const LocationDetail & object);
-    LocationDetail & operator=(const LocationDetail & object);
+    void copyFrom(const LocationDetail& object);
+    LocationDetail & operator=(const LocationDetail& object);
 
     typedef CDM::LocationDetail WrappedType;
 
@@ -92,7 +93,7 @@ public:
 	bool hasFloor() const;
 
 private:
-	std::shared_ptr<CDM::LocationDetail> data;
+	std::shared_ptr<CDM::LocationDetail> data = nullptr;
 };
 
 } /* namespace SDC */

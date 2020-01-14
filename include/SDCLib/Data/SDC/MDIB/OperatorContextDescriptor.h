@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class OperatorContextDescriptor {
+class OperatorContextDescriptor
+{
 private:
 	OperatorContextDescriptor(const CDM::OperatorContextDescriptor & object);
 	operator CDM::OperatorContextDescriptor() const;
@@ -57,11 +58,11 @@ public:
 private:
 	OperatorContextDescriptor(){};
 public:
-	OperatorContextDescriptor(const OperatorContextDescriptor & object);
-	virtual ~OperatorContextDescriptor();
+	OperatorContextDescriptor(const OperatorContextDescriptor& object);
+	virtual ~OperatorContextDescriptor() = default;
 
-    void copyFrom(const OperatorContextDescriptor & object);
-    OperatorContextDescriptor & operator=(const OperatorContextDescriptor & object);
+    void copyFrom(const OperatorContextDescriptor& object);
+    OperatorContextDescriptor & operator=(const OperatorContextDescriptor& object);
 
     typedef CDM::OperatorContextDescriptor WrappedType;
     typedef OperatorContextState StateType;
@@ -85,7 +86,7 @@ public:
 	bool hasSafetyClassification() const;
 
 private:
-	std::shared_ptr<CDM::OperatorContextDescriptor> data;
+	std::shared_ptr<CDM::OperatorContextDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

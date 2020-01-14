@@ -1,23 +1,27 @@
 /*
  * MDPWSStreamingAdapter.cpp
  *
- *  Created on: Nov 3, 2016
- *      Author: sebastian, baumeister
+ *  Created on: 03.11.2016, buerger
+ *  Modified on: 23.08.2019, baumeister
+ *
  */
 
 #include "OSELib/DPWS/MDPWSStreamingAdapter.h"
 #include "SDCLib/Config/NetworkConfig.h"
 #include "OSELib/DPWS/DPWSCommon.h"
 #include "OSELib/Helper/BufferAdapter.h"
+#include "OSELib/DPWS/DeviceDescription.h"
 
-#include "NormalizedMessageModel.hxx"
+#include "DataModel/NormalizedMessageModel.hxx"
+
+#include <Poco/Net/SocketNotification.h>
 
 using namespace OSELib;
 using namespace OSELib::DPWS;
 using namespace OSELib::DPWS::Impl;
 
 MDPWSStreamingAdapter::MDPWSStreamingAdapter(SDCLib::Config::NetworkConfig_shared_ptr p_config, StreamNotificationDispatcher & streamNotificationDispatcher, DeviceDescription_shared_ptr p_deviceDescription) :
-	WithLogger(Log::DISCOVERY),
+	OSELib::Helper::WithLogger(Log::DISCOVERY),
 	m_networkConfig(p_config),
 	m_streamNotificationDispatcher(streamNotificationDispatcher),
 	m_deviceDescription(p_deviceDescription),
@@ -52,15 +56,15 @@ MDPWSStreamingAdapter::MDPWSStreamingAdapter(SDCLib::Config::NetworkConfig_share
             const Poco::Net::SocketAddress t_bindingAddress(Poco::Net::IPAddress::Family::IPv4, m_ipv4MulticastAddress.port());
             m_ipv4MulticastSocket.bind(m_ipv4MulticastAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             // Add all interfaces
-            for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
-                if (nextIf.supportsIPv4() && !nextIf.address().isLoopback() && nextIf.address().isUnicast()) {
+            for (const auto & t_nextIf : Poco::Net::NetworkInterface::list()) {
+                if (t_nextIf.supportsIPv4() && !t_nextIf.address().isLoopback() && t_nextIf.address().isUnicast()) {
                     try
                     {
                         // Interface - Join group: Note: Fails if we enumerate a bridge that is already connected
-                        m_ipv4MulticastSocket.joinGroup(m_ipv4MulticastAddress.host(), nextIf);
+                        m_ipv4MulticastSocket.joinGroup(m_ipv4MulticastAddress.host(), t_nextIf);
                     }
                     catch (...) {
-                        log_error([&] { return "Something went wrong in binding to : " + nextIf.adapterName(); });
+                        log_error([&] { return "Something went wrong in binding to : " + t_nextIf.adapterName(); });
                         continue;
                     }
                 }
@@ -98,16 +102,16 @@ MDPWSStreamingAdapter::MDPWSStreamingAdapter(SDCLib::Config::NetworkConfig_share
             const Poco::Net::SocketAddress t_bindingAddress(Poco::Net::IPAddress::Family::IPv6, m_ipv6MulticastAddress.port());
             m_ipv6MulticastSocket.bind(m_ipv6MulticastAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             // Add all interfaces
-            for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
+            for (const auto & t_nextIf : Poco::Net::NetworkInterface::list()) {
                 // devices network adapters have a unicast IP
-                if (nextIf.supportsIPv6() && !nextIf.address().isLoopback() && nextIf.address().isUnicast()) {
+                if (t_nextIf.supportsIPv6() && !t_nextIf.address().isLoopback() && t_nextIf.address().isUnicast()) {
                     try
                     {
                         // Interface - Join group: Note: Fails if we enumerate a bridge that is already connected
-                        m_ipv6MulticastSocket.joinGroup(m_ipv6MulticastAddress.host(), nextIf);
+                        m_ipv6MulticastSocket.joinGroup(m_ipv6MulticastAddress.host(), t_nextIf);
                     }
                     catch (...) {
-                        log_error([&] { return "Something went wrong in binding to : " + nextIf.adapterName(); });
+                        log_error([&] { return "Something went wrong in binding to : " + t_nextIf.adapterName(); });
                         continue;
                     }
                 }
@@ -123,7 +127,8 @@ MDPWSStreamingAdapter::MDPWSStreamingAdapter(SDCLib::Config::NetworkConfig_share
     m_reactorThread.start(m_reactor);
 }
 
-MDPWSStreamingAdapter::~MDPWSStreamingAdapter() {
+MDPWSStreamingAdapter::~MDPWSStreamingAdapter()
+{
     m_reactor.removeEventHandler(m_ipv4MulticastSocket, Poco::Observer<MDPWSStreamingAdapter, Poco::Net::ReadableNotification>(*this, &MDPWSStreamingAdapter::onMulticastSocketReadable));
     m_reactor.removeEventHandler(m_ipv6MulticastSocket, Poco::Observer<MDPWSStreamingAdapter, Poco::Net::ReadableNotification>(*this, &MDPWSStreamingAdapter::onMulticastSocketReadable));
 
@@ -144,42 +149,43 @@ MDPWSStreamingAdapter::~MDPWSStreamingAdapter() {
 	m_reactorThread.join();
 }
 
-void MDPWSStreamingAdapter::onMulticastSocketReadable(Poco::Net::ReadableNotification * notification) {
+void MDPWSStreamingAdapter::onMulticastSocketReadable(Poco::Net::ReadableNotification * p_notification)
+{
 
-	const Poco::AutoPtr<Poco::Net::ReadableNotification> pNf(notification);
+	const Poco::AutoPtr<Poco::Net::ReadableNotification> t_pNf(p_notification);
 
-	Poco::Net::MulticastSocket socket(pNf->socket());
-	const int available(socket.available());
-	if (available == 0) {
+	Poco::Net::MulticastSocket t_socket(t_pNf->socket());
+	const int t_available(t_socket.available());
+	if (t_available == 0) {
 		return;
 	}
 
-	Poco::Buffer<char> buf(available);
-	Poco::Net::SocketAddress remoteAddr;
-	const int received(socket.receiveFrom(buf.begin(), available, remoteAddr, 0));
-	Helper::BufferAdapter adapter(buf, received);
-	std::unique_ptr<MESSAGEMODEL::Envelope> message(parseMessage(adapter));
+	Poco::Buffer<char> t_buf(t_available);
+	Poco::Net::SocketAddress t_remoteAddr;
+	const int t_received(t_socket.receiveFrom(t_buf.begin(), t_available, t_remoteAddr, 0));
+	Helper::BufferAdapter t_adapter(t_buf, t_received);
+	auto t_message(parseMessage(t_adapter));
 
-	if (message == nullptr
-		|| !message->Header().MessageID().present()
-		|| !message->Body().WaveformStream().present()) {
-		log_error([&]{return "Message is invalid";});
+	if (nullptr == t_message
+		|| !t_message->getHeader().getMessageID().present()
+		|| !t_message->getBody().getWaveformStream().present()) {
+		log_error([]{return "Message is invalid";});
 		return;
 	}
 
 
-	if (!message->Header().From().present()) {
-		log_warning([&]{return "From-field in streaming message does not exist";});
-		m_streamNotificationDispatcher.dispatch(message->Body().WaveformStream().get());
+	if (!t_message->getHeader().getFrom().present()) {
+		log_warning([]{return "From-field in streaming message does not exist";});
+		m_streamNotificationDispatcher.dispatch(t_message->getBody().getWaveformStream().get());
 	} else {
 		if((m_deviceDescription == nullptr)) {
-			log_error([&]{return "Invalid device Description! Message not dispatched.";});
+			log_error([]{return "Invalid device Description! Message not dispatched.";});
 			return;
 		}
-		if (message->Header().From().get().Address() == m_deviceDescription->getEPR()) {
-			m_streamNotificationDispatcher.dispatch(message->Body().WaveformStream().get());
+		if (t_message->getHeader().getFrom().get().getAddress() == m_deviceDescription->getEPR()) {
+			m_streamNotificationDispatcher.dispatch(t_message->getBody().getWaveformStream().get());
 		} else {
-			log_error([&]{return "Message has wrong endpoint reference. Message not dispatched.";});
+			log_error([]{return "Message has wrong endpoint reference. Message not dispatched.";});
 		}
 	}
 }

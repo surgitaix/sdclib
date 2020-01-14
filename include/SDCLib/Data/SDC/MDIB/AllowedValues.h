@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class AllowedValues {
+class AllowedValues
+{
 private:
 	AllowedValues(const CDM::AllowedValues & object);
 	operator CDM::AllowedValues() const;
@@ -53,11 +54,11 @@ private:
 public:
 	AllowedValues(
 	);
-	AllowedValues(const AllowedValues & object);
-	virtual ~AllowedValues();
+	AllowedValues(const AllowedValues& object);
+	virtual ~AllowedValues() = default;
 
-    void copyFrom(const AllowedValues & object);
-    AllowedValues & operator=(const AllowedValues & object);
+    void copyFrom(const AllowedValues& object);
+    AllowedValues & operator=(const AllowedValues& object);
 
     typedef CDM::AllowedValues WrappedType;
 
@@ -66,7 +67,7 @@ public:
 	void clearValueList();
 
 private:
-	std::shared_ptr<CDM::AllowedValues> data;
+	std::shared_ptr<CDM::AllowedValues> data = nullptr;
 };
 
 } /* namespace SDC */

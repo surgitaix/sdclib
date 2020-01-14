@@ -34,7 +34,7 @@
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/Defaults.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 #include "SDCLib/Data/SDC/MDIB/InstanceIdentifier.h"
 #include "SDCLib/Data/SDC/MDIB/BaseDemographics.h"
@@ -46,71 +46,68 @@ namespace SDC {
 
 PersonReference::PersonReference(
 ) : data(Defaults::PersonReferenceInit(
-)) {}
+))
+{}
 
 PersonReference::operator CDM::PersonReference() const {
 	return *data;
 }
 
-PersonReference::PersonReference(const CDM::PersonReference & object) : data(new CDM::PersonReference(object)) {
+PersonReference::PersonReference(const CDM::PersonReference & object)
+: data(new CDM::PersonReference(object))
+{ }
 
-}
-
-PersonReference::PersonReference(const PersonReference & object) : data(new CDM::PersonReference(*object.data)) {
-
-}
-
-PersonReference::~PersonReference() {
-
-}
+PersonReference::PersonReference(const PersonReference & object)
+: data(std::make_shared<CDM::PersonReference>(*object.data))
+{ }
 
 void PersonReference::copyFrom(const PersonReference & object) {
-	data = std::shared_ptr<CDM::PersonReference>( new CDM::PersonReference(*object.data));
+	data = std::make_shared<CDM::PersonReference>(*object.data);
 }
 
-PersonReference & PersonReference:: operator=(const PersonReference & object) {
+PersonReference & PersonReference:: operator=(const PersonReference& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 PersonReference & PersonReference::setName(const BaseDemographics & value) {
-	data->Name(ConvertToCDM::convert(value));
+	data->setName(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool PersonReference::getName(BaseDemographics & out) const {
-	if (data->Name().present()) {
-		out = ConvertFromCDM::convert(data->Name().get());
+	if (data->getName().present()) {
+		out = ConvertFromCDM::convert(data->getName().get());
 		return true;
 	}
 	return false;
 }
 
 BaseDemographics PersonReference::getName() const {
-	return ConvertFromCDM::convert(data->Name().get());
+	return ConvertFromCDM::convert(data->getName().get());
 }
 
 bool PersonReference::hasName() const {
-	return data->Name().present();
+	return data->getName().present();
 }
 
 PersonReference & PersonReference::addIdentification(const InstanceIdentifier & value) {
-	data->Identification().push_back(ConvertToCDM::convert(value));
+	data->getIdentification().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<InstanceIdentifier> PersonReference::getIdentificationList() const {
 	std::vector<InstanceIdentifier> result;
-	result.reserve(data->Identification().size());
-	for (const auto & value: data->Identification()) {
+	result.reserve(data->getIdentification().size());
+	for (const auto & value: data->getIdentification()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void PersonReference::clearIdentificationList() {
-	data->Identification().clear();
+	data->getIdentification().clear();
 }
 
 

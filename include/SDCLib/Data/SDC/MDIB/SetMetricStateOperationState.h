@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class SetMetricStateOperationState {
+class SetMetricStateOperationState
+{
 private:
 	SetMetricStateOperationState(const CDM::SetMetricStateOperationState & object);
 	operator CDM::SetMetricStateOperationState() const;
@@ -59,11 +60,11 @@ public:
 private:
 	SetMetricStateOperationState(){};
 public:
-	SetMetricStateOperationState(const SetMetricStateOperationState & object);
-	virtual ~SetMetricStateOperationState();
+	SetMetricStateOperationState(const SetMetricStateOperationState& object);
+	virtual ~SetMetricStateOperationState() = default;
 
-    void copyFrom(const SetMetricStateOperationState & object);
-    SetMetricStateOperationState & operator=(const SetMetricStateOperationState & object);
+    void copyFrom(const SetMetricStateOperationState& object);
+    SetMetricStateOperationState & operator=(const SetMetricStateOperationState& object);
 
     typedef CDM::SetMetricStateOperationState WrappedType;
 
@@ -84,7 +85,7 @@ public:
 	OperatingMode getOperatingMode() const;
 
 private:
-	std::shared_ptr<CDM::SetMetricStateOperationState> data;
+	std::shared_ptr<CDM::SetMetricStateOperationState> data = nullptr;
 };
 
 } /* namespace SDC */

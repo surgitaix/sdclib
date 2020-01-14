@@ -2,9 +2,10 @@
  * DurationWrapper.cpp
  *
  *  Created on: 07.12.2015, matthias
- *  Modified on: 09.08.2019, baumeister
+ *  Modified on: 23.08.2019, baumeister
  *
  */
+
 #include "OSELib/Helper/DurationWrapper.h"
 
 #include <sstream>
@@ -13,10 +14,10 @@
 using namespace OSELib;
 using namespace OSELib::Helper;
 
-DurationWrapper::DurationWrapper(const std::string & value)
+DurationWrapper::DurationWrapper(const std::string & p_value)
 : xml_schema::Duration(false, 0, 0, 0, 0, 0, 0.0)
 {
-	parse(value);
+	parse(p_value);
 }
 DurationWrapper::DurationWrapper(std::chrono::seconds p_seconds)
 : xml_schema::Duration(false, 0, 0, 0, 0, 0, 0.0)
@@ -31,15 +32,15 @@ DurationWrapper::DurationWrapper(std::chrono::seconds p_seconds)
 	seconds(p_seconds.count());
 }
 
-DurationWrapper & DurationWrapper::operator=(const xml_schema::Duration & source)
+DurationWrapper & DurationWrapper::operator=(const xml_schema::Duration & p_source)
 {
-	negative(source.negative());
-	years(source.years());
-	months(source.months());
-	days(source.days());
-	hours(source.hours());
-	minutes(source.minutes());
-	seconds(source.seconds());
+	negative(p_source.negative());
+	years(p_source.years());
+	months(p_source.months());
+	days(p_source.days());
+	hours(p_source.hours());
+	minutes(p_source.minutes());
+	seconds(p_source.seconds());
 	return *this;
 }
 

@@ -1,39 +1,48 @@
 /*
  * SchemaGrammarProvider.h
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 21.08.2019, baumeister
+ *
  */
 
-#ifndef HELPER_SCHEMAGRAMMARPROVIDER_H_
-#define HELPER_SCHEMAGRAMMARPROVIDER_H_
+#ifndef OSELIB_HELPER_SCHEMAGRAMMARPROVIDER_H_
+#define OSELIB_HELPER_SCHEMAGRAMMARPROVIDER_H_
+
+#include "OSELib/fwd.h"
+#include "OSELib/Helper/XercesGrammarPoolProvider.h"
 
 #include <memory>
 
 #include <xercesc/framework/XMLGrammarPool.hpp>
 
-#include "OSELib/fwd.h"
-#include "OSELib/Helper/XercesGrammarPoolProvider.h"
+namespace OSELib
+{
+	namespace Helper
+	{
 
-namespace OSELib {
-namespace Helper {
+		class SchemaGrammarProvider : public XercesGrammarPoolProvider
+		{
+		private:
+			std::unique_ptr<xercesc::XMLGrammarPool> m_pool = nullptr;
 
-class SchemaGrammarProvider : public XercesGrammarPoolProvider {
-public:
-	SchemaGrammarProvider();
-	virtual ~SchemaGrammarProvider();
+		public:
+			SchemaGrammarProvider();
+			// Special Member Functions
+			SchemaGrammarProvider(const SchemaGrammarProvider& p_obj) = delete;
+			SchemaGrammarProvider(SchemaGrammarProvider&& p_obj) = delete;
+			SchemaGrammarProvider& operator=(const SchemaGrammarProvider& p_obj) = delete;
+			SchemaGrammarProvider& operator=(SchemaGrammarProvider&& p_obj) = delete;
+			virtual ~SchemaGrammarProvider();
 
-	xercesc::XMLGrammarPool * getPool() const override;
+			xercesc::XMLGrammarPool * getPool() const override;
 
-	bool addSchema(const std::string & name, const std::string & content);
+			bool addSchema(const std::string & p_name, const std::string & p_content);
 
-	void seal();
+			void seal();
 
-private:
-	std::unique_ptr<xercesc::XMLGrammarPool> _pool;
-};
+		};
+	}
+}
 
-} /* namespace Helper */
-} /* namespace OSELib */
-
-#endif /* HELPER_SCHEMAGRAMMARPROVIDER_H_ */
+#endif

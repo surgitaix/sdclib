@@ -8,12 +8,12 @@
 #ifndef SOAP_NORMALIZEDMESSAGEADAPTER_H_
 #define SOAP_NORMALIZEDMESSAGEADAPTER_H_
 
-#include "NormalizedMessageModel.hxx"
-
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/OperationTraits.h"
 #include "OSELib/SDC/OperationTraits.h"
 #include "OSELib/SDC/ReportTraits.h"
+
+#include "DataModel/NormalizedMessageModel.hxx"
 
 namespace OSELib {
 namespace SOAP {
@@ -28,60 +28,60 @@ struct NormalizedMessageAdapter {
 template<>
 struct NormalizedMessageAdapter<DPWS::SubscribeTraits::Request> {
 	const DPWS::SubscribeTraits::Request & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().Subscribe().get();
+		return message.getBody().getSubscribe().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<DPWS::SubscribeTraits::Request> source) {
-		message.Body().Subscribe().set(std::move(source));
+		message.getBody().getSubscribe().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().Subscribe().present();
+		return message.getBody().getSubscribe().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<DPWS::SubscribeTraits::Response> {
 	const DPWS::SubscribeTraits::Response & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().SubscribeResponse().get();
+		return message.getBody().getSubscribeResponse().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<DPWS::SubscribeTraits::Response> source) {
-		message.Body().SubscribeResponse().set(std::move(source));
+		message.getBody().getSubscribeResponse().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().SubscribeResponse().present();
+		return message.getBody().getSubscribeResponse().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<DPWS::UnsubscribeTraits::RequestIdentifier> {
 	const DPWS::UnsubscribeTraits::RequestIdentifier & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Header().Identifier().get();
+		return message.getHeader().getIdentifier().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<DPWS::UnsubscribeTraits::RequestIdentifier> source) {
-		message.Header().Identifier().set(std::move(source));
+		message.getHeader().getIdentifier().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Header().Identifier().present();
+		return message.getHeader().getIdentifier().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<DPWS::UnsubscribeTraits::Request> {
 	const DPWS::UnsubscribeTraits::Request & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().Unsubscribe().get();
+		return message.getBody().getUnsubscribe().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<DPWS::UnsubscribeTraits::Request> source) {
-		message.Body().Unsubscribe().set(std::move(source));
+		message.getBody().getUnsubscribe().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().Unsubscribe().present();
+		return message.getBody().getUnsubscribe().present();
 	}
 };
 
@@ -90,11 +90,11 @@ struct NormalizedMessageAdapter<DPWS::UnsubscribeTraits::Request> {
 template<>
 struct NormalizedMessageAdapter<MESSAGEMODEL::Body> {
 	const MESSAGEMODEL::Body & get(const MESSAGEMODEL::Envelope & message) {
-		return  message.Body();
+		return  message.getBody();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<MESSAGEMODEL::Body> source) {
-		message.Body(std::move(source));
+		message.setBody(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & ) {
@@ -105,105 +105,105 @@ struct NormalizedMessageAdapter<MESSAGEMODEL::Body> {
 template<>
 struct NormalizedMessageAdapter<DPWS::RenewTraits::Request> {
 	const DPWS::RenewTraits::Request & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().Renew().get();
+		return message.getBody().getRenew().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<DPWS::RenewTraits::Request> source) {
-		message.Body().Renew().set(std::move(source));
+		message.getBody().getRenew().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().Renew().present();
+		return message.getBody().getRenew().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<DPWS::RenewTraits::Response> {
 	const DPWS::RenewTraits::Response & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().RenewResponse().get();
+		return message.getBody().getRenewResponse().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<DPWS::RenewTraits::Response> source) {
-		message.Body().RenewResponse().set(std::move(source));
+		message.getBody().getRenewResponse().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().RenewResponse().present();
+		return message.getBody().getRenewResponse().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<DPWS::GetStatusTraits::Request> {
 	const DPWS::GetStatusTraits::Request & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetStatus().get();
+		return message.getBody().getGetStatus().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<DPWS::GetStatusTraits::Request> source) {
-		message.Body().GetStatus().set(std::move(source));
+		message.getBody().getGetStatus().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetStatus().present();
+		return message.getBody().getGetStatus().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<DPWS::GetStatusTraits::Response> {
 	const DPWS::GetStatusTraits::Response & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetStatusResponse().get();
+		return message.getBody().getGetStatusResponse().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<DPWS::GetStatusTraits::Response> source) {
-		message.Body().GetStatusResponse().set(std::move(source));
+		message.getBody().getGetStatusResponse().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetStatusResponse().present();
+		return message.getBody().getGetStatusResponse().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<DPWS::ProbeTraits::Request> {
 	const DPWS::ProbeTraits::Request & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().Probe().get();
+		return message.getBody().getProbe().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<DPWS::ProbeTraits::Request> source) {
-		message.Body().Probe().set(std::move(source));
+		message.getBody().getProbe().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().Probe().present();
+		return message.getBody().getProbe().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<DPWS::ProbeTraits::Response> {
 	const DPWS::ProbeTraits::Response & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().ProbeMatches().get();
+		return message.getBody().getProbeMatches().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<DPWS::ProbeTraits::Response> source) {
-		message.Body().ProbeMatches().set(std::move(source));
+		message.getBody().getProbeMatches().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().ProbeMatches().present();
+		return message.getBody().getProbeMatches().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<DPWS::GetMetadataTraits::Request> {
 	const DPWS::GetMetadataTraits::Request & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMetadata().get();
+		return message.getBody().getGetMetadata().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<DPWS::GetMetadataTraits::Request> source) {
-		message.Body().GetMetadata().set(std::move(source));
+		message.getBody().getGetMetadata().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMetadata().present();
+		return message.getBody().getGetMetadata().present();
 	}
 };
 
@@ -213,393 +213,436 @@ struct NormalizedMessageAdapter<DPWS::GetMetadataTraits::Request> {
 template<>
 struct NormalizedMessageAdapter<WS::MEX::Metadata> {
 	const WS::MEX::Metadata & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().Metadata().get();
+		return message.getBody().getMetadata().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<WS::MEX::Metadata> source) {
-		message.Body().Metadata().set(std::move(source));
+		message.getBody().getMetadata().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().Metadata().present();
+		return message.getBody().getMetadata().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<SDC::GetMDDescriptionTraits::Request> {
 	const SDC::GetMDDescriptionTraits::Request & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMdDescription().get();
+		return message.getBody().getGetMdDescription().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::GetMDDescriptionTraits::Request> source) {
-		message.Body().GetMdDescription().set(std::move(source));
+		message.getBody().getGetMdDescription().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMdDescription().present();
+		return message.getBody().getGetMdDescription().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<SDC::GetMDDescriptionTraits::Response> {
 	const SDC::GetMDDescriptionTraits::Response & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMdDescriptionResponse().get();
+		return message.getBody().getGetMdDescriptionResponse().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::GetMDDescriptionTraits::Response> source) {
-		message.Body().GetMdDescriptionResponse().set(std::move(source));
+		message.getBody().getGetMdDescriptionResponse().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMdDescriptionResponse().present();
+		return message.getBody().getGetMdDescriptionResponse().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<SDC::GetMDIBTraits::Request> {
 	const SDC::GetMDIBTraits::Request & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMdib().get();
+		return message.getBody().getGetMdib().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::GetMDIBTraits::Request> source) {
-		message.Body().GetMdib().set(std::move(source));
+		message.getBody().getGetMdib().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMdib().present();
+		return message.getBody().getGetMdib().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<SDC::GetMDIBTraits::Response> {
 	const SDC::GetMDIBTraits::Response & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMdibResponse().get();
+		return message.getBody().getGetMdibResponse().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::GetMDIBTraits::Response> source) {
-		message.Body().GetMdibResponse().set(std::move(source));
+		message.getBody().getGetMdibResponse().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMdibResponse().present();
+		return message.getBody().getGetMdibResponse().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<SDC::GetMdStateTraits::Request> {
 	const SDC::GetMdStateTraits::Request & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMdState().get();
+		return message.getBody().getGetMdState().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::GetMdStateTraits::Request> source) {
-		message.Body().GetMdState().set(std::move(source));
+		message.getBody().getGetMdState().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMdState().present();
+		return message.getBody().getGetMdState().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<SDC::GetMdStateTraits::Response> {
 	const SDC::GetMdStateTraits::Response & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMdStateResponse().get();
+		return message.getBody().getGetMdStateResponse().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::GetMdStateTraits::Response> source) {
-		message.Body().GetMdStateResponse().set(std::move(source));
+		message.getBody().getGetMdStateResponse().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetMdStateResponse().present();
+		return message.getBody().getGetMdStateResponse().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<SDC::GetContextStatesTraits::Request> {
 	const SDC::GetContextStatesTraits::Request & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetContextStates().get();
+		return message.getBody().getGetContextStates().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::GetContextStatesTraits::Request> source) {
-		message.Body().GetContextStates().set(std::move(source));
+		message.getBody().getGetContextStates().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetContextStates().present();
+		return message.getBody().getGetContextStates().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<SDC::GetContextStatesTraits::Response> {
 	const SDC::GetContextStatesTraits::Response & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetContextStatesResponse().get();
+		return message.getBody().getGetContextStatesResponse().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::GetContextStatesTraits::Response> source) {
-		message.Body().GetContextStatesResponse().set(std::move(source));
+		message.getBody().getGetContextStatesResponse().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().GetContextStatesResponse().present();
+		return message.getBody().getGetContextStatesResponse().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<SDC::SetContextStateTraits::Request> {
 	const SDC::SetContextStateTraits::Request & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().SetContextState().get();
+		return message.getBody().getSetContextState().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::SetContextStateTraits::Request> source) {
-		message.Body().SetContextState().set(std::move(source));
+		message.getBody().getSetContextState().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().SetContextState().present();
+		return message.getBody().getSetContextState().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<SDC::SetContextStateTraits::Response> {
 	const SDC::SetContextStateTraits::Response & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().SetContextStateResponse().get();
+		return message.getBody().getSetContextStateResponse().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::SetContextStateTraits::Response> source) {
-		message.Body().SetContextStateResponse().set(std::move(source));
+		message.getBody().getSetContextStateResponse().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().SetContextStateResponse().present();
+		return message.getBody().getSetContextStateResponse().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<SDC::SetAlertStateTraits::Request> {
 	const SDC::SetAlertStateTraits::Request & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().SetAlertState().get();
+		return message.getBody().getSetAlertState().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::SetAlertStateTraits::Request> source) {
-		message.Body().SetAlertState().set(std::move(source));
+		message.getBody().getSetAlertState().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().SetAlertState().present();
+		return message.getBody().getSetAlertState().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<SDC::SetAlertStateTraits::Response> {
 	const SDC::SetAlertStateTraits::Response & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().SetAlertStateResponse().get();
+		return message.getBody().getSetAlertStateResponse().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::SetAlertStateTraits::Response> source) {
-		message.Body().SetAlertStateResponse().set(std::move(source));
+		message.getBody().getSetAlertStateResponse().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().SetAlertStateResponse().present();
+		return message.getBody().getSetAlertStateResponse().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<SDC::SetStringTraits::Request> {
 	const SDC::SetStringTraits::Request & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().SetString().get();
+		return message.getBody().getSetString().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::SetStringTraits::Request> source) {
-		message.Body().SetString().set(std::move(source));
+		message.getBody().getSetString().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().SetString().present();
+		return message.getBody().getSetString().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<SDC::SetStringTraits::Response> {
 	const SDC::SetStringTraits::Response & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().SetStringResponse().get();
+		return message.getBody().getSetStringResponse().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::SetStringTraits::Response> source) {
-		message.Body().SetStringResponse().set(std::move(source));
+		message.getBody().getSetStringResponse().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().SetStringResponse().present();
+		return message.getBody().getSetStringResponse().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<SDC::SetValueTraits::Request> {
 	const SDC::SetValueTraits::Request & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().SetValue().get();
+		return message.getBody().getSetValue().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::SetValueTraits::Request> source) {
-		message.Body().SetValue().set(std::move(source));
+		message.getBody().getSetValue().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().SetValue().present();
+		return message.getBody().getSetValue().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<SDC::SetValueTraits::Response> {
 	const SDC::SetValueTraits::Response & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().SetValueResponse().get();
+		return message.getBody().getSetValueResponse().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::SetValueTraits::Response> source) {
-		message.Body().SetValueResponse().set(std::move(source));
+		message.getBody().getSetValueResponse().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().SetValueResponse().present();
+		return message.getBody().getSetValueResponse().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<SDC::ActivateTraits::Request> {
 	const SDC::ActivateTraits::Request & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().Activate().get();
+		return message.getBody().getActivate().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::ActivateTraits::Request> source) {
-		message.Body().Activate().set(std::move(source));
+		message.getBody().getActivate().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().Activate().present();
+		return message.getBody().getActivate().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<SDC::ActivateTraits::Response> {
 	const SDC::ActivateTraits::Response & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().ActivateResponse().get();
+		return message.getBody().getActivateResponse().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::ActivateTraits::Response> source) {
-		message.Body().ActivateResponse().set(std::move(source));
+		message.getBody().getActivateResponse().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().ActivateResponse().present();
+		return message.getBody().getActivateResponse().present();
 	}
 };
 
+// Description Event Service
+template<>
+struct NormalizedMessageAdapter<SDC::DescriptionModificationReportTraits::ReportType> {
+	const SDC::DescriptionModificationReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
+		return message.getBody().getDescriptionModificationReport().get();
+	}
 
+	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::DescriptionModificationReportTraits::ReportType> source) {
+		message.getBody().getDescriptionModificationReport().set(std::move(source));
+	}
 
+	bool present(const MESSAGEMODEL::Envelope & message) {
+		return message.getBody().getDescriptionModificationReport().present();
+	}
+};
 
 template<>
 struct NormalizedMessageAdapter<SDC::EpisodicAlertReportTraits::ReportType> {
 	const SDC::EpisodicAlertReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().EpisodicAlertReport().get();
+		return message.getBody().getEpisodicAlertReport().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::EpisodicAlertReportTraits::ReportType> source) {
-		message.Body().EpisodicAlertReport().set(std::move(source));
+		message.getBody().getEpisodicAlertReport().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().EpisodicAlertReport().present();
+		return message.getBody().getEpisodicAlertReport().present();
 	}
 };
 
 template<>
-struct NormalizedMessageAdapter<SDC::EpisodicContextChangedReportTraits::ReportType> {
-	const SDC::EpisodicContextChangedReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().EpisodicContextReport().get();
+struct NormalizedMessageAdapter<SDC::EpisodicComponentReportTraits::ReportType> {
+	const SDC::EpisodicComponentReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
+		return message.getBody().getEpisodicComponentReport().get();
 	}
 
-	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::EpisodicContextChangedReportTraits::ReportType> source) {
-		message.Body().EpisodicContextReport().set(std::move(source));
+	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::EpisodicComponentReportTraits::ReportType> source) {
+		message.getBody().getEpisodicComponentReport().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().EpisodicContextReport().present();
+		return message.getBody().getEpisodicComponentReport().present();
+	}
+};
+
+template<>
+struct NormalizedMessageAdapter<SDC::EpisodicContextReportTraits::ReportType> {
+	const SDC::EpisodicContextReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
+		return message.getBody().getEpisodicContextReport().get();
+	}
+
+	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::EpisodicContextReportTraits::ReportType> source) {
+		message.getBody().getEpisodicContextReport().set(std::move(source));
+	}
+
+	bool present(const MESSAGEMODEL::Envelope & message) {
+		return message.getBody().getEpisodicContextReport().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<SDC::EpisodicMetricReportTraits::ReportType> {
 	const SDC::EpisodicMetricReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().EpisodicMetricReport().get();
+		return message.getBody().getEpisodicMetricReport().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::EpisodicMetricReportTraits::ReportType> source) {
-		message.Body().EpisodicMetricReport().set(std::move(source));
+		message.getBody().getEpisodicMetricReport().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().EpisodicMetricReport().present();
+		return message.getBody().getEpisodicMetricReport().present();
+	}
+};
+
+template<>
+struct NormalizedMessageAdapter<SDC::EpisodicOperationalStateReportTraits::ReportType> {
+	const SDC::EpisodicOperationalStateReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
+		return message.getBody().getEpisodicOperationalStateReport().get();
+	}
+
+	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::EpisodicOperationalStateReportTraits::ReportType> source) {
+		message.getBody().getEpisodicOperationalStateReport().set(std::move(source));
+	}
+
+	bool present(const MESSAGEMODEL::Envelope & message) {
+		return message.getBody().getEpisodicOperationalStateReport().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<SDC::PeriodicAlertReportTraits::ReportType> {
 	const SDC::PeriodicAlertReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().PeriodicAlertReport().get();
+		return message.getBody().getPeriodicAlertReport().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::PeriodicAlertReportTraits::ReportType> source) {
-		message.Body().PeriodicAlertReport().set(std::move(source));
+		message.getBody().getPeriodicAlertReport().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().PeriodicAlertReport().present();
+		return message.getBody().getPeriodicAlertReport().present();
 	}
 };
 
 template<>
-struct NormalizedMessageAdapter<SDC::PeriodicContextChangedReportTraits::ReportType> {
-	const SDC::PeriodicContextChangedReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().PeriodicContextReport().get();
+struct NormalizedMessageAdapter<SDC::PeriodicContextReportTraits::ReportType> {
+	const SDC::PeriodicContextReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
+		return message.getBody().getPeriodicContextReport().get();
 	}
 
-	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::PeriodicContextChangedReportTraits::ReportType> source) {
-		message.Body().PeriodicContextReport().set(std::move(source));
+	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::PeriodicContextReportTraits::ReportType> source) {
+		message.getBody().getPeriodicContextReport().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().PeriodicContextReport().present();
+		return message.getBody().getPeriodicContextReport().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<SDC::PeriodicMetricReportTraits::ReportType> {
 	const SDC::PeriodicMetricReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().PeriodicMetricReport().get();
+		return message.getBody().getPeriodicMetricReport().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::PeriodicMetricReportTraits::ReportType> source) {
-		message.Body().PeriodicMetricReport().set(std::move(source));
+		message.getBody().getPeriodicMetricReport().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().PeriodicMetricReport().present();
+		return message.getBody().getPeriodicMetricReport().present();
 	}
 };
 
 template<>
 struct NormalizedMessageAdapter<SDC::OperationInvokedReportTraits::ReportType> {
 	const SDC::OperationInvokedReportTraits::ReportType & get(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().OperationInvokedReport().get();
+		return message.getBody().getOperationInvokedReport().get();
 	}
 
 	void set(MESSAGEMODEL::Envelope & message, std::unique_ptr<SDC::OperationInvokedReportTraits::ReportType> source) {
-		message.Body().OperationInvokedReport().set(std::move(source));
+		message.getBody().getOperationInvokedReport().set(std::move(source));
 	}
 
 	bool present(const MESSAGEMODEL::Envelope & message) {
-		return message.Body().OperationInvokedReport().present();
+		return message.getBody().getOperationInvokedReport().present();
 	}
 };
 

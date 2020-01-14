@@ -35,7 +35,6 @@
 #include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/SampleArrayValue.h"
 #include "SDCLib/Util/DebugOut.h"
-#include "SDCLib/Util/Task.h"
 
 
 #include "OSELib/SDC/ServiceManager.h"
@@ -50,59 +49,62 @@ const std::string streamHandle("handle_stream");
 
 
 // Example for a minimum implementation of a consumer state handler
-class NumericConsumerEventHandler : public  SDCConsumerMDStateHandler<NumericMetricState> {
+class NumericConsumerEventHandler : public  SDCConsumerMDStateHandler<NumericMetricState>
+{
 public:
-	NumericConsumerEventHandler(const std::string & handle) :  SDCConsumerMDStateHandler(handle)
-	{
-	}
+	NumericConsumerEventHandler(const std::string p_descriptorHandle)
+	:  SDCConsumerMDStateHandler(p_descriptorHandle)
+	{ }
 
 	// this abstract method implements the eventing mechanism
 	// called from within the framework if a value is changed by the provider
-	void onStateChanged(const NumericMetricState & state) override {
-		DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Recieved Value: " << state.getMetricValue().getValue() << std::endl;
+	void onStateChanged(const NumericMetricState& p_changedState) override
+	{
+		DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Recieved Value: " << p_changedState.getMetricValue().getValue() << std::endl;
 	}
 };
 
 
-class StreamConsumerEventHandler : public SDCConsumerMDStateHandler<RealTimeSampleArrayMetricState> {
+class StreamConsumerEventHandler : public SDCConsumerMDStateHandler<RealTimeSampleArrayMetricState>
+{
 public:
-	StreamConsumerEventHandler(const std::string & handle) : SDCConsumerMDStateHandler(handle),
-    	verifiedChunks(false)
-    {
-    }
+	StreamConsumerEventHandler(const std::string p_descriptorHandle)
+	: SDCConsumerMDStateHandler(p_descriptorHandle)
+    { }
 
 	// this abstract method implements the eventing mechanism
 	// called from within the framework if a value is changed by the provider
-    void onStateChanged(const RealTimeSampleArrayMetricState & state) override {
-    	std::lock_guard<std::mutex> t_lock(m_mutex);
-        std::vector<double> values = state.getMetricValue().getSamples();
-
+    void onStateChanged(const RealTimeSampleArrayMetricState& p_changedState) override
+    {
+        std::vector<double> t_sampleValues = p_changedState.getMetricValue().getSamples();
 
         // simple check if the data is valid:
         // assumption: sequence of values, increased by 1
-        verifiedChunks = true;
-        for (size_t i = 0; i < values.size(); i++) {
+        m_chunksVerified = true;
+        for (size_t i = 0; i < t_sampleValues.size(); i++) {
 //        	DebugOut(DebugOut::Default, "StreamSDC") << values[i];
-            if (values[i] != double(i))
-                verifiedChunks = false;
+            if (t_sampleValues[i] != static_cast<double>(i))
+            {
+            	m_chunksVerified = false;
+            }
         }
-        DebugOut(DebugOut::Default, "StreamSDC") << "Received chunk! Handle: " << descriptorHandle << ". Validity: " << verifiedChunks << std::endl;
+        DebugOut(DebugOut::Default, "StreamSDC") << "Received chunk! Handle: " << getDescriptorHandle() << ". Validity: " << m_chunksVerified << std::endl;
     }
 
-    bool getVerifiedChunks() {
-    	std::lock_guard<std::mutex> t_lock(m_mutex);
-        return verifiedChunks;
+    bool getVerifiedChunks()
+    {
+        return m_chunksVerified;
     }
 
 private:
-    std::mutex m_mutex;
-    bool verifiedChunks;
+    std::atomic<bool> m_chunksVerified{false};
 };
 
 
 
 
-int main() {
+int main()
+{
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Startup";
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Debug);
 
@@ -122,33 +124,37 @@ int main() {
 	DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Consumer discovery..." << std::endl;
 
 	// testing against SoftICE
-	std::shared_ptr<SDCConsumer> c(t_serviceManager.discoverEndpointReference(deviceEPR));
-	std::shared_ptr<StreamConsumerEventHandler> streamEventHandler = std::make_shared<StreamConsumerEventHandler>(streamHandle);
-	std::shared_ptr<NumericConsumerEventHandler> getNumericEventHandler = std::make_shared<NumericConsumerEventHandler>("handle_metric");
-	std::shared_ptr<NumericConsumerEventHandler> setNumericEventHandler = std::make_shared<NumericConsumerEventHandler>("handle_set");
+	auto t_consumer{t_serviceManager.discoverEndpointReference(deviceEPR)};
+	auto t_streamEventHandler = std::make_shared<StreamConsumerEventHandler>(streamHandle);
+	auto t_getNumericEventHandler = std::make_shared<NumericConsumerEventHandler>("handle_metric");
+	auto t_setNumericEventHandler = std::make_shared<NumericConsumerEventHandler>("handle_set");
 
-	if (c != nullptr) {
+	if (t_consumer != nullptr)
+	{
 		DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Provider found!" << std::endl;
-		c->registerStateEventHandler(streamEventHandler.get());
-		c->registerStateEventHandler(getNumericEventHandler.get());
-		c->registerStateEventHandler(setNumericEventHandler.get());
+		t_consumer->registerStateEventHandler(t_streamEventHandler.get());
+		t_consumer->registerStateEventHandler(t_getNumericEventHandler.get());
+		t_consumer->registerStateEventHandler(t_setNumericEventHandler.get());
 
 //		set the providers value for the NMS: handle_set
 		NumericMetricState nms("handle_set");
-		nms.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(84.0));
+		nms.setMetricValue(NumericMetricValue{MetricQuality{MeasurementValidity::Vld}}.setValue(84.0));
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-		c->commitState(nms);
+        t_consumer->commitState(nms);
 
 		std::string temp;
 		DebugOut(DebugOut::Default, "ExampleProvider4SoftICEStreaming") << "Press key to exit program.";
 		std::cin >> temp;
 
-		c->unregisterStateEventHandler(streamEventHandler.get());
-		c->unregisterStateEventHandler(getNumericEventHandler.get());
-		c->unregisterStateEventHandler(setNumericEventHandler.get());
-		c->disconnect();
-	} else {
-		DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Provider not found!" << std::endl;
+		t_consumer->unregisterStateEventHandler(t_streamEventHandler.get());
+		t_consumer->unregisterStateEventHandler(t_getNumericEventHandler.get());
+		t_consumer->unregisterStateEventHandler(t_setNumericEventHandler.get());
+		t_consumer->disconnect();
 	}
-
+	else
+	{
+		DebugOut(DebugOut::Default, "ExampleConsumer4SoftICEStreaming") << "Provider not found!" << std::endl;
+		return -1;
+	}
+	return 0;
 }

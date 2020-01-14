@@ -9,7 +9,7 @@
 
 
 # Name of the folder
-DIRNAME=generated
+DIRNAME=generated/DataModel/
 
 # Cleanup
 echo "Cleanup..."
@@ -30,12 +30,19 @@ xsdcxx cxx-tree \
 	--show-sloc \
 	--type-naming ucc \
 	--generate-polymorphic \
+	--generate-doxygen \
+	--function-naming java \
 	--polymorphic-type-all \
 	--generate-forward \
 	--generate-serialization \
 	--hxx-suffix ".hxx" \
 	--cxx-suffix ".cxx" \
 	--ixx-suffix ".ixx" \
+	--include-prefix "DataModel/" \
+	\
+	--root-element MdibContainer \
+	--root-element Envelope \
+	\
 	--namespace-map http://standards.ieee.org/downloads/11073/11073-10207-2017/participant=CDM \
 	--namespace-map http://standards.ieee.org/downloads/11073/11073-10207-2017/extension=EXT \
 	--namespace-map http://standards.ieee.org/downloads/11073/11073-10207-2017/message=MDM \
@@ -63,7 +70,7 @@ xsdcxx cxx-tree \
 	eventing.xsd \
 	ws-policy.xsd ws-streaming.xsd \
 	NormalizedMessageModel.xsd \
-	DICOMDeviceDescription.xsd
+	DICOMDeviceDescription.xsd \
 
 	
 	

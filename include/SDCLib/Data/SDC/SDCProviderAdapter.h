@@ -1,56 +1,79 @@
 /*
  * SDCProviderAdapter.h
  *
- *  Created on: 09.12.2015
- *      Author: matthias
+ *  Created on: 09.12.2015, matthias
+ *  Modified on: 26.09.2019, baumeister
+ *
  */
 
 #ifndef SDCLIB_DATA_SDC_SDCPROVIDERADAPTER_H_
 #define SDCLIB_DATA_SDC_SDCPROVIDERADAPTER_H_
 
 #include "SDC-fwd.h"
-#include "OSELib/fwd.h"
+#include "OSELib/DPWS/SubscriptionManager.h"
+#include "OSELib/DPWS/MDPWSHostAdapter.h"
+#include "OSELib/HTTP/HTTPServer.h"
+
 #include <set>
+#include <mutex>
 
-namespace SDCLib {
-namespace Data {
-namespace SDC {
+namespace OSELib {
+	class GetServiceImpl;
+	class SetServiceImpl;
+	class BICEPSServiceImpl;
+}
 
-class SDCProviderAdapter {
-public:
-	SDCProviderAdapter(SDCProvider & provider);
-	virtual ~SDCProviderAdapter();
+namespace SDCLib
+{
+	namespace Data
+	{
+		namespace SDC
+		{
+			class SDCProviderAdapter
+			{
+			private:
+				SDCProvider & m_provider;
 
-	bool start();
-	void stop();
+				mutable std::mutex m_mutex;
 
-	void notifyEvent(const MDM::EpisodicAlertReport & report);
-	void notifyEvent(const MDM::EpisodicContextReport & report);
-	void notifyEvent(const MDM::EpisodicMetricReport & report);
-	void notifyEvent(const MDM::PeriodicAlertReport & report);
-	void notifyEvent(const MDM::PeriodicContextReport & report);
-	void notifyEvent(const MDM::PeriodicMetricReport & report);
-	void notifyEvent(const MDM::OperationInvokedReport & report);
-	void notifyEvent(const MDM::WaveformStream & stream);
+				std::set<int> ml_streamingPorts;
 
-	void addStreamingPort(const int port);
-	void removeStreamingPort(const int port);
+				std::unique_ptr<OSELib::DPWS::SubscriptionManager> m_subscriptionManager = nullptr;
+				std::unique_ptr<OSELib::DPWS::MDPWSHostAdapter> m_dpwsHost = nullptr;
+				std::unique_ptr<OSELib::HTTP::HTTPServer> m_httpServer = nullptr;
 
-private:
-	SDCProvider & _provider;
+			public:
+				SDCProviderAdapter(SDCProvider & p_provider);
+				// Special Member Functions
+				SDCProviderAdapter(const SDCProviderAdapter& p_obj) = delete;
+				SDCProviderAdapter(SDCProviderAdapter&& p_obj) = delete;
+				SDCProviderAdapter& operator=(const SDCProviderAdapter& p_obj) = delete;
+				SDCProviderAdapter& operator=(SDCProviderAdapter&& p_obj) = delete;
+				~SDCProviderAdapter();
 
-	mutable std::mutex m_mutex;
-	std::unique_ptr<Poco::ThreadPool> _threadPool;
+				bool start();
 
-	std::set<int> streamingPorts;
+				// DescriptionEvent
+				void notifyEvent(const MDM::DescriptionModificationReport & p_report);
+				// StateEvent
+				void notifyEvent(const MDM::EpisodicAlertReport & p_report);
+				void notifyEvent(const MDM::EpisodicComponentReport & p_report);
+				void notifyEvent(const MDM::EpisodicContextReport & p_report);
+				void notifyEvent(const MDM::EpisodicMetricReport & p_report);
+				void notifyEvent(const MDM::EpisodicOperationalStateReport & p_report);
+				void notifyEvent(const MDM::PeriodicAlertReport & p_report);
+				void notifyEvent(const MDM::PeriodicContextReport & p_report);
+				void notifyEvent(const MDM::PeriodicMetricReport & p_report);
+				void notifyEvent(const MDM::OperationInvokedReport & p_report);
+				// Waveform
+				void notifyEvent(const MDM::WaveformStream & p_stream);
 
-	std::unique_ptr<OSELib::DPWS::SubscriptionManager> _subscriptionManager;
-	std::unique_ptr<OSELib::DPWS::MDPWSHostAdapter> _dpwsHost;
-	std::unique_ptr<Poco::Net::HTTPServer> _httpServer;
-};
+				void addStreamingPort(const int p_port);
+				void removeStreamingPort(const int p_port);
+			};
 
-} /* namespace SDC */
-} /* namespace Data */
-} /* namespace SDCLib */
+		}
+	}
+}
 
-#endif /* SDCLIB_DATA_SDC_SDCPROVIDERADAPTER_H_ */
+#endif

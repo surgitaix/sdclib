@@ -18,7 +18,7 @@
  * HTTPClientExchanger.h
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
- *  Author: besting, roehser
+ *  Author: besting, roehser, baumeister
  */
 
 #ifndef OSELIB_HTTP_HTTPCLIENTEXCHANGER_H_
@@ -27,22 +27,29 @@
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
 
-namespace OSELib {
-namespace HTTP {
+#include <string>
+#include <Poco/Net/HTTPClientSession.h>
+#include <Poco/Net/HTTPSClientSession.h>
 
-class HTTPClientSessionWrapper;
+namespace OSELib
+{
+	namespace HTTP
+	{
+		class HTTPClientExchanger : public OSELib::Helper::WithLogger
+		{
+		public:
+			HTTPClientExchanger();
+			// Special Member Functions
+			HTTPClientExchanger(const HTTPClientExchanger& p_obj) = default;
+			HTTPClientExchanger(HTTPClientExchanger&& p_obj) = default;
+			HTTPClientExchanger& operator=(const HTTPClientExchanger& p_obj) = default;
+			HTTPClientExchanger& operator=(HTTPClientExchanger&& p_obj) = default;
+			~HTTPClientExchanger() = default;
 
+			std::string exchangeHttp(Poco::Net::HTTPClientSession & p_session, const std::string & p_path, const std::string & p_requestData);
+			std::string exchangeHttp(Poco::Net::HTTPSClientSession & p_session, const std::string & p_path, const std::string & p_requestData);
+		};
+	}
+}
 
-class HTTPClientExchanger : public WithLogger{
-public:
-	HTTPClientExchanger();
-	virtual ~HTTPClientExchanger();
-
-    std::string exchangeHttp(HTTPClientSessionWrapper & session, const std::string & path, const std::string & requestData);
-    std::string exchangeHttp(Poco::Net::HTTPSClientSession & session, const std::string & path, const std::string & requestData);
-};
-
-} /* namespace Comm */
-} /* namespace SDCLib */
-
-#endif /* OSELIB_HTTP_HTTPCLIENTEXCHANGER_H_ */
+#endif

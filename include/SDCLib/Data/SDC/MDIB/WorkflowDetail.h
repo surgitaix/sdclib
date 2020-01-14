@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class WorkflowDetail {
+class WorkflowDetail
+{
 private:
 	WorkflowDetail(const CDM::WorkflowDetail & object);
 	operator CDM::WorkflowDetail() const;
@@ -57,11 +58,11 @@ public:
 private:
 	WorkflowDetail(){};
 public:
-	WorkflowDetail(const WorkflowDetail & object);
-	virtual ~WorkflowDetail();
+	WorkflowDetail(const WorkflowDetail& object);
+	virtual ~WorkflowDetail() = default;
 
-    void copyFrom(const WorkflowDetail & object);
-    WorkflowDetail & operator=(const WorkflowDetail & object);
+    void copyFrom(const WorkflowDetail& object);
+    WorkflowDetail & operator=(const WorkflowDetail& object);
 
     typedef CDM::WorkflowDetail WrappedType;
 
@@ -97,7 +98,7 @@ public:
 	void clearRelevantClinicalInfoList();
 
 private:
-	std::shared_ptr<CDM::WorkflowDetail> data;
+	std::shared_ptr<CDM::WorkflowDetail> data = nullptr;
 };
 
 } /* namespace SDC */

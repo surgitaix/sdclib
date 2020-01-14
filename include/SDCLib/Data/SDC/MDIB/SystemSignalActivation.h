@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class SystemSignalActivation {
+class SystemSignalActivation
+{
 private:
 	SystemSignalActivation(const CDM::SystemSignalActivation & object);
 	operator CDM::SystemSignalActivation() const;
@@ -59,11 +60,11 @@ public:
 private:
 	SystemSignalActivation(){};
 public:
-	SystemSignalActivation(const SystemSignalActivation & object);
-	virtual ~SystemSignalActivation();
+	SystemSignalActivation(const SystemSignalActivation& object);
+	virtual ~SystemSignalActivation() = default;
 
-    void copyFrom(const SystemSignalActivation & object);
-    SystemSignalActivation & operator=(const SystemSignalActivation & object);
+    void copyFrom(const SystemSignalActivation& object);
+    SystemSignalActivation & operator=(const SystemSignalActivation& object);
 
     typedef CDM::SystemSignalActivation WrappedType;
 
@@ -74,7 +75,7 @@ public:
 	AlertActivation getState() const;
 
 private:
-	std::shared_ptr<CDM::SystemSignalActivation> data;
+	std::shared_ptr<CDM::SystemSignalActivation> data = nullptr;
 };
 
 } /* namespace SDC */

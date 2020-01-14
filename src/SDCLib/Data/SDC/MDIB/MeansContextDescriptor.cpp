@@ -34,7 +34,7 @@
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/Defaults.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 #include "SDCLib/Data/SDC/MDIB/CodedValue.h"
 
@@ -47,105 +47,102 @@ MeansContextDescriptor::MeansContextDescriptor(
 		Handle handle
 ) : data(Defaults::MeansContextDescriptorInit(
 		handle
-)) {}
+))
+{}
 
 MeansContextDescriptor::operator CDM::MeansContextDescriptor() const {
 	return *data;
 }
 
-MeansContextDescriptor::MeansContextDescriptor(const CDM::MeansContextDescriptor & object) : data(new CDM::MeansContextDescriptor(object)) {
+MeansContextDescriptor::MeansContextDescriptor(const CDM::MeansContextDescriptor & object)
+: data(new CDM::MeansContextDescriptor(object))
+{ }
 
-}
-
-MeansContextDescriptor::MeansContextDescriptor(const MeansContextDescriptor & object) : data(new CDM::MeansContextDescriptor(*object.data)) {
-
-}
-
-MeansContextDescriptor::~MeansContextDescriptor() {
-
-}
+MeansContextDescriptor::MeansContextDescriptor(const MeansContextDescriptor & object)
+: data(std::make_shared<CDM::MeansContextDescriptor>(*object.data))
+{ }
 
 void MeansContextDescriptor::copyFrom(const MeansContextDescriptor & object) {
-	data = std::shared_ptr<CDM::MeansContextDescriptor>( new CDM::MeansContextDescriptor(*object.data));
+	data = std::make_shared<CDM::MeansContextDescriptor>(*object.data);
 }
 
-MeansContextDescriptor & MeansContextDescriptor:: operator=(const MeansContextDescriptor & object) {
+MeansContextDescriptor & MeansContextDescriptor:: operator=(const MeansContextDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 MeansContextDescriptor & MeansContextDescriptor::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
+	data->setType(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool MeansContextDescriptor::getType(CodedValue & out) const {
-	if (data->Type().present()) {
-		out = ConvertFromCDM::convert(data->Type().get());
+	if (data->getType().present()) {
+		out = ConvertFromCDM::convert(data->getType().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue MeansContextDescriptor::getType() const {
-	return ConvertFromCDM::convert(data->Type().get());
+	return ConvertFromCDM::convert(data->getType().get());
 }
 
 bool MeansContextDescriptor::hasType() const {
-	return data->Type().present();
+	return data->getType().present();
 }
 
 MeansContextDescriptor & MeansContextDescriptor::setHandle(const Handle & value) {
-	data->Handle(ConvertToCDM::convert(value));
+	data->setHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 Handle MeansContextDescriptor::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle());
+	return ConvertFromCDM::convert(data->getHandle());
 }
 
 MeansContextDescriptor & MeansContextDescriptor::setDescriptorVersion(const VersionCounter & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool MeansContextDescriptor::getDescriptorVersion(VersionCounter & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter MeansContextDescriptor::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool MeansContextDescriptor::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 MeansContextDescriptor & MeansContextDescriptor::setSafetyClassification(const SafetyClassification & value) {
-	data->SafetyClassification(ConvertToCDM::convert(value));
+	data->setSafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool MeansContextDescriptor::getSafetyClassification(SafetyClassification & out) const {
-	if (data->SafetyClassification().present()) {
-		out = ConvertFromCDM::convert(data->SafetyClassification().get());
+	if (data->getSafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->getSafetyClassification().get());
 		return true;
 	}
 	return false;
 }
 
 SafetyClassification MeansContextDescriptor::getSafetyClassification() const {
-	return ConvertFromCDM::convert(data->SafetyClassification().get());
+	return ConvertFromCDM::convert(data->getSafetyClassification().get());
 }
 
 bool MeansContextDescriptor::hasSafetyClassification() const {
-	return data->SafetyClassification().present();
+	return data->getSafetyClassification().present();
 }
 
 

@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class ChannelDescriptor {
+class ChannelDescriptor
+{
 private:
 	ChannelDescriptor(const CDM::ChannelDescriptor & object);
 	operator CDM::ChannelDescriptor() const;
@@ -57,11 +58,11 @@ public:
 private:
 	ChannelDescriptor(){};
 public:
-	ChannelDescriptor(const ChannelDescriptor & object);
-	virtual ~ChannelDescriptor();
+	ChannelDescriptor(const ChannelDescriptor& object);
+	virtual ~ChannelDescriptor() = default;
 
-    void copyFrom(const ChannelDescriptor & object);
-    ChannelDescriptor & operator=(const ChannelDescriptor & object);
+    void copyFrom(const ChannelDescriptor& object);
+    ChannelDescriptor & operator=(const ChannelDescriptor& object);
 
     typedef CDM::ChannelDescriptor WrappedType;
 
@@ -107,7 +108,7 @@ private:
 	template<class T>
 	ChannelDescriptor & addMetricImpl(const T & source);
 private:
-	std::shared_ptr<CDM::ChannelDescriptor> data;
+	std::shared_ptr<CDM::ChannelDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

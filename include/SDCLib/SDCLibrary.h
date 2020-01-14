@@ -37,14 +37,12 @@
 
 namespace SDCLib
 {
-    class SDCLibrary final : public OSELib::WithLogger
+    class SDCLibrary final : public OSELib::Helper::WithLogger
     {
     private:
 
-        std::atomic<bool> m_initialized = ATOMIC_VAR_INIT(false);
+        std::atomic<bool> m_initialized{false};
 
-        std::mutex m_mutex;
-        std::unique_ptr<OSELib::DPWS::PingManager> m_latestPingManager;
     public:
 
         // Special Member Functions
@@ -62,7 +60,7 @@ namespace SDCLib
         *
         * @param debugLevel The debug output level.
         */
-        void startup(OSELib::LogLevel debugLevel = OSELib::LogLevel::Error);
+        void startup(OSELib::LogLevel p_debugLevel = OSELib::LogLevel::Error);
 
         /**
         * Shutdown framework.
@@ -71,10 +69,8 @@ namespace SDCLib
         void shutdown();
 
         bool isInitialized();
-
-        void dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> pingManager);
     };
 
-} /* namespace SDCLib */
+}
 
-#endif /* SDCLIB_SDCLIBRARY_H_ */
+#endif

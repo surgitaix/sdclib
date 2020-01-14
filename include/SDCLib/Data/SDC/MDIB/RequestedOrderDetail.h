@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class RequestedOrderDetail {
+class RequestedOrderDetail
+{
 private:
 	RequestedOrderDetail(const CDM::RequestedOrderDetail & object);
 	operator CDM::RequestedOrderDetail() const;
@@ -57,11 +58,11 @@ public:
 private:
 	RequestedOrderDetail(){};
 public:
-	RequestedOrderDetail(const RequestedOrderDetail & object);
-	virtual ~RequestedOrderDetail();
+	RequestedOrderDetail(const RequestedOrderDetail& object);
+	virtual ~RequestedOrderDetail() = default;
 
-    void copyFrom(const RequestedOrderDetail & object);
-    RequestedOrderDetail & operator=(const RequestedOrderDetail & object);
+    void copyFrom(const RequestedOrderDetail& object);
+    RequestedOrderDetail & operator=(const RequestedOrderDetail& object);
 
     typedef CDM::RequestedOrderDetail WrappedType;
 
@@ -101,7 +102,7 @@ public:
 	InstanceIdentifier getPlacerOrderNumber() const;
 
 private:
-	std::shared_ptr<CDM::RequestedOrderDetail> data;
+	std::shared_ptr<CDM::RequestedOrderDetail> data = nullptr;
 };
 
 } /* namespace SDC */

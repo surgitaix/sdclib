@@ -34,7 +34,7 @@
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/Defaults.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 #include "SDCLib/Data/SDC/MDIB/DicomTransferCapability.h"
 #include "SDCLib/Data/SDC/MDIB/LocalizedText.h"
@@ -60,108 +60,105 @@ DicomNetworkAe::DicomNetworkAe(
 		associationinitiator
 		,
 		associationacceptor
-)) {}
+))
+{}
 
 DicomNetworkAe::operator CDM::DicomNetworkAe() const {
 	return *data;
 }
 
-DicomNetworkAe::DicomNetworkAe(const CDM::DicomNetworkAe & object) : data(new CDM::DicomNetworkAe(object)) {
+DicomNetworkAe::DicomNetworkAe(const CDM::DicomNetworkAe & object)
+: data(new CDM::DicomNetworkAe(object))
+{ }
 
-}
-
-DicomNetworkAe::DicomNetworkAe(const DicomNetworkAe & object) : data(new CDM::DicomNetworkAe(*object.data)) {
-
-}
-
-DicomNetworkAe::~DicomNetworkAe() {
-
-}
+DicomNetworkAe::DicomNetworkAe(const DicomNetworkAe & object)
+: data(std::make_shared<CDM::DicomNetworkAe>(*object.data))
+{ }
 
 void DicomNetworkAe::copyFrom(const DicomNetworkAe & object) {
-	data = std::shared_ptr<CDM::DicomNetworkAe>( new CDM::DicomNetworkAe(*object.data));
+	data = std::make_shared<CDM::DicomNetworkAe>(*object.data);
 }
 
-DicomNetworkAe & DicomNetworkAe:: operator=(const DicomNetworkAe & object) {
+DicomNetworkAe & DicomNetworkAe:: operator=(const DicomNetworkAe& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 DicomNetworkAe & DicomNetworkAe::setAeTitle(const std::string & value) {
-	data->AeTitle(ConvertToCDM::convert(value));
+	data->setAeTitle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 std::string DicomNetworkAe::getAeTitle() const {
-	return ConvertFromCDM::convert(data->AeTitle());
+	return ConvertFromCDM::convert(data->getAeTitle());
 }
 
 DicomNetworkAe & DicomNetworkAe::setNetworkConnectionReference(const xml_schema::Idrefs & value) {
-	data->NetworkConnectionReference(ConvertToCDM::convert(value));
+	data->setNetworkConnectionReference(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 xml_schema::Idrefs DicomNetworkAe::getNetworkConnectionReference() const {
-	return ConvertFromCDM::convert(data->NetworkConnectionReference());
+	return ConvertFromCDM::convert(data->getNetworkConnectionReference());
 }
 
 DicomNetworkAe & DicomNetworkAe::setAssociationInitiator(const bool & value) {
-	data->AssociationInitiator(ConvertToCDM::convert(value));
+	data->setAssociationInitiator(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 bool DicomNetworkAe::getAssociationInitiator() const {
-	return ConvertFromCDM::convert(data->AssociationInitiator());
+	return ConvertFromCDM::convert(data->getAssociationInitiator());
 }
 
 DicomNetworkAe & DicomNetworkAe::setAssociationAcceptor(const bool & value) {
-	data->AssociationAcceptor(ConvertToCDM::convert(value));
+	data->setAssociationAcceptor(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 bool DicomNetworkAe::getAssociationAcceptor() const {
-	return ConvertFromCDM::convert(data->AssociationAcceptor());
+	return ConvertFromCDM::convert(data->getAssociationAcceptor());
 }
 
 DicomNetworkAe & DicomNetworkAe::addTransferCapability(const DicomTransferCapability & value) {
-	data->TransferCapability().push_back(ConvertToCDM::convert(value));
+	data->getTransferCapability().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<DicomTransferCapability> DicomNetworkAe::getTransferCapabilityList() const {
 	std::vector<DicomTransferCapability> result;
-	result.reserve(data->TransferCapability().size());
-	for (const auto & value: data->TransferCapability()) {
+	result.reserve(data->getTransferCapability().size());
+	for (const auto & value: data->getTransferCapability()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void DicomNetworkAe::clearTransferCapabilityList() {
-	data->TransferCapability().clear();
+	data->getTransferCapability().clear();
 }
 
 DicomNetworkAe & DicomNetworkAe::addDescription(const LocalizedText & value) {
-	data->Description().push_back(ConvertToCDM::convert(value));
+	data->getDescription().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<LocalizedText> DicomNetworkAe::getDescriptionList() const {
 	std::vector<LocalizedText> result;
-	result.reserve(data->Description().size());
-	for (const auto & value: data->Description()) {
+	result.reserve(data->getDescription().size());
+	for (const auto & value: data->getDescription()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void DicomNetworkAe::clearDescriptionList() {
-	data->Description().clear();
+	data->getDescription().clear();
 }
 
 

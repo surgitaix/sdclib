@@ -1,7 +1,7 @@
 #ifndef SCHEMA_EXTENSIONPOINT_H
 #define SCHEMA_EXTENSIONPOINT_H
 
-#include <string.h>
+#include <string>
 
 namespace SCHEMA
 {

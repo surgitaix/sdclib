@@ -1,63 +1,60 @@
 /*
  * DeviceHandler.cpp
  *
- *  Created on: 07.12.2015
- *      Author: matthias
+ *  Created on: 07.12.2015, matthias
+ *  Modified on: 23.08.2019, baumeister
+ *
  */
-
-#include "Poco/Net/HTTPServerRequest.h"
-#include "Poco/Net/HTTPServerResponse.h"
-
-#include "NormalizedMessageModel.hxx"
 
 #include "OSELib/DPWS/DeviceHandler.h"
 #include "OSELib/DPWS/IDevice.h"
 #include "OSELib/DPWS/OperationTraits.h"
-#include "OSELib/Helper/Message.h"
-#include "OSELib/Helper/XercesDocumentWrapper.h"
 #include "OSELib/Helper/XercesGrammarPoolProvider.h"
 #include "OSELib/SOAP/Command.h"
 #include "OSELib/SOAP/CommonSoapPreprocessing.h"
 #include "OSELib/SOAP/GetActionCommand.h"
 #include "OSELib/SOAP/GenericSoapActionCommand.h"
-#include "OSELib/SOAP/NormalizedMessageAdapter.h"
 #include "OSELib/SOAP/NormalizedMessageSerializer.h"
 #include "OSELib/SOAP/SoapFaultCommand.h"
 #include "OSELib/SOAP/SoapHTTPResponseWrapper.h"
 
+#include <Poco/Net/HTTPServerRequest.h>
+
+
 namespace OSELib {
 namespace DPWS {
 
-DeviceHandler::DeviceHandler(IDevice & service, bool p_SSL) :
-	_service(service)
-    , m_SSL(p_SSL)
+DeviceHandler::DeviceHandler(IDevice & p_service, bool p_SSL)
+: m_service(p_service)
+, m_SSL(p_SSL)
+{ }
+
+void DeviceHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & p_httpRequest, Poco::Net::HTTPServerResponse & p_httpResponse)
 {
-}
+	Helper::EmptyXercesGrammarPoolProvider t_pool;
+	SOAP::CommonSoapPreprocessing t_soapHandling(t_pool);
+	t_soapHandling.parse(p_httpRequest.stream());
 
-void DeviceHandler::handleRequestImpl(Poco::Net::HTTPServerRequest & httpRequest, Poco::Net::HTTPServerResponse & httpResponse) {
+	const auto t_soapAction(t_soapHandling.normalizedMessage->getHeader().getAction().get());
 
-	Helper::EmptyXercesGrammarPoolProvider pool;
-	SOAP::CommonSoapPreprocessing soapHandling(pool);
-	soapHandling.parse(httpRequest.stream());
+	std::unique_ptr<SOAP::Command> t_command(new SOAP::SoapFaultCommand(p_httpResponse));
 
-	const auto soapAction(soapHandling.normalizedMessage->Header().Action().get());
-
-	std::unique_ptr<SOAP::Command> command(new SOAP::SoapFaultCommand(httpResponse));
-
-	if (soapAction == GetTraits::RequestAction()) {
-		const std::string serverAddress(httpRequest.serverAddress().toString());
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GetActionCommand(std::move(soapHandling.normalizedMessage), _service.getMetadata(serverAddress, m_SSL)));
-	} else if (soapAction == ProbeTraits::RequestAction()) {
-		command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<ProbeTraits>(std::move(soapHandling.normalizedMessage), _service));
+	if (t_soapAction == GetTraits::RequestAction()) {
+		const std::string t_serverAddress(p_httpRequest.serverAddress().toString());
+		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GetActionCommand(std::move(t_soapHandling.normalizedMessage), m_service.getMetadata(t_serverAddress, m_SSL)));
+	} else if (t_soapAction == ProbeTraits::RequestAction()) {
+		t_command = std::unique_ptr<SOAP::Command>(new SOAP::GenericSoapActionCommand<ProbeTraits>(std::move(t_soapHandling.normalizedMessage), m_service));
 	} else {
-		log_error([&] { return "DeviceHandler can't handle action: " + soapAction; });
+		log_error([&] { return "DeviceHandler can't handle action: " + t_soapAction; });
 	}
 
-	std::unique_ptr<MESSAGEMODEL::Envelope> responseMessage(command->Run());
+	std::unique_ptr<MESSAGEMODEL::Envelope> t_responseMessage(t_command->Run());
 
-	SOAP::SoapHTTPResponseWrapper response(httpResponse);
-	response.send(SOAP::NormalizedMessageSerializer::serialize(*responseMessage));
+	SOAP::SoapHTTPResponseWrapper t_response(p_httpResponse);
+	t_response.send(SOAP::NormalizedMessageSerializer::serialize(*t_responseMessage));
 }
 
-} /* namespace SDC */
-} /* namespace OSELib */
+}
+}
+
+

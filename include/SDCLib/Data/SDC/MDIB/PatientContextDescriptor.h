@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class PatientContextDescriptor {
+class PatientContextDescriptor
+{
 private:
 	PatientContextDescriptor(const CDM::PatientContextDescriptor & object);
 	operator CDM::PatientContextDescriptor() const;
@@ -57,11 +58,11 @@ public:
 private:
 	PatientContextDescriptor(){};
 public:
-	PatientContextDescriptor(const PatientContextDescriptor & object);
-	virtual ~PatientContextDescriptor();
+	PatientContextDescriptor(const PatientContextDescriptor& object);
+	virtual ~PatientContextDescriptor() = default;
 
-    void copyFrom(const PatientContextDescriptor & object);
-    PatientContextDescriptor & operator=(const PatientContextDescriptor & object);
+    void copyFrom(const PatientContextDescriptor& object);
+    PatientContextDescriptor & operator=(const PatientContextDescriptor& object);
 
     typedef CDM::PatientContextDescriptor WrappedType;
     typedef PatientContextState StateType;
@@ -85,7 +86,7 @@ public:
 	bool hasSafetyClassification() const;
 
 private:
-	std::shared_ptr<CDM::PatientContextDescriptor> data;
+	std::shared_ptr<CDM::PatientContextDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

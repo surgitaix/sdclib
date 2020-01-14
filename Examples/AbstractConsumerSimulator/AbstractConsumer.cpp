@@ -8,6 +8,8 @@
 #include "AbstractConsumer.h"
 #include "SDCLib/Util/DebugOut.h"
 
+#include "DataModel/BICEPS_MessageModel.hxx"
+#include "DataModel/BICEPS_ParticipantModel.hxx"
 #include "SDCLib/Data/SDC/MDIB/ConvertToCDM.h"
 #include "SDCLib/Data/SDC/MDIB/CodedValue.h"
 #include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
@@ -42,7 +44,9 @@ bool AbstractConsumer::discoverDUT() {
 	    auto t_SDCInstance = createDefaultSDCInstance();
 
 	    if(t_SDCInstance == nullptr)
+	    {
 	    	return false;
+	    }
 
 
 		//Discovery of Device under Test
@@ -407,11 +411,11 @@ const std::string AbstractConsumer::getMirrorProviderStringRepresentationOfMDIB(
 
 const std::string AbstractConsumer::getStringRepresentationOfMDIB(const MdibContainer MDIB) {
 	MDM::GetMdibResponse MdibResponse(xml_schema::Uri("0"),ConvertToCDM::convert(MDIB));
-	MdibResponse.MdibVersion(MDIB.getMdibVersion());
+	MdibResponse.setMdibVersion(MDIB.getMdibVersion());
 	const xml_schema::Flags xercesFlags(xml_schema::Flags::dont_validate | xml_schema::Flags::no_xml_declaration | xml_schema::Flags::dont_initialize);
 	xml_schema::NamespaceInfomap map;
 	std::ostringstream providerMdibStringRepresentation;
-	CDM::MdibContainer(providerMdibStringRepresentation, MdibResponse.Mdib(), map, OSELib::XML_ENCODING, xercesFlags);
+	CDM::serializeMdibContainer(providerMdibStringRepresentation, MdibResponse.getMdib(), map, OSELib::XML_ENCODING, xercesFlags);
 	return providerMdibStringRepresentation.str();
 }
 

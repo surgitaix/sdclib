@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class ClockDescriptor {
+class ClockDescriptor
+{
 private:
 	ClockDescriptor(const CDM::ClockDescriptor & object);
 	operator CDM::ClockDescriptor() const;
@@ -57,11 +58,11 @@ public:
 private:
 	ClockDescriptor(){};
 public:
-	ClockDescriptor(const ClockDescriptor & object);
-	virtual ~ClockDescriptor();
+	ClockDescriptor(const ClockDescriptor& object);
+	virtual ~ClockDescriptor() = default;
 
-    void copyFrom(const ClockDescriptor & object);
-    ClockDescriptor & operator=(const ClockDescriptor & object);
+    void copyFrom(const ClockDescriptor& object);
+    ClockDescriptor & operator=(const ClockDescriptor& object);
 
     typedef CDM::ClockDescriptor WrappedType;
 
@@ -97,7 +98,7 @@ public:
 	void clearTimeProtocolList();
 
 private:
-	std::shared_ptr<CDM::ClockDescriptor> data;
+	std::shared_ptr<CDM::ClockDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

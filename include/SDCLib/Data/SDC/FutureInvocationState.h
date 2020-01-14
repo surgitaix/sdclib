@@ -19,6 +19,8 @@
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, röhser
+ *	Modified on: 26.08.2019, baumeister
+ *
  */
 
 #ifndef SDCLIB_DATA_SDC_FUTURETRANSACTIONSTATE_H_
@@ -45,8 +47,8 @@ namespace SDCLib
 				friend class SDCConsumer;
 			private:
 
-				std::atomic<int> m_transactionId = ATOMIC_VAR_INIT(-1);
-				SDCConsumer * m_consumer = nullptr;
+				std::atomic<int> m_transactionId{-1};
+				SDCConsumer* m_consumer{nullptr};
 				std::mutex m_mutex;
 
 				std::map<InvocationState, std::shared_ptr<Poco::Event>> ml_invocationEvents;
@@ -70,9 +72,8 @@ namespace SDCLib
 				void setEvent(InvocationState p_actual);
 
 			};
+		}
+	}
+}
 
-		} /* namespace SDC */
-	} /* namespace Data */
-} /* namespace SDCLib */
-
-#endif /* SDCLIB_DATA_SDC_FUTURETRANSACTIONSTATE_H_ */
+#endif

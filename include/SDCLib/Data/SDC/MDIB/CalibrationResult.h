@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class CalibrationResult {
+class CalibrationResult
+{
 private:
 	CalibrationResult(const CDM::CalibrationResult & object);
 	operator CDM::CalibrationResult() const;
@@ -59,11 +60,11 @@ public:
 private:
 	CalibrationResult(){};
 public:
-	CalibrationResult(const CalibrationResult & object);
-	virtual ~CalibrationResult();
+	CalibrationResult(const CalibrationResult& object);
+	virtual ~CalibrationResult() = default;
 
-    void copyFrom(const CalibrationResult & object);
-    CalibrationResult & operator=(const CalibrationResult & object);
+    void copyFrom(const CalibrationResult& object);
+    CalibrationResult & operator=(const CalibrationResult& object);
 
     typedef CDM::CalibrationResult WrappedType;
 
@@ -74,7 +75,7 @@ public:
 	Measurement getValue() const;
 
 private:
-	std::shared_ptr<CDM::CalibrationResult> data;
+	std::shared_ptr<CDM::CalibrationResult> data = nullptr;
 };
 
 } /* namespace SDC */

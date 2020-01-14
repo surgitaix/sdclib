@@ -1,7 +1,7 @@
 #ifndef SCHEMA_WSDISCOVERY_H
 #define SCHEMA_WSDISCOVERY_H
 
-#include <string.h>
+#include <string>
 
 namespace SCHEMA
 {

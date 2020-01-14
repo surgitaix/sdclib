@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class ContainmentTree {
+class ContainmentTree
+{
 private:
 	ContainmentTree(const CDM::ContainmentTree & object);
 	operator CDM::ContainmentTree() const;
@@ -53,11 +54,11 @@ private:
 public:
 	ContainmentTree(
 	);
-	ContainmentTree(const ContainmentTree & object);
-	virtual ~ContainmentTree();
+	ContainmentTree(const ContainmentTree& object);
+	virtual ~ContainmentTree() = default;
 
-    void copyFrom(const ContainmentTree & object);
-    ContainmentTree & operator=(const ContainmentTree & object);
+    void copyFrom(const ContainmentTree& object);
+    ContainmentTree & operator=(const ContainmentTree& object);
 
     typedef CDM::ContainmentTree WrappedType;
 
@@ -66,7 +67,7 @@ public:
 	void clearEntryList();
 
 private:
-	std::shared_ptr<CDM::ContainmentTree> data;
+	std::shared_ptr<CDM::ContainmentTree> data = nullptr;
 };
 
 } /* namespace SDC */

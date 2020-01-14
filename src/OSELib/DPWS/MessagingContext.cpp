@@ -2,17 +2,15 @@
  * MessagingContext.cpp
  *
  *  Created on: 07.12.2015, matthias
- *  Modified on: 25.07.2019, baumeister
+ *  Modified on: 26.08.2019, baumeister
  */
 
 #include "OSELib/DPWS/MessagingContext.h"
 
-#include <chrono>
-
+#include "DataModel/wsdd-discovery-1.1-schema-os.hxx"
 #include "config/config.h"
 
-#include "wsdd-discovery-1.1-schema-os.hxx"
-
+#include <chrono>
 
 
 namespace OSELib {
@@ -24,78 +22,82 @@ MessagingContext::MessagingContext()
     // NOTE: This was the old, hard coded value
     assert(SDCLib::Config::SDC_MAX_KNOWN_MESSAGE_IDS > 100);
 }
-bool MessagingContext::registerMessageId(const std::string & id)
+bool MessagingContext::registerMessageId(const std::string & p_id)
 {
-    std::lock_guard<std::mutex> t_lock(m_mutex_messageID);
-	if (std::find(_knownMessageIds.begin(), _knownMessageIds.end(), id) != _knownMessageIds.end()) {
+	if(p_id.empty()) {
 		return false;
 	}
-    if (_knownMessageIds.size() >= SDCLib::Config::SDC_MAX_KNOWN_MESSAGE_IDS) {
-        _knownMessageIds.pop_back();
+    std::lock_guard<std::mutex> t_lock(m_mutex_messageID);
+	if (std::find(ml_knownMessageIds.begin(), ml_knownMessageIds.end(), p_id) != ml_knownMessageIds.end()) {
+		return false;
+	}
+    if (ml_knownMessageIds.size() >= SDCLib::Config::SDC_MAX_KNOWN_MESSAGE_IDS) {
+        ml_knownMessageIds.pop_back();
     }
-    _knownMessageIds.push_front(id);
+    ml_knownMessageIds.push_front(p_id);
     return true;
 }
 
 void MessagingContext::clearAppSequenceCache()
 {
     std::lock_guard<std::mutex> t_lock(m_mutex_appSequence);
-	_knownAppsequences.clear();
+	ml_knownAppsequences.clear();
 }
 
 void MessagingContext::resetInstanceId()
 {
     //FIXME: Is this valid?
-	_instanceId = std::chrono::system_clock::now().time_since_epoch().count() / 1000000;
+	m_instanceId = std::chrono::system_clock::now().time_since_epoch().count() / 1000000;
 }
 
 unsigned long long int MessagingContext::getInstanceId() const
 {
-	return _instanceId;
+	return m_instanceId;
 }
 
 unsigned long long int MessagingContext::getCurrentMessageCounter() const
 {
-	return _messageCounter;
+	return m_messageCounter;
 }
 
 unsigned long long int MessagingContext::getNextMessageCounter()
 {
-	return ++_messageCounter;
+	return ++m_messageCounter;
 }
 
-bool MessagingContext::registerAppSequence(::WS::DISCOVERY::AppSequenceType & appSequence) {
-	if (appSequence.SequenceId().present()) {
-		return registerAppSequence(appSequence.InstanceId(), appSequence.MessageNumber(), appSequence.SequenceId().get());
+bool MessagingContext::registerAppSequence(::WS::DISCOVERY::AppSequenceType & p_appSequence)
+{
+	if (p_appSequence.getSequenceId().present()) {
+		return registerAppSequence(p_appSequence.getInstanceId(), p_appSequence.getMessageNumber(), p_appSequence.getSequenceId().get());
 	}
-    return registerAppSequence(appSequence.InstanceId(), appSequence.MessageNumber());
+    return registerAppSequence(p_appSequence.getInstanceId(), p_appSequence.getMessageNumber());
 }
 
-bool MessagingContext::registerAppSequence(unsigned long long int instanceId, unsigned long long int messageNumber, const std::string & sequenceId)
+bool MessagingContext::registerAppSequence(unsigned long long int p_instanceId, unsigned long long int p_messageNumber, const std::string & p_sequenceId)
 {
     std::lock_guard<std::mutex> t_lock(m_mutex_appSequence);
 
-	auto appsequenceIterator = _knownAppsequences.find(instanceId);
-	if (appsequenceIterator == _knownAppsequences.end()) {
+	auto t_appsequenceIterator = ml_knownAppsequences.find(p_instanceId);
+	if (t_appsequenceIterator == ml_knownAppsequences.end()) {
 		// instance id unknown => add new mapping and store sequence id and message number
 		SequenceMapping sequenceMapping;
-		sequenceMapping[sequenceId] = messageNumber;
-		_knownAppsequences[instanceId] = sequenceMapping;
+		sequenceMapping[p_sequenceId] = p_messageNumber;
+		ml_knownAppsequences[p_instanceId] = sequenceMapping;
 		return true;
 	}
 	// instance id known => search for sequence id
-	SequenceMapping & sequenceMapping(appsequenceIterator->second);
-	auto sequenceMappingIterator = sequenceMapping.find(sequenceId);
-	if (sequenceMappingIterator == sequenceMapping.end()) {
+	SequenceMapping & t_sequenceMapping(t_appsequenceIterator->second);
+	auto t_sequenceMappingIterator = t_sequenceMapping.find(p_sequenceId);
+	if (t_sequenceMappingIterator == t_sequenceMapping.end()) {
 		//instance id known, sequence id unknown => add new mapping and store message number
-		sequenceMapping[sequenceId] = messageNumber;
+		t_sequenceMapping[p_sequenceId] = p_messageNumber;
 		return true;
 	}
 
 	// instance id and sequence id known => compare message number
-	if (sequenceMappingIterator->second < messageNumber) {
+	if (t_sequenceMappingIterator->second < p_messageNumber) {
 		// message number is newer than cached value => accept and update
-		sequenceMappingIterator->second = messageNumber;
+		t_sequenceMappingIterator->second = p_messageNumber;
 		return true;
 	}
 
@@ -103,6 +105,6 @@ bool MessagingContext::registerAppSequence(unsigned long long int instanceId, un
 	return false;
 }
 
-} /* namespace Impl */
-} /* namespace DPWS */
-} /* namespace OSELib */
+}
+}
+}

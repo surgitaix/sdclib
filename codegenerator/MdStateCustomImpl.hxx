@@ -3,6 +3,7 @@
 	template<class TState>
 	std::unique_ptr<TState> findState(const std::string & handle) const;
 
+	std::vector<ActivateOperationState> findActivateOperationStates() const;
 	std::vector<AlertConditionState> findAlertConditionStates() const;
 	std::vector<AlertSignalState> findAlertSignalStates() const;
 	std::vector<AlertSystemState> findAlertSystemStates() const;
@@ -38,10 +39,13 @@
     MdState & addState(const WorkflowContextState & source);
     MdState & addState(const VmdState & source);
     MdState & addState(const ChannelState & source);
+    MdState & addState(const ScoState & source);
+	MdState & addState(const SystemContextState & source);
 
 private:
     // these classes are for internal finding states in the MDIB
     // the initialize objects which reference is processed
+	bool findState(const std::string & handle, ActivateOperationState & outState) const;
 	bool findState(const std::string & handle, AlertConditionState & outState) const;
 	bool findState(const std::string & handle, AlertSignalState & outState) const;
 	bool findState(const std::string & handle, AlertSystemState & outState) const;
@@ -57,7 +61,12 @@ private:
 	bool findState(const std::string & handle, RealTimeSampleArrayMetricState & outState) const;
 	bool findState(const std::string & handle, StringMetricState & outState) const;
 	bool findState(const std::string & handle, WorkflowContextState & outState) const;
-    template <class WrapperStateDescriptorType>
+	bool findState(const std::string & handle, VmdState & outState) const;
+	bool findState(const std::string & handle, ChannelState & outState) const;
+	bool findState(const std::string & handle, ScoState & outState) const;
+	bool findState(const std::string & handle, SystemContextState & outState) const;
+
+	template <class WrapperStateDescriptorType>
     bool findStateImpl(const std::string & handle, WrapperStateDescriptorType & out) const;
 
     template <class WrapperStateDescriptorType>

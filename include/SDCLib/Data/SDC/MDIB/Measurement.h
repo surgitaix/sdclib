@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class Measurement {
+class Measurement
+{
 private:
 	Measurement(const CDM::Measurement & object);
 	operator CDM::Measurement() const;
@@ -59,11 +60,11 @@ public:
 private:
 	Measurement(){};
 public:
-	Measurement(const Measurement & object);
-	virtual ~Measurement();
+	Measurement(const Measurement& object);
+	virtual ~Measurement() = default;
 
-    void copyFrom(const Measurement & object);
-    Measurement & operator=(const Measurement & object);
+    void copyFrom(const Measurement& object);
+    Measurement & operator=(const Measurement& object);
 
     typedef CDM::Measurement WrappedType;
 
@@ -74,7 +75,7 @@ public:
 	double getMeasuredValue() const;
 
 private:
-	std::shared_ptr<CDM::Measurement> data;
+	std::shared_ptr<CDM::Measurement> data = nullptr;
 };
 
 } /* namespace SDC */

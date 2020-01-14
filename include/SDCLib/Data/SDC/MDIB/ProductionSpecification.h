@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class ProductionSpecification {
+class ProductionSpecification
+{
 private:
 	ProductionSpecification(const CDM::ProductionSpecification & object);
 	operator CDM::ProductionSpecification() const;
@@ -59,11 +60,11 @@ public:
 private:
 	ProductionSpecification(){};
 public:
-	ProductionSpecification(const ProductionSpecification & object);
-	virtual ~ProductionSpecification();
+	ProductionSpecification(const ProductionSpecification& object);
+	virtual ~ProductionSpecification() = default;
 
-    void copyFrom(const ProductionSpecification & object);
-    ProductionSpecification & operator=(const ProductionSpecification & object);
+    void copyFrom(const ProductionSpecification& object);
+    ProductionSpecification & operator=(const ProductionSpecification& object);
 
     typedef CDM::ProductionSpecification WrappedType;
 
@@ -79,7 +80,7 @@ public:
 	bool hasComponentId() const;
 
 private:
-	std::shared_ptr<CDM::ProductionSpecification> data;
+	std::shared_ptr<CDM::ProductionSpecification> data = nullptr;
 };
 
 } /* namespace SDC */

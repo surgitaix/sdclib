@@ -1,4 +1,4 @@
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/MDIB/ConvertToCDM.h"
 

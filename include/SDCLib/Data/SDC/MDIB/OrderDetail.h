@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class OrderDetail {
+class OrderDetail
+{
 private:
 	OrderDetail(const CDM::OrderDetail & object);
 	operator CDM::OrderDetail() const;
@@ -53,11 +54,11 @@ private:
 public:
 	OrderDetail(
 	);
-	OrderDetail(const OrderDetail & object);
-	virtual ~OrderDetail();
+	OrderDetail(const OrderDetail& object);
+	virtual ~OrderDetail() = default;
 
-    void copyFrom(const OrderDetail & object);
-    OrderDetail & operator=(const OrderDetail & object);
+    void copyFrom(const OrderDetail& object);
+    OrderDetail & operator=(const OrderDetail& object);
 
     typedef CDM::OrderDetail WrappedType;
 
@@ -84,7 +85,7 @@ public:
 	void clearImagingProcedureList();
 
 private:
-	std::shared_ptr<CDM::OrderDetail> data;
+	std::shared_ptr<CDM::OrderDetail> data = nullptr;
 };
 
 } /* namespace SDC */

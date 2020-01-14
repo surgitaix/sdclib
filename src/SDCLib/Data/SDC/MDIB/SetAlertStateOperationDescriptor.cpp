@@ -34,7 +34,7 @@
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/Defaults.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 #include "SDCLib/Data/SDC/MDIB/CodedValue.h"
 
@@ -51,217 +51,214 @@ SetAlertStateOperationDescriptor::SetAlertStateOperationDescriptor(
 		handle
 		,
 		operationtarget
-)) {}
+))
+{}
 
 SetAlertStateOperationDescriptor::operator CDM::SetAlertStateOperationDescriptor() const {
 	return *data;
 }
 
-SetAlertStateOperationDescriptor::SetAlertStateOperationDescriptor(const CDM::SetAlertStateOperationDescriptor & object) : data(new CDM::SetAlertStateOperationDescriptor(object)) {
+SetAlertStateOperationDescriptor::SetAlertStateOperationDescriptor(const CDM::SetAlertStateOperationDescriptor & object)
+: data(new CDM::SetAlertStateOperationDescriptor(object))
+{ }
 
-}
-
-SetAlertStateOperationDescriptor::SetAlertStateOperationDescriptor(const SetAlertStateOperationDescriptor & object) : data(new CDM::SetAlertStateOperationDescriptor(*object.data)) {
-
-}
-
-SetAlertStateOperationDescriptor::~SetAlertStateOperationDescriptor() {
-
-}
+SetAlertStateOperationDescriptor::SetAlertStateOperationDescriptor(const SetAlertStateOperationDescriptor & object)
+: data(std::make_shared<CDM::SetAlertStateOperationDescriptor>(*object.data))
+{ }
 
 void SetAlertStateOperationDescriptor::copyFrom(const SetAlertStateOperationDescriptor & object) {
-	data = std::shared_ptr<CDM::SetAlertStateOperationDescriptor>( new CDM::SetAlertStateOperationDescriptor(*object.data));
+	data = std::make_shared<CDM::SetAlertStateOperationDescriptor>(*object.data);
 }
 
-SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor:: operator=(const SetAlertStateOperationDescriptor & object) {
+SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor:: operator=(const SetAlertStateOperationDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
+	data->setType(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetAlertStateOperationDescriptor::getType(CodedValue & out) const {
-	if (data->Type().present()) {
-		out = ConvertFromCDM::convert(data->Type().get());
+	if (data->getType().present()) {
+		out = ConvertFromCDM::convert(data->getType().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue SetAlertStateOperationDescriptor::getType() const {
-	return ConvertFromCDM::convert(data->Type().get());
+	return ConvertFromCDM::convert(data->getType().get());
 }
 
 bool SetAlertStateOperationDescriptor::hasType() const {
-	return data->Type().present();
+	return data->getType().present();
 }
 
 SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor::setHandle(const Handle & value) {
-	data->Handle(ConvertToCDM::convert(value));
+	data->setHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 Handle SetAlertStateOperationDescriptor::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle());
+	return ConvertFromCDM::convert(data->getHandle());
 }
 
 SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor::setDescriptorVersion(const VersionCounter & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetAlertStateOperationDescriptor::getDescriptorVersion(VersionCounter & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter SetAlertStateOperationDescriptor::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool SetAlertStateOperationDescriptor::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor::setSafetyClassification(const SafetyClassification & value) {
-	data->SafetyClassification(ConvertToCDM::convert(value));
+	data->setSafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetAlertStateOperationDescriptor::getSafetyClassification(SafetyClassification & out) const {
-	if (data->SafetyClassification().present()) {
-		out = ConvertFromCDM::convert(data->SafetyClassification().get());
+	if (data->getSafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->getSafetyClassification().get());
 		return true;
 	}
 	return false;
 }
 
 SafetyClassification SetAlertStateOperationDescriptor::getSafetyClassification() const {
-	return ConvertFromCDM::convert(data->SafetyClassification().get());
+	return ConvertFromCDM::convert(data->getSafetyClassification().get());
 }
 
 bool SetAlertStateOperationDescriptor::hasSafetyClassification() const {
-	return data->SafetyClassification().present();
+	return data->getSafetyClassification().present();
 }
 
 SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor::setOperationTarget(const HandleRef & value) {
-	data->OperationTarget(ConvertToCDM::convert(value));
+	data->setOperationTarget(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 HandleRef SetAlertStateOperationDescriptor::getOperationTarget() const {
-	return ConvertFromCDM::convert(data->OperationTarget());
+	return ConvertFromCDM::convert(data->getOperationTarget());
 }
 
 SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor::setMaxTimeToFinish(const xml_schema::Duration & value) {
-	data->MaxTimeToFinish(ConvertToCDM::convert(value));
+	data->setMaxTimeToFinish(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetAlertStateOperationDescriptor::getMaxTimeToFinish(xml_schema::Duration & out) const {
-	if (data->MaxTimeToFinish().present()) {
-		out = ConvertFromCDM::convert(data->MaxTimeToFinish().get());
+	if (data->getMaxTimeToFinish().present()) {
+		out = ConvertFromCDM::convert(data->getMaxTimeToFinish().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::Duration SetAlertStateOperationDescriptor::getMaxTimeToFinish() const {
-	return ConvertFromCDM::convert(data->MaxTimeToFinish().get());
+	return ConvertFromCDM::convert(data->getMaxTimeToFinish().get());
 }
 
 bool SetAlertStateOperationDescriptor::hasMaxTimeToFinish() const {
-	return data->MaxTimeToFinish().present();
+	return data->getMaxTimeToFinish().present();
 }
 
 SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor::setInvocationEffectiveTimeout(const xml_schema::Duration & value) {
-	data->InvocationEffectiveTimeout(ConvertToCDM::convert(value));
+	data->setInvocationEffectiveTimeout(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetAlertStateOperationDescriptor::getInvocationEffectiveTimeout(xml_schema::Duration & out) const {
-	if (data->InvocationEffectiveTimeout().present()) {
-		out = ConvertFromCDM::convert(data->InvocationEffectiveTimeout().get());
+	if (data->getInvocationEffectiveTimeout().present()) {
+		out = ConvertFromCDM::convert(data->getInvocationEffectiveTimeout().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::Duration SetAlertStateOperationDescriptor::getInvocationEffectiveTimeout() const {
-	return ConvertFromCDM::convert(data->InvocationEffectiveTimeout().get());
+	return ConvertFromCDM::convert(data->getInvocationEffectiveTimeout().get());
 }
 
 bool SetAlertStateOperationDescriptor::hasInvocationEffectiveTimeout() const {
-	return data->InvocationEffectiveTimeout().present();
+	return data->getInvocationEffectiveTimeout().present();
 }
 
 SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor::setRetriggerable(const bool & value) {
-	data->Retriggerable(ConvertToCDM::convert(value));
+	data->setRetriggerable(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetAlertStateOperationDescriptor::getRetriggerable(bool & out) const {
-	if (data->Retriggerable().present()) {
-		out = ConvertFromCDM::convert(data->Retriggerable().get());
+	if (data->getRetriggerable().present()) {
+		out = ConvertFromCDM::convert(data->getRetriggerable().get());
 		return true;
 	}
 	return false;
 }
 
 bool SetAlertStateOperationDescriptor::getRetriggerable() const {
-	return ConvertFromCDM::convert(data->Retriggerable().get());
+	return ConvertFromCDM::convert(data->getRetriggerable().get());
 }
 
 bool SetAlertStateOperationDescriptor::hasRetriggerable() const {
-	return data->Retriggerable().present();
+	return data->getRetriggerable().present();
 }
 
 SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor::setAccessLevel(const AccessLevel & value) {
-	data->AccessLevel(ConvertToCDM::convert(value));
+	data->setAccessLevel(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetAlertStateOperationDescriptor::getAccessLevel(AccessLevel & out) const {
-	if (data->AccessLevel().present()) {
-		out = ConvertFromCDM::convert(data->AccessLevel().get());
+	if (data->getAccessLevel().present()) {
+		out = ConvertFromCDM::convert(data->getAccessLevel().get());
 		return true;
 	}
 	return false;
 }
 
 AccessLevel SetAlertStateOperationDescriptor::getAccessLevel() const {
-	return ConvertFromCDM::convert(data->AccessLevel().get());
+	return ConvertFromCDM::convert(data->getAccessLevel().get());
 }
 
 bool SetAlertStateOperationDescriptor::hasAccessLevel() const {
-	return data->AccessLevel().present();
+	return data->getAccessLevel().present();
 }
 
 SetAlertStateOperationDescriptor & SetAlertStateOperationDescriptor::addModifiableData(const std::string & value) {
-	data->ModifiableData().push_back(ConvertToCDM::convert(value));
+	data->getModifiableData().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<std::string> SetAlertStateOperationDescriptor::getModifiableDataList() const {
 	std::vector<std::string> result;
-	result.reserve(data->ModifiableData().size());
-	for (const auto & value: data->ModifiableData()) {
+	result.reserve(data->getModifiableData().size());
+	for (const auto & value: data->getModifiableData()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void SetAlertStateOperationDescriptor::clearModifiableDataList() {
-	data->ModifiableData().clear();
+	data->getModifiableData().clear();
 }
 
 

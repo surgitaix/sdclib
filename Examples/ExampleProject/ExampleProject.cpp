@@ -2,11 +2,11 @@
 #include "SDCLib/SDCLibrary.h"
 #include "OSELib/SDC/SDCConstants.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
-#include "SDCLib/Data/SDC/SDCConsumerOperationInvokedHandler.h"
 #include "SDCLib/Data/SDC/SDCConsumerMDStateHandler.h"
 #include "SDCLib/Data/SDC/SDCProvider.h"
 #include "SDCLib/Data/SDC/SDCProviderMDStateHandler.h"
 #include "SDCLib/Data/SDC/SDCProviderComponentStateHandler.h"
+#include "SDCLib/Data/SDC/FutureInvocationState.h"
 #include "SDCLib/Data/SDC/MDIB/ChannelDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/CodedValue.h"
 #include "SDCLib/Data/SDC/MDIB/MdsDescriptor.h"
@@ -18,8 +18,6 @@
 #include "SDCLib/Data/SDC/MDIB/NumericMetricValue.h"
 #include "SDCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricValue.h"
-#include "SDCLib/Data/SDC/MDIB/SystemContextDescriptor.h"
-#include "SDCLib/Data/SDC/MDIB/SystemContextState.h"
 #include "SDCLib/Data/SDC/MDIB/LocalizedText.h"
 #include "SDCLib/Data/SDC/MDIB/VmdDescriptor.h"
 #include "SDCLib/Util/DebugOut.h"
@@ -27,8 +25,8 @@
 #include "OSELib/SDC/ServiceManager.h"
 
 
-#include "Poco/Thread.h"
-#include "Poco/Runnable.h"
+#include <Poco/Thread.h>
+#include <Poco/Runnable.h>
 
 
 using namespace SDCLib;
@@ -36,29 +34,34 @@ using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
 // Endpoint reference of the device -> unique ID
-const std::string DEVICE_EPR("UDI-EXAMPLEPROJECT");
+const std::string DEVICE_EPR{"UDI-EXAMPLEPROJECT"};
 
 // descriptor handles
-const std::string MDS_HANDLE("mds_handle");
-const std::string VMD_DESCRIPTOR_HANDLE("vmd_handle");
+const std::string MDS_HANDLE{"mds_handle"};
+const std::string VMD_DESCRIPTOR_HANDLE{"vmd_handle"};
 
-const std::string CHANNEL_DESCRIPTOR_HANDLE("channel_handle");
-const std::string HANDLE_MAX_WEIGHT_METRIC("handle_max");
-const std::string HANDLE_CURRENT_WEIGHT_METRIC("handle_cur");
+const std::string CHANNEL_DESCRIPTOR_HANDLE{"channel_handle"};
+const std::string HANDLE_MAX_WEIGHT_METRIC{"handle_max"};
+const std::string HANDLE_CURRENT_WEIGHT_METRIC{"handle_cur"};
+
+const int WAIT_TIMEOUT_MS{2000};
 
 
-class MaxValueStateHandler : public SDCProviderMDStateHandler<NumericMetricState> {
+class MaxValueStateHandler : public SDCProviderMDStateHandler<NumericMetricState>
+{
 public:
 
-    MaxValueStateHandler(const std::string & descriptorHandle) : SDCProviderMDStateHandler(descriptorHandle){
-    }
+    MaxValueStateHandler(const std::string p_descriptorHandle)
+	: SDCProviderMDStateHandler(p_descriptorHandle)
+	{ }
 
     // called when the consumer is requesting to set the MaxValueStateHandler
-    InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext & oic) override {
+    InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext& p_oic) override
+    {
         // Invocation has been fired as WAITING when entering this method
-        DebugOut(DebugOut::Default, "ExampleProject") << "Provider: MaxValueStateHandler received state change request" << std::endl;
+        DebugOut(DebugOut::Default, "ExampleProject") << "Provider: MaxValueStateHandler received state change request";
 
-        notifyOperationInvoked(oic, InvocationState::Start);
+        notifyOperationInvoked(p_oic, InvocationState::Start);
 
         // we can update here, but if we return FINISHED, the framework will also update
         //updateState(state);
@@ -67,154 +70,152 @@ public:
     }
 
     // Helper method
-    NumericMetricState createState() {
-        NumericMetricState result(descriptorHandle);
-        result
-            .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(2.0))
+    NumericMetricState createState(double p_initialValue)
+    {
+        NumericMetricState t_newState{getDescriptorHandle()};
+        t_newState
+            .setMetricValue(NumericMetricValue{MetricQuality{MeasurementValidity::Vld}}.setValue(p_initialValue))
             .setActivationState(ComponentActivation::On);
-        return result;
+        return t_newState;
     }
 
     // implement this method from the stateHandler interface
     // each defined state needs an initial state
-    NumericMetricState getInitialState() override {
-        NumericMetricState result = createState();
-        return result;
+    NumericMetricState getInitialState() override
+    {
+    	return createState(2.0);
     }
 
     // Convenience value getter
-    float getMaxWeight() {
-        std::unique_ptr<NumericMetricState> pNMS(getParentProvider().getMdState().findState<NumericMetricState>(HANDLE_MAX_WEIGHT_METRIC));
-        if ((pNMS != nullptr) && pNMS->hasMetricValue()) {
-        	return (float) pNMS->getMetricValue().getValue();
-        } else {
-        	DebugOut(DebugOut::Default, "ExampleProject") << "No observed value" << std::endl;
-        	return 0;
+    double getMaxWeight()
+    {
+        auto t_numericMetricState{getParentProvider().getMdState().findState<NumericMetricState>(HANDLE_MAX_WEIGHT_METRIC)};
+        if ((t_numericMetricState != nullptr) && t_numericMetricState->hasMetricValue())
+        {
+        	return t_numericMetricState->getMetricValue().getValue();
         }
+        DebugOut(DebugOut::Default, "ExampleProject") << "No observed value" << std::endl;
+        return 0;
     }
 };
 
 
 
 
-class CurValueStateHandler : public SDCProviderMDStateHandler<NumericMetricState> {
+class CurValueStateHandler : public SDCProviderMDStateHandler<NumericMetricState>
+{
 public:
 
-    CurValueStateHandler(const std::string & descriptorHandler) : SDCProviderMDStateHandler(descriptorHandler){
-    }
+    CurValueStateHandler(const std::string p_descriptorHandler)
+	: SDCProviderMDStateHandler(p_descriptorHandler)
+	{ }
 
     // state is read-only - MEASUREMENT -> onStateChangeRequest() returns Fail
-    InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext&) {
+    InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext&)
+    {
     	return InvocationState::Fail;
     }
 
     // Helper method
-    NumericMetricState createState(float value) {
-        NumericMetricState result(HANDLE_MAX_WEIGHT_METRIC);
-        result
-            .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Inv)).setValue(value))
-            .setActivationState(ComponentActivation::On)
-            .setDescriptorHandle(descriptorHandle);
-        return result;
+    NumericMetricState createState(double p_initialValue)
+    {
+        NumericMetricState t_newState{getDescriptorHandle()};
+        t_newState
+            .setMetricValue(NumericMetricValue{MetricQuality{MeasurementValidity::Inv}}.setValue(p_initialValue))
+            .setActivationState(ComponentActivation::On);
+        return t_newState;
     }
 
     // implement this method from the stateHandler interface
     // each defined state needs an initial state
-    NumericMetricState getInitialState() override {
+    NumericMetricState getInitialState() override
+    {
         return createState(0);
     }
 
-    void setNumericValue(float value) {
-        NumericMetricState currentWeightState = createState(value);
+    void setNumericValue(double p_newValue)
+    {
+        auto t_currentWeightState{createState(p_newValue)};
         // Call update function (this will update internal MDIB and increase MDIB version number)
-        updateState(currentWeightState);
+        updateState(t_currentWeightState);
     }
 
 };
 
 
-class MdsStateHandler : public SDCProviderComponentStateHandler<MdsState> {
+class MdsStateHandler : public SDCProviderComponentStateHandler<MdsState>
+{
 public:
-    MdsStateHandler(const std::string & descriptorHandle) : SDCProviderComponentStateHandler(descriptorHandle){
-    }
-
-    // Helper method
-    MdsState createState() {
-    	MdsState result(descriptorHandle);
-        return result;
-    }
+    MdsStateHandler(const std::string p_descriptorHandle)
+    : SDCProviderComponentStateHandler(p_descriptorHandle)
+	{ }
 
     // implement this method from the stateHandler interface
     // each defined state needs an initial state
-    virtual MdsState getInitialState() override {
-    	MdsState state = createState();
-        return state;
+    MdsState getInitialState() override
+    {
+    	return {getDescriptorHandle()};
     }
 };
 
 
 // This example shows one way of implementing the Provider
 // Since the SDCProvider class is final, it is recommended to implement the SDCProvider as a member variable of a container class to expand the SDCProvider in a clear and convinient fashion
-class SDCHoldingDeviceProvider {
+class SDCHoldingDeviceProvider
+{
 public:
 
-    SDCHoldingDeviceProvider(SDCInstance_shared_ptr p_SDCInstance) :
-    	sdcProvider(p_SDCInstance),
-		currentWeight(0),
-		maxValueState(HANDLE_MAX_WEIGHT_METRIC),
-		curValueState(HANDLE_CURRENT_WEIGHT_METRIC),
-    	mdsState(MDS_HANDLE)
+    SDCHoldingDeviceProvider(SDCInstance_shared_ptr p_SDCInstance)
+	: m_sdcProvider(p_SDCInstance)
 	{
-    	sdcProvider.setEndpointReferenceByName(DEVICE_EPR);
+    	m_sdcProvider.setEndpointReferenceByName(DEVICE_EPR);
         // Define semantic meaning of weight unit "kg", which will be used for defining the
         // current weight and the max weight below.
 
     	// mandatory properties in constructor
-        CodedValue unit("MDCX_CODE_ID_KG");
+        CodedValue unit{"MDCX_CODE_ID_KG"};
         // additional properties using method chaining
-        unit	.setCodingSystem("OR.NET.Codings")
-        		.addConceptDescription(LocalizedText().setRef("uri/to/file.txt").setLang("en"));
+        unit.setCodingSystem("OR.NET.Codings")
+        	.addConceptDescription(LocalizedText{"Unit in KG"}.setRef("uri/to/file.txt").setLang("en"));
 
     	//
         // Setup metric descriptors
         //
 
         // The current weight: mandatory properties
-        NumericMetricDescriptor currentWeightMetric(HANDLE_CURRENT_WEIGHT_METRIC,
+        NumericMetricDescriptor currentWeightMetric{HANDLE_CURRENT_WEIGHT_METRIC,
         		unit,
         		MetricCategory::Msrmt,
         		MetricAvailability::Cont,
-        		1.0);
+        		1.0};
 
         // Maximum weight: mandatory properties
-    	NumericMetricDescriptor maxWeightMetric(HANDLE_MAX_WEIGHT_METRIC,
+    	NumericMetricDescriptor maxWeightMetric{HANDLE_MAX_WEIGHT_METRIC,
         		unit,
         		MetricCategory::Set,
         		MetricAvailability::Cont,
-        		1.0);
+        		1.0};
 
         // Channel
-        ChannelDescriptor holdingDeviceChannel(CHANNEL_DESCRIPTOR_HANDLE);
+        ChannelDescriptor holdingDeviceChannel{CHANNEL_DESCRIPTOR_HANDLE};
         holdingDeviceChannel
 			.addMetric(currentWeightMetric)
         	.addMetric(maxWeightMetric)
         	.setSafetyClassification(SafetyClassification::MedA);
 
         // VMD
-        VmdDescriptor holdingDeviceModule(VMD_DESCRIPTOR_HANDLE);
+        VmdDescriptor holdingDeviceModule{VMD_DESCRIPTOR_HANDLE};
         holdingDeviceModule
 			.addChannel(holdingDeviceChannel);
 
         // MDS
-        MdsDescriptor holdingDeviceSystem(MDS_HANDLE);
+        MdsDescriptor holdingDeviceSystem{MDS_HANDLE};
         holdingDeviceSystem
 			.addVmd(holdingDeviceModule)
-			.setType(
-				CodedValue("MDCX_CODE_ID_MDS")
-					.setCodingSystem("OR.NET.Codings"));
+			.setType(CodedValue{"MDCX_CODE_ID_MDS"}.setCodingSystem("OR.NET.Codings"));
 
         // the set operations have to be defined before adding the MdDescription
-        sdcProvider.createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
+        m_sdcProvider.createSetOperationForDescriptor(maxWeightMetric, holdingDeviceSystem);
 
         // add descriptor to description
         // the description contains all the devices static information
@@ -223,89 +224,85 @@ public:
 
 
         // set the providers description
-        sdcProvider.setMdDescription(holdingDeviceDescription);
+        m_sdcProvider.setMdDescription(holdingDeviceDescription);
 
         // set DPWS metadata, e.g. for the displayed friendly name
 		Dev::DeviceCharacteristics devChar;
 		devChar.addFriendlyName("en", "SDCLib C ExampleProvider");
 		devChar.setManufacturer("SurgiTAIX AG");
 		devChar.addModelName("en", "sdcDeviceNo1");
-		sdcProvider.setDeviceCharacteristics(devChar);
-
-
+		m_sdcProvider.setDeviceCharacteristics(devChar);
 
 		// State handler
-        sdcProvider.addMdStateHandler(&maxValueState);
-        sdcProvider.addMdStateHandler(&curValueState);
-        sdcProvider.addMdStateHandler(&mdsState);
-
-
+		m_sdcProvider.addMdStateHandler(&m_maxValueState);
+		m_sdcProvider.addMdStateHandler(&m_curValueState);
+		m_sdcProvider.addMdStateHandler(&m_mdsState);
     }
 
-    void startup() {
-    	sdcProvider.startup();
+    void startup()
+    {
+    	m_sdcProvider.startup();
     }
 
-    void shutdown() {
-    	sdcProvider.shutdown();
-    }
-
-    void setCurrentWeight(float value) {
-    	std::lock_guard<std::mutex> t_lock(m_mutex); // FIXME: changed from SDCProvider mutex to internal mutex
-    	currentWeight = value;
-        curValueState.setNumericValue(value);
-        DebugOut(DebugOut::Default, "ExampleProject") << "Changed value: " << currentWeight << std::endl;
+    void setCurrentWeight(double p_newWeight)
+    {
+    	std::lock_guard<std::mutex> t_lock{m_mutex}; // FIXME: changed from SDCProvider mutex to internal mutex
+    	m_currentWeight = p_newWeight;
+    	m_curValueState.setNumericValue(p_newWeight);
+        DebugOut(DebugOut::Default, "ExampleProject") << "Changed value: " << m_currentWeight << std::endl;
     }
 
 private:
 
     std::mutex m_mutex;
     // SDCProvider for communication to the network
-    SDCProvider sdcProvider;
+    SDCProvider m_sdcProvider;
 
-    float currentWeight;
+    std::atomic<double> m_currentWeight{0};
 
-    MaxValueStateHandler maxValueState;
-    CurValueStateHandler curValueState;
+    MaxValueStateHandler m_maxValueState{HANDLE_MAX_WEIGHT_METRIC};
+    CurValueStateHandler m_curValueState{HANDLE_CURRENT_WEIGHT_METRIC};
 
-    MdsStateHandler mdsState;
+    MdsStateHandler m_mdsState{MDS_HANDLE};
 };
 
 
 // The DummyValueProducer produces some some increasing values in a separate thread
-class DummyValueProducer : public Poco::Runnable {
+class DummyValueProducer : public Poco::Runnable
+{
+private:
+	std::atomic<bool> m_isInterrupted{false};
+    SDCHoldingDeviceProvider* m_provider{nullptr};
+    std::atomic<double> m_currentWeight{0};
+    Poco::Thread m_thread;
+
 public:
-	DummyValueProducer(SDCHoldingDeviceProvider * provider) :
-		isInterrupted(false),
-		provider(provider),
-		currentWeight(0)
-	{
-	}
+	DummyValueProducer(SDCHoldingDeviceProvider* p_provider)
+	: m_provider(p_provider)
+	{ }
 
     // Update weight periodically
-    void run() {
-    	DebugOut(DebugOut::Default, "ExampleProject") << "\nThread started." << std::endl;
-        while (!isInterrupted) {
-        	provider->setCurrentWeight(currentWeight);
-        	currentWeight += 0.1f;
+    void run()
+    {
+    	DebugOut(DebugOut::Default, "ExampleProject") << "Thread started." << std::endl;
+        while (!m_isInterrupted)
+        {
+        	m_provider->setCurrentWeight(m_currentWeight);
+        	m_currentWeight = m_currentWeight + 0.1;
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         }
     }
 
-	void start() {
-		thread.start(*this);
+	void start()
+	{
+		m_thread.start(*this);
 	}
 
-	void interrupt() {
-		isInterrupted = true;
-		thread.join();
+	void interrupt()
+	{
+		m_isInterrupted = true;
+		m_thread.join();
 	}
-
-private:
-    Poco::Thread thread;
-	bool isInterrupted;
-    SDCHoldingDeviceProvider * provider;
-    float currentWeight;
 };
 
 
@@ -314,40 +311,50 @@ private:
 // ExampleConsumerEventHandler extends SDCConsumerMDStateHandler, which is instanciated for NumericMetricState
 // It's methods onStateChanged and onOperationInvoked are called from within this framework, each time the value is changed by the provider
 // All event handlers have to be registered, please see below.
-class ExampleConsumerEventHandler : public SDCConsumerMDStateHandler<NumericMetricState> {
+class ExampleConsumerEventHandler : public SDCConsumerMDStateHandler<NumericMetricState>
+{
+private:
+    std::atomic<double> m_currentWeight{0};
+
 public:
-    ExampleConsumerEventHandler(const std::string & handle) : SDCConsumerMDStateHandler(handle),
-    	currentWeight(0)
-	{
-    }
+    ExampleConsumerEventHandler(const std::string p_descriptorHandle)
+	: SDCConsumerMDStateHandler(p_descriptorHandle)
+	{ }
 
     // this method is called when a value changed in the provider
-    void onStateChanged(const NumericMetricState & state) override {
-        double val = state.getMetricValue().getValue();
-        DebugOut(DebugOut::Default, "ExampleProject") << "Consumer: Received value changed of " << descriptorHandle << ": " << val << std::endl;
-        currentWeight = (float)val;
+    void onStateChanged(const NumericMetricState& p_changedState) override
+    {
+    	m_currentWeight = p_changedState.getMetricValue().getValue();
+        DebugOut(DebugOut::Default, "ExampleProject") << "Consumer: Received value changed of " << getDescriptorHandle() << ": " << m_currentWeight << std::endl;
     }
 
     // this method is called each time an operation (e.g. a set operation) is called by the provider
     // use to customize the handling of your code, e.g. log/ prompt a message, do validity checks, ect.
-    void onOperationInvoked(const OperationInvocationContext & oic, InvocationState is) override {
-        DebugOut(DebugOut::Default, "ExampleProject") << "Consumer: Received operation invoked (ID, STATE) of " << descriptorHandle << ": " << oic.transactionId << ", " << Data::SDC::EnumToString::convert(is) << std::endl;
+    void onOperationInvoked(const OperationInvocationContext& oic, InvocationState is) override
+    {
+        DebugOut(DebugOut::Default, "ExampleProject") << "Consumer: Received operation invoked (ID, STATE) of " << getDescriptorHandle() << ": " << oic.transactionId << ", " << Data::SDC::EnumToString::convert(is);
     }
 
-    float getCurrentWeight() {
-        return currentWeight;
+    double getCurrentWeight() const
+    {
+        return m_currentWeight;
     }
-
-private:
-    float currentWeight;
 };
 
+
+class MyHandler : public OSELib::SDC::HelloReceivedHandler
+{
+public:
+
+	void helloReceived(const std::string& p_newEPR) override
+	{
+		DebugOut(DebugOut::Default, "ExampleProject") << "Hello received! EPR: " << p_newEPR << std::endl;
+	}
+};
 
 int main()
 {
 	SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
-	//SDCLibrary::getInstance().setPortStart(11000); // FIXME
-	//SDCLibrary::getInstance().setDiscoveryTime(4000); // FIXME
 
     // Create a new SDCInstance (no flag will auto init)
     auto t_SDCInstanceConsumer = std::make_shared<SDCInstance>(true);
@@ -355,20 +362,14 @@ int main()
     t_SDCInstanceConsumer->setIP6enabled(false);
     t_SDCInstanceConsumer->setIP4enabled(true);
     // Bind it to interface that matches the internal criteria (usually the first enumerated)
-    if(!t_SDCInstanceConsumer->bindToDefaultNetworkInterface()) {
+    if(!t_SDCInstanceConsumer->bindToDefaultNetworkInterface())
+    {
         std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
         return -1;
     }
 
-	OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstanceConsumer);
-	class MyHandler : public OSELib::SDC::HelloReceivedHandler {
-	public:
-		MyHandler() {
-		}
-		void helloReceived(const std::string & epr) override {
-			DebugOut(DebugOut::Default, "ExampleProject") << "Hello received! EPR: " << epr;
-		}
-	};
+	OSELib::SDC::ServiceManager t_serviceManager{t_SDCInstanceConsumer};
+
 	std::unique_ptr<MyHandler> myHandler(new MyHandler());
 	t_serviceManager.setHelloReceivedHandler(myHandler.get());
 
@@ -377,87 +378,134 @@ int main()
     // Some restriction
     t_SDCInstanceProvider->setIP6enabled(false);
     t_SDCInstanceProvider->setIP4enabled(true);
+
     // Bind it to interface that matches the internal criteria (usually the first enumerated)
-    if(!t_SDCInstanceProvider->bindToDefaultNetworkInterface()) {
+    if(!t_SDCInstanceProvider->bindToDefaultNetworkInterface())
+    {
         std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
         return -1;
     }
 
     // Provider
-	SDCHoldingDeviceProvider provider(t_SDCInstanceProvider);
+	SDCHoldingDeviceProvider provider{t_SDCInstanceProvider};
 	provider.startup();
-	DummyValueProducer dummyValueProducer(&provider);
+	DummyValueProducer dummyValueProducer{&provider};
 	dummyValueProducer.start();
 
-	std::string temp;
 	DebugOut(DebugOut::Default, "ExampleProject") << "Press key to proceed test (until then, provider will keep running indefinitely).";
-	std::cin >> temp;
+	std::cin.get();
 
-	// Discovery
-	auto t_consumer(t_serviceManager.discoverEndpointReference(DEVICE_EPR));
+	// Note: Calculate a UUIDv5 and apply prefix to it!
+	auto t_consumer{t_serviceManager.discoverEndpointReference(SDCInstance::calcUUIDv5(DEVICE_EPR, true))};
 	// alternatively: search the whole network
-//		std::vector<std::unique_ptr<SDCConsumer>> consumers(t_serviceManager.discover());
+	// std::vector<std::unique_ptr<SDCConsumer>> consumers(t_serviceManager.discover());
 
-
-	if (t_consumer != nullptr) {
-
-		std::shared_ptr<ExampleConsumerEventHandler> eces1(new ExampleConsumerEventHandler(HANDLE_CURRENT_WEIGHT_METRIC));
-		std::shared_ptr<ExampleConsumerEventHandler> eces2(new ExampleConsumerEventHandler(HANDLE_MAX_WEIGHT_METRIC));
-
-		SDCConsumer & consumer = *t_consumer;
-		DebugOut(DebugOut::Default, "ExampleProject") << "Discovery succeeded.";
-
-		// MDIB test
-		MdibContainer mdib = consumer.getMdib();
+	if (t_consumer != nullptr)
+	{
+		SDCConsumer& consumer = *t_consumer;
 
 		// Register for metric event
+		auto eces1 = std::make_shared<ExampleConsumerEventHandler>(HANDLE_CURRENT_WEIGHT_METRIC);
+		auto eces2 = std::make_shared<ExampleConsumerEventHandler>(HANDLE_MAX_WEIGHT_METRIC);
 		consumer.registerStateEventHandler(eces1.get());
 		consumer.registerStateEventHandler(eces2.get());
 
-		std::this_thread::sleep_for(std::chrono::milliseconds(4000));
+		// wait for the subscriptions to be completed
+		Util::DebugOut(Util::DebugOut::Default, "ExampleProject") << "Discovery succeeded.\n\nWaiting 2 sec. for the subscriptions to beeing finished" << std::endl;
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 
 		// Get state test (current weight)
-		std::unique_ptr<NumericMetricState> pCurrentWeightState(consumer.requestState<NumericMetricState>(HANDLE_CURRENT_WEIGHT_METRIC));
-		double curWeight = pCurrentWeightState->getMetricValue().getValue();
+		auto t_currentWeightState{consumer.requestState<NumericMetricState>(HANDLE_CURRENT_WEIGHT_METRIC)};
+		if(nullptr == t_currentWeightState)
+		{
+			DebugOut(DebugOut::Default, "ExampleProject") << "Weight State not found!";
+			return -1;
+		}
+		if(!t_currentWeightState->hasMetricValue())
+		{
+			DebugOut(DebugOut::Default, "ExampleProject") << "Weight State has no MetricValue!";
+			return -1;
+		}
+		auto curWeight{t_currentWeightState->getMetricValue().getValue()};
 		DebugOut(DebugOut::Default, "ExampleProject") << "Observed Weight " << curWeight;
 
-		try {
+		try
+		{
 			// Set state test (must fail due to read-only)
-			InvocationState invocationStateFirst = consumer.commitState(*pCurrentWeightState);
+			InvocationState invocationStateFirst = consumer.commitState(*t_currentWeightState);
 			DebugOut(DebugOut::Default, "ExampleProject") << "InvocationState (1st commit): " << Data::SDC::EnumToString::convert(invocationStateFirst);
-			if (InvocationState::Fail == invocationStateFirst) {
+			if (InvocationState::Fail == invocationStateFirst)
+			{
 				DebugOut(DebugOut::Default, "ExampleProject") << "Committing state failed as expected.";
-			} else {
+			}
+			else
+			{
 				DebugOut(DebugOut::Default, "ExampleProject") << "Committing state succeeded. This is an error, because it should be read-only.";
 			}
-		} catch (const std::runtime_error & e) {
-			DebugOut(DebugOut::Default, "ExampleProject") << "Exception";}
+		}
+		catch (const std::runtime_error & e)
+		{
+			DebugOut(DebugOut::Default, "ExampleProject") << "Exception";
+		}
 		// Get state test (maximum weight)
-		std::unique_ptr<NumericMetricState> pMaxWeightState(consumer.requestState<NumericMetricState>(HANDLE_MAX_WEIGHT_METRIC));
-		double maxWeight = pMaxWeightState->getMetricValue().getValue();
+		auto t_maxWeightState{consumer.requestState<NumericMetricState>(HANDLE_MAX_WEIGHT_METRIC)};
+		if(nullptr == t_maxWeightState)
+		{
+			DebugOut(DebugOut::Default, "ExampleProject") << "Max weight value state not found!";
+			return -1;
+		}
+		if(!t_maxWeightState->hasMetricValue())
+		{
+			DebugOut(DebugOut::Default, "ExampleProject") << "Max weight state has no MetricValue!";
+			return -1;
+		}
+		auto maxWeight{t_maxWeightState->getMetricValue().getValue()};
 		DebugOut(DebugOut::Default, "ExampleProject") << "Max weight value: "<< maxWeight;
 
 		// Set state test (must succeed)
-		InvocationState invocationStateSecond  = consumer.commitState(*pMaxWeightState);
-		DebugOut(DebugOut::Default, "ExampleProject") << "InvocationState (2nd commit): " << Data::SDC::EnumToString::convert(invocationStateSecond);
+		// Expected States: Wait -> Start -> Fin as implemented in MaxValueStateHandler
 
-		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+		bool t_stateFinReached{false};
+		FutureInvocationState t_fis;
+		auto invocationStateSecond = consumer.commitState(*t_maxWeightState, t_fis);
+		if(invocationStateSecond == InvocationState::Wait)
+		{
+			DebugOut(DebugOut::Default, "ExampleProject") << "InvocationState (2nd commit): Wait";
+			if(t_fis.waitReceived(InvocationState::Start, WAIT_TIMEOUT_MS))
+			{
+				DebugOut(DebugOut::Default, "ExampleProject") << "InvocationState (2nd commit): Start";
+				if(t_fis.waitReceived(InvocationState::Fin, WAIT_TIMEOUT_MS))
+				{
+					t_stateFinReached = true;
+					DebugOut(DebugOut::Default, "ExampleProject") << "InvocationState (2nd commit): Fin";
+				}
+			}
+		}
+
+		// Something went wrong
+		if(t_stateFinReached)
+		{
+			DebugOut(DebugOut::Default, "ExampleProject") << "Committing state succeeded as expected.\n";
+		}
+		else
+		{
+			DebugOut(DebugOut::Default, "ExampleProject") << "InvocationState (2nd commit): FAILED TO REACH \"FIN STATE\"!\n";
+		}
+
+		// Cleanup
 		consumer.unregisterStateEventHandler(eces1.get());
 		consumer.unregisterStateEventHandler(eces2.get());
-		std::this_thread::sleep_for(std::chrono::milliseconds(4000));
-
 		consumer.disconnect();
-	} else {
-		DebugOut(DebugOut::Default, "ExampleProject") << "Discovery failed.";
+	}
+	else
+	{
+		DebugOut(DebugOut::Default, "ExampleProject") << "Discovery failed." << std::endl;
+		return -1;
 	}
 
+	DebugOut(DebugOut::Default, "\nExampleProject") << "Shutdown.\n" << std::endl;
 	t_serviceManager.setHelloReceivedHandler(nullptr);
-
 	dummyValueProducer.interrupt();
-	provider.shutdown();
-	std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 
-	DebugOut(DebugOut::Default, "ExampleProject") << "Shutdown." << std::endl;
-	SDCLibrary::getInstance().shutdown();
-
+	return 0;
 }

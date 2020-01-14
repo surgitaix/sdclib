@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class LimitAlertConditionState {
+class LimitAlertConditionState
+{
 private:
 	LimitAlertConditionState(const CDM::LimitAlertConditionState & object);
 	operator CDM::LimitAlertConditionState() const;
@@ -63,11 +64,11 @@ public:
 private:
 	LimitAlertConditionState(){};
 public:
-	LimitAlertConditionState(const LimitAlertConditionState & object);
-	virtual ~LimitAlertConditionState();
+	LimitAlertConditionState(const LimitAlertConditionState& object);
+	virtual ~LimitAlertConditionState() = default;
 
-    void copyFrom(const LimitAlertConditionState & object);
-    LimitAlertConditionState & operator=(const LimitAlertConditionState & object);
+    void copyFrom(const LimitAlertConditionState& object);
+    LimitAlertConditionState & operator=(const LimitAlertConditionState& object);
 
     typedef CDM::LimitAlertConditionState WrappedType;
     typedef LimitAlertConditionDescriptor DescriptorType;
@@ -125,7 +126,7 @@ public:
 	bool hasAutoLimitActivationState() const;
 
 private:
-	std::shared_ptr<CDM::LimitAlertConditionState> data;
+	std::shared_ptr<CDM::LimitAlertConditionState> data = nullptr;
 };
 
 } /* namespace SDC */

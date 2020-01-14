@@ -1,27 +1,25 @@
 /*
  * Service.cpp
  *
- *  Created on: 18.11.2015
- *      Author: matthias
+ *  Created on: 18.11.2015, matthias
+ *  Modified on: 23.08.2019, baumeister
  */
 
-#include "OSELib/HTTP/FrontController.h"
 #include "OSELib/HTTP/Service.h"
+#include "OSELib/HTTP/FrontController.h"
 
-namespace OSELib {
-namespace HTTP {
 
-Service::Service(FrontController & controller, const std::vector<std::string> & uris) : _uris(uris) {
-	for (const auto & uri : uris) {
-		controller.addService(uri, *this);
+using namespace OSELib;
+using namespace OSELib::HTTP;
+
+Service::Service(FrontController & p_controller, const std::vector<std::string> & p_uris)
+: ml_uris(p_uris)
+{
+	for (const auto & t_uri : p_uris) {
+		p_controller.addService(t_uri, *this);
 	}
 }
 
-Service::~Service() = default;
-
 const std::vector<std::string> & Service::getUris() const {
-	return _uris;
+	return ml_uris;
 }
-
-}
-} /* namespace OSELib */

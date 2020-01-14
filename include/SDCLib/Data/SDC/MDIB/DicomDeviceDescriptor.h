@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class DicomDeviceDescriptor {
+class DicomDeviceDescriptor
+{
 private:
 	DicomDeviceDescriptor(const CDM::DicomDeviceDescriptor & object);
 	operator CDM::DicomDeviceDescriptor() const;
@@ -57,11 +58,11 @@ public:
 private:
 	DicomDeviceDescriptor(){};
 public:
-	DicomDeviceDescriptor(const DicomDeviceDescriptor & object);
-	virtual ~DicomDeviceDescriptor();
+	DicomDeviceDescriptor(const DicomDeviceDescriptor& object);
+	virtual ~DicomDeviceDescriptor() = default;
 
-    void copyFrom(const DicomDeviceDescriptor & object);
-    DicomDeviceDescriptor & operator=(const DicomDeviceDescriptor & object);
+    void copyFrom(const DicomDeviceDescriptor& object);
+    DicomDeviceDescriptor & operator=(const DicomDeviceDescriptor& object);
 
     typedef CDM::DicomDeviceDescriptor WrappedType;
 
@@ -119,7 +120,7 @@ public:
 	void clearStationNameList();
 
 private:
-	std::shared_ptr<CDM::DicomDeviceDescriptor> data;
+	std::shared_ptr<CDM::DicomDeviceDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

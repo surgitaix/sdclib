@@ -34,7 +34,7 @@
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/Defaults.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 
 namespace SDCLib {
@@ -46,84 +46,81 @@ Translation::Translation(
 		CodeIdentifier code
 ) : data(Defaults::TranslationInit(
 		code
-)) {}
+))
+{}
 
 Translation::operator CDM::Translation() const {
 	return *data;
 }
 
-Translation::Translation(const CDM::Translation & object) : data(new CDM::Translation(object)) {
+Translation::Translation(const CDM::Translation & object)
+: data(new CDM::Translation(object))
+{ }
 
-}
-
-Translation::Translation(const Translation & object) : data(new CDM::Translation(*object.data)) {
-
-}
-
-Translation::~Translation() {
-
-}
+Translation::Translation(const Translation & object)
+: data(std::make_shared<CDM::Translation>(*object.data))
+{ }
 
 void Translation::copyFrom(const Translation & object) {
-	data = std::shared_ptr<CDM::Translation>( new CDM::Translation(*object.data));
+	data = std::make_shared<CDM::Translation>(*object.data);
 }
 
-Translation & Translation:: operator=(const Translation & object) {
+Translation & Translation:: operator=(const Translation& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 Translation & Translation::setCode(const CodeIdentifier & value) {
-	data->Code(ConvertToCDM::convert(value));
+	data->setCode(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 CodeIdentifier Translation::getCode() const {
-	return ConvertFromCDM::convert(data->Code());
+	return ConvertFromCDM::convert(data->getCode());
 }
 
 Translation & Translation::setCodingSystem(const xml_schema::Uri & value) {
-	data->CodingSystem(ConvertToCDM::convert(value));
+	data->setCodingSystem(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool Translation::getCodingSystem(xml_schema::Uri & out) const {
-	if (data->CodingSystem().present()) {
-		out = ConvertFromCDM::convert(data->CodingSystem().get());
+	if (data->getCodingSystem().present()) {
+		out = ConvertFromCDM::convert(data->getCodingSystem().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::Uri Translation::getCodingSystem() const {
-	return ConvertFromCDM::convert(data->CodingSystem().get());
+	return ConvertFromCDM::convert(data->getCodingSystem().get());
 }
 
 bool Translation::hasCodingSystem() const {
-	return data->CodingSystem().present();
+	return data->getCodingSystem().present();
 }
 
 Translation & Translation::setCodingSystemVersion(const std::string & value) {
-	data->CodingSystemVersion(ConvertToCDM::convert(value));
+	data->setCodingSystemVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool Translation::getCodingSystemVersion(std::string & out) const {
-	if (data->CodingSystemVersion().present()) {
-		out = ConvertFromCDM::convert(data->CodingSystemVersion().get());
+	if (data->getCodingSystemVersion().present()) {
+		out = ConvertFromCDM::convert(data->getCodingSystemVersion().get());
 		return true;
 	}
 	return false;
 }
 
 std::string Translation::getCodingSystemVersion() const {
-	return ConvertFromCDM::convert(data->CodingSystemVersion().get());
+	return ConvertFromCDM::convert(data->getCodingSystemVersion().get());
 }
 
 bool Translation::hasCodingSystemVersion() const {
-	return data->CodingSystemVersion().present();
+	return data->getCodingSystemVersion().present();
 }
 
 

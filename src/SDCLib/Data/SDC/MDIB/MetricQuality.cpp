@@ -34,7 +34,7 @@
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/Defaults.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 
 namespace SDCLib {
@@ -46,84 +46,81 @@ MetricQuality::MetricQuality(
 		MeasurementValidity validity
 ) : data(Defaults::MetricQualityInit(
 		validity
-)) {}
+))
+{}
 
 MetricQuality::operator CDM::MetricQuality() const {
 	return *data;
 }
 
-MetricQuality::MetricQuality(const CDM::MetricQuality & object) : data(new CDM::MetricQuality(object)) {
+MetricQuality::MetricQuality(const CDM::MetricQuality & object)
+: data(new CDM::MetricQuality(object))
+{ }
 
-}
-
-MetricQuality::MetricQuality(const MetricQuality & object) : data(new CDM::MetricQuality(*object.data)) {
-
-}
-
-MetricQuality::~MetricQuality() {
-
-}
+MetricQuality::MetricQuality(const MetricQuality & object)
+: data(std::make_shared<CDM::MetricQuality>(*object.data))
+{ }
 
 void MetricQuality::copyFrom(const MetricQuality & object) {
-	data = std::shared_ptr<CDM::MetricQuality>( new CDM::MetricQuality(*object.data));
+	data = std::make_shared<CDM::MetricQuality>(*object.data);
 }
 
-MetricQuality & MetricQuality:: operator=(const MetricQuality & object) {
+MetricQuality & MetricQuality:: operator=(const MetricQuality& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 MetricQuality & MetricQuality::setValidity(const MeasurementValidity & value) {
-	data->Validity(ConvertToCDM::convert(value));
+	data->setValidity(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 MeasurementValidity MetricQuality::getValidity() const {
-	return ConvertFromCDM::convert(data->Validity());
+	return ConvertFromCDM::convert(data->getValidity());
 }
 
 MetricQuality & MetricQuality::setMode(const GenerationMode & value) {
-	data->Mode(ConvertToCDM::convert(value));
+	data->setMode(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool MetricQuality::getMode(GenerationMode & out) const {
-	if (data->Mode().present()) {
-		out = ConvertFromCDM::convert(data->Mode().get());
+	if (data->getMode().present()) {
+		out = ConvertFromCDM::convert(data->getMode().get());
 		return true;
 	}
 	return false;
 }
 
 GenerationMode MetricQuality::getMode() const {
-	return ConvertFromCDM::convert(data->Mode().get());
+	return ConvertFromCDM::convert(data->getMode().get());
 }
 
 bool MetricQuality::hasMode() const {
-	return data->Mode().present();
+	return data->getMode().present();
 }
 
 MetricQuality & MetricQuality::setQi(const QualityIndicator & value) {
-	data->Qi(ConvertToCDM::convert(value));
+	data->setQi(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool MetricQuality::getQi(QualityIndicator & out) const {
-	if (data->Qi().present()) {
-		out = ConvertFromCDM::convert(data->Qi().get());
+	if (data->getQi().present()) {
+		out = ConvertFromCDM::convert(data->getQi().get());
 		return true;
 	}
 	return false;
 }
 
 QualityIndicator MetricQuality::getQi() const {
-	return ConvertFromCDM::convert(data->Qi().get());
+	return ConvertFromCDM::convert(data->getQi().get());
 }
 
 bool MetricQuality::hasQi() const {
-	return data->Qi().present();
+	return data->getQi().present();
 }
 
 

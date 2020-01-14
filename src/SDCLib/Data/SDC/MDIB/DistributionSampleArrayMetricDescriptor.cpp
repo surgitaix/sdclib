@@ -34,7 +34,7 @@
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/Defaults.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 #include "SDCLib/Data/SDC/MDIB/Range.h"
 #include "SDCLib/Data/SDC/MDIB/CodedValue.h"
@@ -75,345 +75,342 @@ DistributionSampleArrayMetricDescriptor::DistributionSampleArrayMetricDescriptor
 		distributionrange
 		,
 		resolution
-)) {}
+))
+{}
 
 DistributionSampleArrayMetricDescriptor::operator CDM::DistributionSampleArrayMetricDescriptor() const {
 	return *data;
 }
 
-DistributionSampleArrayMetricDescriptor::DistributionSampleArrayMetricDescriptor(const CDM::DistributionSampleArrayMetricDescriptor & object) : data(new CDM::DistributionSampleArrayMetricDescriptor(object)) {
+DistributionSampleArrayMetricDescriptor::DistributionSampleArrayMetricDescriptor(const CDM::DistributionSampleArrayMetricDescriptor & object)
+: data(new CDM::DistributionSampleArrayMetricDescriptor(object))
+{ }
 
-}
-
-DistributionSampleArrayMetricDescriptor::DistributionSampleArrayMetricDescriptor(const DistributionSampleArrayMetricDescriptor & object) : data(new CDM::DistributionSampleArrayMetricDescriptor(*object.data)) {
-
-}
-
-DistributionSampleArrayMetricDescriptor::~DistributionSampleArrayMetricDescriptor() {
-
-}
+DistributionSampleArrayMetricDescriptor::DistributionSampleArrayMetricDescriptor(const DistributionSampleArrayMetricDescriptor & object)
+: data(std::make_shared<CDM::DistributionSampleArrayMetricDescriptor>(*object.data))
+{ }
 
 void DistributionSampleArrayMetricDescriptor::copyFrom(const DistributionSampleArrayMetricDescriptor & object) {
-	data = std::shared_ptr<CDM::DistributionSampleArrayMetricDescriptor>( new CDM::DistributionSampleArrayMetricDescriptor(*object.data));
+	data = std::make_shared<CDM::DistributionSampleArrayMetricDescriptor>(*object.data);
 }
 
-DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor:: operator=(const DistributionSampleArrayMetricDescriptor & object) {
+DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor:: operator=(const DistributionSampleArrayMetricDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
+	data->setType(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool DistributionSampleArrayMetricDescriptor::getType(CodedValue & out) const {
-	if (data->Type().present()) {
-		out = ConvertFromCDM::convert(data->Type().get());
+	if (data->getType().present()) {
+		out = ConvertFromCDM::convert(data->getType().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue DistributionSampleArrayMetricDescriptor::getType() const {
-	return ConvertFromCDM::convert(data->Type().get());
+	return ConvertFromCDM::convert(data->getType().get());
 }
 
 bool DistributionSampleArrayMetricDescriptor::hasType() const {
-	return data->Type().present();
+	return data->getType().present();
 }
 
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setHandle(const Handle & value) {
-	data->Handle(ConvertToCDM::convert(value));
+	data->setHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 Handle DistributionSampleArrayMetricDescriptor::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle());
+	return ConvertFromCDM::convert(data->getHandle());
 }
 
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setDescriptorVersion(const VersionCounter & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool DistributionSampleArrayMetricDescriptor::getDescriptorVersion(VersionCounter & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter DistributionSampleArrayMetricDescriptor::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool DistributionSampleArrayMetricDescriptor::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setSafetyClassification(const SafetyClassification & value) {
-	data->SafetyClassification(ConvertToCDM::convert(value));
+	data->setSafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool DistributionSampleArrayMetricDescriptor::getSafetyClassification(SafetyClassification & out) const {
-	if (data->SafetyClassification().present()) {
-		out = ConvertFromCDM::convert(data->SafetyClassification().get());
+	if (data->getSafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->getSafetyClassification().get());
 		return true;
 	}
 	return false;
 }
 
 SafetyClassification DistributionSampleArrayMetricDescriptor::getSafetyClassification() const {
-	return ConvertFromCDM::convert(data->SafetyClassification().get());
+	return ConvertFromCDM::convert(data->getSafetyClassification().get());
 }
 
 bool DistributionSampleArrayMetricDescriptor::hasSafetyClassification() const {
-	return data->SafetyClassification().present();
+	return data->getSafetyClassification().present();
 }
 
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setUnit(const CodedValue & value) {
-	data->Unit(ConvertToCDM::convert(value));
+	data->setUnit(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 CodedValue DistributionSampleArrayMetricDescriptor::getUnit() const {
-	return ConvertFromCDM::convert(data->Unit());
+	return ConvertFromCDM::convert(data->getUnit());
 }
 
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setMetricCategory(const MetricCategory & value) {
-	data->MetricCategory(ConvertToCDM::convert(value));
+	data->setMetricCategory(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 MetricCategory DistributionSampleArrayMetricDescriptor::getMetricCategory() const {
-	return ConvertFromCDM::convert(data->MetricCategory());
+	return ConvertFromCDM::convert(data->getMetricCategory());
 }
 
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setDerivationMethod(const DerivationMethod & value) {
-	data->DerivationMethod(ConvertToCDM::convert(value));
+	data->setDerivationMethod(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool DistributionSampleArrayMetricDescriptor::getDerivationMethod(DerivationMethod & out) const {
-	if (data->DerivationMethod().present()) {
-		out = ConvertFromCDM::convert(data->DerivationMethod().get());
+	if (data->getDerivationMethod().present()) {
+		out = ConvertFromCDM::convert(data->getDerivationMethod().get());
 		return true;
 	}
 	return false;
 }
 
 DerivationMethod DistributionSampleArrayMetricDescriptor::getDerivationMethod() const {
-	return ConvertFromCDM::convert(data->DerivationMethod().get());
+	return ConvertFromCDM::convert(data->getDerivationMethod().get());
 }
 
 bool DistributionSampleArrayMetricDescriptor::hasDerivationMethod() const {
-	return data->DerivationMethod().present();
+	return data->getDerivationMethod().present();
 }
 
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setMetricAvailability(const MetricAvailability & value) {
-	data->MetricAvailability(ConvertToCDM::convert(value));
+	data->setMetricAvailability(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 MetricAvailability DistributionSampleArrayMetricDescriptor::getMetricAvailability() const {
-	return ConvertFromCDM::convert(data->MetricAvailability());
+	return ConvertFromCDM::convert(data->getMetricAvailability());
 }
 
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setMaxMeasurementTime(const xml_schema::Duration & value) {
-	data->MaxMeasurementTime(ConvertToCDM::convert(value));
+	data->setMaxMeasurementTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool DistributionSampleArrayMetricDescriptor::getMaxMeasurementTime(xml_schema::Duration & out) const {
-	if (data->MaxMeasurementTime().present()) {
-		out = ConvertFromCDM::convert(data->MaxMeasurementTime().get());
+	if (data->getMaxMeasurementTime().present()) {
+		out = ConvertFromCDM::convert(data->getMaxMeasurementTime().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::Duration DistributionSampleArrayMetricDescriptor::getMaxMeasurementTime() const {
-	return ConvertFromCDM::convert(data->MaxMeasurementTime().get());
+	return ConvertFromCDM::convert(data->getMaxMeasurementTime().get());
 }
 
 bool DistributionSampleArrayMetricDescriptor::hasMaxMeasurementTime() const {
-	return data->MaxMeasurementTime().present();
+	return data->getMaxMeasurementTime().present();
 }
 
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setMaxDelayTime(const xml_schema::Duration & value) {
-	data->MaxDelayTime(ConvertToCDM::convert(value));
+	data->setMaxDelayTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool DistributionSampleArrayMetricDescriptor::getMaxDelayTime(xml_schema::Duration & out) const {
-	if (data->MaxDelayTime().present()) {
-		out = ConvertFromCDM::convert(data->MaxDelayTime().get());
+	if (data->getMaxDelayTime().present()) {
+		out = ConvertFromCDM::convert(data->getMaxDelayTime().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::Duration DistributionSampleArrayMetricDescriptor::getMaxDelayTime() const {
-	return ConvertFromCDM::convert(data->MaxDelayTime().get());
+	return ConvertFromCDM::convert(data->getMaxDelayTime().get());
 }
 
 bool DistributionSampleArrayMetricDescriptor::hasMaxDelayTime() const {
-	return data->MaxDelayTime().present();
+	return data->getMaxDelayTime().present();
 }
 
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setDeterminationPeriod(const xml_schema::Duration & value) {
-	data->DeterminationPeriod(ConvertToCDM::convert(value));
+	data->setDeterminationPeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool DistributionSampleArrayMetricDescriptor::getDeterminationPeriod(xml_schema::Duration & out) const {
-	if (data->DeterminationPeriod().present()) {
-		out = ConvertFromCDM::convert(data->DeterminationPeriod().get());
+	if (data->getDeterminationPeriod().present()) {
+		out = ConvertFromCDM::convert(data->getDeterminationPeriod().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::Duration DistributionSampleArrayMetricDescriptor::getDeterminationPeriod() const {
-	return ConvertFromCDM::convert(data->DeterminationPeriod().get());
+	return ConvertFromCDM::convert(data->getDeterminationPeriod().get());
 }
 
 bool DistributionSampleArrayMetricDescriptor::hasDeterminationPeriod() const {
-	return data->DeterminationPeriod().present();
+	return data->getDeterminationPeriod().present();
 }
 
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setLifeTimePeriod(const xml_schema::Duration & value) {
-	data->LifeTimePeriod(ConvertToCDM::convert(value));
+	data->setLifeTimePeriod(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool DistributionSampleArrayMetricDescriptor::getLifeTimePeriod(xml_schema::Duration & out) const {
-	if (data->LifeTimePeriod().present()) {
-		out = ConvertFromCDM::convert(data->LifeTimePeriod().get());
+	if (data->getLifeTimePeriod().present()) {
+		out = ConvertFromCDM::convert(data->getLifeTimePeriod().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::Duration DistributionSampleArrayMetricDescriptor::getLifeTimePeriod() const {
-	return ConvertFromCDM::convert(data->LifeTimePeriod().get());
+	return ConvertFromCDM::convert(data->getLifeTimePeriod().get());
 }
 
 bool DistributionSampleArrayMetricDescriptor::hasLifeTimePeriod() const {
-	return data->LifeTimePeriod().present();
+	return data->getLifeTimePeriod().present();
 }
 
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setActivationDuration(const xml_schema::Duration & value) {
-	data->ActivationDuration(ConvertToCDM::convert(value));
+	data->setActivationDuration(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool DistributionSampleArrayMetricDescriptor::getActivationDuration(xml_schema::Duration & out) const {
-	if (data->ActivationDuration().present()) {
-		out = ConvertFromCDM::convert(data->ActivationDuration().get());
+	if (data->getActivationDuration().present()) {
+		out = ConvertFromCDM::convert(data->getActivationDuration().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::Duration DistributionSampleArrayMetricDescriptor::getActivationDuration() const {
-	return ConvertFromCDM::convert(data->ActivationDuration().get());
+	return ConvertFromCDM::convert(data->getActivationDuration().get());
 }
 
 bool DistributionSampleArrayMetricDescriptor::hasActivationDuration() const {
-	return data->ActivationDuration().present();
+	return data->getActivationDuration().present();
 }
 
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::addBodySite(const CodedValue & value) {
-	data->BodySite().push_back(ConvertToCDM::convert(value));
+	data->getBodySite().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<CodedValue> DistributionSampleArrayMetricDescriptor::getBodySiteList() const {
 	std::vector<CodedValue> result;
-	result.reserve(data->BodySite().size());
-	for (const auto & value: data->BodySite()) {
+	result.reserve(data->getBodySite().size());
+	for (const auto & value: data->getBodySite()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void DistributionSampleArrayMetricDescriptor::clearBodySiteList() {
-	data->BodySite().clear();
+	data->getBodySite().clear();
 }
 
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::addRelation(const Relation & value) {
-	data->Relation().push_back(ConvertToCDM::convert(value));
+	data->getRelation().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<Relation> DistributionSampleArrayMetricDescriptor::getRelationList() const {
 	std::vector<Relation> result;
-	result.reserve(data->Relation().size());
-	for (const auto & value: data->Relation()) {
+	result.reserve(data->getRelation().size());
+	for (const auto & value: data->getRelation()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void DistributionSampleArrayMetricDescriptor::clearRelationList() {
-	data->Relation().clear();
+	data->getRelation().clear();
 }
 
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setDomainUnit(const CodedValue & value) {
-	data->DomainUnit(ConvertToCDM::convert(value));
+	data->setDomainUnit(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 CodedValue DistributionSampleArrayMetricDescriptor::getDomainUnit() const {
-	return ConvertFromCDM::convert(data->DomainUnit());
+	return ConvertFromCDM::convert(data->getDomainUnit());
 }
 
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setDistributionRange(const Range & value) {
-	data->DistributionRange(ConvertToCDM::convert(value));
+	data->setDistributionRange(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 Range DistributionSampleArrayMetricDescriptor::getDistributionRange() const {
-	return ConvertFromCDM::convert(data->DistributionRange());
+	return ConvertFromCDM::convert(data->getDistributionRange());
 }
 
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::setResolution(const double & value) {
-	data->Resolution(ConvertToCDM::convert(value));
+	data->setResolution(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 double DistributionSampleArrayMetricDescriptor::getResolution() const {
-	return ConvertFromCDM::convert(data->Resolution());
+	return ConvertFromCDM::convert(data->getResolution());
 }
 
 DistributionSampleArrayMetricDescriptor & DistributionSampleArrayMetricDescriptor::addTechnicalRange(const Range & value) {
-	data->TechnicalRange().push_back(ConvertToCDM::convert(value));
+	data->getTechnicalRange().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<Range> DistributionSampleArrayMetricDescriptor::getTechnicalRangeList() const {
 	std::vector<Range> result;
-	result.reserve(data->TechnicalRange().size());
-	for (const auto & value: data->TechnicalRange()) {
+	result.reserve(data->getTechnicalRange().size());
+	for (const auto & value: data->getTechnicalRange()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void DistributionSampleArrayMetricDescriptor::clearTechnicalRangeList() {
-	data->TechnicalRange().clear();
+	data->getTechnicalRange().clear();
 }
 
 

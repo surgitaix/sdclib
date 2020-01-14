@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class MdsDescriptor {
+class MdsDescriptor
+{
 private:
 	MdsDescriptor(const CDM::MdsDescriptor & object);
 	operator CDM::MdsDescriptor() const;
@@ -57,11 +58,11 @@ public:
 private:
 	MdsDescriptor(){};
 public:
-	MdsDescriptor(const MdsDescriptor & object);
-	virtual ~MdsDescriptor();
+	MdsDescriptor(const MdsDescriptor& object);
+	virtual ~MdsDescriptor() = default;
 
-    void copyFrom(const MdsDescriptor & object);
-    MdsDescriptor & operator=(const MdsDescriptor & object);
+    void copyFrom(const MdsDescriptor& object);
+    MdsDescriptor & operator=(const MdsDescriptor& object);
 
     typedef CDM::MdsDescriptor WrappedType;
 
@@ -126,7 +127,7 @@ public:
 	void clearVmdList();
 
 private:
-	std::shared_ptr<CDM::MdsDescriptor> data;
+	std::shared_ptr<CDM::MdsDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

@@ -53,7 +53,7 @@ using namespace SDCLib::Data::SDC;
 	private:
 		EnumStringMetricState createState(const std::string & statusMessage)
 		{
-			EnumStringMetricState result(descriptorHandle);
+			EnumStringMetricState result(m_descriptorHandle);
 			result.setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(statusMessage));
 			return result;
 		}
@@ -88,7 +88,7 @@ using namespace SDCLib::Data::SDC;
 
 	private:
 		NumericMetricState createState(const double value) {
-			NumericMetricState result(descriptorHandle);
+			NumericMetricState result(m_descriptorHandle);
 			//Valid metric equaling value. The measurement is performed.
 			result.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
 				  .setActivationState(ComponentActivation::On);
@@ -125,7 +125,7 @@ using namespace SDCLib::Data::SDC;
 
 	private:
 		NumericMetricState createState(const double value) {
-			NumericMetricState result(descriptorHandle);
+			NumericMetricState result(m_descriptorHandle);
 			//Valid metric equaling value. The measurement is performed.
 			result.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(value))
 				  .setActivationState(ComponentActivation::On);

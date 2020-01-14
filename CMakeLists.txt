@@ -34,12 +34,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Main Project
 ################################################################################
 set( PROJECT_NAME "SDCLibrary") # in case you need it in a config file
-project(${PROJECT_NAME})
+project(${PROJECT_NAME} "CXX")
 
 # Version numbers -> Will be written to the config file
 set (SDCLibrary_VERSION_FIRST          4)
-set (SDCLibrary_VERSION_MIDDLE         3)
-set (SDCLibrary_VERSION_LAST           8)
+set (SDCLibrary_VERSION_MIDDLE         4)
+set (SDCLibrary_VERSION_LAST           2)
 set (SDCLibrary_C_YEAR              2019)
 set (SDCLibrary_SurgiTAIX "SurgiTAIX AG")
 
@@ -80,8 +80,19 @@ set_property(CACHE SDC_TESTS PROPERTY STRINGS "ON" "OFF")
 set (SDC_EXAMPLES   ON CACHE STRING "Enable Building Examples")
 set_property(CACHE SDC_EXAMPLES PROPERTY STRINGS "ON" "OFF")
 
+
 #MessageManipulation
 add_definitions(-DMESSAGEMANIPULATION=1)
+
+# Advanced Examples - Default to OFF
+set (SDC_ADVANCED_EXAMPLES OFF CACHE STRING "Enable Building Advance Example")
+set_property(CACHE SDC_ADVANCED_EXAMPLES PROPERTY STRINGS "ON" "OFF")
+
+# CPPCHECK - WIP (OFF for now)
+set (SDC_CPPCHECK   OFF CACHE STRING "Enable CPPCHECK (only available for CMAKE 3.10 or higher).")
+set_property(CACHE SDC_CPPCHECK PROPERTY STRINGS "ON" "OFF")
+
+
 ################################################################################
 
 
@@ -128,22 +139,6 @@ endif()
 ################################################################################
 
 ################################################################################
-# Warnings
-################################################################################
-message(STATUS "Setting Warning-Level...")
-if(CMAKE_BUILD_TYPE MATCHES Release)
-    if (MSVC)
-        add_compile_options(/W4)
-    else()
-        add_compile_options(-Wall -Wextra -pedantic)
-    endif()
-else()
-    # Inhibit all warning messages
-    add_compile_options(-w)
-endif()
-################################################################################
-
-################################################################################
 # Firewall - Allowed Ports
 # Note: For the UnitTests and Examples to work, make sure in- and outbound
 #       traffic on this portrange is allowed
@@ -165,7 +160,7 @@ mark_as_advanced(SDC_DEFAULT_PORT_RANGE)
 set(SDC_DISCOVERY_TIMEOUT_MS 5000 CACHE STRING "Time in milliseconds a Discovery until timeout." FORCE)
 mark_as_advanced(SDC_DISCOVERY_TIMEOUT_MS)
 
-set(SDC_CONNECTION_TIMEOUT_MS 4000 CACHE STRING "Time in milliseconds the SDCLib will check if the connection is lost." FORCE)
+set(SDC_CONNECTION_TIMEOUT_MS 2000 CACHE STRING "Time in milliseconds the SDCLib will check if the connection is lost." FORCE)
 mark_as_advanced(SDC_CONNECTION_TIMEOUT_MS)
 
 
@@ -249,7 +244,6 @@ add_subdirectory(${PATH_DATAMODEL_ROOT})
 add_subdirectory(${PATH_SRC_ROOT}/OSELib/TCP)
 
 
-set(SDCLib_SEARCH_DIRS ".")
 find_package(SDCLib)
 
 # src folder

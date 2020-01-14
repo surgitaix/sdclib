@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class OperatingJurisdiction {
+class OperatingJurisdiction
+{
 private:
 	OperatingJurisdiction(const CDM::OperatingJurisdiction & object);
 	operator CDM::OperatingJurisdiction() const;
@@ -53,11 +54,11 @@ private:
 public:
 	OperatingJurisdiction(
 	);
-	OperatingJurisdiction(const OperatingJurisdiction & object);
-	virtual ~OperatingJurisdiction();
+	OperatingJurisdiction(const OperatingJurisdiction& object);
+	virtual ~OperatingJurisdiction() = default;
 
-    void copyFrom(const OperatingJurisdiction & object);
-    OperatingJurisdiction & operator=(const OperatingJurisdiction & object);
+    void copyFrom(const OperatingJurisdiction& object);
+    OperatingJurisdiction & operator=(const OperatingJurisdiction& object);
 
     typedef CDM::OperatingJurisdiction WrappedType;
 
@@ -81,7 +82,7 @@ public:
 	void clearIdentifierNameList();
 
 private:
-	std::shared_ptr<CDM::OperatingJurisdiction> data;
+	std::shared_ptr<CDM::OperatingJurisdiction> data = nullptr;
 };
 
 } /* namespace SDC */

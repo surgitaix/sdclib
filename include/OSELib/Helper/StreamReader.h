@@ -1,31 +1,32 @@
 /*
  * StreamReader.h
  *
- *  Created on: 13.10.2014
- *      Author: roehser
+ *  Created on: 13.10.2014, roehser
+ *  Modified on: 20.08.2019, baumeister
+ *
  */
 
-#ifndef STREAMREADER_H_
-#define STREAMREADER_H_
+#ifndef OSELIB_HELPER_STREAMREADER_H_
+#define OSELIB_HELPER_STREAMREADER_H_
 
-#include <iostream>
+#include <istream>
 #include <string>
 
-namespace OSELib {
-namespace Helper {
+namespace OSELib
+{
+	namespace Helper
+	{
+		class StreamReader
+		{
+		private:
+			std::istream & _stream;
+		public:
+			StreamReader(std::istream & stream);
+			virtual ~StreamReader();
 
-class StreamReader {
-public:
-	StreamReader(std::istream & stream);
-	virtual ~StreamReader();
-
-	std::string getContent();
-
-private:
-	std::istream & _stream;
-};
-
+			std::string getContent();
+		};
+	}
 }
-} /* namespace SDCLib */
 
-#endif /* STREAMREADER_H_ */
+#endif

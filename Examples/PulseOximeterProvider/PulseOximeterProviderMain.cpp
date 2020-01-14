@@ -14,7 +14,7 @@ int main(int argc, char* argv[])
 {
 
 	// Startup
-	DebugOut(DebugOut::Default, "ExampleProvider") << "Startup" << std::endl;
+	DebugOut(DebugOut::Default, "PulseOximeterProvider") << "Startup" << std::endl;
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
 
     // Create a new SDCInstance (no flag will auto init)
@@ -28,17 +28,20 @@ int main(int argc, char* argv[])
         return -1;
     }
 
-	PulseOximeterProvider provider(t_SDCInstance);
+
+	PulseOximeterProvider provider(t_SDCInstance, "/dev/ttyS0");
 	provider.startMedicalDevice();
 	provider.startup();
 	provider.start();
 
 	std::string temp;
-	DebugOut(DebugOut::Default, "ExampleProvider") << "Press key to exit program.";
+
+	DebugOut(DebugOut::Default, "PulseOximeterProvider") << "Press key to exit program.";
 	std::cin >> temp;
 
 	// Shutdown
-	DebugOut(DebugOut::Default, "ExampleProvider") << "Shutdown." << std::endl;
+	DebugOut(DebugOut::Default, "PulseOximeterProvider") << "Shutdown." << std::endl;
 	provider.shutdown();
-    SDCLibrary::getInstance().shutdown();
+
+	return 0;
 }

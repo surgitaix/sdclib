@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class ScoDescriptor {
+class ScoDescriptor
+{
 private:
 	ScoDescriptor(const CDM::ScoDescriptor & object);
 	operator CDM::ScoDescriptor() const;
@@ -57,11 +58,11 @@ public:
 private:
 	ScoDescriptor(){};
 public:
-	ScoDescriptor(const ScoDescriptor & object);
-	virtual ~ScoDescriptor();
+	ScoDescriptor(const ScoDescriptor& object);
+	virtual ~ScoDescriptor() = default;
 
-    void copyFrom(const ScoDescriptor & object);
-    ScoDescriptor & operator=(const ScoDescriptor & object);
+    void copyFrom(const ScoDescriptor& object);
+    ScoDescriptor & operator=(const ScoDescriptor& object);
 
     typedef CDM::ScoDescriptor WrappedType;
 
@@ -98,7 +99,7 @@ private:
 	template <class WrapperOperationDescriptorType>
 	void collectOperationDescriptorImpl(std::vector<WrapperOperationDescriptorType> & out) const;
 private:
-	std::shared_ptr<CDM::ScoDescriptor> data;
+	std::shared_ptr<CDM::ScoDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

@@ -34,7 +34,7 @@
 #include "SDCLib/Data/SDC/MDIB/ConvertFromCDM.h"
 #include "SDCLib/Data/SDC/MDIB/Defaults.h"
 
-#include "osdm.hxx"
+#include "DataModel/osdm.hxx"
 
 
 namespace SDCLib {
@@ -50,70 +50,67 @@ DicomTransferCapability::DicomTransferCapability(
 		sopclass
 		,
 		transferrole
-)) {}
+))
+{}
 
 DicomTransferCapability::operator CDM::DicomTransferCapability() const {
 	return *data;
 }
 
-DicomTransferCapability::DicomTransferCapability(const CDM::DicomTransferCapability & object) : data(new CDM::DicomTransferCapability(object)) {
+DicomTransferCapability::DicomTransferCapability(const CDM::DicomTransferCapability & object)
+: data(new CDM::DicomTransferCapability(object))
+{ }
 
-}
-
-DicomTransferCapability::DicomTransferCapability(const DicomTransferCapability & object) : data(new CDM::DicomTransferCapability(*object.data)) {
-
-}
-
-DicomTransferCapability::~DicomTransferCapability() {
-
-}
+DicomTransferCapability::DicomTransferCapability(const DicomTransferCapability & object)
+: data(std::make_shared<CDM::DicomTransferCapability>(*object.data))
+{ }
 
 void DicomTransferCapability::copyFrom(const DicomTransferCapability & object) {
-	data = std::shared_ptr<CDM::DicomTransferCapability>( new CDM::DicomTransferCapability(*object.data));
+	data = std::make_shared<CDM::DicomTransferCapability>(*object.data);
 }
 
-DicomTransferCapability & DicomTransferCapability:: operator=(const DicomTransferCapability & object) {
+DicomTransferCapability & DicomTransferCapability:: operator=(const DicomTransferCapability& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 DicomTransferCapability & DicomTransferCapability::setSopClass(const std::string & value) {
-	data->SopClass(ConvertToCDM::convert(value));
+	data->setSopClass(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 std::string DicomTransferCapability::getSopClass() const {
-	return ConvertFromCDM::convert(data->SopClass());
+	return ConvertFromCDM::convert(data->getSopClass());
 }
 
 DicomTransferCapability & DicomTransferCapability::setTransferRole(const DicomTransferRole & value) {
-	data->TransferRole(ConvertToCDM::convert(value));
+	data->setTransferRole(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 DicomTransferRole DicomTransferCapability::getTransferRole() const {
-	return ConvertFromCDM::convert(data->TransferRole());
+	return ConvertFromCDM::convert(data->getTransferRole());
 }
 
 DicomTransferCapability & DicomTransferCapability::addTransferSyntax(const std::string & value) {
-	data->TransferSyntax().push_back(ConvertToCDM::convert(value));
+	data->getTransferSyntax().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<std::string> DicomTransferCapability::getTransferSyntaxList() const {
 	std::vector<std::string> result;
-	result.reserve(data->TransferSyntax().size());
-	for (const auto & value: data->TransferSyntax()) {
+	result.reserve(data->getTransferSyntax().size());
+	for (const auto & value: data->getTransferSyntax()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void DicomTransferCapability::clearTransferSyntaxList() {
-	data->TransferSyntax().clear();
+	data->getTransferSyntax().clear();
 }
 
 

@@ -1,7 +1,7 @@
 #ifndef SCHEMA_WSEVENTING_H
 #define SCHEMA_WSEVENTING_H
 
-#include <string.h>
+#include <string>
 
 namespace SCHEMA
 {

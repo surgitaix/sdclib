@@ -1,77 +1,76 @@
-#ifndef SDCLIB_WSDL_GETSERVICEWSDL_H
-#define SDCLIB_WSDL_GETSERVICEWSDL_H
+#ifndef OSELIB_WSDL_GETSERVICEWSDL_H
+#define OSELIB_WSDL_GETSERVICEWSDL_H
 
-#include <string.h>
+#include "OSELib/SDC/SDCConstants.h"
+#include "OSELib/Schema/SchemaBICEPSMessageModel.h"
 
-const std::string getServiceWsdl=R"(<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mm="http://standards.ieee.org/downloads/11073/11073-10207-2017/message">
-    <wsdl:types>
-        <xs:schema targetNamespace="http://standards.ieee.org/downloads/11073/11073-10207-2017/message" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-            <xs:include schemaLocation="BICEPS_MessageModel.xsd"/>
-        </xs:schema>
-    </wsdl:types>
-    <wsdl:message name="GetMdDescription">
-        <wsdl:part element="mm:GetMdDescription" name="parameters"/>
-    </wsdl:message>
-    <wsdl:message name="GetMdDescriptionResponse">
-        <wsdl:part element="mm:GetMdDescriptionResponse" name="parameters"/>
-    </wsdl:message>
-    <wsdl:message name="GetMdib">
-        <wsdl:part element="mm:GetMdib" name="parameters"/>
-    </wsdl:message>
-    <wsdl:message name="GetMdibResponse">
-        <wsdl:part element="mm:GetMdibResponse" name="parameters"/>
-    </wsdl:message>
-    <wsdl:message name="GetMdState">
-        <wsdl:part element="mm:GetMdState" name="parameters"/>
-    </wsdl:message>
-    <wsdl:message name="GetMdStateResponse">
-        <wsdl:part element="mm:GetMdStateResponse" name="parameters"/>
-    </wsdl:message>
-    <wsdl:portType name="GetService">
-        <wsdl:operation name="GetMdDescription">
-            <wsdl:input message="tns:GetMdDescription" wsa:Action="http://standards.ieee.org/downloads/11073/11073-20701-2018/GetService/GetMdDescription"/>
-            <wsdl:output message="tns:GetMdDescriptionResponse" wsa:Action="http://standards.ieee.org/downloads/11073/11073-20701-2018/GetService/GetMdDescriptionResponse"/>
-        </wsdl:operation>
-        <wsdl:operation name="GetMdib">
-            <wsdl:input message="tns:GetMdib" wsa:Action="http://standards.ieee.org/downloads/11073/11073-20701-2018/GetService/GetMdib"/>
-            <wsdl:output message="tns:GetMdibResponse" wsa:Action="http://standards.ieee.org/downloads/11073/11073-20701-2018/GetService/GetMdibResponse"/>
-        </wsdl:operation>
-        <wsdl:operation name="GetMdState">
-            <wsdl:input message="tns:GetMdState" wsa:Action="http://standards.ieee.org/downloads/11073/11073-20701-2018/GetService/GetMdState"/>
-            <wsdl:output message="tns:GetMdStateResponse" wsa:Action="http://standards.ieee.org/downloads/11073/11073-20701-2018/GetService/GetMdStateResponse"/>
-        </wsdl:operation>
-    </wsdl:portType>
-    <wsdl:binding name="GetServiceBinding" type="tns:GetService" xmlns:p1="http://schemas.xmlsoap.org/wsdl/soap12/">
-        <p1:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-        <wsdl:operation name="GetMdDescription">
-            <p1:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/GetService/GetMdDescription" style="document"/>
-            <wsdl:input>
-                <p1:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output>
-                <p1:body use="literal"/>
-            </wsdl:output>
-        </wsdl:operation>
-        <wsdl:operation name="GetMdib">
-            <p1:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/GetService/GetMdib" style="document"/>
-            <wsdl:input>
-                <p1:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output>
-                <p1:body use="literal"/>
-            </wsdl:output>
-        </wsdl:operation>
-        <wsdl:operation name="GetMdState">
-            <p1:operation soapAction="http://standards.ieee.org/downloads/11073/11073-20701-2018/GetService/GetMdState" style="document"/>
-            <wsdl:input>
-                <p1:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output>
-                <p1:body use="literal"/>
-            </wsdl:output>
-        </wsdl:operation>
-    </wsdl:binding>
-</wsdl:definitions>)";
+namespace OSELib
+{
+namespace WSDL
+{
 
+const std::string getServiceWsdl=std::string(R"(<wsdl:definitions xmlns:wsdl=")" + SDC::NS_WSDL + R"(" xmlns:dpws=")" + SDC::NS_DPWS + R"(" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace=")" + SDC::NS_WSDL_TARGET_NAMESPACE + R"(" xmlns:tns=")" + SDC::NS_WSDL_TARGET_NAMESPACE + R"(" xmlns:wsp=")" + SDC::WS_POLICY + R"(" xmlns:wsa=")" + SDC::NS_ADDRESSING + R"(" xmlns:wse=")" + SDC::NS_EVENTING + R"(" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msg=")" + SDC::NS_MESSAGE_MODEL + R"(" xmlns:pm=")" + SDC::NS_DOMAIN_MODEL + R"(">
+<wsdl:types>
+	<xs:schema targetNamespace=")" + SDC::NS_MESSAGE_MODEL + R"(" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		<xs:include schemaLocation=")" + SCHEMA::SCHEMA_BICEPS_MESSAGEMODEL_NAME + R"("/>
+	</xs:schema>
+</wsdl:types>
+<wsdl:message name=")" + SDC::OP_GET_MDIB_REQUEST + R"(">
+	<wsdl:part element="msg:)" + SDC::OP_GET_MDIB_REQUEST + R"(" name="parameters"/>
+</wsdl:message>
+<wsdl:message name=")" + SDC::OP_GET_MDIB_RESPONSE+ R"(">
+	<wsdl:part element="msg:)" + SDC::OP_GET_MDIB_RESPONSE + R"(" name="parameters"/>
+</wsdl:message>
+<wsdl:message name=")" + SDC::OP_GET_MDDESCRIPTION_REQUEST + R"(">
+	<wsdl:part element="msg:)" + SDC::OP_GET_MDDESCRIPTION_REQUEST + R"(" name="parameters"/>
+</wsdl:message>
+<wsdl:message name=")" + SDC::OP_GET_MDDESCRIPTION_RESPONSE + R"(">
+	<wsdl:part element="msg:)" + SDC::OP_GET_MDDESCRIPTION_RESPONSE + R"(" name="parameters"/>
+</wsdl:message>
+<wsdl:message name=")" + SDC::OP_GET_MDSTATE_REQUEST + R"(">
+	<wsdl:part element="msg:)" + SDC::OP_GET_MDSTATE_REQUEST + R"(" name="parameters"/>
+</wsdl:message>
+<wsdl:message name=")" + SDC::OP_GET_MDSTATE_RESPONSE + R"(">
+	<wsdl:part element="msg:)" + SDC::OP_GET_MDSTATE_RESPONSE + R"(" name="parameters"/>
+</wsdl:message>
+<wsdl:portType name=")" + SDC::QNAME_GETSERVICE_PORTTYPE + R"(" dpws:DiscoveryType="pm:ServiceProvider">
+	<wsdl:operation name=")" + SDC::OP_GET_MDIB_REQUEST + R"(">
+		<wsdl:input message="tns:)" + SDC::OP_GET_MDIB_REQUEST + R"(" wsa:Action=")" + SDC::ACT_GET_MDIB_REQUEST + R"("/>
+		<wsdl:output message="tns:)" + SDC::OP_GET_MDIB_RESPONSE + R"(" wsa:Action=")" + SDC::ACT_GET_MDIB_RESPONSE + R"("/>
+	</wsdl:operation>
+	<wsdl:operation name=")" + SDC::OP_GET_MDDESCRIPTION_REQUEST + R"(">
+		<wsdl:input message="tns:)" + SDC::OP_GET_MDDESCRIPTION_REQUEST + R"(" wsa:Action=")" + SDC::ACT_GET_MDDESCRIPTION_REQUEST + R"("/>
+		<wsdl:output message="tns:)" + SDC::OP_GET_MDDESCRIPTION_RESPONSE + R"(" wsa:Action=")" + SDC::ACT_GET_MDDESCRIPTION_RESPONSE + R"("/>
+	</wsdl:operation>
+	<wsdl:operation name=")" + SDC::OP_GET_MDSTATE_REQUEST + R"(">
+		<wsdl:input message="tns:)" + SDC::OP_GET_MDSTATE_REQUEST + R"(" wsa:Action=")" + SDC::ACT_GET_MDSTATE_REQUEST + R"("/>
+		<wsdl:output message="tns:)" + SDC::OP_GET_MDSTATE_RESPONSE + R"(" wsa:Action=")" + SDC::ACT_GET_MDSTATE_RESPONSE + R"("/>
+	</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name=")" + SDC::QNAME_GETSERVICE + R"(Binding" type="tns:)" + SDC::QNAME_GETSERVICE_PORTTYPE + R"(">
+	<soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+	<wsdl:operation name=")" + SDC::OP_GET_MDIB_REQUEST + R"(">
+		<soap12:operation soapAction=")" + SDC::ACT_GET_MDIB_REQUEST + R"(" style="document"/>
+		<wsdl:input><soap12:body use="literal"/></wsdl:input>
+		<wsdl:output><soap12:body use="literal"/></wsdl:output>
+	</wsdl:operation>
+	<wsdl:operation name=")" + SDC::OP_GET_MDDESCRIPTION_REQUEST + R"(">
+		<soap12:operation soapAction=")" + SDC::ACT_GET_MDDESCRIPTION_REQUEST + R"(" style="document"/>
+		<wsdl:input><soap12:body use="literal"/></wsdl:input>
+		<wsdl:output><soap12:body use="literal"/></wsdl:output>
+	</wsdl:operation>
+	<wsdl:operation name=")" + SDC::OP_GET_MDSTATE_REQUEST + R"(">
+		<soap12:operation soapAction=")" + SDC::ACT_GET_MDSTATE_REQUEST + R"(" style="document"/>
+		<wsdl:input><soap12:body use="literal"/></wsdl:input>
+		<wsdl:output><soap12:body use="literal"/></wsdl:output>
+	</wsdl:operation>
+	<wsp:Policy>
+		<dpws:Profile wsp:Optional="true" />
+	</wsp:Policy>
+</wsdl:binding>
+</wsdl:definitions>)");
+
+}
+}
 
 #endif

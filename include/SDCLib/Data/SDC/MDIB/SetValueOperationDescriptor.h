@@ -34,13 +34,14 @@
 
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/SDC-fwd.h"
-#include "osdm-fwd.hxx"
+#include "DataModel/osdm-fwd.hxx"
 
 namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class SetValueOperationDescriptor {
+class SetValueOperationDescriptor
+{
 private:
 	SetValueOperationDescriptor(const CDM::SetValueOperationDescriptor & object);
 	operator CDM::SetValueOperationDescriptor() const;
@@ -59,11 +60,11 @@ public:
 private:
 	SetValueOperationDescriptor(){};
 public:
-	SetValueOperationDescriptor(const SetValueOperationDescriptor & object);
-	virtual ~SetValueOperationDescriptor();
+	SetValueOperationDescriptor(const SetValueOperationDescriptor& object);
+	virtual ~SetValueOperationDescriptor() = default;
 
-    void copyFrom(const SetValueOperationDescriptor & object);
-    SetValueOperationDescriptor & operator=(const SetValueOperationDescriptor & object);
+    void copyFrom(const SetValueOperationDescriptor& object);
+    SetValueOperationDescriptor & operator=(const SetValueOperationDescriptor& object);
 
     typedef CDM::SetValueOperationDescriptor WrappedType;
 
@@ -109,7 +110,7 @@ public:
 	bool hasAccessLevel() const;
 
 private:
-	std::shared_ptr<CDM::SetValueOperationDescriptor> data;
+	std::shared_ptr<CDM::SetValueOperationDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

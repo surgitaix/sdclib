@@ -20,78 +20,86 @@
  *  @date 05.07.2011
  *  @author besting
  *  @copyright (c) SurgiTAIX AG
+ *
+ *  Modified on: 29.08.2019, baumeister
  */
 
 
-#ifndef DEVICEDESCRIPTION_H_
-#define DEVICEDESCRIPTION_H_
+#ifndef SDCLIB_DEV_DEVICEDESCRIPTION_H_
+#define SDCLIB_DEV_DEVICEDESCRIPTION_H_
 
 #include <string>
 #include <map>
 
-namespace SDCLib {
-namespace Dev {
+namespace SDCLib
+{
+	namespace Dev
+	{
+		typedef std::map<std::string, std::string> LocalizedString;
+		// FIXME: NOT THREADSAFE!
+		class DeviceCharacteristics
+		{
+		private:
 
-typedef std::map<std::string, std::string> LocalizedString;
+			// ThisModel
+			std::string m_manufacturer;
+			std::string m_manufacturerUrl;
+			LocalizedString ml_modelName;
+			std::string m_modelNumber;
+			std::string m_modelUrl;
+			std::string m_presentationUrl;
 
-class DeviceCharacteristics {
-public:
-	DeviceCharacteristics();
-	virtual ~DeviceCharacteristics();
+			// ThisDevice
+			LocalizedString ml_friendlyName;
+			std::string m_firmwareVersion;
+			std::string m_serialNumber;
 
-	void setManufacturer(const std::string & name);
-	void setManufacturerUrl(const std::string & url);
+			// Host
+			std::string m_endpointReference;
 
-	void addModelName(const std::string & lang, const std::string & name);
-	const std::string & getManufacturer() const;
-	const std::string & getManufacturerUrl() const;
-	std::string getModelName(const std::string & lang) const;
+		public:
+			DeviceCharacteristics() = default;
+			DeviceCharacteristics(const DeviceCharacteristics& p_obj) = default;
+			DeviceCharacteristics(DeviceCharacteristics&& p_obj) = default;
+			DeviceCharacteristics& operator=(const DeviceCharacteristics& p_obj) = default;
+			DeviceCharacteristics& operator=(DeviceCharacteristics&& p_obj) = default;
+			~DeviceCharacteristics() = default;
 
-	const LocalizedString & getModelNames() const;
+			void setManufacturer(const std::string& p_name);
+			void setManufacturerUrl(const std::string& p_url);
 
-	const std::string & getModelNumber() const;
-	const std::string & getModelUrl() const;
-	const std::string & getPresentationUrl() const;
+			void addModelName(const std::string& p_lang, const std::string& p_name);
+			std::string getManufacturer() const;
+			std::string getManufacturerUrl() const;
+			std::string getModelName(const std::string& p_lang) const;
 
-    void setModelNumber(const std::string & modelNumber);
-    void setModelUrl(const std::string & modelUrl);
-    void setPresentationUrl(const std::string & presentationUrl);
+			LocalizedString getModelNames() const;
 
-	void addFriendlyName(const std::string & lang, const std::string & name);
-	std::string getFriendlyName(const std::string & lang) const;
+			std::string getModelNumber() const;
+			std::string getModelUrl() const;
+			std::string getPresentationUrl() const;
 
-	const LocalizedString & getFriendlyNames() const;
+			void setModelNumber(const std::string& p_modelNumber);
+			void setModelUrl(const std::string& p_modelUrl);
+			void setPresentationUrl(const std::string& p_presentationUrl);
 
-	const std::string & getFirmwareVersion() const;
-	const std::string & getSerialNumber() const;
-    void setFirmwareVersion(const std::string & firmwareVersion);
-    void setSerialNumber(const std::string & serialNumber);
+			void addFriendlyName(const std::string& p_lang, const std::string& p_name);
+			std::string getFriendlyName(const std::string& p_lang) const;
 
-    // Host
+			LocalizedString getFriendlyNames() const;
 
-    // only to be used by SDCProvider
-    void setEndpointReference(const std::string & epr);
-    std::string getEndpointReference() const;
+			std::string getFirmwareVersion() const;
+			std::string getSerialNumber() const;
+			void setFirmwareVersion(const std::string& p_firmwareVersion);
+			void setSerialNumber(const std::string& p_serialNumber);
 
-private:
-    // ThisModel
-    std::string manufacturer;
-    std::string manufacturerUrl;
-    LocalizedString modelName;
-	std::string modelNumber;
-	std::string modelUrl;
-	std::string presentationUrl;
+			// Host
 
-    // ThisDevice
-	LocalizedString friendlyName;
-	std::string firmwareVersion;
-	std::string serialNumber;
-
-	// Host
-	std::string endpointReference;
-};
-
+			// only to be used by SDCProvider
+			void setEndpointReference(const std::string& p_epr);
+			std::string getEndpointReference() const;
+		};
+	}
 }
-}
 
-#endif /* DEVICEDESCRIPTION_H_ */
+#endif
