@@ -24,6 +24,10 @@
 #include "SDCLib/Data/SDC/MDIB/StringMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/WorkflowContextState.h"
 #include "SDCLib/Data/SDC/MDIB/ScoState.h"
+#include "SDCLib/Data/SDC/MDIB/SetAlertStateOperationState.h"
+#include "SDCLib/Data/SDC/MDIB/SetContextStateOperationState.h"
+#include "SDCLib/Data/SDC/MDIB/SetStringOperationState.h"
+#include "SDCLib/Data/SDC/MDIB/SetValueOperationState.h"
 #include "SDCLib/Data/SDC/MDIB/SystemContextState.h"
 
 #include <memory>
@@ -57,7 +61,11 @@ template std::unique_ptr<WorkflowContextState> MdState::findState<WorkflowContex
 template std::unique_ptr<VmdState> MdState::findState<VmdState>(const std::string & handle) const;
 template std::unique_ptr<ChannelState> MdState::findState<ChannelState>(const std::string & handle) const;
 template std::unique_ptr<ScoState> MdState::findState<ScoState>(const std::string & handle) const;
+template std::unique_ptr<SetAlertStateOperationState> MdState::findState<SetAlertStateOperationState>(const std::string & handle) const;
+template std::unique_ptr<SetContextStateOperationState> MdState::findState<SetContextStateOperationState>(const std::string &handle) const;
+template std::unique_ptr<SetStringOperationState> MdState::findState<SetStringOperationState>(const std::string &handle) const;
 template std::unique_ptr<SystemContextState> MdState::findState<SystemContextState>(const std::string & handle) const;
+template std::unique_ptr<SetValueOperationState> MdState::findState<SetValueOperationState> (const std::string & handle) const;
 
 template<class TState>
 std::unique_ptr<TState> MdState::findState(const std::string & handle) const {
@@ -160,6 +168,23 @@ bool MdState::findState(const std::string & handle, SystemContextState & outStat
 	return findStateImpl<SystemContextState>(handle, outState);
 }
 
+bool MdState::findState(const std::string & handle, SetAlertStateOperationState & outState) const {
+	return findStateImpl<SetAlertStateOperationState>(handle, outState);
+}
+
+bool MdState::findState(const std::string & handle, SetContextStateOperationState & outState) const {
+	return findStateImpl<SetContextStateOperationState>(handle, outState);
+}
+
+bool MdState::findState(const std::string & handle, SetStringOperationState & outState) const {
+	return findStateImpl<SetStringOperationState>(handle, outState);
+}
+
+bool MdState::findState(const std::string & handle, SetValueOperationState & outState) const {
+	return findStateImpl<SetValueOperationState>(handle, outState);
+}
+
+
 template <class WrapperStateDescriptorType>
 bool MdState::findStateImpl(const std::string & handle, WrapperStateDescriptorType & outState) const {
 	const CDM::MdState & mdstate(*this->data);
@@ -256,6 +281,27 @@ MdState & MdState::addState(const ScoState & source) {
 MdState & MdState::addState(const SystemContextState & source) {
 	return addStateImpl(source);
 }
+
+MdState & MdState::addState(const ActivateOperationState & source) {
+	return addStateImpl(source);
+}
+
+MdState & MdState::addState(const SetAlertStateOperationState & source) {
+	return addStateImpl(source);
+}
+
+MdState & MdState::addState(const SetContextStateOperationState & source) {
+	return addStateImpl(source);
+}
+
+MdState & MdState::addState(const SetStringOperationState & source) {
+	return addStateImpl(source);
+}
+
+MdState & MdState::addState(const SetValueOperationState & source) {
+	return addStateImpl(source);
+}
+
 
 template <class WrapperStateDescriptorType>
 MdState & MdState::addStateImpl(const WrapperStateDescriptorType & source) {

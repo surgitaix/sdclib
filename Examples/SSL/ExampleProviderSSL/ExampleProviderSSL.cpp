@@ -17,27 +17,43 @@
 
 #include "SDCLib/Data/SDC/SDCProviderStateHandler.h"
 #include "SDCLib/Data/SDC/SDCProviderMDStateHandler.h"
+#include "SDCLib/Data/SDC/SDCProviderAlertConditionStateHandler.h"
+#include "SDCLib/Data/SDC/SDCProviderActivateOperationHandler.h"
 #include "SDCLib/Data/SDC/MDIB/MdsState.h"
+#include "SDCLib/Data/SDC/MDIB/AlertConditionState.h"
+#include "SDCLib/Data/SDC/MDIB/AlertSignalState.h"
+#include "SDCLib/Data/SDC/MDIB/AlertSystemState.h"
 #include "SDCLib/Data/SDC/MDIB/ChannelDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/CodedValue.h"
+#include "SDCLib/Data/SDC/MDIB/EnumStringMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
-#include "SDCLib/Data/SDC/MDIB/MdsDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/LocalizedText.h"
+#include "SDCLib/Data/SDC/MDIB/LocationContextDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/LocationContextState.h"
+#include "SDCLib/Data/SDC/MDIB/LocationDetail.h"
+#include "SDCLib/Data/SDC/MDIB/MdsDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/MdDescription.h"
 #include "SDCLib/Data/SDC/MDIB/MetricQuality.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/NumericMetricValue.h"
+#include "SDCLib/Data/SDC/MDIB/PatientContextState.h"
 #include "SDCLib/Data/SDC/MDIB/Range.h"
 #include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/SampleArrayValue.h"
-#include "SDCLib/Data/SDC/MDIB/NumericMetricState.h"
-#include "SDCLib/Data/SDC/MDIB/NumericMetricValue.h"
-#include "SDCLib/Data/SDC/MDIB/NumericMetricDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/StringMetricValue.h"
-#include "SDCLib/Data/SDC/MDIB/MetaData.h"
-#include "SDCLib/Dev/DeviceCharacteristics.h"
-#include "SDCLib/Data/SDC/MDIB/VmdDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/SystemContextState.h"
+
+//Delete me later
+#include "SDCLib/Data/SDC/MDIB/custom/MdibContainer.h"
+#include "SDCLib/Data/SDC/MDIB/ConvertToCDM.h"
+#include "DataModel/BICEPS_MessageModel.hxx"
+#include "DataModel/BICEPS_ParticipantModel.hxx"
+
+
 #include "SDCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
 
 #include "SDCLib/Util/DebugOut.h"
@@ -48,31 +64,59 @@ using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
+const std::string FILE_CACHED_MDIB{"referenceMDIB.xml"};
+
+
 
 const std::string DEVICE_EPR("UDI-1234567890-SSL");
 
 const std::string VMD_DESCRIPTOR_HANDLE("holdingDevice_vmd");
 const std::string CHANNEL_DESCRIPTOR_HANDLE("holdingDevice_channel");
 const std::string MDS_DESCRIPTOR_HANDLE("holdingDevice_mds");
+const std::string LOCATION_CONTEXT_HANDLE("location_context");
+const std::string SYSTEM_CONTEXT_HANDLE("system_context");
 
-const std::string HANDLE_SET_METRIC("handle_set");
-const std::string HANDLE_GET_METRIC("handle_get");
-const std::string HANDLE_STREAM_METRIC("handle_stream");
-const std::string HANDLE_STRING_METRIC("handle_string");
+const std::string HANDLE_STATIC_GET_NM{"numeric.ch0.vmd0"};
+const std::string HANDLE_DYNAMIC_GET_NM{"numeric.ch1.vmd0"};
+const std::string HANDLE_SET_NM{"numeric.ch0.vmd1"};
+const std::string HANDLE_STATIC_GET_STRM{"string.ch0.vmd0"};
+const std::string HANDLE_DYNAMIC_GET_STRM{"dummy"};
+const std::string HANDLE_SET_STRM{"string.ch0.vmd1"};
+const std::string HANDLE_STATIC_GET_ESTRM{"enumstring.ch0.vmd0"};
+const std::string HANDLE_DYNAMIC_GET_ESTRM{"enumstring2.ch0.vmd0"};
+const std::string HANDLE_SET_ESTRM{"enumstring.ch0.vmd1"};
+const std::string HANDLE_ACTIVATE_MDS{"actop.mds0_sco_0"};
+const std::string HANDLE_ACTIVATE_VMD{"actop.vmd1_sco_0"};
+const std::string HANDLE_STREAM{"dummy"};
+
+const std::string HANDLE_LOCATION_CONTEXT_STATE{"LC.mds0"};
+const std::string HANDLE_SYSTEM_CONTEXT_STATE{"SC.mds0"};
+const std::string HANDLE_PATIENT_CONTEXT_STATE{"PC.mds0"};
+
+const std::string HANDLE_ALERT_SYSTEM_MDS_STATE{"asy.mds0"};
+const std::string HANDLE_ALERT_SYSTEM_VMD_STATE{"asy.vmd0"};
+
+const std::string HANDLE_ALERTSIGNAL_MDS{"as0.mds0"};
+const std::string HANDLE_ALERTSIGNAL_VMD{"as0.vmd0.mds0"};
+const std::string HANDLE_ALERTCONDITION_MDS{"ac0.mds0"};
+const std::string HANDLE_ALERTCONDITION_VMD{"ac0.vmd0.mds0"};
 
 
-class NumericProviderStateHandlerGet : public SDCProviderMDStateHandler<NumericMetricState>
+
+
+class NumericProviderStateHandler : public SDCProviderMDStateHandler<NumericMetricState>
 {
 public:
 
-	NumericProviderStateHandlerGet(std::string p_descriptorHandle)
-	: SDCProviderMDStateHandler(p_descriptorHandle)
+	NumericProviderStateHandler(const std::string p_descriptorHandle, bool settable) :
+	SDCProviderMDStateHandler(p_descriptorHandle),
+	m_settable{settable}
 	{ }
 
 	// Helper method
 	NumericMetricState createState(double p_initialValue)
 	{
-		NumericMetricState t_newState{HANDLE_GET_METRIC};
+		NumericMetricState t_newState{getDescriptorHandle()};
 		t_newState
 			.setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(p_initialValue))
 			.setActivationState(ComponentActivation::On);
@@ -80,17 +124,31 @@ public:
 	}
 
 	// define how to react on a request for a state change. This handler should not be set, thus always return Fail.
-	InvocationState onStateChangeRequest(const NumericMetricState&, const OperationInvocationContext& p_oic) override
+	InvocationState onStateChangeRequest(const NumericMetricState& p_state, const OperationInvocationContext& p_oic) override
 	{
-		// extract information from the incoming operation
-		DebugOut(DebugOut::Default, "ExampleProvider") << "Operation invoked. Handle: " << p_oic.operationHandle << std::endl;
-		return InvocationState::Fail;
+		if(!m_settable)
+		{
+			// extract information from the incoming operation
+			DebugOut(DebugOut::Default, "ExampleProvider") << "Operation invoked. Handle: " << p_oic.operationHandle << std::endl;
+			return InvocationState::Fail;
+		}
+		else
+		{
+	    	// Invocation has been fired as WAITING when entering this method
+	    	notifyOperationInvoked(p_oic, InvocationState::Start);
+	    	// Do stuff
+	        DebugOut(DebugOut::Default, "ExampleProvider") << "Provider: handle_set received state change request. State's value: " << p_state.getMetricValue().getValue() << std::endl;
+	        // extract information from the incoming operation
+	        DebugOut(DebugOut::Default, "ExampleProvider") << "Operation invoked. Handle: " << p_oic.operationHandle << std::endl;
+	        // if success return Finished
+	        return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
+		}
 	}
 
 
 	NumericMetricState getInitialState() override
 	{
-		return createState(42.0);
+		return createState(0.0);
 	}
 
 	void setNumericValue(double p_newValue)
@@ -98,57 +156,8 @@ public:
 		auto t_newState{createState(p_newValue)};
 		updateState(t_newState);
 	}
-};
-
-
-class NumericProviderStateHandlerSet : public SDCProviderMDStateHandler<NumericMetricState>
-{
-public:
-
-    NumericProviderStateHandlerSet(const std::string p_descriptorHandle)
-	: SDCProviderMDStateHandler(p_descriptorHandle)
-	{ }
-
-    InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override
-    {
-    	// Invocation has been fired as WAITING when entering this method
-    	notifyOperationInvoked(oic, InvocationState::Start);
-    	// Do stuff
-        DebugOut(DebugOut::Default, "ExampleProvider") << "Provider: handle_set received state change request. State's value: " << state.getMetricValue().getValue() << std::endl;
-        // extract information from the incoming operation
-        DebugOut(DebugOut::Default, "ExampleProvider") << "Operation invoked. Handle: " << oic.operationHandle << std::endl;
-        // if success return Finished
-        return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
-    }
-
-    // Helper method
-    NumericMetricState createState()
-	{
-        NumericMetricState t_newState{HANDLE_SET_METRIC};
-        t_newState
-            .setMetricValue(NumericMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue(2.0))
-            .setActivationState(ComponentActivation::On);
-
-        return t_newState;
-    }
-
-    NumericMetricState getInitialState() override
-    {
-        return createState();
-    }
-
-	// Convenience value getter
-	double getMaxWeight()
-	{
-		auto t_maxWeightState{getParentProvider().getMdState().findState<NumericMetricState>(HANDLE_SET_METRIC)};
-		// check if result is valid
-		if ((nullptr == t_maxWeightState) && (!t_maxWeightState->hasMetricValue())) {
-			DebugOut(DebugOut::Default, "ExampleProvider") << "Maximum weight metric not found." << std::endl;
-			return 0;
-		}
-		// In real applications, check if state has an observed value!
-		return t_maxWeightState->getMetricValue().getValue();
-	}
+private:
+	bool m_settable{false};
 };
 
 
@@ -156,7 +165,7 @@ class StreamProviderStateHandler : public SDCProviderMDStateHandler<RealTimeSamp
 {
 public:
 
-    StreamProviderStateHandler(std::string p_descriptorHandle)
+    StreamProviderStateHandler(const std::string p_descriptorHandle)
 	: SDCProviderMDStateHandler(p_descriptorHandle)
 	{ }
 
@@ -194,8 +203,9 @@ public:
 class StringProviderStateHandler : public SDCProviderMDStateHandler<StringMetricState>
 {
 public:
-	StringProviderStateHandler(std::string p_descriptorHandle)
-	: SDCProviderMDStateHandler(p_descriptorHandle)
+	StringProviderStateHandler(const std::string p_descriptorHandle, bool settable) :
+	SDCProviderMDStateHandler(p_descriptorHandle),
+	m_settable{settable}
 	{ }
 
 	InvocationState onStateChangeRequest(const StringMetricState& p_changedState, const OperationInvocationContext& p_oic) override
@@ -210,7 +220,7 @@ public:
 	// Helper method
 	StringMetricState createState()
 	{
-		StringMetricState t_newState{HANDLE_STRING_METRIC};
+		StringMetricState t_newState{getDescriptorHandle()};
 		t_newState.setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue("StringMetricValueInit"));
 	    return t_newState;
 	}
@@ -219,6 +229,209 @@ public:
 	{
 		return createState();
 	}
+private:
+	bool m_settable{false};
+};
+
+class EnumStringProviderStateHandler : public SDCProviderMDStateHandler<EnumStringMetricState>
+{
+public:
+	EnumStringProviderStateHandler(const std::string p_descriptorHandle, bool settable) :
+	SDCProviderMDStateHandler(p_descriptorHandle),
+	m_settable{settable}
+	{ }
+
+	InvocationState onStateChangeRequest(const EnumStringMetricState& p_changedState, const OperationInvocationContext& p_oic) override
+	{
+		notifyOperationInvoked(p_oic, InvocationState::Start);
+		// Do something if a state change is requested
+		DebugOut(DebugOut::Default, "ExampleProvider") << "String state of provider state changed to " << p_changedState.getMetricValue().getValue() << std::endl;
+		// return Finished if successful
+		return InvocationState::Fin;
+	}
+
+	//Helper Method
+	EnumStringMetricState getInitialState()
+	{
+		EnumStringMetricState t_newState{getDescriptorHandle()};
+	    return t_newState;
+	}
+
+private:
+	bool m_settable{false};
+};
+
+class LocationContextStateHandler : public SDCProviderMDStateHandler<LocationContextState>
+{
+public:
+	LocationContextStateHandler(const std::string p_descriptorHandle, bool settable = false) :
+	SDCProviderMDStateHandler(p_descriptorHandle),
+	m_settable{settable}
+	{ }
+
+	InvocationState onStateChangeRequest(const LocationContextState& , const OperationInvocationContext& ) override
+	{
+		return InvocationState::Fin;
+	}
+
+	LocationContextState getInitialState()
+	{
+		LocationContextState t_newState{getDescriptorHandle(), getDescriptorHandle()};
+		return t_newState;
+	}
+private:
+	bool m_settable{false};
+};
+
+class SystemContextStateHandler : public SDCProviderMDStateHandler<SystemContextState>
+{
+public:
+	SystemContextStateHandler(const std::string p_descriptorHandle, bool settable = false) :
+	SDCProviderMDStateHandler(p_descriptorHandle),
+	m_settable{settable}
+	{ }
+
+	InvocationState onStateChangeRequest(const SystemContextState& , const OperationInvocationContext& ) override
+	{
+		return InvocationState::Fin;
+	}
+
+	SystemContextState getInitialState()
+	{
+		SystemContextState t_newState{getDescriptorHandle()};
+		return t_newState;
+	}
+
+private:
+	bool m_settable{false};
+};
+
+class PatientContextStateHandler : public SDCProviderMDStateHandler<PatientContextState>
+{
+public:
+	PatientContextStateHandler(const std::string p_descriptorHandle, bool settable = false) :
+	SDCProviderMDStateHandler(p_descriptorHandle),
+	m_settable{settable}
+	{ }
+
+	InvocationState onStateChangeRequest(const PatientContextState& , const OperationInvocationContext& ) override
+	{
+		return InvocationState::Fin;
+	}
+
+	PatientContextState getInitialState()
+	{
+		PatientContextState t_newState{getDescriptorHandle(), getDescriptorHandle()};
+		return t_newState;
+	}
+
+private:
+	bool m_settable{false};
+};
+
+class AlertConditionStateHandler : public SDCProviderAlertConditionStateHandler<AlertConditionState>
+{
+public:
+	AlertConditionStateHandler(const std::string& p_descriptorHandle, bool settable = false) :
+	SDCProviderAlertConditionStateHandler(p_descriptorHandle),
+	m_settable{settable}
+	{ }
+
+	InvocationState onStateChangeRequest(const AlertConditionState&, const OperationInvocationContext& ) override
+	{
+		return InvocationState::Fin;
+	}
+
+	AlertConditionState getInitialState()
+	{
+		AlertConditionState t_newState{getDescriptorHandle(), AlertActivation::Off};
+		return t_newState;
+	}
+
+	void toggleAlertPresence()
+	{
+		AlertConditionState t_newState{getDescriptorHandle(), AlertActivation::Off};
+		m_presence ? m_presence = false : m_presence = true;
+		t_newState.setPresence(m_presence);
+		updateState(t_newState);
+	}
+
+	void sourceHasChanged(const std::string & sourceHandle) override
+	{
+		std::cout << "Source " << sourceHandle << " of " << getDescriptorHandle() << " changed: \n";
+	}
+
+
+private:
+	bool m_settable{false};
+	bool m_presence{false};
+};
+
+class AlertSignalStateHandler : public SDCProviderMDStateHandler<AlertSignalState>
+{
+public:
+	AlertSignalStateHandler(const std::string& p_descriptorHandle, bool settable = false) :
+	SDCProviderMDStateHandler(p_descriptorHandle),
+	m_settable{settable}
+	{ }
+
+	InvocationState onStateChangeRequest(const AlertSignalState&, const OperationInvocationContext& ) override
+	{
+		return InvocationState::Fin;
+	}
+
+	void toggleAlertPresence()
+	{
+		AlertSignalState t_newState{getDescriptorHandle(), AlertActivation::Off};
+		m_presence ? m_presence = false : m_presence = true;
+		m_presence ? t_newState.setPresence(AlertSignalPresence::On) : t_newState.setPresence(AlertSignalPresence::Off);
+		updateState(t_newState);
+	}
+
+	AlertSignalState getInitialState()
+	{
+		AlertSignalState t_newState{getDescriptorHandle(), AlertActivation::Off};
+		return t_newState;
+	}
+private:
+	bool m_settable{false};
+	bool m_presence{false};
+};
+
+class AlertSystemStateHandler : public SDCProviderMDStateHandler<AlertSystemState>
+{
+public:
+	AlertSystemStateHandler(const std::string& p_descriptorHandle, bool settable = false) :
+	SDCProviderMDStateHandler(p_descriptorHandle),
+	m_settable{settable}
+	{}
+
+	InvocationState onStateChangeRequest(const AlertSystemState&, const OperationInvocationContext& ) override
+	{
+		return InvocationState::Fin;
+	}
+	AlertSystemState getInitialState()
+	{
+		AlertSystemState t_newState{getDescriptorHandle(), AlertActivation::Off};
+		return t_newState;
+	}
+private:
+	bool m_settable{false};
+};
+
+
+class ActivateOperationStateHandler : public SDCProviderActivateOperationHandler
+{
+public:
+	ActivateOperationStateHandler(const std::string& p_descriptorHandle) :
+	SDCProviderActivateOperationHandler(p_descriptorHandle)
+	{}
+
+	InvocationState onActivateRequest(const OperationInvocationContext & ) override
+	{
+		std::cout << getDescriptorHandle() << " got activated \n";
+		return InvocationState::Fin;
+	}
 };
 
 
@@ -226,105 +439,105 @@ class SDCStreamProvider : public Util::Task
 {
 public:
 
-    SDCStreamProvider(SDCInstance_shared_ptr p_SDCInstance)
+    SDCStreamProvider(SDCInstance_shared_ptr p_SDCInstance, std::ifstream& p_stream)
 	: m_sdcProvider(p_SDCInstance)
-	, m_streamMetricDescriptor{HANDLE_STREAM_METRIC,
-    		    		CodedValue{"MDCX_EXAMPLE_STREAM"},
-    		    		MetricCategory::Msrmt,
-    		    		MetricAvailability::Cont,
-    		    		1,
-    		    		xml_schema::Duration{0,0,0,0,0,0,1}}
-    , m_setMetricDescriptor{HANDLE_SET_METRIC,
-						CodedValue{"MDCX_EXAMPLE_SET"},
-						MetricCategory::Set,
-						MetricAvailability::Cont,
-						1.0}
-    , m_getMetricDescriptor{HANDLE_GET_METRIC,
-				CodedValue{"MDCX_EXAMPLE_GET"},
-				MetricCategory::Set,
-				MetricAvailability::Cont,
-				1}
-    , m_stringMetricDescriptor{HANDLE_STRING_METRIC,
-						CodedValue{"MDCX_EXAMPLE_STRING"},
-						MetricCategory::Set,
-						MetricAvailability::Cont}
     {
 
 		m_sdcProvider.setEndpointReferenceByName(DEVICE_EPR);
 
+		std::stringstream buffer;
+		buffer << p_stream.rdbuf();
+		std::string mdDesciption_xml = buffer.str();
+        p_stream.close();
+
+		DebugOut(DebugOut::Default, "ExampleCachedProvider") << mdDesciption_xml;
+
 		// set DPWS metadata, e.g. for the displayed friendly name
 		Dev::DeviceCharacteristics devChar;
-		devChar.addFriendlyName("en", "SDCLib C ExampleProvider");
-		devChar.setManufacturer("SurgiTAIX AG");
-		devChar.addModelName("en", "sdcDeviceNo1");
+		devChar.addFriendlyName("en", "SDCLib ExampleProvider");
 		m_sdcProvider.setDeviceCharacteristics(devChar);
 
-        // Channel
-        ChannelDescriptor holdingDeviceParameters{CHANNEL_DESCRIPTOR_HANDLE};
-        holdingDeviceParameters
-        	.setSafetyClassification(SafetyClassification::MedB)
-			.addMetric(m_streamMetricDescriptor)
-			.addMetric(m_setMetricDescriptor)
-			.addMetric(m_getMetricDescriptor)
-			.addMetric(m_stringMetricDescriptor);
-
-
-        // VMD
-        VmdDescriptor holdingDeviceModule{VMD_DESCRIPTOR_HANDLE};
-        holdingDeviceModule.addChannel(holdingDeviceParameters);
-
-        // MDS
-        MdsDescriptor holdingDeviceSystem{MDS_DESCRIPTOR_HANDLE};
-        holdingDeviceSystem
-        	.setType(CodedValue{"MDC_DEV_DOCU_POSE_MDS"}.addConceptDescription(LocalizedText{"DOCU POSE"}.setLang("en")))
-        	.setMetaData(
-                MetaData{}.addManufacturer(LocalizedText{SDCLib::Config::STR_SURGITAIX})
-                .setModelNumber("1")
-                .addModelName(LocalizedText{"EndoTAIX"})
-                .addSerialNumber(SDCLib::Config::CURRENT_C_YEAR))
-        	.addVmd(holdingDeviceModule);
-
-
-        m_sdcProvider.createSetOperationForDescriptor(m_setMetricDescriptor, holdingDeviceSystem);
-
-        // create and add description
-		MdDescription mdDescription;
-		mdDescription.addMdsDescriptor(holdingDeviceSystem);
-
-		m_sdcProvider.setMdDescription(mdDescription);
+		m_sdcProvider.setMdDescription(mdDesciption_xml);
 
         // Add handler
-		m_sdcProvider.addMdStateHandler(&m_numericProviderStateHandlerGet);
-		m_sdcProvider.addMdStateHandler(&m_streamProviderStateHandler);
+		m_sdcProvider.addMdStateHandler(&m_getStaticStrStateHandler);
+		m_sdcProvider.addMdStateHandler(&m_getDynamicStrStateHandler);
+		m_sdcProvider.addMdStateHandler(&m_setStrStateHandler);
+		m_sdcProvider.addMdStateHandler(&m_getStaticNumStateHandler);
+		m_sdcProvider.addMdStateHandler(&m_getDynamicNumStateHandler);
+		m_sdcProvider.addMdStateHandler(&m_setNumStateHandler);
+		m_sdcProvider.addMdStateHandler(&m_getStaticEnumStateHandler);
+		m_sdcProvider.addMdStateHandler(&m_getDynamicEnumStateHandler);
+		m_sdcProvider.addMdStateHandler(&m_setEnumStateHandler);
 
-		m_sdcProvider.addMdStateHandler(&m_numericProviderStateHandlerSet);
-		m_sdcProvider.addMdStateHandler(&m_stringProviderStateHandler);
+		m_sdcProvider.addMdStateHandler(&m_systemContextHandler);
+		m_sdcProvider.addMdStateHandler(&m_locationContextStateHandler);
+		m_sdcProvider.addMdStateHandler(&m_patientContextStateHandler);
 
+		m_sdcProvider.addMdStateHandler(&m_alertSystemMDSStateHandler);
+		m_sdcProvider.addMdStateHandler(&m_alertConditionMDSStateHandler);
+		m_sdcProvider.addMdStateHandler(&m_alertSignalMDSStateHandler);
+
+		m_sdcProvider.addMdStateHandler(&m_alertSystemVMDStateHandler);
+		m_sdcProvider.addMdStateHandler(&m_alertConditionVMDStateHandler);
+		m_sdcProvider.addMdStateHandler(&m_alertSignalVMDStateHandler);
+
+		m_sdcProvider.addMdStateHandler(&m_activateOperationMDSHandler);
+		m_sdcProvider.addMdStateHandler(&m_activateOperationVMDHandler);
     }
 
     void startup()
     {
-    	m_sdcProvider.startup();
-    }
 
-    void updateStateValue(const SampleArrayValue& p_newValue)
-    {
-    	m_streamProviderStateHandler.updateStateValue(p_newValue); // updates handles and the parent provider
+    	auto getStringRepresentationOfMDIB = [](MdibContainer MDIB) {
+    		MDM::GetMdibResponse MdibResponse(xml_schema::Uri("0"),ConvertToCDM::convert(MDIB));
+    		MdibResponse.setMdibVersion(MDIB.getMdibVersion());
+    		const xml_schema::Flags xercesFlags(xml_schema::Flags::dont_validate | xml_schema::Flags::no_xml_declaration | xml_schema::Flags::dont_initialize);
+    		xml_schema::NamespaceInfomap map;
+    		std::ostringstream providerMdibStringRepresentation;
+    		CDM::serializeMdibContainer(providerMdibStringRepresentation, MdibResponse.getMdib(), map, OSELib::XML_ENCODING, xercesFlags);
+    		return providerMdibStringRepresentation.str();
+    	};
+
+    	m_sdcProvider.startup();
+    	std::cout << getStringRepresentationOfMDIB(m_sdcProvider.getMdib()) << std::endl;
     }
 
 private:
 
     SDCProvider m_sdcProvider;
 
-    StreamProviderStateHandler m_streamProviderStateHandler{HANDLE_STREAM_METRIC};
-    StringProviderStateHandler m_stringProviderStateHandler{HANDLE_STRING_METRIC};
-    NumericProviderStateHandlerGet m_numericProviderStateHandlerGet{HANDLE_GET_METRIC};
-    NumericProviderStateHandlerSet m_numericProviderStateHandlerSet{HANDLE_SET_METRIC};
+    //StringMetrics
+    StringProviderStateHandler m_getStaticStrStateHandler{HANDLE_STATIC_GET_STRM, false};
+    StringProviderStateHandler m_getDynamicStrStateHandler{HANDLE_DYNAMIC_GET_STRM, false};
+    StringProviderStateHandler m_setStrStateHandler{HANDLE_SET_STRM, true};
 
-    RealTimeSampleArrayMetricDescriptor m_streamMetricDescriptor;
-    NumericMetricDescriptor m_setMetricDescriptor;
-    NumericMetricDescriptor m_getMetricDescriptor;
-    StringMetricDescriptor  m_stringMetricDescriptor;
+    //NumericMetrics
+    NumericProviderStateHandler m_getStaticNumStateHandler{HANDLE_STATIC_GET_NM, false};
+    NumericProviderStateHandler m_getDynamicNumStateHandler{HANDLE_DYNAMIC_GET_NM, false};
+    NumericProviderStateHandler m_setNumStateHandler{HANDLE_SET_NM, true};
+
+    //EnumStringMetrics
+    EnumStringProviderStateHandler m_getStaticEnumStateHandler{HANDLE_STATIC_GET_ESTRM, false};
+    EnumStringProviderStateHandler m_getDynamicEnumStateHandler{HANDLE_DYNAMIC_GET_ESTRM, false};
+    EnumStringProviderStateHandler m_setEnumStateHandler{HANDLE_SET_ESTRM, true};
+
+    SystemContextStateHandler m_systemContextHandler{HANDLE_SYSTEM_CONTEXT_STATE};
+    LocationContextStateHandler m_locationContextStateHandler{HANDLE_LOCATION_CONTEXT_STATE};
+    PatientContextStateHandler m_patientContextStateHandler{HANDLE_PATIENT_CONTEXT_STATE};
+
+    AlertSystemStateHandler m_alertSystemMDSStateHandler{HANDLE_ALERT_SYSTEM_MDS_STATE};
+    AlertConditionStateHandler m_alertConditionMDSStateHandler{HANDLE_ALERTCONDITION_MDS};
+    AlertSignalStateHandler m_alertSignalMDSStateHandler{HANDLE_ALERTSIGNAL_MDS};
+
+    AlertSystemStateHandler m_alertSystemVMDStateHandler{HANDLE_ALERT_SYSTEM_VMD_STATE};
+    AlertConditionStateHandler m_alertConditionVMDStateHandler{HANDLE_ALERTCONDITION_VMD};
+    AlertSignalStateHandler m_alertSignalVMDStateHandler{HANDLE_ALERTSIGNAL_VMD};
+
+    ActivateOperationStateHandler m_activateOperationVMDHandler{HANDLE_ACTIVATE_VMD};
+    ActivateOperationStateHandler m_activateOperationMDSHandler{HANDLE_ACTIVATE_MDS};
+
+
 
 
 public:
@@ -340,26 +553,43 @@ public:
 		std::iota(samples.begin(), samples.end(), 0);
 
 		std::size_t t_sampleIndex{0};
+		double val = 1.0;
 
 		while (!isInterrupted())
 		{
-			{
-                updateStateValue(SampleArrayValue(MetricQuality(MeasurementValidity::Vld)).setSamples(samples));
-                DebugOut(DebugOut::Default, "ExampleProvider") << "Produced stream chunk of size " << samples.size() << ", index " << t_sampleIndex << std::endl;
-			}
-
 			// Update the NumericMetricState's value using the state handler's method
-			m_numericProviderStateHandlerGet.setNumericValue(t_sampleIndex/samples.size());
-			DebugOut(DebugOut::Default, "ExampleProvider") << "NumericMetric: value changed to " << t_sampleIndex/samples.size() << std::endl;
-			std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-			t_sampleIndex += samples.size();
+			m_getDynamicNumStateHandler.setNumericValue(val);
+			DebugOut(DebugOut::Default, "ExampleProvider") << "NumericMetric: value changed to " << val << std::endl;
+			val++;
+			m_alertConditionMDSStateHandler.toggleAlertPresence();
+			m_alertConditionVMDStateHandler.toggleAlertPresence();
+			m_alertSignalMDSStateHandler.toggleAlertPresence();
+			m_alertSignalVMDStateHandler.toggleAlertPresence();
+			std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 		}
     }
 };
 
 
-int main()
+int main(int argc, char *argv[])
 {
+	bool useTLS{false};
+
+	if(argc == 2)
+	{
+		std::cout << "working" << std::endl;
+		useTLS = (std::string{argv[1]} == "-tls");
+	}
+
+    // Load cached Mdib from file system
+    // Mdib is specified in xml
+    std::ifstream t_mdibFilestream(FILE_CACHED_MDIB);
+    // Found?
+    if(!t_mdibFilestream.is_open()) {
+        DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Could not open " << FILE_CACHED_MDIB << "\n";
+        return -1;
+    }
+
 	// Startup
 	DebugOut(DebugOut::Default, "ExampleProviderSSL") << "Startup" << std::endl;
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
@@ -376,27 +606,30 @@ int main()
         return -1;
     }
 
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    // <SSL> ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    if(useTLS)
+    {
+		// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		// <SSL> ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    // Init SSL (Default Params should be fine)
-    if(!t_SDCInstance->initSSL()) {
-        DebugOut(DebugOut::Default, "ExampleProviderSSL") << "Failed to init SSL!" << std::endl;
-        return -1;
+		// Init SSL (Default Params should be fine)
+		if(!t_SDCInstance->initSSL()) {
+			DebugOut(DebugOut::Default, "ExampleProviderSSL") << "Failed to init SSL!" << std::endl;
+			return -1;
+		}
+
+		// Configure SSL
+		auto t_SSLConfig{t_SDCInstance->getSSLConfig()};
+		t_SSLConfig->addCertificateAuthority("ca.pem");
+		t_SSLConfig->useCertificate("sdccert.pem");
+		t_SSLConfig->useKeyFiles(/*Public Key*/"", "userkey.pem", ""/* Password for Private Keyfile */);
+
+		// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		// </SSL> +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     }
 
-    // Configure SSL
-    auto t_SSLConfig{t_SDCInstance->getSSLConfig()};
-    t_SSLConfig->addCertificateAuthority("rootCA.pem");
-    t_SSLConfig->useCertificate("leaf.pem");
-    t_SSLConfig->useKeyFiles(/*Public Key*/"", "leafkey.pem", ""/* Password for Private Keyfile */);
-
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    // </SSL> +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    SDCStreamProvider t_provider{t_SDCInstance};
+    SDCStreamProvider t_provider{t_SDCInstance, t_mdibFilestream};
     t_provider.startup();
     t_provider.start();
 

@@ -175,7 +175,7 @@ void MDPWSStreamingAdapter::onMulticastSocketReadable(Poco::Net::ReadableNotific
 
 
 	if (!t_message->getHeader().getFrom().present()) {
-		log_warning([]{return "From-field in streaming message does not exist";});
+//		log_warning([]{return "From-field in streaming message does not exist";});
 		m_streamNotificationDispatcher.dispatch(t_message->getBody().getWaveformStream().get());
 	} else {
 		if((m_deviceDescription == nullptr)) {

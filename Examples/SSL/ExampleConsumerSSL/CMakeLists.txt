@@ -41,9 +41,9 @@ set_target_properties(  ${CURRENT_TARGET_NAME}
 install(TARGETS ${CURRENT_TARGET_NAME} CONFIGURATIONS ${CMAKE_BUILD_TYPE} RUNTIME DESTINATION ${PATH_INSTALL_RUNTIME})
 
 # Copy files to build folder
-configure_file(${CERT_DIR}/rootCA.pem   ${PATH_RUNTIME_OUTPUT}/rootCA.pem COPYONLY)
-configure_file(${CERT_DIR}/leaf.pem     ${PATH_RUNTIME_OUTPUT}/leaf.pem COPYONLY)
-configure_file(${CERT_DIR}/leafkey.pem  ${PATH_RUNTIME_OUTPUT}/leafkey.pem COPYONLY)
+configure_file(${CERT_DIR}/ca.pem   ${PATH_RUNTIME_OUTPUT}/ca.pem COPYONLY)
+configure_file(${CERT_DIR}/sdccert.pem     ${PATH_RUNTIME_OUTPUT}/sdccert.pem COPYONLY)
+configure_file(${CERT_DIR}/userkey.pem  ${PATH_RUNTIME_OUTPUT}/userkey.pem COPYONLY)
 
 
 # ...
