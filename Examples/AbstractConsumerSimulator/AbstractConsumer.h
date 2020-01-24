@@ -69,7 +69,7 @@ private:
 
 class AbstractConsumer {
 public:
-	AbstractConsumer();
+	AbstractConsumer(bool useTls);
 
 	bool discoverDUT();
 	bool setupMirrorProvider();
@@ -175,6 +175,8 @@ private:
 
 	std::map<std::string, std::shared_ptr<BackBoneTestCaseEnum>> bbTestCaseEnumHandles;
 	std::map<std::string, std::shared_ptr<EnumStringMetricDescriptor>> bbTestCaseEnumDescriptors;
+
+	bool m_useTls{false};
 
 
 

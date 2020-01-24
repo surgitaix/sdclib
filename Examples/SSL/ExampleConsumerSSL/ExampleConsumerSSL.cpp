@@ -153,9 +153,9 @@ int main()
     }
     // Configure SSL
     auto t_SSLConfig = t_SDCInstance->getSSLConfig();
-    t_SSLConfig->addCertificateAuthority("rootCA.pem");
-    t_SSLConfig->useCertificate("leaf.pem");
-    t_SSLConfig->useKeyFiles(/*Public Key*/"", "leafkey.pem", ""/* Password for Private Keyfile */);
+    t_SSLConfig->addCertificateAuthority("ca.pem");
+    t_SSLConfig->useCertificate("sdccert.pem");
+    t_SSLConfig->useKeyFiles(/*Public Key*/"", "userkey.pem", ""/* Password for Private Keyfile */);
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // </SSL> +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -166,6 +166,11 @@ int main()
 
 	// Note: Calculate a UUIDv5 and apply prefix to it!
 	auto t_consumer{t_serviceManager.discoverEndpointReference(SDCInstance::calcUUIDv5(DEVICE_EPR, true))};
+	auto consumers = t_serviceManager.discover();
+	for(auto&& device : consumers)
+		{
+			std::cout << device->getEndpointReference() << std::endl;
+		}
 
 	try
 	{

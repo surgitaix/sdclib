@@ -86,9 +86,12 @@ public:
 	}
 	InvocationState onStateChangeRequest(const NumericMetricState & state , const OperationInvocationContext & oic) override {
 		// extract information from the incoming operation
+		std::cout << "trying..." << std::endl;
 		SDCProviderStateHandler::notifyOperationInvoked(oic, InvocationState::Start);
 		FutureInvocationState fis;
-		return getParentConsumer().commitState(state, fis);
+		std::cout << state.getMetricValue().getValue() << std::endl;
+		getParentConsumer().commitState(state, fis);
+		return (fis.waitReceived(InvocationState::Fin, 2000) ? InvocationState::Fin : InvocationState::Fail);
 	}
 };
 

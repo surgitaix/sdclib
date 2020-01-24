@@ -378,11 +378,11 @@ std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(
 		}
 
 		// No metadata -> violating R5020 of DPWS 1.1
-		if(!t_metadataFound)
-		{
-			log_error([&] { return "## No Metadata found. Violating R5020 of DPWS 1.1. !"; }); // Todo: Is that fully correct?
-			return nullptr;
-		}
+//		if(!t_metadataFound)
+//		{
+//			log_error([&] { return "## No Metadata found. Violating R5020 of DPWS 1.1. !"; }); // Todo: Is that fully correct?
+//			return nullptr;
+//		}
 
 
 		// get metadata for streaming

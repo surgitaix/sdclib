@@ -111,6 +111,7 @@ public:
 
     InvocationState onStateChangeRequest(const NumericMetricState & state, const OperationInvocationContext & oic) override
     {
+    	std::cout << "trying..";
     	// Invocation has been fired as WAITING when entering this method
     	notifyOperationInvoked(oic, InvocationState::Start);
     	// Do stuff
@@ -388,9 +389,9 @@ int main()
 
     // Configure SSL
     auto t_SSLConfig{t_SDCInstance->getSSLConfig()};
-    t_SSLConfig->addCertificateAuthority("rootCA.pem");
-    t_SSLConfig->useCertificate("leaf.pem");
-    t_SSLConfig->useKeyFiles(/*Public Key*/"", "leafkey.pem", ""/* Password for Private Keyfile */);
+    t_SSLConfig->addCertificateAuthority("ca.pem");
+    t_SSLConfig->useCertificate("sdccert.pem");
+    t_SSLConfig->useKeyFiles(/*Public Key*/"", "userkey.pem", ""/* Password for Private Keyfile */);
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // </SSL> +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

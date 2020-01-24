@@ -30,10 +30,11 @@ namespace Data {
 namespace SDC {
 namespace ACS {
 
-AbstractConsumer::AbstractConsumer() :
+AbstractConsumer::AbstractConsumer(bool useTls) :
 		DiscoveryProvider(nullptr),
 		consumer(nullptr),
-		connectionLostHandler(nullptr)
+		connectionLostHandler(nullptr),
+		m_useTls(useTls)
 {
 }
 
@@ -47,6 +48,28 @@ bool AbstractConsumer::discoverDUT() {
 	    {
 	    	return false;
 	    }
+
+	    if(m_useTls)
+	    {
+			// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+			// <SSL> ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+			// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+			// Init SSL (Default Params should be fine)
+			if(!t_SDCInstance->initSSL()) {
+				std::cout << "Failed to init SSL!" << std::endl;
+				return -1;
+			}
+			// Configure SSL
+			auto t_SSLConfig = t_SDCInstance->getSSLConfig();
+			t_SSLConfig->addCertificateAuthority("ca.pem");
+			t_SSLConfig->useCertificate("sdccert.pem");
+			t_SSLConfig->useKeyFiles(/*Public Key*/"", "userkey.pem", ""/* Password for Private Keyfile */);
+
+			// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+			// </SSL> +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+			// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		}
 
 
 		//Discovery of Device under Test
@@ -123,7 +146,7 @@ bool AbstractConsumer::setupMirrorProvider() {
 				continue;
 			for(auto setValueOperationDesc : mds.getSco().collectAllSetValueOperationDescriptors())
 			{
-				if(setValueOperationDesc.getHandle() == (nms.getDescriptorHandle() + "_sco"))
+				if(setValueOperationDesc.getOperationTarget() == nms.getDescriptorHandle())
 				{
 					settableState = true;
 				}
@@ -320,6 +343,7 @@ bool AbstractConsumer::setupMirrorProvider() {
 	for(auto it : numericMetricStateSetForwarder)
 	{
 		DUTMirrorProvider->addMdStateHandler(it.second.get());
+		std::cout << "added set Handler";
 	}
 	for (auto it : registeredNumericMetricStateActivateGetCaller)
 	{
@@ -425,6 +449,8 @@ void AbstractConsumer::setupDiscoveryProvider()
 	auto t_SDCInstance = createDefaultSDCInstance();
 	if(t_SDCInstance != nullptr)
 	{
+
+
 		DiscoveryProvider = std::unique_ptr<MirrorProvider>(new MirrorProvider(t_SDCInstance));
 		DiscoveryProvider->setEndpointReference(DEFAULT_ENDPOINTREFERENCE_DISCOVERY_PROVIDER);
 
@@ -565,6 +591,32 @@ void AbstractConsumer::updateAvailableEndpointReferences()
 		std::cout << "Nullptr issue" << std::endl;
 		return;
 	}
+
+
+    if(m_useTls)
+    {
+		// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		// <SSL> ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+		// Init SSL (Default Params should be fine)
+		if(!t_SDCInstance->initSSL()) {
+			std::cout << "Failed to init SSL!" << std::endl;
+			return;
+		}
+		// Configure SSL
+		auto t_SSLConfig = t_SDCInstance->getSSLConfig();
+		t_SSLConfig->addCertificateAuthority("ca.pem");
+		t_SSLConfig->useCertificate("sdccert.pem");
+		t_SSLConfig->useKeyFiles(/*Public Key*/"", "userkey.pem", ""/* Password for Private Keyfile */);
+
+		// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		// </SSL> +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	}
+
+
+
 	OSELib::SDC::ServiceManager oscpsm(t_SDCInstance);
 	std::cout << "Creating ServiceManager" << std::endl;
 	auto availableDevices = oscpsm.discover();

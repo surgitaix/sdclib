@@ -54,7 +54,7 @@ void CommonSoapPreprocessing::commonParsing()
 		throw SoapFaultException();
 	}
 
-	log_trace([&] { return "Processing message: \n" + rawMessage->getContent(); });
+	//log_trace([&] { return "Processing message: \n" + rawMessage->getContent(); });
 
 	xercesDocument = Helper::XercesDocumentWrapper::create(*rawMessage, m_grammarProvider);
 

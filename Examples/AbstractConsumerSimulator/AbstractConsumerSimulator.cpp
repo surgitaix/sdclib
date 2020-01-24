@@ -130,13 +130,19 @@ void waitForUserInput() {
 
 
 
-int main() {
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::Error);
+int main(int argc, char* argv) {
+	bool tls{false};
+	if(argc == 2)
+	{
+		tls = (std::string{argv[1]} == "-tls");
+	}
+
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::None);
 
 	Network::TCPClientEventHandler::getInstance("127.0.0.1", 7001)->startup();
 	Network::TCPBroadcastServerHandler::getInstance("127.0.0.1", 8000)->startup();
 
-	AbstractConsumer consumer;
+	AbstractConsumer consumer(tls);
 	consumer.setupDiscoveryProvider();
 	waitForUserInput();
 
