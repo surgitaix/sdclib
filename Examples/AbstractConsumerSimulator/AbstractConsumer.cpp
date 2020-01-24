@@ -36,6 +36,7 @@ AbstractConsumer::AbstractConsumer(bool useTls) :
 		connectionLostHandler(nullptr),
 		m_useTls(useTls)
 {
+	useTls ? std::cout << "Using Tls \n" : std::cout << "Not using Tls \n";
 }
 
 bool AbstractConsumer::discoverDUT() {
@@ -143,12 +144,28 @@ bool AbstractConsumer::setupMirrorProvider() {
 		for (auto mds : consumer->getMdib().getMdDescription().collectAllMdsDescriptors())
 		{
 			if(!mds.hasSco())
+			{
 				continue;
-			for(auto setValueOperationDesc : mds.getSco().collectAllSetValueOperationDescriptors())
+			}
+			for(const auto& setValueOperationDesc : mds.getSco().collectAllSetValueOperationDescriptors())
 			{
 				if(setValueOperationDesc.getOperationTarget() == nms.getDescriptorHandle())
 				{
 					settableState = true;
+				}
+			}
+			for(const auto& vmd : mds.getVmdList())
+			{
+				if(!vmd.hasSco())
+				{
+					continue;
+				}
+				for(const  auto& setValueOperationDesc : vmd.getSco().collectAllSetValueOperationDescriptors())
+				{
+					if(setValueOperationDesc.getOperationTarget() == nms.getDescriptorHandle())
+					{
+						settableState = true;
+					}
 				}
 			}
 		}

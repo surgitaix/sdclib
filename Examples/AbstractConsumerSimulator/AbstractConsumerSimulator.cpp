@@ -130,11 +130,12 @@ void waitForUserInput() {
 
 
 
-int main(int argc, char* argv) {
+int main(int argc, char* argv[]) {
 	bool tls{false};
 	if(argc == 2)
 	{
 		tls = (std::string{argv[1]} == "-tls");
+		tls ? std::cout << "working \n" : std::cout << "not working \n";
 	}
 
     SDCLibrary::getInstance().startup(OSELib::LogLevel::None);
