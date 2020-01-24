@@ -76,11 +76,10 @@ namespace SDCLib
 				*
 				* @return The handle
 				*/
-				std::string getDescriptorHandle() { return descriptorHandle; }
-
 
 			    SDCConsumer & getParentConsumer();
 
+				std::string getDescriptorHandle() const { return descriptorHandle; }
 			};
 
 		}

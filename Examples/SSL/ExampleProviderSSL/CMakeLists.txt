@@ -43,6 +43,7 @@ install(TARGETS ${CURRENT_TARGET_NAME} CONFIGURATIONS ${CMAKE_BUILD_TYPE} RUNTIM
 configure_file(${CERT_DIR}/ca.pem   ${PATH_RUNTIME_OUTPUT}/ca.pem COPYONLY)
 configure_file(${CERT_DIR}/sdccert.pem     ${PATH_RUNTIME_OUTPUT}/sdccert.pem COPYONLY)
 configure_file(${CERT_DIR}/userkey.pem  ${PATH_RUNTIME_OUTPUT}/userkey.pem COPYONLY)
+configure_file(${SRC_DIR}/referenceMDIB.xml ${PATH_RUNTIME_OUTPUT}/referenceMDIB.xml COPYONLY)
 
 # ...
 

@@ -49,9 +49,7 @@ using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
-
-const std::string DEVICE_EPR("DUTMirrorProvider");
-
+const std::string DEVICE_EPR{"UDI-1234567890"};
 const std::string HANDLE_SET_METRIC{"handle_set"};
 const std::string HANDLE_GET_METRIC{"handle_get"};
 const std::string HANDLE_STREAM_METRIC{"handle_stream"};
