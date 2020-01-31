@@ -71,6 +71,7 @@ const std::string HANDLE_ACTIVATE_MDS{"actop.mds0_sco_0"};
 const std::string HANDLE_ACTIVATE_VMD{"actop.vmd1_sco_0"};
 const std::string HANDLE_STREAM{""};
 
+
 class NumericMetricEventHandler : public SDCConsumerMDStateHandler<NumericMetricState>
 {
 private:
@@ -106,6 +107,7 @@ public:
     }
 };
 
+
 class StringMetricEventHandler : public SDCConsumerMDStateHandler<StringMetricState>
 {
 public:
@@ -119,7 +121,7 @@ public:
 		currentValue = p_changedState.getMetricValue().getValue();
 	}
 
-	void onOperationInvoked(const OperationInvocationContext& oic, InvocationState p_is) override
+	void onOperationInvoked(const OperationInvocationContext& , InvocationState ) override
 	{
 
 	}
@@ -143,7 +145,7 @@ public:
 	{
 		currentValue = p_changedState.getMetricValue().getValue();
 	}
-	void onOperationInvoked(const OperationInvocationContext& oic, InvocationState p_is) override
+	void onOperationInvoked(const OperationInvocationContext& , InvocationState ) override
 	{
 
 	}
@@ -152,6 +154,7 @@ public:
 		return currentValue;
 	}
 };
+
 
 class AlertConditionEventHandler : public SDCConsumerMDStateHandler<AlertConditionState>
 {
@@ -162,7 +165,7 @@ public:
 
 	void onStateChanged(const AlertConditionState& p_changedState) override
 	{
-		std::cout << EnumToString::convert(p_changedState.getActivationState()) << std::endl;
+		DebugOut(DebugOut::Default, "ExampleConsumer") << EnumToString::convert(p_changedState.getActivationState()) << std::endl;
 		if(p_changedState.hasPresence())
 		{
 			auto t_newValue = p_changedState.getPresence();
@@ -177,7 +180,7 @@ public:
 	}
 	int getTimesValueChanged() const
 	{
-		std::cout << getDescriptorHandle() << " " << m_timesValueChanged << "\n";
+		DebugOut(DebugOut::Default, "ExampleConsumer") << getDescriptorHandle() << " " << m_timesValueChanged << "\n";
 		return m_timesValueChanged;
 	}
 private:
@@ -185,6 +188,7 @@ private:
 	int m_timesValueChanged{0};
 
 };
+
 
 class AlertSignalEventHandler : public SDCConsumerMDStateHandler<AlertSignalState>
 {
@@ -196,7 +200,7 @@ public:
 	void onStateChanged(const AlertSignalState& p_changedState) override
 	{
 		if(p_changedState.hasPresence())
-		std::cout << getDescriptorHandle() << " alert presence changed to: " << EnumToString::convert(p_changedState.getPresence()) << "\n";
+			DebugOut(DebugOut::Default, "ExampleConsumer") << getDescriptorHandle() << " alert presence changed to: " << EnumToString::convert(p_changedState.getPresence()) << "\n";
 		{
 			auto t_newValue = p_changedState.getPresence();
 			m_presence == t_newValue ? m_timesValueChanged : m_timesValueChanged++;
@@ -211,16 +215,13 @@ public:
 
 	int getTimesValueChanged() const
 	{
-		std::cout << getDescriptorHandle() << " " << m_timesValueChanged << "\n";
+		DebugOut(DebugOut::Default, "ExampleConsumer") << getDescriptorHandle() << " " << m_timesValueChanged << "\n";
 		return m_timesValueChanged;
 	}
 private:
 	AlertSignalPresence m_presence{AlertSignalPresence::Off};
 	int m_timesValueChanged{0};
 };
-
-
-
 
 
 // state handler for array values, uses udp instead of tcp. Faster. Considered for real time applications
@@ -246,7 +247,6 @@ public:
 };
 
 
-
 void waitForUserInput() {
 	std::string temp;
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumerSSL") << "Press key to proceed.";
@@ -270,23 +270,32 @@ private:
 };
 
 
+bool ends_with(std::string const & value, std::string const & ending)
+{
+    if (ending.size() > value.size()) return false;
+    return std::equal(ending.rbegin(), ending.rend(), value.rbegin());
+}
+
+
 int main(int argc, char *argv[])
 {
-	bool use_tls = false;
-	if(argc == 2) {
-		const std::string tls = argv[1];
-		if (tls == "-tls")
-		{
-			use_tls = true;
-		}
-		else
-		{
-			use_tls = false;
-		}
+	DebugOut::DEBUG_LEVEL = DebugOut::Silent;
+
+	bool useTLS = false;
+	std::string endpointEnding{""};
+
+	if(argc == 2)
+	{
+		useTLS = (std::string{argv[1]} == "-tls");
+	}
+	else if(argc == 3)
+	{
+		useTLS = (std::string{argv[1]} == "-tls");
 	}
 
+
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumerSSL") << "Startup";
-    SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
+    SDCLibrary::getInstance().startup(OSELib::LogLevel::None);
 
     // Create a new SDCInstance (no flag will auto init)
     auto t_SDCInstance = std::make_shared<SDCInstance>(true);
@@ -295,19 +304,19 @@ int main(int argc, char *argv[])
     t_SDCInstance->setIP4enabled(true);
     // Bind it to interface that matches the internal criteria (usually the first enumerated)
     if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
-        std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
+        DebugOut(DebugOut::Default, "ExampleConsumer") << "Failed to bind to default network interface! Exit..." << std::endl;
         return -1;
     }
 
 
-    if(use_tls) {
+    if(useTLS) {
 		// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 		// <SSL> ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 		// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 		// Init SSL (Default Params should be fine)
 		if(!t_SDCInstance->initSSL()) {
-			std::cout << "Failed to init SSL!" << std::endl;
+			DebugOut(DebugOut::Default, "ExampleConsumer") << "Failed to init SSL!" << std::endl;
 			return -1;
 		}
 		// Configure SSL
@@ -327,21 +336,32 @@ int main(int argc, char *argv[])
 	// Note: Calculate a UUIDv5 and apply prefix to it!
 
 	auto t_availableConsumers = t_serviceManager.discover();
-	int i = 1;
-	std::cout << "Available EndpointReferences: \n";
-	std::cout << "############################################################################################ \n";
-	for(auto&& consumer : t_availableConsumers)
+	std::unique_ptr<SDCConsumer> t_consumer{};
+	if(argc != 3)
 	{
-		std::cout << std::to_string(i) + ". " + consumer->getEndpointReference() << std::endl;
-		i++;
+		int i = 1;
+		int selected = 0;
+		std::cout << "Available EndpointReferences: \n";
+		std::cout << "###############################################################################\n";
+		for(auto&& consumer : t_availableConsumers)
+		{
+			std::cout << std::to_string(i) + ". " + consumer->getEndpointReference() << std::endl;
+			i++;
+		}
+		DebugOut(DebugOut::Default, "ExampleConsumer") << "Enter the Endpoint Reference of your choice" << std::endl;
+		std::cin >> selected;
+		t_consumer = std::move(t_availableConsumers[selected-1]);
+		DebugOut(DebugOut::Default, "ExampleConsumer") << t_consumer->getEndpointReference() << std::endl;
 	}
-	std::cout << std::endl;
-	std::cout << "Enter the Endpoint Reference of your choice" << std::endl;
-	int selected = 0;
-	std::cin >> selected;
-
-	auto t_consumer{std::move(t_availableConsumers[selected-1])};
-	std::cout << t_consumer->getEndpointReference() << std::endl;
+	else if(argc == 3)
+	{
+		for(auto&& consumer : t_availableConsumers)
+		{
+			if(ends_with(consumer->getEndpointReference(), endpointEnding)) {
+				t_consumer = std::move(consumer);
+			}
+		}
+	}
 
 	try
 	{
@@ -371,13 +391,13 @@ int main(int argc, char *argv[])
 																   alert_signal_mds] {
 				// Check that the metric (see above) changes within 30 seconds at least 5 times
 				std::this_thread::sleep_for(std::chrono::seconds(30));
-				numeric_dynamic_get->getTimesValueChanged() > 4 ? std::cout << "### Test 7. passed \n" : std::cout << "### Test 7. failed \n";
+				numeric_dynamic_get->getTimesValueChanged() > 4 ? std::cout << "### Test 7. ### passed\n" : std::cout << "### Test 7. ### failed\n";
 
 				// Check that the alert condition (see above)change within 30 seconds at least 5 times
 				((alert_condition_mds->getTimesValueChanged() > 4) &&
 				(alert_condition_vmd->getTimesValueChanged() > 4) &&
 				(alert_signal_vmd->getTimesValueChanged() > 4) &&
-				(alert_signal_mds->getTimesValueChanged() > 4)) ? std::cout << "### Test 8. passed \n" : std::cout << "### Test 8. failed \n";
+				(alert_signal_mds->getTimesValueChanged() > 4)) ? std::cout << "### Test 8. ### passed\n" : std::cout << "### Test 8. ### failed\n";
 
 
 			});
@@ -402,14 +422,10 @@ int main(int argc, char *argv[])
 			auto locationContext = t_consumer->getMdState().findLocationContextStates();
 
 			// Check that least one patient context exists
-			patientContext.empty() ? std::cout << "### Test 5. failed \n" : std::cout << "### Test 5. passed \n";
+			patientContext.empty() ? std::cout << "### Test 5. ### failed\n" : std::cout << "### Test 5. ### passed\n";
 
 			// Check that at least one location context exists
-			locationContext.empty() ? std::cout << "### Test 6. failed \n" : std::cout << "### Test 6. passed \n";
-
-
-
-
+			locationContext.empty() ? std::cout << "### Test 6. ### failed\n" : std::cout << "### Test 6. ### passed\n";
 
 			// Simple Test(1):
 			// Search for the "Get"-State
@@ -436,8 +452,6 @@ int main(int argc, char *argv[])
 				}
 			}
 
-			std::cout << "here " << std::endl;
-
 			auto enum_static_get{std::move(t_consumer->requestState<EnumStringMetricState>(HANDLE_STATIC_GET_ESTRM))};
 
 			if(enum_static_get)
@@ -447,10 +461,9 @@ int main(int argc, char *argv[])
 					Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested get metrics value: " << enum_static_get->getMetricValue().getValue();
 				}
 			}
-			std::cout << "here 2" << std::endl;
 
+			test7and8Evaluation.wait();
 
-			// Simple Test(2):
 			// Search for the "Set"-State
 			auto t_setMetricState{t_consumer->requestState<NumericMetricState>(HANDLE_SET_NM)};
 			// If found: Set it to a given value
@@ -470,29 +483,26 @@ int main(int argc, char *argv[])
 			t_consumer->activate(HANDLE_ACTIVATE_MDS, fis);
 			if (fis.waitReceived(InvocationState::Fin, 2000))
 			{
-				std::cout << "### Test 9. activate MDS passed \n";
+				std::cout << "### Test 9. activate MDS ### passed\n";
 			}
 			else
 			{
-				std::cout << "### Test 9. activate MDS failed \n";
+				std::cout << "### Test 9. activate MDS ### failed\n";
 			}
 			FutureInvocationState fis1;
 			t_consumer->activate(HANDLE_ACTIVATE_VMD, fis1);
 			if (fis1.waitReceived(InvocationState::Fin, 2000))
 			{
-				std::cout << "### Test 9. activate VMD passed \n";
+				std::cout << "### Test 9. activate VMD ### passed\n";
 			}
 			else
 			{
-				std::cout << "### Test 9. activate VMD failed \n";
+				std::cout << "### Test 9. activate VMD ### failed\n";
 			}
-
-
-
 
 			// From here on the registered StateEventHandlers (SDCLib Threads / background) will provide information
 			// on "state changes" until the user enters a key ("waitForUserInput") or exception is thrown.
-			waitForUserInput();
+			//waitForUserInput();
 			// Unregister and disconnect
 			t_consumer->unregisterStateEventHandler(numeric_dynamic_get.get());
 			t_consumer->unregisterStateEventHandler(enum_dynamic_get.get());

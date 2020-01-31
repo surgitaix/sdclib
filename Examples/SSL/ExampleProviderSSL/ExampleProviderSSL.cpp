@@ -1,11 +1,10 @@
 /*
- * ExampleProvider.cpp
+ * ExampleProviderSSL.cpp
  *
  *  @Copyright (C) 2016, SurgiTAIX AG
- *  Author: buerger
+ *  Author: baumeister, rosenau
  *
- *  This program sends a RealTimeSampleArrayMetricState (HANDLE_STREAM_METRIC) and a NumericMatricState (HANDLE_GET_METRIC) to the network. It changes the HANDLE_STREAM_METRIC
- *
+ *  This Program implements the Reference Provider defined in: "SDC_Reference.docx"
  */
 
 
@@ -47,13 +46,6 @@
 #include "SDCLib/Data/SDC/MDIB/StringMetricValue.h"
 #include "SDCLib/Data/SDC/MDIB/SystemContextState.h"
 
-//Delete me later
-#include "SDCLib/Data/SDC/MDIB/custom/MdibContainer.h"
-#include "SDCLib/Data/SDC/MDIB/ConvertToCDM.h"
-#include "DataModel/BICEPS_MessageModel.hxx"
-#include "DataModel/BICEPS_ParticipantModel.hxx"
-
-
 #include "SDCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
 
 #include "SDCLib/Util/DebugOut.h"
@@ -65,8 +57,6 @@ using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
 const std::string FILE_CACHED_MDIB{"referenceMDIB.xml"};
-
-
 
 const std::string DEVICE_EPR("UDI-1234567890-SSL");
 
@@ -353,7 +343,7 @@ public:
 
 	void sourceHasChanged(const std::string & sourceHandle) override
 	{
-		std::cout << "Source " << sourceHandle << " of " << getDescriptorHandle() << " changed: \n";
+		DebugOut(DebugOut::Default, "ExampleProvider") << "Source " << sourceHandle << " of " << getDescriptorHandle() << " changed: \n";
 	}
 
 
@@ -423,7 +413,7 @@ public:
 
 	InvocationState onActivateRequest(const OperationInvocationContext & ) override
 	{
-		std::cout << getDescriptorHandle() << " got activated \n";
+		DebugOut(DebugOut::Default, "ExampleProvider") << getDescriptorHandle() << " got activated \n";
 		return InvocationState::Fin;
 	}
 };
@@ -443,8 +433,6 @@ public:
 		buffer << p_stream.rdbuf();
 		std::string mdDesciption_xml = buffer.str();
         p_stream.close();
-
-		DebugOut(DebugOut::Default, "ExampleCachedProvider") << mdDesciption_xml;
 
 		// set DPWS metadata, e.g. for the displayed friendly name
 		Dev::DeviceCharacteristics devChar;
@@ -482,19 +470,7 @@ public:
 
     void startup()
     {
-
-    	auto getStringRepresentationOfMDIB = [](MdibContainer MDIB) {
-    		MDM::GetMdibResponse MdibResponse(xml_schema::Uri("0"),ConvertToCDM::convert(MDIB));
-    		MdibResponse.setMdibVersion(MDIB.getMdibVersion());
-    		const xml_schema::Flags xercesFlags(xml_schema::Flags::dont_validate | xml_schema::Flags::no_xml_declaration | xml_schema::Flags::dont_initialize);
-    		xml_schema::NamespaceInfomap map;
-    		std::ostringstream providerMdibStringRepresentation;
-    		CDM::serializeMdibContainer(providerMdibStringRepresentation, MdibResponse.getMdib(), map, OSELib::XML_ENCODING, xercesFlags);
-    		return providerMdibStringRepresentation.str();
-    	};
-
     	m_sdcProvider.startup();
-    	std::cout << getStringRepresentationOfMDIB(m_sdcProvider.getMdib()) << std::endl;
     }
 
 private:
@@ -557,14 +533,13 @@ public:
     }
 };
 
-
 int main(int argc, char *argv[])
 {
+	DebugOut::DEBUG_LEVEL = DebugOut::Default;
 	bool useTLS{false};
 
 	if(argc == 2)
 	{
-		std::cout << "working" << std::endl;
 		useTLS = (std::string{argv[1]} == "-tls");
 	}
 
