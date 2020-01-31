@@ -18,7 +18,7 @@
  * ExampleConsumer.cpp
  *
  *  @Copyright (C) 2018, SurgiTAIX AG
- *  Author: buerger
+ *  Author: baumeister, rosenau
  *
  *  This example demonstrates how to set up a very simple SDCConsumer. It connects to the ExampleProvider defined with it's endpoint reference (EPR).
  *  A state handler is facilitated to utilize the eventing mechanism for a numeric metric state.
@@ -284,14 +284,27 @@ int main(int argc, char *argv[])
 	bool useTLS = false;
 	std::string endpointEnding{""};
 
-	if(argc == 2)
+
+	for(int i = 0; i < argc; i++)
 	{
-		useTLS = (std::string{argv[1]} == "-tls");
+		if (std::string{argv[i]} == "-tls")
+		{
+			useTLS = true;
+		}
+		if (std::string{argv[i]} == "-epr")
+		{
+			if(i == argc-1)
+			{
+				std::cout << "please provide an endpoint";
+				return -1;
+			}
+			else
+			{
+				endpointEnding = std::string{argv[i+1]};
+			}
+		}
 	}
-	else if(argc == 3)
-	{
-		useTLS = (std::string{argv[1]} == "-tls");
-	}
+
 
 
 	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumerSSL") << "Startup";
@@ -336,8 +349,13 @@ int main(int argc, char *argv[])
 	// Note: Calculate a UUIDv5 and apply prefix to it!
 
 	auto t_availableConsumers = t_serviceManager.discover();
+	if(t_availableConsumers.size() == 0)
+	{
+		std::cout << "No Endpoint found" << std::endl;
+		return -1;
+	}
 	std::unique_ptr<SDCConsumer> t_consumer{};
-	if(argc != 3)
+	if(endpointEnding == "")
 	{
 		int i = 1;
 		int selected = 0;
@@ -353,7 +371,7 @@ int main(int argc, char *argv[])
 		t_consumer = std::move(t_availableConsumers[selected-1]);
 		DebugOut(DebugOut::Default, "ExampleConsumer") << t_consumer->getEndpointReference() << std::endl;
 	}
-	else if(argc == 3)
+	else
 	{
 		for(auto&& consumer : t_availableConsumers)
 		{
