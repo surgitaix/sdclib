@@ -309,9 +309,8 @@ private:
 class PatientContextStateHandler : public SDCProviderMDStateHandler<PatientContextState>
 {
 public:
-	PatientContextStateHandler(const std::string p_descriptorHandle, bool settable = false) :
-	SDCProviderMDStateHandler(p_descriptorHandle),
-	m_settable{settable}
+	PatientContextStateHandler(const std::string p_descriptorHandle):
+	SDCProviderMDStateHandler(p_descriptorHandle)
 	{ }
 
 	InvocationState onStateChangeRequest(const PatientContextState& , const OperationInvocationContext& ) override
@@ -324,17 +323,13 @@ public:
 		PatientContextState t_newState{getDescriptorHandle(), getDescriptorHandle()};
 		return t_newState;
 	}
-
-private:
-	bool m_settable{false};
 };
 
 class AlertConditionStateHandler : public SDCProviderAlertConditionStateHandler<AlertConditionState>
 {
 public:
-	AlertConditionStateHandler(const std::string& p_descriptorHandle, bool settable = false) :
-	SDCProviderAlertConditionStateHandler(p_descriptorHandle),
-	m_settable{settable}
+	AlertConditionStateHandler(const std::string& p_descriptorHandle) :
+	SDCProviderAlertConditionStateHandler(p_descriptorHandle)
 	{ }
 
 	InvocationState onStateChangeRequest(const AlertConditionState&, const OperationInvocationContext& ) override
@@ -350,8 +345,8 @@ public:
 
 	void toggleAlertPresence()
 	{
-		AlertConditionState t_newState{getDescriptorHandle(), AlertActivation::Off};
-		m_presence ? m_presence = false : m_presence = true;
+		AlertConditionState t_newState{getDescriptorHandle(), AlertActivation::On};
+		m_presence = !m_presence;
 		t_newState.setPresence(m_presence);
 		updateState(t_newState);
 	}
@@ -363,7 +358,6 @@ public:
 
 
 private:
-	bool m_settable{false};
 	bool m_presence{false};
 };
 
@@ -383,7 +377,7 @@ public:
 	void toggleAlertPresence()
 	{
 		AlertSignalState t_newState{getDescriptorHandle(), AlertActivation::Off};
-		m_presence ? m_presence = false : m_presence = true;
+		m_presence = !m_presence;
 		m_presence ? t_newState.setPresence(AlertSignalPresence::On) : t_newState.setPresence(AlertSignalPresence::Off);
 		updateState(t_newState);
 	}
@@ -546,13 +540,6 @@ public:
     // runImpl() gets called when starting the provider thread by the inherited function start()
     void runImpl() override
     {
-
-    	// RealTimeArray
-		RealTimeValueType samples(10);
-		// Fill with values from [0,samples.size()]
-		std::iota(samples.begin(), samples.end(), 0);
-
-		std::size_t t_sampleIndex{0};
 		double val = 1.0;
 
 		while (!isInterrupted())
