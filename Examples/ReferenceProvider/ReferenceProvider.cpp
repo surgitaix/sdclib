@@ -1,5 +1,5 @@
 /*
- * ExampleProviderSSL.cpp
+ * ReferenceProviderSSL.cpp
  *
  *  @Copyright (C) 2016, SurgiTAIX AG
  *  Author: baumeister, rosenau
@@ -119,7 +119,7 @@ public:
 		if(!m_settable)
 		{
 			// extract information from the incoming operation
-			DebugOut(DebugOut::Default, "ExampleProvider") << "Operation invoked. Handle: " << p_oic.operationHandle << std::endl;
+			DebugOut(DebugOut::Default, "ReferenceProvider") << "Operation invoked. Handle: " << p_oic.operationHandle << std::endl;
 			return InvocationState::Fail;
 		}
 		else
@@ -127,9 +127,9 @@ public:
 	    	// Invocation has been fired as WAITING when entering this method
 	    	notifyOperationInvoked(p_oic, InvocationState::Start);
 	    	// Do stuff
-	        DebugOut(DebugOut::Default, "ExampleProvider") << "Provider: handle_set received state change request. State's value: " << p_state.getMetricValue().getValue() << std::endl;
+	        DebugOut(DebugOut::Default, "ReferenceProvider") << "Provider: handle_set received state change request. State's value: " << p_state.getMetricValue().getValue() << std::endl;
 	        // extract information from the incoming operation
-	        DebugOut(DebugOut::Default, "ExampleProvider") << "Operation invoked. Handle: " << p_oic.operationHandle << std::endl;
+	        DebugOut(DebugOut::Default, "ReferenceProvider") << "Operation invoked. Handle: " << p_oic.operationHandle << std::endl;
 	        // if success return Finished
 	        return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
 		}
@@ -176,7 +176,7 @@ public:
     InvocationState onStateChangeRequest(const RealTimeSampleArrayMetricState&, const OperationInvocationContext& p_oic) override
     {
     	// extract information from the incoming operation
-    	DebugOut(DebugOut::Default, "ExampleProvider") << "Operation invoked. Handle: " << p_oic.operationHandle << std::endl;
+    	DebugOut(DebugOut::Default, "ReferenceProvider") << "Operation invoked. Handle: " << p_oic.operationHandle << std::endl;
     	return InvocationState::Fail;
     }
 
@@ -202,7 +202,7 @@ public:
 	{
 		notifyOperationInvoked(p_oic, InvocationState::Start);
 		// Do something if a state change is requested
-		DebugOut(DebugOut::Default, "ExampleProvider") << "String state of provider state changed to " << p_changedState.getMetricValue().getValue() << std::endl;
+		DebugOut(DebugOut::Default, "ReferenceProvider") << "String state of provider state changed to " << p_changedState.getMetricValue().getValue() << std::endl;
 		// return Finished if successful
 		return InvocationState::Fin;
 	}
@@ -235,7 +235,7 @@ public:
 	{
 		notifyOperationInvoked(p_oic, InvocationState::Start);
 		// Do something if a state change is requested
-		DebugOut(DebugOut::Default, "ExampleProvider") << "String state of provider state changed to " << p_changedState.getMetricValue().getValue() << std::endl;
+		DebugOut(DebugOut::Default, "ReferenceProvider") << "String state of provider state changed to " << p_changedState.getMetricValue().getValue() << std::endl;
 		// return Finished if successful
 		return InvocationState::Fin;
 	}
@@ -343,7 +343,7 @@ public:
 
 	void sourceHasChanged(const std::string & sourceHandle) override
 	{
-		DebugOut(DebugOut::Default, "ExampleProvider") << "Source " << sourceHandle << " of " << getDescriptorHandle() << " changed: \n";
+		DebugOut(DebugOut::Default, "ReferenceProvider") << "Source " << sourceHandle << " of " << getDescriptorHandle() << " changed: \n";
 	}
 
 
@@ -413,7 +413,7 @@ public:
 
 	InvocationState onActivateRequest(const OperationInvocationContext & ) override
 	{
-		DebugOut(DebugOut::Default, "ExampleProvider") << getDescriptorHandle() << " got activated \n";
+		DebugOut(DebugOut::Default, "ReferenceProvider") << getDescriptorHandle() << " got activated \n";
 		return InvocationState::Fin;
 	}
 };
@@ -436,7 +436,7 @@ public:
 
 		// set DPWS metadata, e.g. for the displayed friendly name
 		Dev::DeviceCharacteristics devChar;
-		devChar.addFriendlyName("en", "SDCLib ExampleProvider");
+		devChar.addFriendlyName("en", "SDCLib ReferenceProvider");
 		m_sdcProvider.setDeviceCharacteristics(devChar);
 
 		m_sdcProvider.setMdDescription(mdDesciption_xml);
@@ -522,7 +522,7 @@ public:
 		{
 			// Update the NumericMetricState's value using the state handler's method
 			m_getDynamicNumStateHandler.setNumericValue(val);
-			DebugOut(DebugOut::Default, "ExampleProvider") << "NumericMetric: value changed to " << val << std::endl;
+			DebugOut(DebugOut::Default, "ReferenceProvider") << "NumericMetric: value changed to " << val << std::endl;
 			val++;
 			m_alertConditionMDSStateHandler.toggleAlertPresence();
 			m_alertConditionVMDStateHandler.toggleAlertPresence();
@@ -548,12 +548,12 @@ int main(int argc, char *argv[])
     std::ifstream t_mdibFilestream(FILE_CACHED_MDIB);
     // Found?
     if(!t_mdibFilestream.is_open()) {
-        DebugOut(DebugOut::Default, "ExampleCachedProvider") << "Could not open " << FILE_CACHED_MDIB << "\n";
+        DebugOut(DebugOut::Default, "ReferenceProvider") << "Could not open " << FILE_CACHED_MDIB << "\n";
         return -1;
     }
 
 	// Startup
-	DebugOut(DebugOut::Default, "ExampleProviderSSL") << "Startup" << std::endl;
+	DebugOut(DebugOut::Default, "ReferenceProviderSSL") << "Startup" << std::endl;
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
 
     // Create a new SDCInstance (no flag will auto init)
@@ -564,7 +564,7 @@ int main(int argc, char *argv[])
     t_SDCInstance->setIP4enabled(true);
     // Bind it to interface that matches the internal criteria (usually the first enumerated)
     if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
-        DebugOut(DebugOut::Default, "ExampleProviderSSL") << "Failed to bind to default network interface! Exit..." << std::endl;
+        DebugOut(DebugOut::Default, "ReferenceProviderSSL") << "Failed to bind to default network interface! Exit..." << std::endl;
         return -1;
     }
 
@@ -576,7 +576,7 @@ int main(int argc, char *argv[])
 
 		// Init SSL (Default Params should be fine)
 		if(!t_SDCInstance->initSSL()) {
-			DebugOut(DebugOut::Default, "ExampleProviderSSL") << "Failed to init SSL!" << std::endl;
+			DebugOut(DebugOut::Default, "ReferenceProviderSSL") << "Failed to init SSL!" << std::endl;
 			return -1;
 		}
 
@@ -595,11 +595,11 @@ int main(int argc, char *argv[])
     t_provider.startup();
     t_provider.start();
 
-	DebugOut(DebugOut::Default, "ExampleProvider") << "Press key to exit program.";
+	DebugOut(DebugOut::Default, "ReferenceProvider") << "Press key to exit program.";
 	std::cin.get();
 
 	// Shutdown
-	DebugOut(DebugOut::Default, "ExampleProvider") << "Shutdown." << std::endl;
+	DebugOut(DebugOut::Default, "ReferenceProvider") << "Shutdown." << std::endl;
 
 	return 0;
 }

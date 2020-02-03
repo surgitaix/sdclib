@@ -1,5 +1,5 @@
 # Current Target
-set( CURRENT_TARGET_NAME ExampleCachedProvider )
+set( CURRENT_TARGET_NAME ReferenceProvider )
 # Add this for better project structure after cmake generation
 project(${CURRENT_TARGET_NAME} "CXX")
 
@@ -8,13 +8,13 @@ add_executable(${CURRENT_TARGET_NAME} "")
 
 # Variables for better handling
 set(SRC_DIR ${CMAKE_CURRENT_LIST_DIR})
-
+set(CERT_DIR ${CMAKE_CURRENT_LIST_DIR}/certs)
 
 # Add the sources to the target
 target_sources(${CURRENT_TARGET_NAME}
     PRIVATE
         # Source Files
-        ${SRC_DIR}/ExampleCachedProvider.cpp
+        ${SRC_DIR}/ReferenceProvider.cpp
         # Add the includes too (for better generation)
         #...
 )
@@ -39,9 +39,11 @@ set_target_properties(  ${CURRENT_TARGET_NAME}
 # install
 install(TARGETS ${CURRENT_TARGET_NAME} CONFIGURATIONS ${CMAKE_BUILD_TYPE} RUNTIME DESTINATION ${PATH_INSTALL_RUNTIME})
 
-
-# Copy file to build folder
-configure_file(${SRC_DIR}/cachedMdib.xml ${PATH_RUNTIME_OUTPUT}/cachedMdib.xml COPYONLY)
+# Copy files to build folder
+configure_file(${CERT_DIR}/ca.pem   ${PATH_RUNTIME_OUTPUT}/ca.pem COPYONLY)
+configure_file(${CERT_DIR}/sdccert.pem     ${PATH_RUNTIME_OUTPUT}/sdccert.pem COPYONLY)
+configure_file(${CERT_DIR}/userkey.pem  ${PATH_RUNTIME_OUTPUT}/userkey.pem COPYONLY)
+configure_file(${SRC_DIR}/referenceMDIB.xml ${PATH_RUNTIME_OUTPUT}/referenceMDIB.xml COPYONLY)
 
 # ...
 

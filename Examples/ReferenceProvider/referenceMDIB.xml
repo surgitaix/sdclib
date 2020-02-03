@@ -1,4 +1,4 @@
- <pm:MdibContainer xmlns:pm="http://standards.ieee.org/downloads/11073/11073-10207-2017/participant" xmlns:ext="http://standards.ieee.org/downloads/11073/11073-10207-2017/extension" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:m="http://www.draeger.com/CTEM" xmlns:mdpws="http://standards.ieee.org/downloads/11073/11073-20702-2016" xmlns:ps="http://schemas.microsoft.com/powershell/2004/04" xmlns:sdc="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:wsd="http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01" xmlns:wse="http://schemas.xmlsoap.org/ws/2004/08/eventing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" MdibVersion="1" SequenceId="0">
+ <pm:MdibContainer xmlns:pm="http://standards.ieee.org/downloads/11073/11073-10207-2017/participant" xmlns:ext="http://standards.ieee.org/downloads/11073/11073-10207-2017/extension" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:mdpws="http://standards.ieee.org/downloads/11073/11073-20702-2016" xmlns:ps="http://schemas.microsoft.com/powershell/2004/04" xmlns:sdc="http://standards.ieee.org/downloads/11073/11073-20701-2018" xmlns:wsd="http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01" xmlns:wse="http://schemas.xmlsoap.org/ws/2004/08/eventing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" MdibVersion="1" SequenceId="0">
 	<pm:MdDescription DescriptionVersion="0">
           <pm:Mds Handle="mds0" DescriptorVersion="0" SafetyClassification="MedA" xsi:type="pm:MdsDescriptor">
             <pm:Type Code="130535">
@@ -31,7 +31,6 @@
               <pm:Operation Handle="DN_SET" DescriptorVersion="0" OperationTarget="DN_METRIC" xsi:type="pm:SetStringOperationDescriptor">
                 <ext:Extension/>
                 <pm:Type Code="DN_SET" CodingSystem="urn:oid:1.3.6.1.4.1.3592.2.1.1.0">
-                  <pm:CodingSystemName>Common Draeger Parameter Nomenclature</pm:CodingSystemName>
                 </pm:Type>
               </pm:Operation>
               <pm:Operation Handle="SET_NTP_SRV_mds0" DescriptorVersion="0" OperationTarget="CL.mds0" xsi:type="pm:SetStringOperationDescriptor">
@@ -239,15 +238,12 @@
             </pm:Vmd>
             <pm:Vmd Handle="DN_VMD" DescriptorVersion="0" SafetyClassification="Inf" xsi:type="pm:VmdDescriptor">
               <pm:Type Code="DN_VMD" CodingSystem="urn:oid:1.3.6.1.4.1.3592.2.1.1.0">
-                <pm:CodingSystemName>Common Draeger Parameter Nomenclature</pm:CodingSystemName>
               </pm:Type>
               <pm:Channel Handle="DN_CHAN" DescriptorVersion="0" SafetyClassification="Inf" xsi:type="pm:ChannelDescriptor">
                 <pm:Type Code="DN_CHAN" CodingSystem="urn:oid:1.3.6.1.4.1.3592.2.1.1.0">
-                  <pm:CodingSystemName>Common Draeger Parameter Nomenclature</pm:CodingSystemName>
                 </pm:Type>
                 <pm:Metric Handle="DN_METRIC" DescriptorVersion="0" SafetyClassification="Inf" MetricCategory="Set" MetricAvailability="Intr" xsi:type="pm:EnumStringMetricDescriptor">
                   <pm:Type Code="DN_METRIC" CodingSystem="urn:oid:1.3.6.1.4.1.3592.2.1.1.0">
-                    <pm:CodingSystemName>Common Draeger Parameter Nomenclature</pm:CodingSystemName>
                   </pm:Type>
                   <pm:Unit Code="262656"/>
                   <pm:AllowedValue>

@@ -436,9 +436,9 @@ template<class Type>
 std::string makeDefaultDescriptorDescription(const Type & object) {
 	std::ostringstream result;
 	result << typeAsString(object) << std::endl;
-	result << "Handle: " << object.Handle() << std::endl;
-	if (object.Type().present()) {
-		result << "Type: " << object.Type().get().Code() << std::endl;
+	result << "Handle: " << object.getHandle() << std::endl;
+	if (object.getType().present()) {
+		result << "Type: " << object.getType().get().getCode() << std::endl;
 	}
 	return result.str();
 }
@@ -462,11 +462,11 @@ std::string makeDescription(const CDM::NumericMetricDescriptor & object) {
 std::string makeDescription(const CDM::NumericMetricState & object) {
 	std::ostringstream result;
 	result << typeAsString(object) << std::endl;
-	result << "MetricValue:" << (object.MetricValue().present() ? "Yes" : "No") << std::endl;
-	if (object.MetricValue().present()) {
-		result << "MetricValue.Value:";
-		if (object.MetricValue().get().Value().present()) {
-			result << object.MetricValue().get().Value().get() << std::endl;
+	result << "MetricValue:" << (object.getMetricValue().present() ? "Yes" : "No") << std::endl;
+	if (object.getMetricValue().present()) {
+		result << "MetricValue.getValue:";
+		if (object.getMetricValue().get().getValue().present()) {
+			result << object.getMetricValue().get().getValue().get() << std::endl;
 		} else {
 			result << "No" << std::endl;
 		}
@@ -483,11 +483,11 @@ std::string makeDescription(const CDM::StringMetricDescriptor & object) {
 std::string makeDescription(const CDM::StringMetricState & object) {
 	std::ostringstream result;
 	result << typeAsString(object) << std::endl;
-	result << "MetricValue:" << (object.MetricValue().present() ? "Yes" : "No") << std::endl;
-	if (object.MetricValue().present()) {
-		result << "MetricValue.Value:";
-		if (object.MetricValue().get().Value().present()) {
-			result << object.MetricValue().get().Value().get() << std::endl;
+	result << "MetricValue:" << (object.getMetricValue().present() ? "Yes" : "No") << std::endl;
+	if (object.getMetricValue().present()) {
+		result << "MetricValue.getValue:";
+		if (object.getMetricValue().get().getValue().present()) {
+			result << object.getMetricValue().get().getValue().get() << std::endl;
 		} else {
 			result << "---" << std::endl;
 		}
@@ -512,10 +512,10 @@ std::string makeDescription(const CDM::RealTimeSampleArrayMetricState & object) 
 std::string makeDescription(const CDM::EnumStringMetricDescriptor & object) {
 	std::ostringstream result;
 	result << typeAsString(object) << std::endl;
-	result << "Handle:" << object.Handle() << std::endl;
+	result << "Handle:" << object.getHandle() << std::endl;
 	result << "AllowedValues:" << std::endl;
-	for (const auto & allowedValue : object.AllowedValue()) {
-		result << allowedValue.Value() << std::endl;
+	for (const auto & allowedValue : object.getAllowedValue()) {
+		result << allowedValue.getValue() << std::endl;
 	}
 	return result.str();
 }
@@ -524,11 +524,11 @@ std::string makeDescription(const CDM::EnumStringMetricDescriptor & object) {
 std::string makeDescription(const CDM::EnumStringMetricState & object) {
 	std::ostringstream result;
 	result << typeAsString(object) << std::endl;
-	result << "MetricValue:" << (object.MetricValue().present() ? "Yes" : "No") << std::endl;
-	if (object.MetricValue().present()) {
-		result << "MetricValue.Value:";
-		if (object.MetricValue().get().Value().present()) {
-			result << object.MetricValue().get().Value().get() << std::endl;
+	result << "MetricValue:" << (object.getMetricValue().present() ? "Yes" : "No") << std::endl;
+	if (object.getMetricValue().present()) {
+		result << "MetricValue.getValue:";
+		if (object.getMetricValue().get().getValue().present()) {
+			result << object.getMetricValue().get().getValue().get() << std::endl;
 		} else {
 			result << "---" << std::endl;
 		}
@@ -1151,152 +1151,152 @@ std::string buildDotGraph(CDM::Mdib& mdib) {
 	// Alerts handling
 	//
 	auto processAlertSystemDescriptor = [&](const CDM::AlertSystemDescriptor & system, const std::string & ownerHandle) {
-		handleToNodeMap[system.Handle()] = ++lastNode;
-		result << "n" << handleToNodeMap[ownerHandle] << " -> n" << handleToNodeMap[system.Handle()] << "[];" << std::endl;
-		result << makeFormat(system, handleToNodeMap[system.Handle()]);
-		nodeToDescriptionMap[handleToNodeMap[system.Handle()]] = makeDescription(system);
-		for (const auto & condition : system.AlertCondition()) {
-			handleToNodeMap[condition.Handle()] = ++lastNode;
-			result << "n" << handleToNodeMap[system.Handle()] << " -> n" << handleToNodeMap[condition.Handle()] << "[weight=100;];" << std::endl;
+		handleToNodeMap[system.getHandle()] = ++lastNode;
+		result << "n" << handleToNodeMap[ownerHandle] << " -> n" << handleToNodeMap[system.getHandle()] << "[];" << std::endl;
+		result << makeFormat(system, handleToNodeMap[system.getHandle()]);
+		nodeToDescriptionMap[handleToNodeMap[system.getHandle()]] = makeDescription(system);
+		for (const auto & condition : system.getAlertCondition()) {
+			handleToNodeMap[condition.getHandle()] = ++lastNode;
+			result << "n" << handleToNodeMap[system.getHandle()] << " -> n" << handleToNodeMap[condition.getHandle()] << "[weight=100;];" << std::endl;
 			if (auto casted = dynamic_cast<const CDM::LimitAlertConditionDescriptor *>(&condition)) {
-				nodeToDescriptionMap[handleToNodeMap[condition.Handle()]] = makeDescription(*casted);
-				result << makeFormat(*casted, handleToNodeMap[casted->Handle()]);
+				nodeToDescriptionMap[handleToNodeMap[condition.getHandle()]] = makeDescription(*casted);
+				result << makeFormat(*casted, handleToNodeMap[casted->getHandle()]);
 			} else {
-				nodeToDescriptionMap[handleToNodeMap[condition.Handle()]] = makeDescription(condition);
-				result << makeFormat(condition, handleToNodeMap[condition.Handle()]);
+				nodeToDescriptionMap[handleToNodeMap[condition.getHandle()]] = makeDescription(condition);
+				result << makeFormat(condition, handleToNodeMap[condition.getHandle()]);
 			}
 		}
-		for (const auto & signal : system.AlertSignal()) {
-			handleToNodeMap[signal.Handle()] = ++lastNode;
-			result << "n" << handleToNodeMap[system.Handle()] << " -> n" << handleToNodeMap[signal.Handle()] << "[weight=100;];" << std::endl;
-			nodeToDescriptionMap[handleToNodeMap[signal.Handle()]] = makeDescription(signal);
-			result << makeFormat(signal, handleToNodeMap[signal.Handle()]);
+		for (const auto & signal : system.getAlertSignal()) {
+			handleToNodeMap[signal.getHandle()] = ++lastNode;
+			result << "n" << handleToNodeMap[system.getHandle()] << " -> n" << handleToNodeMap[signal.getHandle()] << "[weight=100;];" << std::endl;
+			nodeToDescriptionMap[handleToNodeMap[signal.getHandle()]] = makeDescription(signal);
+			result << makeFormat(signal, handleToNodeMap[signal.getHandle()]);
 		}
 	};
 
 	// walk through mdib
-	if (mdib.MdDescription().present()) {
-		const CDM::MdDescription & mddescription(mdib.MdDescription().get());
-		for (const auto & mds : mddescription.Mds()) {
+	if (mdib.getMdDescription().present()) {
+		const CDM::MdDescription & mddescription(mdib.getMdDescription().get());
+		for (const auto & mds : mddescription.getMds()) {
 			//if (const CDM::MdsDescriptor * mds = dynamic_cast<const CDM::MdsDescriptor *>(&mds)) {
-			handleToNodeMap[mds.Handle()] = ++lastNode;
-			nodeToDescriptionMap[handleToNodeMap[mds.Handle()]] = makeDescription(mds);
-			result << makeFormat(mds, handleToNodeMap[mds.Handle()]);
+			handleToNodeMap[mds.getHandle()] = ++lastNode;
+			nodeToDescriptionMap[handleToNodeMap[mds.getHandle()]] = makeDescription(mds);
+			result << makeFormat(mds, handleToNodeMap[mds.getHandle()]);
 
-			if (mds.AlertSystem().present()) {
-				processAlertSystemDescriptor(mds.AlertSystem().get(), mds.Handle());
+			if (mds.getAlertSystem().present()) {
+				processAlertSystemDescriptor(mds.getAlertSystem().get(), mds.getHandle());
 			}
 
-			if (mds.Sco().present()) {
-				const CDM::ScoDescriptor & sco(mds.Sco().get());
-				handleToNodeMap[sco.Handle()] = ++lastNode;
-				result << "n" << handleToNodeMap[mds.Handle()] << " -> n" << handleToNodeMap[sco.Handle()] << "[];" << std::endl;
-				nodeToDescriptionMap[handleToNodeMap[sco.Handle()]] = makeDescription(sco);
-				for (const auto & operation : sco.Operation()) {
-					handleToNodeMap[operation.Handle()] = ++lastNode;
-					result << "n" << handleToNodeMap[sco.Handle()] << " -> n" << handleToNodeMap[operation.Handle()] << "[weight=10000;];" << std::endl;
+			if (mds.getSco().present()) {
+				const CDM::ScoDescriptor & sco(mds.getSco().get());
+				handleToNodeMap[sco.getHandle()] = ++lastNode;
+				result << "n" << handleToNodeMap[mds.getHandle()] << " -> n" << handleToNodeMap[sco.getHandle()] << "[];" << std::endl;
+				nodeToDescriptionMap[handleToNodeMap[sco.getHandle()]] = makeDescription(sco);
+				for (const auto & operation : sco.getOperation()) {
+					handleToNodeMap[operation.getHandle()] = ++lastNode;
+					result << "n" << handleToNodeMap[sco.getHandle()] << " -> n" << handleToNodeMap[operation.getHandle()] << "[weight=10000;];" << std::endl;
 
 					if (auto casted = dynamic_cast<const CDM::SetStringOperationDescriptor *>(&operation)) {
-						nodeToDescriptionMap[handleToNodeMap[operation.Handle()]] = makeDescription(*casted);
+						nodeToDescriptionMap[handleToNodeMap[operation.getHandle()]] = makeDescription(*casted);
 					} else if (auto casted = dynamic_cast<const CDM::SetValueOperationDescriptor *>(&operation)) {
-						nodeToDescriptionMap[handleToNodeMap[operation.Handle()]] = makeDescription(*casted);
+						nodeToDescriptionMap[handleToNodeMap[operation.getHandle()]] = makeDescription(*casted);
 					} else if (auto casted = dynamic_cast<const CDM::SetContextStateOperationDescriptor*>(&operation)) {
-						nodeToDescriptionMap[handleToNodeMap[operation.Handle()]] = makeDescription(*casted);
+						nodeToDescriptionMap[handleToNodeMap[operation.getHandle()]] = makeDescription(*casted);
 					} else if (auto casted = dynamic_cast<const CDM::SetAlertStateOperationDescriptor *>(&operation)) {
-						nodeToDescriptionMap[handleToNodeMap[operation.Handle()]] = makeDescription(*casted);
+						nodeToDescriptionMap[handleToNodeMap[operation.getHandle()]] = makeDescription(*casted);
 					} else if (auto casted = dynamic_cast<const CDM::ActivateOperationDescriptor *>(&operation)) {
-						nodeToDescriptionMap[handleToNodeMap[operation.Handle()]] = makeDescription(*casted);
+						nodeToDescriptionMap[handleToNodeMap[operation.getHandle()]] = makeDescription(*casted);
 					} else if (auto casted = dynamic_cast<const CDM::SetComponentStateOperationDescriptor *>(&operation)) {
-						nodeToDescriptionMap[handleToNodeMap[operation.Handle()]] = makeDescription(*casted);
+						nodeToDescriptionMap[handleToNodeMap[operation.getHandle()]] = makeDescription(*casted);
 					} else if (auto casted = dynamic_cast<const CDM::SetMetricStateOperationDescriptor *>(&operation)) {
-						nodeToDescriptionMap[handleToNodeMap[operation.Handle()]] = makeDescription(*casted);
+						nodeToDescriptionMap[handleToNodeMap[operation.getHandle()]] = makeDescription(*casted);
 					}
 				}
 			}
 
-			if (mds.SystemContext().present()) {
-				const CDM::SystemContextDescriptor & systemContext(mds.SystemContext().get());
-				handleToNodeMap[systemContext.Handle()] = ++lastNode;
-				result << "n" << handleToNodeMap[mds.Handle()] << " -> n" << handleToNodeMap[systemContext.Handle()] << "[];" << std::endl;
-				result << makeFormat(systemContext, handleToNodeMap[systemContext.Handle()]);
-				nodeToDescriptionMap[handleToNodeMap[systemContext.Handle()]] = makeDescription(systemContext);
+			if (mds.getSystemContext().present()) {
+				const CDM::SystemContextDescriptor & systemContext(mds.getSystemContext().get());
+				handleToNodeMap[systemContext.getHandle()] = ++lastNode;
+				result << "n" << handleToNodeMap[mds.getHandle()] << " -> n" << handleToNodeMap[systemContext.getHandle()] << "[];" << std::endl;
+				result << makeFormat(systemContext, handleToNodeMap[systemContext.getHandle()]);
+				nodeToDescriptionMap[handleToNodeMap[systemContext.getHandle()]] = makeDescription(systemContext);
 
 				// todo: find a good way to draw multiple EnsembleContexts and OperatorContexts
 //				if (systemContext.EnsembleContext().present()) {
 //					const CDM::EnsembleContextDescriptor & context(systemContext.EnsembleContext().get());
-//					handleToNodeMap[context.Handle()] = ++lastNode;
-//					result << "n" << handleToNodeMap[systemContext.Handle()] << " -> n" << handleToNodeMap[context.Handle()] << "[weight=100;];" << std::endl;
-//					result << makeFormat(context, handleToNodeMap[context.Handle()]);
-//					nodeToDescriptionMap[handleToNodeMap[context.Handle()]] = makeDescription(context);
+//					handleToNodeMap[context.getHandle()] = ++lastNode;
+//					result << "n" << handleToNodeMap[systemContext.getHandle()] << " -> n" << handleToNodeMap[context.getHandle()] << "[weight=100;];" << std::endl;
+//					result << makeFormat(context, handleToNodeMap[context.getHandle()]);
+//					nodeToDescriptionMap[handleToNodeMap[context.getHandle()]] = makeDescription(context);
 //				}
-				if (systemContext.LocationContext().present()) {
-					const CDM::LocationContextDescriptor & context(systemContext.LocationContext().get());
-					handleToNodeMap[context.Handle()] = ++lastNode;
-					result << "n" << handleToNodeMap[systemContext.Handle()] << " -> n" << handleToNodeMap[context.Handle()] << "[weight=100;];" << std::endl;
-					result << makeFormat(context, handleToNodeMap[context.Handle()]);
-					nodeToDescriptionMap[handleToNodeMap[context.Handle()]] = makeDescription(context);
+				if (systemContext.getLocationContext().present()) {
+					const CDM::LocationContextDescriptor & context(systemContext.getLocationContext().get());
+					handleToNodeMap[context.getHandle()] = ++lastNode;
+					result << "n" << handleToNodeMap[systemContext.getHandle()] << " -> n" << handleToNodeMap[context.getHandle()] << "[weight=100;];" << std::endl;
+					result << makeFormat(context, handleToNodeMap[context.getHandle()]);
+					nodeToDescriptionMap[handleToNodeMap[context.getHandle()]] = makeDescription(context);
 				}
 //				if (systemContext.OperatorContext().present()) {
 //					const CDM::OperatorContextDescriptor & context(systemContext.OperatorContext().get());
-//					handleToNodeMap[context.Handle()] = ++lastNode;
-//					result << "n" << handleToNodeMap[systemContext.Handle()] << " -> n" << handleToNodeMap[context.Handle()] << "[weight=100;];" << std::endl;
-//					result << makeFormat(context, handleToNodeMap[context.Handle()]);
-//					nodeToDescriptionMap[handleToNodeMap[context.Handle()]] = makeDescription(context);
+//					handleToNodeMap[context.getHandle()] = ++lastNode;
+//					result << "n" << handleToNodeMap[systemContext.getHandle()] << " -> n" << handleToNodeMap[context.getHandle()] << "[weight=100;];" << std::endl;
+//					result << makeFormat(context, handleToNodeMap[context.getHandle()]);
+//					nodeToDescriptionMap[handleToNodeMap[context.getHandle()]] = makeDescription(context);
 //				}
-				if (systemContext.PatientContext().present()) {
-					const CDM::PatientContextDescriptor & context(systemContext.PatientContext().get());
-					handleToNodeMap[context.Handle()] = ++lastNode;
-					result << "n" << handleToNodeMap[systemContext.Handle()] << " -> n" << handleToNodeMap[context.Handle()] << "[weight=100;];" << std::endl;
-					result << makeFormat(context, handleToNodeMap[context.Handle()]);
-					nodeToDescriptionMap[handleToNodeMap[context.Handle()]] = makeDescription(context);
+				if (systemContext.getPatientContext().present()) {
+					const CDM::PatientContextDescriptor & context(systemContext.getPatientContext().get());
+					handleToNodeMap[context.getHandle()] = ++lastNode;
+					result << "n" << handleToNodeMap[systemContext.getHandle()] << " -> n" << handleToNodeMap[context.getHandle()] << "[weight=100;];" << std::endl;
+					result << makeFormat(context, handleToNodeMap[context.getHandle()]);
+					nodeToDescriptionMap[handleToNodeMap[context.getHandle()]] = makeDescription(context);
 				}
 //				if (systemContext.WorkflowContext().present()) {
 //					const CDM::WorkflowContextDescriptor & context(systemContext.WorkflowContext().get());
-//					handleToNodeMap[context.Handle()] = ++lastNode;
-//					result << "n" << handleToNodeMap[systemContext.Handle()] << " -> n" << handleToNodeMap[context.Handle()] << "[weight=100;];" << std::endl;
-//					result << makeFormat(context, handleToNodeMap[context.Handle()]);
-//					nodeToDescriptionMap[handleToNodeMap[context.Handle()]] = makeDescription(context);
+//					handleToNodeMap[context.getHandle()] = ++lastNode;
+//					result << "n" << handleToNodeMap[systemContext.getHandle()] << " -> n" << handleToNodeMap[context.getHandle()] << "[weight=100;];" << std::endl;
+//					result << makeFormat(context, handleToNodeMap[context.getHandle()]);
+//					nodeToDescriptionMap[handleToNodeMap[context.getHandle()]] = makeDescription(context);
 //				}
 			}
 
 
-			for (const auto & vmdDescriptor : mds.Vmd()) {
-				handleToNodeMap[vmdDescriptor.Handle()] = ++lastNode;
-				result << "n" << handleToNodeMap[mds.Handle()] << " -> n" << handleToNodeMap[vmdDescriptor.Handle()] << "[];" << std::endl;
-				nodeToDescriptionMap[handleToNodeMap[vmdDescriptor.Handle()]] = makeDescription(vmdDescriptor);
-				result << "n" << handleToNodeMap[vmdDescriptor.Handle()] << "[style=\"filled,solid\"; fillcolor=\"" << structureColor <<"\"];" << std::endl;
-				result << makeFormat(vmdDescriptor, handleToNodeMap[vmdDescriptor.Handle()]);
+			for (const auto & vmdDescriptor : mds.getVmd()) {
+				handleToNodeMap[vmdDescriptor.getHandle()] = ++lastNode;
+				result << "n" << handleToNodeMap[mds.getHandle()] << " -> n" << handleToNodeMap[vmdDescriptor.getHandle()] << "[];" << std::endl;
+				nodeToDescriptionMap[handleToNodeMap[vmdDescriptor.getHandle()]] = makeDescription(vmdDescriptor);
+				result << "n" << handleToNodeMap[vmdDescriptor.getHandle()] << "[style=\"filled,solid\"; fillcolor=\"" << structureColor <<"\"];" << std::endl;
+				result << makeFormat(vmdDescriptor, handleToNodeMap[vmdDescriptor.getHandle()]);
 
-				if (vmdDescriptor.AlertSystem().present()) {
-					processAlertSystemDescriptor(vmdDescriptor.AlertSystem().get(), vmdDescriptor.Handle());
+				if (vmdDescriptor.getAlertSystem().present()) {
+					processAlertSystemDescriptor(vmdDescriptor.getAlertSystem().get(), vmdDescriptor.getHandle());
 				}
 
-				for (const auto & channelDescriptor : vmdDescriptor.Channel()) {
-					handleToNodeMap[channelDescriptor.Handle()] = ++lastNode;
-					result << "n" << handleToNodeMap[vmdDescriptor.Handle()] << " -> n" << handleToNodeMap[channelDescriptor.Handle()] << "[];" << std::endl;
-					nodeToDescriptionMap[handleToNodeMap[channelDescriptor.Handle()]] = makeDescription(channelDescriptor);
-					result << makeFormat(channelDescriptor, handleToNodeMap[channelDescriptor.Handle()]);
+				for (const auto & channelDescriptor : vmdDescriptor.getChannel()) {
+					handleToNodeMap[channelDescriptor.getHandle()] = ++lastNode;
+					result << "n" << handleToNodeMap[vmdDescriptor.getHandle()] << " -> n" << handleToNodeMap[channelDescriptor.getHandle()] << "[];" << std::endl;
+					nodeToDescriptionMap[handleToNodeMap[channelDescriptor.getHandle()]] = makeDescription(channelDescriptor);
+					result << makeFormat(channelDescriptor, handleToNodeMap[channelDescriptor.getHandle()]);
 
 
-					for (const auto & metricDescriptor : channelDescriptor.Metric()) {
-						handleToNodeMap[metricDescriptor.Handle()] = ++lastNode;
-						result << "n" << handleToNodeMap[channelDescriptor.Handle()] << " -> n" << handleToNodeMap[metricDescriptor.Handle()] << "[weight=100;];" << std::endl;
+					for (const auto & metricDescriptor : channelDescriptor.getMetric()) {
+						handleToNodeMap[metricDescriptor.getHandle()] = ++lastNode;
+						result << "n" << handleToNodeMap[channelDescriptor.getHandle()] << " -> n" << handleToNodeMap[metricDescriptor.getHandle()] << "[weight=100;];" << std::endl;
 
 						if (auto casted = dynamic_cast<const CDM::NumericMetricDescriptor *>(&metricDescriptor)) {
-							nodeToDescriptionMap[handleToNodeMap[metricDescriptor.Handle()]] = makeDescription(*casted);
-							result << makeFormat(*casted, handleToNodeMap[casted->Handle()]);
+							nodeToDescriptionMap[handleToNodeMap[metricDescriptor.getHandle()]] = makeDescription(*casted);
+							result << makeFormat(*casted, handleToNodeMap[casted->getHandle()]);
 						} else if (auto casted = dynamic_cast<const CDM::EnumStringMetricDescriptor *>(&metricDescriptor)) {
-							nodeToDescriptionMap[handleToNodeMap[metricDescriptor.Handle()]] = makeDescription(*casted);
-							result << makeFormat(*casted, handleToNodeMap[casted->Handle()]);
+							nodeToDescriptionMap[handleToNodeMap[metricDescriptor.getHandle()]] = makeDescription(*casted);
+							result << makeFormat(*casted, handleToNodeMap[casted->getHandle()]);
 						} else if (auto casted = dynamic_cast<const CDM::StringMetricDescriptor *>(&metricDescriptor)) {
-							nodeToDescriptionMap[handleToNodeMap[metricDescriptor.Handle()]] = makeDescription(*casted);
-							result << makeFormat(*casted, handleToNodeMap[casted->Handle()]);
+							nodeToDescriptionMap[handleToNodeMap[metricDescriptor.getHandle()]] = makeDescription(*casted);
+							result << makeFormat(*casted, handleToNodeMap[casted->getHandle()]);
 						} else if (auto casted = dynamic_cast<const CDM::RealTimeSampleArrayMetricDescriptor *>(&metricDescriptor)) {
-							nodeToDescriptionMap[handleToNodeMap[metricDescriptor.Handle()]] = makeDescription(*casted);
-							result << makeFormat(*casted, handleToNodeMap[casted->Handle()]);
+							nodeToDescriptionMap[handleToNodeMap[metricDescriptor.getHandle()]] = makeDescription(*casted);
+							result << makeFormat(*casted, handleToNodeMap[casted->getHandle()]);
 						} else if (auto casted = dynamic_cast<const CDM::DistributionSampleArrayMetricDescriptor *>(&metricDescriptor)) {
-							nodeToDescriptionMap[handleToNodeMap[metricDescriptor.Handle()]] = makeDescription(*casted);
-							result << makeFormat(*casted, handleToNodeMap[casted->Handle()]);
+							nodeToDescriptionMap[handleToNodeMap[metricDescriptor.getHandle()]] = makeDescription(*casted);
+							result << makeFormat(*casted, handleToNodeMap[casted->getHandle()]);
 						}
 					}
 				}
@@ -1304,26 +1304,26 @@ std::string buildDotGraph(CDM::Mdib& mdib) {
 		}
 
 		// second pass for operation targets
-		for (const auto & mds : mddescription.Mds()) {
-			if (mds.Sco().present()) {
-				for (const auto & operation : mds.Sco().get().Operation()) {
-					if (handleToNodeMap.find(operation.OperationTarget()) != handleToNodeMap.end()) {
-						result << "n" << handleToNodeMap[operation.OperationTarget()] << "[shape=octagon];" << std::endl;
+		for (const auto & mds : mddescription.getMds()) {
+			if (mds.getSco().present()) {
+				for (const auto & operation : mds.getSco().get().getOperation()) {
+					if (handleToNodeMap.find(operation.getOperationTarget()) != handleToNodeMap.end()) {
+						result << "n" << handleToNodeMap[operation.getOperationTarget()] << "[shape=octagon];" << std::endl;
 					} else {
-						result << "n" << handleToNodeMap[operation.Handle()] << " -> unassigned;" << std::endl;
+						result << "n" << handleToNodeMap[operation.getHandle()] << " -> unassigned;" << std::endl;
 					}
 				}
 			}
 		}
 
 		// states
-		if (mdib.MdState().present()) {
-			for (const auto & state : mdib.MdState().get().State()) {
+		if (mdib.getMdState().present()) {
+			for (const auto & state : mdib.getMdState().get().getState()) {
 				unsigned int currentNode = ++lastNode;
 
 				// connect to descriptor
-				if (handleToNodeMap.find(state.DescriptorHandle()) != handleToNodeMap.end()) {
-					result << "n" << handleToNodeMap[state.DescriptorHandle()] << " -> n" << currentNode << " [dir=back,style=dashed];" << std::endl;
+				if (handleToNodeMap.find(state.getDescriptorHandle()) != handleToNodeMap.end()) {
+					result << "n" << handleToNodeMap[state.getDescriptorHandle()] << " -> n" << currentNode << " [dir=back,style=dashed];" << std::endl;
 				} else {
 					result << "n" << currentNode << " -> unassigned;" << std::endl;
 				}
@@ -1341,9 +1341,9 @@ std::string buildDotGraph(CDM::Mdib& mdib) {
 					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
 					result << makeFormat(*casted, currentNode);
 					// force alert system states next to alert system
-					if (handleToNodeMap.find(state.DescriptorHandle()) != handleToNodeMap.end()) {
+					if (handleToNodeMap.find(state.getDescriptorHandle()) != handleToNodeMap.end()) {
 						result << " { rank = same; " ;
-						result << "n" << handleToNodeMap[state.DescriptorHandle()] << "; n" << currentNode << ";";
+						result << "n" << handleToNodeMap[state.getDescriptorHandle()] << "; n" << currentNode << ";";
 						result << "} " << std::endl ;
 					}
 				} else if (auto casted = dynamic_cast<const CDM::EnsembleContextState *>(&state)) {
@@ -1429,9 +1429,20 @@ int main() {
 	SDCLibrary::getInstance().startup(OSELib::LogLevel::Debug);
 	DebugOut(DebugOut::Default, "MDIBVisualizer") << std::endl << "Compile dotfiles with: " << "ls *.dot | xargs -I {} dot -Tpdf {} -o {}.pdf";
 
-    auto t_SDCInstance = std::make_shared<SDCInstance>();
+    // Create a new SDCInstance (no flag will auto init)
+    auto t_SDCInstance = std::make_shared<SDCInstance>(true);
+
+    // Some restriction
+    t_SDCInstance->setIP6enabled(false);
+    t_SDCInstance->setIP4enabled(true);
+    // Bind it to interface that matches the internal criteria (usually the first enumerated)
+    if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
+        DebugOut(DebugOut::Default, "ReferenceProviderSSL") << "Failed to bind to default network interface! Exit..." << std::endl;
+        return -1;
+    }
 
 	OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
+
 
 	//int loopcounter = 0;
 	//while (true) {
@@ -1459,7 +1470,7 @@ int main() {
 				auto rawMessage = OSELib::Helper::Message::create(consumer->requestRawMdib());
 				auto xercesDocument = OSELib::Helper::XercesDocumentWrapper::create(*rawMessage, grammarProvider);
 
-				std::unique_ptr<CDM::Mdib> mdib(CDM::MdibContainer(xercesDocument->getDocument()));
+				std::unique_ptr<CDM::Mdib> mdib(CDM::parseMdibContainer(xercesDocument->getDocument()));
 
 				if (mdib) {
 					outFile << buildDotGraph(*mdib);

@@ -1,7 +1,10 @@
 Update to 4.4.3
 - Activates and Alarms can now be part of the MDS and VMD
-- Referenze implementation for compability tests added as ExampleProviderSSL and ExampleConsumerSSL (Console parameter -tls enables TlS -epr
-  <epr> sets the EndpointEnding to search for by the ExampleConsumerSSL. 
+- Referenze implementation for compability tests added as ReferenceProvider and ReferenceConsumer. (Console parameter -tls enables TlS -epr
+  <epr> sets the EndpointEnding to search for by the ReferenceConsumer. 
+- Examples cleanup
+- ExampleProvider and ExampleConsumer -> _old
+- MDIBVisualizer working again but needs further refactoring.
 
 
 Update to 4.4.2

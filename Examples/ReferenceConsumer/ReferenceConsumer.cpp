@@ -15,7 +15,7 @@
   */
 
 /*
- * ExampleConsumer.cpp
+ * ReferenceConsumer.cpp
  *
  *  @Copyright (C) 2018, SurgiTAIX AG
  *  Author: baumeister, rosenau
@@ -86,14 +86,14 @@ public:
     void onStateChanged(const NumericMetricState& p_changedState) override
     {
         auto t_newValue{p_changedState.getMetricValue().getValue()};
-        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received value changed of " << getDescriptorHandle() << ": " << t_newValue << std::endl;
+        DebugOut(DebugOut::Default, "ReferenceConsumer") << "Consumer: Received value changed of " << getDescriptorHandle() << ": " << t_newValue << std::endl;
         m_currentWeight == t_newValue ? m_timesValueChanged : m_timesValueChanged++;
         m_currentWeight = t_newValue;
     }
 
     void onOperationInvoked(const OperationInvocationContext& oic, InvocationState p_is) override
     {
-        DebugOut(DebugOut::Default, "ExampleConsumer") << "Consumer: Received operation invoked (numeric metric) (ID, STATE) of " << getDescriptorHandle() << ": " << oic.transactionId << ", " << Data::SDC::EnumToString::convert(p_is) << std::endl;
+        DebugOut(DebugOut::Default, "ReferenceConsumer") << "Consumer: Received operation invoked (numeric metric) (ID, STATE) of " << getDescriptorHandle() << ": " << oic.transactionId << ", " << Data::SDC::EnumToString::convert(p_is) << std::endl;
     }
 
     double getCurrentWeight() const
@@ -165,7 +165,7 @@ public:
 
 	void onStateChanged(const AlertConditionState& p_changedState) override
 	{
-		DebugOut(DebugOut::Default, "ExampleConsumer") << EnumToString::convert(p_changedState.getActivationState()) << std::endl;
+		DebugOut(DebugOut::Default, "ReferenceConsumer") << EnumToString::convert(p_changedState.getActivationState()) << std::endl;
 		if(p_changedState.hasPresence())
 		{
 			auto t_newValue = p_changedState.getPresence();
@@ -180,7 +180,7 @@ public:
 	}
 	int getTimesValueChanged() const
 	{
-		DebugOut(DebugOut::Default, "ExampleConsumer") << getDescriptorHandle() << " " << m_timesValueChanged << "\n";
+		DebugOut(DebugOut::Default, "ReferenceConsumer") << getDescriptorHandle() << " " << m_timesValueChanged << "\n";
 		return m_timesValueChanged;
 	}
 private:
@@ -200,7 +200,7 @@ public:
 	void onStateChanged(const AlertSignalState& p_changedState) override
 	{
 		if(p_changedState.hasPresence())
-			DebugOut(DebugOut::Default, "ExampleConsumer") << getDescriptorHandle() << " alert presence changed to: " << EnumToString::convert(p_changedState.getPresence()) << "\n";
+			DebugOut(DebugOut::Default, "ReferenceConsumer") << getDescriptorHandle() << " alert presence changed to: " << EnumToString::convert(p_changedState.getPresence()) << "\n";
 		{
 			auto t_newValue = p_changedState.getPresence();
 			m_presence == t_newValue ? m_timesValueChanged : m_timesValueChanged++;
@@ -215,7 +215,7 @@ public:
 
 	int getTimesValueChanged() const
 	{
-		DebugOut(DebugOut::Default, "ExampleConsumer") << getDescriptorHandle() << " " << m_timesValueChanged << "\n";
+		DebugOut(DebugOut::Default, "ReferenceConsumer") << getDescriptorHandle() << " " << m_timesValueChanged << "\n";
 		return m_timesValueChanged;
 	}
 private:
@@ -236,20 +236,20 @@ public:
 	{
 		std::vector<double> t_sampleValues = p_changedState.getMetricValue().getSamples();
 
-		DebugOut(DebugOut::Default, "ExampleConsumer") << "Received chunk! Handle: " << p_changedState.getDescriptorHandle() << std::endl;
+		DebugOut(DebugOut::Default, "ReferenceConsumer") << "Received chunk! Handle: " << p_changedState.getDescriptorHandle() << std::endl;
 		std::string out("Content: ");
 		for (const auto t_value : t_sampleValues)
 		{
 			out.append(" " + std::to_string(t_value));
 		}
-		DebugOut(DebugOut::Default, "ExampleConsumer") << out;
+		DebugOut(DebugOut::Default, "ReferenceConsumer") << out;
 	}
 };
 
 
 void waitForUserInput() {
 	std::string temp;
-	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumerSSL") << "Press key to proceed.";
+	Util::DebugOut(Util::DebugOut::Default, "ReferenceConsumerSSL") << "Press key to proceed.";
 	std::cin >> temp;
 }
 
@@ -307,7 +307,7 @@ int main(int argc, char *argv[])
 
 
 
-	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumerSSL") << "Startup";
+	Util::DebugOut(Util::DebugOut::Default, "ReferenceConsumerSSL") << "Startup";
     SDCLibrary::getInstance().startup(OSELib::LogLevel::None);
 
     // Create a new SDCInstance (no flag will auto init)
@@ -317,7 +317,7 @@ int main(int argc, char *argv[])
     t_SDCInstance->setIP4enabled(true);
     // Bind it to interface that matches the internal criteria (usually the first enumerated)
     if(!t_SDCInstance->bindToDefaultNetworkInterface()) {
-        DebugOut(DebugOut::Default, "ExampleConsumer") << "Failed to bind to default network interface! Exit..." << std::endl;
+        DebugOut(DebugOut::Default, "ReferenceConsumer") << "Failed to bind to default network interface! Exit..." << std::endl;
         return -1;
     }
 
@@ -329,7 +329,7 @@ int main(int argc, char *argv[])
 
 		// Init SSL (Default Params should be fine)
 		if(!t_SDCInstance->initSSL()) {
-			DebugOut(DebugOut::Default, "ExampleConsumer") << "Failed to init SSL!" << std::endl;
+			DebugOut(DebugOut::Default, "ReferenceConsumer") << "Failed to init SSL!" << std::endl;
 			return -1;
 		}
 		// Configure SSL
@@ -366,10 +366,10 @@ int main(int argc, char *argv[])
 			std::cout << std::to_string(i) + ". " + consumer->getEndpointReference() << std::endl;
 			i++;
 		}
-		DebugOut(DebugOut::Default, "ExampleConsumer") << "Enter the Endpoint Reference of your choice" << std::endl;
+		DebugOut(DebugOut::Default, "ReferenceConsumer") << "Enter the Endpoint Reference of your choice" << std::endl;
 		std::cin >> selected;
 		t_consumer = std::move(t_availableConsumers[selected-1]);
-		DebugOut(DebugOut::Default, "ExampleConsumer") << t_consumer->getEndpointReference() << std::endl;
+		DebugOut(DebugOut::Default, "ReferenceConsumer") << t_consumer->getEndpointReference() << std::endl;
 	}
 	else
 	{
@@ -456,7 +456,7 @@ int main(int argc, char *argv[])
 			{
 				if(numeric_static_get->hasMetricValue())
 				{
-					Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested get metrics value: " << numeric_static_get->getMetricValue().getValue();
+					Util::DebugOut(Util::DebugOut::Default, "ReferenceConsumer") << "Requested get metrics value: " << numeric_static_get->getMetricValue().getValue();
 				}
 			}
 
@@ -466,7 +466,7 @@ int main(int argc, char *argv[])
 			{
 				if(string_static_get->hasMetricValue())
 				{
-					Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested get metrics value: " << string_static_get->getMetricValue().getValue();
+					Util::DebugOut(Util::DebugOut::Default, "ReferenceConsumer") << "Requested get metrics value: " << string_static_get->getMetricValue().getValue();
 				}
 			}
 
@@ -476,7 +476,7 @@ int main(int argc, char *argv[])
 			{
 				if(enum_static_get->hasMetricValue())
 				{
-					Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Requested get metrics value: " << enum_static_get->getMetricValue().getValue();
+					Util::DebugOut(Util::DebugOut::Default, "ReferenceConsumer") << "Requested get metrics value: " << enum_static_get->getMetricValue().getValue();
 				}
 			}
 
@@ -494,7 +494,7 @@ int main(int argc, char *argv[])
 				FutureInvocationState fis;
 				t_consumer->commitState(*t_setMetricState, fis);
 				// Now wait for "InvocationState::Fin" (=> Success)
-				Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result metric state: " << fis.waitReceived(InvocationState::Fin, 2000);
+				Util::DebugOut(Util::DebugOut::Default, "ReferenceConsumer") << "Commit result metric state: " << fis.waitReceived(InvocationState::Fin, 2000);
 			}
 
 			FutureInvocationState fis;
@@ -537,16 +537,16 @@ int main(int argc, char *argv[])
 
 			std::cout << "### Test 1. ### failed \n";
 			std::cout << "### Test 2. ### failed \n";
-			Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Discovery failed. \n";
+			Util::DebugOut(Util::DebugOut::Default, "ReferenceConsumer") << "Discovery failed. \n";
 		}
 	}
 	catch (std::exception& e)
 	{
 		std::cout << "### Test 1. ### failed \n";
 		std::cout << "### Test 2. ### failed \n";
-		Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Exception: " << e.what() << std::endl;
+		Util::DebugOut(Util::DebugOut::Default, "ReferenceConsumer") << "Exception: " << e.what() << std::endl;
 	}
 
-	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Shutdown." << std::endl;
+	Util::DebugOut(Util::DebugOut::Default, "ReferenceConsumer") << "Shutdown." << std::endl;
 	return 0;
 }
