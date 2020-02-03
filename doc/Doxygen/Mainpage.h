@@ -7,9 +7,9 @@ one of the page links below.
 @li @ref intro <b>OR.NET</b>: A short introduction to the %SDCLib
 @li @ref sdcpage <b>OR.NET</b>: API for the Open Surgical Communication Protocol
 
-@version 4.4.2
+@version 4.4.3
 @author Besting, Baumeister
-@copyright (C) 2019 SurgiTAIX AG
+@copyright (C) 2020 SurgiTAIX AG
 
 @page introductionpage Introduction
 

@@ -34,10 +34,10 @@ namespace SDCLib
         // Will be replaced by CMake
         const int SDCLIBRARY_VERSION_FIRST = 4;
         const int SDCLIBRARY_VERSION_MIDDLE = 4;
-        const int SDCLIBRARY_VERSION_LAST = 2;
-        const std::string CURRENT_LIB_VERSION("4.4.2");
+        const int SDCLIBRARY_VERSION_LAST = 3;
+        const std::string CURRENT_LIB_VERSION("4.4.3");
 
-        const std::string CURRENT_C_YEAR("2019"); // Copyright year
+        const std::string CURRENT_C_YEAR("2020"); // Copyright year
 
         const std::string STR_SURGITAIX("SurgiTAIX AG"); // Company name
 
