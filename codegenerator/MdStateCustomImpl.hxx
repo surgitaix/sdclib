@@ -39,6 +39,7 @@
     MdState & addState(const VmdState & source);
     MdState & addState(const ChannelState & source);
     MdState & addState(const ScoState & source);
+	MdState & addState(const SystemContextState & source);
 
 private:
     // these classes are for internal finding states in the MDIB
@@ -61,6 +62,7 @@ private:
 	bool findState(const std::string & handle, VmdState & outState) const;
 	bool findState(const std::string & handle, ChannelState & outState) const;
 	bool findState(const std::string & handle, ScoState & outState) const;
+	bool findState(const std::string & handle, SystemContextState & outState) const;
 
 	template <class WrapperStateDescriptorType>
     bool findStateImpl(const std::string & handle, WrapperStateDescriptorType & out) const;

@@ -614,7 +614,7 @@ std::unique_ptr<TStateType> SDCConsumer::requestState(const std::string & p_hand
 		log_error([&] { return "requestState failed: Got no response object for handle "  + p_handle; });
 		return nullptr;
 	} else if (t_resultStates.size() > 1) {
-		log_error([&] { return "requestState failed: Got too many response objects for handle " + p_handle + std::to_string(t_resultStates.size()); });
+		log_error([&] { return "requestState failed: Got too many response objects for handle " + p_handle + " ( " + std::to_string(t_resultStates.size()) + " )"; });
 		return nullptr;
 	}
 

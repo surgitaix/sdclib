@@ -276,6 +276,7 @@ void DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable(Poco::Net::Readabl
     Poco::Buffer<char> t_peekBuf(peek_buffer_length);
     t_socket.receiveFrom(t_peekBuf.begin(), peek_buffer_length, t_sender, MSG_PEEK);
     if (m_networkConfig->isBound() && !m_networkConfig->belongsTo(t_sender.host())) {
+		Poco::Thread::sleep(1);	//avoid high cpu consumption in certain cases...
         return;
     }
 

@@ -422,6 +422,14 @@ namespace SDCLib
 
 				void _incrementMdStateVersion();
 
+				// Note: Hotfix initializing "implied" values
+				template<class T>
+				void _initAbstractStateDefaults(T& p_state);
+				template<class T>
+				void _initComponentStateDefaults(T& p_state);
+				template<class T>
+				void _initStateMetricValueDefaults(T& p_state);
+
 			};
 		}
 	}

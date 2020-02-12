@@ -34,7 +34,7 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     endif()
 
     # INCLUDE
-    set(XercesC_DEFAULT_INCLUDE_DIR ${XSD_ROOT}\\include\\ CACHE PATH "Manual XercesC include dir. NOTE: Set it manually if autodetection does not work." FORCE)
+    set(XercesC_DEFAULT_INCLUDE_DIR ${XSD_ROOT}\\include\\ CACHE PATH "Manual XercesC include dir. NOTE: Set it manually if autodetection does not work.")
     if(NOT EXISTS "${XercesC_DEFAULT_INCLUDE_DIR}")
         message(FATAL_ERROR "XercesC_DEFAULT_INCLUDE_DIR DOES NOT EXIST! Please set it manually and reconfigure!")
     endif()
@@ -56,7 +56,7 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     set(DEFAULT_LIB_DIR "vc-12.0")
     ################################################################################
 
-    set(XercesC_DEFAULT_LIB_DIR "${XSD_ROOT}\\${LIB_DIR}\\${DEFAULT_LIB_DIR}\\" CACHE PATH "Manual XercesC lib dir. NOTE: Set it manually if autodetection does not work." FORCE)
+    set(XercesC_DEFAULT_LIB_DIR "${XSD_ROOT}\\${LIB_DIR}\\${DEFAULT_LIB_DIR}\\" CACHE PATH "Manual XercesC lib dir. NOTE: Set it manually if autodetection does not work.")
     if(NOT EXISTS "${XercesC_DEFAULT_LIB_DIR}")
         message(FATAL_ERROR "XercesC_DEFAULT_LIB_DIR DOES NOT EXIST! Please set it manually and reconfigure!")
     endif()

@@ -55,7 +55,7 @@ template std::unique_ptr<WorkflowContextState> MdState::findState<WorkflowContex
 template std::unique_ptr<VmdState> MdState::findState<VmdState>(const std::string & handle) const;
 template std::unique_ptr<ChannelState> MdState::findState<ChannelState>(const std::string & handle) const;
 template std::unique_ptr<ScoState> MdState::findState<ScoState>(const std::string & handle) const;
-//template std::unique_ptr<SystemContextState> MdState::findState<SystemContextState>(const std::string & handle) const;
+template std::unique_ptr<SystemContextState> MdState::findState<SystemContextState>(const std::string & handle) const;
 
 template<class TState>
 std::unique_ptr<TState> MdState::findState(const std::string & handle) const {
@@ -150,9 +150,10 @@ bool MdState::findState(const std::string & handle, ChannelState & outState) con
 bool MdState::findState(const std::string & handle, ScoState & outState) const {
 	return findStateImpl<ScoState>(handle, outState);
 }
-/*bool MdState::findState(const std::string & handle, SystemContextState & outState) const {
+
+bool MdState::findState(const std::string & handle, SystemContextState & outState) const {
 	return findStateImpl<SystemContextState>(handle, outState);
-}*/
+}
 
 template <class WrapperStateDescriptorType>
 bool MdState::findStateImpl(const std::string & handle, WrapperStateDescriptorType & outState) const {
@@ -247,9 +248,10 @@ MdState & MdState::addState(const ChannelState & source) {
 MdState & MdState::addState(const ScoState & source) {
 	return addStateImpl(source);
 }
-/*MdState & MdState::addState(const SystemContextState & source) {
+
+MdState & MdState::addState(const SystemContextState & source) {
 	return addStateImpl(source);
-}*/
+}
 
 template <class WrapperStateDescriptorType>
 MdState & MdState::addStateImpl(const WrapperStateDescriptorType & source) {
