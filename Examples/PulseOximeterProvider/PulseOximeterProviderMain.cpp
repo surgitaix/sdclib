@@ -10,7 +10,12 @@ using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
-int main()
+/**
+ *
+ * Usage: PulseOximeterProvider [port]
+ * If [port] is not provided, /dev/ttyUSB0 is assumed.
+ */
+int main(int argc, char* argv[])
 {
 
 	// Startup
@@ -28,7 +33,13 @@ int main()
         return -1;
     }
 
-	PulseOximeterProvider provider(t_SDCInstance, "/dev/ttyUSB0");
+    std::string t_port = "/dev/ttyUSB0";
+    if(argc == 2)
+    {
+    	t_port = argv[1];
+    }
+
+	PulseOximeterProvider provider(t_SDCInstance, t_port);
 	provider.startMedicalDevice();
 	provider.startup();
 	provider.start();
@@ -41,4 +52,6 @@ int main()
 	DebugOut(DebugOut::Default, "PulseOximeterProvider") << "Shutdown." << std::endl;
 	provider.shutdown();
     SDCLibrary::getInstance().shutdown();
+
+    return 0;
 }

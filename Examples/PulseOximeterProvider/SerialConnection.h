@@ -102,6 +102,10 @@ private:
 	std::vector<uint8_t> _send_buffer;
 	std::string _port;
 
+	// If no measurement takes place, the pulseoximeter will shutdown for energy saving.
+	// If it is restarted, no data can be read from it, due to the missing init sequence.
+	// This thread periodically checks, if the pulseoximeter is still connected and if not
+	// attempts to send the init sequence to the device.
 	std::chrono::time_point<std::chrono::steady_clock> m_lastReceive;
 	const int m_reconnectTimeInMS = 2000;
 	std::thread m_reconnectThread;
