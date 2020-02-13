@@ -41,21 +41,22 @@ namespace SDCLib
             std::mutex m_mutex;
 
             // Poco does not allow OpenSSL SSLv23_method(). One Context for Client and one for Server Side.
-            std::atomic<bool> m_init = ATOMIC_VAR_INIT(false);
-            Poco::Net::Context::Ptr m_context_client = nullptr;
-            Poco::Net::Context::Ptr m_context_server = nullptr;
+            std::atomic<bool> m_init{false};
+            Poco::Net::Context::Ptr m_context_client{nullptr};
+            Poco::Net::Context::Ptr m_context_server{nullptr};
 
             /**
              * The used cipher selection string.
              * Explanation:
              * 	 - HIGH: Only ciphers with high keylength are used
-             * 	 - ECDH: Elliptic Curves Diffie Hellman used for key exchange
+             * 	 - ECDH: Elliptic Curves Diffie Hellman preferred for key exchange
              * 	 - SHA256:SHA384: Allowed hashing algorithms
              * 	 - !eNULL, !aNULL: No ciphers without encryption or authentication
              * 	 - !DES, !3DES: No DES variant
              * 	 - !DH, No Diffie Hellman variant (excluding elliptic curves)
              * 	 - aRSA: No RSA variant <-- TODO: Currently missing, as the used POCO version does not support ECDA
              * 	   								  key files. Consider to patch!
+	     *   - @STRENGTH: Order by strength
              */
             const std::string CIPHERSTRING = "HIGH:ECDH:SHA256:SHA384:!eNULL:!aNULL:!DES:!3DES:!DH:@STRENGTH";
 
@@ -63,7 +64,7 @@ namespace SDCLib
 
             // Special Member Functions
             SSLConfig() = default;
-            SSLConfig(const SSLConfig& p_obj) = delete;
+            SSLConfig(const SSLConfig& p_obj);
             SSLConfig(SSLConfig&& p_obj) = delete;
             SSLConfig& operator=(const SSLConfig& p_obj) = delete;
             SSLConfig& operator=(SSLConfig&& p_obj) = delete;

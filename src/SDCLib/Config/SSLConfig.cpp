@@ -5,10 +5,11 @@
 
 #include <Poco/SharedPtr.h>
 #include <Poco/Net/SSLManager.h>
-#include <Poco/Net/KeyConsoleHandler.h>
-#include <Poco/Net/ConsoleCertificateHandler.h>
+#include <Poco/Net/KeyFileHandler.h>
+#include <Poco/Net/RejectCertificateHandler.h>
 #include <Poco/Net/PrivateKeyPassphraseHandler.h>
 #include <Poco/Crypto/X509Certificate.h>
+#include <Poco/Net/SSLException.h>
 
 // IDEA: Maybe add to an abstraction layer, to enable other SSL implementations such as Wolf or Boring
 #include <openssl/ssl.h>
@@ -20,6 +21,13 @@
 
 using namespace SDCLib;
 using namespace SDCLib::Config;
+
+SSLConfig::SSLConfig(const SSLConfig& p_obj) 
+{
+	m_init = p_obj.isInit();
+	m_context_client = p_obj.m_context_client;
+	m_context_server = p_obj.m_context_server;
+}
 
 bool SSLConfig::init(const Poco::Net::Context::VerificationMode p_modeClient, const Poco::Net::Context::VerificationMode p_modeServer)
 {
@@ -57,8 +65,8 @@ bool SSLConfig::init(const Poco::Net::Context::VerificationMode p_modeClient, co
 bool SSLConfig::_initClientSide(const Poco::Net::Context::VerificationMode p_mode)
 {
     try {
-        Poco::SharedPtr<Poco::Net::PrivateKeyPassphraseHandler> pConsoleHandler = new Poco::Net::KeyConsoleHandler(false);
-        Poco::SharedPtr<Poco::Net::InvalidCertificateHandler> pInvalidCertHandler = new Poco::Net::ConsoleCertificateHandler(false);
+        Poco::SharedPtr<Poco::Net::PrivateKeyPassphraseHandler> t_privateHandler = new Poco::Net::KeyFileHandler(false);
+        Poco::SharedPtr<Poco::Net::InvalidCertificateHandler> t_invalidCertHandler = new Poco::Net::RejectCertificateHandler(false);
         m_context_client = new Poco::Net::Context(Poco::Net::Context::TLSV1_2_CLIENT_USE, "","","", p_mode, 9, false, CIPHERSTRING);
 
         // Workarounds, Migitations and Countermeasures
@@ -74,7 +82,7 @@ bool SSLConfig::_initClientSide(const Poco::Net::Context::VerificationMode p_mod
         // Disable compression
         SSL_CTX_set_options(m_context_client->sslContext(), SSL_OP_NO_COMPRESSION);
 
-        Poco::Net::SSLManager::instance().initializeClient(pConsoleHandler, pInvalidCertHandler, m_context_client);
+        Poco::Net::SSLManager::instance().initializeClient(t_privateHandler, t_invalidCertHandler, m_context_client);
         return true;
     }
     catch(...) {
@@ -85,8 +93,8 @@ bool SSLConfig::_initClientSide(const Poco::Net::Context::VerificationMode p_mod
 bool SSLConfig::_initServerSide(const Poco::Net::Context::VerificationMode p_mode)
 {
     try {
-        Poco::SharedPtr<Poco::Net::PrivateKeyPassphraseHandler> pConsoleHandler = new Poco::Net::KeyConsoleHandler(true);
-        Poco::SharedPtr<Poco::Net::InvalidCertificateHandler> pInvalidCertHandler = new Poco::Net::ConsoleCertificateHandler(true);
+        Poco::SharedPtr<Poco::Net::PrivateKeyPassphraseHandler> t_privateHandler = new Poco::Net::KeyFileHandler(true);
+        Poco::SharedPtr<Poco::Net::InvalidCertificateHandler> t_invalidCertHandler = new Poco::Net::RejectCertificateHandler(true);
         m_context_server = new Poco::Net::Context(Poco::Net::Context::TLSV1_2_SERVER_USE, "","","", p_mode, 9, false, CIPHERSTRING);
 
         // Workarounds, migitations and countermeasures
@@ -99,13 +107,13 @@ bool SSLConfig::_initServerSide(const Poco::Net::Context::VerificationMode p_mod
         SSL_CTX_set_options(m_context_server->sslContext(), SSL_OP_NO_TLSv1);
         SSL_CTX_set_options(m_context_server->sslContext(), SSL_OP_NO_TLSv1_1);
 
-        // Disable compression
+        // Disable compression. Only has to be configured on server side
         SSL_CTX_set_options(m_context_client->sslContext(), SSL_OP_NO_COMPRESSION);
 
         // Start a new session on renegotiation, preventing Triple Handshake and Renegotiation Attack (server only)
         SSL_CTX_set_options(m_context_server->sslContext(), SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION);
 
-        Poco::Net::SSLManager::instance().initializeServer(pConsoleHandler, pInvalidCertHandler, m_context_server);
+        Poco::Net::SSLManager::instance().initializeServer(t_privateHandler, t_invalidCertHandler, m_context_server);
         return true;
     }
     catch(...) {
@@ -182,6 +190,13 @@ bool SSLConfig::useKeyFiles(const std::string& p_publicKey, const std::string& p
         if(p_clientSide) { m_context_client->usePrivateKey(Poco::Crypto::RSAKey(p_publicKey, p_privateKey, p_pasphrase)); }
         if(p_serverSide) { m_context_server->usePrivateKey(Poco::Crypto::RSAKey(p_publicKey, p_privateKey, p_pasphrase)); }
         return true;
+    }
+    catch(Poco::Net::SSLContextException& e)
+    {
+    	std::cout << "SSLContextException in useKeyFiles: " << e.message() << "\n";
+    	std::cout << "Hint: Call useKeyFiles after adding the chain Certificate via useCertificate.\n";
+    	std::cout << "      To add multiple certificates call useCertificate(...); useKeyFiles(...); pairwise." << std::endl;
+        return false;
     }
     catch(...)
     {
