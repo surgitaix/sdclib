@@ -168,6 +168,76 @@ mark_as_advanced(SDC_IP_V4_ENABLED)
 mark_as_advanced(SDC_IP_V6_ENABLED)
 ################################################################################
 
+################################################################################
+# OpenSSL - Version Check
+# Note: Must be placed here in order to be added to the config file. Patch 
+# version is set to a number, where (1 = a, 2 = b, ...) 
+# In the following, the variables for the supported OpenSSL minimal version are
+# defined. The OpenSSL version is defined by major version, minor, fix, patch
+# and a status (release / development, ...) 
+################################################################################
+
+# Enable static build of OpenSSL
+# Taken from https://cmake.org/cmake/help/v3.4/module/FindOpenSSL.html#hints
+# TODO: Required here? Or should it be moved to POCO inclusion of OpenSSL? SDCLib
+# does not include OpenSSL directly
+set (OPENSSL_USE_STATIC_LIBS TRUE)
+
+# Define minimal version
+set (SDCLibrary_Minimal_OpenSSL_Version_Major          1)
+set (SDCLibrary_Minimal_OpenSSL_Version_Minor          0)
+set (SDCLibrary_Minimal_OpenSSL_Version_Fix            1)
+set (SDCLibrary_Minimal_OpenSSL_Version_Patch          3)
+set (SDCLibrary_Minimal_OpenSSL_Version_Patch_Char     "b")
+
+# Check, if package exists (normally done by POCO)
+find_package(OpenSSL REQUIRED)
+if(NOT OPENSSL_FOUND)
+    message(FATAL_ERROR "OpenSSL not found!")
+else ()
+    
+    message(STATUS "Found OpenSSL version ${OPENSSL_VERSION}")
+
+    # Build substrings containing the version level information
+    string(SUBSTRING ${OPENSSL_VERSION} 0 1 MAJOR_VERSION)
+    string(SUBSTRING ${OPENSSL_VERSION} 2 1 MINOR_VERSION)
+    string(SUBSTRING ${OPENSSL_VERSION} 4 1 FIX_VERSION)
+    string(SUBSTRING ${OPENSSL_VERSION} 5 1 PATCH_VERSION)
+  
+    # Version check. If major release is smaller than allowed, leave the build. If version is 
+    # equal to the minimal, proceed to check of minor version. Continue for the other levels
+    # accordingly
+    string(COMPARE LESS "${MAJOR_VERSION}" "${SDCLibrary_Minimal_OpenSSL_Version_Major}" MAJOR_TOO_LOW)
+    if(${MAJOR_TOO_LOW})
+        message (FATAL_ERROR "OpenSSL is too old. Expected version ${SDCLibrary_Minimal_OpenSSL_Version_Major}.${SDCLibrary_Minimal_OpenSSL_Version_Minor}.${SDCLibrary_Minimal_OpenSSL_Version_Fix}${SDCLibrary_Minimal_OpenSSL_Version_Patch_Char}. Aborting") 
+    endif()
+    string(COMPARE EQUAL "${MAJOR_VERSION}" "${SDCLibrary_Minimal_OpenSSL_Version_Major}" MAJOR_EQUAL)
+
+    if(${MAJOR_EQUAL})
+        # Check minor 
+        string(COMPARE LESS "${MAJOR_VERSION}" "${SDCLibrary_Minimal_OpenSSL_Version_Minor}" MINOR_TOO_LOW)
+        if(${MINOR_TOO_LOW})
+            message (FATAL_ERROR "OpenSSL is too old. Expected version ${SDCLibrary_Minimal_OpenSSL_Version_Major}.${SDCLibrary_Minimal_OpenSSL_Version_Minor}.${SDCLibrary_Minimal_OpenSSL_Version_Fix}${SDCLibrary_Minimal_OpenSSL_Version_Patch_Char}. Aborting")
+        endif()
+        string(COMPARE EQUAL "${MINOR_VERSION}" "${SDCLibrary_Minimal_OpenSSL_Version_Minor}" MINOR_EQUAL)            
+        if(${MINOR_EQUAL})
+            # Check Fix
+            string(COMPARE LESS "${FIX_VERSION}" "${SDCLibrary_Minimal_OpenSSL_Version_Fix}" FIX_TOO_LOW)
+            if(${MAJOR_TOO_LOW})
+                message (FATAL_ERROR "OpenSSL is too old. Expected version ${SDCLibrary_Minimal_OpenSSL_Version_Major}.${SDCLibrary_Minimal_OpenSSL_Version_Minor}.${SDCLibrary_Minimal_OpenSSL_Version_Fix}${SDCLibrary_Minimal_OpenSSL_Version_Patch_Char}. Aborting")
+            endif()
+            string(COMPARE EQUAL "${FIX_VERSION}" "${SDCLibrary_Minimal_OpenSSL_Version_Fix}" FIX_EQUAL)
+            if(${FIX_EQUAL})
+                string(COMPARE LESS "${PATCH_VERSION}" "${SDCLibrary_Minimal_OpenSSL_Version_Patch_Char}" PATCH_TOO_LOW)
+                if(${PATCH_TOO_LOW}) 
+                    message (FATAL_ERROR "OpenSSL is too old. Expected version ${SDCLibrary_Minimal_OpenSSL_Version_Major}.${SDCLibrary_Minimal_OpenSSL_Version_Minor}.${SDCLibrary_Minimal_OpenSSL_Version_Fix}${SDCLibrary_Minimal_OpenSSL_Version_Patch_Char}. Aborting")
+                endif()
+            endif() 
+        endif()
+    endif()   
+endif()
+
+
 
 ################################################################################
 # Some more paths - cleaned from symlinks

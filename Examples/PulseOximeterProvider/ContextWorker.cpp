@@ -55,6 +55,9 @@ namespace Network {
             {
                 try
                 {
+                	// Update once every second to reduce the resource consumption of the program
+                	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
                     //get all current work
                     context->poll();
                 }
@@ -64,8 +67,10 @@ namespace Network {
 
                     // Skip Asio disconnect errors
                     if (ec == asio::error::not_connected)
+                    {
+                    	std::cout << "Disconnect received" << std::endl;
                         continue;
-
+                    }
                     throw;
                 }
             } while (contextWorker->isStarted());

@@ -2,13 +2,15 @@
  * SerialConnection.cpp
  *
  *  Created on: Jun 17, 2019
- *      Author: rosenau
+ *  Modified on: Nov 28, 2019
+ *      Author: rosenau, stegemann
  */
 
 #include "SerialConnection.h"
 #include <bitset>
 #include <fcntl.h>
 #include <assert.h>
+#include <chrono>
 
 namespace Serial {
 
@@ -19,8 +21,29 @@ SerialConnection::SerialConnection(std::string port, unsigned int baud_rate) :
 	_context(_contextWorker->getContext()),
     _strand(*_context),
 	_serialPort(*_context, port),
-	_port(port)
+	_port(port),
+	m_lastReceive(std::chrono::steady_clock::now())
 {
+	// Define the reconnect thread as lambda method.
+	m_reconnectThread  = std::thread([&] {
+		while(true)
+		{
+			// Check once per second too reduce load
+			std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
+			// Calculate milliseconds between last message from pulseoximeter and now
+			auto t_now = std::chrono::steady_clock::now();
+			auto t_elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(t_now - m_lastReceive);
+
+			// If larger than a defined margin, issue reconnect
+			if(t_elapsed.count() > m_reconnectTimeInMS)
+			{
+				std::cout << "Reconnect" << std::endl;
+				reconnect();
+			}
+		}
+	});
+
 	flush(_port);
 	connect(_port, baud_rate);
 }
@@ -41,6 +64,28 @@ void SerialConnection::connect(const std::string &port, unsigned int baud_rate)
 	_serialPort.set_option(asio::serial_port_base::baud_rate(baud_rate));
 	_receive_buffer.resize(1);
 	_connected = true;
+}
+
+void SerialConnection::reconnect()
+{
+	// Reconnect is called, if the last received message exceeds
+	// the predefined margin. To prevent multiple messages, reset timer
+	m_lastReceive = std::chrono::steady_clock::now();
+
+	// Taken from PulseOximeterProvider
+	// TODO: Move to better position
+	std::string hex = "7d81a1808080808080";
+
+	int len = hex.length();
+	std::string newString;
+	for(int i=0; i < len; i+=2)
+	{
+	    std::string byte = hex.substr(i,2);
+	    char chr = (char) (int)strtol(byte.c_str(), nullptr, 16);
+	    newString.push_back(chr);
+	}
+	send(newString.c_str(), newString.size());
+
 }
 
 void SerialConnection::start()
@@ -165,6 +210,7 @@ void SerialConnection::tryReceive()
 
         if(size > 0)
         {
+        	m_lastReceive = std::chrono::steady_clock::now();
             onReceived(_receive_buffer.data(), size);
         }
 

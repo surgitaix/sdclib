@@ -278,7 +278,7 @@ PulseOximeterProvider::PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance
 
 			int len = hex.length();
 			std::string newString;
-			for(int i=0; i< len; i+=2)
+			for(int i=0; i < len; i+=2)
 			{
 			    std::string byte = hex.substr(i,2);
 			    char chr = (char) (int)strtol(byte.c_str(), nullptr, 16);
@@ -287,8 +287,9 @@ PulseOximeterProvider::PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance
 			serial->send(newString.c_str(), newString.size());
 
 			std::cout << "starting!" << std::endl;
-	    } catch(std::system_error& e)
+	    }
+	    catch(std::system_error & e)
 	    {
-	        std::cout<< "Error: "<<e.what()<< std::endl;
+	        std::cout<< "Error: "<< e.what()<< std::endl;
 	    }
 	}
