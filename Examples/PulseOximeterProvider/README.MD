@@ -2,7 +2,7 @@ The PulseOximeterProvider is a virtual device representation of the pulox PO-250
 The device can be accessed via a serial connection between the pulse oximeter and the system running the provider application using the provided USB Cable.  
 To use the serial connection the software library ASIO (https://think-async.com/Asio/) is integrated in the *Dependency* folder as git submodule. To download, execute ``git submodule update --init`` in the project root folder.    
 To start the application ensure you are connected to the Device.  
-Set the COMPort in the PulseOximeterProviderMain.cpp according to the used COMPort.  
+Set the COMPort in the PulseOximeterProviderMain.cpp according to the used COMPort or pass it as parameter to the executable.  
 Ensure you have read/write access to the COMPort using admin rights:  
 
 ``sudo ./PulseOximeterProvider``  

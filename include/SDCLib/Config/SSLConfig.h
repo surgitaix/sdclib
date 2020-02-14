@@ -45,6 +45,20 @@ namespace SDCLib
             Poco::Net::Context::Ptr m_context_client{nullptr};
             Poco::Net::Context::Ptr m_context_server{nullptr};
 
+            /**
+             * The used cipher selection string.
+             * Explanation:
+             * 	 - HIGH: Only ciphers with high keylength are used
+             * 	 - ECDH: Elliptic Curves Diffie Hellman preferred for key exchange
+             * 	 - SHA256:SHA384: Allowed hashing algorithms
+             * 	 - !eNULL, !aNULL: No ciphers without encryption or authentication
+             * 	 - !DES, !3DES: No DES variant
+             * 	 - !DH, No Diffie Hellman variant (excluding elliptic curves)
+             * 	 - aRSA: No RSA variant <-- TODO: Currently missing, as the used POCO version does not support ECDA
+             * 	   								  key files. Consider to patch!
+	     *   - @STRENGTH: Order by strength
+             */
+            const std::string CIPHERSTRING = "HIGH:ECDH:SHA256:SHA384:!eNULL:!aNULL:!DES:!3DES:!DH:@STRENGTH";
         public:
 
             // Special Member Functions

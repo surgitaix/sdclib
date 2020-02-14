@@ -46,15 +46,15 @@ using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
 
-const std::string DEVICE_EPR("UDI-ExampleProvider");
+const std::string DEVICE_EPR("UDI-1234567890");
 
 const std::string VMD_DESCRIPTOR_HANDLE("holdingDevice_vmd");
 const std::string CHANNEL_DESCRIPTOR_HANDLE("holdingDevice_channel");
 const std::string MDS_DESCRIPTOR_HANDLE("holdingDevice_mds");
 
-const std::string HANDLE_SET_METRIC("handle_set");
-const std::string HANDLE_GET_METRIC("handle_get");
-const std::string HANDLE_STREAM_METRIC("handle_stream");
+const std::string HANDLE_SET_METRIC{"handle_set"};
+const std::string HANDLE_GET_METRIC{"handle_get"};
+const std::string HANDLE_STREAM_METRIC{"handle_stream"};
 const std::string HANDLE_STRING_METRIC("handle_string");
 
 
@@ -271,6 +271,7 @@ public:
         VmdDescriptor holdingDeviceModule{VMD_DESCRIPTOR_HANDLE};
         holdingDeviceModule.addChannel(holdingDeviceParameters);
 
+
         // MDS
         MdsDescriptor holdingDeviceSystem{MDS_DESCRIPTOR_HANDLE};
         holdingDeviceSystem
@@ -297,6 +298,7 @@ public:
 
 		m_sdcProvider.addMdStateHandler(&m_numericProviderStateHandlerSet);
 		m_sdcProvider.addMdStateHandler(&m_stringProviderStateHandler);
+
 
     }
 

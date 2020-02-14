@@ -38,8 +38,6 @@ void SerialConnectionEventHandler::onReceived(const void* data, size_t size)
 {
 
 //	Bit Representation of binaryData.
-//	std::bitset<8> bitRepresentation (binaryData[0]);
-//	std::cout << bitRepresentation.to_string() << std::endl;
 	const uint8_t* binaryData = reinterpret_cast<const uint8_t*>(data);
 	if((binaryData[0]) == 0x01)
 	{
@@ -48,7 +46,7 @@ void SerialConnectionEventHandler::onReceived(const void* data, size_t size)
 
 	else if(dataPackage == 1)
 	{
-		fingerOut = binaryData[0] &0X01;
+		fingerOut = binaryData[0] & 0x01;
 	}
 
 	else if(dataPackage == 5)

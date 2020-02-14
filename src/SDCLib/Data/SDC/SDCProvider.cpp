@@ -82,9 +82,13 @@
 #include "SDCLib/Data/SDC/MDIB/SetValueOperationState.h"
 #include "SDCLib/Data/SDC/MDIB/SetStringOperationState.h"
 #include "SDCLib/Data/SDC/MDIB/SetAlertStateOperationState.h"
+#include "SDCLib/Data/SDC/MDIB/SetAlertStateOperationDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/SetComponentStateOperationState.h"
 #include "SDCLib/Data/SDC/MDIB/SetContextStateOperationState.h"
+#include "SDCLib/Data/SDC/MDIB/SetContextStateOperationDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/SetMetricStateOperationState.h"
+#include "SDCLib/Data/SDC/MDIB/SetStringOperationDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/SetValueOperationDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/ScoDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/ScoState.h"
 #include "SDCLib/Data/SDC/MDIB/SystemContextDescriptor.h"
@@ -1373,6 +1377,12 @@ bool SDCProvider::startup()
                 // NOOP
                 // well I gess not... // TODO
             }
+            else if (auto t_casted_SystemContextState = dynamic_cast<SDCProviderMDStateHandler<SystemContextState>*>(t_handler.second))
+            {
+            	auto t_state = t_casted_SystemContextState->getInitialState();
+            	_initAbstractStateDefaults(t_state);
+            	m_MdState.addState(t_state);
+            }
             else if (auto t_casted_LocationContextState = dynamic_cast<SDCProviderMDStateHandler<LocationContextState>*>(t_handler.second))
             {
             	auto t_state = t_casted_LocationContextState->getInitialState();
@@ -1433,12 +1443,47 @@ bool SDCProvider::startup()
 				_initComponentStateDefaults(t_state);
 				m_MdState.addState(t_state);
 			}
-			// Sco
+			// Sco Mds
 			if(t_Mds.hasSco()) {
 				if(!m_MdState.findState<ScoState>(t_Mds.getSco().getHandle())) {
-					auto t_state = ScoState(t_Mds.getSco().getHandle());
-					_initAbstractStateDefaults(t_state);
-					m_MdState.addState(t_state);
+					auto t_scoState = ScoState(t_Mds.getSco().getHandle());
+					_initAbstractStateDefaults(t_scoState);
+					m_MdState.addState(t_scoState);
+					for(const auto& t_activateOperation : t_Mds.getSco().collectAllActivateOperationDescriptors()) {
+						if(!m_MdState.findState<ActivateOperationState>(t_activateOperation.getHandle())) {
+							auto t_state = ActivateOperationState(t_activateOperation.getHandle(), OperatingMode::NA);
+							_initAbstractStateDefaults(t_state);
+							m_MdState.addState(t_state);
+						}
+					}
+					for(const auto& t_setAlertStateOperation : t_Mds.getSco().collectAllSetAlertStateOperationDescriptors()) {
+						if(!m_MdState.findState<SetAlertStateOperationState>(t_setAlertStateOperation.getHandle())) {
+							auto t_state = SetAlertStateOperationState(t_setAlertStateOperation.getHandle(), OperatingMode::NA);
+							_initAbstractStateDefaults(t_state);
+							m_MdState.addState(t_state);
+						}
+					}
+					for(const auto& t_setContextOperation : t_Mds.getSco().collectAllSetContextOperationDescriptors()) {
+						if(!m_MdState.findState<SetContextStateOperationState>(t_setContextOperation.getHandle())) {
+							auto t_state = SetContextStateOperationState(t_setContextOperation.getHandle(), OperatingMode::NA);
+							_initAbstractStateDefaults(t_state);
+							m_MdState.addState(t_state);
+						}
+					}
+					for(const auto& t_setStringOperation : t_Mds.getSco().collectAllSetStringOperationDescriptors()) {
+						if(!m_MdState.findState<SetStringOperationState>(t_setStringOperation.getHandle())) {
+							auto t_state = SetStringOperationState(t_setStringOperation.getHandle(), OperatingMode::NA);
+							_initAbstractStateDefaults(t_state);
+							m_MdState.addState(t_state);
+						}
+					}
+					for(const auto& t_setValueOperation : t_Mds.getSco().collectAllSetValueOperationDescriptors()) {
+						if(!m_MdState.findState<SetValueOperationState>(t_setValueOperation.getHandle())) {
+							auto t_state = SetValueOperationState(t_setValueOperation.getHandle(), OperatingMode::NA);
+							_initAbstractStateDefaults(t_state);
+							m_MdState.addState(t_state);
+						}
+					}
 				}
 			}
 
@@ -1462,6 +1507,52 @@ bool SDCProvider::startup()
 					_initComponentStateDefaults(t_state);
 					m_MdState.addState(t_state);
 				}
+
+				// Sco Vmd
+				if(t_vmd.hasSco()) {
+					if(!m_MdState.findState<ScoState>(t_vmd.getSco().getHandle())) {
+						auto t_scoState = ScoState(t_vmd.getSco().getHandle());
+						_initAbstractStateDefaults(t_scoState);
+						m_MdState.addState(t_scoState);
+						for(const auto& t_activateOperation : t_vmd.getSco().collectAllActivateOperationDescriptors()) {
+							if(!m_MdState.findState<ActivateOperationState>(t_activateOperation.getHandle())) {
+								auto t_state = ActivateOperationState(t_activateOperation.getHandle(), OperatingMode::NA);
+								_initAbstractStateDefaults(t_state);
+								m_MdState.addState(t_state);
+							}
+						}
+						for(const auto& t_setAlertStateOperation : t_vmd.getSco().collectAllSetAlertStateOperationDescriptors()) {
+							if(!m_MdState.findState<SetAlertStateOperationState>(t_setAlertStateOperation.getHandle())) {
+								auto t_state = SetAlertStateOperationState(t_setAlertStateOperation.getHandle(), OperatingMode::NA);
+								_initAbstractStateDefaults(t_state);
+								m_MdState.addState(t_state);
+							}
+						}
+						for(const auto& t_setContextOperation : t_vmd.getSco().collectAllSetContextOperationDescriptors()) {
+							if(!m_MdState.findState<SetContextStateOperationState>(t_setContextOperation.getHandle())) {
+								auto t_state = SetContextStateOperationState(t_setContextOperation.getHandle(), OperatingMode::NA);
+								_initAbstractStateDefaults(t_state);
+								m_MdState.addState(t_state);
+							}
+						}
+						for(const auto& t_setStringOperation : t_vmd.getSco().collectAllSetStringOperationDescriptors()) {
+							if(!m_MdState.findState<SetStringOperationState>(t_setStringOperation.getHandle())) {
+								auto t_state = SetStringOperationState(t_setStringOperation.getHandle(), OperatingMode::NA);
+								_initAbstractStateDefaults(t_state);
+								m_MdState.addState(t_state);
+							}
+						}
+						for(const auto& t_setValueOperation : t_vmd.getSco().collectAllSetValueOperationDescriptors()) {
+							if(!m_MdState.findState<SetValueOperationState>(t_setValueOperation.getHandle())) {
+								auto t_state = SetValueOperationState(t_setValueOperation.getHandle(), OperatingMode::NA);
+								_initAbstractStateDefaults(t_state);
+								m_MdState.addState(t_state);
+							}
+						}
+					}
+				}
+
+
 				// Channel
 				for(const auto& t_channel : t_vmd.getChannelList())
 				{
@@ -1623,6 +1714,22 @@ void SDCProvider::addMdStateHandler(SDCProviderStateHandler* p_handler) // FIXME
     				ml_stateHandlers[p_handler->getDescriptorHandle()] = p_handler;
     				return;
     			}
+    		}
+    		for (const auto & t_vdm : t_mds.getVmdList())
+    		{
+    			if(!t_vdm.hasSco())
+    			{
+    				continue;
+    			}
+    			const auto t_scoVdm(ConvertToCDM::convert(t_vdm.getSco()));
+    			for (const auto & t_operationVdm : t_scoVdm->getOperation())
+				{
+	    			if (t_operationVdm.getHandle() == t_activate_handler->getDescriptorHandle()
+	    					&& nullptr != dynamic_cast<const CDM::ActivateOperationDescriptor *>(&t_operationVdm)) { // FIXME: std::addressof?
+	    				ml_stateHandlers[p_handler->getDescriptorHandle()] = p_handler;
+	    				return;
+	    			}
+				}
     		}
     	}
     	log_error([] { return "Could not add handler because no ActivateOperationDescriptor with matching handle was found."; });

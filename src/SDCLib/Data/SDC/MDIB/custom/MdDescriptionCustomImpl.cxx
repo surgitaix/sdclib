@@ -437,6 +437,17 @@ std::string MdDescription::getFirstOperationHandleForOperationTarget(const std::
 				return operation.getHandle();
 			}
 		}
+		for (const auto& vmd : mds.getVmd()) {
+			if(!vmd.getSco().present()) {
+				continue;
+			}
+			for (const auto & operation : vmd.getSco().get().getOperation()) {
+				if (operation.getOperationTarget() == operationTarget) {
+					return operation.getHandle();
+				}
+			}
+		}
+
 	}
 
 	return "";

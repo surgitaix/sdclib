@@ -47,7 +47,7 @@ using namespace SDCLib;
 using namespace SDCLib::Util;
 using namespace SDCLib::Data::SDC;
 
-const std::string DEVICE_EPR{"UDI-ExampleProvider"};
+const std::string DEVICE_EPR{"UDI-1234567890"};
 const std::string HANDLE_SET_METRIC{"handle_set"};
 const std::string HANDLE_GET_METRIC{"handle_get"};
 const std::string HANDLE_STREAM_METRIC{"handle_stream"};
@@ -91,13 +91,13 @@ public:
 
 	void onStateChanged(const RealTimeSampleArrayMetricState& p_changedState) override
 	{
-		std::vector<double> t_sampleValues = p_changedState.getMetricValue().getSamples();
+		std::vector<double> t_samples = p_changedState.getMetricValue().getSamples();
 
 		DebugOut(DebugOut::Default, "ExampleConsumer") << "Received chunk! Handle: " << p_changedState.getDescriptorHandle() << std::endl;
 		std::string out("Content: ");
-		for (const auto t_value : t_sampleValues)
+		for (const auto t_sampleValue : t_samples)
 		{
-			out.append(" " + std::to_string(t_value));
+			out.append(" " + std::to_string(t_sampleValue));
 		}
 		DebugOut(DebugOut::Default, "ExampleConsumer") << out;
 	}
@@ -105,10 +105,10 @@ public:
 
 
 
-void waitForUserInput() {
-	std::string temp;
-	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumerSSL") << "Press key to proceed.";
-	std::cin >> temp;
+void waitForUserInput()
+{
+	Util::DebugOut(Util::DebugOut::Default, "") << "Press key to proceed.";
+	std::cin.get();
 }
 
 class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler
@@ -130,7 +130,7 @@ private:
 
 int main()
 {
-	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumerSSL") << "Startup";
+	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Startup";
     SDCLibrary::getInstance().startup(OSELib::LogLevel::Warning);
 
     // Create a new SDCInstance (no flag will auto init)
@@ -143,27 +143,9 @@ int main()
         std::cout << "Failed to bind to default network interface! Exit..." << std::endl;
         return -1;
     }
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    // <SSL> ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    // Init SSL (Default Params should be fine)
-    if(!t_SDCInstance->initSSL()) {
-        std::cout << "Failed to init SSL!" << std::endl;
-        return -1;
-    }
-    // Configure SSL
-    auto t_SSLConfig = t_SDCInstance->getSSLConfig();
-    t_SSLConfig->addCertificateAuthority("rootCA.pem");
-    t_SSLConfig->useCertificate("leaf.pem");
-    t_SSLConfig->useKeyFiles(/*Public Key*/"", "leafkey.pem", ""/* Password for Private Keyfile */);
-
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    // </SSL> +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 	// Discovery
-	OSELib::SDC::ServiceManager t_serviceManager(t_SDCInstance);
+	OSELib::SDC::ServiceManager t_serviceManager{t_SDCInstance};
 
 	// Note: Calculate a UUIDv5 and apply prefix to it!
 	auto t_consumer{t_serviceManager.discoverEndpointReference(SDCInstance::calcUUIDv5(DEVICE_EPR, true))};
@@ -187,8 +169,12 @@ int main()
 			t_consumer->registerStateEventHandler(eh_set.get());
 			t_consumer->registerStateEventHandler(eh_stream.get());
 
-			// Simple Test(1):
-			// Search for the "Get"-State
+			// wait for the subscriptions to be completed
+			Util::DebugOut(Util::DebugOut::Default, "ExampleProject") << "Discovery succeeded.\n\nWaiting 2 sec. for the subscriptions to beeing finished" << std::endl;
+	        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+
+            // Simple Test(1):
+            // Search for the "Get"-State
 			auto t_getMetricState{t_consumer->requestState<NumericMetricState>(HANDLE_GET_METRIC)};
 			// If found: Print the current(!) value
 			if(t_getMetricState)
@@ -209,7 +195,7 @@ int main()
 				FutureInvocationState fis;
 				t_consumer->commitState(*t_setMetricState, fis);
 				// Now wait for "InvocationState::Fin" (=> Success)
-				Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result metric state: " << fis.waitReceived(InvocationState::Fin, 2000);
+				Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Commit result metric state: " << (fis.waitReceived(InvocationState::Fin, 2000) ? std::string("TRUE") : std::string("FALSE"));
 			}
 
 			// From here on the registered StateEventHandlers (SDCLib Threads / background) will provide information
@@ -232,6 +218,6 @@ int main()
 		Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Exception: " << e.what() << std::endl;
 	}
 
-	Util::DebugOut(Util::DebugOut::Default, "ExampleConsumer") << "Shutdown." << std::endl;
-	return 0;
+	DebugOut(DebugOut::Default, "\nExampleConsumer") << "Shutdown.\n" << std::endl;
+    return 0;
 }
