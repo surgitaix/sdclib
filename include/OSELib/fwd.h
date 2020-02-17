@@ -52,7 +52,7 @@ namespace OSELib
 		class ISubscriptionManager;
 		class MDPWSDiscoveryClientAdapter;
 		class MDPWSHostAdapter;
-		class MessageAdapter;
+		struct MessageAdapter;
 		class MessagingContext;
 		class MetadataProvider;
 		class PingManager;

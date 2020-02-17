@@ -11,7 +11,7 @@
     - MSVC++ ( **18.0** )  [partial C++11 support](https://docs.microsoft.com/en-us/cpp/visual-cpp-language-conformance?view=vs-2017) (**19.0** *or higher recommended*)
 
 ### Additional dependecies: 
-- XSD, Xerces  
+- XSD, Xerces, OpenSSL  
 - Examples for Debian / Ubuntu:  
     - **sudo apt-get install xsdcxx**  
     - **sudo apt-get install libxerces-c-dev**  

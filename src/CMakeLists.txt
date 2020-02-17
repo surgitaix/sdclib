@@ -4,10 +4,10 @@ set( CURRENT_TARGET_NAME SDCLib )
 project(${CURRENT_TARGET_NAME} "CXX")
 
 # Add an empty target first - FIXME: Why distinguish here. Does PIC flag solve it?
-if(WIN32)
-	add_library(${CURRENT_TARGET_NAME} STATIC "")
-else()
+if(SDCLib_DYNAMIC_LINKING)
 	add_library(${CURRENT_TARGET_NAME} SHARED "")
+else()
+	add_library(${CURRENT_TARGET_NAME} STATIC "")
 endif()
 
 message(STATUS "Adding Target ${CURRENT_TARGET_NAME}...")

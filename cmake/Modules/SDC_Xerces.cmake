@@ -43,13 +43,13 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
 
     # LIB
-    # Check on x64 (or empty -> defaults to x64)
-    set(BIN_DIR bin)
-    set(LIB_DIR lib)
-    if("${CMAKE_GENERATOR_PLATFORM}" MATCHES "(x64|)")
-        set(LIB_DIR lib64)
-        set(BIN_DIR bin64)
-    endif()
+	set(BIN_DIR bin64)
+    set(LIB_DIR lib64)
+	if ("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Win32")
+		set(BIN_DIR bin)
+		set(LIB_DIR lib)
+	endif()
+
     ################################################################################
     # NOTE: This is just a quick fix! Set it to current maximum for auto detection.
     ################################################################################

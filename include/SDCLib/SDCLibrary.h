@@ -27,12 +27,10 @@
 #define SDCLIB_SDCLIBRARY_H_
 
 #include <atomic>
-#include <memory>
-#include <string>
-#include <mutex>
 
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
+#include "SDCLib/SDCInstance.h"
 
 namespace SDCLib
 {
