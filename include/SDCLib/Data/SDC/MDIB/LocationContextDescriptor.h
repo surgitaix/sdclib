@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class LocationContextDescriptor {
+class LocationContextDescriptor
+{
 private:
 	LocationContextDescriptor(const CDM::LocationContextDescriptor & object);
 	operator CDM::LocationContextDescriptor() const;
@@ -57,11 +58,11 @@ public:
 private:
 	LocationContextDescriptor(){};
 public:
-	LocationContextDescriptor(const LocationContextDescriptor & object);
-	virtual ~LocationContextDescriptor();
+	LocationContextDescriptor(const LocationContextDescriptor& object);
+	virtual ~LocationContextDescriptor() = default;
 
-    void copyFrom(const LocationContextDescriptor & object);
-    LocationContextDescriptor & operator=(const LocationContextDescriptor & object);
+    void copyFrom(const LocationContextDescriptor& object);
+    LocationContextDescriptor & operator=(const LocationContextDescriptor& object);
 
     typedef CDM::LocationContextDescriptor WrappedType;
     typedef LocationContextState StateType;
@@ -85,7 +86,7 @@ public:
 	bool hasSafetyClassification() const;
 
 private:
-	std::shared_ptr<CDM::LocationContextDescriptor> data;
+	std::shared_ptr<CDM::LocationContextDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

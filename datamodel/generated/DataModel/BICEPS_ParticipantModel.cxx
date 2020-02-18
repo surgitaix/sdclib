@@ -46,169 +46,169 @@ namespace CDM
   // 
 
   const Mdib::ExtensionOptional& Mdib::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   Mdib::ExtensionOptional& Mdib::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void Mdib::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void Mdib::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void Mdib::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const Mdib::MdDescriptionOptional& Mdib::
-  MdDescription () const
+  getMdDescription () const
   {
     return this->MdDescription_;
   }
 
   Mdib::MdDescriptionOptional& Mdib::
-  MdDescription ()
+  getMdDescription ()
   {
     return this->MdDescription_;
   }
 
   void Mdib::
-  MdDescription (const MdDescriptionType& x)
+  setMdDescription (const MdDescriptionType& x)
   {
     this->MdDescription_.set (x);
   }
 
   void Mdib::
-  MdDescription (const MdDescriptionOptional& x)
+  setMdDescription (const MdDescriptionOptional& x)
   {
     this->MdDescription_ = x;
   }
 
   void Mdib::
-  MdDescription (::std::unique_ptr< MdDescriptionType > x)
+  setMdDescription (::std::unique_ptr< MdDescriptionType > x)
   {
     this->MdDescription_.set (std::move (x));
   }
 
   const Mdib::MdStateOptional& Mdib::
-  MdState () const
+  getMdState () const
   {
     return this->MdState_;
   }
 
   Mdib::MdStateOptional& Mdib::
-  MdState ()
+  getMdState ()
   {
     return this->MdState_;
   }
 
   void Mdib::
-  MdState (const MdStateType& x)
+  setMdState (const MdStateType& x)
   {
     this->MdState_.set (x);
   }
 
   void Mdib::
-  MdState (const MdStateOptional& x)
+  setMdState (const MdStateOptional& x)
   {
     this->MdState_ = x;
   }
 
   void Mdib::
-  MdState (::std::unique_ptr< MdStateType > x)
+  setMdState (::std::unique_ptr< MdStateType > x)
   {
     this->MdState_.set (std::move (x));
   }
 
   const Mdib::MdibVersionOptional& Mdib::
-  MdibVersion () const
+  getMdibVersion () const
   {
     return this->MdibVersion_;
   }
 
   Mdib::MdibVersionOptional& Mdib::
-  MdibVersion ()
+  getMdibVersion ()
   {
     return this->MdibVersion_;
   }
 
   void Mdib::
-  MdibVersion (const MdibVersionType& x)
+  setMdibVersion (const MdibVersionType& x)
   {
     this->MdibVersion_.set (x);
   }
 
   void Mdib::
-  MdibVersion (const MdibVersionOptional& x)
+  setMdibVersion (const MdibVersionOptional& x)
   {
     this->MdibVersion_ = x;
   }
 
   void Mdib::
-  MdibVersion (::std::unique_ptr< MdibVersionType > x)
+  setMdibVersion (::std::unique_ptr< MdibVersionType > x)
   {
     this->MdibVersion_.set (std::move (x));
   }
 
   const Mdib::SequenceIdType& Mdib::
-  SequenceId () const
+  getSequenceId () const
   {
     return this->SequenceId_.get ();
   }
 
   Mdib::SequenceIdType& Mdib::
-  SequenceId ()
+  getSequenceId ()
   {
     return this->SequenceId_.get ();
   }
 
   void Mdib::
-  SequenceId (const SequenceIdType& x)
+  setSequenceId (const SequenceIdType& x)
   {
     this->SequenceId_.set (x);
   }
 
   void Mdib::
-  SequenceId (::std::unique_ptr< SequenceIdType > x)
+  setSequenceId (::std::unique_ptr< SequenceIdType > x)
   {
     this->SequenceId_.set (std::move (x));
   }
 
   const Mdib::InstanceIdOptional& Mdib::
-  InstanceId () const
+  getInstanceId () const
   {
     return this->InstanceId_;
   }
 
   Mdib::InstanceIdOptional& Mdib::
-  InstanceId ()
+  getInstanceId ()
   {
     return this->InstanceId_;
   }
 
   void Mdib::
-  InstanceId (const InstanceIdType& x)
+  setInstanceId (const InstanceIdType& x)
   {
     this->InstanceId_.set (x);
   }
 
   void Mdib::
-  InstanceId (const InstanceIdOptional& x)
+  setInstanceId (const InstanceIdOptional& x)
   {
     this->InstanceId_ = x;
   }
@@ -218,79 +218,79 @@ namespace CDM
   // 
 
   const MdDescription::ExtensionOptional& MdDescription::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   MdDescription::ExtensionOptional& MdDescription::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void MdDescription::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void MdDescription::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void MdDescription::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const MdDescription::MdsSequence& MdDescription::
-  Mds () const
+  getMds () const
   {
     return this->Mds_;
   }
 
   MdDescription::MdsSequence& MdDescription::
-  Mds ()
+  getMds ()
   {
     return this->Mds_;
   }
 
   void MdDescription::
-  Mds (const MdsSequence& s)
+  setMds (const MdsSequence& s)
   {
     this->Mds_ = s;
   }
 
   const MdDescription::DescriptionVersionOptional& MdDescription::
-  DescriptionVersion () const
+  getDescriptionVersion () const
   {
     return this->DescriptionVersion_;
   }
 
   MdDescription::DescriptionVersionOptional& MdDescription::
-  DescriptionVersion ()
+  getDescriptionVersion ()
   {
     return this->DescriptionVersion_;
   }
 
   void MdDescription::
-  DescriptionVersion (const DescriptionVersionType& x)
+  setDescriptionVersion (const DescriptionVersionType& x)
   {
     this->DescriptionVersion_.set (x);
   }
 
   void MdDescription::
-  DescriptionVersion (const DescriptionVersionOptional& x)
+  setDescriptionVersion (const DescriptionVersionOptional& x)
   {
     this->DescriptionVersion_ = x;
   }
 
   void MdDescription::
-  DescriptionVersion (::std::unique_ptr< DescriptionVersionType > x)
+  setDescriptionVersion (::std::unique_ptr< DescriptionVersionType > x)
   {
     this->DescriptionVersion_.set (std::move (x));
   }
@@ -300,79 +300,79 @@ namespace CDM
   // 
 
   const MdState::ExtensionOptional& MdState::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   MdState::ExtensionOptional& MdState::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void MdState::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void MdState::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void MdState::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const MdState::StateSequence& MdState::
-  State () const
+  getState () const
   {
     return this->State_;
   }
 
   MdState::StateSequence& MdState::
-  State ()
+  getState ()
   {
     return this->State_;
   }
 
   void MdState::
-  State (const StateSequence& s)
+  setState (const StateSequence& s)
   {
     this->State_ = s;
   }
 
   const MdState::StateVersionOptional& MdState::
-  StateVersion () const
+  getStateVersion () const
   {
     return this->StateVersion_;
   }
 
   MdState::StateVersionOptional& MdState::
-  StateVersion ()
+  getStateVersion ()
   {
     return this->StateVersion_;
   }
 
   void MdState::
-  StateVersion (const StateVersionType& x)
+  setStateVersion (const StateVersionType& x)
   {
     this->StateVersion_.set (x);
   }
 
   void MdState::
-  StateVersion (const StateVersionOptional& x)
+  setStateVersion (const StateVersionOptional& x)
   {
     this->StateVersion_ = x;
   }
 
   void MdState::
-  StateVersion (::std::unique_ptr< StateVersionType > x)
+  setStateVersion (::std::unique_ptr< StateVersionType > x)
   {
     this->StateVersion_.set (std::move (x));
   }
@@ -500,121 +500,121 @@ namespace CDM
   // 
 
   const LocalizedText::RefOptional& LocalizedText::
-  Ref () const
+  getRef () const
   {
     return this->Ref_;
   }
 
   LocalizedText::RefOptional& LocalizedText::
-  Ref ()
+  getRef ()
   {
     return this->Ref_;
   }
 
   void LocalizedText::
-  Ref (const RefType& x)
+  setRef (const RefType& x)
   {
     this->Ref_.set (x);
   }
 
   void LocalizedText::
-  Ref (const RefOptional& x)
+  setRef (const RefOptional& x)
   {
     this->Ref_ = x;
   }
 
   void LocalizedText::
-  Ref (::std::unique_ptr< RefType > x)
+  setRef (::std::unique_ptr< RefType > x)
   {
     this->Ref_.set (std::move (x));
   }
 
   const LocalizedText::LangOptional& LocalizedText::
-  Lang () const
+  getLang () const
   {
     return this->Lang_;
   }
 
   LocalizedText::LangOptional& LocalizedText::
-  Lang ()
+  getLang ()
   {
     return this->Lang_;
   }
 
   void LocalizedText::
-  Lang (const LangType& x)
+  setLang (const LangType& x)
   {
     this->Lang_.set (x);
   }
 
   void LocalizedText::
-  Lang (const LangOptional& x)
+  setLang (const LangOptional& x)
   {
     this->Lang_ = x;
   }
 
   void LocalizedText::
-  Lang (::std::unique_ptr< LangType > x)
+  setLang (::std::unique_ptr< LangType > x)
   {
     this->Lang_.set (std::move (x));
   }
 
   const LocalizedText::VersionOptional& LocalizedText::
-  Version () const
+  getVersion () const
   {
     return this->Version_;
   }
 
   LocalizedText::VersionOptional& LocalizedText::
-  Version ()
+  getVersion ()
   {
     return this->Version_;
   }
 
   void LocalizedText::
-  Version (const VersionType& x)
+  setVersion (const VersionType& x)
   {
     this->Version_.set (x);
   }
 
   void LocalizedText::
-  Version (const VersionOptional& x)
+  setVersion (const VersionOptional& x)
   {
     this->Version_ = x;
   }
 
   void LocalizedText::
-  Version (::std::unique_ptr< VersionType > x)
+  setVersion (::std::unique_ptr< VersionType > x)
   {
     this->Version_.set (std::move (x));
   }
 
   const LocalizedText::TextWidthOptional& LocalizedText::
-  TextWidth () const
+  getTextWidth () const
   {
     return this->TextWidth_;
   }
 
   LocalizedText::TextWidthOptional& LocalizedText::
-  TextWidth ()
+  getTextWidth ()
   {
     return this->TextWidth_;
   }
 
   void LocalizedText::
-  TextWidth (const TextWidthType& x)
+  setTextWidth (const TextWidthType& x)
   {
     this->TextWidth_.set (x);
   }
 
   void LocalizedText::
-  TextWidth (const TextWidthOptional& x)
+  setTextWidth (const TextWidthOptional& x)
   {
     this->TextWidth_ = x;
   }
 
   void LocalizedText::
-  TextWidth (::std::unique_ptr< TextWidthType > x)
+  setTextWidth (::std::unique_ptr< TextWidthType > x)
   {
     this->TextWidth_.set (std::move (x));
   }
@@ -624,199 +624,199 @@ namespace CDM
   // 
 
   const CodedValue::ExtensionOptional& CodedValue::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   CodedValue::ExtensionOptional& CodedValue::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void CodedValue::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void CodedValue::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void CodedValue::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const CodedValue::CodingSystemNameSequence& CodedValue::
-  CodingSystemName () const
+  getCodingSystemName () const
   {
     return this->CodingSystemName_;
   }
 
   CodedValue::CodingSystemNameSequence& CodedValue::
-  CodingSystemName ()
+  getCodingSystemName ()
   {
     return this->CodingSystemName_;
   }
 
   void CodedValue::
-  CodingSystemName (const CodingSystemNameSequence& s)
+  setCodingSystemName (const CodingSystemNameSequence& s)
   {
     this->CodingSystemName_ = s;
   }
 
   const CodedValue::ConceptDescriptionSequence& CodedValue::
-  ConceptDescription () const
+  getConceptDescription () const
   {
     return this->ConceptDescription_;
   }
 
   CodedValue::ConceptDescriptionSequence& CodedValue::
-  ConceptDescription ()
+  getConceptDescription ()
   {
     return this->ConceptDescription_;
   }
 
   void CodedValue::
-  ConceptDescription (const ConceptDescriptionSequence& s)
+  setConceptDescription (const ConceptDescriptionSequence& s)
   {
     this->ConceptDescription_ = s;
   }
 
   const CodedValue::TranslationSequence& CodedValue::
-  Translation () const
+  getTranslation () const
   {
     return this->Translation_;
   }
 
   CodedValue::TranslationSequence& CodedValue::
-  Translation ()
+  getTranslation ()
   {
     return this->Translation_;
   }
 
   void CodedValue::
-  Translation (const TranslationSequence& s)
+  setTranslation (const TranslationSequence& s)
   {
     this->Translation_ = s;
   }
 
   const CodedValue::CodeType& CodedValue::
-  Code () const
+  getCode () const
   {
     return this->Code_.get ();
   }
 
   CodedValue::CodeType& CodedValue::
-  Code ()
+  getCode ()
   {
     return this->Code_.get ();
   }
 
   void CodedValue::
-  Code (const CodeType& x)
+  setCode (const CodeType& x)
   {
     this->Code_.set (x);
   }
 
   void CodedValue::
-  Code (::std::unique_ptr< CodeType > x)
+  setCode (::std::unique_ptr< CodeType > x)
   {
     this->Code_.set (std::move (x));
   }
 
   const CodedValue::CodingSystemOptional& CodedValue::
-  CodingSystem () const
+  getCodingSystem () const
   {
     return this->CodingSystem_;
   }
 
   CodedValue::CodingSystemOptional& CodedValue::
-  CodingSystem ()
+  getCodingSystem ()
   {
     return this->CodingSystem_;
   }
 
   void CodedValue::
-  CodingSystem (const CodingSystemType& x)
+  setCodingSystem (const CodingSystemType& x)
   {
     this->CodingSystem_.set (x);
   }
 
   void CodedValue::
-  CodingSystem (const CodingSystemOptional& x)
+  setCodingSystem (const CodingSystemOptional& x)
   {
     this->CodingSystem_ = x;
   }
 
   void CodedValue::
-  CodingSystem (::std::unique_ptr< CodingSystemType > x)
+  setCodingSystem (::std::unique_ptr< CodingSystemType > x)
   {
     this->CodingSystem_.set (std::move (x));
   }
 
   const CodedValue::CodingSystemVersionOptional& CodedValue::
-  CodingSystemVersion () const
+  getCodingSystemVersion () const
   {
     return this->CodingSystemVersion_;
   }
 
   CodedValue::CodingSystemVersionOptional& CodedValue::
-  CodingSystemVersion ()
+  getCodingSystemVersion ()
   {
     return this->CodingSystemVersion_;
   }
 
   void CodedValue::
-  CodingSystemVersion (const CodingSystemVersionType& x)
+  setCodingSystemVersion (const CodingSystemVersionType& x)
   {
     this->CodingSystemVersion_.set (x);
   }
 
   void CodedValue::
-  CodingSystemVersion (const CodingSystemVersionOptional& x)
+  setCodingSystemVersion (const CodingSystemVersionOptional& x)
   {
     this->CodingSystemVersion_ = x;
   }
 
   void CodedValue::
-  CodingSystemVersion (::std::unique_ptr< CodingSystemVersionType > x)
+  setCodingSystemVersion (::std::unique_ptr< CodingSystemVersionType > x)
   {
     this->CodingSystemVersion_.set (std::move (x));
   }
 
   const CodedValue::SymbolicCodeNameOptional& CodedValue::
-  SymbolicCodeName () const
+  getSymbolicCodeName () const
   {
     return this->SymbolicCodeName_;
   }
 
   CodedValue::SymbolicCodeNameOptional& CodedValue::
-  SymbolicCodeName ()
+  getSymbolicCodeName ()
   {
     return this->SymbolicCodeName_;
   }
 
   void CodedValue::
-  SymbolicCodeName (const SymbolicCodeNameType& x)
+  setSymbolicCodeName (const SymbolicCodeNameType& x)
   {
     this->SymbolicCodeName_.set (x);
   }
 
   void CodedValue::
-  SymbolicCodeName (const SymbolicCodeNameOptional& x)
+  setSymbolicCodeName (const SymbolicCodeNameOptional& x)
   {
     this->SymbolicCodeName_ = x;
   }
 
   void CodedValue::
-  SymbolicCodeName (::std::unique_ptr< SymbolicCodeNameType > x)
+  setSymbolicCodeName (::std::unique_ptr< SymbolicCodeNameType > x)
   {
     this->SymbolicCodeName_.set (std::move (x));
   }
@@ -826,139 +826,139 @@ namespace CDM
   // 
 
   const InstanceIdentifier::ExtensionOptional& InstanceIdentifier::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   InstanceIdentifier::ExtensionOptional& InstanceIdentifier::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void InstanceIdentifier::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void InstanceIdentifier::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void InstanceIdentifier::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const InstanceIdentifier::TypeOptional& InstanceIdentifier::
-  Type () const
+  getType () const
   {
     return this->Type_;
   }
 
   InstanceIdentifier::TypeOptional& InstanceIdentifier::
-  Type ()
+  getType ()
   {
     return this->Type_;
   }
 
   void InstanceIdentifier::
-  Type (const TypeType& x)
+  setType (const TypeType& x)
   {
     this->Type_.set (x);
   }
 
   void InstanceIdentifier::
-  Type (const TypeOptional& x)
+  setType (const TypeOptional& x)
   {
     this->Type_ = x;
   }
 
   void InstanceIdentifier::
-  Type (::std::unique_ptr< TypeType > x)
+  setType (::std::unique_ptr< TypeType > x)
   {
     this->Type_.set (std::move (x));
   }
 
   const InstanceIdentifier::IdentifierNameSequence& InstanceIdentifier::
-  IdentifierName () const
+  getIdentifierName () const
   {
     return this->IdentifierName_;
   }
 
   InstanceIdentifier::IdentifierNameSequence& InstanceIdentifier::
-  IdentifierName ()
+  getIdentifierName ()
   {
     return this->IdentifierName_;
   }
 
   void InstanceIdentifier::
-  IdentifierName (const IdentifierNameSequence& s)
+  setIdentifierName (const IdentifierNameSequence& s)
   {
     this->IdentifierName_ = s;
   }
 
   const InstanceIdentifier::RootOptional& InstanceIdentifier::
-  Root () const
+  getRoot () const
   {
     return this->Root_;
   }
 
   InstanceIdentifier::RootOptional& InstanceIdentifier::
-  Root ()
+  getRoot ()
   {
     return this->Root_;
   }
 
   void InstanceIdentifier::
-  Root (const RootType& x)
+  setRoot (const RootType& x)
   {
     this->Root_.set (x);
   }
 
   void InstanceIdentifier::
-  Root (const RootOptional& x)
+  setRoot (const RootOptional& x)
   {
     this->Root_ = x;
   }
 
   void InstanceIdentifier::
-  Root (::std::unique_ptr< RootType > x)
+  setRoot (::std::unique_ptr< RootType > x)
   {
     this->Root_.set (std::move (x));
   }
 
   const InstanceIdentifier::Extension1Optional& InstanceIdentifier::
-  Extension1 () const
+  getExtension1 () const
   {
     return this->Extension1_;
   }
 
   InstanceIdentifier::Extension1Optional& InstanceIdentifier::
-  Extension1 ()
+  getExtension1 ()
   {
     return this->Extension1_;
   }
 
   void InstanceIdentifier::
-  Extension1 (const Extension1Type& x)
+  setExtension1 (const Extension1Type& x)
   {
     this->Extension1_.set (x);
   }
 
   void InstanceIdentifier::
-  Extension1 (const Extension1Optional& x)
+  setExtension1 (const Extension1Optional& x)
   {
     this->Extension1_ = x;
   }
 
   void InstanceIdentifier::
-  Extension1 (::std::unique_ptr< Extension1Type > x)
+  setExtension1 (::std::unique_ptr< Extension1Type > x)
   {
     this->Extension1_.set (std::move (x));
   }
@@ -968,151 +968,151 @@ namespace CDM
   // 
 
   const Range::ExtensionOptional& Range::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   Range::ExtensionOptional& Range::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void Range::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void Range::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void Range::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const Range::LowerOptional& Range::
-  Lower () const
+  getLower () const
   {
     return this->Lower_;
   }
 
   Range::LowerOptional& Range::
-  Lower ()
+  getLower ()
   {
     return this->Lower_;
   }
 
   void Range::
-  Lower (const LowerType& x)
+  setLower (const LowerType& x)
   {
     this->Lower_.set (x);
   }
 
   void Range::
-  Lower (const LowerOptional& x)
+  setLower (const LowerOptional& x)
   {
     this->Lower_ = x;
   }
 
   const Range::UpperOptional& Range::
-  Upper () const
+  getUpper () const
   {
     return this->Upper_;
   }
 
   Range::UpperOptional& Range::
-  Upper ()
+  getUpper ()
   {
     return this->Upper_;
   }
 
   void Range::
-  Upper (const UpperType& x)
+  setUpper (const UpperType& x)
   {
     this->Upper_.set (x);
   }
 
   void Range::
-  Upper (const UpperOptional& x)
+  setUpper (const UpperOptional& x)
   {
     this->Upper_ = x;
   }
 
   const Range::StepWidthOptional& Range::
-  StepWidth () const
+  getStepWidth () const
   {
     return this->StepWidth_;
   }
 
   Range::StepWidthOptional& Range::
-  StepWidth ()
+  getStepWidth ()
   {
     return this->StepWidth_;
   }
 
   void Range::
-  StepWidth (const StepWidthType& x)
+  setStepWidth (const StepWidthType& x)
   {
     this->StepWidth_.set (x);
   }
 
   void Range::
-  StepWidth (const StepWidthOptional& x)
+  setStepWidth (const StepWidthOptional& x)
   {
     this->StepWidth_ = x;
   }
 
   const Range::RelativeAccuracyOptional& Range::
-  RelativeAccuracy () const
+  getRelativeAccuracy () const
   {
     return this->RelativeAccuracy_;
   }
 
   Range::RelativeAccuracyOptional& Range::
-  RelativeAccuracy ()
+  getRelativeAccuracy ()
   {
     return this->RelativeAccuracy_;
   }
 
   void Range::
-  RelativeAccuracy (const RelativeAccuracyType& x)
+  setRelativeAccuracy (const RelativeAccuracyType& x)
   {
     this->RelativeAccuracy_.set (x);
   }
 
   void Range::
-  RelativeAccuracy (const RelativeAccuracyOptional& x)
+  setRelativeAccuracy (const RelativeAccuracyOptional& x)
   {
     this->RelativeAccuracy_ = x;
   }
 
   const Range::AbsoluteAccuracyOptional& Range::
-  AbsoluteAccuracy () const
+  getAbsoluteAccuracy () const
   {
     return this->AbsoluteAccuracy_;
   }
 
   Range::AbsoluteAccuracyOptional& Range::
-  AbsoluteAccuracy ()
+  getAbsoluteAccuracy ()
   {
     return this->AbsoluteAccuracy_;
   }
 
   void Range::
-  AbsoluteAccuracy (const AbsoluteAccuracyType& x)
+  setAbsoluteAccuracy (const AbsoluteAccuracyType& x)
   {
     this->AbsoluteAccuracy_.set (x);
   }
 
   void Range::
-  AbsoluteAccuracy (const AbsoluteAccuracyOptional& x)
+  setAbsoluteAccuracy (const AbsoluteAccuracyOptional& x)
   {
     this->AbsoluteAccuracy_ = x;
   }
@@ -1122,73 +1122,73 @@ namespace CDM
   // 
 
   const Measurement::ExtensionOptional& Measurement::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   Measurement::ExtensionOptional& Measurement::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void Measurement::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void Measurement::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void Measurement::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const Measurement::MeasurementUnitType& Measurement::
-  MeasurementUnit () const
+  getMeasurementUnit () const
   {
     return this->MeasurementUnit_.get ();
   }
 
   Measurement::MeasurementUnitType& Measurement::
-  MeasurementUnit ()
+  getMeasurementUnit ()
   {
     return this->MeasurementUnit_.get ();
   }
 
   void Measurement::
-  MeasurementUnit (const MeasurementUnitType& x)
+  setMeasurementUnit (const MeasurementUnitType& x)
   {
     this->MeasurementUnit_.set (x);
   }
 
   void Measurement::
-  MeasurementUnit (::std::unique_ptr< MeasurementUnitType > x)
+  setMeasurementUnit (::std::unique_ptr< MeasurementUnitType > x)
   {
     this->MeasurementUnit_.set (std::move (x));
   }
 
   const Measurement::MeasuredValueType& Measurement::
-  MeasuredValue () const
+  getMeasuredValue () const
   {
     return this->MeasuredValue_.get ();
   }
 
   Measurement::MeasuredValueType& Measurement::
-  MeasuredValue ()
+  getMeasuredValue ()
   {
     return this->MeasuredValue_.get ();
   }
 
   void Measurement::
-  MeasuredValue (const MeasuredValueType& x)
+  setMeasuredValue (const MeasuredValueType& x)
   {
     this->MeasuredValue_.set (x);
   }
@@ -1288,19 +1288,19 @@ namespace CDM
   // 
 
   const ApprovedJurisdictions::ApprovedJurisdictionSequence& ApprovedJurisdictions::
-  ApprovedJurisdiction () const
+  getApprovedJurisdiction () const
   {
     return this->ApprovedJurisdiction_;
   }
 
   ApprovedJurisdictions::ApprovedJurisdictionSequence& ApprovedJurisdictions::
-  ApprovedJurisdiction ()
+  getApprovedJurisdiction ()
   {
     return this->ApprovedJurisdiction_;
   }
 
   void ApprovedJurisdictions::
-  ApprovedJurisdiction (const ApprovedJurisdictionSequence& s)
+  setApprovedJurisdiction (const ApprovedJurisdictionSequence& s)
   {
     this->ApprovedJurisdiction_ = s;
   }
@@ -1322,73 +1322,73 @@ namespace CDM
   // 
 
   const PhysicalConnectorInfo::ExtensionOptional& PhysicalConnectorInfo::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   PhysicalConnectorInfo::ExtensionOptional& PhysicalConnectorInfo::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void PhysicalConnectorInfo::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void PhysicalConnectorInfo::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void PhysicalConnectorInfo::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const PhysicalConnectorInfo::LabelSequence& PhysicalConnectorInfo::
-  Label () const
+  getLabel () const
   {
     return this->Label_;
   }
 
   PhysicalConnectorInfo::LabelSequence& PhysicalConnectorInfo::
-  Label ()
+  getLabel ()
   {
     return this->Label_;
   }
 
   void PhysicalConnectorInfo::
-  Label (const LabelSequence& s)
+  setLabel (const LabelSequence& s)
   {
     this->Label_ = s;
   }
 
   const PhysicalConnectorInfo::NumberOptional& PhysicalConnectorInfo::
-  Number () const
+  getNumber () const
   {
     return this->Number_;
   }
 
   PhysicalConnectorInfo::NumberOptional& PhysicalConnectorInfo::
-  Number ()
+  getNumber ()
   {
     return this->Number_;
   }
 
   void PhysicalConnectorInfo::
-  Number (const NumberType& x)
+  setNumber (const NumberType& x)
   {
     this->Number_.set (x);
   }
 
   void PhysicalConnectorInfo::
-  Number (const NumberOptional& x)
+  setNumber (const NumberOptional& x)
   {
     this->Number_ = x;
   }
@@ -1398,145 +1398,145 @@ namespace CDM
   // 
 
   const AbstractDescriptor::ExtensionOptional& AbstractDescriptor::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   AbstractDescriptor::ExtensionOptional& AbstractDescriptor::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void AbstractDescriptor::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void AbstractDescriptor::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void AbstractDescriptor::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const AbstractDescriptor::TypeOptional& AbstractDescriptor::
-  Type () const
+  getType () const
   {
     return this->Type_;
   }
 
   AbstractDescriptor::TypeOptional& AbstractDescriptor::
-  Type ()
+  getType ()
   {
     return this->Type_;
   }
 
   void AbstractDescriptor::
-  Type (const TypeType& x)
+  setType (const TypeType& x)
   {
     this->Type_.set (x);
   }
 
   void AbstractDescriptor::
-  Type (const TypeOptional& x)
+  setType (const TypeOptional& x)
   {
     this->Type_ = x;
   }
 
   void AbstractDescriptor::
-  Type (::std::unique_ptr< TypeType > x)
+  setType (::std::unique_ptr< TypeType > x)
   {
     this->Type_.set (std::move (x));
   }
 
   const AbstractDescriptor::HandleType& AbstractDescriptor::
-  Handle () const
+  getHandle () const
   {
     return this->Handle_.get ();
   }
 
   AbstractDescriptor::HandleType& AbstractDescriptor::
-  Handle ()
+  getHandle ()
   {
     return this->Handle_.get ();
   }
 
   void AbstractDescriptor::
-  Handle (const HandleType& x)
+  setHandle (const HandleType& x)
   {
     this->Handle_.set (x);
   }
 
   void AbstractDescriptor::
-  Handle (::std::unique_ptr< HandleType > x)
+  setHandle (::std::unique_ptr< HandleType > x)
   {
     this->Handle_.set (std::move (x));
   }
 
   const AbstractDescriptor::DescriptorVersionOptional& AbstractDescriptor::
-  DescriptorVersion () const
+  getDescriptorVersion () const
   {
     return this->DescriptorVersion_;
   }
 
   AbstractDescriptor::DescriptorVersionOptional& AbstractDescriptor::
-  DescriptorVersion ()
+  getDescriptorVersion ()
   {
     return this->DescriptorVersion_;
   }
 
   void AbstractDescriptor::
-  DescriptorVersion (const DescriptorVersionType& x)
+  setDescriptorVersion (const DescriptorVersionType& x)
   {
     this->DescriptorVersion_.set (x);
   }
 
   void AbstractDescriptor::
-  DescriptorVersion (const DescriptorVersionOptional& x)
+  setDescriptorVersion (const DescriptorVersionOptional& x)
   {
     this->DescriptorVersion_ = x;
   }
 
   void AbstractDescriptor::
-  DescriptorVersion (::std::unique_ptr< DescriptorVersionType > x)
+  setDescriptorVersion (::std::unique_ptr< DescriptorVersionType > x)
   {
     this->DescriptorVersion_.set (std::move (x));
   }
 
   const AbstractDescriptor::SafetyClassificationOptional& AbstractDescriptor::
-  SafetyClassification () const
+  getSafetyClassification () const
   {
     return this->SafetyClassification_;
   }
 
   AbstractDescriptor::SafetyClassificationOptional& AbstractDescriptor::
-  SafetyClassification ()
+  getSafetyClassification ()
   {
     return this->SafetyClassification_;
   }
 
   void AbstractDescriptor::
-  SafetyClassification (const SafetyClassificationType& x)
+  setSafetyClassification (const SafetyClassificationType& x)
   {
     this->SafetyClassification_.set (x);
   }
 
   void AbstractDescriptor::
-  SafetyClassification (const SafetyClassificationOptional& x)
+  setSafetyClassification (const SafetyClassificationOptional& x)
   {
     this->SafetyClassification_ = x;
   }
 
   void AbstractDescriptor::
-  SafetyClassification (::std::unique_ptr< SafetyClassificationType > x)
+  setSafetyClassification (::std::unique_ptr< SafetyClassificationType > x)
   {
     this->SafetyClassification_.set (std::move (x));
   }
@@ -1546,115 +1546,115 @@ namespace CDM
   // 
 
   const AbstractState::ExtensionOptional& AbstractState::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   AbstractState::ExtensionOptional& AbstractState::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void AbstractState::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void AbstractState::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void AbstractState::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const AbstractState::StateVersionOptional& AbstractState::
-  StateVersion () const
+  getStateVersion () const
   {
     return this->StateVersion_;
   }
 
   AbstractState::StateVersionOptional& AbstractState::
-  StateVersion ()
+  getStateVersion ()
   {
     return this->StateVersion_;
   }
 
   void AbstractState::
-  StateVersion (const StateVersionType& x)
+  setStateVersion (const StateVersionType& x)
   {
     this->StateVersion_.set (x);
   }
 
   void AbstractState::
-  StateVersion (const StateVersionOptional& x)
+  setStateVersion (const StateVersionOptional& x)
   {
     this->StateVersion_ = x;
   }
 
   void AbstractState::
-  StateVersion (::std::unique_ptr< StateVersionType > x)
+  setStateVersion (::std::unique_ptr< StateVersionType > x)
   {
     this->StateVersion_.set (std::move (x));
   }
 
   const AbstractState::DescriptorHandleType& AbstractState::
-  DescriptorHandle () const
+  getDescriptorHandle () const
   {
     return this->DescriptorHandle_.get ();
   }
 
   AbstractState::DescriptorHandleType& AbstractState::
-  DescriptorHandle ()
+  getDescriptorHandle ()
   {
     return this->DescriptorHandle_.get ();
   }
 
   void AbstractState::
-  DescriptorHandle (const DescriptorHandleType& x)
+  setDescriptorHandle (const DescriptorHandleType& x)
   {
     this->DescriptorHandle_.set (x);
   }
 
   void AbstractState::
-  DescriptorHandle (::std::unique_ptr< DescriptorHandleType > x)
+  setDescriptorHandle (::std::unique_ptr< DescriptorHandleType > x)
   {
     this->DescriptorHandle_.set (std::move (x));
   }
 
   const AbstractState::DescriptorVersionOptional& AbstractState::
-  DescriptorVersion () const
+  getDescriptorVersion () const
   {
     return this->DescriptorVersion_;
   }
 
   AbstractState::DescriptorVersionOptional& AbstractState::
-  DescriptorVersion ()
+  getDescriptorVersion ()
   {
     return this->DescriptorVersion_;
   }
 
   void AbstractState::
-  DescriptorVersion (const DescriptorVersionType& x)
+  setDescriptorVersion (const DescriptorVersionType& x)
   {
     this->DescriptorVersion_.set (x);
   }
 
   void AbstractState::
-  DescriptorVersion (const DescriptorVersionOptional& x)
+  setDescriptorVersion (const DescriptorVersionOptional& x)
   {
     this->DescriptorVersion_ = x;
   }
 
   void AbstractState::
-  DescriptorVersion (::std::unique_ptr< DescriptorVersionType > x)
+  setDescriptorVersion (::std::unique_ptr< DescriptorVersionType > x)
   {
     this->DescriptorVersion_.set (std::move (x));
   }
@@ -1664,55 +1664,55 @@ namespace CDM
   // 
 
   const AbstractMultiState::CategoryOptional& AbstractMultiState::
-  Category () const
+  getCategory () const
   {
     return this->Category_;
   }
 
   AbstractMultiState::CategoryOptional& AbstractMultiState::
-  Category ()
+  getCategory ()
   {
     return this->Category_;
   }
 
   void AbstractMultiState::
-  Category (const CategoryType& x)
+  setCategory (const CategoryType& x)
   {
     this->Category_.set (x);
   }
 
   void AbstractMultiState::
-  Category (const CategoryOptional& x)
+  setCategory (const CategoryOptional& x)
   {
     this->Category_ = x;
   }
 
   void AbstractMultiState::
-  Category (::std::unique_ptr< CategoryType > x)
+  setCategory (::std::unique_ptr< CategoryType > x)
   {
     this->Category_.set (std::move (x));
   }
 
   const AbstractMultiState::HandleType& AbstractMultiState::
-  Handle () const
+  getHandle () const
   {
     return this->Handle_.get ();
   }
 
   AbstractMultiState::HandleType& AbstractMultiState::
-  Handle ()
+  getHandle ()
   {
     return this->Handle_.get ();
   }
 
   void AbstractMultiState::
-  Handle (const HandleType& x)
+  setHandle (const HandleType& x)
   {
     this->Handle_.set (x);
   }
 
   void AbstractMultiState::
-  Handle (::std::unique_ptr< HandleType > x)
+  setHandle (::std::unique_ptr< HandleType > x)
   {
     this->Handle_.set (std::move (x));
   }
@@ -1722,19 +1722,19 @@ namespace CDM
   // 
 
   const AbstractDeviceComponentDescriptor::ProductionSpecificationSequence& AbstractDeviceComponentDescriptor::
-  ProductionSpecification () const
+  getProductionSpecification () const
   {
     return this->ProductionSpecification_;
   }
 
   AbstractDeviceComponentDescriptor::ProductionSpecificationSequence& AbstractDeviceComponentDescriptor::
-  ProductionSpecification ()
+  getProductionSpecification ()
   {
     return this->ProductionSpecification_;
   }
 
   void AbstractDeviceComponentDescriptor::
-  ProductionSpecification (const ProductionSpecificationSequence& s)
+  setProductionSpecification (const ProductionSpecificationSequence& s)
   {
     this->ProductionSpecification_ = s;
   }
@@ -1744,61 +1744,61 @@ namespace CDM
   // 
 
   const AbstractComplexDeviceComponentDescriptor::AlertSystemOptional& AbstractComplexDeviceComponentDescriptor::
-  AlertSystem () const
+  getAlertSystem () const
   {
     return this->AlertSystem_;
   }
 
   AbstractComplexDeviceComponentDescriptor::AlertSystemOptional& AbstractComplexDeviceComponentDescriptor::
-  AlertSystem ()
+  getAlertSystem ()
   {
     return this->AlertSystem_;
   }
 
   void AbstractComplexDeviceComponentDescriptor::
-  AlertSystem (const AlertSystemType& x)
+  setAlertSystem (const AlertSystemType& x)
   {
     this->AlertSystem_.set (x);
   }
 
   void AbstractComplexDeviceComponentDescriptor::
-  AlertSystem (const AlertSystemOptional& x)
+  setAlertSystem (const AlertSystemOptional& x)
   {
     this->AlertSystem_ = x;
   }
 
   void AbstractComplexDeviceComponentDescriptor::
-  AlertSystem (::std::unique_ptr< AlertSystemType > x)
+  setAlertSystem (::std::unique_ptr< AlertSystemType > x)
   {
     this->AlertSystem_.set (std::move (x));
   }
 
   const AbstractComplexDeviceComponentDescriptor::ScoOptional& AbstractComplexDeviceComponentDescriptor::
-  Sco () const
+  getSco () const
   {
     return this->Sco_;
   }
 
   AbstractComplexDeviceComponentDescriptor::ScoOptional& AbstractComplexDeviceComponentDescriptor::
-  Sco ()
+  getSco ()
   {
     return this->Sco_;
   }
 
   void AbstractComplexDeviceComponentDescriptor::
-  Sco (const ScoType& x)
+  setSco (const ScoType& x)
   {
     this->Sco_.set (x);
   }
 
   void AbstractComplexDeviceComponentDescriptor::
-  Sco (const ScoOptional& x)
+  setSco (const ScoOptional& x)
   {
     this->Sco_ = x;
   }
 
   void AbstractComplexDeviceComponentDescriptor::
-  Sco (::std::unique_ptr< ScoType > x)
+  setSco (::std::unique_ptr< ScoType > x)
   {
     this->Sco_.set (std::move (x));
   }
@@ -1898,139 +1898,139 @@ namespace CDM
   // 
 
   const CalibrationInfo::ExtensionOptional& CalibrationInfo::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   CalibrationInfo::ExtensionOptional& CalibrationInfo::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void CalibrationInfo::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void CalibrationInfo::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void CalibrationInfo::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const CalibrationInfo::CalibrationDocumentationSequence& CalibrationInfo::
-  CalibrationDocumentation () const
+  getCalibrationDocumentation () const
   {
     return this->CalibrationDocumentation_;
   }
 
   CalibrationInfo::CalibrationDocumentationSequence& CalibrationInfo::
-  CalibrationDocumentation ()
+  getCalibrationDocumentation ()
   {
     return this->CalibrationDocumentation_;
   }
 
   void CalibrationInfo::
-  CalibrationDocumentation (const CalibrationDocumentationSequence& s)
+  setCalibrationDocumentation (const CalibrationDocumentationSequence& s)
   {
     this->CalibrationDocumentation_ = s;
   }
 
   const CalibrationInfo::ComponentCalibrationStateOptional& CalibrationInfo::
-  ComponentCalibrationState () const
+  getComponentCalibrationState () const
   {
     return this->ComponentCalibrationState_;
   }
 
   CalibrationInfo::ComponentCalibrationStateOptional& CalibrationInfo::
-  ComponentCalibrationState ()
+  getComponentCalibrationState ()
   {
     return this->ComponentCalibrationState_;
   }
 
   void CalibrationInfo::
-  ComponentCalibrationState (const ComponentCalibrationStateType& x)
+  setComponentCalibrationState (const ComponentCalibrationStateType& x)
   {
     this->ComponentCalibrationState_.set (x);
   }
 
   void CalibrationInfo::
-  ComponentCalibrationState (const ComponentCalibrationStateOptional& x)
+  setComponentCalibrationState (const ComponentCalibrationStateOptional& x)
   {
     this->ComponentCalibrationState_ = x;
   }
 
   void CalibrationInfo::
-  ComponentCalibrationState (::std::unique_ptr< ComponentCalibrationStateType > x)
+  setComponentCalibrationState (::std::unique_ptr< ComponentCalibrationStateType > x)
   {
     this->ComponentCalibrationState_.set (std::move (x));
   }
 
   const CalibrationInfo::TypeOptional& CalibrationInfo::
-  Type () const
+  getType () const
   {
     return this->Type_;
   }
 
   CalibrationInfo::TypeOptional& CalibrationInfo::
-  Type ()
+  getType ()
   {
     return this->Type_;
   }
 
   void CalibrationInfo::
-  Type (const TypeType& x)
+  setType (const TypeType& x)
   {
     this->Type_.set (x);
   }
 
   void CalibrationInfo::
-  Type (const TypeOptional& x)
+  setType (const TypeOptional& x)
   {
     this->Type_ = x;
   }
 
   void CalibrationInfo::
-  Type (::std::unique_ptr< TypeType > x)
+  setType (::std::unique_ptr< TypeType > x)
   {
     this->Type_.set (std::move (x));
   }
 
   const CalibrationInfo::TimeOptional& CalibrationInfo::
-  Time () const
+  getTime () const
   {
     return this->Time_;
   }
 
   CalibrationInfo::TimeOptional& CalibrationInfo::
-  Time ()
+  getTime ()
   {
     return this->Time_;
   }
 
   void CalibrationInfo::
-  Time (const TimeType& x)
+  setTime (const TimeType& x)
   {
     this->Time_.set (x);
   }
 
   void CalibrationInfo::
-  Time (const TimeOptional& x)
+  setTime (const TimeOptional& x)
   {
     this->Time_ = x;
   }
 
   void CalibrationInfo::
-  Time (::std::unique_ptr< TimeType > x)
+  setTime (::std::unique_ptr< TimeType > x)
   {
     this->Time_.set (std::move (x));
   }
@@ -2040,169 +2040,169 @@ namespace CDM
   // 
 
   const AbstractDeviceComponentState::CalibrationInfoOptional& AbstractDeviceComponentState::
-  CalibrationInfo () const
+  getCalibrationInfo () const
   {
     return this->CalibrationInfo_;
   }
 
   AbstractDeviceComponentState::CalibrationInfoOptional& AbstractDeviceComponentState::
-  CalibrationInfo ()
+  getCalibrationInfo ()
   {
     return this->CalibrationInfo_;
   }
 
   void AbstractDeviceComponentState::
-  CalibrationInfo (const CalibrationInfoType& x)
+  setCalibrationInfo (const CalibrationInfoType& x)
   {
     this->CalibrationInfo_.set (x);
   }
 
   void AbstractDeviceComponentState::
-  CalibrationInfo (const CalibrationInfoOptional& x)
+  setCalibrationInfo (const CalibrationInfoOptional& x)
   {
     this->CalibrationInfo_ = x;
   }
 
   void AbstractDeviceComponentState::
-  CalibrationInfo (::std::unique_ptr< CalibrationInfoType > x)
+  setCalibrationInfo (::std::unique_ptr< CalibrationInfoType > x)
   {
     this->CalibrationInfo_.set (std::move (x));
   }
 
   const AbstractDeviceComponentState::NextCalibrationOptional& AbstractDeviceComponentState::
-  NextCalibration () const
+  getNextCalibration () const
   {
     return this->NextCalibration_;
   }
 
   AbstractDeviceComponentState::NextCalibrationOptional& AbstractDeviceComponentState::
-  NextCalibration ()
+  getNextCalibration ()
   {
     return this->NextCalibration_;
   }
 
   void AbstractDeviceComponentState::
-  NextCalibration (const NextCalibrationType& x)
+  setNextCalibration (const NextCalibrationType& x)
   {
     this->NextCalibration_.set (x);
   }
 
   void AbstractDeviceComponentState::
-  NextCalibration (const NextCalibrationOptional& x)
+  setNextCalibration (const NextCalibrationOptional& x)
   {
     this->NextCalibration_ = x;
   }
 
   void AbstractDeviceComponentState::
-  NextCalibration (::std::unique_ptr< NextCalibrationType > x)
+  setNextCalibration (::std::unique_ptr< NextCalibrationType > x)
   {
     this->NextCalibration_.set (std::move (x));
   }
 
   const AbstractDeviceComponentState::PhysicalConnectorOptional& AbstractDeviceComponentState::
-  PhysicalConnector () const
+  getPhysicalConnector () const
   {
     return this->PhysicalConnector_;
   }
 
   AbstractDeviceComponentState::PhysicalConnectorOptional& AbstractDeviceComponentState::
-  PhysicalConnector ()
+  getPhysicalConnector ()
   {
     return this->PhysicalConnector_;
   }
 
   void AbstractDeviceComponentState::
-  PhysicalConnector (const PhysicalConnectorType& x)
+  setPhysicalConnector (const PhysicalConnectorType& x)
   {
     this->PhysicalConnector_.set (x);
   }
 
   void AbstractDeviceComponentState::
-  PhysicalConnector (const PhysicalConnectorOptional& x)
+  setPhysicalConnector (const PhysicalConnectorOptional& x)
   {
     this->PhysicalConnector_ = x;
   }
 
   void AbstractDeviceComponentState::
-  PhysicalConnector (::std::unique_ptr< PhysicalConnectorType > x)
+  setPhysicalConnector (::std::unique_ptr< PhysicalConnectorType > x)
   {
     this->PhysicalConnector_.set (std::move (x));
   }
 
   const AbstractDeviceComponentState::ActivationStateOptional& AbstractDeviceComponentState::
-  ActivationState () const
+  getActivationState () const
   {
     return this->ActivationState_;
   }
 
   AbstractDeviceComponentState::ActivationStateOptional& AbstractDeviceComponentState::
-  ActivationState ()
+  getActivationState ()
   {
     return this->ActivationState_;
   }
 
   void AbstractDeviceComponentState::
-  ActivationState (const ActivationStateType& x)
+  setActivationState (const ActivationStateType& x)
   {
     this->ActivationState_.set (x);
   }
 
   void AbstractDeviceComponentState::
-  ActivationState (const ActivationStateOptional& x)
+  setActivationState (const ActivationStateOptional& x)
   {
     this->ActivationState_ = x;
   }
 
   void AbstractDeviceComponentState::
-  ActivationState (::std::unique_ptr< ActivationStateType > x)
+  setActivationState (::std::unique_ptr< ActivationStateType > x)
   {
     this->ActivationState_.set (std::move (x));
   }
 
   const AbstractDeviceComponentState::OperatingHoursOptional& AbstractDeviceComponentState::
-  OperatingHours () const
+  getOperatingHours () const
   {
     return this->OperatingHours_;
   }
 
   AbstractDeviceComponentState::OperatingHoursOptional& AbstractDeviceComponentState::
-  OperatingHours ()
+  getOperatingHours ()
   {
     return this->OperatingHours_;
   }
 
   void AbstractDeviceComponentState::
-  OperatingHours (const OperatingHoursType& x)
+  setOperatingHours (const OperatingHoursType& x)
   {
     this->OperatingHours_.set (x);
   }
 
   void AbstractDeviceComponentState::
-  OperatingHours (const OperatingHoursOptional& x)
+  setOperatingHours (const OperatingHoursOptional& x)
   {
     this->OperatingHours_ = x;
   }
 
   const AbstractDeviceComponentState::OperatingCyclesOptional& AbstractDeviceComponentState::
-  OperatingCycles () const
+  getOperatingCycles () const
   {
     return this->OperatingCycles_;
   }
 
   AbstractDeviceComponentState::OperatingCyclesOptional& AbstractDeviceComponentState::
-  OperatingCycles ()
+  getOperatingCycles ()
   {
     return this->OperatingCycles_;
   }
 
   void AbstractDeviceComponentState::
-  OperatingCycles (const OperatingCyclesType& x)
+  setOperatingCycles (const OperatingCyclesType& x)
   {
     this->OperatingCycles_.set (x);
   }
 
   void AbstractDeviceComponentState::
-  OperatingCycles (const OperatingCyclesOptional& x)
+  setOperatingCycles (const OperatingCyclesOptional& x)
   {
     this->OperatingCycles_ = x;
   }
@@ -2216,157 +2216,157 @@ namespace CDM
   // 
 
   const MdsDescriptor::MetaDataOptional& MdsDescriptor::
-  MetaData () const
+  getMetaData () const
   {
     return this->MetaData_;
   }
 
   MdsDescriptor::MetaDataOptional& MdsDescriptor::
-  MetaData ()
+  getMetaData ()
   {
     return this->MetaData_;
   }
 
   void MdsDescriptor::
-  MetaData (const MetaDataType& x)
+  setMetaData (const MetaDataType& x)
   {
     this->MetaData_.set (x);
   }
 
   void MdsDescriptor::
-  MetaData (const MetaDataOptional& x)
+  setMetaData (const MetaDataOptional& x)
   {
     this->MetaData_ = x;
   }
 
   void MdsDescriptor::
-  MetaData (::std::unique_ptr< MetaDataType > x)
+  setMetaData (::std::unique_ptr< MetaDataType > x)
   {
     this->MetaData_.set (std::move (x));
   }
 
   const MdsDescriptor::SystemContextOptional& MdsDescriptor::
-  SystemContext () const
+  getSystemContext () const
   {
     return this->SystemContext_;
   }
 
   MdsDescriptor::SystemContextOptional& MdsDescriptor::
-  SystemContext ()
+  getSystemContext ()
   {
     return this->SystemContext_;
   }
 
   void MdsDescriptor::
-  SystemContext (const SystemContextType& x)
+  setSystemContext (const SystemContextType& x)
   {
     this->SystemContext_.set (x);
   }
 
   void MdsDescriptor::
-  SystemContext (const SystemContextOptional& x)
+  setSystemContext (const SystemContextOptional& x)
   {
     this->SystemContext_ = x;
   }
 
   void MdsDescriptor::
-  SystemContext (::std::unique_ptr< SystemContextType > x)
+  setSystemContext (::std::unique_ptr< SystemContextType > x)
   {
     this->SystemContext_.set (std::move (x));
   }
 
   const MdsDescriptor::ClockOptional& MdsDescriptor::
-  Clock () const
+  getClock () const
   {
     return this->Clock_;
   }
 
   MdsDescriptor::ClockOptional& MdsDescriptor::
-  Clock ()
+  getClock ()
   {
     return this->Clock_;
   }
 
   void MdsDescriptor::
-  Clock (const ClockType& x)
+  setClock (const ClockType& x)
   {
     this->Clock_.set (x);
   }
 
   void MdsDescriptor::
-  Clock (const ClockOptional& x)
+  setClock (const ClockOptional& x)
   {
     this->Clock_ = x;
   }
 
   void MdsDescriptor::
-  Clock (::std::unique_ptr< ClockType > x)
+  setClock (::std::unique_ptr< ClockType > x)
   {
     this->Clock_.set (std::move (x));
   }
 
   const MdsDescriptor::BatterySequence& MdsDescriptor::
-  Battery () const
+  getBattery () const
   {
     return this->Battery_;
   }
 
   MdsDescriptor::BatterySequence& MdsDescriptor::
-  Battery ()
+  getBattery ()
   {
     return this->Battery_;
   }
 
   void MdsDescriptor::
-  Battery (const BatterySequence& s)
+  setBattery (const BatterySequence& s)
   {
     this->Battery_ = s;
   }
 
   const MdsDescriptor::ApprovedJurisdictionsOptional& MdsDescriptor::
-  ApprovedJurisdictions () const
+  getApprovedJurisdictions () const
   {
     return this->ApprovedJurisdictions_;
   }
 
   MdsDescriptor::ApprovedJurisdictionsOptional& MdsDescriptor::
-  ApprovedJurisdictions ()
+  getApprovedJurisdictions ()
   {
     return this->ApprovedJurisdictions_;
   }
 
   void MdsDescriptor::
-  ApprovedJurisdictions (const ApprovedJurisdictionsType& x)
+  setApprovedJurisdictions (const ApprovedJurisdictionsType& x)
   {
     this->ApprovedJurisdictions_.set (x);
   }
 
   void MdsDescriptor::
-  ApprovedJurisdictions (const ApprovedJurisdictionsOptional& x)
+  setApprovedJurisdictions (const ApprovedJurisdictionsOptional& x)
   {
     this->ApprovedJurisdictions_ = x;
   }
 
   void MdsDescriptor::
-  ApprovedJurisdictions (::std::unique_ptr< ApprovedJurisdictionsType > x)
+  setApprovedJurisdictions (::std::unique_ptr< ApprovedJurisdictionsType > x)
   {
     this->ApprovedJurisdictions_.set (std::move (x));
   }
 
   const MdsDescriptor::VmdSequence& MdsDescriptor::
-  Vmd () const
+  getVmd () const
   {
     return this->Vmd_;
   }
 
   MdsDescriptor::VmdSequence& MdsDescriptor::
-  Vmd ()
+  getVmd ()
   {
     return this->Vmd_;
   }
 
   void MdsDescriptor::
-  Vmd (const VmdSequence& s)
+  setVmd (const VmdSequence& s)
   {
     this->Vmd_ = s;
   }
@@ -2421,91 +2421,91 @@ namespace CDM
   // 
 
   const MdsState::OperatingJurisdictionOptional& MdsState::
-  OperatingJurisdiction () const
+  getOperatingJurisdiction () const
   {
     return this->OperatingJurisdiction_;
   }
 
   MdsState::OperatingJurisdictionOptional& MdsState::
-  OperatingJurisdiction ()
+  getOperatingJurisdiction ()
   {
     return this->OperatingJurisdiction_;
   }
 
   void MdsState::
-  OperatingJurisdiction (const OperatingJurisdictionType& x)
+  setOperatingJurisdiction (const OperatingJurisdictionType& x)
   {
     this->OperatingJurisdiction_.set (x);
   }
 
   void MdsState::
-  OperatingJurisdiction (const OperatingJurisdictionOptional& x)
+  setOperatingJurisdiction (const OperatingJurisdictionOptional& x)
   {
     this->OperatingJurisdiction_ = x;
   }
 
   void MdsState::
-  OperatingJurisdiction (::std::unique_ptr< OperatingJurisdictionType > x)
+  setOperatingJurisdiction (::std::unique_ptr< OperatingJurisdictionType > x)
   {
     this->OperatingJurisdiction_.set (std::move (x));
   }
 
   const MdsState::LangOptional& MdsState::
-  Lang () const
+  getLang () const
   {
     return this->Lang_;
   }
 
   MdsState::LangOptional& MdsState::
-  Lang ()
+  getLang ()
   {
     return this->Lang_;
   }
 
   void MdsState::
-  Lang (const LangType& x)
+  setLang (const LangType& x)
   {
     this->Lang_.set (x);
   }
 
   void MdsState::
-  Lang (const LangOptional& x)
+  setLang (const LangOptional& x)
   {
     this->Lang_ = x;
   }
 
   void MdsState::
-  Lang (::std::unique_ptr< LangType > x)
+  setLang (::std::unique_ptr< LangType > x)
   {
     this->Lang_.set (std::move (x));
   }
 
   const MdsState::OperatingModeOptional& MdsState::
-  OperatingMode () const
+  getOperatingMode () const
   {
     return this->OperatingMode_;
   }
 
   MdsState::OperatingModeOptional& MdsState::
-  OperatingMode ()
+  getOperatingMode ()
   {
     return this->OperatingMode_;
   }
 
   void MdsState::
-  OperatingMode (const OperatingModeType& x)
+  setOperatingMode (const OperatingModeType& x)
   {
     this->OperatingMode_.set (x);
   }
 
   void MdsState::
-  OperatingMode (const OperatingModeOptional& x)
+  setOperatingMode (const OperatingModeOptional& x)
   {
     this->OperatingMode_ = x;
   }
 
   void MdsState::
-  OperatingMode (::std::unique_ptr< OperatingModeType > x)
+  setOperatingMode (::std::unique_ptr< OperatingModeType > x)
   {
     this->OperatingMode_.set (std::move (x));
   }
@@ -2515,49 +2515,49 @@ namespace CDM
   // 
 
   const VmdDescriptor::ApprovedJurisdictionsOptional& VmdDescriptor::
-  ApprovedJurisdictions () const
+  getApprovedJurisdictions () const
   {
     return this->ApprovedJurisdictions_;
   }
 
   VmdDescriptor::ApprovedJurisdictionsOptional& VmdDescriptor::
-  ApprovedJurisdictions ()
+  getApprovedJurisdictions ()
   {
     return this->ApprovedJurisdictions_;
   }
 
   void VmdDescriptor::
-  ApprovedJurisdictions (const ApprovedJurisdictionsType& x)
+  setApprovedJurisdictions (const ApprovedJurisdictionsType& x)
   {
     this->ApprovedJurisdictions_.set (x);
   }
 
   void VmdDescriptor::
-  ApprovedJurisdictions (const ApprovedJurisdictionsOptional& x)
+  setApprovedJurisdictions (const ApprovedJurisdictionsOptional& x)
   {
     this->ApprovedJurisdictions_ = x;
   }
 
   void VmdDescriptor::
-  ApprovedJurisdictions (::std::unique_ptr< ApprovedJurisdictionsType > x)
+  setApprovedJurisdictions (::std::unique_ptr< ApprovedJurisdictionsType > x)
   {
     this->ApprovedJurisdictions_.set (std::move (x));
   }
 
   const VmdDescriptor::ChannelSequence& VmdDescriptor::
-  Channel () const
+  getChannel () const
   {
     return this->Channel_;
   }
 
   VmdDescriptor::ChannelSequence& VmdDescriptor::
-  Channel ()
+  getChannel ()
   {
     return this->Channel_;
   }
 
   void VmdDescriptor::
-  Channel (const ChannelSequence& s)
+  setChannel (const ChannelSequence& s)
   {
     this->Channel_ = s;
   }
@@ -2567,31 +2567,31 @@ namespace CDM
   // 
 
   const VmdState::OperatingJurisdictionOptional& VmdState::
-  OperatingJurisdiction () const
+  getOperatingJurisdiction () const
   {
     return this->OperatingJurisdiction_;
   }
 
   VmdState::OperatingJurisdictionOptional& VmdState::
-  OperatingJurisdiction ()
+  getOperatingJurisdiction ()
   {
     return this->OperatingJurisdiction_;
   }
 
   void VmdState::
-  OperatingJurisdiction (const OperatingJurisdictionType& x)
+  setOperatingJurisdiction (const OperatingJurisdictionType& x)
   {
     this->OperatingJurisdiction_.set (x);
   }
 
   void VmdState::
-  OperatingJurisdiction (const OperatingJurisdictionOptional& x)
+  setOperatingJurisdiction (const OperatingJurisdictionOptional& x)
   {
     this->OperatingJurisdiction_ = x;
   }
 
   void VmdState::
-  OperatingJurisdiction (::std::unique_ptr< OperatingJurisdictionType > x)
+  setOperatingJurisdiction (::std::unique_ptr< OperatingJurisdictionType > x)
   {
     this->OperatingJurisdiction_.set (std::move (x));
   }
@@ -2601,19 +2601,19 @@ namespace CDM
   // 
 
   const ChannelDescriptor::MetricSequence& ChannelDescriptor::
-  Metric () const
+  getMetric () const
   {
     return this->Metric_;
   }
 
   ChannelDescriptor::MetricSequence& ChannelDescriptor::
-  Metric ()
+  getMetric ()
   {
     return this->Metric_;
   }
 
   void ChannelDescriptor::
-  Metric (const MetricSequence& s)
+  setMetric (const MetricSequence& s)
   {
     this->Metric_ = s;
   }
@@ -2631,25 +2631,25 @@ namespace CDM
   // 
 
   const AbstractAlertState::ActivationStateType& AbstractAlertState::
-  ActivationState () const
+  getActivationState () const
   {
     return this->ActivationState_.get ();
   }
 
   AbstractAlertState::ActivationStateType& AbstractAlertState::
-  ActivationState ()
+  getActivationState ()
   {
     return this->ActivationState_.get ();
   }
 
   void AbstractAlertState::
-  ActivationState (const ActivationStateType& x)
+  setActivationState (const ActivationStateType& x)
   {
     this->ActivationState_.set (x);
   }
 
   void AbstractAlertState::
-  ActivationState (::std::unique_ptr< ActivationStateType > x)
+  setActivationState (::std::unique_ptr< ActivationStateType > x)
   {
     this->ActivationState_.set (std::move (x));
   }
@@ -2704,49 +2704,49 @@ namespace CDM
   // 
 
   const SystemSignalActivation::ManifestationType& SystemSignalActivation::
-  Manifestation () const
+  getManifestation () const
   {
     return this->Manifestation_.get ();
   }
 
   SystemSignalActivation::ManifestationType& SystemSignalActivation::
-  Manifestation ()
+  getManifestation ()
   {
     return this->Manifestation_.get ();
   }
 
   void SystemSignalActivation::
-  Manifestation (const ManifestationType& x)
+  setManifestation (const ManifestationType& x)
   {
     this->Manifestation_.set (x);
   }
 
   void SystemSignalActivation::
-  Manifestation (::std::unique_ptr< ManifestationType > x)
+  setManifestation (::std::unique_ptr< ManifestationType > x)
   {
     this->Manifestation_.set (std::move (x));
   }
 
   const SystemSignalActivation::StateType& SystemSignalActivation::
-  State () const
+  getState () const
   {
     return this->State_.get ();
   }
 
   SystemSignalActivation::StateType& SystemSignalActivation::
-  State ()
+  getState ()
   {
     return this->State_.get ();
   }
 
   void SystemSignalActivation::
-  State (const StateType& x)
+  setState (const StateType& x)
   {
     this->State_.set (x);
   }
 
   void SystemSignalActivation::
-  State (::std::unique_ptr< StateType > x)
+  setState (::std::unique_ptr< StateType > x)
   {
     this->State_.set (std::move (x));
   }
@@ -2756,115 +2756,115 @@ namespace CDM
   // 
 
   const AlertSystemDescriptor::AlertConditionSequence& AlertSystemDescriptor::
-  AlertCondition () const
+  getAlertCondition () const
   {
     return this->AlertCondition_;
   }
 
   AlertSystemDescriptor::AlertConditionSequence& AlertSystemDescriptor::
-  AlertCondition ()
+  getAlertCondition ()
   {
     return this->AlertCondition_;
   }
 
   void AlertSystemDescriptor::
-  AlertCondition (const AlertConditionSequence& s)
+  setAlertCondition (const AlertConditionSequence& s)
   {
     this->AlertCondition_ = s;
   }
 
   const AlertSystemDescriptor::AlertSignalSequence& AlertSystemDescriptor::
-  AlertSignal () const
+  getAlertSignal () const
   {
     return this->AlertSignal_;
   }
 
   AlertSystemDescriptor::AlertSignalSequence& AlertSystemDescriptor::
-  AlertSignal ()
+  getAlertSignal ()
   {
     return this->AlertSignal_;
   }
 
   void AlertSystemDescriptor::
-  AlertSignal (const AlertSignalSequence& s)
+  setAlertSignal (const AlertSignalSequence& s)
   {
     this->AlertSignal_ = s;
   }
 
   const AlertSystemDescriptor::MaxPhysiologicalParallelAlarmsOptional& AlertSystemDescriptor::
-  MaxPhysiologicalParallelAlarms () const
+  getMaxPhysiologicalParallelAlarms () const
   {
     return this->MaxPhysiologicalParallelAlarms_;
   }
 
   AlertSystemDescriptor::MaxPhysiologicalParallelAlarmsOptional& AlertSystemDescriptor::
-  MaxPhysiologicalParallelAlarms ()
+  getMaxPhysiologicalParallelAlarms ()
   {
     return this->MaxPhysiologicalParallelAlarms_;
   }
 
   void AlertSystemDescriptor::
-  MaxPhysiologicalParallelAlarms (const MaxPhysiologicalParallelAlarmsType& x)
+  setMaxPhysiologicalParallelAlarms (const MaxPhysiologicalParallelAlarmsType& x)
   {
     this->MaxPhysiologicalParallelAlarms_.set (x);
   }
 
   void AlertSystemDescriptor::
-  MaxPhysiologicalParallelAlarms (const MaxPhysiologicalParallelAlarmsOptional& x)
+  setMaxPhysiologicalParallelAlarms (const MaxPhysiologicalParallelAlarmsOptional& x)
   {
     this->MaxPhysiologicalParallelAlarms_ = x;
   }
 
   const AlertSystemDescriptor::MaxTechnicalParallelAlarmsOptional& AlertSystemDescriptor::
-  MaxTechnicalParallelAlarms () const
+  getMaxTechnicalParallelAlarms () const
   {
     return this->MaxTechnicalParallelAlarms_;
   }
 
   AlertSystemDescriptor::MaxTechnicalParallelAlarmsOptional& AlertSystemDescriptor::
-  MaxTechnicalParallelAlarms ()
+  getMaxTechnicalParallelAlarms ()
   {
     return this->MaxTechnicalParallelAlarms_;
   }
 
   void AlertSystemDescriptor::
-  MaxTechnicalParallelAlarms (const MaxTechnicalParallelAlarmsType& x)
+  setMaxTechnicalParallelAlarms (const MaxTechnicalParallelAlarmsType& x)
   {
     this->MaxTechnicalParallelAlarms_.set (x);
   }
 
   void AlertSystemDescriptor::
-  MaxTechnicalParallelAlarms (const MaxTechnicalParallelAlarmsOptional& x)
+  setMaxTechnicalParallelAlarms (const MaxTechnicalParallelAlarmsOptional& x)
   {
     this->MaxTechnicalParallelAlarms_ = x;
   }
 
   const AlertSystemDescriptor::SelfCheckPeriodOptional& AlertSystemDescriptor::
-  SelfCheckPeriod () const
+  getSelfCheckPeriod () const
   {
     return this->SelfCheckPeriod_;
   }
 
   AlertSystemDescriptor::SelfCheckPeriodOptional& AlertSystemDescriptor::
-  SelfCheckPeriod ()
+  getSelfCheckPeriod ()
   {
     return this->SelfCheckPeriod_;
   }
 
   void AlertSystemDescriptor::
-  SelfCheckPeriod (const SelfCheckPeriodType& x)
+  setSelfCheckPeriod (const SelfCheckPeriodType& x)
   {
     this->SelfCheckPeriod_.set (x);
   }
 
   void AlertSystemDescriptor::
-  SelfCheckPeriod (const SelfCheckPeriodOptional& x)
+  setSelfCheckPeriod (const SelfCheckPeriodOptional& x)
   {
     this->SelfCheckPeriod_ = x;
   }
 
   void AlertSystemDescriptor::
-  SelfCheckPeriod (::std::unique_ptr< SelfCheckPeriodType > x)
+  setSelfCheckPeriod (::std::unique_ptr< SelfCheckPeriodType > x)
   {
     this->SelfCheckPeriod_.set (std::move (x));
   }
@@ -2874,133 +2874,133 @@ namespace CDM
   // 
 
   const AlertSystemState::SystemSignalActivationSequence& AlertSystemState::
-  SystemSignalActivation () const
+  getSystemSignalActivation () const
   {
     return this->SystemSignalActivation_;
   }
 
   AlertSystemState::SystemSignalActivationSequence& AlertSystemState::
-  SystemSignalActivation ()
+  getSystemSignalActivation ()
   {
     return this->SystemSignalActivation_;
   }
 
   void AlertSystemState::
-  SystemSignalActivation (const SystemSignalActivationSequence& s)
+  setSystemSignalActivation (const SystemSignalActivationSequence& s)
   {
     this->SystemSignalActivation_ = s;
   }
 
   const AlertSystemState::LastSelfCheckOptional& AlertSystemState::
-  LastSelfCheck () const
+  getLastSelfCheck () const
   {
     return this->LastSelfCheck_;
   }
 
   AlertSystemState::LastSelfCheckOptional& AlertSystemState::
-  LastSelfCheck ()
+  getLastSelfCheck ()
   {
     return this->LastSelfCheck_;
   }
 
   void AlertSystemState::
-  LastSelfCheck (const LastSelfCheckType& x)
+  setLastSelfCheck (const LastSelfCheckType& x)
   {
     this->LastSelfCheck_.set (x);
   }
 
   void AlertSystemState::
-  LastSelfCheck (const LastSelfCheckOptional& x)
+  setLastSelfCheck (const LastSelfCheckOptional& x)
   {
     this->LastSelfCheck_ = x;
   }
 
   void AlertSystemState::
-  LastSelfCheck (::std::unique_ptr< LastSelfCheckType > x)
+  setLastSelfCheck (::std::unique_ptr< LastSelfCheckType > x)
   {
     this->LastSelfCheck_.set (std::move (x));
   }
 
   const AlertSystemState::SelfCheckCountOptional& AlertSystemState::
-  SelfCheckCount () const
+  getSelfCheckCount () const
   {
     return this->SelfCheckCount_;
   }
 
   AlertSystemState::SelfCheckCountOptional& AlertSystemState::
-  SelfCheckCount ()
+  getSelfCheckCount ()
   {
     return this->SelfCheckCount_;
   }
 
   void AlertSystemState::
-  SelfCheckCount (const SelfCheckCountType& x)
+  setSelfCheckCount (const SelfCheckCountType& x)
   {
     this->SelfCheckCount_.set (x);
   }
 
   void AlertSystemState::
-  SelfCheckCount (const SelfCheckCountOptional& x)
+  setSelfCheckCount (const SelfCheckCountOptional& x)
   {
     this->SelfCheckCount_ = x;
   }
 
   const AlertSystemState::PresentPhysiologicalAlarmConditionsOptional& AlertSystemState::
-  PresentPhysiologicalAlarmConditions () const
+  getPresentPhysiologicalAlarmConditions () const
   {
     return this->PresentPhysiologicalAlarmConditions_;
   }
 
   AlertSystemState::PresentPhysiologicalAlarmConditionsOptional& AlertSystemState::
-  PresentPhysiologicalAlarmConditions ()
+  getPresentPhysiologicalAlarmConditions ()
   {
     return this->PresentPhysiologicalAlarmConditions_;
   }
 
   void AlertSystemState::
-  PresentPhysiologicalAlarmConditions (const PresentPhysiologicalAlarmConditionsType& x)
+  setPresentPhysiologicalAlarmConditions (const PresentPhysiologicalAlarmConditionsType& x)
   {
     this->PresentPhysiologicalAlarmConditions_.set (x);
   }
 
   void AlertSystemState::
-  PresentPhysiologicalAlarmConditions (const PresentPhysiologicalAlarmConditionsOptional& x)
+  setPresentPhysiologicalAlarmConditions (const PresentPhysiologicalAlarmConditionsOptional& x)
   {
     this->PresentPhysiologicalAlarmConditions_ = x;
   }
 
   void AlertSystemState::
-  PresentPhysiologicalAlarmConditions (::std::unique_ptr< PresentPhysiologicalAlarmConditionsType > x)
+  setPresentPhysiologicalAlarmConditions (::std::unique_ptr< PresentPhysiologicalAlarmConditionsType > x)
   {
     this->PresentPhysiologicalAlarmConditions_.set (std::move (x));
   }
 
   const AlertSystemState::PresentTechnicalAlarmConditionsOptional& AlertSystemState::
-  PresentTechnicalAlarmConditions () const
+  getPresentTechnicalAlarmConditions () const
   {
     return this->PresentTechnicalAlarmConditions_;
   }
 
   AlertSystemState::PresentTechnicalAlarmConditionsOptional& AlertSystemState::
-  PresentTechnicalAlarmConditions ()
+  getPresentTechnicalAlarmConditions ()
   {
     return this->PresentTechnicalAlarmConditions_;
   }
 
   void AlertSystemState::
-  PresentTechnicalAlarmConditions (const PresentTechnicalAlarmConditionsType& x)
+  setPresentTechnicalAlarmConditions (const PresentTechnicalAlarmConditionsType& x)
   {
     this->PresentTechnicalAlarmConditions_.set (x);
   }
 
   void AlertSystemState::
-  PresentTechnicalAlarmConditions (const PresentTechnicalAlarmConditionsOptional& x)
+  setPresentTechnicalAlarmConditions (const PresentTechnicalAlarmConditionsOptional& x)
   {
     this->PresentTechnicalAlarmConditions_ = x;
   }
 
   void AlertSystemState::
-  PresentTechnicalAlarmConditions (::std::unique_ptr< PresentTechnicalAlarmConditionsType > x)
+  setPresentTechnicalAlarmConditions (::std::unique_ptr< PresentTechnicalAlarmConditionsType > x)
   {
     this->PresentTechnicalAlarmConditions_.set (std::move (x));
   }
@@ -3010,79 +3010,79 @@ namespace CDM
   // 
 
   const CauseInfo::ExtensionOptional& CauseInfo::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   CauseInfo::ExtensionOptional& CauseInfo::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void CauseInfo::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void CauseInfo::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void CauseInfo::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const CauseInfo::RemedyInfoOptional& CauseInfo::
-  RemedyInfo () const
+  getRemedyInfo () const
   {
     return this->RemedyInfo_;
   }
 
   CauseInfo::RemedyInfoOptional& CauseInfo::
-  RemedyInfo ()
+  getRemedyInfo ()
   {
     return this->RemedyInfo_;
   }
 
   void CauseInfo::
-  RemedyInfo (const RemedyInfoType& x)
+  setRemedyInfo (const RemedyInfoType& x)
   {
     this->RemedyInfo_.set (x);
   }
 
   void CauseInfo::
-  RemedyInfo (const RemedyInfoOptional& x)
+  setRemedyInfo (const RemedyInfoOptional& x)
   {
     this->RemedyInfo_ = x;
   }
 
   void CauseInfo::
-  RemedyInfo (::std::unique_ptr< RemedyInfoType > x)
+  setRemedyInfo (::std::unique_ptr< RemedyInfoType > x)
   {
     this->RemedyInfo_.set (std::move (x));
   }
 
   const CauseInfo::DescriptionSequence& CauseInfo::
-  Description () const
+  getDescription () const
   {
     return this->Description_;
   }
 
   CauseInfo::DescriptionSequence& CauseInfo::
-  Description ()
+  getDescription ()
   {
     return this->Description_;
   }
 
   void CauseInfo::
-  Description (const DescriptionSequence& s)
+  setDescription (const DescriptionSequence& s)
   {
     this->Description_ = s;
   }
@@ -3092,49 +3092,49 @@ namespace CDM
   // 
 
   const RemedyInfo::ExtensionOptional& RemedyInfo::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   RemedyInfo::ExtensionOptional& RemedyInfo::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void RemedyInfo::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void RemedyInfo::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void RemedyInfo::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const RemedyInfo::DescriptionSequence& RemedyInfo::
-  Description () const
+  getDescription () const
   {
     return this->Description_;
   }
 
   RemedyInfo::DescriptionSequence& RemedyInfo::
-  Description ()
+  getDescription ()
   {
     return this->Description_;
   }
 
   void RemedyInfo::
-  Description (const DescriptionSequence& s)
+  setDescription (const DescriptionSequence& s)
   {
     this->Description_ = s;
   }
@@ -3234,175 +3234,175 @@ namespace CDM
   // 
 
   const AlertConditionDescriptor::SourceSequence& AlertConditionDescriptor::
-  Source () const
+  getSource () const
   {
     return this->Source_;
   }
 
   AlertConditionDescriptor::SourceSequence& AlertConditionDescriptor::
-  Source ()
+  getSource ()
   {
     return this->Source_;
   }
 
   void AlertConditionDescriptor::
-  Source (const SourceSequence& s)
+  setSource (const SourceSequence& s)
   {
     this->Source_ = s;
   }
 
   const AlertConditionDescriptor::CauseInfoSequence& AlertConditionDescriptor::
-  CauseInfo () const
+  getCauseInfo () const
   {
     return this->CauseInfo_;
   }
 
   AlertConditionDescriptor::CauseInfoSequence& AlertConditionDescriptor::
-  CauseInfo ()
+  getCauseInfo ()
   {
     return this->CauseInfo_;
   }
 
   void AlertConditionDescriptor::
-  CauseInfo (const CauseInfoSequence& s)
+  setCauseInfo (const CauseInfoSequence& s)
   {
     this->CauseInfo_ = s;
   }
 
   const AlertConditionDescriptor::KindType& AlertConditionDescriptor::
-  Kind () const
+  getKind () const
   {
     return this->Kind_.get ();
   }
 
   AlertConditionDescriptor::KindType& AlertConditionDescriptor::
-  Kind ()
+  getKind ()
   {
     return this->Kind_.get ();
   }
 
   void AlertConditionDescriptor::
-  Kind (const KindType& x)
+  setKind (const KindType& x)
   {
     this->Kind_.set (x);
   }
 
   void AlertConditionDescriptor::
-  Kind (::std::unique_ptr< KindType > x)
+  setKind (::std::unique_ptr< KindType > x)
   {
     this->Kind_.set (std::move (x));
   }
 
   const AlertConditionDescriptor::PriorityType& AlertConditionDescriptor::
-  Priority () const
+  getPriority () const
   {
     return this->Priority_.get ();
   }
 
   AlertConditionDescriptor::PriorityType& AlertConditionDescriptor::
-  Priority ()
+  getPriority ()
   {
     return this->Priority_.get ();
   }
 
   void AlertConditionDescriptor::
-  Priority (const PriorityType& x)
+  setPriority (const PriorityType& x)
   {
     this->Priority_.set (x);
   }
 
   void AlertConditionDescriptor::
-  Priority (::std::unique_ptr< PriorityType > x)
+  setPriority (::std::unique_ptr< PriorityType > x)
   {
     this->Priority_.set (std::move (x));
   }
 
   const AlertConditionDescriptor::DefaultConditionGenerationDelayOptional& AlertConditionDescriptor::
-  DefaultConditionGenerationDelay () const
+  getDefaultConditionGenerationDelay () const
   {
     return this->DefaultConditionGenerationDelay_;
   }
 
   AlertConditionDescriptor::DefaultConditionGenerationDelayOptional& AlertConditionDescriptor::
-  DefaultConditionGenerationDelay ()
+  getDefaultConditionGenerationDelay ()
   {
     return this->DefaultConditionGenerationDelay_;
   }
 
   void AlertConditionDescriptor::
-  DefaultConditionGenerationDelay (const DefaultConditionGenerationDelayType& x)
+  setDefaultConditionGenerationDelay (const DefaultConditionGenerationDelayType& x)
   {
     this->DefaultConditionGenerationDelay_.set (x);
   }
 
   void AlertConditionDescriptor::
-  DefaultConditionGenerationDelay (const DefaultConditionGenerationDelayOptional& x)
+  setDefaultConditionGenerationDelay (const DefaultConditionGenerationDelayOptional& x)
   {
     this->DefaultConditionGenerationDelay_ = x;
   }
 
   void AlertConditionDescriptor::
-  DefaultConditionGenerationDelay (::std::unique_ptr< DefaultConditionGenerationDelayType > x)
+  setDefaultConditionGenerationDelay (::std::unique_ptr< DefaultConditionGenerationDelayType > x)
   {
     this->DefaultConditionGenerationDelay_.set (std::move (x));
   }
 
   const AlertConditionDescriptor::CanEscalateOptional& AlertConditionDescriptor::
-  CanEscalate () const
+  getCanEscalate () const
   {
     return this->CanEscalate_;
   }
 
   AlertConditionDescriptor::CanEscalateOptional& AlertConditionDescriptor::
-  CanEscalate ()
+  getCanEscalate ()
   {
     return this->CanEscalate_;
   }
 
   void AlertConditionDescriptor::
-  CanEscalate (const CanEscalateType& x)
+  setCanEscalate (const CanEscalateType& x)
   {
     this->CanEscalate_.set (x);
   }
 
   void AlertConditionDescriptor::
-  CanEscalate (const CanEscalateOptional& x)
+  setCanEscalate (const CanEscalateOptional& x)
   {
     this->CanEscalate_ = x;
   }
 
   void AlertConditionDescriptor::
-  CanEscalate (::std::unique_ptr< CanEscalateType > x)
+  setCanEscalate (::std::unique_ptr< CanEscalateType > x)
   {
     this->CanEscalate_.set (std::move (x));
   }
 
   const AlertConditionDescriptor::CanDeescalateOptional& AlertConditionDescriptor::
-  CanDeescalate () const
+  getCanDeescalate () const
   {
     return this->CanDeescalate_;
   }
 
   AlertConditionDescriptor::CanDeescalateOptional& AlertConditionDescriptor::
-  CanDeescalate ()
+  getCanDeescalate ()
   {
     return this->CanDeescalate_;
   }
 
   void AlertConditionDescriptor::
-  CanDeescalate (const CanDeescalateType& x)
+  setCanDeescalate (const CanDeescalateType& x)
   {
     this->CanDeescalate_.set (x);
   }
 
   void AlertConditionDescriptor::
-  CanDeescalate (const CanDeescalateOptional& x)
+  setCanDeescalate (const CanDeescalateOptional& x)
   {
     this->CanDeescalate_ = x;
   }
 
   void AlertConditionDescriptor::
-  CanDeescalate (::std::unique_ptr< CanDeescalateType > x)
+  setCanDeescalate (::std::unique_ptr< CanDeescalateType > x)
   {
     this->CanDeescalate_.set (std::move (x));
   }
@@ -3436,139 +3436,139 @@ namespace CDM
   // 
 
   const AlertConditionState::ActualConditionGenerationDelayOptional& AlertConditionState::
-  ActualConditionGenerationDelay () const
+  getActualConditionGenerationDelay () const
   {
     return this->ActualConditionGenerationDelay_;
   }
 
   AlertConditionState::ActualConditionGenerationDelayOptional& AlertConditionState::
-  ActualConditionGenerationDelay ()
+  getActualConditionGenerationDelay ()
   {
     return this->ActualConditionGenerationDelay_;
   }
 
   void AlertConditionState::
-  ActualConditionGenerationDelay (const ActualConditionGenerationDelayType& x)
+  setActualConditionGenerationDelay (const ActualConditionGenerationDelayType& x)
   {
     this->ActualConditionGenerationDelay_.set (x);
   }
 
   void AlertConditionState::
-  ActualConditionGenerationDelay (const ActualConditionGenerationDelayOptional& x)
+  setActualConditionGenerationDelay (const ActualConditionGenerationDelayOptional& x)
   {
     this->ActualConditionGenerationDelay_ = x;
   }
 
   void AlertConditionState::
-  ActualConditionGenerationDelay (::std::unique_ptr< ActualConditionGenerationDelayType > x)
+  setActualConditionGenerationDelay (::std::unique_ptr< ActualConditionGenerationDelayType > x)
   {
     this->ActualConditionGenerationDelay_.set (std::move (x));
   }
 
   const AlertConditionState::ActualPriorityOptional& AlertConditionState::
-  ActualPriority () const
+  getActualPriority () const
   {
     return this->ActualPriority_;
   }
 
   AlertConditionState::ActualPriorityOptional& AlertConditionState::
-  ActualPriority ()
+  getActualPriority ()
   {
     return this->ActualPriority_;
   }
 
   void AlertConditionState::
-  ActualPriority (const ActualPriorityType& x)
+  setActualPriority (const ActualPriorityType& x)
   {
     this->ActualPriority_.set (x);
   }
 
   void AlertConditionState::
-  ActualPriority (const ActualPriorityOptional& x)
+  setActualPriority (const ActualPriorityOptional& x)
   {
     this->ActualPriority_ = x;
   }
 
   void AlertConditionState::
-  ActualPriority (::std::unique_ptr< ActualPriorityType > x)
+  setActualPriority (::std::unique_ptr< ActualPriorityType > x)
   {
     this->ActualPriority_.set (std::move (x));
   }
 
   const AlertConditionState::RankOptional& AlertConditionState::
-  Rank () const
+  getRank () const
   {
     return this->Rank_;
   }
 
   AlertConditionState::RankOptional& AlertConditionState::
-  Rank ()
+  getRank ()
   {
     return this->Rank_;
   }
 
   void AlertConditionState::
-  Rank (const RankType& x)
+  setRank (const RankType& x)
   {
     this->Rank_.set (x);
   }
 
   void AlertConditionState::
-  Rank (const RankOptional& x)
+  setRank (const RankOptional& x)
   {
     this->Rank_ = x;
   }
 
   const AlertConditionState::PresenceOptional& AlertConditionState::
-  Presence () const
+  getPresence () const
   {
     return this->Presence_;
   }
 
   AlertConditionState::PresenceOptional& AlertConditionState::
-  Presence ()
+  getPresence ()
   {
     return this->Presence_;
   }
 
   void AlertConditionState::
-  Presence (const PresenceType& x)
+  setPresence (const PresenceType& x)
   {
     this->Presence_.set (x);
   }
 
   void AlertConditionState::
-  Presence (const PresenceOptional& x)
+  setPresence (const PresenceOptional& x)
   {
     this->Presence_ = x;
   }
 
   const AlertConditionState::DeterminationTimeOptional& AlertConditionState::
-  DeterminationTime () const
+  getDeterminationTime () const
   {
     return this->DeterminationTime_;
   }
 
   AlertConditionState::DeterminationTimeOptional& AlertConditionState::
-  DeterminationTime ()
+  getDeterminationTime ()
   {
     return this->DeterminationTime_;
   }
 
   void AlertConditionState::
-  DeterminationTime (const DeterminationTimeType& x)
+  setDeterminationTime (const DeterminationTimeType& x)
   {
     this->DeterminationTime_.set (x);
   }
 
   void AlertConditionState::
-  DeterminationTime (const DeterminationTimeOptional& x)
+  setDeterminationTime (const DeterminationTimeOptional& x)
   {
     this->DeterminationTime_ = x;
   }
 
   void AlertConditionState::
-  DeterminationTime (::std::unique_ptr< DeterminationTimeType > x)
+  setDeterminationTime (::std::unique_ptr< DeterminationTimeType > x)
   {
     this->DeterminationTime_.set (std::move (x));
   }
@@ -3578,49 +3578,49 @@ namespace CDM
   // 
 
   const LimitAlertConditionDescriptor::MaxLimitsType& LimitAlertConditionDescriptor::
-  MaxLimits () const
+  getMaxLimits () const
   {
     return this->MaxLimits_.get ();
   }
 
   LimitAlertConditionDescriptor::MaxLimitsType& LimitAlertConditionDescriptor::
-  MaxLimits ()
+  getMaxLimits ()
   {
     return this->MaxLimits_.get ();
   }
 
   void LimitAlertConditionDescriptor::
-  MaxLimits (const MaxLimitsType& x)
+  setMaxLimits (const MaxLimitsType& x)
   {
     this->MaxLimits_.set (x);
   }
 
   void LimitAlertConditionDescriptor::
-  MaxLimits (::std::unique_ptr< MaxLimitsType > x)
+  setMaxLimits (::std::unique_ptr< MaxLimitsType > x)
   {
     this->MaxLimits_.set (std::move (x));
   }
 
   const LimitAlertConditionDescriptor::AutoLimitSupportedOptional& LimitAlertConditionDescriptor::
-  AutoLimitSupported () const
+  getAutoLimitSupported () const
   {
     return this->AutoLimitSupported_;
   }
 
   LimitAlertConditionDescriptor::AutoLimitSupportedOptional& LimitAlertConditionDescriptor::
-  AutoLimitSupported ()
+  getAutoLimitSupported ()
   {
     return this->AutoLimitSupported_;
   }
 
   void LimitAlertConditionDescriptor::
-  AutoLimitSupported (const AutoLimitSupportedType& x)
+  setAutoLimitSupported (const AutoLimitSupportedType& x)
   {
     this->AutoLimitSupported_.set (x);
   }
 
   void LimitAlertConditionDescriptor::
-  AutoLimitSupported (const AutoLimitSupportedOptional& x)
+  setAutoLimitSupported (const AutoLimitSupportedOptional& x)
   {
     this->AutoLimitSupported_ = x;
   }
@@ -3675,79 +3675,79 @@ namespace CDM
   // 
 
   const LimitAlertConditionState::LimitsType& LimitAlertConditionState::
-  Limits () const
+  getLimits () const
   {
     return this->Limits_.get ();
   }
 
   LimitAlertConditionState::LimitsType& LimitAlertConditionState::
-  Limits ()
+  getLimits ()
   {
     return this->Limits_.get ();
   }
 
   void LimitAlertConditionState::
-  Limits (const LimitsType& x)
+  setLimits (const LimitsType& x)
   {
     this->Limits_.set (x);
   }
 
   void LimitAlertConditionState::
-  Limits (::std::unique_ptr< LimitsType > x)
+  setLimits (::std::unique_ptr< LimitsType > x)
   {
     this->Limits_.set (std::move (x));
   }
 
   const LimitAlertConditionState::MonitoredAlertLimitsType& LimitAlertConditionState::
-  MonitoredAlertLimits () const
+  getMonitoredAlertLimits () const
   {
     return this->MonitoredAlertLimits_.get ();
   }
 
   LimitAlertConditionState::MonitoredAlertLimitsType& LimitAlertConditionState::
-  MonitoredAlertLimits ()
+  getMonitoredAlertLimits ()
   {
     return this->MonitoredAlertLimits_.get ();
   }
 
   void LimitAlertConditionState::
-  MonitoredAlertLimits (const MonitoredAlertLimitsType& x)
+  setMonitoredAlertLimits (const MonitoredAlertLimitsType& x)
   {
     this->MonitoredAlertLimits_.set (x);
   }
 
   void LimitAlertConditionState::
-  MonitoredAlertLimits (::std::unique_ptr< MonitoredAlertLimitsType > x)
+  setMonitoredAlertLimits (::std::unique_ptr< MonitoredAlertLimitsType > x)
   {
     this->MonitoredAlertLimits_.set (std::move (x));
   }
 
   const LimitAlertConditionState::AutoLimitActivationStateOptional& LimitAlertConditionState::
-  AutoLimitActivationState () const
+  getAutoLimitActivationState () const
   {
     return this->AutoLimitActivationState_;
   }
 
   LimitAlertConditionState::AutoLimitActivationStateOptional& LimitAlertConditionState::
-  AutoLimitActivationState ()
+  getAutoLimitActivationState ()
   {
     return this->AutoLimitActivationState_;
   }
 
   void LimitAlertConditionState::
-  AutoLimitActivationState (const AutoLimitActivationStateType& x)
+  setAutoLimitActivationState (const AutoLimitActivationStateType& x)
   {
     this->AutoLimitActivationState_.set (x);
   }
 
   void LimitAlertConditionState::
-  AutoLimitActivationState (const AutoLimitActivationStateOptional& x)
+  setAutoLimitActivationState (const AutoLimitActivationStateOptional& x)
   {
     this->AutoLimitActivationState_ = x;
   }
 
   void LimitAlertConditionState::
-  AutoLimitActivationState (::std::unique_ptr< AutoLimitActivationStateType > x)
+  setAutoLimitActivationState (::std::unique_ptr< AutoLimitActivationStateType > x)
   {
     this->AutoLimitActivationState_.set (std::move (x));
   }
@@ -3802,241 +3802,241 @@ namespace CDM
   // 
 
   const AlertSignalDescriptor::ConditionSignaledOptional& AlertSignalDescriptor::
-  ConditionSignaled () const
+  getConditionSignaled () const
   {
     return this->ConditionSignaled_;
   }
 
   AlertSignalDescriptor::ConditionSignaledOptional& AlertSignalDescriptor::
-  ConditionSignaled ()
+  getConditionSignaled ()
   {
     return this->ConditionSignaled_;
   }
 
   void AlertSignalDescriptor::
-  ConditionSignaled (const ConditionSignaledType& x)
+  setConditionSignaled (const ConditionSignaledType& x)
   {
     this->ConditionSignaled_.set (x);
   }
 
   void AlertSignalDescriptor::
-  ConditionSignaled (const ConditionSignaledOptional& x)
+  setConditionSignaled (const ConditionSignaledOptional& x)
   {
     this->ConditionSignaled_ = x;
   }
 
   void AlertSignalDescriptor::
-  ConditionSignaled (::std::unique_ptr< ConditionSignaledType > x)
+  setConditionSignaled (::std::unique_ptr< ConditionSignaledType > x)
   {
     this->ConditionSignaled_.set (std::move (x));
   }
 
   const AlertSignalDescriptor::ManifestationType& AlertSignalDescriptor::
-  Manifestation () const
+  getManifestation () const
   {
     return this->Manifestation_.get ();
   }
 
   AlertSignalDescriptor::ManifestationType& AlertSignalDescriptor::
-  Manifestation ()
+  getManifestation ()
   {
     return this->Manifestation_.get ();
   }
 
   void AlertSignalDescriptor::
-  Manifestation (const ManifestationType& x)
+  setManifestation (const ManifestationType& x)
   {
     this->Manifestation_.set (x);
   }
 
   void AlertSignalDescriptor::
-  Manifestation (::std::unique_ptr< ManifestationType > x)
+  setManifestation (::std::unique_ptr< ManifestationType > x)
   {
     this->Manifestation_.set (std::move (x));
   }
 
   const AlertSignalDescriptor::LatchingType& AlertSignalDescriptor::
-  Latching () const
+  getLatching () const
   {
     return this->Latching_.get ();
   }
 
   AlertSignalDescriptor::LatchingType& AlertSignalDescriptor::
-  Latching ()
+  getLatching ()
   {
     return this->Latching_.get ();
   }
 
   void AlertSignalDescriptor::
-  Latching (const LatchingType& x)
+  setLatching (const LatchingType& x)
   {
     this->Latching_.set (x);
   }
 
   const AlertSignalDescriptor::DefaultSignalGenerationDelayOptional& AlertSignalDescriptor::
-  DefaultSignalGenerationDelay () const
+  getDefaultSignalGenerationDelay () const
   {
     return this->DefaultSignalGenerationDelay_;
   }
 
   AlertSignalDescriptor::DefaultSignalGenerationDelayOptional& AlertSignalDescriptor::
-  DefaultSignalGenerationDelay ()
+  getDefaultSignalGenerationDelay ()
   {
     return this->DefaultSignalGenerationDelay_;
   }
 
   void AlertSignalDescriptor::
-  DefaultSignalGenerationDelay (const DefaultSignalGenerationDelayType& x)
+  setDefaultSignalGenerationDelay (const DefaultSignalGenerationDelayType& x)
   {
     this->DefaultSignalGenerationDelay_.set (x);
   }
 
   void AlertSignalDescriptor::
-  DefaultSignalGenerationDelay (const DefaultSignalGenerationDelayOptional& x)
+  setDefaultSignalGenerationDelay (const DefaultSignalGenerationDelayOptional& x)
   {
     this->DefaultSignalGenerationDelay_ = x;
   }
 
   void AlertSignalDescriptor::
-  DefaultSignalGenerationDelay (::std::unique_ptr< DefaultSignalGenerationDelayType > x)
+  setDefaultSignalGenerationDelay (::std::unique_ptr< DefaultSignalGenerationDelayType > x)
   {
     this->DefaultSignalGenerationDelay_.set (std::move (x));
   }
 
   const AlertSignalDescriptor::MinSignalGenerationDelayOptional& AlertSignalDescriptor::
-  MinSignalGenerationDelay () const
+  getMinSignalGenerationDelay () const
   {
     return this->MinSignalGenerationDelay_;
   }
 
   AlertSignalDescriptor::MinSignalGenerationDelayOptional& AlertSignalDescriptor::
-  MinSignalGenerationDelay ()
+  getMinSignalGenerationDelay ()
   {
     return this->MinSignalGenerationDelay_;
   }
 
   void AlertSignalDescriptor::
-  MinSignalGenerationDelay (const MinSignalGenerationDelayType& x)
+  setMinSignalGenerationDelay (const MinSignalGenerationDelayType& x)
   {
     this->MinSignalGenerationDelay_.set (x);
   }
 
   void AlertSignalDescriptor::
-  MinSignalGenerationDelay (const MinSignalGenerationDelayOptional& x)
+  setMinSignalGenerationDelay (const MinSignalGenerationDelayOptional& x)
   {
     this->MinSignalGenerationDelay_ = x;
   }
 
   void AlertSignalDescriptor::
-  MinSignalGenerationDelay (::std::unique_ptr< MinSignalGenerationDelayType > x)
+  setMinSignalGenerationDelay (::std::unique_ptr< MinSignalGenerationDelayType > x)
   {
     this->MinSignalGenerationDelay_.set (std::move (x));
   }
 
   const AlertSignalDescriptor::MaxSignalGenerationDelayOptional& AlertSignalDescriptor::
-  MaxSignalGenerationDelay () const
+  getMaxSignalGenerationDelay () const
   {
     return this->MaxSignalGenerationDelay_;
   }
 
   AlertSignalDescriptor::MaxSignalGenerationDelayOptional& AlertSignalDescriptor::
-  MaxSignalGenerationDelay ()
+  getMaxSignalGenerationDelay ()
   {
     return this->MaxSignalGenerationDelay_;
   }
 
   void AlertSignalDescriptor::
-  MaxSignalGenerationDelay (const MaxSignalGenerationDelayType& x)
+  setMaxSignalGenerationDelay (const MaxSignalGenerationDelayType& x)
   {
     this->MaxSignalGenerationDelay_.set (x);
   }
 
   void AlertSignalDescriptor::
-  MaxSignalGenerationDelay (const MaxSignalGenerationDelayOptional& x)
+  setMaxSignalGenerationDelay (const MaxSignalGenerationDelayOptional& x)
   {
     this->MaxSignalGenerationDelay_ = x;
   }
 
   void AlertSignalDescriptor::
-  MaxSignalGenerationDelay (::std::unique_ptr< MaxSignalGenerationDelayType > x)
+  setMaxSignalGenerationDelay (::std::unique_ptr< MaxSignalGenerationDelayType > x)
   {
     this->MaxSignalGenerationDelay_.set (std::move (x));
   }
 
   const AlertSignalDescriptor::SignalDelegationSupportedOptional& AlertSignalDescriptor::
-  SignalDelegationSupported () const
+  getSignalDelegationSupported () const
   {
     return this->SignalDelegationSupported_;
   }
 
   AlertSignalDescriptor::SignalDelegationSupportedOptional& AlertSignalDescriptor::
-  SignalDelegationSupported ()
+  getSignalDelegationSupported ()
   {
     return this->SignalDelegationSupported_;
   }
 
   void AlertSignalDescriptor::
-  SignalDelegationSupported (const SignalDelegationSupportedType& x)
+  setSignalDelegationSupported (const SignalDelegationSupportedType& x)
   {
     this->SignalDelegationSupported_.set (x);
   }
 
   void AlertSignalDescriptor::
-  SignalDelegationSupported (const SignalDelegationSupportedOptional& x)
+  setSignalDelegationSupported (const SignalDelegationSupportedOptional& x)
   {
     this->SignalDelegationSupported_ = x;
   }
 
   const AlertSignalDescriptor::AcknowledgementSupportedOptional& AlertSignalDescriptor::
-  AcknowledgementSupported () const
+  getAcknowledgementSupported () const
   {
     return this->AcknowledgementSupported_;
   }
 
   AlertSignalDescriptor::AcknowledgementSupportedOptional& AlertSignalDescriptor::
-  AcknowledgementSupported ()
+  getAcknowledgementSupported ()
   {
     return this->AcknowledgementSupported_;
   }
 
   void AlertSignalDescriptor::
-  AcknowledgementSupported (const AcknowledgementSupportedType& x)
+  setAcknowledgementSupported (const AcknowledgementSupportedType& x)
   {
     this->AcknowledgementSupported_.set (x);
   }
 
   void AlertSignalDescriptor::
-  AcknowledgementSupported (const AcknowledgementSupportedOptional& x)
+  setAcknowledgementSupported (const AcknowledgementSupportedOptional& x)
   {
     this->AcknowledgementSupported_ = x;
   }
 
   const AlertSignalDescriptor::AcknowledgeTimeoutOptional& AlertSignalDescriptor::
-  AcknowledgeTimeout () const
+  getAcknowledgeTimeout () const
   {
     return this->AcknowledgeTimeout_;
   }
 
   AlertSignalDescriptor::AcknowledgeTimeoutOptional& AlertSignalDescriptor::
-  AcknowledgeTimeout ()
+  getAcknowledgeTimeout ()
   {
     return this->AcknowledgeTimeout_;
   }
 
   void AlertSignalDescriptor::
-  AcknowledgeTimeout (const AcknowledgeTimeoutType& x)
+  setAcknowledgeTimeout (const AcknowledgeTimeoutType& x)
   {
     this->AcknowledgeTimeout_.set (x);
   }
 
   void AlertSignalDescriptor::
-  AcknowledgeTimeout (const AcknowledgeTimeoutOptional& x)
+  setAcknowledgeTimeout (const AcknowledgeTimeoutOptional& x)
   {
     this->AcknowledgeTimeout_ = x;
   }
 
   void AlertSignalDescriptor::
-  AcknowledgeTimeout (::std::unique_ptr< AcknowledgeTimeoutType > x)
+  setAcknowledgeTimeout (::std::unique_ptr< AcknowledgeTimeoutType > x)
   {
     this->AcknowledgeTimeout_.set (std::move (x));
   }
@@ -4136,115 +4136,115 @@ namespace CDM
   // 
 
   const AlertSignalState::ActualSignalGenerationDelayOptional& AlertSignalState::
-  ActualSignalGenerationDelay () const
+  getActualSignalGenerationDelay () const
   {
     return this->ActualSignalGenerationDelay_;
   }
 
   AlertSignalState::ActualSignalGenerationDelayOptional& AlertSignalState::
-  ActualSignalGenerationDelay ()
+  getActualSignalGenerationDelay ()
   {
     return this->ActualSignalGenerationDelay_;
   }
 
   void AlertSignalState::
-  ActualSignalGenerationDelay (const ActualSignalGenerationDelayType& x)
+  setActualSignalGenerationDelay (const ActualSignalGenerationDelayType& x)
   {
     this->ActualSignalGenerationDelay_.set (x);
   }
 
   void AlertSignalState::
-  ActualSignalGenerationDelay (const ActualSignalGenerationDelayOptional& x)
+  setActualSignalGenerationDelay (const ActualSignalGenerationDelayOptional& x)
   {
     this->ActualSignalGenerationDelay_ = x;
   }
 
   void AlertSignalState::
-  ActualSignalGenerationDelay (::std::unique_ptr< ActualSignalGenerationDelayType > x)
+  setActualSignalGenerationDelay (::std::unique_ptr< ActualSignalGenerationDelayType > x)
   {
     this->ActualSignalGenerationDelay_.set (std::move (x));
   }
 
   const AlertSignalState::PresenceOptional& AlertSignalState::
-  Presence () const
+  getPresence () const
   {
     return this->Presence_;
   }
 
   AlertSignalState::PresenceOptional& AlertSignalState::
-  Presence ()
+  getPresence ()
   {
     return this->Presence_;
   }
 
   void AlertSignalState::
-  Presence (const PresenceType& x)
+  setPresence (const PresenceType& x)
   {
     this->Presence_.set (x);
   }
 
   void AlertSignalState::
-  Presence (const PresenceOptional& x)
+  setPresence (const PresenceOptional& x)
   {
     this->Presence_ = x;
   }
 
   void AlertSignalState::
-  Presence (::std::unique_ptr< PresenceType > x)
+  setPresence (::std::unique_ptr< PresenceType > x)
   {
     this->Presence_.set (std::move (x));
   }
 
   const AlertSignalState::LocationOptional& AlertSignalState::
-  Location () const
+  getLocation () const
   {
     return this->Location_;
   }
 
   AlertSignalState::LocationOptional& AlertSignalState::
-  Location ()
+  getLocation ()
   {
     return this->Location_;
   }
 
   void AlertSignalState::
-  Location (const LocationType& x)
+  setLocation (const LocationType& x)
   {
     this->Location_.set (x);
   }
 
   void AlertSignalState::
-  Location (const LocationOptional& x)
+  setLocation (const LocationOptional& x)
   {
     this->Location_ = x;
   }
 
   void AlertSignalState::
-  Location (::std::unique_ptr< LocationType > x)
+  setLocation (::std::unique_ptr< LocationType > x)
   {
     this->Location_.set (std::move (x));
   }
 
   const AlertSignalState::SlotOptional& AlertSignalState::
-  Slot () const
+  getSlot () const
   {
     return this->Slot_;
   }
 
   AlertSignalState::SlotOptional& AlertSignalState::
-  Slot ()
+  getSlot ()
   {
     return this->Slot_;
   }
 
   void AlertSignalState::
-  Slot (const SlotType& x)
+  setSlot (const SlotType& x)
   {
     this->Slot_.set (x);
   }
 
   void AlertSignalState::
-  Slot (const SlotOptional& x)
+  setSlot (const SlotOptional& x)
   {
     this->Slot_ = x;
   }
@@ -4303,163 +4303,163 @@ namespace CDM
   // 
 
   const AbstractMetricValue::ExtensionOptional& AbstractMetricValue::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   AbstractMetricValue::ExtensionOptional& AbstractMetricValue::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void AbstractMetricValue::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void AbstractMetricValue::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void AbstractMetricValue::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const AbstractMetricValue::MetricQualityType& AbstractMetricValue::
-  MetricQuality () const
+  getMetricQuality () const
   {
     return this->MetricQuality_.get ();
   }
 
   AbstractMetricValue::MetricQualityType& AbstractMetricValue::
-  MetricQuality ()
+  getMetricQuality ()
   {
     return this->MetricQuality_.get ();
   }
 
   void AbstractMetricValue::
-  MetricQuality (const MetricQualityType& x)
+  setMetricQuality (const MetricQualityType& x)
   {
     this->MetricQuality_.set (x);
   }
 
   void AbstractMetricValue::
-  MetricQuality (::std::unique_ptr< MetricQualityType > x)
+  setMetricQuality (::std::unique_ptr< MetricQualityType > x)
   {
     this->MetricQuality_.set (std::move (x));
   }
 
   const AbstractMetricValue::AnnotationSequence& AbstractMetricValue::
-  Annotation () const
+  getAnnotation () const
   {
     return this->Annotation_;
   }
 
   AbstractMetricValue::AnnotationSequence& AbstractMetricValue::
-  Annotation ()
+  getAnnotation ()
   {
     return this->Annotation_;
   }
 
   void AbstractMetricValue::
-  Annotation (const AnnotationSequence& s)
+  setAnnotation (const AnnotationSequence& s)
   {
     this->Annotation_ = s;
   }
 
   const AbstractMetricValue::StartTimeOptional& AbstractMetricValue::
-  StartTime () const
+  getStartTime () const
   {
     return this->StartTime_;
   }
 
   AbstractMetricValue::StartTimeOptional& AbstractMetricValue::
-  StartTime ()
+  getStartTime ()
   {
     return this->StartTime_;
   }
 
   void AbstractMetricValue::
-  StartTime (const StartTimeType& x)
+  setStartTime (const StartTimeType& x)
   {
     this->StartTime_.set (x);
   }
 
   void AbstractMetricValue::
-  StartTime (const StartTimeOptional& x)
+  setStartTime (const StartTimeOptional& x)
   {
     this->StartTime_ = x;
   }
 
   void AbstractMetricValue::
-  StartTime (::std::unique_ptr< StartTimeType > x)
+  setStartTime (::std::unique_ptr< StartTimeType > x)
   {
     this->StartTime_.set (std::move (x));
   }
 
   const AbstractMetricValue::StopTimeOptional& AbstractMetricValue::
-  StopTime () const
+  getStopTime () const
   {
     return this->StopTime_;
   }
 
   AbstractMetricValue::StopTimeOptional& AbstractMetricValue::
-  StopTime ()
+  getStopTime ()
   {
     return this->StopTime_;
   }
 
   void AbstractMetricValue::
-  StopTime (const StopTimeType& x)
+  setStopTime (const StopTimeType& x)
   {
     this->StopTime_.set (x);
   }
 
   void AbstractMetricValue::
-  StopTime (const StopTimeOptional& x)
+  setStopTime (const StopTimeOptional& x)
   {
     this->StopTime_ = x;
   }
 
   void AbstractMetricValue::
-  StopTime (::std::unique_ptr< StopTimeType > x)
+  setStopTime (::std::unique_ptr< StopTimeType > x)
   {
     this->StopTime_.set (std::move (x));
   }
 
   const AbstractMetricValue::DeterminationTimeOptional& AbstractMetricValue::
-  DeterminationTime () const
+  getDeterminationTime () const
   {
     return this->DeterminationTime_;
   }
 
   AbstractMetricValue::DeterminationTimeOptional& AbstractMetricValue::
-  DeterminationTime ()
+  getDeterminationTime ()
   {
     return this->DeterminationTime_;
   }
 
   void AbstractMetricValue::
-  DeterminationTime (const DeterminationTimeType& x)
+  setDeterminationTime (const DeterminationTimeType& x)
   {
     this->DeterminationTime_.set (x);
   }
 
   void AbstractMetricValue::
-  DeterminationTime (const DeterminationTimeOptional& x)
+  setDeterminationTime (const DeterminationTimeOptional& x)
   {
     this->DeterminationTime_ = x;
   }
 
   void AbstractMetricValue::
-  DeterminationTime (::std::unique_ptr< DeterminationTimeType > x)
+  setDeterminationTime (::std::unique_ptr< DeterminationTimeType > x)
   {
     this->DeterminationTime_.set (std::move (x));
   }
@@ -4469,25 +4469,25 @@ namespace CDM
   // 
 
   const NumericMetricValue::ValueOptional& NumericMetricValue::
-  Value () const
+  getValue () const
   {
     return this->Value_;
   }
 
   NumericMetricValue::ValueOptional& NumericMetricValue::
-  Value ()
+  getValue ()
   {
     return this->Value_;
   }
 
   void NumericMetricValue::
-  Value (const ValueType& x)
+  setValue (const ValueType& x)
   {
     this->Value_.set (x);
   }
 
   void NumericMetricValue::
-  Value (const ValueOptional& x)
+  setValue (const ValueOptional& x)
   {
     this->Value_ = x;
   }
@@ -4497,31 +4497,31 @@ namespace CDM
   // 
 
   const StringMetricValue::ValueOptional& StringMetricValue::
-  Value () const
+  getValue () const
   {
     return this->Value_;
   }
 
   StringMetricValue::ValueOptional& StringMetricValue::
-  Value ()
+  getValue ()
   {
     return this->Value_;
   }
 
   void StringMetricValue::
-  Value (const ValueType& x)
+  setValue (const ValueType& x)
   {
     this->Value_.set (x);
   }
 
   void StringMetricValue::
-  Value (const ValueOptional& x)
+  setValue (const ValueOptional& x)
   {
     this->Value_ = x;
   }
 
   void StringMetricValue::
-  Value (::std::unique_ptr< ValueType > x)
+  setValue (::std::unique_ptr< ValueType > x)
   {
     this->Value_.set (std::move (x));
   }
@@ -4555,49 +4555,49 @@ namespace CDM
   // 
 
   const SampleArrayValue::ApplyAnnotationSequence& SampleArrayValue::
-  ApplyAnnotation () const
+  getApplyAnnotation () const
   {
     return this->ApplyAnnotation_;
   }
 
   SampleArrayValue::ApplyAnnotationSequence& SampleArrayValue::
-  ApplyAnnotation ()
+  getApplyAnnotation ()
   {
     return this->ApplyAnnotation_;
   }
 
   void SampleArrayValue::
-  ApplyAnnotation (const ApplyAnnotationSequence& s)
+  setApplyAnnotation (const ApplyAnnotationSequence& s)
   {
     this->ApplyAnnotation_ = s;
   }
 
   const SampleArrayValue::SamplesOptional& SampleArrayValue::
-  Samples () const
+  getSamples () const
   {
     return this->Samples_;
   }
 
   SampleArrayValue::SamplesOptional& SampleArrayValue::
-  Samples ()
+  getSamples ()
   {
     return this->Samples_;
   }
 
   void SampleArrayValue::
-  Samples (const SamplesType& x)
+  setSamples (const SamplesType& x)
   {
     this->Samples_.set (x);
   }
 
   void SampleArrayValue::
-  Samples (const SamplesOptional& x)
+  setSamples (const SamplesOptional& x)
   {
     this->Samples_ = x;
   }
 
   void SampleArrayValue::
-  Samples (::std::unique_ptr< SamplesType > x)
+  setSamples (::std::unique_ptr< SamplesType > x)
   {
     this->Samples_.set (std::move (x));
   }
@@ -4766,289 +4766,289 @@ namespace CDM
   // 
 
   const AbstractMetricDescriptor::UnitType& AbstractMetricDescriptor::
-  Unit () const
+  getUnit () const
   {
     return this->Unit_.get ();
   }
 
   AbstractMetricDescriptor::UnitType& AbstractMetricDescriptor::
-  Unit ()
+  getUnit ()
   {
     return this->Unit_.get ();
   }
 
   void AbstractMetricDescriptor::
-  Unit (const UnitType& x)
+  setUnit (const UnitType& x)
   {
     this->Unit_.set (x);
   }
 
   void AbstractMetricDescriptor::
-  Unit (::std::unique_ptr< UnitType > x)
+  setUnit (::std::unique_ptr< UnitType > x)
   {
     this->Unit_.set (std::move (x));
   }
 
   const AbstractMetricDescriptor::BodySiteSequence& AbstractMetricDescriptor::
-  BodySite () const
+  getBodySite () const
   {
     return this->BodySite_;
   }
 
   AbstractMetricDescriptor::BodySiteSequence& AbstractMetricDescriptor::
-  BodySite ()
+  getBodySite ()
   {
     return this->BodySite_;
   }
 
   void AbstractMetricDescriptor::
-  BodySite (const BodySiteSequence& s)
+  setBodySite (const BodySiteSequence& s)
   {
     this->BodySite_ = s;
   }
 
   const AbstractMetricDescriptor::RelationSequence& AbstractMetricDescriptor::
-  Relation () const
+  getRelation () const
   {
     return this->Relation_;
   }
 
   AbstractMetricDescriptor::RelationSequence& AbstractMetricDescriptor::
-  Relation ()
+  getRelation ()
   {
     return this->Relation_;
   }
 
   void AbstractMetricDescriptor::
-  Relation (const RelationSequence& s)
+  setRelation (const RelationSequence& s)
   {
     this->Relation_ = s;
   }
 
   const AbstractMetricDescriptor::MetricCategoryType& AbstractMetricDescriptor::
-  MetricCategory () const
+  getMetricCategory () const
   {
     return this->MetricCategory_.get ();
   }
 
   AbstractMetricDescriptor::MetricCategoryType& AbstractMetricDescriptor::
-  MetricCategory ()
+  getMetricCategory ()
   {
     return this->MetricCategory_.get ();
   }
 
   void AbstractMetricDescriptor::
-  MetricCategory (const MetricCategoryType& x)
+  setMetricCategory (const MetricCategoryType& x)
   {
     this->MetricCategory_.set (x);
   }
 
   void AbstractMetricDescriptor::
-  MetricCategory (::std::unique_ptr< MetricCategoryType > x)
+  setMetricCategory (::std::unique_ptr< MetricCategoryType > x)
   {
     this->MetricCategory_.set (std::move (x));
   }
 
   const AbstractMetricDescriptor::DerivationMethodOptional& AbstractMetricDescriptor::
-  DerivationMethod () const
+  getDerivationMethod () const
   {
     return this->DerivationMethod_;
   }
 
   AbstractMetricDescriptor::DerivationMethodOptional& AbstractMetricDescriptor::
-  DerivationMethod ()
+  getDerivationMethod ()
   {
     return this->DerivationMethod_;
   }
 
   void AbstractMetricDescriptor::
-  DerivationMethod (const DerivationMethodType& x)
+  setDerivationMethod (const DerivationMethodType& x)
   {
     this->DerivationMethod_.set (x);
   }
 
   void AbstractMetricDescriptor::
-  DerivationMethod (const DerivationMethodOptional& x)
+  setDerivationMethod (const DerivationMethodOptional& x)
   {
     this->DerivationMethod_ = x;
   }
 
   void AbstractMetricDescriptor::
-  DerivationMethod (::std::unique_ptr< DerivationMethodType > x)
+  setDerivationMethod (::std::unique_ptr< DerivationMethodType > x)
   {
     this->DerivationMethod_.set (std::move (x));
   }
 
   const AbstractMetricDescriptor::MetricAvailabilityType& AbstractMetricDescriptor::
-  MetricAvailability () const
+  getMetricAvailability () const
   {
     return this->MetricAvailability_.get ();
   }
 
   AbstractMetricDescriptor::MetricAvailabilityType& AbstractMetricDescriptor::
-  MetricAvailability ()
+  getMetricAvailability ()
   {
     return this->MetricAvailability_.get ();
   }
 
   void AbstractMetricDescriptor::
-  MetricAvailability (const MetricAvailabilityType& x)
+  setMetricAvailability (const MetricAvailabilityType& x)
   {
     this->MetricAvailability_.set (x);
   }
 
   void AbstractMetricDescriptor::
-  MetricAvailability (::std::unique_ptr< MetricAvailabilityType > x)
+  setMetricAvailability (::std::unique_ptr< MetricAvailabilityType > x)
   {
     this->MetricAvailability_.set (std::move (x));
   }
 
   const AbstractMetricDescriptor::MaxMeasurementTimeOptional& AbstractMetricDescriptor::
-  MaxMeasurementTime () const
+  getMaxMeasurementTime () const
   {
     return this->MaxMeasurementTime_;
   }
 
   AbstractMetricDescriptor::MaxMeasurementTimeOptional& AbstractMetricDescriptor::
-  MaxMeasurementTime ()
+  getMaxMeasurementTime ()
   {
     return this->MaxMeasurementTime_;
   }
 
   void AbstractMetricDescriptor::
-  MaxMeasurementTime (const MaxMeasurementTimeType& x)
+  setMaxMeasurementTime (const MaxMeasurementTimeType& x)
   {
     this->MaxMeasurementTime_.set (x);
   }
 
   void AbstractMetricDescriptor::
-  MaxMeasurementTime (const MaxMeasurementTimeOptional& x)
+  setMaxMeasurementTime (const MaxMeasurementTimeOptional& x)
   {
     this->MaxMeasurementTime_ = x;
   }
 
   void AbstractMetricDescriptor::
-  MaxMeasurementTime (::std::unique_ptr< MaxMeasurementTimeType > x)
+  setMaxMeasurementTime (::std::unique_ptr< MaxMeasurementTimeType > x)
   {
     this->MaxMeasurementTime_.set (std::move (x));
   }
 
   const AbstractMetricDescriptor::MaxDelayTimeOptional& AbstractMetricDescriptor::
-  MaxDelayTime () const
+  getMaxDelayTime () const
   {
     return this->MaxDelayTime_;
   }
 
   AbstractMetricDescriptor::MaxDelayTimeOptional& AbstractMetricDescriptor::
-  MaxDelayTime ()
+  getMaxDelayTime ()
   {
     return this->MaxDelayTime_;
   }
 
   void AbstractMetricDescriptor::
-  MaxDelayTime (const MaxDelayTimeType& x)
+  setMaxDelayTime (const MaxDelayTimeType& x)
   {
     this->MaxDelayTime_.set (x);
   }
 
   void AbstractMetricDescriptor::
-  MaxDelayTime (const MaxDelayTimeOptional& x)
+  setMaxDelayTime (const MaxDelayTimeOptional& x)
   {
     this->MaxDelayTime_ = x;
   }
 
   void AbstractMetricDescriptor::
-  MaxDelayTime (::std::unique_ptr< MaxDelayTimeType > x)
+  setMaxDelayTime (::std::unique_ptr< MaxDelayTimeType > x)
   {
     this->MaxDelayTime_.set (std::move (x));
   }
 
   const AbstractMetricDescriptor::DeterminationPeriodOptional& AbstractMetricDescriptor::
-  DeterminationPeriod () const
+  getDeterminationPeriod () const
   {
     return this->DeterminationPeriod_;
   }
 
   AbstractMetricDescriptor::DeterminationPeriodOptional& AbstractMetricDescriptor::
-  DeterminationPeriod ()
+  getDeterminationPeriod ()
   {
     return this->DeterminationPeriod_;
   }
 
   void AbstractMetricDescriptor::
-  DeterminationPeriod (const DeterminationPeriodType& x)
+  setDeterminationPeriod (const DeterminationPeriodType& x)
   {
     this->DeterminationPeriod_.set (x);
   }
 
   void AbstractMetricDescriptor::
-  DeterminationPeriod (const DeterminationPeriodOptional& x)
+  setDeterminationPeriod (const DeterminationPeriodOptional& x)
   {
     this->DeterminationPeriod_ = x;
   }
 
   void AbstractMetricDescriptor::
-  DeterminationPeriod (::std::unique_ptr< DeterminationPeriodType > x)
+  setDeterminationPeriod (::std::unique_ptr< DeterminationPeriodType > x)
   {
     this->DeterminationPeriod_.set (std::move (x));
   }
 
   const AbstractMetricDescriptor::LifeTimePeriodOptional& AbstractMetricDescriptor::
-  LifeTimePeriod () const
+  getLifeTimePeriod () const
   {
     return this->LifeTimePeriod_;
   }
 
   AbstractMetricDescriptor::LifeTimePeriodOptional& AbstractMetricDescriptor::
-  LifeTimePeriod ()
+  getLifeTimePeriod ()
   {
     return this->LifeTimePeriod_;
   }
 
   void AbstractMetricDescriptor::
-  LifeTimePeriod (const LifeTimePeriodType& x)
+  setLifeTimePeriod (const LifeTimePeriodType& x)
   {
     this->LifeTimePeriod_.set (x);
   }
 
   void AbstractMetricDescriptor::
-  LifeTimePeriod (const LifeTimePeriodOptional& x)
+  setLifeTimePeriod (const LifeTimePeriodOptional& x)
   {
     this->LifeTimePeriod_ = x;
   }
 
   void AbstractMetricDescriptor::
-  LifeTimePeriod (::std::unique_ptr< LifeTimePeriodType > x)
+  setLifeTimePeriod (::std::unique_ptr< LifeTimePeriodType > x)
   {
     this->LifeTimePeriod_.set (std::move (x));
   }
 
   const AbstractMetricDescriptor::ActivationDurationOptional& AbstractMetricDescriptor::
-  ActivationDuration () const
+  getActivationDuration () const
   {
     return this->ActivationDuration_;
   }
 
   AbstractMetricDescriptor::ActivationDurationOptional& AbstractMetricDescriptor::
-  ActivationDuration ()
+  getActivationDuration ()
   {
     return this->ActivationDuration_;
   }
 
   void AbstractMetricDescriptor::
-  ActivationDuration (const ActivationDurationType& x)
+  setActivationDuration (const ActivationDurationType& x)
   {
     this->ActivationDuration_.set (x);
   }
 
   void AbstractMetricDescriptor::
-  ActivationDuration (const ActivationDurationOptional& x)
+  setActivationDuration (const ActivationDurationOptional& x)
   {
     this->ActivationDuration_ = x;
   }
 
   void AbstractMetricDescriptor::
-  ActivationDuration (::std::unique_ptr< ActivationDurationType > x)
+  setActivationDuration (::std::unique_ptr< ActivationDurationType > x)
   {
     this->ActivationDuration_.set (std::move (x));
   }
@@ -5058,139 +5058,139 @@ namespace CDM
   // 
 
   const AbstractMetricState::BodySiteSequence& AbstractMetricState::
-  BodySite () const
+  getBodySite () const
   {
     return this->BodySite_;
   }
 
   AbstractMetricState::BodySiteSequence& AbstractMetricState::
-  BodySite ()
+  getBodySite ()
   {
     return this->BodySite_;
   }
 
   void AbstractMetricState::
-  BodySite (const BodySiteSequence& s)
+  setBodySite (const BodySiteSequence& s)
   {
     this->BodySite_ = s;
   }
 
   const AbstractMetricState::PhysicalConnectorOptional& AbstractMetricState::
-  PhysicalConnector () const
+  getPhysicalConnector () const
   {
     return this->PhysicalConnector_;
   }
 
   AbstractMetricState::PhysicalConnectorOptional& AbstractMetricState::
-  PhysicalConnector ()
+  getPhysicalConnector ()
   {
     return this->PhysicalConnector_;
   }
 
   void AbstractMetricState::
-  PhysicalConnector (const PhysicalConnectorType& x)
+  setPhysicalConnector (const PhysicalConnectorType& x)
   {
     this->PhysicalConnector_.set (x);
   }
 
   void AbstractMetricState::
-  PhysicalConnector (const PhysicalConnectorOptional& x)
+  setPhysicalConnector (const PhysicalConnectorOptional& x)
   {
     this->PhysicalConnector_ = x;
   }
 
   void AbstractMetricState::
-  PhysicalConnector (::std::unique_ptr< PhysicalConnectorType > x)
+  setPhysicalConnector (::std::unique_ptr< PhysicalConnectorType > x)
   {
     this->PhysicalConnector_.set (std::move (x));
   }
 
   const AbstractMetricState::ActivationStateOptional& AbstractMetricState::
-  ActivationState () const
+  getActivationState () const
   {
     return this->ActivationState_;
   }
 
   AbstractMetricState::ActivationStateOptional& AbstractMetricState::
-  ActivationState ()
+  getActivationState ()
   {
     return this->ActivationState_;
   }
 
   void AbstractMetricState::
-  ActivationState (const ActivationStateType& x)
+  setActivationState (const ActivationStateType& x)
   {
     this->ActivationState_.set (x);
   }
 
   void AbstractMetricState::
-  ActivationState (const ActivationStateOptional& x)
+  setActivationState (const ActivationStateOptional& x)
   {
     this->ActivationState_ = x;
   }
 
   void AbstractMetricState::
-  ActivationState (::std::unique_ptr< ActivationStateType > x)
+  setActivationState (::std::unique_ptr< ActivationStateType > x)
   {
     this->ActivationState_.set (std::move (x));
   }
 
   const AbstractMetricState::ActiveDeterminationPeriodOptional& AbstractMetricState::
-  ActiveDeterminationPeriod () const
+  getActiveDeterminationPeriod () const
   {
     return this->ActiveDeterminationPeriod_;
   }
 
   AbstractMetricState::ActiveDeterminationPeriodOptional& AbstractMetricState::
-  ActiveDeterminationPeriod ()
+  getActiveDeterminationPeriod ()
   {
     return this->ActiveDeterminationPeriod_;
   }
 
   void AbstractMetricState::
-  ActiveDeterminationPeriod (const ActiveDeterminationPeriodType& x)
+  setActiveDeterminationPeriod (const ActiveDeterminationPeriodType& x)
   {
     this->ActiveDeterminationPeriod_.set (x);
   }
 
   void AbstractMetricState::
-  ActiveDeterminationPeriod (const ActiveDeterminationPeriodOptional& x)
+  setActiveDeterminationPeriod (const ActiveDeterminationPeriodOptional& x)
   {
     this->ActiveDeterminationPeriod_ = x;
   }
 
   void AbstractMetricState::
-  ActiveDeterminationPeriod (::std::unique_ptr< ActiveDeterminationPeriodType > x)
+  setActiveDeterminationPeriod (::std::unique_ptr< ActiveDeterminationPeriodType > x)
   {
     this->ActiveDeterminationPeriod_.set (std::move (x));
   }
 
   const AbstractMetricState::LifeTimePeriodOptional& AbstractMetricState::
-  LifeTimePeriod () const
+  getLifeTimePeriod () const
   {
     return this->LifeTimePeriod_;
   }
 
   AbstractMetricState::LifeTimePeriodOptional& AbstractMetricState::
-  LifeTimePeriod ()
+  getLifeTimePeriod ()
   {
     return this->LifeTimePeriod_;
   }
 
   void AbstractMetricState::
-  LifeTimePeriod (const LifeTimePeriodType& x)
+  setLifeTimePeriod (const LifeTimePeriodType& x)
   {
     this->LifeTimePeriod_.set (x);
   }
 
   void AbstractMetricState::
-  LifeTimePeriod (const LifeTimePeriodOptional& x)
+  setLifeTimePeriod (const LifeTimePeriodOptional& x)
   {
     this->LifeTimePeriod_ = x;
   }
 
   void AbstractMetricState::
-  LifeTimePeriod (::std::unique_ptr< LifeTimePeriodType > x)
+  setLifeTimePeriod (::std::unique_ptr< LifeTimePeriodType > x)
   {
     this->LifeTimePeriod_.set (std::move (x));
   }
@@ -5200,67 +5200,67 @@ namespace CDM
   // 
 
   const NumericMetricDescriptor::TechnicalRangeSequence& NumericMetricDescriptor::
-  TechnicalRange () const
+  getTechnicalRange () const
   {
     return this->TechnicalRange_;
   }
 
   NumericMetricDescriptor::TechnicalRangeSequence& NumericMetricDescriptor::
-  TechnicalRange ()
+  getTechnicalRange ()
   {
     return this->TechnicalRange_;
   }
 
   void NumericMetricDescriptor::
-  TechnicalRange (const TechnicalRangeSequence& s)
+  setTechnicalRange (const TechnicalRangeSequence& s)
   {
     this->TechnicalRange_ = s;
   }
 
   const NumericMetricDescriptor::ResolutionType& NumericMetricDescriptor::
-  Resolution () const
+  getResolution () const
   {
     return this->Resolution_.get ();
   }
 
   NumericMetricDescriptor::ResolutionType& NumericMetricDescriptor::
-  Resolution ()
+  getResolution ()
   {
     return this->Resolution_.get ();
   }
 
   void NumericMetricDescriptor::
-  Resolution (const ResolutionType& x)
+  setResolution (const ResolutionType& x)
   {
     this->Resolution_.set (x);
   }
 
   const NumericMetricDescriptor::AveragingPeriodOptional& NumericMetricDescriptor::
-  AveragingPeriod () const
+  getAveragingPeriod () const
   {
     return this->AveragingPeriod_;
   }
 
   NumericMetricDescriptor::AveragingPeriodOptional& NumericMetricDescriptor::
-  AveragingPeriod ()
+  getAveragingPeriod ()
   {
     return this->AveragingPeriod_;
   }
 
   void NumericMetricDescriptor::
-  AveragingPeriod (const AveragingPeriodType& x)
+  setAveragingPeriod (const AveragingPeriodType& x)
   {
     this->AveragingPeriod_.set (x);
   }
 
   void NumericMetricDescriptor::
-  AveragingPeriod (const AveragingPeriodOptional& x)
+  setAveragingPeriod (const AveragingPeriodOptional& x)
   {
     this->AveragingPeriod_ = x;
   }
 
   void NumericMetricDescriptor::
-  AveragingPeriod (::std::unique_ptr< AveragingPeriodType > x)
+  setAveragingPeriod (::std::unique_ptr< AveragingPeriodType > x)
   {
     this->AveragingPeriod_.set (std::move (x));
   }
@@ -5270,79 +5270,79 @@ namespace CDM
   // 
 
   const NumericMetricState::MetricValueOptional& NumericMetricState::
-  MetricValue () const
+  getMetricValue () const
   {
     return this->MetricValue_;
   }
 
   NumericMetricState::MetricValueOptional& NumericMetricState::
-  MetricValue ()
+  getMetricValue ()
   {
     return this->MetricValue_;
   }
 
   void NumericMetricState::
-  MetricValue (const MetricValueType& x)
+  setMetricValue (const MetricValueType& x)
   {
     this->MetricValue_.set (x);
   }
 
   void NumericMetricState::
-  MetricValue (const MetricValueOptional& x)
+  setMetricValue (const MetricValueOptional& x)
   {
     this->MetricValue_ = x;
   }
 
   void NumericMetricState::
-  MetricValue (::std::unique_ptr< MetricValueType > x)
+  setMetricValue (::std::unique_ptr< MetricValueType > x)
   {
     this->MetricValue_.set (std::move (x));
   }
 
   const NumericMetricState::PhysiologicalRangeSequence& NumericMetricState::
-  PhysiologicalRange () const
+  getPhysiologicalRange () const
   {
     return this->PhysiologicalRange_;
   }
 
   NumericMetricState::PhysiologicalRangeSequence& NumericMetricState::
-  PhysiologicalRange ()
+  getPhysiologicalRange ()
   {
     return this->PhysiologicalRange_;
   }
 
   void NumericMetricState::
-  PhysiologicalRange (const PhysiologicalRangeSequence& s)
+  setPhysiologicalRange (const PhysiologicalRangeSequence& s)
   {
     this->PhysiologicalRange_ = s;
   }
 
   const NumericMetricState::ActiveAveragingPeriodOptional& NumericMetricState::
-  ActiveAveragingPeriod () const
+  getActiveAveragingPeriod () const
   {
     return this->ActiveAveragingPeriod_;
   }
 
   NumericMetricState::ActiveAveragingPeriodOptional& NumericMetricState::
-  ActiveAveragingPeriod ()
+  getActiveAveragingPeriod ()
   {
     return this->ActiveAveragingPeriod_;
   }
 
   void NumericMetricState::
-  ActiveAveragingPeriod (const ActiveAveragingPeriodType& x)
+  setActiveAveragingPeriod (const ActiveAveragingPeriodType& x)
   {
     this->ActiveAveragingPeriod_.set (x);
   }
 
   void NumericMetricState::
-  ActiveAveragingPeriod (const ActiveAveragingPeriodOptional& x)
+  setActiveAveragingPeriod (const ActiveAveragingPeriodOptional& x)
   {
     this->ActiveAveragingPeriod_ = x;
   }
 
   void NumericMetricState::
-  ActiveAveragingPeriod (::std::unique_ptr< ActiveAveragingPeriodType > x)
+  setActiveAveragingPeriod (::std::unique_ptr< ActiveAveragingPeriodType > x)
   {
     this->ActiveAveragingPeriod_.set (std::move (x));
   }
@@ -5356,31 +5356,31 @@ namespace CDM
   // 
 
   const StringMetricState::MetricValueOptional& StringMetricState::
-  MetricValue () const
+  getMetricValue () const
   {
     return this->MetricValue_;
   }
 
   StringMetricState::MetricValueOptional& StringMetricState::
-  MetricValue ()
+  getMetricValue ()
   {
     return this->MetricValue_;
   }
 
   void StringMetricState::
-  MetricValue (const MetricValueType& x)
+  setMetricValue (const MetricValueType& x)
   {
     this->MetricValue_.set (x);
   }
 
   void StringMetricState::
-  MetricValue (const MetricValueOptional& x)
+  setMetricValue (const MetricValueOptional& x)
   {
     this->MetricValue_ = x;
   }
 
   void StringMetricState::
-  MetricValue (::std::unique_ptr< MetricValueType > x)
+  setMetricValue (::std::unique_ptr< MetricValueType > x)
   {
     this->MetricValue_.set (std::move (x));
   }
@@ -5390,19 +5390,19 @@ namespace CDM
   // 
 
   const EnumStringMetricDescriptor::AllowedValueSequence& EnumStringMetricDescriptor::
-  AllowedValue () const
+  getAllowedValue () const
   {
     return this->AllowedValue_;
   }
 
   EnumStringMetricDescriptor::AllowedValueSequence& EnumStringMetricDescriptor::
-  AllowedValue ()
+  getAllowedValue ()
   {
     return this->AllowedValue_;
   }
 
   void EnumStringMetricDescriptor::
-  AllowedValue (const AllowedValueSequence& s)
+  setAllowedValue (const AllowedValueSequence& s)
   {
     this->AllowedValue_ = s;
   }
@@ -5416,61 +5416,61 @@ namespace CDM
   // 
 
   const RealTimeSampleArrayMetricDescriptor::TechnicalRangeSequence& RealTimeSampleArrayMetricDescriptor::
-  TechnicalRange () const
+  getTechnicalRange () const
   {
     return this->TechnicalRange_;
   }
 
   RealTimeSampleArrayMetricDescriptor::TechnicalRangeSequence& RealTimeSampleArrayMetricDescriptor::
-  TechnicalRange ()
+  getTechnicalRange ()
   {
     return this->TechnicalRange_;
   }
 
   void RealTimeSampleArrayMetricDescriptor::
-  TechnicalRange (const TechnicalRangeSequence& s)
+  setTechnicalRange (const TechnicalRangeSequence& s)
   {
     this->TechnicalRange_ = s;
   }
 
   const RealTimeSampleArrayMetricDescriptor::ResolutionType& RealTimeSampleArrayMetricDescriptor::
-  Resolution () const
+  getResolution () const
   {
     return this->Resolution_.get ();
   }
 
   RealTimeSampleArrayMetricDescriptor::ResolutionType& RealTimeSampleArrayMetricDescriptor::
-  Resolution ()
+  getResolution ()
   {
     return this->Resolution_.get ();
   }
 
   void RealTimeSampleArrayMetricDescriptor::
-  Resolution (const ResolutionType& x)
+  setResolution (const ResolutionType& x)
   {
     this->Resolution_.set (x);
   }
 
   const RealTimeSampleArrayMetricDescriptor::SamplePeriodType& RealTimeSampleArrayMetricDescriptor::
-  SamplePeriod () const
+  getSamplePeriod () const
   {
     return this->SamplePeriod_.get ();
   }
 
   RealTimeSampleArrayMetricDescriptor::SamplePeriodType& RealTimeSampleArrayMetricDescriptor::
-  SamplePeriod ()
+  getSamplePeriod ()
   {
     return this->SamplePeriod_.get ();
   }
 
   void RealTimeSampleArrayMetricDescriptor::
-  SamplePeriod (const SamplePeriodType& x)
+  setSamplePeriod (const SamplePeriodType& x)
   {
     this->SamplePeriod_.set (x);
   }
 
   void RealTimeSampleArrayMetricDescriptor::
-  SamplePeriod (::std::unique_ptr< SamplePeriodType > x)
+  setSamplePeriod (::std::unique_ptr< SamplePeriodType > x)
   {
     this->SamplePeriod_.set (std::move (x));
   }
@@ -5480,49 +5480,49 @@ namespace CDM
   // 
 
   const RealTimeSampleArrayMetricState::MetricValueOptional& RealTimeSampleArrayMetricState::
-  MetricValue () const
+  getMetricValue () const
   {
     return this->MetricValue_;
   }
 
   RealTimeSampleArrayMetricState::MetricValueOptional& RealTimeSampleArrayMetricState::
-  MetricValue ()
+  getMetricValue ()
   {
     return this->MetricValue_;
   }
 
   void RealTimeSampleArrayMetricState::
-  MetricValue (const MetricValueType& x)
+  setMetricValue (const MetricValueType& x)
   {
     this->MetricValue_.set (x);
   }
 
   void RealTimeSampleArrayMetricState::
-  MetricValue (const MetricValueOptional& x)
+  setMetricValue (const MetricValueOptional& x)
   {
     this->MetricValue_ = x;
   }
 
   void RealTimeSampleArrayMetricState::
-  MetricValue (::std::unique_ptr< MetricValueType > x)
+  setMetricValue (::std::unique_ptr< MetricValueType > x)
   {
     this->MetricValue_.set (std::move (x));
   }
 
   const RealTimeSampleArrayMetricState::PhysiologicalRangeSequence& RealTimeSampleArrayMetricState::
-  PhysiologicalRange () const
+  getPhysiologicalRange () const
   {
     return this->PhysiologicalRange_;
   }
 
   RealTimeSampleArrayMetricState::PhysiologicalRangeSequence& RealTimeSampleArrayMetricState::
-  PhysiologicalRange ()
+  getPhysiologicalRange ()
   {
     return this->PhysiologicalRange_;
   }
 
   void RealTimeSampleArrayMetricState::
-  PhysiologicalRange (const PhysiologicalRangeSequence& s)
+  setPhysiologicalRange (const PhysiologicalRangeSequence& s)
   {
     this->PhysiologicalRange_ = s;
   }
@@ -5532,85 +5532,85 @@ namespace CDM
   // 
 
   const DistributionSampleArrayMetricDescriptor::TechnicalRangeSequence& DistributionSampleArrayMetricDescriptor::
-  TechnicalRange () const
+  getTechnicalRange () const
   {
     return this->TechnicalRange_;
   }
 
   DistributionSampleArrayMetricDescriptor::TechnicalRangeSequence& DistributionSampleArrayMetricDescriptor::
-  TechnicalRange ()
+  getTechnicalRange ()
   {
     return this->TechnicalRange_;
   }
 
   void DistributionSampleArrayMetricDescriptor::
-  TechnicalRange (const TechnicalRangeSequence& s)
+  setTechnicalRange (const TechnicalRangeSequence& s)
   {
     this->TechnicalRange_ = s;
   }
 
   const DistributionSampleArrayMetricDescriptor::DomainUnitType& DistributionSampleArrayMetricDescriptor::
-  DomainUnit () const
+  getDomainUnit () const
   {
     return this->DomainUnit_.get ();
   }
 
   DistributionSampleArrayMetricDescriptor::DomainUnitType& DistributionSampleArrayMetricDescriptor::
-  DomainUnit ()
+  getDomainUnit ()
   {
     return this->DomainUnit_.get ();
   }
 
   void DistributionSampleArrayMetricDescriptor::
-  DomainUnit (const DomainUnitType& x)
+  setDomainUnit (const DomainUnitType& x)
   {
     this->DomainUnit_.set (x);
   }
 
   void DistributionSampleArrayMetricDescriptor::
-  DomainUnit (::std::unique_ptr< DomainUnitType > x)
+  setDomainUnit (::std::unique_ptr< DomainUnitType > x)
   {
     this->DomainUnit_.set (std::move (x));
   }
 
   const DistributionSampleArrayMetricDescriptor::DistributionRangeType& DistributionSampleArrayMetricDescriptor::
-  DistributionRange () const
+  getDistributionRange () const
   {
     return this->DistributionRange_.get ();
   }
 
   DistributionSampleArrayMetricDescriptor::DistributionRangeType& DistributionSampleArrayMetricDescriptor::
-  DistributionRange ()
+  getDistributionRange ()
   {
     return this->DistributionRange_.get ();
   }
 
   void DistributionSampleArrayMetricDescriptor::
-  DistributionRange (const DistributionRangeType& x)
+  setDistributionRange (const DistributionRangeType& x)
   {
     this->DistributionRange_.set (x);
   }
 
   void DistributionSampleArrayMetricDescriptor::
-  DistributionRange (::std::unique_ptr< DistributionRangeType > x)
+  setDistributionRange (::std::unique_ptr< DistributionRangeType > x)
   {
     this->DistributionRange_.set (std::move (x));
   }
 
   const DistributionSampleArrayMetricDescriptor::ResolutionType& DistributionSampleArrayMetricDescriptor::
-  Resolution () const
+  getResolution () const
   {
     return this->Resolution_.get ();
   }
 
   DistributionSampleArrayMetricDescriptor::ResolutionType& DistributionSampleArrayMetricDescriptor::
-  Resolution ()
+  getResolution ()
   {
     return this->Resolution_.get ();
   }
 
   void DistributionSampleArrayMetricDescriptor::
-  Resolution (const ResolutionType& x)
+  setResolution (const ResolutionType& x)
   {
     this->Resolution_.set (x);
   }
@@ -5620,49 +5620,49 @@ namespace CDM
   // 
 
   const DistributionSampleArrayMetricState::MetricValueOptional& DistributionSampleArrayMetricState::
-  MetricValue () const
+  getMetricValue () const
   {
     return this->MetricValue_;
   }
 
   DistributionSampleArrayMetricState::MetricValueOptional& DistributionSampleArrayMetricState::
-  MetricValue ()
+  getMetricValue ()
   {
     return this->MetricValue_;
   }
 
   void DistributionSampleArrayMetricState::
-  MetricValue (const MetricValueType& x)
+  setMetricValue (const MetricValueType& x)
   {
     this->MetricValue_.set (x);
   }
 
   void DistributionSampleArrayMetricState::
-  MetricValue (const MetricValueOptional& x)
+  setMetricValue (const MetricValueOptional& x)
   {
     this->MetricValue_ = x;
   }
 
   void DistributionSampleArrayMetricState::
-  MetricValue (::std::unique_ptr< MetricValueType > x)
+  setMetricValue (::std::unique_ptr< MetricValueType > x)
   {
     this->MetricValue_.set (std::move (x));
   }
 
   const DistributionSampleArrayMetricState::PhysiologicalRangeSequence& DistributionSampleArrayMetricState::
-  PhysiologicalRange () const
+  getPhysiologicalRange () const
   {
     return this->PhysiologicalRange_;
   }
 
   DistributionSampleArrayMetricState::PhysiologicalRangeSequence& DistributionSampleArrayMetricState::
-  PhysiologicalRange ()
+  getPhysiologicalRange ()
   {
     return this->PhysiologicalRange_;
   }
 
   void DistributionSampleArrayMetricState::
-  PhysiologicalRange (const PhysiologicalRangeSequence& s)
+  setPhysiologicalRange (const PhysiologicalRangeSequence& s)
   {
     this->PhysiologicalRange_ = s;
   }
@@ -5696,19 +5696,19 @@ namespace CDM
   // 
 
   const ScoDescriptor::OperationSequence& ScoDescriptor::
-  Operation () const
+  getOperation () const
   {
     return this->Operation_;
   }
 
   ScoDescriptor::OperationSequence& ScoDescriptor::
-  Operation ()
+  getOperation ()
   {
     return this->Operation_;
   }
 
   void ScoDescriptor::
-  Operation (const OperationSequence& s)
+  setOperation (const OperationSequence& s)
   {
     this->Operation_ = s;
   }
@@ -5718,79 +5718,79 @@ namespace CDM
   // 
 
   const ScoState::OperationGroupSequence& ScoState::
-  OperationGroup () const
+  getOperationGroup () const
   {
     return this->OperationGroup_;
   }
 
   ScoState::OperationGroupSequence& ScoState::
-  OperationGroup ()
+  getOperationGroup ()
   {
     return this->OperationGroup_;
   }
 
   void ScoState::
-  OperationGroup (const OperationGroupSequence& s)
+  setOperationGroup (const OperationGroupSequence& s)
   {
     this->OperationGroup_ = s;
   }
 
   const ScoState::InvocationRequestedOptional& ScoState::
-  InvocationRequested () const
+  getInvocationRequested () const
   {
     return this->InvocationRequested_;
   }
 
   ScoState::InvocationRequestedOptional& ScoState::
-  InvocationRequested ()
+  getInvocationRequested ()
   {
     return this->InvocationRequested_;
   }
 
   void ScoState::
-  InvocationRequested (const InvocationRequestedType& x)
+  setInvocationRequested (const InvocationRequestedType& x)
   {
     this->InvocationRequested_.set (x);
   }
 
   void ScoState::
-  InvocationRequested (const InvocationRequestedOptional& x)
+  setInvocationRequested (const InvocationRequestedOptional& x)
   {
     this->InvocationRequested_ = x;
   }
 
   void ScoState::
-  InvocationRequested (::std::unique_ptr< InvocationRequestedType > x)
+  setInvocationRequested (::std::unique_ptr< InvocationRequestedType > x)
   {
     this->InvocationRequested_.set (std::move (x));
   }
 
   const ScoState::InvocationRequiredOptional& ScoState::
-  InvocationRequired () const
+  getInvocationRequired () const
   {
     return this->InvocationRequired_;
   }
 
   ScoState::InvocationRequiredOptional& ScoState::
-  InvocationRequired ()
+  getInvocationRequired ()
   {
     return this->InvocationRequired_;
   }
 
   void ScoState::
-  InvocationRequired (const InvocationRequiredType& x)
+  setInvocationRequired (const InvocationRequiredType& x)
   {
     this->InvocationRequired_.set (x);
   }
 
   void ScoState::
-  InvocationRequired (const InvocationRequiredOptional& x)
+  setInvocationRequired (const InvocationRequiredOptional& x)
   {
     this->InvocationRequired_ = x;
   }
 
   void ScoState::
-  InvocationRequired (::std::unique_ptr< InvocationRequiredType > x)
+  setInvocationRequired (::std::unique_ptr< InvocationRequiredType > x)
   {
     this->InvocationRequired_.set (std::move (x));
   }
@@ -5800,139 +5800,139 @@ namespace CDM
   // 
 
   const AbstractOperationDescriptor::OperationTargetType& AbstractOperationDescriptor::
-  OperationTarget () const
+  getOperationTarget () const
   {
     return this->OperationTarget_.get ();
   }
 
   AbstractOperationDescriptor::OperationTargetType& AbstractOperationDescriptor::
-  OperationTarget ()
+  getOperationTarget ()
   {
     return this->OperationTarget_.get ();
   }
 
   void AbstractOperationDescriptor::
-  OperationTarget (const OperationTargetType& x)
+  setOperationTarget (const OperationTargetType& x)
   {
     this->OperationTarget_.set (x);
   }
 
   void AbstractOperationDescriptor::
-  OperationTarget (::std::unique_ptr< OperationTargetType > x)
+  setOperationTarget (::std::unique_ptr< OperationTargetType > x)
   {
     this->OperationTarget_.set (std::move (x));
   }
 
   const AbstractOperationDescriptor::MaxTimeToFinishOptional& AbstractOperationDescriptor::
-  MaxTimeToFinish () const
+  getMaxTimeToFinish () const
   {
     return this->MaxTimeToFinish_;
   }
 
   AbstractOperationDescriptor::MaxTimeToFinishOptional& AbstractOperationDescriptor::
-  MaxTimeToFinish ()
+  getMaxTimeToFinish ()
   {
     return this->MaxTimeToFinish_;
   }
 
   void AbstractOperationDescriptor::
-  MaxTimeToFinish (const MaxTimeToFinishType& x)
+  setMaxTimeToFinish (const MaxTimeToFinishType& x)
   {
     this->MaxTimeToFinish_.set (x);
   }
 
   void AbstractOperationDescriptor::
-  MaxTimeToFinish (const MaxTimeToFinishOptional& x)
+  setMaxTimeToFinish (const MaxTimeToFinishOptional& x)
   {
     this->MaxTimeToFinish_ = x;
   }
 
   void AbstractOperationDescriptor::
-  MaxTimeToFinish (::std::unique_ptr< MaxTimeToFinishType > x)
+  setMaxTimeToFinish (::std::unique_ptr< MaxTimeToFinishType > x)
   {
     this->MaxTimeToFinish_.set (std::move (x));
   }
 
   const AbstractOperationDescriptor::InvocationEffectiveTimeoutOptional& AbstractOperationDescriptor::
-  InvocationEffectiveTimeout () const
+  getInvocationEffectiveTimeout () const
   {
     return this->InvocationEffectiveTimeout_;
   }
 
   AbstractOperationDescriptor::InvocationEffectiveTimeoutOptional& AbstractOperationDescriptor::
-  InvocationEffectiveTimeout ()
+  getInvocationEffectiveTimeout ()
   {
     return this->InvocationEffectiveTimeout_;
   }
 
   void AbstractOperationDescriptor::
-  InvocationEffectiveTimeout (const InvocationEffectiveTimeoutType& x)
+  setInvocationEffectiveTimeout (const InvocationEffectiveTimeoutType& x)
   {
     this->InvocationEffectiveTimeout_.set (x);
   }
 
   void AbstractOperationDescriptor::
-  InvocationEffectiveTimeout (const InvocationEffectiveTimeoutOptional& x)
+  setInvocationEffectiveTimeout (const InvocationEffectiveTimeoutOptional& x)
   {
     this->InvocationEffectiveTimeout_ = x;
   }
 
   void AbstractOperationDescriptor::
-  InvocationEffectiveTimeout (::std::unique_ptr< InvocationEffectiveTimeoutType > x)
+  setInvocationEffectiveTimeout (::std::unique_ptr< InvocationEffectiveTimeoutType > x)
   {
     this->InvocationEffectiveTimeout_.set (std::move (x));
   }
 
   const AbstractOperationDescriptor::RetriggerableOptional& AbstractOperationDescriptor::
-  Retriggerable () const
+  getRetriggerable () const
   {
     return this->Retriggerable_;
   }
 
   AbstractOperationDescriptor::RetriggerableOptional& AbstractOperationDescriptor::
-  Retriggerable ()
+  getRetriggerable ()
   {
     return this->Retriggerable_;
   }
 
   void AbstractOperationDescriptor::
-  Retriggerable (const RetriggerableType& x)
+  setRetriggerable (const RetriggerableType& x)
   {
     this->Retriggerable_.set (x);
   }
 
   void AbstractOperationDescriptor::
-  Retriggerable (const RetriggerableOptional& x)
+  setRetriggerable (const RetriggerableOptional& x)
   {
     this->Retriggerable_ = x;
   }
 
   const AbstractOperationDescriptor::AccessLevelOptional& AbstractOperationDescriptor::
-  AccessLevel () const
+  getAccessLevel () const
   {
     return this->AccessLevel_;
   }
 
   AbstractOperationDescriptor::AccessLevelOptional& AbstractOperationDescriptor::
-  AccessLevel ()
+  getAccessLevel ()
   {
     return this->AccessLevel_;
   }
 
   void AbstractOperationDescriptor::
-  AccessLevel (const AccessLevelType& x)
+  setAccessLevel (const AccessLevelType& x)
   {
     this->AccessLevel_.set (x);
   }
 
   void AbstractOperationDescriptor::
-  AccessLevel (const AccessLevelOptional& x)
+  setAccessLevel (const AccessLevelOptional& x)
   {
     this->AccessLevel_ = x;
   }
 
   void AbstractOperationDescriptor::
-  AccessLevel (::std::unique_ptr< AccessLevelType > x)
+  setAccessLevel (::std::unique_ptr< AccessLevelType > x)
   {
     this->AccessLevel_.set (std::move (x));
   }
@@ -5942,19 +5942,19 @@ namespace CDM
   // 
 
   const AbstractSetStateOperationDescriptor::ModifiableDataSequence& AbstractSetStateOperationDescriptor::
-  ModifiableData () const
+  getModifiableData () const
   {
     return this->ModifiableData_;
   }
 
   AbstractSetStateOperationDescriptor::ModifiableDataSequence& AbstractSetStateOperationDescriptor::
-  ModifiableData ()
+  getModifiableData ()
   {
     return this->ModifiableData_;
   }
 
   void AbstractSetStateOperationDescriptor::
-  ModifiableData (const ModifiableDataSequence& s)
+  setModifiableData (const ModifiableDataSequence& s)
   {
     this->ModifiableData_ = s;
   }
@@ -6009,25 +6009,25 @@ namespace CDM
   // 
 
   const AbstractOperationState::OperatingModeType& AbstractOperationState::
-  OperatingMode () const
+  getOperatingMode () const
   {
     return this->OperatingMode_.get ();
   }
 
   AbstractOperationState::OperatingModeType& AbstractOperationState::
-  OperatingMode ()
+  getOperatingMode ()
   {
     return this->OperatingMode_.get ();
   }
 
   void AbstractOperationState::
-  OperatingMode (const OperatingModeType& x)
+  setOperatingMode (const OperatingModeType& x)
   {
     this->OperatingMode_.set (x);
   }
 
   void AbstractOperationState::
-  OperatingMode (::std::unique_ptr< OperatingModeType > x)
+  setOperatingMode (::std::unique_ptr< OperatingModeType > x)
   {
     this->OperatingMode_.set (std::move (x));
   }
@@ -6041,19 +6041,19 @@ namespace CDM
   // 
 
   const SetValueOperationState::AllowedRangeSequence& SetValueOperationState::
-  AllowedRange () const
+  getAllowedRange () const
   {
     return this->AllowedRange_;
   }
 
   SetValueOperationState::AllowedRangeSequence& SetValueOperationState::
-  AllowedRange ()
+  getAllowedRange ()
   {
     return this->AllowedRange_;
   }
 
   void SetValueOperationState::
-  AllowedRange (const AllowedRangeSequence& s)
+  setAllowedRange (const AllowedRangeSequence& s)
   {
     this->AllowedRange_ = s;
   }
@@ -6063,25 +6063,25 @@ namespace CDM
   // 
 
   const SetStringOperationDescriptor::MaxLengthOptional& SetStringOperationDescriptor::
-  MaxLength () const
+  getMaxLength () const
   {
     return this->MaxLength_;
   }
 
   SetStringOperationDescriptor::MaxLengthOptional& SetStringOperationDescriptor::
-  MaxLength ()
+  getMaxLength ()
   {
     return this->MaxLength_;
   }
 
   void SetStringOperationDescriptor::
-  MaxLength (const MaxLengthType& x)
+  setMaxLength (const MaxLengthType& x)
   {
     this->MaxLength_.set (x);
   }
 
   void SetStringOperationDescriptor::
-  MaxLength (const MaxLengthOptional& x)
+  setMaxLength (const MaxLengthOptional& x)
   {
     this->MaxLength_ = x;
   }
@@ -6091,31 +6091,31 @@ namespace CDM
   // 
 
   const SetStringOperationState::AllowedValuesOptional& SetStringOperationState::
-  AllowedValues () const
+  getAllowedValues () const
   {
     return this->AllowedValues_;
   }
 
   SetStringOperationState::AllowedValuesOptional& SetStringOperationState::
-  AllowedValues ()
+  getAllowedValues ()
   {
     return this->AllowedValues_;
   }
 
   void SetStringOperationState::
-  AllowedValues (const AllowedValuesType& x)
+  setAllowedValues (const AllowedValuesType& x)
   {
     this->AllowedValues_.set (x);
   }
 
   void SetStringOperationState::
-  AllowedValues (const AllowedValuesOptional& x)
+  setAllowedValues (const AllowedValuesOptional& x)
   {
     this->AllowedValues_ = x;
   }
 
   void SetStringOperationState::
-  AllowedValues (::std::unique_ptr< AllowedValuesType > x)
+  setAllowedValues (::std::unique_ptr< AllowedValuesType > x)
   {
     this->AllowedValues_.set (std::move (x));
   }
@@ -6125,19 +6125,19 @@ namespace CDM
   // 
 
   const ActivateOperationDescriptor::ArgumentSequence& ActivateOperationDescriptor::
-  Argument () const
+  getArgument () const
   {
     return this->Argument_;
   }
 
   ActivateOperationDescriptor::ArgumentSequence& ActivateOperationDescriptor::
-  Argument ()
+  getArgument ()
   {
     return this->Argument_;
   }
 
   void ActivateOperationDescriptor::
-  Argument (const ArgumentSequence& s)
+  setArgument (const ArgumentSequence& s)
   {
     this->Argument_ = s;
   }
@@ -6187,49 +6187,49 @@ namespace CDM
   // 
 
   const ClockDescriptor::TimeProtocolSequence& ClockDescriptor::
-  TimeProtocol () const
+  getTimeProtocol () const
   {
     return this->TimeProtocol_;
   }
 
   ClockDescriptor::TimeProtocolSequence& ClockDescriptor::
-  TimeProtocol ()
+  getTimeProtocol ()
   {
     return this->TimeProtocol_;
   }
 
   void ClockDescriptor::
-  TimeProtocol (const TimeProtocolSequence& s)
+  setTimeProtocol (const TimeProtocolSequence& s)
   {
     this->TimeProtocol_ = s;
   }
 
   const ClockDescriptor::ResolutionOptional& ClockDescriptor::
-  Resolution () const
+  getResolution () const
   {
     return this->Resolution_;
   }
 
   ClockDescriptor::ResolutionOptional& ClockDescriptor::
-  Resolution ()
+  getResolution ()
   {
     return this->Resolution_;
   }
 
   void ClockDescriptor::
-  Resolution (const ResolutionType& x)
+  setResolution (const ResolutionType& x)
   {
     this->Resolution_.set (x);
   }
 
   void ClockDescriptor::
-  Resolution (const ResolutionOptional& x)
+  setResolution (const ResolutionOptional& x)
   {
     this->Resolution_ = x;
   }
 
   void ClockDescriptor::
-  Resolution (::std::unique_ptr< ResolutionType > x)
+  setResolution (::std::unique_ptr< ResolutionType > x)
   {
     this->Resolution_.set (std::move (x));
   }
@@ -6239,205 +6239,205 @@ namespace CDM
   // 
 
   const ClockState::ActiveSyncProtocolOptional& ClockState::
-  ActiveSyncProtocol () const
+  getActiveSyncProtocol () const
   {
     return this->ActiveSyncProtocol_;
   }
 
   ClockState::ActiveSyncProtocolOptional& ClockState::
-  ActiveSyncProtocol ()
+  getActiveSyncProtocol ()
   {
     return this->ActiveSyncProtocol_;
   }
 
   void ClockState::
-  ActiveSyncProtocol (const ActiveSyncProtocolType& x)
+  setActiveSyncProtocol (const ActiveSyncProtocolType& x)
   {
     this->ActiveSyncProtocol_.set (x);
   }
 
   void ClockState::
-  ActiveSyncProtocol (const ActiveSyncProtocolOptional& x)
+  setActiveSyncProtocol (const ActiveSyncProtocolOptional& x)
   {
     this->ActiveSyncProtocol_ = x;
   }
 
   void ClockState::
-  ActiveSyncProtocol (::std::unique_ptr< ActiveSyncProtocolType > x)
+  setActiveSyncProtocol (::std::unique_ptr< ActiveSyncProtocolType > x)
   {
     this->ActiveSyncProtocol_.set (std::move (x));
   }
 
   const ClockState::ReferenceSourceSequence& ClockState::
-  ReferenceSource () const
+  getReferenceSource () const
   {
     return this->ReferenceSource_;
   }
 
   ClockState::ReferenceSourceSequence& ClockState::
-  ReferenceSource ()
+  getReferenceSource ()
   {
     return this->ReferenceSource_;
   }
 
   void ClockState::
-  ReferenceSource (const ReferenceSourceSequence& s)
+  setReferenceSource (const ReferenceSourceSequence& s)
   {
     this->ReferenceSource_ = s;
   }
 
   const ClockState::DateAndTimeOptional& ClockState::
-  DateAndTime () const
+  getDateAndTime () const
   {
     return this->DateAndTime_;
   }
 
   ClockState::DateAndTimeOptional& ClockState::
-  DateAndTime ()
+  getDateAndTime ()
   {
     return this->DateAndTime_;
   }
 
   void ClockState::
-  DateAndTime (const DateAndTimeType& x)
+  setDateAndTime (const DateAndTimeType& x)
   {
     this->DateAndTime_.set (x);
   }
 
   void ClockState::
-  DateAndTime (const DateAndTimeOptional& x)
+  setDateAndTime (const DateAndTimeOptional& x)
   {
     this->DateAndTime_ = x;
   }
 
   void ClockState::
-  DateAndTime (::std::unique_ptr< DateAndTimeType > x)
+  setDateAndTime (::std::unique_ptr< DateAndTimeType > x)
   {
     this->DateAndTime_.set (std::move (x));
   }
 
   const ClockState::RemoteSyncType& ClockState::
-  RemoteSync () const
+  getRemoteSync () const
   {
     return this->RemoteSync_.get ();
   }
 
   ClockState::RemoteSyncType& ClockState::
-  RemoteSync ()
+  getRemoteSync ()
   {
     return this->RemoteSync_.get ();
   }
 
   void ClockState::
-  RemoteSync (const RemoteSyncType& x)
+  setRemoteSync (const RemoteSyncType& x)
   {
     this->RemoteSync_.set (x);
   }
 
   const ClockState::AccuracyOptional& ClockState::
-  Accuracy () const
+  getAccuracy () const
   {
     return this->Accuracy_;
   }
 
   ClockState::AccuracyOptional& ClockState::
-  Accuracy ()
+  getAccuracy ()
   {
     return this->Accuracy_;
   }
 
   void ClockState::
-  Accuracy (const AccuracyType& x)
+  setAccuracy (const AccuracyType& x)
   {
     this->Accuracy_.set (x);
   }
 
   void ClockState::
-  Accuracy (const AccuracyOptional& x)
+  setAccuracy (const AccuracyOptional& x)
   {
     this->Accuracy_ = x;
   }
 
   const ClockState::LastSetOptional& ClockState::
-  LastSet () const
+  getLastSet () const
   {
     return this->LastSet_;
   }
 
   ClockState::LastSetOptional& ClockState::
-  LastSet ()
+  getLastSet ()
   {
     return this->LastSet_;
   }
 
   void ClockState::
-  LastSet (const LastSetType& x)
+  setLastSet (const LastSetType& x)
   {
     this->LastSet_.set (x);
   }
 
   void ClockState::
-  LastSet (const LastSetOptional& x)
+  setLastSet (const LastSetOptional& x)
   {
     this->LastSet_ = x;
   }
 
   void ClockState::
-  LastSet (::std::unique_ptr< LastSetType > x)
+  setLastSet (::std::unique_ptr< LastSetType > x)
   {
     this->LastSet_.set (std::move (x));
   }
 
   const ClockState::TimeZoneOptional& ClockState::
-  TimeZone () const
+  getTimeZone () const
   {
     return this->TimeZone_;
   }
 
   ClockState::TimeZoneOptional& ClockState::
-  TimeZone ()
+  getTimeZone ()
   {
     return this->TimeZone_;
   }
 
   void ClockState::
-  TimeZone (const TimeZoneType& x)
+  setTimeZone (const TimeZoneType& x)
   {
     this->TimeZone_.set (x);
   }
 
   void ClockState::
-  TimeZone (const TimeZoneOptional& x)
+  setTimeZone (const TimeZoneOptional& x)
   {
     this->TimeZone_ = x;
   }
 
   void ClockState::
-  TimeZone (::std::unique_ptr< TimeZoneType > x)
+  setTimeZone (::std::unique_ptr< TimeZoneType > x)
   {
     this->TimeZone_.set (std::move (x));
   }
 
   const ClockState::CriticalUseOptional& ClockState::
-  CriticalUse () const
+  getCriticalUse () const
   {
     return this->CriticalUse_;
   }
 
   ClockState::CriticalUseOptional& ClockState::
-  CriticalUse ()
+  getCriticalUse ()
   {
     return this->CriticalUse_;
   }
 
   void ClockState::
-  CriticalUse (const CriticalUseType& x)
+  setCriticalUse (const CriticalUseType& x)
   {
     this->CriticalUse_.set (x);
   }
 
   void ClockState::
-  CriticalUse (const CriticalUseOptional& x)
+  setCriticalUse (const CriticalUseOptional& x)
   {
     this->CriticalUse_ = x;
   }
@@ -6447,91 +6447,91 @@ namespace CDM
   // 
 
   const BatteryDescriptor::CapacityFullChargeOptional& BatteryDescriptor::
-  CapacityFullCharge () const
+  getCapacityFullCharge () const
   {
     return this->CapacityFullCharge_;
   }
 
   BatteryDescriptor::CapacityFullChargeOptional& BatteryDescriptor::
-  CapacityFullCharge ()
+  getCapacityFullCharge ()
   {
     return this->CapacityFullCharge_;
   }
 
   void BatteryDescriptor::
-  CapacityFullCharge (const CapacityFullChargeType& x)
+  setCapacityFullCharge (const CapacityFullChargeType& x)
   {
     this->CapacityFullCharge_.set (x);
   }
 
   void BatteryDescriptor::
-  CapacityFullCharge (const CapacityFullChargeOptional& x)
+  setCapacityFullCharge (const CapacityFullChargeOptional& x)
   {
     this->CapacityFullCharge_ = x;
   }
 
   void BatteryDescriptor::
-  CapacityFullCharge (::std::unique_ptr< CapacityFullChargeType > x)
+  setCapacityFullCharge (::std::unique_ptr< CapacityFullChargeType > x)
   {
     this->CapacityFullCharge_.set (std::move (x));
   }
 
   const BatteryDescriptor::CapacitySpecifiedOptional& BatteryDescriptor::
-  CapacitySpecified () const
+  getCapacitySpecified () const
   {
     return this->CapacitySpecified_;
   }
 
   BatteryDescriptor::CapacitySpecifiedOptional& BatteryDescriptor::
-  CapacitySpecified ()
+  getCapacitySpecified ()
   {
     return this->CapacitySpecified_;
   }
 
   void BatteryDescriptor::
-  CapacitySpecified (const CapacitySpecifiedType& x)
+  setCapacitySpecified (const CapacitySpecifiedType& x)
   {
     this->CapacitySpecified_.set (x);
   }
 
   void BatteryDescriptor::
-  CapacitySpecified (const CapacitySpecifiedOptional& x)
+  setCapacitySpecified (const CapacitySpecifiedOptional& x)
   {
     this->CapacitySpecified_ = x;
   }
 
   void BatteryDescriptor::
-  CapacitySpecified (::std::unique_ptr< CapacitySpecifiedType > x)
+  setCapacitySpecified (::std::unique_ptr< CapacitySpecifiedType > x)
   {
     this->CapacitySpecified_.set (std::move (x));
   }
 
   const BatteryDescriptor::VoltageSpecifiedOptional& BatteryDescriptor::
-  VoltageSpecified () const
+  getVoltageSpecified () const
   {
     return this->VoltageSpecified_;
   }
 
   BatteryDescriptor::VoltageSpecifiedOptional& BatteryDescriptor::
-  VoltageSpecified ()
+  getVoltageSpecified ()
   {
     return this->VoltageSpecified_;
   }
 
   void BatteryDescriptor::
-  VoltageSpecified (const VoltageSpecifiedType& x)
+  setVoltageSpecified (const VoltageSpecifiedType& x)
   {
     this->VoltageSpecified_.set (x);
   }
 
   void BatteryDescriptor::
-  VoltageSpecified (const VoltageSpecifiedOptional& x)
+  setVoltageSpecified (const VoltageSpecifiedOptional& x)
   {
     this->VoltageSpecified_ = x;
   }
 
   void BatteryDescriptor::
-  VoltageSpecified (::std::unique_ptr< VoltageSpecifiedType > x)
+  setVoltageSpecified (::std::unique_ptr< VoltageSpecifiedType > x)
   {
     this->VoltageSpecified_.set (std::move (x));
   }
@@ -6541,205 +6541,205 @@ namespace CDM
   // 
 
   const BatteryState::CapacityRemainingOptional& BatteryState::
-  CapacityRemaining () const
+  getCapacityRemaining () const
   {
     return this->CapacityRemaining_;
   }
 
   BatteryState::CapacityRemainingOptional& BatteryState::
-  CapacityRemaining ()
+  getCapacityRemaining ()
   {
     return this->CapacityRemaining_;
   }
 
   void BatteryState::
-  CapacityRemaining (const CapacityRemainingType& x)
+  setCapacityRemaining (const CapacityRemainingType& x)
   {
     this->CapacityRemaining_.set (x);
   }
 
   void BatteryState::
-  CapacityRemaining (const CapacityRemainingOptional& x)
+  setCapacityRemaining (const CapacityRemainingOptional& x)
   {
     this->CapacityRemaining_ = x;
   }
 
   void BatteryState::
-  CapacityRemaining (::std::unique_ptr< CapacityRemainingType > x)
+  setCapacityRemaining (::std::unique_ptr< CapacityRemainingType > x)
   {
     this->CapacityRemaining_.set (std::move (x));
   }
 
   const BatteryState::VoltageOptional& BatteryState::
-  Voltage () const
+  getVoltage () const
   {
     return this->Voltage_;
   }
 
   BatteryState::VoltageOptional& BatteryState::
-  Voltage ()
+  getVoltage ()
   {
     return this->Voltage_;
   }
 
   void BatteryState::
-  Voltage (const VoltageType& x)
+  setVoltage (const VoltageType& x)
   {
     this->Voltage_.set (x);
   }
 
   void BatteryState::
-  Voltage (const VoltageOptional& x)
+  setVoltage (const VoltageOptional& x)
   {
     this->Voltage_ = x;
   }
 
   void BatteryState::
-  Voltage (::std::unique_ptr< VoltageType > x)
+  setVoltage (::std::unique_ptr< VoltageType > x)
   {
     this->Voltage_.set (std::move (x));
   }
 
   const BatteryState::CurrentOptional& BatteryState::
-  Current () const
+  getCurrent () const
   {
     return this->Current_;
   }
 
   BatteryState::CurrentOptional& BatteryState::
-  Current ()
+  getCurrent ()
   {
     return this->Current_;
   }
 
   void BatteryState::
-  Current (const CurrentType& x)
+  setCurrent (const CurrentType& x)
   {
     this->Current_.set (x);
   }
 
   void BatteryState::
-  Current (const CurrentOptional& x)
+  setCurrent (const CurrentOptional& x)
   {
     this->Current_ = x;
   }
 
   void BatteryState::
-  Current (::std::unique_ptr< CurrentType > x)
+  setCurrent (::std::unique_ptr< CurrentType > x)
   {
     this->Current_.set (std::move (x));
   }
 
   const BatteryState::TemperatureOptional& BatteryState::
-  Temperature () const
+  getTemperature () const
   {
     return this->Temperature_;
   }
 
   BatteryState::TemperatureOptional& BatteryState::
-  Temperature ()
+  getTemperature ()
   {
     return this->Temperature_;
   }
 
   void BatteryState::
-  Temperature (const TemperatureType& x)
+  setTemperature (const TemperatureType& x)
   {
     this->Temperature_.set (x);
   }
 
   void BatteryState::
-  Temperature (const TemperatureOptional& x)
+  setTemperature (const TemperatureOptional& x)
   {
     this->Temperature_ = x;
   }
 
   void BatteryState::
-  Temperature (::std::unique_ptr< TemperatureType > x)
+  setTemperature (::std::unique_ptr< TemperatureType > x)
   {
     this->Temperature_.set (std::move (x));
   }
 
   const BatteryState::RemainingBatteryTimeOptional& BatteryState::
-  RemainingBatteryTime () const
+  getRemainingBatteryTime () const
   {
     return this->RemainingBatteryTime_;
   }
 
   BatteryState::RemainingBatteryTimeOptional& BatteryState::
-  RemainingBatteryTime ()
+  getRemainingBatteryTime ()
   {
     return this->RemainingBatteryTime_;
   }
 
   void BatteryState::
-  RemainingBatteryTime (const RemainingBatteryTimeType& x)
+  setRemainingBatteryTime (const RemainingBatteryTimeType& x)
   {
     this->RemainingBatteryTime_.set (x);
   }
 
   void BatteryState::
-  RemainingBatteryTime (const RemainingBatteryTimeOptional& x)
+  setRemainingBatteryTime (const RemainingBatteryTimeOptional& x)
   {
     this->RemainingBatteryTime_ = x;
   }
 
   void BatteryState::
-  RemainingBatteryTime (::std::unique_ptr< RemainingBatteryTimeType > x)
+  setRemainingBatteryTime (::std::unique_ptr< RemainingBatteryTimeType > x)
   {
     this->RemainingBatteryTime_.set (std::move (x));
   }
 
   const BatteryState::ChargeStatusOptional& BatteryState::
-  ChargeStatus () const
+  getChargeStatus () const
   {
     return this->ChargeStatus_;
   }
 
   BatteryState::ChargeStatusOptional& BatteryState::
-  ChargeStatus ()
+  getChargeStatus ()
   {
     return this->ChargeStatus_;
   }
 
   void BatteryState::
-  ChargeStatus (const ChargeStatusType& x)
+  setChargeStatus (const ChargeStatusType& x)
   {
     this->ChargeStatus_.set (x);
   }
 
   void BatteryState::
-  ChargeStatus (const ChargeStatusOptional& x)
+  setChargeStatus (const ChargeStatusOptional& x)
   {
     this->ChargeStatus_ = x;
   }
 
   void BatteryState::
-  ChargeStatus (::std::unique_ptr< ChargeStatusType > x)
+  setChargeStatus (::std::unique_ptr< ChargeStatusType > x)
   {
     this->ChargeStatus_.set (std::move (x));
   }
 
   const BatteryState::ChargeCyclesOptional& BatteryState::
-  ChargeCycles () const
+  getChargeCycles () const
   {
     return this->ChargeCycles_;
   }
 
   BatteryState::ChargeCyclesOptional& BatteryState::
-  ChargeCycles ()
+  getChargeCycles ()
   {
     return this->ChargeCycles_;
   }
 
   void BatteryState::
-  ChargeCycles (const ChargeCyclesType& x)
+  setChargeCycles (const ChargeCyclesType& x)
   {
     this->ChargeCycles_.set (x);
   }
 
   void BatteryState::
-  ChargeCycles (const ChargeCyclesOptional& x)
+  setChargeCycles (const ChargeCyclesOptional& x)
   {
     this->ChargeCycles_ = x;
   }
@@ -6749,133 +6749,133 @@ namespace CDM
   // 
 
   const SystemContextDescriptor::PatientContextOptional& SystemContextDescriptor::
-  PatientContext () const
+  getPatientContext () const
   {
     return this->PatientContext_;
   }
 
   SystemContextDescriptor::PatientContextOptional& SystemContextDescriptor::
-  PatientContext ()
+  getPatientContext ()
   {
     return this->PatientContext_;
   }
 
   void SystemContextDescriptor::
-  PatientContext (const PatientContextType& x)
+  setPatientContext (const PatientContextType& x)
   {
     this->PatientContext_.set (x);
   }
 
   void SystemContextDescriptor::
-  PatientContext (const PatientContextOptional& x)
+  setPatientContext (const PatientContextOptional& x)
   {
     this->PatientContext_ = x;
   }
 
   void SystemContextDescriptor::
-  PatientContext (::std::unique_ptr< PatientContextType > x)
+  setPatientContext (::std::unique_ptr< PatientContextType > x)
   {
     this->PatientContext_.set (std::move (x));
   }
 
   const SystemContextDescriptor::LocationContextOptional& SystemContextDescriptor::
-  LocationContext () const
+  getLocationContext () const
   {
     return this->LocationContext_;
   }
 
   SystemContextDescriptor::LocationContextOptional& SystemContextDescriptor::
-  LocationContext ()
+  getLocationContext ()
   {
     return this->LocationContext_;
   }
 
   void SystemContextDescriptor::
-  LocationContext (const LocationContextType& x)
+  setLocationContext (const LocationContextType& x)
   {
     this->LocationContext_.set (x);
   }
 
   void SystemContextDescriptor::
-  LocationContext (const LocationContextOptional& x)
+  setLocationContext (const LocationContextOptional& x)
   {
     this->LocationContext_ = x;
   }
 
   void SystemContextDescriptor::
-  LocationContext (::std::unique_ptr< LocationContextType > x)
+  setLocationContext (::std::unique_ptr< LocationContextType > x)
   {
     this->LocationContext_.set (std::move (x));
   }
 
   const SystemContextDescriptor::EnsembleContextSequence& SystemContextDescriptor::
-  EnsembleContext () const
+  getEnsembleContext () const
   {
     return this->EnsembleContext_;
   }
 
   SystemContextDescriptor::EnsembleContextSequence& SystemContextDescriptor::
-  EnsembleContext ()
+  getEnsembleContext ()
   {
     return this->EnsembleContext_;
   }
 
   void SystemContextDescriptor::
-  EnsembleContext (const EnsembleContextSequence& s)
+  setEnsembleContext (const EnsembleContextSequence& s)
   {
     this->EnsembleContext_ = s;
   }
 
   const SystemContextDescriptor::OperatorContextSequence& SystemContextDescriptor::
-  OperatorContext () const
+  getOperatorContext () const
   {
     return this->OperatorContext_;
   }
 
   SystemContextDescriptor::OperatorContextSequence& SystemContextDescriptor::
-  OperatorContext ()
+  getOperatorContext ()
   {
     return this->OperatorContext_;
   }
 
   void SystemContextDescriptor::
-  OperatorContext (const OperatorContextSequence& s)
+  setOperatorContext (const OperatorContextSequence& s)
   {
     this->OperatorContext_ = s;
   }
 
   const SystemContextDescriptor::WorkflowContextSequence& SystemContextDescriptor::
-  WorkflowContext () const
+  getWorkflowContext () const
   {
     return this->WorkflowContext_;
   }
 
   SystemContextDescriptor::WorkflowContextSequence& SystemContextDescriptor::
-  WorkflowContext ()
+  getWorkflowContext ()
   {
     return this->WorkflowContext_;
   }
 
   void SystemContextDescriptor::
-  WorkflowContext (const WorkflowContextSequence& s)
+  setWorkflowContext (const WorkflowContextSequence& s)
   {
     this->WorkflowContext_ = s;
   }
 
   const SystemContextDescriptor::MeansContextSequence& SystemContextDescriptor::
-  MeansContext () const
+  getMeansContext () const
   {
     return this->MeansContext_;
   }
 
   SystemContextDescriptor::MeansContextSequence& SystemContextDescriptor::
-  MeansContext ()
+  getMeansContext ()
   {
     return this->MeansContext_;
   }
 
   void SystemContextDescriptor::
-  MeansContext (const MeansContextSequence& s)
+  setMeansContext (const MeansContextSequence& s)
   {
     this->MeansContext_ = s;
   }
@@ -6938,187 +6938,187 @@ namespace CDM
   // 
 
   const AbstractContextState::ValidatorSequence& AbstractContextState::
-  Validator () const
+  getValidator () const
   {
     return this->Validator_;
   }
 
   AbstractContextState::ValidatorSequence& AbstractContextState::
-  Validator ()
+  getValidator ()
   {
     return this->Validator_;
   }
 
   void AbstractContextState::
-  Validator (const ValidatorSequence& s)
+  setValidator (const ValidatorSequence& s)
   {
     this->Validator_ = s;
   }
 
   const AbstractContextState::IdentificationSequence& AbstractContextState::
-  Identification () const
+  getIdentification () const
   {
     return this->Identification_;
   }
 
   AbstractContextState::IdentificationSequence& AbstractContextState::
-  Identification ()
+  getIdentification ()
   {
     return this->Identification_;
   }
 
   void AbstractContextState::
-  Identification (const IdentificationSequence& s)
+  setIdentification (const IdentificationSequence& s)
   {
     this->Identification_ = s;
   }
 
   const AbstractContextState::ContextAssociationOptional& AbstractContextState::
-  ContextAssociation () const
+  getContextAssociation () const
   {
     return this->ContextAssociation_;
   }
 
   AbstractContextState::ContextAssociationOptional& AbstractContextState::
-  ContextAssociation ()
+  getContextAssociation ()
   {
     return this->ContextAssociation_;
   }
 
   void AbstractContextState::
-  ContextAssociation (const ContextAssociationType& x)
+  setContextAssociation (const ContextAssociationType& x)
   {
     this->ContextAssociation_.set (x);
   }
 
   void AbstractContextState::
-  ContextAssociation (const ContextAssociationOptional& x)
+  setContextAssociation (const ContextAssociationOptional& x)
   {
     this->ContextAssociation_ = x;
   }
 
   void AbstractContextState::
-  ContextAssociation (::std::unique_ptr< ContextAssociationType > x)
+  setContextAssociation (::std::unique_ptr< ContextAssociationType > x)
   {
     this->ContextAssociation_.set (std::move (x));
   }
 
   const AbstractContextState::BindingMdibVersionOptional& AbstractContextState::
-  BindingMdibVersion () const
+  getBindingMdibVersion () const
   {
     return this->BindingMdibVersion_;
   }
 
   AbstractContextState::BindingMdibVersionOptional& AbstractContextState::
-  BindingMdibVersion ()
+  getBindingMdibVersion ()
   {
     return this->BindingMdibVersion_;
   }
 
   void AbstractContextState::
-  BindingMdibVersion (const BindingMdibVersionType& x)
+  setBindingMdibVersion (const BindingMdibVersionType& x)
   {
     this->BindingMdibVersion_.set (x);
   }
 
   void AbstractContextState::
-  BindingMdibVersion (const BindingMdibVersionOptional& x)
+  setBindingMdibVersion (const BindingMdibVersionOptional& x)
   {
     this->BindingMdibVersion_ = x;
   }
 
   void AbstractContextState::
-  BindingMdibVersion (::std::unique_ptr< BindingMdibVersionType > x)
+  setBindingMdibVersion (::std::unique_ptr< BindingMdibVersionType > x)
   {
     this->BindingMdibVersion_.set (std::move (x));
   }
 
   const AbstractContextState::UnbindingMdibVersionOptional& AbstractContextState::
-  UnbindingMdibVersion () const
+  getUnbindingMdibVersion () const
   {
     return this->UnbindingMdibVersion_;
   }
 
   AbstractContextState::UnbindingMdibVersionOptional& AbstractContextState::
-  UnbindingMdibVersion ()
+  getUnbindingMdibVersion ()
   {
     return this->UnbindingMdibVersion_;
   }
 
   void AbstractContextState::
-  UnbindingMdibVersion (const UnbindingMdibVersionType& x)
+  setUnbindingMdibVersion (const UnbindingMdibVersionType& x)
   {
     this->UnbindingMdibVersion_.set (x);
   }
 
   void AbstractContextState::
-  UnbindingMdibVersion (const UnbindingMdibVersionOptional& x)
+  setUnbindingMdibVersion (const UnbindingMdibVersionOptional& x)
   {
     this->UnbindingMdibVersion_ = x;
   }
 
   void AbstractContextState::
-  UnbindingMdibVersion (::std::unique_ptr< UnbindingMdibVersionType > x)
+  setUnbindingMdibVersion (::std::unique_ptr< UnbindingMdibVersionType > x)
   {
     this->UnbindingMdibVersion_.set (std::move (x));
   }
 
   const AbstractContextState::BindingStartTimeOptional& AbstractContextState::
-  BindingStartTime () const
+  getBindingStartTime () const
   {
     return this->BindingStartTime_;
   }
 
   AbstractContextState::BindingStartTimeOptional& AbstractContextState::
-  BindingStartTime ()
+  getBindingStartTime ()
   {
     return this->BindingStartTime_;
   }
 
   void AbstractContextState::
-  BindingStartTime (const BindingStartTimeType& x)
+  setBindingStartTime (const BindingStartTimeType& x)
   {
     this->BindingStartTime_.set (x);
   }
 
   void AbstractContextState::
-  BindingStartTime (const BindingStartTimeOptional& x)
+  setBindingStartTime (const BindingStartTimeOptional& x)
   {
     this->BindingStartTime_ = x;
   }
 
   void AbstractContextState::
-  BindingStartTime (::std::unique_ptr< BindingStartTimeType > x)
+  setBindingStartTime (::std::unique_ptr< BindingStartTimeType > x)
   {
     this->BindingStartTime_.set (std::move (x));
   }
 
   const AbstractContextState::BindingEndTimeOptional& AbstractContextState::
-  BindingEndTime () const
+  getBindingEndTime () const
   {
     return this->BindingEndTime_;
   }
 
   AbstractContextState::BindingEndTimeOptional& AbstractContextState::
-  BindingEndTime ()
+  getBindingEndTime ()
   {
     return this->BindingEndTime_;
   }
 
   void AbstractContextState::
-  BindingEndTime (const BindingEndTimeType& x)
+  setBindingEndTime (const BindingEndTimeType& x)
   {
     this->BindingEndTime_.set (x);
   }
 
   void AbstractContextState::
-  BindingEndTime (const BindingEndTimeOptional& x)
+  setBindingEndTime (const BindingEndTimeOptional& x)
   {
     this->BindingEndTime_ = x;
   }
 
   void AbstractContextState::
-  BindingEndTime (::std::unique_ptr< BindingEndTimeType > x)
+  setBindingEndTime (::std::unique_ptr< BindingEndTimeType > x)
   {
     this->BindingEndTime_.set (std::move (x));
   }
@@ -7128,169 +7128,169 @@ namespace CDM
   // 
 
   const BaseDemographics::ExtensionOptional& BaseDemographics::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   BaseDemographics::ExtensionOptional& BaseDemographics::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void BaseDemographics::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void BaseDemographics::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void BaseDemographics::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const BaseDemographics::GivennameOptional& BaseDemographics::
-  Givenname () const
+  getGivenname () const
   {
     return this->Givenname_;
   }
 
   BaseDemographics::GivennameOptional& BaseDemographics::
-  Givenname ()
+  getGivenname ()
   {
     return this->Givenname_;
   }
 
   void BaseDemographics::
-  Givenname (const GivennameType& x)
+  setGivenname (const GivennameType& x)
   {
     this->Givenname_.set (x);
   }
 
   void BaseDemographics::
-  Givenname (const GivennameOptional& x)
+  setGivenname (const GivennameOptional& x)
   {
     this->Givenname_ = x;
   }
 
   void BaseDemographics::
-  Givenname (::std::unique_ptr< GivennameType > x)
+  setGivenname (::std::unique_ptr< GivennameType > x)
   {
     this->Givenname_.set (std::move (x));
   }
 
   const BaseDemographics::MiddlenameSequence& BaseDemographics::
-  Middlename () const
+  getMiddlename () const
   {
     return this->Middlename_;
   }
 
   BaseDemographics::MiddlenameSequence& BaseDemographics::
-  Middlename ()
+  getMiddlename ()
   {
     return this->Middlename_;
   }
 
   void BaseDemographics::
-  Middlename (const MiddlenameSequence& s)
+  setMiddlename (const MiddlenameSequence& s)
   {
     this->Middlename_ = s;
   }
 
   const BaseDemographics::FamilynameOptional& BaseDemographics::
-  Familyname () const
+  getFamilyname () const
   {
     return this->Familyname_;
   }
 
   BaseDemographics::FamilynameOptional& BaseDemographics::
-  Familyname ()
+  getFamilyname ()
   {
     return this->Familyname_;
   }
 
   void BaseDemographics::
-  Familyname (const FamilynameType& x)
+  setFamilyname (const FamilynameType& x)
   {
     this->Familyname_.set (x);
   }
 
   void BaseDemographics::
-  Familyname (const FamilynameOptional& x)
+  setFamilyname (const FamilynameOptional& x)
   {
     this->Familyname_ = x;
   }
 
   void BaseDemographics::
-  Familyname (::std::unique_ptr< FamilynameType > x)
+  setFamilyname (::std::unique_ptr< FamilynameType > x)
   {
     this->Familyname_.set (std::move (x));
   }
 
   const BaseDemographics::BirthnameOptional& BaseDemographics::
-  Birthname () const
+  getBirthname () const
   {
     return this->Birthname_;
   }
 
   BaseDemographics::BirthnameOptional& BaseDemographics::
-  Birthname ()
+  getBirthname ()
   {
     return this->Birthname_;
   }
 
   void BaseDemographics::
-  Birthname (const BirthnameType& x)
+  setBirthname (const BirthnameType& x)
   {
     this->Birthname_.set (x);
   }
 
   void BaseDemographics::
-  Birthname (const BirthnameOptional& x)
+  setBirthname (const BirthnameOptional& x)
   {
     this->Birthname_ = x;
   }
 
   void BaseDemographics::
-  Birthname (::std::unique_ptr< BirthnameType > x)
+  setBirthname (::std::unique_ptr< BirthnameType > x)
   {
     this->Birthname_.set (std::move (x));
   }
 
   const BaseDemographics::TitleOptional& BaseDemographics::
-  Title () const
+  getTitle () const
   {
     return this->Title_;
   }
 
   BaseDemographics::TitleOptional& BaseDemographics::
-  Title ()
+  getTitle ()
   {
     return this->Title_;
   }
 
   void BaseDemographics::
-  Title (const TitleType& x)
+  setTitle (const TitleType& x)
   {
     this->Title_.set (x);
   }
 
   void BaseDemographics::
-  Title (const TitleOptional& x)
+  setTitle (const TitleOptional& x)
   {
     this->Title_ = x;
   }
 
   void BaseDemographics::
-  Title (::std::unique_ptr< TitleType > x)
+  setTitle (::std::unique_ptr< TitleType > x)
   {
     this->Title_.set (std::move (x));
   }
@@ -7300,79 +7300,79 @@ namespace CDM
   // 
 
   const PersonReference::ExtensionOptional& PersonReference::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   PersonReference::ExtensionOptional& PersonReference::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void PersonReference::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void PersonReference::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void PersonReference::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const PersonReference::IdentificationSequence& PersonReference::
-  Identification () const
+  getIdentification () const
   {
     return this->Identification_;
   }
 
   PersonReference::IdentificationSequence& PersonReference::
-  Identification ()
+  getIdentification ()
   {
     return this->Identification_;
   }
 
   void PersonReference::
-  Identification (const IdentificationSequence& s)
+  setIdentification (const IdentificationSequence& s)
   {
     this->Identification_ = s;
   }
 
   const PersonReference::NameOptional& PersonReference::
-  Name () const
+  getName () const
   {
     return this->Name_;
   }
 
   PersonReference::NameOptional& PersonReference::
-  Name ()
+  getName ()
   {
     return this->Name_;
   }
 
   void PersonReference::
-  Name (const NameType& x)
+  setName (const NameType& x)
   {
     this->Name_.set (x);
   }
 
   void PersonReference::
-  Name (const NameOptional& x)
+  setName (const NameOptional& x)
   {
     this->Name_ = x;
   }
 
   void PersonReference::
-  Name (::std::unique_ptr< NameType > x)
+  setName (::std::unique_ptr< NameType > x)
   {
     this->Name_.set (std::move (x));
   }
@@ -7382,211 +7382,211 @@ namespace CDM
   // 
 
   const LocationDetail::ExtensionOptional& LocationDetail::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   LocationDetail::ExtensionOptional& LocationDetail::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void LocationDetail::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void LocationDetail::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void LocationDetail::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const LocationDetail::PoCOptional& LocationDetail::
-  PoC () const
+  getPoC () const
   {
     return this->PoC_;
   }
 
   LocationDetail::PoCOptional& LocationDetail::
-  PoC ()
+  getPoC ()
   {
     return this->PoC_;
   }
 
   void LocationDetail::
-  PoC (const PoCType& x)
+  setPoC (const PoCType& x)
   {
     this->PoC_.set (x);
   }
 
   void LocationDetail::
-  PoC (const PoCOptional& x)
+  setPoC (const PoCOptional& x)
   {
     this->PoC_ = x;
   }
 
   void LocationDetail::
-  PoC (::std::unique_ptr< PoCType > x)
+  setPoC (::std::unique_ptr< PoCType > x)
   {
     this->PoC_.set (std::move (x));
   }
 
   const LocationDetail::RoomOptional& LocationDetail::
-  Room () const
+  getRoom () const
   {
     return this->Room_;
   }
 
   LocationDetail::RoomOptional& LocationDetail::
-  Room ()
+  getRoom ()
   {
     return this->Room_;
   }
 
   void LocationDetail::
-  Room (const RoomType& x)
+  setRoom (const RoomType& x)
   {
     this->Room_.set (x);
   }
 
   void LocationDetail::
-  Room (const RoomOptional& x)
+  setRoom (const RoomOptional& x)
   {
     this->Room_ = x;
   }
 
   void LocationDetail::
-  Room (::std::unique_ptr< RoomType > x)
+  setRoom (::std::unique_ptr< RoomType > x)
   {
     this->Room_.set (std::move (x));
   }
 
   const LocationDetail::BedOptional& LocationDetail::
-  Bed () const
+  getBed () const
   {
     return this->Bed_;
   }
 
   LocationDetail::BedOptional& LocationDetail::
-  Bed ()
+  getBed ()
   {
     return this->Bed_;
   }
 
   void LocationDetail::
-  Bed (const BedType& x)
+  setBed (const BedType& x)
   {
     this->Bed_.set (x);
   }
 
   void LocationDetail::
-  Bed (const BedOptional& x)
+  setBed (const BedOptional& x)
   {
     this->Bed_ = x;
   }
 
   void LocationDetail::
-  Bed (::std::unique_ptr< BedType > x)
+  setBed (::std::unique_ptr< BedType > x)
   {
     this->Bed_.set (std::move (x));
   }
 
   const LocationDetail::FacilityOptional& LocationDetail::
-  Facility () const
+  getFacility () const
   {
     return this->Facility_;
   }
 
   LocationDetail::FacilityOptional& LocationDetail::
-  Facility ()
+  getFacility ()
   {
     return this->Facility_;
   }
 
   void LocationDetail::
-  Facility (const FacilityType& x)
+  setFacility (const FacilityType& x)
   {
     this->Facility_.set (x);
   }
 
   void LocationDetail::
-  Facility (const FacilityOptional& x)
+  setFacility (const FacilityOptional& x)
   {
     this->Facility_ = x;
   }
 
   void LocationDetail::
-  Facility (::std::unique_ptr< FacilityType > x)
+  setFacility (::std::unique_ptr< FacilityType > x)
   {
     this->Facility_.set (std::move (x));
   }
 
   const LocationDetail::BuildingOptional& LocationDetail::
-  Building () const
+  getBuilding () const
   {
     return this->Building_;
   }
 
   LocationDetail::BuildingOptional& LocationDetail::
-  Building ()
+  getBuilding ()
   {
     return this->Building_;
   }
 
   void LocationDetail::
-  Building (const BuildingType& x)
+  setBuilding (const BuildingType& x)
   {
     this->Building_.set (x);
   }
 
   void LocationDetail::
-  Building (const BuildingOptional& x)
+  setBuilding (const BuildingOptional& x)
   {
     this->Building_ = x;
   }
 
   void LocationDetail::
-  Building (::std::unique_ptr< BuildingType > x)
+  setBuilding (::std::unique_ptr< BuildingType > x)
   {
     this->Building_.set (std::move (x));
   }
 
   const LocationDetail::FloorOptional& LocationDetail::
-  Floor () const
+  getFloor () const
   {
     return this->Floor_;
   }
 
   LocationDetail::FloorOptional& LocationDetail::
-  Floor ()
+  getFloor ()
   {
     return this->Floor_;
   }
 
   void LocationDetail::
-  Floor (const FloorType& x)
+  setFloor (const FloorType& x)
   {
     this->Floor_.set (x);
   }
 
   void LocationDetail::
-  Floor (const FloorOptional& x)
+  setFloor (const FloorOptional& x)
   {
     this->Floor_ = x;
   }
 
   void LocationDetail::
-  Floor (::std::unique_ptr< FloorType > x)
+  setFloor (::std::unique_ptr< FloorType > x)
   {
     this->Floor_.set (std::move (x));
   }
@@ -7690,181 +7690,181 @@ namespace CDM
   // 
 
   const PatientDemographicsCoreData::SexOptional& PatientDemographicsCoreData::
-  Sex () const
+  getSex () const
   {
     return this->Sex_;
   }
 
   PatientDemographicsCoreData::SexOptional& PatientDemographicsCoreData::
-  Sex ()
+  getSex ()
   {
     return this->Sex_;
   }
 
   void PatientDemographicsCoreData::
-  Sex (const SexType& x)
+  setSex (const SexType& x)
   {
     this->Sex_.set (x);
   }
 
   void PatientDemographicsCoreData::
-  Sex (const SexOptional& x)
+  setSex (const SexOptional& x)
   {
     this->Sex_ = x;
   }
 
   void PatientDemographicsCoreData::
-  Sex (::std::unique_ptr< SexType > x)
+  setSex (::std::unique_ptr< SexType > x)
   {
     this->Sex_.set (std::move (x));
   }
 
   const PatientDemographicsCoreData::PatientTypeOptional& PatientDemographicsCoreData::
-  PatientType () const
+  getPatientType () const
   {
     return this->PatientType_;
   }
 
   PatientDemographicsCoreData::PatientTypeOptional& PatientDemographicsCoreData::
-  PatientType ()
+  getPatientType ()
   {
     return this->PatientType_;
   }
 
   void PatientDemographicsCoreData::
-  PatientType (const PatientTypeType& x)
+  setPatientType (const PatientTypeType& x)
   {
     this->PatientType_.set (x);
   }
 
   void PatientDemographicsCoreData::
-  PatientType (const PatientTypeOptional& x)
+  setPatientType (const PatientTypeOptional& x)
   {
     this->PatientType_ = x;
   }
 
   void PatientDemographicsCoreData::
-  PatientType (::std::unique_ptr< PatientTypeType > x)
+  setPatientType (::std::unique_ptr< PatientTypeType > x)
   {
     this->PatientType_.set (std::move (x));
   }
 
   const PatientDemographicsCoreData::DateOfBirthOptional& PatientDemographicsCoreData::
-  DateOfBirth () const
+  getDateOfBirth () const
   {
     return this->DateOfBirth_;
   }
 
   PatientDemographicsCoreData::DateOfBirthOptional& PatientDemographicsCoreData::
-  DateOfBirth ()
+  getDateOfBirth ()
   {
     return this->DateOfBirth_;
   }
 
   void PatientDemographicsCoreData::
-  DateOfBirth (const DateOfBirthType& x)
+  setDateOfBirth (const DateOfBirthType& x)
   {
     this->DateOfBirth_.set (x);
   }
 
   void PatientDemographicsCoreData::
-  DateOfBirth (const DateOfBirthOptional& x)
+  setDateOfBirth (const DateOfBirthOptional& x)
   {
     this->DateOfBirth_ = x;
   }
 
   void PatientDemographicsCoreData::
-  DateOfBirth (::std::unique_ptr< DateOfBirthType > x)
+  setDateOfBirth (::std::unique_ptr< DateOfBirthType > x)
   {
     this->DateOfBirth_.set (std::move (x));
   }
 
   const PatientDemographicsCoreData::HeightOptional& PatientDemographicsCoreData::
-  Height () const
+  getHeight () const
   {
     return this->Height_;
   }
 
   PatientDemographicsCoreData::HeightOptional& PatientDemographicsCoreData::
-  Height ()
+  getHeight ()
   {
     return this->Height_;
   }
 
   void PatientDemographicsCoreData::
-  Height (const HeightType& x)
+  setHeight (const HeightType& x)
   {
     this->Height_.set (x);
   }
 
   void PatientDemographicsCoreData::
-  Height (const HeightOptional& x)
+  setHeight (const HeightOptional& x)
   {
     this->Height_ = x;
   }
 
   void PatientDemographicsCoreData::
-  Height (::std::unique_ptr< HeightType > x)
+  setHeight (::std::unique_ptr< HeightType > x)
   {
     this->Height_.set (std::move (x));
   }
 
   const PatientDemographicsCoreData::WeightOptional& PatientDemographicsCoreData::
-  Weight () const
+  getWeight () const
   {
     return this->Weight_;
   }
 
   PatientDemographicsCoreData::WeightOptional& PatientDemographicsCoreData::
-  Weight ()
+  getWeight ()
   {
     return this->Weight_;
   }
 
   void PatientDemographicsCoreData::
-  Weight (const WeightType& x)
+  setWeight (const WeightType& x)
   {
     this->Weight_.set (x);
   }
 
   void PatientDemographicsCoreData::
-  Weight (const WeightOptional& x)
+  setWeight (const WeightOptional& x)
   {
     this->Weight_ = x;
   }
 
   void PatientDemographicsCoreData::
-  Weight (::std::unique_ptr< WeightType > x)
+  setWeight (::std::unique_ptr< WeightType > x)
   {
     this->Weight_.set (std::move (x));
   }
 
   const PatientDemographicsCoreData::RaceOptional& PatientDemographicsCoreData::
-  Race () const
+  getRace () const
   {
     return this->Race_;
   }
 
   PatientDemographicsCoreData::RaceOptional& PatientDemographicsCoreData::
-  Race ()
+  getRace ()
   {
     return this->Race_;
   }
 
   void PatientDemographicsCoreData::
-  Race (const RaceType& x)
+  setRace (const RaceType& x)
   {
     this->Race_.set (x);
   }
 
   void PatientDemographicsCoreData::
-  Race (const RaceOptional& x)
+  setRace (const RaceOptional& x)
   {
     this->Race_ = x;
   }
 
   void PatientDemographicsCoreData::
-  Race (::std::unique_ptr< RaceType > x)
+  setRace (::std::unique_ptr< RaceType > x)
   {
     this->Race_.set (std::move (x));
   }
@@ -7874,151 +7874,151 @@ namespace CDM
   // 
 
   const NeonatalPatientDemographicsCoreData::GestationalAgeOptional& NeonatalPatientDemographicsCoreData::
-  GestationalAge () const
+  getGestationalAge () const
   {
     return this->GestationalAge_;
   }
 
   NeonatalPatientDemographicsCoreData::GestationalAgeOptional& NeonatalPatientDemographicsCoreData::
-  GestationalAge ()
+  getGestationalAge ()
   {
     return this->GestationalAge_;
   }
 
   void NeonatalPatientDemographicsCoreData::
-  GestationalAge (const GestationalAgeType& x)
+  setGestationalAge (const GestationalAgeType& x)
   {
     this->GestationalAge_.set (x);
   }
 
   void NeonatalPatientDemographicsCoreData::
-  GestationalAge (const GestationalAgeOptional& x)
+  setGestationalAge (const GestationalAgeOptional& x)
   {
     this->GestationalAge_ = x;
   }
 
   void NeonatalPatientDemographicsCoreData::
-  GestationalAge (::std::unique_ptr< GestationalAgeType > x)
+  setGestationalAge (::std::unique_ptr< GestationalAgeType > x)
   {
     this->GestationalAge_.set (std::move (x));
   }
 
   const NeonatalPatientDemographicsCoreData::BirthLengthOptional& NeonatalPatientDemographicsCoreData::
-  BirthLength () const
+  getBirthLength () const
   {
     return this->BirthLength_;
   }
 
   NeonatalPatientDemographicsCoreData::BirthLengthOptional& NeonatalPatientDemographicsCoreData::
-  BirthLength ()
+  getBirthLength ()
   {
     return this->BirthLength_;
   }
 
   void NeonatalPatientDemographicsCoreData::
-  BirthLength (const BirthLengthType& x)
+  setBirthLength (const BirthLengthType& x)
   {
     this->BirthLength_.set (x);
   }
 
   void NeonatalPatientDemographicsCoreData::
-  BirthLength (const BirthLengthOptional& x)
+  setBirthLength (const BirthLengthOptional& x)
   {
     this->BirthLength_ = x;
   }
 
   void NeonatalPatientDemographicsCoreData::
-  BirthLength (::std::unique_ptr< BirthLengthType > x)
+  setBirthLength (::std::unique_ptr< BirthLengthType > x)
   {
     this->BirthLength_.set (std::move (x));
   }
 
   const NeonatalPatientDemographicsCoreData::BirthWeightOptional& NeonatalPatientDemographicsCoreData::
-  BirthWeight () const
+  getBirthWeight () const
   {
     return this->BirthWeight_;
   }
 
   NeonatalPatientDemographicsCoreData::BirthWeightOptional& NeonatalPatientDemographicsCoreData::
-  BirthWeight ()
+  getBirthWeight ()
   {
     return this->BirthWeight_;
   }
 
   void NeonatalPatientDemographicsCoreData::
-  BirthWeight (const BirthWeightType& x)
+  setBirthWeight (const BirthWeightType& x)
   {
     this->BirthWeight_.set (x);
   }
 
   void NeonatalPatientDemographicsCoreData::
-  BirthWeight (const BirthWeightOptional& x)
+  setBirthWeight (const BirthWeightOptional& x)
   {
     this->BirthWeight_ = x;
   }
 
   void NeonatalPatientDemographicsCoreData::
-  BirthWeight (::std::unique_ptr< BirthWeightType > x)
+  setBirthWeight (::std::unique_ptr< BirthWeightType > x)
   {
     this->BirthWeight_.set (std::move (x));
   }
 
   const NeonatalPatientDemographicsCoreData::HeadCircumferenceOptional& NeonatalPatientDemographicsCoreData::
-  HeadCircumference () const
+  getHeadCircumference () const
   {
     return this->HeadCircumference_;
   }
 
   NeonatalPatientDemographicsCoreData::HeadCircumferenceOptional& NeonatalPatientDemographicsCoreData::
-  HeadCircumference ()
+  getHeadCircumference ()
   {
     return this->HeadCircumference_;
   }
 
   void NeonatalPatientDemographicsCoreData::
-  HeadCircumference (const HeadCircumferenceType& x)
+  setHeadCircumference (const HeadCircumferenceType& x)
   {
     this->HeadCircumference_.set (x);
   }
 
   void NeonatalPatientDemographicsCoreData::
-  HeadCircumference (const HeadCircumferenceOptional& x)
+  setHeadCircumference (const HeadCircumferenceOptional& x)
   {
     this->HeadCircumference_ = x;
   }
 
   void NeonatalPatientDemographicsCoreData::
-  HeadCircumference (::std::unique_ptr< HeadCircumferenceType > x)
+  setHeadCircumference (::std::unique_ptr< HeadCircumferenceType > x)
   {
     this->HeadCircumference_.set (std::move (x));
   }
 
   const NeonatalPatientDemographicsCoreData::MotherOptional& NeonatalPatientDemographicsCoreData::
-  Mother () const
+  getMother () const
   {
     return this->Mother_;
   }
 
   NeonatalPatientDemographicsCoreData::MotherOptional& NeonatalPatientDemographicsCoreData::
-  Mother ()
+  getMother ()
   {
     return this->Mother_;
   }
 
   void NeonatalPatientDemographicsCoreData::
-  Mother (const MotherType& x)
+  setMother (const MotherType& x)
   {
     this->Mother_.set (x);
   }
 
   void NeonatalPatientDemographicsCoreData::
-  Mother (const MotherOptional& x)
+  setMother (const MotherOptional& x)
   {
     this->Mother_ = x;
   }
 
   void NeonatalPatientDemographicsCoreData::
-  Mother (::std::unique_ptr< MotherType > x)
+  setMother (::std::unique_ptr< MotherType > x)
   {
     this->Mother_.set (std::move (x));
   }
@@ -8028,31 +8028,31 @@ namespace CDM
   // 
 
   const PatientContextState::CoreDataOptional& PatientContextState::
-  CoreData () const
+  getCoreData () const
   {
     return this->CoreData_;
   }
 
   PatientContextState::CoreDataOptional& PatientContextState::
-  CoreData ()
+  getCoreData ()
   {
     return this->CoreData_;
   }
 
   void PatientContextState::
-  CoreData (const CoreDataType& x)
+  setCoreData (const CoreDataType& x)
   {
     this->CoreData_.set (x);
   }
 
   void PatientContextState::
-  CoreData (const CoreDataOptional& x)
+  setCoreData (const CoreDataOptional& x)
   {
     this->CoreData_ = x;
   }
 
   void PatientContextState::
-  CoreData (::std::unique_ptr< CoreDataType > x)
+  setCoreData (::std::unique_ptr< CoreDataType > x)
   {
     this->CoreData_.set (std::move (x));
   }
@@ -8066,31 +8066,31 @@ namespace CDM
   // 
 
   const LocationContextState::LocationDetailOptional& LocationContextState::
-  LocationDetail () const
+  getLocationDetail () const
   {
     return this->LocationDetail_;
   }
 
   LocationContextState::LocationDetailOptional& LocationContextState::
-  LocationDetail ()
+  getLocationDetail ()
   {
     return this->LocationDetail_;
   }
 
   void LocationContextState::
-  LocationDetail (const LocationDetailType& x)
+  setLocationDetail (const LocationDetailType& x)
   {
     this->LocationDetail_.set (x);
   }
 
   void LocationContextState::
-  LocationDetail (const LocationDetailOptional& x)
+  setLocationDetail (const LocationDetailOptional& x)
   {
     this->LocationDetail_ = x;
   }
 
   void LocationContextState::
-  LocationDetail (::std::unique_ptr< LocationDetailType > x)
+  setLocationDetail (::std::unique_ptr< LocationDetailType > x)
   {
     this->LocationDetail_.set (std::move (x));
   }
@@ -8104,157 +8104,157 @@ namespace CDM
   // 
 
   const ClinicalInfo::ExtensionOptional& ClinicalInfo::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   ClinicalInfo::ExtensionOptional& ClinicalInfo::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void ClinicalInfo::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void ClinicalInfo::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void ClinicalInfo::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const ClinicalInfo::TypeOptional& ClinicalInfo::
-  Type () const
+  getType () const
   {
     return this->Type_;
   }
 
   ClinicalInfo::TypeOptional& ClinicalInfo::
-  Type ()
+  getType ()
   {
     return this->Type_;
   }
 
   void ClinicalInfo::
-  Type (const TypeType& x)
+  setType (const TypeType& x)
   {
     this->Type_.set (x);
   }
 
   void ClinicalInfo::
-  Type (const TypeOptional& x)
+  setType (const TypeOptional& x)
   {
     this->Type_ = x;
   }
 
   void ClinicalInfo::
-  Type (::std::unique_ptr< TypeType > x)
+  setType (::std::unique_ptr< TypeType > x)
   {
     this->Type_.set (std::move (x));
   }
 
   const ClinicalInfo::CodeOptional& ClinicalInfo::
-  Code () const
+  getCode () const
   {
     return this->Code_;
   }
 
   ClinicalInfo::CodeOptional& ClinicalInfo::
-  Code ()
+  getCode ()
   {
     return this->Code_;
   }
 
   void ClinicalInfo::
-  Code (const CodeType& x)
+  setCode (const CodeType& x)
   {
     this->Code_.set (x);
   }
 
   void ClinicalInfo::
-  Code (const CodeOptional& x)
+  setCode (const CodeOptional& x)
   {
     this->Code_ = x;
   }
 
   void ClinicalInfo::
-  Code (::std::unique_ptr< CodeType > x)
+  setCode (::std::unique_ptr< CodeType > x)
   {
     this->Code_.set (std::move (x));
   }
 
   const ClinicalInfo::CriticalityOptional& ClinicalInfo::
-  Criticality () const
+  getCriticality () const
   {
     return this->Criticality_;
   }
 
   ClinicalInfo::CriticalityOptional& ClinicalInfo::
-  Criticality ()
+  getCriticality ()
   {
     return this->Criticality_;
   }
 
   void ClinicalInfo::
-  Criticality (const CriticalityType& x)
+  setCriticality (const CriticalityType& x)
   {
     this->Criticality_.set (x);
   }
 
   void ClinicalInfo::
-  Criticality (const CriticalityOptional& x)
+  setCriticality (const CriticalityOptional& x)
   {
     this->Criticality_ = x;
   }
 
   void ClinicalInfo::
-  Criticality (::std::unique_ptr< CriticalityType > x)
+  setCriticality (::std::unique_ptr< CriticalityType > x)
   {
     this->Criticality_.set (std::move (x));
   }
 
   const ClinicalInfo::DescriptionSequence& ClinicalInfo::
-  Description () const
+  getDescription () const
   {
     return this->Description_;
   }
 
   ClinicalInfo::DescriptionSequence& ClinicalInfo::
-  Description ()
+  getDescription ()
   {
     return this->Description_;
   }
 
   void ClinicalInfo::
-  Description (const DescriptionSequence& s)
+  setDescription (const DescriptionSequence& s)
   {
     this->Description_ = s;
   }
 
   const ClinicalInfo::RelatedMeasurementSequence& ClinicalInfo::
-  RelatedMeasurement () const
+  getRelatedMeasurement () const
   {
     return this->RelatedMeasurement_;
   }
 
   ClinicalInfo::RelatedMeasurementSequence& ClinicalInfo::
-  RelatedMeasurement ()
+  getRelatedMeasurement ()
   {
     return this->RelatedMeasurement_;
   }
 
   void ClinicalInfo::
-  RelatedMeasurement (const RelatedMeasurementSequence& s)
+  setRelatedMeasurement (const RelatedMeasurementSequence& s)
   {
     this->RelatedMeasurement_ = s;
   }
@@ -8264,187 +8264,187 @@ namespace CDM
   // 
 
   const ImagingProcedure::ExtensionOptional& ImagingProcedure::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   ImagingProcedure::ExtensionOptional& ImagingProcedure::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void ImagingProcedure::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void ImagingProcedure::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void ImagingProcedure::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const ImagingProcedure::AccessionIdentifierType& ImagingProcedure::
-  AccessionIdentifier () const
+  getAccessionIdentifier () const
   {
     return this->AccessionIdentifier_.get ();
   }
 
   ImagingProcedure::AccessionIdentifierType& ImagingProcedure::
-  AccessionIdentifier ()
+  getAccessionIdentifier ()
   {
     return this->AccessionIdentifier_.get ();
   }
 
   void ImagingProcedure::
-  AccessionIdentifier (const AccessionIdentifierType& x)
+  setAccessionIdentifier (const AccessionIdentifierType& x)
   {
     this->AccessionIdentifier_.set (x);
   }
 
   void ImagingProcedure::
-  AccessionIdentifier (::std::unique_ptr< AccessionIdentifierType > x)
+  setAccessionIdentifier (::std::unique_ptr< AccessionIdentifierType > x)
   {
     this->AccessionIdentifier_.set (std::move (x));
   }
 
   const ImagingProcedure::RequestedProcedureIdType& ImagingProcedure::
-  RequestedProcedureId () const
+  getRequestedProcedureId () const
   {
     return this->RequestedProcedureId_.get ();
   }
 
   ImagingProcedure::RequestedProcedureIdType& ImagingProcedure::
-  RequestedProcedureId ()
+  getRequestedProcedureId ()
   {
     return this->RequestedProcedureId_.get ();
   }
 
   void ImagingProcedure::
-  RequestedProcedureId (const RequestedProcedureIdType& x)
+  setRequestedProcedureId (const RequestedProcedureIdType& x)
   {
     this->RequestedProcedureId_.set (x);
   }
 
   void ImagingProcedure::
-  RequestedProcedureId (::std::unique_ptr< RequestedProcedureIdType > x)
+  setRequestedProcedureId (::std::unique_ptr< RequestedProcedureIdType > x)
   {
     this->RequestedProcedureId_.set (std::move (x));
   }
 
   const ImagingProcedure::StudyInstanceUidType& ImagingProcedure::
-  StudyInstanceUid () const
+  getStudyInstanceUid () const
   {
     return this->StudyInstanceUid_.get ();
   }
 
   ImagingProcedure::StudyInstanceUidType& ImagingProcedure::
-  StudyInstanceUid ()
+  getStudyInstanceUid ()
   {
     return this->StudyInstanceUid_.get ();
   }
 
   void ImagingProcedure::
-  StudyInstanceUid (const StudyInstanceUidType& x)
+  setStudyInstanceUid (const StudyInstanceUidType& x)
   {
     this->StudyInstanceUid_.set (x);
   }
 
   void ImagingProcedure::
-  StudyInstanceUid (::std::unique_ptr< StudyInstanceUidType > x)
+  setStudyInstanceUid (::std::unique_ptr< StudyInstanceUidType > x)
   {
     this->StudyInstanceUid_.set (std::move (x));
   }
 
   const ImagingProcedure::ScheduledProcedureStepIdType& ImagingProcedure::
-  ScheduledProcedureStepId () const
+  getScheduledProcedureStepId () const
   {
     return this->ScheduledProcedureStepId_.get ();
   }
 
   ImagingProcedure::ScheduledProcedureStepIdType& ImagingProcedure::
-  ScheduledProcedureStepId ()
+  getScheduledProcedureStepId ()
   {
     return this->ScheduledProcedureStepId_.get ();
   }
 
   void ImagingProcedure::
-  ScheduledProcedureStepId (const ScheduledProcedureStepIdType& x)
+  setScheduledProcedureStepId (const ScheduledProcedureStepIdType& x)
   {
     this->ScheduledProcedureStepId_.set (x);
   }
 
   void ImagingProcedure::
-  ScheduledProcedureStepId (::std::unique_ptr< ScheduledProcedureStepIdType > x)
+  setScheduledProcedureStepId (::std::unique_ptr< ScheduledProcedureStepIdType > x)
   {
     this->ScheduledProcedureStepId_.set (std::move (x));
   }
 
   const ImagingProcedure::ModalityOptional& ImagingProcedure::
-  Modality () const
+  getModality () const
   {
     return this->Modality_;
   }
 
   ImagingProcedure::ModalityOptional& ImagingProcedure::
-  Modality ()
+  getModality ()
   {
     return this->Modality_;
   }
 
   void ImagingProcedure::
-  Modality (const ModalityType& x)
+  setModality (const ModalityType& x)
   {
     this->Modality_.set (x);
   }
 
   void ImagingProcedure::
-  Modality (const ModalityOptional& x)
+  setModality (const ModalityOptional& x)
   {
     this->Modality_ = x;
   }
 
   void ImagingProcedure::
-  Modality (::std::unique_ptr< ModalityType > x)
+  setModality (::std::unique_ptr< ModalityType > x)
   {
     this->Modality_.set (std::move (x));
   }
 
   const ImagingProcedure::ProtocolCodeOptional& ImagingProcedure::
-  ProtocolCode () const
+  getProtocolCode () const
   {
     return this->ProtocolCode_;
   }
 
   ImagingProcedure::ProtocolCodeOptional& ImagingProcedure::
-  ProtocolCode ()
+  getProtocolCode ()
   {
     return this->ProtocolCode_;
   }
 
   void ImagingProcedure::
-  ProtocolCode (const ProtocolCodeType& x)
+  setProtocolCode (const ProtocolCodeType& x)
   {
     this->ProtocolCode_.set (x);
   }
 
   void ImagingProcedure::
-  ProtocolCode (const ProtocolCodeOptional& x)
+  setProtocolCode (const ProtocolCodeOptional& x)
   {
     this->ProtocolCode_ = x;
   }
 
   void ImagingProcedure::
-  ProtocolCode (::std::unique_ptr< ProtocolCodeType > x)
+  setProtocolCode (::std::unique_ptr< ProtocolCodeType > x)
   {
     this->ProtocolCode_.set (std::move (x));
   }
@@ -8454,79 +8454,79 @@ namespace CDM
   // 
 
   const LocationReference::ExtensionOptional& LocationReference::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   LocationReference::ExtensionOptional& LocationReference::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void LocationReference::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void LocationReference::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void LocationReference::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const LocationReference::IdentificationSequence& LocationReference::
-  Identification () const
+  getIdentification () const
   {
     return this->Identification_;
   }
 
   LocationReference::IdentificationSequence& LocationReference::
-  Identification ()
+  getIdentification ()
   {
     return this->Identification_;
   }
 
   void LocationReference::
-  Identification (const IdentificationSequence& s)
+  setIdentification (const IdentificationSequence& s)
   {
     this->Identification_ = s;
   }
 
   const LocationReference::LocationDetailOptional& LocationReference::
-  LocationDetail () const
+  getLocationDetail () const
   {
     return this->LocationDetail_;
   }
 
   LocationReference::LocationDetailOptional& LocationReference::
-  LocationDetail ()
+  getLocationDetail ()
   {
     return this->LocationDetail_;
   }
 
   void LocationReference::
-  LocationDetail (const LocationDetailType& x)
+  setLocationDetail (const LocationDetailType& x)
   {
     this->LocationDetail_.set (x);
   }
 
   void LocationReference::
-  LocationDetail (const LocationDetailOptional& x)
+  setLocationDetail (const LocationDetailOptional& x)
   {
     this->LocationDetail_ = x;
   }
 
   void LocationReference::
-  LocationDetail (::std::unique_ptr< LocationDetailType > x)
+  setLocationDetail (::std::unique_ptr< LocationDetailType > x)
   {
     this->LocationDetail_.set (std::move (x));
   }
@@ -8536,145 +8536,145 @@ namespace CDM
   // 
 
   const OrderDetail::ExtensionOptional& OrderDetail::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   OrderDetail::ExtensionOptional& OrderDetail::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void OrderDetail::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void OrderDetail::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void OrderDetail::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const OrderDetail::StartOptional& OrderDetail::
-  Start () const
+  getStart () const
   {
     return this->Start_;
   }
 
   OrderDetail::StartOptional& OrderDetail::
-  Start ()
+  getStart ()
   {
     return this->Start_;
   }
 
   void OrderDetail::
-  Start (const StartType& x)
+  setStart (const StartType& x)
   {
     this->Start_.set (x);
   }
 
   void OrderDetail::
-  Start (const StartOptional& x)
+  setStart (const StartOptional& x)
   {
     this->Start_ = x;
   }
 
   void OrderDetail::
-  Start (::std::unique_ptr< StartType > x)
+  setStart (::std::unique_ptr< StartType > x)
   {
     this->Start_.set (std::move (x));
   }
 
   const OrderDetail::EndOptional& OrderDetail::
-  End () const
+  getEnd () const
   {
     return this->End_;
   }
 
   OrderDetail::EndOptional& OrderDetail::
-  End ()
+  getEnd ()
   {
     return this->End_;
   }
 
   void OrderDetail::
-  End (const EndType& x)
+  setEnd (const EndType& x)
   {
     this->End_.set (x);
   }
 
   void OrderDetail::
-  End (const EndOptional& x)
+  setEnd (const EndOptional& x)
   {
     this->End_ = x;
   }
 
   void OrderDetail::
-  End (::std::unique_ptr< EndType > x)
+  setEnd (::std::unique_ptr< EndType > x)
   {
     this->End_.set (std::move (x));
   }
 
   const OrderDetail::PerformerSequence& OrderDetail::
-  Performer () const
+  getPerformer () const
   {
     return this->Performer_;
   }
 
   OrderDetail::PerformerSequence& OrderDetail::
-  Performer ()
+  getPerformer ()
   {
     return this->Performer_;
   }
 
   void OrderDetail::
-  Performer (const PerformerSequence& s)
+  setPerformer (const PerformerSequence& s)
   {
     this->Performer_ = s;
   }
 
   const OrderDetail::ServiceSequence& OrderDetail::
-  Service () const
+  getService () const
   {
     return this->Service_;
   }
 
   OrderDetail::ServiceSequence& OrderDetail::
-  Service ()
+  getService ()
   {
     return this->Service_;
   }
 
   void OrderDetail::
-  Service (const ServiceSequence& s)
+  setService (const ServiceSequence& s)
   {
     this->Service_ = s;
   }
 
   const OrderDetail::ImagingProcedureSequence& OrderDetail::
-  ImagingProcedure () const
+  getImagingProcedure () const
   {
     return this->ImagingProcedure_;
   }
 
   OrderDetail::ImagingProcedureSequence& OrderDetail::
-  ImagingProcedure ()
+  getImagingProcedure ()
   {
     return this->ImagingProcedure_;
   }
 
   void OrderDetail::
-  ImagingProcedure (const ImagingProcedureSequence& s)
+  setImagingProcedure (const ImagingProcedureSequence& s)
   {
     this->ImagingProcedure_ = s;
   }
@@ -8684,19 +8684,19 @@ namespace CDM
   // 
 
   const PersonParticipation::RoleSequence& PersonParticipation::
-  Role () const
+  getRole () const
   {
     return this->Role_;
   }
 
   PersonParticipation::RoleSequence& PersonParticipation::
-  Role ()
+  getRole ()
   {
     return this->Role_;
   }
 
   void PersonParticipation::
-  Role (const RoleSequence& s)
+  setRole (const RoleSequence& s)
   {
     this->Role_ = s;
   }
@@ -8706,31 +8706,31 @@ namespace CDM
   // 
 
   const WorkflowContextState::WorkflowDetailOptional& WorkflowContextState::
-  WorkflowDetail () const
+  getWorkflowDetail () const
   {
     return this->WorkflowDetail_;
   }
 
   WorkflowContextState::WorkflowDetailOptional& WorkflowContextState::
-  WorkflowDetail ()
+  getWorkflowDetail ()
   {
     return this->WorkflowDetail_;
   }
 
   void WorkflowContextState::
-  WorkflowDetail (const WorkflowDetailType& x)
+  setWorkflowDetail (const WorkflowDetailType& x)
   {
     this->WorkflowDetail_.set (x);
   }
 
   void WorkflowContextState::
-  WorkflowDetail (const WorkflowDetailOptional& x)
+  setWorkflowDetail (const WorkflowDetailOptional& x)
   {
     this->WorkflowDetail_ = x;
   }
 
   void WorkflowContextState::
-  WorkflowDetail (::std::unique_ptr< WorkflowDetailType > x)
+  setWorkflowDetail (::std::unique_ptr< WorkflowDetailType > x)
   {
     this->WorkflowDetail_.set (std::move (x));
   }
@@ -8744,31 +8744,31 @@ namespace CDM
   // 
 
   const OperatorContextState::OperatorDetailsOptional& OperatorContextState::
-  OperatorDetails () const
+  getOperatorDetails () const
   {
     return this->OperatorDetails_;
   }
 
   OperatorContextState::OperatorDetailsOptional& OperatorContextState::
-  OperatorDetails ()
+  getOperatorDetails ()
   {
     return this->OperatorDetails_;
   }
 
   void OperatorContextState::
-  OperatorDetails (const OperatorDetailsType& x)
+  setOperatorDetails (const OperatorDetailsType& x)
   {
     this->OperatorDetails_.set (x);
   }
 
   void OperatorContextState::
-  OperatorDetails (const OperatorDetailsOptional& x)
+  setOperatorDetails (const OperatorDetailsOptional& x)
   {
     this->OperatorDetails_ = x;
   }
 
   void OperatorContextState::
-  OperatorDetails (::std::unique_ptr< OperatorDetailsType > x)
+  setOperatorDetails (::std::unique_ptr< OperatorDetailsType > x)
   {
     this->OperatorDetails_.set (std::move (x));
   }
@@ -8794,163 +8794,163 @@ namespace CDM
   // 
 
   const ContainmentTree::ExtensionOptional& ContainmentTree::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   ContainmentTree::ExtensionOptional& ContainmentTree::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void ContainmentTree::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void ContainmentTree::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void ContainmentTree::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const ContainmentTree::EntrySequence& ContainmentTree::
-  Entry () const
+  getEntry () const
   {
     return this->Entry_;
   }
 
   ContainmentTree::EntrySequence& ContainmentTree::
-  Entry ()
+  getEntry ()
   {
     return this->Entry_;
   }
 
   void ContainmentTree::
-  Entry (const EntrySequence& s)
+  setEntry (const EntrySequence& s)
   {
     this->Entry_ = s;
   }
 
   const ContainmentTree::HandleRefOptional& ContainmentTree::
-  HandleRef () const
+  getHandleRef () const
   {
     return this->HandleRef_;
   }
 
   ContainmentTree::HandleRefOptional& ContainmentTree::
-  HandleRef ()
+  getHandleRef ()
   {
     return this->HandleRef_;
   }
 
   void ContainmentTree::
-  HandleRef (const HandleRefType& x)
+  setHandleRef (const HandleRefType& x)
   {
     this->HandleRef_.set (x);
   }
 
   void ContainmentTree::
-  HandleRef (const HandleRefOptional& x)
+  setHandleRef (const HandleRefOptional& x)
   {
     this->HandleRef_ = x;
   }
 
   void ContainmentTree::
-  HandleRef (::std::unique_ptr< HandleRefType > x)
+  setHandleRef (::std::unique_ptr< HandleRefType > x)
   {
     this->HandleRef_.set (std::move (x));
   }
 
   const ContainmentTree::ParentHandleRefOptional& ContainmentTree::
-  ParentHandleRef () const
+  getParentHandleRef () const
   {
     return this->ParentHandleRef_;
   }
 
   ContainmentTree::ParentHandleRefOptional& ContainmentTree::
-  ParentHandleRef ()
+  getParentHandleRef ()
   {
     return this->ParentHandleRef_;
   }
 
   void ContainmentTree::
-  ParentHandleRef (const ParentHandleRefType& x)
+  setParentHandleRef (const ParentHandleRefType& x)
   {
     this->ParentHandleRef_.set (x);
   }
 
   void ContainmentTree::
-  ParentHandleRef (const ParentHandleRefOptional& x)
+  setParentHandleRef (const ParentHandleRefOptional& x)
   {
     this->ParentHandleRef_ = x;
   }
 
   void ContainmentTree::
-  ParentHandleRef (::std::unique_ptr< ParentHandleRefType > x)
+  setParentHandleRef (::std::unique_ptr< ParentHandleRefType > x)
   {
     this->ParentHandleRef_.set (std::move (x));
   }
 
   const ContainmentTree::EntryTypeOptional& ContainmentTree::
-  EntryType1 () const
+  getEntryType () const
   {
     return this->EntryType_;
   }
 
   ContainmentTree::EntryTypeOptional& ContainmentTree::
-  EntryType1 ()
+  getEntryType ()
   {
     return this->EntryType_;
   }
 
   void ContainmentTree::
-  EntryType1 (const EntryTypeType& x)
+  setEntryType (const EntryTypeType& x)
   {
     this->EntryType_.set (x);
   }
 
   void ContainmentTree::
-  EntryType1 (const EntryTypeOptional& x)
+  setEntryType (const EntryTypeOptional& x)
   {
     this->EntryType_ = x;
   }
 
   void ContainmentTree::
-  EntryType1 (::std::unique_ptr< EntryTypeType > x)
+  setEntryType (::std::unique_ptr< EntryTypeType > x)
   {
     this->EntryType_.set (std::move (x));
   }
 
   const ContainmentTree::ChildrenCountOptional& ContainmentTree::
-  ChildrenCount () const
+  getChildrenCount () const
   {
     return this->ChildrenCount_;
   }
 
   ContainmentTree::ChildrenCountOptional& ContainmentTree::
-  ChildrenCount ()
+  getChildrenCount ()
   {
     return this->ChildrenCount_;
   }
 
   void ContainmentTree::
-  ChildrenCount (const ChildrenCountType& x)
+  setChildrenCount (const ChildrenCountType& x)
   {
     this->ChildrenCount_.set (x);
   }
 
   void ContainmentTree::
-  ChildrenCount (const ChildrenCountOptional& x)
+  setChildrenCount (const ChildrenCountOptional& x)
   {
     this->ChildrenCount_ = x;
   }
@@ -8960,175 +8960,175 @@ namespace CDM
   // 
 
   const ContainmentTreeEntry::ExtensionOptional& ContainmentTreeEntry::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   ContainmentTreeEntry::ExtensionOptional& ContainmentTreeEntry::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void ContainmentTreeEntry::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void ContainmentTreeEntry::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void ContainmentTreeEntry::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const ContainmentTreeEntry::TypeOptional& ContainmentTreeEntry::
-  Type () const
+  getType () const
   {
     return this->Type_;
   }
 
   ContainmentTreeEntry::TypeOptional& ContainmentTreeEntry::
-  Type ()
+  getType ()
   {
     return this->Type_;
   }
 
   void ContainmentTreeEntry::
-  Type (const TypeType& x)
+  setType (const TypeType& x)
   {
     this->Type_.set (x);
   }
 
   void ContainmentTreeEntry::
-  Type (const TypeOptional& x)
+  setType (const TypeOptional& x)
   {
     this->Type_ = x;
   }
 
   void ContainmentTreeEntry::
-  Type (::std::unique_ptr< TypeType > x)
+  setType (::std::unique_ptr< TypeType > x)
   {
     this->Type_.set (std::move (x));
   }
 
   const ContainmentTreeEntry::HandleRefOptional& ContainmentTreeEntry::
-  HandleRef () const
+  getHandleRef () const
   {
     return this->HandleRef_;
   }
 
   ContainmentTreeEntry::HandleRefOptional& ContainmentTreeEntry::
-  HandleRef ()
+  getHandleRef ()
   {
     return this->HandleRef_;
   }
 
   void ContainmentTreeEntry::
-  HandleRef (const HandleRefType& x)
+  setHandleRef (const HandleRefType& x)
   {
     this->HandleRef_.set (x);
   }
 
   void ContainmentTreeEntry::
-  HandleRef (const HandleRefOptional& x)
+  setHandleRef (const HandleRefOptional& x)
   {
     this->HandleRef_ = x;
   }
 
   void ContainmentTreeEntry::
-  HandleRef (::std::unique_ptr< HandleRefType > x)
+  setHandleRef (::std::unique_ptr< HandleRefType > x)
   {
     this->HandleRef_.set (std::move (x));
   }
 
   const ContainmentTreeEntry::ParentHandleRefOptional& ContainmentTreeEntry::
-  ParentHandleRef () const
+  getParentHandleRef () const
   {
     return this->ParentHandleRef_;
   }
 
   ContainmentTreeEntry::ParentHandleRefOptional& ContainmentTreeEntry::
-  ParentHandleRef ()
+  getParentHandleRef ()
   {
     return this->ParentHandleRef_;
   }
 
   void ContainmentTreeEntry::
-  ParentHandleRef (const ParentHandleRefType& x)
+  setParentHandleRef (const ParentHandleRefType& x)
   {
     this->ParentHandleRef_.set (x);
   }
 
   void ContainmentTreeEntry::
-  ParentHandleRef (const ParentHandleRefOptional& x)
+  setParentHandleRef (const ParentHandleRefOptional& x)
   {
     this->ParentHandleRef_ = x;
   }
 
   void ContainmentTreeEntry::
-  ParentHandleRef (::std::unique_ptr< ParentHandleRefType > x)
+  setParentHandleRef (::std::unique_ptr< ParentHandleRefType > x)
   {
     this->ParentHandleRef_.set (std::move (x));
   }
 
   const ContainmentTreeEntry::EntryTypeOptional& ContainmentTreeEntry::
-  EntryType () const
+  getEntryType () const
   {
     return this->EntryType_;
   }
 
   ContainmentTreeEntry::EntryTypeOptional& ContainmentTreeEntry::
-  EntryType ()
+  getEntryType ()
   {
     return this->EntryType_;
   }
 
   void ContainmentTreeEntry::
-  EntryType (const EntryTypeType& x)
+  setEntryType (const EntryTypeType& x)
   {
     this->EntryType_.set (x);
   }
 
   void ContainmentTreeEntry::
-  EntryType (const EntryTypeOptional& x)
+  setEntryType (const EntryTypeOptional& x)
   {
     this->EntryType_ = x;
   }
 
   void ContainmentTreeEntry::
-  EntryType (::std::unique_ptr< EntryTypeType > x)
+  setEntryType (::std::unique_ptr< EntryTypeType > x)
   {
     this->EntryType_.set (std::move (x));
   }
 
   const ContainmentTreeEntry::ChildrenCountOptional& ContainmentTreeEntry::
-  ChildrenCount () const
+  getChildrenCount () const
   {
     return this->ChildrenCount_;
   }
 
   ContainmentTreeEntry::ChildrenCountOptional& ContainmentTreeEntry::
-  ChildrenCount ()
+  getChildrenCount ()
   {
     return this->ChildrenCount_;
   }
 
   void ContainmentTreeEntry::
-  ChildrenCount (const ChildrenCountType& x)
+  setChildrenCount (const ChildrenCountType& x)
   {
     this->ChildrenCount_.set (x);
   }
 
   void ContainmentTreeEntry::
-  ChildrenCount (const ChildrenCountOptional& x)
+  setChildrenCount (const ChildrenCountOptional& x)
   {
     this->ChildrenCount_ = x;
   }
@@ -9138,115 +9138,115 @@ namespace CDM
   // 
 
   const Translation::ExtensionOptional& Translation::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   Translation::ExtensionOptional& Translation::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void Translation::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void Translation::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void Translation::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const Translation::CodeType& Translation::
-  Code () const
+  getCode () const
   {
     return this->Code_.get ();
   }
 
   Translation::CodeType& Translation::
-  Code ()
+  getCode ()
   {
     return this->Code_.get ();
   }
 
   void Translation::
-  Code (const CodeType& x)
+  setCode (const CodeType& x)
   {
     this->Code_.set (x);
   }
 
   void Translation::
-  Code (::std::unique_ptr< CodeType > x)
+  setCode (::std::unique_ptr< CodeType > x)
   {
     this->Code_.set (std::move (x));
   }
 
   const Translation::CodingSystemOptional& Translation::
-  CodingSystem () const
+  getCodingSystem () const
   {
     return this->CodingSystem_;
   }
 
   Translation::CodingSystemOptional& Translation::
-  CodingSystem ()
+  getCodingSystem ()
   {
     return this->CodingSystem_;
   }
 
   void Translation::
-  CodingSystem (const CodingSystemType& x)
+  setCodingSystem (const CodingSystemType& x)
   {
     this->CodingSystem_.set (x);
   }
 
   void Translation::
-  CodingSystem (const CodingSystemOptional& x)
+  setCodingSystem (const CodingSystemOptional& x)
   {
     this->CodingSystem_ = x;
   }
 
   void Translation::
-  CodingSystem (::std::unique_ptr< CodingSystemType > x)
+  setCodingSystem (::std::unique_ptr< CodingSystemType > x)
   {
     this->CodingSystem_.set (std::move (x));
   }
 
   const Translation::CodingSystemVersionOptional& Translation::
-  CodingSystemVersion () const
+  getCodingSystemVersion () const
   {
     return this->CodingSystemVersion_;
   }
 
   Translation::CodingSystemVersionOptional& Translation::
-  CodingSystemVersion ()
+  getCodingSystemVersion ()
   {
     return this->CodingSystemVersion_;
   }
 
   void Translation::
-  CodingSystemVersion (const CodingSystemVersionType& x)
+  setCodingSystemVersion (const CodingSystemVersionType& x)
   {
     this->CodingSystemVersion_.set (x);
   }
 
   void Translation::
-  CodingSystemVersion (const CodingSystemVersionOptional& x)
+  setCodingSystemVersion (const CodingSystemVersionOptional& x)
   {
     this->CodingSystemVersion_ = x;
   }
 
   void Translation::
-  CodingSystemVersion (::std::unique_ptr< CodingSystemVersionType > x)
+  setCodingSystemVersion (::std::unique_ptr< CodingSystemVersionType > x)
   {
     this->CodingSystemVersion_.set (std::move (x));
   }
@@ -9264,79 +9264,79 @@ namespace CDM
   // 
 
   const ProductionSpecification::SpecTypeType& ProductionSpecification::
-  SpecType () const
+  getSpecType () const
   {
     return this->SpecType_.get ();
   }
 
   ProductionSpecification::SpecTypeType& ProductionSpecification::
-  SpecType ()
+  getSpecType ()
   {
     return this->SpecType_.get ();
   }
 
   void ProductionSpecification::
-  SpecType (const SpecTypeType& x)
+  setSpecType (const SpecTypeType& x)
   {
     this->SpecType_.set (x);
   }
 
   void ProductionSpecification::
-  SpecType (::std::unique_ptr< SpecTypeType > x)
+  setSpecType (::std::unique_ptr< SpecTypeType > x)
   {
     this->SpecType_.set (std::move (x));
   }
 
   const ProductionSpecification::ProductionSpecType& ProductionSpecification::
-  ProductionSpec () const
+  getProductionSpec () const
   {
     return this->ProductionSpec_.get ();
   }
 
   ProductionSpecification::ProductionSpecType& ProductionSpecification::
-  ProductionSpec ()
+  getProductionSpec ()
   {
     return this->ProductionSpec_.get ();
   }
 
   void ProductionSpecification::
-  ProductionSpec (const ProductionSpecType& x)
+  setProductionSpec (const ProductionSpecType& x)
   {
     this->ProductionSpec_.set (x);
   }
 
   void ProductionSpecification::
-  ProductionSpec (::std::unique_ptr< ProductionSpecType > x)
+  setProductionSpec (::std::unique_ptr< ProductionSpecType > x)
   {
     this->ProductionSpec_.set (std::move (x));
   }
 
   const ProductionSpecification::ComponentIdOptional& ProductionSpecification::
-  ComponentId () const
+  getComponentId () const
   {
     return this->ComponentId_;
   }
 
   ProductionSpecification::ComponentIdOptional& ProductionSpecification::
-  ComponentId ()
+  getComponentId ()
   {
     return this->ComponentId_;
   }
 
   void ProductionSpecification::
-  ComponentId (const ComponentIdType& x)
+  setComponentId (const ComponentIdType& x)
   {
     this->ComponentId_.set (x);
   }
 
   void ProductionSpecification::
-  ComponentId (const ComponentIdOptional& x)
+  setComponentId (const ComponentIdOptional& x)
   {
     this->ComponentId_ = x;
   }
 
   void ProductionSpecification::
-  ComponentId (::std::unique_ptr< ComponentIdType > x)
+  setComponentId (::std::unique_ptr< ComponentIdType > x)
   {
     this->ComponentId_.set (std::move (x));
   }
@@ -9346,37 +9346,37 @@ namespace CDM
   // 
 
   const CalibrationDocumentation::DocumentationSequence& CalibrationDocumentation::
-  Documentation () const
+  getDocumentation () const
   {
     return this->Documentation_;
   }
 
   CalibrationDocumentation::DocumentationSequence& CalibrationDocumentation::
-  Documentation ()
+  getDocumentation ()
   {
     return this->Documentation_;
   }
 
   void CalibrationDocumentation::
-  Documentation (const DocumentationSequence& s)
+  setDocumentation (const DocumentationSequence& s)
   {
     this->Documentation_ = s;
   }
 
   const CalibrationDocumentation::CalibrationResultSequence& CalibrationDocumentation::
-  CalibrationResult () const
+  getCalibrationResult () const
   {
     return this->CalibrationResult_;
   }
 
   CalibrationDocumentation::CalibrationResultSequence& CalibrationDocumentation::
-  CalibrationResult ()
+  getCalibrationResult ()
   {
     return this->CalibrationResult_;
   }
 
   void CalibrationDocumentation::
-  CalibrationResult (const CalibrationResultSequence& s)
+  setCalibrationResult (const CalibrationResultSequence& s)
   {
     this->CalibrationResult_ = s;
   }
@@ -9386,223 +9386,223 @@ namespace CDM
   // 
 
   const MetaData::ExtensionOptional& MetaData::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   MetaData::ExtensionOptional& MetaData::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void MetaData::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void MetaData::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void MetaData::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const MetaData::UdiSequence& MetaData::
-  Udi () const
+  getUdi () const
   {
     return this->Udi_;
   }
 
   MetaData::UdiSequence& MetaData::
-  Udi ()
+  getUdi ()
   {
     return this->Udi_;
   }
 
   void MetaData::
-  Udi (const UdiSequence& s)
+  setUdi (const UdiSequence& s)
   {
     this->Udi_ = s;
   }
 
   const MetaData::LotNumberOptional& MetaData::
-  LotNumber () const
+  getLotNumber () const
   {
     return this->LotNumber_;
   }
 
   MetaData::LotNumberOptional& MetaData::
-  LotNumber ()
+  getLotNumber ()
   {
     return this->LotNumber_;
   }
 
   void MetaData::
-  LotNumber (const LotNumberType& x)
+  setLotNumber (const LotNumberType& x)
   {
     this->LotNumber_.set (x);
   }
 
   void MetaData::
-  LotNumber (const LotNumberOptional& x)
+  setLotNumber (const LotNumberOptional& x)
   {
     this->LotNumber_ = x;
   }
 
   void MetaData::
-  LotNumber (::std::unique_ptr< LotNumberType > x)
+  setLotNumber (::std::unique_ptr< LotNumberType > x)
   {
     this->LotNumber_.set (std::move (x));
   }
 
   const MetaData::ManufacturerSequence& MetaData::
-  Manufacturer () const
+  getManufacturer () const
   {
     return this->Manufacturer_;
   }
 
   MetaData::ManufacturerSequence& MetaData::
-  Manufacturer ()
+  getManufacturer ()
   {
     return this->Manufacturer_;
   }
 
   void MetaData::
-  Manufacturer (const ManufacturerSequence& s)
+  setManufacturer (const ManufacturerSequence& s)
   {
     this->Manufacturer_ = s;
   }
 
   const MetaData::ManufactureDateOptional& MetaData::
-  ManufactureDate () const
+  getManufactureDate () const
   {
     return this->ManufactureDate_;
   }
 
   MetaData::ManufactureDateOptional& MetaData::
-  ManufactureDate ()
+  getManufactureDate ()
   {
     return this->ManufactureDate_;
   }
 
   void MetaData::
-  ManufactureDate (const ManufactureDateType& x)
+  setManufactureDate (const ManufactureDateType& x)
   {
     this->ManufactureDate_.set (x);
   }
 
   void MetaData::
-  ManufactureDate (const ManufactureDateOptional& x)
+  setManufactureDate (const ManufactureDateOptional& x)
   {
     this->ManufactureDate_ = x;
   }
 
   void MetaData::
-  ManufactureDate (::std::unique_ptr< ManufactureDateType > x)
+  setManufactureDate (::std::unique_ptr< ManufactureDateType > x)
   {
     this->ManufactureDate_.set (std::move (x));
   }
 
   const MetaData::ExpirationDateOptional& MetaData::
-  ExpirationDate () const
+  getExpirationDate () const
   {
     return this->ExpirationDate_;
   }
 
   MetaData::ExpirationDateOptional& MetaData::
-  ExpirationDate ()
+  getExpirationDate ()
   {
     return this->ExpirationDate_;
   }
 
   void MetaData::
-  ExpirationDate (const ExpirationDateType& x)
+  setExpirationDate (const ExpirationDateType& x)
   {
     this->ExpirationDate_.set (x);
   }
 
   void MetaData::
-  ExpirationDate (const ExpirationDateOptional& x)
+  setExpirationDate (const ExpirationDateOptional& x)
   {
     this->ExpirationDate_ = x;
   }
 
   void MetaData::
-  ExpirationDate (::std::unique_ptr< ExpirationDateType > x)
+  setExpirationDate (::std::unique_ptr< ExpirationDateType > x)
   {
     this->ExpirationDate_.set (std::move (x));
   }
 
   const MetaData::ModelNameSequence& MetaData::
-  ModelName () const
+  getModelName () const
   {
     return this->ModelName_;
   }
 
   MetaData::ModelNameSequence& MetaData::
-  ModelName ()
+  getModelName ()
   {
     return this->ModelName_;
   }
 
   void MetaData::
-  ModelName (const ModelNameSequence& s)
+  setModelName (const ModelNameSequence& s)
   {
     this->ModelName_ = s;
   }
 
   const MetaData::ModelNumberOptional& MetaData::
-  ModelNumber () const
+  getModelNumber () const
   {
     return this->ModelNumber_;
   }
 
   MetaData::ModelNumberOptional& MetaData::
-  ModelNumber ()
+  getModelNumber ()
   {
     return this->ModelNumber_;
   }
 
   void MetaData::
-  ModelNumber (const ModelNumberType& x)
+  setModelNumber (const ModelNumberType& x)
   {
     this->ModelNumber_.set (x);
   }
 
   void MetaData::
-  ModelNumber (const ModelNumberOptional& x)
+  setModelNumber (const ModelNumberOptional& x)
   {
     this->ModelNumber_ = x;
   }
 
   void MetaData::
-  ModelNumber (::std::unique_ptr< ModelNumberType > x)
+  setModelNumber (::std::unique_ptr< ModelNumberType > x)
   {
     this->ModelNumber_.set (std::move (x));
   }
 
   const MetaData::SerialNumberSequence& MetaData::
-  SerialNumber () const
+  getSerialNumber () const
   {
     return this->SerialNumber_;
   }
 
   MetaData::SerialNumberSequence& MetaData::
-  SerialNumber ()
+  getSerialNumber ()
   {
     return this->SerialNumber_;
   }
 
   void MetaData::
-  SerialNumber (const SerialNumberSequence& s)
+  setSerialNumber (const SerialNumberSequence& s)
   {
     this->SerialNumber_ = s;
   }
@@ -9700,115 +9700,115 @@ namespace CDM
   // 
 
   const MetricQuality::ExtensionOptional& MetricQuality::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   MetricQuality::ExtensionOptional& MetricQuality::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void MetricQuality::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void MetricQuality::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void MetricQuality::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const MetricQuality::ValidityType& MetricQuality::
-  Validity () const
+  getValidity () const
   {
     return this->Validity_.get ();
   }
 
   MetricQuality::ValidityType& MetricQuality::
-  Validity ()
+  getValidity ()
   {
     return this->Validity_.get ();
   }
 
   void MetricQuality::
-  Validity (const ValidityType& x)
+  setValidity (const ValidityType& x)
   {
     this->Validity_.set (x);
   }
 
   void MetricQuality::
-  Validity (::std::unique_ptr< ValidityType > x)
+  setValidity (::std::unique_ptr< ValidityType > x)
   {
     this->Validity_.set (std::move (x));
   }
 
   const MetricQuality::ModeOptional& MetricQuality::
-  Mode () const
+  getMode () const
   {
     return this->Mode_;
   }
 
   MetricQuality::ModeOptional& MetricQuality::
-  Mode ()
+  getMode ()
   {
     return this->Mode_;
   }
 
   void MetricQuality::
-  Mode (const ModeType& x)
+  setMode (const ModeType& x)
   {
     this->Mode_.set (x);
   }
 
   void MetricQuality::
-  Mode (const ModeOptional& x)
+  setMode (const ModeOptional& x)
   {
     this->Mode_ = x;
   }
 
   void MetricQuality::
-  Mode (::std::unique_ptr< ModeType > x)
+  setMode (::std::unique_ptr< ModeType > x)
   {
     this->Mode_.set (std::move (x));
   }
 
   const MetricQuality::QiOptional& MetricQuality::
-  Qi () const
+  getQi () const
   {
     return this->Qi_;
   }
 
   MetricQuality::QiOptional& MetricQuality::
-  Qi ()
+  getQi ()
   {
     return this->Qi_;
   }
 
   void MetricQuality::
-  Qi (const QiType& x)
+  setQi (const QiType& x)
   {
     this->Qi_.set (x);
   }
 
   void MetricQuality::
-  Qi (const QiOptional& x)
+  setQi (const QiOptional& x)
   {
     this->Qi_ = x;
   }
 
   void MetricQuality::
-  Qi (::std::unique_ptr< QiType > x)
+  setQi (::std::unique_ptr< QiType > x)
   {
     this->Qi_.set (std::move (x));
   }
@@ -9818,55 +9818,55 @@ namespace CDM
   // 
 
   const Annotation::ExtensionOptional& Annotation::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   Annotation::ExtensionOptional& Annotation::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void Annotation::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void Annotation::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void Annotation::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const Annotation::TypeType& Annotation::
-  Type () const
+  getType () const
   {
     return this->Type_.get ();
   }
 
   Annotation::TypeType& Annotation::
-  Type ()
+  getType ()
   {
     return this->Type_.get ();
   }
 
   void Annotation::
-  Type (const TypeType& x)
+  setType (const TypeType& x)
   {
     this->Type_.set (x);
   }
 
   void Annotation::
-  Type (::std::unique_ptr< TypeType > x)
+  setType (::std::unique_ptr< TypeType > x)
   {
     this->Type_.set (std::move (x));
   }
@@ -9876,37 +9876,37 @@ namespace CDM
   // 
 
   const ApplyAnnotation::AnnotationIndexType& ApplyAnnotation::
-  AnnotationIndex () const
+  getAnnotationIndex () const
   {
     return this->AnnotationIndex_.get ();
   }
 
   ApplyAnnotation::AnnotationIndexType& ApplyAnnotation::
-  AnnotationIndex ()
+  getAnnotationIndex ()
   {
     return this->AnnotationIndex_.get ();
   }
 
   void ApplyAnnotation::
-  AnnotationIndex (const AnnotationIndexType& x)
+  setAnnotationIndex (const AnnotationIndexType& x)
   {
     this->AnnotationIndex_.set (x);
   }
 
   const ApplyAnnotation::SampleIndexType& ApplyAnnotation::
-  SampleIndex () const
+  getSampleIndex () const
   {
     return this->SampleIndex_.get ();
   }
 
   ApplyAnnotation::SampleIndexType& ApplyAnnotation::
-  SampleIndex ()
+  getSampleIndex ()
   {
     return this->SampleIndex_.get ();
   }
 
   void ApplyAnnotation::
-  SampleIndex (const SampleIndexType& x)
+  setSampleIndex (const SampleIndexType& x)
   {
     this->SampleIndex_.set (x);
   }
@@ -9916,139 +9916,139 @@ namespace CDM
   // 
 
   const Relation::ExtensionOptional& Relation::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   Relation::ExtensionOptional& Relation::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void Relation::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void Relation::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void Relation::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const Relation::CodeOptional& Relation::
-  Code () const
+  getCode () const
   {
     return this->Code_;
   }
 
   Relation::CodeOptional& Relation::
-  Code ()
+  getCode ()
   {
     return this->Code_;
   }
 
   void Relation::
-  Code (const CodeType& x)
+  setCode (const CodeType& x)
   {
     this->Code_.set (x);
   }
 
   void Relation::
-  Code (const CodeOptional& x)
+  setCode (const CodeOptional& x)
   {
     this->Code_ = x;
   }
 
   void Relation::
-  Code (::std::unique_ptr< CodeType > x)
+  setCode (::std::unique_ptr< CodeType > x)
   {
     this->Code_.set (std::move (x));
   }
 
   const Relation::IdentificationOptional& Relation::
-  Identification () const
+  getIdentification () const
   {
     return this->Identification_;
   }
 
   Relation::IdentificationOptional& Relation::
-  Identification ()
+  getIdentification ()
   {
     return this->Identification_;
   }
 
   void Relation::
-  Identification (const IdentificationType& x)
+  setIdentification (const IdentificationType& x)
   {
     this->Identification_.set (x);
   }
 
   void Relation::
-  Identification (const IdentificationOptional& x)
+  setIdentification (const IdentificationOptional& x)
   {
     this->Identification_ = x;
   }
 
   void Relation::
-  Identification (::std::unique_ptr< IdentificationType > x)
+  setIdentification (::std::unique_ptr< IdentificationType > x)
   {
     this->Identification_.set (std::move (x));
   }
 
   const Relation::KindType& Relation::
-  Kind () const
+  getKind () const
   {
     return this->Kind_.get ();
   }
 
   Relation::KindType& Relation::
-  Kind ()
+  getKind ()
   {
     return this->Kind_.get ();
   }
 
   void Relation::
-  Kind (const KindType& x)
+  setKind (const KindType& x)
   {
     this->Kind_.set (x);
   }
 
   void Relation::
-  Kind (::std::unique_ptr< KindType > x)
+  setKind (::std::unique_ptr< KindType > x)
   {
     this->Kind_.set (std::move (x));
   }
 
   const Relation::EntriesType& Relation::
-  Entries () const
+  getEntries () const
   {
     return this->Entries_.get ();
   }
 
   Relation::EntriesType& Relation::
-  Entries ()
+  getEntries ()
   {
     return this->Entries_.get ();
   }
 
   void Relation::
-  Entries (const EntriesType& x)
+  setEntries (const EntriesType& x)
   {
     this->Entries_.set (x);
   }
 
   void Relation::
-  Entries (::std::unique_ptr< EntriesType > x)
+  setEntries (::std::unique_ptr< EntriesType > x)
   {
     this->Entries_.set (std::move (x));
   }
@@ -10058,115 +10058,115 @@ namespace CDM
   // 
 
   const AllowedValue::ValueType& AllowedValue::
-  Value () const
+  getValue () const
   {
     return this->Value_.get ();
   }
 
   AllowedValue::ValueType& AllowedValue::
-  Value ()
+  getValue ()
   {
     return this->Value_.get ();
   }
 
   void AllowedValue::
-  Value (const ValueType& x)
+  setValue (const ValueType& x)
   {
     this->Value_.set (x);
   }
 
   void AllowedValue::
-  Value (::std::unique_ptr< ValueType > x)
+  setValue (::std::unique_ptr< ValueType > x)
   {
     this->Value_.set (std::move (x));
   }
 
   const AllowedValue::TypeOptional& AllowedValue::
-  Type () const
+  getType () const
   {
     return this->Type_;
   }
 
   AllowedValue::TypeOptional& AllowedValue::
-  Type ()
+  getType ()
   {
     return this->Type_;
   }
 
   void AllowedValue::
-  Type (const TypeType& x)
+  setType (const TypeType& x)
   {
     this->Type_.set (x);
   }
 
   void AllowedValue::
-  Type (const TypeOptional& x)
+  setType (const TypeOptional& x)
   {
     this->Type_ = x;
   }
 
   void AllowedValue::
-  Type (::std::unique_ptr< TypeType > x)
+  setType (::std::unique_ptr< TypeType > x)
   {
     this->Type_.set (std::move (x));
   }
 
   const AllowedValue::IdentificationOptional& AllowedValue::
-  Identification () const
+  getIdentification () const
   {
     return this->Identification_;
   }
 
   AllowedValue::IdentificationOptional& AllowedValue::
-  Identification ()
+  getIdentification ()
   {
     return this->Identification_;
   }
 
   void AllowedValue::
-  Identification (const IdentificationType& x)
+  setIdentification (const IdentificationType& x)
   {
     this->Identification_.set (x);
   }
 
   void AllowedValue::
-  Identification (const IdentificationOptional& x)
+  setIdentification (const IdentificationOptional& x)
   {
     this->Identification_ = x;
   }
 
   void AllowedValue::
-  Identification (::std::unique_ptr< IdentificationType > x)
+  setIdentification (::std::unique_ptr< IdentificationType > x)
   {
     this->Identification_.set (std::move (x));
   }
 
   const AllowedValue::CharacteristicOptional& AllowedValue::
-  Characteristic () const
+  getCharacteristic () const
   {
     return this->Characteristic_;
   }
 
   AllowedValue::CharacteristicOptional& AllowedValue::
-  Characteristic ()
+  getCharacteristic ()
   {
     return this->Characteristic_;
   }
 
   void AllowedValue::
-  Characteristic (const CharacteristicType& x)
+  setCharacteristic (const CharacteristicType& x)
   {
     this->Characteristic_.set (x);
   }
 
   void AllowedValue::
-  Characteristic (const CharacteristicOptional& x)
+  setCharacteristic (const CharacteristicOptional& x)
   {
     this->Characteristic_ = x;
   }
 
   void AllowedValue::
-  Characteristic (::std::unique_ptr< CharacteristicType > x)
+  setCharacteristic (::std::unique_ptr< CharacteristicType > x)
   {
     this->Characteristic_.set (std::move (x));
   }
@@ -10176,115 +10176,115 @@ namespace CDM
   // 
 
   const OperationGroup::ExtensionOptional& OperationGroup::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   OperationGroup::ExtensionOptional& OperationGroup::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void OperationGroup::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void OperationGroup::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void OperationGroup::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const OperationGroup::TypeType& OperationGroup::
-  Type () const
+  getType () const
   {
     return this->Type_.get ();
   }
 
   OperationGroup::TypeType& OperationGroup::
-  Type ()
+  getType ()
   {
     return this->Type_.get ();
   }
 
   void OperationGroup::
-  Type (const TypeType& x)
+  setType (const TypeType& x)
   {
     this->Type_.set (x);
   }
 
   void OperationGroup::
-  Type (::std::unique_ptr< TypeType > x)
+  setType (::std::unique_ptr< TypeType > x)
   {
     this->Type_.set (std::move (x));
   }
 
   const OperationGroup::OperatingModeOptional& OperationGroup::
-  OperatingMode () const
+  getOperatingMode () const
   {
     return this->OperatingMode_;
   }
 
   OperationGroup::OperatingModeOptional& OperationGroup::
-  OperatingMode ()
+  getOperatingMode ()
   {
     return this->OperatingMode_;
   }
 
   void OperationGroup::
-  OperatingMode (const OperatingModeType& x)
+  setOperatingMode (const OperatingModeType& x)
   {
     this->OperatingMode_.set (x);
   }
 
   void OperationGroup::
-  OperatingMode (const OperatingModeOptional& x)
+  setOperatingMode (const OperatingModeOptional& x)
   {
     this->OperatingMode_ = x;
   }
 
   void OperationGroup::
-  OperatingMode (::std::unique_ptr< OperatingModeType > x)
+  setOperatingMode (::std::unique_ptr< OperatingModeType > x)
   {
     this->OperatingMode_.set (std::move (x));
   }
 
   const OperationGroup::OperationsOptional& OperationGroup::
-  Operations () const
+  getOperations () const
   {
     return this->Operations_;
   }
 
   OperationGroup::OperationsOptional& OperationGroup::
-  Operations ()
+  getOperations ()
   {
     return this->Operations_;
   }
 
   void OperationGroup::
-  Operations (const OperationsType& x)
+  setOperations (const OperationsType& x)
   {
     this->Operations_.set (x);
   }
 
   void OperationGroup::
-  Operations (const OperationsOptional& x)
+  setOperations (const OperationsOptional& x)
   {
     this->Operations_ = x;
   }
 
   void OperationGroup::
-  Operations (::std::unique_ptr< OperationsType > x)
+  setOperations (::std::unique_ptr< OperationsType > x)
   {
     this->Operations_.set (std::move (x));
   }
@@ -10339,19 +10339,19 @@ namespace CDM
   // 
 
   const AllowedValues::ValueSequence& AllowedValues::
-  Value () const
+  getValue () const
   {
     return this->Value_;
   }
 
   AllowedValues::ValueSequence& AllowedValues::
-  Value ()
+  getValue ()
   {
     return this->Value_;
   }
 
   void AllowedValues::
-  Value (const ValueSequence& s)
+  setValue (const ValueSequence& s)
   {
     this->Value_ = s;
   }
@@ -10361,49 +10361,49 @@ namespace CDM
   // 
 
   const Argument::ArgNameType& Argument::
-  ArgName () const
+  getArgName () const
   {
     return this->ArgName_.get ();
   }
 
   Argument::ArgNameType& Argument::
-  ArgName ()
+  getArgName ()
   {
     return this->ArgName_.get ();
   }
 
   void Argument::
-  ArgName (const ArgNameType& x)
+  setArgName (const ArgNameType& x)
   {
     this->ArgName_.set (x);
   }
 
   void Argument::
-  ArgName (::std::unique_ptr< ArgNameType > x)
+  setArgName (::std::unique_ptr< ArgNameType > x)
   {
     this->ArgName_.set (std::move (x));
   }
 
   const Argument::ArgType& Argument::
-  Arg () const
+  getArg () const
   {
     return this->Arg_.get ();
   }
 
   Argument::ArgType& Argument::
-  Arg ()
+  getArg ()
   {
     return this->Arg_.get ();
   }
 
   void Argument::
-  Arg (const ArgType& x)
+  setArg (const ArgType& x)
   {
     this->Arg_.set (x);
   }
 
   void Argument::
-  Arg (::std::unique_ptr< ArgType > x)
+  setArg (::std::unique_ptr< ArgType > x)
   {
     this->Arg_.set (std::move (x));
   }
@@ -10526,73 +10526,73 @@ namespace CDM
   // 
 
   const RelatedMeasurement::ValueType& RelatedMeasurement::
-  Value () const
+  getValue () const
   {
     return this->Value_.get ();
   }
 
   RelatedMeasurement::ValueType& RelatedMeasurement::
-  Value ()
+  getValue ()
   {
     return this->Value_.get ();
   }
 
   void RelatedMeasurement::
-  Value (const ValueType& x)
+  setValue (const ValueType& x)
   {
     this->Value_.set (x);
   }
 
   void RelatedMeasurement::
-  Value (::std::unique_ptr< ValueType > x)
+  setValue (::std::unique_ptr< ValueType > x)
   {
     this->Value_.set (std::move (x));
   }
 
   const RelatedMeasurement::ReferenceRangeSequence& RelatedMeasurement::
-  ReferenceRange () const
+  getReferenceRange () const
   {
     return this->ReferenceRange_;
   }
 
   RelatedMeasurement::ReferenceRangeSequence& RelatedMeasurement::
-  ReferenceRange ()
+  getReferenceRange ()
   {
     return this->ReferenceRange_;
   }
 
   void RelatedMeasurement::
-  ReferenceRange (const ReferenceRangeSequence& s)
+  setReferenceRange (const ReferenceRangeSequence& s)
   {
     this->ReferenceRange_ = s;
   }
 
   const RelatedMeasurement::ValidityOptional& RelatedMeasurement::
-  Validity () const
+  getValidity () const
   {
     return this->Validity_;
   }
 
   RelatedMeasurement::ValidityOptional& RelatedMeasurement::
-  Validity ()
+  getValidity ()
   {
     return this->Validity_;
   }
 
   void RelatedMeasurement::
-  Validity (const ValidityType& x)
+  setValidity (const ValidityType& x)
   {
     this->Validity_.set (x);
   }
 
   void RelatedMeasurement::
-  Validity (const ValidityOptional& x)
+  setValidity (const ValidityOptional& x)
   {
     this->Validity_ = x;
   }
 
   void RelatedMeasurement::
-  Validity (::std::unique_ptr< ValidityType > x)
+  setValidity (::std::unique_ptr< ValidityType > x)
   {
     this->Validity_.set (std::move (x));
   }
@@ -10602,211 +10602,211 @@ namespace CDM
   // 
 
   const WorkflowDetail::ExtensionOptional& WorkflowDetail::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   WorkflowDetail::ExtensionOptional& WorkflowDetail::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void WorkflowDetail::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void WorkflowDetail::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void WorkflowDetail::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const WorkflowDetail::PatientType& WorkflowDetail::
-  Patient () const
+  getPatient () const
   {
     return this->Patient_.get ();
   }
 
   WorkflowDetail::PatientType& WorkflowDetail::
-  Patient ()
+  getPatient ()
   {
     return this->Patient_.get ();
   }
 
   void WorkflowDetail::
-  Patient (const PatientType& x)
+  setPatient (const PatientType& x)
   {
     this->Patient_.set (x);
   }
 
   void WorkflowDetail::
-  Patient (::std::unique_ptr< PatientType > x)
+  setPatient (::std::unique_ptr< PatientType > x)
   {
     this->Patient_.set (std::move (x));
   }
 
   const WorkflowDetail::AssignedLocationOptional& WorkflowDetail::
-  AssignedLocation () const
+  getAssignedLocation () const
   {
     return this->AssignedLocation_;
   }
 
   WorkflowDetail::AssignedLocationOptional& WorkflowDetail::
-  AssignedLocation ()
+  getAssignedLocation ()
   {
     return this->AssignedLocation_;
   }
 
   void WorkflowDetail::
-  AssignedLocation (const AssignedLocationType& x)
+  setAssignedLocation (const AssignedLocationType& x)
   {
     this->AssignedLocation_.set (x);
   }
 
   void WorkflowDetail::
-  AssignedLocation (const AssignedLocationOptional& x)
+  setAssignedLocation (const AssignedLocationOptional& x)
   {
     this->AssignedLocation_ = x;
   }
 
   void WorkflowDetail::
-  AssignedLocation (::std::unique_ptr< AssignedLocationType > x)
+  setAssignedLocation (::std::unique_ptr< AssignedLocationType > x)
   {
     this->AssignedLocation_.set (std::move (x));
   }
 
   const WorkflowDetail::VisitNumberOptional& WorkflowDetail::
-  VisitNumber () const
+  getVisitNumber () const
   {
     return this->VisitNumber_;
   }
 
   WorkflowDetail::VisitNumberOptional& WorkflowDetail::
-  VisitNumber ()
+  getVisitNumber ()
   {
     return this->VisitNumber_;
   }
 
   void WorkflowDetail::
-  VisitNumber (const VisitNumberType& x)
+  setVisitNumber (const VisitNumberType& x)
   {
     this->VisitNumber_.set (x);
   }
 
   void WorkflowDetail::
-  VisitNumber (const VisitNumberOptional& x)
+  setVisitNumber (const VisitNumberOptional& x)
   {
     this->VisitNumber_ = x;
   }
 
   void WorkflowDetail::
-  VisitNumber (::std::unique_ptr< VisitNumberType > x)
+  setVisitNumber (::std::unique_ptr< VisitNumberType > x)
   {
     this->VisitNumber_.set (std::move (x));
   }
 
   const WorkflowDetail::DangerCodeSequence& WorkflowDetail::
-  DangerCode () const
+  getDangerCode () const
   {
     return this->DangerCode_;
   }
 
   WorkflowDetail::DangerCodeSequence& WorkflowDetail::
-  DangerCode ()
+  getDangerCode ()
   {
     return this->DangerCode_;
   }
 
   void WorkflowDetail::
-  DangerCode (const DangerCodeSequence& s)
+  setDangerCode (const DangerCodeSequence& s)
   {
     this->DangerCode_ = s;
   }
 
   const WorkflowDetail::RelevantClinicalInfoSequence& WorkflowDetail::
-  RelevantClinicalInfo () const
+  getRelevantClinicalInfo () const
   {
     return this->RelevantClinicalInfo_;
   }
 
   WorkflowDetail::RelevantClinicalInfoSequence& WorkflowDetail::
-  RelevantClinicalInfo ()
+  getRelevantClinicalInfo ()
   {
     return this->RelevantClinicalInfo_;
   }
 
   void WorkflowDetail::
-  RelevantClinicalInfo (const RelevantClinicalInfoSequence& s)
+  setRelevantClinicalInfo (const RelevantClinicalInfoSequence& s)
   {
     this->RelevantClinicalInfo_ = s;
   }
 
   const WorkflowDetail::RequestedOrderDetailOptional& WorkflowDetail::
-  RequestedOrderDetail () const
+  getRequestedOrderDetail () const
   {
     return this->RequestedOrderDetail_;
   }
 
   WorkflowDetail::RequestedOrderDetailOptional& WorkflowDetail::
-  RequestedOrderDetail ()
+  getRequestedOrderDetail ()
   {
     return this->RequestedOrderDetail_;
   }
 
   void WorkflowDetail::
-  RequestedOrderDetail (const RequestedOrderDetailType& x)
+  setRequestedOrderDetail (const RequestedOrderDetailType& x)
   {
     this->RequestedOrderDetail_.set (x);
   }
 
   void WorkflowDetail::
-  RequestedOrderDetail (const RequestedOrderDetailOptional& x)
+  setRequestedOrderDetail (const RequestedOrderDetailOptional& x)
   {
     this->RequestedOrderDetail_ = x;
   }
 
   void WorkflowDetail::
-  RequestedOrderDetail (::std::unique_ptr< RequestedOrderDetailType > x)
+  setRequestedOrderDetail (::std::unique_ptr< RequestedOrderDetailType > x)
   {
     this->RequestedOrderDetail_.set (std::move (x));
   }
 
   const WorkflowDetail::PerformedOrderDetailOptional& WorkflowDetail::
-  PerformedOrderDetail () const
+  getPerformedOrderDetail () const
   {
     return this->PerformedOrderDetail_;
   }
 
   WorkflowDetail::PerformedOrderDetailOptional& WorkflowDetail::
-  PerformedOrderDetail ()
+  getPerformedOrderDetail ()
   {
     return this->PerformedOrderDetail_;
   }
 
   void WorkflowDetail::
-  PerformedOrderDetail (const PerformedOrderDetailType& x)
+  setPerformedOrderDetail (const PerformedOrderDetailType& x)
   {
     this->PerformedOrderDetail_.set (x);
   }
 
   void WorkflowDetail::
-  PerformedOrderDetail (const PerformedOrderDetailOptional& x)
+  setPerformedOrderDetail (const PerformedOrderDetailOptional& x)
   {
     this->PerformedOrderDetail_ = x;
   }
 
   void WorkflowDetail::
-  PerformedOrderDetail (::std::unique_ptr< PerformedOrderDetailType > x)
+  setPerformedOrderDetail (::std::unique_ptr< PerformedOrderDetailType > x)
   {
     this->PerformedOrderDetail_.set (std::move (x));
   }
@@ -10816,49 +10816,49 @@ namespace CDM
   // 
 
   const CalibrationResult::CodeType& CalibrationResult::
-  Code () const
+  getCode () const
   {
     return this->Code_.get ();
   }
 
   CalibrationResult::CodeType& CalibrationResult::
-  Code ()
+  getCode ()
   {
     return this->Code_.get ();
   }
 
   void CalibrationResult::
-  Code (const CodeType& x)
+  setCode (const CodeType& x)
   {
     this->Code_.set (x);
   }
 
   void CalibrationResult::
-  Code (::std::unique_ptr< CodeType > x)
+  setCode (::std::unique_ptr< CodeType > x)
   {
     this->Code_.set (std::move (x));
   }
 
   const CalibrationResult::ValueType& CalibrationResult::
-  Value () const
+  getValue () const
   {
     return this->Value_.get ();
   }
 
   CalibrationResult::ValueType& CalibrationResult::
-  Value ()
+  getValue ()
   {
     return this->Value_.get ();
   }
 
   void CalibrationResult::
-  Value (const ValueType& x)
+  setValue (const ValueType& x)
   {
     this->Value_.set (x);
   }
 
   void CalibrationResult::
-  Value (::std::unique_ptr< ValueType > x)
+  setValue (::std::unique_ptr< ValueType > x)
   {
     this->Value_.set (std::move (x));
   }
@@ -10868,133 +10868,133 @@ namespace CDM
   // 
 
   const Udi::ExtensionOptional& Udi::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   Udi::ExtensionOptional& Udi::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void Udi::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void Udi::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void Udi::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const Udi::DeviceIdentifierType& Udi::
-  DeviceIdentifier () const
+  getDeviceIdentifier () const
   {
     return this->DeviceIdentifier_.get ();
   }
 
   Udi::DeviceIdentifierType& Udi::
-  DeviceIdentifier ()
+  getDeviceIdentifier ()
   {
     return this->DeviceIdentifier_.get ();
   }
 
   void Udi::
-  DeviceIdentifier (const DeviceIdentifierType& x)
+  setDeviceIdentifier (const DeviceIdentifierType& x)
   {
     this->DeviceIdentifier_.set (x);
   }
 
   void Udi::
-  DeviceIdentifier (::std::unique_ptr< DeviceIdentifierType > x)
+  setDeviceIdentifier (::std::unique_ptr< DeviceIdentifierType > x)
   {
     this->DeviceIdentifier_.set (std::move (x));
   }
 
   const Udi::HumanReadableFormType& Udi::
-  HumanReadableForm () const
+  getHumanReadableForm () const
   {
     return this->HumanReadableForm_.get ();
   }
 
   Udi::HumanReadableFormType& Udi::
-  HumanReadableForm ()
+  getHumanReadableForm ()
   {
     return this->HumanReadableForm_.get ();
   }
 
   void Udi::
-  HumanReadableForm (const HumanReadableFormType& x)
+  setHumanReadableForm (const HumanReadableFormType& x)
   {
     this->HumanReadableForm_.set (x);
   }
 
   void Udi::
-  HumanReadableForm (::std::unique_ptr< HumanReadableFormType > x)
+  setHumanReadableForm (::std::unique_ptr< HumanReadableFormType > x)
   {
     this->HumanReadableForm_.set (std::move (x));
   }
 
   const Udi::IssuerType& Udi::
-  Issuer () const
+  getIssuer () const
   {
     return this->Issuer_.get ();
   }
 
   Udi::IssuerType& Udi::
-  Issuer ()
+  getIssuer ()
   {
     return this->Issuer_.get ();
   }
 
   void Udi::
-  Issuer (const IssuerType& x)
+  setIssuer (const IssuerType& x)
   {
     this->Issuer_.set (x);
   }
 
   void Udi::
-  Issuer (::std::unique_ptr< IssuerType > x)
+  setIssuer (::std::unique_ptr< IssuerType > x)
   {
     this->Issuer_.set (std::move (x));
   }
 
   const Udi::JurisdictionOptional& Udi::
-  Jurisdiction () const
+  getJurisdiction () const
   {
     return this->Jurisdiction_;
   }
 
   Udi::JurisdictionOptional& Udi::
-  Jurisdiction ()
+  getJurisdiction ()
   {
     return this->Jurisdiction_;
   }
 
   void Udi::
-  Jurisdiction (const JurisdictionType& x)
+  setJurisdiction (const JurisdictionType& x)
   {
     this->Jurisdiction_.set (x);
   }
 
   void Udi::
-  Jurisdiction (const JurisdictionOptional& x)
+  setJurisdiction (const JurisdictionOptional& x)
   {
     this->Jurisdiction_ = x;
   }
 
   void Udi::
-  Jurisdiction (::std::unique_ptr< JurisdictionType > x)
+  setJurisdiction (::std::unique_ptr< JurisdictionType > x)
   {
     this->Jurisdiction_.set (std::move (x));
   }
@@ -11049,55 +11049,55 @@ namespace CDM
   // 
 
   const ReferenceRange::RangeType& ReferenceRange::
-  Range () const
+  getRange () const
   {
     return this->Range_.get ();
   }
 
   ReferenceRange::RangeType& ReferenceRange::
-  Range ()
+  getRange ()
   {
     return this->Range_.get ();
   }
 
   void ReferenceRange::
-  Range (const RangeType& x)
+  setRange (const RangeType& x)
   {
     this->Range_.set (x);
   }
 
   void ReferenceRange::
-  Range (::std::unique_ptr< RangeType > x)
+  setRange (::std::unique_ptr< RangeType > x)
   {
     this->Range_.set (std::move (x));
   }
 
   const ReferenceRange::MeaningOptional& ReferenceRange::
-  Meaning () const
+  getMeaning () const
   {
     return this->Meaning_;
   }
 
   ReferenceRange::MeaningOptional& ReferenceRange::
-  Meaning ()
+  getMeaning ()
   {
     return this->Meaning_;
   }
 
   void ReferenceRange::
-  Meaning (const MeaningType& x)
+  setMeaning (const MeaningType& x)
   {
     this->Meaning_.set (x);
   }
 
   void ReferenceRange::
-  Meaning (const MeaningOptional& x)
+  setMeaning (const MeaningOptional& x)
   {
     this->Meaning_ = x;
   }
 
   void ReferenceRange::
-  Meaning (::std::unique_ptr< MeaningType > x)
+  setMeaning (::std::unique_ptr< MeaningType > x)
   {
     this->Meaning_.set (std::move (x));
   }
@@ -11107,85 +11107,85 @@ namespace CDM
   // 
 
   const RequestedOrderDetail::ReferringPhysicianOptional& RequestedOrderDetail::
-  ReferringPhysician () const
+  getReferringPhysician () const
   {
     return this->ReferringPhysician_;
   }
 
   RequestedOrderDetail::ReferringPhysicianOptional& RequestedOrderDetail::
-  ReferringPhysician ()
+  getReferringPhysician ()
   {
     return this->ReferringPhysician_;
   }
 
   void RequestedOrderDetail::
-  ReferringPhysician (const ReferringPhysicianType& x)
+  setReferringPhysician (const ReferringPhysicianType& x)
   {
     this->ReferringPhysician_.set (x);
   }
 
   void RequestedOrderDetail::
-  ReferringPhysician (const ReferringPhysicianOptional& x)
+  setReferringPhysician (const ReferringPhysicianOptional& x)
   {
     this->ReferringPhysician_ = x;
   }
 
   void RequestedOrderDetail::
-  ReferringPhysician (::std::unique_ptr< ReferringPhysicianType > x)
+  setReferringPhysician (::std::unique_ptr< ReferringPhysicianType > x)
   {
     this->ReferringPhysician_.set (std::move (x));
   }
 
   const RequestedOrderDetail::RequestingPhysicianOptional& RequestedOrderDetail::
-  RequestingPhysician () const
+  getRequestingPhysician () const
   {
     return this->RequestingPhysician_;
   }
 
   RequestedOrderDetail::RequestingPhysicianOptional& RequestedOrderDetail::
-  RequestingPhysician ()
+  getRequestingPhysician ()
   {
     return this->RequestingPhysician_;
   }
 
   void RequestedOrderDetail::
-  RequestingPhysician (const RequestingPhysicianType& x)
+  setRequestingPhysician (const RequestingPhysicianType& x)
   {
     this->RequestingPhysician_.set (x);
   }
 
   void RequestedOrderDetail::
-  RequestingPhysician (const RequestingPhysicianOptional& x)
+  setRequestingPhysician (const RequestingPhysicianOptional& x)
   {
     this->RequestingPhysician_ = x;
   }
 
   void RequestedOrderDetail::
-  RequestingPhysician (::std::unique_ptr< RequestingPhysicianType > x)
+  setRequestingPhysician (::std::unique_ptr< RequestingPhysicianType > x)
   {
     this->RequestingPhysician_.set (std::move (x));
   }
 
   const RequestedOrderDetail::PlacerOrderNumberType& RequestedOrderDetail::
-  PlacerOrderNumber () const
+  getPlacerOrderNumber () const
   {
     return this->PlacerOrderNumber_.get ();
   }
 
   RequestedOrderDetail::PlacerOrderNumberType& RequestedOrderDetail::
-  PlacerOrderNumber ()
+  getPlacerOrderNumber ()
   {
     return this->PlacerOrderNumber_.get ();
   }
 
   void RequestedOrderDetail::
-  PlacerOrderNumber (const PlacerOrderNumberType& x)
+  setPlacerOrderNumber (const PlacerOrderNumberType& x)
   {
     this->PlacerOrderNumber_.set (x);
   }
 
   void RequestedOrderDetail::
-  PlacerOrderNumber (::std::unique_ptr< PlacerOrderNumberType > x)
+  setPlacerOrderNumber (::std::unique_ptr< PlacerOrderNumberType > x)
   {
     this->PlacerOrderNumber_.set (std::move (x));
   }
@@ -11195,49 +11195,49 @@ namespace CDM
   // 
 
   const PerformedOrderDetail::FillerOrderNumberOptional& PerformedOrderDetail::
-  FillerOrderNumber () const
+  getFillerOrderNumber () const
   {
     return this->FillerOrderNumber_;
   }
 
   PerformedOrderDetail::FillerOrderNumberOptional& PerformedOrderDetail::
-  FillerOrderNumber ()
+  getFillerOrderNumber ()
   {
     return this->FillerOrderNumber_;
   }
 
   void PerformedOrderDetail::
-  FillerOrderNumber (const FillerOrderNumberType& x)
+  setFillerOrderNumber (const FillerOrderNumberType& x)
   {
     this->FillerOrderNumber_.set (x);
   }
 
   void PerformedOrderDetail::
-  FillerOrderNumber (const FillerOrderNumberOptional& x)
+  setFillerOrderNumber (const FillerOrderNumberOptional& x)
   {
     this->FillerOrderNumber_ = x;
   }
 
   void PerformedOrderDetail::
-  FillerOrderNumber (::std::unique_ptr< FillerOrderNumberType > x)
+  setFillerOrderNumber (::std::unique_ptr< FillerOrderNumberType > x)
   {
     this->FillerOrderNumber_.set (std::move (x));
   }
 
   const PerformedOrderDetail::ResultingClinicalInfoSequence& PerformedOrderDetail::
-  ResultingClinicalInfo () const
+  getResultingClinicalInfo () const
   {
     return this->ResultingClinicalInfo_;
   }
 
   PerformedOrderDetail::ResultingClinicalInfoSequence& PerformedOrderDetail::
-  ResultingClinicalInfo ()
+  getResultingClinicalInfo ()
   {
     return this->ResultingClinicalInfo_;
   }
 
   void PerformedOrderDetail::
-  ResultingClinicalInfo (const ResultingClinicalInfoSequence& s)
+  setResultingClinicalInfo (const ResultingClinicalInfoSequence& s)
   {
     this->ResultingClinicalInfo_ = s;
   }
@@ -31677,9 +31677,9 @@ namespace CDM
 namespace CDM
 {
   ::std::unique_ptr< ::CDM::Mdib >
-  MdibContainer (const ::std::string& u,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
+  parseMdibContainer (const ::std::string& u,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -31694,15 +31694,15 @@ namespace CDM
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
     return ::std::unique_ptr< ::CDM::Mdib > (
-      ::CDM::MdibContainer (
+      ::CDM::parseMdibContainer (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::CDM::Mdib >
-  MdibContainer (const ::std::string& u,
-                 ::xml_schema::ErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
+  parseMdibContainer (const ::std::string& u,
+                      ::xml_schema::ErrorHandler& h,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
@@ -31716,15 +31716,15 @@ namespace CDM
       throw ::xsd::cxx::tree::parsing< char > ();
 
     return ::std::unique_ptr< ::CDM::Mdib > (
-      ::CDM::MdibContainer (
+      ::CDM::parseMdibContainer (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::CDM::Mdib >
-  MdibContainer (const ::std::string& u,
-                 ::xercesc::DOMErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
+  parseMdibContainer (const ::std::string& u,
+                      ::xercesc::DOMErrorHandler& h,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::parse< char > (
@@ -31734,91 +31734,91 @@ namespace CDM
       throw ::xsd::cxx::tree::parsing< char > ();
 
     return ::std::unique_ptr< ::CDM::Mdib > (
-      ::CDM::MdibContainer (
+      ::CDM::parseMdibContainer (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::CDM::Mdib >
-  MdibContainer (::std::istream& is,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
+  parseMdibContainer (::std::istream& is,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::MdibContainer (isrc, f, p);
+    return ::CDM::parseMdibContainer (isrc, f, p);
   }
 
   ::std::unique_ptr< ::CDM::Mdib >
-  MdibContainer (::std::istream& is,
-                 ::xml_schema::ErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
+  parseMdibContainer (::std::istream& is,
+                      ::xml_schema::ErrorHandler& h,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::MdibContainer (isrc, h, f, p);
+    return ::CDM::parseMdibContainer (isrc, h, f, p);
   }
 
   ::std::unique_ptr< ::CDM::Mdib >
-  MdibContainer (::std::istream& is,
-                 ::xercesc::DOMErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
+  parseMdibContainer (::std::istream& is,
+                      ::xercesc::DOMErrorHandler& h,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::CDM::MdibContainer (isrc, h, f, p);
+    return ::CDM::parseMdibContainer (isrc, h, f, p);
   }
 
   ::std::unique_ptr< ::CDM::Mdib >
-  MdibContainer (::std::istream& is,
-                 const ::std::string& sid,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
+  parseMdibContainer (::std::istream& is,
+                      const ::std::string& sid,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::MdibContainer (isrc, f, p);
+    return ::CDM::parseMdibContainer (isrc, f, p);
   }
 
   ::std::unique_ptr< ::CDM::Mdib >
-  MdibContainer (::std::istream& is,
-                 const ::std::string& sid,
-                 ::xml_schema::ErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
+  parseMdibContainer (::std::istream& is,
+                      const ::std::string& sid,
+                      ::xml_schema::ErrorHandler& h,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0,
       (f & ::xml_schema::Flags::keep_dom) == 0);
 
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::MdibContainer (isrc, h, f, p);
+    return ::CDM::parseMdibContainer (isrc, h, f, p);
   }
 
   ::std::unique_ptr< ::CDM::Mdib >
-  MdibContainer (::std::istream& is,
-                 const ::std::string& sid,
-                 ::xercesc::DOMErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
+  parseMdibContainer (::std::istream& is,
+                      const ::std::string& sid,
+                      ::xercesc::DOMErrorHandler& h,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::CDM::MdibContainer (isrc, h, f, p);
+    return ::CDM::parseMdibContainer (isrc, h, f, p);
   }
 
   ::std::unique_ptr< ::CDM::Mdib >
-  MdibContainer (::xercesc::InputSource& i,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
+  parseMdibContainer (::xercesc::InputSource& i,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -31829,15 +31829,15 @@ namespace CDM
     h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
 
     return ::std::unique_ptr< ::CDM::Mdib > (
-      ::CDM::MdibContainer (
+      ::CDM::parseMdibContainer (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::CDM::Mdib >
-  MdibContainer (::xercesc::InputSource& i,
-                 ::xml_schema::ErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
+  parseMdibContainer (::xercesc::InputSource& i,
+                      ::xml_schema::ErrorHandler& h,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::parse< char > (
@@ -31847,15 +31847,15 @@ namespace CDM
       throw ::xsd::cxx::tree::parsing< char > ();
 
     return ::std::unique_ptr< ::CDM::Mdib > (
-      ::CDM::MdibContainer (
+      ::CDM::parseMdibContainer (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::CDM::Mdib >
-  MdibContainer (::xercesc::InputSource& i,
-                 ::xercesc::DOMErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
+  parseMdibContainer (::xercesc::InputSource& i,
+                      ::xercesc::DOMErrorHandler& h,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
       ::xsd::cxx::xml::dom::parse< char > (
@@ -31865,14 +31865,14 @@ namespace CDM
       throw ::xsd::cxx::tree::parsing< char > ();
 
     return ::std::unique_ptr< ::CDM::Mdib > (
-      ::CDM::MdibContainer (
+      ::CDM::parseMdibContainer (
         std::move (d), f | ::xml_schema::Flags::own_dom, p));
   }
 
   ::std::unique_ptr< ::CDM::Mdib >
-  MdibContainer (const ::xercesc::DOMDocument& doc,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
+  parseMdibContainer (const ::xercesc::DOMDocument& doc,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties& p)
   {
     if (f & ::xml_schema::Flags::keep_dom)
     {
@@ -31880,7 +31880,7 @@ namespace CDM
         static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
 
       return ::std::unique_ptr< ::CDM::Mdib > (
-        ::CDM::MdibContainer (
+        ::CDM::parseMdibContainer (
           std::move (d), f | ::xml_schema::Flags::own_dom, p));
     }
 
@@ -31916,9 +31916,9 @@ namespace CDM
   }
 
   ::std::unique_ptr< ::CDM::Mdib >
-  MdibContainer (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties&)
+  parseMdibContainer (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                      ::xml_schema::Flags f,
+                      const ::xml_schema::Properties&)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
       ((f & ::xml_schema::Flags::keep_dom) &&
@@ -31933,7 +31933,7 @@ namespace CDM
       ::xsd::cxx::xml::dom::name< char > (e));
 
     if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
+      doc.setUserData (::xml_schema::dom::treeNodeKey,
                        (c.get () ? &c : &d),
                        0);
 
@@ -31992,9 +31992,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const Mdib::ExtensionType& x (*i.Extension ());
+        const Mdib::ExtensionType& x (*i.getExtension ());
         if (typeid (Mdib::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -32019,9 +32019,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.MdDescription ())
+      if (i.getMdDescription ())
       {
-        const Mdib::MdDescriptionType& x (*i.MdDescription ());
+        const Mdib::MdDescriptionType& x (*i.getMdDescription ());
         if (typeid (Mdib::MdDescriptionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -32046,9 +32046,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.MdState ())
+      if (i.getMdState ())
       {
-        const Mdib::MdStateType& x (*i.MdState ());
+        const Mdib::MdStateType& x (*i.getMdState ());
         if (typeid (Mdib::MdStateType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -32069,14 +32069,14 @@ namespace CDM
 
     // MdibVersion
     //
-    if (i.MdibVersion ())
+    if (i.getMdibVersion ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "MdibVersion",
           e));
 
-      a << *i.MdibVersion ();
+      a << *i.getMdibVersion ();
     }
 
     // SequenceId
@@ -32087,19 +32087,19 @@ namespace CDM
           "SequenceId",
           e));
 
-      a << i.SequenceId ();
+      a << i.getSequenceId ();
     }
 
     // InstanceId
     //
-    if (i.InstanceId ())
+    if (i.getInstanceId ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "InstanceId",
           e));
 
-      a << *i.InstanceId ();
+      a << *i.getInstanceId ();
     }
   }
 
@@ -32121,9 +32121,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const MdDescription::ExtensionType& x (*i.Extension ());
+        const MdDescription::ExtensionType& x (*i.getExtension ());
         if (typeid (MdDescription::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -32149,7 +32149,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (MdDescription::MdsConstIterator
-           b (i.Mds ().begin ()), n (i.Mds ().end ());
+           b (i.getMds ().begin ()), n (i.getMds ().end ());
            b != n; ++b)
       {
         if (typeid (MdDescription::MdsType) == typeid (*b))
@@ -32172,14 +32172,14 @@ namespace CDM
 
     // DescriptionVersion
     //
-    if (i.DescriptionVersion ())
+    if (i.getDescriptionVersion ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "DescriptionVersion",
           e));
 
-      a << *i.DescriptionVersion ();
+      a << *i.getDescriptionVersion ();
     }
   }
 
@@ -32201,9 +32201,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const MdState::ExtensionType& x (*i.Extension ());
+        const MdState::ExtensionType& x (*i.getExtension ());
         if (typeid (MdState::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -32229,7 +32229,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (MdState::StateConstIterator
-           b (i.State ().begin ()), n (i.State ().end ());
+           b (i.getState ().begin ()), n (i.getState ().end ());
            b != n; ++b)
       {
         if (typeid (MdState::StateType) == typeid (*b))
@@ -32252,14 +32252,14 @@ namespace CDM
 
     // StateVersion
     //
-    if (i.StateVersion ())
+    if (i.getStateVersion ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "StateVersion",
           e));
 
-      a << *i.StateVersion ();
+      a << *i.getStateVersion ();
     }
   }
 
@@ -32511,50 +32511,50 @@ namespace CDM
 
     // Ref
     //
-    if (i.Ref ())
+    if (i.getRef ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Ref",
           e));
 
-      a << *i.Ref ();
+      a << *i.getRef ();
     }
 
     // Lang
     //
-    if (i.Lang ())
+    if (i.getLang ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Lang",
           e));
 
-      a << *i.Lang ();
+      a << *i.getLang ();
     }
 
     // Version
     //
-    if (i.Version ())
+    if (i.getVersion ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Version",
           e));
 
-      a << *i.Version ();
+      a << *i.getVersion ();
     }
 
     // TextWidth
     //
-    if (i.TextWidth ())
+    if (i.getTextWidth ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "TextWidth",
           e));
 
-      a << *i.TextWidth ();
+      a << *i.getTextWidth ();
     }
   }
 
@@ -32576,9 +32576,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const CodedValue::ExtensionType& x (*i.Extension ());
+        const CodedValue::ExtensionType& x (*i.getExtension ());
         if (typeid (CodedValue::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -32604,7 +32604,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (CodedValue::CodingSystemNameConstIterator
-           b (i.CodingSystemName ().begin ()), n (i.CodingSystemName ().end ());
+           b (i.getCodingSystemName ().begin ()), n (i.getCodingSystemName ().end ());
            b != n; ++b)
       {
         if (typeid (CodedValue::CodingSystemNameType) == typeid (*b))
@@ -32632,7 +32632,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (CodedValue::ConceptDescriptionConstIterator
-           b (i.ConceptDescription ().begin ()), n (i.ConceptDescription ().end ());
+           b (i.getConceptDescription ().begin ()), n (i.getConceptDescription ().end ());
            b != n; ++b)
       {
         if (typeid (CodedValue::ConceptDescriptionType) == typeid (*b))
@@ -32656,7 +32656,7 @@ namespace CDM
     // Translation
     //
     for (CodedValue::TranslationConstIterator
-         b (i.Translation ().begin ()), n (i.Translation ().end ());
+         b (i.getTranslation ().begin ()), n (i.getTranslation ().end ());
          b != n; ++b)
     {
       ::xercesc::DOMElement& s (
@@ -32676,43 +32676,43 @@ namespace CDM
           "Code",
           e));
 
-      a << i.Code ();
+      a << i.getCode ();
     }
 
     // CodingSystem
     //
-    if (i.CodingSystem ())
+    if (i.getCodingSystem ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "CodingSystem",
           e));
 
-      a << *i.CodingSystem ();
+      a << *i.getCodingSystem ();
     }
 
     // CodingSystemVersion
     //
-    if (i.CodingSystemVersion ())
+    if (i.getCodingSystemVersion ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "CodingSystemVersion",
           e));
 
-      a << *i.CodingSystemVersion ();
+      a << *i.getCodingSystemVersion ();
     }
 
     // SymbolicCodeName
     //
-    if (i.SymbolicCodeName ())
+    if (i.getSymbolicCodeName ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "SymbolicCodeName",
           e));
 
-      a << *i.SymbolicCodeName ();
+      a << *i.getSymbolicCodeName ();
     }
   }
 
@@ -32734,9 +32734,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const InstanceIdentifier::ExtensionType& x (*i.Extension ());
+        const InstanceIdentifier::ExtensionType& x (*i.getExtension ());
         if (typeid (InstanceIdentifier::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -32761,9 +32761,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Type ())
+      if (i.getType ())
       {
-        const InstanceIdentifier::TypeType& x (*i.Type ());
+        const InstanceIdentifier::TypeType& x (*i.getType ());
         if (typeid (InstanceIdentifier::TypeType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -32789,7 +32789,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (InstanceIdentifier::IdentifierNameConstIterator
-           b (i.IdentifierName ().begin ()), n (i.IdentifierName ().end ());
+           b (i.getIdentifierName ().begin ()), n (i.getIdentifierName ().end ());
            b != n; ++b)
       {
         if (typeid (InstanceIdentifier::IdentifierNameType) == typeid (*b))
@@ -32812,26 +32812,26 @@ namespace CDM
 
     // Root
     //
-    if (i.Root ())
+    if (i.getRoot ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Root",
           e));
 
-      a << *i.Root ();
+      a << *i.getRoot ();
     }
 
     // Extension
     //
-    if (i.Extension1 ())
+    if (i.getExtension1 ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Extension",
           e));
 
-      a << *i.Extension1 ();
+      a << *i.getExtension1 ();
     }
   }
 
@@ -32853,9 +32853,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const Range::ExtensionType& x (*i.Extension ());
+        const Range::ExtensionType& x (*i.getExtension ());
         if (typeid (Range::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -32876,62 +32876,62 @@ namespace CDM
 
     // Lower
     //
-    if (i.Lower ())
+    if (i.getLower ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Lower",
           e));
 
-      a << ::xml_schema::AsDecimal(*i.Lower ());
+      a << ::xml_schema::AsDecimal(*i.getLower ());
     }
 
     // Upper
     //
-    if (i.Upper ())
+    if (i.getUpper ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Upper",
           e));
 
-      a << ::xml_schema::AsDecimal(*i.Upper ());
+      a << ::xml_schema::AsDecimal(*i.getUpper ());
     }
 
     // StepWidth
     //
-    if (i.StepWidth ())
+    if (i.getStepWidth ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "StepWidth",
           e));
 
-      a << ::xml_schema::AsDecimal(*i.StepWidth ());
+      a << ::xml_schema::AsDecimal(*i.getStepWidth ());
     }
 
     // RelativeAccuracy
     //
-    if (i.RelativeAccuracy ())
+    if (i.getRelativeAccuracy ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "RelativeAccuracy",
           e));
 
-      a << ::xml_schema::AsDecimal(*i.RelativeAccuracy ());
+      a << ::xml_schema::AsDecimal(*i.getRelativeAccuracy ());
     }
 
     // AbsoluteAccuracy
     //
-    if (i.AbsoluteAccuracy ())
+    if (i.getAbsoluteAccuracy ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "AbsoluteAccuracy",
           e));
 
-      a << ::xml_schema::AsDecimal(*i.AbsoluteAccuracy ());
+      a << ::xml_schema::AsDecimal(*i.getAbsoluteAccuracy ());
     }
   }
 
@@ -32953,9 +32953,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const Measurement::ExtensionType& x (*i.Extension ());
+        const Measurement::ExtensionType& x (*i.getExtension ());
         if (typeid (Measurement::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -32980,7 +32980,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const Measurement::MeasurementUnitType& x (i.MeasurementUnit ());
+      const Measurement::MeasurementUnitType& x (i.getMeasurementUnit ());
       if (typeid (Measurement::MeasurementUnitType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -33006,7 +33006,7 @@ namespace CDM
           "MeasuredValue",
           e));
 
-      a << ::xml_schema::AsDecimal(i.MeasuredValue ());
+      a << ::xml_schema::AsDecimal(i.getMeasuredValue ());
     }
   }
 
@@ -33081,7 +33081,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (ApprovedJurisdictions::ApprovedJurisdictionConstIterator
-           b (i.ApprovedJurisdiction ().begin ()), n (i.ApprovedJurisdiction ().end ());
+           b (i.getApprovedJurisdiction ().begin ()), n (i.getApprovedJurisdiction ().end ());
            b != n; ++b)
       {
         if (typeid (ApprovedJurisdictions::ApprovedJurisdictionType) == typeid (*b))
@@ -33186,9 +33186,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const PhysicalConnectorInfo::ExtensionType& x (*i.Extension ());
+        const PhysicalConnectorInfo::ExtensionType& x (*i.getExtension ());
         if (typeid (PhysicalConnectorInfo::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -33214,7 +33214,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (PhysicalConnectorInfo::LabelConstIterator
-           b (i.Label ().begin ()), n (i.Label ().end ());
+           b (i.getLabel ().begin ()), n (i.getLabel ().end ());
            b != n; ++b)
       {
         if (typeid (PhysicalConnectorInfo::LabelType) == typeid (*b))
@@ -33237,14 +33237,14 @@ namespace CDM
 
     // Number
     //
-    if (i.Number ())
+    if (i.getNumber ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Number",
           e));
 
-      a << *i.Number ();
+      a << *i.getNumber ();
     }
   }
 
@@ -33266,9 +33266,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const AbstractDescriptor::ExtensionType& x (*i.Extension ());
+        const AbstractDescriptor::ExtensionType& x (*i.getExtension ());
         if (typeid (AbstractDescriptor::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -33293,9 +33293,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Type ())
+      if (i.getType ())
       {
-        const AbstractDescriptor::TypeType& x (*i.Type ());
+        const AbstractDescriptor::TypeType& x (*i.getType ());
         if (typeid (AbstractDescriptor::TypeType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -33322,31 +33322,31 @@ namespace CDM
           "Handle",
           e));
 
-      a << i.Handle ();
+      a << i.getHandle ();
     }
 
     // DescriptorVersion
     //
-    if (i.DescriptorVersion ())
+    if (i.getDescriptorVersion ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "DescriptorVersion",
           e));
 
-      a << *i.DescriptorVersion ();
+      a << *i.getDescriptorVersion ();
     }
 
     // SafetyClassification
     //
-    if (i.SafetyClassification ())
+    if (i.getSafetyClassification ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "SafetyClassification",
           e));
 
-      a << *i.SafetyClassification ();
+      a << *i.getSafetyClassification ();
     }
   }
 
@@ -33368,9 +33368,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const AbstractState::ExtensionType& x (*i.Extension ());
+        const AbstractState::ExtensionType& x (*i.getExtension ());
         if (typeid (AbstractState::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -33391,14 +33391,14 @@ namespace CDM
 
     // StateVersion
     //
-    if (i.StateVersion ())
+    if (i.getStateVersion ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "StateVersion",
           e));
 
-      a << *i.StateVersion ();
+      a << *i.getStateVersion ();
     }
 
     // DescriptorHandle
@@ -33409,19 +33409,19 @@ namespace CDM
           "DescriptorHandle",
           e));
 
-      a << i.DescriptorHandle ();
+      a << i.getDescriptorHandle ();
     }
 
     // DescriptorVersion
     //
-    if (i.DescriptorVersion ())
+    if (i.getDescriptorVersion ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "DescriptorVersion",
           e));
 
-      a << *i.DescriptorVersion ();
+      a << *i.getDescriptorVersion ();
     }
   }
 
@@ -33443,9 +33443,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Category ())
+      if (i.getCategory ())
       {
-        const AbstractMultiState::CategoryType& x (*i.Category ());
+        const AbstractMultiState::CategoryType& x (*i.getCategory ());
         if (typeid (AbstractMultiState::CategoryType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -33472,7 +33472,7 @@ namespace CDM
           "Handle",
           e));
 
-      a << i.Handle ();
+      a << i.getHandle ();
     }
   }
 
@@ -33491,7 +33491,7 @@ namespace CDM
     // ProductionSpecification
     //
     for (AbstractDeviceComponentDescriptor::ProductionSpecificationConstIterator
-         b (i.ProductionSpecification ().begin ()), n (i.ProductionSpecification ().end ());
+         b (i.getProductionSpecification ().begin ()), n (i.getProductionSpecification ().end ());
          b != n; ++b)
     {
       ::xercesc::DOMElement& s (
@@ -33522,9 +33522,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.AlertSystem ())
+      if (i.getAlertSystem ())
       {
-        const AbstractComplexDeviceComponentDescriptor::AlertSystemType& x (*i.AlertSystem ());
+        const AbstractComplexDeviceComponentDescriptor::AlertSystemType& x (*i.getAlertSystem ());
         if (typeid (AbstractComplexDeviceComponentDescriptor::AlertSystemType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -33549,9 +33549,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Sco ())
+      if (i.getSco ())
       {
-        const AbstractComplexDeviceComponentDescriptor::ScoType& x (*i.Sco ());
+        const AbstractComplexDeviceComponentDescriptor::ScoType& x (*i.getSco ());
         if (typeid (AbstractComplexDeviceComponentDescriptor::ScoType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -33641,9 +33641,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const CalibrationInfo::ExtensionType& x (*i.Extension ());
+        const CalibrationInfo::ExtensionType& x (*i.getExtension ());
         if (typeid (CalibrationInfo::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -33665,7 +33665,7 @@ namespace CDM
     // CalibrationDocumentation
     //
     for (CalibrationInfo::CalibrationDocumentationConstIterator
-         b (i.CalibrationDocumentation ().begin ()), n (i.CalibrationDocumentation ().end ());
+         b (i.getCalibrationDocumentation ().begin ()), n (i.getCalibrationDocumentation ().end ());
          b != n; ++b)
     {
       ::xercesc::DOMElement& s (
@@ -33679,38 +33679,38 @@ namespace CDM
 
     // ComponentCalibrationState
     //
-    if (i.ComponentCalibrationState ())
+    if (i.getComponentCalibrationState ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "ComponentCalibrationState",
           e));
 
-      a << *i.ComponentCalibrationState ();
+      a << *i.getComponentCalibrationState ();
     }
 
     // Type
     //
-    if (i.Type ())
+    if (i.getType ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Type",
           e));
 
-      a << *i.Type ();
+      a << *i.getType ();
     }
 
     // Time
     //
-    if (i.Time ())
+    if (i.getTime ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Time",
           e));
 
-      a << *i.Time ();
+      a << *i.getTime ();
     }
   }
 
@@ -33732,9 +33732,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.CalibrationInfo ())
+      if (i.getCalibrationInfo ())
       {
-        const AbstractDeviceComponentState::CalibrationInfoType& x (*i.CalibrationInfo ());
+        const AbstractDeviceComponentState::CalibrationInfoType& x (*i.getCalibrationInfo ());
         if (typeid (AbstractDeviceComponentState::CalibrationInfoType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -33759,9 +33759,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.NextCalibration ())
+      if (i.getNextCalibration ())
       {
-        const AbstractDeviceComponentState::NextCalibrationType& x (*i.NextCalibration ());
+        const AbstractDeviceComponentState::NextCalibrationType& x (*i.getNextCalibration ());
         if (typeid (AbstractDeviceComponentState::NextCalibrationType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -33786,9 +33786,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.PhysicalConnector ())
+      if (i.getPhysicalConnector ())
       {
-        const AbstractDeviceComponentState::PhysicalConnectorType& x (*i.PhysicalConnector ());
+        const AbstractDeviceComponentState::PhysicalConnectorType& x (*i.getPhysicalConnector ());
         if (typeid (AbstractDeviceComponentState::PhysicalConnectorType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -33809,38 +33809,38 @@ namespace CDM
 
     // ActivationState
     //
-    if (i.ActivationState ())
+    if (i.getActivationState ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "ActivationState",
           e));
 
-      a << *i.ActivationState ();
+      a << *i.getActivationState ();
     }
 
     // OperatingHours
     //
-    if (i.OperatingHours ())
+    if (i.getOperatingHours ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "OperatingHours",
           e));
 
-      a << *i.OperatingHours ();
+      a << *i.getOperatingHours ();
     }
 
     // OperatingCycles
     //
-    if (i.OperatingCycles ())
+    if (i.getOperatingCycles ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "OperatingCycles",
           e));
 
-      a << *i.OperatingCycles ();
+      a << *i.getOperatingCycles ();
     }
   }
 
@@ -33871,7 +33871,7 @@ namespace CDM
 
     // MetaData
     //
-    if (i.MetaData ())
+    if (i.getMetaData ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -33879,7 +33879,7 @@ namespace CDM
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
-      s << *i.MetaData ();
+      s << *i.getMetaData ();
     }
 
     // SystemContext
@@ -33888,9 +33888,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.SystemContext ())
+      if (i.getSystemContext ())
       {
-        const MdsDescriptor::SystemContextType& x (*i.SystemContext ());
+        const MdsDescriptor::SystemContextType& x (*i.getSystemContext ());
         if (typeid (MdsDescriptor::SystemContextType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -33915,9 +33915,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Clock ())
+      if (i.getClock ())
       {
-        const MdsDescriptor::ClockType& x (*i.Clock ());
+        const MdsDescriptor::ClockType& x (*i.getClock ());
         if (typeid (MdsDescriptor::ClockType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -33943,7 +33943,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (MdsDescriptor::BatteryConstIterator
-           b (i.Battery ().begin ()), n (i.Battery ().end ());
+           b (i.getBattery ().begin ()), n (i.getBattery ().end ());
            b != n; ++b)
       {
         if (typeid (MdsDescriptor::BatteryType) == typeid (*b))
@@ -33970,9 +33970,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.ApprovedJurisdictions ())
+      if (i.getApprovedJurisdictions ())
       {
-        const MdsDescriptor::ApprovedJurisdictionsType& x (*i.ApprovedJurisdictions ());
+        const MdsDescriptor::ApprovedJurisdictionsType& x (*i.getApprovedJurisdictions ());
         if (typeid (MdsDescriptor::ApprovedJurisdictionsType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -33998,7 +33998,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (MdsDescriptor::VmdConstIterator
-           b (i.Vmd ().begin ()), n (i.Vmd ().end ());
+           b (i.getVmd ().begin ()), n (i.getVmd ().end ());
            b != n; ++b)
       {
         if (typeid (MdsDescriptor::VmdType) == typeid (*b))
@@ -34064,9 +34064,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.OperatingJurisdiction ())
+      if (i.getOperatingJurisdiction ())
       {
-        const MdsState::OperatingJurisdictionType& x (*i.OperatingJurisdiction ());
+        const MdsState::OperatingJurisdictionType& x (*i.getOperatingJurisdiction ());
         if (typeid (MdsState::OperatingJurisdictionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -34087,26 +34087,26 @@ namespace CDM
 
     // Lang
     //
-    if (i.Lang ())
+    if (i.getLang ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Lang",
           e));
 
-      a << *i.Lang ();
+      a << *i.getLang ();
     }
 
     // OperatingMode
     //
-    if (i.OperatingMode ())
+    if (i.getOperatingMode ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "OperatingMode",
           e));
 
-      a << *i.OperatingMode ();
+      a << *i.getOperatingMode ();
     }
   }
 
@@ -34128,9 +34128,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.ApprovedJurisdictions ())
+      if (i.getApprovedJurisdictions ())
       {
-        const VmdDescriptor::ApprovedJurisdictionsType& x (*i.ApprovedJurisdictions ());
+        const VmdDescriptor::ApprovedJurisdictionsType& x (*i.getApprovedJurisdictions ());
         if (typeid (VmdDescriptor::ApprovedJurisdictionsType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -34156,7 +34156,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (VmdDescriptor::ChannelConstIterator
-           b (i.Channel ().begin ()), n (i.Channel ().end ());
+           b (i.getChannel ().begin ()), n (i.getChannel ().end ());
            b != n; ++b)
       {
         if (typeid (VmdDescriptor::ChannelType) == typeid (*b))
@@ -34196,9 +34196,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.OperatingJurisdiction ())
+      if (i.getOperatingJurisdiction ())
       {
-        const VmdState::OperatingJurisdictionType& x (*i.OperatingJurisdiction ());
+        const VmdState::OperatingJurisdictionType& x (*i.getOperatingJurisdiction ());
         if (typeid (VmdState::OperatingJurisdictionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -34237,7 +34237,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (ChannelDescriptor::MetricConstIterator
-           b (i.Metric ().begin ()), n (i.Metric ().end ());
+           b (i.getMetric ().begin ()), n (i.getMetric ().end ());
            b != n; ++b)
       {
         if (typeid (ChannelDescriptor::MetricType) == typeid (*b))
@@ -34305,7 +34305,7 @@ namespace CDM
           "ActivationState",
           e));
 
-      a << i.ActivationState ();
+      a << i.getActivationState ();
     }
   }
 
@@ -34355,7 +34355,7 @@ namespace CDM
           "Manifestation",
           e));
 
-      a << i.Manifestation ();
+      a << i.getManifestation ();
     }
 
     // State
@@ -34366,7 +34366,7 @@ namespace CDM
           "State",
           e));
 
-      a << i.State ();
+      a << i.getState ();
     }
   }
 
@@ -34389,7 +34389,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (AlertSystemDescriptor::AlertConditionConstIterator
-           b (i.AlertCondition ().begin ()), n (i.AlertCondition ().end ());
+           b (i.getAlertCondition ().begin ()), n (i.getAlertCondition ().end ());
            b != n; ++b)
       {
         if (typeid (AlertSystemDescriptor::AlertConditionType) == typeid (*b))
@@ -34417,7 +34417,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (AlertSystemDescriptor::AlertSignalConstIterator
-           b (i.AlertSignal ().begin ()), n (i.AlertSignal ().end ());
+           b (i.getAlertSignal ().begin ()), n (i.getAlertSignal ().end ());
            b != n; ++b)
       {
         if (typeid (AlertSystemDescriptor::AlertSignalType) == typeid (*b))
@@ -34440,38 +34440,38 @@ namespace CDM
 
     // MaxPhysiologicalParallelAlarms
     //
-    if (i.MaxPhysiologicalParallelAlarms ())
+    if (i.getMaxPhysiologicalParallelAlarms ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "MaxPhysiologicalParallelAlarms",
           e));
 
-      a << *i.MaxPhysiologicalParallelAlarms ();
+      a << *i.getMaxPhysiologicalParallelAlarms ();
     }
 
     // MaxTechnicalParallelAlarms
     //
-    if (i.MaxTechnicalParallelAlarms ())
+    if (i.getMaxTechnicalParallelAlarms ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "MaxTechnicalParallelAlarms",
           e));
 
-      a << *i.MaxTechnicalParallelAlarms ();
+      a << *i.getMaxTechnicalParallelAlarms ();
     }
 
     // SelfCheckPeriod
     //
-    if (i.SelfCheckPeriod ())
+    if (i.getSelfCheckPeriod ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "SelfCheckPeriod",
           e));
 
-      a << *i.SelfCheckPeriod ();
+      a << *i.getSelfCheckPeriod ();
     }
   }
 
@@ -34494,7 +34494,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (AlertSystemState::SystemSignalActivationConstIterator
-           b (i.SystemSignalActivation ().begin ()), n (i.SystemSignalActivation ().end ());
+           b (i.getSystemSignalActivation ().begin ()), n (i.getSystemSignalActivation ().end ());
            b != n; ++b)
       {
         if (typeid (AlertSystemState::SystemSignalActivationType) == typeid (*b))
@@ -34517,50 +34517,50 @@ namespace CDM
 
     // LastSelfCheck
     //
-    if (i.LastSelfCheck ())
+    if (i.getLastSelfCheck ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "LastSelfCheck",
           e));
 
-      a << *i.LastSelfCheck ();
+      a << *i.getLastSelfCheck ();
     }
 
     // SelfCheckCount
     //
-    if (i.SelfCheckCount ())
+    if (i.getSelfCheckCount ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "SelfCheckCount",
           e));
 
-      a << *i.SelfCheckCount ();
+      a << *i.getSelfCheckCount ();
     }
 
     // PresentPhysiologicalAlarmConditions
     //
-    if (i.PresentPhysiologicalAlarmConditions ())
+    if (i.getPresentPhysiologicalAlarmConditions ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "PresentPhysiologicalAlarmConditions",
           e));
 
-      a << *i.PresentPhysiologicalAlarmConditions ();
+      a << *i.getPresentPhysiologicalAlarmConditions ();
     }
 
     // PresentTechnicalAlarmConditions
     //
-    if (i.PresentTechnicalAlarmConditions ())
+    if (i.getPresentTechnicalAlarmConditions ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "PresentTechnicalAlarmConditions",
           e));
 
-      a << *i.PresentTechnicalAlarmConditions ();
+      a << *i.getPresentTechnicalAlarmConditions ();
     }
   }
 
@@ -34582,9 +34582,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const CauseInfo::ExtensionType& x (*i.Extension ());
+        const CauseInfo::ExtensionType& x (*i.getExtension ());
         if (typeid (CauseInfo::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -34609,9 +34609,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.RemedyInfo ())
+      if (i.getRemedyInfo ())
       {
-        const CauseInfo::RemedyInfoType& x (*i.RemedyInfo ());
+        const CauseInfo::RemedyInfoType& x (*i.getRemedyInfo ());
         if (typeid (CauseInfo::RemedyInfoType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -34637,7 +34637,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (CauseInfo::DescriptionConstIterator
-           b (i.Description ().begin ()), n (i.Description ().end ());
+           b (i.getDescription ().begin ()), n (i.getDescription ().end ());
            b != n; ++b)
       {
         if (typeid (CauseInfo::DescriptionType) == typeid (*b))
@@ -34677,9 +34677,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const RemedyInfo::ExtensionType& x (*i.Extension ());
+        const RemedyInfo::ExtensionType& x (*i.getExtension ());
         if (typeid (RemedyInfo::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -34705,7 +34705,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (RemedyInfo::DescriptionConstIterator
-           b (i.Description ().begin ()), n (i.Description ().end ());
+           b (i.getDescription ().begin ()), n (i.getDescription ().end ());
            b != n; ++b)
       {
         if (typeid (RemedyInfo::DescriptionType) == typeid (*b))
@@ -34798,7 +34798,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (AlertConditionDescriptor::SourceConstIterator
-           b (i.Source ().begin ()), n (i.Source ().end ());
+           b (i.getSource ().begin ()), n (i.getSource ().end ());
            b != n; ++b)
       {
         if (typeid (AlertConditionDescriptor::SourceType) == typeid (*b))
@@ -34826,7 +34826,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (AlertConditionDescriptor::CauseInfoConstIterator
-           b (i.CauseInfo ().begin ()), n (i.CauseInfo ().end ());
+           b (i.getCauseInfo ().begin ()), n (i.getCauseInfo ().end ());
            b != n; ++b)
       {
         if (typeid (AlertConditionDescriptor::CauseInfoType) == typeid (*b))
@@ -34855,7 +34855,7 @@ namespace CDM
           "Kind",
           e));
 
-      a << i.Kind ();
+      a << i.getKind ();
     }
 
     // Priority
@@ -34866,43 +34866,43 @@ namespace CDM
           "Priority",
           e));
 
-      a << i.Priority ();
+      a << i.getPriority ();
     }
 
     // DefaultConditionGenerationDelay
     //
-    if (i.DefaultConditionGenerationDelay ())
+    if (i.getDefaultConditionGenerationDelay ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "DefaultConditionGenerationDelay",
           e));
 
-      a << *i.DefaultConditionGenerationDelay ();
+      a << *i.getDefaultConditionGenerationDelay ();
     }
 
     // CanEscalate
     //
-    if (i.CanEscalate ())
+    if (i.getCanEscalate ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "CanEscalate",
           e));
 
-      a << *i.CanEscalate ();
+      a << *i.getCanEscalate ();
     }
 
     // CanDeescalate
     //
-    if (i.CanDeescalate ())
+    if (i.getCanDeescalate ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "CanDeescalate",
           e));
 
-      a << *i.CanDeescalate ();
+      a << *i.getCanDeescalate ();
     }
   }
 
@@ -34946,62 +34946,62 @@ namespace CDM
 
     // ActualConditionGenerationDelay
     //
-    if (i.ActualConditionGenerationDelay ())
+    if (i.getActualConditionGenerationDelay ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "ActualConditionGenerationDelay",
           e));
 
-      a << *i.ActualConditionGenerationDelay ();
+      a << *i.getActualConditionGenerationDelay ();
     }
 
     // ActualPriority
     //
-    if (i.ActualPriority ())
+    if (i.getActualPriority ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "ActualPriority",
           e));
 
-      a << *i.ActualPriority ();
+      a << *i.getActualPriority ();
     }
 
     // Rank
     //
-    if (i.Rank ())
+    if (i.getRank ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Rank",
           e));
 
-      a << *i.Rank ();
+      a << *i.getRank ();
     }
 
     // Presence
     //
-    if (i.Presence ())
+    if (i.getPresence ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Presence",
           e));
 
-      a << *i.Presence ();
+      a << *i.getPresence ();
     }
 
     // DeterminationTime
     //
-    if (i.DeterminationTime ())
+    if (i.getDeterminationTime ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "DeterminationTime",
           e));
 
-      a << *i.DeterminationTime ();
+      a << *i.getDeterminationTime ();
     }
   }
 
@@ -35023,7 +35023,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const LimitAlertConditionDescriptor::MaxLimitsType& x (i.MaxLimits ());
+      const LimitAlertConditionDescriptor::MaxLimitsType& x (i.getMaxLimits ());
       if (typeid (LimitAlertConditionDescriptor::MaxLimitsType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -35043,14 +35043,14 @@ namespace CDM
 
     // AutoLimitSupported
     //
-    if (i.AutoLimitSupported ())
+    if (i.getAutoLimitSupported ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "AutoLimitSupported",
           e));
 
-      a << *i.AutoLimitSupported ();
+      a << *i.getAutoLimitSupported ();
     }
   }
 
@@ -35098,7 +35098,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const LimitAlertConditionState::LimitsType& x (i.Limits ());
+      const LimitAlertConditionState::LimitsType& x (i.getLimits ());
       if (typeid (LimitAlertConditionState::LimitsType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -35124,19 +35124,19 @@ namespace CDM
           "MonitoredAlertLimits",
           e));
 
-      a << i.MonitoredAlertLimits ();
+      a << i.getMonitoredAlertLimits ();
     }
 
     // AutoLimitActivationState
     //
-    if (i.AutoLimitActivationState ())
+    if (i.getAutoLimitActivationState ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "AutoLimitActivationState",
           e));
 
-      a << *i.AutoLimitActivationState ();
+      a << *i.getAutoLimitActivationState ();
     }
   }
 
@@ -35180,14 +35180,14 @@ namespace CDM
 
     // ConditionSignaled
     //
-    if (i.ConditionSignaled ())
+    if (i.getConditionSignaled ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "ConditionSignaled",
           e));
 
-      a << *i.ConditionSignaled ();
+      a << *i.getConditionSignaled ();
     }
 
     // Manifestation
@@ -35198,7 +35198,7 @@ namespace CDM
           "Manifestation",
           e));
 
-      a << i.Manifestation ();
+      a << i.getManifestation ();
     }
 
     // Latching
@@ -35209,79 +35209,79 @@ namespace CDM
           "Latching",
           e));
 
-      a << i.Latching ();
+      a << i.getLatching ();
     }
 
     // DefaultSignalGenerationDelay
     //
-    if (i.DefaultSignalGenerationDelay ())
+    if (i.getDefaultSignalGenerationDelay ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "DefaultSignalGenerationDelay",
           e));
 
-      a << *i.DefaultSignalGenerationDelay ();
+      a << *i.getDefaultSignalGenerationDelay ();
     }
 
     // MinSignalGenerationDelay
     //
-    if (i.MinSignalGenerationDelay ())
+    if (i.getMinSignalGenerationDelay ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "MinSignalGenerationDelay",
           e));
 
-      a << *i.MinSignalGenerationDelay ();
+      a << *i.getMinSignalGenerationDelay ();
     }
 
     // MaxSignalGenerationDelay
     //
-    if (i.MaxSignalGenerationDelay ())
+    if (i.getMaxSignalGenerationDelay ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "MaxSignalGenerationDelay",
           e));
 
-      a << *i.MaxSignalGenerationDelay ();
+      a << *i.getMaxSignalGenerationDelay ();
     }
 
     // SignalDelegationSupported
     //
-    if (i.SignalDelegationSupported ())
+    if (i.getSignalDelegationSupported ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "SignalDelegationSupported",
           e));
 
-      a << *i.SignalDelegationSupported ();
+      a << *i.getSignalDelegationSupported ();
     }
 
     // AcknowledgementSupported
     //
-    if (i.AcknowledgementSupported ())
+    if (i.getAcknowledgementSupported ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "AcknowledgementSupported",
           e));
 
-      a << *i.AcknowledgementSupported ();
+      a << *i.getAcknowledgementSupported ();
     }
 
     // AcknowledgeTimeout
     //
-    if (i.AcknowledgeTimeout ())
+    if (i.getAcknowledgeTimeout ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "AcknowledgeTimeout",
           e));
 
-      a << *i.AcknowledgeTimeout ();
+      a << *i.getAcknowledgeTimeout ();
     }
   }
 
@@ -35351,50 +35351,50 @@ namespace CDM
 
     // ActualSignalGenerationDelay
     //
-    if (i.ActualSignalGenerationDelay ())
+    if (i.getActualSignalGenerationDelay ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "ActualSignalGenerationDelay",
           e));
 
-      a << *i.ActualSignalGenerationDelay ();
+      a << *i.getActualSignalGenerationDelay ();
     }
 
     // Presence
     //
-    if (i.Presence ())
+    if (i.getPresence ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Presence",
           e));
 
-      a << *i.Presence ();
+      a << *i.getPresence ();
     }
 
     // Location
     //
-    if (i.Location ())
+    if (i.getLocation ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Location",
           e));
 
-      a << *i.Location ();
+      a << *i.getLocation ();
     }
 
     // Slot
     //
-    if (i.Slot ())
+    if (i.getSlot ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Slot",
           e));
 
-      a << *i.Slot ();
+      a << *i.getSlot ();
     }
   }
 
@@ -35468,9 +35468,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const AbstractMetricValue::ExtensionType& x (*i.Extension ());
+        const AbstractMetricValue::ExtensionType& x (*i.getExtension ());
         if (typeid (AbstractMetricValue::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -35498,13 +35498,13 @@ namespace CDM
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
-      s << i.MetricQuality ();
+      s << i.getMetricQuality ();
     }
 
     // Annotation
     //
     for (AbstractMetricValue::AnnotationConstIterator
-         b (i.Annotation ().begin ()), n (i.Annotation ().end ());
+         b (i.getAnnotation ().begin ()), n (i.getAnnotation ().end ());
          b != n; ++b)
     {
       ::xercesc::DOMElement& s (
@@ -35518,38 +35518,38 @@ namespace CDM
 
     // StartTime
     //
-    if (i.StartTime ())
+    if (i.getStartTime ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "StartTime",
           e));
 
-      a << *i.StartTime ();
+      a << *i.getStartTime ();
     }
 
     // StopTime
     //
-    if (i.StopTime ())
+    if (i.getStopTime ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "StopTime",
           e));
 
-      a << *i.StopTime ();
+      a << *i.getStopTime ();
     }
 
     // DeterminationTime
     //
-    if (i.DeterminationTime ())
+    if (i.getDeterminationTime ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "DeterminationTime",
           e));
 
-      a << *i.DeterminationTime ();
+      a << *i.getDeterminationTime ();
     }
   }
 
@@ -35567,14 +35567,14 @@ namespace CDM
 
     // Value
     //
-    if (i.Value ())
+    if (i.getValue ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Value",
           e));
 
-      a << ::xml_schema::AsDecimal(*i.Value ());
+      a << ::xml_schema::AsDecimal(*i.getValue ());
     }
   }
 
@@ -35592,14 +35592,14 @@ namespace CDM
 
     // Value
     //
-    if (i.Value ())
+    if (i.getValue ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Value",
           e));
 
-      a << *i.Value ();
+      a << *i.getValue ();
     }
   }
 
@@ -35644,7 +35644,7 @@ namespace CDM
     // ApplyAnnotation
     //
     for (SampleArrayValue::ApplyAnnotationConstIterator
-         b (i.ApplyAnnotation ().begin ()), n (i.ApplyAnnotation ().end ());
+         b (i.getApplyAnnotation ().begin ()), n (i.getApplyAnnotation ().end ());
          b != n; ++b)
     {
       ::xercesc::DOMElement& s (
@@ -35658,14 +35658,14 @@ namespace CDM
 
     // Samples
     //
-    if (i.Samples ())
+    if (i.getSamples ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Samples",
           e));
 
-      a << *i.Samples ();
+      a << *i.getSamples ();
     }
   }
 
@@ -35791,7 +35791,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const AbstractMetricDescriptor::UnitType& x (i.Unit ());
+      const AbstractMetricDescriptor::UnitType& x (i.getUnit ());
       if (typeid (AbstractMetricDescriptor::UnitType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -35816,7 +35816,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (AbstractMetricDescriptor::BodySiteConstIterator
-           b (i.BodySite ().begin ()), n (i.BodySite ().end ());
+           b (i.getBodySite ().begin ()), n (i.getBodySite ().end ());
            b != n; ++b)
       {
         if (typeid (AbstractMetricDescriptor::BodySiteType) == typeid (*b))
@@ -35840,7 +35840,7 @@ namespace CDM
     // Relation
     //
     for (AbstractMetricDescriptor::RelationConstIterator
-         b (i.Relation ().begin ()), n (i.Relation ().end ());
+         b (i.getRelation ().begin ()), n (i.getRelation ().end ());
          b != n; ++b)
     {
       ::xercesc::DOMElement& s (
@@ -35860,19 +35860,19 @@ namespace CDM
           "MetricCategory",
           e));
 
-      a << i.MetricCategory ();
+      a << i.getMetricCategory ();
     }
 
     // DerivationMethod
     //
-    if (i.DerivationMethod ())
+    if (i.getDerivationMethod ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "DerivationMethod",
           e));
 
-      a << *i.DerivationMethod ();
+      a << *i.getDerivationMethod ();
     }
 
     // MetricAvailability
@@ -35883,67 +35883,67 @@ namespace CDM
           "MetricAvailability",
           e));
 
-      a << i.MetricAvailability ();
+      a << i.getMetricAvailability ();
     }
 
     // MaxMeasurementTime
     //
-    if (i.MaxMeasurementTime ())
+    if (i.getMaxMeasurementTime ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "MaxMeasurementTime",
           e));
 
-      a << *i.MaxMeasurementTime ();
+      a << *i.getMaxMeasurementTime ();
     }
 
     // MaxDelayTime
     //
-    if (i.MaxDelayTime ())
+    if (i.getMaxDelayTime ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "MaxDelayTime",
           e));
 
-      a << *i.MaxDelayTime ();
+      a << *i.getMaxDelayTime ();
     }
 
     // DeterminationPeriod
     //
-    if (i.DeterminationPeriod ())
+    if (i.getDeterminationPeriod ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "DeterminationPeriod",
           e));
 
-      a << *i.DeterminationPeriod ();
+      a << *i.getDeterminationPeriod ();
     }
 
     // LifeTimePeriod
     //
-    if (i.LifeTimePeriod ())
+    if (i.getLifeTimePeriod ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "LifeTimePeriod",
           e));
 
-      a << *i.LifeTimePeriod ();
+      a << *i.getLifeTimePeriod ();
     }
 
     // ActivationDuration
     //
-    if (i.ActivationDuration ())
+    if (i.getActivationDuration ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "ActivationDuration",
           e));
 
-      a << *i.ActivationDuration ();
+      a << *i.getActivationDuration ();
     }
   }
 
@@ -35966,7 +35966,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (AbstractMetricState::BodySiteConstIterator
-           b (i.BodySite ().begin ()), n (i.BodySite ().end ());
+           b (i.getBodySite ().begin ()), n (i.getBodySite ().end ());
            b != n; ++b)
       {
         if (typeid (AbstractMetricState::BodySiteType) == typeid (*b))
@@ -35993,9 +35993,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.PhysicalConnector ())
+      if (i.getPhysicalConnector ())
       {
-        const AbstractMetricState::PhysicalConnectorType& x (*i.PhysicalConnector ());
+        const AbstractMetricState::PhysicalConnectorType& x (*i.getPhysicalConnector ());
         if (typeid (AbstractMetricState::PhysicalConnectorType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -36016,38 +36016,38 @@ namespace CDM
 
     // ActivationState
     //
-    if (i.ActivationState ())
+    if (i.getActivationState ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "ActivationState",
           e));
 
-      a << *i.ActivationState ();
+      a << *i.getActivationState ();
     }
 
     // ActiveDeterminationPeriod
     //
-    if (i.ActiveDeterminationPeriod ())
+    if (i.getActiveDeterminationPeriod ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "ActiveDeterminationPeriod",
           e));
 
-      a << *i.ActiveDeterminationPeriod ();
+      a << *i.getActiveDeterminationPeriod ();
     }
 
     // LifeTimePeriod
     //
-    if (i.LifeTimePeriod ())
+    if (i.getLifeTimePeriod ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "LifeTimePeriod",
           e));
 
-      a << *i.LifeTimePeriod ();
+      a << *i.getLifeTimePeriod ();
     }
   }
 
@@ -36070,7 +36070,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (NumericMetricDescriptor::TechnicalRangeConstIterator
-           b (i.TechnicalRange ().begin ()), n (i.TechnicalRange ().end ());
+           b (i.getTechnicalRange ().begin ()), n (i.getTechnicalRange ().end ());
            b != n; ++b)
       {
         if (typeid (NumericMetricDescriptor::TechnicalRangeType) == typeid (*b))
@@ -36099,19 +36099,19 @@ namespace CDM
           "Resolution",
           e));
 
-      a << ::xml_schema::AsDecimal(i.Resolution ());
+      a << ::xml_schema::AsDecimal(i.getResolution ());
     }
 
     // AveragingPeriod
     //
-    if (i.AveragingPeriod ())
+    if (i.getAveragingPeriod ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "AveragingPeriod",
           e));
 
-      a << *i.AveragingPeriod ();
+      a << *i.getAveragingPeriod ();
     }
   }
 
@@ -36133,9 +36133,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.MetricValue ())
+      if (i.getMetricValue ())
       {
-        const NumericMetricState::MetricValueType& x (*i.MetricValue ());
+        const NumericMetricState::MetricValueType& x (*i.getMetricValue ());
         if (typeid (NumericMetricState::MetricValueType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -36161,7 +36161,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (NumericMetricState::PhysiologicalRangeConstIterator
-           b (i.PhysiologicalRange ().begin ()), n (i.PhysiologicalRange ().end ());
+           b (i.getPhysiologicalRange ().begin ()), n (i.getPhysiologicalRange ().end ());
            b != n; ++b)
       {
         if (typeid (NumericMetricState::PhysiologicalRangeType) == typeid (*b))
@@ -36184,14 +36184,14 @@ namespace CDM
 
     // ActiveAveragingPeriod
     //
-    if (i.ActiveAveragingPeriod ())
+    if (i.getActiveAveragingPeriod ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "ActiveAveragingPeriod",
           e));
 
-      a << *i.ActiveAveragingPeriod ();
+      a << *i.getActiveAveragingPeriod ();
     }
   }
 
@@ -36226,9 +36226,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.MetricValue ())
+      if (i.getMetricValue ())
       {
-        const StringMetricState::MetricValueType& x (*i.MetricValue ());
+        const StringMetricState::MetricValueType& x (*i.getMetricValue ());
         if (typeid (StringMetricState::MetricValueType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -36263,7 +36263,7 @@ namespace CDM
     // AllowedValue
     //
     for (EnumStringMetricDescriptor::AllowedValueConstIterator
-         b (i.AllowedValue ().begin ()), n (i.AllowedValue ().end ());
+         b (i.getAllowedValue ().begin ()), n (i.getAllowedValue ().end ());
          b != n; ++b)
     {
       ::xercesc::DOMElement& s (
@@ -36308,7 +36308,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (RealTimeSampleArrayMetricDescriptor::TechnicalRangeConstIterator
-           b (i.TechnicalRange ().begin ()), n (i.TechnicalRange ().end ());
+           b (i.getTechnicalRange ().begin ()), n (i.getTechnicalRange ().end ());
            b != n; ++b)
       {
         if (typeid (RealTimeSampleArrayMetricDescriptor::TechnicalRangeType) == typeid (*b))
@@ -36337,7 +36337,7 @@ namespace CDM
           "Resolution",
           e));
 
-      a << ::xml_schema::AsDecimal(i.Resolution ());
+      a << ::xml_schema::AsDecimal(i.getResolution ());
     }
 
     // SamplePeriod
@@ -36348,7 +36348,7 @@ namespace CDM
           "SamplePeriod",
           e));
 
-      a << i.SamplePeriod ();
+      a << i.getSamplePeriod ();
     }
   }
 
@@ -36370,9 +36370,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.MetricValue ())
+      if (i.getMetricValue ())
       {
-        const RealTimeSampleArrayMetricState::MetricValueType& x (*i.MetricValue ());
+        const RealTimeSampleArrayMetricState::MetricValueType& x (*i.getMetricValue ());
         if (typeid (RealTimeSampleArrayMetricState::MetricValueType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -36398,7 +36398,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (RealTimeSampleArrayMetricState::PhysiologicalRangeConstIterator
-           b (i.PhysiologicalRange ().begin ()), n (i.PhysiologicalRange ().end ());
+           b (i.getPhysiologicalRange ().begin ()), n (i.getPhysiologicalRange ().end ());
            b != n; ++b)
       {
         if (typeid (RealTimeSampleArrayMetricState::PhysiologicalRangeType) == typeid (*b))
@@ -36439,7 +36439,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (DistributionSampleArrayMetricDescriptor::TechnicalRangeConstIterator
-           b (i.TechnicalRange ().begin ()), n (i.TechnicalRange ().end ());
+           b (i.getTechnicalRange ().begin ()), n (i.getTechnicalRange ().end ());
            b != n; ++b)
       {
         if (typeid (DistributionSampleArrayMetricDescriptor::TechnicalRangeType) == typeid (*b))
@@ -36466,7 +36466,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const DistributionSampleArrayMetricDescriptor::DomainUnitType& x (i.DomainUnit ());
+      const DistributionSampleArrayMetricDescriptor::DomainUnitType& x (i.getDomainUnit ());
       if (typeid (DistributionSampleArrayMetricDescriptor::DomainUnitType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -36490,7 +36490,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const DistributionSampleArrayMetricDescriptor::DistributionRangeType& x (i.DistributionRange ());
+      const DistributionSampleArrayMetricDescriptor::DistributionRangeType& x (i.getDistributionRange ());
       if (typeid (DistributionSampleArrayMetricDescriptor::DistributionRangeType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -36516,7 +36516,7 @@ namespace CDM
           "Resolution",
           e));
 
-      a << ::xml_schema::AsDecimal(i.Resolution ());
+      a << ::xml_schema::AsDecimal(i.getResolution ());
     }
   }
 
@@ -36538,9 +36538,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.MetricValue ())
+      if (i.getMetricValue ())
       {
-        const DistributionSampleArrayMetricState::MetricValueType& x (*i.MetricValue ());
+        const DistributionSampleArrayMetricState::MetricValueType& x (*i.getMetricValue ());
         if (typeid (DistributionSampleArrayMetricState::MetricValueType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -36566,7 +36566,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (DistributionSampleArrayMetricState::PhysiologicalRangeConstIterator
-           b (i.PhysiologicalRange ().begin ()), n (i.PhysiologicalRange ().end ());
+           b (i.getPhysiologicalRange ().begin ()), n (i.getPhysiologicalRange ().end ());
            b != n; ++b)
       {
         if (typeid (DistributionSampleArrayMetricState::PhysiologicalRangeType) == typeid (*b))
@@ -36633,7 +36633,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (ScoDescriptor::OperationConstIterator
-           b (i.Operation ().begin ()), n (i.Operation ().end ());
+           b (i.getOperation ().begin ()), n (i.getOperation ().end ());
            b != n; ++b)
       {
         if (typeid (ScoDescriptor::OperationType) == typeid (*b))
@@ -36670,7 +36670,7 @@ namespace CDM
     // OperationGroup
     //
     for (ScoState::OperationGroupConstIterator
-         b (i.OperationGroup ().begin ()), n (i.OperationGroup ().end ());
+         b (i.getOperationGroup ().begin ()), n (i.getOperationGroup ().end ());
          b != n; ++b)
     {
       ::xercesc::DOMElement& s (
@@ -36684,26 +36684,26 @@ namespace CDM
 
     // InvocationRequested
     //
-    if (i.InvocationRequested ())
+    if (i.getInvocationRequested ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "InvocationRequested",
           e));
 
-      a << *i.InvocationRequested ();
+      a << *i.getInvocationRequested ();
     }
 
     // InvocationRequired
     //
-    if (i.InvocationRequired ())
+    if (i.getInvocationRequired ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "InvocationRequired",
           e));
 
-      a << *i.InvocationRequired ();
+      a << *i.getInvocationRequired ();
     }
   }
 
@@ -36727,55 +36727,55 @@ namespace CDM
           "OperationTarget",
           e));
 
-      a << i.OperationTarget ();
+      a << i.getOperationTarget ();
     }
 
     // MaxTimeToFinish
     //
-    if (i.MaxTimeToFinish ())
+    if (i.getMaxTimeToFinish ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "MaxTimeToFinish",
           e));
 
-      a << *i.MaxTimeToFinish ();
+      a << *i.getMaxTimeToFinish ();
     }
 
     // InvocationEffectiveTimeout
     //
-    if (i.InvocationEffectiveTimeout ())
+    if (i.getInvocationEffectiveTimeout ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "InvocationEffectiveTimeout",
           e));
 
-      a << *i.InvocationEffectiveTimeout ();
+      a << *i.getInvocationEffectiveTimeout ();
     }
 
     // Retriggerable
     //
-    if (i.Retriggerable ())
+    if (i.getRetriggerable ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Retriggerable",
           e));
 
-      a << *i.Retriggerable ();
+      a << *i.getRetriggerable ();
     }
 
     // AccessLevel
     //
-    if (i.AccessLevel ())
+    if (i.getAccessLevel ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "AccessLevel",
           e));
 
-      a << *i.AccessLevel ();
+      a << *i.getAccessLevel ();
     }
   }
 
@@ -36798,7 +36798,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (AbstractSetStateOperationDescriptor::ModifiableDataConstIterator
-           b (i.ModifiableData ().begin ()), n (i.ModifiableData ().end ());
+           b (i.getModifiableData ().begin ()), n (i.getModifiableData ().end ());
            b != n; ++b)
       {
         if (typeid (AbstractSetStateOperationDescriptor::ModifiableDataType) == typeid (*b))
@@ -36866,7 +36866,7 @@ namespace CDM
           "OperatingMode",
           e));
 
-      a << i.OperatingMode ();
+      a << i.getOperatingMode ();
     }
   }
 
@@ -36902,7 +36902,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (SetValueOperationState::AllowedRangeConstIterator
-           b (i.AllowedRange ().begin ()), n (i.AllowedRange ().end ());
+           b (i.getAllowedRange ().begin ()), n (i.getAllowedRange ().end ());
            b != n; ++b)
       {
         if (typeid (SetValueOperationState::AllowedRangeType) == typeid (*b))
@@ -36938,14 +36938,14 @@ namespace CDM
 
     // MaxLength
     //
-    if (i.MaxLength ())
+    if (i.getMaxLength ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "MaxLength",
           e));
 
-      a << *i.MaxLength ();
+      a << *i.getMaxLength ();
     }
   }
 
@@ -36963,7 +36963,7 @@ namespace CDM
 
     // AllowedValues
     //
-    if (i.AllowedValues ())
+    if (i.getAllowedValues ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -36971,7 +36971,7 @@ namespace CDM
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
-      s << *i.AllowedValues ();
+      s << *i.getAllowedValues ();
     }
   }
 
@@ -36990,7 +36990,7 @@ namespace CDM
     // Argument
     //
     for (ActivateOperationDescriptor::ArgumentConstIterator
-         b (i.Argument ().begin ()), n (i.Argument ().end ());
+         b (i.getArgument ().begin ()), n (i.getArgument ().end ());
          b != n; ++b)
     {
       ::xercesc::DOMElement& s (
@@ -37165,7 +37165,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (ClockDescriptor::TimeProtocolConstIterator
-           b (i.TimeProtocol ().begin ()), n (i.TimeProtocol ().end ());
+           b (i.getTimeProtocol ().begin ()), n (i.getTimeProtocol ().end ());
            b != n; ++b)
       {
         if (typeid (ClockDescriptor::TimeProtocolType) == typeid (*b))
@@ -37188,14 +37188,14 @@ namespace CDM
 
     // Resolution
     //
-    if (i.Resolution ())
+    if (i.getResolution ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Resolution",
           e));
 
-      a << *i.Resolution ();
+      a << *i.getResolution ();
     }
   }
 
@@ -37217,9 +37217,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.ActiveSyncProtocol ())
+      if (i.getActiveSyncProtocol ())
       {
-        const ClockState::ActiveSyncProtocolType& x (*i.ActiveSyncProtocol ());
+        const ClockState::ActiveSyncProtocolType& x (*i.getActiveSyncProtocol ());
         if (typeid (ClockState::ActiveSyncProtocolType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -37245,7 +37245,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (ClockState::ReferenceSourceConstIterator
-           b (i.ReferenceSource ().begin ()), n (i.ReferenceSource ().end ());
+           b (i.getReferenceSource ().begin ()), n (i.getReferenceSource ().end ());
            b != n; ++b)
       {
         if (typeid (ClockState::ReferenceSourceType) == typeid (*b))
@@ -37268,14 +37268,14 @@ namespace CDM
 
     // DateAndTime
     //
-    if (i.DateAndTime ())
+    if (i.getDateAndTime ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "DateAndTime",
           e));
 
-      a << *i.DateAndTime ();
+      a << *i.getDateAndTime ();
     }
 
     // RemoteSync
@@ -37286,55 +37286,55 @@ namespace CDM
           "RemoteSync",
           e));
 
-      a << i.RemoteSync ();
+      a << i.getRemoteSync ();
     }
 
     // Accuracy
     //
-    if (i.Accuracy ())
+    if (i.getAccuracy ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Accuracy",
           e));
 
-      a << ::xml_schema::AsDecimal(*i.Accuracy ());
+      a << ::xml_schema::AsDecimal(*i.getAccuracy ());
     }
 
     // LastSet
     //
-    if (i.LastSet ())
+    if (i.getLastSet ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "LastSet",
           e));
 
-      a << *i.LastSet ();
+      a << *i.getLastSet ();
     }
 
     // TimeZone
     //
-    if (i.TimeZone ())
+    if (i.getTimeZone ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "TimeZone",
           e));
 
-      a << *i.TimeZone ();
+      a << *i.getTimeZone ();
     }
 
     // CriticalUse
     //
-    if (i.CriticalUse ())
+    if (i.getCriticalUse ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "CriticalUse",
           e));
 
-      a << *i.CriticalUse ();
+      a << *i.getCriticalUse ();
     }
   }
 
@@ -37356,9 +37356,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.CapacityFullCharge ())
+      if (i.getCapacityFullCharge ())
       {
-        const BatteryDescriptor::CapacityFullChargeType& x (*i.CapacityFullCharge ());
+        const BatteryDescriptor::CapacityFullChargeType& x (*i.getCapacityFullCharge ());
         if (typeid (BatteryDescriptor::CapacityFullChargeType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -37383,9 +37383,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.CapacitySpecified ())
+      if (i.getCapacitySpecified ())
       {
-        const BatteryDescriptor::CapacitySpecifiedType& x (*i.CapacitySpecified ());
+        const BatteryDescriptor::CapacitySpecifiedType& x (*i.getCapacitySpecified ());
         if (typeid (BatteryDescriptor::CapacitySpecifiedType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -37410,9 +37410,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.VoltageSpecified ())
+      if (i.getVoltageSpecified ())
       {
-        const BatteryDescriptor::VoltageSpecifiedType& x (*i.VoltageSpecified ());
+        const BatteryDescriptor::VoltageSpecifiedType& x (*i.getVoltageSpecified ());
         if (typeid (BatteryDescriptor::VoltageSpecifiedType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -37450,9 +37450,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.CapacityRemaining ())
+      if (i.getCapacityRemaining ())
       {
-        const BatteryState::CapacityRemainingType& x (*i.CapacityRemaining ());
+        const BatteryState::CapacityRemainingType& x (*i.getCapacityRemaining ());
         if (typeid (BatteryState::CapacityRemainingType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -37477,9 +37477,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Voltage ())
+      if (i.getVoltage ())
       {
-        const BatteryState::VoltageType& x (*i.Voltage ());
+        const BatteryState::VoltageType& x (*i.getVoltage ());
         if (typeid (BatteryState::VoltageType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -37504,9 +37504,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Current ())
+      if (i.getCurrent ())
       {
-        const BatteryState::CurrentType& x (*i.Current ());
+        const BatteryState::CurrentType& x (*i.getCurrent ());
         if (typeid (BatteryState::CurrentType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -37531,9 +37531,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Temperature ())
+      if (i.getTemperature ())
       {
-        const BatteryState::TemperatureType& x (*i.Temperature ());
+        const BatteryState::TemperatureType& x (*i.getTemperature ());
         if (typeid (BatteryState::TemperatureType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -37558,9 +37558,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.RemainingBatteryTime ())
+      if (i.getRemainingBatteryTime ())
       {
-        const BatteryState::RemainingBatteryTimeType& x (*i.RemainingBatteryTime ());
+        const BatteryState::RemainingBatteryTimeType& x (*i.getRemainingBatteryTime ());
         if (typeid (BatteryState::RemainingBatteryTimeType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -37581,26 +37581,26 @@ namespace CDM
 
     // ChargeStatus
     //
-    if (i.ChargeStatus ())
+    if (i.getChargeStatus ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "ChargeStatus",
           e));
 
-      a << *i.ChargeStatus ();
+      a << *i.getChargeStatus ();
     }
 
     // ChargeCycles
     //
-    if (i.ChargeCycles ())
+    if (i.getChargeCycles ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "ChargeCycles",
           e));
 
-      a << *i.ChargeCycles ();
+      a << *i.getChargeCycles ();
     }
   }
 
@@ -37622,9 +37622,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.PatientContext ())
+      if (i.getPatientContext ())
       {
-        const SystemContextDescriptor::PatientContextType& x (*i.PatientContext ());
+        const SystemContextDescriptor::PatientContextType& x (*i.getPatientContext ());
         if (typeid (SystemContextDescriptor::PatientContextType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -37649,9 +37649,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.LocationContext ())
+      if (i.getLocationContext ())
       {
-        const SystemContextDescriptor::LocationContextType& x (*i.LocationContext ());
+        const SystemContextDescriptor::LocationContextType& x (*i.getLocationContext ());
         if (typeid (SystemContextDescriptor::LocationContextType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -37677,7 +37677,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (SystemContextDescriptor::EnsembleContextConstIterator
-           b (i.EnsembleContext ().begin ()), n (i.EnsembleContext ().end ());
+           b (i.getEnsembleContext ().begin ()), n (i.getEnsembleContext ().end ());
            b != n; ++b)
       {
         if (typeid (SystemContextDescriptor::EnsembleContextType) == typeid (*b))
@@ -37705,7 +37705,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (SystemContextDescriptor::OperatorContextConstIterator
-           b (i.OperatorContext ().begin ()), n (i.OperatorContext ().end ());
+           b (i.getOperatorContext ().begin ()), n (i.getOperatorContext ().end ());
            b != n; ++b)
       {
         if (typeid (SystemContextDescriptor::OperatorContextType) == typeid (*b))
@@ -37733,7 +37733,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (SystemContextDescriptor::WorkflowContextConstIterator
-           b (i.WorkflowContext ().begin ()), n (i.WorkflowContext ().end ());
+           b (i.getWorkflowContext ().begin ()), n (i.getWorkflowContext ().end ());
            b != n; ++b)
       {
         if (typeid (SystemContextDescriptor::WorkflowContextType) == typeid (*b))
@@ -37761,7 +37761,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (SystemContextDescriptor::MeansContextConstIterator
-           b (i.MeansContext ().begin ()), n (i.MeansContext ().end ());
+           b (i.getMeansContext ().begin ()), n (i.getMeansContext ().end ());
            b != n; ++b)
       {
         if (typeid (SystemContextDescriptor::MeansContextType) == typeid (*b))
@@ -37854,7 +37854,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (AbstractContextState::ValidatorConstIterator
-           b (i.Validator ().begin ()), n (i.Validator ().end ());
+           b (i.getValidator ().begin ()), n (i.getValidator ().end ());
            b != n; ++b)
       {
         if (typeid (AbstractContextState::ValidatorType) == typeid (*b))
@@ -37882,7 +37882,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (AbstractContextState::IdentificationConstIterator
-           b (i.Identification ().begin ()), n (i.Identification ().end ());
+           b (i.getIdentification ().begin ()), n (i.getIdentification ().end ());
            b != n; ++b)
       {
         if (typeid (AbstractContextState::IdentificationType) == typeid (*b))
@@ -37905,62 +37905,62 @@ namespace CDM
 
     // ContextAssociation
     //
-    if (i.ContextAssociation ())
+    if (i.getContextAssociation ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "ContextAssociation",
           e));
 
-      a << *i.ContextAssociation ();
+      a << *i.getContextAssociation ();
     }
 
     // BindingMdibVersion
     //
-    if (i.BindingMdibVersion ())
+    if (i.getBindingMdibVersion ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "BindingMdibVersion",
           e));
 
-      a << *i.BindingMdibVersion ();
+      a << *i.getBindingMdibVersion ();
     }
 
     // UnbindingMdibVersion
     //
-    if (i.UnbindingMdibVersion ())
+    if (i.getUnbindingMdibVersion ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "UnbindingMdibVersion",
           e));
 
-      a << *i.UnbindingMdibVersion ();
+      a << *i.getUnbindingMdibVersion ();
     }
 
     // BindingStartTime
     //
-    if (i.BindingStartTime ())
+    if (i.getBindingStartTime ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "BindingStartTime",
           e));
 
-      a << *i.BindingStartTime ();
+      a << *i.getBindingStartTime ();
     }
 
     // BindingEndTime
     //
-    if (i.BindingEndTime ())
+    if (i.getBindingEndTime ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "BindingEndTime",
           e));
 
-      a << *i.BindingEndTime ();
+      a << *i.getBindingEndTime ();
     }
   }
 
@@ -37982,9 +37982,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const BaseDemographics::ExtensionType& x (*i.Extension ());
+        const BaseDemographics::ExtensionType& x (*i.getExtension ());
         if (typeid (BaseDemographics::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -38009,9 +38009,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Givenname ())
+      if (i.getGivenname ())
       {
-        const BaseDemographics::GivennameType& x (*i.Givenname ());
+        const BaseDemographics::GivennameType& x (*i.getGivenname ());
         if (typeid (BaseDemographics::GivennameType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -38037,7 +38037,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (BaseDemographics::MiddlenameConstIterator
-           b (i.Middlename ().begin ()), n (i.Middlename ().end ());
+           b (i.getMiddlename ().begin ()), n (i.getMiddlename ().end ());
            b != n; ++b)
       {
         if (typeid (BaseDemographics::MiddlenameType) == typeid (*b))
@@ -38064,9 +38064,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Familyname ())
+      if (i.getFamilyname ())
       {
-        const BaseDemographics::FamilynameType& x (*i.Familyname ());
+        const BaseDemographics::FamilynameType& x (*i.getFamilyname ());
         if (typeid (BaseDemographics::FamilynameType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -38091,9 +38091,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Birthname ())
+      if (i.getBirthname ())
       {
-        const BaseDemographics::BirthnameType& x (*i.Birthname ());
+        const BaseDemographics::BirthnameType& x (*i.getBirthname ());
         if (typeid (BaseDemographics::BirthnameType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -38118,9 +38118,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Title ())
+      if (i.getTitle ())
       {
-        const BaseDemographics::TitleType& x (*i.Title ());
+        const BaseDemographics::TitleType& x (*i.getTitle ());
         if (typeid (BaseDemographics::TitleType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -38158,9 +38158,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const PersonReference::ExtensionType& x (*i.Extension ());
+        const PersonReference::ExtensionType& x (*i.getExtension ());
         if (typeid (PersonReference::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -38186,7 +38186,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (PersonReference::IdentificationConstIterator
-           b (i.Identification ().begin ()), n (i.Identification ().end ());
+           b (i.getIdentification ().begin ()), n (i.getIdentification ().end ());
            b != n; ++b)
       {
         if (typeid (PersonReference::IdentificationType) == typeid (*b))
@@ -38213,9 +38213,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Name ())
+      if (i.getName ())
       {
-        const PersonReference::NameType& x (*i.Name ());
+        const PersonReference::NameType& x (*i.getName ());
         if (typeid (PersonReference::NameType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -38253,9 +38253,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const LocationDetail::ExtensionType& x (*i.Extension ());
+        const LocationDetail::ExtensionType& x (*i.getExtension ());
         if (typeid (LocationDetail::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -38276,74 +38276,74 @@ namespace CDM
 
     // PoC
     //
-    if (i.PoC ())
+    if (i.getPoC ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "PoC",
           e));
 
-      a << *i.PoC ();
+      a << *i.getPoC ();
     }
 
     // Room
     //
-    if (i.Room ())
+    if (i.getRoom ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Room",
           e));
 
-      a << *i.Room ();
+      a << *i.getRoom ();
     }
 
     // Bed
     //
-    if (i.Bed ())
+    if (i.getBed ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Bed",
           e));
 
-      a << *i.Bed ();
+      a << *i.getBed ();
     }
 
     // Facility
     //
-    if (i.Facility ())
+    if (i.getFacility ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Facility",
           e));
 
-      a << *i.Facility ();
+      a << *i.getFacility ();
     }
 
     // Building
     //
-    if (i.Building ())
+    if (i.getBuilding ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Building",
           e));
 
-      a << *i.Building ();
+      a << *i.getBuilding ();
     }
 
     // Floor
     //
-    if (i.Floor ())
+    if (i.getFloor ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Floor",
           e));
 
-      a << *i.Floor ();
+      a << *i.getFloor ();
     }
   }
 
@@ -38430,9 +38430,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Sex ())
+      if (i.getSex ())
       {
-        const PatientDemographicsCoreData::SexType& x (*i.Sex ());
+        const PatientDemographicsCoreData::SexType& x (*i.getSex ());
         if (typeid (PatientDemographicsCoreData::SexType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -38457,9 +38457,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.PatientType ())
+      if (i.getPatientType ())
       {
-        const PatientDemographicsCoreData::PatientTypeType& x (*i.PatientType ());
+        const PatientDemographicsCoreData::PatientTypeType& x (*i.getPatientType ());
         if (typeid (PatientDemographicsCoreData::PatientTypeType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -38480,7 +38480,7 @@ namespace CDM
 
     // DateOfBirth
     //
-    if (i.DateOfBirth ())
+    if (i.getDateOfBirth ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -38488,7 +38488,7 @@ namespace CDM
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
-      s << *i.DateOfBirth ();
+      s << *i.getDateOfBirth ();
     }
 
     // Height
@@ -38497,9 +38497,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Height ())
+      if (i.getHeight ())
       {
-        const PatientDemographicsCoreData::HeightType& x (*i.Height ());
+        const PatientDemographicsCoreData::HeightType& x (*i.getHeight ());
         if (typeid (PatientDemographicsCoreData::HeightType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -38524,9 +38524,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Weight ())
+      if (i.getWeight ())
       {
-        const PatientDemographicsCoreData::WeightType& x (*i.Weight ());
+        const PatientDemographicsCoreData::WeightType& x (*i.getWeight ());
         if (typeid (PatientDemographicsCoreData::WeightType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -38551,9 +38551,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Race ())
+      if (i.getRace ())
       {
-        const PatientDemographicsCoreData::RaceType& x (*i.Race ());
+        const PatientDemographicsCoreData::RaceType& x (*i.getRace ());
         if (typeid (PatientDemographicsCoreData::RaceType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -38591,9 +38591,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.GestationalAge ())
+      if (i.getGestationalAge ())
       {
-        const NeonatalPatientDemographicsCoreData::GestationalAgeType& x (*i.GestationalAge ());
+        const NeonatalPatientDemographicsCoreData::GestationalAgeType& x (*i.getGestationalAge ());
         if (typeid (NeonatalPatientDemographicsCoreData::GestationalAgeType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -38618,9 +38618,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.BirthLength ())
+      if (i.getBirthLength ())
       {
-        const NeonatalPatientDemographicsCoreData::BirthLengthType& x (*i.BirthLength ());
+        const NeonatalPatientDemographicsCoreData::BirthLengthType& x (*i.getBirthLength ());
         if (typeid (NeonatalPatientDemographicsCoreData::BirthLengthType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -38645,9 +38645,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.BirthWeight ())
+      if (i.getBirthWeight ())
       {
-        const NeonatalPatientDemographicsCoreData::BirthWeightType& x (*i.BirthWeight ());
+        const NeonatalPatientDemographicsCoreData::BirthWeightType& x (*i.getBirthWeight ());
         if (typeid (NeonatalPatientDemographicsCoreData::BirthWeightType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -38672,9 +38672,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.HeadCircumference ())
+      if (i.getHeadCircumference ())
       {
-        const NeonatalPatientDemographicsCoreData::HeadCircumferenceType& x (*i.HeadCircumference ());
+        const NeonatalPatientDemographicsCoreData::HeadCircumferenceType& x (*i.getHeadCircumference ());
         if (typeid (NeonatalPatientDemographicsCoreData::HeadCircumferenceType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -38699,9 +38699,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Mother ())
+      if (i.getMother ())
       {
-        const NeonatalPatientDemographicsCoreData::MotherType& x (*i.Mother ());
+        const NeonatalPatientDemographicsCoreData::MotherType& x (*i.getMother ());
         if (typeid (NeonatalPatientDemographicsCoreData::MotherType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -38739,9 +38739,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.CoreData ())
+      if (i.getCoreData ())
       {
-        const PatientContextState::CoreDataType& x (*i.CoreData ());
+        const PatientContextState::CoreDataType& x (*i.getCoreData ());
         if (typeid (PatientContextState::CoreDataType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -38792,9 +38792,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.LocationDetail ())
+      if (i.getLocationDetail ())
       {
-        const LocationContextState::LocationDetailType& x (*i.LocationDetail ());
+        const LocationContextState::LocationDetailType& x (*i.getLocationDetail ());
         if (typeid (LocationContextState::LocationDetailType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -38845,9 +38845,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const ClinicalInfo::ExtensionType& x (*i.Extension ());
+        const ClinicalInfo::ExtensionType& x (*i.getExtension ());
         if (typeid (ClinicalInfo::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -38872,9 +38872,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Type ())
+      if (i.getType ())
       {
-        const ClinicalInfo::TypeType& x (*i.Type ());
+        const ClinicalInfo::TypeType& x (*i.getType ());
         if (typeid (ClinicalInfo::TypeType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -38899,9 +38899,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Code ())
+      if (i.getCode ())
       {
-        const ClinicalInfo::CodeType& x (*i.Code ());
+        const ClinicalInfo::CodeType& x (*i.getCode ());
         if (typeid (ClinicalInfo::CodeType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -38922,7 +38922,7 @@ namespace CDM
 
     // Criticality
     //
-    if (i.Criticality ())
+    if (i.getCriticality ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -38930,7 +38930,7 @@ namespace CDM
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
-      s << *i.Criticality ();
+      s << *i.getCriticality ();
     }
 
     // Description
@@ -38940,7 +38940,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (ClinicalInfo::DescriptionConstIterator
-           b (i.Description ().begin ()), n (i.Description ().end ());
+           b (i.getDescription ().begin ()), n (i.getDescription ().end ());
            b != n; ++b)
       {
         if (typeid (ClinicalInfo::DescriptionType) == typeid (*b))
@@ -38964,7 +38964,7 @@ namespace CDM
     // RelatedMeasurement
     //
     for (ClinicalInfo::RelatedMeasurementConstIterator
-         b (i.RelatedMeasurement ().begin ()), n (i.RelatedMeasurement ().end ());
+         b (i.getRelatedMeasurement ().begin ()), n (i.getRelatedMeasurement ().end ());
          b != n; ++b)
     {
       ::xercesc::DOMElement& s (
@@ -38995,9 +38995,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const ImagingProcedure::ExtensionType& x (*i.Extension ());
+        const ImagingProcedure::ExtensionType& x (*i.getExtension ());
         if (typeid (ImagingProcedure::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -39022,7 +39022,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const ImagingProcedure::AccessionIdentifierType& x (i.AccessionIdentifier ());
+      const ImagingProcedure::AccessionIdentifierType& x (i.getAccessionIdentifier ());
       if (typeid (ImagingProcedure::AccessionIdentifierType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -39046,7 +39046,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const ImagingProcedure::RequestedProcedureIdType& x (i.RequestedProcedureId ());
+      const ImagingProcedure::RequestedProcedureIdType& x (i.getRequestedProcedureId ());
       if (typeid (ImagingProcedure::RequestedProcedureIdType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -39070,7 +39070,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const ImagingProcedure::StudyInstanceUidType& x (i.StudyInstanceUid ());
+      const ImagingProcedure::StudyInstanceUidType& x (i.getStudyInstanceUid ());
       if (typeid (ImagingProcedure::StudyInstanceUidType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -39094,7 +39094,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const ImagingProcedure::ScheduledProcedureStepIdType& x (i.ScheduledProcedureStepId ());
+      const ImagingProcedure::ScheduledProcedureStepIdType& x (i.getScheduledProcedureStepId ());
       if (typeid (ImagingProcedure::ScheduledProcedureStepIdType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -39118,9 +39118,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Modality ())
+      if (i.getModality ())
       {
-        const ImagingProcedure::ModalityType& x (*i.Modality ());
+        const ImagingProcedure::ModalityType& x (*i.getModality ());
         if (typeid (ImagingProcedure::ModalityType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -39145,9 +39145,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.ProtocolCode ())
+      if (i.getProtocolCode ())
       {
-        const ImagingProcedure::ProtocolCodeType& x (*i.ProtocolCode ());
+        const ImagingProcedure::ProtocolCodeType& x (*i.getProtocolCode ());
         if (typeid (ImagingProcedure::ProtocolCodeType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -39185,9 +39185,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const LocationReference::ExtensionType& x (*i.Extension ());
+        const LocationReference::ExtensionType& x (*i.getExtension ());
         if (typeid (LocationReference::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -39213,7 +39213,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (LocationReference::IdentificationConstIterator
-           b (i.Identification ().begin ()), n (i.Identification ().end ());
+           b (i.getIdentification ().begin ()), n (i.getIdentification ().end ());
            b != n; ++b)
       {
         if (typeid (LocationReference::IdentificationType) == typeid (*b))
@@ -39240,9 +39240,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.LocationDetail ())
+      if (i.getLocationDetail ())
       {
-        const LocationReference::LocationDetailType& x (*i.LocationDetail ());
+        const LocationReference::LocationDetailType& x (*i.getLocationDetail ());
         if (typeid (LocationReference::LocationDetailType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -39280,9 +39280,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const OrderDetail::ExtensionType& x (*i.Extension ());
+        const OrderDetail::ExtensionType& x (*i.getExtension ());
         if (typeid (OrderDetail::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -39307,9 +39307,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Start ())
+      if (i.getStart ())
       {
-        const OrderDetail::StartType& x (*i.Start ());
+        const OrderDetail::StartType& x (*i.getStart ());
         if (typeid (OrderDetail::StartType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -39334,9 +39334,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.End ())
+      if (i.getEnd ())
       {
-        const OrderDetail::EndType& x (*i.End ());
+        const OrderDetail::EndType& x (*i.getEnd ());
         if (typeid (OrderDetail::EndType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -39362,7 +39362,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (OrderDetail::PerformerConstIterator
-           b (i.Performer ().begin ()), n (i.Performer ().end ());
+           b (i.getPerformer ().begin ()), n (i.getPerformer ().end ());
            b != n; ++b)
       {
         if (typeid (OrderDetail::PerformerType) == typeid (*b))
@@ -39390,7 +39390,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (OrderDetail::ServiceConstIterator
-           b (i.Service ().begin ()), n (i.Service ().end ());
+           b (i.getService ().begin ()), n (i.getService ().end ());
            b != n; ++b)
       {
         if (typeid (OrderDetail::ServiceType) == typeid (*b))
@@ -39418,7 +39418,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (OrderDetail::ImagingProcedureConstIterator
-           b (i.ImagingProcedure ().begin ()), n (i.ImagingProcedure ().end ());
+           b (i.getImagingProcedure ().begin ()), n (i.getImagingProcedure ().end ());
            b != n; ++b)
       {
         if (typeid (OrderDetail::ImagingProcedureType) == typeid (*b))
@@ -39459,7 +39459,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (PersonParticipation::RoleConstIterator
-           b (i.Role ().begin ()), n (i.Role ().end ());
+           b (i.getRole ().begin ()), n (i.getRole ().end ());
            b != n; ++b)
       {
         if (typeid (PersonParticipation::RoleType) == typeid (*b))
@@ -39495,7 +39495,7 @@ namespace CDM
 
     // WorkflowDetail
     //
-    if (i.WorkflowDetail ())
+    if (i.getWorkflowDetail ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -39503,7 +39503,7 @@ namespace CDM
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
-      s << *i.WorkflowDetail ();
+      s << *i.getWorkflowDetail ();
     }
   }
 
@@ -39538,9 +39538,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.OperatorDetails ())
+      if (i.getOperatorDetails ())
       {
-        const OperatorContextState::OperatorDetailsType& x (*i.OperatorDetails ());
+        const OperatorContextState::OperatorDetailsType& x (*i.getOperatorDetails ());
         if (typeid (OperatorContextState::OperatorDetailsType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -39630,9 +39630,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const ContainmentTree::ExtensionType& x (*i.Extension ());
+        const ContainmentTree::ExtensionType& x (*i.getExtension ());
         if (typeid (ContainmentTree::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -39658,7 +39658,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (ContainmentTree::EntryConstIterator
-           b (i.Entry ().begin ()), n (i.Entry ().end ());
+           b (i.getEntry ().begin ()), n (i.getEntry ().end ());
            b != n; ++b)
       {
         if (typeid (ContainmentTree::EntryType) == typeid (*b))
@@ -39681,50 +39681,50 @@ namespace CDM
 
     // HandleRef
     //
-    if (i.HandleRef ())
+    if (i.getHandleRef ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "HandleRef",
           e));
 
-      a << *i.HandleRef ();
+      a << *i.getHandleRef ();
     }
 
     // ParentHandleRef
     //
-    if (i.ParentHandleRef ())
+    if (i.getParentHandleRef ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "ParentHandleRef",
           e));
 
-      a << *i.ParentHandleRef ();
+      a << *i.getParentHandleRef ();
     }
 
     // EntryType
     //
-    if (i.EntryType1 ())
+    if (i.getEntryType ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "EntryType",
           e));
 
-      a << *i.EntryType1 ();
+      a << *i.getEntryType ();
     }
 
     // ChildrenCount
     //
-    if (i.ChildrenCount ())
+    if (i.getChildrenCount ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "ChildrenCount",
           e));
 
-      a << *i.ChildrenCount ();
+      a << *i.getChildrenCount ();
     }
   }
 
@@ -39746,9 +39746,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const ContainmentTreeEntry::ExtensionType& x (*i.Extension ());
+        const ContainmentTreeEntry::ExtensionType& x (*i.getExtension ());
         if (typeid (ContainmentTreeEntry::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -39773,9 +39773,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Type ())
+      if (i.getType ())
       {
-        const ContainmentTreeEntry::TypeType& x (*i.Type ());
+        const ContainmentTreeEntry::TypeType& x (*i.getType ());
         if (typeid (ContainmentTreeEntry::TypeType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -39796,50 +39796,50 @@ namespace CDM
 
     // HandleRef
     //
-    if (i.HandleRef ())
+    if (i.getHandleRef ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "HandleRef",
           e));
 
-      a << *i.HandleRef ();
+      a << *i.getHandleRef ();
     }
 
     // ParentHandleRef
     //
-    if (i.ParentHandleRef ())
+    if (i.getParentHandleRef ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "ParentHandleRef",
           e));
 
-      a << *i.ParentHandleRef ();
+      a << *i.getParentHandleRef ();
     }
 
     // EntryType
     //
-    if (i.EntryType ())
+    if (i.getEntryType ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "EntryType",
           e));
 
-      a << *i.EntryType ();
+      a << *i.getEntryType ();
     }
 
     // ChildrenCount
     //
-    if (i.ChildrenCount ())
+    if (i.getChildrenCount ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "ChildrenCount",
           e));
 
-      a << *i.ChildrenCount ();
+      a << *i.getChildrenCount ();
     }
   }
 
@@ -39851,17 +39851,17 @@ namespace CDM
 
 
   void
-  MdibContainer (::std::ostream& o,
-                 const ::CDM::Mdib& s,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
+  serializeMdibContainer (::std::ostream& o,
+                          const ::CDM::Mdib& s,
+                          const ::xml_schema::NamespaceInfomap& m,
+                          const ::std::string& e,
+                          ::xml_schema::Flags f)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::MdibContainer (s, m, f));
+      ::CDM::serializeMdibContainer (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -39873,18 +39873,18 @@ namespace CDM
   }
 
   void
-  MdibContainer (::std::ostream& o,
-                 const ::CDM::Mdib& s,
-                 ::xml_schema::ErrorHandler& h,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
+  serializeMdibContainer (::std::ostream& o,
+                          const ::CDM::Mdib& s,
+                          ::xml_schema::ErrorHandler& h,
+                          const ::xml_schema::NamespaceInfomap& m,
+                          const ::std::string& e,
+                          ::xml_schema::Flags f)
   {
     ::xsd::cxx::xml::auto_initializer i (
       (f & ::xml_schema::Flags::dont_initialize) == 0);
 
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::MdibContainer (s, m, f));
+      ::CDM::serializeMdibContainer (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -39893,15 +39893,15 @@ namespace CDM
   }
 
   void
-  MdibContainer (::std::ostream& o,
-                 const ::CDM::Mdib& s,
-                 ::xercesc::DOMErrorHandler& h,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
+  serializeMdibContainer (::std::ostream& o,
+                          const ::CDM::Mdib& s,
+                          ::xercesc::DOMErrorHandler& h,
+                          const ::xml_schema::NamespaceInfomap& m,
+                          const ::std::string& e,
+                          ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::MdibContainer (s, m, f));
+      ::CDM::serializeMdibContainer (s, m, f));
     ::xsd::cxx::xml::dom::ostream_format_target t (o);
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
@@ -39910,14 +39910,14 @@ namespace CDM
   }
 
   void
-  MdibContainer (::xercesc::XMLFormatTarget& t,
-                 const ::CDM::Mdib& s,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
+  serializeMdibContainer (::xercesc::XMLFormatTarget& t,
+                          const ::CDM::Mdib& s,
+                          const ::xml_schema::NamespaceInfomap& m,
+                          const ::std::string& e,
+                          ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::MdibContainer (s, m, f));
+      ::CDM::serializeMdibContainer (s, m, f));
 
     ::xsd::cxx::tree::error_handler< char > h;
 
@@ -39928,15 +39928,15 @@ namespace CDM
   }
 
   void
-  MdibContainer (::xercesc::XMLFormatTarget& t,
-                 const ::CDM::Mdib& s,
-                 ::xml_schema::ErrorHandler& h,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
+  serializeMdibContainer (::xercesc::XMLFormatTarget& t,
+                          const ::CDM::Mdib& s,
+                          ::xml_schema::ErrorHandler& h,
+                          const ::xml_schema::NamespaceInfomap& m,
+                          const ::std::string& e,
+                          ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::MdibContainer (s, m, f));
+      ::CDM::serializeMdibContainer (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -39944,15 +39944,15 @@ namespace CDM
   }
 
   void
-  MdibContainer (::xercesc::XMLFormatTarget& t,
-                 const ::CDM::Mdib& s,
-                 ::xercesc::DOMErrorHandler& h,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
+  serializeMdibContainer (::xercesc::XMLFormatTarget& t,
+                          const ::CDM::Mdib& s,
+                          ::xercesc::DOMErrorHandler& h,
+                          const ::xml_schema::NamespaceInfomap& m,
+                          const ::std::string& e,
+                          ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::CDM::MdibContainer (s, m, f));
+      ::CDM::serializeMdibContainer (s, m, f));
     if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
     {
       throw ::xsd::cxx::tree::serialization< char > ();
@@ -39960,9 +39960,9 @@ namespace CDM
   }
 
   void
-  MdibContainer (::xercesc::DOMDocument& d,
-                 const ::CDM::Mdib& s,
-                 ::xml_schema::Flags)
+  serializeMdibContainer (::xercesc::DOMDocument& d,
+                          const ::CDM::Mdib& s,
+                          ::xml_schema::Flags)
   {
     ::xercesc::DOMElement& e (*d.getDocumentElement ());
     const ::xsd::cxx::xml::qualified_name< char > n (
@@ -39994,9 +39994,9 @@ namespace CDM
   }
 
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  MdibContainer (const ::CDM::Mdib& s,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 ::xml_schema::Flags f)
+  serializeMdibContainer (const ::CDM::Mdib& s,
+                          const ::xml_schema::NamespaceInfomap& m,
+                          ::xml_schema::Flags f)
   {
     ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
 
@@ -40015,7 +40015,7 @@ namespace CDM
         m, s, f);
     }
 
-    ::CDM::MdibContainer (*d, s, f);
+    ::CDM::serializeMdibContainer (*d, s, f);
     return d;
   }
 
@@ -40030,9 +40030,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const Translation::ExtensionType& x (*i.Extension ());
+        const Translation::ExtensionType& x (*i.getExtension ());
         if (typeid (Translation::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -40059,31 +40059,31 @@ namespace CDM
           "Code",
           e));
 
-      a << i.Code ();
+      a << i.getCode ();
     }
 
     // CodingSystem
     //
-    if (i.CodingSystem ())
+    if (i.getCodingSystem ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "CodingSystem",
           e));
 
-      a << *i.CodingSystem ();
+      a << *i.getCodingSystem ();
     }
 
     // CodingSystemVersion
     //
-    if (i.CodingSystemVersion ())
+    if (i.getCodingSystemVersion ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "CodingSystemVersion",
           e));
 
-      a << *i.CodingSystemVersion ();
+      a << *i.getCodingSystemVersion ();
     }
   }
 
@@ -40136,7 +40136,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const ProductionSpecification::SpecTypeType& x (i.SpecType ());
+      const ProductionSpecification::SpecTypeType& x (i.getSpecType ());
       if (typeid (ProductionSpecification::SpecTypeType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -40160,7 +40160,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const ProductionSpecification::ProductionSpecType& x (i.ProductionSpec ());
+      const ProductionSpecification::ProductionSpecType& x (i.getProductionSpec ());
       if (typeid (ProductionSpecification::ProductionSpecType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -40184,9 +40184,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.ComponentId ())
+      if (i.getComponentId ())
       {
-        const ProductionSpecification::ComponentIdType& x (*i.ComponentId ());
+        const ProductionSpecification::ComponentIdType& x (*i.getComponentId ());
         if (typeid (ProductionSpecification::ComponentIdType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -40218,7 +40218,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (CalibrationDocumentation::DocumentationConstIterator
-           b (i.Documentation ().begin ()), n (i.Documentation ().end ());
+           b (i.getDocumentation ().begin ()), n (i.getDocumentation ().end ());
            b != n; ++b)
       {
         if (typeid (CalibrationDocumentation::DocumentationType) == typeid (*b))
@@ -40242,7 +40242,7 @@ namespace CDM
     // CalibrationResult
     //
     for (CalibrationDocumentation::CalibrationResultConstIterator
-         b (i.CalibrationResult ().begin ()), n (i.CalibrationResult ().end ());
+         b (i.getCalibrationResult ().begin ()), n (i.getCalibrationResult ().end ());
          b != n; ++b)
     {
       ::xercesc::DOMElement& s (
@@ -40266,9 +40266,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const MetaData::ExtensionType& x (*i.Extension ());
+        const MetaData::ExtensionType& x (*i.getExtension ());
         if (typeid (MetaData::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -40290,7 +40290,7 @@ namespace CDM
     // Udi
     //
     for (MetaData::UdiConstIterator
-         b (i.Udi ().begin ()), n (i.Udi ().end ());
+         b (i.getUdi ().begin ()), n (i.getUdi ().end ());
          b != n; ++b)
     {
       ::xercesc::DOMElement& s (
@@ -40308,9 +40308,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.LotNumber ())
+      if (i.getLotNumber ())
       {
-        const MetaData::LotNumberType& x (*i.LotNumber ());
+        const MetaData::LotNumberType& x (*i.getLotNumber ());
         if (typeid (MetaData::LotNumberType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -40336,7 +40336,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (MetaData::ManufacturerConstIterator
-           b (i.Manufacturer ().begin ()), n (i.Manufacturer ().end ());
+           b (i.getManufacturer ().begin ()), n (i.getManufacturer ().end ());
            b != n; ++b)
       {
         if (typeid (MetaData::ManufacturerType) == typeid (*b))
@@ -40363,9 +40363,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.ManufactureDate ())
+      if (i.getManufactureDate ())
       {
-        const MetaData::ManufactureDateType& x (*i.ManufactureDate ());
+        const MetaData::ManufactureDateType& x (*i.getManufactureDate ());
         if (typeid (MetaData::ManufactureDateType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -40390,9 +40390,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.ExpirationDate ())
+      if (i.getExpirationDate ())
       {
-        const MetaData::ExpirationDateType& x (*i.ExpirationDate ());
+        const MetaData::ExpirationDateType& x (*i.getExpirationDate ());
         if (typeid (MetaData::ExpirationDateType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -40418,7 +40418,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (MetaData::ModelNameConstIterator
-           b (i.ModelName ().begin ()), n (i.ModelName ().end ());
+           b (i.getModelName ().begin ()), n (i.getModelName ().end ());
            b != n; ++b)
       {
         if (typeid (MetaData::ModelNameType) == typeid (*b))
@@ -40445,9 +40445,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.ModelNumber ())
+      if (i.getModelNumber ())
       {
-        const MetaData::ModelNumberType& x (*i.ModelNumber ());
+        const MetaData::ModelNumberType& x (*i.getModelNumber ());
         if (typeid (MetaData::ModelNumberType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -40473,7 +40473,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (MetaData::SerialNumberConstIterator
-           b (i.SerialNumber ().begin ()), n (i.SerialNumber ().end ());
+           b (i.getSerialNumber ().begin ()), n (i.getSerialNumber ().end ());
            b != n; ++b)
       {
         if (typeid (MetaData::SerialNumberType) == typeid (*b))
@@ -40544,9 +40544,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const MetricQuality::ExtensionType& x (*i.Extension ());
+        const MetricQuality::ExtensionType& x (*i.getExtension ());
         if (typeid (MetricQuality::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -40573,31 +40573,31 @@ namespace CDM
           "Validity",
           e));
 
-      a << i.Validity ();
+      a << i.getValidity ();
     }
 
     // Mode
     //
-    if (i.Mode ())
+    if (i.getMode ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Mode",
           e));
 
-      a << *i.Mode ();
+      a << *i.getMode ();
     }
 
     // Qi
     //
-    if (i.Qi ())
+    if (i.getQi ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Qi",
           e));
 
-      a << *i.Qi ();
+      a << *i.getQi ();
     }
   }
 
@@ -40612,9 +40612,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const Annotation::ExtensionType& x (*i.Extension ());
+        const Annotation::ExtensionType& x (*i.getExtension ());
         if (typeid (Annotation::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -40639,7 +40639,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const Annotation::TypeType& x (i.Type ());
+      const Annotation::TypeType& x (i.getType ());
       if (typeid (Annotation::TypeType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -40671,7 +40671,7 @@ namespace CDM
           "AnnotationIndex",
           e));
 
-      a << i.AnnotationIndex ();
+      a << i.getAnnotationIndex ();
     }
 
     // SampleIndex
@@ -40682,7 +40682,7 @@ namespace CDM
           "SampleIndex",
           e));
 
-      a << i.SampleIndex ();
+      a << i.getSampleIndex ();
     }
   }
 
@@ -40697,9 +40697,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const Relation::ExtensionType& x (*i.Extension ());
+        const Relation::ExtensionType& x (*i.getExtension ());
         if (typeid (Relation::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -40724,9 +40724,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Code ())
+      if (i.getCode ())
       {
-        const Relation::CodeType& x (*i.Code ());
+        const Relation::CodeType& x (*i.getCode ());
         if (typeid (Relation::CodeType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -40751,9 +40751,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Identification ())
+      if (i.getIdentification ())
       {
-        const Relation::IdentificationType& x (*i.Identification ());
+        const Relation::IdentificationType& x (*i.getIdentification ());
         if (typeid (Relation::IdentificationType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -40780,7 +40780,7 @@ namespace CDM
           "Kind",
           e));
 
-      a << i.Kind ();
+      a << i.getKind ();
     }
 
     // Entries
@@ -40791,7 +40791,7 @@ namespace CDM
           "Entries",
           e));
 
-      a << i.Entries ();
+      a << i.getEntries ();
     }
   }
 
@@ -40806,7 +40806,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const AllowedValue::ValueType& x (i.Value ());
+      const AllowedValue::ValueType& x (i.getValue ());
       if (typeid (AllowedValue::ValueType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -40830,9 +40830,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Type ())
+      if (i.getType ())
       {
-        const AllowedValue::TypeType& x (*i.Type ());
+        const AllowedValue::TypeType& x (*i.getType ());
         if (typeid (AllowedValue::TypeType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -40857,9 +40857,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Identification ())
+      if (i.getIdentification ())
       {
-        const AllowedValue::IdentificationType& x (*i.Identification ());
+        const AllowedValue::IdentificationType& x (*i.getIdentification ());
         if (typeid (AllowedValue::IdentificationType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -40884,9 +40884,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Characteristic ())
+      if (i.getCharacteristic ())
       {
-        const AllowedValue::CharacteristicType& x (*i.Characteristic ());
+        const AllowedValue::CharacteristicType& x (*i.getCharacteristic ());
         if (typeid (AllowedValue::CharacteristicType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -40917,9 +40917,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const OperationGroup::ExtensionType& x (*i.Extension ());
+        const OperationGroup::ExtensionType& x (*i.getExtension ());
         if (typeid (OperationGroup::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -40944,7 +40944,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const OperationGroup::TypeType& x (i.Type ());
+      const OperationGroup::TypeType& x (i.getType ());
       if (typeid (OperationGroup::TypeType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -40964,26 +40964,26 @@ namespace CDM
 
     // OperatingMode
     //
-    if (i.OperatingMode ())
+    if (i.getOperatingMode ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "OperatingMode",
           e));
 
-      a << *i.OperatingMode ();
+      a << *i.getOperatingMode ();
     }
 
     // Operations
     //
-    if (i.Operations ())
+    if (i.getOperations ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Operations",
           e));
 
-      a << *i.Operations ();
+      a << *i.getOperations ();
     }
   }
 
@@ -41018,7 +41018,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (AllowedValues::ValueConstIterator
-           b (i.Value ().begin ()), n (i.Value ().end ());
+           b (i.getValue ().begin ()), n (i.getValue ().end ());
            b != n; ++b)
       {
         if (typeid (AllowedValues::ValueType) == typeid (*b))
@@ -41051,7 +41051,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const Argument::ArgNameType& x (i.ArgName ());
+      const Argument::ArgNameType& x (i.getArgName ());
       if (typeid (Argument::ArgNameType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -41075,7 +41075,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const Argument::ArgType& x (i.Arg ());
+      const Argument::ArgType& x (i.getArg ());
       if (typeid (Argument::ArgType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -41162,7 +41162,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const RelatedMeasurement::ValueType& x (i.Value ());
+      const RelatedMeasurement::ValueType& x (i.getValue ());
       if (typeid (RelatedMeasurement::ValueType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -41183,7 +41183,7 @@ namespace CDM
     // ReferenceRange
     //
     for (RelatedMeasurement::ReferenceRangeConstIterator
-         b (i.ReferenceRange ().begin ()), n (i.ReferenceRange ().end ());
+         b (i.getReferenceRange ().begin ()), n (i.getReferenceRange ().end ());
          b != n; ++b)
     {
       ::xercesc::DOMElement& s (
@@ -41197,14 +41197,14 @@ namespace CDM
 
     // Validity
     //
-    if (i.Validity ())
+    if (i.getValidity ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Validity",
           e));
 
-      a << *i.Validity ();
+      a << *i.getValidity ();
     }
   }
 
@@ -41219,9 +41219,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const WorkflowDetail::ExtensionType& x (*i.Extension ());
+        const WorkflowDetail::ExtensionType& x (*i.getExtension ());
         if (typeid (WorkflowDetail::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -41246,7 +41246,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const WorkflowDetail::PatientType& x (i.Patient ());
+      const WorkflowDetail::PatientType& x (i.getPatient ());
       if (typeid (WorkflowDetail::PatientType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -41270,9 +41270,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.AssignedLocation ())
+      if (i.getAssignedLocation ())
       {
-        const WorkflowDetail::AssignedLocationType& x (*i.AssignedLocation ());
+        const WorkflowDetail::AssignedLocationType& x (*i.getAssignedLocation ());
         if (typeid (WorkflowDetail::AssignedLocationType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -41297,9 +41297,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.VisitNumber ())
+      if (i.getVisitNumber ())
       {
-        const WorkflowDetail::VisitNumberType& x (*i.VisitNumber ());
+        const WorkflowDetail::VisitNumberType& x (*i.getVisitNumber ());
         if (typeid (WorkflowDetail::VisitNumberType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -41325,7 +41325,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (WorkflowDetail::DangerCodeConstIterator
-           b (i.DangerCode ().begin ()), n (i.DangerCode ().end ());
+           b (i.getDangerCode ().begin ()), n (i.getDangerCode ().end ());
            b != n; ++b)
       {
         if (typeid (WorkflowDetail::DangerCodeType) == typeid (*b))
@@ -41353,7 +41353,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (WorkflowDetail::RelevantClinicalInfoConstIterator
-           b (i.RelevantClinicalInfo ().begin ()), n (i.RelevantClinicalInfo ().end ());
+           b (i.getRelevantClinicalInfo ().begin ()), n (i.getRelevantClinicalInfo ().end ());
            b != n; ++b)
       {
         if (typeid (WorkflowDetail::RelevantClinicalInfoType) == typeid (*b))
@@ -41376,7 +41376,7 @@ namespace CDM
 
     // RequestedOrderDetail
     //
-    if (i.RequestedOrderDetail ())
+    if (i.getRequestedOrderDetail ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -41384,12 +41384,12 @@ namespace CDM
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
-      s << *i.RequestedOrderDetail ();
+      s << *i.getRequestedOrderDetail ();
     }
 
     // PerformedOrderDetail
     //
-    if (i.PerformedOrderDetail ())
+    if (i.getPerformedOrderDetail ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -41397,7 +41397,7 @@ namespace CDM
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/participant",
           e));
 
-      s << *i.PerformedOrderDetail ();
+      s << *i.getPerformedOrderDetail ();
     }
   }
 
@@ -41412,7 +41412,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const CalibrationResult::CodeType& x (i.Code ());
+      const CalibrationResult::CodeType& x (i.getCode ());
       if (typeid (CalibrationResult::CodeType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -41436,7 +41436,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const CalibrationResult::ValueType& x (i.Value ());
+      const CalibrationResult::ValueType& x (i.getValue ());
       if (typeid (CalibrationResult::ValueType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -41466,9 +41466,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const Udi::ExtensionType& x (*i.Extension ());
+        const Udi::ExtensionType& x (*i.getExtension ());
         if (typeid (Udi::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -41493,7 +41493,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const Udi::DeviceIdentifierType& x (i.DeviceIdentifier ());
+      const Udi::DeviceIdentifierType& x (i.getDeviceIdentifier ());
       if (typeid (Udi::DeviceIdentifierType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -41517,7 +41517,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const Udi::HumanReadableFormType& x (i.HumanReadableForm ());
+      const Udi::HumanReadableFormType& x (i.getHumanReadableForm ());
       if (typeid (Udi::HumanReadableFormType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -41541,7 +41541,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const Udi::IssuerType& x (i.Issuer ());
+      const Udi::IssuerType& x (i.getIssuer ());
       if (typeid (Udi::IssuerType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -41565,9 +41565,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Jurisdiction ())
+      if (i.getJurisdiction ())
       {
-        const Udi::JurisdictionType& x (*i.Jurisdiction ());
+        const Udi::JurisdictionType& x (*i.getJurisdiction ());
         if (typeid (Udi::JurisdictionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -41617,7 +41617,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const ReferenceRange::RangeType& x (i.Range ());
+      const ReferenceRange::RangeType& x (i.getRange ());
       if (typeid (ReferenceRange::RangeType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -41641,9 +41641,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Meaning ())
+      if (i.getMeaning ())
       {
-        const ReferenceRange::MeaningType& x (*i.Meaning ());
+        const ReferenceRange::MeaningType& x (*i.getMeaning ());
         if (typeid (ReferenceRange::MeaningType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -41674,9 +41674,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.ReferringPhysician ())
+      if (i.getReferringPhysician ())
       {
-        const RequestedOrderDetail::ReferringPhysicianType& x (*i.ReferringPhysician ());
+        const RequestedOrderDetail::ReferringPhysicianType& x (*i.getReferringPhysician ());
         if (typeid (RequestedOrderDetail::ReferringPhysicianType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -41701,9 +41701,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.RequestingPhysician ())
+      if (i.getRequestingPhysician ())
       {
-        const RequestedOrderDetail::RequestingPhysicianType& x (*i.RequestingPhysician ());
+        const RequestedOrderDetail::RequestingPhysicianType& x (*i.getRequestingPhysician ());
         if (typeid (RequestedOrderDetail::RequestingPhysicianType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -41728,7 +41728,7 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const RequestedOrderDetail::PlacerOrderNumberType& x (i.PlacerOrderNumber ());
+      const RequestedOrderDetail::PlacerOrderNumberType& x (i.getPlacerOrderNumber ());
       if (typeid (RequestedOrderDetail::PlacerOrderNumberType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -41758,9 +41758,9 @@ namespace CDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.FillerOrderNumber ())
+      if (i.getFillerOrderNumber ())
       {
-        const PerformedOrderDetail::FillerOrderNumberType& x (*i.FillerOrderNumber ());
+        const PerformedOrderDetail::FillerOrderNumberType& x (*i.getFillerOrderNumber ());
         if (typeid (PerformedOrderDetail::FillerOrderNumberType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -41786,7 +41786,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (PerformedOrderDetail::ResultingClinicalInfoConstIterator
-           b (i.ResultingClinicalInfo ().begin ()), n (i.ResultingClinicalInfo ().end ());
+           b (i.getResultingClinicalInfo ().begin ()), n (i.getResultingClinicalInfo ().end ());
            b != n; ++b)
       {
         if (typeid (PerformedOrderDetail::ResultingClinicalInfoType) == typeid (*b))

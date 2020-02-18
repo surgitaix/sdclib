@@ -31,6 +31,11 @@
 // in the accompanying FLOSSE file.
 //
 
+/**
+ * @file
+ * @brief Generated from wsdl-soap-binding.xsd.
+ */
+
 #ifndef WSDL_SOAP_BINDING_HXX
 #define WSDL_SOAP_BINDING_HXX
 
@@ -67,77 +72,247 @@ namespace WS
 {
   namespace WSDL
   {
+    /**
+     * @brief C++ namespace for the %http://schemas.xmlsoap.org/wsdl/soap12/
+     * schema namespace.
+     */
     namespace SOAP_BINDING
     {
+      /**
+       * @brief Class corresponding to the %bindingType schema type.
+       *
+       * @nosubgrouping
+       */
       class BindingType: public ::xml_schema::Type
       {
         public:
-        // transport
-        //
+        /**
+         * @name transport
+         *
+         * @brief Accessor and modifier functions for the %transport
+         * optional attribute.
+         */
+        //@{
+
+        /**
+         * @brief Attribute type.
+         */
         typedef ::xml_schema::Uri TransportType;
+
+        /**
+         * @brief Attribute optional container type.
+         */
         typedef ::xsd::cxx::tree::optional< TransportType > TransportOptional;
+
+        /**
+         * @brief Attribute traits type.
+         */
         typedef ::xsd::cxx::tree::traits< TransportType, char > TransportTraits;
 
+        /**
+         * @brief Return a read-only (constant) reference to the attribute
+         * container.
+         *
+         * @return A constant reference to the optional container.
+         */
         const TransportOptional&
-        transport () const;
+        getTransport () const;
 
+        /**
+         * @brief Return a read-write reference to the attribute container.
+         *
+         * @return A reference to the optional container.
+         */
         TransportOptional&
-        transport ();
+        getTransport ();
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x A new value to set.
+         *
+         * This function makes a copy of its argument and sets it as
+         * the new value of the attribute.
+         */
         void
-        transport (const TransportType& x);
+        setTransport (const TransportType& x);
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x An optional container with the new value to set.
+         *
+         * If the value is present in @a x then this function makes a copy 
+         * of this value and sets it as the new value of the attribute.
+         * Otherwise the attribute container is set the 'not present' state.
+         */
         void
-        transport (const TransportOptional& x);
+        setTransport (const TransportOptional& x);
 
+        /**
+         * @brief Set the attribute value without copying.
+         *
+         * @param p A new value to use.
+         *
+         * This function will try to use the passed value directly instead
+         * of making a copy.
+         */
         void
-        transport (::std::unique_ptr< TransportType > p);
+        setTransport (::std::unique_ptr< TransportType > p);
 
-        // style
-        //
+        //@}
+
+        /**
+         * @name style
+         *
+         * @brief Accessor and modifier functions for the %style
+         * optional attribute.
+         */
+        //@{
+
+        /**
+         * @brief Attribute type.
+         */
         typedef ::WS::WSDL::SOAP_BINDING::StyleChoice StyleType;
+
+        /**
+         * @brief Attribute optional container type.
+         */
         typedef ::xsd::cxx::tree::optional< StyleType > StyleOptional;
+
+        /**
+         * @brief Attribute traits type.
+         */
         typedef ::xsd::cxx::tree::traits< StyleType, char > StyleTraits;
 
+        /**
+         * @brief Return a read-only (constant) reference to the attribute
+         * container.
+         *
+         * @return A constant reference to the optional container.
+         */
         const StyleOptional&
-        style () const;
+        getStyle () const;
 
+        /**
+         * @brief Return a read-write reference to the attribute container.
+         *
+         * @return A reference to the optional container.
+         */
         StyleOptional&
-        style ();
+        getStyle ();
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x A new value to set.
+         *
+         * This function makes a copy of its argument and sets it as
+         * the new value of the attribute.
+         */
         void
-        style (const StyleType& x);
+        setStyle (const StyleType& x);
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x An optional container with the new value to set.
+         *
+         * If the value is present in @a x then this function makes a copy 
+         * of this value and sets it as the new value of the attribute.
+         * Otherwise the attribute container is set the 'not present' state.
+         */
         void
-        style (const StyleOptional& x);
+        setStyle (const StyleOptional& x);
 
+        /**
+         * @brief Set the attribute value without copying.
+         *
+         * @param p A new value to use.
+         *
+         * This function will try to use the passed value directly instead
+         * of making a copy.
+         */
         void
-        style (::std::unique_ptr< StyleType > p);
+        setStyle (::std::unique_ptr< StyleType > p);
 
-        // Constructors.
-        //
+        //@}
+
+        /**
+         * @name Constructors
+         */
+        //@{
+
+        /**
+         * @brief Create an instance from the ultimate base and
+         * initializers for required elements and attributes.
+         */
         BindingType ();
 
+        /**
+         * @brief Create an instance from a DOM element.
+         *
+         * @param e A DOM element to extract the data from.
+         * @param f Flags to create the new instance with.
+         * @param c A pointer to the object that will contain the new
+         * instance.
+         */
         BindingType (const ::xercesc::DOMElement& e,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+        /**
+         * @brief Copy constructor.
+         *
+         * @param x An instance to make a copy of.
+         * @param f Flags to create the copy with.
+         * @param c A pointer to the object that will contain the copy.
+         *
+         * For polymorphic object models use the @c _clone function instead.
+         */
         BindingType (const BindingType& x,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+        /**
+         * @brief Copy the instance polymorphically.
+         *
+         * @param f Flags to create the copy with.
+         * @param c A pointer to the object that will contain the copy.
+         * @return A pointer to the dynamically allocated copy.
+         *
+         * This function ensures that the dynamic type of the instance is
+         * used for copying and should be used for polymorphic object
+         * models instead of the copy constructor.
+         */
         virtual BindingType*
         _clone (::xml_schema::Flags f = 0,
                 ::xml_schema::Container* c = 0) const;
 
+        /**
+         * @brief Copy assignment operator.
+         *
+         * @param x An instance to make a copy of.
+         * @return A reference to itself.
+         *
+         * For polymorphic object models use the @c _clone function instead.
+         */
         BindingType&
         operator= (const BindingType& x);
 
+        //@}
+
+        /**
+         * @brief Destructor.
+         */
         virtual 
         ~BindingType ();
 
         // Implementation.
         //
+
+        //@cond
+
         protected:
         void
         parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -146,54 +321,143 @@ namespace WS
         protected:
         TransportOptional transport_;
         StyleOptional style_;
+
+        //@endcond
       };
 
+      /**
+       * @brief Enumeration class corresponding to the %styleChoice
+       * schema type.
+       */
       class StyleChoice: public ::xml_schema::String
       {
         public:
+
+        /**
+         * @brief Underlying enum type.
+         */
         enum Value
         {
           rpc,
           document
         };
 
+        /**
+         * @brief Create an instance from the underlying enum value.
+         *
+         * @param v A enum value.
+         */
         StyleChoice (Value v);
 
+        /**
+         * @brief Create an instance from a C string.
+         *
+         * @param v A string value.
+         */
         StyleChoice (const char* v);
 
+        /**
+         * @brief Create an instance from a string.
+         *
+         * @param v A string value.
+         */
         StyleChoice (const ::std::string& v);
 
+        /**
+         * @brief Create an instance from the base value.
+         *
+         * @param v A base value.
+         */
         StyleChoice (const ::xml_schema::String& v);
 
+        /**
+         * @brief Create an instance from a DOM element.
+         *
+         * @param e A DOM element to extract the data from.
+         * @param f Flags to create the new instance with.
+         * @param c A pointer to the object that will contain the new
+         * instance.
+         */
         StyleChoice (const ::xercesc::DOMElement& e,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+        /**
+         * @brief Create an instance from a DOM attribute.
+         *
+         * @param a A DOM attribute to extract the data from.
+         * @param f Flags to create the new instance with.
+         * @param c A pointer to the object that will contain the new
+         * instance.
+         */
         StyleChoice (const ::xercesc::DOMAttr& a,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+        /**
+         * @brief Create an instance from a string fragment.
+         *
+         * @param s A string fragment to extract the data from.
+         * @param e A pointer to DOM element containing the string fragment.
+         * @param f Flags to create the new instance with.
+         * @param c A pointer to the object that will contain the new
+         * instance.
+         */
         StyleChoice (const ::std::string& s,
                      const ::xercesc::DOMElement* e,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+        /**
+         * @brief Copy constructor.
+         *
+         * @param x An instance to make a copy of.
+         * @param f Flags to create the copy with.
+         * @param c A pointer to the object that will contain the copy.
+         *
+         * For polymorphic object models use the @c _clone function instead.
+         */
         StyleChoice (const StyleChoice& x,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+        /**
+         * @brief Copy the instance polymorphically.
+         *
+         * @param f Flags to create the copy with.
+         * @param c A pointer to the object that will contain the copy.
+         * @return A pointer to the dynamically allocated copy.
+         *
+         * This function ensures that the dynamic type of the instance is
+         * used for copying and should be used for polymorphic object
+         * models instead of the copy constructor.
+         */
         virtual StyleChoice*
         _clone (::xml_schema::Flags f = 0,
                 ::xml_schema::Container* c = 0) const;
 
+        /**
+         * @brief Assign the underlying enum value.
+         *
+         * @param v A enum value.
+         * @return A refernce to the instance.
+         */
         StyleChoice&
         operator= (Value v);
 
+        /**
+         * @brief Implicit conversion operator to the underlying
+         * enum value.
+         *
+         * @return A enum value.
+         */
         virtual
         operator Value () const
         {
           return _xsd_StyleChoice_convert ();
         }
+
+        //@cond
 
         protected:
         Value
@@ -202,77 +466,245 @@ namespace WS
         public:
         static const char* const _xsd_StyleChoice_literals_[2];
         static const Value _xsd_StyleChoice_indexes_[2];
+
+        //@endcond
       };
 
+      /**
+       * @brief Class corresponding to the %operationType schema type.
+       *
+       * @nosubgrouping
+       */
       class OperationType: public ::xml_schema::Type
       {
         public:
-        // soapAction
-        //
+        /**
+         * @name soapAction
+         *
+         * @brief Accessor and modifier functions for the %soapAction
+         * optional attribute.
+         */
+        //@{
+
+        /**
+         * @brief Attribute type.
+         */
         typedef ::xml_schema::Uri SoapActionType;
+
+        /**
+         * @brief Attribute optional container type.
+         */
         typedef ::xsd::cxx::tree::optional< SoapActionType > SoapActionOptional;
+
+        /**
+         * @brief Attribute traits type.
+         */
         typedef ::xsd::cxx::tree::traits< SoapActionType, char > SoapActionTraits;
 
+        /**
+         * @brief Return a read-only (constant) reference to the attribute
+         * container.
+         *
+         * @return A constant reference to the optional container.
+         */
         const SoapActionOptional&
-        soapAction () const;
+        getSoapAction () const;
 
+        /**
+         * @brief Return a read-write reference to the attribute container.
+         *
+         * @return A reference to the optional container.
+         */
         SoapActionOptional&
-        soapAction ();
+        getSoapAction ();
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x A new value to set.
+         *
+         * This function makes a copy of its argument and sets it as
+         * the new value of the attribute.
+         */
         void
-        soapAction (const SoapActionType& x);
+        setSoapAction (const SoapActionType& x);
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x An optional container with the new value to set.
+         *
+         * If the value is present in @a x then this function makes a copy 
+         * of this value and sets it as the new value of the attribute.
+         * Otherwise the attribute container is set the 'not present' state.
+         */
         void
-        soapAction (const SoapActionOptional& x);
+        setSoapAction (const SoapActionOptional& x);
 
+        /**
+         * @brief Set the attribute value without copying.
+         *
+         * @param p A new value to use.
+         *
+         * This function will try to use the passed value directly instead
+         * of making a copy.
+         */
         void
-        soapAction (::std::unique_ptr< SoapActionType > p);
+        setSoapAction (::std::unique_ptr< SoapActionType > p);
 
-        // style
-        //
+        //@}
+
+        /**
+         * @name style
+         *
+         * @brief Accessor and modifier functions for the %style
+         * optional attribute.
+         */
+        //@{
+
+        /**
+         * @brief Attribute type.
+         */
         typedef ::WS::WSDL::SOAP_BINDING::StyleChoice StyleType;
+
+        /**
+         * @brief Attribute optional container type.
+         */
         typedef ::xsd::cxx::tree::optional< StyleType > StyleOptional;
+
+        /**
+         * @brief Attribute traits type.
+         */
         typedef ::xsd::cxx::tree::traits< StyleType, char > StyleTraits;
 
+        /**
+         * @brief Return a read-only (constant) reference to the attribute
+         * container.
+         *
+         * @return A constant reference to the optional container.
+         */
         const StyleOptional&
-        style () const;
+        getStyle () const;
 
+        /**
+         * @brief Return a read-write reference to the attribute container.
+         *
+         * @return A reference to the optional container.
+         */
         StyleOptional&
-        style ();
+        getStyle ();
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x A new value to set.
+         *
+         * This function makes a copy of its argument and sets it as
+         * the new value of the attribute.
+         */
         void
-        style (const StyleType& x);
+        setStyle (const StyleType& x);
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x An optional container with the new value to set.
+         *
+         * If the value is present in @a x then this function makes a copy 
+         * of this value and sets it as the new value of the attribute.
+         * Otherwise the attribute container is set the 'not present' state.
+         */
         void
-        style (const StyleOptional& x);
+        setStyle (const StyleOptional& x);
 
+        /**
+         * @brief Set the attribute value without copying.
+         *
+         * @param p A new value to use.
+         *
+         * This function will try to use the passed value directly instead
+         * of making a copy.
+         */
         void
-        style (::std::unique_ptr< StyleType > p);
+        setStyle (::std::unique_ptr< StyleType > p);
 
-        // Constructors.
-        //
+        //@}
+
+        /**
+         * @name Constructors
+         */
+        //@{
+
+        /**
+         * @brief Create an instance from the ultimate base and
+         * initializers for required elements and attributes.
+         */
         OperationType ();
 
+        /**
+         * @brief Create an instance from a DOM element.
+         *
+         * @param e A DOM element to extract the data from.
+         * @param f Flags to create the new instance with.
+         * @param c A pointer to the object that will contain the new
+         * instance.
+         */
         OperationType (const ::xercesc::DOMElement& e,
                        ::xml_schema::Flags f = 0,
                        ::xml_schema::Container* c = 0);
 
+        /**
+         * @brief Copy constructor.
+         *
+         * @param x An instance to make a copy of.
+         * @param f Flags to create the copy with.
+         * @param c A pointer to the object that will contain the copy.
+         *
+         * For polymorphic object models use the @c _clone function instead.
+         */
         OperationType (const OperationType& x,
                        ::xml_schema::Flags f = 0,
                        ::xml_schema::Container* c = 0);
 
+        /**
+         * @brief Copy the instance polymorphically.
+         *
+         * @param f Flags to create the copy with.
+         * @param c A pointer to the object that will contain the copy.
+         * @return A pointer to the dynamically allocated copy.
+         *
+         * This function ensures that the dynamic type of the instance is
+         * used for copying and should be used for polymorphic object
+         * models instead of the copy constructor.
+         */
         virtual OperationType*
         _clone (::xml_schema::Flags f = 0,
                 ::xml_schema::Container* c = 0) const;
 
+        /**
+         * @brief Copy assignment operator.
+         *
+         * @param x An instance to make a copy of.
+         * @return A reference to itself.
+         *
+         * For polymorphic object models use the @c _clone function instead.
+         */
         OperationType&
         operator= (const OperationType& x);
 
+        //@}
+
+        /**
+         * @brief Destructor.
+         */
         virtual 
         ~OperationType ();
 
         // Implementation.
         //
+
+        //@cond
+
         protected:
         void
         parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -281,119 +713,397 @@ namespace WS
         protected:
         SoapActionOptional soapAction_;
         StyleOptional style_;
+
+        //@endcond
       };
 
+      /**
+       * @brief Class corresponding to the %bodyType schema type.
+       *
+       * @nosubgrouping
+       */
       class BodyType: public ::xml_schema::Type
       {
         public:
-        // encodingStyle
-        //
+        /**
+         * @name encodingStyle
+         *
+         * @brief Accessor and modifier functions for the %encodingStyle
+         * optional attribute.
+         */
+        //@{
+
+        /**
+         * @brief Attribute type.
+         */
         typedef ::xml_schema::Uri EncodingStyleType;
+
+        /**
+         * @brief Attribute optional container type.
+         */
         typedef ::xsd::cxx::tree::optional< EncodingStyleType > EncodingStyleOptional;
+
+        /**
+         * @brief Attribute traits type.
+         */
         typedef ::xsd::cxx::tree::traits< EncodingStyleType, char > EncodingStyleTraits;
 
+        /**
+         * @brief Return a read-only (constant) reference to the attribute
+         * container.
+         *
+         * @return A constant reference to the optional container.
+         */
         const EncodingStyleOptional&
-        encodingStyle () const;
+        getEncodingStyle () const;
 
+        /**
+         * @brief Return a read-write reference to the attribute container.
+         *
+         * @return A reference to the optional container.
+         */
         EncodingStyleOptional&
-        encodingStyle ();
+        getEncodingStyle ();
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x A new value to set.
+         *
+         * This function makes a copy of its argument and sets it as
+         * the new value of the attribute.
+         */
         void
-        encodingStyle (const EncodingStyleType& x);
+        setEncodingStyle (const EncodingStyleType& x);
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x An optional container with the new value to set.
+         *
+         * If the value is present in @a x then this function makes a copy 
+         * of this value and sets it as the new value of the attribute.
+         * Otherwise the attribute container is set the 'not present' state.
+         */
         void
-        encodingStyle (const EncodingStyleOptional& x);
+        setEncodingStyle (const EncodingStyleOptional& x);
 
+        /**
+         * @brief Set the attribute value without copying.
+         *
+         * @param p A new value to use.
+         *
+         * This function will try to use the passed value directly instead
+         * of making a copy.
+         */
         void
-        encodingStyle (::std::unique_ptr< EncodingStyleType > p);
+        setEncodingStyle (::std::unique_ptr< EncodingStyleType > p);
 
-        // parts
-        //
+        //@}
+
+        /**
+         * @name parts
+         *
+         * @brief Accessor and modifier functions for the %parts
+         * optional attribute.
+         */
+        //@{
+
+        /**
+         * @brief Attribute type.
+         */
         typedef ::xml_schema::Nmtokens PartsType;
+
+        /**
+         * @brief Attribute optional container type.
+         */
         typedef ::xsd::cxx::tree::optional< PartsType > PartsOptional;
+
+        /**
+         * @brief Attribute traits type.
+         */
         typedef ::xsd::cxx::tree::traits< PartsType, char > PartsTraits;
 
+        /**
+         * @brief Return a read-only (constant) reference to the attribute
+         * container.
+         *
+         * @return A constant reference to the optional container.
+         */
         const PartsOptional&
-        parts () const;
+        getParts () const;
 
+        /**
+         * @brief Return a read-write reference to the attribute container.
+         *
+         * @return A reference to the optional container.
+         */
         PartsOptional&
-        parts ();
+        getParts ();
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x A new value to set.
+         *
+         * This function makes a copy of its argument and sets it as
+         * the new value of the attribute.
+         */
         void
-        parts (const PartsType& x);
+        setParts (const PartsType& x);
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x An optional container with the new value to set.
+         *
+         * If the value is present in @a x then this function makes a copy 
+         * of this value and sets it as the new value of the attribute.
+         * Otherwise the attribute container is set the 'not present' state.
+         */
         void
-        parts (const PartsOptional& x);
+        setParts (const PartsOptional& x);
 
+        /**
+         * @brief Set the attribute value without copying.
+         *
+         * @param p A new value to use.
+         *
+         * This function will try to use the passed value directly instead
+         * of making a copy.
+         */
         void
-        parts (::std::unique_ptr< PartsType > p);
+        setParts (::std::unique_ptr< PartsType > p);
 
-        // use
-        //
+        //@}
+
+        /**
+         * @name use
+         *
+         * @brief Accessor and modifier functions for the %use
+         * optional attribute.
+         */
+        //@{
+
+        /**
+         * @brief Attribute type.
+         */
         typedef ::WS::WSDL::SOAP_BINDING::UseChoice UseType;
+
+        /**
+         * @brief Attribute optional container type.
+         */
         typedef ::xsd::cxx::tree::optional< UseType > UseOptional;
+
+        /**
+         * @brief Attribute traits type.
+         */
         typedef ::xsd::cxx::tree::traits< UseType, char > UseTraits;
 
+        /**
+         * @brief Return a read-only (constant) reference to the attribute
+         * container.
+         *
+         * @return A constant reference to the optional container.
+         */
         const UseOptional&
-        use () const;
+        getUse () const;
 
+        /**
+         * @brief Return a read-write reference to the attribute container.
+         *
+         * @return A reference to the optional container.
+         */
         UseOptional&
-        use ();
+        getUse ();
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x A new value to set.
+         *
+         * This function makes a copy of its argument and sets it as
+         * the new value of the attribute.
+         */
         void
-        use (const UseType& x);
+        setUse (const UseType& x);
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x An optional container with the new value to set.
+         *
+         * If the value is present in @a x then this function makes a copy 
+         * of this value and sets it as the new value of the attribute.
+         * Otherwise the attribute container is set the 'not present' state.
+         */
         void
-        use (const UseOptional& x);
+        setUse (const UseOptional& x);
 
+        /**
+         * @brief Set the attribute value without copying.
+         *
+         * @param p A new value to use.
+         *
+         * This function will try to use the passed value directly instead
+         * of making a copy.
+         */
         void
-        use (::std::unique_ptr< UseType > p);
+        setUse (::std::unique_ptr< UseType > p);
 
-        // namespace
-        //
+        //@}
+
+        /**
+         * @name namespace
+         *
+         * @brief Accessor and modifier functions for the %namespace
+         * optional attribute.
+         */
+        //@{
+
+        /**
+         * @brief Attribute type.
+         */
         typedef ::xml_schema::Uri NamespaceType;
+
+        /**
+         * @brief Attribute optional container type.
+         */
         typedef ::xsd::cxx::tree::optional< NamespaceType > NamespaceOptional;
+
+        /**
+         * @brief Attribute traits type.
+         */
         typedef ::xsd::cxx::tree::traits< NamespaceType, char > NamespaceTraits;
 
+        /**
+         * @brief Return a read-only (constant) reference to the attribute
+         * container.
+         *
+         * @return A constant reference to the optional container.
+         */
         const NamespaceOptional&
-        namespace_ () const;
+        getNamespace () const;
 
+        /**
+         * @brief Return a read-write reference to the attribute container.
+         *
+         * @return A reference to the optional container.
+         */
         NamespaceOptional&
-        namespace_ ();
+        getNamespace ();
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x A new value to set.
+         *
+         * This function makes a copy of its argument and sets it as
+         * the new value of the attribute.
+         */
         void
-        namespace_ (const NamespaceType& x);
+        setNamespace (const NamespaceType& x);
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x An optional container with the new value to set.
+         *
+         * If the value is present in @a x then this function makes a copy 
+         * of this value and sets it as the new value of the attribute.
+         * Otherwise the attribute container is set the 'not present' state.
+         */
         void
-        namespace_ (const NamespaceOptional& x);
+        setNamespace (const NamespaceOptional& x);
 
+        /**
+         * @brief Set the attribute value without copying.
+         *
+         * @param p A new value to use.
+         *
+         * This function will try to use the passed value directly instead
+         * of making a copy.
+         */
         void
-        namespace_ (::std::unique_ptr< NamespaceType > p);
+        setNamespace (::std::unique_ptr< NamespaceType > p);
 
-        // Constructors.
-        //
+        //@}
+
+        /**
+         * @name Constructors
+         */
+        //@{
+
+        /**
+         * @brief Create an instance from the ultimate base and
+         * initializers for required elements and attributes.
+         */
         BodyType ();
 
+        /**
+         * @brief Create an instance from a DOM element.
+         *
+         * @param e A DOM element to extract the data from.
+         * @param f Flags to create the new instance with.
+         * @param c A pointer to the object that will contain the new
+         * instance.
+         */
         BodyType (const ::xercesc::DOMElement& e,
                   ::xml_schema::Flags f = 0,
                   ::xml_schema::Container* c = 0);
 
+        /**
+         * @brief Copy constructor.
+         *
+         * @param x An instance to make a copy of.
+         * @param f Flags to create the copy with.
+         * @param c A pointer to the object that will contain the copy.
+         *
+         * For polymorphic object models use the @c _clone function instead.
+         */
         BodyType (const BodyType& x,
                   ::xml_schema::Flags f = 0,
                   ::xml_schema::Container* c = 0);
 
+        /**
+         * @brief Copy the instance polymorphically.
+         *
+         * @param f Flags to create the copy with.
+         * @param c A pointer to the object that will contain the copy.
+         * @return A pointer to the dynamically allocated copy.
+         *
+         * This function ensures that the dynamic type of the instance is
+         * used for copying and should be used for polymorphic object
+         * models instead of the copy constructor.
+         */
         virtual BodyType*
         _clone (::xml_schema::Flags f = 0,
                 ::xml_schema::Container* c = 0) const;
 
+        /**
+         * @brief Copy assignment operator.
+         *
+         * @param x An instance to make a copy of.
+         * @return A reference to itself.
+         *
+         * For polymorphic object models use the @c _clone function instead.
+         */
         BodyType&
         operator= (const BodyType& x);
 
+        //@}
+
+        /**
+         * @brief Destructor.
+         */
         virtual 
         ~BodyType ();
 
         // Implementation.
         //
+
+        //@cond
+
         protected:
         void
         parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -404,54 +1114,143 @@ namespace WS
         PartsOptional parts_;
         UseOptional use_;
         NamespaceOptional namespace__;
+
+        //@endcond
       };
 
+      /**
+       * @brief Enumeration class corresponding to the %useChoice
+       * schema type.
+       */
       class UseChoice: public ::xml_schema::String
       {
         public:
+
+        /**
+         * @brief Underlying enum type.
+         */
         enum Value
         {
           literal,
           encoded
         };
 
+        /**
+         * @brief Create an instance from the underlying enum value.
+         *
+         * @param v A enum value.
+         */
         UseChoice (Value v);
 
+        /**
+         * @brief Create an instance from a C string.
+         *
+         * @param v A string value.
+         */
         UseChoice (const char* v);
 
+        /**
+         * @brief Create an instance from a string.
+         *
+         * @param v A string value.
+         */
         UseChoice (const ::std::string& v);
 
+        /**
+         * @brief Create an instance from the base value.
+         *
+         * @param v A base value.
+         */
         UseChoice (const ::xml_schema::String& v);
 
+        /**
+         * @brief Create an instance from a DOM element.
+         *
+         * @param e A DOM element to extract the data from.
+         * @param f Flags to create the new instance with.
+         * @param c A pointer to the object that will contain the new
+         * instance.
+         */
         UseChoice (const ::xercesc::DOMElement& e,
                    ::xml_schema::Flags f = 0,
                    ::xml_schema::Container* c = 0);
 
+        /**
+         * @brief Create an instance from a DOM attribute.
+         *
+         * @param a A DOM attribute to extract the data from.
+         * @param f Flags to create the new instance with.
+         * @param c A pointer to the object that will contain the new
+         * instance.
+         */
         UseChoice (const ::xercesc::DOMAttr& a,
                    ::xml_schema::Flags f = 0,
                    ::xml_schema::Container* c = 0);
 
+        /**
+         * @brief Create an instance from a string fragment.
+         *
+         * @param s A string fragment to extract the data from.
+         * @param e A pointer to DOM element containing the string fragment.
+         * @param f Flags to create the new instance with.
+         * @param c A pointer to the object that will contain the new
+         * instance.
+         */
         UseChoice (const ::std::string& s,
                    const ::xercesc::DOMElement* e,
                    ::xml_schema::Flags f = 0,
                    ::xml_schema::Container* c = 0);
 
+        /**
+         * @brief Copy constructor.
+         *
+         * @param x An instance to make a copy of.
+         * @param f Flags to create the copy with.
+         * @param c A pointer to the object that will contain the copy.
+         *
+         * For polymorphic object models use the @c _clone function instead.
+         */
         UseChoice (const UseChoice& x,
                    ::xml_schema::Flags f = 0,
                    ::xml_schema::Container* c = 0);
 
+        /**
+         * @brief Copy the instance polymorphically.
+         *
+         * @param f Flags to create the copy with.
+         * @param c A pointer to the object that will contain the copy.
+         * @return A pointer to the dynamically allocated copy.
+         *
+         * This function ensures that the dynamic type of the instance is
+         * used for copying and should be used for polymorphic object
+         * models instead of the copy constructor.
+         */
         virtual UseChoice*
         _clone (::xml_schema::Flags f = 0,
                 ::xml_schema::Container* c = 0) const;
 
+        /**
+         * @brief Assign the underlying enum value.
+         *
+         * @param v A enum value.
+         * @return A refernce to the instance.
+         */
         UseChoice&
         operator= (Value v);
 
+        /**
+         * @brief Implicit conversion operator to the underlying
+         * enum value.
+         *
+         * @return A enum value.
+         */
         virtual
         operator Value () const
         {
           return _xsd_UseChoice_convert ();
         }
+
+        //@cond
 
         protected:
         Value
@@ -460,176 +1259,561 @@ namespace WS
         public:
         static const char* const _xsd_UseChoice_literals_[2];
         static const Value _xsd_UseChoice_indexes_[2];
+
+        //@endcond
       };
 
+      /**
+       * @brief Class corresponding to the %faultType schema type.
+       *
+       * @nosubgrouping
+       */
       class FaultType: public ::WS::WSDL::SOAP_BINDING::BodyType
       {
         public:
-        // Constructors.
-        //
+        /**
+         * @name Constructors
+         */
+        //@{
+
+        /**
+         * @brief Create an instance from the ultimate base and
+         * initializers for required elements and attributes.
+         */
         FaultType ();
 
+        /**
+         * @brief Create an instance from a DOM element.
+         *
+         * @param e A DOM element to extract the data from.
+         * @param f Flags to create the new instance with.
+         * @param c A pointer to the object that will contain the new
+         * instance.
+         */
         FaultType (const ::xercesc::DOMElement& e,
                    ::xml_schema::Flags f = 0,
                    ::xml_schema::Container* c = 0);
 
+        /**
+         * @brief Copy constructor.
+         *
+         * @param x An instance to make a copy of.
+         * @param f Flags to create the copy with.
+         * @param c A pointer to the object that will contain the copy.
+         *
+         * For polymorphic object models use the @c _clone function instead.
+         */
         FaultType (const FaultType& x,
                    ::xml_schema::Flags f = 0,
                    ::xml_schema::Container* c = 0);
 
+        /**
+         * @brief Copy the instance polymorphically.
+         *
+         * @param f Flags to create the copy with.
+         * @param c A pointer to the object that will contain the copy.
+         * @return A pointer to the dynamically allocated copy.
+         *
+         * This function ensures that the dynamic type of the instance is
+         * used for copying and should be used for polymorphic object
+         * models instead of the copy constructor.
+         */
         virtual FaultType*
         _clone (::xml_schema::Flags f = 0,
                 ::xml_schema::Container* c = 0) const;
 
+        //@}
+
+        /**
+         * @brief Destructor.
+         */
         virtual 
         ~FaultType ();
       };
 
+      /**
+       * @brief Class corresponding to the %headerType schema type.
+       *
+       * @nosubgrouping
+       */
       class HeaderType: public ::xml_schema::Type
       {
         public:
-        // headerfault
-        //
+        /**
+         * @name headerfault
+         *
+         * @brief Accessor and modifier functions for the %headerfault
+         * required element.
+         */
+        //@{
+
+        /**
+         * @brief Element type.
+         */
         typedef ::WS::WSDL::SOAP_BINDING::HeaderfaultType HeaderfaultType;
+
+        /**
+         * @brief Element traits type.
+         */
         typedef ::xsd::cxx::tree::traits< HeaderfaultType, char > HeaderfaultTraits;
 
+        /**
+         * @brief Return a read-only (constant) reference to the element.
+         *
+         * @return A constant reference to the element.
+         */
         const HeaderfaultType&
-        headerfault () const;
+        getHeaderfault () const;
 
+        /**
+         * @brief Return a read-write reference to the element.
+         *
+         * @return A reference to the element.
+         */
         HeaderfaultType&
-        headerfault ();
+        getHeaderfault ();
 
+        /**
+         * @brief Set the element value.
+         *
+         * @param x A new value to set.
+         *
+         * This function makes a copy of its argument and sets it as
+         * the new value of the element.
+         */
         void
-        headerfault (const HeaderfaultType& x);
+        setHeaderfault (const HeaderfaultType& x);
 
+        /**
+         * @brief Set the element value without copying.
+         *
+         * @param p A new value to use.
+         *
+         * This function will try to use the passed value directly
+         * instead of making a copy.
+         */
         void
-        headerfault (::std::unique_ptr< HeaderfaultType > p);
+        setHeaderfault (::std::unique_ptr< HeaderfaultType > p);
 
-        // message
-        //
+        //@}
+
+        /**
+         * @name message
+         *
+         * @brief Accessor and modifier functions for the %message
+         * required attribute.
+         */
+        //@{
+
+        /**
+         * @brief Attribute type.
+         */
         typedef ::xml_schema::Qname MessageType;
+
+        /**
+         * @brief Attribute traits type.
+         */
         typedef ::xsd::cxx::tree::traits< MessageType, char > MessageTraits;
 
+        /**
+         * @brief Return a read-only (constant) reference to the attribute.
+         *
+         * @return A constant reference to the attribute.
+         */
         const MessageType&
-        message () const;
+        getMessage () const;
 
+        /**
+         * @brief Return a read-write reference to the attribute.
+         *
+         * @return A reference to the attribute.
+         */
         MessageType&
-        message ();
+        getMessage ();
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x A new value to set.
+         *
+         * This function makes a copy of its argument and sets it as
+         * the new value of the attribute.
+         */
         void
-        message (const MessageType& x);
+        setMessage (const MessageType& x);
 
+        /**
+         * @brief Set the attribute value without copying.
+         *
+         * @param p A new value to use.
+         *
+         * This function will try to use the passed value directly
+         * instead of making a copy.
+         */
         void
-        message (::std::unique_ptr< MessageType > p);
+        setMessage (::std::unique_ptr< MessageType > p);
 
-        // parts
-        //
+        //@}
+
+        /**
+         * @name parts
+         *
+         * @brief Accessor and modifier functions for the %parts
+         * required attribute.
+         */
+        //@{
+
+        /**
+         * @brief Attribute type.
+         */
         typedef ::xml_schema::Nmtokens PartsType;
+
+        /**
+         * @brief Attribute traits type.
+         */
         typedef ::xsd::cxx::tree::traits< PartsType, char > PartsTraits;
 
+        /**
+         * @brief Return a read-only (constant) reference to the attribute.
+         *
+         * @return A constant reference to the attribute.
+         */
         const PartsType&
-        parts () const;
+        getParts () const;
 
+        /**
+         * @brief Return a read-write reference to the attribute.
+         *
+         * @return A reference to the attribute.
+         */
         PartsType&
-        parts ();
+        getParts ();
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x A new value to set.
+         *
+         * This function makes a copy of its argument and sets it as
+         * the new value of the attribute.
+         */
         void
-        parts (const PartsType& x);
+        setParts (const PartsType& x);
 
+        /**
+         * @brief Set the attribute value without copying.
+         *
+         * @param p A new value to use.
+         *
+         * This function will try to use the passed value directly
+         * instead of making a copy.
+         */
         void
-        parts (::std::unique_ptr< PartsType > p);
+        setParts (::std::unique_ptr< PartsType > p);
 
-        // use
-        //
+        //@}
+
+        /**
+         * @name use
+         *
+         * @brief Accessor and modifier functions for the %use
+         * required attribute.
+         */
+        //@{
+
+        /**
+         * @brief Attribute type.
+         */
         typedef ::WS::WSDL::SOAP_BINDING::UseChoice UseType;
+
+        /**
+         * @brief Attribute traits type.
+         */
         typedef ::xsd::cxx::tree::traits< UseType, char > UseTraits;
 
+        /**
+         * @brief Return a read-only (constant) reference to the attribute.
+         *
+         * @return A constant reference to the attribute.
+         */
         const UseType&
-        use () const;
+        getUse () const;
 
+        /**
+         * @brief Return a read-write reference to the attribute.
+         *
+         * @return A reference to the attribute.
+         */
         UseType&
-        use ();
+        getUse ();
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x A new value to set.
+         *
+         * This function makes a copy of its argument and sets it as
+         * the new value of the attribute.
+         */
         void
-        use (const UseType& x);
+        setUse (const UseType& x);
 
+        /**
+         * @brief Set the attribute value without copying.
+         *
+         * @param p A new value to use.
+         *
+         * This function will try to use the passed value directly
+         * instead of making a copy.
+         */
         void
-        use (::std::unique_ptr< UseType > p);
+        setUse (::std::unique_ptr< UseType > p);
 
-        // encodingStyle
-        //
+        //@}
+
+        /**
+         * @name encodingStyle
+         *
+         * @brief Accessor and modifier functions for the %encodingStyle
+         * optional attribute.
+         */
+        //@{
+
+        /**
+         * @brief Attribute type.
+         */
         typedef ::xml_schema::Uri EncodingStyleType;
+
+        /**
+         * @brief Attribute optional container type.
+         */
         typedef ::xsd::cxx::tree::optional< EncodingStyleType > EncodingStyleOptional;
+
+        /**
+         * @brief Attribute traits type.
+         */
         typedef ::xsd::cxx::tree::traits< EncodingStyleType, char > EncodingStyleTraits;
 
+        /**
+         * @brief Return a read-only (constant) reference to the attribute
+         * container.
+         *
+         * @return A constant reference to the optional container.
+         */
         const EncodingStyleOptional&
-        encodingStyle () const;
+        getEncodingStyle () const;
 
+        /**
+         * @brief Return a read-write reference to the attribute container.
+         *
+         * @return A reference to the optional container.
+         */
         EncodingStyleOptional&
-        encodingStyle ();
+        getEncodingStyle ();
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x A new value to set.
+         *
+         * This function makes a copy of its argument and sets it as
+         * the new value of the attribute.
+         */
         void
-        encodingStyle (const EncodingStyleType& x);
+        setEncodingStyle (const EncodingStyleType& x);
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x An optional container with the new value to set.
+         *
+         * If the value is present in @a x then this function makes a copy 
+         * of this value and sets it as the new value of the attribute.
+         * Otherwise the attribute container is set the 'not present' state.
+         */
         void
-        encodingStyle (const EncodingStyleOptional& x);
+        setEncodingStyle (const EncodingStyleOptional& x);
 
+        /**
+         * @brief Set the attribute value without copying.
+         *
+         * @param p A new value to use.
+         *
+         * This function will try to use the passed value directly instead
+         * of making a copy.
+         */
         void
-        encodingStyle (::std::unique_ptr< EncodingStyleType > p);
+        setEncodingStyle (::std::unique_ptr< EncodingStyleType > p);
 
-        // namespace
-        //
+        //@}
+
+        /**
+         * @name namespace
+         *
+         * @brief Accessor and modifier functions for the %namespace
+         * optional attribute.
+         */
+        //@{
+
+        /**
+         * @brief Attribute type.
+         */
         typedef ::xml_schema::Uri NamespaceType;
+
+        /**
+         * @brief Attribute optional container type.
+         */
         typedef ::xsd::cxx::tree::optional< NamespaceType > NamespaceOptional;
+
+        /**
+         * @brief Attribute traits type.
+         */
         typedef ::xsd::cxx::tree::traits< NamespaceType, char > NamespaceTraits;
 
+        /**
+         * @brief Return a read-only (constant) reference to the attribute
+         * container.
+         *
+         * @return A constant reference to the optional container.
+         */
         const NamespaceOptional&
-        namespace_ () const;
+        getNamespace () const;
 
+        /**
+         * @brief Return a read-write reference to the attribute container.
+         *
+         * @return A reference to the optional container.
+         */
         NamespaceOptional&
-        namespace_ ();
+        getNamespace ();
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x A new value to set.
+         *
+         * This function makes a copy of its argument and sets it as
+         * the new value of the attribute.
+         */
         void
-        namespace_ (const NamespaceType& x);
+        setNamespace (const NamespaceType& x);
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x An optional container with the new value to set.
+         *
+         * If the value is present in @a x then this function makes a copy 
+         * of this value and sets it as the new value of the attribute.
+         * Otherwise the attribute container is set the 'not present' state.
+         */
         void
-        namespace_ (const NamespaceOptional& x);
+        setNamespace (const NamespaceOptional& x);
 
+        /**
+         * @brief Set the attribute value without copying.
+         *
+         * @param p A new value to use.
+         *
+         * This function will try to use the passed value directly instead
+         * of making a copy.
+         */
         void
-        namespace_ (::std::unique_ptr< NamespaceType > p);
+        setNamespace (::std::unique_ptr< NamespaceType > p);
 
-        // Constructors.
-        //
+        //@}
+
+        /**
+         * @name Constructors
+         */
+        //@{
+
+        /**
+         * @brief Create an instance from the ultimate base and
+         * initializers for required elements and attributes.
+         */
         HeaderType (const HeaderfaultType&,
                     const MessageType&,
                     const PartsType&,
                     const UseType&);
 
+        /**
+         * @brief Create an instance from the ultimate base and
+         * initializers for required elements and attributes
+         * (::std::unique_ptr version).
+         *
+         * This constructor will try to use the passed values directly
+         * instead of making copies.
+         */
         HeaderType (::std::unique_ptr< HeaderfaultType >,
                     const MessageType&,
                     const PartsType&,
                     const UseType&);
 
+        /**
+         * @brief Create an instance from a DOM element.
+         *
+         * @param e A DOM element to extract the data from.
+         * @param f Flags to create the new instance with.
+         * @param c A pointer to the object that will contain the new
+         * instance.
+         */
         HeaderType (const ::xercesc::DOMElement& e,
                     ::xml_schema::Flags f = 0,
                     ::xml_schema::Container* c = 0);
 
+        /**
+         * @brief Copy constructor.
+         *
+         * @param x An instance to make a copy of.
+         * @param f Flags to create the copy with.
+         * @param c A pointer to the object that will contain the copy.
+         *
+         * For polymorphic object models use the @c _clone function instead.
+         */
         HeaderType (const HeaderType& x,
                     ::xml_schema::Flags f = 0,
                     ::xml_schema::Container* c = 0);
 
+        /**
+         * @brief Copy the instance polymorphically.
+         *
+         * @param f Flags to create the copy with.
+         * @param c A pointer to the object that will contain the copy.
+         * @return A pointer to the dynamically allocated copy.
+         *
+         * This function ensures that the dynamic type of the instance is
+         * used for copying and should be used for polymorphic object
+         * models instead of the copy constructor.
+         */
         virtual HeaderType*
         _clone (::xml_schema::Flags f = 0,
                 ::xml_schema::Container* c = 0) const;
 
+        /**
+         * @brief Copy assignment operator.
+         *
+         * @param x An instance to make a copy of.
+         * @return A reference to itself.
+         *
+         * For polymorphic object models use the @c _clone function instead.
+         */
         HeaderType&
         operator= (const HeaderType& x);
 
+        //@}
+
+        /**
+         * @brief Destructor.
+         */
         virtual 
         ~HeaderType ();
 
         // Implementation.
         //
+
+        //@cond
+
         protected:
         void
         parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -642,130 +1826,421 @@ namespace WS
         ::xsd::cxx::tree::one< UseType > use_;
         EncodingStyleOptional encodingStyle_;
         NamespaceOptional namespace__;
+
+        //@endcond
       };
 
+      /**
+       * @brief Class corresponding to the %headerfaultType schema type.
+       *
+       * @nosubgrouping
+       */
       class HeaderfaultType: public ::xml_schema::Type
       {
         public:
-        // message
-        //
+        /**
+         * @name message
+         *
+         * @brief Accessor and modifier functions for the %message
+         * required attribute.
+         */
+        //@{
+
+        /**
+         * @brief Attribute type.
+         */
         typedef ::xml_schema::Qname MessageType;
+
+        /**
+         * @brief Attribute traits type.
+         */
         typedef ::xsd::cxx::tree::traits< MessageType, char > MessageTraits;
 
+        /**
+         * @brief Return a read-only (constant) reference to the attribute.
+         *
+         * @return A constant reference to the attribute.
+         */
         const MessageType&
-        message () const;
+        getMessage () const;
 
+        /**
+         * @brief Return a read-write reference to the attribute.
+         *
+         * @return A reference to the attribute.
+         */
         MessageType&
-        message ();
+        getMessage ();
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x A new value to set.
+         *
+         * This function makes a copy of its argument and sets it as
+         * the new value of the attribute.
+         */
         void
-        message (const MessageType& x);
+        setMessage (const MessageType& x);
 
+        /**
+         * @brief Set the attribute value without copying.
+         *
+         * @param p A new value to use.
+         *
+         * This function will try to use the passed value directly
+         * instead of making a copy.
+         */
         void
-        message (::std::unique_ptr< MessageType > p);
+        setMessage (::std::unique_ptr< MessageType > p);
 
-        // parts
-        //
+        //@}
+
+        /**
+         * @name parts
+         *
+         * @brief Accessor and modifier functions for the %parts
+         * required attribute.
+         */
+        //@{
+
+        /**
+         * @brief Attribute type.
+         */
         typedef ::xml_schema::Nmtokens PartsType;
+
+        /**
+         * @brief Attribute traits type.
+         */
         typedef ::xsd::cxx::tree::traits< PartsType, char > PartsTraits;
 
+        /**
+         * @brief Return a read-only (constant) reference to the attribute.
+         *
+         * @return A constant reference to the attribute.
+         */
         const PartsType&
-        parts () const;
+        getParts () const;
 
+        /**
+         * @brief Return a read-write reference to the attribute.
+         *
+         * @return A reference to the attribute.
+         */
         PartsType&
-        parts ();
+        getParts ();
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x A new value to set.
+         *
+         * This function makes a copy of its argument and sets it as
+         * the new value of the attribute.
+         */
         void
-        parts (const PartsType& x);
+        setParts (const PartsType& x);
 
+        /**
+         * @brief Set the attribute value without copying.
+         *
+         * @param p A new value to use.
+         *
+         * This function will try to use the passed value directly
+         * instead of making a copy.
+         */
         void
-        parts (::std::unique_ptr< PartsType > p);
+        setParts (::std::unique_ptr< PartsType > p);
 
-        // use
-        //
+        //@}
+
+        /**
+         * @name use
+         *
+         * @brief Accessor and modifier functions for the %use
+         * required attribute.
+         */
+        //@{
+
+        /**
+         * @brief Attribute type.
+         */
         typedef ::WS::WSDL::SOAP_BINDING::UseChoice UseType;
+
+        /**
+         * @brief Attribute traits type.
+         */
         typedef ::xsd::cxx::tree::traits< UseType, char > UseTraits;
 
+        /**
+         * @brief Return a read-only (constant) reference to the attribute.
+         *
+         * @return A constant reference to the attribute.
+         */
         const UseType&
-        use () const;
+        getUse () const;
 
+        /**
+         * @brief Return a read-write reference to the attribute.
+         *
+         * @return A reference to the attribute.
+         */
         UseType&
-        use ();
+        getUse ();
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x A new value to set.
+         *
+         * This function makes a copy of its argument and sets it as
+         * the new value of the attribute.
+         */
         void
-        use (const UseType& x);
+        setUse (const UseType& x);
 
+        /**
+         * @brief Set the attribute value without copying.
+         *
+         * @param p A new value to use.
+         *
+         * This function will try to use the passed value directly
+         * instead of making a copy.
+         */
         void
-        use (::std::unique_ptr< UseType > p);
+        setUse (::std::unique_ptr< UseType > p);
 
-        // encodingStyle
-        //
+        //@}
+
+        /**
+         * @name encodingStyle
+         *
+         * @brief Accessor and modifier functions for the %encodingStyle
+         * optional attribute.
+         */
+        //@{
+
+        /**
+         * @brief Attribute type.
+         */
         typedef ::xml_schema::Uri EncodingStyleType;
+
+        /**
+         * @brief Attribute optional container type.
+         */
         typedef ::xsd::cxx::tree::optional< EncodingStyleType > EncodingStyleOptional;
+
+        /**
+         * @brief Attribute traits type.
+         */
         typedef ::xsd::cxx::tree::traits< EncodingStyleType, char > EncodingStyleTraits;
 
+        /**
+         * @brief Return a read-only (constant) reference to the attribute
+         * container.
+         *
+         * @return A constant reference to the optional container.
+         */
         const EncodingStyleOptional&
-        encodingStyle () const;
+        getEncodingStyle () const;
 
+        /**
+         * @brief Return a read-write reference to the attribute container.
+         *
+         * @return A reference to the optional container.
+         */
         EncodingStyleOptional&
-        encodingStyle ();
+        getEncodingStyle ();
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x A new value to set.
+         *
+         * This function makes a copy of its argument and sets it as
+         * the new value of the attribute.
+         */
         void
-        encodingStyle (const EncodingStyleType& x);
+        setEncodingStyle (const EncodingStyleType& x);
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x An optional container with the new value to set.
+         *
+         * If the value is present in @a x then this function makes a copy 
+         * of this value and sets it as the new value of the attribute.
+         * Otherwise the attribute container is set the 'not present' state.
+         */
         void
-        encodingStyle (const EncodingStyleOptional& x);
+        setEncodingStyle (const EncodingStyleOptional& x);
 
+        /**
+         * @brief Set the attribute value without copying.
+         *
+         * @param p A new value to use.
+         *
+         * This function will try to use the passed value directly instead
+         * of making a copy.
+         */
         void
-        encodingStyle (::std::unique_ptr< EncodingStyleType > p);
+        setEncodingStyle (::std::unique_ptr< EncodingStyleType > p);
 
-        // namespace
-        //
+        //@}
+
+        /**
+         * @name namespace
+         *
+         * @brief Accessor and modifier functions for the %namespace
+         * optional attribute.
+         */
+        //@{
+
+        /**
+         * @brief Attribute type.
+         */
         typedef ::xml_schema::Uri NamespaceType;
+
+        /**
+         * @brief Attribute optional container type.
+         */
         typedef ::xsd::cxx::tree::optional< NamespaceType > NamespaceOptional;
+
+        /**
+         * @brief Attribute traits type.
+         */
         typedef ::xsd::cxx::tree::traits< NamespaceType, char > NamespaceTraits;
 
+        /**
+         * @brief Return a read-only (constant) reference to the attribute
+         * container.
+         *
+         * @return A constant reference to the optional container.
+         */
         const NamespaceOptional&
-        namespace_ () const;
+        getNamespace () const;
 
+        /**
+         * @brief Return a read-write reference to the attribute container.
+         *
+         * @return A reference to the optional container.
+         */
         NamespaceOptional&
-        namespace_ ();
+        getNamespace ();
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x A new value to set.
+         *
+         * This function makes a copy of its argument and sets it as
+         * the new value of the attribute.
+         */
         void
-        namespace_ (const NamespaceType& x);
+        setNamespace (const NamespaceType& x);
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x An optional container with the new value to set.
+         *
+         * If the value is present in @a x then this function makes a copy 
+         * of this value and sets it as the new value of the attribute.
+         * Otherwise the attribute container is set the 'not present' state.
+         */
         void
-        namespace_ (const NamespaceOptional& x);
+        setNamespace (const NamespaceOptional& x);
 
+        /**
+         * @brief Set the attribute value without copying.
+         *
+         * @param p A new value to use.
+         *
+         * This function will try to use the passed value directly instead
+         * of making a copy.
+         */
         void
-        namespace_ (::std::unique_ptr< NamespaceType > p);
+        setNamespace (::std::unique_ptr< NamespaceType > p);
 
-        // Constructors.
-        //
+        //@}
+
+        /**
+         * @name Constructors
+         */
+        //@{
+
+        /**
+         * @brief Create an instance from the ultimate base and
+         * initializers for required elements and attributes.
+         */
         HeaderfaultType (const MessageType&,
                          const PartsType&,
                          const UseType&);
 
+        /**
+         * @brief Create an instance from a DOM element.
+         *
+         * @param e A DOM element to extract the data from.
+         * @param f Flags to create the new instance with.
+         * @param c A pointer to the object that will contain the new
+         * instance.
+         */
         HeaderfaultType (const ::xercesc::DOMElement& e,
                          ::xml_schema::Flags f = 0,
                          ::xml_schema::Container* c = 0);
 
+        /**
+         * @brief Copy constructor.
+         *
+         * @param x An instance to make a copy of.
+         * @param f Flags to create the copy with.
+         * @param c A pointer to the object that will contain the copy.
+         *
+         * For polymorphic object models use the @c _clone function instead.
+         */
         HeaderfaultType (const HeaderfaultType& x,
                          ::xml_schema::Flags f = 0,
                          ::xml_schema::Container* c = 0);
 
+        /**
+         * @brief Copy the instance polymorphically.
+         *
+         * @param f Flags to create the copy with.
+         * @param c A pointer to the object that will contain the copy.
+         * @return A pointer to the dynamically allocated copy.
+         *
+         * This function ensures that the dynamic type of the instance is
+         * used for copying and should be used for polymorphic object
+         * models instead of the copy constructor.
+         */
         virtual HeaderfaultType*
         _clone (::xml_schema::Flags f = 0,
                 ::xml_schema::Container* c = 0) const;
 
+        /**
+         * @brief Copy assignment operator.
+         *
+         * @param x An instance to make a copy of.
+         * @return A reference to itself.
+         *
+         * For polymorphic object models use the @c _clone function instead.
+         */
         HeaderfaultType&
         operator= (const HeaderfaultType& x);
 
+        //@}
+
+        /**
+         * @brief Destructor.
+         */
         virtual 
         ~HeaderfaultType ();
 
         // Implementation.
         //
+
+        //@cond
+
         protected:
         void
         parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -777,52 +2252,151 @@ namespace WS
         ::xsd::cxx::tree::one< UseType > use_;
         EncodingStyleOptional encodingStyle_;
         NamespaceOptional namespace__;
+
+        //@endcond
       };
 
+      /**
+       * @brief Class corresponding to the %addressType schema type.
+       *
+       * @nosubgrouping
+       */
       class AddressType: public ::xml_schema::Type
       {
         public:
-        // location
-        //
+        /**
+         * @name location
+         *
+         * @brief Accessor and modifier functions for the %location
+         * required attribute.
+         */
+        //@{
+
+        /**
+         * @brief Attribute type.
+         */
         typedef ::xml_schema::Uri LocationType;
+
+        /**
+         * @brief Attribute traits type.
+         */
         typedef ::xsd::cxx::tree::traits< LocationType, char > LocationTraits;
 
+        /**
+         * @brief Return a read-only (constant) reference to the attribute.
+         *
+         * @return A constant reference to the attribute.
+         */
         const LocationType&
-        location () const;
+        getLocation () const;
 
+        /**
+         * @brief Return a read-write reference to the attribute.
+         *
+         * @return A reference to the attribute.
+         */
         LocationType&
-        location ();
+        getLocation ();
 
+        /**
+         * @brief Set the attribute value.
+         *
+         * @param x A new value to set.
+         *
+         * This function makes a copy of its argument and sets it as
+         * the new value of the attribute.
+         */
         void
-        location (const LocationType& x);
+        setLocation (const LocationType& x);
 
+        /**
+         * @brief Set the attribute value without copying.
+         *
+         * @param p A new value to use.
+         *
+         * This function will try to use the passed value directly
+         * instead of making a copy.
+         */
         void
-        location (::std::unique_ptr< LocationType > p);
+        setLocation (::std::unique_ptr< LocationType > p);
 
-        // Constructors.
-        //
+        //@}
+
+        /**
+         * @name Constructors
+         */
+        //@{
+
+        /**
+         * @brief Create an instance from the ultimate base and
+         * initializers for required elements and attributes.
+         */
         AddressType (const LocationType&);
 
+        /**
+         * @brief Create an instance from a DOM element.
+         *
+         * @param e A DOM element to extract the data from.
+         * @param f Flags to create the new instance with.
+         * @param c A pointer to the object that will contain the new
+         * instance.
+         */
         AddressType (const ::xercesc::DOMElement& e,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+        /**
+         * @brief Copy constructor.
+         *
+         * @param x An instance to make a copy of.
+         * @param f Flags to create the copy with.
+         * @param c A pointer to the object that will contain the copy.
+         *
+         * For polymorphic object models use the @c _clone function instead.
+         */
         AddressType (const AddressType& x,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+        /**
+         * @brief Copy the instance polymorphically.
+         *
+         * @param f Flags to create the copy with.
+         * @param c A pointer to the object that will contain the copy.
+         * @return A pointer to the dynamically allocated copy.
+         *
+         * This function ensures that the dynamic type of the instance is
+         * used for copying and should be used for polymorphic object
+         * models instead of the copy constructor.
+         */
         virtual AddressType*
         _clone (::xml_schema::Flags f = 0,
                 ::xml_schema::Container* c = 0) const;
 
+        /**
+         * @brief Copy assignment operator.
+         *
+         * @param x An instance to make a copy of.
+         * @return A reference to itself.
+         *
+         * For polymorphic object models use the @c _clone function instead.
+         */
         AddressType&
         operator= (const AddressType& x);
 
+        //@}
+
+        /**
+         * @brief Destructor.
+         */
         virtual 
         ~AddressType ();
 
         // Implementation.
         //
+
+        //@cond
+
         protected:
         void
         parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -830,6 +2404,8 @@ namespace WS
 
         protected:
         ::xsd::cxx::tree::one< LocationType > location_;
+
+        //@endcond
       };
     }
   }
@@ -847,656 +2423,6 @@ namespace WS
   {
     namespace SOAP_BINDING
     {
-      // Parse a URI or a local file.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (const ::std::string& uri,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (const ::std::string& uri,
-               ::xml_schema::ErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (const ::std::string& uri,
-               ::xercesc::DOMErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse std::istream.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (::std::istream& is,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (::std::istream& is,
-               ::xml_schema::ErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (::std::istream& is,
-               ::xercesc::DOMErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (::std::istream& is,
-               const ::std::string& id,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (::std::istream& is,
-               const ::std::string& id,
-               ::xml_schema::ErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (::std::istream& is,
-               const ::std::string& id,
-               ::xercesc::DOMErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse xercesc::InputSource.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (::xercesc::InputSource& is,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (::xercesc::InputSource& is,
-               ::xml_schema::ErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (::xercesc::InputSource& is,
-               ::xercesc::DOMErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse xercesc::DOMDocument.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (const ::xercesc::DOMDocument& d,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse a URI or a local file.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (const ::std::string& uri,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (const ::std::string& uri,
-                 ::xml_schema::ErrorHandler& eh,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (const ::std::string& uri,
-                 ::xercesc::DOMErrorHandler& eh,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse std::istream.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (::std::istream& is,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (::std::istream& is,
-                 ::xml_schema::ErrorHandler& eh,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (::std::istream& is,
-                 ::xercesc::DOMErrorHandler& eh,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (::std::istream& is,
-                 const ::std::string& id,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (::std::istream& is,
-                 const ::std::string& id,
-                 ::xml_schema::ErrorHandler& eh,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (::std::istream& is,
-                 const ::std::string& id,
-                 ::xercesc::DOMErrorHandler& eh,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse xercesc::InputSource.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (::xercesc::InputSource& is,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (::xercesc::InputSource& is,
-                 ::xml_schema::ErrorHandler& eh,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (::xercesc::InputSource& is,
-                 ::xercesc::DOMErrorHandler& eh,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse xercesc::DOMDocument.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (const ::xercesc::DOMDocument& d,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                 ::xml_schema::Flags f = 0,
-                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse a URI or a local file.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (const ::std::string& uri,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (const ::std::string& uri,
-            ::xml_schema::ErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (const ::std::string& uri,
-            ::xercesc::DOMErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse std::istream.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (::std::istream& is,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (::std::istream& is,
-            ::xml_schema::ErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (::std::istream& is,
-            ::xercesc::DOMErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (::std::istream& is,
-            const ::std::string& id,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (::std::istream& is,
-            const ::std::string& id,
-            ::xml_schema::ErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (::std::istream& is,
-            const ::std::string& id,
-            ::xercesc::DOMErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse xercesc::InputSource.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (::xercesc::InputSource& is,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (::xercesc::InputSource& is,
-            ::xml_schema::ErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (::xercesc::InputSource& is,
-            ::xercesc::DOMErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse xercesc::DOMDocument.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (const ::xercesc::DOMDocument& d,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse a URI or a local file.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (const ::std::string& uri,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (const ::std::string& uri,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (const ::std::string& uri,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse std::istream.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (::std::istream& is,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (::std::istream& is,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (::std::istream& is,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (::std::istream& is,
-             const ::std::string& id,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (::std::istream& is,
-             const ::std::string& id,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (::std::istream& is,
-             const ::std::string& id,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse xercesc::InputSource.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (::xercesc::InputSource& is,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (::xercesc::InputSource& is,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (::xercesc::InputSource& is,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse xercesc::DOMDocument.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (const ::xercesc::DOMDocument& d,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse a URI or a local file.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (const ::std::string& uri,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (const ::std::string& uri,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (const ::std::string& uri,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse std::istream.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (::std::istream& is,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (::std::istream& is,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (::std::istream& is,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (::std::istream& is,
-              const ::std::string& id,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (::std::istream& is,
-              const ::std::string& id,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (::std::istream& is,
-              const ::std::string& id,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse xercesc::InputSource.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (::xercesc::InputSource& is,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (::xercesc::InputSource& is,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (::xercesc::InputSource& is,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse xercesc::DOMDocument.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (const ::xercesc::DOMDocument& d,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse a URI or a local file.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (const ::std::string& uri,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (const ::std::string& uri,
-                   ::xml_schema::ErrorHandler& eh,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (const ::std::string& uri,
-                   ::xercesc::DOMErrorHandler& eh,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse std::istream.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (::std::istream& is,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (::std::istream& is,
-                   ::xml_schema::ErrorHandler& eh,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (::std::istream& is,
-                   ::xercesc::DOMErrorHandler& eh,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (::std::istream& is,
-                   const ::std::string& id,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (::std::istream& is,
-                   const ::std::string& id,
-                   ::xml_schema::ErrorHandler& eh,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (::std::istream& is,
-                   const ::std::string& id,
-                   ::xercesc::DOMErrorHandler& eh,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse xercesc::InputSource.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (::xercesc::InputSource& is,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (::xercesc::InputSource& is,
-                   ::xml_schema::ErrorHandler& eh,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (::xercesc::InputSource& is,
-                   ::xercesc::DOMErrorHandler& eh,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse xercesc::DOMDocument.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (const ::xercesc::DOMDocument& d,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse a URI or a local file.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (const ::std::string& uri,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (const ::std::string& uri,
-               ::xml_schema::ErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (const ::std::string& uri,
-               ::xercesc::DOMErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse std::istream.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (::std::istream& is,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (::std::istream& is,
-               ::xml_schema::ErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (::std::istream& is,
-               ::xercesc::DOMErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (::std::istream& is,
-               const ::std::string& id,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (::std::istream& is,
-               const ::std::string& id,
-               ::xml_schema::ErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (::std::istream& is,
-               const ::std::string& id,
-               ::xercesc::DOMErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse xercesc::InputSource.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (::xercesc::InputSource& is,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (::xercesc::InputSource& is,
-               ::xml_schema::ErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (::xercesc::InputSource& is,
-               ::xercesc::DOMErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      // Parse xercesc::DOMDocument.
-      //
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (const ::xercesc::DOMDocument& d,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
     }
   }
 }
@@ -1515,74 +2441,6 @@ namespace WS
   {
     namespace SOAP_BINDING
     {
-      // Serialize to std::ostream.
-      //
-
-      void
-      binding (::std::ostream& os,
-               const ::WS::WSDL::SOAP_BINDING::BindingType& x, 
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-      void
-      binding (::std::ostream& os,
-               const ::WS::WSDL::SOAP_BINDING::BindingType& x, 
-               ::xml_schema::ErrorHandler& eh,
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-      void
-      binding (::std::ostream& os,
-               const ::WS::WSDL::SOAP_BINDING::BindingType& x, 
-               ::xercesc::DOMErrorHandler& eh,
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-      // Serialize to xercesc::XMLFormatTarget.
-      //
-
-      void
-      binding (::xercesc::XMLFormatTarget& ft,
-               const ::WS::WSDL::SOAP_BINDING::BindingType& x, 
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-      void
-      binding (::xercesc::XMLFormatTarget& ft,
-               const ::WS::WSDL::SOAP_BINDING::BindingType& x, 
-               ::xml_schema::ErrorHandler& eh,
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-      void
-      binding (::xercesc::XMLFormatTarget& ft,
-               const ::WS::WSDL::SOAP_BINDING::BindingType& x, 
-               ::xercesc::DOMErrorHandler& eh,
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-      // Serialize to an existing xercesc::DOMDocument.
-      //
-
-      void
-      binding (::xercesc::DOMDocument& d,
-               const ::WS::WSDL::SOAP_BINDING::BindingType& x,
-               ::xml_schema::Flags f = 0);
-
-      // Serialize to a new xercesc::DOMDocument.
-      //
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-      binding (const ::WS::WSDL::SOAP_BINDING::BindingType& x, 
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               ::xml_schema::Flags f = 0);
-
       void
       operator<< (::xercesc::DOMElement&, const BindingType&);
 
@@ -1596,144 +2454,8 @@ namespace WS
       operator<< (::xml_schema::ListStream&,
                   const StyleChoice&);
 
-      // Serialize to std::ostream.
-      //
-
-      void
-      operation (::std::ostream& os,
-                 const ::WS::WSDL::SOAP_BINDING::OperationType& x, 
-                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                 const ::std::string& e = "UTF-8",
-                 ::xml_schema::Flags f = 0);
-
-      void
-      operation (::std::ostream& os,
-                 const ::WS::WSDL::SOAP_BINDING::OperationType& x, 
-                 ::xml_schema::ErrorHandler& eh,
-                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                 const ::std::string& e = "UTF-8",
-                 ::xml_schema::Flags f = 0);
-
-      void
-      operation (::std::ostream& os,
-                 const ::WS::WSDL::SOAP_BINDING::OperationType& x, 
-                 ::xercesc::DOMErrorHandler& eh,
-                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                 const ::std::string& e = "UTF-8",
-                 ::xml_schema::Flags f = 0);
-
-      // Serialize to xercesc::XMLFormatTarget.
-      //
-
-      void
-      operation (::xercesc::XMLFormatTarget& ft,
-                 const ::WS::WSDL::SOAP_BINDING::OperationType& x, 
-                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                 const ::std::string& e = "UTF-8",
-                 ::xml_schema::Flags f = 0);
-
-      void
-      operation (::xercesc::XMLFormatTarget& ft,
-                 const ::WS::WSDL::SOAP_BINDING::OperationType& x, 
-                 ::xml_schema::ErrorHandler& eh,
-                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                 const ::std::string& e = "UTF-8",
-                 ::xml_schema::Flags f = 0);
-
-      void
-      operation (::xercesc::XMLFormatTarget& ft,
-                 const ::WS::WSDL::SOAP_BINDING::OperationType& x, 
-                 ::xercesc::DOMErrorHandler& eh,
-                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                 const ::std::string& e = "UTF-8",
-                 ::xml_schema::Flags f = 0);
-
-      // Serialize to an existing xercesc::DOMDocument.
-      //
-
-      void
-      operation (::xercesc::DOMDocument& d,
-                 const ::WS::WSDL::SOAP_BINDING::OperationType& x,
-                 ::xml_schema::Flags f = 0);
-
-      // Serialize to a new xercesc::DOMDocument.
-      //
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-      operation (const ::WS::WSDL::SOAP_BINDING::OperationType& x, 
-                 const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                 ::xml_schema::Flags f = 0);
-
       void
       operator<< (::xercesc::DOMElement&, const OperationType&);
-
-      // Serialize to std::ostream.
-      //
-
-      void
-      body (::std::ostream& os,
-            const ::WS::WSDL::SOAP_BINDING::BodyType& x, 
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
-
-      void
-      body (::std::ostream& os,
-            const ::WS::WSDL::SOAP_BINDING::BodyType& x, 
-            ::xml_schema::ErrorHandler& eh,
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
-
-      void
-      body (::std::ostream& os,
-            const ::WS::WSDL::SOAP_BINDING::BodyType& x, 
-            ::xercesc::DOMErrorHandler& eh,
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
-
-      // Serialize to xercesc::XMLFormatTarget.
-      //
-
-      void
-      body (::xercesc::XMLFormatTarget& ft,
-            const ::WS::WSDL::SOAP_BINDING::BodyType& x, 
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
-
-      void
-      body (::xercesc::XMLFormatTarget& ft,
-            const ::WS::WSDL::SOAP_BINDING::BodyType& x, 
-            ::xml_schema::ErrorHandler& eh,
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
-
-      void
-      body (::xercesc::XMLFormatTarget& ft,
-            const ::WS::WSDL::SOAP_BINDING::BodyType& x, 
-            ::xercesc::DOMErrorHandler& eh,
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
-
-      // Serialize to an existing xercesc::DOMDocument.
-      //
-
-      void
-      body (::xercesc::DOMDocument& d,
-            const ::WS::WSDL::SOAP_BINDING::BodyType& x,
-            ::xml_schema::Flags f = 0);
-
-      // Serialize to a new xercesc::DOMDocument.
-      //
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-      body (const ::WS::WSDL::SOAP_BINDING::BodyType& x, 
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            ::xml_schema::Flags f = 0);
 
       void
       operator<< (::xercesc::DOMElement&, const BodyType&);
@@ -1748,286 +2470,14 @@ namespace WS
       operator<< (::xml_schema::ListStream&,
                   const UseChoice&);
 
-      // Serialize to std::ostream.
-      //
-
-      void
-      fault (::std::ostream& os,
-             const ::WS::WSDL::SOAP_BINDING::FaultType& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-      void
-      fault (::std::ostream& os,
-             const ::WS::WSDL::SOAP_BINDING::FaultType& x, 
-             ::xml_schema::ErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-      void
-      fault (::std::ostream& os,
-             const ::WS::WSDL::SOAP_BINDING::FaultType& x, 
-             ::xercesc::DOMErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-      // Serialize to xercesc::XMLFormatTarget.
-      //
-
-      void
-      fault (::xercesc::XMLFormatTarget& ft,
-             const ::WS::WSDL::SOAP_BINDING::FaultType& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-      void
-      fault (::xercesc::XMLFormatTarget& ft,
-             const ::WS::WSDL::SOAP_BINDING::FaultType& x, 
-             ::xml_schema::ErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-      void
-      fault (::xercesc::XMLFormatTarget& ft,
-             const ::WS::WSDL::SOAP_BINDING::FaultType& x, 
-             ::xercesc::DOMErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-      // Serialize to an existing xercesc::DOMDocument.
-      //
-
-      void
-      fault (::xercesc::DOMDocument& d,
-             const ::WS::WSDL::SOAP_BINDING::FaultType& x,
-             ::xml_schema::Flags f = 0);
-
-      // Serialize to a new xercesc::DOMDocument.
-      //
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-      fault (const ::WS::WSDL::SOAP_BINDING::FaultType& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             ::xml_schema::Flags f = 0);
-
       void
       operator<< (::xercesc::DOMElement&, const FaultType&);
-
-      // Serialize to std::ostream.
-      //
-
-      void
-      header (::std::ostream& os,
-              const ::WS::WSDL::SOAP_BINDING::HeaderType& x, 
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-      void
-      header (::std::ostream& os,
-              const ::WS::WSDL::SOAP_BINDING::HeaderType& x, 
-              ::xml_schema::ErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-      void
-      header (::std::ostream& os,
-              const ::WS::WSDL::SOAP_BINDING::HeaderType& x, 
-              ::xercesc::DOMErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-      // Serialize to xercesc::XMLFormatTarget.
-      //
-
-      void
-      header (::xercesc::XMLFormatTarget& ft,
-              const ::WS::WSDL::SOAP_BINDING::HeaderType& x, 
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-      void
-      header (::xercesc::XMLFormatTarget& ft,
-              const ::WS::WSDL::SOAP_BINDING::HeaderType& x, 
-              ::xml_schema::ErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-      void
-      header (::xercesc::XMLFormatTarget& ft,
-              const ::WS::WSDL::SOAP_BINDING::HeaderType& x, 
-              ::xercesc::DOMErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-      // Serialize to an existing xercesc::DOMDocument.
-      //
-
-      void
-      header (::xercesc::DOMDocument& d,
-              const ::WS::WSDL::SOAP_BINDING::HeaderType& x,
-              ::xml_schema::Flags f = 0);
-
-      // Serialize to a new xercesc::DOMDocument.
-      //
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-      header (const ::WS::WSDL::SOAP_BINDING::HeaderType& x, 
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              ::xml_schema::Flags f = 0);
 
       void
       operator<< (::xercesc::DOMElement&, const HeaderType&);
 
-      // Serialize to std::ostream.
-      //
-
-      void
-      headerfault (::std::ostream& os,
-                   const ::WS::WSDL::SOAP_BINDING::HeaderfaultType& x, 
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
-
-      void
-      headerfault (::std::ostream& os,
-                   const ::WS::WSDL::SOAP_BINDING::HeaderfaultType& x, 
-                   ::xml_schema::ErrorHandler& eh,
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
-
-      void
-      headerfault (::std::ostream& os,
-                   const ::WS::WSDL::SOAP_BINDING::HeaderfaultType& x, 
-                   ::xercesc::DOMErrorHandler& eh,
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
-
-      // Serialize to xercesc::XMLFormatTarget.
-      //
-
-      void
-      headerfault (::xercesc::XMLFormatTarget& ft,
-                   const ::WS::WSDL::SOAP_BINDING::HeaderfaultType& x, 
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
-
-      void
-      headerfault (::xercesc::XMLFormatTarget& ft,
-                   const ::WS::WSDL::SOAP_BINDING::HeaderfaultType& x, 
-                   ::xml_schema::ErrorHandler& eh,
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
-
-      void
-      headerfault (::xercesc::XMLFormatTarget& ft,
-                   const ::WS::WSDL::SOAP_BINDING::HeaderfaultType& x, 
-                   ::xercesc::DOMErrorHandler& eh,
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
-
-      // Serialize to an existing xercesc::DOMDocument.
-      //
-
-      void
-      headerfault (::xercesc::DOMDocument& d,
-                   const ::WS::WSDL::SOAP_BINDING::HeaderfaultType& x,
-                   ::xml_schema::Flags f = 0);
-
-      // Serialize to a new xercesc::DOMDocument.
-      //
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-      headerfault (const ::WS::WSDL::SOAP_BINDING::HeaderfaultType& x, 
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   ::xml_schema::Flags f = 0);
-
       void
       operator<< (::xercesc::DOMElement&, const HeaderfaultType&);
-
-      // Serialize to std::ostream.
-      //
-
-      void
-      address (::std::ostream& os,
-               const ::WS::WSDL::SOAP_BINDING::AddressType& x, 
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-      void
-      address (::std::ostream& os,
-               const ::WS::WSDL::SOAP_BINDING::AddressType& x, 
-               ::xml_schema::ErrorHandler& eh,
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-      void
-      address (::std::ostream& os,
-               const ::WS::WSDL::SOAP_BINDING::AddressType& x, 
-               ::xercesc::DOMErrorHandler& eh,
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-      // Serialize to xercesc::XMLFormatTarget.
-      //
-
-      void
-      address (::xercesc::XMLFormatTarget& ft,
-               const ::WS::WSDL::SOAP_BINDING::AddressType& x, 
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-      void
-      address (::xercesc::XMLFormatTarget& ft,
-               const ::WS::WSDL::SOAP_BINDING::AddressType& x, 
-               ::xml_schema::ErrorHandler& eh,
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-      void
-      address (::xercesc::XMLFormatTarget& ft,
-               const ::WS::WSDL::SOAP_BINDING::AddressType& x, 
-               ::xercesc::DOMErrorHandler& eh,
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-      // Serialize to an existing xercesc::DOMDocument.
-      //
-
-      void
-      address (::xercesc::DOMDocument& d,
-               const ::WS::WSDL::SOAP_BINDING::AddressType& x,
-               ::xml_schema::Flags f = 0);
-
-      // Serialize to a new xercesc::DOMDocument.
-      //
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-      address (const ::WS::WSDL::SOAP_BINDING::AddressType& x, 
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               ::xml_schema::Flags f = 0);
 
       void
       operator<< (::xercesc::DOMElement&, const AddressType&);

@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class ApprovedJurisdictions {
+class ApprovedJurisdictions
+{
 private:
 	ApprovedJurisdictions(const CDM::ApprovedJurisdictions & object);
 	operator CDM::ApprovedJurisdictions() const;
@@ -53,11 +54,11 @@ private:
 public:
 	ApprovedJurisdictions(
 	);
-	ApprovedJurisdictions(const ApprovedJurisdictions & object);
-	virtual ~ApprovedJurisdictions();
+	ApprovedJurisdictions(const ApprovedJurisdictions& object);
+	virtual ~ApprovedJurisdictions() = default;
 
-    void copyFrom(const ApprovedJurisdictions & object);
-    ApprovedJurisdictions & operator=(const ApprovedJurisdictions & object);
+    void copyFrom(const ApprovedJurisdictions& object);
+    ApprovedJurisdictions & operator=(const ApprovedJurisdictions& object);
 
     typedef CDM::ApprovedJurisdictions WrappedType;
 
@@ -66,7 +67,7 @@ public:
 	void clearApprovedJurisdictionList();
 
 private:
-	std::shared_ptr<CDM::ApprovedJurisdictions> data;
+	std::shared_ptr<CDM::ApprovedJurisdictions> data = nullptr;
 };
 
 } /* namespace SDC */

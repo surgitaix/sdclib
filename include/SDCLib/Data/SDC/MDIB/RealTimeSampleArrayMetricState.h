@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class RealTimeSampleArrayMetricState {
+class RealTimeSampleArrayMetricState
+{
 private:
 	RealTimeSampleArrayMetricState(const CDM::RealTimeSampleArrayMetricState & object);
 	operator CDM::RealTimeSampleArrayMetricState() const;
@@ -57,11 +58,11 @@ public:
 private:
 	RealTimeSampleArrayMetricState(){};
 public:
-	RealTimeSampleArrayMetricState(const RealTimeSampleArrayMetricState & object);
-	virtual ~RealTimeSampleArrayMetricState();
+	RealTimeSampleArrayMetricState(const RealTimeSampleArrayMetricState& object);
+	virtual ~RealTimeSampleArrayMetricState() = default;
 
-    void copyFrom(const RealTimeSampleArrayMetricState & object);
-    RealTimeSampleArrayMetricState & operator=(const RealTimeSampleArrayMetricState & object);
+    void copyFrom(const RealTimeSampleArrayMetricState& object);
+    RealTimeSampleArrayMetricState & operator=(const RealTimeSampleArrayMetricState& object);
 
     typedef CDM::RealTimeSampleArrayMetricState WrappedType;
     typedef RealTimeSampleArrayMetricDescriptor DescriptorType;
@@ -113,7 +114,7 @@ public:
 	void clearPhysiologicalRangeList();
 
 private:
-	std::shared_ptr<CDM::RealTimeSampleArrayMetricState> data;
+	std::shared_ptr<CDM::RealTimeSampleArrayMetricState> data = nullptr;
 };
 
 } /* namespace SDC */

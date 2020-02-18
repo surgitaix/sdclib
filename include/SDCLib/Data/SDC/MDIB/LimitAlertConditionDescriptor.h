@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class LimitAlertConditionDescriptor {
+class LimitAlertConditionDescriptor
+{
 private:
 	LimitAlertConditionDescriptor(const CDM::LimitAlertConditionDescriptor & object);
 	operator CDM::LimitAlertConditionDescriptor() const;
@@ -63,11 +64,11 @@ public:
 private:
 	LimitAlertConditionDescriptor(){};
 public:
-	LimitAlertConditionDescriptor(const LimitAlertConditionDescriptor & object);
-	virtual ~LimitAlertConditionDescriptor();
+	LimitAlertConditionDescriptor(const LimitAlertConditionDescriptor& object);
+	virtual ~LimitAlertConditionDescriptor() = default;
 
-    void copyFrom(const LimitAlertConditionDescriptor & object);
-    LimitAlertConditionDescriptor & operator=(const LimitAlertConditionDescriptor & object);
+    void copyFrom(const LimitAlertConditionDescriptor& object);
+    LimitAlertConditionDescriptor & operator=(const LimitAlertConditionDescriptor& object);
 
     typedef CDM::LimitAlertConditionDescriptor WrappedType;
 
@@ -127,7 +128,7 @@ public:
 	bool hasAutoLimitSupported() const;
 
 private:
-	std::shared_ptr<CDM::LimitAlertConditionDescriptor> data;
+	std::shared_ptr<CDM::LimitAlertConditionDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

@@ -47,8 +47,8 @@ namespace SDCLib
 				friend class SDCConsumer;
 			private:
 
-				std::atomic<int> m_transactionId = ATOMIC_VAR_INIT(-1);
-				SDCConsumer * m_consumer = nullptr;
+				std::atomic<int> m_transactionId{-1};
+				SDCConsumer* m_consumer{nullptr};
 				std::mutex m_mutex;
 
 				std::map<InvocationState, std::shared_ptr<Poco::Event>> ml_invocationEvents;

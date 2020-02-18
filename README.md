@@ -16,6 +16,10 @@
     - **sudo apt-get install xsdcxx**  
     - **sudo apt-get install libxerces-c-dev**  
     - **sudo apt-get install libssl-dev**  
+- Examples for Manjaro:  
+    - **pamac install xerces-c**  
+    - **pamac install xsd**  
+    
 <br/>
 
 ## Build SDCLib using CMake
@@ -42,8 +46,7 @@ We recommend using CMake GUI to configure and generate the project.
 - Click Configure: If the build folder does not exist, CMake will ask if it should create it for you. Select yes.
 - In the next dialog you have to specify the *generator*. **Unix Makefiles** should be fine but if your preferred IDE has CMake support it will probably be listed in the drop down too. If you have the choice between *<IDE> Ninja* and a *<IDE> Unix Makefiles* variant, choose the Unix Makefile variant.
 - Stay with the option "Use default native compilers" unless you know what you are doing and click *Finish*.
-- During configuration you will most likely see a Warning (red text): It tells you that it could not find the sdclib (yet) and that you can add the given variable for out of source builds to specify its location.  
-To add this variable click the button 'Add Entry', copy the given variable ( *SDCLib_ADDITIONAL_LIBRARY_DIRS* ), select Type PATH. Next a new input will appear, click on the [...] button and navigate to the build folder (e.g.: *sdclib_build*. Search for the bin folder inside and select it. This way you tell the script where it can find the sdclib binaries later.  
+- During configuration you will most likely see a Warning (red text): It tells you that it could not find the sdclib (yet). For most users it is fine to proceed here.  
 - Configure and Generate again. The new variable will be highlighted by CMake.  
 NOTE: The Warning wont disappear unless you finally built the library.  
 - Your project should now be generated inside the selected build folder.
@@ -79,9 +82,13 @@ You can include the following lines inside your CMakeLists file (Change the vari
 ```cmake
 ###### Set the Search Path - FindSDCLib.cmake requires this variable as "entry point"
 set(SDCLib_SEARCH_DIRS "<ABSOLUTE PATH TO SDCLIB FOLDER>" CACHE STRING "SDCLib root dir")
-###### Out of Source build - The the additional search path manually (dont change build folder later or change this too)
-set(SDCLib_ADDITIONAL_LIBRARY_DIRS "<ABSOLUTE PATH TO SDCLIB BUILD FOLDER>/bin" CACHE STRING "Additional Dirs")
-include(${SDCLib_SEARCH_DIRS}/FindSDCLib.cmake)
+# Add SDCLib modules folder to CMake Modules Path
+get_filename_component(PROJECT_CMAKE_MODULES ${SDCLib_SEARCH_DIRS}/cmake/Modules REALPATH)
+message(STATUS "Adding ${PROJECT_CMAKE_MODULES} to Modules Path...")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_CMAKE_MODULES})
+###### Out of Source build - Set the additional search path manually (dont change build folder later or change this too)
+set(SDCLib_EXTERNAL_LIBRARY_DIRS "<ABSOLUTE PATH TO SDCLIB BUILD FOLDER>/bin" CACHE STRING "External Dirs")
+find_package(SDCLib)
 if(NOT SDCLib_FOUND)
     message(FATAL_ERROR "SDC not found, build it first or specify correct path!")
 endif()

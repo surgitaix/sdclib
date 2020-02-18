@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class LocalizedText {
+class LocalizedText
+{
 private:
 	LocalizedText(const CDM::LocalizedText & object);
 	operator CDM::LocalizedText() const;
@@ -53,11 +54,12 @@ private:
 public:
 	LocalizedText(
 	);
-	LocalizedText(const LocalizedText & object);
-	virtual ~LocalizedText();
+	LocalizedText(std::string p_text);
+	LocalizedText(const LocalizedText& object);
+	virtual ~LocalizedText() = default;
 
-    void copyFrom(const LocalizedText & object);
-    LocalizedText & operator=(const LocalizedText & object);
+    void copyFrom(const LocalizedText& object);
+    LocalizedText & operator=(const LocalizedText& object);
 
     typedef CDM::LocalizedText WrappedType;
 
@@ -81,8 +83,11 @@ public:
 	bool getTextWidth(LocalizedTextWidth & out) const;
 	bool hasTextWidth() const;
 
+	LocalizedText& setText(std::string p_text);
+	std::string getText() const;
+
 private:
-	std::shared_ptr<CDM::LocalizedText> data;
+	std::shared_ptr<CDM::LocalizedText> data = nullptr;
 };
 
 } /* namespace SDC */

@@ -42,8 +42,6 @@ namespace SDCLib
 			template<class T> class SDCProviderComponentStateHandler;
 			template<class T> class SDCProviderMDStateHandler;
 			class SDCProviderStateHandler;
-
-			class SDCConsumerSystemContextStateChangedHandler; // Unused?
 		}
 	}
 

@@ -52,31 +52,31 @@ namespace WS
     // 
 
     const TDocumented::DocumentationOptional& TDocumented::
-    documentation () const
+    getDocumentation () const
     {
       return this->documentation_;
     }
 
     TDocumented::DocumentationOptional& TDocumented::
-    documentation ()
+    getDocumentation ()
     {
       return this->documentation_;
     }
 
     void TDocumented::
-    documentation (const DocumentationType& x)
+    setDocumentation (const DocumentationType& x)
     {
       this->documentation_.set (x);
     }
 
     void TDocumented::
-    documentation (const DocumentationOptional& x)
+    setDocumentation (const DocumentationOptional& x)
     {
       this->documentation_ = x;
     }
 
     void TDocumented::
-    documentation (::std::unique_ptr< DocumentationType > x)
+    setDocumentation (::std::unique_ptr< DocumentationType > x)
     {
       this->documentation_.set (std::move (x));
     }
@@ -94,169 +94,169 @@ namespace WS
     // 
 
     const TDefinitions::ImportSequence& TDefinitions::
-    import () const
+    getImport () const
     {
       return this->import_;
     }
 
     TDefinitions::ImportSequence& TDefinitions::
-    import ()
+    getImport ()
     {
       return this->import_;
     }
 
     void TDefinitions::
-    import (const ImportSequence& s)
+    setImport (const ImportSequence& s)
     {
       this->import_ = s;
     }
 
     const TDefinitions::TypesSequence& TDefinitions::
-    types () const
+    getTypes () const
     {
       return this->types_;
     }
 
     TDefinitions::TypesSequence& TDefinitions::
-    types ()
+    getTypes ()
     {
       return this->types_;
     }
 
     void TDefinitions::
-    types (const TypesSequence& s)
+    setTypes (const TypesSequence& s)
     {
       this->types_ = s;
     }
 
     const TDefinitions::MessageSequence& TDefinitions::
-    message () const
+    getMessage () const
     {
       return this->message_;
     }
 
     TDefinitions::MessageSequence& TDefinitions::
-    message ()
+    getMessage ()
     {
       return this->message_;
     }
 
     void TDefinitions::
-    message (const MessageSequence& s)
+    setMessage (const MessageSequence& s)
     {
       this->message_ = s;
     }
 
     const TDefinitions::PortTypeSequence& TDefinitions::
-    portType () const
+    getPortType () const
     {
       return this->portType_;
     }
 
     TDefinitions::PortTypeSequence& TDefinitions::
-    portType ()
+    getPortType ()
     {
       return this->portType_;
     }
 
     void TDefinitions::
-    portType (const PortTypeSequence& s)
+    setPortType (const PortTypeSequence& s)
     {
       this->portType_ = s;
     }
 
     const TDefinitions::BindingSequence& TDefinitions::
-    binding () const
+    getBinding () const
     {
       return this->binding_;
     }
 
     TDefinitions::BindingSequence& TDefinitions::
-    binding ()
+    getBinding ()
     {
       return this->binding_;
     }
 
     void TDefinitions::
-    binding (const BindingSequence& s)
+    setBinding (const BindingSequence& s)
     {
       this->binding_ = s;
     }
 
     const TDefinitions::ServiceSequence& TDefinitions::
-    service () const
+    getService () const
     {
       return this->service_;
     }
 
     TDefinitions::ServiceSequence& TDefinitions::
-    service ()
+    getService ()
     {
       return this->service_;
     }
 
     void TDefinitions::
-    service (const ServiceSequence& s)
+    setService (const ServiceSequence& s)
     {
       this->service_ = s;
     }
 
     const TDefinitions::TargetNamespaceOptional& TDefinitions::
-    targetNamespace () const
+    getTargetNamespace () const
     {
       return this->targetNamespace_;
     }
 
     TDefinitions::TargetNamespaceOptional& TDefinitions::
-    targetNamespace ()
+    getTargetNamespace ()
     {
       return this->targetNamespace_;
     }
 
     void TDefinitions::
-    targetNamespace (const TargetNamespaceType& x)
+    setTargetNamespace (const TargetNamespaceType& x)
     {
       this->targetNamespace_.set (x);
     }
 
     void TDefinitions::
-    targetNamespace (const TargetNamespaceOptional& x)
+    setTargetNamespace (const TargetNamespaceOptional& x)
     {
       this->targetNamespace_ = x;
     }
 
     void TDefinitions::
-    targetNamespace (::std::unique_ptr< TargetNamespaceType > x)
+    setTargetNamespace (::std::unique_ptr< TargetNamespaceType > x)
     {
       this->targetNamespace_.set (std::move (x));
     }
 
     const TDefinitions::NameOptional& TDefinitions::
-    name () const
+    getName () const
     {
       return this->name_;
     }
 
     TDefinitions::NameOptional& TDefinitions::
-    name ()
+    getName ()
     {
       return this->name_;
     }
 
     void TDefinitions::
-    name (const NameType& x)
+    setName (const NameType& x)
     {
       this->name_.set (x);
     }
 
     void TDefinitions::
-    name (const NameOptional& x)
+    setName (const NameOptional& x)
     {
       this->name_ = x;
     }
 
     void TDefinitions::
-    name (::std::unique_ptr< NameType > x)
+    setName (::std::unique_ptr< NameType > x)
     {
       this->name_.set (std::move (x));
     }
@@ -266,49 +266,49 @@ namespace WS
     // 
 
     const TImport::NamespaceType& TImport::
-    namespace_ () const
+    getNamespace () const
     {
       return this->namespace__.get ();
     }
 
     TImport::NamespaceType& TImport::
-    namespace_ ()
+    getNamespace ()
     {
       return this->namespace__.get ();
     }
 
     void TImport::
-    namespace_ (const NamespaceType& x)
+    setNamespace (const NamespaceType& x)
     {
       this->namespace__.set (x);
     }
 
     void TImport::
-    namespace_ (::std::unique_ptr< NamespaceType > x)
+    setNamespace (::std::unique_ptr< NamespaceType > x)
     {
       this->namespace__.set (std::move (x));
     }
 
     const TImport::LocationType& TImport::
-    location () const
+    getLocation () const
     {
       return this->location_.get ();
     }
 
     TImport::LocationType& TImport::
-    location ()
+    getLocation ()
     {
       return this->location_.get ();
     }
 
     void TImport::
-    location (const LocationType& x)
+    setLocation (const LocationType& x)
     {
       this->location_.set (x);
     }
 
     void TImport::
-    location (::std::unique_ptr< LocationType > x)
+    setLocation (::std::unique_ptr< LocationType > x)
     {
       this->location_.set (std::move (x));
     }
@@ -322,43 +322,43 @@ namespace WS
     // 
 
     const TMessage::PartSequence& TMessage::
-    part () const
+    getPart () const
     {
       return this->part_;
     }
 
     TMessage::PartSequence& TMessage::
-    part ()
+    getPart ()
     {
       return this->part_;
     }
 
     void TMessage::
-    part (const PartSequence& s)
+    setPart (const PartSequence& s)
     {
       this->part_ = s;
     }
 
     const TMessage::NameType& TMessage::
-    name () const
+    getName () const
     {
       return this->name_.get ();
     }
 
     TMessage::NameType& TMessage::
-    name ()
+    getName ()
     {
       return this->name_.get ();
     }
 
     void TMessage::
-    name (const NameType& x)
+    setName (const NameType& x)
     {
       this->name_.set (x);
     }
 
     void TMessage::
-    name (::std::unique_ptr< NameType > x)
+    setName (::std::unique_ptr< NameType > x)
     {
       this->name_.set (std::move (x));
     }
@@ -368,85 +368,85 @@ namespace WS
     // 
 
     const TPart::NameType& TPart::
-    name () const
+    getName () const
     {
       return this->name_.get ();
     }
 
     TPart::NameType& TPart::
-    name ()
+    getName ()
     {
       return this->name_.get ();
     }
 
     void TPart::
-    name (const NameType& x)
+    setName (const NameType& x)
     {
       this->name_.set (x);
     }
 
     void TPart::
-    name (::std::unique_ptr< NameType > x)
+    setName (::std::unique_ptr< NameType > x)
     {
       this->name_.set (std::move (x));
     }
 
     const TPart::ElementOptional& TPart::
-    element () const
+    getElement () const
     {
       return this->element_;
     }
 
     TPart::ElementOptional& TPart::
-    element ()
+    getElement ()
     {
       return this->element_;
     }
 
     void TPart::
-    element (const ElementType& x)
+    setElement (const ElementType& x)
     {
       this->element_.set (x);
     }
 
     void TPart::
-    element (const ElementOptional& x)
+    setElement (const ElementOptional& x)
     {
       this->element_ = x;
     }
 
     void TPart::
-    element (::std::unique_ptr< ElementType > x)
+    setElement (::std::unique_ptr< ElementType > x)
     {
       this->element_.set (std::move (x));
     }
 
     const TPart::TypeOptional& TPart::
-    type () const
+    getType () const
     {
       return this->type_;
     }
 
     TPart::TypeOptional& TPart::
-    type ()
+    getType ()
     {
       return this->type_;
     }
 
     void TPart::
-    type (const TypeType& x)
+    setType (const TypeType& x)
     {
       this->type_.set (x);
     }
 
     void TPart::
-    type (const TypeOptional& x)
+    setType (const TypeOptional& x)
     {
       this->type_ = x;
     }
 
     void TPart::
-    type (::std::unique_ptr< TypeType > x)
+    setType (::std::unique_ptr< TypeType > x)
     {
       this->type_.set (std::move (x));
     }
@@ -456,97 +456,97 @@ namespace WS
     // 
 
     const TPortType::OperationSequence& TPortType::
-    operation () const
+    getOperation () const
     {
       return this->operation_;
     }
 
     TPortType::OperationSequence& TPortType::
-    operation ()
+    getOperation ()
     {
       return this->operation_;
     }
 
     void TPortType::
-    operation (const OperationSequence& s)
+    setOperation (const OperationSequence& s)
     {
       this->operation_ = s;
     }
 
     const TPortType::PolicyOptional& TPortType::
-    Policy () const
+    getPolicy () const
     {
       return this->Policy_;
     }
 
     TPortType::PolicyOptional& TPortType::
-    Policy ()
+    getPolicy ()
     {
       return this->Policy_;
     }
 
     void TPortType::
-    Policy (const PolicyType& x)
+    setPolicy (const PolicyType& x)
     {
       this->Policy_.set (x);
     }
 
     void TPortType::
-    Policy (const PolicyOptional& x)
+    setPolicy (const PolicyOptional& x)
     {
       this->Policy_ = x;
     }
 
     void TPortType::
-    Policy (::std::unique_ptr< PolicyType > x)
+    setPolicy (::std::unique_ptr< PolicyType > x)
     {
       this->Policy_.set (std::move (x));
     }
 
     const TPortType::NameType& TPortType::
-    name () const
+    getName () const
     {
       return this->name_.get ();
     }
 
     TPortType::NameType& TPortType::
-    name ()
+    getName ()
     {
       return this->name_.get ();
     }
 
     void TPortType::
-    name (const NameType& x)
+    setName (const NameType& x)
     {
       this->name_.set (x);
     }
 
     void TPortType::
-    name (::std::unique_ptr< NameType > x)
+    setName (::std::unique_ptr< NameType > x)
     {
       this->name_.set (std::move (x));
     }
 
     const TPortType::EventSourceOptional& TPortType::
-    EventSource () const
+    getEventSource () const
     {
       return this->EventSource_;
     }
 
     TPortType::EventSourceOptional& TPortType::
-    EventSource ()
+    getEventSource ()
     {
       return this->EventSource_;
     }
 
     void TPortType::
-    EventSource (const EventSourceType& x)
+    setEventSource (const EventSourceType& x)
     {
       this->EventSource_.set (x);
     }
 
     void TPortType::
-    EventSource (const EventSourceOptional& x)
+    setEventSource (const EventSourceOptional& x)
     {
       this->EventSource_ = x;
     }
@@ -556,133 +556,133 @@ namespace WS
     // 
 
     const TOperation::InputOptional& TOperation::
-    input () const
+    getInput () const
     {
       return this->input_;
     }
 
     TOperation::InputOptional& TOperation::
-    input ()
+    getInput ()
     {
       return this->input_;
     }
 
     void TOperation::
-    input (const InputType& x)
+    setInput (const InputType& x)
     {
       this->input_.set (x);
     }
 
     void TOperation::
-    input (const InputOptional& x)
+    setInput (const InputOptional& x)
     {
       this->input_ = x;
     }
 
     void TOperation::
-    input (::std::unique_ptr< InputType > x)
+    setInput (::std::unique_ptr< InputType > x)
     {
       this->input_.set (std::move (x));
     }
 
     const TOperation::OutputOptional& TOperation::
-    output () const
+    getOutput () const
     {
       return this->output_;
     }
 
     TOperation::OutputOptional& TOperation::
-    output ()
+    getOutput ()
     {
       return this->output_;
     }
 
     void TOperation::
-    output (const OutputType& x)
+    setOutput (const OutputType& x)
     {
       this->output_.set (x);
     }
 
     void TOperation::
-    output (const OutputOptional& x)
+    setOutput (const OutputOptional& x)
     {
       this->output_ = x;
     }
 
     void TOperation::
-    output (::std::unique_ptr< OutputType > x)
+    setOutput (::std::unique_ptr< OutputType > x)
     {
       this->output_.set (std::move (x));
     }
 
     const TOperation::FaultSequence& TOperation::
-    fault () const
+    getFault () const
     {
       return this->fault_;
     }
 
     TOperation::FaultSequence& TOperation::
-    fault ()
+    getFault ()
     {
       return this->fault_;
     }
 
     void TOperation::
-    fault (const FaultSequence& s)
+    setFault (const FaultSequence& s)
     {
       this->fault_ = s;
     }
 
     const TOperation::NameType& TOperation::
-    name () const
+    getName () const
     {
       return this->name_.get ();
     }
 
     TOperation::NameType& TOperation::
-    name ()
+    getName ()
     {
       return this->name_.get ();
     }
 
     void TOperation::
-    name (const NameType& x)
+    setName (const NameType& x)
     {
       this->name_.set (x);
     }
 
     void TOperation::
-    name (::std::unique_ptr< NameType > x)
+    setName (::std::unique_ptr< NameType > x)
     {
       this->name_.set (std::move (x));
     }
 
     const TOperation::ParameterOrderOptional& TOperation::
-    parameterOrder () const
+    getParameterOrder () const
     {
       return this->parameterOrder_;
     }
 
     TOperation::ParameterOrderOptional& TOperation::
-    parameterOrder ()
+    getParameterOrder ()
     {
       return this->parameterOrder_;
     }
 
     void TOperation::
-    parameterOrder (const ParameterOrderType& x)
+    setParameterOrder (const ParameterOrderType& x)
     {
       this->parameterOrder_.set (x);
     }
 
     void TOperation::
-    parameterOrder (const ParameterOrderOptional& x)
+    setParameterOrder (const ParameterOrderOptional& x)
     {
       this->parameterOrder_ = x;
     }
 
     void TOperation::
-    parameterOrder (::std::unique_ptr< ParameterOrderType > x)
+    setParameterOrder (::std::unique_ptr< ParameterOrderType > x)
     {
       this->parameterOrder_.set (std::move (x));
     }
@@ -692,85 +692,85 @@ namespace WS
     // 
 
     const TParam::NameOptional& TParam::
-    name () const
+    getName () const
     {
       return this->name_;
     }
 
     TParam::NameOptional& TParam::
-    name ()
+    getName ()
     {
       return this->name_;
     }
 
     void TParam::
-    name (const NameType& x)
+    setName (const NameType& x)
     {
       this->name_.set (x);
     }
 
     void TParam::
-    name (const NameOptional& x)
+    setName (const NameOptional& x)
     {
       this->name_ = x;
     }
 
     void TParam::
-    name (::std::unique_ptr< NameType > x)
+    setName (::std::unique_ptr< NameType > x)
     {
       this->name_.set (std::move (x));
     }
 
     const TParam::MessageType& TParam::
-    message () const
+    getMessage () const
     {
       return this->message_.get ();
     }
 
     TParam::MessageType& TParam::
-    message ()
+    getMessage ()
     {
       return this->message_.get ();
     }
 
     void TParam::
-    message (const MessageType& x)
+    setMessage (const MessageType& x)
     {
       this->message_.set (x);
     }
 
     void TParam::
-    message (::std::unique_ptr< MessageType > x)
+    setMessage (::std::unique_ptr< MessageType > x)
     {
       this->message_.set (std::move (x));
     }
 
     const TParam::ActionOptional& TParam::
-    Action () const
+    getAction () const
     {
       return this->Action_;
     }
 
     TParam::ActionOptional& TParam::
-    Action ()
+    getAction ()
     {
       return this->Action_;
     }
 
     void TParam::
-    Action (const ActionType& x)
+    setAction (const ActionType& x)
     {
       this->Action_.set (x);
     }
 
     void TParam::
-    Action (const ActionOptional& x)
+    setAction (const ActionOptional& x)
     {
       this->Action_ = x;
     }
 
     void TParam::
-    Action (::std::unique_ptr< ActionType > x)
+    setAction (::std::unique_ptr< ActionType > x)
     {
       this->Action_.set (std::move (x));
     }
@@ -780,49 +780,49 @@ namespace WS
     // 
 
     const TFault::NameType& TFault::
-    name () const
+    getName () const
     {
       return this->name_.get ();
     }
 
     TFault::NameType& TFault::
-    name ()
+    getName ()
     {
       return this->name_.get ();
     }
 
     void TFault::
-    name (const NameType& x)
+    setName (const NameType& x)
     {
       this->name_.set (x);
     }
 
     void TFault::
-    name (::std::unique_ptr< NameType > x)
+    setName (::std::unique_ptr< NameType > x)
     {
       this->name_.set (std::move (x));
     }
 
     const TFault::MessageType& TFault::
-    message () const
+    getMessage () const
     {
       return this->message_.get ();
     }
 
     TFault::MessageType& TFault::
-    message ()
+    getMessage ()
     {
       return this->message_.get ();
     }
 
     void TFault::
-    message (const MessageType& x)
+    setMessage (const MessageType& x)
     {
       this->message_.set (x);
     }
 
     void TFault::
-    message (::std::unique_ptr< MessageType > x)
+    setMessage (::std::unique_ptr< MessageType > x)
     {
       this->message_.set (std::move (x));
     }
@@ -832,91 +832,91 @@ namespace WS
     // 
 
     const TBinding::BindingType& TBinding::
-    binding () const
+    getBinding () const
     {
       return this->binding_.get ();
     }
 
     TBinding::BindingType& TBinding::
-    binding ()
+    getBinding ()
     {
       return this->binding_.get ();
     }
 
     void TBinding::
-    binding (const BindingType& x)
+    setBinding (const BindingType& x)
     {
       this->binding_.set (x);
     }
 
     void TBinding::
-    binding (::std::unique_ptr< BindingType > x)
+    setBinding (::std::unique_ptr< BindingType > x)
     {
       this->binding_.set (std::move (x));
     }
 
     const TBinding::OperationSequence& TBinding::
-    operation () const
+    getOperation () const
     {
       return this->operation_;
     }
 
     TBinding::OperationSequence& TBinding::
-    operation ()
+    getOperation ()
     {
       return this->operation_;
     }
 
     void TBinding::
-    operation (const OperationSequence& s)
+    setOperation (const OperationSequence& s)
     {
       this->operation_ = s;
     }
 
     const TBinding::NameType& TBinding::
-    name () const
+    getName () const
     {
       return this->name_.get ();
     }
 
     TBinding::NameType& TBinding::
-    name ()
+    getName ()
     {
       return this->name_.get ();
     }
 
     void TBinding::
-    name (const NameType& x)
+    setName (const NameType& x)
     {
       this->name_.set (x);
     }
 
     void TBinding::
-    name (::std::unique_ptr< NameType > x)
+    setName (::std::unique_ptr< NameType > x)
     {
       this->name_.set (std::move (x));
     }
 
     const TBinding::TypeType& TBinding::
-    type () const
+    getType () const
     {
       return this->type_.get ();
     }
 
     TBinding::TypeType& TBinding::
-    type ()
+    getType ()
     {
       return this->type_.get ();
     }
 
     void TBinding::
-    type (const TypeType& x)
+    setType (const TypeType& x)
     {
       this->type_.set (x);
     }
 
     void TBinding::
-    type (::std::unique_ptr< TypeType > x)
+    setType (::std::unique_ptr< TypeType > x)
     {
       this->type_.set (std::move (x));
     }
@@ -926,55 +926,55 @@ namespace WS
     // 
 
     const TBindingOperationMessage::BodyType& TBindingOperationMessage::
-    body () const
+    getBody () const
     {
       return this->body_.get ();
     }
 
     TBindingOperationMessage::BodyType& TBindingOperationMessage::
-    body ()
+    getBody ()
     {
       return this->body_.get ();
     }
 
     void TBindingOperationMessage::
-    body (const BodyType& x)
+    setBody (const BodyType& x)
     {
       this->body_.set (x);
     }
 
     void TBindingOperationMessage::
-    body (::std::unique_ptr< BodyType > x)
+    setBody (::std::unique_ptr< BodyType > x)
     {
       this->body_.set (std::move (x));
     }
 
     const TBindingOperationMessage::NameOptional& TBindingOperationMessage::
-    name () const
+    getName () const
     {
       return this->name_;
     }
 
     TBindingOperationMessage::NameOptional& TBindingOperationMessage::
-    name ()
+    getName ()
     {
       return this->name_;
     }
 
     void TBindingOperationMessage::
-    name (const NameType& x)
+    setName (const NameType& x)
     {
       this->name_.set (x);
     }
 
     void TBindingOperationMessage::
-    name (const NameOptional& x)
+    setName (const NameOptional& x)
     {
       this->name_ = x;
     }
 
     void TBindingOperationMessage::
-    name (::std::unique_ptr< NameType > x)
+    setName (::std::unique_ptr< NameType > x)
     {
       this->name_.set (std::move (x));
     }
@@ -984,25 +984,25 @@ namespace WS
     // 
 
     const TBindingOperationFault::NameType& TBindingOperationFault::
-    name () const
+    getName () const
     {
       return this->name_.get ();
     }
 
     TBindingOperationFault::NameType& TBindingOperationFault::
-    name ()
+    getName ()
     {
       return this->name_.get ();
     }
 
     void TBindingOperationFault::
-    name (const NameType& x)
+    setName (const NameType& x)
     {
       this->name_.set (x);
     }
 
     void TBindingOperationFault::
-    name (::std::unique_ptr< NameType > x)
+    setName (::std::unique_ptr< NameType > x)
     {
       this->name_.set (std::move (x));
     }
@@ -1012,127 +1012,127 @@ namespace WS
     // 
 
     const TBindingOperation::OperationType& TBindingOperation::
-    operation () const
+    getOperation () const
     {
       return this->operation_.get ();
     }
 
     TBindingOperation::OperationType& TBindingOperation::
-    operation ()
+    getOperation ()
     {
       return this->operation_.get ();
     }
 
     void TBindingOperation::
-    operation (const OperationType& x)
+    setOperation (const OperationType& x)
     {
       this->operation_.set (x);
     }
 
     void TBindingOperation::
-    operation (::std::unique_ptr< OperationType > x)
+    setOperation (::std::unique_ptr< OperationType > x)
     {
       this->operation_.set (std::move (x));
     }
 
     const TBindingOperation::InputOptional& TBindingOperation::
-    input () const
+    getInput () const
     {
       return this->input_;
     }
 
     TBindingOperation::InputOptional& TBindingOperation::
-    input ()
+    getInput ()
     {
       return this->input_;
     }
 
     void TBindingOperation::
-    input (const InputType& x)
+    setInput (const InputType& x)
     {
       this->input_.set (x);
     }
 
     void TBindingOperation::
-    input (const InputOptional& x)
+    setInput (const InputOptional& x)
     {
       this->input_ = x;
     }
 
     void TBindingOperation::
-    input (::std::unique_ptr< InputType > x)
+    setInput (::std::unique_ptr< InputType > x)
     {
       this->input_.set (std::move (x));
     }
 
     const TBindingOperation::OutputOptional& TBindingOperation::
-    output () const
+    getOutput () const
     {
       return this->output_;
     }
 
     TBindingOperation::OutputOptional& TBindingOperation::
-    output ()
+    getOutput ()
     {
       return this->output_;
     }
 
     void TBindingOperation::
-    output (const OutputType& x)
+    setOutput (const OutputType& x)
     {
       this->output_.set (x);
     }
 
     void TBindingOperation::
-    output (const OutputOptional& x)
+    setOutput (const OutputOptional& x)
     {
       this->output_ = x;
     }
 
     void TBindingOperation::
-    output (::std::unique_ptr< OutputType > x)
+    setOutput (::std::unique_ptr< OutputType > x)
     {
       this->output_.set (std::move (x));
     }
 
     const TBindingOperation::FaultSequence& TBindingOperation::
-    fault () const
+    getFault () const
     {
       return this->fault_;
     }
 
     TBindingOperation::FaultSequence& TBindingOperation::
-    fault ()
+    getFault ()
     {
       return this->fault_;
     }
 
     void TBindingOperation::
-    fault (const FaultSequence& s)
+    setFault (const FaultSequence& s)
     {
       this->fault_ = s;
     }
 
     const TBindingOperation::NameType& TBindingOperation::
-    name () const
+    getName () const
     {
       return this->name_.get ();
     }
 
     TBindingOperation::NameType& TBindingOperation::
-    name ()
+    getName ()
     {
       return this->name_.get ();
     }
 
     void TBindingOperation::
-    name (const NameType& x)
+    setName (const NameType& x)
     {
       this->name_.set (x);
     }
 
     void TBindingOperation::
-    name (::std::unique_ptr< NameType > x)
+    setName (::std::unique_ptr< NameType > x)
     {
       this->name_.set (std::move (x));
     }
@@ -1142,43 +1142,43 @@ namespace WS
     // 
 
     const TService::PortSequence& TService::
-    port () const
+    getPort () const
     {
       return this->port_;
     }
 
     TService::PortSequence& TService::
-    port ()
+    getPort ()
     {
       return this->port_;
     }
 
     void TService::
-    port (const PortSequence& s)
+    setPort (const PortSequence& s)
     {
       this->port_ = s;
     }
 
     const TService::NameType& TService::
-    name () const
+    getName () const
     {
       return this->name_.get ();
     }
 
     TService::NameType& TService::
-    name ()
+    getName ()
     {
       return this->name_.get ();
     }
 
     void TService::
-    name (const NameType& x)
+    setName (const NameType& x)
     {
       this->name_.set (x);
     }
 
     void TService::
-    name (::std::unique_ptr< NameType > x)
+    setName (::std::unique_ptr< NameType > x)
     {
       this->name_.set (std::move (x));
     }
@@ -1188,49 +1188,49 @@ namespace WS
     // 
 
     const TPort::NameType& TPort::
-    name () const
+    getName () const
     {
       return this->name_.get ();
     }
 
     TPort::NameType& TPort::
-    name ()
+    getName ()
     {
       return this->name_.get ();
     }
 
     void TPort::
-    name (const NameType& x)
+    setName (const NameType& x)
     {
       this->name_.set (x);
     }
 
     void TPort::
-    name (::std::unique_ptr< NameType > x)
+    setName (::std::unique_ptr< NameType > x)
     {
       this->name_.set (std::move (x));
     }
 
     const TPort::BindingType& TPort::
-    binding () const
+    getBinding () const
     {
       return this->binding_.get ();
     }
 
     TPort::BindingType& TPort::
-    binding ()
+    getBinding ()
     {
       return this->binding_.get ();
     }
 
     void TPort::
-    binding (const BindingType& x)
+    setBinding (const BindingType& x)
     {
       this->binding_.set (x);
     }
 
     void TPort::
-    binding (::std::unique_ptr< BindingType > x)
+    setBinding (::std::unique_ptr< BindingType > x)
     {
       this->binding_.set (std::move (x));
     }
@@ -1240,25 +1240,25 @@ namespace WS
     // 
 
     const TExtensibilityElement::RequiredOptional& TExtensibilityElement::
-    required () const
+    getRequired () const
     {
       return this->required_;
     }
 
     TExtensibilityElement::RequiredOptional& TExtensibilityElement::
-    required ()
+    getRequired ()
     {
       return this->required_;
     }
 
     void TExtensibilityElement::
-    required (const RequiredType& x)
+    setRequired (const RequiredType& x)
     {
       this->required_.set (x);
     }
 
     void TExtensibilityElement::
-    required (const RequiredOptional& x)
+    setRequired (const RequiredOptional& x)
     {
       this->required_ = x;
     }
@@ -3793,294 +3793,6 @@ namespace WS
 {
   namespace WSDL
   {
-    ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (const ::std::string& u,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::WSDL::TDefinitions > (
-        ::WS::WSDL::definitions (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (const ::std::string& u,
-                 ::xml_schema::ErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::WSDL::TDefinitions > (
-        ::WS::WSDL::definitions (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (const ::std::string& u,
-                 ::xercesc::DOMErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::WSDL::TDefinitions > (
-        ::WS::WSDL::definitions (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (::std::istream& is,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::WSDL::definitions (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (::std::istream& is,
-                 ::xml_schema::ErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::WSDL::definitions (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (::std::istream& is,
-                 ::xercesc::DOMErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::WSDL::definitions (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (::std::istream& is,
-                 const ::std::string& sid,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::WSDL::definitions (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (::std::istream& is,
-                 const ::std::string& sid,
-                 ::xml_schema::ErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::WSDL::definitions (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (::std::istream& is,
-                 const ::std::string& sid,
-                 ::xercesc::DOMErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::WSDL::definitions (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (::xercesc::InputSource& i,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::WSDL::TDefinitions > (
-        ::WS::WSDL::definitions (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (::xercesc::InputSource& i,
-                 ::xml_schema::ErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::WSDL::TDefinitions > (
-        ::WS::WSDL::definitions (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (::xercesc::InputSource& i,
-                 ::xercesc::DOMErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::WSDL::TDefinitions > (
-        ::WS::WSDL::definitions (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (const ::xercesc::DOMDocument& doc,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::WSDL::TDefinitions > (
-          ::WS::WSDL::definitions (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "definitions",
-          "http://schemas.xmlsoap.org/wsdl/",
-          &::xsd::cxx::tree::factory_impl< ::WS::WSDL::TDefinitions >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-        ::std::unique_ptr< ::WS::WSDL::TDefinitions > r (
-          dynamic_cast< ::WS::WSDL::TDefinitions* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "definitions",
-        "http://schemas.xmlsoap.org/wsdl/");
-    }
-
-    ::std::unique_ptr< ::WS::WSDL::TDefinitions >
-    definitions (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "definitions",
-          "http://schemas.xmlsoap.org/wsdl/",
-          &::xsd::cxx::tree::factory_impl< ::WS::WSDL::TDefinitions >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-
-        ::std::unique_ptr< ::WS::WSDL::TDefinitions > r (
-          dynamic_cast< ::WS::WSDL::TDefinitions* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "definitions",
-        "http://schemas.xmlsoap.org/wsdl/");
-    }
   }
 }
 
@@ -4125,9 +3837,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.documentation ())
+        if (i.getDocumentation ())
         {
-          const TDocumented::DocumentationType& x (*i.documentation ());
+          const TDocumented::DocumentationType& x (*i.getDocumentation ());
           if (typeid (TDocumented::DocumentationType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -4181,175 +3893,6 @@ namespace WS
 
 
     void
-    definitions (::std::ostream& o,
-                 const ::WS::WSDL::TDefinitions& s,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::WSDL::definitions (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    definitions (::std::ostream& o,
-                 const ::WS::WSDL::TDefinitions& s,
-                 ::xml_schema::ErrorHandler& h,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::WSDL::definitions (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    definitions (::std::ostream& o,
-                 const ::WS::WSDL::TDefinitions& s,
-                 ::xercesc::DOMErrorHandler& h,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::WSDL::definitions (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    definitions (::xercesc::XMLFormatTarget& t,
-                 const ::WS::WSDL::TDefinitions& s,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::WSDL::definitions (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    definitions (::xercesc::XMLFormatTarget& t,
-                 const ::WS::WSDL::TDefinitions& s,
-                 ::xml_schema::ErrorHandler& h,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::WSDL::definitions (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    definitions (::xercesc::XMLFormatTarget& t,
-                 const ::WS::WSDL::TDefinitions& s,
-                 ::xercesc::DOMErrorHandler& h,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::WSDL::definitions (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    definitions (::xercesc::DOMDocument& d,
-                 const ::WS::WSDL::TDefinitions& s,
-                 ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (typeid (::WS::WSDL::TDefinitions) == typeid (s))
-      {
-        if (n.name () == "definitions" &&
-            n.namespace_ () == "http://schemas.xmlsoap.org/wsdl/")
-        {
-          e << s;
-        }
-        else
-        {
-          throw ::xsd::cxx::tree::unexpected_element < char > (
-            n.name (),
-            n.namespace_ (),
-            "definitions",
-            "http://schemas.xmlsoap.org/wsdl/");
-        }
-      }
-      else
-      {
-        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "definitions",
-          "http://schemas.xmlsoap.org/wsdl/",
-          e, n, s);
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    definitions (const ::WS::WSDL::TDefinitions& s,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-      if (typeid (::WS::WSDL::TDefinitions) == typeid (s))
-      {
-        d = ::xsd::cxx::xml::dom::serialize< char > (
-          "definitions",
-          "http://schemas.xmlsoap.org/wsdl/",
-          m, f);
-      }
-      else
-      {
-        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "definitions",
-          "http://schemas.xmlsoap.org/wsdl/",
-          m, s, f);
-      }
-
-      ::WS::WSDL::definitions (*d, s, f);
-      return d;
-    }
-
-    void
     operator<< (::xercesc::DOMElement& e, const TDefinitions& i)
     {
       e << static_cast< const ::WS::WSDL::TExtensibleDocumented& > (i);
@@ -4361,7 +3904,7 @@ namespace WS
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
         for (TDefinitions::ImportConstIterator
-             b (i.import ().begin ()), n (i.import ().end ());
+             b (i.getImport ().begin ()), n (i.getImport ().end ());
              b != n; ++b)
         {
           if (typeid (TDefinitions::ImportType) == typeid (*b))
@@ -4389,7 +3932,7 @@ namespace WS
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
         for (TDefinitions::TypesConstIterator
-             b (i.types ().begin ()), n (i.types ().end ());
+             b (i.getTypes ().begin ()), n (i.getTypes ().end ());
              b != n; ++b)
         {
           if (typeid (TDefinitions::TypesType) == typeid (*b))
@@ -4417,7 +3960,7 @@ namespace WS
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
         for (TDefinitions::MessageConstIterator
-             b (i.message ().begin ()), n (i.message ().end ());
+             b (i.getMessage ().begin ()), n (i.getMessage ().end ());
              b != n; ++b)
         {
           if (typeid (TDefinitions::MessageType) == typeid (*b))
@@ -4445,7 +3988,7 @@ namespace WS
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
         for (TDefinitions::PortTypeConstIterator
-             b (i.portType ().begin ()), n (i.portType ().end ());
+             b (i.getPortType ().begin ()), n (i.getPortType ().end ());
              b != n; ++b)
         {
           if (typeid (TDefinitions::PortTypeType) == typeid (*b))
@@ -4473,7 +4016,7 @@ namespace WS
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
         for (TDefinitions::BindingConstIterator
-             b (i.binding ().begin ()), n (i.binding ().end ());
+             b (i.getBinding ().begin ()), n (i.getBinding ().end ());
              b != n; ++b)
         {
           if (typeid (TDefinitions::BindingType) == typeid (*b))
@@ -4501,7 +4044,7 @@ namespace WS
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
         for (TDefinitions::ServiceConstIterator
-             b (i.service ().begin ()), n (i.service ().end ());
+             b (i.getService ().begin ()), n (i.getService ().end ());
              b != n; ++b)
         {
           if (typeid (TDefinitions::ServiceType) == typeid (*b))
@@ -4524,26 +4067,26 @@ namespace WS
 
       // targetNamespace
       //
-      if (i.targetNamespace ())
+      if (i.getTargetNamespace ())
       {
         ::xercesc::DOMAttr& a (
           ::xsd::cxx::xml::dom::create_attribute (
             "targetNamespace",
             e));
 
-        a << *i.targetNamespace ();
+        a << *i.getTargetNamespace ();
       }
 
       // name
       //
-      if (i.name ())
+      if (i.getName ())
       {
         ::xercesc::DOMAttr& a (
           ::xsd::cxx::xml::dom::create_attribute (
             "name",
             e));
 
-        a << *i.name ();
+        a << *i.getName ();
       }
     }
 
@@ -4567,7 +4110,7 @@ namespace WS
             "namespace",
             e));
 
-        a << i.namespace_ ();
+        a << i.getNamespace ();
       }
 
       // location
@@ -4578,7 +4121,7 @@ namespace WS
             "location",
             e));
 
-        a << i.location ();
+        a << i.getLocation ();
       }
     }
 
@@ -4614,7 +4157,7 @@ namespace WS
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
         for (TMessage::PartConstIterator
-             b (i.part ().begin ()), n (i.part ().end ());
+             b (i.getPart ().begin ()), n (i.getPart ().end ());
              b != n; ++b)
         {
           if (typeid (TMessage::PartType) == typeid (*b))
@@ -4643,7 +4186,7 @@ namespace WS
             "name",
             e));
 
-        a << i.name ();
+        a << i.getName ();
       }
     }
 
@@ -4667,31 +4210,31 @@ namespace WS
             "name",
             e));
 
-        a << i.name ();
+        a << i.getName ();
       }
 
       // element
       //
-      if (i.element ())
+      if (i.getElement ())
       {
         ::xercesc::DOMAttr& a (
           ::xsd::cxx::xml::dom::create_attribute (
             "element",
             e));
 
-        a << *i.element ();
+        a << *i.getElement ();
       }
 
       // type
       //
-      if (i.type ())
+      if (i.getType ())
       {
         ::xercesc::DOMAttr& a (
           ::xsd::cxx::xml::dom::create_attribute (
             "type",
             e));
 
-        a << *i.type ();
+        a << *i.getType ();
       }
     }
 
@@ -4714,7 +4257,7 @@ namespace WS
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
         for (TPortType::OperationConstIterator
-             b (i.operation ().begin ()), n (i.operation ().end ());
+             b (i.getOperation ().begin ()), n (i.getOperation ().end ());
              b != n; ++b)
         {
           if (typeid (TPortType::OperationType) == typeid (*b))
@@ -4737,7 +4280,7 @@ namespace WS
 
       // Policy
       //
-      if (i.Policy ())
+      if (i.getPolicy ())
       {
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
@@ -4745,7 +4288,7 @@ namespace WS
             "http://www.w3.org/ns/ws-policy",
             e));
 
-        s << *i.Policy ();
+        s << *i.getPolicy ();
       }
 
       // name
@@ -4756,12 +4299,12 @@ namespace WS
             "name",
             e));
 
-        a << i.name ();
+        a << i.getName ();
       }
 
       // EventSource
       //
-      if (i.EventSource ())
+      if (i.getEventSource ())
       {
         ::xercesc::DOMAttr& a (
           ::xsd::cxx::xml::dom::create_attribute (
@@ -4769,7 +4312,7 @@ namespace WS
             "http://schemas.xmlsoap.org/ws/2004/08/eventing",
             e));
 
-        a << *i.EventSource ();
+        a << *i.getEventSource ();
       }
     }
 
@@ -4791,9 +4334,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.input ())
+        if (i.getInput ())
         {
-          const TOperation::InputType& x (*i.input ());
+          const TOperation::InputType& x (*i.getInput ());
           if (typeid (TOperation::InputType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -4818,9 +4361,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.output ())
+        if (i.getOutput ())
         {
-          const TOperation::OutputType& x (*i.output ());
+          const TOperation::OutputType& x (*i.getOutput ());
           if (typeid (TOperation::OutputType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -4846,7 +4389,7 @@ namespace WS
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
         for (TOperation::FaultConstIterator
-             b (i.fault ().begin ()), n (i.fault ().end ());
+             b (i.getFault ().begin ()), n (i.getFault ().end ());
              b != n; ++b)
         {
           if (typeid (TOperation::FaultType) == typeid (*b))
@@ -4875,19 +4418,19 @@ namespace WS
             "name",
             e));
 
-        a << i.name ();
+        a << i.getName ();
       }
 
       // parameterOrder
       //
-      if (i.parameterOrder ())
+      if (i.getParameterOrder ())
       {
         ::xercesc::DOMAttr& a (
           ::xsd::cxx::xml::dom::create_attribute (
             "parameterOrder",
             e));
 
-        a << *i.parameterOrder ();
+        a << *i.getParameterOrder ();
       }
     }
 
@@ -4905,14 +4448,14 @@ namespace WS
 
       // name
       //
-      if (i.name ())
+      if (i.getName ())
       {
         ::xercesc::DOMAttr& a (
           ::xsd::cxx::xml::dom::create_attribute (
             "name",
             e));
 
-        a << *i.name ();
+        a << *i.getName ();
       }
 
       // message
@@ -4923,12 +4466,12 @@ namespace WS
             "message",
             e));
 
-        a << i.message ();
+        a << i.getMessage ();
       }
 
       // Action
       //
-      if (i.Action ())
+      if (i.getAction ())
       {
         ::xercesc::DOMAttr& a (
           ::xsd::cxx::xml::dom::create_attribute (
@@ -4936,7 +4479,7 @@ namespace WS
             "http://www.w3.org/2005/08/addressing",
             e));
 
-        a << *i.Action ();
+        a << *i.getAction ();
       }
     }
 
@@ -4960,7 +4503,7 @@ namespace WS
             "name",
             e));
 
-        a << i.name ();
+        a << i.getName ();
       }
 
       // message
@@ -4971,7 +4514,7 @@ namespace WS
             "message",
             e));
 
-        a << i.message ();
+        a << i.getMessage ();
       }
     }
 
@@ -4993,7 +4536,7 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        const TBinding::BindingType& x (i.binding ());
+        const TBinding::BindingType& x (i.getBinding ());
         if (typeid (TBinding::BindingType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -5018,7 +4561,7 @@ namespace WS
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
         for (TBinding::OperationConstIterator
-             b (i.operation ().begin ()), n (i.operation ().end ());
+             b (i.getOperation ().begin ()), n (i.getOperation ().end ());
              b != n; ++b)
         {
           if (typeid (TBinding::OperationType) == typeid (*b))
@@ -5047,7 +4590,7 @@ namespace WS
             "name",
             e));
 
-        a << i.name ();
+        a << i.getName ();
       }
 
       // type
@@ -5058,7 +4601,7 @@ namespace WS
             "type",
             e));
 
-        a << i.type ();
+        a << i.getType ();
       }
     }
 
@@ -5080,7 +4623,7 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        const TBindingOperationMessage::BodyType& x (i.body ());
+        const TBindingOperationMessage::BodyType& x (i.getBody ());
         if (typeid (TBindingOperationMessage::BodyType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -5100,14 +4643,14 @@ namespace WS
 
       // name
       //
-      if (i.name ())
+      if (i.getName ())
       {
         ::xercesc::DOMAttr& a (
           ::xsd::cxx::xml::dom::create_attribute (
             "name",
             e));
 
-        a << *i.name ();
+        a << *i.getName ();
       }
     }
 
@@ -5131,7 +4674,7 @@ namespace WS
             "name",
             e));
 
-        a << i.name ();
+        a << i.getName ();
       }
     }
 
@@ -5153,7 +4696,7 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        const TBindingOperation::OperationType& x (i.operation ());
+        const TBindingOperation::OperationType& x (i.getOperation ());
         if (typeid (TBindingOperation::OperationType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -5177,9 +4720,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.input ())
+        if (i.getInput ())
         {
-          const TBindingOperation::InputType& x (*i.input ());
+          const TBindingOperation::InputType& x (*i.getInput ());
           if (typeid (TBindingOperation::InputType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -5204,9 +4747,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.output ())
+        if (i.getOutput ())
         {
-          const TBindingOperation::OutputType& x (*i.output ());
+          const TBindingOperation::OutputType& x (*i.getOutput ());
           if (typeid (TBindingOperation::OutputType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -5232,7 +4775,7 @@ namespace WS
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
         for (TBindingOperation::FaultConstIterator
-             b (i.fault ().begin ()), n (i.fault ().end ());
+             b (i.getFault ().begin ()), n (i.getFault ().end ());
              b != n; ++b)
         {
           if (typeid (TBindingOperation::FaultType) == typeid (*b))
@@ -5261,7 +4804,7 @@ namespace WS
             "name",
             e));
 
-        a << i.name ();
+        a << i.getName ();
       }
     }
 
@@ -5284,7 +4827,7 @@ namespace WS
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
         for (TService::PortConstIterator
-             b (i.port ().begin ()), n (i.port ().end ());
+             b (i.getPort ().begin ()), n (i.getPort ().end ());
              b != n; ++b)
         {
           if (typeid (TService::PortType) == typeid (*b))
@@ -5313,7 +4856,7 @@ namespace WS
             "name",
             e));
 
-        a << i.name ();
+        a << i.getName ();
       }
     }
 
@@ -5337,7 +4880,7 @@ namespace WS
             "name",
             e));
 
-        a << i.name ();
+        a << i.getName ();
       }
 
       // binding
@@ -5348,7 +4891,7 @@ namespace WS
             "binding",
             e));
 
-        a << i.binding ();
+        a << i.getBinding ();
       }
     }
 
@@ -5366,7 +4909,7 @@ namespace WS
 
       // required
       //
-      if (i.required ())
+      if (i.getRequired ())
       {
         ::xercesc::DOMAttr& a (
           ::xsd::cxx::xml::dom::create_attribute (
@@ -5374,7 +4917,7 @@ namespace WS
             "http://schemas.xmlsoap.org/wsdl/",
             e));
 
-        a << *i.required ();
+        a << *i.getRequired ();
       }
     }
 

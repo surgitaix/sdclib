@@ -44,134 +44,131 @@ namespace SDC {
 
 BaseDemographics::BaseDemographics(
 ) : data(Defaults::BaseDemographicsInit(
-)) {}
+))
+{}
 
 BaseDemographics::operator CDM::BaseDemographics() const {
 	return *data;
 }
 
-BaseDemographics::BaseDemographics(const CDM::BaseDemographics & object) : data(new CDM::BaseDemographics(object)) {
+BaseDemographics::BaseDemographics(const CDM::BaseDemographics & object)
+: data(new CDM::BaseDemographics(object))
+{ }
 
-}
-
-BaseDemographics::BaseDemographics(const BaseDemographics & object) : data(new CDM::BaseDemographics(*object.data)) {
-
-}
-
-BaseDemographics::~BaseDemographics() {
-
-}
+BaseDemographics::BaseDemographics(const BaseDemographics & object)
+: data(std::make_shared<CDM::BaseDemographics>(*object.data))
+{ }
 
 void BaseDemographics::copyFrom(const BaseDemographics & object) {
-	data = std::shared_ptr<CDM::BaseDemographics>( new CDM::BaseDemographics(*object.data));
+	data = std::make_shared<CDM::BaseDemographics>(*object.data);
 }
 
-BaseDemographics & BaseDemographics:: operator=(const BaseDemographics & object) {
+BaseDemographics & BaseDemographics:: operator=(const BaseDemographics& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 BaseDemographics & BaseDemographics::setGivenname(const std::string & value) {
-	data->Givenname(ConvertToCDM::convert(value));
+	data->setGivenname(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool BaseDemographics::getGivenname(std::string & out) const {
-	if (data->Givenname().present()) {
-		out = ConvertFromCDM::convert(data->Givenname().get());
+	if (data->getGivenname().present()) {
+		out = ConvertFromCDM::convert(data->getGivenname().get());
 		return true;
 	}
 	return false;
 }
 
 std::string BaseDemographics::getGivenname() const {
-	return ConvertFromCDM::convert(data->Givenname().get());
+	return ConvertFromCDM::convert(data->getGivenname().get());
 }
 
 bool BaseDemographics::hasGivenname() const {
-	return data->Givenname().present();
+	return data->getGivenname().present();
 }
 
 BaseDemographics & BaseDemographics::setFamilyname(const std::string & value) {
-	data->Familyname(ConvertToCDM::convert(value));
+	data->setFamilyname(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool BaseDemographics::getFamilyname(std::string & out) const {
-	if (data->Familyname().present()) {
-		out = ConvertFromCDM::convert(data->Familyname().get());
+	if (data->getFamilyname().present()) {
+		out = ConvertFromCDM::convert(data->getFamilyname().get());
 		return true;
 	}
 	return false;
 }
 
 std::string BaseDemographics::getFamilyname() const {
-	return ConvertFromCDM::convert(data->Familyname().get());
+	return ConvertFromCDM::convert(data->getFamilyname().get());
 }
 
 bool BaseDemographics::hasFamilyname() const {
-	return data->Familyname().present();
+	return data->getFamilyname().present();
 }
 
 BaseDemographics & BaseDemographics::setBirthname(const std::string & value) {
-	data->Birthname(ConvertToCDM::convert(value));
+	data->setBirthname(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool BaseDemographics::getBirthname(std::string & out) const {
-	if (data->Birthname().present()) {
-		out = ConvertFromCDM::convert(data->Birthname().get());
+	if (data->getBirthname().present()) {
+		out = ConvertFromCDM::convert(data->getBirthname().get());
 		return true;
 	}
 	return false;
 }
 
 std::string BaseDemographics::getBirthname() const {
-	return ConvertFromCDM::convert(data->Birthname().get());
+	return ConvertFromCDM::convert(data->getBirthname().get());
 }
 
 bool BaseDemographics::hasBirthname() const {
-	return data->Birthname().present();
+	return data->getBirthname().present();
 }
 
 BaseDemographics & BaseDemographics::setTitle(const std::string & value) {
-	data->Title(ConvertToCDM::convert(value));
+	data->setTitle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool BaseDemographics::getTitle(std::string & out) const {
-	if (data->Title().present()) {
-		out = ConvertFromCDM::convert(data->Title().get());
+	if (data->getTitle().present()) {
+		out = ConvertFromCDM::convert(data->getTitle().get());
 		return true;
 	}
 	return false;
 }
 
 std::string BaseDemographics::getTitle() const {
-	return ConvertFromCDM::convert(data->Title().get());
+	return ConvertFromCDM::convert(data->getTitle().get());
 }
 
 bool BaseDemographics::hasTitle() const {
-	return data->Title().present();
+	return data->getTitle().present();
 }
 
 BaseDemographics & BaseDemographics::addMiddlename(const std::string & value) {
-	data->Middlename().push_back(ConvertToCDM::convert(value));
+	data->getMiddlename().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<std::string> BaseDemographics::getMiddlenameList() const {
 	std::vector<std::string> result;
-	result.reserve(data->Middlename().size());
-	for (const auto & value: data->Middlename()) {
+	result.reserve(data->getMiddlename().size());
+	for (const auto & value: data->getMiddlename()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void BaseDemographics::clearMiddlenameList() {
-	data->Middlename().clear();
+	data->getMiddlename().clear();
 }
 
 

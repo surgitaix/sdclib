@@ -50,61 +50,61 @@ namespace WS
       // 
 
       const BindingType::TransportOptional& BindingType::
-      transport () const
+      getTransport () const
       {
         return this->transport_;
       }
 
       BindingType::TransportOptional& BindingType::
-      transport ()
+      getTransport ()
       {
         return this->transport_;
       }
 
       void BindingType::
-      transport (const TransportType& x)
+      setTransport (const TransportType& x)
       {
         this->transport_.set (x);
       }
 
       void BindingType::
-      transport (const TransportOptional& x)
+      setTransport (const TransportOptional& x)
       {
         this->transport_ = x;
       }
 
       void BindingType::
-      transport (::std::unique_ptr< TransportType > x)
+      setTransport (::std::unique_ptr< TransportType > x)
       {
         this->transport_.set (std::move (x));
       }
 
       const BindingType::StyleOptional& BindingType::
-      style () const
+      getStyle () const
       {
         return this->style_;
       }
 
       BindingType::StyleOptional& BindingType::
-      style ()
+      getStyle ()
       {
         return this->style_;
       }
 
       void BindingType::
-      style (const StyleType& x)
+      setStyle (const StyleType& x)
       {
         this->style_.set (x);
       }
 
       void BindingType::
-      style (const StyleOptional& x)
+      setStyle (const StyleOptional& x)
       {
         this->style_ = x;
       }
 
       void BindingType::
-      style (::std::unique_ptr< StyleType > x)
+      setStyle (::std::unique_ptr< StyleType > x)
       {
         this->style_.set (std::move (x));
       }
@@ -159,61 +159,61 @@ namespace WS
       // 
 
       const OperationType::SoapActionOptional& OperationType::
-      soapAction () const
+      getSoapAction () const
       {
         return this->soapAction_;
       }
 
       OperationType::SoapActionOptional& OperationType::
-      soapAction ()
+      getSoapAction ()
       {
         return this->soapAction_;
       }
 
       void OperationType::
-      soapAction (const SoapActionType& x)
+      setSoapAction (const SoapActionType& x)
       {
         this->soapAction_.set (x);
       }
 
       void OperationType::
-      soapAction (const SoapActionOptional& x)
+      setSoapAction (const SoapActionOptional& x)
       {
         this->soapAction_ = x;
       }
 
       void OperationType::
-      soapAction (::std::unique_ptr< SoapActionType > x)
+      setSoapAction (::std::unique_ptr< SoapActionType > x)
       {
         this->soapAction_.set (std::move (x));
       }
 
       const OperationType::StyleOptional& OperationType::
-      style () const
+      getStyle () const
       {
         return this->style_;
       }
 
       OperationType::StyleOptional& OperationType::
-      style ()
+      getStyle ()
       {
         return this->style_;
       }
 
       void OperationType::
-      style (const StyleType& x)
+      setStyle (const StyleType& x)
       {
         this->style_.set (x);
       }
 
       void OperationType::
-      style (const StyleOptional& x)
+      setStyle (const StyleOptional& x)
       {
         this->style_ = x;
       }
 
       void OperationType::
-      style (::std::unique_ptr< StyleType > x)
+      setStyle (::std::unique_ptr< StyleType > x)
       {
         this->style_.set (std::move (x));
       }
@@ -223,121 +223,121 @@ namespace WS
       // 
 
       const BodyType::EncodingStyleOptional& BodyType::
-      encodingStyle () const
+      getEncodingStyle () const
       {
         return this->encodingStyle_;
       }
 
       BodyType::EncodingStyleOptional& BodyType::
-      encodingStyle ()
+      getEncodingStyle ()
       {
         return this->encodingStyle_;
       }
 
       void BodyType::
-      encodingStyle (const EncodingStyleType& x)
+      setEncodingStyle (const EncodingStyleType& x)
       {
         this->encodingStyle_.set (x);
       }
 
       void BodyType::
-      encodingStyle (const EncodingStyleOptional& x)
+      setEncodingStyle (const EncodingStyleOptional& x)
       {
         this->encodingStyle_ = x;
       }
 
       void BodyType::
-      encodingStyle (::std::unique_ptr< EncodingStyleType > x)
+      setEncodingStyle (::std::unique_ptr< EncodingStyleType > x)
       {
         this->encodingStyle_.set (std::move (x));
       }
 
       const BodyType::PartsOptional& BodyType::
-      parts () const
+      getParts () const
       {
         return this->parts_;
       }
 
       BodyType::PartsOptional& BodyType::
-      parts ()
+      getParts ()
       {
         return this->parts_;
       }
 
       void BodyType::
-      parts (const PartsType& x)
+      setParts (const PartsType& x)
       {
         this->parts_.set (x);
       }
 
       void BodyType::
-      parts (const PartsOptional& x)
+      setParts (const PartsOptional& x)
       {
         this->parts_ = x;
       }
 
       void BodyType::
-      parts (::std::unique_ptr< PartsType > x)
+      setParts (::std::unique_ptr< PartsType > x)
       {
         this->parts_.set (std::move (x));
       }
 
       const BodyType::UseOptional& BodyType::
-      use () const
+      getUse () const
       {
         return this->use_;
       }
 
       BodyType::UseOptional& BodyType::
-      use ()
+      getUse ()
       {
         return this->use_;
       }
 
       void BodyType::
-      use (const UseType& x)
+      setUse (const UseType& x)
       {
         this->use_.set (x);
       }
 
       void BodyType::
-      use (const UseOptional& x)
+      setUse (const UseOptional& x)
       {
         this->use_ = x;
       }
 
       void BodyType::
-      use (::std::unique_ptr< UseType > x)
+      setUse (::std::unique_ptr< UseType > x)
       {
         this->use_.set (std::move (x));
       }
 
       const BodyType::NamespaceOptional& BodyType::
-      namespace_ () const
+      getNamespace () const
       {
         return this->namespace__;
       }
 
       BodyType::NamespaceOptional& BodyType::
-      namespace_ ()
+      getNamespace ()
       {
         return this->namespace__;
       }
 
       void BodyType::
-      namespace_ (const NamespaceType& x)
+      setNamespace (const NamespaceType& x)
       {
         this->namespace__.set (x);
       }
 
       void BodyType::
-      namespace_ (const NamespaceOptional& x)
+      setNamespace (const NamespaceOptional& x)
       {
         this->namespace__ = x;
       }
 
       void BodyType::
-      namespace_ (::std::unique_ptr< NamespaceType > x)
+      setNamespace (::std::unique_ptr< NamespaceType > x)
       {
         this->namespace__.set (std::move (x));
       }
@@ -396,157 +396,157 @@ namespace WS
       // 
 
       const HeaderType::HeaderfaultType& HeaderType::
-      headerfault () const
+      getHeaderfault () const
       {
         return this->headerfault_.get ();
       }
 
       HeaderType::HeaderfaultType& HeaderType::
-      headerfault ()
+      getHeaderfault ()
       {
         return this->headerfault_.get ();
       }
 
       void HeaderType::
-      headerfault (const HeaderfaultType& x)
+      setHeaderfault (const HeaderfaultType& x)
       {
         this->headerfault_.set (x);
       }
 
       void HeaderType::
-      headerfault (::std::unique_ptr< HeaderfaultType > x)
+      setHeaderfault (::std::unique_ptr< HeaderfaultType > x)
       {
         this->headerfault_.set (std::move (x));
       }
 
       const HeaderType::MessageType& HeaderType::
-      message () const
+      getMessage () const
       {
         return this->message_.get ();
       }
 
       HeaderType::MessageType& HeaderType::
-      message ()
+      getMessage ()
       {
         return this->message_.get ();
       }
 
       void HeaderType::
-      message (const MessageType& x)
+      setMessage (const MessageType& x)
       {
         this->message_.set (x);
       }
 
       void HeaderType::
-      message (::std::unique_ptr< MessageType > x)
+      setMessage (::std::unique_ptr< MessageType > x)
       {
         this->message_.set (std::move (x));
       }
 
       const HeaderType::PartsType& HeaderType::
-      parts () const
+      getParts () const
       {
         return this->parts_.get ();
       }
 
       HeaderType::PartsType& HeaderType::
-      parts ()
+      getParts ()
       {
         return this->parts_.get ();
       }
 
       void HeaderType::
-      parts (const PartsType& x)
+      setParts (const PartsType& x)
       {
         this->parts_.set (x);
       }
 
       void HeaderType::
-      parts (::std::unique_ptr< PartsType > x)
+      setParts (::std::unique_ptr< PartsType > x)
       {
         this->parts_.set (std::move (x));
       }
 
       const HeaderType::UseType& HeaderType::
-      use () const
+      getUse () const
       {
         return this->use_.get ();
       }
 
       HeaderType::UseType& HeaderType::
-      use ()
+      getUse ()
       {
         return this->use_.get ();
       }
 
       void HeaderType::
-      use (const UseType& x)
+      setUse (const UseType& x)
       {
         this->use_.set (x);
       }
 
       void HeaderType::
-      use (::std::unique_ptr< UseType > x)
+      setUse (::std::unique_ptr< UseType > x)
       {
         this->use_.set (std::move (x));
       }
 
       const HeaderType::EncodingStyleOptional& HeaderType::
-      encodingStyle () const
+      getEncodingStyle () const
       {
         return this->encodingStyle_;
       }
 
       HeaderType::EncodingStyleOptional& HeaderType::
-      encodingStyle ()
+      getEncodingStyle ()
       {
         return this->encodingStyle_;
       }
 
       void HeaderType::
-      encodingStyle (const EncodingStyleType& x)
+      setEncodingStyle (const EncodingStyleType& x)
       {
         this->encodingStyle_.set (x);
       }
 
       void HeaderType::
-      encodingStyle (const EncodingStyleOptional& x)
+      setEncodingStyle (const EncodingStyleOptional& x)
       {
         this->encodingStyle_ = x;
       }
 
       void HeaderType::
-      encodingStyle (::std::unique_ptr< EncodingStyleType > x)
+      setEncodingStyle (::std::unique_ptr< EncodingStyleType > x)
       {
         this->encodingStyle_.set (std::move (x));
       }
 
       const HeaderType::NamespaceOptional& HeaderType::
-      namespace_ () const
+      getNamespace () const
       {
         return this->namespace__;
       }
 
       HeaderType::NamespaceOptional& HeaderType::
-      namespace_ ()
+      getNamespace ()
       {
         return this->namespace__;
       }
 
       void HeaderType::
-      namespace_ (const NamespaceType& x)
+      setNamespace (const NamespaceType& x)
       {
         this->namespace__.set (x);
       }
 
       void HeaderType::
-      namespace_ (const NamespaceOptional& x)
+      setNamespace (const NamespaceOptional& x)
       {
         this->namespace__ = x;
       }
 
       void HeaderType::
-      namespace_ (::std::unique_ptr< NamespaceType > x)
+      setNamespace (::std::unique_ptr< NamespaceType > x)
       {
         this->namespace__.set (std::move (x));
       }
@@ -556,133 +556,133 @@ namespace WS
       // 
 
       const HeaderfaultType::MessageType& HeaderfaultType::
-      message () const
+      getMessage () const
       {
         return this->message_.get ();
       }
 
       HeaderfaultType::MessageType& HeaderfaultType::
-      message ()
+      getMessage ()
       {
         return this->message_.get ();
       }
 
       void HeaderfaultType::
-      message (const MessageType& x)
+      setMessage (const MessageType& x)
       {
         this->message_.set (x);
       }
 
       void HeaderfaultType::
-      message (::std::unique_ptr< MessageType > x)
+      setMessage (::std::unique_ptr< MessageType > x)
       {
         this->message_.set (std::move (x));
       }
 
       const HeaderfaultType::PartsType& HeaderfaultType::
-      parts () const
+      getParts () const
       {
         return this->parts_.get ();
       }
 
       HeaderfaultType::PartsType& HeaderfaultType::
-      parts ()
+      getParts ()
       {
         return this->parts_.get ();
       }
 
       void HeaderfaultType::
-      parts (const PartsType& x)
+      setParts (const PartsType& x)
       {
         this->parts_.set (x);
       }
 
       void HeaderfaultType::
-      parts (::std::unique_ptr< PartsType > x)
+      setParts (::std::unique_ptr< PartsType > x)
       {
         this->parts_.set (std::move (x));
       }
 
       const HeaderfaultType::UseType& HeaderfaultType::
-      use () const
+      getUse () const
       {
         return this->use_.get ();
       }
 
       HeaderfaultType::UseType& HeaderfaultType::
-      use ()
+      getUse ()
       {
         return this->use_.get ();
       }
 
       void HeaderfaultType::
-      use (const UseType& x)
+      setUse (const UseType& x)
       {
         this->use_.set (x);
       }
 
       void HeaderfaultType::
-      use (::std::unique_ptr< UseType > x)
+      setUse (::std::unique_ptr< UseType > x)
       {
         this->use_.set (std::move (x));
       }
 
       const HeaderfaultType::EncodingStyleOptional& HeaderfaultType::
-      encodingStyle () const
+      getEncodingStyle () const
       {
         return this->encodingStyle_;
       }
 
       HeaderfaultType::EncodingStyleOptional& HeaderfaultType::
-      encodingStyle ()
+      getEncodingStyle ()
       {
         return this->encodingStyle_;
       }
 
       void HeaderfaultType::
-      encodingStyle (const EncodingStyleType& x)
+      setEncodingStyle (const EncodingStyleType& x)
       {
         this->encodingStyle_.set (x);
       }
 
       void HeaderfaultType::
-      encodingStyle (const EncodingStyleOptional& x)
+      setEncodingStyle (const EncodingStyleOptional& x)
       {
         this->encodingStyle_ = x;
       }
 
       void HeaderfaultType::
-      encodingStyle (::std::unique_ptr< EncodingStyleType > x)
+      setEncodingStyle (::std::unique_ptr< EncodingStyleType > x)
       {
         this->encodingStyle_.set (std::move (x));
       }
 
       const HeaderfaultType::NamespaceOptional& HeaderfaultType::
-      namespace_ () const
+      getNamespace () const
       {
         return this->namespace__;
       }
 
       HeaderfaultType::NamespaceOptional& HeaderfaultType::
-      namespace_ ()
+      getNamespace ()
       {
         return this->namespace__;
       }
 
       void HeaderfaultType::
-      namespace_ (const NamespaceType& x)
+      setNamespace (const NamespaceType& x)
       {
         this->namespace__.set (x);
       }
 
       void HeaderfaultType::
-      namespace_ (const NamespaceOptional& x)
+      setNamespace (const NamespaceOptional& x)
       {
         this->namespace__ = x;
       }
 
       void HeaderfaultType::
-      namespace_ (::std::unique_ptr< NamespaceType > x)
+      setNamespace (::std::unique_ptr< NamespaceType > x)
       {
         this->namespace__.set (std::move (x));
       }
@@ -692,25 +692,25 @@ namespace WS
       // 
 
       const AddressType::LocationType& AddressType::
-      location () const
+      getLocation () const
       {
         return this->location_.get ();
       }
 
       AddressType::LocationType& AddressType::
-      location ()
+      getLocation ()
       {
         return this->location_.get ();
       }
 
       void AddressType::
-      location (const LocationType& x)
+      setLocation (const LocationType& x)
       {
         this->location_.set (x);
       }
 
       void AddressType::
-      location (::std::unique_ptr< LocationType > x)
+      setLocation (::std::unique_ptr< LocationType > x)
       {
         this->location_.set (std::move (x));
       }
@@ -1676,2028 +1676,6 @@ namespace WS
   {
     namespace SOAP_BINDING
     {
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (const ::std::string& u,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            u, h, p, f));
-
-        h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType > (
-          ::WS::WSDL::SOAP_BINDING::binding (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (const ::std::string& u,
-               ::xml_schema::ErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            u, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType > (
-          ::WS::WSDL::SOAP_BINDING::binding (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (const ::std::string& u,
-               ::xercesc::DOMErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            u, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType > (
-          ::WS::WSDL::SOAP_BINDING::binding (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (::std::istream& is,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is);
-        return ::WS::WSDL::SOAP_BINDING::binding (isrc, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (::std::istream& is,
-               ::xml_schema::ErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is);
-        return ::WS::WSDL::SOAP_BINDING::binding (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (::std::istream& is,
-               ::xercesc::DOMErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::sax::std_input_source isrc (is);
-        return ::WS::WSDL::SOAP_BINDING::binding (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (::std::istream& is,
-               const ::std::string& sid,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-        return ::WS::WSDL::SOAP_BINDING::binding (isrc, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (::std::istream& is,
-               const ::std::string& sid,
-               ::xml_schema::ErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-        return ::WS::WSDL::SOAP_BINDING::binding (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (::std::istream& is,
-               const ::std::string& sid,
-               ::xercesc::DOMErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-        return ::WS::WSDL::SOAP_BINDING::binding (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (::xercesc::InputSource& i,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            i, h, p, f));
-
-        h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType > (
-          ::WS::WSDL::SOAP_BINDING::binding (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (::xercesc::InputSource& i,
-               ::xml_schema::ErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            i, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType > (
-          ::WS::WSDL::SOAP_BINDING::binding (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (::xercesc::InputSource& i,
-               ::xercesc::DOMErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            i, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType > (
-          ::WS::WSDL::SOAP_BINDING::binding (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (const ::xercesc::DOMDocument& doc,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        if (f & ::xml_schema::Flags::keep_dom)
-        {
-          ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-            static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-          return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType > (
-            ::WS::WSDL::SOAP_BINDING::binding (
-              std::move (d), f | ::xml_schema::Flags::own_dom, p));
-        }
-
-        const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-        const ::xsd::cxx::xml::qualified_name< char > n (
-          ::xsd::cxx::xml::dom::name< char > (e));
-
-        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-            "binding",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            &::xsd::cxx::tree::factory_impl< ::WS::WSDL::SOAP_BINDING::BindingType >,
-            true, true, e, n, f, 0));
-
-        if (tmp.get () != 0)
-        {
-          ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType > r (
-            dynamic_cast< ::WS::WSDL::SOAP_BINDING::BindingType* > (tmp.get ()));
-
-          if (r.get ())
-            tmp.release ();
-          else
-            throw ::xsd::cxx::tree::not_derived< char > ();
-
-          return r;
-        }
-
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "binding",
-          "http://schemas.xmlsoap.org/wsdl/soap12/");
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType >
-      binding (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties&)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-          ((f & ::xml_schema::Flags::keep_dom) &&
-           !(f & ::xml_schema::Flags::own_dom))
-          ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-          : 0);
-
-        ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-        const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-        const ::xsd::cxx::xml::qualified_name< char > n (
-          ::xsd::cxx::xml::dom::name< char > (e));
-
-        if (f & ::xml_schema::Flags::keep_dom)
-          doc.setUserData (::xml_schema::dom::tree_node_key,
-                           (c.get () ? &c : &d),
-                           0);
-
-        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-            "binding",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            &::xsd::cxx::tree::factory_impl< ::WS::WSDL::SOAP_BINDING::BindingType >,
-            true, true, e, n, f, 0));
-
-        if (tmp.get () != 0)
-        {
-
-          ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BindingType > r (
-            dynamic_cast< ::WS::WSDL::SOAP_BINDING::BindingType* > (tmp.get ()));
-
-          if (r.get ())
-            tmp.release ();
-          else
-            throw ::xsd::cxx::tree::not_derived< char > ();
-
-          return r;
-        }
-
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "binding",
-          "http://schemas.xmlsoap.org/wsdl/soap12/");
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (const ::std::string& u,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            u, h, p, f));
-
-        h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType > (
-          ::WS::WSDL::SOAP_BINDING::operation (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (const ::std::string& u,
-                 ::xml_schema::ErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            u, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType > (
-          ::WS::WSDL::SOAP_BINDING::operation (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (const ::std::string& u,
-                 ::xercesc::DOMErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            u, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType > (
-          ::WS::WSDL::SOAP_BINDING::operation (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (::std::istream& is,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is);
-        return ::WS::WSDL::SOAP_BINDING::operation (isrc, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (::std::istream& is,
-                 ::xml_schema::ErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is);
-        return ::WS::WSDL::SOAP_BINDING::operation (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (::std::istream& is,
-                 ::xercesc::DOMErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::sax::std_input_source isrc (is);
-        return ::WS::WSDL::SOAP_BINDING::operation (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (::std::istream& is,
-                 const ::std::string& sid,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-        return ::WS::WSDL::SOAP_BINDING::operation (isrc, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (::std::istream& is,
-                 const ::std::string& sid,
-                 ::xml_schema::ErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-        return ::WS::WSDL::SOAP_BINDING::operation (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (::std::istream& is,
-                 const ::std::string& sid,
-                 ::xercesc::DOMErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-        return ::WS::WSDL::SOAP_BINDING::operation (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (::xercesc::InputSource& i,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            i, h, p, f));
-
-        h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType > (
-          ::WS::WSDL::SOAP_BINDING::operation (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (::xercesc::InputSource& i,
-                 ::xml_schema::ErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            i, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType > (
-          ::WS::WSDL::SOAP_BINDING::operation (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (::xercesc::InputSource& i,
-                 ::xercesc::DOMErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            i, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType > (
-          ::WS::WSDL::SOAP_BINDING::operation (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (const ::xercesc::DOMDocument& doc,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-      {
-        if (f & ::xml_schema::Flags::keep_dom)
-        {
-          ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-            static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-          return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType > (
-            ::WS::WSDL::SOAP_BINDING::operation (
-              std::move (d), f | ::xml_schema::Flags::own_dom, p));
-        }
-
-        const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-        const ::xsd::cxx::xml::qualified_name< char > n (
-          ::xsd::cxx::xml::dom::name< char > (e));
-
-        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-            "operation",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            &::xsd::cxx::tree::factory_impl< ::WS::WSDL::SOAP_BINDING::OperationType >,
-            true, true, e, n, f, 0));
-
-        if (tmp.get () != 0)
-        {
-          ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType > r (
-            dynamic_cast< ::WS::WSDL::SOAP_BINDING::OperationType* > (tmp.get ()));
-
-          if (r.get ())
-            tmp.release ();
-          else
-            throw ::xsd::cxx::tree::not_derived< char > ();
-
-          return r;
-        }
-
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "operation",
-          "http://schemas.xmlsoap.org/wsdl/soap12/");
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType >
-      operation (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties&)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-          ((f & ::xml_schema::Flags::keep_dom) &&
-           !(f & ::xml_schema::Flags::own_dom))
-          ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-          : 0);
-
-        ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-        const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-        const ::xsd::cxx::xml::qualified_name< char > n (
-          ::xsd::cxx::xml::dom::name< char > (e));
-
-        if (f & ::xml_schema::Flags::keep_dom)
-          doc.setUserData (::xml_schema::dom::tree_node_key,
-                           (c.get () ? &c : &d),
-                           0);
-
-        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-            "operation",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            &::xsd::cxx::tree::factory_impl< ::WS::WSDL::SOAP_BINDING::OperationType >,
-            true, true, e, n, f, 0));
-
-        if (tmp.get () != 0)
-        {
-
-          ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::OperationType > r (
-            dynamic_cast< ::WS::WSDL::SOAP_BINDING::OperationType* > (tmp.get ()));
-
-          if (r.get ())
-            tmp.release ();
-          else
-            throw ::xsd::cxx::tree::not_derived< char > ();
-
-          return r;
-        }
-
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "operation",
-          "http://schemas.xmlsoap.org/wsdl/soap12/");
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (const ::std::string& u,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            u, h, p, f));
-
-        h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType > (
-          ::WS::WSDL::SOAP_BINDING::body (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (const ::std::string& u,
-            ::xml_schema::ErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            u, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType > (
-          ::WS::WSDL::SOAP_BINDING::body (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (const ::std::string& u,
-            ::xercesc::DOMErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            u, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType > (
-          ::WS::WSDL::SOAP_BINDING::body (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (::std::istream& is,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is);
-        return ::WS::WSDL::SOAP_BINDING::body (isrc, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (::std::istream& is,
-            ::xml_schema::ErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is);
-        return ::WS::WSDL::SOAP_BINDING::body (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (::std::istream& is,
-            ::xercesc::DOMErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::sax::std_input_source isrc (is);
-        return ::WS::WSDL::SOAP_BINDING::body (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (::std::istream& is,
-            const ::std::string& sid,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-        return ::WS::WSDL::SOAP_BINDING::body (isrc, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (::std::istream& is,
-            const ::std::string& sid,
-            ::xml_schema::ErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-        return ::WS::WSDL::SOAP_BINDING::body (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (::std::istream& is,
-            const ::std::string& sid,
-            ::xercesc::DOMErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-        return ::WS::WSDL::SOAP_BINDING::body (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (::xercesc::InputSource& i,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            i, h, p, f));
-
-        h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType > (
-          ::WS::WSDL::SOAP_BINDING::body (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (::xercesc::InputSource& i,
-            ::xml_schema::ErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            i, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType > (
-          ::WS::WSDL::SOAP_BINDING::body (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (::xercesc::InputSource& i,
-            ::xercesc::DOMErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            i, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType > (
-          ::WS::WSDL::SOAP_BINDING::body (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (const ::xercesc::DOMDocument& doc,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-      {
-        if (f & ::xml_schema::Flags::keep_dom)
-        {
-          ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-            static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-          return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType > (
-            ::WS::WSDL::SOAP_BINDING::body (
-              std::move (d), f | ::xml_schema::Flags::own_dom, p));
-        }
-
-        const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-        const ::xsd::cxx::xml::qualified_name< char > n (
-          ::xsd::cxx::xml::dom::name< char > (e));
-
-        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-            "body",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            &::xsd::cxx::tree::factory_impl< ::WS::WSDL::SOAP_BINDING::BodyType >,
-            true, true, e, n, f, 0));
-
-        if (tmp.get () != 0)
-        {
-          ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType > r (
-            dynamic_cast< ::WS::WSDL::SOAP_BINDING::BodyType* > (tmp.get ()));
-
-          if (r.get ())
-            tmp.release ();
-          else
-            throw ::xsd::cxx::tree::not_derived< char > ();
-
-          return r;
-        }
-
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "body",
-          "http://schemas.xmlsoap.org/wsdl/soap12/");
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType >
-      body (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties&)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-          ((f & ::xml_schema::Flags::keep_dom) &&
-           !(f & ::xml_schema::Flags::own_dom))
-          ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-          : 0);
-
-        ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-        const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-        const ::xsd::cxx::xml::qualified_name< char > n (
-          ::xsd::cxx::xml::dom::name< char > (e));
-
-        if (f & ::xml_schema::Flags::keep_dom)
-          doc.setUserData (::xml_schema::dom::tree_node_key,
-                           (c.get () ? &c : &d),
-                           0);
-
-        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-            "body",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            &::xsd::cxx::tree::factory_impl< ::WS::WSDL::SOAP_BINDING::BodyType >,
-            true, true, e, n, f, 0));
-
-        if (tmp.get () != 0)
-        {
-
-          ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::BodyType > r (
-            dynamic_cast< ::WS::WSDL::SOAP_BINDING::BodyType* > (tmp.get ()));
-
-          if (r.get ())
-            tmp.release ();
-          else
-            throw ::xsd::cxx::tree::not_derived< char > ();
-
-          return r;
-        }
-
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "body",
-          "http://schemas.xmlsoap.org/wsdl/soap12/");
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (const ::std::string& u,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            u, h, p, f));
-
-        h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType > (
-          ::WS::WSDL::SOAP_BINDING::fault (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (const ::std::string& u,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            u, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType > (
-          ::WS::WSDL::SOAP_BINDING::fault (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (const ::std::string& u,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            u, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType > (
-          ::WS::WSDL::SOAP_BINDING::fault (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (::std::istream& is,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is);
-        return ::WS::WSDL::SOAP_BINDING::fault (isrc, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (::std::istream& is,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is);
-        return ::WS::WSDL::SOAP_BINDING::fault (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (::std::istream& is,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::sax::std_input_source isrc (is);
-        return ::WS::WSDL::SOAP_BINDING::fault (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (::std::istream& is,
-             const ::std::string& sid,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-        return ::WS::WSDL::SOAP_BINDING::fault (isrc, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (::std::istream& is,
-             const ::std::string& sid,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-        return ::WS::WSDL::SOAP_BINDING::fault (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (::std::istream& is,
-             const ::std::string& sid,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-        return ::WS::WSDL::SOAP_BINDING::fault (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (::xercesc::InputSource& i,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            i, h, p, f));
-
-        h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType > (
-          ::WS::WSDL::SOAP_BINDING::fault (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (::xercesc::InputSource& i,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            i, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType > (
-          ::WS::WSDL::SOAP_BINDING::fault (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (::xercesc::InputSource& i,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            i, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType > (
-          ::WS::WSDL::SOAP_BINDING::fault (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (const ::xercesc::DOMDocument& doc,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-      {
-        if (f & ::xml_schema::Flags::keep_dom)
-        {
-          ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-            static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-          return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType > (
-            ::WS::WSDL::SOAP_BINDING::fault (
-              std::move (d), f | ::xml_schema::Flags::own_dom, p));
-        }
-
-        const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-        const ::xsd::cxx::xml::qualified_name< char > n (
-          ::xsd::cxx::xml::dom::name< char > (e));
-
-        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-            "fault",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            &::xsd::cxx::tree::factory_impl< ::WS::WSDL::SOAP_BINDING::FaultType >,
-            true, true, e, n, f, 0));
-
-        if (tmp.get () != 0)
-        {
-          ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType > r (
-            dynamic_cast< ::WS::WSDL::SOAP_BINDING::FaultType* > (tmp.get ()));
-
-          if (r.get ())
-            tmp.release ();
-          else
-            throw ::xsd::cxx::tree::not_derived< char > ();
-
-          return r;
-        }
-
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "fault",
-          "http://schemas.xmlsoap.org/wsdl/soap12/");
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType >
-      fault (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties&)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-          ((f & ::xml_schema::Flags::keep_dom) &&
-           !(f & ::xml_schema::Flags::own_dom))
-          ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-          : 0);
-
-        ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-        const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-        const ::xsd::cxx::xml::qualified_name< char > n (
-          ::xsd::cxx::xml::dom::name< char > (e));
-
-        if (f & ::xml_schema::Flags::keep_dom)
-          doc.setUserData (::xml_schema::dom::tree_node_key,
-                           (c.get () ? &c : &d),
-                           0);
-
-        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-            "fault",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            &::xsd::cxx::tree::factory_impl< ::WS::WSDL::SOAP_BINDING::FaultType >,
-            true, true, e, n, f, 0));
-
-        if (tmp.get () != 0)
-        {
-
-          ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::FaultType > r (
-            dynamic_cast< ::WS::WSDL::SOAP_BINDING::FaultType* > (tmp.get ()));
-
-          if (r.get ())
-            tmp.release ();
-          else
-            throw ::xsd::cxx::tree::not_derived< char > ();
-
-          return r;
-        }
-
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "fault",
-          "http://schemas.xmlsoap.org/wsdl/soap12/");
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (const ::std::string& u,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            u, h, p, f));
-
-        h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType > (
-          ::WS::WSDL::SOAP_BINDING::header (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (const ::std::string& u,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            u, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType > (
-          ::WS::WSDL::SOAP_BINDING::header (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (const ::std::string& u,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            u, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType > (
-          ::WS::WSDL::SOAP_BINDING::header (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (::std::istream& is,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is);
-        return ::WS::WSDL::SOAP_BINDING::header (isrc, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (::std::istream& is,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is);
-        return ::WS::WSDL::SOAP_BINDING::header (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (::std::istream& is,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::sax::std_input_source isrc (is);
-        return ::WS::WSDL::SOAP_BINDING::header (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (::std::istream& is,
-              const ::std::string& sid,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-        return ::WS::WSDL::SOAP_BINDING::header (isrc, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (::std::istream& is,
-              const ::std::string& sid,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-        return ::WS::WSDL::SOAP_BINDING::header (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (::std::istream& is,
-              const ::std::string& sid,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-        return ::WS::WSDL::SOAP_BINDING::header (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (::xercesc::InputSource& i,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            i, h, p, f));
-
-        h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType > (
-          ::WS::WSDL::SOAP_BINDING::header (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (::xercesc::InputSource& i,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            i, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType > (
-          ::WS::WSDL::SOAP_BINDING::header (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (::xercesc::InputSource& i,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            i, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType > (
-          ::WS::WSDL::SOAP_BINDING::header (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (const ::xercesc::DOMDocument& doc,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-      {
-        if (f & ::xml_schema::Flags::keep_dom)
-        {
-          ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-            static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-          return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType > (
-            ::WS::WSDL::SOAP_BINDING::header (
-              std::move (d), f | ::xml_schema::Flags::own_dom, p));
-        }
-
-        const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-        const ::xsd::cxx::xml::qualified_name< char > n (
-          ::xsd::cxx::xml::dom::name< char > (e));
-
-        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-            "header",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            &::xsd::cxx::tree::factory_impl< ::WS::WSDL::SOAP_BINDING::HeaderType >,
-            true, true, e, n, f, 0));
-
-        if (tmp.get () != 0)
-        {
-          ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType > r (
-            dynamic_cast< ::WS::WSDL::SOAP_BINDING::HeaderType* > (tmp.get ()));
-
-          if (r.get ())
-            tmp.release ();
-          else
-            throw ::xsd::cxx::tree::not_derived< char > ();
-
-          return r;
-        }
-
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "header",
-          "http://schemas.xmlsoap.org/wsdl/soap12/");
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType >
-      header (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties&)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-          ((f & ::xml_schema::Flags::keep_dom) &&
-           !(f & ::xml_schema::Flags::own_dom))
-          ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-          : 0);
-
-        ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-        const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-        const ::xsd::cxx::xml::qualified_name< char > n (
-          ::xsd::cxx::xml::dom::name< char > (e));
-
-        if (f & ::xml_schema::Flags::keep_dom)
-          doc.setUserData (::xml_schema::dom::tree_node_key,
-                           (c.get () ? &c : &d),
-                           0);
-
-        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-            "header",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            &::xsd::cxx::tree::factory_impl< ::WS::WSDL::SOAP_BINDING::HeaderType >,
-            true, true, e, n, f, 0));
-
-        if (tmp.get () != 0)
-        {
-
-          ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderType > r (
-            dynamic_cast< ::WS::WSDL::SOAP_BINDING::HeaderType* > (tmp.get ()));
-
-          if (r.get ())
-            tmp.release ();
-          else
-            throw ::xsd::cxx::tree::not_derived< char > ();
-
-          return r;
-        }
-
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "header",
-          "http://schemas.xmlsoap.org/wsdl/soap12/");
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (const ::std::string& u,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            u, h, p, f));
-
-        h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType > (
-          ::WS::WSDL::SOAP_BINDING::headerfault (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (const ::std::string& u,
-                   ::xml_schema::ErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            u, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType > (
-          ::WS::WSDL::SOAP_BINDING::headerfault (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (const ::std::string& u,
-                   ::xercesc::DOMErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            u, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType > (
-          ::WS::WSDL::SOAP_BINDING::headerfault (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (::std::istream& is,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is);
-        return ::WS::WSDL::SOAP_BINDING::headerfault (isrc, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (::std::istream& is,
-                   ::xml_schema::ErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is);
-        return ::WS::WSDL::SOAP_BINDING::headerfault (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (::std::istream& is,
-                   ::xercesc::DOMErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::sax::std_input_source isrc (is);
-        return ::WS::WSDL::SOAP_BINDING::headerfault (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (::std::istream& is,
-                   const ::std::string& sid,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-        return ::WS::WSDL::SOAP_BINDING::headerfault (isrc, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (::std::istream& is,
-                   const ::std::string& sid,
-                   ::xml_schema::ErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-        return ::WS::WSDL::SOAP_BINDING::headerfault (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (::std::istream& is,
-                   const ::std::string& sid,
-                   ::xercesc::DOMErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-        return ::WS::WSDL::SOAP_BINDING::headerfault (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (::xercesc::InputSource& i,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            i, h, p, f));
-
-        h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType > (
-          ::WS::WSDL::SOAP_BINDING::headerfault (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (::xercesc::InputSource& i,
-                   ::xml_schema::ErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            i, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType > (
-          ::WS::WSDL::SOAP_BINDING::headerfault (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (::xercesc::InputSource& i,
-                   ::xercesc::DOMErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            i, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType > (
-          ::WS::WSDL::SOAP_BINDING::headerfault (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (const ::xercesc::DOMDocument& doc,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-      {
-        if (f & ::xml_schema::Flags::keep_dom)
-        {
-          ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-            static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-          return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType > (
-            ::WS::WSDL::SOAP_BINDING::headerfault (
-              std::move (d), f | ::xml_schema::Flags::own_dom, p));
-        }
-
-        const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-        const ::xsd::cxx::xml::qualified_name< char > n (
-          ::xsd::cxx::xml::dom::name< char > (e));
-
-        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-            "headerfault",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            &::xsd::cxx::tree::factory_impl< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >,
-            true, true, e, n, f, 0));
-
-        if (tmp.get () != 0)
-        {
-          ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType > r (
-            dynamic_cast< ::WS::WSDL::SOAP_BINDING::HeaderfaultType* > (tmp.get ()));
-
-          if (r.get ())
-            tmp.release ();
-          else
-            throw ::xsd::cxx::tree::not_derived< char > ();
-
-          return r;
-        }
-
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "headerfault",
-          "http://schemas.xmlsoap.org/wsdl/soap12/");
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >
-      headerfault (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties&)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-          ((f & ::xml_schema::Flags::keep_dom) &&
-           !(f & ::xml_schema::Flags::own_dom))
-          ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-          : 0);
-
-        ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-        const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-        const ::xsd::cxx::xml::qualified_name< char > n (
-          ::xsd::cxx::xml::dom::name< char > (e));
-
-        if (f & ::xml_schema::Flags::keep_dom)
-          doc.setUserData (::xml_schema::dom::tree_node_key,
-                           (c.get () ? &c : &d),
-                           0);
-
-        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-            "headerfault",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            &::xsd::cxx::tree::factory_impl< ::WS::WSDL::SOAP_BINDING::HeaderfaultType >,
-            true, true, e, n, f, 0));
-
-        if (tmp.get () != 0)
-        {
-
-          ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::HeaderfaultType > r (
-            dynamic_cast< ::WS::WSDL::SOAP_BINDING::HeaderfaultType* > (tmp.get ()));
-
-          if (r.get ())
-            tmp.release ();
-          else
-            throw ::xsd::cxx::tree::not_derived< char > ();
-
-          return r;
-        }
-
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "headerfault",
-          "http://schemas.xmlsoap.org/wsdl/soap12/");
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (const ::std::string& u,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            u, h, p, f));
-
-        h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType > (
-          ::WS::WSDL::SOAP_BINDING::address (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (const ::std::string& u,
-               ::xml_schema::ErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            u, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType > (
-          ::WS::WSDL::SOAP_BINDING::address (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (const ::std::string& u,
-               ::xercesc::DOMErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            u, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType > (
-          ::WS::WSDL::SOAP_BINDING::address (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (::std::istream& is,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is);
-        return ::WS::WSDL::SOAP_BINDING::address (isrc, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (::std::istream& is,
-               ::xml_schema::ErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is);
-        return ::WS::WSDL::SOAP_BINDING::address (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (::std::istream& is,
-               ::xercesc::DOMErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::sax::std_input_source isrc (is);
-        return ::WS::WSDL::SOAP_BINDING::address (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (::std::istream& is,
-               const ::std::string& sid,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-        return ::WS::WSDL::SOAP_BINDING::address (isrc, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (::std::istream& is,
-               const ::std::string& sid,
-               ::xml_schema::ErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0,
-          (f & ::xml_schema::Flags::keep_dom) == 0);
-
-        ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-        return ::WS::WSDL::SOAP_BINDING::address (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (::std::istream& is,
-               const ::std::string& sid,
-               ::xercesc::DOMErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-        return ::WS::WSDL::SOAP_BINDING::address (isrc, h, f, p);
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (::xercesc::InputSource& i,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            i, h, p, f));
-
-        h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType > (
-          ::WS::WSDL::SOAP_BINDING::address (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (::xercesc::InputSource& i,
-               ::xml_schema::ErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            i, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType > (
-          ::WS::WSDL::SOAP_BINDING::address (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (::xercesc::InputSource& i,
-               ::xercesc::DOMErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::xsd::cxx::xml::dom::parse< char > (
-            i, h, p, f));
-
-        if (!d.get ())
-          throw ::xsd::cxx::tree::parsing< char > ();
-
-        return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType > (
-          ::WS::WSDL::SOAP_BINDING::address (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (const ::xercesc::DOMDocument& doc,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-      {
-        if (f & ::xml_schema::Flags::keep_dom)
-        {
-          ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-            static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-          return ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType > (
-            ::WS::WSDL::SOAP_BINDING::address (
-              std::move (d), f | ::xml_schema::Flags::own_dom, p));
-        }
-
-        const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-        const ::xsd::cxx::xml::qualified_name< char > n (
-          ::xsd::cxx::xml::dom::name< char > (e));
-
-        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-            "address",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            &::xsd::cxx::tree::factory_impl< ::WS::WSDL::SOAP_BINDING::AddressType >,
-            true, true, e, n, f, 0));
-
-        if (tmp.get () != 0)
-        {
-          ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType > r (
-            dynamic_cast< ::WS::WSDL::SOAP_BINDING::AddressType* > (tmp.get ()));
-
-          if (r.get ())
-            tmp.release ();
-          else
-            throw ::xsd::cxx::tree::not_derived< char > ();
-
-          return r;
-        }
-
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "address",
-          "http://schemas.xmlsoap.org/wsdl/soap12/");
-      }
-
-      ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType >
-      address (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties&)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-          ((f & ::xml_schema::Flags::keep_dom) &&
-           !(f & ::xml_schema::Flags::own_dom))
-          ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-          : 0);
-
-        ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-        const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-        const ::xsd::cxx::xml::qualified_name< char > n (
-          ::xsd::cxx::xml::dom::name< char > (e));
-
-        if (f & ::xml_schema::Flags::keep_dom)
-          doc.setUserData (::xml_schema::dom::tree_node_key,
-                           (c.get () ? &c : &d),
-                           0);
-
-        ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-          ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-            "address",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            &::xsd::cxx::tree::factory_impl< ::WS::WSDL::SOAP_BINDING::AddressType >,
-            true, true, e, n, f, 0));
-
-        if (tmp.get () != 0)
-        {
-
-          ::std::unique_ptr< ::WS::WSDL::SOAP_BINDING::AddressType > r (
-            dynamic_cast< ::WS::WSDL::SOAP_BINDING::AddressType* > (tmp.get ()));
-
-          if (r.get ())
-            tmp.release ();
-          else
-            throw ::xsd::cxx::tree::not_derived< char > ();
-
-          return r;
-        }
-
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "address",
-          "http://schemas.xmlsoap.org/wsdl/soap12/");
-      }
     }
   }
 }
@@ -3722,201 +1700,32 @@ namespace WS
     namespace SOAP_BINDING
     {
       void
-      binding (::std::ostream& o,
-               const ::WS::WSDL::SOAP_BINDING::BindingType& s,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::binding (s, m, f));
-
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        ::xsd::cxx::xml::dom::ostream_format_target t (o);
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-        }
-      }
-
-      void
-      binding (::std::ostream& o,
-               const ::WS::WSDL::SOAP_BINDING::BindingType& s,
-               ::xml_schema::ErrorHandler& h,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::binding (s, m, f));
-        ::xsd::cxx::xml::dom::ostream_format_target t (o);
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      binding (::std::ostream& o,
-               const ::WS::WSDL::SOAP_BINDING::BindingType& s,
-               ::xercesc::DOMErrorHandler& h,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::binding (s, m, f));
-        ::xsd::cxx::xml::dom::ostream_format_target t (o);
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      binding (::xercesc::XMLFormatTarget& t,
-               const ::WS::WSDL::SOAP_BINDING::BindingType& s,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::binding (s, m, f));
-
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-        }
-      }
-
-      void
-      binding (::xercesc::XMLFormatTarget& t,
-               const ::WS::WSDL::SOAP_BINDING::BindingType& s,
-               ::xml_schema::ErrorHandler& h,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::binding (s, m, f));
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      binding (::xercesc::XMLFormatTarget& t,
-               const ::WS::WSDL::SOAP_BINDING::BindingType& s,
-               ::xercesc::DOMErrorHandler& h,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::binding (s, m, f));
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      binding (::xercesc::DOMDocument& d,
-               const ::WS::WSDL::SOAP_BINDING::BindingType& s,
-               ::xml_schema::Flags)
-      {
-        ::xercesc::DOMElement& e (*d.getDocumentElement ());
-        const ::xsd::cxx::xml::qualified_name< char > n (
-          ::xsd::cxx::xml::dom::name< char > (e));
-
-        if (typeid (::WS::WSDL::SOAP_BINDING::BindingType) == typeid (s))
-        {
-          if (n.name () == "binding" &&
-              n.namespace_ () == "http://schemas.xmlsoap.org/wsdl/soap12/")
-          {
-            e << s;
-          }
-          else
-          {
-            throw ::xsd::cxx::tree::unexpected_element < char > (
-              n.name (),
-              n.namespace_ (),
-              "binding",
-              "http://schemas.xmlsoap.org/wsdl/soap12/");
-          }
-        }
-        else
-        {
-          ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-            "binding",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            e, n, s);
-        }
-      }
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-      binding (const ::WS::WSDL::SOAP_BINDING::BindingType& s,
-               const ::xml_schema::NamespaceInfomap& m,
-               ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-        if (typeid (::WS::WSDL::SOAP_BINDING::BindingType) == typeid (s))
-        {
-          d = ::xsd::cxx::xml::dom::serialize< char > (
-            "binding",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            m, f);
-        }
-        else
-        {
-          d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-            "binding",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            m, s, f);
-        }
-
-        ::WS::WSDL::SOAP_BINDING::binding (*d, s, f);
-        return d;
-      }
-
-      void
       operator<< (::xercesc::DOMElement& e, const BindingType& i)
       {
         e << static_cast< const ::xml_schema::Type& > (i);
 
         // transport
         //
-        if (i.transport ())
+        if (i.getTransport ())
         {
           ::xercesc::DOMAttr& a (
             ::xsd::cxx::xml::dom::create_attribute (
               "transport",
               e));
 
-          a << *i.transport ();
+          a << *i.getTransport ();
         }
 
         // style
         //
-        if (i.style ())
+        if (i.getStyle ())
         {
           ::xercesc::DOMAttr& a (
             ::xsd::cxx::xml::dom::create_attribute (
               "style",
               e));
 
-          a << *i.style ();
+          a << *i.getStyle ();
         }
       }
 
@@ -3954,201 +1763,32 @@ namespace WS
 
 
       void
-      operation (::std::ostream& o,
-                 const ::WS::WSDL::SOAP_BINDING::OperationType& s,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::operation (s, m, f));
-
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        ::xsd::cxx::xml::dom::ostream_format_target t (o);
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-        }
-      }
-
-      void
-      operation (::std::ostream& o,
-                 const ::WS::WSDL::SOAP_BINDING::OperationType& s,
-                 ::xml_schema::ErrorHandler& h,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::operation (s, m, f));
-        ::xsd::cxx::xml::dom::ostream_format_target t (o);
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      operation (::std::ostream& o,
-                 const ::WS::WSDL::SOAP_BINDING::OperationType& s,
-                 ::xercesc::DOMErrorHandler& h,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::operation (s, m, f));
-        ::xsd::cxx::xml::dom::ostream_format_target t (o);
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      operation (::xercesc::XMLFormatTarget& t,
-                 const ::WS::WSDL::SOAP_BINDING::OperationType& s,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::operation (s, m, f));
-
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-        }
-      }
-
-      void
-      operation (::xercesc::XMLFormatTarget& t,
-                 const ::WS::WSDL::SOAP_BINDING::OperationType& s,
-                 ::xml_schema::ErrorHandler& h,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::operation (s, m, f));
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      operation (::xercesc::XMLFormatTarget& t,
-                 const ::WS::WSDL::SOAP_BINDING::OperationType& s,
-                 ::xercesc::DOMErrorHandler& h,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::operation (s, m, f));
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      operation (::xercesc::DOMDocument& d,
-                 const ::WS::WSDL::SOAP_BINDING::OperationType& s,
-                 ::xml_schema::Flags)
-      {
-        ::xercesc::DOMElement& e (*d.getDocumentElement ());
-        const ::xsd::cxx::xml::qualified_name< char > n (
-          ::xsd::cxx::xml::dom::name< char > (e));
-
-        if (typeid (::WS::WSDL::SOAP_BINDING::OperationType) == typeid (s))
-        {
-          if (n.name () == "operation" &&
-              n.namespace_ () == "http://schemas.xmlsoap.org/wsdl/soap12/")
-          {
-            e << s;
-          }
-          else
-          {
-            throw ::xsd::cxx::tree::unexpected_element < char > (
-              n.name (),
-              n.namespace_ (),
-              "operation",
-              "http://schemas.xmlsoap.org/wsdl/soap12/");
-          }
-        }
-        else
-        {
-          ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-            "operation",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            e, n, s);
-        }
-      }
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-      operation (const ::WS::WSDL::SOAP_BINDING::OperationType& s,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-        if (typeid (::WS::WSDL::SOAP_BINDING::OperationType) == typeid (s))
-        {
-          d = ::xsd::cxx::xml::dom::serialize< char > (
-            "operation",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            m, f);
-        }
-        else
-        {
-          d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-            "operation",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            m, s, f);
-        }
-
-        ::WS::WSDL::SOAP_BINDING::operation (*d, s, f);
-        return d;
-      }
-
-      void
       operator<< (::xercesc::DOMElement& e, const OperationType& i)
       {
         e << static_cast< const ::xml_schema::Type& > (i);
 
         // soapAction
         //
-        if (i.soapAction ())
+        if (i.getSoapAction ())
         {
           ::xercesc::DOMAttr& a (
             ::xsd::cxx::xml::dom::create_attribute (
               "soapAction",
               e));
 
-          a << *i.soapAction ();
+          a << *i.getSoapAction ();
         }
 
         // style
         //
-        if (i.style ())
+        if (i.getStyle ())
         {
           ::xercesc::DOMAttr& a (
             ::xsd::cxx::xml::dom::create_attribute (
               "style",
               e));
 
-          a << *i.style ();
+          a << *i.getStyle ();
         }
       }
 
@@ -4160,225 +1800,56 @@ namespace WS
 
 
       void
-      body (::std::ostream& o,
-            const ::WS::WSDL::SOAP_BINDING::BodyType& s,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::body (s, m, f));
-
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        ::xsd::cxx::xml::dom::ostream_format_target t (o);
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-        }
-      }
-
-      void
-      body (::std::ostream& o,
-            const ::WS::WSDL::SOAP_BINDING::BodyType& s,
-            ::xml_schema::ErrorHandler& h,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::body (s, m, f));
-        ::xsd::cxx::xml::dom::ostream_format_target t (o);
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      body (::std::ostream& o,
-            const ::WS::WSDL::SOAP_BINDING::BodyType& s,
-            ::xercesc::DOMErrorHandler& h,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::body (s, m, f));
-        ::xsd::cxx::xml::dom::ostream_format_target t (o);
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      body (::xercesc::XMLFormatTarget& t,
-            const ::WS::WSDL::SOAP_BINDING::BodyType& s,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::body (s, m, f));
-
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-        }
-      }
-
-      void
-      body (::xercesc::XMLFormatTarget& t,
-            const ::WS::WSDL::SOAP_BINDING::BodyType& s,
-            ::xml_schema::ErrorHandler& h,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::body (s, m, f));
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      body (::xercesc::XMLFormatTarget& t,
-            const ::WS::WSDL::SOAP_BINDING::BodyType& s,
-            ::xercesc::DOMErrorHandler& h,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::body (s, m, f));
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      body (::xercesc::DOMDocument& d,
-            const ::WS::WSDL::SOAP_BINDING::BodyType& s,
-            ::xml_schema::Flags)
-      {
-        ::xercesc::DOMElement& e (*d.getDocumentElement ());
-        const ::xsd::cxx::xml::qualified_name< char > n (
-          ::xsd::cxx::xml::dom::name< char > (e));
-
-        if (typeid (::WS::WSDL::SOAP_BINDING::BodyType) == typeid (s))
-        {
-          if (n.name () == "body" &&
-              n.namespace_ () == "http://schemas.xmlsoap.org/wsdl/soap12/")
-          {
-            e << s;
-          }
-          else
-          {
-            throw ::xsd::cxx::tree::unexpected_element < char > (
-              n.name (),
-              n.namespace_ (),
-              "body",
-              "http://schemas.xmlsoap.org/wsdl/soap12/");
-          }
-        }
-        else
-        {
-          ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-            "body",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            e, n, s);
-        }
-      }
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-      body (const ::WS::WSDL::SOAP_BINDING::BodyType& s,
-            const ::xml_schema::NamespaceInfomap& m,
-            ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-        if (typeid (::WS::WSDL::SOAP_BINDING::BodyType) == typeid (s))
-        {
-          d = ::xsd::cxx::xml::dom::serialize< char > (
-            "body",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            m, f);
-        }
-        else
-        {
-          d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-            "body",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            m, s, f);
-        }
-
-        ::WS::WSDL::SOAP_BINDING::body (*d, s, f);
-        return d;
-      }
-
-      void
       operator<< (::xercesc::DOMElement& e, const BodyType& i)
       {
         e << static_cast< const ::xml_schema::Type& > (i);
 
         // encodingStyle
         //
-        if (i.encodingStyle ())
+        if (i.getEncodingStyle ())
         {
           ::xercesc::DOMAttr& a (
             ::xsd::cxx::xml::dom::create_attribute (
               "encodingStyle",
               e));
 
-          a << *i.encodingStyle ();
+          a << *i.getEncodingStyle ();
         }
 
         // parts
         //
-        if (i.parts ())
+        if (i.getParts ())
         {
           ::xercesc::DOMAttr& a (
             ::xsd::cxx::xml::dom::create_attribute (
               "parts",
               e));
 
-          a << *i.parts ();
+          a << *i.getParts ();
         }
 
         // use
         //
-        if (i.use ())
+        if (i.getUse ())
         {
           ::xercesc::DOMAttr& a (
             ::xsd::cxx::xml::dom::create_attribute (
               "use",
               e));
 
-          a << *i.use ();
+          a << *i.getUse ();
         }
 
         // namespace
         //
-        if (i.namespace_ ())
+        if (i.getNamespace ())
         {
           ::xercesc::DOMAttr& a (
             ::xsd::cxx::xml::dom::create_attribute (
               "namespace",
               e));
 
-          a << *i.namespace_ ();
+          a << *i.getNamespace ();
         }
       }
 
@@ -4416,175 +1887,6 @@ namespace WS
 
 
       void
-      fault (::std::ostream& o,
-             const ::WS::WSDL::SOAP_BINDING::FaultType& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::fault (s, m, f));
-
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        ::xsd::cxx::xml::dom::ostream_format_target t (o);
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-        }
-      }
-
-      void
-      fault (::std::ostream& o,
-             const ::WS::WSDL::SOAP_BINDING::FaultType& s,
-             ::xml_schema::ErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::fault (s, m, f));
-        ::xsd::cxx::xml::dom::ostream_format_target t (o);
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      fault (::std::ostream& o,
-             const ::WS::WSDL::SOAP_BINDING::FaultType& s,
-             ::xercesc::DOMErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::fault (s, m, f));
-        ::xsd::cxx::xml::dom::ostream_format_target t (o);
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      fault (::xercesc::XMLFormatTarget& t,
-             const ::WS::WSDL::SOAP_BINDING::FaultType& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::fault (s, m, f));
-
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-        }
-      }
-
-      void
-      fault (::xercesc::XMLFormatTarget& t,
-             const ::WS::WSDL::SOAP_BINDING::FaultType& s,
-             ::xml_schema::ErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::fault (s, m, f));
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      fault (::xercesc::XMLFormatTarget& t,
-             const ::WS::WSDL::SOAP_BINDING::FaultType& s,
-             ::xercesc::DOMErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::fault (s, m, f));
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      fault (::xercesc::DOMDocument& d,
-             const ::WS::WSDL::SOAP_BINDING::FaultType& s,
-             ::xml_schema::Flags)
-      {
-        ::xercesc::DOMElement& e (*d.getDocumentElement ());
-        const ::xsd::cxx::xml::qualified_name< char > n (
-          ::xsd::cxx::xml::dom::name< char > (e));
-
-        if (typeid (::WS::WSDL::SOAP_BINDING::FaultType) == typeid (s))
-        {
-          if (n.name () == "fault" &&
-              n.namespace_ () == "http://schemas.xmlsoap.org/wsdl/soap12/")
-          {
-            e << s;
-          }
-          else
-          {
-            throw ::xsd::cxx::tree::unexpected_element < char > (
-              n.name (),
-              n.namespace_ (),
-              "fault",
-              "http://schemas.xmlsoap.org/wsdl/soap12/");
-          }
-        }
-        else
-        {
-          ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-            "fault",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            e, n, s);
-        }
-      }
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-      fault (const ::WS::WSDL::SOAP_BINDING::FaultType& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-        if (typeid (::WS::WSDL::SOAP_BINDING::FaultType) == typeid (s))
-        {
-          d = ::xsd::cxx::xml::dom::serialize< char > (
-            "fault",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            m, f);
-        }
-        else
-        {
-          d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-            "fault",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            m, s, f);
-        }
-
-        ::WS::WSDL::SOAP_BINDING::fault (*d, s, f);
-        return d;
-      }
-
-      void
       operator<< (::xercesc::DOMElement& e, const FaultType& i)
       {
         e << static_cast< const ::WS::WSDL::SOAP_BINDING::BodyType& > (i);
@@ -4598,175 +1900,6 @@ namespace WS
 
 
       void
-      header (::std::ostream& o,
-              const ::WS::WSDL::SOAP_BINDING::HeaderType& s,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::header (s, m, f));
-
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        ::xsd::cxx::xml::dom::ostream_format_target t (o);
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-        }
-      }
-
-      void
-      header (::std::ostream& o,
-              const ::WS::WSDL::SOAP_BINDING::HeaderType& s,
-              ::xml_schema::ErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::header (s, m, f));
-        ::xsd::cxx::xml::dom::ostream_format_target t (o);
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      header (::std::ostream& o,
-              const ::WS::WSDL::SOAP_BINDING::HeaderType& s,
-              ::xercesc::DOMErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::header (s, m, f));
-        ::xsd::cxx::xml::dom::ostream_format_target t (o);
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      header (::xercesc::XMLFormatTarget& t,
-              const ::WS::WSDL::SOAP_BINDING::HeaderType& s,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::header (s, m, f));
-
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-        }
-      }
-
-      void
-      header (::xercesc::XMLFormatTarget& t,
-              const ::WS::WSDL::SOAP_BINDING::HeaderType& s,
-              ::xml_schema::ErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::header (s, m, f));
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      header (::xercesc::XMLFormatTarget& t,
-              const ::WS::WSDL::SOAP_BINDING::HeaderType& s,
-              ::xercesc::DOMErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::header (s, m, f));
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      header (::xercesc::DOMDocument& d,
-              const ::WS::WSDL::SOAP_BINDING::HeaderType& s,
-              ::xml_schema::Flags)
-      {
-        ::xercesc::DOMElement& e (*d.getDocumentElement ());
-        const ::xsd::cxx::xml::qualified_name< char > n (
-          ::xsd::cxx::xml::dom::name< char > (e));
-
-        if (typeid (::WS::WSDL::SOAP_BINDING::HeaderType) == typeid (s))
-        {
-          if (n.name () == "header" &&
-              n.namespace_ () == "http://schemas.xmlsoap.org/wsdl/soap12/")
-          {
-            e << s;
-          }
-          else
-          {
-            throw ::xsd::cxx::tree::unexpected_element < char > (
-              n.name (),
-              n.namespace_ (),
-              "header",
-              "http://schemas.xmlsoap.org/wsdl/soap12/");
-          }
-        }
-        else
-        {
-          ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-            "header",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            e, n, s);
-        }
-      }
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-      header (const ::WS::WSDL::SOAP_BINDING::HeaderType& s,
-              const ::xml_schema::NamespaceInfomap& m,
-              ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-        if (typeid (::WS::WSDL::SOAP_BINDING::HeaderType) == typeid (s))
-        {
-          d = ::xsd::cxx::xml::dom::serialize< char > (
-            "header",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            m, f);
-        }
-        else
-        {
-          d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-            "header",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            m, s, f);
-        }
-
-        ::WS::WSDL::SOAP_BINDING::header (*d, s, f);
-        return d;
-      }
-
-      void
       operator<< (::xercesc::DOMElement& e, const HeaderType& i)
       {
         e << static_cast< const ::xml_schema::Type& > (i);
@@ -4777,7 +1910,7 @@ namespace WS
           ::xsd::cxx::tree::type_serializer_map< char >& tsm (
             ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-          const HeaderType::HeaderfaultType& x (i.headerfault ());
+          const HeaderType::HeaderfaultType& x (i.getHeaderfault ());
           if (typeid (HeaderType::HeaderfaultType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -4803,7 +1936,7 @@ namespace WS
               "message",
               e));
 
-          a << i.message ();
+          a << i.getMessage ();
         }
 
         // parts
@@ -4814,7 +1947,7 @@ namespace WS
               "parts",
               e));
 
-          a << i.parts ();
+          a << i.getParts ();
         }
 
         // use
@@ -4825,31 +1958,31 @@ namespace WS
               "use",
               e));
 
-          a << i.use ();
+          a << i.getUse ();
         }
 
         // encodingStyle
         //
-        if (i.encodingStyle ())
+        if (i.getEncodingStyle ())
         {
           ::xercesc::DOMAttr& a (
             ::xsd::cxx::xml::dom::create_attribute (
               "encodingStyle",
               e));
 
-          a << *i.encodingStyle ();
+          a << *i.getEncodingStyle ();
         }
 
         // namespace
         //
-        if (i.namespace_ ())
+        if (i.getNamespace ())
         {
           ::xercesc::DOMAttr& a (
             ::xsd::cxx::xml::dom::create_attribute (
               "namespace",
               e));
 
-          a << *i.namespace_ ();
+          a << *i.getNamespace ();
         }
       }
 
@@ -4859,175 +1992,6 @@ namespace WS
         "headerType",
         "http://schemas.xmlsoap.org/wsdl/soap12/");
 
-
-      void
-      headerfault (::std::ostream& o,
-                   const ::WS::WSDL::SOAP_BINDING::HeaderfaultType& s,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::headerfault (s, m, f));
-
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        ::xsd::cxx::xml::dom::ostream_format_target t (o);
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-        }
-      }
-
-      void
-      headerfault (::std::ostream& o,
-                   const ::WS::WSDL::SOAP_BINDING::HeaderfaultType& s,
-                   ::xml_schema::ErrorHandler& h,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::headerfault (s, m, f));
-        ::xsd::cxx::xml::dom::ostream_format_target t (o);
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      headerfault (::std::ostream& o,
-                   const ::WS::WSDL::SOAP_BINDING::HeaderfaultType& s,
-                   ::xercesc::DOMErrorHandler& h,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::headerfault (s, m, f));
-        ::xsd::cxx::xml::dom::ostream_format_target t (o);
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      headerfault (::xercesc::XMLFormatTarget& t,
-                   const ::WS::WSDL::SOAP_BINDING::HeaderfaultType& s,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::headerfault (s, m, f));
-
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-        }
-      }
-
-      void
-      headerfault (::xercesc::XMLFormatTarget& t,
-                   const ::WS::WSDL::SOAP_BINDING::HeaderfaultType& s,
-                   ::xml_schema::ErrorHandler& h,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::headerfault (s, m, f));
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      headerfault (::xercesc::XMLFormatTarget& t,
-                   const ::WS::WSDL::SOAP_BINDING::HeaderfaultType& s,
-                   ::xercesc::DOMErrorHandler& h,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::headerfault (s, m, f));
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      headerfault (::xercesc::DOMDocument& d,
-                   const ::WS::WSDL::SOAP_BINDING::HeaderfaultType& s,
-                   ::xml_schema::Flags)
-      {
-        ::xercesc::DOMElement& e (*d.getDocumentElement ());
-        const ::xsd::cxx::xml::qualified_name< char > n (
-          ::xsd::cxx::xml::dom::name< char > (e));
-
-        if (typeid (::WS::WSDL::SOAP_BINDING::HeaderfaultType) == typeid (s))
-        {
-          if (n.name () == "headerfault" &&
-              n.namespace_ () == "http://schemas.xmlsoap.org/wsdl/soap12/")
-          {
-            e << s;
-          }
-          else
-          {
-            throw ::xsd::cxx::tree::unexpected_element < char > (
-              n.name (),
-              n.namespace_ (),
-              "headerfault",
-              "http://schemas.xmlsoap.org/wsdl/soap12/");
-          }
-        }
-        else
-        {
-          ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-            "headerfault",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            e, n, s);
-        }
-      }
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-      headerfault (const ::WS::WSDL::SOAP_BINDING::HeaderfaultType& s,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-        if (typeid (::WS::WSDL::SOAP_BINDING::HeaderfaultType) == typeid (s))
-        {
-          d = ::xsd::cxx::xml::dom::serialize< char > (
-            "headerfault",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            m, f);
-        }
-        else
-        {
-          d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-            "headerfault",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            m, s, f);
-        }
-
-        ::WS::WSDL::SOAP_BINDING::headerfault (*d, s, f);
-        return d;
-      }
 
       void
       operator<< (::xercesc::DOMElement& e, const HeaderfaultType& i)
@@ -5042,7 +2006,7 @@ namespace WS
               "message",
               e));
 
-          a << i.message ();
+          a << i.getMessage ();
         }
 
         // parts
@@ -5053,7 +2017,7 @@ namespace WS
               "parts",
               e));
 
-          a << i.parts ();
+          a << i.getParts ();
         }
 
         // use
@@ -5064,31 +2028,31 @@ namespace WS
               "use",
               e));
 
-          a << i.use ();
+          a << i.getUse ();
         }
 
         // encodingStyle
         //
-        if (i.encodingStyle ())
+        if (i.getEncodingStyle ())
         {
           ::xercesc::DOMAttr& a (
             ::xsd::cxx::xml::dom::create_attribute (
               "encodingStyle",
               e));
 
-          a << *i.encodingStyle ();
+          a << *i.getEncodingStyle ();
         }
 
         // namespace
         //
-        if (i.namespace_ ())
+        if (i.getNamespace ())
         {
           ::xercesc::DOMAttr& a (
             ::xsd::cxx::xml::dom::create_attribute (
               "namespace",
               e));
 
-          a << *i.namespace_ ();
+          a << *i.getNamespace ();
         }
       }
 
@@ -5098,175 +2062,6 @@ namespace WS
         "headerfaultType",
         "http://schemas.xmlsoap.org/wsdl/soap12/");
 
-
-      void
-      address (::std::ostream& o,
-               const ::WS::WSDL::SOAP_BINDING::AddressType& s,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::address (s, m, f));
-
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        ::xsd::cxx::xml::dom::ostream_format_target t (o);
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-        }
-      }
-
-      void
-      address (::std::ostream& o,
-               const ::WS::WSDL::SOAP_BINDING::AddressType& s,
-               ::xml_schema::ErrorHandler& h,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
-      {
-        ::xsd::cxx::xml::auto_initializer i (
-          (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::address (s, m, f));
-        ::xsd::cxx::xml::dom::ostream_format_target t (o);
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      address (::std::ostream& o,
-               const ::WS::WSDL::SOAP_BINDING::AddressType& s,
-               ::xercesc::DOMErrorHandler& h,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::address (s, m, f));
-        ::xsd::cxx::xml::dom::ostream_format_target t (o);
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      address (::xercesc::XMLFormatTarget& t,
-               const ::WS::WSDL::SOAP_BINDING::AddressType& s,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::address (s, m, f));
-
-        ::xsd::cxx::tree::error_handler< char > h;
-
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-        }
-      }
-
-      void
-      address (::xercesc::XMLFormatTarget& t,
-               const ::WS::WSDL::SOAP_BINDING::AddressType& s,
-               ::xml_schema::ErrorHandler& h,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::address (s, m, f));
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      address (::xercesc::XMLFormatTarget& t,
-               const ::WS::WSDL::SOAP_BINDING::AddressType& s,
-               ::xercesc::DOMErrorHandler& h,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          ::WS::WSDL::SOAP_BINDING::address (s, m, f));
-        if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-        {
-          throw ::xsd::cxx::tree::serialization< char > ();
-        }
-      }
-
-      void
-      address (::xercesc::DOMDocument& d,
-               const ::WS::WSDL::SOAP_BINDING::AddressType& s,
-               ::xml_schema::Flags)
-      {
-        ::xercesc::DOMElement& e (*d.getDocumentElement ());
-        const ::xsd::cxx::xml::qualified_name< char > n (
-          ::xsd::cxx::xml::dom::name< char > (e));
-
-        if (typeid (::WS::WSDL::SOAP_BINDING::AddressType) == typeid (s))
-        {
-          if (n.name () == "address" &&
-              n.namespace_ () == "http://schemas.xmlsoap.org/wsdl/soap12/")
-          {
-            e << s;
-          }
-          else
-          {
-            throw ::xsd::cxx::tree::unexpected_element < char > (
-              n.name (),
-              n.namespace_ (),
-              "address",
-              "http://schemas.xmlsoap.org/wsdl/soap12/");
-          }
-        }
-        else
-        {
-          ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-            "address",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            e, n, s);
-        }
-      }
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-      address (const ::WS::WSDL::SOAP_BINDING::AddressType& s,
-               const ::xml_schema::NamespaceInfomap& m,
-               ::xml_schema::Flags f)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-        if (typeid (::WS::WSDL::SOAP_BINDING::AddressType) == typeid (s))
-        {
-          d = ::xsd::cxx::xml::dom::serialize< char > (
-            "address",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            m, f);
-        }
-        else
-        {
-          d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-            "address",
-            "http://schemas.xmlsoap.org/wsdl/soap12/",
-            m, s, f);
-        }
-
-        ::WS::WSDL::SOAP_BINDING::address (*d, s, f);
-        return d;
-      }
 
       void
       operator<< (::xercesc::DOMElement& e, const AddressType& i)
@@ -5281,7 +2076,7 @@ namespace WS
               "location",
               e));
 
-          a << i.location ();
+          a << i.getLocation ();
         }
       }
 

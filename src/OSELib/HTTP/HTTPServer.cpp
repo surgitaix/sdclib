@@ -54,6 +54,12 @@ bool HTTPServer::init(HTTPRequestHandlerFactory_shared_ptr p_factory)
 
 	const Poco::Net::SocketAddress t_socketAddress(t_bindingAddress, t_port);
 
+	auto t_serverParams = new Poco::Net::HTTPServerParams;
+	auto t_timeout_us = SDCLib::Config::SDC_CONNECTION_TIMEOUT_MS*1000; // Convert to microseconds
+	t_serverParams->setTimeout(Poco::Timespan(t_timeout_us));
+	t_serverParams->setKeepAliveTimeout(Poco::Timespan(t_timeout_us * 2));
+
+
     bool USE_SSL = getSSLConfig()->isInit();
 	// Use SSL
 	if(USE_SSL)
@@ -62,20 +68,18 @@ bool HTTPServer::init(HTTPRequestHandlerFactory_shared_ptr p_factory)
 		Poco::Net::SecureServerSocket t_sslSocket(getSSLConfig()->getServerContext());
 		t_sslSocket.bind(t_socketAddress);
 		t_sslSocket.listen();
-		t_sslSocket.setKeepAlive(true);
 
 		// Create the Server
-		m_httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(p_factory->getFactory(), *m_threadPool, t_sslSocket, new Poco::Net::HTTPServerParams));
+		m_httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(p_factory->getFactory(), *m_threadPool, t_sslSocket, t_serverParams));
 	}
 	else {
 		// ServerSocket
 		Poco::Net::ServerSocket t_socket;
 		t_socket.bind(t_socketAddress);
 		t_socket.listen();
-		t_socket.setKeepAlive(true);
 
 		// Create the Server
-		m_httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(p_factory->getFactory(), *m_threadPool, t_socket, new Poco::Net::HTTPServerParams));
+		m_httpServer = std::unique_ptr<Poco::Net::HTTPServer>(new Poco::Net::HTTPServer(p_factory->getFactory(), *m_threadPool, t_socket, t_serverParams));
 	}
 
 	m_init = true;

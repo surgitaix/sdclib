@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class SetAlertStateOperationState {
+class SetAlertStateOperationState
+{
 private:
 	SetAlertStateOperationState(const CDM::SetAlertStateOperationState & object);
 	operator CDM::SetAlertStateOperationState() const;
@@ -59,11 +60,11 @@ public:
 private:
 	SetAlertStateOperationState(){};
 public:
-	SetAlertStateOperationState(const SetAlertStateOperationState & object);
-	virtual ~SetAlertStateOperationState();
+	SetAlertStateOperationState(const SetAlertStateOperationState& object);
+	virtual ~SetAlertStateOperationState() = default;
 
-    void copyFrom(const SetAlertStateOperationState & object);
-    SetAlertStateOperationState & operator=(const SetAlertStateOperationState & object);
+    void copyFrom(const SetAlertStateOperationState& object);
+    SetAlertStateOperationState & operator=(const SetAlertStateOperationState& object);
 
     typedef CDM::SetAlertStateOperationState WrappedType;
 
@@ -84,7 +85,7 @@ public:
 	OperatingMode getOperatingMode() const;
 
 private:
-	std::shared_ptr<CDM::SetAlertStateOperationState> data;
+	std::shared_ptr<CDM::SetAlertStateOperationState> data = nullptr;
 };
 
 } /* namespace SDC */

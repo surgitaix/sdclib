@@ -140,127 +140,127 @@ namespace MDM
   // 
 
   const InvocationInfo::ExtensionOptional& InvocationInfo::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   InvocationInfo::ExtensionOptional& InvocationInfo::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void InvocationInfo::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void InvocationInfo::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void InvocationInfo::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const InvocationInfo::TransactionIdType& InvocationInfo::
-  TransactionId () const
+  getTransactionId () const
   {
     return this->TransactionId_.get ();
   }
 
   InvocationInfo::TransactionIdType& InvocationInfo::
-  TransactionId ()
+  getTransactionId ()
   {
     return this->TransactionId_.get ();
   }
 
   void InvocationInfo::
-  TransactionId (const TransactionIdType& x)
+  setTransactionId (const TransactionIdType& x)
   {
     this->TransactionId_.set (x);
   }
 
   void InvocationInfo::
-  TransactionId (::std::unique_ptr< TransactionIdType > x)
+  setTransactionId (::std::unique_ptr< TransactionIdType > x)
   {
     this->TransactionId_.set (std::move (x));
   }
 
   const InvocationInfo::InvocationStateType& InvocationInfo::
-  InvocationState () const
+  getInvocationState () const
   {
     return this->InvocationState_.get ();
   }
 
   InvocationInfo::InvocationStateType& InvocationInfo::
-  InvocationState ()
+  getInvocationState ()
   {
     return this->InvocationState_.get ();
   }
 
   void InvocationInfo::
-  InvocationState (const InvocationStateType& x)
+  setInvocationState (const InvocationStateType& x)
   {
     this->InvocationState_.set (x);
   }
 
   void InvocationInfo::
-  InvocationState (::std::unique_ptr< InvocationStateType > x)
+  setInvocationState (::std::unique_ptr< InvocationStateType > x)
   {
     this->InvocationState_.set (std::move (x));
   }
 
   const InvocationInfo::InvocationErrorOptional& InvocationInfo::
-  InvocationError () const
+  getInvocationError () const
   {
     return this->InvocationError_;
   }
 
   InvocationInfo::InvocationErrorOptional& InvocationInfo::
-  InvocationError ()
+  getInvocationError ()
   {
     return this->InvocationError_;
   }
 
   void InvocationInfo::
-  InvocationError (const InvocationErrorType& x)
+  setInvocationError (const InvocationErrorType& x)
   {
     this->InvocationError_.set (x);
   }
 
   void InvocationInfo::
-  InvocationError (const InvocationErrorOptional& x)
+  setInvocationError (const InvocationErrorOptional& x)
   {
     this->InvocationError_ = x;
   }
 
   void InvocationInfo::
-  InvocationError (::std::unique_ptr< InvocationErrorType > x)
+  setInvocationError (::std::unique_ptr< InvocationErrorType > x)
   {
     this->InvocationError_.set (std::move (x));
   }
 
   const InvocationInfo::InvocationErrorMessageSequence& InvocationInfo::
-  InvocationErrorMessage () const
+  getInvocationErrorMessage () const
   {
     return this->InvocationErrorMessage_;
   }
 
   InvocationInfo::InvocationErrorMessageSequence& InvocationInfo::
-  InvocationErrorMessage ()
+  getInvocationErrorMessage ()
   {
     return this->InvocationErrorMessage_;
   }
 
   void InvocationInfo::
-  InvocationErrorMessage (const InvocationErrorMessageSequence& s)
+  setInvocationErrorMessage (const InvocationErrorMessageSequence& s)
   {
     this->InvocationErrorMessage_ = s;
   }
@@ -270,31 +270,31 @@ namespace MDM
   // 
 
   const AbstractGet::ExtensionOptional& AbstractGet::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   AbstractGet::ExtensionOptional& AbstractGet::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void AbstractGet::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void AbstractGet::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void AbstractGet::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
@@ -304,109 +304,109 @@ namespace MDM
   // 
 
   const AbstractGetResponse::ExtensionOptional& AbstractGetResponse::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   AbstractGetResponse::ExtensionOptional& AbstractGetResponse::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void AbstractGetResponse::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void AbstractGetResponse::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void AbstractGetResponse::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const AbstractGetResponse::MdibVersionOptional& AbstractGetResponse::
-  MdibVersion () const
+  getMdibVersion () const
   {
     return this->MdibVersion_;
   }
 
   AbstractGetResponse::MdibVersionOptional& AbstractGetResponse::
-  MdibVersion ()
+  getMdibVersion ()
   {
     return this->MdibVersion_;
   }
 
   void AbstractGetResponse::
-  MdibVersion (const MdibVersionType& x)
+  setMdibVersion (const MdibVersionType& x)
   {
     this->MdibVersion_.set (x);
   }
 
   void AbstractGetResponse::
-  MdibVersion (const MdibVersionOptional& x)
+  setMdibVersion (const MdibVersionOptional& x)
   {
     this->MdibVersion_ = x;
   }
 
   void AbstractGetResponse::
-  MdibVersion (::std::unique_ptr< MdibVersionType > x)
+  setMdibVersion (::std::unique_ptr< MdibVersionType > x)
   {
     this->MdibVersion_.set (std::move (x));
   }
 
   const AbstractGetResponse::SequenceIdType& AbstractGetResponse::
-  SequenceId () const
+  getSequenceId () const
   {
     return this->SequenceId_.get ();
   }
 
   AbstractGetResponse::SequenceIdType& AbstractGetResponse::
-  SequenceId ()
+  getSequenceId ()
   {
     return this->SequenceId_.get ();
   }
 
   void AbstractGetResponse::
-  SequenceId (const SequenceIdType& x)
+  setSequenceId (const SequenceIdType& x)
   {
     this->SequenceId_.set (x);
   }
 
   void AbstractGetResponse::
-  SequenceId (::std::unique_ptr< SequenceIdType > x)
+  setSequenceId (::std::unique_ptr< SequenceIdType > x)
   {
     this->SequenceId_.set (std::move (x));
   }
 
   const AbstractGetResponse::InstanceIdOptional& AbstractGetResponse::
-  InstanceId () const
+  getInstanceId () const
   {
     return this->InstanceId_;
   }
 
   AbstractGetResponse::InstanceIdOptional& AbstractGetResponse::
-  InstanceId ()
+  getInstanceId ()
   {
     return this->InstanceId_;
   }
 
   void AbstractGetResponse::
-  InstanceId (const InstanceIdType& x)
+  setInstanceId (const InstanceIdType& x)
   {
     this->InstanceId_.set (x);
   }
 
   void AbstractGetResponse::
-  InstanceId (const InstanceIdOptional& x)
+  setInstanceId (const InstanceIdOptional& x)
   {
     this->InstanceId_ = x;
   }
@@ -416,61 +416,61 @@ namespace MDM
   // 
 
   const AbstractReportPart::ExtensionOptional& AbstractReportPart::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   AbstractReportPart::ExtensionOptional& AbstractReportPart::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void AbstractReportPart::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void AbstractReportPart::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void AbstractReportPart::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const AbstractReportPart::SourceMdsOptional& AbstractReportPart::
-  SourceMds () const
+  getSourceMds () const
   {
     return this->SourceMds_;
   }
 
   AbstractReportPart::SourceMdsOptional& AbstractReportPart::
-  SourceMds ()
+  getSourceMds ()
   {
     return this->SourceMds_;
   }
 
   void AbstractReportPart::
-  SourceMds (const SourceMdsType& x)
+  setSourceMds (const SourceMdsType& x)
   {
     this->SourceMds_.set (x);
   }
 
   void AbstractReportPart::
-  SourceMds (const SourceMdsOptional& x)
+  setSourceMds (const SourceMdsOptional& x)
   {
     this->SourceMds_ = x;
   }
 
   void AbstractReportPart::
-  SourceMds (::std::unique_ptr< SourceMdsType > x)
+  setSourceMds (::std::unique_ptr< SourceMdsType > x)
   {
     this->SourceMds_.set (std::move (x));
   }
@@ -480,109 +480,109 @@ namespace MDM
   // 
 
   const AbstractReport::ExtensionOptional& AbstractReport::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   AbstractReport::ExtensionOptional& AbstractReport::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void AbstractReport::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void AbstractReport::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void AbstractReport::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const AbstractReport::MdibVersionOptional& AbstractReport::
-  MdibVersion () const
+  getMdibVersion () const
   {
     return this->MdibVersion_;
   }
 
   AbstractReport::MdibVersionOptional& AbstractReport::
-  MdibVersion ()
+  getMdibVersion ()
   {
     return this->MdibVersion_;
   }
 
   void AbstractReport::
-  MdibVersion (const MdibVersionType& x)
+  setMdibVersion (const MdibVersionType& x)
   {
     this->MdibVersion_.set (x);
   }
 
   void AbstractReport::
-  MdibVersion (const MdibVersionOptional& x)
+  setMdibVersion (const MdibVersionOptional& x)
   {
     this->MdibVersion_ = x;
   }
 
   void AbstractReport::
-  MdibVersion (::std::unique_ptr< MdibVersionType > x)
+  setMdibVersion (::std::unique_ptr< MdibVersionType > x)
   {
     this->MdibVersion_.set (std::move (x));
   }
 
   const AbstractReport::SequenceIdType& AbstractReport::
-  SequenceId () const
+  getSequenceId () const
   {
     return this->SequenceId_.get ();
   }
 
   AbstractReport::SequenceIdType& AbstractReport::
-  SequenceId ()
+  getSequenceId ()
   {
     return this->SequenceId_.get ();
   }
 
   void AbstractReport::
-  SequenceId (const SequenceIdType& x)
+  setSequenceId (const SequenceIdType& x)
   {
     this->SequenceId_.set (x);
   }
 
   void AbstractReport::
-  SequenceId (::std::unique_ptr< SequenceIdType > x)
+  setSequenceId (::std::unique_ptr< SequenceIdType > x)
   {
     this->SequenceId_.set (std::move (x));
   }
 
   const AbstractReport::InstanceIdOptional& AbstractReport::
-  InstanceId () const
+  getInstanceId () const
   {
     return this->InstanceId_;
   }
 
   AbstractReport::InstanceIdOptional& AbstractReport::
-  InstanceId ()
+  getInstanceId ()
   {
     return this->InstanceId_;
   }
 
   void AbstractReport::
-  InstanceId (const InstanceIdType& x)
+  setInstanceId (const InstanceIdType& x)
   {
     this->InstanceId_.set (x);
   }
 
   void AbstractReport::
-  InstanceId (const InstanceIdOptional& x)
+  setInstanceId (const InstanceIdOptional& x)
   {
     this->InstanceId_ = x;
   }
@@ -592,55 +592,55 @@ namespace MDM
   // 
 
   const AbstractSet::ExtensionOptional& AbstractSet::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   AbstractSet::ExtensionOptional& AbstractSet::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void AbstractSet::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void AbstractSet::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void AbstractSet::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const AbstractSet::OperationHandleRefType& AbstractSet::
-  OperationHandleRef () const
+  getOperationHandleRef () const
   {
     return this->OperationHandleRef_.get ();
   }
 
   AbstractSet::OperationHandleRefType& AbstractSet::
-  OperationHandleRef ()
+  getOperationHandleRef ()
   {
     return this->OperationHandleRef_.get ();
   }
 
   void AbstractSet::
-  OperationHandleRef (const OperationHandleRefType& x)
+  setOperationHandleRef (const OperationHandleRefType& x)
   {
     this->OperationHandleRef_.set (x);
   }
 
   void AbstractSet::
-  OperationHandleRef (::std::unique_ptr< OperationHandleRefType > x)
+  setOperationHandleRef (::std::unique_ptr< OperationHandleRefType > x)
   {
     this->OperationHandleRef_.set (std::move (x));
   }
@@ -650,133 +650,133 @@ namespace MDM
   // 
 
   const AbstractSetResponse::ExtensionOptional& AbstractSetResponse::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   AbstractSetResponse::ExtensionOptional& AbstractSetResponse::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void AbstractSetResponse::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void AbstractSetResponse::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void AbstractSetResponse::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const AbstractSetResponse::InvocationInfoType& AbstractSetResponse::
-  InvocationInfo () const
+  getInvocationInfo () const
   {
     return this->InvocationInfo_.get ();
   }
 
   AbstractSetResponse::InvocationInfoType& AbstractSetResponse::
-  InvocationInfo ()
+  getInvocationInfo ()
   {
     return this->InvocationInfo_.get ();
   }
 
   void AbstractSetResponse::
-  InvocationInfo (const InvocationInfoType& x)
+  setInvocationInfo (const InvocationInfoType& x)
   {
     this->InvocationInfo_.set (x);
   }
 
   void AbstractSetResponse::
-  InvocationInfo (::std::unique_ptr< InvocationInfoType > x)
+  setInvocationInfo (::std::unique_ptr< InvocationInfoType > x)
   {
     this->InvocationInfo_.set (std::move (x));
   }
 
   const AbstractSetResponse::MdibVersionOptional& AbstractSetResponse::
-  MdibVersion () const
+  getMdibVersion () const
   {
     return this->MdibVersion_;
   }
 
   AbstractSetResponse::MdibVersionOptional& AbstractSetResponse::
-  MdibVersion ()
+  getMdibVersion ()
   {
     return this->MdibVersion_;
   }
 
   void AbstractSetResponse::
-  MdibVersion (const MdibVersionType& x)
+  setMdibVersion (const MdibVersionType& x)
   {
     this->MdibVersion_.set (x);
   }
 
   void AbstractSetResponse::
-  MdibVersion (const MdibVersionOptional& x)
+  setMdibVersion (const MdibVersionOptional& x)
   {
     this->MdibVersion_ = x;
   }
 
   void AbstractSetResponse::
-  MdibVersion (::std::unique_ptr< MdibVersionType > x)
+  setMdibVersion (::std::unique_ptr< MdibVersionType > x)
   {
     this->MdibVersion_.set (std::move (x));
   }
 
   const AbstractSetResponse::SequenceIdType& AbstractSetResponse::
-  SequenceId () const
+  getSequenceId () const
   {
     return this->SequenceId_.get ();
   }
 
   AbstractSetResponse::SequenceIdType& AbstractSetResponse::
-  SequenceId ()
+  getSequenceId ()
   {
     return this->SequenceId_.get ();
   }
 
   void AbstractSetResponse::
-  SequenceId (const SequenceIdType& x)
+  setSequenceId (const SequenceIdType& x)
   {
     this->SequenceId_.set (x);
   }
 
   void AbstractSetResponse::
-  SequenceId (::std::unique_ptr< SequenceIdType > x)
+  setSequenceId (::std::unique_ptr< SequenceIdType > x)
   {
     this->SequenceId_.set (std::move (x));
   }
 
   const AbstractSetResponse::InstanceIdOptional& AbstractSetResponse::
-  InstanceId () const
+  getInstanceId () const
   {
     return this->InstanceId_;
   }
 
   AbstractSetResponse::InstanceIdOptional& AbstractSetResponse::
-  InstanceId ()
+  getInstanceId ()
   {
     return this->InstanceId_;
   }
 
   void AbstractSetResponse::
-  InstanceId (const InstanceIdType& x)
+  setInstanceId (const InstanceIdType& x)
   {
     this->InstanceId_.set (x);
   }
 
   void AbstractSetResponse::
-  InstanceId (const InstanceIdOptional& x)
+  setInstanceId (const InstanceIdOptional& x)
   {
     this->InstanceId_ = x;
   }
@@ -786,19 +786,19 @@ namespace MDM
   // 
 
   const AbstractContextReport::ReportPartSequence& AbstractContextReport::
-  ReportPart () const
+  getReportPart () const
   {
     return this->ReportPart_;
   }
 
   AbstractContextReport::ReportPartSequence& AbstractContextReport::
-  ReportPart ()
+  getReportPart ()
   {
     return this->ReportPart_;
   }
 
   void AbstractContextReport::
-  ReportPart (const ReportPartSequence& s)
+  setReportPart (const ReportPartSequence& s)
   {
     this->ReportPart_ = s;
   }
@@ -808,61 +808,61 @@ namespace MDM
   // 
 
   const VersionFrame::StartOptional& VersionFrame::
-  Start () const
+  getStart () const
   {
     return this->Start_;
   }
 
   VersionFrame::StartOptional& VersionFrame::
-  Start ()
+  getStart ()
   {
     return this->Start_;
   }
 
   void VersionFrame::
-  Start (const StartType& x)
+  setStart (const StartType& x)
   {
     this->Start_.set (x);
   }
 
   void VersionFrame::
-  Start (const StartOptional& x)
+  setStart (const StartOptional& x)
   {
     this->Start_ = x;
   }
 
   void VersionFrame::
-  Start (::std::unique_ptr< StartType > x)
+  setStart (::std::unique_ptr< StartType > x)
   {
     this->Start_.set (std::move (x));
   }
 
   const VersionFrame::EndOptional& VersionFrame::
-  End () const
+  getEnd () const
   {
     return this->End_;
   }
 
   VersionFrame::EndOptional& VersionFrame::
-  End ()
+  getEnd ()
   {
     return this->End_;
   }
 
   void VersionFrame::
-  End (const EndType& x)
+  setEnd (const EndType& x)
   {
     this->End_.set (x);
   }
 
   void VersionFrame::
-  End (const EndOptional& x)
+  setEnd (const EndOptional& x)
   {
     this->End_ = x;
   }
 
   void VersionFrame::
-  End (::std::unique_ptr< EndType > x)
+  setEnd (::std::unique_ptr< EndType > x)
   {
     this->End_.set (std::move (x));
   }
@@ -872,61 +872,61 @@ namespace MDM
   // 
 
   const TimeFrame::StartOptional& TimeFrame::
-  Start () const
+  getStart () const
   {
     return this->Start_;
   }
 
   TimeFrame::StartOptional& TimeFrame::
-  Start ()
+  getStart ()
   {
     return this->Start_;
   }
 
   void TimeFrame::
-  Start (const StartType& x)
+  setStart (const StartType& x)
   {
     this->Start_.set (x);
   }
 
   void TimeFrame::
-  Start (const StartOptional& x)
+  setStart (const StartOptional& x)
   {
     this->Start_ = x;
   }
 
   void TimeFrame::
-  Start (::std::unique_ptr< StartType > x)
+  setStart (::std::unique_ptr< StartType > x)
   {
     this->Start_.set (std::move (x));
   }
 
   const TimeFrame::EndOptional& TimeFrame::
-  End () const
+  getEnd () const
   {
     return this->End_;
   }
 
   TimeFrame::EndOptional& TimeFrame::
-  End ()
+  getEnd ()
   {
     return this->End_;
   }
 
   void TimeFrame::
-  End (const EndType& x)
+  setEnd (const EndType& x)
   {
     this->End_.set (x);
   }
 
   void TimeFrame::
-  End (const EndOptional& x)
+  setEnd (const EndOptional& x)
   {
     this->End_ = x;
   }
 
   void TimeFrame::
-  End (::std::unique_ptr< EndType > x)
+  setEnd (::std::unique_ptr< EndType > x)
   {
     this->End_.set (std::move (x));
   }
@@ -936,19 +936,19 @@ namespace MDM
   // 
 
   const AbstractMetricReport::ReportPartSequence& AbstractMetricReport::
-  ReportPart () const
+  getReportPart () const
   {
     return this->ReportPart_;
   }
 
   AbstractMetricReport::ReportPartSequence& AbstractMetricReport::
-  ReportPart ()
+  getReportPart ()
   {
     return this->ReportPart_;
   }
 
   void AbstractMetricReport::
-  ReportPart (const ReportPartSequence& s)
+  setReportPart (const ReportPartSequence& s)
   {
     this->ReportPart_ = s;
   }
@@ -958,19 +958,19 @@ namespace MDM
   // 
 
   const AbstractComponentReport::ReportPartSequence& AbstractComponentReport::
-  ReportPart () const
+  getReportPart () const
   {
     return this->ReportPart_;
   }
 
   AbstractComponentReport::ReportPartSequence& AbstractComponentReport::
-  ReportPart ()
+  getReportPart ()
   {
     return this->ReportPart_;
   }
 
   void AbstractComponentReport::
-  ReportPart (const ReportPartSequence& s)
+  setReportPart (const ReportPartSequence& s)
   {
     this->ReportPart_ = s;
   }
@@ -980,19 +980,19 @@ namespace MDM
   // 
 
   const AbstractAlertReport::ReportPartSequence& AbstractAlertReport::
-  ReportPart () const
+  getReportPart () const
   {
     return this->ReportPart_;
   }
 
   AbstractAlertReport::ReportPartSequence& AbstractAlertReport::
-  ReportPart ()
+  getReportPart ()
   {
     return this->ReportPart_;
   }
 
   void AbstractAlertReport::
-  ReportPart (const ReportPartSequence& s)
+  setReportPart (const ReportPartSequence& s)
   {
     this->ReportPart_ = s;
   }
@@ -1002,19 +1002,19 @@ namespace MDM
   // 
 
   const AbstractOperationalStateReport::ReportPartSequence& AbstractOperationalStateReport::
-  ReportPart () const
+  getReportPart () const
   {
     return this->ReportPart_;
   }
 
   AbstractOperationalStateReport::ReportPartSequence& AbstractOperationalStateReport::
-  ReportPart ()
+  getReportPart ()
   {
     return this->ReportPart_;
   }
 
   void AbstractOperationalStateReport::
-  ReportPart (const ReportPartSequence& s)
+  setReportPart (const ReportPartSequence& s)
   {
     this->ReportPart_ = s;
   }
@@ -1114,85 +1114,85 @@ namespace MDM
   // 
 
   const RetrievabilityInfo::ExtensionOptional& RetrievabilityInfo::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   RetrievabilityInfo::ExtensionOptional& RetrievabilityInfo::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void RetrievabilityInfo::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void RetrievabilityInfo::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void RetrievabilityInfo::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const RetrievabilityInfo::MethodType& RetrievabilityInfo::
-  Method () const
+  getMethod () const
   {
     return this->Method_.get ();
   }
 
   RetrievabilityInfo::MethodType& RetrievabilityInfo::
-  Method ()
+  getMethod ()
   {
     return this->Method_.get ();
   }
 
   void RetrievabilityInfo::
-  Method (const MethodType& x)
+  setMethod (const MethodType& x)
   {
     this->Method_.set (x);
   }
 
   void RetrievabilityInfo::
-  Method (::std::unique_ptr< MethodType > x)
+  setMethod (::std::unique_ptr< MethodType > x)
   {
     this->Method_.set (std::move (x));
   }
 
   const RetrievabilityInfo::UpdatePeriodOptional& RetrievabilityInfo::
-  UpdatePeriod () const
+  getUpdatePeriod () const
   {
     return this->UpdatePeriod_;
   }
 
   RetrievabilityInfo::UpdatePeriodOptional& RetrievabilityInfo::
-  UpdatePeriod ()
+  getUpdatePeriod ()
   {
     return this->UpdatePeriod_;
   }
 
   void RetrievabilityInfo::
-  UpdatePeriod (const UpdatePeriodType& x)
+  setUpdatePeriod (const UpdatePeriodType& x)
   {
     this->UpdatePeriod_.set (x);
   }
 
   void RetrievabilityInfo::
-  UpdatePeriod (const UpdatePeriodOptional& x)
+  setUpdatePeriod (const UpdatePeriodOptional& x)
   {
     this->UpdatePeriod_ = x;
   }
 
   void RetrievabilityInfo::
-  UpdatePeriod (::std::unique_ptr< UpdatePeriodType > x)
+  setUpdatePeriod (::std::unique_ptr< UpdatePeriodType > x)
   {
     this->UpdatePeriod_.set (std::move (x));
   }
@@ -1206,25 +1206,25 @@ namespace MDM
   // 
 
   const GetMdibResponse::MdibType& GetMdibResponse::
-  Mdib () const
+  getMdib () const
   {
     return this->Mdib_.get ();
   }
 
   GetMdibResponse::MdibType& GetMdibResponse::
-  Mdib ()
+  getMdib ()
   {
     return this->Mdib_.get ();
   }
 
   void GetMdibResponse::
-  Mdib (const MdibType& x)
+  setMdib (const MdibType& x)
   {
     this->Mdib_.set (x);
   }
 
   void GetMdibResponse::
-  Mdib (::std::unique_ptr< MdibType > x)
+  setMdib (::std::unique_ptr< MdibType > x)
   {
     this->Mdib_.set (std::move (x));
   }
@@ -1234,19 +1234,19 @@ namespace MDM
   // 
 
   const GetMdDescription::HandleRefSequence& GetMdDescription::
-  HandleRef () const
+  getHandleRef () const
   {
     return this->HandleRef_;
   }
 
   GetMdDescription::HandleRefSequence& GetMdDescription::
-  HandleRef ()
+  getHandleRef ()
   {
     return this->HandleRef_;
   }
 
   void GetMdDescription::
-  HandleRef (const HandleRefSequence& s)
+  setHandleRef (const HandleRefSequence& s)
   {
     this->HandleRef_ = s;
   }
@@ -1256,25 +1256,25 @@ namespace MDM
   // 
 
   const GetMdDescriptionResponse::MdDescriptionType& GetMdDescriptionResponse::
-  MdDescription () const
+  getMdDescription () const
   {
     return this->MdDescription_.get ();
   }
 
   GetMdDescriptionResponse::MdDescriptionType& GetMdDescriptionResponse::
-  MdDescription ()
+  getMdDescription ()
   {
     return this->MdDescription_.get ();
   }
 
   void GetMdDescriptionResponse::
-  MdDescription (const MdDescriptionType& x)
+  setMdDescription (const MdDescriptionType& x)
   {
     this->MdDescription_.set (x);
   }
 
   void GetMdDescriptionResponse::
-  MdDescription (::std::unique_ptr< MdDescriptionType > x)
+  setMdDescription (::std::unique_ptr< MdDescriptionType > x)
   {
     this->MdDescription_.set (std::move (x));
   }
@@ -1284,19 +1284,19 @@ namespace MDM
   // 
 
   const GetMdState::HandleRefSequence& GetMdState::
-  HandleRef () const
+  getHandleRef () const
   {
     return this->HandleRef_;
   }
 
   GetMdState::HandleRefSequence& GetMdState::
-  HandleRef ()
+  getHandleRef ()
   {
     return this->HandleRef_;
   }
 
   void GetMdState::
-  HandleRef (const HandleRefSequence& s)
+  setHandleRef (const HandleRefSequence& s)
   {
     this->HandleRef_ = s;
   }
@@ -1306,25 +1306,25 @@ namespace MDM
   // 
 
   const GetMdStateResponse::MdStateType& GetMdStateResponse::
-  MdState () const
+  getMdState () const
   {
     return this->MdState_.get ();
   }
 
   GetMdStateResponse::MdStateType& GetMdStateResponse::
-  MdState ()
+  getMdState ()
   {
     return this->MdState_.get ();
   }
 
   void GetMdStateResponse::
-  MdState (const MdStateType& x)
+  setMdState (const MdStateType& x)
   {
     this->MdState_.set (x);
   }
 
   void GetMdStateResponse::
-  MdState (::std::unique_ptr< MdStateType > x)
+  setMdState (::std::unique_ptr< MdStateType > x)
   {
     this->MdState_.set (std::move (x));
   }
@@ -1334,19 +1334,19 @@ namespace MDM
   // 
 
   const GetContextStates::HandleRefSequence& GetContextStates::
-  HandleRef () const
+  getHandleRef () const
   {
     return this->HandleRef_;
   }
 
   GetContextStates::HandleRefSequence& GetContextStates::
-  HandleRef ()
+  getHandleRef ()
   {
     return this->HandleRef_;
   }
 
   void GetContextStates::
-  HandleRef (const HandleRefSequence& s)
+  setHandleRef (const HandleRefSequence& s)
   {
     this->HandleRef_ = s;
   }
@@ -1356,19 +1356,19 @@ namespace MDM
   // 
 
   const GetContextStatesResponse::ContextStateSequence& GetContextStatesResponse::
-  ContextState () const
+  getContextState () const
   {
     return this->ContextState_;
   }
 
   GetContextStatesResponse::ContextStateSequence& GetContextStatesResponse::
-  ContextState ()
+  getContextState ()
   {
     return this->ContextState_;
   }
 
   void GetContextStatesResponse::
-  ContextState (const ContextStateSequence& s)
+  setContextState (const ContextStateSequence& s)
   {
     this->ContextState_ = s;
   }
@@ -1378,49 +1378,49 @@ namespace MDM
   // 
 
   const GetContextStatesByIdentification::IdentificationSequence& GetContextStatesByIdentification::
-  Identification () const
+  getIdentification () const
   {
     return this->Identification_;
   }
 
   GetContextStatesByIdentification::IdentificationSequence& GetContextStatesByIdentification::
-  Identification ()
+  getIdentification ()
   {
     return this->Identification_;
   }
 
   void GetContextStatesByIdentification::
-  Identification (const IdentificationSequence& s)
+  setIdentification (const IdentificationSequence& s)
   {
     this->Identification_ = s;
   }
 
   const GetContextStatesByIdentification::ContextTypeOptional& GetContextStatesByIdentification::
-  ContextType () const
+  getContextType () const
   {
     return this->ContextType_;
   }
 
   GetContextStatesByIdentification::ContextTypeOptional& GetContextStatesByIdentification::
-  ContextType ()
+  getContextType ()
   {
     return this->ContextType_;
   }
 
   void GetContextStatesByIdentification::
-  ContextType (const ContextTypeType& x)
+  setContextType (const ContextTypeType& x)
   {
     this->ContextType_.set (x);
   }
 
   void GetContextStatesByIdentification::
-  ContextType (const ContextTypeOptional& x)
+  setContextType (const ContextTypeOptional& x)
   {
     this->ContextType_ = x;
   }
 
   void GetContextStatesByIdentification::
-  ContextType (::std::unique_ptr< ContextTypeType > x)
+  setContextType (::std::unique_ptr< ContextTypeType > x)
   {
     this->ContextType_.set (std::move (x));
   }
@@ -1430,19 +1430,19 @@ namespace MDM
   // 
 
   const GetContextStatesByIdentificationResponse::ContextStateSequence& GetContextStatesByIdentificationResponse::
-  ContextState () const
+  getContextState () const
   {
     return this->ContextState_;
   }
 
   GetContextStatesByIdentificationResponse::ContextStateSequence& GetContextStatesByIdentificationResponse::
-  ContextState ()
+  getContextState ()
   {
     return this->ContextState_;
   }
 
   void GetContextStatesByIdentificationResponse::
-  ContextState (const ContextStateSequence& s)
+  setContextState (const ContextStateSequence& s)
   {
     this->ContextState_ = s;
   }
@@ -1452,49 +1452,49 @@ namespace MDM
   // 
 
   const GetContextStatesByFilter::FilterSequence& GetContextStatesByFilter::
-  Filter () const
+  getFilter () const
   {
     return this->Filter_;
   }
 
   GetContextStatesByFilter::FilterSequence& GetContextStatesByFilter::
-  Filter ()
+  getFilter ()
   {
     return this->Filter_;
   }
 
   void GetContextStatesByFilter::
-  Filter (const FilterSequence& s)
+  setFilter (const FilterSequence& s)
   {
     this->Filter_ = s;
   }
 
   const GetContextStatesByFilter::ContextTypeOptional& GetContextStatesByFilter::
-  ContextType () const
+  getContextType () const
   {
     return this->ContextType_;
   }
 
   GetContextStatesByFilter::ContextTypeOptional& GetContextStatesByFilter::
-  ContextType ()
+  getContextType ()
   {
     return this->ContextType_;
   }
 
   void GetContextStatesByFilter::
-  ContextType (const ContextTypeType& x)
+  setContextType (const ContextTypeType& x)
   {
     this->ContextType_.set (x);
   }
 
   void GetContextStatesByFilter::
-  ContextType (const ContextTypeOptional& x)
+  setContextType (const ContextTypeOptional& x)
   {
     this->ContextType_ = x;
   }
 
   void GetContextStatesByFilter::
-  ContextType (::std::unique_ptr< ContextTypeType > x)
+  setContextType (::std::unique_ptr< ContextTypeType > x)
   {
     this->ContextType_.set (std::move (x));
   }
@@ -1504,19 +1504,19 @@ namespace MDM
   // 
 
   const GetContextStatesByFilterResponse::ContextStateSequence& GetContextStatesByFilterResponse::
-  ContextState () const
+  getContextState () const
   {
     return this->ContextState_;
   }
 
   GetContextStatesByFilterResponse::ContextStateSequence& GetContextStatesByFilterResponse::
-  ContextState ()
+  getContextState ()
   {
     return this->ContextState_;
   }
 
   void GetContextStatesByFilterResponse::
-  ContextState (const ContextStateSequence& s)
+  setContextState (const ContextStateSequence& s)
   {
     this->ContextState_ = s;
   }
@@ -1526,19 +1526,19 @@ namespace MDM
   // 
 
   const SetContextState::ProposedContextStateSequence& SetContextState::
-  ProposedContextState () const
+  getProposedContextState () const
   {
     return this->ProposedContextState_;
   }
 
   SetContextState::ProposedContextStateSequence& SetContextState::
-  ProposedContextState ()
+  getProposedContextState ()
   {
     return this->ProposedContextState_;
   }
 
   void SetContextState::
-  ProposedContextState (const ProposedContextStateSequence& s)
+  setProposedContextState (const ProposedContextStateSequence& s)
   {
     this->ProposedContextState_ = s;
   }
@@ -1552,19 +1552,19 @@ namespace MDM
   // 
 
   const ReportPart::ContextStateSequence& ReportPart::
-  ContextState () const
+  getContextState () const
   {
     return this->ContextState_;
   }
 
   ReportPart::ContextStateSequence& ReportPart::
-  ContextState ()
+  getContextState ()
   {
     return this->ContextState_;
   }
 
   void ReportPart::
-  ContextState (const ContextStateSequence& s)
+  setContextState (const ContextStateSequence& s)
   {
     this->ContextState_ = s;
   }
@@ -1582,103 +1582,103 @@ namespace MDM
   // 
 
   const GetLocalizedText::RefSequence& GetLocalizedText::
-  Ref () const
+  getRef () const
   {
     return this->Ref_;
   }
 
   GetLocalizedText::RefSequence& GetLocalizedText::
-  Ref ()
+  getRef ()
   {
     return this->Ref_;
   }
 
   void GetLocalizedText::
-  Ref (const RefSequence& s)
+  setRef (const RefSequence& s)
   {
     this->Ref_ = s;
   }
 
   const GetLocalizedText::VersionOptional& GetLocalizedText::
-  Version () const
+  getVersion () const
   {
     return this->Version_;
   }
 
   GetLocalizedText::VersionOptional& GetLocalizedText::
-  Version ()
+  getVersion ()
   {
     return this->Version_;
   }
 
   void GetLocalizedText::
-  Version (const VersionType& x)
+  setVersion (const VersionType& x)
   {
     this->Version_.set (x);
   }
 
   void GetLocalizedText::
-  Version (const VersionOptional& x)
+  setVersion (const VersionOptional& x)
   {
     this->Version_ = x;
   }
 
   void GetLocalizedText::
-  Version (::std::unique_ptr< VersionType > x)
+  setVersion (::std::unique_ptr< VersionType > x)
   {
     this->Version_.set (std::move (x));
   }
 
   const GetLocalizedText::LangSequence& GetLocalizedText::
-  Lang () const
+  getLang () const
   {
     return this->Lang_;
   }
 
   GetLocalizedText::LangSequence& GetLocalizedText::
-  Lang ()
+  getLang ()
   {
     return this->Lang_;
   }
 
   void GetLocalizedText::
-  Lang (const LangSequence& s)
+  setLang (const LangSequence& s)
   {
     this->Lang_ = s;
   }
 
   const GetLocalizedText::TextWidthSequence& GetLocalizedText::
-  TextWidth () const
+  getTextWidth () const
   {
     return this->TextWidth_;
   }
 
   GetLocalizedText::TextWidthSequence& GetLocalizedText::
-  TextWidth ()
+  getTextWidth ()
   {
     return this->TextWidth_;
   }
 
   void GetLocalizedText::
-  TextWidth (const TextWidthSequence& s)
+  setTextWidth (const TextWidthSequence& s)
   {
     this->TextWidth_ = s;
   }
 
   const GetLocalizedText::NumberOfLinesSequence& GetLocalizedText::
-  NumberOfLines () const
+  getNumberOfLines () const
   {
     return this->NumberOfLines_;
   }
 
   GetLocalizedText::NumberOfLinesSequence& GetLocalizedText::
-  NumberOfLines ()
+  getNumberOfLines ()
   {
     return this->NumberOfLines_;
   }
 
   void GetLocalizedText::
-  NumberOfLines (const NumberOfLinesSequence& s)
+  setNumberOfLines (const NumberOfLinesSequence& s)
   {
     this->NumberOfLines_ = s;
   }
@@ -1688,19 +1688,19 @@ namespace MDM
   // 
 
   const GetLocalizedTextResponse::TextSequence& GetLocalizedTextResponse::
-  Text () const
+  getText () const
   {
     return this->Text_;
   }
 
   GetLocalizedTextResponse::TextSequence& GetLocalizedTextResponse::
-  Text ()
+  getText ()
   {
     return this->Text_;
   }
 
   void GetLocalizedTextResponse::
-  Text (const TextSequence& s)
+  setText (const TextSequence& s)
   {
     this->Text_ = s;
   }
@@ -1714,19 +1714,19 @@ namespace MDM
   // 
 
   const GetSupportedLanguagesResponse::LangSequence& GetSupportedLanguagesResponse::
-  Lang () const
+  getLang () const
   {
     return this->Lang_;
   }
 
   GetSupportedLanguagesResponse::LangSequence& GetSupportedLanguagesResponse::
-  Lang ()
+  getLang ()
   {
     return this->Lang_;
   }
 
   void GetSupportedLanguagesResponse::
-  Lang (const LangSequence& s)
+  setLang (const LangSequence& s)
   {
     this->Lang_ = s;
   }
@@ -1736,79 +1736,79 @@ namespace MDM
   // 
 
   const GetDescriptorsFromArchive::DescriptorRevisionsOptional& GetDescriptorsFromArchive::
-  DescriptorRevisions () const
+  getDescriptorRevisions () const
   {
     return this->DescriptorRevisions_;
   }
 
   GetDescriptorsFromArchive::DescriptorRevisionsOptional& GetDescriptorsFromArchive::
-  DescriptorRevisions ()
+  getDescriptorRevisions ()
   {
     return this->DescriptorRevisions_;
   }
 
   void GetDescriptorsFromArchive::
-  DescriptorRevisions (const DescriptorRevisionsType& x)
+  setDescriptorRevisions (const DescriptorRevisionsType& x)
   {
     this->DescriptorRevisions_.set (x);
   }
 
   void GetDescriptorsFromArchive::
-  DescriptorRevisions (const DescriptorRevisionsOptional& x)
+  setDescriptorRevisions (const DescriptorRevisionsOptional& x)
   {
     this->DescriptorRevisions_ = x;
   }
 
   void GetDescriptorsFromArchive::
-  DescriptorRevisions (::std::unique_ptr< DescriptorRevisionsType > x)
+  setDescriptorRevisions (::std::unique_ptr< DescriptorRevisionsType > x)
   {
     this->DescriptorRevisions_.set (std::move (x));
   }
 
   const GetDescriptorsFromArchive::TimeFrameOptional& GetDescriptorsFromArchive::
-  TimeFrame () const
+  getTimeFrame () const
   {
     return this->TimeFrame_;
   }
 
   GetDescriptorsFromArchive::TimeFrameOptional& GetDescriptorsFromArchive::
-  TimeFrame ()
+  getTimeFrame ()
   {
     return this->TimeFrame_;
   }
 
   void GetDescriptorsFromArchive::
-  TimeFrame (const TimeFrameType& x)
+  setTimeFrame (const TimeFrameType& x)
   {
     this->TimeFrame_.set (x);
   }
 
   void GetDescriptorsFromArchive::
-  TimeFrame (const TimeFrameOptional& x)
+  setTimeFrame (const TimeFrameOptional& x)
   {
     this->TimeFrame_ = x;
   }
 
   void GetDescriptorsFromArchive::
-  TimeFrame (::std::unique_ptr< TimeFrameType > x)
+  setTimeFrame (::std::unique_ptr< TimeFrameType > x)
   {
     this->TimeFrame_.set (std::move (x));
   }
 
   const GetDescriptorsFromArchive::HandleSequence& GetDescriptorsFromArchive::
-  Handle () const
+  getHandle () const
   {
     return this->Handle_;
   }
 
   GetDescriptorsFromArchive::HandleSequence& GetDescriptorsFromArchive::
-  Handle ()
+  getHandle ()
   {
     return this->Handle_;
   }
 
   void GetDescriptorsFromArchive::
-  Handle (const HandleSequence& s)
+  setHandle (const HandleSequence& s)
   {
     this->Handle_ = s;
   }
@@ -1818,19 +1818,19 @@ namespace MDM
   // 
 
   const GetDescriptorsFromArchiveResponse::DescriptorSequence& GetDescriptorsFromArchiveResponse::
-  Descriptor () const
+  getDescriptor () const
   {
     return this->Descriptor_;
   }
 
   GetDescriptorsFromArchiveResponse::DescriptorSequence& GetDescriptorsFromArchiveResponse::
-  Descriptor ()
+  getDescriptor ()
   {
     return this->Descriptor_;
   }
 
   void GetDescriptorsFromArchiveResponse::
-  Descriptor (const DescriptorSequence& s)
+  setDescriptor (const DescriptorSequence& s)
   {
     this->Descriptor_ = s;
   }
@@ -1840,79 +1840,79 @@ namespace MDM
   // 
 
   const GetStatesFromArchive::StateRevisionsOptional& GetStatesFromArchive::
-  StateRevisions () const
+  getStateRevisions () const
   {
     return this->StateRevisions_;
   }
 
   GetStatesFromArchive::StateRevisionsOptional& GetStatesFromArchive::
-  StateRevisions ()
+  getStateRevisions ()
   {
     return this->StateRevisions_;
   }
 
   void GetStatesFromArchive::
-  StateRevisions (const StateRevisionsType& x)
+  setStateRevisions (const StateRevisionsType& x)
   {
     this->StateRevisions_.set (x);
   }
 
   void GetStatesFromArchive::
-  StateRevisions (const StateRevisionsOptional& x)
+  setStateRevisions (const StateRevisionsOptional& x)
   {
     this->StateRevisions_ = x;
   }
 
   void GetStatesFromArchive::
-  StateRevisions (::std::unique_ptr< StateRevisionsType > x)
+  setStateRevisions (::std::unique_ptr< StateRevisionsType > x)
   {
     this->StateRevisions_.set (std::move (x));
   }
 
   const GetStatesFromArchive::TimeFrameOptional& GetStatesFromArchive::
-  TimeFrame () const
+  getTimeFrame () const
   {
     return this->TimeFrame_;
   }
 
   GetStatesFromArchive::TimeFrameOptional& GetStatesFromArchive::
-  TimeFrame ()
+  getTimeFrame ()
   {
     return this->TimeFrame_;
   }
 
   void GetStatesFromArchive::
-  TimeFrame (const TimeFrameType& x)
+  setTimeFrame (const TimeFrameType& x)
   {
     this->TimeFrame_.set (x);
   }
 
   void GetStatesFromArchive::
-  TimeFrame (const TimeFrameOptional& x)
+  setTimeFrame (const TimeFrameOptional& x)
   {
     this->TimeFrame_ = x;
   }
 
   void GetStatesFromArchive::
-  TimeFrame (::std::unique_ptr< TimeFrameType > x)
+  setTimeFrame (::std::unique_ptr< TimeFrameType > x)
   {
     this->TimeFrame_.set (std::move (x));
   }
 
   const GetStatesFromArchive::HandleSequence& GetStatesFromArchive::
-  Handle () const
+  getHandle () const
   {
     return this->Handle_;
   }
 
   GetStatesFromArchive::HandleSequence& GetStatesFromArchive::
-  Handle ()
+  getHandle ()
   {
     return this->Handle_;
   }
 
   void GetStatesFromArchive::
-  Handle (const HandleSequence& s)
+  setHandle (const HandleSequence& s)
   {
     this->Handle_ = s;
   }
@@ -1922,19 +1922,19 @@ namespace MDM
   // 
 
   const GetStatesFromArchiveResponse::StateSequence& GetStatesFromArchiveResponse::
-  State () const
+  getState () const
   {
     return this->State_;
   }
 
   GetStatesFromArchiveResponse::StateSequence& GetStatesFromArchiveResponse::
-  State ()
+  getState ()
   {
     return this->State_;
   }
 
   void GetStatesFromArchiveResponse::
-  State (const StateSequence& s)
+  setState (const StateSequence& s)
   {
     this->State_ = s;
   }
@@ -1944,19 +1944,19 @@ namespace MDM
   // 
 
   const SetValue::RequestedNumericValueType& SetValue::
-  RequestedNumericValue () const
+  getRequestedNumericValue () const
   {
     return this->RequestedNumericValue_.get ();
   }
 
   SetValue::RequestedNumericValueType& SetValue::
-  RequestedNumericValue ()
+  getRequestedNumericValue ()
   {
     return this->RequestedNumericValue_.get ();
   }
 
   void SetValue::
-  RequestedNumericValue (const RequestedNumericValueType& x)
+  setRequestedNumericValue (const RequestedNumericValueType& x)
   {
     this->RequestedNumericValue_.set (x);
   }
@@ -1970,25 +1970,25 @@ namespace MDM
   // 
 
   const SetString::RequestedStringValueType& SetString::
-  RequestedStringValue () const
+  getRequestedStringValue () const
   {
     return this->RequestedStringValue_.get ();
   }
 
   SetString::RequestedStringValueType& SetString::
-  RequestedStringValue ()
+  getRequestedStringValue ()
   {
     return this->RequestedStringValue_.get ();
   }
 
   void SetString::
-  RequestedStringValue (const RequestedStringValueType& x)
+  setRequestedStringValue (const RequestedStringValueType& x)
   {
     this->RequestedStringValue_.set (x);
   }
 
   void SetString::
-  RequestedStringValue (::std::unique_ptr< RequestedStringValueType > x)
+  setRequestedStringValue (::std::unique_ptr< RequestedStringValueType > x)
   {
     this->RequestedStringValue_.set (std::move (x));
   }
@@ -2002,19 +2002,19 @@ namespace MDM
   // 
 
   const Activate::ArgumentSequence& Activate::
-  Argument () const
+  getArgument () const
   {
     return this->Argument_;
   }
 
   Activate::ArgumentSequence& Activate::
-  Argument ()
+  getArgument ()
   {
     return this->Argument_;
   }
 
   void Activate::
-  Argument (const ArgumentSequence& s)
+  setArgument (const ArgumentSequence& s)
   {
     this->Argument_ = s;
   }
@@ -2028,25 +2028,25 @@ namespace MDM
   // 
 
   const SetAlertState::ProposedAlertStateType& SetAlertState::
-  ProposedAlertState () const
+  getProposedAlertState () const
   {
     return this->ProposedAlertState_.get ();
   }
 
   SetAlertState::ProposedAlertStateType& SetAlertState::
-  ProposedAlertState ()
+  getProposedAlertState ()
   {
     return this->ProposedAlertState_.get ();
   }
 
   void SetAlertState::
-  ProposedAlertState (const ProposedAlertStateType& x)
+  setProposedAlertState (const ProposedAlertStateType& x)
   {
     this->ProposedAlertState_.set (x);
   }
 
   void SetAlertState::
-  ProposedAlertState (::std::unique_ptr< ProposedAlertStateType > x)
+  setProposedAlertState (::std::unique_ptr< ProposedAlertStateType > x)
   {
     this->ProposedAlertState_.set (std::move (x));
   }
@@ -2060,19 +2060,19 @@ namespace MDM
   // 
 
   const SetComponentState::ProposedComponentStateSequence& SetComponentState::
-  ProposedComponentState () const
+  getProposedComponentState () const
   {
     return this->ProposedComponentState_;
   }
 
   SetComponentState::ProposedComponentStateSequence& SetComponentState::
-  ProposedComponentState ()
+  getProposedComponentState ()
   {
     return this->ProposedComponentState_;
   }
 
   void SetComponentState::
-  ProposedComponentState (const ProposedComponentStateSequence& s)
+  setProposedComponentState (const ProposedComponentStateSequence& s)
   {
     this->ProposedComponentState_ = s;
   }
@@ -2086,19 +2086,19 @@ namespace MDM
   // 
 
   const SetMetricState::ProposedMetricStateSequence& SetMetricState::
-  ProposedMetricState () const
+  getProposedMetricState () const
   {
     return this->ProposedMetricState_;
   }
 
   SetMetricState::ProposedMetricStateSequence& SetMetricState::
-  ProposedMetricState ()
+  getProposedMetricState ()
   {
     return this->ProposedMetricState_;
   }
 
   void SetMetricState::
-  ProposedMetricState (const ProposedMetricStateSequence& s)
+  setProposedMetricState (const ProposedMetricStateSequence& s)
   {
     this->ProposedMetricState_ = s;
   }
@@ -2112,19 +2112,19 @@ namespace MDM
   // 
 
   const OperationInvokedReport::ReportPartSequence& OperationInvokedReport::
-  ReportPart () const
+  getReportPart () const
   {
     return this->ReportPart_;
   }
 
   OperationInvokedReport::ReportPartSequence& OperationInvokedReport::
-  ReportPart ()
+  getReportPart ()
   {
     return this->ReportPart_;
   }
 
   void OperationInvokedReport::
-  ReportPart (const ReportPartSequence& s)
+  setReportPart (const ReportPartSequence& s)
   {
     this->ReportPart_ = s;
   }
@@ -2134,19 +2134,19 @@ namespace MDM
   // 
 
   const GetContainmentTree::HandleRefSequence& GetContainmentTree::
-  HandleRef () const
+  getHandleRef () const
   {
     return this->HandleRef_;
   }
 
   GetContainmentTree::HandleRefSequence& GetContainmentTree::
-  HandleRef ()
+  getHandleRef ()
   {
     return this->HandleRef_;
   }
 
   void GetContainmentTree::
-  HandleRef (const HandleRefSequence& s)
+  setHandleRef (const HandleRefSequence& s)
   {
     this->HandleRef_ = s;
   }
@@ -2156,25 +2156,25 @@ namespace MDM
   // 
 
   const GetContainmentTreeResponse::ContainmentTreeType& GetContainmentTreeResponse::
-  ContainmentTree () const
+  getContainmentTree () const
   {
     return this->ContainmentTree_.get ();
   }
 
   GetContainmentTreeResponse::ContainmentTreeType& GetContainmentTreeResponse::
-  ContainmentTree ()
+  getContainmentTree ()
   {
     return this->ContainmentTree_.get ();
   }
 
   void GetContainmentTreeResponse::
-  ContainmentTree (const ContainmentTreeType& x)
+  setContainmentTree (const ContainmentTreeType& x)
   {
     this->ContainmentTree_.set (x);
   }
 
   void GetContainmentTreeResponse::
-  ContainmentTree (::std::unique_ptr< ContainmentTreeType > x)
+  setContainmentTree (::std::unique_ptr< ContainmentTreeType > x)
   {
     this->ContainmentTree_.set (std::move (x));
   }
@@ -2184,19 +2184,19 @@ namespace MDM
   // 
 
   const GetDescriptor::HandleRefSequence& GetDescriptor::
-  HandleRef () const
+  getHandleRef () const
   {
     return this->HandleRef_;
   }
 
   GetDescriptor::HandleRefSequence& GetDescriptor::
-  HandleRef ()
+  getHandleRef ()
   {
     return this->HandleRef_;
   }
 
   void GetDescriptor::
-  HandleRef (const HandleRefSequence& s)
+  setHandleRef (const HandleRefSequence& s)
   {
     this->HandleRef_ = s;
   }
@@ -2206,19 +2206,19 @@ namespace MDM
   // 
 
   const GetDescriptorResponse::DescriptorSequence& GetDescriptorResponse::
-  Descriptor () const
+  getDescriptor () const
   {
     return this->Descriptor_;
   }
 
   GetDescriptorResponse::DescriptorSequence& GetDescriptorResponse::
-  Descriptor ()
+  getDescriptor ()
   {
     return this->Descriptor_;
   }
 
   void GetDescriptorResponse::
-  Descriptor (const DescriptorSequence& s)
+  setDescriptor (const DescriptorSequence& s)
   {
     this->Descriptor_ = s;
   }
@@ -2228,19 +2228,19 @@ namespace MDM
   // 
 
   const ReportPart1::MetricStateSequence& ReportPart1::
-  MetricState () const
+  getMetricState () const
   {
     return this->MetricState_;
   }
 
   ReportPart1::MetricStateSequence& ReportPart1::
-  MetricState ()
+  getMetricState ()
   {
     return this->MetricState_;
   }
 
   void ReportPart1::
-  MetricState (const MetricStateSequence& s)
+  setMetricState (const MetricStateSequence& s)
   {
     this->MetricState_ = s;
   }
@@ -2258,19 +2258,19 @@ namespace MDM
   // 
 
   const ReportPart2::ComponentStateSequence& ReportPart2::
-  ComponentState () const
+  getComponentState () const
   {
     return this->ComponentState_;
   }
 
   ReportPart2::ComponentStateSequence& ReportPart2::
-  ComponentState ()
+  getComponentState ()
   {
     return this->ComponentState_;
   }
 
   void ReportPart2::
-  ComponentState (const ComponentStateSequence& s)
+  setComponentState (const ComponentStateSequence& s)
   {
     this->ComponentState_ = s;
   }
@@ -2288,19 +2288,19 @@ namespace MDM
   // 
 
   const ReportPart3::AlertStateSequence& ReportPart3::
-  AlertState () const
+  getAlertState () const
   {
     return this->AlertState_;
   }
 
   ReportPart3::AlertStateSequence& ReportPart3::
-  AlertState ()
+  getAlertState ()
   {
     return this->AlertState_;
   }
 
   void ReportPart3::
-  AlertState (const AlertStateSequence& s)
+  setAlertState (const AlertStateSequence& s)
   {
     this->AlertState_ = s;
   }
@@ -2318,19 +2318,19 @@ namespace MDM
   // 
 
   const ReportPart4::OperationStateSequence& ReportPart4::
-  OperationState () const
+  getOperationState () const
   {
     return this->OperationState_;
   }
 
   ReportPart4::OperationStateSequence& ReportPart4::
-  OperationState ()
+  getOperationState ()
   {
     return this->OperationState_;
   }
 
   void ReportPart4::
-  OperationState (const OperationStateSequence& s)
+  setOperationState (const OperationStateSequence& s)
   {
     this->OperationState_ = s;
   }
@@ -2348,19 +2348,19 @@ namespace MDM
   // 
 
   const SystemErrorReport::ReportPartSequence& SystemErrorReport::
-  ReportPart () const
+  getReportPart () const
   {
     return this->ReportPart_;
   }
 
   SystemErrorReport::ReportPartSequence& SystemErrorReport::
-  ReportPart ()
+  getReportPart ()
   {
     return this->ReportPart_;
   }
 
   void SystemErrorReport::
-  ReportPart (const ReportPartSequence& s)
+  setReportPart (const ReportPartSequence& s)
   {
     this->ReportPart_ = s;
   }
@@ -2370,19 +2370,19 @@ namespace MDM
   // 
 
   const DescriptionModificationReport::ReportPartSequence& DescriptionModificationReport::
-  ReportPart () const
+  getReportPart () const
   {
     return this->ReportPart_;
   }
 
   DescriptionModificationReport::ReportPartSequence& DescriptionModificationReport::
-  ReportPart ()
+  getReportPart ()
   {
     return this->ReportPart_;
   }
 
   void DescriptionModificationReport::
-  ReportPart (const ReportPartSequence& s)
+  setReportPart (const ReportPartSequence& s)
   {
     this->ReportPart_ = s;
   }
@@ -2392,19 +2392,19 @@ namespace MDM
   // 
 
   const WaveformStream::StateSequence& WaveformStream::
-  State () const
+  getState () const
   {
     return this->State_;
   }
 
   WaveformStream::StateSequence& WaveformStream::
-  State ()
+  getState ()
   {
     return this->State_;
   }
 
   void WaveformStream::
-  State (const StateSequence& s)
+  setState (const StateSequence& s)
   {
     this->State_ = s;
   }
@@ -2414,19 +2414,19 @@ namespace MDM
   // 
 
   const ObservedValueStream::ValueSequence& ObservedValueStream::
-  Value () const
+  getValue () const
   {
     return this->Value_;
   }
 
   ObservedValueStream::ValueSequence& ObservedValueStream::
-  Value ()
+  getValue ()
   {
     return this->Value_;
   }
 
   void ObservedValueStream::
-  Value (const ValueSequence& s)
+  setValue (const ValueSequence& s)
   {
     this->Value_ = s;
   }
@@ -2436,19 +2436,19 @@ namespace MDM
   // 
 
   const Retrievability::BySequence& Retrievability::
-  By () const
+  getBy () const
   {
     return this->By_;
   }
 
   Retrievability::BySequence& Retrievability::
-  By ()
+  getBy ()
   {
     return this->By_;
   }
 
   void Retrievability::
-  By (const BySequence& s)
+  setBy (const BySequence& s)
   {
     this->By_ = s;
   }
@@ -2458,55 +2458,55 @@ namespace MDM
   // 
 
   const Argument::ExtensionOptional& Argument::
-  Extension () const
+  getExtension () const
   {
     return this->Extension_;
   }
 
   Argument::ExtensionOptional& Argument::
-  Extension ()
+  getExtension ()
   {
     return this->Extension_;
   }
 
   void Argument::
-  Extension (const ExtensionType& x)
+  setExtension (const ExtensionType& x)
   {
     this->Extension_.set (x);
   }
 
   void Argument::
-  Extension (const ExtensionOptional& x)
+  setExtension (const ExtensionOptional& x)
   {
     this->Extension_ = x;
   }
 
   void Argument::
-  Extension (::std::unique_ptr< ExtensionType > x)
+  setExtension (::std::unique_ptr< ExtensionType > x)
   {
     this->Extension_.set (std::move (x));
   }
 
   const Argument::ArgValueType& Argument::
-  ArgValue () const
+  getArgValue () const
   {
     return this->ArgValue_.get ();
   }
 
   Argument::ArgValueType& Argument::
-  ArgValue ()
+  getArgValue ()
   {
     return this->ArgValue_.get ();
   }
 
   void Argument::
-  ArgValue (const ArgValueType& x)
+  setArgValue (const ArgValueType& x)
   {
     this->ArgValue_.set (x);
   }
 
   void Argument::
-  ArgValue (::std::unique_ptr< ArgValueType > x)
+  setArgValue (::std::unique_ptr< ArgValueType > x)
   {
     this->ArgValue_.set (std::move (x));
   }
@@ -2516,103 +2516,103 @@ namespace MDM
   // 
 
   const ReportPart5::InvocationInfoType& ReportPart5::
-  InvocationInfo () const
+  getInvocationInfo () const
   {
     return this->InvocationInfo_.get ();
   }
 
   ReportPart5::InvocationInfoType& ReportPart5::
-  InvocationInfo ()
+  getInvocationInfo ()
   {
     return this->InvocationInfo_.get ();
   }
 
   void ReportPart5::
-  InvocationInfo (const InvocationInfoType& x)
+  setInvocationInfo (const InvocationInfoType& x)
   {
     this->InvocationInfo_.set (x);
   }
 
   void ReportPart5::
-  InvocationInfo (::std::unique_ptr< InvocationInfoType > x)
+  setInvocationInfo (::std::unique_ptr< InvocationInfoType > x)
   {
     this->InvocationInfo_.set (std::move (x));
   }
 
   const ReportPart5::InvocationSourceType& ReportPart5::
-  InvocationSource () const
+  getInvocationSource () const
   {
     return this->InvocationSource_.get ();
   }
 
   ReportPart5::InvocationSourceType& ReportPart5::
-  InvocationSource ()
+  getInvocationSource ()
   {
     return this->InvocationSource_.get ();
   }
 
   void ReportPart5::
-  InvocationSource (const InvocationSourceType& x)
+  setInvocationSource (const InvocationSourceType& x)
   {
     this->InvocationSource_.set (x);
   }
 
   void ReportPart5::
-  InvocationSource (::std::unique_ptr< InvocationSourceType > x)
+  setInvocationSource (::std::unique_ptr< InvocationSourceType > x)
   {
     this->InvocationSource_.set (std::move (x));
   }
 
   const ReportPart5::OperationHandleRefType& ReportPart5::
-  OperationHandleRef () const
+  getOperationHandleRef () const
   {
     return this->OperationHandleRef_.get ();
   }
 
   ReportPart5::OperationHandleRefType& ReportPart5::
-  OperationHandleRef ()
+  getOperationHandleRef ()
   {
     return this->OperationHandleRef_.get ();
   }
 
   void ReportPart5::
-  OperationHandleRef (const OperationHandleRefType& x)
+  setOperationHandleRef (const OperationHandleRefType& x)
   {
     this->OperationHandleRef_.set (x);
   }
 
   void ReportPart5::
-  OperationHandleRef (::std::unique_ptr< OperationHandleRefType > x)
+  setOperationHandleRef (::std::unique_ptr< OperationHandleRefType > x)
   {
     this->OperationHandleRef_.set (std::move (x));
   }
 
   const ReportPart5::OperationTargetOptional& ReportPart5::
-  OperationTarget () const
+  getOperationTarget () const
   {
     return this->OperationTarget_;
   }
 
   ReportPart5::OperationTargetOptional& ReportPart5::
-  OperationTarget ()
+  getOperationTarget ()
   {
     return this->OperationTarget_;
   }
 
   void ReportPart5::
-  OperationTarget (const OperationTargetType& x)
+  setOperationTarget (const OperationTargetType& x)
   {
     this->OperationTarget_.set (x);
   }
 
   void ReportPart5::
-  OperationTarget (const OperationTargetOptional& x)
+  setOperationTarget (const OperationTargetOptional& x)
   {
     this->OperationTarget_ = x;
   }
 
   void ReportPart5::
-  OperationTarget (::std::unique_ptr< OperationTargetType > x)
+  setOperationTarget (::std::unique_ptr< OperationTargetType > x)
   {
     this->OperationTarget_.set (std::move (x));
   }
@@ -2622,55 +2622,55 @@ namespace MDM
   // 
 
   const ReportPart6::ErrorCodeType& ReportPart6::
-  ErrorCode () const
+  getErrorCode () const
   {
     return this->ErrorCode_.get ();
   }
 
   ReportPart6::ErrorCodeType& ReportPart6::
-  ErrorCode ()
+  getErrorCode ()
   {
     return this->ErrorCode_.get ();
   }
 
   void ReportPart6::
-  ErrorCode (const ErrorCodeType& x)
+  setErrorCode (const ErrorCodeType& x)
   {
     this->ErrorCode_.set (x);
   }
 
   void ReportPart6::
-  ErrorCode (::std::unique_ptr< ErrorCodeType > x)
+  setErrorCode (::std::unique_ptr< ErrorCodeType > x)
   {
     this->ErrorCode_.set (std::move (x));
   }
 
   const ReportPart6::ErrorInfoOptional& ReportPart6::
-  ErrorInfo () const
+  getErrorInfo () const
   {
     return this->ErrorInfo_;
   }
 
   ReportPart6::ErrorInfoOptional& ReportPart6::
-  ErrorInfo ()
+  getErrorInfo ()
   {
     return this->ErrorInfo_;
   }
 
   void ReportPart6::
-  ErrorInfo (const ErrorInfoType& x)
+  setErrorInfo (const ErrorInfoType& x)
   {
     this->ErrorInfo_.set (x);
   }
 
   void ReportPart6::
-  ErrorInfo (const ErrorInfoOptional& x)
+  setErrorInfo (const ErrorInfoOptional& x)
   {
     this->ErrorInfo_ = x;
   }
 
   void ReportPart6::
-  ErrorInfo (::std::unique_ptr< ErrorInfoType > x)
+  setErrorInfo (::std::unique_ptr< ErrorInfoType > x)
   {
     this->ErrorInfo_.set (std::move (x));
   }
@@ -2680,97 +2680,97 @@ namespace MDM
   // 
 
   const ReportPart7::DescriptorSequence& ReportPart7::
-  Descriptor () const
+  getDescriptor () const
   {
     return this->Descriptor_;
   }
 
   ReportPart7::DescriptorSequence& ReportPart7::
-  Descriptor ()
+  getDescriptor ()
   {
     return this->Descriptor_;
   }
 
   void ReportPart7::
-  Descriptor (const DescriptorSequence& s)
+  setDescriptor (const DescriptorSequence& s)
   {
     this->Descriptor_ = s;
   }
 
   const ReportPart7::StateSequence& ReportPart7::
-  State () const
+  getState () const
   {
     return this->State_;
   }
 
   ReportPart7::StateSequence& ReportPart7::
-  State ()
+  getState ()
   {
     return this->State_;
   }
 
   void ReportPart7::
-  State (const StateSequence& s)
+  setState (const StateSequence& s)
   {
     this->State_ = s;
   }
 
   const ReportPart7::ParentDescriptorOptional& ReportPart7::
-  ParentDescriptor () const
+  getParentDescriptor () const
   {
     return this->ParentDescriptor_;
   }
 
   ReportPart7::ParentDescriptorOptional& ReportPart7::
-  ParentDescriptor ()
+  getParentDescriptor ()
   {
     return this->ParentDescriptor_;
   }
 
   void ReportPart7::
-  ParentDescriptor (const ParentDescriptorType& x)
+  setParentDescriptor (const ParentDescriptorType& x)
   {
     this->ParentDescriptor_.set (x);
   }
 
   void ReportPart7::
-  ParentDescriptor (const ParentDescriptorOptional& x)
+  setParentDescriptor (const ParentDescriptorOptional& x)
   {
     this->ParentDescriptor_ = x;
   }
 
   void ReportPart7::
-  ParentDescriptor (::std::unique_ptr< ParentDescriptorType > x)
+  setParentDescriptor (::std::unique_ptr< ParentDescriptorType > x)
   {
     this->ParentDescriptor_.set (std::move (x));
   }
 
   const ReportPart7::ModificationTypeOptional& ReportPart7::
-  ModificationType () const
+  getModificationType () const
   {
     return this->ModificationType_;
   }
 
   ReportPart7::ModificationTypeOptional& ReportPart7::
-  ModificationType ()
+  getModificationType ()
   {
     return this->ModificationType_;
   }
 
   void ReportPart7::
-  ModificationType (const ModificationTypeType& x)
+  setModificationType (const ModificationTypeType& x)
   {
     this->ModificationType_.set (x);
   }
 
   void ReportPart7::
-  ModificationType (const ModificationTypeOptional& x)
+  setModificationType (const ModificationTypeOptional& x)
   {
     this->ModificationType_ = x;
   }
 
   void ReportPart7::
-  ModificationType (::std::unique_ptr< ModificationTypeType > x)
+  setModificationType (::std::unique_ptr< ModificationTypeType > x)
   {
     this->ModificationType_.set (std::move (x));
   }
@@ -2780,85 +2780,85 @@ namespace MDM
   // 
 
   const Value::Value1Optional& Value::
-  Value1 () const
+  getValue1 () const
   {
     return this->Value1_;
   }
 
   Value::Value1Optional& Value::
-  Value1 ()
+  getValue1 ()
   {
     return this->Value1_;
   }
 
   void Value::
-  Value1 (const Value1Type& x)
+  setValue1 (const Value1Type& x)
   {
     this->Value1_.set (x);
   }
 
   void Value::
-  Value1 (const Value1Optional& x)
+  setValue1 (const Value1Optional& x)
   {
     this->Value1_ = x;
   }
 
   void Value::
-  Value1 (::std::unique_ptr< Value1Type > x)
+  setValue1 (::std::unique_ptr< Value1Type > x)
   {
     this->Value1_.set (std::move (x));
   }
 
   const Value::MetricType& Value::
-  Metric () const
+  getMetric () const
   {
     return this->Metric_.get ();
   }
 
   Value::MetricType& Value::
-  Metric ()
+  getMetric ()
   {
     return this->Metric_.get ();
   }
 
   void Value::
-  Metric (const MetricType& x)
+  setMetric (const MetricType& x)
   {
     this->Metric_.set (x);
   }
 
   void Value::
-  Metric (::std::unique_ptr< MetricType > x)
+  setMetric (::std::unique_ptr< MetricType > x)
   {
     this->Metric_.set (std::move (x));
   }
 
   const Value::StateVersionOptional& Value::
-  StateVersion () const
+  getStateVersion () const
   {
     return this->StateVersion_;
   }
 
   Value::StateVersionOptional& Value::
-  StateVersion ()
+  getStateVersion ()
   {
     return this->StateVersion_;
   }
 
   void Value::
-  StateVersion (const StateVersionType& x)
+  setStateVersion (const StateVersionType& x)
   {
     this->StateVersion_.set (x);
   }
 
   void Value::
-  StateVersion (const StateVersionOptional& x)
+  setStateVersion (const StateVersionOptional& x)
   {
     this->StateVersion_ = x;
   }
 
   void Value::
-  StateVersion (::std::unique_ptr< StateVersionType > x)
+  setStateVersion (::std::unique_ptr< StateVersionType > x)
   {
     this->StateVersion_.set (std::move (x));
   }
@@ -11002,14369 +11002,6 @@ namespace MDM
 
 namespace MDM
 {
-  ::std::unique_ptr< ::MDM::GetMdib >
-  GetMdib_ (const ::std::string& u,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdib > (
-      ::MDM::GetMdib_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdib >
-  GetMdib_ (const ::std::string& u,
-            ::xml_schema::ErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdib > (
-      ::MDM::GetMdib_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdib >
-  GetMdib_ (const ::std::string& u,
-            ::xercesc::DOMErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdib > (
-      ::MDM::GetMdib_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdib >
-  GetMdib_ (::std::istream& is,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetMdib_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdib >
-  GetMdib_ (::std::istream& is,
-            ::xml_schema::ErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetMdib_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdib >
-  GetMdib_ (::std::istream& is,
-            ::xercesc::DOMErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetMdib_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdib >
-  GetMdib_ (::std::istream& is,
-            const ::std::string& sid,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetMdib_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdib >
-  GetMdib_ (::std::istream& is,
-            const ::std::string& sid,
-            ::xml_schema::ErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetMdib_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdib >
-  GetMdib_ (::std::istream& is,
-            const ::std::string& sid,
-            ::xercesc::DOMErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetMdib_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdib >
-  GetMdib_ (::xercesc::InputSource& i,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdib > (
-      ::MDM::GetMdib_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdib >
-  GetMdib_ (::xercesc::InputSource& i,
-            ::xml_schema::ErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdib > (
-      ::MDM::GetMdib_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdib >
-  GetMdib_ (::xercesc::InputSource& i,
-            ::xercesc::DOMErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdib > (
-      ::MDM::GetMdib_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdib >
-  GetMdib_ (const ::xercesc::DOMDocument& doc,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::GetMdib > (
-        ::MDM::GetMdib_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetMdib" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetMdib > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetMdib, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetMdib",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdib >
-  GetMdib_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "GetMdib" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetMdib > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetMdib, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetMdib",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdibResponse >
-  GetMdibResponse_ (const ::std::string& u,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdibResponse > (
-      ::MDM::GetMdibResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdibResponse >
-  GetMdibResponse_ (const ::std::string& u,
-                    ::xml_schema::ErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdibResponse > (
-      ::MDM::GetMdibResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdibResponse >
-  GetMdibResponse_ (const ::std::string& u,
-                    ::xercesc::DOMErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdibResponse > (
-      ::MDM::GetMdibResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdibResponse >
-  GetMdibResponse_ (::std::istream& is,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetMdibResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdibResponse >
-  GetMdibResponse_ (::std::istream& is,
-                    ::xml_schema::ErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetMdibResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdibResponse >
-  GetMdibResponse_ (::std::istream& is,
-                    ::xercesc::DOMErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetMdibResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdibResponse >
-  GetMdibResponse_ (::std::istream& is,
-                    const ::std::string& sid,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetMdibResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdibResponse >
-  GetMdibResponse_ (::std::istream& is,
-                    const ::std::string& sid,
-                    ::xml_schema::ErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetMdibResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdibResponse >
-  GetMdibResponse_ (::std::istream& is,
-                    const ::std::string& sid,
-                    ::xercesc::DOMErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetMdibResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdibResponse >
-  GetMdibResponse_ (::xercesc::InputSource& i,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdibResponse > (
-      ::MDM::GetMdibResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdibResponse >
-  GetMdibResponse_ (::xercesc::InputSource& i,
-                    ::xml_schema::ErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdibResponse > (
-      ::MDM::GetMdibResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdibResponse >
-  GetMdibResponse_ (::xercesc::InputSource& i,
-                    ::xercesc::DOMErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdibResponse > (
-      ::MDM::GetMdibResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdibResponse >
-  GetMdibResponse_ (const ::xercesc::DOMDocument& doc,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::GetMdibResponse > (
-        ::MDM::GetMdibResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetMdibResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetMdibResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetMdibResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetMdibResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdibResponse >
-  GetMdibResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "GetMdibResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetMdibResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetMdibResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetMdibResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescription >
-  GetMdDescription_ (const ::std::string& u,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdDescription > (
-      ::MDM::GetMdDescription_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescription >
-  GetMdDescription_ (const ::std::string& u,
-                     ::xml_schema::ErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdDescription > (
-      ::MDM::GetMdDescription_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescription >
-  GetMdDescription_ (const ::std::string& u,
-                     ::xercesc::DOMErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdDescription > (
-      ::MDM::GetMdDescription_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescription >
-  GetMdDescription_ (::std::istream& is,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetMdDescription_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescription >
-  GetMdDescription_ (::std::istream& is,
-                     ::xml_schema::ErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetMdDescription_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescription >
-  GetMdDescription_ (::std::istream& is,
-                     ::xercesc::DOMErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetMdDescription_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescription >
-  GetMdDescription_ (::std::istream& is,
-                     const ::std::string& sid,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetMdDescription_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescription >
-  GetMdDescription_ (::std::istream& is,
-                     const ::std::string& sid,
-                     ::xml_schema::ErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetMdDescription_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescription >
-  GetMdDescription_ (::std::istream& is,
-                     const ::std::string& sid,
-                     ::xercesc::DOMErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetMdDescription_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescription >
-  GetMdDescription_ (::xercesc::InputSource& i,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdDescription > (
-      ::MDM::GetMdDescription_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescription >
-  GetMdDescription_ (::xercesc::InputSource& i,
-                     ::xml_schema::ErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdDescription > (
-      ::MDM::GetMdDescription_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescription >
-  GetMdDescription_ (::xercesc::InputSource& i,
-                     ::xercesc::DOMErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdDescription > (
-      ::MDM::GetMdDescription_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescription >
-  GetMdDescription_ (const ::xercesc::DOMDocument& doc,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::GetMdDescription > (
-        ::MDM::GetMdDescription_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetMdDescription" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetMdDescription > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetMdDescription, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetMdDescription",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescription >
-  GetMdDescription_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "GetMdDescription" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetMdDescription > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetMdDescription, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetMdDescription",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
-  GetMdDescriptionResponse_ (const ::std::string& u,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdDescriptionResponse > (
-      ::MDM::GetMdDescriptionResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
-  GetMdDescriptionResponse_ (const ::std::string& u,
-                             ::xml_schema::ErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdDescriptionResponse > (
-      ::MDM::GetMdDescriptionResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
-  GetMdDescriptionResponse_ (const ::std::string& u,
-                             ::xercesc::DOMErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdDescriptionResponse > (
-      ::MDM::GetMdDescriptionResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
-  GetMdDescriptionResponse_ (::std::istream& is,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetMdDescriptionResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
-  GetMdDescriptionResponse_ (::std::istream& is,
-                             ::xml_schema::ErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetMdDescriptionResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
-  GetMdDescriptionResponse_ (::std::istream& is,
-                             ::xercesc::DOMErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetMdDescriptionResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
-  GetMdDescriptionResponse_ (::std::istream& is,
-                             const ::std::string& sid,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetMdDescriptionResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
-  GetMdDescriptionResponse_ (::std::istream& is,
-                             const ::std::string& sid,
-                             ::xml_schema::ErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetMdDescriptionResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
-  GetMdDescriptionResponse_ (::std::istream& is,
-                             const ::std::string& sid,
-                             ::xercesc::DOMErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetMdDescriptionResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
-  GetMdDescriptionResponse_ (::xercesc::InputSource& i,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdDescriptionResponse > (
-      ::MDM::GetMdDescriptionResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
-  GetMdDescriptionResponse_ (::xercesc::InputSource& i,
-                             ::xml_schema::ErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdDescriptionResponse > (
-      ::MDM::GetMdDescriptionResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
-  GetMdDescriptionResponse_ (::xercesc::InputSource& i,
-                             ::xercesc::DOMErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdDescriptionResponse > (
-      ::MDM::GetMdDescriptionResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
-  GetMdDescriptionResponse_ (const ::xercesc::DOMDocument& doc,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::GetMdDescriptionResponse > (
-        ::MDM::GetMdDescriptionResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetMdDescriptionResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetMdDescriptionResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetMdDescriptionResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetMdDescriptionResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdDescriptionResponse >
-  GetMdDescriptionResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "GetMdDescriptionResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetMdDescriptionResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetMdDescriptionResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetMdDescriptionResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdState >
-  GetMdState_ (const ::std::string& u,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdState > (
-      ::MDM::GetMdState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdState >
-  GetMdState_ (const ::std::string& u,
-               ::xml_schema::ErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdState > (
-      ::MDM::GetMdState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdState >
-  GetMdState_ (const ::std::string& u,
-               ::xercesc::DOMErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdState > (
-      ::MDM::GetMdState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdState >
-  GetMdState_ (::std::istream& is,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetMdState_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdState >
-  GetMdState_ (::std::istream& is,
-               ::xml_schema::ErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetMdState_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdState >
-  GetMdState_ (::std::istream& is,
-               ::xercesc::DOMErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetMdState_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdState >
-  GetMdState_ (::std::istream& is,
-               const ::std::string& sid,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetMdState_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdState >
-  GetMdState_ (::std::istream& is,
-               const ::std::string& sid,
-               ::xml_schema::ErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetMdState_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdState >
-  GetMdState_ (::std::istream& is,
-               const ::std::string& sid,
-               ::xercesc::DOMErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetMdState_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdState >
-  GetMdState_ (::xercesc::InputSource& i,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdState > (
-      ::MDM::GetMdState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdState >
-  GetMdState_ (::xercesc::InputSource& i,
-               ::xml_schema::ErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdState > (
-      ::MDM::GetMdState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdState >
-  GetMdState_ (::xercesc::InputSource& i,
-               ::xercesc::DOMErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdState > (
-      ::MDM::GetMdState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdState >
-  GetMdState_ (const ::xercesc::DOMDocument& doc,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::GetMdState > (
-        ::MDM::GetMdState_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetMdState" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetMdState > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetMdState, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetMdState",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdState >
-  GetMdState_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "GetMdState" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetMdState > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetMdState, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetMdState",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdStateResponse >
-  GetMdStateResponse_ (const ::std::string& u,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdStateResponse > (
-      ::MDM::GetMdStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdStateResponse >
-  GetMdStateResponse_ (const ::std::string& u,
-                       ::xml_schema::ErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdStateResponse > (
-      ::MDM::GetMdStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdStateResponse >
-  GetMdStateResponse_ (const ::std::string& u,
-                       ::xercesc::DOMErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdStateResponse > (
-      ::MDM::GetMdStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdStateResponse >
-  GetMdStateResponse_ (::std::istream& is,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetMdStateResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdStateResponse >
-  GetMdStateResponse_ (::std::istream& is,
-                       ::xml_schema::ErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetMdStateResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdStateResponse >
-  GetMdStateResponse_ (::std::istream& is,
-                       ::xercesc::DOMErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetMdStateResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdStateResponse >
-  GetMdStateResponse_ (::std::istream& is,
-                       const ::std::string& sid,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetMdStateResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdStateResponse >
-  GetMdStateResponse_ (::std::istream& is,
-                       const ::std::string& sid,
-                       ::xml_schema::ErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetMdStateResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdStateResponse >
-  GetMdStateResponse_ (::std::istream& is,
-                       const ::std::string& sid,
-                       ::xercesc::DOMErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetMdStateResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdStateResponse >
-  GetMdStateResponse_ (::xercesc::InputSource& i,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdStateResponse > (
-      ::MDM::GetMdStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdStateResponse >
-  GetMdStateResponse_ (::xercesc::InputSource& i,
-                       ::xml_schema::ErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdStateResponse > (
-      ::MDM::GetMdStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdStateResponse >
-  GetMdStateResponse_ (::xercesc::InputSource& i,
-                       ::xercesc::DOMErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetMdStateResponse > (
-      ::MDM::GetMdStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdStateResponse >
-  GetMdStateResponse_ (const ::xercesc::DOMDocument& doc,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::GetMdStateResponse > (
-        ::MDM::GetMdStateResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetMdStateResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetMdStateResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetMdStateResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetMdStateResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetMdStateResponse >
-  GetMdStateResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "GetMdStateResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetMdStateResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetMdStateResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetMdStateResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStates >
-  GetContextStates_ (const ::std::string& u,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStates > (
-      ::MDM::GetContextStates_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStates >
-  GetContextStates_ (const ::std::string& u,
-                     ::xml_schema::ErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStates > (
-      ::MDM::GetContextStates_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStates >
-  GetContextStates_ (const ::std::string& u,
-                     ::xercesc::DOMErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStates > (
-      ::MDM::GetContextStates_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStates >
-  GetContextStates_ (::std::istream& is,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetContextStates_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStates >
-  GetContextStates_ (::std::istream& is,
-                     ::xml_schema::ErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetContextStates_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStates >
-  GetContextStates_ (::std::istream& is,
-                     ::xercesc::DOMErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetContextStates_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStates >
-  GetContextStates_ (::std::istream& is,
-                     const ::std::string& sid,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetContextStates_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStates >
-  GetContextStates_ (::std::istream& is,
-                     const ::std::string& sid,
-                     ::xml_schema::ErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetContextStates_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStates >
-  GetContextStates_ (::std::istream& is,
-                     const ::std::string& sid,
-                     ::xercesc::DOMErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetContextStates_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStates >
-  GetContextStates_ (::xercesc::InputSource& i,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStates > (
-      ::MDM::GetContextStates_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStates >
-  GetContextStates_ (::xercesc::InputSource& i,
-                     ::xml_schema::ErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStates > (
-      ::MDM::GetContextStates_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStates >
-  GetContextStates_ (::xercesc::InputSource& i,
-                     ::xercesc::DOMErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStates > (
-      ::MDM::GetContextStates_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStates >
-  GetContextStates_ (const ::xercesc::DOMDocument& doc,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::GetContextStates > (
-        ::MDM::GetContextStates_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetContextStates" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetContextStates > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetContextStates, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetContextStates",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStates >
-  GetContextStates_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "GetContextStates" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetContextStates > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetContextStates, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetContextStates",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
-  GetContextStatesResponse_ (const ::std::string& u,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesResponse > (
-      ::MDM::GetContextStatesResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
-  GetContextStatesResponse_ (const ::std::string& u,
-                             ::xml_schema::ErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesResponse > (
-      ::MDM::GetContextStatesResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
-  GetContextStatesResponse_ (const ::std::string& u,
-                             ::xercesc::DOMErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesResponse > (
-      ::MDM::GetContextStatesResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
-  GetContextStatesResponse_ (::std::istream& is,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetContextStatesResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
-  GetContextStatesResponse_ (::std::istream& is,
-                             ::xml_schema::ErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetContextStatesResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
-  GetContextStatesResponse_ (::std::istream& is,
-                             ::xercesc::DOMErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetContextStatesResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
-  GetContextStatesResponse_ (::std::istream& is,
-                             const ::std::string& sid,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetContextStatesResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
-  GetContextStatesResponse_ (::std::istream& is,
-                             const ::std::string& sid,
-                             ::xml_schema::ErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetContextStatesResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
-  GetContextStatesResponse_ (::std::istream& is,
-                             const ::std::string& sid,
-                             ::xercesc::DOMErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetContextStatesResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
-  GetContextStatesResponse_ (::xercesc::InputSource& i,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesResponse > (
-      ::MDM::GetContextStatesResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
-  GetContextStatesResponse_ (::xercesc::InputSource& i,
-                             ::xml_schema::ErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesResponse > (
-      ::MDM::GetContextStatesResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
-  GetContextStatesResponse_ (::xercesc::InputSource& i,
-                             ::xercesc::DOMErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesResponse > (
-      ::MDM::GetContextStatesResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
-  GetContextStatesResponse_ (const ::xercesc::DOMDocument& doc,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::GetContextStatesResponse > (
-        ::MDM::GetContextStatesResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetContextStatesResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetContextStatesResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetContextStatesResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetContextStatesResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesResponse >
-  GetContextStatesResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "GetContextStatesResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetContextStatesResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetContextStatesResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetContextStatesResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
-  GetContextStatesByIdentification_ (const ::std::string& u,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesByIdentification > (
-      ::MDM::GetContextStatesByIdentification_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
-  GetContextStatesByIdentification_ (const ::std::string& u,
-                                     ::xml_schema::ErrorHandler& h,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesByIdentification > (
-      ::MDM::GetContextStatesByIdentification_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
-  GetContextStatesByIdentification_ (const ::std::string& u,
-                                     ::xercesc::DOMErrorHandler& h,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesByIdentification > (
-      ::MDM::GetContextStatesByIdentification_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
-  GetContextStatesByIdentification_ (::std::istream& is,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetContextStatesByIdentification_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
-  GetContextStatesByIdentification_ (::std::istream& is,
-                                     ::xml_schema::ErrorHandler& h,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetContextStatesByIdentification_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
-  GetContextStatesByIdentification_ (::std::istream& is,
-                                     ::xercesc::DOMErrorHandler& h,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetContextStatesByIdentification_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
-  GetContextStatesByIdentification_ (::std::istream& is,
-                                     const ::std::string& sid,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetContextStatesByIdentification_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
-  GetContextStatesByIdentification_ (::std::istream& is,
-                                     const ::std::string& sid,
-                                     ::xml_schema::ErrorHandler& h,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetContextStatesByIdentification_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
-  GetContextStatesByIdentification_ (::std::istream& is,
-                                     const ::std::string& sid,
-                                     ::xercesc::DOMErrorHandler& h,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetContextStatesByIdentification_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
-  GetContextStatesByIdentification_ (::xercesc::InputSource& i,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesByIdentification > (
-      ::MDM::GetContextStatesByIdentification_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
-  GetContextStatesByIdentification_ (::xercesc::InputSource& i,
-                                     ::xml_schema::ErrorHandler& h,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesByIdentification > (
-      ::MDM::GetContextStatesByIdentification_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
-  GetContextStatesByIdentification_ (::xercesc::InputSource& i,
-                                     ::xercesc::DOMErrorHandler& h,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesByIdentification > (
-      ::MDM::GetContextStatesByIdentification_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
-  GetContextStatesByIdentification_ (const ::xercesc::DOMDocument& doc,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::GetContextStatesByIdentification > (
-        ::MDM::GetContextStatesByIdentification_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetContextStatesByIdentification" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetContextStatesByIdentification > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetContextStatesByIdentification, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetContextStatesByIdentification",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentification >
-  GetContextStatesByIdentification_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "GetContextStatesByIdentification" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetContextStatesByIdentification > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetContextStatesByIdentification, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetContextStatesByIdentification",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
-  GetContextStatesByIdentificationResponse_ (const ::std::string& u,
-                                             ::xml_schema::Flags f,
-                                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse > (
-      ::MDM::GetContextStatesByIdentificationResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
-  GetContextStatesByIdentificationResponse_ (const ::std::string& u,
-                                             ::xml_schema::ErrorHandler& h,
-                                             ::xml_schema::Flags f,
-                                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse > (
-      ::MDM::GetContextStatesByIdentificationResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
-  GetContextStatesByIdentificationResponse_ (const ::std::string& u,
-                                             ::xercesc::DOMErrorHandler& h,
-                                             ::xml_schema::Flags f,
-                                             const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse > (
-      ::MDM::GetContextStatesByIdentificationResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
-  GetContextStatesByIdentificationResponse_ (::std::istream& is,
-                                             ::xml_schema::Flags f,
-                                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetContextStatesByIdentificationResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
-  GetContextStatesByIdentificationResponse_ (::std::istream& is,
-                                             ::xml_schema::ErrorHandler& h,
-                                             ::xml_schema::Flags f,
-                                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetContextStatesByIdentificationResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
-  GetContextStatesByIdentificationResponse_ (::std::istream& is,
-                                             ::xercesc::DOMErrorHandler& h,
-                                             ::xml_schema::Flags f,
-                                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetContextStatesByIdentificationResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
-  GetContextStatesByIdentificationResponse_ (::std::istream& is,
-                                             const ::std::string& sid,
-                                             ::xml_schema::Flags f,
-                                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetContextStatesByIdentificationResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
-  GetContextStatesByIdentificationResponse_ (::std::istream& is,
-                                             const ::std::string& sid,
-                                             ::xml_schema::ErrorHandler& h,
-                                             ::xml_schema::Flags f,
-                                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetContextStatesByIdentificationResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
-  GetContextStatesByIdentificationResponse_ (::std::istream& is,
-                                             const ::std::string& sid,
-                                             ::xercesc::DOMErrorHandler& h,
-                                             ::xml_schema::Flags f,
-                                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetContextStatesByIdentificationResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
-  GetContextStatesByIdentificationResponse_ (::xercesc::InputSource& i,
-                                             ::xml_schema::Flags f,
-                                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse > (
-      ::MDM::GetContextStatesByIdentificationResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
-  GetContextStatesByIdentificationResponse_ (::xercesc::InputSource& i,
-                                             ::xml_schema::ErrorHandler& h,
-                                             ::xml_schema::Flags f,
-                                             const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse > (
-      ::MDM::GetContextStatesByIdentificationResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
-  GetContextStatesByIdentificationResponse_ (::xercesc::InputSource& i,
-                                             ::xercesc::DOMErrorHandler& h,
-                                             ::xml_schema::Flags f,
-                                             const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse > (
-      ::MDM::GetContextStatesByIdentificationResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
-  GetContextStatesByIdentificationResponse_ (const ::xercesc::DOMDocument& doc,
-                                             ::xml_schema::Flags f,
-                                             const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse > (
-        ::MDM::GetContextStatesByIdentificationResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetContextStatesByIdentificationResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetContextStatesByIdentificationResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetContextStatesByIdentificationResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse >
-  GetContextStatesByIdentificationResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                                             ::xml_schema::Flags f,
-                                             const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "GetContextStatesByIdentificationResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetContextStatesByIdentificationResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetContextStatesByIdentificationResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetContextStatesByIdentificationResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
-  GetContextStatesByFilter_ (const ::std::string& u,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesByFilter > (
-      ::MDM::GetContextStatesByFilter_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
-  GetContextStatesByFilter_ (const ::std::string& u,
-                             ::xml_schema::ErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesByFilter > (
-      ::MDM::GetContextStatesByFilter_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
-  GetContextStatesByFilter_ (const ::std::string& u,
-                             ::xercesc::DOMErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesByFilter > (
-      ::MDM::GetContextStatesByFilter_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
-  GetContextStatesByFilter_ (::std::istream& is,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetContextStatesByFilter_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
-  GetContextStatesByFilter_ (::std::istream& is,
-                             ::xml_schema::ErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetContextStatesByFilter_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
-  GetContextStatesByFilter_ (::std::istream& is,
-                             ::xercesc::DOMErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetContextStatesByFilter_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
-  GetContextStatesByFilter_ (::std::istream& is,
-                             const ::std::string& sid,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetContextStatesByFilter_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
-  GetContextStatesByFilter_ (::std::istream& is,
-                             const ::std::string& sid,
-                             ::xml_schema::ErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetContextStatesByFilter_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
-  GetContextStatesByFilter_ (::std::istream& is,
-                             const ::std::string& sid,
-                             ::xercesc::DOMErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetContextStatesByFilter_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
-  GetContextStatesByFilter_ (::xercesc::InputSource& i,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesByFilter > (
-      ::MDM::GetContextStatesByFilter_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
-  GetContextStatesByFilter_ (::xercesc::InputSource& i,
-                             ::xml_schema::ErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesByFilter > (
-      ::MDM::GetContextStatesByFilter_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
-  GetContextStatesByFilter_ (::xercesc::InputSource& i,
-                             ::xercesc::DOMErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesByFilter > (
-      ::MDM::GetContextStatesByFilter_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
-  GetContextStatesByFilter_ (const ::xercesc::DOMDocument& doc,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::GetContextStatesByFilter > (
-        ::MDM::GetContextStatesByFilter_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetContextStatesByFilter" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetContextStatesByFilter > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetContextStatesByFilter, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetContextStatesByFilter",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilter >
-  GetContextStatesByFilter_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "GetContextStatesByFilter" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetContextStatesByFilter > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetContextStatesByFilter, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetContextStatesByFilter",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
-  GetContextStatesByFilterResponse_ (const ::std::string& u,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse > (
-      ::MDM::GetContextStatesByFilterResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
-  GetContextStatesByFilterResponse_ (const ::std::string& u,
-                                     ::xml_schema::ErrorHandler& h,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse > (
-      ::MDM::GetContextStatesByFilterResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
-  GetContextStatesByFilterResponse_ (const ::std::string& u,
-                                     ::xercesc::DOMErrorHandler& h,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse > (
-      ::MDM::GetContextStatesByFilterResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
-  GetContextStatesByFilterResponse_ (::std::istream& is,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetContextStatesByFilterResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
-  GetContextStatesByFilterResponse_ (::std::istream& is,
-                                     ::xml_schema::ErrorHandler& h,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetContextStatesByFilterResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
-  GetContextStatesByFilterResponse_ (::std::istream& is,
-                                     ::xercesc::DOMErrorHandler& h,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetContextStatesByFilterResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
-  GetContextStatesByFilterResponse_ (::std::istream& is,
-                                     const ::std::string& sid,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetContextStatesByFilterResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
-  GetContextStatesByFilterResponse_ (::std::istream& is,
-                                     const ::std::string& sid,
-                                     ::xml_schema::ErrorHandler& h,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetContextStatesByFilterResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
-  GetContextStatesByFilterResponse_ (::std::istream& is,
-                                     const ::std::string& sid,
-                                     ::xercesc::DOMErrorHandler& h,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetContextStatesByFilterResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
-  GetContextStatesByFilterResponse_ (::xercesc::InputSource& i,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse > (
-      ::MDM::GetContextStatesByFilterResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
-  GetContextStatesByFilterResponse_ (::xercesc::InputSource& i,
-                                     ::xml_schema::ErrorHandler& h,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse > (
-      ::MDM::GetContextStatesByFilterResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
-  GetContextStatesByFilterResponse_ (::xercesc::InputSource& i,
-                                     ::xercesc::DOMErrorHandler& h,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse > (
-      ::MDM::GetContextStatesByFilterResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
-  GetContextStatesByFilterResponse_ (const ::xercesc::DOMDocument& doc,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse > (
-        ::MDM::GetContextStatesByFilterResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetContextStatesByFilterResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetContextStatesByFilterResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetContextStatesByFilterResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse >
-  GetContextStatesByFilterResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                                     ::xml_schema::Flags f,
-                                     const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "GetContextStatesByFilterResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetContextStatesByFilterResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetContextStatesByFilterResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetContextStatesByFilterResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextState >
-  SetContextState_ (const ::std::string& u,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SetContextState > (
-      ::MDM::SetContextState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextState >
-  SetContextState_ (const ::std::string& u,
-                    ::xml_schema::ErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetContextState > (
-      ::MDM::SetContextState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextState >
-  SetContextState_ (const ::std::string& u,
-                    ::xercesc::DOMErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetContextState > (
-      ::MDM::SetContextState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextState >
-  SetContextState_ (::std::istream& is,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetContextState_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextState >
-  SetContextState_ (::std::istream& is,
-                    ::xml_schema::ErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetContextState_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextState >
-  SetContextState_ (::std::istream& is,
-                    ::xercesc::DOMErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetContextState_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextState >
-  SetContextState_ (::std::istream& is,
-                    const ::std::string& sid,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetContextState_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextState >
-  SetContextState_ (::std::istream& is,
-                    const ::std::string& sid,
-                    ::xml_schema::ErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetContextState_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextState >
-  SetContextState_ (::std::istream& is,
-                    const ::std::string& sid,
-                    ::xercesc::DOMErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetContextState_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextState >
-  SetContextState_ (::xercesc::InputSource& i,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SetContextState > (
-      ::MDM::SetContextState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextState >
-  SetContextState_ (::xercesc::InputSource& i,
-                    ::xml_schema::ErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetContextState > (
-      ::MDM::SetContextState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextState >
-  SetContextState_ (::xercesc::InputSource& i,
-                    ::xercesc::DOMErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetContextState > (
-      ::MDM::SetContextState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextState >
-  SetContextState_ (const ::xercesc::DOMDocument& doc,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::SetContextState > (
-        ::MDM::SetContextState_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SetContextState" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SetContextState > r (
-        ::xsd::cxx::tree::traits< ::MDM::SetContextState, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SetContextState",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextState >
-  SetContextState_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "SetContextState" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SetContextState > r (
-        ::xsd::cxx::tree::traits< ::MDM::SetContextState, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SetContextState",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextStateResponse >
-  SetContextStateResponse_ (const ::std::string& u,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SetContextStateResponse > (
-      ::MDM::SetContextStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextStateResponse >
-  SetContextStateResponse_ (const ::std::string& u,
-                            ::xml_schema::ErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetContextStateResponse > (
-      ::MDM::SetContextStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextStateResponse >
-  SetContextStateResponse_ (const ::std::string& u,
-                            ::xercesc::DOMErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetContextStateResponse > (
-      ::MDM::SetContextStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextStateResponse >
-  SetContextStateResponse_ (::std::istream& is,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetContextStateResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextStateResponse >
-  SetContextStateResponse_ (::std::istream& is,
-                            ::xml_schema::ErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetContextStateResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextStateResponse >
-  SetContextStateResponse_ (::std::istream& is,
-                            ::xercesc::DOMErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetContextStateResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextStateResponse >
-  SetContextStateResponse_ (::std::istream& is,
-                            const ::std::string& sid,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetContextStateResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextStateResponse >
-  SetContextStateResponse_ (::std::istream& is,
-                            const ::std::string& sid,
-                            ::xml_schema::ErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetContextStateResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextStateResponse >
-  SetContextStateResponse_ (::std::istream& is,
-                            const ::std::string& sid,
-                            ::xercesc::DOMErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetContextStateResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextStateResponse >
-  SetContextStateResponse_ (::xercesc::InputSource& i,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SetContextStateResponse > (
-      ::MDM::SetContextStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextStateResponse >
-  SetContextStateResponse_ (::xercesc::InputSource& i,
-                            ::xml_schema::ErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetContextStateResponse > (
-      ::MDM::SetContextStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextStateResponse >
-  SetContextStateResponse_ (::xercesc::InputSource& i,
-                            ::xercesc::DOMErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetContextStateResponse > (
-      ::MDM::SetContextStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextStateResponse >
-  SetContextStateResponse_ (const ::xercesc::DOMDocument& doc,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::SetContextStateResponse > (
-        ::MDM::SetContextStateResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SetContextStateResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SetContextStateResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::SetContextStateResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SetContextStateResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SetContextStateResponse >
-  SetContextStateResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "SetContextStateResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SetContextStateResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::SetContextStateResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SetContextStateResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicContextReport >
-  PeriodicContextReport_ (const ::std::string& u,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicContextReport > (
-      ::MDM::PeriodicContextReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicContextReport >
-  PeriodicContextReport_ (const ::std::string& u,
-                          ::xml_schema::ErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicContextReport > (
-      ::MDM::PeriodicContextReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicContextReport >
-  PeriodicContextReport_ (const ::std::string& u,
-                          ::xercesc::DOMErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicContextReport > (
-      ::MDM::PeriodicContextReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicContextReport >
-  PeriodicContextReport_ (::std::istream& is,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::PeriodicContextReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicContextReport >
-  PeriodicContextReport_ (::std::istream& is,
-                          ::xml_schema::ErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::PeriodicContextReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicContextReport >
-  PeriodicContextReport_ (::std::istream& is,
-                          ::xercesc::DOMErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::PeriodicContextReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicContextReport >
-  PeriodicContextReport_ (::std::istream& is,
-                          const ::std::string& sid,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::PeriodicContextReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicContextReport >
-  PeriodicContextReport_ (::std::istream& is,
-                          const ::std::string& sid,
-                          ::xml_schema::ErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::PeriodicContextReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicContextReport >
-  PeriodicContextReport_ (::std::istream& is,
-                          const ::std::string& sid,
-                          ::xercesc::DOMErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::PeriodicContextReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicContextReport >
-  PeriodicContextReport_ (::xercesc::InputSource& i,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicContextReport > (
-      ::MDM::PeriodicContextReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicContextReport >
-  PeriodicContextReport_ (::xercesc::InputSource& i,
-                          ::xml_schema::ErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicContextReport > (
-      ::MDM::PeriodicContextReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicContextReport >
-  PeriodicContextReport_ (::xercesc::InputSource& i,
-                          ::xercesc::DOMErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicContextReport > (
-      ::MDM::PeriodicContextReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicContextReport >
-  PeriodicContextReport_ (const ::xercesc::DOMDocument& doc,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::PeriodicContextReport > (
-        ::MDM::PeriodicContextReport_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "PeriodicContextReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::PeriodicContextReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::PeriodicContextReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "PeriodicContextReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicContextReport >
-  PeriodicContextReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "PeriodicContextReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::PeriodicContextReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::PeriodicContextReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "PeriodicContextReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicContextReport >
-  EpisodicContextReport_ (const ::std::string& u,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicContextReport > (
-      ::MDM::EpisodicContextReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicContextReport >
-  EpisodicContextReport_ (const ::std::string& u,
-                          ::xml_schema::ErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicContextReport > (
-      ::MDM::EpisodicContextReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicContextReport >
-  EpisodicContextReport_ (const ::std::string& u,
-                          ::xercesc::DOMErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicContextReport > (
-      ::MDM::EpisodicContextReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicContextReport >
-  EpisodicContextReport_ (::std::istream& is,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::EpisodicContextReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicContextReport >
-  EpisodicContextReport_ (::std::istream& is,
-                          ::xml_schema::ErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::EpisodicContextReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicContextReport >
-  EpisodicContextReport_ (::std::istream& is,
-                          ::xercesc::DOMErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::EpisodicContextReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicContextReport >
-  EpisodicContextReport_ (::std::istream& is,
-                          const ::std::string& sid,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::EpisodicContextReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicContextReport >
-  EpisodicContextReport_ (::std::istream& is,
-                          const ::std::string& sid,
-                          ::xml_schema::ErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::EpisodicContextReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicContextReport >
-  EpisodicContextReport_ (::std::istream& is,
-                          const ::std::string& sid,
-                          ::xercesc::DOMErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::EpisodicContextReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicContextReport >
-  EpisodicContextReport_ (::xercesc::InputSource& i,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicContextReport > (
-      ::MDM::EpisodicContextReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicContextReport >
-  EpisodicContextReport_ (::xercesc::InputSource& i,
-                          ::xml_schema::ErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicContextReport > (
-      ::MDM::EpisodicContextReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicContextReport >
-  EpisodicContextReport_ (::xercesc::InputSource& i,
-                          ::xercesc::DOMErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicContextReport > (
-      ::MDM::EpisodicContextReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicContextReport >
-  EpisodicContextReport_ (const ::xercesc::DOMDocument& doc,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::EpisodicContextReport > (
-        ::MDM::EpisodicContextReport_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "EpisodicContextReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::EpisodicContextReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::EpisodicContextReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "EpisodicContextReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicContextReport >
-  EpisodicContextReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "EpisodicContextReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::EpisodicContextReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::EpisodicContextReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "EpisodicContextReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedText >
-  GetLocalizedText_ (const ::std::string& u,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetLocalizedText > (
-      ::MDM::GetLocalizedText_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedText >
-  GetLocalizedText_ (const ::std::string& u,
-                     ::xml_schema::ErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetLocalizedText > (
-      ::MDM::GetLocalizedText_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedText >
-  GetLocalizedText_ (const ::std::string& u,
-                     ::xercesc::DOMErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetLocalizedText > (
-      ::MDM::GetLocalizedText_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedText >
-  GetLocalizedText_ (::std::istream& is,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetLocalizedText_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedText >
-  GetLocalizedText_ (::std::istream& is,
-                     ::xml_schema::ErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetLocalizedText_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedText >
-  GetLocalizedText_ (::std::istream& is,
-                     ::xercesc::DOMErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetLocalizedText_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedText >
-  GetLocalizedText_ (::std::istream& is,
-                     const ::std::string& sid,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetLocalizedText_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedText >
-  GetLocalizedText_ (::std::istream& is,
-                     const ::std::string& sid,
-                     ::xml_schema::ErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetLocalizedText_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedText >
-  GetLocalizedText_ (::std::istream& is,
-                     const ::std::string& sid,
-                     ::xercesc::DOMErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetLocalizedText_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedText >
-  GetLocalizedText_ (::xercesc::InputSource& i,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetLocalizedText > (
-      ::MDM::GetLocalizedText_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedText >
-  GetLocalizedText_ (::xercesc::InputSource& i,
-                     ::xml_schema::ErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetLocalizedText > (
-      ::MDM::GetLocalizedText_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedText >
-  GetLocalizedText_ (::xercesc::InputSource& i,
-                     ::xercesc::DOMErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetLocalizedText > (
-      ::MDM::GetLocalizedText_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedText >
-  GetLocalizedText_ (const ::xercesc::DOMDocument& doc,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::GetLocalizedText > (
-        ::MDM::GetLocalizedText_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetLocalizedText" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetLocalizedText > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetLocalizedText, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetLocalizedText",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedText >
-  GetLocalizedText_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "GetLocalizedText" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetLocalizedText > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetLocalizedText, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetLocalizedText",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
-  GetLocalizedTextResponse_ (const ::std::string& u,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetLocalizedTextResponse > (
-      ::MDM::GetLocalizedTextResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
-  GetLocalizedTextResponse_ (const ::std::string& u,
-                             ::xml_schema::ErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetLocalizedTextResponse > (
-      ::MDM::GetLocalizedTextResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
-  GetLocalizedTextResponse_ (const ::std::string& u,
-                             ::xercesc::DOMErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetLocalizedTextResponse > (
-      ::MDM::GetLocalizedTextResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
-  GetLocalizedTextResponse_ (::std::istream& is,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetLocalizedTextResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
-  GetLocalizedTextResponse_ (::std::istream& is,
-                             ::xml_schema::ErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetLocalizedTextResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
-  GetLocalizedTextResponse_ (::std::istream& is,
-                             ::xercesc::DOMErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetLocalizedTextResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
-  GetLocalizedTextResponse_ (::std::istream& is,
-                             const ::std::string& sid,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetLocalizedTextResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
-  GetLocalizedTextResponse_ (::std::istream& is,
-                             const ::std::string& sid,
-                             ::xml_schema::ErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetLocalizedTextResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
-  GetLocalizedTextResponse_ (::std::istream& is,
-                             const ::std::string& sid,
-                             ::xercesc::DOMErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetLocalizedTextResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
-  GetLocalizedTextResponse_ (::xercesc::InputSource& i,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetLocalizedTextResponse > (
-      ::MDM::GetLocalizedTextResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
-  GetLocalizedTextResponse_ (::xercesc::InputSource& i,
-                             ::xml_schema::ErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetLocalizedTextResponse > (
-      ::MDM::GetLocalizedTextResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
-  GetLocalizedTextResponse_ (::xercesc::InputSource& i,
-                             ::xercesc::DOMErrorHandler& h,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetLocalizedTextResponse > (
-      ::MDM::GetLocalizedTextResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
-  GetLocalizedTextResponse_ (const ::xercesc::DOMDocument& doc,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::GetLocalizedTextResponse > (
-        ::MDM::GetLocalizedTextResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetLocalizedTextResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetLocalizedTextResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetLocalizedTextResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetLocalizedTextResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetLocalizedTextResponse >
-  GetLocalizedTextResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                             ::xml_schema::Flags f,
-                             const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "GetLocalizedTextResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetLocalizedTextResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetLocalizedTextResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetLocalizedTextResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
-  GetSupportedLanguages_ (const ::std::string& u,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetSupportedLanguages > (
-      ::MDM::GetSupportedLanguages_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
-  GetSupportedLanguages_ (const ::std::string& u,
-                          ::xml_schema::ErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetSupportedLanguages > (
-      ::MDM::GetSupportedLanguages_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
-  GetSupportedLanguages_ (const ::std::string& u,
-                          ::xercesc::DOMErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetSupportedLanguages > (
-      ::MDM::GetSupportedLanguages_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
-  GetSupportedLanguages_ (::std::istream& is,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetSupportedLanguages_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
-  GetSupportedLanguages_ (::std::istream& is,
-                          ::xml_schema::ErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetSupportedLanguages_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
-  GetSupportedLanguages_ (::std::istream& is,
-                          ::xercesc::DOMErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetSupportedLanguages_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
-  GetSupportedLanguages_ (::std::istream& is,
-                          const ::std::string& sid,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetSupportedLanguages_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
-  GetSupportedLanguages_ (::std::istream& is,
-                          const ::std::string& sid,
-                          ::xml_schema::ErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetSupportedLanguages_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
-  GetSupportedLanguages_ (::std::istream& is,
-                          const ::std::string& sid,
-                          ::xercesc::DOMErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetSupportedLanguages_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
-  GetSupportedLanguages_ (::xercesc::InputSource& i,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetSupportedLanguages > (
-      ::MDM::GetSupportedLanguages_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
-  GetSupportedLanguages_ (::xercesc::InputSource& i,
-                          ::xml_schema::ErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetSupportedLanguages > (
-      ::MDM::GetSupportedLanguages_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
-  GetSupportedLanguages_ (::xercesc::InputSource& i,
-                          ::xercesc::DOMErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetSupportedLanguages > (
-      ::MDM::GetSupportedLanguages_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
-  GetSupportedLanguages_ (const ::xercesc::DOMDocument& doc,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::GetSupportedLanguages > (
-        ::MDM::GetSupportedLanguages_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetSupportedLanguages" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetSupportedLanguages > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetSupportedLanguages, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetSupportedLanguages",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguages >
-  GetSupportedLanguages_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "GetSupportedLanguages" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetSupportedLanguages > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetSupportedLanguages, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetSupportedLanguages",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
-  GetSupportedLanguagesResponse_ (const ::std::string& u,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse > (
-      ::MDM::GetSupportedLanguagesResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
-  GetSupportedLanguagesResponse_ (const ::std::string& u,
-                                  ::xml_schema::ErrorHandler& h,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse > (
-      ::MDM::GetSupportedLanguagesResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
-  GetSupportedLanguagesResponse_ (const ::std::string& u,
-                                  ::xercesc::DOMErrorHandler& h,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse > (
-      ::MDM::GetSupportedLanguagesResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
-  GetSupportedLanguagesResponse_ (::std::istream& is,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetSupportedLanguagesResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
-  GetSupportedLanguagesResponse_ (::std::istream& is,
-                                  ::xml_schema::ErrorHandler& h,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetSupportedLanguagesResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
-  GetSupportedLanguagesResponse_ (::std::istream& is,
-                                  ::xercesc::DOMErrorHandler& h,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetSupportedLanguagesResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
-  GetSupportedLanguagesResponse_ (::std::istream& is,
-                                  const ::std::string& sid,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetSupportedLanguagesResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
-  GetSupportedLanguagesResponse_ (::std::istream& is,
-                                  const ::std::string& sid,
-                                  ::xml_schema::ErrorHandler& h,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetSupportedLanguagesResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
-  GetSupportedLanguagesResponse_ (::std::istream& is,
-                                  const ::std::string& sid,
-                                  ::xercesc::DOMErrorHandler& h,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetSupportedLanguagesResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
-  GetSupportedLanguagesResponse_ (::xercesc::InputSource& i,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse > (
-      ::MDM::GetSupportedLanguagesResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
-  GetSupportedLanguagesResponse_ (::xercesc::InputSource& i,
-                                  ::xml_schema::ErrorHandler& h,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse > (
-      ::MDM::GetSupportedLanguagesResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
-  GetSupportedLanguagesResponse_ (::xercesc::InputSource& i,
-                                  ::xercesc::DOMErrorHandler& h,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse > (
-      ::MDM::GetSupportedLanguagesResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
-  GetSupportedLanguagesResponse_ (const ::xercesc::DOMDocument& doc,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse > (
-        ::MDM::GetSupportedLanguagesResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetSupportedLanguagesResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetSupportedLanguagesResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetSupportedLanguagesResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse >
-  GetSupportedLanguagesResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "GetSupportedLanguagesResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetSupportedLanguagesResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetSupportedLanguagesResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetSupportedLanguagesResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
-  GetDescriptorsFromArchive_ (const ::std::string& u,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive > (
-      ::MDM::GetDescriptorsFromArchive_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
-  GetDescriptorsFromArchive_ (const ::std::string& u,
-                              ::xml_schema::ErrorHandler& h,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive > (
-      ::MDM::GetDescriptorsFromArchive_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
-  GetDescriptorsFromArchive_ (const ::std::string& u,
-                              ::xercesc::DOMErrorHandler& h,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive > (
-      ::MDM::GetDescriptorsFromArchive_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
-  GetDescriptorsFromArchive_ (::std::istream& is,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetDescriptorsFromArchive_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
-  GetDescriptorsFromArchive_ (::std::istream& is,
-                              ::xml_schema::ErrorHandler& h,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetDescriptorsFromArchive_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
-  GetDescriptorsFromArchive_ (::std::istream& is,
-                              ::xercesc::DOMErrorHandler& h,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetDescriptorsFromArchive_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
-  GetDescriptorsFromArchive_ (::std::istream& is,
-                              const ::std::string& sid,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetDescriptorsFromArchive_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
-  GetDescriptorsFromArchive_ (::std::istream& is,
-                              const ::std::string& sid,
-                              ::xml_schema::ErrorHandler& h,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetDescriptorsFromArchive_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
-  GetDescriptorsFromArchive_ (::std::istream& is,
-                              const ::std::string& sid,
-                              ::xercesc::DOMErrorHandler& h,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetDescriptorsFromArchive_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
-  GetDescriptorsFromArchive_ (::xercesc::InputSource& i,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive > (
-      ::MDM::GetDescriptorsFromArchive_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
-  GetDescriptorsFromArchive_ (::xercesc::InputSource& i,
-                              ::xml_schema::ErrorHandler& h,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive > (
-      ::MDM::GetDescriptorsFromArchive_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
-  GetDescriptorsFromArchive_ (::xercesc::InputSource& i,
-                              ::xercesc::DOMErrorHandler& h,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive > (
-      ::MDM::GetDescriptorsFromArchive_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
-  GetDescriptorsFromArchive_ (const ::xercesc::DOMDocument& doc,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive > (
-        ::MDM::GetDescriptorsFromArchive_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetDescriptorsFromArchive" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetDescriptorsFromArchive, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetDescriptorsFromArchive",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive >
-  GetDescriptorsFromArchive_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "GetDescriptorsFromArchive" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetDescriptorsFromArchive > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetDescriptorsFromArchive, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetDescriptorsFromArchive",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
-  GetDescriptorsFromArchiveResponse_ (const ::std::string& u,
-                                      ::xml_schema::Flags f,
-                                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse > (
-      ::MDM::GetDescriptorsFromArchiveResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
-  GetDescriptorsFromArchiveResponse_ (const ::std::string& u,
-                                      ::xml_schema::ErrorHandler& h,
-                                      ::xml_schema::Flags f,
-                                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse > (
-      ::MDM::GetDescriptorsFromArchiveResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
-  GetDescriptorsFromArchiveResponse_ (const ::std::string& u,
-                                      ::xercesc::DOMErrorHandler& h,
-                                      ::xml_schema::Flags f,
-                                      const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse > (
-      ::MDM::GetDescriptorsFromArchiveResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
-  GetDescriptorsFromArchiveResponse_ (::std::istream& is,
-                                      ::xml_schema::Flags f,
-                                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetDescriptorsFromArchiveResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
-  GetDescriptorsFromArchiveResponse_ (::std::istream& is,
-                                      ::xml_schema::ErrorHandler& h,
-                                      ::xml_schema::Flags f,
-                                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetDescriptorsFromArchiveResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
-  GetDescriptorsFromArchiveResponse_ (::std::istream& is,
-                                      ::xercesc::DOMErrorHandler& h,
-                                      ::xml_schema::Flags f,
-                                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetDescriptorsFromArchiveResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
-  GetDescriptorsFromArchiveResponse_ (::std::istream& is,
-                                      const ::std::string& sid,
-                                      ::xml_schema::Flags f,
-                                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetDescriptorsFromArchiveResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
-  GetDescriptorsFromArchiveResponse_ (::std::istream& is,
-                                      const ::std::string& sid,
-                                      ::xml_schema::ErrorHandler& h,
-                                      ::xml_schema::Flags f,
-                                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetDescriptorsFromArchiveResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
-  GetDescriptorsFromArchiveResponse_ (::std::istream& is,
-                                      const ::std::string& sid,
-                                      ::xercesc::DOMErrorHandler& h,
-                                      ::xml_schema::Flags f,
-                                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetDescriptorsFromArchiveResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
-  GetDescriptorsFromArchiveResponse_ (::xercesc::InputSource& i,
-                                      ::xml_schema::Flags f,
-                                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse > (
-      ::MDM::GetDescriptorsFromArchiveResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
-  GetDescriptorsFromArchiveResponse_ (::xercesc::InputSource& i,
-                                      ::xml_schema::ErrorHandler& h,
-                                      ::xml_schema::Flags f,
-                                      const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse > (
-      ::MDM::GetDescriptorsFromArchiveResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
-  GetDescriptorsFromArchiveResponse_ (::xercesc::InputSource& i,
-                                      ::xercesc::DOMErrorHandler& h,
-                                      ::xml_schema::Flags f,
-                                      const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse > (
-      ::MDM::GetDescriptorsFromArchiveResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
-  GetDescriptorsFromArchiveResponse_ (const ::xercesc::DOMDocument& doc,
-                                      ::xml_schema::Flags f,
-                                      const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse > (
-        ::MDM::GetDescriptorsFromArchiveResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetDescriptorsFromArchiveResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetDescriptorsFromArchiveResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetDescriptorsFromArchiveResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse >
-  GetDescriptorsFromArchiveResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                                      ::xml_schema::Flags f,
-                                      const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "GetDescriptorsFromArchiveResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetDescriptorsFromArchiveResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetDescriptorsFromArchiveResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetDescriptorsFromArchiveResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
-  GetStatesFromArchive_ (const ::std::string& u,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetStatesFromArchive > (
-      ::MDM::GetStatesFromArchive_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
-  GetStatesFromArchive_ (const ::std::string& u,
-                         ::xml_schema::ErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetStatesFromArchive > (
-      ::MDM::GetStatesFromArchive_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
-  GetStatesFromArchive_ (const ::std::string& u,
-                         ::xercesc::DOMErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetStatesFromArchive > (
-      ::MDM::GetStatesFromArchive_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
-  GetStatesFromArchive_ (::std::istream& is,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetStatesFromArchive_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
-  GetStatesFromArchive_ (::std::istream& is,
-                         ::xml_schema::ErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetStatesFromArchive_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
-  GetStatesFromArchive_ (::std::istream& is,
-                         ::xercesc::DOMErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetStatesFromArchive_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
-  GetStatesFromArchive_ (::std::istream& is,
-                         const ::std::string& sid,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetStatesFromArchive_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
-  GetStatesFromArchive_ (::std::istream& is,
-                         const ::std::string& sid,
-                         ::xml_schema::ErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetStatesFromArchive_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
-  GetStatesFromArchive_ (::std::istream& is,
-                         const ::std::string& sid,
-                         ::xercesc::DOMErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetStatesFromArchive_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
-  GetStatesFromArchive_ (::xercesc::InputSource& i,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetStatesFromArchive > (
-      ::MDM::GetStatesFromArchive_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
-  GetStatesFromArchive_ (::xercesc::InputSource& i,
-                         ::xml_schema::ErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetStatesFromArchive > (
-      ::MDM::GetStatesFromArchive_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
-  GetStatesFromArchive_ (::xercesc::InputSource& i,
-                         ::xercesc::DOMErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetStatesFromArchive > (
-      ::MDM::GetStatesFromArchive_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
-  GetStatesFromArchive_ (const ::xercesc::DOMDocument& doc,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::GetStatesFromArchive > (
-        ::MDM::GetStatesFromArchive_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetStatesFromArchive" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetStatesFromArchive > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetStatesFromArchive, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetStatesFromArchive",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchive >
-  GetStatesFromArchive_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "GetStatesFromArchive" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetStatesFromArchive > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetStatesFromArchive, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetStatesFromArchive",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
-  GetStatesFromArchiveResponse_ (const ::std::string& u,
-                                 ::xml_schema::Flags f,
-                                 const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse > (
-      ::MDM::GetStatesFromArchiveResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
-  GetStatesFromArchiveResponse_ (const ::std::string& u,
-                                 ::xml_schema::ErrorHandler& h,
-                                 ::xml_schema::Flags f,
-                                 const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse > (
-      ::MDM::GetStatesFromArchiveResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
-  GetStatesFromArchiveResponse_ (const ::std::string& u,
-                                 ::xercesc::DOMErrorHandler& h,
-                                 ::xml_schema::Flags f,
-                                 const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse > (
-      ::MDM::GetStatesFromArchiveResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
-  GetStatesFromArchiveResponse_ (::std::istream& is,
-                                 ::xml_schema::Flags f,
-                                 const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetStatesFromArchiveResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
-  GetStatesFromArchiveResponse_ (::std::istream& is,
-                                 ::xml_schema::ErrorHandler& h,
-                                 ::xml_schema::Flags f,
-                                 const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetStatesFromArchiveResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
-  GetStatesFromArchiveResponse_ (::std::istream& is,
-                                 ::xercesc::DOMErrorHandler& h,
-                                 ::xml_schema::Flags f,
-                                 const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetStatesFromArchiveResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
-  GetStatesFromArchiveResponse_ (::std::istream& is,
-                                 const ::std::string& sid,
-                                 ::xml_schema::Flags f,
-                                 const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetStatesFromArchiveResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
-  GetStatesFromArchiveResponse_ (::std::istream& is,
-                                 const ::std::string& sid,
-                                 ::xml_schema::ErrorHandler& h,
-                                 ::xml_schema::Flags f,
-                                 const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetStatesFromArchiveResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
-  GetStatesFromArchiveResponse_ (::std::istream& is,
-                                 const ::std::string& sid,
-                                 ::xercesc::DOMErrorHandler& h,
-                                 ::xml_schema::Flags f,
-                                 const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetStatesFromArchiveResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
-  GetStatesFromArchiveResponse_ (::xercesc::InputSource& i,
-                                 ::xml_schema::Flags f,
-                                 const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse > (
-      ::MDM::GetStatesFromArchiveResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
-  GetStatesFromArchiveResponse_ (::xercesc::InputSource& i,
-                                 ::xml_schema::ErrorHandler& h,
-                                 ::xml_schema::Flags f,
-                                 const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse > (
-      ::MDM::GetStatesFromArchiveResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
-  GetStatesFromArchiveResponse_ (::xercesc::InputSource& i,
-                                 ::xercesc::DOMErrorHandler& h,
-                                 ::xml_schema::Flags f,
-                                 const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse > (
-      ::MDM::GetStatesFromArchiveResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
-  GetStatesFromArchiveResponse_ (const ::xercesc::DOMDocument& doc,
-                                 ::xml_schema::Flags f,
-                                 const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse > (
-        ::MDM::GetStatesFromArchiveResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetStatesFromArchiveResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetStatesFromArchiveResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetStatesFromArchiveResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse >
-  GetStatesFromArchiveResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                                 ::xml_schema::Flags f,
-                                 const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "GetStatesFromArchiveResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetStatesFromArchiveResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetStatesFromArchiveResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetStatesFromArchiveResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SetValue >
-  SetValue_ (const ::std::string& u,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SetValue > (
-      ::MDM::SetValue_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetValue >
-  SetValue_ (const ::std::string& u,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetValue > (
-      ::MDM::SetValue_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetValue >
-  SetValue_ (const ::std::string& u,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetValue > (
-      ::MDM::SetValue_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetValue >
-  SetValue_ (::std::istream& is,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetValue_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetValue >
-  SetValue_ (::std::istream& is,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetValue_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetValue >
-  SetValue_ (::std::istream& is,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetValue_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetValue >
-  SetValue_ (::std::istream& is,
-             const ::std::string& sid,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetValue_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetValue >
-  SetValue_ (::std::istream& is,
-             const ::std::string& sid,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetValue_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetValue >
-  SetValue_ (::std::istream& is,
-             const ::std::string& sid,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetValue_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetValue >
-  SetValue_ (::xercesc::InputSource& i,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SetValue > (
-      ::MDM::SetValue_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetValue >
-  SetValue_ (::xercesc::InputSource& i,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetValue > (
-      ::MDM::SetValue_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetValue >
-  SetValue_ (::xercesc::InputSource& i,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetValue > (
-      ::MDM::SetValue_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetValue >
-  SetValue_ (const ::xercesc::DOMDocument& doc,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::SetValue > (
-        ::MDM::SetValue_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SetValue" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SetValue > r (
-        ::xsd::cxx::tree::traits< ::MDM::SetValue, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SetValue",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SetValue >
-  SetValue_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "SetValue" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SetValue > r (
-        ::xsd::cxx::tree::traits< ::MDM::SetValue, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SetValue",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SetValueResponse >
-  SetValueResponse_ (const ::std::string& u,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SetValueResponse > (
-      ::MDM::SetValueResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetValueResponse >
-  SetValueResponse_ (const ::std::string& u,
-                     ::xml_schema::ErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetValueResponse > (
-      ::MDM::SetValueResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetValueResponse >
-  SetValueResponse_ (const ::std::string& u,
-                     ::xercesc::DOMErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetValueResponse > (
-      ::MDM::SetValueResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetValueResponse >
-  SetValueResponse_ (::std::istream& is,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetValueResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetValueResponse >
-  SetValueResponse_ (::std::istream& is,
-                     ::xml_schema::ErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetValueResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetValueResponse >
-  SetValueResponse_ (::std::istream& is,
-                     ::xercesc::DOMErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetValueResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetValueResponse >
-  SetValueResponse_ (::std::istream& is,
-                     const ::std::string& sid,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetValueResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetValueResponse >
-  SetValueResponse_ (::std::istream& is,
-                     const ::std::string& sid,
-                     ::xml_schema::ErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetValueResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetValueResponse >
-  SetValueResponse_ (::std::istream& is,
-                     const ::std::string& sid,
-                     ::xercesc::DOMErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetValueResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetValueResponse >
-  SetValueResponse_ (::xercesc::InputSource& i,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SetValueResponse > (
-      ::MDM::SetValueResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetValueResponse >
-  SetValueResponse_ (::xercesc::InputSource& i,
-                     ::xml_schema::ErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetValueResponse > (
-      ::MDM::SetValueResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetValueResponse >
-  SetValueResponse_ (::xercesc::InputSource& i,
-                     ::xercesc::DOMErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetValueResponse > (
-      ::MDM::SetValueResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetValueResponse >
-  SetValueResponse_ (const ::xercesc::DOMDocument& doc,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::SetValueResponse > (
-        ::MDM::SetValueResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SetValueResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SetValueResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::SetValueResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SetValueResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SetValueResponse >
-  SetValueResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "SetValueResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SetValueResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::SetValueResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SetValueResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SetString >
-  SetString_ (const ::std::string& u,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SetString > (
-      ::MDM::SetString_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetString >
-  SetString_ (const ::std::string& u,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetString > (
-      ::MDM::SetString_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetString >
-  SetString_ (const ::std::string& u,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetString > (
-      ::MDM::SetString_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetString >
-  SetString_ (::std::istream& is,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetString_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetString >
-  SetString_ (::std::istream& is,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetString_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetString >
-  SetString_ (::std::istream& is,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetString_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetString >
-  SetString_ (::std::istream& is,
-              const ::std::string& sid,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetString_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetString >
-  SetString_ (::std::istream& is,
-              const ::std::string& sid,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetString_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetString >
-  SetString_ (::std::istream& is,
-              const ::std::string& sid,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetString_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetString >
-  SetString_ (::xercesc::InputSource& i,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SetString > (
-      ::MDM::SetString_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetString >
-  SetString_ (::xercesc::InputSource& i,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetString > (
-      ::MDM::SetString_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetString >
-  SetString_ (::xercesc::InputSource& i,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetString > (
-      ::MDM::SetString_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetString >
-  SetString_ (const ::xercesc::DOMDocument& doc,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::SetString > (
-        ::MDM::SetString_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SetString" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SetString > r (
-        ::xsd::cxx::tree::traits< ::MDM::SetString, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SetString",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SetString >
-  SetString_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "SetString" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SetString > r (
-        ::xsd::cxx::tree::traits< ::MDM::SetString, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SetString",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SetStringResponse >
-  SetStringResponse_ (const ::std::string& u,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SetStringResponse > (
-      ::MDM::SetStringResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetStringResponse >
-  SetStringResponse_ (const ::std::string& u,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetStringResponse > (
-      ::MDM::SetStringResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetStringResponse >
-  SetStringResponse_ (const ::std::string& u,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetStringResponse > (
-      ::MDM::SetStringResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetStringResponse >
-  SetStringResponse_ (::std::istream& is,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetStringResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetStringResponse >
-  SetStringResponse_ (::std::istream& is,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetStringResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetStringResponse >
-  SetStringResponse_ (::std::istream& is,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetStringResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetStringResponse >
-  SetStringResponse_ (::std::istream& is,
-                      const ::std::string& sid,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetStringResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetStringResponse >
-  SetStringResponse_ (::std::istream& is,
-                      const ::std::string& sid,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetStringResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetStringResponse >
-  SetStringResponse_ (::std::istream& is,
-                      const ::std::string& sid,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetStringResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetStringResponse >
-  SetStringResponse_ (::xercesc::InputSource& i,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SetStringResponse > (
-      ::MDM::SetStringResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetStringResponse >
-  SetStringResponse_ (::xercesc::InputSource& i,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetStringResponse > (
-      ::MDM::SetStringResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetStringResponse >
-  SetStringResponse_ (::xercesc::InputSource& i,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetStringResponse > (
-      ::MDM::SetStringResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetStringResponse >
-  SetStringResponse_ (const ::xercesc::DOMDocument& doc,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::SetStringResponse > (
-        ::MDM::SetStringResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SetStringResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SetStringResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::SetStringResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SetStringResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SetStringResponse >
-  SetStringResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "SetStringResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SetStringResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::SetStringResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SetStringResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::Activate >
-  Activate_ (const ::std::string& u,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::Activate > (
-      ::MDM::Activate_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::Activate >
-  Activate_ (const ::std::string& u,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::Activate > (
-      ::MDM::Activate_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::Activate >
-  Activate_ (const ::std::string& u,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::Activate > (
-      ::MDM::Activate_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::Activate >
-  Activate_ (::std::istream& is,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::Activate_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::Activate >
-  Activate_ (::std::istream& is,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::Activate_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::Activate >
-  Activate_ (::std::istream& is,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::Activate_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::Activate >
-  Activate_ (::std::istream& is,
-             const ::std::string& sid,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::Activate_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::Activate >
-  Activate_ (::std::istream& is,
-             const ::std::string& sid,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::Activate_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::Activate >
-  Activate_ (::std::istream& is,
-             const ::std::string& sid,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::Activate_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::Activate >
-  Activate_ (::xercesc::InputSource& i,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::Activate > (
-      ::MDM::Activate_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::Activate >
-  Activate_ (::xercesc::InputSource& i,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::Activate > (
-      ::MDM::Activate_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::Activate >
-  Activate_ (::xercesc::InputSource& i,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::Activate > (
-      ::MDM::Activate_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::Activate >
-  Activate_ (const ::xercesc::DOMDocument& doc,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::Activate > (
-        ::MDM::Activate_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "Activate" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::Activate > r (
-        ::xsd::cxx::tree::traits< ::MDM::Activate, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "Activate",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::Activate >
-  Activate_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "Activate" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::Activate > r (
-        ::xsd::cxx::tree::traits< ::MDM::Activate, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "Activate",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::ActivateResponse >
-  ActivateResponse_ (const ::std::string& u,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::ActivateResponse > (
-      ::MDM::ActivateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::ActivateResponse >
-  ActivateResponse_ (const ::std::string& u,
-                     ::xml_schema::ErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::ActivateResponse > (
-      ::MDM::ActivateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::ActivateResponse >
-  ActivateResponse_ (const ::std::string& u,
-                     ::xercesc::DOMErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::ActivateResponse > (
-      ::MDM::ActivateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::ActivateResponse >
-  ActivateResponse_ (::std::istream& is,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::ActivateResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::ActivateResponse >
-  ActivateResponse_ (::std::istream& is,
-                     ::xml_schema::ErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::ActivateResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::ActivateResponse >
-  ActivateResponse_ (::std::istream& is,
-                     ::xercesc::DOMErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::ActivateResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::ActivateResponse >
-  ActivateResponse_ (::std::istream& is,
-                     const ::std::string& sid,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::ActivateResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::ActivateResponse >
-  ActivateResponse_ (::std::istream& is,
-                     const ::std::string& sid,
-                     ::xml_schema::ErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::ActivateResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::ActivateResponse >
-  ActivateResponse_ (::std::istream& is,
-                     const ::std::string& sid,
-                     ::xercesc::DOMErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::ActivateResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::ActivateResponse >
-  ActivateResponse_ (::xercesc::InputSource& i,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::ActivateResponse > (
-      ::MDM::ActivateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::ActivateResponse >
-  ActivateResponse_ (::xercesc::InputSource& i,
-                     ::xml_schema::ErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::ActivateResponse > (
-      ::MDM::ActivateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::ActivateResponse >
-  ActivateResponse_ (::xercesc::InputSource& i,
-                     ::xercesc::DOMErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::ActivateResponse > (
-      ::MDM::ActivateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::ActivateResponse >
-  ActivateResponse_ (const ::xercesc::DOMDocument& doc,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::ActivateResponse > (
-        ::MDM::ActivateResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "ActivateResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::ActivateResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::ActivateResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "ActivateResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::ActivateResponse >
-  ActivateResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "ActivateResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::ActivateResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::ActivateResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "ActivateResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertState >
-  SetAlertState_ (const ::std::string& u,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SetAlertState > (
-      ::MDM::SetAlertState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertState >
-  SetAlertState_ (const ::std::string& u,
-                  ::xml_schema::ErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetAlertState > (
-      ::MDM::SetAlertState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertState >
-  SetAlertState_ (const ::std::string& u,
-                  ::xercesc::DOMErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetAlertState > (
-      ::MDM::SetAlertState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertState >
-  SetAlertState_ (::std::istream& is,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetAlertState_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertState >
-  SetAlertState_ (::std::istream& is,
-                  ::xml_schema::ErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetAlertState_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertState >
-  SetAlertState_ (::std::istream& is,
-                  ::xercesc::DOMErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetAlertState_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertState >
-  SetAlertState_ (::std::istream& is,
-                  const ::std::string& sid,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetAlertState_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertState >
-  SetAlertState_ (::std::istream& is,
-                  const ::std::string& sid,
-                  ::xml_schema::ErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetAlertState_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertState >
-  SetAlertState_ (::std::istream& is,
-                  const ::std::string& sid,
-                  ::xercesc::DOMErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetAlertState_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertState >
-  SetAlertState_ (::xercesc::InputSource& i,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SetAlertState > (
-      ::MDM::SetAlertState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertState >
-  SetAlertState_ (::xercesc::InputSource& i,
-                  ::xml_schema::ErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetAlertState > (
-      ::MDM::SetAlertState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertState >
-  SetAlertState_ (::xercesc::InputSource& i,
-                  ::xercesc::DOMErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetAlertState > (
-      ::MDM::SetAlertState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertState >
-  SetAlertState_ (const ::xercesc::DOMDocument& doc,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::SetAlertState > (
-        ::MDM::SetAlertState_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SetAlertState" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SetAlertState > r (
-        ::xsd::cxx::tree::traits< ::MDM::SetAlertState, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SetAlertState",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertState >
-  SetAlertState_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "SetAlertState" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SetAlertState > r (
-        ::xsd::cxx::tree::traits< ::MDM::SetAlertState, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SetAlertState",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (const ::std::string& u,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SetAlertStateResponse > (
-      ::MDM::SetAlertStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (const ::std::string& u,
-                          ::xml_schema::ErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetAlertStateResponse > (
-      ::MDM::SetAlertStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (const ::std::string& u,
-                          ::xercesc::DOMErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetAlertStateResponse > (
-      ::MDM::SetAlertStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (::std::istream& is,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetAlertStateResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (::std::istream& is,
-                          ::xml_schema::ErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetAlertStateResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (::std::istream& is,
-                          ::xercesc::DOMErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetAlertStateResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (::std::istream& is,
-                          const ::std::string& sid,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetAlertStateResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (::std::istream& is,
-                          const ::std::string& sid,
-                          ::xml_schema::ErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetAlertStateResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (::std::istream& is,
-                          const ::std::string& sid,
-                          ::xercesc::DOMErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetAlertStateResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (::xercesc::InputSource& i,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SetAlertStateResponse > (
-      ::MDM::SetAlertStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (::xercesc::InputSource& i,
-                          ::xml_schema::ErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetAlertStateResponse > (
-      ::MDM::SetAlertStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (::xercesc::InputSource& i,
-                          ::xercesc::DOMErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetAlertStateResponse > (
-      ::MDM::SetAlertStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (const ::xercesc::DOMDocument& doc,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::SetAlertStateResponse > (
-        ::MDM::SetAlertStateResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SetAlertStateResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SetAlertStateResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::SetAlertStateResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SetAlertStateResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SetAlertStateResponse >
-  SetAlertStateResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "SetAlertStateResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SetAlertStateResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::SetAlertStateResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SetAlertStateResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentState >
-  SetComponentState_ (const ::std::string& u,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SetComponentState > (
-      ::MDM::SetComponentState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentState >
-  SetComponentState_ (const ::std::string& u,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetComponentState > (
-      ::MDM::SetComponentState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentState >
-  SetComponentState_ (const ::std::string& u,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetComponentState > (
-      ::MDM::SetComponentState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentState >
-  SetComponentState_ (::std::istream& is,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetComponentState_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentState >
-  SetComponentState_ (::std::istream& is,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetComponentState_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentState >
-  SetComponentState_ (::std::istream& is,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetComponentState_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentState >
-  SetComponentState_ (::std::istream& is,
-                      const ::std::string& sid,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetComponentState_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentState >
-  SetComponentState_ (::std::istream& is,
-                      const ::std::string& sid,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetComponentState_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentState >
-  SetComponentState_ (::std::istream& is,
-                      const ::std::string& sid,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetComponentState_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentState >
-  SetComponentState_ (::xercesc::InputSource& i,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SetComponentState > (
-      ::MDM::SetComponentState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentState >
-  SetComponentState_ (::xercesc::InputSource& i,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetComponentState > (
-      ::MDM::SetComponentState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentState >
-  SetComponentState_ (::xercesc::InputSource& i,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetComponentState > (
-      ::MDM::SetComponentState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentState >
-  SetComponentState_ (const ::xercesc::DOMDocument& doc,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::SetComponentState > (
-        ::MDM::SetComponentState_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SetComponentState" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SetComponentState > r (
-        ::xsd::cxx::tree::traits< ::MDM::SetComponentState, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SetComponentState",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentState >
-  SetComponentState_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "SetComponentState" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SetComponentState > r (
-        ::xsd::cxx::tree::traits< ::MDM::SetComponentState, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SetComponentState",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
-  SetComponentStateResponse_ (const ::std::string& u,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SetComponentStateResponse > (
-      ::MDM::SetComponentStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
-  SetComponentStateResponse_ (const ::std::string& u,
-                              ::xml_schema::ErrorHandler& h,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetComponentStateResponse > (
-      ::MDM::SetComponentStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
-  SetComponentStateResponse_ (const ::std::string& u,
-                              ::xercesc::DOMErrorHandler& h,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetComponentStateResponse > (
-      ::MDM::SetComponentStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
-  SetComponentStateResponse_ (::std::istream& is,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetComponentStateResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
-  SetComponentStateResponse_ (::std::istream& is,
-                              ::xml_schema::ErrorHandler& h,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetComponentStateResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
-  SetComponentStateResponse_ (::std::istream& is,
-                              ::xercesc::DOMErrorHandler& h,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetComponentStateResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
-  SetComponentStateResponse_ (::std::istream& is,
-                              const ::std::string& sid,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetComponentStateResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
-  SetComponentStateResponse_ (::std::istream& is,
-                              const ::std::string& sid,
-                              ::xml_schema::ErrorHandler& h,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetComponentStateResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
-  SetComponentStateResponse_ (::std::istream& is,
-                              const ::std::string& sid,
-                              ::xercesc::DOMErrorHandler& h,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetComponentStateResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
-  SetComponentStateResponse_ (::xercesc::InputSource& i,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SetComponentStateResponse > (
-      ::MDM::SetComponentStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
-  SetComponentStateResponse_ (::xercesc::InputSource& i,
-                              ::xml_schema::ErrorHandler& h,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetComponentStateResponse > (
-      ::MDM::SetComponentStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
-  SetComponentStateResponse_ (::xercesc::InputSource& i,
-                              ::xercesc::DOMErrorHandler& h,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetComponentStateResponse > (
-      ::MDM::SetComponentStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
-  SetComponentStateResponse_ (const ::xercesc::DOMDocument& doc,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::SetComponentStateResponse > (
-        ::MDM::SetComponentStateResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SetComponentStateResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SetComponentStateResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::SetComponentStateResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SetComponentStateResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SetComponentStateResponse >
-  SetComponentStateResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                              ::xml_schema::Flags f,
-                              const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "SetComponentStateResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SetComponentStateResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::SetComponentStateResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SetComponentStateResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricState >
-  SetMetricState_ (const ::std::string& u,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SetMetricState > (
-      ::MDM::SetMetricState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricState >
-  SetMetricState_ (const ::std::string& u,
-                   ::xml_schema::ErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetMetricState > (
-      ::MDM::SetMetricState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricState >
-  SetMetricState_ (const ::std::string& u,
-                   ::xercesc::DOMErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetMetricState > (
-      ::MDM::SetMetricState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricState >
-  SetMetricState_ (::std::istream& is,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetMetricState_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricState >
-  SetMetricState_ (::std::istream& is,
-                   ::xml_schema::ErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetMetricState_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricState >
-  SetMetricState_ (::std::istream& is,
-                   ::xercesc::DOMErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetMetricState_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricState >
-  SetMetricState_ (::std::istream& is,
-                   const ::std::string& sid,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetMetricState_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricState >
-  SetMetricState_ (::std::istream& is,
-                   const ::std::string& sid,
-                   ::xml_schema::ErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetMetricState_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricState >
-  SetMetricState_ (::std::istream& is,
-                   const ::std::string& sid,
-                   ::xercesc::DOMErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetMetricState_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricState >
-  SetMetricState_ (::xercesc::InputSource& i,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SetMetricState > (
-      ::MDM::SetMetricState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricState >
-  SetMetricState_ (::xercesc::InputSource& i,
-                   ::xml_schema::ErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetMetricState > (
-      ::MDM::SetMetricState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricState >
-  SetMetricState_ (::xercesc::InputSource& i,
-                   ::xercesc::DOMErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetMetricState > (
-      ::MDM::SetMetricState_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricState >
-  SetMetricState_ (const ::xercesc::DOMDocument& doc,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::SetMetricState > (
-        ::MDM::SetMetricState_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SetMetricState" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SetMetricState > r (
-        ::xsd::cxx::tree::traits< ::MDM::SetMetricState, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SetMetricState",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricState >
-  SetMetricState_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "SetMetricState" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SetMetricState > r (
-        ::xsd::cxx::tree::traits< ::MDM::SetMetricState, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SetMetricState",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
-  SetMetricStateResponse_ (const ::std::string& u,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SetMetricStateResponse > (
-      ::MDM::SetMetricStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
-  SetMetricStateResponse_ (const ::std::string& u,
-                           ::xml_schema::ErrorHandler& h,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetMetricStateResponse > (
-      ::MDM::SetMetricStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
-  SetMetricStateResponse_ (const ::std::string& u,
-                           ::xercesc::DOMErrorHandler& h,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetMetricStateResponse > (
-      ::MDM::SetMetricStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
-  SetMetricStateResponse_ (::std::istream& is,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetMetricStateResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
-  SetMetricStateResponse_ (::std::istream& is,
-                           ::xml_schema::ErrorHandler& h,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetMetricStateResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
-  SetMetricStateResponse_ (::std::istream& is,
-                           ::xercesc::DOMErrorHandler& h,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SetMetricStateResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
-  SetMetricStateResponse_ (::std::istream& is,
-                           const ::std::string& sid,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetMetricStateResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
-  SetMetricStateResponse_ (::std::istream& is,
-                           const ::std::string& sid,
-                           ::xml_schema::ErrorHandler& h,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetMetricStateResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
-  SetMetricStateResponse_ (::std::istream& is,
-                           const ::std::string& sid,
-                           ::xercesc::DOMErrorHandler& h,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SetMetricStateResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
-  SetMetricStateResponse_ (::xercesc::InputSource& i,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SetMetricStateResponse > (
-      ::MDM::SetMetricStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
-  SetMetricStateResponse_ (::xercesc::InputSource& i,
-                           ::xml_schema::ErrorHandler& h,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetMetricStateResponse > (
-      ::MDM::SetMetricStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
-  SetMetricStateResponse_ (::xercesc::InputSource& i,
-                           ::xercesc::DOMErrorHandler& h,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SetMetricStateResponse > (
-      ::MDM::SetMetricStateResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
-  SetMetricStateResponse_ (const ::xercesc::DOMDocument& doc,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::SetMetricStateResponse > (
-        ::MDM::SetMetricStateResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SetMetricStateResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SetMetricStateResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::SetMetricStateResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SetMetricStateResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SetMetricStateResponse >
-  SetMetricStateResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "SetMetricStateResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SetMetricStateResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::SetMetricStateResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SetMetricStateResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::OperationInvokedReport >
-  OperationInvokedReport_ (const ::std::string& u,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::OperationInvokedReport > (
-      ::MDM::OperationInvokedReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::OperationInvokedReport >
-  OperationInvokedReport_ (const ::std::string& u,
-                           ::xml_schema::ErrorHandler& h,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::OperationInvokedReport > (
-      ::MDM::OperationInvokedReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::OperationInvokedReport >
-  OperationInvokedReport_ (const ::std::string& u,
-                           ::xercesc::DOMErrorHandler& h,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::OperationInvokedReport > (
-      ::MDM::OperationInvokedReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::OperationInvokedReport >
-  OperationInvokedReport_ (::std::istream& is,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::OperationInvokedReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::OperationInvokedReport >
-  OperationInvokedReport_ (::std::istream& is,
-                           ::xml_schema::ErrorHandler& h,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::OperationInvokedReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::OperationInvokedReport >
-  OperationInvokedReport_ (::std::istream& is,
-                           ::xercesc::DOMErrorHandler& h,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::OperationInvokedReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::OperationInvokedReport >
-  OperationInvokedReport_ (::std::istream& is,
-                           const ::std::string& sid,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::OperationInvokedReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::OperationInvokedReport >
-  OperationInvokedReport_ (::std::istream& is,
-                           const ::std::string& sid,
-                           ::xml_schema::ErrorHandler& h,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::OperationInvokedReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::OperationInvokedReport >
-  OperationInvokedReport_ (::std::istream& is,
-                           const ::std::string& sid,
-                           ::xercesc::DOMErrorHandler& h,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::OperationInvokedReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::OperationInvokedReport >
-  OperationInvokedReport_ (::xercesc::InputSource& i,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::OperationInvokedReport > (
-      ::MDM::OperationInvokedReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::OperationInvokedReport >
-  OperationInvokedReport_ (::xercesc::InputSource& i,
-                           ::xml_schema::ErrorHandler& h,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::OperationInvokedReport > (
-      ::MDM::OperationInvokedReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::OperationInvokedReport >
-  OperationInvokedReport_ (::xercesc::InputSource& i,
-                           ::xercesc::DOMErrorHandler& h,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::OperationInvokedReport > (
-      ::MDM::OperationInvokedReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::OperationInvokedReport >
-  OperationInvokedReport_ (const ::xercesc::DOMDocument& doc,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::OperationInvokedReport > (
-        ::MDM::OperationInvokedReport_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "OperationInvokedReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::OperationInvokedReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::OperationInvokedReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "OperationInvokedReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::OperationInvokedReport >
-  OperationInvokedReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "OperationInvokedReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::OperationInvokedReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::OperationInvokedReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "OperationInvokedReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTree >
-  GetContainmentTree_ (const ::std::string& u,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetContainmentTree > (
-      ::MDM::GetContainmentTree_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTree >
-  GetContainmentTree_ (const ::std::string& u,
-                       ::xml_schema::ErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContainmentTree > (
-      ::MDM::GetContainmentTree_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTree >
-  GetContainmentTree_ (const ::std::string& u,
-                       ::xercesc::DOMErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContainmentTree > (
-      ::MDM::GetContainmentTree_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTree >
-  GetContainmentTree_ (::std::istream& is,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetContainmentTree_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTree >
-  GetContainmentTree_ (::std::istream& is,
-                       ::xml_schema::ErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetContainmentTree_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTree >
-  GetContainmentTree_ (::std::istream& is,
-                       ::xercesc::DOMErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetContainmentTree_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTree >
-  GetContainmentTree_ (::std::istream& is,
-                       const ::std::string& sid,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetContainmentTree_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTree >
-  GetContainmentTree_ (::std::istream& is,
-                       const ::std::string& sid,
-                       ::xml_schema::ErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetContainmentTree_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTree >
-  GetContainmentTree_ (::std::istream& is,
-                       const ::std::string& sid,
-                       ::xercesc::DOMErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetContainmentTree_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTree >
-  GetContainmentTree_ (::xercesc::InputSource& i,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetContainmentTree > (
-      ::MDM::GetContainmentTree_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTree >
-  GetContainmentTree_ (::xercesc::InputSource& i,
-                       ::xml_schema::ErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContainmentTree > (
-      ::MDM::GetContainmentTree_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTree >
-  GetContainmentTree_ (::xercesc::InputSource& i,
-                       ::xercesc::DOMErrorHandler& h,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContainmentTree > (
-      ::MDM::GetContainmentTree_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTree >
-  GetContainmentTree_ (const ::xercesc::DOMDocument& doc,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::GetContainmentTree > (
-        ::MDM::GetContainmentTree_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetContainmentTree" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetContainmentTree > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetContainmentTree, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetContainmentTree",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTree >
-  GetContainmentTree_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                       ::xml_schema::Flags f,
-                       const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "GetContainmentTree" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetContainmentTree > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetContainmentTree, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetContainmentTree",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (const ::std::string& u,
-                               ::xml_schema::Flags f,
-                               const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetContainmentTreeResponse > (
-      ::MDM::GetContainmentTreeResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (const ::std::string& u,
-                               ::xml_schema::ErrorHandler& h,
-                               ::xml_schema::Flags f,
-                               const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContainmentTreeResponse > (
-      ::MDM::GetContainmentTreeResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (const ::std::string& u,
-                               ::xercesc::DOMErrorHandler& h,
-                               ::xml_schema::Flags f,
-                               const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContainmentTreeResponse > (
-      ::MDM::GetContainmentTreeResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (::std::istream& is,
-                               ::xml_schema::Flags f,
-                               const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetContainmentTreeResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (::std::istream& is,
-                               ::xml_schema::ErrorHandler& h,
-                               ::xml_schema::Flags f,
-                               const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetContainmentTreeResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (::std::istream& is,
-                               ::xercesc::DOMErrorHandler& h,
-                               ::xml_schema::Flags f,
-                               const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetContainmentTreeResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (::std::istream& is,
-                               const ::std::string& sid,
-                               ::xml_schema::Flags f,
-                               const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetContainmentTreeResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (::std::istream& is,
-                               const ::std::string& sid,
-                               ::xml_schema::ErrorHandler& h,
-                               ::xml_schema::Flags f,
-                               const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetContainmentTreeResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (::std::istream& is,
-                               const ::std::string& sid,
-                               ::xercesc::DOMErrorHandler& h,
-                               ::xml_schema::Flags f,
-                               const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetContainmentTreeResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (::xercesc::InputSource& i,
-                               ::xml_schema::Flags f,
-                               const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetContainmentTreeResponse > (
-      ::MDM::GetContainmentTreeResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (::xercesc::InputSource& i,
-                               ::xml_schema::ErrorHandler& h,
-                               ::xml_schema::Flags f,
-                               const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContainmentTreeResponse > (
-      ::MDM::GetContainmentTreeResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (::xercesc::InputSource& i,
-                               ::xercesc::DOMErrorHandler& h,
-                               ::xml_schema::Flags f,
-                               const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetContainmentTreeResponse > (
-      ::MDM::GetContainmentTreeResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (const ::xercesc::DOMDocument& doc,
-                               ::xml_schema::Flags f,
-                               const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::GetContainmentTreeResponse > (
-        ::MDM::GetContainmentTreeResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetContainmentTreeResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetContainmentTreeResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetContainmentTreeResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetContainmentTreeResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetContainmentTreeResponse >
-  GetContainmentTreeResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                               ::xml_schema::Flags f,
-                               const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "GetContainmentTreeResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetContainmentTreeResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetContainmentTreeResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetContainmentTreeResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptor >
-  GetDescriptor_ (const ::std::string& u,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetDescriptor > (
-      ::MDM::GetDescriptor_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptor >
-  GetDescriptor_ (const ::std::string& u,
-                  ::xml_schema::ErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetDescriptor > (
-      ::MDM::GetDescriptor_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptor >
-  GetDescriptor_ (const ::std::string& u,
-                  ::xercesc::DOMErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetDescriptor > (
-      ::MDM::GetDescriptor_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptor >
-  GetDescriptor_ (::std::istream& is,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetDescriptor_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptor >
-  GetDescriptor_ (::std::istream& is,
-                  ::xml_schema::ErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetDescriptor_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptor >
-  GetDescriptor_ (::std::istream& is,
-                  ::xercesc::DOMErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetDescriptor_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptor >
-  GetDescriptor_ (::std::istream& is,
-                  const ::std::string& sid,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetDescriptor_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptor >
-  GetDescriptor_ (::std::istream& is,
-                  const ::std::string& sid,
-                  ::xml_schema::ErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetDescriptor_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptor >
-  GetDescriptor_ (::std::istream& is,
-                  const ::std::string& sid,
-                  ::xercesc::DOMErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetDescriptor_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptor >
-  GetDescriptor_ (::xercesc::InputSource& i,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetDescriptor > (
-      ::MDM::GetDescriptor_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptor >
-  GetDescriptor_ (::xercesc::InputSource& i,
-                  ::xml_schema::ErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetDescriptor > (
-      ::MDM::GetDescriptor_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptor >
-  GetDescriptor_ (::xercesc::InputSource& i,
-                  ::xercesc::DOMErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetDescriptor > (
-      ::MDM::GetDescriptor_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptor >
-  GetDescriptor_ (const ::xercesc::DOMDocument& doc,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::GetDescriptor > (
-        ::MDM::GetDescriptor_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetDescriptor" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetDescriptor > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetDescriptor, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetDescriptor",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptor >
-  GetDescriptor_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "GetDescriptor" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetDescriptor > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetDescriptor, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetDescriptor",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (const ::std::string& u,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetDescriptorResponse > (
-      ::MDM::GetDescriptorResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (const ::std::string& u,
-                          ::xml_schema::ErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetDescriptorResponse > (
-      ::MDM::GetDescriptorResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (const ::std::string& u,
-                          ::xercesc::DOMErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetDescriptorResponse > (
-      ::MDM::GetDescriptorResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (::std::istream& is,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetDescriptorResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (::std::istream& is,
-                          ::xml_schema::ErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetDescriptorResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (::std::istream& is,
-                          ::xercesc::DOMErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::GetDescriptorResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (::std::istream& is,
-                          const ::std::string& sid,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetDescriptorResponse_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (::std::istream& is,
-                          const ::std::string& sid,
-                          ::xml_schema::ErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetDescriptorResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (::std::istream& is,
-                          const ::std::string& sid,
-                          ::xercesc::DOMErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::GetDescriptorResponse_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (::xercesc::InputSource& i,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::GetDescriptorResponse > (
-      ::MDM::GetDescriptorResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (::xercesc::InputSource& i,
-                          ::xml_schema::ErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetDescriptorResponse > (
-      ::MDM::GetDescriptorResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (::xercesc::InputSource& i,
-                          ::xercesc::DOMErrorHandler& h,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::GetDescriptorResponse > (
-      ::MDM::GetDescriptorResponse_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (const ::xercesc::DOMDocument& doc,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::GetDescriptorResponse > (
-        ::MDM::GetDescriptorResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetDescriptorResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetDescriptorResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetDescriptorResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetDescriptorResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::GetDescriptorResponse >
-  GetDescriptorResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                          ::xml_schema::Flags f,
-                          const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "GetDescriptorResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::GetDescriptorResponse > r (
-        ::xsd::cxx::tree::traits< ::MDM::GetDescriptorResponse, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "GetDescriptorResponse",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (const ::std::string& u,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicMetricReport > (
-      ::MDM::EpisodicMetricReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (const ::std::string& u,
-                         ::xml_schema::ErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicMetricReport > (
-      ::MDM::EpisodicMetricReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (const ::std::string& u,
-                         ::xercesc::DOMErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicMetricReport > (
-      ::MDM::EpisodicMetricReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (::std::istream& is,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::EpisodicMetricReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (::std::istream& is,
-                         ::xml_schema::ErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::EpisodicMetricReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (::std::istream& is,
-                         ::xercesc::DOMErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::EpisodicMetricReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (::std::istream& is,
-                         const ::std::string& sid,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::EpisodicMetricReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (::std::istream& is,
-                         const ::std::string& sid,
-                         ::xml_schema::ErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::EpisodicMetricReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (::std::istream& is,
-                         const ::std::string& sid,
-                         ::xercesc::DOMErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::EpisodicMetricReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (::xercesc::InputSource& i,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicMetricReport > (
-      ::MDM::EpisodicMetricReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (::xercesc::InputSource& i,
-                         ::xml_schema::ErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicMetricReport > (
-      ::MDM::EpisodicMetricReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (::xercesc::InputSource& i,
-                         ::xercesc::DOMErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicMetricReport > (
-      ::MDM::EpisodicMetricReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (const ::xercesc::DOMDocument& doc,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::EpisodicMetricReport > (
-        ::MDM::EpisodicMetricReport_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "EpisodicMetricReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::EpisodicMetricReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::EpisodicMetricReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "EpisodicMetricReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicMetricReport >
-  EpisodicMetricReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "EpisodicMetricReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::EpisodicMetricReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::EpisodicMetricReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "EpisodicMetricReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (const ::std::string& u,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicMetricReport > (
-      ::MDM::PeriodicMetricReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (const ::std::string& u,
-                         ::xml_schema::ErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicMetricReport > (
-      ::MDM::PeriodicMetricReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (const ::std::string& u,
-                         ::xercesc::DOMErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicMetricReport > (
-      ::MDM::PeriodicMetricReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (::std::istream& is,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::PeriodicMetricReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (::std::istream& is,
-                         ::xml_schema::ErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::PeriodicMetricReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (::std::istream& is,
-                         ::xercesc::DOMErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::PeriodicMetricReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (::std::istream& is,
-                         const ::std::string& sid,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::PeriodicMetricReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (::std::istream& is,
-                         const ::std::string& sid,
-                         ::xml_schema::ErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::PeriodicMetricReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (::std::istream& is,
-                         const ::std::string& sid,
-                         ::xercesc::DOMErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::PeriodicMetricReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (::xercesc::InputSource& i,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicMetricReport > (
-      ::MDM::PeriodicMetricReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (::xercesc::InputSource& i,
-                         ::xml_schema::ErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicMetricReport > (
-      ::MDM::PeriodicMetricReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (::xercesc::InputSource& i,
-                         ::xercesc::DOMErrorHandler& h,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicMetricReport > (
-      ::MDM::PeriodicMetricReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (const ::xercesc::DOMDocument& doc,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::PeriodicMetricReport > (
-        ::MDM::PeriodicMetricReport_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "PeriodicMetricReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::PeriodicMetricReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::PeriodicMetricReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "PeriodicMetricReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicMetricReport >
-  PeriodicMetricReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                         ::xml_schema::Flags f,
-                         const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "PeriodicMetricReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::PeriodicMetricReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::PeriodicMetricReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "PeriodicMetricReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
-  EpisodicComponentReport_ (const ::std::string& u,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicComponentReport > (
-      ::MDM::EpisodicComponentReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
-  EpisodicComponentReport_ (const ::std::string& u,
-                            ::xml_schema::ErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicComponentReport > (
-      ::MDM::EpisodicComponentReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
-  EpisodicComponentReport_ (const ::std::string& u,
-                            ::xercesc::DOMErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicComponentReport > (
-      ::MDM::EpisodicComponentReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
-  EpisodicComponentReport_ (::std::istream& is,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::EpisodicComponentReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
-  EpisodicComponentReport_ (::std::istream& is,
-                            ::xml_schema::ErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::EpisodicComponentReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
-  EpisodicComponentReport_ (::std::istream& is,
-                            ::xercesc::DOMErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::EpisodicComponentReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
-  EpisodicComponentReport_ (::std::istream& is,
-                            const ::std::string& sid,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::EpisodicComponentReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
-  EpisodicComponentReport_ (::std::istream& is,
-                            const ::std::string& sid,
-                            ::xml_schema::ErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::EpisodicComponentReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
-  EpisodicComponentReport_ (::std::istream& is,
-                            const ::std::string& sid,
-                            ::xercesc::DOMErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::EpisodicComponentReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
-  EpisodicComponentReport_ (::xercesc::InputSource& i,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicComponentReport > (
-      ::MDM::EpisodicComponentReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
-  EpisodicComponentReport_ (::xercesc::InputSource& i,
-                            ::xml_schema::ErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicComponentReport > (
-      ::MDM::EpisodicComponentReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
-  EpisodicComponentReport_ (::xercesc::InputSource& i,
-                            ::xercesc::DOMErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicComponentReport > (
-      ::MDM::EpisodicComponentReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
-  EpisodicComponentReport_ (const ::xercesc::DOMDocument& doc,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::EpisodicComponentReport > (
-        ::MDM::EpisodicComponentReport_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "EpisodicComponentReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::EpisodicComponentReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::EpisodicComponentReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "EpisodicComponentReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicComponentReport >
-  EpisodicComponentReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "EpisodicComponentReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::EpisodicComponentReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::EpisodicComponentReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "EpisodicComponentReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
-  PeriodicComponentReport_ (const ::std::string& u,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicComponentReport > (
-      ::MDM::PeriodicComponentReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
-  PeriodicComponentReport_ (const ::std::string& u,
-                            ::xml_schema::ErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicComponentReport > (
-      ::MDM::PeriodicComponentReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
-  PeriodicComponentReport_ (const ::std::string& u,
-                            ::xercesc::DOMErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicComponentReport > (
-      ::MDM::PeriodicComponentReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
-  PeriodicComponentReport_ (::std::istream& is,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::PeriodicComponentReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
-  PeriodicComponentReport_ (::std::istream& is,
-                            ::xml_schema::ErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::PeriodicComponentReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
-  PeriodicComponentReport_ (::std::istream& is,
-                            ::xercesc::DOMErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::PeriodicComponentReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
-  PeriodicComponentReport_ (::std::istream& is,
-                            const ::std::string& sid,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::PeriodicComponentReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
-  PeriodicComponentReport_ (::std::istream& is,
-                            const ::std::string& sid,
-                            ::xml_schema::ErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::PeriodicComponentReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
-  PeriodicComponentReport_ (::std::istream& is,
-                            const ::std::string& sid,
-                            ::xercesc::DOMErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::PeriodicComponentReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
-  PeriodicComponentReport_ (::xercesc::InputSource& i,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicComponentReport > (
-      ::MDM::PeriodicComponentReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
-  PeriodicComponentReport_ (::xercesc::InputSource& i,
-                            ::xml_schema::ErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicComponentReport > (
-      ::MDM::PeriodicComponentReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
-  PeriodicComponentReport_ (::xercesc::InputSource& i,
-                            ::xercesc::DOMErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicComponentReport > (
-      ::MDM::PeriodicComponentReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
-  PeriodicComponentReport_ (const ::xercesc::DOMDocument& doc,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::PeriodicComponentReport > (
-        ::MDM::PeriodicComponentReport_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "PeriodicComponentReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::PeriodicComponentReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::PeriodicComponentReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "PeriodicComponentReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicComponentReport >
-  PeriodicComponentReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "PeriodicComponentReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::PeriodicComponentReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::PeriodicComponentReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "PeriodicComponentReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (const ::std::string& u,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicAlertReport > (
-      ::MDM::EpisodicAlertReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (const ::std::string& u,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicAlertReport > (
-      ::MDM::EpisodicAlertReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (const ::std::string& u,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicAlertReport > (
-      ::MDM::EpisodicAlertReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (::std::istream& is,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::EpisodicAlertReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (::std::istream& is,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::EpisodicAlertReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (::std::istream& is,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::EpisodicAlertReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (::std::istream& is,
-                        const ::std::string& sid,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::EpisodicAlertReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (::std::istream& is,
-                        const ::std::string& sid,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::EpisodicAlertReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (::std::istream& is,
-                        const ::std::string& sid,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::EpisodicAlertReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (::xercesc::InputSource& i,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicAlertReport > (
-      ::MDM::EpisodicAlertReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (::xercesc::InputSource& i,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicAlertReport > (
-      ::MDM::EpisodicAlertReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (::xercesc::InputSource& i,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicAlertReport > (
-      ::MDM::EpisodicAlertReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (const ::xercesc::DOMDocument& doc,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::EpisodicAlertReport > (
-        ::MDM::EpisodicAlertReport_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "EpisodicAlertReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::EpisodicAlertReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::EpisodicAlertReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "EpisodicAlertReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicAlertReport >
-  EpisodicAlertReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "EpisodicAlertReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::EpisodicAlertReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::EpisodicAlertReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "EpisodicAlertReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (const ::std::string& u,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicAlertReport > (
-      ::MDM::PeriodicAlertReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (const ::std::string& u,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicAlertReport > (
-      ::MDM::PeriodicAlertReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (const ::std::string& u,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicAlertReport > (
-      ::MDM::PeriodicAlertReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (::std::istream& is,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::PeriodicAlertReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (::std::istream& is,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::PeriodicAlertReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (::std::istream& is,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::PeriodicAlertReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (::std::istream& is,
-                        const ::std::string& sid,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::PeriodicAlertReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (::std::istream& is,
-                        const ::std::string& sid,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::PeriodicAlertReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (::std::istream& is,
-                        const ::std::string& sid,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::PeriodicAlertReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (::xercesc::InputSource& i,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicAlertReport > (
-      ::MDM::PeriodicAlertReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (::xercesc::InputSource& i,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicAlertReport > (
-      ::MDM::PeriodicAlertReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (::xercesc::InputSource& i,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicAlertReport > (
-      ::MDM::PeriodicAlertReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (const ::xercesc::DOMDocument& doc,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::PeriodicAlertReport > (
-        ::MDM::PeriodicAlertReport_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "PeriodicAlertReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::PeriodicAlertReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::PeriodicAlertReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "PeriodicAlertReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicAlertReport >
-  PeriodicAlertReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "PeriodicAlertReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::PeriodicAlertReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::PeriodicAlertReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "PeriodicAlertReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
-  EpisodicOperationalStateReport_ (const ::std::string& u,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport > (
-      ::MDM::EpisodicOperationalStateReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
-  EpisodicOperationalStateReport_ (const ::std::string& u,
-                                   ::xml_schema::ErrorHandler& h,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport > (
-      ::MDM::EpisodicOperationalStateReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
-  EpisodicOperationalStateReport_ (const ::std::string& u,
-                                   ::xercesc::DOMErrorHandler& h,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport > (
-      ::MDM::EpisodicOperationalStateReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
-  EpisodicOperationalStateReport_ (::std::istream& is,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::EpisodicOperationalStateReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
-  EpisodicOperationalStateReport_ (::std::istream& is,
-                                   ::xml_schema::ErrorHandler& h,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::EpisodicOperationalStateReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
-  EpisodicOperationalStateReport_ (::std::istream& is,
-                                   ::xercesc::DOMErrorHandler& h,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::EpisodicOperationalStateReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
-  EpisodicOperationalStateReport_ (::std::istream& is,
-                                   const ::std::string& sid,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::EpisodicOperationalStateReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
-  EpisodicOperationalStateReport_ (::std::istream& is,
-                                   const ::std::string& sid,
-                                   ::xml_schema::ErrorHandler& h,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::EpisodicOperationalStateReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
-  EpisodicOperationalStateReport_ (::std::istream& is,
-                                   const ::std::string& sid,
-                                   ::xercesc::DOMErrorHandler& h,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::EpisodicOperationalStateReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
-  EpisodicOperationalStateReport_ (::xercesc::InputSource& i,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport > (
-      ::MDM::EpisodicOperationalStateReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
-  EpisodicOperationalStateReport_ (::xercesc::InputSource& i,
-                                   ::xml_schema::ErrorHandler& h,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport > (
-      ::MDM::EpisodicOperationalStateReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
-  EpisodicOperationalStateReport_ (::xercesc::InputSource& i,
-                                   ::xercesc::DOMErrorHandler& h,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport > (
-      ::MDM::EpisodicOperationalStateReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
-  EpisodicOperationalStateReport_ (const ::xercesc::DOMDocument& doc,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport > (
-        ::MDM::EpisodicOperationalStateReport_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "EpisodicOperationalStateReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::EpisodicOperationalStateReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "EpisodicOperationalStateReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport >
-  EpisodicOperationalStateReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "EpisodicOperationalStateReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::EpisodicOperationalStateReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::EpisodicOperationalStateReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "EpisodicOperationalStateReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
-  PeriodicOperationalStateReport_ (const ::std::string& u,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport > (
-      ::MDM::PeriodicOperationalStateReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
-  PeriodicOperationalStateReport_ (const ::std::string& u,
-                                   ::xml_schema::ErrorHandler& h,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport > (
-      ::MDM::PeriodicOperationalStateReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
-  PeriodicOperationalStateReport_ (const ::std::string& u,
-                                   ::xercesc::DOMErrorHandler& h,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport > (
-      ::MDM::PeriodicOperationalStateReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
-  PeriodicOperationalStateReport_ (::std::istream& is,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::PeriodicOperationalStateReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
-  PeriodicOperationalStateReport_ (::std::istream& is,
-                                   ::xml_schema::ErrorHandler& h,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::PeriodicOperationalStateReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
-  PeriodicOperationalStateReport_ (::std::istream& is,
-                                   ::xercesc::DOMErrorHandler& h,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::PeriodicOperationalStateReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
-  PeriodicOperationalStateReport_ (::std::istream& is,
-                                   const ::std::string& sid,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::PeriodicOperationalStateReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
-  PeriodicOperationalStateReport_ (::std::istream& is,
-                                   const ::std::string& sid,
-                                   ::xml_schema::ErrorHandler& h,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::PeriodicOperationalStateReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
-  PeriodicOperationalStateReport_ (::std::istream& is,
-                                   const ::std::string& sid,
-                                   ::xercesc::DOMErrorHandler& h,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::PeriodicOperationalStateReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
-  PeriodicOperationalStateReport_ (::xercesc::InputSource& i,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport > (
-      ::MDM::PeriodicOperationalStateReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
-  PeriodicOperationalStateReport_ (::xercesc::InputSource& i,
-                                   ::xml_schema::ErrorHandler& h,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport > (
-      ::MDM::PeriodicOperationalStateReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
-  PeriodicOperationalStateReport_ (::xercesc::InputSource& i,
-                                   ::xercesc::DOMErrorHandler& h,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport > (
-      ::MDM::PeriodicOperationalStateReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
-  PeriodicOperationalStateReport_ (const ::xercesc::DOMDocument& doc,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport > (
-        ::MDM::PeriodicOperationalStateReport_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "PeriodicOperationalStateReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::PeriodicOperationalStateReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "PeriodicOperationalStateReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport >
-  PeriodicOperationalStateReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                                   ::xml_schema::Flags f,
-                                   const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "PeriodicOperationalStateReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::PeriodicOperationalStateReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::PeriodicOperationalStateReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "PeriodicOperationalStateReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SystemErrorReport >
-  SystemErrorReport_ (const ::std::string& u,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SystemErrorReport > (
-      ::MDM::SystemErrorReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SystemErrorReport >
-  SystemErrorReport_ (const ::std::string& u,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SystemErrorReport > (
-      ::MDM::SystemErrorReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SystemErrorReport >
-  SystemErrorReport_ (const ::std::string& u,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SystemErrorReport > (
-      ::MDM::SystemErrorReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SystemErrorReport >
-  SystemErrorReport_ (::std::istream& is,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SystemErrorReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SystemErrorReport >
-  SystemErrorReport_ (::std::istream& is,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SystemErrorReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SystemErrorReport >
-  SystemErrorReport_ (::std::istream& is,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::SystemErrorReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SystemErrorReport >
-  SystemErrorReport_ (::std::istream& is,
-                      const ::std::string& sid,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SystemErrorReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SystemErrorReport >
-  SystemErrorReport_ (::std::istream& is,
-                      const ::std::string& sid,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SystemErrorReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SystemErrorReport >
-  SystemErrorReport_ (::std::istream& is,
-                      const ::std::string& sid,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::SystemErrorReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::SystemErrorReport >
-  SystemErrorReport_ (::xercesc::InputSource& i,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::SystemErrorReport > (
-      ::MDM::SystemErrorReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SystemErrorReport >
-  SystemErrorReport_ (::xercesc::InputSource& i,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SystemErrorReport > (
-      ::MDM::SystemErrorReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SystemErrorReport >
-  SystemErrorReport_ (::xercesc::InputSource& i,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::SystemErrorReport > (
-      ::MDM::SystemErrorReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::SystemErrorReport >
-  SystemErrorReport_ (const ::xercesc::DOMDocument& doc,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::SystemErrorReport > (
-        ::MDM::SystemErrorReport_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SystemErrorReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SystemErrorReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::SystemErrorReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SystemErrorReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::SystemErrorReport >
-  SystemErrorReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "SystemErrorReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::SystemErrorReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::SystemErrorReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SystemErrorReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
-  DescriptionModificationReport_ (const ::std::string& u,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::DescriptionModificationReport > (
-      ::MDM::DescriptionModificationReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
-  DescriptionModificationReport_ (const ::std::string& u,
-                                  ::xml_schema::ErrorHandler& h,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::DescriptionModificationReport > (
-      ::MDM::DescriptionModificationReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
-  DescriptionModificationReport_ (const ::std::string& u,
-                                  ::xercesc::DOMErrorHandler& h,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::DescriptionModificationReport > (
-      ::MDM::DescriptionModificationReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
-  DescriptionModificationReport_ (::std::istream& is,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::DescriptionModificationReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
-  DescriptionModificationReport_ (::std::istream& is,
-                                  ::xml_schema::ErrorHandler& h,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::DescriptionModificationReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
-  DescriptionModificationReport_ (::std::istream& is,
-                                  ::xercesc::DOMErrorHandler& h,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::DescriptionModificationReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
-  DescriptionModificationReport_ (::std::istream& is,
-                                  const ::std::string& sid,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::DescriptionModificationReport_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
-  DescriptionModificationReport_ (::std::istream& is,
-                                  const ::std::string& sid,
-                                  ::xml_schema::ErrorHandler& h,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::DescriptionModificationReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
-  DescriptionModificationReport_ (::std::istream& is,
-                                  const ::std::string& sid,
-                                  ::xercesc::DOMErrorHandler& h,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::DescriptionModificationReport_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
-  DescriptionModificationReport_ (::xercesc::InputSource& i,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::DescriptionModificationReport > (
-      ::MDM::DescriptionModificationReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
-  DescriptionModificationReport_ (::xercesc::InputSource& i,
-                                  ::xml_schema::ErrorHandler& h,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::DescriptionModificationReport > (
-      ::MDM::DescriptionModificationReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
-  DescriptionModificationReport_ (::xercesc::InputSource& i,
-                                  ::xercesc::DOMErrorHandler& h,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::DescriptionModificationReport > (
-      ::MDM::DescriptionModificationReport_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
-  DescriptionModificationReport_ (const ::xercesc::DOMDocument& doc,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::DescriptionModificationReport > (
-        ::MDM::DescriptionModificationReport_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "DescriptionModificationReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::DescriptionModificationReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::DescriptionModificationReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "DescriptionModificationReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::DescriptionModificationReport >
-  DescriptionModificationReport_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                                  ::xml_schema::Flags f,
-                                  const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "DescriptionModificationReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::DescriptionModificationReport > r (
-        ::xsd::cxx::tree::traits< ::MDM::DescriptionModificationReport, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "DescriptionModificationReport",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::WaveformStream >
-  WaveformStream_ (const ::std::string& u,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::WaveformStream > (
-      ::MDM::WaveformStream_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::WaveformStream >
-  WaveformStream_ (const ::std::string& u,
-                   ::xml_schema::ErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::WaveformStream > (
-      ::MDM::WaveformStream_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::WaveformStream >
-  WaveformStream_ (const ::std::string& u,
-                   ::xercesc::DOMErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::WaveformStream > (
-      ::MDM::WaveformStream_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::WaveformStream >
-  WaveformStream_ (::std::istream& is,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::WaveformStream_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::WaveformStream >
-  WaveformStream_ (::std::istream& is,
-                   ::xml_schema::ErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::WaveformStream_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::WaveformStream >
-  WaveformStream_ (::std::istream& is,
-                   ::xercesc::DOMErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::WaveformStream_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::WaveformStream >
-  WaveformStream_ (::std::istream& is,
-                   const ::std::string& sid,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::WaveformStream_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::WaveformStream >
-  WaveformStream_ (::std::istream& is,
-                   const ::std::string& sid,
-                   ::xml_schema::ErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::WaveformStream_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::WaveformStream >
-  WaveformStream_ (::std::istream& is,
-                   const ::std::string& sid,
-                   ::xercesc::DOMErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::WaveformStream_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::WaveformStream >
-  WaveformStream_ (::xercesc::InputSource& i,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::WaveformStream > (
-      ::MDM::WaveformStream_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::WaveformStream >
-  WaveformStream_ (::xercesc::InputSource& i,
-                   ::xml_schema::ErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::WaveformStream > (
-      ::MDM::WaveformStream_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::WaveformStream >
-  WaveformStream_ (::xercesc::InputSource& i,
-                   ::xercesc::DOMErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::WaveformStream > (
-      ::MDM::WaveformStream_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::WaveformStream >
-  WaveformStream_ (const ::xercesc::DOMDocument& doc,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::WaveformStream > (
-        ::MDM::WaveformStream_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "WaveformStream" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::WaveformStream > r (
-        ::xsd::cxx::tree::traits< ::MDM::WaveformStream, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "WaveformStream",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::WaveformStream >
-  WaveformStream_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "WaveformStream" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::WaveformStream > r (
-        ::xsd::cxx::tree::traits< ::MDM::WaveformStream, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "WaveformStream",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::ObservedValueStream >
-  ObservedValueStream_ (const ::std::string& u,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::ObservedValueStream > (
-      ::MDM::ObservedValueStream_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::ObservedValueStream >
-  ObservedValueStream_ (const ::std::string& u,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::ObservedValueStream > (
-      ::MDM::ObservedValueStream_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::ObservedValueStream >
-  ObservedValueStream_ (const ::std::string& u,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::ObservedValueStream > (
-      ::MDM::ObservedValueStream_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::ObservedValueStream >
-  ObservedValueStream_ (::std::istream& is,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::ObservedValueStream_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::ObservedValueStream >
-  ObservedValueStream_ (::std::istream& is,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::ObservedValueStream_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::ObservedValueStream >
-  ObservedValueStream_ (::std::istream& is,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::ObservedValueStream_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::ObservedValueStream >
-  ObservedValueStream_ (::std::istream& is,
-                        const ::std::string& sid,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::ObservedValueStream_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::ObservedValueStream >
-  ObservedValueStream_ (::std::istream& is,
-                        const ::std::string& sid,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::ObservedValueStream_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::ObservedValueStream >
-  ObservedValueStream_ (::std::istream& is,
-                        const ::std::string& sid,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::ObservedValueStream_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::ObservedValueStream >
-  ObservedValueStream_ (::xercesc::InputSource& i,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::ObservedValueStream > (
-      ::MDM::ObservedValueStream_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::ObservedValueStream >
-  ObservedValueStream_ (::xercesc::InputSource& i,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::ObservedValueStream > (
-      ::MDM::ObservedValueStream_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::ObservedValueStream >
-  ObservedValueStream_ (::xercesc::InputSource& i,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::ObservedValueStream > (
-      ::MDM::ObservedValueStream_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::ObservedValueStream >
-  ObservedValueStream_ (const ::xercesc::DOMDocument& doc,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::ObservedValueStream > (
-        ::MDM::ObservedValueStream_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "ObservedValueStream" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::ObservedValueStream > r (
-        ::xsd::cxx::tree::traits< ::MDM::ObservedValueStream, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "ObservedValueStream",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::ObservedValueStream >
-  ObservedValueStream_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "ObservedValueStream" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::ObservedValueStream > r (
-        ::xsd::cxx::tree::traits< ::MDM::ObservedValueStream, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "ObservedValueStream",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::Retrievability >
-  Retrievability_ (const ::std::string& u,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::Retrievability > (
-      ::MDM::Retrievability_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::Retrievability >
-  Retrievability_ (const ::std::string& u,
-                   ::xml_schema::ErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::Retrievability > (
-      ::MDM::Retrievability_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::Retrievability >
-  Retrievability_ (const ::std::string& u,
-                   ::xercesc::DOMErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::Retrievability > (
-      ::MDM::Retrievability_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::Retrievability >
-  Retrievability_ (::std::istream& is,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::Retrievability_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::Retrievability >
-  Retrievability_ (::std::istream& is,
-                   ::xml_schema::ErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::Retrievability_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::Retrievability >
-  Retrievability_ (::std::istream& is,
-                   ::xercesc::DOMErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDM::Retrievability_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::Retrievability >
-  Retrievability_ (::std::istream& is,
-                   const ::std::string& sid,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::Retrievability_ (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::Retrievability >
-  Retrievability_ (::std::istream& is,
-                   const ::std::string& sid,
-                   ::xml_schema::ErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::Retrievability_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::Retrievability >
-  Retrievability_ (::std::istream& is,
-                   const ::std::string& sid,
-                   ::xercesc::DOMErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDM::Retrievability_ (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDM::Retrievability >
-  Retrievability_ (::xercesc::InputSource& i,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDM::Retrievability > (
-      ::MDM::Retrievability_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::Retrievability >
-  Retrievability_ (::xercesc::InputSource& i,
-                   ::xml_schema::ErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::Retrievability > (
-      ::MDM::Retrievability_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::Retrievability >
-  Retrievability_ (::xercesc::InputSource& i,
-                   ::xercesc::DOMErrorHandler& h,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDM::Retrievability > (
-      ::MDM::Retrievability_ (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDM::Retrievability >
-  Retrievability_ (const ::xercesc::DOMDocument& doc,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDM::Retrievability > (
-        ::MDM::Retrievability_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "Retrievability" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::Retrievability > r (
-        ::xsd::cxx::tree::traits< ::MDM::Retrievability, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "Retrievability",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
-
-  ::std::unique_ptr< ::MDM::Retrievability >
-  Retrievability_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                   ::xml_schema::Flags f,
-                   const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    if (n.name () == "Retrievability" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      ::std::unique_ptr< ::MDM::Retrievability > r (
-        ::xsd::cxx::tree::traits< ::MDM::Retrievability, char >::create (
-          e, f, 0));
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "Retrievability",
-      "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-  }
 }
 
 #include <ostream>
@@ -25471,9 +11108,9 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const InvocationInfo::ExtensionType& x (*i.Extension ());
+        const InvocationInfo::ExtensionType& x (*i.getExtension ());
         if (typeid (InvocationInfo::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -25498,7 +11135,7 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const InvocationInfo::TransactionIdType& x (i.TransactionId ());
+      const InvocationInfo::TransactionIdType& x (i.getTransactionId ());
       if (typeid (InvocationInfo::TransactionIdType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -25522,7 +11159,7 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const InvocationInfo::InvocationStateType& x (i.InvocationState ());
+      const InvocationInfo::InvocationStateType& x (i.getInvocationState ());
       if (typeid (InvocationInfo::InvocationStateType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -25546,9 +11183,9 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.InvocationError ())
+      if (i.getInvocationError ())
       {
-        const InvocationInfo::InvocationErrorType& x (*i.InvocationError ());
+        const InvocationInfo::InvocationErrorType& x (*i.getInvocationError ());
         if (typeid (InvocationInfo::InvocationErrorType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -25574,7 +11211,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (InvocationInfo::InvocationErrorMessageConstIterator
-           b (i.InvocationErrorMessage ().begin ()), n (i.InvocationErrorMessage ().end ());
+           b (i.getInvocationErrorMessage ().begin ()), n (i.getInvocationErrorMessage ().end ());
            b != n; ++b)
       {
         if (typeid (InvocationInfo::InvocationErrorMessageType) == typeid (*b))
@@ -25614,9 +11251,9 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const AbstractGet::ExtensionType& x (*i.Extension ());
+        const AbstractGet::ExtensionType& x (*i.getExtension ());
         if (typeid (AbstractGet::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -25654,9 +11291,9 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const AbstractGetResponse::ExtensionType& x (*i.Extension ());
+        const AbstractGetResponse::ExtensionType& x (*i.getExtension ());
         if (typeid (AbstractGetResponse::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -25677,14 +11314,14 @@ namespace MDM
 
     // MdibVersion
     //
-    if (i.MdibVersion ())
+    if (i.getMdibVersion ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "MdibVersion",
           e));
 
-      a << *i.MdibVersion ();
+      a << *i.getMdibVersion ();
     }
 
     // SequenceId
@@ -25695,19 +11332,19 @@ namespace MDM
           "SequenceId",
           e));
 
-      a << i.SequenceId ();
+      a << i.getSequenceId ();
     }
 
     // InstanceId
     //
-    if (i.InstanceId ())
+    if (i.getInstanceId ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "InstanceId",
           e));
 
-      a << *i.InstanceId ();
+      a << *i.getInstanceId ();
     }
   }
 
@@ -25729,9 +11366,9 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const AbstractReportPart::ExtensionType& x (*i.Extension ());
+        const AbstractReportPart::ExtensionType& x (*i.getExtension ());
         if (typeid (AbstractReportPart::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -25756,9 +11393,9 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.SourceMds ())
+      if (i.getSourceMds ())
       {
-        const AbstractReportPart::SourceMdsType& x (*i.SourceMds ());
+        const AbstractReportPart::SourceMdsType& x (*i.getSourceMds ());
         if (typeid (AbstractReportPart::SourceMdsType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -25796,9 +11433,9 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const AbstractReport::ExtensionType& x (*i.Extension ());
+        const AbstractReport::ExtensionType& x (*i.getExtension ());
         if (typeid (AbstractReport::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -25819,14 +11456,14 @@ namespace MDM
 
     // MdibVersion
     //
-    if (i.MdibVersion ())
+    if (i.getMdibVersion ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "MdibVersion",
           e));
 
-      a << *i.MdibVersion ();
+      a << *i.getMdibVersion ();
     }
 
     // SequenceId
@@ -25837,19 +11474,19 @@ namespace MDM
           "SequenceId",
           e));
 
-      a << i.SequenceId ();
+      a << i.getSequenceId ();
     }
 
     // InstanceId
     //
-    if (i.InstanceId ())
+    if (i.getInstanceId ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "InstanceId",
           e));
 
-      a << *i.InstanceId ();
+      a << *i.getInstanceId ();
     }
   }
 
@@ -25871,9 +11508,9 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const AbstractSet::ExtensionType& x (*i.Extension ());
+        const AbstractSet::ExtensionType& x (*i.getExtension ());
         if (typeid (AbstractSet::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -25898,7 +11535,7 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const AbstractSet::OperationHandleRefType& x (i.OperationHandleRef ());
+      const AbstractSet::OperationHandleRefType& x (i.getOperationHandleRef ());
       if (typeid (AbstractSet::OperationHandleRefType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -25935,9 +11572,9 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const AbstractSetResponse::ExtensionType& x (*i.Extension ());
+        const AbstractSetResponse::ExtensionType& x (*i.getExtension ());
         if (typeid (AbstractSetResponse::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -25962,7 +11599,7 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const AbstractSetResponse::InvocationInfoType& x (i.InvocationInfo ());
+      const AbstractSetResponse::InvocationInfoType& x (i.getInvocationInfo ());
       if (typeid (AbstractSetResponse::InvocationInfoType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -25982,14 +11619,14 @@ namespace MDM
 
     // MdibVersion
     //
-    if (i.MdibVersion ())
+    if (i.getMdibVersion ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "MdibVersion",
           e));
 
-      a << *i.MdibVersion ();
+      a << *i.getMdibVersion ();
     }
 
     // SequenceId
@@ -26000,19 +11637,19 @@ namespace MDM
           "SequenceId",
           e));
 
-      a << i.SequenceId ();
+      a << i.getSequenceId ();
     }
 
     // InstanceId
     //
-    if (i.InstanceId ())
+    if (i.getInstanceId ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "InstanceId",
           e));
 
-      a << *i.InstanceId ();
+      a << *i.getInstanceId ();
     }
   }
 
@@ -26024,2078 +11661,6 @@ namespace MDM
 
 
   void
-  GetMdib_ (::std::ostream& o,
-            const ::MDM::GetMdib& s,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdib_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetMdib_ (::std::ostream& o,
-            const ::MDM::GetMdib& s,
-            ::xml_schema::ErrorHandler& h,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdib_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetMdib_ (::std::ostream& o,
-            const ::MDM::GetMdib& s,
-            ::xercesc::DOMErrorHandler& h,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdib_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetMdib_ (::xercesc::XMLFormatTarget& t,
-            const ::MDM::GetMdib& s,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdib_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetMdib_ (::xercesc::XMLFormatTarget& t,
-            const ::MDM::GetMdib& s,
-            ::xml_schema::ErrorHandler& h,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdib_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetMdib_ (::xercesc::XMLFormatTarget& t,
-            const ::MDM::GetMdib& s,
-            ::xercesc::DOMErrorHandler& h,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdib_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetMdib_ (::xercesc::DOMDocument& d,
-            const ::MDM::GetMdib& s,
-            ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetMdib" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetMdib",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetMdib_ (const ::MDM::GetMdib& s,
-            const ::xml_schema::NamespaceInfomap& m,
-            ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "GetMdib",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::GetMdib_ (*d, s, f);
-    return d;
-  }
-
-  void
-  GetMdibResponse_ (::std::ostream& o,
-                    const ::MDM::GetMdibResponse& s,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    const ::std::string& e,
-                    ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdibResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetMdibResponse_ (::std::ostream& o,
-                    const ::MDM::GetMdibResponse& s,
-                    ::xml_schema::ErrorHandler& h,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    const ::std::string& e,
-                    ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdibResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetMdibResponse_ (::std::ostream& o,
-                    const ::MDM::GetMdibResponse& s,
-                    ::xercesc::DOMErrorHandler& h,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    const ::std::string& e,
-                    ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdibResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetMdibResponse_ (::xercesc::XMLFormatTarget& t,
-                    const ::MDM::GetMdibResponse& s,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    const ::std::string& e,
-                    ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdibResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetMdibResponse_ (::xercesc::XMLFormatTarget& t,
-                    const ::MDM::GetMdibResponse& s,
-                    ::xml_schema::ErrorHandler& h,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    const ::std::string& e,
-                    ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdibResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetMdibResponse_ (::xercesc::XMLFormatTarget& t,
-                    const ::MDM::GetMdibResponse& s,
-                    ::xercesc::DOMErrorHandler& h,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    const ::std::string& e,
-                    ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdibResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetMdibResponse_ (::xercesc::DOMDocument& d,
-                    const ::MDM::GetMdibResponse& s,
-                    ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetMdibResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetMdibResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetMdibResponse_ (const ::MDM::GetMdibResponse& s,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "GetMdibResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::GetMdibResponse_ (*d, s, f);
-    return d;
-  }
-
-  void
-  GetMdDescription_ (::std::ostream& o,
-                     const ::MDM::GetMdDescription& s,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdDescription_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetMdDescription_ (::std::ostream& o,
-                     const ::MDM::GetMdDescription& s,
-                     ::xml_schema::ErrorHandler& h,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdDescription_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetMdDescription_ (::std::ostream& o,
-                     const ::MDM::GetMdDescription& s,
-                     ::xercesc::DOMErrorHandler& h,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdDescription_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetMdDescription_ (::xercesc::XMLFormatTarget& t,
-                     const ::MDM::GetMdDescription& s,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdDescription_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetMdDescription_ (::xercesc::XMLFormatTarget& t,
-                     const ::MDM::GetMdDescription& s,
-                     ::xml_schema::ErrorHandler& h,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdDescription_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetMdDescription_ (::xercesc::XMLFormatTarget& t,
-                     const ::MDM::GetMdDescription& s,
-                     ::xercesc::DOMErrorHandler& h,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdDescription_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetMdDescription_ (::xercesc::DOMDocument& d,
-                     const ::MDM::GetMdDescription& s,
-                     ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetMdDescription" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetMdDescription",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetMdDescription_ (const ::MDM::GetMdDescription& s,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "GetMdDescription",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::GetMdDescription_ (*d, s, f);
-    return d;
-  }
-
-  void
-  GetMdDescriptionResponse_ (::std::ostream& o,
-                             const ::MDM::GetMdDescriptionResponse& s,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             const ::std::string& e,
-                             ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdDescriptionResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetMdDescriptionResponse_ (::std::ostream& o,
-                             const ::MDM::GetMdDescriptionResponse& s,
-                             ::xml_schema::ErrorHandler& h,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             const ::std::string& e,
-                             ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdDescriptionResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetMdDescriptionResponse_ (::std::ostream& o,
-                             const ::MDM::GetMdDescriptionResponse& s,
-                             ::xercesc::DOMErrorHandler& h,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             const ::std::string& e,
-                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdDescriptionResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetMdDescriptionResponse_ (::xercesc::XMLFormatTarget& t,
-                             const ::MDM::GetMdDescriptionResponse& s,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             const ::std::string& e,
-                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdDescriptionResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetMdDescriptionResponse_ (::xercesc::XMLFormatTarget& t,
-                             const ::MDM::GetMdDescriptionResponse& s,
-                             ::xml_schema::ErrorHandler& h,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             const ::std::string& e,
-                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdDescriptionResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetMdDescriptionResponse_ (::xercesc::XMLFormatTarget& t,
-                             const ::MDM::GetMdDescriptionResponse& s,
-                             ::xercesc::DOMErrorHandler& h,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             const ::std::string& e,
-                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdDescriptionResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetMdDescriptionResponse_ (::xercesc::DOMDocument& d,
-                             const ::MDM::GetMdDescriptionResponse& s,
-                             ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetMdDescriptionResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetMdDescriptionResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetMdDescriptionResponse_ (const ::MDM::GetMdDescriptionResponse& s,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "GetMdDescriptionResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::GetMdDescriptionResponse_ (*d, s, f);
-    return d;
-  }
-
-  void
-  GetMdState_ (::std::ostream& o,
-               const ::MDM::GetMdState& s,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdState_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetMdState_ (::std::ostream& o,
-               const ::MDM::GetMdState& s,
-               ::xml_schema::ErrorHandler& h,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdState_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetMdState_ (::std::ostream& o,
-               const ::MDM::GetMdState& s,
-               ::xercesc::DOMErrorHandler& h,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdState_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetMdState_ (::xercesc::XMLFormatTarget& t,
-               const ::MDM::GetMdState& s,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdState_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetMdState_ (::xercesc::XMLFormatTarget& t,
-               const ::MDM::GetMdState& s,
-               ::xml_schema::ErrorHandler& h,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdState_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetMdState_ (::xercesc::XMLFormatTarget& t,
-               const ::MDM::GetMdState& s,
-               ::xercesc::DOMErrorHandler& h,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdState_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetMdState_ (::xercesc::DOMDocument& d,
-               const ::MDM::GetMdState& s,
-               ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetMdState" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetMdState",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetMdState_ (const ::MDM::GetMdState& s,
-               const ::xml_schema::NamespaceInfomap& m,
-               ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "GetMdState",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::GetMdState_ (*d, s, f);
-    return d;
-  }
-
-  void
-  GetMdStateResponse_ (::std::ostream& o,
-                       const ::MDM::GetMdStateResponse& s,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       const ::std::string& e,
-                       ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdStateResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetMdStateResponse_ (::std::ostream& o,
-                       const ::MDM::GetMdStateResponse& s,
-                       ::xml_schema::ErrorHandler& h,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       const ::std::string& e,
-                       ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdStateResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetMdStateResponse_ (::std::ostream& o,
-                       const ::MDM::GetMdStateResponse& s,
-                       ::xercesc::DOMErrorHandler& h,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       const ::std::string& e,
-                       ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdStateResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetMdStateResponse_ (::xercesc::XMLFormatTarget& t,
-                       const ::MDM::GetMdStateResponse& s,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       const ::std::string& e,
-                       ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdStateResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetMdStateResponse_ (::xercesc::XMLFormatTarget& t,
-                       const ::MDM::GetMdStateResponse& s,
-                       ::xml_schema::ErrorHandler& h,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       const ::std::string& e,
-                       ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdStateResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetMdStateResponse_ (::xercesc::XMLFormatTarget& t,
-                       const ::MDM::GetMdStateResponse& s,
-                       ::xercesc::DOMErrorHandler& h,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       const ::std::string& e,
-                       ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetMdStateResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetMdStateResponse_ (::xercesc::DOMDocument& d,
-                       const ::MDM::GetMdStateResponse& s,
-                       ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetMdStateResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetMdStateResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetMdStateResponse_ (const ::MDM::GetMdStateResponse& s,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "GetMdStateResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::GetMdStateResponse_ (*d, s, f);
-    return d;
-  }
-
-  void
-  GetContextStates_ (::std::ostream& o,
-                     const ::MDM::GetContextStates& s,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStates_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetContextStates_ (::std::ostream& o,
-                     const ::MDM::GetContextStates& s,
-                     ::xml_schema::ErrorHandler& h,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStates_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContextStates_ (::std::ostream& o,
-                     const ::MDM::GetContextStates& s,
-                     ::xercesc::DOMErrorHandler& h,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStates_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContextStates_ (::xercesc::XMLFormatTarget& t,
-                     const ::MDM::GetContextStates& s,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStates_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetContextStates_ (::xercesc::XMLFormatTarget& t,
-                     const ::MDM::GetContextStates& s,
-                     ::xml_schema::ErrorHandler& h,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStates_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContextStates_ (::xercesc::XMLFormatTarget& t,
-                     const ::MDM::GetContextStates& s,
-                     ::xercesc::DOMErrorHandler& h,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStates_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContextStates_ (::xercesc::DOMDocument& d,
-                     const ::MDM::GetContextStates& s,
-                     ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetContextStates" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetContextStates",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetContextStates_ (const ::MDM::GetContextStates& s,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "GetContextStates",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::GetContextStates_ (*d, s, f);
-    return d;
-  }
-
-  void
-  GetContextStatesResponse_ (::std::ostream& o,
-                             const ::MDM::GetContextStatesResponse& s,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             const ::std::string& e,
-                             ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetContextStatesResponse_ (::std::ostream& o,
-                             const ::MDM::GetContextStatesResponse& s,
-                             ::xml_schema::ErrorHandler& h,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             const ::std::string& e,
-                             ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContextStatesResponse_ (::std::ostream& o,
-                             const ::MDM::GetContextStatesResponse& s,
-                             ::xercesc::DOMErrorHandler& h,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             const ::std::string& e,
-                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContextStatesResponse_ (::xercesc::XMLFormatTarget& t,
-                             const ::MDM::GetContextStatesResponse& s,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             const ::std::string& e,
-                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetContextStatesResponse_ (::xercesc::XMLFormatTarget& t,
-                             const ::MDM::GetContextStatesResponse& s,
-                             ::xml_schema::ErrorHandler& h,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             const ::std::string& e,
-                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContextStatesResponse_ (::xercesc::XMLFormatTarget& t,
-                             const ::MDM::GetContextStatesResponse& s,
-                             ::xercesc::DOMErrorHandler& h,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             const ::std::string& e,
-                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContextStatesResponse_ (::xercesc::DOMDocument& d,
-                             const ::MDM::GetContextStatesResponse& s,
-                             ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetContextStatesResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetContextStatesResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetContextStatesResponse_ (const ::MDM::GetContextStatesResponse& s,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "GetContextStatesResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::GetContextStatesResponse_ (*d, s, f);
-    return d;
-  }
-
-  void
-  GetContextStatesByIdentification_ (::std::ostream& o,
-                                     const ::MDM::GetContextStatesByIdentification& s,
-                                     const ::xml_schema::NamespaceInfomap& m,
-                                     const ::std::string& e,
-                                     ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesByIdentification_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetContextStatesByIdentification_ (::std::ostream& o,
-                                     const ::MDM::GetContextStatesByIdentification& s,
-                                     ::xml_schema::ErrorHandler& h,
-                                     const ::xml_schema::NamespaceInfomap& m,
-                                     const ::std::string& e,
-                                     ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesByIdentification_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContextStatesByIdentification_ (::std::ostream& o,
-                                     const ::MDM::GetContextStatesByIdentification& s,
-                                     ::xercesc::DOMErrorHandler& h,
-                                     const ::xml_schema::NamespaceInfomap& m,
-                                     const ::std::string& e,
-                                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesByIdentification_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContextStatesByIdentification_ (::xercesc::XMLFormatTarget& t,
-                                     const ::MDM::GetContextStatesByIdentification& s,
-                                     const ::xml_schema::NamespaceInfomap& m,
-                                     const ::std::string& e,
-                                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesByIdentification_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetContextStatesByIdentification_ (::xercesc::XMLFormatTarget& t,
-                                     const ::MDM::GetContextStatesByIdentification& s,
-                                     ::xml_schema::ErrorHandler& h,
-                                     const ::xml_schema::NamespaceInfomap& m,
-                                     const ::std::string& e,
-                                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesByIdentification_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContextStatesByIdentification_ (::xercesc::XMLFormatTarget& t,
-                                     const ::MDM::GetContextStatesByIdentification& s,
-                                     ::xercesc::DOMErrorHandler& h,
-                                     const ::xml_schema::NamespaceInfomap& m,
-                                     const ::std::string& e,
-                                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesByIdentification_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContextStatesByIdentification_ (::xercesc::DOMDocument& d,
-                                     const ::MDM::GetContextStatesByIdentification& s,
-                                     ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetContextStatesByIdentification" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetContextStatesByIdentification",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetContextStatesByIdentification_ (const ::MDM::GetContextStatesByIdentification& s,
-                                     const ::xml_schema::NamespaceInfomap& m,
-                                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "GetContextStatesByIdentification",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::GetContextStatesByIdentification_ (*d, s, f);
-    return d;
-  }
-
-  void
-  GetContextStatesByIdentificationResponse_ (::std::ostream& o,
-                                             const ::MDM::GetContextStatesByIdentificationResponse& s,
-                                             const ::xml_schema::NamespaceInfomap& m,
-                                             const ::std::string& e,
-                                             ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesByIdentificationResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetContextStatesByIdentificationResponse_ (::std::ostream& o,
-                                             const ::MDM::GetContextStatesByIdentificationResponse& s,
-                                             ::xml_schema::ErrorHandler& h,
-                                             const ::xml_schema::NamespaceInfomap& m,
-                                             const ::std::string& e,
-                                             ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesByIdentificationResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContextStatesByIdentificationResponse_ (::std::ostream& o,
-                                             const ::MDM::GetContextStatesByIdentificationResponse& s,
-                                             ::xercesc::DOMErrorHandler& h,
-                                             const ::xml_schema::NamespaceInfomap& m,
-                                             const ::std::string& e,
-                                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesByIdentificationResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContextStatesByIdentificationResponse_ (::xercesc::XMLFormatTarget& t,
-                                             const ::MDM::GetContextStatesByIdentificationResponse& s,
-                                             const ::xml_schema::NamespaceInfomap& m,
-                                             const ::std::string& e,
-                                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesByIdentificationResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetContextStatesByIdentificationResponse_ (::xercesc::XMLFormatTarget& t,
-                                             const ::MDM::GetContextStatesByIdentificationResponse& s,
-                                             ::xml_schema::ErrorHandler& h,
-                                             const ::xml_schema::NamespaceInfomap& m,
-                                             const ::std::string& e,
-                                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesByIdentificationResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContextStatesByIdentificationResponse_ (::xercesc::XMLFormatTarget& t,
-                                             const ::MDM::GetContextStatesByIdentificationResponse& s,
-                                             ::xercesc::DOMErrorHandler& h,
-                                             const ::xml_schema::NamespaceInfomap& m,
-                                             const ::std::string& e,
-                                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesByIdentificationResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContextStatesByIdentificationResponse_ (::xercesc::DOMDocument& d,
-                                             const ::MDM::GetContextStatesByIdentificationResponse& s,
-                                             ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetContextStatesByIdentificationResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetContextStatesByIdentificationResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetContextStatesByIdentificationResponse_ (const ::MDM::GetContextStatesByIdentificationResponse& s,
-                                             const ::xml_schema::NamespaceInfomap& m,
-                                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "GetContextStatesByIdentificationResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::GetContextStatesByIdentificationResponse_ (*d, s, f);
-    return d;
-  }
-
-  void
-  GetContextStatesByFilter_ (::std::ostream& o,
-                             const ::MDM::GetContextStatesByFilter& s,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             const ::std::string& e,
-                             ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesByFilter_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetContextStatesByFilter_ (::std::ostream& o,
-                             const ::MDM::GetContextStatesByFilter& s,
-                             ::xml_schema::ErrorHandler& h,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             const ::std::string& e,
-                             ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesByFilter_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContextStatesByFilter_ (::std::ostream& o,
-                             const ::MDM::GetContextStatesByFilter& s,
-                             ::xercesc::DOMErrorHandler& h,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             const ::std::string& e,
-                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesByFilter_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContextStatesByFilter_ (::xercesc::XMLFormatTarget& t,
-                             const ::MDM::GetContextStatesByFilter& s,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             const ::std::string& e,
-                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesByFilter_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetContextStatesByFilter_ (::xercesc::XMLFormatTarget& t,
-                             const ::MDM::GetContextStatesByFilter& s,
-                             ::xml_schema::ErrorHandler& h,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             const ::std::string& e,
-                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesByFilter_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContextStatesByFilter_ (::xercesc::XMLFormatTarget& t,
-                             const ::MDM::GetContextStatesByFilter& s,
-                             ::xercesc::DOMErrorHandler& h,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             const ::std::string& e,
-                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesByFilter_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContextStatesByFilter_ (::xercesc::DOMDocument& d,
-                             const ::MDM::GetContextStatesByFilter& s,
-                             ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetContextStatesByFilter" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetContextStatesByFilter",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetContextStatesByFilter_ (const ::MDM::GetContextStatesByFilter& s,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "GetContextStatesByFilter",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::GetContextStatesByFilter_ (*d, s, f);
-    return d;
-  }
-
-  void
-  GetContextStatesByFilterResponse_ (::std::ostream& o,
-                                     const ::MDM::GetContextStatesByFilterResponse& s,
-                                     const ::xml_schema::NamespaceInfomap& m,
-                                     const ::std::string& e,
-                                     ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesByFilterResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetContextStatesByFilterResponse_ (::std::ostream& o,
-                                     const ::MDM::GetContextStatesByFilterResponse& s,
-                                     ::xml_schema::ErrorHandler& h,
-                                     const ::xml_schema::NamespaceInfomap& m,
-                                     const ::std::string& e,
-                                     ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesByFilterResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContextStatesByFilterResponse_ (::std::ostream& o,
-                                     const ::MDM::GetContextStatesByFilterResponse& s,
-                                     ::xercesc::DOMErrorHandler& h,
-                                     const ::xml_schema::NamespaceInfomap& m,
-                                     const ::std::string& e,
-                                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesByFilterResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContextStatesByFilterResponse_ (::xercesc::XMLFormatTarget& t,
-                                     const ::MDM::GetContextStatesByFilterResponse& s,
-                                     const ::xml_schema::NamespaceInfomap& m,
-                                     const ::std::string& e,
-                                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesByFilterResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetContextStatesByFilterResponse_ (::xercesc::XMLFormatTarget& t,
-                                     const ::MDM::GetContextStatesByFilterResponse& s,
-                                     ::xml_schema::ErrorHandler& h,
-                                     const ::xml_schema::NamespaceInfomap& m,
-                                     const ::std::string& e,
-                                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesByFilterResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContextStatesByFilterResponse_ (::xercesc::XMLFormatTarget& t,
-                                     const ::MDM::GetContextStatesByFilterResponse& s,
-                                     ::xercesc::DOMErrorHandler& h,
-                                     const ::xml_schema::NamespaceInfomap& m,
-                                     const ::std::string& e,
-                                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContextStatesByFilterResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContextStatesByFilterResponse_ (::xercesc::DOMDocument& d,
-                                     const ::MDM::GetContextStatesByFilterResponse& s,
-                                     ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetContextStatesByFilterResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetContextStatesByFilterResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetContextStatesByFilterResponse_ (const ::MDM::GetContextStatesByFilterResponse& s,
-                                     const ::xml_schema::NamespaceInfomap& m,
-                                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "GetContextStatesByFilterResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::GetContextStatesByFilterResponse_ (*d, s, f);
-    return d;
-  }
-
-  void
-  SetContextState_ (::std::ostream& o,
-                    const ::MDM::SetContextState& s,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    const ::std::string& e,
-                    ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetContextState_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SetContextState_ (::std::ostream& o,
-                    const ::MDM::SetContextState& s,
-                    ::xml_schema::ErrorHandler& h,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    const ::std::string& e,
-                    ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetContextState_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetContextState_ (::std::ostream& o,
-                    const ::MDM::SetContextState& s,
-                    ::xercesc::DOMErrorHandler& h,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    const ::std::string& e,
-                    ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetContextState_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetContextState_ (::xercesc::XMLFormatTarget& t,
-                    const ::MDM::SetContextState& s,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    const ::std::string& e,
-                    ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetContextState_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SetContextState_ (::xercesc::XMLFormatTarget& t,
-                    const ::MDM::SetContextState& s,
-                    ::xml_schema::ErrorHandler& h,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    const ::std::string& e,
-                    ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetContextState_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetContextState_ (::xercesc::XMLFormatTarget& t,
-                    const ::MDM::SetContextState& s,
-                    ::xercesc::DOMErrorHandler& h,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    const ::std::string& e,
-                    ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetContextState_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetContextState_ (::xercesc::DOMDocument& d,
-                    const ::MDM::SetContextState& s,
-                    ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SetContextState" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "SetContextState",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetContextState_ (const ::MDM::SetContextState& s,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "SetContextState",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::SetContextState_ (*d, s, f);
-    return d;
-  }
-
-  void
-  SetContextStateResponse_ (::std::ostream& o,
-                            const ::MDM::SetContextStateResponse& s,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            const ::std::string& e,
-                            ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetContextStateResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SetContextStateResponse_ (::std::ostream& o,
-                            const ::MDM::SetContextStateResponse& s,
-                            ::xml_schema::ErrorHandler& h,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            const ::std::string& e,
-                            ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetContextStateResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetContextStateResponse_ (::std::ostream& o,
-                            const ::MDM::SetContextStateResponse& s,
-                            ::xercesc::DOMErrorHandler& h,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            const ::std::string& e,
-                            ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetContextStateResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetContextStateResponse_ (::xercesc::XMLFormatTarget& t,
-                            const ::MDM::SetContextStateResponse& s,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            const ::std::string& e,
-                            ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetContextStateResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SetContextStateResponse_ (::xercesc::XMLFormatTarget& t,
-                            const ::MDM::SetContextStateResponse& s,
-                            ::xml_schema::ErrorHandler& h,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            const ::std::string& e,
-                            ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetContextStateResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetContextStateResponse_ (::xercesc::XMLFormatTarget& t,
-                            const ::MDM::SetContextStateResponse& s,
-                            ::xercesc::DOMErrorHandler& h,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            const ::std::string& e,
-                            ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetContextStateResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetContextStateResponse_ (::xercesc::DOMDocument& d,
-                            const ::MDM::SetContextStateResponse& s,
-                            ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SetContextStateResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "SetContextStateResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetContextStateResponse_ (const ::MDM::SetContextStateResponse& s,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "SetContextStateResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::SetContextStateResponse_ (*d, s, f);
-    return d;
-  }
-
-  void
   operator<< (::xercesc::DOMElement& e, const AbstractContextReport& i)
   {
     e << static_cast< const ::MDM::AbstractReport& > (i);
@@ -28103,7 +11668,7 @@ namespace MDM
     // ReportPart
     //
     for (AbstractContextReport::ReportPartConstIterator
-         b (i.ReportPart ().begin ()), n (i.ReportPart ().end ());
+         b (i.getReportPart ().begin ()), n (i.getReportPart ().end ());
          b != n; ++b)
     {
       ::xercesc::DOMElement& s (
@@ -28124,920 +11689,32 @@ namespace MDM
 
 
   void
-  PeriodicContextReport_ (::std::ostream& o,
-                          const ::MDM::PeriodicContextReport& s,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicContextReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  PeriodicContextReport_ (::std::ostream& o,
-                          const ::MDM::PeriodicContextReport& s,
-                          ::xml_schema::ErrorHandler& h,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicContextReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  PeriodicContextReport_ (::std::ostream& o,
-                          const ::MDM::PeriodicContextReport& s,
-                          ::xercesc::DOMErrorHandler& h,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicContextReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  PeriodicContextReport_ (::xercesc::XMLFormatTarget& t,
-                          const ::MDM::PeriodicContextReport& s,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicContextReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  PeriodicContextReport_ (::xercesc::XMLFormatTarget& t,
-                          const ::MDM::PeriodicContextReport& s,
-                          ::xml_schema::ErrorHandler& h,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicContextReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  PeriodicContextReport_ (::xercesc::XMLFormatTarget& t,
-                          const ::MDM::PeriodicContextReport& s,
-                          ::xercesc::DOMErrorHandler& h,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicContextReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  PeriodicContextReport_ (::xercesc::DOMDocument& d,
-                          const ::MDM::PeriodicContextReport& s,
-                          ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "PeriodicContextReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "PeriodicContextReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  PeriodicContextReport_ (const ::MDM::PeriodicContextReport& s,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "PeriodicContextReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::PeriodicContextReport_ (*d, s, f);
-    return d;
-  }
-
-  void
-  EpisodicContextReport_ (::std::ostream& o,
-                          const ::MDM::EpisodicContextReport& s,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicContextReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  EpisodicContextReport_ (::std::ostream& o,
-                          const ::MDM::EpisodicContextReport& s,
-                          ::xml_schema::ErrorHandler& h,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicContextReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  EpisodicContextReport_ (::std::ostream& o,
-                          const ::MDM::EpisodicContextReport& s,
-                          ::xercesc::DOMErrorHandler& h,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicContextReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  EpisodicContextReport_ (::xercesc::XMLFormatTarget& t,
-                          const ::MDM::EpisodicContextReport& s,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicContextReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  EpisodicContextReport_ (::xercesc::XMLFormatTarget& t,
-                          const ::MDM::EpisodicContextReport& s,
-                          ::xml_schema::ErrorHandler& h,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicContextReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  EpisodicContextReport_ (::xercesc::XMLFormatTarget& t,
-                          const ::MDM::EpisodicContextReport& s,
-                          ::xercesc::DOMErrorHandler& h,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicContextReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  EpisodicContextReport_ (::xercesc::DOMDocument& d,
-                          const ::MDM::EpisodicContextReport& s,
-                          ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "EpisodicContextReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "EpisodicContextReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  EpisodicContextReport_ (const ::MDM::EpisodicContextReport& s,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "EpisodicContextReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::EpisodicContextReport_ (*d, s, f);
-    return d;
-  }
-
-  void
-  GetLocalizedText_ (::std::ostream& o,
-                     const ::MDM::GetLocalizedText& s,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetLocalizedText_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetLocalizedText_ (::std::ostream& o,
-                     const ::MDM::GetLocalizedText& s,
-                     ::xml_schema::ErrorHandler& h,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetLocalizedText_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetLocalizedText_ (::std::ostream& o,
-                     const ::MDM::GetLocalizedText& s,
-                     ::xercesc::DOMErrorHandler& h,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetLocalizedText_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetLocalizedText_ (::xercesc::XMLFormatTarget& t,
-                     const ::MDM::GetLocalizedText& s,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetLocalizedText_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetLocalizedText_ (::xercesc::XMLFormatTarget& t,
-                     const ::MDM::GetLocalizedText& s,
-                     ::xml_schema::ErrorHandler& h,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetLocalizedText_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetLocalizedText_ (::xercesc::XMLFormatTarget& t,
-                     const ::MDM::GetLocalizedText& s,
-                     ::xercesc::DOMErrorHandler& h,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetLocalizedText_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetLocalizedText_ (::xercesc::DOMDocument& d,
-                     const ::MDM::GetLocalizedText& s,
-                     ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetLocalizedText" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetLocalizedText",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetLocalizedText_ (const ::MDM::GetLocalizedText& s,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "GetLocalizedText",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::GetLocalizedText_ (*d, s, f);
-    return d;
-  }
-
-  void
-  GetLocalizedTextResponse_ (::std::ostream& o,
-                             const ::MDM::GetLocalizedTextResponse& s,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             const ::std::string& e,
-                             ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetLocalizedTextResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetLocalizedTextResponse_ (::std::ostream& o,
-                             const ::MDM::GetLocalizedTextResponse& s,
-                             ::xml_schema::ErrorHandler& h,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             const ::std::string& e,
-                             ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetLocalizedTextResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetLocalizedTextResponse_ (::std::ostream& o,
-                             const ::MDM::GetLocalizedTextResponse& s,
-                             ::xercesc::DOMErrorHandler& h,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             const ::std::string& e,
-                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetLocalizedTextResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetLocalizedTextResponse_ (::xercesc::XMLFormatTarget& t,
-                             const ::MDM::GetLocalizedTextResponse& s,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             const ::std::string& e,
-                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetLocalizedTextResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetLocalizedTextResponse_ (::xercesc::XMLFormatTarget& t,
-                             const ::MDM::GetLocalizedTextResponse& s,
-                             ::xml_schema::ErrorHandler& h,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             const ::std::string& e,
-                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetLocalizedTextResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetLocalizedTextResponse_ (::xercesc::XMLFormatTarget& t,
-                             const ::MDM::GetLocalizedTextResponse& s,
-                             ::xercesc::DOMErrorHandler& h,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             const ::std::string& e,
-                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetLocalizedTextResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetLocalizedTextResponse_ (::xercesc::DOMDocument& d,
-                             const ::MDM::GetLocalizedTextResponse& s,
-                             ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetLocalizedTextResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetLocalizedTextResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetLocalizedTextResponse_ (const ::MDM::GetLocalizedTextResponse& s,
-                             const ::xml_schema::NamespaceInfomap& m,
-                             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "GetLocalizedTextResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::GetLocalizedTextResponse_ (*d, s, f);
-    return d;
-  }
-
-  void
-  GetSupportedLanguages_ (::std::ostream& o,
-                          const ::MDM::GetSupportedLanguages& s,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetSupportedLanguages_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetSupportedLanguages_ (::std::ostream& o,
-                          const ::MDM::GetSupportedLanguages& s,
-                          ::xml_schema::ErrorHandler& h,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetSupportedLanguages_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetSupportedLanguages_ (::std::ostream& o,
-                          const ::MDM::GetSupportedLanguages& s,
-                          ::xercesc::DOMErrorHandler& h,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetSupportedLanguages_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetSupportedLanguages_ (::xercesc::XMLFormatTarget& t,
-                          const ::MDM::GetSupportedLanguages& s,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetSupportedLanguages_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetSupportedLanguages_ (::xercesc::XMLFormatTarget& t,
-                          const ::MDM::GetSupportedLanguages& s,
-                          ::xml_schema::ErrorHandler& h,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetSupportedLanguages_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetSupportedLanguages_ (::xercesc::XMLFormatTarget& t,
-                          const ::MDM::GetSupportedLanguages& s,
-                          ::xercesc::DOMErrorHandler& h,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetSupportedLanguages_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetSupportedLanguages_ (::xercesc::DOMDocument& d,
-                          const ::MDM::GetSupportedLanguages& s,
-                          ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetSupportedLanguages" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetSupportedLanguages",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetSupportedLanguages_ (const ::MDM::GetSupportedLanguages& s,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "GetSupportedLanguages",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::GetSupportedLanguages_ (*d, s, f);
-    return d;
-  }
-
-  void
-  GetSupportedLanguagesResponse_ (::std::ostream& o,
-                                  const ::MDM::GetSupportedLanguagesResponse& s,
-                                  const ::xml_schema::NamespaceInfomap& m,
-                                  const ::std::string& e,
-                                  ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetSupportedLanguagesResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetSupportedLanguagesResponse_ (::std::ostream& o,
-                                  const ::MDM::GetSupportedLanguagesResponse& s,
-                                  ::xml_schema::ErrorHandler& h,
-                                  const ::xml_schema::NamespaceInfomap& m,
-                                  const ::std::string& e,
-                                  ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetSupportedLanguagesResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetSupportedLanguagesResponse_ (::std::ostream& o,
-                                  const ::MDM::GetSupportedLanguagesResponse& s,
-                                  ::xercesc::DOMErrorHandler& h,
-                                  const ::xml_schema::NamespaceInfomap& m,
-                                  const ::std::string& e,
-                                  ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetSupportedLanguagesResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetSupportedLanguagesResponse_ (::xercesc::XMLFormatTarget& t,
-                                  const ::MDM::GetSupportedLanguagesResponse& s,
-                                  const ::xml_schema::NamespaceInfomap& m,
-                                  const ::std::string& e,
-                                  ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetSupportedLanguagesResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetSupportedLanguagesResponse_ (::xercesc::XMLFormatTarget& t,
-                                  const ::MDM::GetSupportedLanguagesResponse& s,
-                                  ::xml_schema::ErrorHandler& h,
-                                  const ::xml_schema::NamespaceInfomap& m,
-                                  const ::std::string& e,
-                                  ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetSupportedLanguagesResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetSupportedLanguagesResponse_ (::xercesc::XMLFormatTarget& t,
-                                  const ::MDM::GetSupportedLanguagesResponse& s,
-                                  ::xercesc::DOMErrorHandler& h,
-                                  const ::xml_schema::NamespaceInfomap& m,
-                                  const ::std::string& e,
-                                  ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetSupportedLanguagesResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetSupportedLanguagesResponse_ (::xercesc::DOMDocument& d,
-                                  const ::MDM::GetSupportedLanguagesResponse& s,
-                                  ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetSupportedLanguagesResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetSupportedLanguagesResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetSupportedLanguagesResponse_ (const ::MDM::GetSupportedLanguagesResponse& s,
-                                  const ::xml_schema::NamespaceInfomap& m,
-                                  ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "GetSupportedLanguagesResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::GetSupportedLanguagesResponse_ (*d, s, f);
-    return d;
-  }
-
-  void
   operator<< (::xercesc::DOMElement& e, const VersionFrame& i)
   {
     e << static_cast< const ::xml_schema::Type& > (i);
 
     // Start
     //
-    if (i.Start ())
+    if (i.getStart ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Start",
           e));
 
-      a << *i.Start ();
+      a << *i.getStart ();
     }
 
     // End
     //
-    if (i.End ())
+    if (i.getEnd ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "End",
           e));
 
-      a << *i.End ();
+      a << *i.getEnd ();
     }
   }
 
@@ -29055,26 +11732,26 @@ namespace MDM
 
     // Start
     //
-    if (i.Start ())
+    if (i.getStart ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Start",
           e));
 
-      a << *i.Start ();
+      a << *i.getStart ();
     }
 
     // End
     //
-    if (i.End ())
+    if (i.getEnd ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "End",
           e));
 
-      a << *i.End ();
+      a << *i.getEnd ();
     }
   }
 
@@ -29086,3114 +11763,6 @@ namespace MDM
 
 
   void
-  GetDescriptorsFromArchive_ (::std::ostream& o,
-                              const ::MDM::GetDescriptorsFromArchive& s,
-                              const ::xml_schema::NamespaceInfomap& m,
-                              const ::std::string& e,
-                              ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetDescriptorsFromArchive_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetDescriptorsFromArchive_ (::std::ostream& o,
-                              const ::MDM::GetDescriptorsFromArchive& s,
-                              ::xml_schema::ErrorHandler& h,
-                              const ::xml_schema::NamespaceInfomap& m,
-                              const ::std::string& e,
-                              ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetDescriptorsFromArchive_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetDescriptorsFromArchive_ (::std::ostream& o,
-                              const ::MDM::GetDescriptorsFromArchive& s,
-                              ::xercesc::DOMErrorHandler& h,
-                              const ::xml_schema::NamespaceInfomap& m,
-                              const ::std::string& e,
-                              ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetDescriptorsFromArchive_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetDescriptorsFromArchive_ (::xercesc::XMLFormatTarget& t,
-                              const ::MDM::GetDescriptorsFromArchive& s,
-                              const ::xml_schema::NamespaceInfomap& m,
-                              const ::std::string& e,
-                              ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetDescriptorsFromArchive_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetDescriptorsFromArchive_ (::xercesc::XMLFormatTarget& t,
-                              const ::MDM::GetDescriptorsFromArchive& s,
-                              ::xml_schema::ErrorHandler& h,
-                              const ::xml_schema::NamespaceInfomap& m,
-                              const ::std::string& e,
-                              ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetDescriptorsFromArchive_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetDescriptorsFromArchive_ (::xercesc::XMLFormatTarget& t,
-                              const ::MDM::GetDescriptorsFromArchive& s,
-                              ::xercesc::DOMErrorHandler& h,
-                              const ::xml_schema::NamespaceInfomap& m,
-                              const ::std::string& e,
-                              ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetDescriptorsFromArchive_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetDescriptorsFromArchive_ (::xercesc::DOMDocument& d,
-                              const ::MDM::GetDescriptorsFromArchive& s,
-                              ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetDescriptorsFromArchive" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetDescriptorsFromArchive",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetDescriptorsFromArchive_ (const ::MDM::GetDescriptorsFromArchive& s,
-                              const ::xml_schema::NamespaceInfomap& m,
-                              ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "GetDescriptorsFromArchive",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::GetDescriptorsFromArchive_ (*d, s, f);
-    return d;
-  }
-
-  void
-  GetDescriptorsFromArchiveResponse_ (::std::ostream& o,
-                                      const ::MDM::GetDescriptorsFromArchiveResponse& s,
-                                      const ::xml_schema::NamespaceInfomap& m,
-                                      const ::std::string& e,
-                                      ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetDescriptorsFromArchiveResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetDescriptorsFromArchiveResponse_ (::std::ostream& o,
-                                      const ::MDM::GetDescriptorsFromArchiveResponse& s,
-                                      ::xml_schema::ErrorHandler& h,
-                                      const ::xml_schema::NamespaceInfomap& m,
-                                      const ::std::string& e,
-                                      ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetDescriptorsFromArchiveResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetDescriptorsFromArchiveResponse_ (::std::ostream& o,
-                                      const ::MDM::GetDescriptorsFromArchiveResponse& s,
-                                      ::xercesc::DOMErrorHandler& h,
-                                      const ::xml_schema::NamespaceInfomap& m,
-                                      const ::std::string& e,
-                                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetDescriptorsFromArchiveResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetDescriptorsFromArchiveResponse_ (::xercesc::XMLFormatTarget& t,
-                                      const ::MDM::GetDescriptorsFromArchiveResponse& s,
-                                      const ::xml_schema::NamespaceInfomap& m,
-                                      const ::std::string& e,
-                                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetDescriptorsFromArchiveResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetDescriptorsFromArchiveResponse_ (::xercesc::XMLFormatTarget& t,
-                                      const ::MDM::GetDescriptorsFromArchiveResponse& s,
-                                      ::xml_schema::ErrorHandler& h,
-                                      const ::xml_schema::NamespaceInfomap& m,
-                                      const ::std::string& e,
-                                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetDescriptorsFromArchiveResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetDescriptorsFromArchiveResponse_ (::xercesc::XMLFormatTarget& t,
-                                      const ::MDM::GetDescriptorsFromArchiveResponse& s,
-                                      ::xercesc::DOMErrorHandler& h,
-                                      const ::xml_schema::NamespaceInfomap& m,
-                                      const ::std::string& e,
-                                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetDescriptorsFromArchiveResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetDescriptorsFromArchiveResponse_ (::xercesc::DOMDocument& d,
-                                      const ::MDM::GetDescriptorsFromArchiveResponse& s,
-                                      ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetDescriptorsFromArchiveResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetDescriptorsFromArchiveResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetDescriptorsFromArchiveResponse_ (const ::MDM::GetDescriptorsFromArchiveResponse& s,
-                                      const ::xml_schema::NamespaceInfomap& m,
-                                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "GetDescriptorsFromArchiveResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::GetDescriptorsFromArchiveResponse_ (*d, s, f);
-    return d;
-  }
-
-  void
-  GetStatesFromArchive_ (::std::ostream& o,
-                         const ::MDM::GetStatesFromArchive& s,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         const ::std::string& e,
-                         ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetStatesFromArchive_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetStatesFromArchive_ (::std::ostream& o,
-                         const ::MDM::GetStatesFromArchive& s,
-                         ::xml_schema::ErrorHandler& h,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         const ::std::string& e,
-                         ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetStatesFromArchive_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetStatesFromArchive_ (::std::ostream& o,
-                         const ::MDM::GetStatesFromArchive& s,
-                         ::xercesc::DOMErrorHandler& h,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         const ::std::string& e,
-                         ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetStatesFromArchive_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetStatesFromArchive_ (::xercesc::XMLFormatTarget& t,
-                         const ::MDM::GetStatesFromArchive& s,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         const ::std::string& e,
-                         ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetStatesFromArchive_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetStatesFromArchive_ (::xercesc::XMLFormatTarget& t,
-                         const ::MDM::GetStatesFromArchive& s,
-                         ::xml_schema::ErrorHandler& h,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         const ::std::string& e,
-                         ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetStatesFromArchive_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetStatesFromArchive_ (::xercesc::XMLFormatTarget& t,
-                         const ::MDM::GetStatesFromArchive& s,
-                         ::xercesc::DOMErrorHandler& h,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         const ::std::string& e,
-                         ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetStatesFromArchive_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetStatesFromArchive_ (::xercesc::DOMDocument& d,
-                         const ::MDM::GetStatesFromArchive& s,
-                         ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetStatesFromArchive" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetStatesFromArchive",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetStatesFromArchive_ (const ::MDM::GetStatesFromArchive& s,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "GetStatesFromArchive",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::GetStatesFromArchive_ (*d, s, f);
-    return d;
-  }
-
-  void
-  GetStatesFromArchiveResponse_ (::std::ostream& o,
-                                 const ::MDM::GetStatesFromArchiveResponse& s,
-                                 const ::xml_schema::NamespaceInfomap& m,
-                                 const ::std::string& e,
-                                 ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetStatesFromArchiveResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetStatesFromArchiveResponse_ (::std::ostream& o,
-                                 const ::MDM::GetStatesFromArchiveResponse& s,
-                                 ::xml_schema::ErrorHandler& h,
-                                 const ::xml_schema::NamespaceInfomap& m,
-                                 const ::std::string& e,
-                                 ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetStatesFromArchiveResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetStatesFromArchiveResponse_ (::std::ostream& o,
-                                 const ::MDM::GetStatesFromArchiveResponse& s,
-                                 ::xercesc::DOMErrorHandler& h,
-                                 const ::xml_schema::NamespaceInfomap& m,
-                                 const ::std::string& e,
-                                 ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetStatesFromArchiveResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetStatesFromArchiveResponse_ (::xercesc::XMLFormatTarget& t,
-                                 const ::MDM::GetStatesFromArchiveResponse& s,
-                                 const ::xml_schema::NamespaceInfomap& m,
-                                 const ::std::string& e,
-                                 ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetStatesFromArchiveResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetStatesFromArchiveResponse_ (::xercesc::XMLFormatTarget& t,
-                                 const ::MDM::GetStatesFromArchiveResponse& s,
-                                 ::xml_schema::ErrorHandler& h,
-                                 const ::xml_schema::NamespaceInfomap& m,
-                                 const ::std::string& e,
-                                 ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetStatesFromArchiveResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetStatesFromArchiveResponse_ (::xercesc::XMLFormatTarget& t,
-                                 const ::MDM::GetStatesFromArchiveResponse& s,
-                                 ::xercesc::DOMErrorHandler& h,
-                                 const ::xml_schema::NamespaceInfomap& m,
-                                 const ::std::string& e,
-                                 ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetStatesFromArchiveResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetStatesFromArchiveResponse_ (::xercesc::DOMDocument& d,
-                                 const ::MDM::GetStatesFromArchiveResponse& s,
-                                 ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetStatesFromArchiveResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetStatesFromArchiveResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetStatesFromArchiveResponse_ (const ::MDM::GetStatesFromArchiveResponse& s,
-                                 const ::xml_schema::NamespaceInfomap& m,
-                                 ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "GetStatesFromArchiveResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::GetStatesFromArchiveResponse_ (*d, s, f);
-    return d;
-  }
-
-  void
-  SetValue_ (::std::ostream& o,
-             const ::MDM::SetValue& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetValue_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SetValue_ (::std::ostream& o,
-             const ::MDM::SetValue& s,
-             ::xml_schema::ErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetValue_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetValue_ (::std::ostream& o,
-             const ::MDM::SetValue& s,
-             ::xercesc::DOMErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetValue_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetValue_ (::xercesc::XMLFormatTarget& t,
-             const ::MDM::SetValue& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetValue_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SetValue_ (::xercesc::XMLFormatTarget& t,
-             const ::MDM::SetValue& s,
-             ::xml_schema::ErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetValue_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetValue_ (::xercesc::XMLFormatTarget& t,
-             const ::MDM::SetValue& s,
-             ::xercesc::DOMErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetValue_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetValue_ (::xercesc::DOMDocument& d,
-             const ::MDM::SetValue& s,
-             ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SetValue" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "SetValue",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetValue_ (const ::MDM::SetValue& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "SetValue",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::SetValue_ (*d, s, f);
-    return d;
-  }
-
-  void
-  SetValueResponse_ (::std::ostream& o,
-                     const ::MDM::SetValueResponse& s,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetValueResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SetValueResponse_ (::std::ostream& o,
-                     const ::MDM::SetValueResponse& s,
-                     ::xml_schema::ErrorHandler& h,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetValueResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetValueResponse_ (::std::ostream& o,
-                     const ::MDM::SetValueResponse& s,
-                     ::xercesc::DOMErrorHandler& h,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetValueResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetValueResponse_ (::xercesc::XMLFormatTarget& t,
-                     const ::MDM::SetValueResponse& s,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetValueResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SetValueResponse_ (::xercesc::XMLFormatTarget& t,
-                     const ::MDM::SetValueResponse& s,
-                     ::xml_schema::ErrorHandler& h,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetValueResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetValueResponse_ (::xercesc::XMLFormatTarget& t,
-                     const ::MDM::SetValueResponse& s,
-                     ::xercesc::DOMErrorHandler& h,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetValueResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetValueResponse_ (::xercesc::DOMDocument& d,
-                     const ::MDM::SetValueResponse& s,
-                     ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SetValueResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "SetValueResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetValueResponse_ (const ::MDM::SetValueResponse& s,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "SetValueResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::SetValueResponse_ (*d, s, f);
-    return d;
-  }
-
-  void
-  SetString_ (::std::ostream& o,
-              const ::MDM::SetString& s,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetString_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SetString_ (::std::ostream& o,
-              const ::MDM::SetString& s,
-              ::xml_schema::ErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetString_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetString_ (::std::ostream& o,
-              const ::MDM::SetString& s,
-              ::xercesc::DOMErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetString_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetString_ (::xercesc::XMLFormatTarget& t,
-              const ::MDM::SetString& s,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetString_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SetString_ (::xercesc::XMLFormatTarget& t,
-              const ::MDM::SetString& s,
-              ::xml_schema::ErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetString_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetString_ (::xercesc::XMLFormatTarget& t,
-              const ::MDM::SetString& s,
-              ::xercesc::DOMErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetString_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetString_ (::xercesc::DOMDocument& d,
-              const ::MDM::SetString& s,
-              ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SetString" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "SetString",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetString_ (const ::MDM::SetString& s,
-              const ::xml_schema::NamespaceInfomap& m,
-              ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "SetString",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::SetString_ (*d, s, f);
-    return d;
-  }
-
-  void
-  SetStringResponse_ (::std::ostream& o,
-                      const ::MDM::SetStringResponse& s,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetStringResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SetStringResponse_ (::std::ostream& o,
-                      const ::MDM::SetStringResponse& s,
-                      ::xml_schema::ErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetStringResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetStringResponse_ (::std::ostream& o,
-                      const ::MDM::SetStringResponse& s,
-                      ::xercesc::DOMErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetStringResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetStringResponse_ (::xercesc::XMLFormatTarget& t,
-                      const ::MDM::SetStringResponse& s,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetStringResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SetStringResponse_ (::xercesc::XMLFormatTarget& t,
-                      const ::MDM::SetStringResponse& s,
-                      ::xml_schema::ErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetStringResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetStringResponse_ (::xercesc::XMLFormatTarget& t,
-                      const ::MDM::SetStringResponse& s,
-                      ::xercesc::DOMErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetStringResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetStringResponse_ (::xercesc::DOMDocument& d,
-                      const ::MDM::SetStringResponse& s,
-                      ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SetStringResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "SetStringResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetStringResponse_ (const ::MDM::SetStringResponse& s,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "SetStringResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::SetStringResponse_ (*d, s, f);
-    return d;
-  }
-
-  void
-  Activate_ (::std::ostream& o,
-             const ::MDM::Activate& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::Activate_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  Activate_ (::std::ostream& o,
-             const ::MDM::Activate& s,
-             ::xml_schema::ErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::Activate_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  Activate_ (::std::ostream& o,
-             const ::MDM::Activate& s,
-             ::xercesc::DOMErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::Activate_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  Activate_ (::xercesc::XMLFormatTarget& t,
-             const ::MDM::Activate& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::Activate_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  Activate_ (::xercesc::XMLFormatTarget& t,
-             const ::MDM::Activate& s,
-             ::xml_schema::ErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::Activate_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  Activate_ (::xercesc::XMLFormatTarget& t,
-             const ::MDM::Activate& s,
-             ::xercesc::DOMErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::Activate_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  Activate_ (::xercesc::DOMDocument& d,
-             const ::MDM::Activate& s,
-             ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "Activate" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Activate",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  Activate_ (const ::MDM::Activate& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "Activate",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::Activate_ (*d, s, f);
-    return d;
-  }
-
-  void
-  ActivateResponse_ (::std::ostream& o,
-                     const ::MDM::ActivateResponse& s,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::ActivateResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  ActivateResponse_ (::std::ostream& o,
-                     const ::MDM::ActivateResponse& s,
-                     ::xml_schema::ErrorHandler& h,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::ActivateResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  ActivateResponse_ (::std::ostream& o,
-                     const ::MDM::ActivateResponse& s,
-                     ::xercesc::DOMErrorHandler& h,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::ActivateResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  ActivateResponse_ (::xercesc::XMLFormatTarget& t,
-                     const ::MDM::ActivateResponse& s,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::ActivateResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  ActivateResponse_ (::xercesc::XMLFormatTarget& t,
-                     const ::MDM::ActivateResponse& s,
-                     ::xml_schema::ErrorHandler& h,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::ActivateResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  ActivateResponse_ (::xercesc::XMLFormatTarget& t,
-                     const ::MDM::ActivateResponse& s,
-                     ::xercesc::DOMErrorHandler& h,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::ActivateResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  ActivateResponse_ (::xercesc::DOMDocument& d,
-                     const ::MDM::ActivateResponse& s,
-                     ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "ActivateResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "ActivateResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  ActivateResponse_ (const ::MDM::ActivateResponse& s,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "ActivateResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::ActivateResponse_ (*d, s, f);
-    return d;
-  }
-
-  void
-  SetAlertState_ (::std::ostream& o,
-                  const ::MDM::SetAlertState& s,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetAlertState_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SetAlertState_ (::std::ostream& o,
-                  const ::MDM::SetAlertState& s,
-                  ::xml_schema::ErrorHandler& h,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetAlertState_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetAlertState_ (::std::ostream& o,
-                  const ::MDM::SetAlertState& s,
-                  ::xercesc::DOMErrorHandler& h,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetAlertState_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetAlertState_ (::xercesc::XMLFormatTarget& t,
-                  const ::MDM::SetAlertState& s,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetAlertState_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SetAlertState_ (::xercesc::XMLFormatTarget& t,
-                  const ::MDM::SetAlertState& s,
-                  ::xml_schema::ErrorHandler& h,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetAlertState_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetAlertState_ (::xercesc::XMLFormatTarget& t,
-                  const ::MDM::SetAlertState& s,
-                  ::xercesc::DOMErrorHandler& h,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetAlertState_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetAlertState_ (::xercesc::DOMDocument& d,
-                  const ::MDM::SetAlertState& s,
-                  ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SetAlertState" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "SetAlertState",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetAlertState_ (const ::MDM::SetAlertState& s,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "SetAlertState",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::SetAlertState_ (*d, s, f);
-    return d;
-  }
-
-  void
-  SetAlertStateResponse_ (::std::ostream& o,
-                          const ::MDM::SetAlertStateResponse& s,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetAlertStateResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SetAlertStateResponse_ (::std::ostream& o,
-                          const ::MDM::SetAlertStateResponse& s,
-                          ::xml_schema::ErrorHandler& h,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetAlertStateResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetAlertStateResponse_ (::std::ostream& o,
-                          const ::MDM::SetAlertStateResponse& s,
-                          ::xercesc::DOMErrorHandler& h,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetAlertStateResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetAlertStateResponse_ (::xercesc::XMLFormatTarget& t,
-                          const ::MDM::SetAlertStateResponse& s,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetAlertStateResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SetAlertStateResponse_ (::xercesc::XMLFormatTarget& t,
-                          const ::MDM::SetAlertStateResponse& s,
-                          ::xml_schema::ErrorHandler& h,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetAlertStateResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetAlertStateResponse_ (::xercesc::XMLFormatTarget& t,
-                          const ::MDM::SetAlertStateResponse& s,
-                          ::xercesc::DOMErrorHandler& h,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetAlertStateResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetAlertStateResponse_ (::xercesc::DOMDocument& d,
-                          const ::MDM::SetAlertStateResponse& s,
-                          ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SetAlertStateResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "SetAlertStateResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetAlertStateResponse_ (const ::MDM::SetAlertStateResponse& s,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "SetAlertStateResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::SetAlertStateResponse_ (*d, s, f);
-    return d;
-  }
-
-  void
-  SetComponentState_ (::std::ostream& o,
-                      const ::MDM::SetComponentState& s,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetComponentState_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SetComponentState_ (::std::ostream& o,
-                      const ::MDM::SetComponentState& s,
-                      ::xml_schema::ErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetComponentState_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetComponentState_ (::std::ostream& o,
-                      const ::MDM::SetComponentState& s,
-                      ::xercesc::DOMErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetComponentState_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetComponentState_ (::xercesc::XMLFormatTarget& t,
-                      const ::MDM::SetComponentState& s,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetComponentState_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SetComponentState_ (::xercesc::XMLFormatTarget& t,
-                      const ::MDM::SetComponentState& s,
-                      ::xml_schema::ErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetComponentState_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetComponentState_ (::xercesc::XMLFormatTarget& t,
-                      const ::MDM::SetComponentState& s,
-                      ::xercesc::DOMErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetComponentState_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetComponentState_ (::xercesc::DOMDocument& d,
-                      const ::MDM::SetComponentState& s,
-                      ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SetComponentState" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "SetComponentState",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetComponentState_ (const ::MDM::SetComponentState& s,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "SetComponentState",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::SetComponentState_ (*d, s, f);
-    return d;
-  }
-
-  void
-  SetComponentStateResponse_ (::std::ostream& o,
-                              const ::MDM::SetComponentStateResponse& s,
-                              const ::xml_schema::NamespaceInfomap& m,
-                              const ::std::string& e,
-                              ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetComponentStateResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SetComponentStateResponse_ (::std::ostream& o,
-                              const ::MDM::SetComponentStateResponse& s,
-                              ::xml_schema::ErrorHandler& h,
-                              const ::xml_schema::NamespaceInfomap& m,
-                              const ::std::string& e,
-                              ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetComponentStateResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetComponentStateResponse_ (::std::ostream& o,
-                              const ::MDM::SetComponentStateResponse& s,
-                              ::xercesc::DOMErrorHandler& h,
-                              const ::xml_schema::NamespaceInfomap& m,
-                              const ::std::string& e,
-                              ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetComponentStateResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetComponentStateResponse_ (::xercesc::XMLFormatTarget& t,
-                              const ::MDM::SetComponentStateResponse& s,
-                              const ::xml_schema::NamespaceInfomap& m,
-                              const ::std::string& e,
-                              ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetComponentStateResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SetComponentStateResponse_ (::xercesc::XMLFormatTarget& t,
-                              const ::MDM::SetComponentStateResponse& s,
-                              ::xml_schema::ErrorHandler& h,
-                              const ::xml_schema::NamespaceInfomap& m,
-                              const ::std::string& e,
-                              ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetComponentStateResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetComponentStateResponse_ (::xercesc::XMLFormatTarget& t,
-                              const ::MDM::SetComponentStateResponse& s,
-                              ::xercesc::DOMErrorHandler& h,
-                              const ::xml_schema::NamespaceInfomap& m,
-                              const ::std::string& e,
-                              ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetComponentStateResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetComponentStateResponse_ (::xercesc::DOMDocument& d,
-                              const ::MDM::SetComponentStateResponse& s,
-                              ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SetComponentStateResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "SetComponentStateResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetComponentStateResponse_ (const ::MDM::SetComponentStateResponse& s,
-                              const ::xml_schema::NamespaceInfomap& m,
-                              ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "SetComponentStateResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::SetComponentStateResponse_ (*d, s, f);
-    return d;
-  }
-
-  void
-  SetMetricState_ (::std::ostream& o,
-                   const ::MDM::SetMetricState& s,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetMetricState_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SetMetricState_ (::std::ostream& o,
-                   const ::MDM::SetMetricState& s,
-                   ::xml_schema::ErrorHandler& h,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetMetricState_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetMetricState_ (::std::ostream& o,
-                   const ::MDM::SetMetricState& s,
-                   ::xercesc::DOMErrorHandler& h,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetMetricState_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetMetricState_ (::xercesc::XMLFormatTarget& t,
-                   const ::MDM::SetMetricState& s,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetMetricState_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SetMetricState_ (::xercesc::XMLFormatTarget& t,
-                   const ::MDM::SetMetricState& s,
-                   ::xml_schema::ErrorHandler& h,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetMetricState_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetMetricState_ (::xercesc::XMLFormatTarget& t,
-                   const ::MDM::SetMetricState& s,
-                   ::xercesc::DOMErrorHandler& h,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetMetricState_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetMetricState_ (::xercesc::DOMDocument& d,
-                   const ::MDM::SetMetricState& s,
-                   ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SetMetricState" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "SetMetricState",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetMetricState_ (const ::MDM::SetMetricState& s,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "SetMetricState",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::SetMetricState_ (*d, s, f);
-    return d;
-  }
-
-  void
-  SetMetricStateResponse_ (::std::ostream& o,
-                           const ::MDM::SetMetricStateResponse& s,
-                           const ::xml_schema::NamespaceInfomap& m,
-                           const ::std::string& e,
-                           ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetMetricStateResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SetMetricStateResponse_ (::std::ostream& o,
-                           const ::MDM::SetMetricStateResponse& s,
-                           ::xml_schema::ErrorHandler& h,
-                           const ::xml_schema::NamespaceInfomap& m,
-                           const ::std::string& e,
-                           ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetMetricStateResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetMetricStateResponse_ (::std::ostream& o,
-                           const ::MDM::SetMetricStateResponse& s,
-                           ::xercesc::DOMErrorHandler& h,
-                           const ::xml_schema::NamespaceInfomap& m,
-                           const ::std::string& e,
-                           ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetMetricStateResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetMetricStateResponse_ (::xercesc::XMLFormatTarget& t,
-                           const ::MDM::SetMetricStateResponse& s,
-                           const ::xml_schema::NamespaceInfomap& m,
-                           const ::std::string& e,
-                           ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetMetricStateResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SetMetricStateResponse_ (::xercesc::XMLFormatTarget& t,
-                           const ::MDM::SetMetricStateResponse& s,
-                           ::xml_schema::ErrorHandler& h,
-                           const ::xml_schema::NamespaceInfomap& m,
-                           const ::std::string& e,
-                           ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetMetricStateResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetMetricStateResponse_ (::xercesc::XMLFormatTarget& t,
-                           const ::MDM::SetMetricStateResponse& s,
-                           ::xercesc::DOMErrorHandler& h,
-                           const ::xml_schema::NamespaceInfomap& m,
-                           const ::std::string& e,
-                           ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SetMetricStateResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SetMetricStateResponse_ (::xercesc::DOMDocument& d,
-                           const ::MDM::SetMetricStateResponse& s,
-                           ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SetMetricStateResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "SetMetricStateResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SetMetricStateResponse_ (const ::MDM::SetMetricStateResponse& s,
-                           const ::xml_schema::NamespaceInfomap& m,
-                           ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "SetMetricStateResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::SetMetricStateResponse_ (*d, s, f);
-    return d;
-  }
-
-  void
-  OperationInvokedReport_ (::std::ostream& o,
-                           const ::MDM::OperationInvokedReport& s,
-                           const ::xml_schema::NamespaceInfomap& m,
-                           const ::std::string& e,
-                           ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::OperationInvokedReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  OperationInvokedReport_ (::std::ostream& o,
-                           const ::MDM::OperationInvokedReport& s,
-                           ::xml_schema::ErrorHandler& h,
-                           const ::xml_schema::NamespaceInfomap& m,
-                           const ::std::string& e,
-                           ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::OperationInvokedReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  OperationInvokedReport_ (::std::ostream& o,
-                           const ::MDM::OperationInvokedReport& s,
-                           ::xercesc::DOMErrorHandler& h,
-                           const ::xml_schema::NamespaceInfomap& m,
-                           const ::std::string& e,
-                           ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::OperationInvokedReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  OperationInvokedReport_ (::xercesc::XMLFormatTarget& t,
-                           const ::MDM::OperationInvokedReport& s,
-                           const ::xml_schema::NamespaceInfomap& m,
-                           const ::std::string& e,
-                           ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::OperationInvokedReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  OperationInvokedReport_ (::xercesc::XMLFormatTarget& t,
-                           const ::MDM::OperationInvokedReport& s,
-                           ::xml_schema::ErrorHandler& h,
-                           const ::xml_schema::NamespaceInfomap& m,
-                           const ::std::string& e,
-                           ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::OperationInvokedReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  OperationInvokedReport_ (::xercesc::XMLFormatTarget& t,
-                           const ::MDM::OperationInvokedReport& s,
-                           ::xercesc::DOMErrorHandler& h,
-                           const ::xml_schema::NamespaceInfomap& m,
-                           const ::std::string& e,
-                           ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::OperationInvokedReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  OperationInvokedReport_ (::xercesc::DOMDocument& d,
-                           const ::MDM::OperationInvokedReport& s,
-                           ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "OperationInvokedReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "OperationInvokedReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  OperationInvokedReport_ (const ::MDM::OperationInvokedReport& s,
-                           const ::xml_schema::NamespaceInfomap& m,
-                           ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "OperationInvokedReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::OperationInvokedReport_ (*d, s, f);
-    return d;
-  }
-
-  void
-  GetContainmentTree_ (::std::ostream& o,
-                       const ::MDM::GetContainmentTree& s,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       const ::std::string& e,
-                       ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContainmentTree_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetContainmentTree_ (::std::ostream& o,
-                       const ::MDM::GetContainmentTree& s,
-                       ::xml_schema::ErrorHandler& h,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       const ::std::string& e,
-                       ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContainmentTree_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContainmentTree_ (::std::ostream& o,
-                       const ::MDM::GetContainmentTree& s,
-                       ::xercesc::DOMErrorHandler& h,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       const ::std::string& e,
-                       ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContainmentTree_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContainmentTree_ (::xercesc::XMLFormatTarget& t,
-                       const ::MDM::GetContainmentTree& s,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       const ::std::string& e,
-                       ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContainmentTree_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetContainmentTree_ (::xercesc::XMLFormatTarget& t,
-                       const ::MDM::GetContainmentTree& s,
-                       ::xml_schema::ErrorHandler& h,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       const ::std::string& e,
-                       ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContainmentTree_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContainmentTree_ (::xercesc::XMLFormatTarget& t,
-                       const ::MDM::GetContainmentTree& s,
-                       ::xercesc::DOMErrorHandler& h,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       const ::std::string& e,
-                       ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContainmentTree_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContainmentTree_ (::xercesc::DOMDocument& d,
-                       const ::MDM::GetContainmentTree& s,
-                       ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetContainmentTree" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetContainmentTree",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetContainmentTree_ (const ::MDM::GetContainmentTree& s,
-                       const ::xml_schema::NamespaceInfomap& m,
-                       ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "GetContainmentTree",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::GetContainmentTree_ (*d, s, f);
-    return d;
-  }
-
-  void
-  GetContainmentTreeResponse_ (::std::ostream& o,
-                               const ::MDM::GetContainmentTreeResponse& s,
-                               const ::xml_schema::NamespaceInfomap& m,
-                               const ::std::string& e,
-                               ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContainmentTreeResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetContainmentTreeResponse_ (::std::ostream& o,
-                               const ::MDM::GetContainmentTreeResponse& s,
-                               ::xml_schema::ErrorHandler& h,
-                               const ::xml_schema::NamespaceInfomap& m,
-                               const ::std::string& e,
-                               ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContainmentTreeResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContainmentTreeResponse_ (::std::ostream& o,
-                               const ::MDM::GetContainmentTreeResponse& s,
-                               ::xercesc::DOMErrorHandler& h,
-                               const ::xml_schema::NamespaceInfomap& m,
-                               const ::std::string& e,
-                               ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContainmentTreeResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContainmentTreeResponse_ (::xercesc::XMLFormatTarget& t,
-                               const ::MDM::GetContainmentTreeResponse& s,
-                               const ::xml_schema::NamespaceInfomap& m,
-                               const ::std::string& e,
-                               ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContainmentTreeResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetContainmentTreeResponse_ (::xercesc::XMLFormatTarget& t,
-                               const ::MDM::GetContainmentTreeResponse& s,
-                               ::xml_schema::ErrorHandler& h,
-                               const ::xml_schema::NamespaceInfomap& m,
-                               const ::std::string& e,
-                               ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContainmentTreeResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContainmentTreeResponse_ (::xercesc::XMLFormatTarget& t,
-                               const ::MDM::GetContainmentTreeResponse& s,
-                               ::xercesc::DOMErrorHandler& h,
-                               const ::xml_schema::NamespaceInfomap& m,
-                               const ::std::string& e,
-                               ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetContainmentTreeResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetContainmentTreeResponse_ (::xercesc::DOMDocument& d,
-                               const ::MDM::GetContainmentTreeResponse& s,
-                               ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetContainmentTreeResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetContainmentTreeResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetContainmentTreeResponse_ (const ::MDM::GetContainmentTreeResponse& s,
-                               const ::xml_schema::NamespaceInfomap& m,
-                               ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "GetContainmentTreeResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::GetContainmentTreeResponse_ (*d, s, f);
-    return d;
-  }
-
-  void
-  GetDescriptor_ (::std::ostream& o,
-                  const ::MDM::GetDescriptor& s,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetDescriptor_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetDescriptor_ (::std::ostream& o,
-                  const ::MDM::GetDescriptor& s,
-                  ::xml_schema::ErrorHandler& h,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetDescriptor_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetDescriptor_ (::std::ostream& o,
-                  const ::MDM::GetDescriptor& s,
-                  ::xercesc::DOMErrorHandler& h,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetDescriptor_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetDescriptor_ (::xercesc::XMLFormatTarget& t,
-                  const ::MDM::GetDescriptor& s,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetDescriptor_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetDescriptor_ (::xercesc::XMLFormatTarget& t,
-                  const ::MDM::GetDescriptor& s,
-                  ::xml_schema::ErrorHandler& h,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetDescriptor_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetDescriptor_ (::xercesc::XMLFormatTarget& t,
-                  const ::MDM::GetDescriptor& s,
-                  ::xercesc::DOMErrorHandler& h,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetDescriptor_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetDescriptor_ (::xercesc::DOMDocument& d,
-                  const ::MDM::GetDescriptor& s,
-                  ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetDescriptor" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetDescriptor",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetDescriptor_ (const ::MDM::GetDescriptor& s,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "GetDescriptor",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::GetDescriptor_ (*d, s, f);
-    return d;
-  }
-
-  void
-  GetDescriptorResponse_ (::std::ostream& o,
-                          const ::MDM::GetDescriptorResponse& s,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetDescriptorResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetDescriptorResponse_ (::std::ostream& o,
-                          const ::MDM::GetDescriptorResponse& s,
-                          ::xml_schema::ErrorHandler& h,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetDescriptorResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetDescriptorResponse_ (::std::ostream& o,
-                          const ::MDM::GetDescriptorResponse& s,
-                          ::xercesc::DOMErrorHandler& h,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetDescriptorResponse_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetDescriptorResponse_ (::xercesc::XMLFormatTarget& t,
-                          const ::MDM::GetDescriptorResponse& s,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetDescriptorResponse_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  GetDescriptorResponse_ (::xercesc::XMLFormatTarget& t,
-                          const ::MDM::GetDescriptorResponse& s,
-                          ::xml_schema::ErrorHandler& h,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetDescriptorResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetDescriptorResponse_ (::xercesc::XMLFormatTarget& t,
-                          const ::MDM::GetDescriptorResponse& s,
-                          ::xercesc::DOMErrorHandler& h,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          const ::std::string& e,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::GetDescriptorResponse_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  GetDescriptorResponse_ (::xercesc::DOMDocument& d,
-                          const ::MDM::GetDescriptorResponse& s,
-                          ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "GetDescriptorResponse" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetDescriptorResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  GetDescriptorResponse_ (const ::MDM::GetDescriptorResponse& s,
-                          const ::xml_schema::NamespaceInfomap& m,
-                          ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "GetDescriptorResponse",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::GetDescriptorResponse_ (*d, s, f);
-    return d;
-  }
-
-  void
   operator<< (::xercesc::DOMElement& e, const AbstractMetricReport& i)
   {
     e << static_cast< const ::MDM::AbstractReport& > (i);
@@ -32201,7 +11770,7 @@ namespace MDM
     // ReportPart
     //
     for (AbstractMetricReport::ReportPartConstIterator
-         b (i.ReportPart ().begin ()), n (i.ReportPart ().end ());
+         b (i.getReportPart ().begin ()), n (i.getReportPart ().end ());
          b != n; ++b)
     {
       ::xercesc::DOMElement& s (
@@ -32222,302 +11791,6 @@ namespace MDM
 
 
   void
-  EpisodicMetricReport_ (::std::ostream& o,
-                         const ::MDM::EpisodicMetricReport& s,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         const ::std::string& e,
-                         ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicMetricReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  EpisodicMetricReport_ (::std::ostream& o,
-                         const ::MDM::EpisodicMetricReport& s,
-                         ::xml_schema::ErrorHandler& h,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         const ::std::string& e,
-                         ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicMetricReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  EpisodicMetricReport_ (::std::ostream& o,
-                         const ::MDM::EpisodicMetricReport& s,
-                         ::xercesc::DOMErrorHandler& h,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         const ::std::string& e,
-                         ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicMetricReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  EpisodicMetricReport_ (::xercesc::XMLFormatTarget& t,
-                         const ::MDM::EpisodicMetricReport& s,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         const ::std::string& e,
-                         ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicMetricReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  EpisodicMetricReport_ (::xercesc::XMLFormatTarget& t,
-                         const ::MDM::EpisodicMetricReport& s,
-                         ::xml_schema::ErrorHandler& h,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         const ::std::string& e,
-                         ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicMetricReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  EpisodicMetricReport_ (::xercesc::XMLFormatTarget& t,
-                         const ::MDM::EpisodicMetricReport& s,
-                         ::xercesc::DOMErrorHandler& h,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         const ::std::string& e,
-                         ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicMetricReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  EpisodicMetricReport_ (::xercesc::DOMDocument& d,
-                         const ::MDM::EpisodicMetricReport& s,
-                         ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "EpisodicMetricReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "EpisodicMetricReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  EpisodicMetricReport_ (const ::MDM::EpisodicMetricReport& s,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "EpisodicMetricReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::EpisodicMetricReport_ (*d, s, f);
-    return d;
-  }
-
-  void
-  PeriodicMetricReport_ (::std::ostream& o,
-                         const ::MDM::PeriodicMetricReport& s,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         const ::std::string& e,
-                         ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicMetricReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  PeriodicMetricReport_ (::std::ostream& o,
-                         const ::MDM::PeriodicMetricReport& s,
-                         ::xml_schema::ErrorHandler& h,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         const ::std::string& e,
-                         ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicMetricReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  PeriodicMetricReport_ (::std::ostream& o,
-                         const ::MDM::PeriodicMetricReport& s,
-                         ::xercesc::DOMErrorHandler& h,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         const ::std::string& e,
-                         ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicMetricReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  PeriodicMetricReport_ (::xercesc::XMLFormatTarget& t,
-                         const ::MDM::PeriodicMetricReport& s,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         const ::std::string& e,
-                         ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicMetricReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  PeriodicMetricReport_ (::xercesc::XMLFormatTarget& t,
-                         const ::MDM::PeriodicMetricReport& s,
-                         ::xml_schema::ErrorHandler& h,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         const ::std::string& e,
-                         ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicMetricReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  PeriodicMetricReport_ (::xercesc::XMLFormatTarget& t,
-                         const ::MDM::PeriodicMetricReport& s,
-                         ::xercesc::DOMErrorHandler& h,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         const ::std::string& e,
-                         ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicMetricReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  PeriodicMetricReport_ (::xercesc::DOMDocument& d,
-                         const ::MDM::PeriodicMetricReport& s,
-                         ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "PeriodicMetricReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "PeriodicMetricReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  PeriodicMetricReport_ (const ::MDM::PeriodicMetricReport& s,
-                         const ::xml_schema::NamespaceInfomap& m,
-                         ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "PeriodicMetricReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::PeriodicMetricReport_ (*d, s, f);
-    return d;
-  }
-
-  void
   operator<< (::xercesc::DOMElement& e, const AbstractComponentReport& i)
   {
     e << static_cast< const ::MDM::AbstractReport& > (i);
@@ -32525,7 +11798,7 @@ namespace MDM
     // ReportPart
     //
     for (AbstractComponentReport::ReportPartConstIterator
-         b (i.ReportPart ().begin ()), n (i.ReportPart ().end ());
+         b (i.getReportPart ().begin ()), n (i.getReportPart ().end ());
          b != n; ++b)
     {
       ::xercesc::DOMElement& s (
@@ -32546,302 +11819,6 @@ namespace MDM
 
 
   void
-  EpisodicComponentReport_ (::std::ostream& o,
-                            const ::MDM::EpisodicComponentReport& s,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            const ::std::string& e,
-                            ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicComponentReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  EpisodicComponentReport_ (::std::ostream& o,
-                            const ::MDM::EpisodicComponentReport& s,
-                            ::xml_schema::ErrorHandler& h,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            const ::std::string& e,
-                            ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicComponentReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  EpisodicComponentReport_ (::std::ostream& o,
-                            const ::MDM::EpisodicComponentReport& s,
-                            ::xercesc::DOMErrorHandler& h,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            const ::std::string& e,
-                            ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicComponentReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  EpisodicComponentReport_ (::xercesc::XMLFormatTarget& t,
-                            const ::MDM::EpisodicComponentReport& s,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            const ::std::string& e,
-                            ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicComponentReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  EpisodicComponentReport_ (::xercesc::XMLFormatTarget& t,
-                            const ::MDM::EpisodicComponentReport& s,
-                            ::xml_schema::ErrorHandler& h,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            const ::std::string& e,
-                            ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicComponentReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  EpisodicComponentReport_ (::xercesc::XMLFormatTarget& t,
-                            const ::MDM::EpisodicComponentReport& s,
-                            ::xercesc::DOMErrorHandler& h,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            const ::std::string& e,
-                            ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicComponentReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  EpisodicComponentReport_ (::xercesc::DOMDocument& d,
-                            const ::MDM::EpisodicComponentReport& s,
-                            ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "EpisodicComponentReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "EpisodicComponentReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  EpisodicComponentReport_ (const ::MDM::EpisodicComponentReport& s,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "EpisodicComponentReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::EpisodicComponentReport_ (*d, s, f);
-    return d;
-  }
-
-  void
-  PeriodicComponentReport_ (::std::ostream& o,
-                            const ::MDM::PeriodicComponentReport& s,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            const ::std::string& e,
-                            ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicComponentReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  PeriodicComponentReport_ (::std::ostream& o,
-                            const ::MDM::PeriodicComponentReport& s,
-                            ::xml_schema::ErrorHandler& h,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            const ::std::string& e,
-                            ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicComponentReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  PeriodicComponentReport_ (::std::ostream& o,
-                            const ::MDM::PeriodicComponentReport& s,
-                            ::xercesc::DOMErrorHandler& h,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            const ::std::string& e,
-                            ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicComponentReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  PeriodicComponentReport_ (::xercesc::XMLFormatTarget& t,
-                            const ::MDM::PeriodicComponentReport& s,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            const ::std::string& e,
-                            ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicComponentReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  PeriodicComponentReport_ (::xercesc::XMLFormatTarget& t,
-                            const ::MDM::PeriodicComponentReport& s,
-                            ::xml_schema::ErrorHandler& h,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            const ::std::string& e,
-                            ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicComponentReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  PeriodicComponentReport_ (::xercesc::XMLFormatTarget& t,
-                            const ::MDM::PeriodicComponentReport& s,
-                            ::xercesc::DOMErrorHandler& h,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            const ::std::string& e,
-                            ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicComponentReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  PeriodicComponentReport_ (::xercesc::DOMDocument& d,
-                            const ::MDM::PeriodicComponentReport& s,
-                            ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "PeriodicComponentReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "PeriodicComponentReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  PeriodicComponentReport_ (const ::MDM::PeriodicComponentReport& s,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "PeriodicComponentReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::PeriodicComponentReport_ (*d, s, f);
-    return d;
-  }
-
-  void
   operator<< (::xercesc::DOMElement& e, const AbstractAlertReport& i)
   {
     e << static_cast< const ::MDM::AbstractReport& > (i);
@@ -32849,7 +11826,7 @@ namespace MDM
     // ReportPart
     //
     for (AbstractAlertReport::ReportPartConstIterator
-         b (i.ReportPart ().begin ()), n (i.ReportPart ().end ());
+         b (i.getReportPart ().begin ()), n (i.getReportPart ().end ());
          b != n; ++b)
     {
       ::xercesc::DOMElement& s (
@@ -32870,302 +11847,6 @@ namespace MDM
 
 
   void
-  EpisodicAlertReport_ (::std::ostream& o,
-                        const ::MDM::EpisodicAlertReport& s,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicAlertReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  EpisodicAlertReport_ (::std::ostream& o,
-                        const ::MDM::EpisodicAlertReport& s,
-                        ::xml_schema::ErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicAlertReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  EpisodicAlertReport_ (::std::ostream& o,
-                        const ::MDM::EpisodicAlertReport& s,
-                        ::xercesc::DOMErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicAlertReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  EpisodicAlertReport_ (::xercesc::XMLFormatTarget& t,
-                        const ::MDM::EpisodicAlertReport& s,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicAlertReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  EpisodicAlertReport_ (::xercesc::XMLFormatTarget& t,
-                        const ::MDM::EpisodicAlertReport& s,
-                        ::xml_schema::ErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicAlertReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  EpisodicAlertReport_ (::xercesc::XMLFormatTarget& t,
-                        const ::MDM::EpisodicAlertReport& s,
-                        ::xercesc::DOMErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicAlertReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  EpisodicAlertReport_ (::xercesc::DOMDocument& d,
-                        const ::MDM::EpisodicAlertReport& s,
-                        ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "EpisodicAlertReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "EpisodicAlertReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  EpisodicAlertReport_ (const ::MDM::EpisodicAlertReport& s,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "EpisodicAlertReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::EpisodicAlertReport_ (*d, s, f);
-    return d;
-  }
-
-  void
-  PeriodicAlertReport_ (::std::ostream& o,
-                        const ::MDM::PeriodicAlertReport& s,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicAlertReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  PeriodicAlertReport_ (::std::ostream& o,
-                        const ::MDM::PeriodicAlertReport& s,
-                        ::xml_schema::ErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicAlertReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  PeriodicAlertReport_ (::std::ostream& o,
-                        const ::MDM::PeriodicAlertReport& s,
-                        ::xercesc::DOMErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicAlertReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  PeriodicAlertReport_ (::xercesc::XMLFormatTarget& t,
-                        const ::MDM::PeriodicAlertReport& s,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicAlertReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  PeriodicAlertReport_ (::xercesc::XMLFormatTarget& t,
-                        const ::MDM::PeriodicAlertReport& s,
-                        ::xml_schema::ErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicAlertReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  PeriodicAlertReport_ (::xercesc::XMLFormatTarget& t,
-                        const ::MDM::PeriodicAlertReport& s,
-                        ::xercesc::DOMErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicAlertReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  PeriodicAlertReport_ (::xercesc::DOMDocument& d,
-                        const ::MDM::PeriodicAlertReport& s,
-                        ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "PeriodicAlertReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "PeriodicAlertReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  PeriodicAlertReport_ (const ::MDM::PeriodicAlertReport& s,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "PeriodicAlertReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::PeriodicAlertReport_ (*d, s, f);
-    return d;
-  }
-
-  void
   operator<< (::xercesc::DOMElement& e, const AbstractOperationalStateReport& i)
   {
     e << static_cast< const ::MDM::AbstractReport& > (i);
@@ -33173,7 +11854,7 @@ namespace MDM
     // ReportPart
     //
     for (AbstractOperationalStateReport::ReportPartConstIterator
-         b (i.ReportPart ().begin ()), n (i.ReportPart ().end ());
+         b (i.getReportPart ().begin ()), n (i.getReportPart ().end ());
          b != n; ++b)
     {
       ::xercesc::DOMElement& s (
@@ -33192,450 +11873,6 @@ namespace MDM
     "AbstractOperationalStateReport",
     "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
-
-  void
-  EpisodicOperationalStateReport_ (::std::ostream& o,
-                                   const ::MDM::EpisodicOperationalStateReport& s,
-                                   const ::xml_schema::NamespaceInfomap& m,
-                                   const ::std::string& e,
-                                   ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicOperationalStateReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  EpisodicOperationalStateReport_ (::std::ostream& o,
-                                   const ::MDM::EpisodicOperationalStateReport& s,
-                                   ::xml_schema::ErrorHandler& h,
-                                   const ::xml_schema::NamespaceInfomap& m,
-                                   const ::std::string& e,
-                                   ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicOperationalStateReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  EpisodicOperationalStateReport_ (::std::ostream& o,
-                                   const ::MDM::EpisodicOperationalStateReport& s,
-                                   ::xercesc::DOMErrorHandler& h,
-                                   const ::xml_schema::NamespaceInfomap& m,
-                                   const ::std::string& e,
-                                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicOperationalStateReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  EpisodicOperationalStateReport_ (::xercesc::XMLFormatTarget& t,
-                                   const ::MDM::EpisodicOperationalStateReport& s,
-                                   const ::xml_schema::NamespaceInfomap& m,
-                                   const ::std::string& e,
-                                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicOperationalStateReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  EpisodicOperationalStateReport_ (::xercesc::XMLFormatTarget& t,
-                                   const ::MDM::EpisodicOperationalStateReport& s,
-                                   ::xml_schema::ErrorHandler& h,
-                                   const ::xml_schema::NamespaceInfomap& m,
-                                   const ::std::string& e,
-                                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicOperationalStateReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  EpisodicOperationalStateReport_ (::xercesc::XMLFormatTarget& t,
-                                   const ::MDM::EpisodicOperationalStateReport& s,
-                                   ::xercesc::DOMErrorHandler& h,
-                                   const ::xml_schema::NamespaceInfomap& m,
-                                   const ::std::string& e,
-                                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::EpisodicOperationalStateReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  EpisodicOperationalStateReport_ (::xercesc::DOMDocument& d,
-                                   const ::MDM::EpisodicOperationalStateReport& s,
-                                   ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "EpisodicOperationalStateReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "EpisodicOperationalStateReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  EpisodicOperationalStateReport_ (const ::MDM::EpisodicOperationalStateReport& s,
-                                   const ::xml_schema::NamespaceInfomap& m,
-                                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "EpisodicOperationalStateReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::EpisodicOperationalStateReport_ (*d, s, f);
-    return d;
-  }
-
-  void
-  PeriodicOperationalStateReport_ (::std::ostream& o,
-                                   const ::MDM::PeriodicOperationalStateReport& s,
-                                   const ::xml_schema::NamespaceInfomap& m,
-                                   const ::std::string& e,
-                                   ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicOperationalStateReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  PeriodicOperationalStateReport_ (::std::ostream& o,
-                                   const ::MDM::PeriodicOperationalStateReport& s,
-                                   ::xml_schema::ErrorHandler& h,
-                                   const ::xml_schema::NamespaceInfomap& m,
-                                   const ::std::string& e,
-                                   ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicOperationalStateReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  PeriodicOperationalStateReport_ (::std::ostream& o,
-                                   const ::MDM::PeriodicOperationalStateReport& s,
-                                   ::xercesc::DOMErrorHandler& h,
-                                   const ::xml_schema::NamespaceInfomap& m,
-                                   const ::std::string& e,
-                                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicOperationalStateReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  PeriodicOperationalStateReport_ (::xercesc::XMLFormatTarget& t,
-                                   const ::MDM::PeriodicOperationalStateReport& s,
-                                   const ::xml_schema::NamespaceInfomap& m,
-                                   const ::std::string& e,
-                                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicOperationalStateReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  PeriodicOperationalStateReport_ (::xercesc::XMLFormatTarget& t,
-                                   const ::MDM::PeriodicOperationalStateReport& s,
-                                   ::xml_schema::ErrorHandler& h,
-                                   const ::xml_schema::NamespaceInfomap& m,
-                                   const ::std::string& e,
-                                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicOperationalStateReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  PeriodicOperationalStateReport_ (::xercesc::XMLFormatTarget& t,
-                                   const ::MDM::PeriodicOperationalStateReport& s,
-                                   ::xercesc::DOMErrorHandler& h,
-                                   const ::xml_schema::NamespaceInfomap& m,
-                                   const ::std::string& e,
-                                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::PeriodicOperationalStateReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  PeriodicOperationalStateReport_ (::xercesc::DOMDocument& d,
-                                   const ::MDM::PeriodicOperationalStateReport& s,
-                                   ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "PeriodicOperationalStateReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "PeriodicOperationalStateReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  PeriodicOperationalStateReport_ (const ::MDM::PeriodicOperationalStateReport& s,
-                                   const ::xml_schema::NamespaceInfomap& m,
-                                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "PeriodicOperationalStateReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::PeriodicOperationalStateReport_ (*d, s, f);
-    return d;
-  }
-
-  void
-  SystemErrorReport_ (::std::ostream& o,
-                      const ::MDM::SystemErrorReport& s,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SystemErrorReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SystemErrorReport_ (::std::ostream& o,
-                      const ::MDM::SystemErrorReport& s,
-                      ::xml_schema::ErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SystemErrorReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SystemErrorReport_ (::std::ostream& o,
-                      const ::MDM::SystemErrorReport& s,
-                      ::xercesc::DOMErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SystemErrorReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SystemErrorReport_ (::xercesc::XMLFormatTarget& t,
-                      const ::MDM::SystemErrorReport& s,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SystemErrorReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SystemErrorReport_ (::xercesc::XMLFormatTarget& t,
-                      const ::MDM::SystemErrorReport& s,
-                      ::xml_schema::ErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SystemErrorReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SystemErrorReport_ (::xercesc::XMLFormatTarget& t,
-                      const ::MDM::SystemErrorReport& s,
-                      ::xercesc::DOMErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::SystemErrorReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SystemErrorReport_ (::xercesc::DOMDocument& d,
-                      const ::MDM::SystemErrorReport& s,
-                      ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "SystemErrorReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "SystemErrorReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SystemErrorReport_ (const ::MDM::SystemErrorReport& s,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "SystemErrorReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::SystemErrorReport_ (*d, s, f);
-    return d;
-  }
 
   void
   operator<< (::xercesc::DOMElement& e, const DescriptionModificationType& i)
@@ -33662,450 +11899,6 @@ namespace MDM
     "DescriptionModificationType",
     "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
-
-  void
-  DescriptionModificationReport_ (::std::ostream& o,
-                                  const ::MDM::DescriptionModificationReport& s,
-                                  const ::xml_schema::NamespaceInfomap& m,
-                                  const ::std::string& e,
-                                  ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::DescriptionModificationReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  DescriptionModificationReport_ (::std::ostream& o,
-                                  const ::MDM::DescriptionModificationReport& s,
-                                  ::xml_schema::ErrorHandler& h,
-                                  const ::xml_schema::NamespaceInfomap& m,
-                                  const ::std::string& e,
-                                  ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::DescriptionModificationReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  DescriptionModificationReport_ (::std::ostream& o,
-                                  const ::MDM::DescriptionModificationReport& s,
-                                  ::xercesc::DOMErrorHandler& h,
-                                  const ::xml_schema::NamespaceInfomap& m,
-                                  const ::std::string& e,
-                                  ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::DescriptionModificationReport_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  DescriptionModificationReport_ (::xercesc::XMLFormatTarget& t,
-                                  const ::MDM::DescriptionModificationReport& s,
-                                  const ::xml_schema::NamespaceInfomap& m,
-                                  const ::std::string& e,
-                                  ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::DescriptionModificationReport_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  DescriptionModificationReport_ (::xercesc::XMLFormatTarget& t,
-                                  const ::MDM::DescriptionModificationReport& s,
-                                  ::xml_schema::ErrorHandler& h,
-                                  const ::xml_schema::NamespaceInfomap& m,
-                                  const ::std::string& e,
-                                  ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::DescriptionModificationReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  DescriptionModificationReport_ (::xercesc::XMLFormatTarget& t,
-                                  const ::MDM::DescriptionModificationReport& s,
-                                  ::xercesc::DOMErrorHandler& h,
-                                  const ::xml_schema::NamespaceInfomap& m,
-                                  const ::std::string& e,
-                                  ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::DescriptionModificationReport_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  DescriptionModificationReport_ (::xercesc::DOMDocument& d,
-                                  const ::MDM::DescriptionModificationReport& s,
-                                  ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "DescriptionModificationReport" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "DescriptionModificationReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  DescriptionModificationReport_ (const ::MDM::DescriptionModificationReport& s,
-                                  const ::xml_schema::NamespaceInfomap& m,
-                                  ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "DescriptionModificationReport",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::DescriptionModificationReport_ (*d, s, f);
-    return d;
-  }
-
-  void
-  WaveformStream_ (::std::ostream& o,
-                   const ::MDM::WaveformStream& s,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::WaveformStream_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  WaveformStream_ (::std::ostream& o,
-                   const ::MDM::WaveformStream& s,
-                   ::xml_schema::ErrorHandler& h,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::WaveformStream_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  WaveformStream_ (::std::ostream& o,
-                   const ::MDM::WaveformStream& s,
-                   ::xercesc::DOMErrorHandler& h,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::WaveformStream_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  WaveformStream_ (::xercesc::XMLFormatTarget& t,
-                   const ::MDM::WaveformStream& s,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::WaveformStream_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  WaveformStream_ (::xercesc::XMLFormatTarget& t,
-                   const ::MDM::WaveformStream& s,
-                   ::xml_schema::ErrorHandler& h,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::WaveformStream_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  WaveformStream_ (::xercesc::XMLFormatTarget& t,
-                   const ::MDM::WaveformStream& s,
-                   ::xercesc::DOMErrorHandler& h,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::WaveformStream_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  WaveformStream_ (::xercesc::DOMDocument& d,
-                   const ::MDM::WaveformStream& s,
-                   ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "WaveformStream" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "WaveformStream",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  WaveformStream_ (const ::MDM::WaveformStream& s,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "WaveformStream",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::WaveformStream_ (*d, s, f);
-    return d;
-  }
-
-  void
-  ObservedValueStream_ (::std::ostream& o,
-                        const ::MDM::ObservedValueStream& s,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::ObservedValueStream_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  ObservedValueStream_ (::std::ostream& o,
-                        const ::MDM::ObservedValueStream& s,
-                        ::xml_schema::ErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::ObservedValueStream_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  ObservedValueStream_ (::std::ostream& o,
-                        const ::MDM::ObservedValueStream& s,
-                        ::xercesc::DOMErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::ObservedValueStream_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  ObservedValueStream_ (::xercesc::XMLFormatTarget& t,
-                        const ::MDM::ObservedValueStream& s,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::ObservedValueStream_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  ObservedValueStream_ (::xercesc::XMLFormatTarget& t,
-                        const ::MDM::ObservedValueStream& s,
-                        ::xml_schema::ErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::ObservedValueStream_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  ObservedValueStream_ (::xercesc::XMLFormatTarget& t,
-                        const ::MDM::ObservedValueStream& s,
-                        ::xercesc::DOMErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::ObservedValueStream_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  ObservedValueStream_ (::xercesc::DOMDocument& d,
-                        const ::MDM::ObservedValueStream& s,
-                        ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "ObservedValueStream" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "ObservedValueStream",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  ObservedValueStream_ (const ::MDM::ObservedValueStream& s,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "ObservedValueStream",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::ObservedValueStream_ (*d, s, f);
-    return d;
-  }
 
   void
   operator<< (::xercesc::DOMElement& e, const RetrievabilityMethod& i)
@@ -34144,9 +11937,9 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const RetrievabilityInfo::ExtensionType& x (*i.Extension ());
+        const RetrievabilityInfo::ExtensionType& x (*i.getExtension ());
         if (typeid (RetrievabilityInfo::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -34173,19 +11966,19 @@ namespace MDM
           "Method",
           e));
 
-      a << i.Method ();
+      a << i.getMethod ();
     }
 
     // UpdatePeriod
     //
-    if (i.UpdatePeriod ())
+    if (i.getUpdatePeriod ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "UpdatePeriod",
           e));
 
-      a << *i.UpdatePeriod ();
+      a << *i.getUpdatePeriod ();
     }
   }
 
@@ -34195,154 +11988,6 @@ namespace MDM
     "RetrievabilityInfo",
     "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
 
-
-  void
-  Retrievability_ (::std::ostream& o,
-                   const ::MDM::Retrievability& s,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::Retrievability_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  Retrievability_ (::std::ostream& o,
-                   const ::MDM::Retrievability& s,
-                   ::xml_schema::ErrorHandler& h,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::Retrievability_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  Retrievability_ (::std::ostream& o,
-                   const ::MDM::Retrievability& s,
-                   ::xercesc::DOMErrorHandler& h,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::Retrievability_ (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  Retrievability_ (::xercesc::XMLFormatTarget& t,
-                   const ::MDM::Retrievability& s,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::Retrievability_ (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  Retrievability_ (::xercesc::XMLFormatTarget& t,
-                   const ::MDM::Retrievability& s,
-                   ::xml_schema::ErrorHandler& h,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::Retrievability_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  Retrievability_ (::xercesc::XMLFormatTarget& t,
-                   const ::MDM::Retrievability& s,
-                   ::xercesc::DOMErrorHandler& h,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   const ::std::string& e,
-                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDM::Retrievability_ (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  Retrievability_ (::xercesc::DOMDocument& d,
-                   const ::MDM::Retrievability& s,
-                   ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (n.name () == "Retrievability" &&
-        n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-10207-2017/message")
-    {
-      e << s;
-    }
-    else
-    {
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Retrievability",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message");
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  Retrievability_ (const ::MDM::Retrievability& s,
-                   const ::xml_schema::NamespaceInfomap& m,
-                   ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::serialize< char > (
-        "Retrievability",
-        "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
-        m, f));
-
-    ::MDM::Retrievability_ (*d, s, f);
-    return d;
-  }
 
   void
   operator<< (::xercesc::DOMElement& e, const GetMdib& i)
@@ -34361,7 +12006,7 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const GetMdibResponse::MdibType& x (i.Mdib ());
+      const GetMdibResponse::MdibType& x (i.getMdib ());
       if (typeid (GetMdibResponse::MdibType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -34392,7 +12037,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (GetMdDescription::HandleRefConstIterator
-           b (i.HandleRef ().begin ()), n (i.HandleRef ().end ());
+           b (i.getHandleRef ().begin ()), n (i.getHandleRef ().end ());
            b != n; ++b)
       {
         if (typeid (GetMdDescription::HandleRefType) == typeid (*b))
@@ -34425,7 +12070,7 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const GetMdDescriptionResponse::MdDescriptionType& x (i.MdDescription ());
+      const GetMdDescriptionResponse::MdDescriptionType& x (i.getMdDescription ());
       if (typeid (GetMdDescriptionResponse::MdDescriptionType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -34456,7 +12101,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (GetMdState::HandleRefConstIterator
-           b (i.HandleRef ().begin ()), n (i.HandleRef ().end ());
+           b (i.getHandleRef ().begin ()), n (i.getHandleRef ().end ());
            b != n; ++b)
       {
         if (typeid (GetMdState::HandleRefType) == typeid (*b))
@@ -34489,7 +12134,7 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const GetMdStateResponse::MdStateType& x (i.MdState ());
+      const GetMdStateResponse::MdStateType& x (i.getMdState ());
       if (typeid (GetMdStateResponse::MdStateType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -34520,7 +12165,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (GetContextStates::HandleRefConstIterator
-           b (i.HandleRef ().begin ()), n (i.HandleRef ().end ());
+           b (i.getHandleRef ().begin ()), n (i.getHandleRef ().end ());
            b != n; ++b)
       {
         if (typeid (GetContextStates::HandleRefType) == typeid (*b))
@@ -34554,7 +12199,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (GetContextStatesResponse::ContextStateConstIterator
-           b (i.ContextState ().begin ()), n (i.ContextState ().end ());
+           b (i.getContextState ().begin ()), n (i.getContextState ().end ());
            b != n; ++b)
       {
         if (typeid (GetContextStatesResponse::ContextStateType) == typeid (*b))
@@ -34588,7 +12233,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (GetContextStatesByIdentification::IdentificationConstIterator
-           b (i.Identification ().begin ()), n (i.Identification ().end ());
+           b (i.getIdentification ().begin ()), n (i.getIdentification ().end ());
            b != n; ++b)
       {
         if (typeid (GetContextStatesByIdentification::IdentificationType) == typeid (*b))
@@ -34611,14 +12256,14 @@ namespace MDM
 
     // ContextType
     //
-    if (i.ContextType ())
+    if (i.getContextType ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "ContextType",
           e));
 
-      a << *i.ContextType ();
+      a << *i.getContextType ();
     }
   }
 
@@ -34634,7 +12279,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (GetContextStatesByIdentificationResponse::ContextStateConstIterator
-           b (i.ContextState ().begin ()), n (i.ContextState ().end ());
+           b (i.getContextState ().begin ()), n (i.getContextState ().end ());
            b != n; ++b)
       {
         if (typeid (GetContextStatesByIdentificationResponse::ContextStateType) == typeid (*b))
@@ -34668,7 +12313,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (GetContextStatesByFilter::FilterConstIterator
-           b (i.Filter ().begin ()), n (i.Filter ().end ());
+           b (i.getFilter ().begin ()), n (i.getFilter ().end ());
            b != n; ++b)
       {
         if (typeid (GetContextStatesByFilter::FilterType) == typeid (*b))
@@ -34691,14 +12336,14 @@ namespace MDM
 
     // ContextType
     //
-    if (i.ContextType ())
+    if (i.getContextType ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "ContextType",
           e));
 
-      a << *i.ContextType ();
+      a << *i.getContextType ();
     }
   }
 
@@ -34714,7 +12359,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (GetContextStatesByFilterResponse::ContextStateConstIterator
-           b (i.ContextState ().begin ()), n (i.ContextState ().end ());
+           b (i.getContextState ().begin ()), n (i.getContextState ().end ());
            b != n; ++b)
       {
         if (typeid (GetContextStatesByFilterResponse::ContextStateType) == typeid (*b))
@@ -34748,7 +12393,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (SetContextState::ProposedContextStateConstIterator
-           b (i.ProposedContextState ().begin ()), n (i.ProposedContextState ().end ());
+           b (i.getProposedContextState ().begin ()), n (i.getProposedContextState ().end ());
            b != n; ++b)
       {
         if (typeid (SetContextState::ProposedContextStateType) == typeid (*b))
@@ -34788,7 +12433,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (ReportPart::ContextStateConstIterator
-           b (i.ContextState ().begin ()), n (i.ContextState ().end ());
+           b (i.getContextState ().begin ()), n (i.getContextState ().end ());
            b != n; ++b)
       {
         if (typeid (ReportPart::ContextStateType) == typeid (*b))
@@ -34834,7 +12479,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (GetLocalizedText::RefConstIterator
-           b (i.Ref ().begin ()), n (i.Ref ().end ());
+           b (i.getRef ().begin ()), n (i.getRef ().end ());
            b != n; ++b)
       {
         if (typeid (GetLocalizedText::RefType) == typeid (*b))
@@ -34861,9 +12506,9 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Version ())
+      if (i.getVersion ())
       {
-        const GetLocalizedText::VersionType& x (*i.Version ());
+        const GetLocalizedText::VersionType& x (*i.getVersion ());
         if (typeid (GetLocalizedText::VersionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -34889,7 +12534,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (GetLocalizedText::LangConstIterator
-           b (i.Lang ().begin ()), n (i.Lang ().end ());
+           b (i.getLang ().begin ()), n (i.getLang ().end ());
            b != n; ++b)
       {
         if (typeid (GetLocalizedText::LangType) == typeid (*b))
@@ -34917,7 +12562,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (GetLocalizedText::TextWidthConstIterator
-           b (i.TextWidth ().begin ()), n (i.TextWidth ().end ());
+           b (i.getTextWidth ().begin ()), n (i.getTextWidth ().end ());
            b != n; ++b)
       {
         if (typeid (GetLocalizedText::TextWidthType) == typeid (*b))
@@ -34941,7 +12586,7 @@ namespace MDM
     // NumberOfLines
     //
     for (GetLocalizedText::NumberOfLinesConstIterator
-         b (i.NumberOfLines ().begin ()), n (i.NumberOfLines ().end ());
+         b (i.getNumberOfLines ().begin ()), n (i.getNumberOfLines ().end ());
          b != n; ++b)
     {
       ::xercesc::DOMElement& s (
@@ -34966,7 +12611,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (GetLocalizedTextResponse::TextConstIterator
-           b (i.Text ().begin ()), n (i.Text ().end ());
+           b (i.getText ().begin ()), n (i.getText ().end ());
            b != n; ++b)
       {
         if (typeid (GetLocalizedTextResponse::TextType) == typeid (*b))
@@ -35006,7 +12651,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (GetSupportedLanguagesResponse::LangConstIterator
-           b (i.Lang ().begin ()), n (i.Lang ().end ());
+           b (i.getLang ().begin ()), n (i.getLang ().end ());
            b != n; ++b)
       {
         if (typeid (GetSupportedLanguagesResponse::LangType) == typeid (*b))
@@ -35039,9 +12684,9 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.DescriptorRevisions ())
+      if (i.getDescriptorRevisions ())
       {
-        const GetDescriptorsFromArchive::DescriptorRevisionsType& x (*i.DescriptorRevisions ());
+        const GetDescriptorsFromArchive::DescriptorRevisionsType& x (*i.getDescriptorRevisions ());
         if (typeid (GetDescriptorsFromArchive::DescriptorRevisionsType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -35066,9 +12711,9 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.TimeFrame ())
+      if (i.getTimeFrame ())
       {
-        const GetDescriptorsFromArchive::TimeFrameType& x (*i.TimeFrame ());
+        const GetDescriptorsFromArchive::TimeFrameType& x (*i.getTimeFrame ());
         if (typeid (GetDescriptorsFromArchive::TimeFrameType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -35094,7 +12739,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (GetDescriptorsFromArchive::HandleConstIterator
-           b (i.Handle ().begin ()), n (i.Handle ().end ());
+           b (i.getHandle ().begin ()), n (i.getHandle ().end ());
            b != n; ++b)
       {
         if (typeid (GetDescriptorsFromArchive::HandleType) == typeid (*b))
@@ -35128,7 +12773,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (GetDescriptorsFromArchiveResponse::DescriptorConstIterator
-           b (i.Descriptor ().begin ()), n (i.Descriptor ().end ());
+           b (i.getDescriptor ().begin ()), n (i.getDescriptor ().end ());
            b != n; ++b)
       {
         if (typeid (GetDescriptorsFromArchiveResponse::DescriptorType) == typeid (*b))
@@ -35161,9 +12806,9 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.StateRevisions ())
+      if (i.getStateRevisions ())
       {
-        const GetStatesFromArchive::StateRevisionsType& x (*i.StateRevisions ());
+        const GetStatesFromArchive::StateRevisionsType& x (*i.getStateRevisions ());
         if (typeid (GetStatesFromArchive::StateRevisionsType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -35188,9 +12833,9 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.TimeFrame ())
+      if (i.getTimeFrame ())
       {
-        const GetStatesFromArchive::TimeFrameType& x (*i.TimeFrame ());
+        const GetStatesFromArchive::TimeFrameType& x (*i.getTimeFrame ());
         if (typeid (GetStatesFromArchive::TimeFrameType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -35216,7 +12861,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (GetStatesFromArchive::HandleConstIterator
-           b (i.Handle ().begin ()), n (i.Handle ().end ());
+           b (i.getHandle ().begin ()), n (i.getHandle ().end ());
            b != n; ++b)
       {
         if (typeid (GetStatesFromArchive::HandleType) == typeid (*b))
@@ -35250,7 +12895,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (GetStatesFromArchiveResponse::StateConstIterator
-           b (i.State ().begin ()), n (i.State ().end ());
+           b (i.getState ().begin ()), n (i.getState ().end ());
            b != n; ++b)
       {
         if (typeid (GetStatesFromArchiveResponse::StateType) == typeid (*b))
@@ -35286,7 +12931,7 @@ namespace MDM
           "http://standards.ieee.org/downloads/11073/11073-10207-2017/message",
           e));
 
-      s << ::xml_schema::AsDecimal(i.RequestedNumericValue ());
+      s << ::xml_schema::AsDecimal(i.getRequestedNumericValue ());
     }
   }
 
@@ -35307,7 +12952,7 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const SetString::RequestedStringValueType& x (i.RequestedStringValue ());
+      const SetString::RequestedStringValueType& x (i.getRequestedStringValue ());
       if (typeid (SetString::RequestedStringValueType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -35340,7 +12985,7 @@ namespace MDM
     // Argument
     //
     for (Activate::ArgumentConstIterator
-         b (i.Argument ().begin ()), n (i.Argument ().end ());
+         b (i.getArgument ().begin ()), n (i.getArgument ().end ());
          b != n; ++b)
     {
       ::xercesc::DOMElement& s (
@@ -35370,7 +13015,7 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const SetAlertState::ProposedAlertStateType& x (i.ProposedAlertState ());
+      const SetAlertState::ProposedAlertStateType& x (i.getProposedAlertState ());
       if (typeid (SetAlertState::ProposedAlertStateType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -35407,7 +13052,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (SetComponentState::ProposedComponentStateConstIterator
-           b (i.ProposedComponentState ().begin ()), n (i.ProposedComponentState ().end ());
+           b (i.getProposedComponentState ().begin ()), n (i.getProposedComponentState ().end ());
            b != n; ++b)
       {
         if (typeid (SetComponentState::ProposedComponentStateType) == typeid (*b))
@@ -35447,7 +13092,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (SetMetricState::ProposedMetricStateConstIterator
-           b (i.ProposedMetricState ().begin ()), n (i.ProposedMetricState ().end ());
+           b (i.getProposedMetricState ().begin ()), n (i.getProposedMetricState ().end ());
            b != n; ++b)
       {
         if (typeid (SetMetricState::ProposedMetricStateType) == typeid (*b))
@@ -35483,7 +13128,7 @@ namespace MDM
     // ReportPart
     //
     for (OperationInvokedReport::ReportPartConstIterator
-         b (i.ReportPart ().begin ()), n (i.ReportPart ().end ());
+         b (i.getReportPart ().begin ()), n (i.getReportPart ().end ());
          b != n; ++b)
     {
       ::xercesc::DOMElement& s (
@@ -35508,7 +13153,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (GetContainmentTree::HandleRefConstIterator
-           b (i.HandleRef ().begin ()), n (i.HandleRef ().end ());
+           b (i.getHandleRef ().begin ()), n (i.getHandleRef ().end ());
            b != n; ++b)
       {
         if (typeid (GetContainmentTree::HandleRefType) == typeid (*b))
@@ -35541,7 +13186,7 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const GetContainmentTreeResponse::ContainmentTreeType& x (i.ContainmentTree ());
+      const GetContainmentTreeResponse::ContainmentTreeType& x (i.getContainmentTree ());
       if (typeid (GetContainmentTreeResponse::ContainmentTreeType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -35572,7 +13217,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (GetDescriptor::HandleRefConstIterator
-           b (i.HandleRef ().begin ()), n (i.HandleRef ().end ());
+           b (i.getHandleRef ().begin ()), n (i.getHandleRef ().end ());
            b != n; ++b)
       {
         if (typeid (GetDescriptor::HandleRefType) == typeid (*b))
@@ -35606,7 +13251,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (GetDescriptorResponse::DescriptorConstIterator
-           b (i.Descriptor ().begin ()), n (i.Descriptor ().end ());
+           b (i.getDescriptor ().begin ()), n (i.getDescriptor ().end ());
            b != n; ++b)
       {
         if (typeid (GetDescriptorResponse::DescriptorType) == typeid (*b))
@@ -35640,7 +13285,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (ReportPart1::MetricStateConstIterator
-           b (i.MetricState ().begin ()), n (i.MetricState ().end ());
+           b (i.getMetricState ().begin ()), n (i.getMetricState ().end ());
            b != n; ++b)
       {
         if (typeid (ReportPart1::MetricStateType) == typeid (*b))
@@ -35686,7 +13331,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (ReportPart2::ComponentStateConstIterator
-           b (i.ComponentState ().begin ()), n (i.ComponentState ().end ());
+           b (i.getComponentState ().begin ()), n (i.getComponentState ().end ());
            b != n; ++b)
       {
         if (typeid (ReportPart2::ComponentStateType) == typeid (*b))
@@ -35732,7 +13377,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (ReportPart3::AlertStateConstIterator
-           b (i.AlertState ().begin ()), n (i.AlertState ().end ());
+           b (i.getAlertState ().begin ()), n (i.getAlertState ().end ());
            b != n; ++b)
       {
         if (typeid (ReportPart3::AlertStateType) == typeid (*b))
@@ -35778,7 +13423,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (ReportPart4::OperationStateConstIterator
-           b (i.OperationState ().begin ()), n (i.OperationState ().end ());
+           b (i.getOperationState ().begin ()), n (i.getOperationState ().end ());
            b != n; ++b)
       {
         if (typeid (ReportPart4::OperationStateType) == typeid (*b))
@@ -35820,7 +13465,7 @@ namespace MDM
     // ReportPart
     //
     for (SystemErrorReport::ReportPartConstIterator
-         b (i.ReportPart ().begin ()), n (i.ReportPart ().end ());
+         b (i.getReportPart ().begin ()), n (i.getReportPart ().end ());
          b != n; ++b)
     {
       ::xercesc::DOMElement& s (
@@ -35841,7 +13486,7 @@ namespace MDM
     // ReportPart
     //
     for (DescriptionModificationReport::ReportPartConstIterator
-         b (i.ReportPart ().begin ()), n (i.ReportPart ().end ());
+         b (i.getReportPart ().begin ()), n (i.getReportPart ().end ());
          b != n; ++b)
     {
       ::xercesc::DOMElement& s (
@@ -35866,7 +13511,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (WaveformStream::StateConstIterator
-           b (i.State ().begin ()), n (i.State ().end ());
+           b (i.getState ().begin ()), n (i.getState ().end ());
            b != n; ++b)
       {
         if (typeid (WaveformStream::StateType) == typeid (*b))
@@ -35896,7 +13541,7 @@ namespace MDM
     // Value
     //
     for (ObservedValueStream::ValueConstIterator
-         b (i.Value ().begin ()), n (i.Value ().end ());
+         b (i.getValue ().begin ()), n (i.getValue ().end ());
          b != n; ++b)
     {
       ::xercesc::DOMElement& s (
@@ -35921,7 +13566,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (Retrievability::ByConstIterator
-           b (i.By ().begin ()), n (i.By ().end ());
+           b (i.getBy ().begin ()), n (i.getBy ().end ());
            b != n; ++b)
       {
         if (typeid (Retrievability::ByType) == typeid (*b))
@@ -35954,9 +13599,9 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Extension ())
+      if (i.getExtension ())
       {
-        const Argument::ExtensionType& x (*i.Extension ());
+        const Argument::ExtensionType& x (*i.getExtension ());
         if (typeid (Argument::ExtensionType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -35981,7 +13626,7 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const Argument::ArgValueType& x (i.ArgValue ());
+      const Argument::ArgValueType& x (i.getArgValue ());
       if (typeid (Argument::ArgValueType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -36011,7 +13656,7 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const ReportPart5::InvocationInfoType& x (i.InvocationInfo ());
+      const ReportPart5::InvocationInfoType& x (i.getInvocationInfo ());
       if (typeid (ReportPart5::InvocationInfoType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -36035,7 +13680,7 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const ReportPart5::InvocationSourceType& x (i.InvocationSource ());
+      const ReportPart5::InvocationSourceType& x (i.getInvocationSource ());
       if (typeid (ReportPart5::InvocationSourceType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -36061,19 +13706,19 @@ namespace MDM
           "OperationHandleRef",
           e));
 
-      a << i.OperationHandleRef ();
+      a << i.getOperationHandleRef ();
     }
 
     // OperationTarget
     //
-    if (i.OperationTarget ())
+    if (i.getOperationTarget ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "OperationTarget",
           e));
 
-      a << *i.OperationTarget ();
+      a << *i.getOperationTarget ();
     }
   }
 
@@ -36088,7 +13733,7 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const ReportPart6::ErrorCodeType& x (i.ErrorCode ());
+      const ReportPart6::ErrorCodeType& x (i.getErrorCode ());
       if (typeid (ReportPart6::ErrorCodeType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -36112,9 +13757,9 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.ErrorInfo ())
+      if (i.getErrorInfo ())
       {
-        const ReportPart6::ErrorInfoType& x (*i.ErrorInfo ());
+        const ReportPart6::ErrorInfoType& x (*i.getErrorInfo ());
         if (typeid (ReportPart6::ErrorInfoType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -36146,7 +13791,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (ReportPart7::DescriptorConstIterator
-           b (i.Descriptor ().begin ()), n (i.Descriptor ().end ());
+           b (i.getDescriptor ().begin ()), n (i.getDescriptor ().end ());
            b != n; ++b)
       {
         if (typeid (ReportPart7::DescriptorType) == typeid (*b))
@@ -36174,7 +13819,7 @@ namespace MDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (ReportPart7::StateConstIterator
-           b (i.State ().begin ()), n (i.State ().end ());
+           b (i.getState ().begin ()), n (i.getState ().end ());
            b != n; ++b)
       {
         if (typeid (ReportPart7::StateType) == typeid (*b))
@@ -36197,26 +13842,26 @@ namespace MDM
 
     // ParentDescriptor
     //
-    if (i.ParentDescriptor ())
+    if (i.getParentDescriptor ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "ParentDescriptor",
           e));
 
-      a << *i.ParentDescriptor ();
+      a << *i.getParentDescriptor ();
     }
 
     // ModificationType
     //
-    if (i.ModificationType ())
+    if (i.getModificationType ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "ModificationType",
           e));
 
-      a << *i.ModificationType ();
+      a << *i.getModificationType ();
     }
   }
 
@@ -36231,9 +13876,9 @@ namespace MDM
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.Value1 ())
+      if (i.getValue1 ())
       {
-        const Value::Value1Type& x (*i.Value1 ());
+        const Value::Value1Type& x (*i.getValue1 ());
         if (typeid (Value::Value1Type) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -36260,19 +13905,19 @@ namespace MDM
           "Metric",
           e));
 
-      a << i.Metric ();
+      a << i.getMetric ();
     }
 
     // StateVersion
     //
-    if (i.StateVersion ())
+    if (i.getStateVersion ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "StateVersion",
           e));
 
-      a << *i.StateVersion ();
+      a << *i.getStateVersion ();
     }
   }
 }

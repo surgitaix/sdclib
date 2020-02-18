@@ -56,8 +56,6 @@
 #include "SDCLib/Data/SDC/MDIB/OperatorContextDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/WorkflowContextDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/MdsDescriptor.h"
-#include "SDCLib/Data/SDC/MDIB/MdDescription.h"
-#include "SDCLib/Data/SDC/MDIB/MdState.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricValue.h"
@@ -81,13 +79,11 @@
 #include "SDCLib/Data/SDC/MDIB/SetAlertStateOperationState.h"
 #include "OSELib/SDC/SDCConstants.h"
 #include "OSELib/DPWS/DeviceDescription.h"
-#include "OSELib/DPWS/DPWS11Constants.h"
 #include "OSELib/SDC/OperationTraits.h"
 
 #include "DataModel/osdm.hxx"
 
 #include <ostream>
-#include <memory>
 #include <vector>
 
 #include <Poco/Net/NetException.h>
@@ -131,32 +127,32 @@ MDM::Activate createRequestMessage(const std::string & p_operationHandle) {
 
 MDM::SetContextState createRequestMessage(const LocationContextState & p_state, const std::string & p_operationHandle) {
 	MDM::SetContextState t_result(p_operationHandle);
-	t_result.ProposedContextState().push_back(ConvertToCDM::convert(p_state));
+	t_result.getProposedContextState().push_back(ConvertToCDM::convert(p_state));
 	return t_result;
 }
 
 
 MDM::SetContextState createRequestMessage(const PatientContextState & p_state, const std::string & p_operationHandle) {
 	MDM::SetContextState t_result(p_operationHandle);
-	t_result.ProposedContextState().push_back(ConvertToCDM::convert(p_state));
+	t_result.getProposedContextState().push_back(ConvertToCDM::convert(p_state));
 	return t_result;
 }
 
 MDM::SetContextState createRequestMessage(const EnsembleContextState & p_state, const std::string & p_operationHandle) {
 	MDM::SetContextState t_result(p_operationHandle);
-	t_result.ProposedContextState().push_back(ConvertToCDM::convert(p_state));
+	t_result.getProposedContextState().push_back(ConvertToCDM::convert(p_state));
 	return t_result;
 }
 
 MDM::SetContextState createRequestMessage(const OperatorContextState & p_state, const std::string & p_operationHandle) {
 	MDM::SetContextState t_result(p_operationHandle);
-	t_result.ProposedContextState().push_back(ConvertToCDM::convert(p_state));
+	t_result.getProposedContextState().push_back(ConvertToCDM::convert(p_state));
 	return t_result;
 }
 
 MDM::SetContextState createRequestMessage(const WorkflowContextState & p_state, const std::string & p_operationHandle) {
 	MDM::SetContextState t_result(p_operationHandle);
-	t_result.ProposedContextState().push_back(ConvertToCDM::convert(p_state));
+	t_result.getProposedContextState().push_back(ConvertToCDM::convert(p_state));
 	return t_result;
 }
 
@@ -174,9 +170,6 @@ SDCConsumer::SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, OSELib::D
             log_error([] { return "Could not start ConsumerAdapter!"; });
             disconnect();
         }
-        else {
-            m_connected = true;
-        }
 	} catch (const Poco::Net::NetException & e) {
 		log_error([&] { return "Exception: " + std::string(e.what()) + " Opening socket impossible. Aborted."; });
         disconnect();
@@ -187,7 +180,7 @@ SDCConsumer::SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, OSELib::D
         // FIXME: Zombie state?
     }
 
-	if (!m_connected) {
+	if (!isConnected()) {
 		log_error([&] { return "Connecting to " + m_deviceDescription->getEPR() + " failed."; });
 	}
 }
@@ -196,7 +189,7 @@ SDCConsumer::~SDCConsumer()
 {
 	// TODO: Why?
     for (auto & t_fis : ml_fisMap) {
-    	t_fis.second->m_consumer = nullptr;
+       t_fis.second->m_consumer = nullptr;
     }
 
     // FIXME: This is not threadsafe + RAII
@@ -207,7 +200,10 @@ SDCConsumer::~SDCConsumer()
         // FIXME: What does this tell us? The dtor should handle a proper disconnect for us! RAII
     }
 }
-
+bool SDCConsumer::isConnected() const
+{
+	return (nullptr != m_adapter);
+}
 void SDCConsumer::disconnect()
 {
 	if (m_adapter) {
@@ -217,15 +213,6 @@ void SDCConsumer::disconnect()
 
 void SDCConsumer::setConnectionLostHandler(SDCConsumerConnectionLostHandler * p_handler) {
     m_connectionLostHandler = p_handler;
-}
-
-void SDCConsumer::setContextStateChangedHandler(SDCConsumerSystemContextStateChangedHandler * p_handler)
-{
-    std::lock_guard<std::mutex> t_lock(m_eventMutex);
-	m_contextStateChangedHandler = p_handler;
-	if (m_adapter) {
-		m_adapter->subscribeEvents();
-	}
 }
 
 void SDCConsumer::setSubscriptionLostHandler(SDCConsumerSubscriptionLostHandler * p_handler) {
@@ -244,29 +231,34 @@ void SDCConsumer::onSubscriptionLost() {
     }
 }
 
-MdibContainer SDCConsumer::getMdib() {
+MdibContainer SDCConsumer::getMdib()
+{
 	if (!requestMdib()) {
-		onConnectionLost();
+		onConnectionLost(); // Todo: Why? Unclear handling of connecion!
 	}
     return *m_mdib; // FIXME: What if nullptr?
 }
 
 MdDescription SDCConsumer::getMdDescription()
 {
+	if(nullptr == m_adapter) { // Todo: Temp workaround
+		return MdDescription();
+	}
+
     const MDM::GetMdDescription request;
     auto t_response(m_adapter->invoke(request, getSDCInstance()->getSSLConfig()->getClientContext()));
 	if (t_response == nullptr) {
         log_error([] { return "GetMdDescription request failed!"; });
-		onConnectionLost();
+		onConnectionLost(); // Todo: Why? Unclear handling of connecion!
 		return MdDescription();
 	}
 
-	const MdDescription t_description(ConvertFromCDM::convert(t_response->MdDescription()));
+	const MdDescription t_description(ConvertFromCDM::convert(t_response->getMdDescription()));
 
 	// refresh cashed version
 	m_mdib->setMdDescription(t_description);
-	if (t_response->MdibVersion().present()) {
-		m_mdib->setMdibVersion(t_response->MdibVersion().get());
+	if (t_response->getMdibVersion().present()) {
+		m_mdib->setMdibVersion(t_response->getMdibVersion().get());
 	}
 
     return t_description;
@@ -276,23 +268,26 @@ MdDescription SDCConsumer::getCachedMdDescription()
 {
 	if (m_mdib) {
 		return m_mdib->getMdDescription();
-	} else {
-		return MdDescription();
 	}
+	return MdDescription();
 }
 
 MdState SDCConsumer::getMdState()
 {
+	if(nullptr == m_adapter) { // Todo: Temp workaround
+		return MdState();
+	}
+
     const MDM::GetMdState t_request;
     auto t_response(m_adapter->invoke(t_request, getSDCInstance()->getSSLConfig()->getClientContext()));
 
 	if (nullptr == t_response) {
 		log_error([] { return "GetMdState request failed!"; });
-		onConnectionLost();
+		onConnectionLost(); // Todo: Why? Unclear handling of connection!
 		return MdState();
 	}
 
-    return ConvertFromCDM::convert(t_response->MdState());
+    return ConvertFromCDM::convert(t_response->getMdState());
 }
 
 bool SDCConsumer::unregisterFutureInvocationListener(int p_transactionId) {
@@ -302,6 +297,10 @@ bool SDCConsumer::unregisterFutureInvocationListener(int p_transactionId) {
 
 bool SDCConsumer::registerStateEventHandler(SDCConsumerOperationInvokedHandler * p_handler)
 {
+	if(nullptr == m_adapter) {
+		return false;
+	}
+
     assert(p_handler != nullptr);
 
     std::lock_guard<std::mutex> t_lock(m_eventMutex);
@@ -315,12 +314,16 @@ bool SDCConsumer::registerStateEventHandler(SDCConsumerOperationInvokedHandler *
 
 bool SDCConsumer::unregisterStateEventHandler(SDCConsumerOperationInvokedHandler * p_handler)
 {
+	if(nullptr == m_adapter) {
+		return false;
+	}
+
 	assert(p_handler != nullptr);
 
 	std::lock_guard<std::mutex> t_lock(m_eventMutex);
     ml_eventHandlers.erase(p_handler->getDescriptorHandle());
 
-	if (m_adapter && ml_eventHandlers.empty() && m_contextStateChangedHandler == nullptr) {
+	if (m_adapter && ml_eventHandlers.empty()) {
 		m_adapter->unsubscribeEvents();
 	}
     return true;
@@ -335,18 +338,23 @@ bool SDCConsumer::requestMdib()
 
 	std::lock_guard<std::mutex> t_lock(m_requestMutex);
 	m_mdib.reset(new MdibContainer());
-	m_mdib->setMdState(ConvertFromCDM::convert(t_response->Mdib().MdState().get()));
-	if (t_response->Mdib().MdDescription().present()) {
-		m_mdib->setMdDescription(ConvertFromCDM::convert(t_response->Mdib().MdDescription().get()));
+	m_mdib->setMdState(ConvertFromCDM::convert(t_response->getMdib().getMdState().get()));
+	if (t_response->getMdib().getMdDescription().present()) {
+		m_mdib->setMdDescription(ConvertFromCDM::convert(t_response->getMdib().getMdDescription().get()));
 	}
 
-	if (t_response->MdibVersion().present()) {
-		m_mdib->setMdibVersion(t_response->MdibVersion().get());
+	if (t_response->getMdibVersion().present()) {
+		m_mdib->setMdibVersion(t_response->getMdibVersion().get());
 	}
 	return true;
 }
 
-std::unique_ptr<MDM::GetMdibResponse> SDCConsumer::requestCDMMdib() {
+std::unique_ptr<MDM::GetMdibResponse> SDCConsumer::requestCDMMdib()
+{
+	if(nullptr == m_adapter) { // Todo: Temp workaround
+		return nullptr;
+	}
+
     const MDM::GetMdib t_request;
     auto t_response(m_adapter->invoke(t_request, getSDCInstance()->getSSLConfig()->getClientContext()));
     return t_response;
@@ -358,14 +366,14 @@ std::string SDCConsumer::requestRawMdib()
 	if (t_response == nullptr) {
 		log_error([] { return "MDIB request failed!"; });
 		return "";
-	} else {
-		const xml_schema::Flags xercesFlags(xml_schema::Flags::dont_validate | xml_schema::Flags::no_xml_declaration | xml_schema::Flags::dont_initialize);
-		std::ostringstream t_result;
-		xml_schema::NamespaceInfomap tl_map;
-
-		CDM::MdibContainer(t_result, t_response->Mdib(), tl_map, OSELib::XML_ENCODING, xercesFlags);
-		return t_result.str();
 	}
+	const xml_schema::Flags xercesFlags(xml_schema::Flags::dont_validate | xml_schema::Flags::no_xml_declaration | xml_schema::Flags::dont_initialize);
+	std::ostringstream t_result;
+	xml_schema::NamespaceInfomap tl_map;
+
+	CDM::serializeMdibContainer(t_result, t_response->getMdib(), tl_map, OSELib::XML_ENCODING, xercesFlags);
+	return t_result.str();
+
 }
 
 // TODO: delete commitStateImpl() use one template class, use traits for Metrices: https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Member_Detector
@@ -499,7 +507,12 @@ InvocationState SDCConsumer::commitState(const WorkflowContextState & p_state) {
 }
 
 template<class OperationTraits, class StateType>
-InvocationState SDCConsumer::commitStateImpl(const StateType & p_state, FutureInvocationState & p_fis) {
+InvocationState SDCConsumer::commitStateImpl(const StateType & p_state, FutureInvocationState & p_fis)
+{
+	if(nullptr == m_adapter) { // Todo: Temp workaround
+		log_error([] { return "Commit failed: Adapter not initialized!"; });
+		return InvocationState::Fail;
+	}
 
 	if (p_state.getDescriptorHandle().empty()) {
 		log_error([] { return "Commit failed: descriptor handle is empty!"; });
@@ -516,14 +529,12 @@ InvocationState SDCConsumer::commitStateImpl(const StateType & p_state, FutureIn
 
 
 	// Check for operation that targets the descriptor for this state.
+	// FIXME: Type needs to be considered here!
 	auto t_operationHandle(t_mddescription.getFirstOperationHandleForOperationTarget(p_state.getDescriptorHandle()));
-
-
-
 	if (t_operationHandle.empty()) {
 		// No operation targeting this state was found.
 		// check for operation that targets state
-		t_operationHandle = t_mddescription.getFirstOperationHandleForOperationTarget(p_state.getDescriptorHandle());
+		t_operationHandle = t_mddescription.getFirstOperationHandleForOperationTarget(p_state.getDescriptorHandle()); // FIXME: duplicated code?
 	}
 	if (t_operationHandle.empty()) {
 		log_error([&] { return "Commit failed: No set operation found to modify given state! State has descriptor handle " + p_state.getDescriptorHandle(); });
@@ -534,11 +545,10 @@ InvocationState SDCConsumer::commitStateImpl(const StateType & p_state, FutureIn
 	auto t_response(m_adapter->invoke(t_request, getSDCInstance()->getSSLConfig()->getClientContext()));
 	if (nullptr == t_response) {
 		return InvocationState::Fail;
-	} else {
-		handleInvocationState(t_response->InvocationInfo().TransactionId(), p_fis);
-		return ConvertFromCDM::convert(t_response->InvocationInfo().InvocationState());
 	}
-	// FIXME: Return "else part" here?
+
+	handleInvocationState(t_response->getInvocationInfo().getTransactionId(), p_fis);
+	return ConvertFromCDM::convert(t_response->getInvocationInfo().getInvocationState());
 }
 
 void SDCConsumer::handleInvocationState(int p_transactionId, FutureInvocationState & p_fis)
@@ -563,7 +573,12 @@ InvocationState SDCConsumer::activate(const std::string & p_handle) {
 	return activate(p_handle, t_dummy);
 }
 
-InvocationState SDCConsumer::activate(const std::string & p_handle, FutureInvocationState & p_fis) {
+InvocationState SDCConsumer::activate(const std::string & p_handle, FutureInvocationState & p_fis)
+{
+	if(nullptr == m_adapter) { // Todo: Temp workaround
+		log_error([] { return "Commit failed: Adapter not initialized!"; });
+		return InvocationState::Fail;
+	}
 
     const auto t_mdd(getCachedMdDescription());
 
@@ -571,11 +586,10 @@ InvocationState SDCConsumer::activate(const std::string & p_handle, FutureInvoca
 	auto t_response(m_adapter->invoke(t_request, getSDCInstance()->getSSLConfig()->getClientContext()));
 	if (nullptr == t_response) {
 		return InvocationState::Fail;
-	} else {
-		handleInvocationState(t_response->InvocationInfo().TransactionId(), p_fis);
-		return ConvertFromCDM::convert(t_response->InvocationInfo().InvocationState());
 	}
-	// FIXME: Return "else part" here?
+
+	handleInvocationState(t_response->getInvocationInfo().getTransactionId(), p_fis);
+	return ConvertFromCDM::convert(t_response->getInvocationInfo().getInvocationState());
 }
 
 //// specialization needed for API
@@ -598,10 +612,14 @@ template std::unique_ptr<RealTimeSampleArrayMetricState> SDCConsumer::requestSta
 // TODO: implement and test! missing states -> RealTimeSampleArrayMetricState, DistributionSampleArrayMetricState
 
 template<class TStateType>
-std::unique_ptr<TStateType> SDCConsumer::requestState(const std::string & p_handle) {
+std::unique_ptr<TStateType> SDCConsumer::requestState(const std::string & p_handle)
+{
+	if(nullptr == m_adapter) {
+		return nullptr;
+	}
 
     MDM::GetMdState t_request;
-    t_request.HandleRef().push_back(p_handle);
+    t_request.getHandleRef().push_back(p_handle);
 
     auto t_response(m_adapter->invoke(t_request, getSDCInstance()->getSSLConfig()->getClientContext()));
     if (nullptr == t_response) {
@@ -609,7 +627,7 @@ std::unique_ptr<TStateType> SDCConsumer::requestState(const std::string & p_hand
     	return nullptr;
     }
 
-	const CDM::MdState::StateSequence & t_resultStates(t_response->MdState().State());
+	const CDM::MdState::StateSequence & t_resultStates(t_response->getMdState().getState());
 	if (t_resultStates.empty()) {
 		log_error([&] { return "requestState failed: Got no response object for handle "  + p_handle; });
 		return nullptr;
@@ -702,11 +720,11 @@ void SDCConsumer::onOperationInvoked(const OperationInvocationContext & p_oic, I
     const auto tl_mdss(t_mdd.collectAllMdsDescriptors());
     for (const auto & mds : tl_mdss) {
     	const auto t_mds_uniquePtr(ConvertToCDM::convert(mds));
-		if (!t_mds_uniquePtr->Sco().present()) {
+		if (!t_mds_uniquePtr->getSco().present()) {
 			continue;
 		}
-		for (const auto & t_operation : t_mds_uniquePtr->Sco().get().Operation()) {
-			if (t_operation.Handle() == p_oic.operationHandle && dynamic_cast<const CDM::ActivateOperationDescriptor *>(&t_operation) != nullptr) {
+		for (const auto & t_operation : t_mds_uniquePtr->getSco().get().getOperation()) {
+			if (t_operation.getHandle() == p_oic.operationHandle && dynamic_cast<const CDM::ActivateOperationDescriptor *>(&t_operation) != nullptr) {
 				t_targetHandle = p_oic.operationHandle;
 				break;
 			}

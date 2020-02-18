@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class BaseDemographics {
+class BaseDemographics
+{
 private:
 	BaseDemographics(const CDM::BaseDemographics & object);
 	operator CDM::BaseDemographics() const;
@@ -53,11 +54,11 @@ private:
 public:
 	BaseDemographics(
 	);
-	BaseDemographics(const BaseDemographics & object);
-	virtual ~BaseDemographics();
+	BaseDemographics(const BaseDemographics& object);
+	virtual ~BaseDemographics() = default;
 
-    void copyFrom(const BaseDemographics & object);
-    BaseDemographics & operator=(const BaseDemographics & object);
+    void copyFrom(const BaseDemographics& object);
+    BaseDemographics & operator=(const BaseDemographics& object);
 
     typedef CDM::BaseDemographics WrappedType;
 
@@ -86,7 +87,7 @@ public:
 	void clearMiddlenameList();
 
 private:
-	std::shared_ptr<CDM::BaseDemographics> data;
+	std::shared_ptr<CDM::BaseDemographics> data = nullptr;
 };
 
 } /* namespace SDC */

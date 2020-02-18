@@ -64,7 +64,7 @@ public:
 	std::unique_ptr<DPWS::ProbeTraits::Response> dispatch(const DPWS::ProbeTraits::Request & p_request) override {
 		std::unique_ptr<DPWS::ProbeTraits::Response> t_response(new DPWS::ProbeTraits::Response());
 		for (const auto & t_item : m_host.dispatch(p_request)) {
-			t_response->ProbeMatch().push_back(t_item);
+			t_response->getProbeMatch().push_back(t_item);
 		}
 		return t_response;
 	}
@@ -272,7 +272,24 @@ SDCProviderAdapter::SDCProviderAdapter(SDCProvider & p_provider)
 
 SDCProviderAdapter::~SDCProviderAdapter()
 {
-	stop();
+	std::lock_guard<std::mutex> t_lock{m_mutex};
+
+	if (m_dpwsHost)
+	{
+		m_dpwsHost->stop();
+	}
+
+	if (m_httpServer)
+	{
+		m_httpServer->stopAll(false);
+		while (m_httpServer->currentConnections() != 0) {
+	        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		}
+	}
+
+	m_httpServer.reset();
+	m_dpwsHost.reset();
+	m_subscriptionManager.reset();
 }
 
 
@@ -351,26 +368,6 @@ bool SDCProviderAdapter::start()
 	m_httpServer->start();
 	m_dpwsHost->start();
     return true;
-}
-
-void SDCProviderAdapter::stop() {
-
-	std::lock_guard<std::mutex> t_lock{m_mutex};
-
-	if (m_dpwsHost) {
-		m_dpwsHost->stop();
-	}
-
-	if (m_httpServer) {
-		m_httpServer->stopAll(false);
-		while (m_httpServer->currentConnections() != 0) {
-	        std::this_thread::sleep_for(std::chrono::milliseconds(100));
-		}
-	}
-
-	m_httpServer.reset();
-	m_dpwsHost.reset();
-	m_subscriptionManager.reset();
 }
 
 void SDCProviderAdapter::notifyEvent(const MDM::DescriptionModificationReport & p_report) {

@@ -45,71 +45,68 @@ namespace SDC {
 
 PhysicalConnectorInfo::PhysicalConnectorInfo(
 ) : data(Defaults::PhysicalConnectorInfoInit(
-)) {}
+))
+{}
 
 PhysicalConnectorInfo::operator CDM::PhysicalConnectorInfo() const {
 	return *data;
 }
 
-PhysicalConnectorInfo::PhysicalConnectorInfo(const CDM::PhysicalConnectorInfo & object) : data(new CDM::PhysicalConnectorInfo(object)) {
+PhysicalConnectorInfo::PhysicalConnectorInfo(const CDM::PhysicalConnectorInfo & object)
+: data(new CDM::PhysicalConnectorInfo(object))
+{ }
 
-}
-
-PhysicalConnectorInfo::PhysicalConnectorInfo(const PhysicalConnectorInfo & object) : data(new CDM::PhysicalConnectorInfo(*object.data)) {
-
-}
-
-PhysicalConnectorInfo::~PhysicalConnectorInfo() {
-
-}
+PhysicalConnectorInfo::PhysicalConnectorInfo(const PhysicalConnectorInfo & object)
+: data(std::make_shared<CDM::PhysicalConnectorInfo>(*object.data))
+{ }
 
 void PhysicalConnectorInfo::copyFrom(const PhysicalConnectorInfo & object) {
-	data = std::shared_ptr<CDM::PhysicalConnectorInfo>( new CDM::PhysicalConnectorInfo(*object.data));
+	data = std::make_shared<CDM::PhysicalConnectorInfo>(*object.data);
 }
 
-PhysicalConnectorInfo & PhysicalConnectorInfo:: operator=(const PhysicalConnectorInfo & object) {
+PhysicalConnectorInfo & PhysicalConnectorInfo:: operator=(const PhysicalConnectorInfo& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 PhysicalConnectorInfo & PhysicalConnectorInfo::setNumber(const int & value) {
-	data->Number(ConvertToCDM::convert(value));
+	data->setNumber(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool PhysicalConnectorInfo::getNumber(int & out) const {
-	if (data->Number().present()) {
-		out = ConvertFromCDM::convert(data->Number().get());
+	if (data->getNumber().present()) {
+		out = ConvertFromCDM::convert(data->getNumber().get());
 		return true;
 	}
 	return false;
 }
 
 int PhysicalConnectorInfo::getNumber() const {
-	return ConvertFromCDM::convert(data->Number().get());
+	return ConvertFromCDM::convert(data->getNumber().get());
 }
 
 bool PhysicalConnectorInfo::hasNumber() const {
-	return data->Number().present();
+	return data->getNumber().present();
 }
 
 PhysicalConnectorInfo & PhysicalConnectorInfo::addLabel(const LocalizedText & value) {
-	data->Label().push_back(ConvertToCDM::convert(value));
+	data->getLabel().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<LocalizedText> PhysicalConnectorInfo::getLabelList() const {
 	std::vector<LocalizedText> result;
-	result.reserve(data->Label().size());
-	for (const auto & value: data->Label()) {
+	result.reserve(data->getLabel().size());
+	for (const auto & value: data->getLabel()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void PhysicalConnectorInfo::clearLabelList() {
-	data->Label().clear();
+	data->getLabel().clear();
 }
 
 

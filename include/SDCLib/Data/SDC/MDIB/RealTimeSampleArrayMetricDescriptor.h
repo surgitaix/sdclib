@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class RealTimeSampleArrayMetricDescriptor {
+class RealTimeSampleArrayMetricDescriptor
+{
 private:
 	RealTimeSampleArrayMetricDescriptor(const CDM::RealTimeSampleArrayMetricDescriptor & object);
 	operator CDM::RealTimeSampleArrayMetricDescriptor() const;
@@ -67,11 +68,11 @@ public:
 private:
 	RealTimeSampleArrayMetricDescriptor(){};
 public:
-	RealTimeSampleArrayMetricDescriptor(const RealTimeSampleArrayMetricDescriptor & object);
-	virtual ~RealTimeSampleArrayMetricDescriptor();
+	RealTimeSampleArrayMetricDescriptor(const RealTimeSampleArrayMetricDescriptor& object);
+	virtual ~RealTimeSampleArrayMetricDescriptor() = default;
 
-    void copyFrom(const RealTimeSampleArrayMetricDescriptor & object);
-    RealTimeSampleArrayMetricDescriptor & operator=(const RealTimeSampleArrayMetricDescriptor & object);
+    void copyFrom(const RealTimeSampleArrayMetricDescriptor& object);
+    RealTimeSampleArrayMetricDescriptor & operator=(const RealTimeSampleArrayMetricDescriptor& object);
 
     typedef CDM::RealTimeSampleArrayMetricDescriptor WrappedType;
     typedef RealTimeSampleArrayMetricState StateType;
@@ -152,7 +153,7 @@ public:
 	void clearTechnicalRangeList();
 
 private:
-	std::shared_ptr<CDM::RealTimeSampleArrayMetricDescriptor> data;
+	std::shared_ptr<CDM::RealTimeSampleArrayMetricDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

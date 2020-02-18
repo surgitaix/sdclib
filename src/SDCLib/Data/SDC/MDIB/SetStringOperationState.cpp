@@ -51,115 +51,112 @@ SetStringOperationState::SetStringOperationState(
 		descriptorhandle
 		,
 		operatingmode
-)) {}
+))
+{}
 
 SetStringOperationState::operator CDM::SetStringOperationState() const {
 	return *data;
 }
 
-SetStringOperationState::SetStringOperationState(const CDM::SetStringOperationState & object) : data(new CDM::SetStringOperationState(object)) {
+SetStringOperationState::SetStringOperationState(const CDM::SetStringOperationState & object)
+: data(new CDM::SetStringOperationState(object))
+{ }
 
-}
-
-SetStringOperationState::SetStringOperationState(const SetStringOperationState & object) : data(new CDM::SetStringOperationState(*object.data)) {
-
-}
-
-SetStringOperationState::~SetStringOperationState() {
-
-}
+SetStringOperationState::SetStringOperationState(const SetStringOperationState & object)
+: data(std::make_shared<CDM::SetStringOperationState>(*object.data))
+{ }
 
 void SetStringOperationState::copyFrom(const SetStringOperationState & object) {
-	data = std::shared_ptr<CDM::SetStringOperationState>( new CDM::SetStringOperationState(*object.data));
+	data = std::make_shared<CDM::SetStringOperationState>(*object.data);
 }
 
-SetStringOperationState & SetStringOperationState:: operator=(const SetStringOperationState & object) {
+SetStringOperationState & SetStringOperationState:: operator=(const SetStringOperationState& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 SetStringOperationState & SetStringOperationState::setStateVersion(const VersionCounter & value) {
-	data->StateVersion(ConvertToCDM::convert(value));
+	data->setStateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetStringOperationState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
+	if (data->getStateVersion().present()) {
+		out = ConvertFromCDM::convert(data->getStateVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter SetStringOperationState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+	return ConvertFromCDM::convert(data->getStateVersion().get());
 }
 
 bool SetStringOperationState::hasStateVersion() const {
-	return data->StateVersion().present();
+	return data->getStateVersion().present();
 }
 
 SetStringOperationState & SetStringOperationState::setDescriptorHandle(const HandleRef & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
+	data->setDescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 HandleRef SetStringOperationState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
+	return ConvertFromCDM::convert(data->getDescriptorHandle());
 }
 
 SetStringOperationState & SetStringOperationState::setDescriptorVersion(const ReferencedVersion & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetStringOperationState::getDescriptorVersion(ReferencedVersion & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 ReferencedVersion SetStringOperationState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool SetStringOperationState::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 SetStringOperationState & SetStringOperationState::setOperatingMode(const OperatingMode & value) {
-	data->OperatingMode(ConvertToCDM::convert(value));
+	data->setOperatingMode(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 OperatingMode SetStringOperationState::getOperatingMode() const {
-	return ConvertFromCDM::convert(data->OperatingMode());
+	return ConvertFromCDM::convert(data->getOperatingMode());
 }
 
 SetStringOperationState & SetStringOperationState::setAllowedValues(const AllowedValues & value) {
-	data->AllowedValues(ConvertToCDM::convert(value));
+	data->setAllowedValues(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetStringOperationState::getAllowedValues(AllowedValues & out) const {
-	if (data->AllowedValues().present()) {
-		out = ConvertFromCDM::convert(data->AllowedValues().get());
+	if (data->getAllowedValues().present()) {
+		out = ConvertFromCDM::convert(data->getAllowedValues().get());
 		return true;
 	}
 	return false;
 }
 
 AllowedValues SetStringOperationState::getAllowedValues() const {
-	return ConvertFromCDM::convert(data->AllowedValues().get());
+	return ConvertFromCDM::convert(data->getAllowedValues().get());
 }
 
 bool SetStringOperationState::hasAllowedValues() const {
-	return data->AllowedValues().present();
+	return data->getAllowedValues().present();
 }
 
 

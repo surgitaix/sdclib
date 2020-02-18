@@ -31,6 +31,8 @@ namespace OSELib
 		{
 		private:
 
+			bool m_SSL = true;
+
 			mutable std::mutex m_mutex_epr;
 			mutable std::mutex m_mutex_IP;
 			mutable std::mutex m_mutex_URIs;
@@ -49,7 +51,7 @@ namespace OSELib
 
 		public:
 
-			DeviceDescription();
+			DeviceDescription(bool p_SSL);
 			// Special Member Functions
 			DeviceDescription(const DeviceDescription& p_obj) = delete;
 			DeviceDescription(DeviceDescription&& p_obj) = delete;
@@ -57,7 +59,7 @@ namespace OSELib
 			DeviceDescription& operator=(DeviceDescription&& p_obj) = delete;
 			~DeviceDescription() = default;
 
-			bool checkURIsValidity(const Poco::URI & p_uri) const;
+			bool checkURIsValidity(const Poco::URI & p_uri, bool p_SSL) const;
 
 			std::string getEPR() const;
 			void setEPR(const std::string & p_epr);

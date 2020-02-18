@@ -48,365 +48,362 @@ namespace SDC {
 
 NeonatalPatientDemographicsCoreData::NeonatalPatientDemographicsCoreData(
 ) : data(Defaults::NeonatalPatientDemographicsCoreDataInit(
-)) {}
+))
+{}
 
 NeonatalPatientDemographicsCoreData::operator CDM::NeonatalPatientDemographicsCoreData() const {
 	return *data;
 }
 
-NeonatalPatientDemographicsCoreData::NeonatalPatientDemographicsCoreData(const CDM::NeonatalPatientDemographicsCoreData & object) : data(new CDM::NeonatalPatientDemographicsCoreData(object)) {
+NeonatalPatientDemographicsCoreData::NeonatalPatientDemographicsCoreData(const CDM::NeonatalPatientDemographicsCoreData & object)
+: data(new CDM::NeonatalPatientDemographicsCoreData(object))
+{ }
 
-}
-
-NeonatalPatientDemographicsCoreData::NeonatalPatientDemographicsCoreData(const NeonatalPatientDemographicsCoreData & object) : data(new CDM::NeonatalPatientDemographicsCoreData(*object.data)) {
-
-}
-
-NeonatalPatientDemographicsCoreData::~NeonatalPatientDemographicsCoreData() {
-
-}
+NeonatalPatientDemographicsCoreData::NeonatalPatientDemographicsCoreData(const NeonatalPatientDemographicsCoreData & object)
+: data(std::make_shared<CDM::NeonatalPatientDemographicsCoreData>(*object.data))
+{ }
 
 void NeonatalPatientDemographicsCoreData::copyFrom(const NeonatalPatientDemographicsCoreData & object) {
-	data = std::shared_ptr<CDM::NeonatalPatientDemographicsCoreData>( new CDM::NeonatalPatientDemographicsCoreData(*object.data));
+	data = std::make_shared<CDM::NeonatalPatientDemographicsCoreData>(*object.data);
 }
 
-NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData:: operator=(const NeonatalPatientDemographicsCoreData & object) {
+NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData:: operator=(const NeonatalPatientDemographicsCoreData& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setGivenname(const std::string & value) {
-	data->Givenname(ConvertToCDM::convert(value));
+	data->setGivenname(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool NeonatalPatientDemographicsCoreData::getGivenname(std::string & out) const {
-	if (data->Givenname().present()) {
-		out = ConvertFromCDM::convert(data->Givenname().get());
+	if (data->getGivenname().present()) {
+		out = ConvertFromCDM::convert(data->getGivenname().get());
 		return true;
 	}
 	return false;
 }
 
 std::string NeonatalPatientDemographicsCoreData::getGivenname() const {
-	return ConvertFromCDM::convert(data->Givenname().get());
+	return ConvertFromCDM::convert(data->getGivenname().get());
 }
 
 bool NeonatalPatientDemographicsCoreData::hasGivenname() const {
-	return data->Givenname().present();
+	return data->getGivenname().present();
 }
 
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setFamilyname(const std::string & value) {
-	data->Familyname(ConvertToCDM::convert(value));
+	data->setFamilyname(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool NeonatalPatientDemographicsCoreData::getFamilyname(std::string & out) const {
-	if (data->Familyname().present()) {
-		out = ConvertFromCDM::convert(data->Familyname().get());
+	if (data->getFamilyname().present()) {
+		out = ConvertFromCDM::convert(data->getFamilyname().get());
 		return true;
 	}
 	return false;
 }
 
 std::string NeonatalPatientDemographicsCoreData::getFamilyname() const {
-	return ConvertFromCDM::convert(data->Familyname().get());
+	return ConvertFromCDM::convert(data->getFamilyname().get());
 }
 
 bool NeonatalPatientDemographicsCoreData::hasFamilyname() const {
-	return data->Familyname().present();
+	return data->getFamilyname().present();
 }
 
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setBirthname(const std::string & value) {
-	data->Birthname(ConvertToCDM::convert(value));
+	data->setBirthname(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool NeonatalPatientDemographicsCoreData::getBirthname(std::string & out) const {
-	if (data->Birthname().present()) {
-		out = ConvertFromCDM::convert(data->Birthname().get());
+	if (data->getBirthname().present()) {
+		out = ConvertFromCDM::convert(data->getBirthname().get());
 		return true;
 	}
 	return false;
 }
 
 std::string NeonatalPatientDemographicsCoreData::getBirthname() const {
-	return ConvertFromCDM::convert(data->Birthname().get());
+	return ConvertFromCDM::convert(data->getBirthname().get());
 }
 
 bool NeonatalPatientDemographicsCoreData::hasBirthname() const {
-	return data->Birthname().present();
+	return data->getBirthname().present();
 }
 
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setTitle(const std::string & value) {
-	data->Title(ConvertToCDM::convert(value));
+	data->setTitle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool NeonatalPatientDemographicsCoreData::getTitle(std::string & out) const {
-	if (data->Title().present()) {
-		out = ConvertFromCDM::convert(data->Title().get());
+	if (data->getTitle().present()) {
+		out = ConvertFromCDM::convert(data->getTitle().get());
 		return true;
 	}
 	return false;
 }
 
 std::string NeonatalPatientDemographicsCoreData::getTitle() const {
-	return ConvertFromCDM::convert(data->Title().get());
+	return ConvertFromCDM::convert(data->getTitle().get());
 }
 
 bool NeonatalPatientDemographicsCoreData::hasTitle() const {
-	return data->Title().present();
+	return data->getTitle().present();
 }
 
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::addMiddlename(const std::string & value) {
-	data->Middlename().push_back(ConvertToCDM::convert(value));
+	data->getMiddlename().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<std::string> NeonatalPatientDemographicsCoreData::getMiddlenameList() const {
 	std::vector<std::string> result;
-	result.reserve(data->Middlename().size());
-	for (const auto & value: data->Middlename()) {
+	result.reserve(data->getMiddlename().size());
+	for (const auto & value: data->getMiddlename()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void NeonatalPatientDemographicsCoreData::clearMiddlenameList() {
-	data->Middlename().clear();
+	data->getMiddlename().clear();
 }
 
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setSex(const Sex & value) {
-	data->Sex(ConvertToCDM::convert(value));
+	data->setSex(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool NeonatalPatientDemographicsCoreData::getSex(Sex & out) const {
-	if (data->Sex().present()) {
-		out = ConvertFromCDM::convert(data->Sex().get());
+	if (data->getSex().present()) {
+		out = ConvertFromCDM::convert(data->getSex().get());
 		return true;
 	}
 	return false;
 }
 
 Sex NeonatalPatientDemographicsCoreData::getSex() const {
-	return ConvertFromCDM::convert(data->Sex().get());
+	return ConvertFromCDM::convert(data->getSex().get());
 }
 
 bool NeonatalPatientDemographicsCoreData::hasSex() const {
-	return data->Sex().present();
+	return data->getSex().present();
 }
 
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setPatientType(const PatientType & value) {
-	data->PatientType(ConvertToCDM::convert(value));
+	data->setPatientType(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool NeonatalPatientDemographicsCoreData::getPatientType(PatientType & out) const {
-	if (data->PatientType().present()) {
-		out = ConvertFromCDM::convert(data->PatientType().get());
+	if (data->getPatientType().present()) {
+		out = ConvertFromCDM::convert(data->getPatientType().get());
 		return true;
 	}
 	return false;
 }
 
 PatientType NeonatalPatientDemographicsCoreData::getPatientType() const {
-	return ConvertFromCDM::convert(data->PatientType().get());
+	return ConvertFromCDM::convert(data->getPatientType().get());
 }
 
 bool NeonatalPatientDemographicsCoreData::hasPatientType() const {
-	return data->PatientType().present();
+	return data->getPatientType().present();
 }
 
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setDateOfBirth(const DateOfBirth & value) {
-	data->DateOfBirth(ConvertToCDM::convert(value));
+	data->setDateOfBirth(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool NeonatalPatientDemographicsCoreData::getDateOfBirth(DateOfBirth & out) const {
-	if (data->DateOfBirth().present()) {
-		out = ConvertFromCDM::convert(data->DateOfBirth().get());
+	if (data->getDateOfBirth().present()) {
+		out = ConvertFromCDM::convert(data->getDateOfBirth().get());
 		return true;
 	}
 	return false;
 }
 
 DateOfBirth NeonatalPatientDemographicsCoreData::getDateOfBirth() const {
-	return ConvertFromCDM::convert(data->DateOfBirth().get());
+	return ConvertFromCDM::convert(data->getDateOfBirth().get());
 }
 
 bool NeonatalPatientDemographicsCoreData::hasDateOfBirth() const {
-	return data->DateOfBirth().present();
+	return data->getDateOfBirth().present();
 }
 
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setHeight(const Measurement & value) {
-	data->Height(ConvertToCDM::convert(value));
+	data->setHeight(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool NeonatalPatientDemographicsCoreData::getHeight(Measurement & out) const {
-	if (data->Height().present()) {
-		out = ConvertFromCDM::convert(data->Height().get());
+	if (data->getHeight().present()) {
+		out = ConvertFromCDM::convert(data->getHeight().get());
 		return true;
 	}
 	return false;
 }
 
 Measurement NeonatalPatientDemographicsCoreData::getHeight() const {
-	return ConvertFromCDM::convert(data->Height().get());
+	return ConvertFromCDM::convert(data->getHeight().get());
 }
 
 bool NeonatalPatientDemographicsCoreData::hasHeight() const {
-	return data->Height().present();
+	return data->getHeight().present();
 }
 
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setWeight(const Measurement & value) {
-	data->Weight(ConvertToCDM::convert(value));
+	data->setWeight(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool NeonatalPatientDemographicsCoreData::getWeight(Measurement & out) const {
-	if (data->Weight().present()) {
-		out = ConvertFromCDM::convert(data->Weight().get());
+	if (data->getWeight().present()) {
+		out = ConvertFromCDM::convert(data->getWeight().get());
 		return true;
 	}
 	return false;
 }
 
 Measurement NeonatalPatientDemographicsCoreData::getWeight() const {
-	return ConvertFromCDM::convert(data->Weight().get());
+	return ConvertFromCDM::convert(data->getWeight().get());
 }
 
 bool NeonatalPatientDemographicsCoreData::hasWeight() const {
-	return data->Weight().present();
+	return data->getWeight().present();
 }
 
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setRace(const CodedValue & value) {
-	data->Race(ConvertToCDM::convert(value));
+	data->setRace(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool NeonatalPatientDemographicsCoreData::getRace(CodedValue & out) const {
-	if (data->Race().present()) {
-		out = ConvertFromCDM::convert(data->Race().get());
+	if (data->getRace().present()) {
+		out = ConvertFromCDM::convert(data->getRace().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue NeonatalPatientDemographicsCoreData::getRace() const {
-	return ConvertFromCDM::convert(data->Race().get());
+	return ConvertFromCDM::convert(data->getRace().get());
 }
 
 bool NeonatalPatientDemographicsCoreData::hasRace() const {
-	return data->Race().present();
+	return data->getRace().present();
 }
 
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setGestationalAge(const Measurement & value) {
-	data->GestationalAge(ConvertToCDM::convert(value));
+	data->setGestationalAge(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool NeonatalPatientDemographicsCoreData::getGestationalAge(Measurement & out) const {
-	if (data->GestationalAge().present()) {
-		out = ConvertFromCDM::convert(data->GestationalAge().get());
+	if (data->getGestationalAge().present()) {
+		out = ConvertFromCDM::convert(data->getGestationalAge().get());
 		return true;
 	}
 	return false;
 }
 
 Measurement NeonatalPatientDemographicsCoreData::getGestationalAge() const {
-	return ConvertFromCDM::convert(data->GestationalAge().get());
+	return ConvertFromCDM::convert(data->getGestationalAge().get());
 }
 
 bool NeonatalPatientDemographicsCoreData::hasGestationalAge() const {
-	return data->GestationalAge().present();
+	return data->getGestationalAge().present();
 }
 
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setBirthLength(const Measurement & value) {
-	data->BirthLength(ConvertToCDM::convert(value));
+	data->setBirthLength(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool NeonatalPatientDemographicsCoreData::getBirthLength(Measurement & out) const {
-	if (data->BirthLength().present()) {
-		out = ConvertFromCDM::convert(data->BirthLength().get());
+	if (data->getBirthLength().present()) {
+		out = ConvertFromCDM::convert(data->getBirthLength().get());
 		return true;
 	}
 	return false;
 }
 
 Measurement NeonatalPatientDemographicsCoreData::getBirthLength() const {
-	return ConvertFromCDM::convert(data->BirthLength().get());
+	return ConvertFromCDM::convert(data->getBirthLength().get());
 }
 
 bool NeonatalPatientDemographicsCoreData::hasBirthLength() const {
-	return data->BirthLength().present();
+	return data->getBirthLength().present();
 }
 
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setBirthWeight(const Measurement & value) {
-	data->BirthWeight(ConvertToCDM::convert(value));
+	data->setBirthWeight(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool NeonatalPatientDemographicsCoreData::getBirthWeight(Measurement & out) const {
-	if (data->BirthWeight().present()) {
-		out = ConvertFromCDM::convert(data->BirthWeight().get());
+	if (data->getBirthWeight().present()) {
+		out = ConvertFromCDM::convert(data->getBirthWeight().get());
 		return true;
 	}
 	return false;
 }
 
 Measurement NeonatalPatientDemographicsCoreData::getBirthWeight() const {
-	return ConvertFromCDM::convert(data->BirthWeight().get());
+	return ConvertFromCDM::convert(data->getBirthWeight().get());
 }
 
 bool NeonatalPatientDemographicsCoreData::hasBirthWeight() const {
-	return data->BirthWeight().present();
+	return data->getBirthWeight().present();
 }
 
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setHeadCircumference(const Measurement & value) {
-	data->HeadCircumference(ConvertToCDM::convert(value));
+	data->setHeadCircumference(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool NeonatalPatientDemographicsCoreData::getHeadCircumference(Measurement & out) const {
-	if (data->HeadCircumference().present()) {
-		out = ConvertFromCDM::convert(data->HeadCircumference().get());
+	if (data->getHeadCircumference().present()) {
+		out = ConvertFromCDM::convert(data->getHeadCircumference().get());
 		return true;
 	}
 	return false;
 }
 
 Measurement NeonatalPatientDemographicsCoreData::getHeadCircumference() const {
-	return ConvertFromCDM::convert(data->HeadCircumference().get());
+	return ConvertFromCDM::convert(data->getHeadCircumference().get());
 }
 
 bool NeonatalPatientDemographicsCoreData::hasHeadCircumference() const {
-	return data->HeadCircumference().present();
+	return data->getHeadCircumference().present();
 }
 
 NeonatalPatientDemographicsCoreData & NeonatalPatientDemographicsCoreData::setMother(const PersonReference & value) {
-	data->Mother(ConvertToCDM::convert(value));
+	data->setMother(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool NeonatalPatientDemographicsCoreData::getMother(PersonReference & out) const {
-	if (data->Mother().present()) {
-		out = ConvertFromCDM::convert(data->Mother().get());
+	if (data->getMother().present()) {
+		out = ConvertFromCDM::convert(data->getMother().get());
 		return true;
 	}
 	return false;
 }
 
 PersonReference NeonatalPatientDemographicsCoreData::getMother() const {
-	return ConvertFromCDM::convert(data->Mother().get());
+	return ConvertFromCDM::convert(data->getMother().get());
 }
 
 bool NeonatalPatientDemographicsCoreData::hasMother() const {
-	return data->Mother().present();
+	return data->getMother().present();
 }
 
 

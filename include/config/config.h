@@ -34,10 +34,10 @@ namespace SDCLib
         // Will be replaced by CMake
         const int SDCLIBRARY_VERSION_FIRST = 4;
         const int SDCLIBRARY_VERSION_MIDDLE = 4;
-        const int SDCLIBRARY_VERSION_LAST = 0;
-        const std::string CURRENT_LIB_VERSION("4.4.0");
+        const int SDCLIBRARY_VERSION_LAST = 3;
+        const std::string CURRENT_LIB_VERSION("4.4.3");
 
-        const std::string CURRENT_C_YEAR("2019"); // Copyright year
+        const std::string CURRENT_C_YEAR("2020"); // Copyright year
 
         const std::string STR_SURGITAIX("SurgiTAIX AG"); // Company name
 
@@ -48,7 +48,7 @@ namespace SDCLib
         const unsigned int SDC_DEFAULT_PORT_RANGE = 1000;
 
         const unsigned int SDC_DISCOVERY_TIMEOUT_MS = 5000;
-        const unsigned int SDC_CONNECTION_TIMEOUT_MS = 4000;
+        const unsigned int SDC_CONNECTION_TIMEOUT_MS = 2000;
 
         const bool SDC_IP_V4_ENABLED = true;
         const bool SDC_IP_V6_ENABLED = false;

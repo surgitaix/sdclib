@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class Argument {
+class Argument
+{
 private:
 	Argument(const CDM::Argument & object);
 	operator CDM::Argument() const;
@@ -59,11 +60,11 @@ public:
 private:
 	Argument(){};
 public:
-	Argument(const Argument & object);
-	virtual ~Argument();
+	Argument(const Argument& object);
+	virtual ~Argument() = default;
 
-    void copyFrom(const Argument & object);
-    Argument & operator=(const Argument & object);
+    void copyFrom(const Argument& object);
+    Argument & operator=(const Argument& object);
 
     typedef CDM::Argument WrappedType;
 
@@ -74,7 +75,7 @@ public:
 	xml_schema::Qname getArg() const;
 
 private:
-	std::shared_ptr<CDM::Argument> data;
+	std::shared_ptr<CDM::Argument> data = nullptr;
 };
 
 } /* namespace SDC */

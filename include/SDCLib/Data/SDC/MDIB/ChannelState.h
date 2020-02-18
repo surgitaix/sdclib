@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class ChannelState {
+class ChannelState
+{
 private:
 	ChannelState(const CDM::ChannelState & object);
 	operator CDM::ChannelState() const;
@@ -57,11 +58,11 @@ public:
 private:
 	ChannelState(){};
 public:
-	ChannelState(const ChannelState & object);
-	virtual ~ChannelState();
+	ChannelState(const ChannelState& object);
+	virtual ~ChannelState() = default;
 
-    void copyFrom(const ChannelState & object);
-    ChannelState & operator=(const ChannelState & object);
+    void copyFrom(const ChannelState& object);
+    ChannelState & operator=(const ChannelState& object);
 
     typedef CDM::ChannelState WrappedType;
 
@@ -109,7 +110,7 @@ public:
 	bool hasOperatingCycles() const;
 
 private:
-	std::shared_ptr<CDM::ChannelState> data;
+	std::shared_ptr<CDM::ChannelState> data = nullptr;
 };
 
 } /* namespace SDC */

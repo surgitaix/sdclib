@@ -31,6 +31,11 @@
 // in the accompanying FLOSSE file.
 //
 
+/**
+ * @file
+ * @brief Generated from NormalizedMessageModel.xsd.
+ */
+
 #ifndef NORMALIZED_MESSAGE_MODEL_HXX
 #define NORMALIZED_MESSAGE_MODEL_HXX
 
@@ -75,245 +80,855 @@
 
 #include "DataModel/wsdd-discovery-1.1-schema-os.hxx"
 
+/**
+ * @brief C++ namespace for the %http://www.w3.org/2003/05/soap-envelope
+ * schema namespace.
+ */
 namespace MESSAGEMODEL
 {
+  /**
+   * @brief Class corresponding to the %Header schema type.
+   *
+   * @nosubgrouping
+   */
   class Header: public ::xml_schema::Type
   {
     public:
-    // Action
-    //
+    /**
+     * @name Action
+     *
+     * @brief Accessor and modifier functions for the %Action
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::ADDRESSING::AttributedURIType ActionType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< ActionType > ActionOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< ActionType, char > ActionTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const ActionOptional&
-    Action () const;
+    getAction () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     ActionOptional&
-    Action ();
+    getAction ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    Action (const ActionType& x);
+    setAction (const ActionType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    Action (const ActionOptional& x);
+    setAction (const ActionOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    Action (::std::unique_ptr< ActionType > p);
+    setAction (::std::unique_ptr< ActionType > p);
 
-    // AppSequence
-    //
+    //@}
+
+    /**
+     * @name AppSequence
+     *
+     * @brief Accessor and modifier functions for the %AppSequence
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::DISCOVERY::AppSequenceType AppSequenceType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< AppSequenceType > AppSequenceOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< AppSequenceType, char > AppSequenceTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const AppSequenceOptional&
-    AppSequence () const;
+    getAppSequence () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     AppSequenceOptional&
-    AppSequence ();
+    getAppSequence ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    AppSequence (const AppSequenceType& x);
+    setAppSequence (const AppSequenceType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    AppSequence (const AppSequenceOptional& x);
+    setAppSequence (const AppSequenceOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    AppSequence (::std::unique_ptr< AppSequenceType > p);
+    setAppSequence (::std::unique_ptr< AppSequenceType > p);
 
-    // FaultTo
-    //
+    //@}
+
+    /**
+     * @name FaultTo
+     *
+     * @brief Accessor and modifier functions for the %FaultTo
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::ADDRESSING::EndpointReferenceType FaultToType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< FaultToType > FaultToOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< FaultToType, char > FaultToTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const FaultToOptional&
-    FaultTo () const;
+    getFaultTo () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     FaultToOptional&
-    FaultTo ();
+    getFaultTo ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    FaultTo (const FaultToType& x);
+    setFaultTo (const FaultToType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    FaultTo (const FaultToOptional& x);
+    setFaultTo (const FaultToOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    FaultTo (::std::unique_ptr< FaultToType > p);
+    setFaultTo (::std::unique_ptr< FaultToType > p);
 
-    // From
-    //
+    //@}
+
+    /**
+     * @name From
+     *
+     * @brief Accessor and modifier functions for the %From
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::ADDRESSING::EndpointReferenceType FromType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< FromType > FromOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< FromType, char > FromTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const FromOptional&
-    From () const;
+    getFrom () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     FromOptional&
-    From ();
+    getFrom ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    From (const FromType& x);
+    setFrom (const FromType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    From (const FromOptional& x);
+    setFrom (const FromOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    From (::std::unique_ptr< FromType > p);
+    setFrom (::std::unique_ptr< FromType > p);
 
-    // MessageID
-    //
+    //@}
+
+    /**
+     * @name MessageID
+     *
+     * @brief Accessor and modifier functions for the %MessageID
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::ADDRESSING::AttributedURIType MessageIDType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< MessageIDType > MessageIDOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< MessageIDType, char > MessageIDTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const MessageIDOptional&
-    MessageID () const;
+    getMessageID () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     MessageIDOptional&
-    MessageID ();
+    getMessageID ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    MessageID (const MessageIDType& x);
+    setMessageID (const MessageIDType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    MessageID (const MessageIDOptional& x);
+    setMessageID (const MessageIDOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    MessageID (::std::unique_ptr< MessageIDType > p);
+    setMessageID (::std::unique_ptr< MessageIDType > p);
 
-    // ReferenceParameters
-    //
+    //@}
+
+    /**
+     * @name ReferenceParameters
+     *
+     * @brief Accessor and modifier functions for the %ReferenceParameters
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::ADDRESSING::ReferenceParametersType ReferenceParametersType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< ReferenceParametersType > ReferenceParametersOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< ReferenceParametersType, char > ReferenceParametersTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const ReferenceParametersOptional&
-    ReferenceParameters () const;
+    getReferenceParameters () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     ReferenceParametersOptional&
-    ReferenceParameters ();
+    getReferenceParameters ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    ReferenceParameters (const ReferenceParametersType& x);
+    setReferenceParameters (const ReferenceParametersType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    ReferenceParameters (const ReferenceParametersOptional& x);
+    setReferenceParameters (const ReferenceParametersOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    ReferenceParameters (::std::unique_ptr< ReferenceParametersType > p);
+    setReferenceParameters (::std::unique_ptr< ReferenceParametersType > p);
 
-    // RelatesTo
-    //
+    //@}
+
+    /**
+     * @name RelatesTo
+     *
+     * @brief Accessor and modifier functions for the %RelatesTo
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::ADDRESSING::RelatesToType RelatesToType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< RelatesToType > RelatesToOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< RelatesToType, char > RelatesToTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const RelatesToOptional&
-    RelatesTo () const;
+    getRelatesTo () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     RelatesToOptional&
-    RelatesTo ();
+    getRelatesTo ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    RelatesTo (const RelatesToType& x);
+    setRelatesTo (const RelatesToType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    RelatesTo (const RelatesToOptional& x);
+    setRelatesTo (const RelatesToOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    RelatesTo (::std::unique_ptr< RelatesToType > p);
+    setRelatesTo (::std::unique_ptr< RelatesToType > p);
 
-    // ReplyTo
-    //
+    //@}
+
+    /**
+     * @name ReplyTo
+     *
+     * @brief Accessor and modifier functions for the %ReplyTo
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::ADDRESSING::EndpointReferenceType ReplyToType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< ReplyToType > ReplyToOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< ReplyToType, char > ReplyToTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const ReplyToOptional&
-    ReplyTo () const;
+    getReplyTo () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     ReplyToOptional&
-    ReplyTo ();
+    getReplyTo ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    ReplyTo (const ReplyToType& x);
+    setReplyTo (const ReplyToType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    ReplyTo (const ReplyToOptional& x);
+    setReplyTo (const ReplyToOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    ReplyTo (::std::unique_ptr< ReplyToType > p);
+    setReplyTo (::std::unique_ptr< ReplyToType > p);
 
-    // To
-    //
+    //@}
+
+    /**
+     * @name To
+     *
+     * @brief Accessor and modifier functions for the %To
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::ADDRESSING::AttributedURIType ToType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< ToType > ToOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< ToType, char > ToTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const ToOptional&
-    To () const;
+    getTo () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     ToOptional&
-    To ();
+    getTo ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    To (const ToType& x);
+    setTo (const ToType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    To (const ToOptional& x);
+    setTo (const ToOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    To (::std::unique_ptr< ToType > p);
+    setTo (::std::unique_ptr< ToType > p);
 
-    // Identifier
-    //
+    //@}
+
+    /**
+     * @name Identifier
+     *
+     * @brief Accessor and modifier functions for the %Identifier
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::EVENTING::Identifier IdentifierType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< IdentifierType > IdentifierOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< IdentifierType, char > IdentifierTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const IdentifierOptional&
-    Identifier () const;
+    getIdentifier () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     IdentifierOptional&
-    Identifier ();
+    getIdentifier ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    Identifier (const IdentifierType& x);
+    setIdentifier (const IdentifierType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    Identifier (const IdentifierOptional& x);
+    setIdentifier (const IdentifierOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    Identifier (::std::unique_ptr< IdentifierType > p);
+    setIdentifier (::std::unique_ptr< IdentifierType > p);
 
-    // Constructors.
-    //
+    //@}
+
+    /**
+     * @name Constructors
+     */
+    //@{
+
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes.
+     */
     Header ();
 
+    /**
+     * @brief Create an instance from a DOM element.
+     *
+     * @param e A DOM element to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     Header (const ::xercesc::DOMElement& e,
             ::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy constructor.
+     *
+     * @param x An instance to make a copy of.
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     Header (const Header& x,
             ::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy the instance polymorphically.
+     *
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     * @return A pointer to the dynamically allocated copy.
+     *
+     * This function ensures that the dynamic type of the instance is
+     * used for copying and should be used for polymorphic object
+     * models instead of the copy constructor.
+     */
     virtual Header*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    /**
+     * @brief Copy assignment operator.
+     *
+     * @param x An instance to make a copy of.
+     * @return A reference to itself.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     Header&
     operator= (const Header& x);
 
+    //@}
+
+    /**
+     * @brief Destructor.
+     */
     virtual 
     ~Header ();
 
     // Implementation.
     //
+
+    //@cond
+
     protected:
     void
     parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -330,959 +945,3557 @@ namespace MESSAGEMODEL
     ReplyToOptional ReplyTo_;
     ToOptional To_;
     IdentifierOptional Identifier_;
+
+    //@endcond
   };
 
+  /**
+   * @brief Class corresponding to the %Body schema type.
+   *
+   * @nosubgrouping
+   */
   class Body: public ::xml_schema::Type
   {
     public:
-    // Bye
-    //
+    /**
+     * @name Bye
+     *
+     * @brief Accessor and modifier functions for the %Bye
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::DISCOVERY::ByeType ByeType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< ByeType > ByeOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< ByeType, char > ByeTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const ByeOptional&
-    Bye () const;
+    getBye () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     ByeOptional&
-    Bye ();
+    getBye ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    Bye (const ByeType& x);
+    setBye (const ByeType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    Bye (const ByeOptional& x);
+    setBye (const ByeOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    Bye (::std::unique_ptr< ByeType > p);
+    setBye (::std::unique_ptr< ByeType > p);
 
-    // Hello
-    //
+    //@}
+
+    /**
+     * @name Hello
+     *
+     * @brief Accessor and modifier functions for the %Hello
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::DISCOVERY::HelloType HelloType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< HelloType > HelloOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< HelloType, char > HelloTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const HelloOptional&
-    Hello () const;
+    getHello () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     HelloOptional&
-    Hello ();
+    getHello ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    Hello (const HelloType& x);
+    setHello (const HelloType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    Hello (const HelloOptional& x);
+    setHello (const HelloOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    Hello (::std::unique_ptr< HelloType > p);
+    setHello (::std::unique_ptr< HelloType > p);
 
-    // Probe
-    //
+    //@}
+
+    /**
+     * @name Probe
+     *
+     * @brief Accessor and modifier functions for the %Probe
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::DISCOVERY::ProbeType ProbeType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< ProbeType > ProbeOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< ProbeType, char > ProbeTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const ProbeOptional&
-    Probe () const;
+    getProbe () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     ProbeOptional&
-    Probe ();
+    getProbe ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    Probe (const ProbeType& x);
+    setProbe (const ProbeType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    Probe (const ProbeOptional& x);
+    setProbe (const ProbeOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    Probe (::std::unique_ptr< ProbeType > p);
+    setProbe (::std::unique_ptr< ProbeType > p);
 
-    // ProbeMatches
-    //
+    //@}
+
+    /**
+     * @name ProbeMatches
+     *
+     * @brief Accessor and modifier functions for the %ProbeMatches
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::DISCOVERY::ProbeMatchesType ProbeMatchesType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< ProbeMatchesType > ProbeMatchesOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< ProbeMatchesType, char > ProbeMatchesTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const ProbeMatchesOptional&
-    ProbeMatches () const;
+    getProbeMatches () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     ProbeMatchesOptional&
-    ProbeMatches ();
+    getProbeMatches ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    ProbeMatches (const ProbeMatchesType& x);
+    setProbeMatches (const ProbeMatchesType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    ProbeMatches (const ProbeMatchesOptional& x);
+    setProbeMatches (const ProbeMatchesOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    ProbeMatches (::std::unique_ptr< ProbeMatchesType > p);
+    setProbeMatches (::std::unique_ptr< ProbeMatchesType > p);
 
-    // Resolve
-    //
+    //@}
+
+    /**
+     * @name Resolve
+     *
+     * @brief Accessor and modifier functions for the %Resolve
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::DISCOVERY::ResolveType ResolveType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< ResolveType > ResolveOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< ResolveType, char > ResolveTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const ResolveOptional&
-    Resolve () const;
+    getResolve () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     ResolveOptional&
-    Resolve ();
+    getResolve ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    Resolve (const ResolveType& x);
+    setResolve (const ResolveType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    Resolve (const ResolveOptional& x);
+    setResolve (const ResolveOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    Resolve (::std::unique_ptr< ResolveType > p);
+    setResolve (::std::unique_ptr< ResolveType > p);
 
-    // ResolveMatches
-    //
+    //@}
+
+    /**
+     * @name ResolveMatches
+     *
+     * @brief Accessor and modifier functions for the %ResolveMatches
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::DISCOVERY::ResolveMatchesType ResolveMatchesType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< ResolveMatchesType > ResolveMatchesOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< ResolveMatchesType, char > ResolveMatchesTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const ResolveMatchesOptional&
-    ResolveMatches () const;
+    getResolveMatches () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     ResolveMatchesOptional&
-    ResolveMatches ();
+    getResolveMatches ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    ResolveMatches (const ResolveMatchesType& x);
+    setResolveMatches (const ResolveMatchesType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    ResolveMatches (const ResolveMatchesOptional& x);
+    setResolveMatches (const ResolveMatchesOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    ResolveMatches (::std::unique_ptr< ResolveMatchesType > p);
+    setResolveMatches (::std::unique_ptr< ResolveMatchesType > p);
 
-    // GetMetadata
-    //
+    //@}
+
+    /**
+     * @name GetMetadata
+     *
+     * @brief Accessor and modifier functions for the %GetMetadata
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::MEX::GetMetadata GetMetadataType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< GetMetadataType > GetMetadataOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< GetMetadataType, char > GetMetadataTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const GetMetadataOptional&
-    GetMetadata () const;
+    getGetMetadata () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     GetMetadataOptional&
-    GetMetadata ();
+    getGetMetadata ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    GetMetadata (const GetMetadataType& x);
+    setGetMetadata (const GetMetadataType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    GetMetadata (const GetMetadataOptional& x);
+    setGetMetadata (const GetMetadataOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    GetMetadata (::std::unique_ptr< GetMetadataType > p);
+    setGetMetadata (::std::unique_ptr< GetMetadataType > p);
 
-    // Metadata
-    //
+    //@}
+
+    /**
+     * @name Metadata
+     *
+     * @brief Accessor and modifier functions for the %Metadata
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::MEX::Metadata MetadataType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< MetadataType > MetadataOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< MetadataType, char > MetadataTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const MetadataOptional&
-    Metadata () const;
+    getMetadata () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     MetadataOptional&
-    Metadata ();
+    getMetadata ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    Metadata (const MetadataType& x);
+    setMetadata (const MetadataType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    Metadata (const MetadataOptional& x);
+    setMetadata (const MetadataOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    Metadata (::std::unique_ptr< MetadataType > p);
+    setMetadata (::std::unique_ptr< MetadataType > p);
 
-    // Subscribe
-    //
+    //@}
+
+    /**
+     * @name Subscribe
+     *
+     * @brief Accessor and modifier functions for the %Subscribe
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::EVENTING::Subscribe SubscribeType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< SubscribeType > SubscribeOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< SubscribeType, char > SubscribeTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const SubscribeOptional&
-    Subscribe () const;
+    getSubscribe () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     SubscribeOptional&
-    Subscribe ();
+    getSubscribe ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    Subscribe (const SubscribeType& x);
+    setSubscribe (const SubscribeType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    Subscribe (const SubscribeOptional& x);
+    setSubscribe (const SubscribeOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    Subscribe (::std::unique_ptr< SubscribeType > p);
+    setSubscribe (::std::unique_ptr< SubscribeType > p);
 
-    // SubscribeResponse
-    //
+    //@}
+
+    /**
+     * @name SubscribeResponse
+     *
+     * @brief Accessor and modifier functions for the %SubscribeResponse
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::EVENTING::SubscribeResponse SubscribeResponseType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< SubscribeResponseType > SubscribeResponseOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< SubscribeResponseType, char > SubscribeResponseTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const SubscribeResponseOptional&
-    SubscribeResponse () const;
+    getSubscribeResponse () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     SubscribeResponseOptional&
-    SubscribeResponse ();
+    getSubscribeResponse ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    SubscribeResponse (const SubscribeResponseType& x);
+    setSubscribeResponse (const SubscribeResponseType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    SubscribeResponse (const SubscribeResponseOptional& x);
+    setSubscribeResponse (const SubscribeResponseOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    SubscribeResponse (::std::unique_ptr< SubscribeResponseType > p);
+    setSubscribeResponse (::std::unique_ptr< SubscribeResponseType > p);
 
-    // Unsubscribe
-    //
+    //@}
+
+    /**
+     * @name Unsubscribe
+     *
+     * @brief Accessor and modifier functions for the %Unsubscribe
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::EVENTING::Unsubscribe UnsubscribeType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< UnsubscribeType > UnsubscribeOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< UnsubscribeType, char > UnsubscribeTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const UnsubscribeOptional&
-    Unsubscribe () const;
+    getUnsubscribe () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     UnsubscribeOptional&
-    Unsubscribe ();
+    getUnsubscribe ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    Unsubscribe (const UnsubscribeType& x);
+    setUnsubscribe (const UnsubscribeType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    Unsubscribe (const UnsubscribeOptional& x);
+    setUnsubscribe (const UnsubscribeOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    Unsubscribe (::std::unique_ptr< UnsubscribeType > p);
+    setUnsubscribe (::std::unique_ptr< UnsubscribeType > p);
 
-    // Renew
-    //
+    //@}
+
+    /**
+     * @name Renew
+     *
+     * @brief Accessor and modifier functions for the %Renew
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::EVENTING::Renew RenewType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< RenewType > RenewOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< RenewType, char > RenewTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const RenewOptional&
-    Renew () const;
+    getRenew () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     RenewOptional&
-    Renew ();
+    getRenew ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    Renew (const RenewType& x);
+    setRenew (const RenewType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    Renew (const RenewOptional& x);
+    setRenew (const RenewOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    Renew (::std::unique_ptr< RenewType > p);
+    setRenew (::std::unique_ptr< RenewType > p);
 
-    // RenewResponse
-    //
+    //@}
+
+    /**
+     * @name RenewResponse
+     *
+     * @brief Accessor and modifier functions for the %RenewResponse
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::EVENTING::RenewResponse RenewResponseType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< RenewResponseType > RenewResponseOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< RenewResponseType, char > RenewResponseTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const RenewResponseOptional&
-    RenewResponse () const;
+    getRenewResponse () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     RenewResponseOptional&
-    RenewResponse ();
+    getRenewResponse ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    RenewResponse (const RenewResponseType& x);
+    setRenewResponse (const RenewResponseType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    RenewResponse (const RenewResponseOptional& x);
+    setRenewResponse (const RenewResponseOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    RenewResponse (::std::unique_ptr< RenewResponseType > p);
+    setRenewResponse (::std::unique_ptr< RenewResponseType > p);
 
-    // GetStatus
-    //
+    //@}
+
+    /**
+     * @name GetStatus
+     *
+     * @brief Accessor and modifier functions for the %GetStatus
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::EVENTING::GetStatus GetStatusType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< GetStatusType > GetStatusOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< GetStatusType, char > GetStatusTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const GetStatusOptional&
-    GetStatus () const;
+    getGetStatus () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     GetStatusOptional&
-    GetStatus ();
+    getGetStatus ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    GetStatus (const GetStatusType& x);
+    setGetStatus (const GetStatusType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    GetStatus (const GetStatusOptional& x);
+    setGetStatus (const GetStatusOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    GetStatus (::std::unique_ptr< GetStatusType > p);
+    setGetStatus (::std::unique_ptr< GetStatusType > p);
 
-    // GetStatusResponse
-    //
+    //@}
+
+    /**
+     * @name GetStatusResponse
+     *
+     * @brief Accessor and modifier functions for the %GetStatusResponse
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::WS::EVENTING::GetStatusResponse GetStatusResponseType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< GetStatusResponseType > GetStatusResponseOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< GetStatusResponseType, char > GetStatusResponseTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const GetStatusResponseOptional&
-    GetStatusResponse () const;
+    getGetStatusResponse () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     GetStatusResponseOptional&
-    GetStatusResponse ();
+    getGetStatusResponse ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    GetStatusResponse (const GetStatusResponseType& x);
+    setGetStatusResponse (const GetStatusResponseType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    GetStatusResponse (const GetStatusResponseOptional& x);
+    setGetStatusResponse (const GetStatusResponseOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    GetStatusResponse (::std::unique_ptr< GetStatusResponseType > p);
+    setGetStatusResponse (::std::unique_ptr< GetStatusResponseType > p);
 
-    // DescriptionModificationReport
-    //
+    //@}
+
+    /**
+     * @name DescriptionModificationReport
+     *
+     * @brief Accessor and modifier functions for the %DescriptionModificationReport
+     * optional element.
+     *
+     * DescriptionModificationReport is an msg:AbstractReport that is
+     * delivered episodically. It is sent if at least one
+     * pm:AbstractDescriptor has changed. It SHALL contain only
+     * pm:AbstractDescriptor instances where at least one child ELEMENT or
+     * ATTRIBUTE have changed, i.e., inserted, updated, or deleted.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::DescriptionModificationReport DescriptionModificationReportType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< DescriptionModificationReportType > DescriptionModificationReportOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< DescriptionModificationReportType, char > DescriptionModificationReportTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const DescriptionModificationReportOptional&
-    DescriptionModificationReport () const;
+    getDescriptionModificationReport () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     DescriptionModificationReportOptional&
-    DescriptionModificationReport ();
+    getDescriptionModificationReport ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    DescriptionModificationReport (const DescriptionModificationReportType& x);
+    setDescriptionModificationReport (const DescriptionModificationReportType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    DescriptionModificationReport (const DescriptionModificationReportOptional& x);
+    setDescriptionModificationReport (const DescriptionModificationReportOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    DescriptionModificationReport (::std::unique_ptr< DescriptionModificationReportType > p);
+    setDescriptionModificationReport (::std::unique_ptr< DescriptionModificationReportType > p);
 
-    // GetContextStates
-    //
+    //@}
+
+    /**
+     * @name GetContextStates
+     *
+     * @brief Accessor and modifier functions for the %GetContextStates
+     * optional element.
+     *
+     * GetContextStates is the request to a msg:GetContextStatesResponse
+     * MESSAGE.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::GetContextStates GetContextStatesType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< GetContextStatesType > GetContextStatesOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< GetContextStatesType, char > GetContextStatesTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const GetContextStatesOptional&
-    GetContextStates () const;
+    getGetContextStates () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     GetContextStatesOptional&
-    GetContextStates ();
+    getGetContextStates ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    GetContextStates (const GetContextStatesType& x);
+    setGetContextStates (const GetContextStatesType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    GetContextStates (const GetContextStatesOptional& x);
+    setGetContextStates (const GetContextStatesOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    GetContextStates (::std::unique_ptr< GetContextStatesType > p);
+    setGetContextStates (::std::unique_ptr< GetContextStatesType > p);
 
-    // GetContextStatesResponse
-    //
+    //@}
+
+    /**
+     * @name GetContextStatesResponse
+     *
+     * @brief Accessor and modifier functions for the %GetContextStatesResponse
+     * optional element.
+     *
+     * GetContextStatesResponse is the response to a msg:GetContextStates
+     * MESSAGE.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::GetContextStatesResponse GetContextStatesResponseType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< GetContextStatesResponseType > GetContextStatesResponseOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< GetContextStatesResponseType, char > GetContextStatesResponseTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const GetContextStatesResponseOptional&
-    GetContextStatesResponse () const;
+    getGetContextStatesResponse () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     GetContextStatesResponseOptional&
-    GetContextStatesResponse ();
+    getGetContextStatesResponse ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    GetContextStatesResponse (const GetContextStatesResponseType& x);
+    setGetContextStatesResponse (const GetContextStatesResponseType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    GetContextStatesResponse (const GetContextStatesResponseOptional& x);
+    setGetContextStatesResponse (const GetContextStatesResponseOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    GetContextStatesResponse (::std::unique_ptr< GetContextStatesResponseType > p);
+    setGetContextStatesResponse (::std::unique_ptr< GetContextStatesResponseType > p);
 
-    // SetContextState
-    //
+    //@}
+
+    /**
+     * @name SetContextState
+     *
+     * @brief Accessor and modifier functions for the %SetContextState
+     * optional element.
+     *
+     * SetContextState is the request to a msg:SetContextStateResponse
+     * MESSAGE. Its function is to insert a new or modify an existing context
+     * state.
+     * 
+     * The corresponding operation description is defined by
+     * pm:SetContextStateOperationDescriptor.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::SetContextState SetContextStateType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< SetContextStateType > SetContextStateOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< SetContextStateType, char > SetContextStateTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const SetContextStateOptional&
-    SetContextState () const;
+    getSetContextState () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     SetContextStateOptional&
-    SetContextState ();
+    getSetContextState ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    SetContextState (const SetContextStateType& x);
+    setSetContextState (const SetContextStateType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    SetContextState (const SetContextStateOptional& x);
+    setSetContextState (const SetContextStateOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    SetContextState (::std::unique_ptr< SetContextStateType > p);
+    setSetContextState (::std::unique_ptr< SetContextStateType > p);
 
-    // SetContextStateResponse
-    //
+    //@}
+
+    /**
+     * @name SetContextStateResponse
+     *
+     * @brief Accessor and modifier functions for the %SetContextStateResponse
+     * optional element.
+     *
+     * Response MESSAGE to a SetContextState request MESSAGE.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::SetContextStateResponse SetContextStateResponseType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< SetContextStateResponseType > SetContextStateResponseOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< SetContextStateResponseType, char > SetContextStateResponseTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const SetContextStateResponseOptional&
-    SetContextStateResponse () const;
+    getSetContextStateResponse () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     SetContextStateResponseOptional&
-    SetContextStateResponse ();
+    getSetContextStateResponse ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    SetContextStateResponse (const SetContextStateResponseType& x);
+    setSetContextStateResponse (const SetContextStateResponseType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    SetContextStateResponse (const SetContextStateResponseOptional& x);
+    setSetContextStateResponse (const SetContextStateResponseOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    SetContextStateResponse (::std::unique_ptr< SetContextStateResponseType > p);
+    setSetContextStateResponse (::std::unique_ptr< SetContextStateResponseType > p);
 
-    // EpisodicContextReport
-    //
+    //@}
+
+    /**
+     * @name EpisodicContextReport
+     *
+     * @brief Accessor and modifier functions for the %EpisodicContextReport
+     * optional element.
+     *
+     * EpisodicContextReport is an msg:AbstractContextReport that is
+     * delivered episodically. It is sent if at least one
+     * pm:AbstractContextState has changed. It SHALL contain only
+     * pm:AbstractContextState instances where at least one child ELEMENT or
+     * ATTRIBUTE have changed.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::EpisodicContextReport EpisodicContextReportType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< EpisodicContextReportType > EpisodicContextReportOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< EpisodicContextReportType, char > EpisodicContextReportTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const EpisodicContextReportOptional&
-    EpisodicContextReport () const;
+    getEpisodicContextReport () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     EpisodicContextReportOptional&
-    EpisodicContextReport ();
+    getEpisodicContextReport ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    EpisodicContextReport (const EpisodicContextReportType& x);
+    setEpisodicContextReport (const EpisodicContextReportType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    EpisodicContextReport (const EpisodicContextReportOptional& x);
+    setEpisodicContextReport (const EpisodicContextReportOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    EpisodicContextReport (::std::unique_ptr< EpisodicContextReportType > p);
+    setEpisodicContextReport (::std::unique_ptr< EpisodicContextReportType > p);
 
-    // PeriodicContextReport
-    //
+    //@}
+
+    /**
+     * @name PeriodicContextReport
+     *
+     * @brief Accessor and modifier functions for the %PeriodicContextReport
+     * optional element.
+     *
+     * PeriodicContextReport is an msg:AbstractContextReport that is
+     * delivered periodically.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::PeriodicContextReport PeriodicContextReportType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< PeriodicContextReportType > PeriodicContextReportOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< PeriodicContextReportType, char > PeriodicContextReportTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const PeriodicContextReportOptional&
-    PeriodicContextReport () const;
+    getPeriodicContextReport () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     PeriodicContextReportOptional&
-    PeriodicContextReport ();
+    getPeriodicContextReport ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    PeriodicContextReport (const PeriodicContextReportType& x);
+    setPeriodicContextReport (const PeriodicContextReportType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    PeriodicContextReport (const PeriodicContextReportOptional& x);
+    setPeriodicContextReport (const PeriodicContextReportOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    PeriodicContextReport (::std::unique_ptr< PeriodicContextReportType > p);
+    setPeriodicContextReport (::std::unique_ptr< PeriodicContextReportType > p);
 
-    // EpisodicAlertReport
-    //
+    //@}
+
+    /**
+     * @name EpisodicAlertReport
+     *
+     * @brief Accessor and modifier functions for the %EpisodicAlertReport
+     * optional element.
+     *
+     * EpisodicAlertReport is an msg:AbstractAlertReport that is delivered
+     * episodically. It is sent if at least one pm:AbstractAlertState has
+     * changed. It SHALL contain only pm:AbstractAlertState instances where
+     * at least one child ELEMENT or ATTRIBUTE have changed.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::EpisodicAlertReport EpisodicAlertReportType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< EpisodicAlertReportType > EpisodicAlertReportOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< EpisodicAlertReportType, char > EpisodicAlertReportTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const EpisodicAlertReportOptional&
-    EpisodicAlertReport () const;
+    getEpisodicAlertReport () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     EpisodicAlertReportOptional&
-    EpisodicAlertReport ();
+    getEpisodicAlertReport ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    EpisodicAlertReport (const EpisodicAlertReportType& x);
+    setEpisodicAlertReport (const EpisodicAlertReportType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    EpisodicAlertReport (const EpisodicAlertReportOptional& x);
+    setEpisodicAlertReport (const EpisodicAlertReportOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    EpisodicAlertReport (::std::unique_ptr< EpisodicAlertReportType > p);
+    setEpisodicAlertReport (::std::unique_ptr< EpisodicAlertReportType > p);
 
-    // EpisodicComponentReport
-    //
+    //@}
+
+    /**
+     * @name EpisodicComponentReport
+     *
+     * @brief Accessor and modifier functions for the %EpisodicComponentReport
+     * optional element.
+     *
+     * EpisodicComponentReport is an msg:AbstractComponentReport that is
+     * delivered episodically. It is sent if at least one
+     * pm:AbstractComponentState has changed. It SHALL contain only
+     * pm:AbstractComponentState instances where at least one child ELEMENT
+     * or ATTRIBUTE have changed.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::EpisodicComponentReport EpisodicComponentReportType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< EpisodicComponentReportType > EpisodicComponentReportOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< EpisodicComponentReportType, char > EpisodicComponentReportTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const EpisodicComponentReportOptional&
-    EpisodicComponentReport () const;
+    getEpisodicComponentReport () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     EpisodicComponentReportOptional&
-    EpisodicComponentReport ();
+    getEpisodicComponentReport ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    EpisodicComponentReport (const EpisodicComponentReportType& x);
+    setEpisodicComponentReport (const EpisodicComponentReportType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    EpisodicComponentReport (const EpisodicComponentReportOptional& x);
+    setEpisodicComponentReport (const EpisodicComponentReportOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    EpisodicComponentReport (::std::unique_ptr< EpisodicComponentReportType > p);
+    setEpisodicComponentReport (::std::unique_ptr< EpisodicComponentReportType > p);
 
-    // EpisodicMetricReport
-    //
+    //@}
+
+    /**
+     * @name EpisodicMetricReport
+     *
+     * @brief Accessor and modifier functions for the %EpisodicMetricReport
+     * optional element.
+     *
+     * EpisodicMetricReport is an msg::AbstractMetricReport that is delivered
+     * episodically. It is sent if at least one pm:AbstractMetricState has
+     * changed. It SHALL contain only pm:AbstractMetricState instances where
+     * at least one child ELEMENT or ATTRIBUTE have changed.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::EpisodicMetricReport EpisodicMetricReportType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< EpisodicMetricReportType > EpisodicMetricReportOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< EpisodicMetricReportType, char > EpisodicMetricReportTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const EpisodicMetricReportOptional&
-    EpisodicMetricReport () const;
+    getEpisodicMetricReport () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     EpisodicMetricReportOptional&
-    EpisodicMetricReport ();
+    getEpisodicMetricReport ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    EpisodicMetricReport (const EpisodicMetricReportType& x);
+    setEpisodicMetricReport (const EpisodicMetricReportType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    EpisodicMetricReport (const EpisodicMetricReportOptional& x);
+    setEpisodicMetricReport (const EpisodicMetricReportOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    EpisodicMetricReport (::std::unique_ptr< EpisodicMetricReportType > p);
+    setEpisodicMetricReport (::std::unique_ptr< EpisodicMetricReportType > p);
 
-    // EpisodicOperationalStateReport
-    //
+    //@}
+
+    /**
+     * @name EpisodicOperationalStateReport
+     *
+     * @brief Accessor and modifier functions for the %EpisodicOperationalStateReport
+     * optional element.
+     *
+     * EpisodicOperationalStateReport is an
+     * msg:AbstractOperationalStateReport that is delivered episodically. It
+     * is sent if at least one pm:AbstractOperationState has changed. It
+     * SHALL contain only pm:AbstractOperationState instances where at least
+     * one child ELEMENT or ATTRIBUTE have changed.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::EpisodicOperationalStateReport EpisodicOperationalStateReportType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< EpisodicOperationalStateReportType > EpisodicOperationalStateReportOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< EpisodicOperationalStateReportType, char > EpisodicOperationalStateReportTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const EpisodicOperationalStateReportOptional&
-    EpisodicOperationalStateReport () const;
+    getEpisodicOperationalStateReport () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     EpisodicOperationalStateReportOptional&
-    EpisodicOperationalStateReport ();
+    getEpisodicOperationalStateReport ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    EpisodicOperationalStateReport (const EpisodicOperationalStateReportType& x);
+    setEpisodicOperationalStateReport (const EpisodicOperationalStateReportType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    EpisodicOperationalStateReport (const EpisodicOperationalStateReportOptional& x);
+    setEpisodicOperationalStateReport (const EpisodicOperationalStateReportOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    EpisodicOperationalStateReport (::std::unique_ptr< EpisodicOperationalStateReportType > p);
+    setEpisodicOperationalStateReport (::std::unique_ptr< EpisodicOperationalStateReportType > p);
 
-    // PeriodicAlertReport
-    //
+    //@}
+
+    /**
+     * @name PeriodicAlertReport
+     *
+     * @brief Accessor and modifier functions for the %PeriodicAlertReport
+     * optional element.
+     *
+     * PeriodicAlertReport is an msg:AbstractAlertReport that is delivered
+     * periodically.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::PeriodicAlertReport PeriodicAlertReportType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< PeriodicAlertReportType > PeriodicAlertReportOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< PeriodicAlertReportType, char > PeriodicAlertReportTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const PeriodicAlertReportOptional&
-    PeriodicAlertReport () const;
+    getPeriodicAlertReport () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     PeriodicAlertReportOptional&
-    PeriodicAlertReport ();
+    getPeriodicAlertReport ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    PeriodicAlertReport (const PeriodicAlertReportType& x);
+    setPeriodicAlertReport (const PeriodicAlertReportType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    PeriodicAlertReport (const PeriodicAlertReportOptional& x);
+    setPeriodicAlertReport (const PeriodicAlertReportOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    PeriodicAlertReport (::std::unique_ptr< PeriodicAlertReportType > p);
+    setPeriodicAlertReport (::std::unique_ptr< PeriodicAlertReportType > p);
 
-    // PeriodicMetricReport
-    //
+    //@}
+
+    /**
+     * @name PeriodicMetricReport
+     *
+     * @brief Accessor and modifier functions for the %PeriodicMetricReport
+     * optional element.
+     *
+     * PeriodicMetricReport is an msg:AbstractMetricReport that is delivered
+     * periodically.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::PeriodicMetricReport PeriodicMetricReportType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< PeriodicMetricReportType > PeriodicMetricReportOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< PeriodicMetricReportType, char > PeriodicMetricReportTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const PeriodicMetricReportOptional&
-    PeriodicMetricReport () const;
+    getPeriodicMetricReport () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     PeriodicMetricReportOptional&
-    PeriodicMetricReport ();
+    getPeriodicMetricReport ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    PeriodicMetricReport (const PeriodicMetricReportType& x);
+    setPeriodicMetricReport (const PeriodicMetricReportType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    PeriodicMetricReport (const PeriodicMetricReportOptional& x);
+    setPeriodicMetricReport (const PeriodicMetricReportOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    PeriodicMetricReport (::std::unique_ptr< PeriodicMetricReportType > p);
+    setPeriodicMetricReport (::std::unique_ptr< PeriodicMetricReportType > p);
 
-    // OperationInvokedReport
-    //
+    //@}
+
+    /**
+     * @name OperationInvokedReport
+     *
+     * @brief Accessor and modifier functions for the %OperationInvokedReport
+     * optional element.
+     *
+     * OperationInvokedReport is a change report that contains updated
+     * invocation information. It is delivered if the state of the execution
+     * of a remote operation request has changed.
+     * 
+     * To identify which state of a multi state is changed or created,
+     * OperationInvokedReport SHALL include
+     * msg:OperationInvokedReportPart/@OperationTarget. This ATTRIBUTE
+     * defines the multi state that is created or updated.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::OperationInvokedReport OperationInvokedReportType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< OperationInvokedReportType > OperationInvokedReportOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< OperationInvokedReportType, char > OperationInvokedReportTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const OperationInvokedReportOptional&
-    OperationInvokedReport () const;
+    getOperationInvokedReport () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     OperationInvokedReportOptional&
-    OperationInvokedReport ();
+    getOperationInvokedReport ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    OperationInvokedReport (const OperationInvokedReportType& x);
+    setOperationInvokedReport (const OperationInvokedReportType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    OperationInvokedReport (const OperationInvokedReportOptional& x);
+    setOperationInvokedReport (const OperationInvokedReportOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    OperationInvokedReport (::std::unique_ptr< OperationInvokedReportType > p);
+    setOperationInvokedReport (::std::unique_ptr< OperationInvokedReportType > p);
 
-    // GetMdDescription
-    //
+    //@}
+
+    /**
+     * @name GetMdDescription
+     *
+     * @brief Accessor and modifier functions for the %GetMdDescription
+     * optional element.
+     *
+     * GetMdDescription is the request to a msg:GetMdDescriptionResponse
+     * MESSAGE.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::GetMdDescription GetMdDescriptionType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< GetMdDescriptionType > GetMdDescriptionOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< GetMdDescriptionType, char > GetMdDescriptionTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const GetMdDescriptionOptional&
-    GetMdDescription () const;
+    getGetMdDescription () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     GetMdDescriptionOptional&
-    GetMdDescription ();
+    getGetMdDescription ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    GetMdDescription (const GetMdDescriptionType& x);
+    setGetMdDescription (const GetMdDescriptionType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    GetMdDescription (const GetMdDescriptionOptional& x);
+    setGetMdDescription (const GetMdDescriptionOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    GetMdDescription (::std::unique_ptr< GetMdDescriptionType > p);
+    setGetMdDescription (::std::unique_ptr< GetMdDescriptionType > p);
 
-    // GetMdDescriptionResponse
-    //
+    //@}
+
+    /**
+     * @name GetMdDescriptionResponse
+     *
+     * @brief Accessor and modifier functions for the %GetMdDescriptionResponse
+     * optional element.
+     *
+     * GetMdDescriptionResponse is the response to a msg:GetMdDescription
+     * MESSAGE. It transports a set of MDS descriptors.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::GetMdDescriptionResponse GetMdDescriptionResponseType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< GetMdDescriptionResponseType > GetMdDescriptionResponseOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< GetMdDescriptionResponseType, char > GetMdDescriptionResponseTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const GetMdDescriptionResponseOptional&
-    GetMdDescriptionResponse () const;
+    getGetMdDescriptionResponse () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     GetMdDescriptionResponseOptional&
-    GetMdDescriptionResponse ();
+    getGetMdDescriptionResponse ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    GetMdDescriptionResponse (const GetMdDescriptionResponseType& x);
+    setGetMdDescriptionResponse (const GetMdDescriptionResponseType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    GetMdDescriptionResponse (const GetMdDescriptionResponseOptional& x);
+    setGetMdDescriptionResponse (const GetMdDescriptionResponseOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    GetMdDescriptionResponse (::std::unique_ptr< GetMdDescriptionResponseType > p);
+    setGetMdDescriptionResponse (::std::unique_ptr< GetMdDescriptionResponseType > p);
 
-    // GetMdib
-    //
+    //@}
+
+    /**
+     * @name GetMdib
+     *
+     * @brief Accessor and modifier functions for the %GetMdib
+     * optional element.
+     *
+     * GetMdib is the request to a msg:GetMdibResponse MESSAGE.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::GetMdib GetMdibType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< GetMdibType > GetMdibOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< GetMdibType, char > GetMdibTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const GetMdibOptional&
-    GetMdib () const;
+    getGetMdib () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     GetMdibOptional&
-    GetMdib ();
+    getGetMdib ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    GetMdib (const GetMdibType& x);
+    setGetMdib (const GetMdibType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    GetMdib (const GetMdibOptional& x);
+    setGetMdib (const GetMdibOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    GetMdib (::std::unique_ptr< GetMdibType > p);
+    setGetMdib (::std::unique_ptr< GetMdibType > p);
 
-    // GetMdibResponse
-    //
+    //@}
+
+    /**
+     * @name GetMdibResponse
+     *
+     * @brief Accessor and modifier functions for the %GetMdibResponse
+     * optional element.
+     *
+     * GetMdibResponse is the response to a msg:GetMdib MESSAGE It conveys
+     * the complete MDIB. 
+     * 
+     * Since contexts might include privacy-related information, a SERVICE
+     * PROVIDER MAY decide to leave the MDS contexts empty. To acquire
+     * context information, a client has to send a msg:GetContextStates
+     * request.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::GetMdibResponse GetMdibResponseType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< GetMdibResponseType > GetMdibResponseOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< GetMdibResponseType, char > GetMdibResponseTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const GetMdibResponseOptional&
-    GetMdibResponse () const;
+    getGetMdibResponse () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     GetMdibResponseOptional&
-    GetMdibResponse ();
+    getGetMdibResponse ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    GetMdibResponse (const GetMdibResponseType& x);
+    setGetMdibResponse (const GetMdibResponseType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    GetMdibResponse (const GetMdibResponseOptional& x);
+    setGetMdibResponse (const GetMdibResponseOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    GetMdibResponse (::std::unique_ptr< GetMdibResponseType > p);
+    setGetMdibResponse (::std::unique_ptr< GetMdibResponseType > p);
 
-    // GetMdState
-    //
+    //@}
+
+    /**
+     * @name GetMdState
+     *
+     * @brief Accessor and modifier functions for the %GetMdState
+     * optional element.
+     *
+     * GetMdState is the request to a msg:GetMdStateResponse MESSAGE.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::GetMdState GetMdStateType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< GetMdStateType > GetMdStateOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< GetMdStateType, char > GetMdStateTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const GetMdStateOptional&
-    GetMdState () const;
+    getGetMdState () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     GetMdStateOptional&
-    GetMdState ();
+    getGetMdState ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    GetMdState (const GetMdStateType& x);
+    setGetMdState (const GetMdStateType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    GetMdState (const GetMdStateOptional& x);
+    setGetMdState (const GetMdStateOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    GetMdState (::std::unique_ptr< GetMdStateType > p);
+    setGetMdState (::std::unique_ptr< GetMdStateType > p);
 
-    // GetMdStateResponse
-    //
+    //@}
+
+    /**
+     * @name GetMdStateResponse
+     *
+     * @brief Accessor and modifier functions for the %GetMdStateResponse
+     * optional element.
+     *
+     * GetMdStateResponse is the response to a msg:GetMdState MESSAGE.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::GetMdStateResponse GetMdStateResponseType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< GetMdStateResponseType > GetMdStateResponseOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< GetMdStateResponseType, char > GetMdStateResponseTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const GetMdStateResponseOptional&
-    GetMdStateResponse () const;
+    getGetMdStateResponse () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     GetMdStateResponseOptional&
-    GetMdStateResponse ();
+    getGetMdStateResponse ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    GetMdStateResponse (const GetMdStateResponseType& x);
+    setGetMdStateResponse (const GetMdStateResponseType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    GetMdStateResponse (const GetMdStateResponseOptional& x);
+    setGetMdStateResponse (const GetMdStateResponseOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    GetMdStateResponse (::std::unique_ptr< GetMdStateResponseType > p);
+    setGetMdStateResponse (::std::unique_ptr< GetMdStateResponseType > p);
 
-    // Activate
-    //
+    //@}
+
+    /**
+     * @name Activate
+     *
+     * @brief Accessor and modifier functions for the %Activate
+     * optional element.
+     *
+     * Activate is the request to an msg:ActivateResponse MESSAGE. It allows
+     * invocation of a predefined job, e.g., to silence alarms.
+     * 
+     * The corresponding operation description is defined by
+     * pm:ActivateOperationDescriptor.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::Activate ActivateType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< ActivateType > ActivateOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< ActivateType, char > ActivateTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const ActivateOptional&
-    Activate () const;
+    getActivate () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     ActivateOptional&
-    Activate ();
+    getActivate ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    Activate (const ActivateType& x);
+    setActivate (const ActivateType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    Activate (const ActivateOptional& x);
+    setActivate (const ActivateOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    Activate (::std::unique_ptr< ActivateType > p);
+    setActivate (::std::unique_ptr< ActivateType > p);
 
-    // ActivateResponse
-    //
+    //@}
+
+    /**
+     * @name ActivateResponse
+     *
+     * @brief Accessor and modifier functions for the %ActivateResponse
+     * optional element.
+     *
+     * ActivateResponse is the response to an msg:Activate MESSAGE.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::ActivateResponse ActivateResponseType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< ActivateResponseType > ActivateResponseOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< ActivateResponseType, char > ActivateResponseTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const ActivateResponseOptional&
-    ActivateResponse () const;
+    getActivateResponse () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     ActivateResponseOptional&
-    ActivateResponse ();
+    getActivateResponse ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    ActivateResponse (const ActivateResponseType& x);
+    setActivateResponse (const ActivateResponseType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    ActivateResponse (const ActivateResponseOptional& x);
+    setActivateResponse (const ActivateResponseOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    ActivateResponse (::std::unique_ptr< ActivateResponseType > p);
+    setActivateResponse (::std::unique_ptr< ActivateResponseType > p);
 
-    // SetAlertState
-    //
+    //@}
+
+    /**
+     * @name SetAlertState
+     *
+     * @brief Accessor and modifier functions for the %SetAlertState
+     * optional element.
+     *
+     * SetAlertState is the request to a msg:SetAlertStateResponse MESSAGE.
+     * The intended use is to modifiy alert states.
+     * 
+     * The corresponding operation description is defined by
+     * pm:SetAlertStateOperationDescriptor.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::SetAlertState SetAlertStateType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< SetAlertStateType > SetAlertStateOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< SetAlertStateType, char > SetAlertStateTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const SetAlertStateOptional&
-    SetAlertState () const;
+    getSetAlertState () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     SetAlertStateOptional&
-    SetAlertState ();
+    getSetAlertState ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    SetAlertState (const SetAlertStateType& x);
+    setSetAlertState (const SetAlertStateType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    SetAlertState (const SetAlertStateOptional& x);
+    setSetAlertState (const SetAlertStateOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    SetAlertState (::std::unique_ptr< SetAlertStateType > p);
+    setSetAlertState (::std::unique_ptr< SetAlertStateType > p);
 
-    // SetAlertStateResponse
-    //
+    //@}
+
+    /**
+     * @name SetAlertStateResponse
+     *
+     * @brief Accessor and modifier functions for the %SetAlertStateResponse
+     * optional element.
+     *
+     * SetAlertStateResponse is the response to a msg:SetAlertState MESSAGE.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::SetAlertStateResponse SetAlertStateResponseType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< SetAlertStateResponseType > SetAlertStateResponseOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< SetAlertStateResponseType, char > SetAlertStateResponseTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const SetAlertStateResponseOptional&
-    SetAlertStateResponse () const;
+    getSetAlertStateResponse () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     SetAlertStateResponseOptional&
-    SetAlertStateResponse ();
+    getSetAlertStateResponse ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    SetAlertStateResponse (const SetAlertStateResponseType& x);
+    setSetAlertStateResponse (const SetAlertStateResponseType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    SetAlertStateResponse (const SetAlertStateResponseOptional& x);
+    setSetAlertStateResponse (const SetAlertStateResponseOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    SetAlertStateResponse (::std::unique_ptr< SetAlertStateResponseType > p);
+    setSetAlertStateResponse (::std::unique_ptr< SetAlertStateResponseType > p);
 
-    // SetString
-    //
+    //@}
+
+    /**
+     * @name SetString
+     *
+     * @brief Accessor and modifier functions for the %SetString
+     * optional element.
+     *
+     * SetString is the request to a msg:SetStringResponse MESSAGE.
+     * 
+     * The corresponding operation description is defined by
+     * pm:SetStringOperationDescriptor.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::SetString SetStringType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< SetStringType > SetStringOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< SetStringType, char > SetStringTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const SetStringOptional&
-    SetString () const;
+    getSetString () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     SetStringOptional&
-    SetString ();
+    getSetString ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    SetString (const SetStringType& x);
+    setSetString (const SetStringType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    SetString (const SetStringOptional& x);
+    setSetString (const SetStringOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    SetString (::std::unique_ptr< SetStringType > p);
+    setSetString (::std::unique_ptr< SetStringType > p);
 
-    // SetStringResponse
-    //
+    //@}
+
+    /**
+     * @name SetStringResponse
+     *
+     * @brief Accessor and modifier functions for the %SetStringResponse
+     * optional element.
+     *
+     * SetStringResponse is the response to a msg:SetString MESSAGE.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::SetStringResponse SetStringResponseType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< SetStringResponseType > SetStringResponseOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< SetStringResponseType, char > SetStringResponseTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const SetStringResponseOptional&
-    SetStringResponse () const;
+    getSetStringResponse () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     SetStringResponseOptional&
-    SetStringResponse ();
+    getSetStringResponse ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    SetStringResponse (const SetStringResponseType& x);
+    setSetStringResponse (const SetStringResponseType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    SetStringResponse (const SetStringResponseOptional& x);
+    setSetStringResponse (const SetStringResponseOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    SetStringResponse (::std::unique_ptr< SetStringResponseType > p);
+    setSetStringResponse (::std::unique_ptr< SetStringResponseType > p);
 
-    // SetValue
-    //
+    //@}
+
+    /**
+     * @name SetValue
+     *
+     * @brief Accessor and modifier functions for the %SetValue
+     * optional element.
+     *
+     * SetValue is the request to a msg:SetValueResponse MESSAGE.
+     * 
+     * The corresponding operation description is defined by
+     * pm:SetValueOperationDescriptor.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::SetValue SetValueType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< SetValueType > SetValueOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< SetValueType, char > SetValueTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const SetValueOptional&
-    SetValue () const;
+    getSetValue () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     SetValueOptional&
-    SetValue ();
+    getSetValue ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    SetValue (const SetValueType& x);
+    setSetValue (const SetValueType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    SetValue (const SetValueOptional& x);
+    setSetValue (const SetValueOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    SetValue (::std::unique_ptr< SetValueType > p);
+    setSetValue (::std::unique_ptr< SetValueType > p);
 
-    // SetValueResponse
-    //
+    //@}
+
+    /**
+     * @name SetValueResponse
+     *
+     * @brief Accessor and modifier functions for the %SetValueResponse
+     * optional element.
+     *
+     * SetValueResponse is the response to a msg:SetValue MESSAGE.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::SetValueResponse SetValueResponseType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< SetValueResponseType > SetValueResponseOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< SetValueResponseType, char > SetValueResponseTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const SetValueResponseOptional&
-    SetValueResponse () const;
+    getSetValueResponse () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     SetValueResponseOptional&
-    SetValueResponse ();
+    getSetValueResponse ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    SetValueResponse (const SetValueResponseType& x);
+    setSetValueResponse (const SetValueResponseType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    SetValueResponse (const SetValueResponseOptional& x);
+    setSetValueResponse (const SetValueResponseOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    SetValueResponse (::std::unique_ptr< SetValueResponseType > p);
+    setSetValueResponse (::std::unique_ptr< SetValueResponseType > p);
 
-    // WaveformStream
-    //
+    //@}
+
+    /**
+     * @name WaveformStream
+     *
+     * @brief Accessor and modifier functions for the %WaveformStream
+     * optional element.
+     *
+     * The WaveformStream MESSAGE is sent in order to transmit a set of
+     * samples of one or more waveforms.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDM::WaveformStream WaveformStreamType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< WaveformStreamType > WaveformStreamOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< WaveformStreamType, char > WaveformStreamTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const WaveformStreamOptional&
-    WaveformStream () const;
+    getWaveformStream () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     WaveformStreamOptional&
-    WaveformStream ();
+    getWaveformStream ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    WaveformStream (const WaveformStreamType& x);
+    setWaveformStream (const WaveformStreamType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    WaveformStream (const WaveformStreamOptional& x);
+    setWaveformStream (const WaveformStreamOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    WaveformStream (::std::unique_ptr< WaveformStreamType > p);
+    setWaveformStream (::std::unique_ptr< WaveformStreamType > p);
 
-    // Constructors.
-    //
+    //@}
+
+    /**
+     * @name Constructors
+     */
+    //@{
+
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes.
+     */
     Body ();
 
+    /**
+     * @brief Create an instance from a DOM element.
+     *
+     * @param e A DOM element to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     Body (const ::xercesc::DOMElement& e,
           ::xml_schema::Flags f = 0,
           ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy constructor.
+     *
+     * @param x An instance to make a copy of.
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     Body (const Body& x,
           ::xml_schema::Flags f = 0,
           ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy the instance polymorphically.
+     *
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     * @return A pointer to the dynamically allocated copy.
+     *
+     * This function ensures that the dynamic type of the instance is
+     * used for copying and should be used for polymorphic object
+     * models instead of the copy constructor.
+     */
     virtual Body*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    /**
+     * @brief Copy assignment operator.
+     *
+     * @param x An instance to make a copy of.
+     * @return A reference to itself.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     Body&
     operator= (const Body& x);
 
+    //@}
+
+    /**
+     * @brief Destructor.
+     */
     virtual 
     ~Body ();
 
     // Implementation.
     //
+
+    //@cond
+
     protected:
     void
     parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -1333,73 +4546,221 @@ namespace MESSAGEMODEL
     SetValueOptional SetValue_;
     SetValueResponseOptional SetValueResponse_;
     WaveformStreamOptional WaveformStream_;
+
+    //@endcond
   };
 
+  /**
+   * @brief Class corresponding to the %Envelope schema type.
+   *
+   * @nosubgrouping
+   */
   class Envelope: public ::xml_schema::Type
   {
     public:
-    // Header
-    //
+    /**
+     * @name Header
+     *
+     * @brief Accessor and modifier functions for the %Header
+     * required element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MESSAGEMODEL::Header HeaderType;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< HeaderType, char > HeaderTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element.
+     *
+     * @return A constant reference to the element.
+     */
     const HeaderType&
-    Header () const;
+    getHeader () const;
 
+    /**
+     * @brief Return a read-write reference to the element.
+     *
+     * @return A reference to the element.
+     */
     HeaderType&
-    Header ();
+    getHeader ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    Header (const HeaderType& x);
+    setHeader (const HeaderType& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly
+     * instead of making a copy.
+     */
     void
-    Header (::std::unique_ptr< HeaderType > p);
+    setHeader (::std::unique_ptr< HeaderType > p);
 
-    // Body
-    //
+    //@}
+
+    /**
+     * @name Body
+     *
+     * @brief Accessor and modifier functions for the %Body
+     * required element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MESSAGEMODEL::Body BodyType;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< BodyType, char > BodyTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element.
+     *
+     * @return A constant reference to the element.
+     */
     const BodyType&
-    Body () const;
+    getBody () const;
 
+    /**
+     * @brief Return a read-write reference to the element.
+     *
+     * @return A reference to the element.
+     */
     BodyType&
-    Body ();
+    getBody ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    Body (const BodyType& x);
+    setBody (const BodyType& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly
+     * instead of making a copy.
+     */
     void
-    Body (::std::unique_ptr< BodyType > p);
+    setBody (::std::unique_ptr< BodyType > p);
 
-    // Constructors.
-    //
+    //@}
+
+    /**
+     * @name Constructors
+     */
+    //@{
+
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes.
+     */
     Envelope (const HeaderType&,
               const BodyType&);
 
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes
+     * (::std::unique_ptr version).
+     *
+     * This constructor will try to use the passed values directly
+     * instead of making copies.
+     */
     Envelope (::std::unique_ptr< HeaderType >,
               ::std::unique_ptr< BodyType >);
 
+    /**
+     * @brief Create an instance from a DOM element.
+     *
+     * @param e A DOM element to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     Envelope (const ::xercesc::DOMElement& e,
               ::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy constructor.
+     *
+     * @param x An instance to make a copy of.
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     Envelope (const Envelope& x,
               ::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy the instance polymorphically.
+     *
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     * @return A pointer to the dynamically allocated copy.
+     *
+     * This function ensures that the dynamic type of the instance is
+     * used for copying and should be used for polymorphic object
+     * models instead of the copy constructor.
+     */
     virtual Envelope*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    /**
+     * @brief Copy assignment operator.
+     *
+     * @param x An instance to make a copy of.
+     * @return A reference to itself.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     Envelope&
     operator= (const Envelope& x);
 
+    //@}
+
+    /**
+     * @brief Destructor.
+     */
     virtual 
     ~Envelope ();
 
     // Implementation.
     //
+
+    //@cond
+
     protected:
     void
     parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -1408,6 +4769,8 @@ namespace MESSAGEMODEL
     protected:
     ::xsd::cxx::tree::one< HeaderType > Header_;
     ::xsd::cxx::tree::one< BodyType > Body_;
+
+    //@endcond
   };
 }
 
@@ -1419,284 +4782,258 @@ namespace MESSAGEMODEL
 
 namespace MESSAGEMODEL
 {
-  // Parse a URI or a local file.
-  //
+  /**
+   * @name Parsing functions for the %Envelope document root.
+   */
+  //@{
 
-  ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (const ::std::string& uri,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (const ::std::string& uri,
-           ::xml_schema::ErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (const ::std::string& uri,
-           ::xercesc::DOMErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (::std::istream& is,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (::std::istream& is,
-           ::xml_schema::ErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (::std::istream& is,
-           ::xercesc::DOMErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (::std::istream& is,
-           const ::std::string& id,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (::std::istream& is,
-           const ::std::string& id,
-           ::xml_schema::ErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (::std::istream& is,
-           const ::std::string& id,
-           ::xercesc::DOMErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (::xercesc::InputSource& is,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (::xercesc::InputSource& is,
-           ::xml_schema::ErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (::xercesc::InputSource& is,
-           ::xercesc::DOMErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (const ::xercesc::DOMDocument& d,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Header >
-  Header_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (const ::std::string& uri,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (const ::std::string& uri,
-         ::xml_schema::ErrorHandler& eh,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (const ::std::string& uri,
-         ::xercesc::DOMErrorHandler& eh,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (::std::istream& is,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (::std::istream& is,
-         ::xml_schema::ErrorHandler& eh,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (::std::istream& is,
-         ::xercesc::DOMErrorHandler& eh,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (::std::istream& is,
-         const ::std::string& id,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (::std::istream& is,
-         const ::std::string& id,
-         ::xml_schema::ErrorHandler& eh,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (::std::istream& is,
-         const ::std::string& id,
-         ::xercesc::DOMErrorHandler& eh,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (::xercesc::InputSource& is,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (::xercesc::InputSource& is,
-         ::xml_schema::ErrorHandler& eh,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (::xercesc::InputSource& is,
-         ::xercesc::DOMErrorHandler& eh,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (const ::xercesc::DOMDocument& d,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MESSAGEMODEL::Body >
-  Body_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-         ::xml_schema::Flags f = 0,
-         const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
+  /**
+   * @brief Parse a URI or a local file.
+   *
+   * @param uri A URI or a local file name.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * This function uses exceptions to report parsing errors.
+   */
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (const ::std::string& uri,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseEnvelope (const ::std::string& uri,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+  /**
+   * @brief Parse a URI or a local file with an error handler.
+   *
+   * @param uri A URI or a local file name.
+   * @param eh An error handler.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * This function reports parsing errors by calling the error handler.
+   */
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (const ::std::string& uri,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseEnvelope (const ::std::string& uri,
+                 ::xml_schema::ErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+  /**
+   * @brief Parse a URI or a local file with a Xerces-C++ DOM error
+   * handler.
+   *
+   * @param uri A URI or a local file name.
+   * @param eh A Xerces-C++ DOM error handler.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * This function reports parsing errors by calling the error handler.
+   */
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (const ::std::string& uri,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseEnvelope (const ::std::string& uri,
+                 ::xercesc::DOMErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  // Parse std::istream.
-  //
-
+  /**
+   * @brief Parse a standard input stream.
+   *
+   * @param is A standrad input stream.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * This function uses exceptions to report parsing errors.
+   */
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (::std::istream& is,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseEnvelope (::std::istream& is,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+  /**
+   * @brief Parse a standard input stream with an error handler.
+   *
+   * @param is A standrad input stream.
+   * @param eh An error handler.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * This function reports parsing errors by calling the error handler.
+   */
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (::std::istream& is,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseEnvelope (::std::istream& is,
+                 ::xml_schema::ErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+  /**
+   * @brief Parse a standard input stream with a Xerces-C++ DOM error
+   * handler.
+   *
+   * @param is A standrad input stream.
+   * @param eh A Xerces-C++ DOM error handler.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * This function reports parsing errors by calling the error handler.
+   */
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (::std::istream& is,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseEnvelope (::std::istream& is,
+                 ::xercesc::DOMErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+  /**
+   * @brief Parse a standard input stream with a resource id.
+   *
+   * @param is A standrad input stream.
+   * @param id A resource id.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * The resource id is used to identify the document being parsed in
+   * diagnostics as well as to resolve relative paths.
+   *
+   * This function uses exceptions to report parsing errors.
+   */
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (::std::istream& is,
-             const ::std::string& id,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseEnvelope (::std::istream& is,
+                 const ::std::string& id,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+  /**
+   * @brief Parse a standard input stream with a resource id and an
+   * error handler.
+   *
+   * @param is A standrad input stream.
+   * @param id A resource id.
+   * @param eh An error handler.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * The resource id is used to identify the document being parsed in
+   * diagnostics as well as to resolve relative paths.
+   *
+   * This function reports parsing errors by calling the error handler.
+   */
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (::std::istream& is,
-             const ::std::string& id,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseEnvelope (::std::istream& is,
+                 const ::std::string& id,
+                 ::xml_schema::ErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+  /**
+   * @brief Parse a standard input stream with a resource id and a
+   * Xerces-C++ DOM error handler.
+   *
+   * @param is A standrad input stream.
+   * @param id A resource id.
+   * @param eh A Xerces-C++ DOM error handler.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * The resource id is used to identify the document being parsed in
+   * diagnostics as well as to resolve relative paths.
+   *
+   * This function reports parsing errors by calling the error handler.
+   */
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (::std::istream& is,
-             const ::std::string& id,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseEnvelope (::std::istream& is,
+                 const ::std::string& id,
+                 ::xercesc::DOMErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  // Parse xercesc::InputSource.
-  //
-
+  /**
+   * @brief Parse a Xerces-C++ input source.
+   *
+   * @param is A Xerces-C++ input source.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * This function uses exceptions to report parsing errors.
+   */
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (::xercesc::InputSource& is,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseEnvelope (::xercesc::InputSource& is,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+  /**
+   * @brief Parse a Xerces-C++ input source with an error handler.
+   *
+   * @param is A Xerces-C++ input source.
+   * @param eh An error handler.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * This function reports parsing errors by calling the error handler.
+   */
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (::xercesc::InputSource& is,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseEnvelope (::xercesc::InputSource& is,
+                 ::xml_schema::ErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+  /**
+   * @brief Parse a Xerces-C++ input source with a Xerces-C++ DOM
+   * error handler.
+   *
+   * @param is A Xerces-C++ input source.
+   * @param eh A Xerces-C++ DOM error handler.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * This function reports parsing errors by calling the error handler.
+   */
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (::xercesc::InputSource& is,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseEnvelope (::xercesc::InputSource& is,
+                 ::xercesc::DOMErrorHandler& eh,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
-  // Parse xercesc::DOMDocument.
-  //
-
+  /**
+   * @brief Parse a Xerces-C++ DOM document.
+   *
+   * @param d A Xerces-C++ DOM document.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   */
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (const ::xercesc::DOMDocument& d,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseEnvelope (const ::xercesc::DOMDocument& d,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 
+  /**
+   * @brief Parse a Xerces-C++ DOM document.
+   *
+   * @param d A pointer to the Xerces-C++ DOM document.
+   * @param f Parsing flags.
+   * @param p Parsing properties. 
+   * @return A pointer to the root of the object model.
+   *
+   * This function is normally used together with the keep_dom and
+   * own_dom parsing flags to assign ownership of the DOM document
+   * to the object model.
+   */
   ::std::unique_ptr< ::MESSAGEMODEL::Envelope >
-  Envelope_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+  parseEnvelope (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
+                 ::xml_schema::Flags f = 0,
+                 const ::xml_schema::Properties& p = ::xml_schema::Properties ());
+
+  //@}
 }
 
 #include <iosfwd>
@@ -1709,209 +5046,164 @@ namespace MESSAGEMODEL
 
 namespace MESSAGEMODEL
 {
-  // Serialize to std::ostream.
-  //
+  /**
+   * @name Serialization functions for the %Envelope document root.
+   */
+  //@{
 
+  /**
+   * @brief Serialize to a standard output stream.
+   *
+   * @param os A standrad output stream.
+   * @param x An object model to serialize.
+   * @param m A namespace information map.
+   * @param e A character encoding to produce XML in.
+   * @param f Serialization flags.
+   *
+   * This function uses exceptions to report serialization errors.
+   */
   void
-  Header_ (::std::ostream& os,
-           const ::MESSAGEMODEL::Header& x, 
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
+  serializeEnvelope (::std::ostream& os,
+                     const ::MESSAGEMODEL::Envelope& x, 
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
 
+  /**
+   * @brief Serialize to a standard output stream with an error handler.
+   *
+   * @param os A standrad output stream.
+   * @param x An object model to serialize.
+   * @param eh An error handler.
+   * @param m A namespace information map.
+   * @param e A character encoding to produce XML in.
+   * @param f Serialization flags.
+   *
+   * This function reports serialization errors by calling the error
+   * handler.
+   */
   void
-  Header_ (::std::ostream& os,
-           const ::MESSAGEMODEL::Header& x, 
-           ::xml_schema::ErrorHandler& eh,
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
+  serializeEnvelope (::std::ostream& os,
+                     const ::MESSAGEMODEL::Envelope& x, 
+                     ::xml_schema::ErrorHandler& eh,
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
 
+  /**
+   * @brief Serialize to a standard output stream with a Xerces-C++ DOM
+   * error handler.
+   *
+   * @param os A standrad output stream.
+   * @param x An object model to serialize.
+   * @param eh A Xerces-C++ DOM error handler.
+   * @param m A namespace information map.
+   * @param e A character encoding to produce XML in.
+   * @param f Serialization flags.
+   *
+   * This function reports serialization errors by calling the error
+   * handler.
+   */
   void
-  Header_ (::std::ostream& os,
-           const ::MESSAGEMODEL::Header& x, 
-           ::xercesc::DOMErrorHandler& eh,
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
+  serializeEnvelope (::std::ostream& os,
+                     const ::MESSAGEMODEL::Envelope& x, 
+                     ::xercesc::DOMErrorHandler& eh,
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
 
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
+  /**
+   * @brief Serialize to a Xerces-C++ XML format target.
+   *
+   * @param ft A Xerces-C++ XML format target.
+   * @param x An object model to serialize.
+   * @param m A namespace information map.
+   * @param e A character encoding to produce XML in.
+   * @param f Serialization flags.
+   *
+   * This function uses exceptions to report serialization errors.
+   */
   void
-  Header_ (::xercesc::XMLFormatTarget& ft,
-           const ::MESSAGEMODEL::Header& x, 
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
+  serializeEnvelope (::xercesc::XMLFormatTarget& ft,
+                     const ::MESSAGEMODEL::Envelope& x, 
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
 
+  /**
+   * @brief Serialize to a Xerces-C++ XML format target with an error
+   * handler.
+   *
+   * @param ft A Xerces-C++ XML format target.
+   * @param x An object model to serialize.
+   * @param eh An error handler.
+   * @param m A namespace information map.
+   * @param e A character encoding to produce XML in.
+   * @param f Serialization flags.
+   *
+   * This function reports serialization errors by calling the error
+   * handler.
+   */
   void
-  Header_ (::xercesc::XMLFormatTarget& ft,
-           const ::MESSAGEMODEL::Header& x, 
-           ::xml_schema::ErrorHandler& eh,
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
+  serializeEnvelope (::xercesc::XMLFormatTarget& ft,
+                     const ::MESSAGEMODEL::Envelope& x, 
+                     ::xml_schema::ErrorHandler& eh,
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
 
+  /**
+   * @brief Serialize to a Xerces-C++ XML format target with a
+   * Xerces-C++ DOM error handler.
+   *
+   * @param ft A Xerces-C++ XML format target.
+   * @param x An object model to serialize.
+   * @param eh A Xerces-C++ DOM error handler.
+   * @param m A namespace information map.
+   * @param e A character encoding to produce XML in.
+   * @param f Serialization flags.
+   *
+   * This function reports serialization errors by calling the error
+   * handler.
+   */
   void
-  Header_ (::xercesc::XMLFormatTarget& ft,
-           const ::MESSAGEMODEL::Header& x, 
-           ::xercesc::DOMErrorHandler& eh,
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
+  serializeEnvelope (::xercesc::XMLFormatTarget& ft,
+                     const ::MESSAGEMODEL::Envelope& x, 
+                     ::xercesc::DOMErrorHandler& eh,
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     const ::std::string& e = "UTF-8",
+                     ::xml_schema::Flags f = 0);
 
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
+  /**
+   * @brief Serialize to an existing Xerces-C++ DOM document.
+   *
+   * @param d A Xerces-C++ DOM document.
+   * @param x An object model to serialize.
+   * @param f Serialization flags.
+   *
+   * Note that it is your responsibility to create the DOM document
+   * with the correct root element as well as set the necessary
+   * namespace mapping attributes.
+   */
   void
-  Header_ (::xercesc::DOMDocument& d,
-           const ::MESSAGEMODEL::Header& x,
-           ::xml_schema::Flags f = 0);
+  serializeEnvelope (::xercesc::DOMDocument& d,
+                     const ::MESSAGEMODEL::Envelope& x,
+                     ::xml_schema::Flags f = 0);
 
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
+  /**
+   * @brief Serialize to a new Xerces-C++ DOM document.
+   *
+   * @param x An object model to serialize.
+   * @param m A namespace information map.
+   * @param f Serialization flags.
+   * @return A pointer to the new Xerces-C++ DOM document.
+   */
   ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  Header_ (const ::MESSAGEMODEL::Header& x, 
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           ::xml_schema::Flags f = 0);
+  serializeEnvelope (const ::MESSAGEMODEL::Envelope& x, 
+                     const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
+                     ::xml_schema::Flags f = 0);
 
-  // Serialize to std::ostream.
-  //
-
-  void
-  Body_ (::std::ostream& os,
-         const ::MESSAGEMODEL::Body& x, 
-         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-         const ::std::string& e = "UTF-8",
-         ::xml_schema::Flags f = 0);
-
-  void
-  Body_ (::std::ostream& os,
-         const ::MESSAGEMODEL::Body& x, 
-         ::xml_schema::ErrorHandler& eh,
-         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-         const ::std::string& e = "UTF-8",
-         ::xml_schema::Flags f = 0);
-
-  void
-  Body_ (::std::ostream& os,
-         const ::MESSAGEMODEL::Body& x, 
-         ::xercesc::DOMErrorHandler& eh,
-         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-         const ::std::string& e = "UTF-8",
-         ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  Body_ (::xercesc::XMLFormatTarget& ft,
-         const ::MESSAGEMODEL::Body& x, 
-         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-         const ::std::string& e = "UTF-8",
-         ::xml_schema::Flags f = 0);
-
-  void
-  Body_ (::xercesc::XMLFormatTarget& ft,
-         const ::MESSAGEMODEL::Body& x, 
-         ::xml_schema::ErrorHandler& eh,
-         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-         const ::std::string& e = "UTF-8",
-         ::xml_schema::Flags f = 0);
-
-  void
-  Body_ (::xercesc::XMLFormatTarget& ft,
-         const ::MESSAGEMODEL::Body& x, 
-         ::xercesc::DOMErrorHandler& eh,
-         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-         const ::std::string& e = "UTF-8",
-         ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  Body_ (::xercesc::DOMDocument& d,
-         const ::MESSAGEMODEL::Body& x,
-         ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  Body_ (const ::MESSAGEMODEL::Body& x, 
-         const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-         ::xml_schema::Flags f = 0);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  Envelope_ (::std::ostream& os,
-             const ::MESSAGEMODEL::Envelope& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  void
-  Envelope_ (::std::ostream& os,
-             const ::MESSAGEMODEL::Envelope& x, 
-             ::xml_schema::ErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  void
-  Envelope_ (::std::ostream& os,
-             const ::MESSAGEMODEL::Envelope& x, 
-             ::xercesc::DOMErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  Envelope_ (::xercesc::XMLFormatTarget& ft,
-             const ::MESSAGEMODEL::Envelope& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  void
-  Envelope_ (::xercesc::XMLFormatTarget& ft,
-             const ::MESSAGEMODEL::Envelope& x, 
-             ::xml_schema::ErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  void
-  Envelope_ (::xercesc::XMLFormatTarget& ft,
-             const ::MESSAGEMODEL::Envelope& x, 
-             ::xercesc::DOMErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  Envelope_ (::xercesc::DOMDocument& d,
-             const ::MESSAGEMODEL::Envelope& x,
-             ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  Envelope_ (const ::MESSAGEMODEL::Envelope& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             ::xml_schema::Flags f = 0);
+  //@}
 
   void
   operator<< (::xercesc::DOMElement&, const Header&);

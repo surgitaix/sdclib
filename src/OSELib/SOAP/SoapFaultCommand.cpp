@@ -22,7 +22,7 @@ SoapFaultCommand::SoapFaultCommand(Poco::Net::HTTPServerResponse & p_httpRespons
 std::unique_ptr<MESSAGEMODEL::Envelope> SoapFaultCommand::Run()
 {
 	std::unique_ptr<MESSAGEMODEL::Envelope::HeaderType> t_header(new MESSAGEMODEL::Envelope::HeaderType());
-	t_header->Action().set(WS::ADDRESSING::AttributedURIType("http://schemas.xmlsoap.org/ws/2004/08/addressing/fault"));
+	t_header->getAction().set(WS::ADDRESSING::AttributedURIType("http://schemas.xmlsoap.org/ws/2004/08/addressing/fault"));
 
 	std::unique_ptr<MESSAGEMODEL::Envelope::BodyType> t_body(new MESSAGEMODEL::Envelope::BodyType());
 	return std::unique_ptr<MESSAGEMODEL::Envelope>(new MESSAGEMODEL::Envelope(std::move(t_header), std::move(t_body)));

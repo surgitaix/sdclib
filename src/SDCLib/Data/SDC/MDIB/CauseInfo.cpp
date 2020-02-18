@@ -46,71 +46,68 @@ namespace SDC {
 
 CauseInfo::CauseInfo(
 ) : data(Defaults::CauseInfoInit(
-)) {}
+))
+{}
 
 CauseInfo::operator CDM::CauseInfo() const {
 	return *data;
 }
 
-CauseInfo::CauseInfo(const CDM::CauseInfo & object) : data(new CDM::CauseInfo(object)) {
+CauseInfo::CauseInfo(const CDM::CauseInfo & object)
+: data(new CDM::CauseInfo(object))
+{ }
 
-}
-
-CauseInfo::CauseInfo(const CauseInfo & object) : data(new CDM::CauseInfo(*object.data)) {
-
-}
-
-CauseInfo::~CauseInfo() {
-
-}
+CauseInfo::CauseInfo(const CauseInfo & object)
+: data(std::make_shared<CDM::CauseInfo>(*object.data))
+{ }
 
 void CauseInfo::copyFrom(const CauseInfo & object) {
-	data = std::shared_ptr<CDM::CauseInfo>( new CDM::CauseInfo(*object.data));
+	data = std::make_shared<CDM::CauseInfo>(*object.data);
 }
 
-CauseInfo & CauseInfo:: operator=(const CauseInfo & object) {
+CauseInfo & CauseInfo:: operator=(const CauseInfo& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 CauseInfo & CauseInfo::setRemedyInfo(const RemedyInfo & value) {
-	data->RemedyInfo(ConvertToCDM::convert(value));
+	data->setRemedyInfo(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool CauseInfo::getRemedyInfo(RemedyInfo & out) const {
-	if (data->RemedyInfo().present()) {
-		out = ConvertFromCDM::convert(data->RemedyInfo().get());
+	if (data->getRemedyInfo().present()) {
+		out = ConvertFromCDM::convert(data->getRemedyInfo().get());
 		return true;
 	}
 	return false;
 }
 
 RemedyInfo CauseInfo::getRemedyInfo() const {
-	return ConvertFromCDM::convert(data->RemedyInfo().get());
+	return ConvertFromCDM::convert(data->getRemedyInfo().get());
 }
 
 bool CauseInfo::hasRemedyInfo() const {
-	return data->RemedyInfo().present();
+	return data->getRemedyInfo().present();
 }
 
 CauseInfo & CauseInfo::addDescription(const LocalizedText & value) {
-	data->Description().push_back(ConvertToCDM::convert(value));
+	data->getDescription().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<LocalizedText> CauseInfo::getDescriptionList() const {
 	std::vector<LocalizedText> result;
-	result.reserve(data->Description().size());
-	for (const auto & value: data->Description()) {
+	result.reserve(data->getDescription().size());
+	for (const auto & value: data->getDescription()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void CauseInfo::clearDescriptionList() {
-	data->Description().clear();
+	data->getDescription().clear();
 }
 
 

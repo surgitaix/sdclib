@@ -3,7 +3,6 @@
 
 #include <Poco/Net/ServerSocket.h>
 
-
 using namespace SDCLib;
 using namespace SDCLib::Config;
 
@@ -13,6 +12,31 @@ NetworkConfig::NetworkConfig()
 {
     // TODO: PortList
 }
+
+
+NetworkConfig::NetworkConfig(const NetworkConfig& p_obj)
+: OSELib::Helper::WithLogger(OSELib::Log::BASE)
+{
+	ml_networkInterfaces = p_obj.ml_networkInterfaces;
+	m_MDPWSInterface = p_obj.m_MDPWSInterface;
+	m_MDPWSPort = p_obj.m_MDPWSPort;
+
+
+	m_IP4enabled = p_obj.getIP4enabled();
+	m_IP6enabled = p_obj.getIP6enabled();
+	m_discoveryTime = p_obj.getDiscoveryTime();
+
+
+	m_MULTICAST_IPv4 = p_obj.m_MULTICAST_IPv4;
+	m_MULTICAST_IPv6 = p_obj.m_MULTICAST_IPv6;
+	m_STREAMING_IPv4 = p_obj.m_STREAMING_IPv4;
+	m_STREAMING_IPv6 = p_obj.m_STREAMING_IPv6;
+	m_PORT_MULTICASTv4 = p_obj.m_PORT_MULTICASTv4;
+	m_PORT_MULTICASTv6 = p_obj.m_PORT_MULTICASTv6;
+	m_PORT_STREAMINGv4 = p_obj.m_PORT_STREAMINGv4;
+	m_PORT_STREAMINGv6 = p_obj.m_PORT_STREAMINGv6;
+}
+
 
 bool NetworkConfig::bindToDefaultNetworkInterface(bool p_useAsMDPWS)
 {
@@ -152,29 +176,6 @@ bool NetworkConfig::_networkInterfaceBoundTo(std::string ps_adapterName) const
 bool NetworkConfig::isBound() const
 {
     return !ml_networkInterfaces.empty();
-}
-
-bool NetworkConfig::belongsTo(Poco::Net::IPAddress p_IP) const
-{
-    // Unicast
-    for (const auto& t_if : ml_networkInterfaces)
-    {
-        // Default to IPv4
-        auto t_networkInterfaceIP = t_if->m_IPv4;
-        // IPv6?
-        if(t_if->m_if.supportsIPv6() && (p_IP.family() == Poco::Net::AddressFamily::IPv6)) {
-            t_networkInterfaceIP = t_if->m_IPv6;
-        }
-        /*auto t_subnetMask = t_if->m_if.subnetMask();
-        t_networkInterfaceIP.mask(t_subnetMask);
-        p_IP.mask(t_subnetMask);*/
-        // Compare - Found one?
-        if (t_networkInterfaceIP == p_IP) {
-            return true;
-        }
-    }
-    // No match
-    return false;
 }
 
 // DiscoveryTime

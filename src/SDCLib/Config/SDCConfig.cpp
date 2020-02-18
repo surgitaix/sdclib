@@ -25,6 +25,13 @@ SDCConfig::SDCConfig(NetworkConfig_shared_ptr p_portConfig, SSLConfig_shared_ptr
     assert(m_SSLConfig != nullptr);
 }
 
+
+SDCConfig::SDCConfig(const SDCConfig& p_obj)
+{
+	m_networkConfig = std::make_shared<Config::NetworkConfig>(*p_obj.getNetworkConfig());
+	m_SSLConfig = std::make_shared<Config::SSLConfig>(*p_obj.getSSLConfig());
+}
+
 SDCConfig_shared_ptr SDCConfig::randomMDPWSConfig(SDCConfig_shared_ptr p_config)
 {
     assert(p_config);

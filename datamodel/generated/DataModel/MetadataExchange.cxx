@@ -48,61 +48,61 @@ namespace WS
     // 
 
     const GetMetadata::DialectOptional& GetMetadata::
-    Dialect () const
+    getDialect () const
     {
       return this->Dialect_;
     }
 
     GetMetadata::DialectOptional& GetMetadata::
-    Dialect ()
+    getDialect ()
     {
       return this->Dialect_;
     }
 
     void GetMetadata::
-    Dialect (const DialectType& x)
+    setDialect (const DialectType& x)
     {
       this->Dialect_.set (x);
     }
 
     void GetMetadata::
-    Dialect (const DialectOptional& x)
+    setDialect (const DialectOptional& x)
     {
       this->Dialect_ = x;
     }
 
     void GetMetadata::
-    Dialect (::std::unique_ptr< DialectType > x)
+    setDialect (::std::unique_ptr< DialectType > x)
     {
       this->Dialect_.set (std::move (x));
     }
 
     const GetMetadata::IdentifierOptional& GetMetadata::
-    Identifier () const
+    getIdentifier () const
     {
       return this->Identifier_;
     }
 
     GetMetadata::IdentifierOptional& GetMetadata::
-    Identifier ()
+    getIdentifier ()
     {
       return this->Identifier_;
     }
 
     void GetMetadata::
-    Identifier (const IdentifierType& x)
+    setIdentifier (const IdentifierType& x)
     {
       this->Identifier_.set (x);
     }
 
     void GetMetadata::
-    Identifier (const IdentifierOptional& x)
+    setIdentifier (const IdentifierOptional& x)
     {
       this->Identifier_ = x;
     }
 
     void GetMetadata::
-    Identifier (::std::unique_ptr< IdentifierType > x)
+    setIdentifier (::std::unique_ptr< IdentifierType > x)
     {
       this->Identifier_.set (std::move (x));
     }
@@ -112,19 +112,19 @@ namespace WS
     // 
 
     const Metadata::MetadataSectionSequence& Metadata::
-    MetadataSection () const
+    getMetadataSection () const
     {
       return this->MetadataSection_;
     }
 
     Metadata::MetadataSectionSequence& Metadata::
-    MetadataSection ()
+    getMetadataSection ()
     {
       return this->MetadataSection_;
     }
 
     void Metadata::
-    MetadataSection (const MetadataSectionSequence& s)
+    setMetadataSection (const MetadataSectionSequence& s)
     {
       this->MetadataSection_ = s;
     }
@@ -134,235 +134,235 @@ namespace WS
     // 
 
     const MetadataSection::MetadataReferenceOptional& MetadataSection::
-    MetadataReference () const
+    getMetadataReference () const
     {
       return this->MetadataReference_;
     }
 
     MetadataSection::MetadataReferenceOptional& MetadataSection::
-    MetadataReference ()
+    getMetadataReference ()
     {
       return this->MetadataReference_;
     }
 
     void MetadataSection::
-    MetadataReference (const MetadataReferenceType& x)
+    setMetadataReference (const MetadataReferenceType& x)
     {
       this->MetadataReference_.set (x);
     }
 
     void MetadataSection::
-    MetadataReference (const MetadataReferenceOptional& x)
+    setMetadataReference (const MetadataReferenceOptional& x)
     {
       this->MetadataReference_ = x;
     }
 
     void MetadataSection::
-    MetadataReference (::std::unique_ptr< MetadataReferenceType > x)
+    setMetadataReference (::std::unique_ptr< MetadataReferenceType > x)
     {
       this->MetadataReference_.set (std::move (x));
     }
 
     const MetadataSection::LocationOptional& MetadataSection::
-    Location () const
+    getLocation () const
     {
       return this->Location_;
     }
 
     MetadataSection::LocationOptional& MetadataSection::
-    Location ()
+    getLocation ()
     {
       return this->Location_;
     }
 
     void MetadataSection::
-    Location (const LocationType& x)
+    setLocation (const LocationType& x)
     {
       this->Location_.set (x);
     }
 
     void MetadataSection::
-    Location (const LocationOptional& x)
+    setLocation (const LocationOptional& x)
     {
       this->Location_ = x;
     }
 
     void MetadataSection::
-    Location (::std::unique_ptr< LocationType > x)
+    setLocation (::std::unique_ptr< LocationType > x)
     {
       this->Location_.set (std::move (x));
     }
 
     const MetadataSection::ThisModelOptional& MetadataSection::
-    ThisModel () const
+    getThisModel () const
     {
       return this->ThisModel_;
     }
 
     MetadataSection::ThisModelOptional& MetadataSection::
-    ThisModel ()
+    getThisModel ()
     {
       return this->ThisModel_;
     }
 
     void MetadataSection::
-    ThisModel (const ThisModelType& x)
+    setThisModel (const ThisModelType& x)
     {
       this->ThisModel_.set (x);
     }
 
     void MetadataSection::
-    ThisModel (const ThisModelOptional& x)
+    setThisModel (const ThisModelOptional& x)
     {
       this->ThisModel_ = x;
     }
 
     void MetadataSection::
-    ThisModel (::std::unique_ptr< ThisModelType > x)
+    setThisModel (::std::unique_ptr< ThisModelType > x)
     {
       this->ThisModel_.set (std::move (x));
     }
 
     const MetadataSection::ThisDeviceOptional& MetadataSection::
-    ThisDevice () const
+    getThisDevice () const
     {
       return this->ThisDevice_;
     }
 
     MetadataSection::ThisDeviceOptional& MetadataSection::
-    ThisDevice ()
+    getThisDevice ()
     {
       return this->ThisDevice_;
     }
 
     void MetadataSection::
-    ThisDevice (const ThisDeviceType& x)
+    setThisDevice (const ThisDeviceType& x)
     {
       this->ThisDevice_.set (x);
     }
 
     void MetadataSection::
-    ThisDevice (const ThisDeviceOptional& x)
+    setThisDevice (const ThisDeviceOptional& x)
     {
       this->ThisDevice_ = x;
     }
 
     void MetadataSection::
-    ThisDevice (::std::unique_ptr< ThisDeviceType > x)
+    setThisDevice (::std::unique_ptr< ThisDeviceType > x)
     {
       this->ThisDevice_.set (std::move (x));
     }
 
     const MetadataSection::RelationshipOptional& MetadataSection::
-    Relationship () const
+    getRelationship () const
     {
       return this->Relationship_;
     }
 
     MetadataSection::RelationshipOptional& MetadataSection::
-    Relationship ()
+    getRelationship ()
     {
       return this->Relationship_;
     }
 
     void MetadataSection::
-    Relationship (const RelationshipType& x)
+    setRelationship (const RelationshipType& x)
     {
       this->Relationship_.set (x);
     }
 
     void MetadataSection::
-    Relationship (const RelationshipOptional& x)
+    setRelationship (const RelationshipOptional& x)
     {
       this->Relationship_ = x;
     }
 
     void MetadataSection::
-    Relationship (::std::unique_ptr< RelationshipType > x)
+    setRelationship (::std::unique_ptr< RelationshipType > x)
     {
       this->Relationship_.set (std::move (x));
     }
 
     const MetadataSection::StreamDescriptionsOptional& MetadataSection::
-    StreamDescriptions () const
+    getStreamDescriptions () const
     {
       return this->StreamDescriptions_;
     }
 
     MetadataSection::StreamDescriptionsOptional& MetadataSection::
-    StreamDescriptions ()
+    getStreamDescriptions ()
     {
       return this->StreamDescriptions_;
     }
 
     void MetadataSection::
-    StreamDescriptions (const StreamDescriptionsType& x)
+    setStreamDescriptions (const StreamDescriptionsType& x)
     {
       this->StreamDescriptions_.set (x);
     }
 
     void MetadataSection::
-    StreamDescriptions (const StreamDescriptionsOptional& x)
+    setStreamDescriptions (const StreamDescriptionsOptional& x)
     {
       this->StreamDescriptions_ = x;
     }
 
     void MetadataSection::
-    StreamDescriptions (::std::unique_ptr< StreamDescriptionsType > x)
+    setStreamDescriptions (::std::unique_ptr< StreamDescriptionsType > x)
     {
       this->StreamDescriptions_.set (std::move (x));
     }
 
     const MetadataSection::DialectType& MetadataSection::
-    Dialect () const
+    getDialect () const
     {
       return this->Dialect_.get ();
     }
 
     MetadataSection::DialectType& MetadataSection::
-    Dialect ()
+    getDialect ()
     {
       return this->Dialect_.get ();
     }
 
     void MetadataSection::
-    Dialect (const DialectType& x)
+    setDialect (const DialectType& x)
     {
       this->Dialect_.set (x);
     }
 
     void MetadataSection::
-    Dialect (::std::unique_ptr< DialectType > x)
+    setDialect (::std::unique_ptr< DialectType > x)
     {
       this->Dialect_.set (std::move (x));
     }
 
     const MetadataSection::IdentifierOptional& MetadataSection::
-    Identifier () const
+    getIdentifier () const
     {
       return this->Identifier_;
     }
 
     MetadataSection::IdentifierOptional& MetadataSection::
-    Identifier ()
+    getIdentifier ()
     {
       return this->Identifier_;
     }
 
     void MetadataSection::
-    Identifier (const IdentifierType& x)
+    setIdentifier (const IdentifierType& x)
     {
       this->Identifier_.set (x);
     }
 
     void MetadataSection::
-    Identifier (const IdentifierOptional& x)
+    setIdentifier (const IdentifierOptional& x)
     {
       this->Identifier_ = x;
     }
 
     void MetadataSection::
-    Identifier (::std::unique_ptr< IdentifierType > x)
+    setIdentifier (::std::unique_ptr< IdentifierType > x)
     {
       this->Identifier_.set (std::move (x));
     }
@@ -932,1936 +932,6 @@ namespace WS
 {
   namespace MEX
   {
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (const ::std::string& u,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::MEX::GetMetadata > (
-        ::WS::MEX::GetMetadata_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (const ::std::string& u,
-                  ::xml_schema::ErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::MEX::GetMetadata > (
-        ::WS::MEX::GetMetadata_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (const ::std::string& u,
-                  ::xercesc::DOMErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::MEX::GetMetadata > (
-        ::WS::MEX::GetMetadata_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (::std::istream& is,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::MEX::GetMetadata_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (::std::istream& is,
-                  ::xml_schema::ErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::MEX::GetMetadata_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (::std::istream& is,
-                  ::xercesc::DOMErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::MEX::GetMetadata_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (::std::istream& is,
-                  const ::std::string& sid,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::MEX::GetMetadata_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (::std::istream& is,
-                  const ::std::string& sid,
-                  ::xml_schema::ErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::MEX::GetMetadata_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (::std::istream& is,
-                  const ::std::string& sid,
-                  ::xercesc::DOMErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::MEX::GetMetadata_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (::xercesc::InputSource& i,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::MEX::GetMetadata > (
-        ::WS::MEX::GetMetadata_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (::xercesc::InputSource& i,
-                  ::xml_schema::ErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::MEX::GetMetadata > (
-        ::WS::MEX::GetMetadata_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (::xercesc::InputSource& i,
-                  ::xercesc::DOMErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::MEX::GetMetadata > (
-        ::WS::MEX::GetMetadata_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (const ::xercesc::DOMDocument& doc,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::MEX::GetMetadata > (
-          ::WS::MEX::GetMetadata_ (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "GetMetadata" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/09/mex")
-      {
-        ::std::unique_ptr< ::WS::MEX::GetMetadata > r (
-          ::xsd::cxx::tree::traits< ::WS::MEX::GetMetadata, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetMetadata",
-        "http://schemas.xmlsoap.org/ws/2004/09/mex");
-    }
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      if (n.name () == "GetMetadata" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/09/mex")
-      {
-        ::std::unique_ptr< ::WS::MEX::GetMetadata > r (
-          ::xsd::cxx::tree::traits< ::WS::MEX::GetMetadata, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetMetadata",
-        "http://schemas.xmlsoap.org/ws/2004/09/mex");
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (const ::std::string& u,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::MEX::Dialect (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (const ::std::string& u,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::MEX::Dialect (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (const ::std::string& u,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::MEX::Dialect (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (::std::istream& is,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::MEX::Dialect (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (::std::istream& is,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::MEX::Dialect (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (::std::istream& is,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::MEX::Dialect (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (::std::istream& is,
-             const ::std::string& sid,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::MEX::Dialect (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (::std::istream& is,
-             const ::std::string& sid,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::MEX::Dialect (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (::std::istream& is,
-             const ::std::string& sid,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::MEX::Dialect (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (::xercesc::InputSource& i,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::MEX::Dialect (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (::xercesc::InputSource& i,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::MEX::Dialect (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (::xercesc::InputSource& i,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::MEX::Dialect (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (const ::xercesc::DOMDocument& doc,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::xml_schema::Uri > (
-          ::WS::MEX::Dialect (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "Dialect",
-          "http://schemas.xmlsoap.org/ws/2004/09/mex",
-          &::xsd::cxx::tree::factory_impl< ::xml_schema::Uri >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-        ::std::unique_ptr< ::xml_schema::Uri > r (
-          dynamic_cast< ::xml_schema::Uri* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Dialect",
-        "http://schemas.xmlsoap.org/ws/2004/09/mex");
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "Dialect",
-          "http://schemas.xmlsoap.org/ws/2004/09/mex",
-          &::xsd::cxx::tree::factory_impl< ::xml_schema::Uri >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-
-        ::std::unique_ptr< ::xml_schema::Uri > r (
-          dynamic_cast< ::xml_schema::Uri* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Dialect",
-        "http://schemas.xmlsoap.org/ws/2004/09/mex");
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (const ::std::string& u,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::MEX::Identifier (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (const ::std::string& u,
-                ::xml_schema::ErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::MEX::Identifier (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (const ::std::string& u,
-                ::xercesc::DOMErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::MEX::Identifier (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (::std::istream& is,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::MEX::Identifier (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (::std::istream& is,
-                ::xml_schema::ErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::MEX::Identifier (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (::std::istream& is,
-                ::xercesc::DOMErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::MEX::Identifier (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (::std::istream& is,
-                const ::std::string& sid,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::MEX::Identifier (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (::std::istream& is,
-                const ::std::string& sid,
-                ::xml_schema::ErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::MEX::Identifier (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (::std::istream& is,
-                const ::std::string& sid,
-                ::xercesc::DOMErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::MEX::Identifier (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (::xercesc::InputSource& i,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::MEX::Identifier (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (::xercesc::InputSource& i,
-                ::xml_schema::ErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::MEX::Identifier (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (::xercesc::InputSource& i,
-                ::xercesc::DOMErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::MEX::Identifier (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (const ::xercesc::DOMDocument& doc,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::xml_schema::Uri > (
-          ::WS::MEX::Identifier (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "Identifier",
-          "http://schemas.xmlsoap.org/ws/2004/09/mex",
-          &::xsd::cxx::tree::factory_impl< ::xml_schema::Uri >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-        ::std::unique_ptr< ::xml_schema::Uri > r (
-          dynamic_cast< ::xml_schema::Uri* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Identifier",
-        "http://schemas.xmlsoap.org/ws/2004/09/mex");
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "Identifier",
-          "http://schemas.xmlsoap.org/ws/2004/09/mex",
-          &::xsd::cxx::tree::factory_impl< ::xml_schema::Uri >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-
-        ::std::unique_ptr< ::xml_schema::Uri > r (
-          dynamic_cast< ::xml_schema::Uri* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Identifier",
-        "http://schemas.xmlsoap.org/ws/2004/09/mex");
-    }
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (const ::std::string& u,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::MEX::Metadata > (
-        ::WS::MEX::Metadata_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (const ::std::string& u,
-               ::xml_schema::ErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::MEX::Metadata > (
-        ::WS::MEX::Metadata_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (const ::std::string& u,
-               ::xercesc::DOMErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::MEX::Metadata > (
-        ::WS::MEX::Metadata_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (::std::istream& is,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::MEX::Metadata_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (::std::istream& is,
-               ::xml_schema::ErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::MEX::Metadata_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (::std::istream& is,
-               ::xercesc::DOMErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::MEX::Metadata_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (::std::istream& is,
-               const ::std::string& sid,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::MEX::Metadata_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (::std::istream& is,
-               const ::std::string& sid,
-               ::xml_schema::ErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::MEX::Metadata_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (::std::istream& is,
-               const ::std::string& sid,
-               ::xercesc::DOMErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::MEX::Metadata_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (::xercesc::InputSource& i,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::MEX::Metadata > (
-        ::WS::MEX::Metadata_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (::xercesc::InputSource& i,
-               ::xml_schema::ErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::MEX::Metadata > (
-        ::WS::MEX::Metadata_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (::xercesc::InputSource& i,
-               ::xercesc::DOMErrorHandler& h,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::MEX::Metadata > (
-        ::WS::MEX::Metadata_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (const ::xercesc::DOMDocument& doc,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::MEX::Metadata > (
-          ::WS::MEX::Metadata_ (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "Metadata" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/09/mex")
-      {
-        ::std::unique_ptr< ::WS::MEX::Metadata > r (
-          ::xsd::cxx::tree::traits< ::WS::MEX::Metadata, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Metadata",
-        "http://schemas.xmlsoap.org/ws/2004/09/mex");
-    }
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-               ::xml_schema::Flags f,
-               const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      if (n.name () == "Metadata" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/09/mex")
-      {
-        ::std::unique_ptr< ::WS::MEX::Metadata > r (
-          ::xsd::cxx::tree::traits< ::WS::MEX::Metadata, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Metadata",
-        "http://schemas.xmlsoap.org/ws/2004/09/mex");
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (const ::std::string& u,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::MEX::MetadataSection > (
-        ::WS::MEX::MetadataSection_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (const ::std::string& u,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::MEX::MetadataSection > (
-        ::WS::MEX::MetadataSection_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (const ::std::string& u,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::MEX::MetadataSection > (
-        ::WS::MEX::MetadataSection_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (::std::istream& is,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::MEX::MetadataSection_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (::std::istream& is,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::MEX::MetadataSection_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (::std::istream& is,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::MEX::MetadataSection_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (::std::istream& is,
-                      const ::std::string& sid,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::MEX::MetadataSection_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (::std::istream& is,
-                      const ::std::string& sid,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::MEX::MetadataSection_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (::std::istream& is,
-                      const ::std::string& sid,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::MEX::MetadataSection_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (::xercesc::InputSource& i,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::MEX::MetadataSection > (
-        ::WS::MEX::MetadataSection_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (::xercesc::InputSource& i,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::MEX::MetadataSection > (
-        ::WS::MEX::MetadataSection_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (::xercesc::InputSource& i,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::MEX::MetadataSection > (
-        ::WS::MEX::MetadataSection_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (const ::xercesc::DOMDocument& doc,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::MEX::MetadataSection > (
-          ::WS::MEX::MetadataSection_ (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "MetadataSection" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/09/mex")
-      {
-        ::std::unique_ptr< ::WS::MEX::MetadataSection > r (
-          ::xsd::cxx::tree::traits< ::WS::MEX::MetadataSection, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "MetadataSection",
-        "http://schemas.xmlsoap.org/ws/2004/09/mex");
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      if (n.name () == "MetadataSection" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/09/mex")
-      {
-        ::std::unique_ptr< ::WS::MEX::MetadataSection > r (
-          ::xsd::cxx::tree::traits< ::WS::MEX::MetadataSection, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "MetadataSection",
-        "http://schemas.xmlsoap.org/ws/2004/09/mex");
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (const ::std::string& u,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::MEX::MetadataReference > (
-        ::WS::MEX::MetadataReference_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (const ::std::string& u,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::MEX::MetadataReference > (
-        ::WS::MEX::MetadataReference_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (const ::std::string& u,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::MEX::MetadataReference > (
-        ::WS::MEX::MetadataReference_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (::std::istream& is,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::MEX::MetadataReference_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (::std::istream& is,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::MEX::MetadataReference_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (::std::istream& is,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::MEX::MetadataReference_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (::std::istream& is,
-                        const ::std::string& sid,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::MEX::MetadataReference_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (::std::istream& is,
-                        const ::std::string& sid,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::MEX::MetadataReference_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (::std::istream& is,
-                        const ::std::string& sid,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::MEX::MetadataReference_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (::xercesc::InputSource& i,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::MEX::MetadataReference > (
-        ::WS::MEX::MetadataReference_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (::xercesc::InputSource& i,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::MEX::MetadataReference > (
-        ::WS::MEX::MetadataReference_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (::xercesc::InputSource& i,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::MEX::MetadataReference > (
-        ::WS::MEX::MetadataReference_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (const ::xercesc::DOMDocument& doc,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::MEX::MetadataReference > (
-          ::WS::MEX::MetadataReference_ (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "MetadataReference" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/09/mex")
-      {
-        ::std::unique_ptr< ::WS::MEX::MetadataReference > r (
-          ::xsd::cxx::tree::traits< ::WS::MEX::MetadataReference, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "MetadataReference",
-        "http://schemas.xmlsoap.org/ws/2004/09/mex");
-    }
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      if (n.name () == "MetadataReference" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/09/mex")
-      {
-        ::std::unique_ptr< ::WS::MEX::MetadataReference > r (
-          ::xsd::cxx::tree::traits< ::WS::MEX::MetadataReference, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "MetadataReference",
-        "http://schemas.xmlsoap.org/ws/2004/09/mex");
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (const ::std::string& u,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::MEX::Location (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (const ::std::string& u,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::MEX::Location (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (const ::std::string& u,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::MEX::Location (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (::std::istream& is,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::MEX::Location (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (::std::istream& is,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::MEX::Location (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (::std::istream& is,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::MEX::Location (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (::std::istream& is,
-              const ::std::string& sid,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::MEX::Location (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (::std::istream& is,
-              const ::std::string& sid,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::MEX::Location (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (::std::istream& is,
-              const ::std::string& sid,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::MEX::Location (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (::xercesc::InputSource& i,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::MEX::Location (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (::xercesc::InputSource& i,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::MEX::Location (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (::xercesc::InputSource& i,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::MEX::Location (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (const ::xercesc::DOMDocument& doc,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::xml_schema::Uri > (
-          ::WS::MEX::Location (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "Location",
-          "http://schemas.xmlsoap.org/ws/2004/09/mex",
-          &::xsd::cxx::tree::factory_impl< ::xml_schema::Uri >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-        ::std::unique_ptr< ::xml_schema::Uri > r (
-          dynamic_cast< ::xml_schema::Uri* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Location",
-        "http://schemas.xmlsoap.org/ws/2004/09/mex");
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "Location",
-          "http://schemas.xmlsoap.org/ws/2004/09/mex",
-          &::xsd::cxx::tree::factory_impl< ::xml_schema::Uri >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-
-        ::std::unique_ptr< ::xml_schema::Uri > r (
-          dynamic_cast< ::xml_schema::Uri* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Location",
-        "http://schemas.xmlsoap.org/ws/2004/09/mex");
-    }
   }
 }
 
@@ -2883,1105 +953,6 @@ namespace WS
   namespace MEX
   {
     void
-    GetMetadata_ (::std::ostream& o,
-                  const ::WS::MEX::GetMetadata& s,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::GetMetadata_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    GetMetadata_ (::std::ostream& o,
-                  const ::WS::MEX::GetMetadata& s,
-                  ::xml_schema::ErrorHandler& h,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::GetMetadata_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    GetMetadata_ (::std::ostream& o,
-                  const ::WS::MEX::GetMetadata& s,
-                  ::xercesc::DOMErrorHandler& h,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::GetMetadata_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    GetMetadata_ (::xercesc::XMLFormatTarget& t,
-                  const ::WS::MEX::GetMetadata& s,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::GetMetadata_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    GetMetadata_ (::xercesc::XMLFormatTarget& t,
-                  const ::WS::MEX::GetMetadata& s,
-                  ::xml_schema::ErrorHandler& h,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::GetMetadata_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    GetMetadata_ (::xercesc::XMLFormatTarget& t,
-                  const ::WS::MEX::GetMetadata& s,
-                  ::xercesc::DOMErrorHandler& h,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::GetMetadata_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    GetMetadata_ (::xercesc::DOMDocument& d,
-                  const ::WS::MEX::GetMetadata& s,
-                  ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "GetMetadata" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/09/mex")
-      {
-        e << s;
-      }
-      else
-      {
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "GetMetadata",
-          "http://schemas.xmlsoap.org/ws/2004/09/mex");
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    GetMetadata_ (const ::WS::MEX::GetMetadata& s,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::serialize< char > (
-          "GetMetadata",
-          "http://schemas.xmlsoap.org/ws/2004/09/mex",
-          m, f));
-
-      ::WS::MEX::GetMetadata_ (*d, s, f);
-      return d;
-    }
-
-    void
-    Dialect (::std::ostream& o,
-             const ::xml_schema::Uri& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::Dialect (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Dialect (::std::ostream& o,
-             const ::xml_schema::Uri& s,
-             ::xml_schema::ErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::Dialect (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Dialect (::std::ostream& o,
-             const ::xml_schema::Uri& s,
-             ::xercesc::DOMErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::Dialect (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Dialect (::xercesc::XMLFormatTarget& t,
-             const ::xml_schema::Uri& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::Dialect (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Dialect (::xercesc::XMLFormatTarget& t,
-             const ::xml_schema::Uri& s,
-             ::xml_schema::ErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::Dialect (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Dialect (::xercesc::XMLFormatTarget& t,
-             const ::xml_schema::Uri& s,
-             ::xercesc::DOMErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::Dialect (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Dialect (::xercesc::DOMDocument& d,
-             const ::xml_schema::Uri& s,
-             ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (typeid (::xml_schema::Uri) == typeid (s))
-      {
-        if (n.name () == "Dialect" &&
-            n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/09/mex")
-        {
-          e << s;
-        }
-        else
-        {
-          throw ::xsd::cxx::tree::unexpected_element < char > (
-            n.name (),
-            n.namespace_ (),
-            "Dialect",
-            "http://schemas.xmlsoap.org/ws/2004/09/mex");
-        }
-      }
-      else
-      {
-        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "Dialect",
-          "http://schemas.xmlsoap.org/ws/2004/09/mex",
-          e, n, s);
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Dialect (const ::xml_schema::Uri& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-      if (typeid (::xml_schema::Uri) == typeid (s))
-      {
-        d = ::xsd::cxx::xml::dom::serialize< char > (
-          "Dialect",
-          "http://schemas.xmlsoap.org/ws/2004/09/mex",
-          m, f);
-      }
-      else
-      {
-        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "Dialect",
-          "http://schemas.xmlsoap.org/ws/2004/09/mex",
-          m, s, f);
-      }
-
-      ::WS::MEX::Dialect (*d, s, f);
-      return d;
-    }
-
-    void
-    Identifier (::std::ostream& o,
-                const ::xml_schema::Uri& s,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::Identifier (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Identifier (::std::ostream& o,
-                const ::xml_schema::Uri& s,
-                ::xml_schema::ErrorHandler& h,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::Identifier (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Identifier (::std::ostream& o,
-                const ::xml_schema::Uri& s,
-                ::xercesc::DOMErrorHandler& h,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::Identifier (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Identifier (::xercesc::XMLFormatTarget& t,
-                const ::xml_schema::Uri& s,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::Identifier (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Identifier (::xercesc::XMLFormatTarget& t,
-                const ::xml_schema::Uri& s,
-                ::xml_schema::ErrorHandler& h,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::Identifier (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Identifier (::xercesc::XMLFormatTarget& t,
-                const ::xml_schema::Uri& s,
-                ::xercesc::DOMErrorHandler& h,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::Identifier (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Identifier (::xercesc::DOMDocument& d,
-                const ::xml_schema::Uri& s,
-                ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (typeid (::xml_schema::Uri) == typeid (s))
-      {
-        if (n.name () == "Identifier" &&
-            n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/09/mex")
-        {
-          e << s;
-        }
-        else
-        {
-          throw ::xsd::cxx::tree::unexpected_element < char > (
-            n.name (),
-            n.namespace_ (),
-            "Identifier",
-            "http://schemas.xmlsoap.org/ws/2004/09/mex");
-        }
-      }
-      else
-      {
-        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "Identifier",
-          "http://schemas.xmlsoap.org/ws/2004/09/mex",
-          e, n, s);
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Identifier (const ::xml_schema::Uri& s,
-                const ::xml_schema::NamespaceInfomap& m,
-                ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-      if (typeid (::xml_schema::Uri) == typeid (s))
-      {
-        d = ::xsd::cxx::xml::dom::serialize< char > (
-          "Identifier",
-          "http://schemas.xmlsoap.org/ws/2004/09/mex",
-          m, f);
-      }
-      else
-      {
-        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "Identifier",
-          "http://schemas.xmlsoap.org/ws/2004/09/mex",
-          m, s, f);
-      }
-
-      ::WS::MEX::Identifier (*d, s, f);
-      return d;
-    }
-
-    void
-    Metadata_ (::std::ostream& o,
-               const ::WS::MEX::Metadata& s,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::Metadata_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Metadata_ (::std::ostream& o,
-               const ::WS::MEX::Metadata& s,
-               ::xml_schema::ErrorHandler& h,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::Metadata_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Metadata_ (::std::ostream& o,
-               const ::WS::MEX::Metadata& s,
-               ::xercesc::DOMErrorHandler& h,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::Metadata_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Metadata_ (::xercesc::XMLFormatTarget& t,
-               const ::WS::MEX::Metadata& s,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::Metadata_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Metadata_ (::xercesc::XMLFormatTarget& t,
-               const ::WS::MEX::Metadata& s,
-               ::xml_schema::ErrorHandler& h,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::Metadata_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Metadata_ (::xercesc::XMLFormatTarget& t,
-               const ::WS::MEX::Metadata& s,
-               ::xercesc::DOMErrorHandler& h,
-               const ::xml_schema::NamespaceInfomap& m,
-               const ::std::string& e,
-               ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::Metadata_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Metadata_ (::xercesc::DOMDocument& d,
-               const ::WS::MEX::Metadata& s,
-               ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "Metadata" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/09/mex")
-      {
-        e << s;
-      }
-      else
-      {
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "Metadata",
-          "http://schemas.xmlsoap.org/ws/2004/09/mex");
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Metadata_ (const ::WS::MEX::Metadata& s,
-               const ::xml_schema::NamespaceInfomap& m,
-               ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::serialize< char > (
-          "Metadata",
-          "http://schemas.xmlsoap.org/ws/2004/09/mex",
-          m, f));
-
-      ::WS::MEX::Metadata_ (*d, s, f);
-      return d;
-    }
-
-    void
-    MetadataSection_ (::std::ostream& o,
-                      const ::WS::MEX::MetadataSection& s,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::MetadataSection_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    MetadataSection_ (::std::ostream& o,
-                      const ::WS::MEX::MetadataSection& s,
-                      ::xml_schema::ErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::MetadataSection_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    MetadataSection_ (::std::ostream& o,
-                      const ::WS::MEX::MetadataSection& s,
-                      ::xercesc::DOMErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::MetadataSection_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    MetadataSection_ (::xercesc::XMLFormatTarget& t,
-                      const ::WS::MEX::MetadataSection& s,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::MetadataSection_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    MetadataSection_ (::xercesc::XMLFormatTarget& t,
-                      const ::WS::MEX::MetadataSection& s,
-                      ::xml_schema::ErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::MetadataSection_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    MetadataSection_ (::xercesc::XMLFormatTarget& t,
-                      const ::WS::MEX::MetadataSection& s,
-                      ::xercesc::DOMErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::MetadataSection_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    MetadataSection_ (::xercesc::DOMDocument& d,
-                      const ::WS::MEX::MetadataSection& s,
-                      ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "MetadataSection" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/09/mex")
-      {
-        e << s;
-      }
-      else
-      {
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "MetadataSection",
-          "http://schemas.xmlsoap.org/ws/2004/09/mex");
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    MetadataSection_ (const ::WS::MEX::MetadataSection& s,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::serialize< char > (
-          "MetadataSection",
-          "http://schemas.xmlsoap.org/ws/2004/09/mex",
-          m, f));
-
-      ::WS::MEX::MetadataSection_ (*d, s, f);
-      return d;
-    }
-
-    void
-    MetadataReference_ (::std::ostream& o,
-                        const ::WS::MEX::MetadataReference& s,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::MetadataReference_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    MetadataReference_ (::std::ostream& o,
-                        const ::WS::MEX::MetadataReference& s,
-                        ::xml_schema::ErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::MetadataReference_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    MetadataReference_ (::std::ostream& o,
-                        const ::WS::MEX::MetadataReference& s,
-                        ::xercesc::DOMErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::MetadataReference_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    MetadataReference_ (::xercesc::XMLFormatTarget& t,
-                        const ::WS::MEX::MetadataReference& s,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::MetadataReference_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    MetadataReference_ (::xercesc::XMLFormatTarget& t,
-                        const ::WS::MEX::MetadataReference& s,
-                        ::xml_schema::ErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::MetadataReference_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    MetadataReference_ (::xercesc::XMLFormatTarget& t,
-                        const ::WS::MEX::MetadataReference& s,
-                        ::xercesc::DOMErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::MetadataReference_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    MetadataReference_ (::xercesc::DOMDocument& d,
-                        const ::WS::MEX::MetadataReference& s,
-                        ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "MetadataReference" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/09/mex")
-      {
-        e << s;
-      }
-      else
-      {
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "MetadataReference",
-          "http://schemas.xmlsoap.org/ws/2004/09/mex");
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    MetadataReference_ (const ::WS::MEX::MetadataReference& s,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::serialize< char > (
-          "MetadataReference",
-          "http://schemas.xmlsoap.org/ws/2004/09/mex",
-          m, f));
-
-      ::WS::MEX::MetadataReference_ (*d, s, f);
-      return d;
-    }
-
-    void
-    Location (::std::ostream& o,
-              const ::xml_schema::Uri& s,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::Location (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Location (::std::ostream& o,
-              const ::xml_schema::Uri& s,
-              ::xml_schema::ErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::Location (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Location (::std::ostream& o,
-              const ::xml_schema::Uri& s,
-              ::xercesc::DOMErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::Location (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Location (::xercesc::XMLFormatTarget& t,
-              const ::xml_schema::Uri& s,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::Location (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Location (::xercesc::XMLFormatTarget& t,
-              const ::xml_schema::Uri& s,
-              ::xml_schema::ErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::Location (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Location (::xercesc::XMLFormatTarget& t,
-              const ::xml_schema::Uri& s,
-              ::xercesc::DOMErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::MEX::Location (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Location (::xercesc::DOMDocument& d,
-              const ::xml_schema::Uri& s,
-              ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (typeid (::xml_schema::Uri) == typeid (s))
-      {
-        if (n.name () == "Location" &&
-            n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/09/mex")
-        {
-          e << s;
-        }
-        else
-        {
-          throw ::xsd::cxx::tree::unexpected_element < char > (
-            n.name (),
-            n.namespace_ (),
-            "Location",
-            "http://schemas.xmlsoap.org/ws/2004/09/mex");
-        }
-      }
-      else
-      {
-        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "Location",
-          "http://schemas.xmlsoap.org/ws/2004/09/mex",
-          e, n, s);
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Location (const ::xml_schema::Uri& s,
-              const ::xml_schema::NamespaceInfomap& m,
-              ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-      if (typeid (::xml_schema::Uri) == typeid (s))
-      {
-        d = ::xsd::cxx::xml::dom::serialize< char > (
-          "Location",
-          "http://schemas.xmlsoap.org/ws/2004/09/mex",
-          m, f);
-      }
-      else
-      {
-        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "Location",
-          "http://schemas.xmlsoap.org/ws/2004/09/mex",
-          m, s, f);
-      }
-
-      ::WS::MEX::Location (*d, s, f);
-      return d;
-    }
-
-    void
     operator<< (::xercesc::DOMElement& e, const GetMetadata& i)
     {
       e << static_cast< const ::xml_schema::Type& > (i);
@@ -3992,9 +963,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.Dialect ())
+        if (i.getDialect ())
         {
-          const GetMetadata::DialectType& x (*i.Dialect ());
+          const GetMetadata::DialectType& x (*i.getDialect ());
           if (typeid (GetMetadata::DialectType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -4019,9 +990,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.Identifier ())
+        if (i.getIdentifier ())
         {
-          const GetMetadata::IdentifierType& x (*i.Identifier ());
+          const GetMetadata::IdentifierType& x (*i.getIdentifier ());
           if (typeid (GetMetadata::IdentifierType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -4049,7 +1020,7 @@ namespace WS
       // MetadataSection
       //
       for (Metadata::MetadataSectionConstIterator
-           b (i.MetadataSection ().begin ()), n (i.MetadataSection ().end ());
+           b (i.getMetadataSection ().begin ()), n (i.getMetadataSection ().end ());
            b != n; ++b)
       {
         ::xercesc::DOMElement& s (
@@ -4069,7 +1040,7 @@ namespace WS
 
       // MetadataReference
       //
-      if (i.MetadataReference ())
+      if (i.getMetadataReference ())
       {
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
@@ -4077,7 +1048,7 @@ namespace WS
             "http://schemas.xmlsoap.org/ws/2004/09/mex",
             e));
 
-        s << *i.MetadataReference ();
+        s << *i.getMetadataReference ();
       }
 
       // Location
@@ -4086,9 +1057,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.Location ())
+        if (i.getLocation ())
         {
-          const MetadataSection::LocationType& x (*i.Location ());
+          const MetadataSection::LocationType& x (*i.getLocation ());
           if (typeid (MetadataSection::LocationType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -4113,9 +1084,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.ThisModel ())
+        if (i.getThisModel ())
         {
-          const MetadataSection::ThisModelType& x (*i.ThisModel ());
+          const MetadataSection::ThisModelType& x (*i.getThisModel ());
           if (typeid (MetadataSection::ThisModelType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -4140,9 +1111,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.ThisDevice ())
+        if (i.getThisDevice ())
         {
-          const MetadataSection::ThisDeviceType& x (*i.ThisDevice ());
+          const MetadataSection::ThisDeviceType& x (*i.getThisDevice ());
           if (typeid (MetadataSection::ThisDeviceType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -4163,7 +1134,7 @@ namespace WS
 
       // Relationship
       //
-      if (i.Relationship ())
+      if (i.getRelationship ())
       {
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
@@ -4171,7 +1142,7 @@ namespace WS
             "http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01",
             e));
 
-        s << *i.Relationship ();
+        s << *i.getRelationship ();
       }
 
       // StreamDescriptions
@@ -4180,9 +1151,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.StreamDescriptions ())
+        if (i.getStreamDescriptions ())
         {
-          const MetadataSection::StreamDescriptionsType& x (*i.StreamDescriptions ());
+          const MetadataSection::StreamDescriptionsType& x (*i.getStreamDescriptions ());
           if (typeid (MetadataSection::StreamDescriptionsType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -4209,19 +1180,19 @@ namespace WS
             "Dialect",
             e));
 
-        a << i.Dialect ();
+        a << i.getDialect ();
       }
 
       // Identifier
       //
-      if (i.Identifier ())
+      if (i.getIdentifier ())
       {
         ::xercesc::DOMAttr& a (
           ::xsd::cxx::xml::dom::create_attribute (
             "Identifier",
             e));
 
-        a << *i.Identifier ();
+        a << *i.getIdentifier ();
       }
     }
 

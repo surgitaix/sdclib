@@ -29,6 +29,8 @@
 #include "SDCLib/Data/SDC/SDC-fwd.h"
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/MDIB/custom/MdibContainer.h"
+#include "SDCLib/Data/SDC/MDIB/MdDescription.h"
+#include "SDCLib/Data/SDC/MDIB/MdState.h"
 #include "SDCLib/Data/SDC/SDCConsumerAdapter.h"
 
 #include <atomic>
@@ -55,7 +57,7 @@ namespace SDCLib
 				//TODO kick after consumer state handler refactoring
 				friend class SDCConsumerOperationInvokedHandler;
 
-				// todo remove friend classes and only use oselibconsumer adapter
+				// todo remove friend classes and only use consumer adapter
 				friend class OSELib::BICEPSServiceEventSink;
 				friend class OSELib::SetServiceEventSink;
 				friend class OSELib::DPWS::PingManager;
@@ -84,12 +86,10 @@ namespace SDCLib
 				std::mutex m_eventMutex;
 				std::map<std::string, SDCConsumerOperationInvokedHandler *> ml_eventHandlers;
 				SDCConsumerConnectionLostHandler * m_connectionLostHandler = nullptr;
-				// todo: kick
-				SDCConsumerSystemContextStateChangedHandler * m_contextStateChangedHandler = nullptr;
+
 				SDCConsumerSubscriptionLostHandler * m_subscriptionLostHandler = nullptr;
 
 				unsigned long long int m_lastKnownMDIBVersion = 0;
-				std::atomic<bool> m_connected = ATOMIC_VAR_INIT(false);
 
 				std::unique_ptr<SDCConsumerAdapter> m_adapter = nullptr;
 
@@ -101,6 +101,14 @@ namespace SDCLib
 				SDCConsumer& operator=(const SDCConsumer& p_obj) = delete;
 				SDCConsumer& operator=(SDCConsumer&& p_obj) = delete;
 				~SDCConsumer();
+
+
+				/**
+				* @brief Get the managing SDCInstance (WIP: temporary "public"!)
+				*
+				* @return shared_ptr to the SDCInstance
+				*/
+				SDCInstance_shared_ptr getSDCInstance() { return m_SDCInstance; }
 
 				/**
 				* @brief Get the complete MDIB (description and states).
@@ -116,6 +124,11 @@ namespace SDCLib
 				*/
 				MdDescription getMdDescription();
 
+				/**
+				* @brief Gets a cached version of the Medical Device Description, I.e. does not send a request to the connected provider.
+				*
+				* @return Cached or EMPTY MdDescription if not (yet) available.
+				*/
 				MdDescription getCachedMdDescription();
 
 				/**
@@ -213,9 +226,7 @@ namespace SDCLib
 				*
 				* @return True, if connected
 				*/
-				bool isConnected() const {
-					return m_connected;
-				}
+				bool isConnected() const;
 
 				/**
 				* @brief Set a handler which will be invoked if a ping fails.
@@ -223,14 +234,6 @@ namespace SDCLib
 				* @param handler The handler
 				*/
 				void setConnectionLostHandler(SDCConsumerConnectionLostHandler * p_handler);
-
-				// todo:kick?
-				/**
-				* @brief Set a handler which will be invoked if a context state change event arrives.
-				*
-				* @param handler The handler
-				*/
-				void setContextStateChangedHandler(SDCConsumerSystemContextStateChangedHandler * p_handler);
 
 				/**
 				* @brief Set a handler which will be invoked if a renewal of a subscription fails.
@@ -263,13 +266,6 @@ namespace SDCLib
 			private:
 
 				SDCConsumer(SDCLib::SDCInstance_shared_ptr p_SDCInstance, OSELib::DPWS::DeviceDescription_shared_ptr p_deviceDescription);
-
-				/**
-				* @brief Get the managing SDCInstance
-				*
-				* @return shared_ptr to the SDCInstance
-				*/
-				SDCInstance_shared_ptr getSDCInstance() { return m_SDCInstance; }
 
 				/**
 				* @brief Update the local MDIB using an RPC to the provider.

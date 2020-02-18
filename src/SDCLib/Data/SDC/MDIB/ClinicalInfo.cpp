@@ -47,131 +47,128 @@ namespace SDC {
 
 ClinicalInfo::ClinicalInfo(
 ) : data(Defaults::ClinicalInfoInit(
-)) {}
+))
+{}
 
 ClinicalInfo::operator CDM::ClinicalInfo() const {
 	return *data;
 }
 
-ClinicalInfo::ClinicalInfo(const CDM::ClinicalInfo & object) : data(new CDM::ClinicalInfo(object)) {
+ClinicalInfo::ClinicalInfo(const CDM::ClinicalInfo & object)
+: data(new CDM::ClinicalInfo(object))
+{ }
 
-}
-
-ClinicalInfo::ClinicalInfo(const ClinicalInfo & object) : data(new CDM::ClinicalInfo(*object.data)) {
-
-}
-
-ClinicalInfo::~ClinicalInfo() {
-
-}
+ClinicalInfo::ClinicalInfo(const ClinicalInfo & object)
+: data(std::make_shared<CDM::ClinicalInfo>(*object.data))
+{ }
 
 void ClinicalInfo::copyFrom(const ClinicalInfo & object) {
-	data = std::shared_ptr<CDM::ClinicalInfo>( new CDM::ClinicalInfo(*object.data));
+	data = std::make_shared<CDM::ClinicalInfo>(*object.data);
 }
 
-ClinicalInfo & ClinicalInfo:: operator=(const ClinicalInfo & object) {
+ClinicalInfo & ClinicalInfo:: operator=(const ClinicalInfo& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 ClinicalInfo & ClinicalInfo::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
+	data->setType(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ClinicalInfo::getType(CodedValue & out) const {
-	if (data->Type().present()) {
-		out = ConvertFromCDM::convert(data->Type().get());
+	if (data->getType().present()) {
+		out = ConvertFromCDM::convert(data->getType().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue ClinicalInfo::getType() const {
-	return ConvertFromCDM::convert(data->Type().get());
+	return ConvertFromCDM::convert(data->getType().get());
 }
 
 bool ClinicalInfo::hasType() const {
-	return data->Type().present();
+	return data->getType().present();
 }
 
 ClinicalInfo & ClinicalInfo::setCode(const CodedValue & value) {
-	data->Code(ConvertToCDM::convert(value));
+	data->setCode(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ClinicalInfo::getCode(CodedValue & out) const {
-	if (data->Code().present()) {
-		out = ConvertFromCDM::convert(data->Code().get());
+	if (data->getCode().present()) {
+		out = ConvertFromCDM::convert(data->getCode().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue ClinicalInfo::getCode() const {
-	return ConvertFromCDM::convert(data->Code().get());
+	return ConvertFromCDM::convert(data->getCode().get());
 }
 
 bool ClinicalInfo::hasCode() const {
-	return data->Code().present();
+	return data->getCode().present();
 }
 
 ClinicalInfo & ClinicalInfo::setCriticality(const Criticality & value) {
-	data->Criticality(ConvertToCDM::convert(value));
+	data->setCriticality(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ClinicalInfo::getCriticality(Criticality & out) const {
-	if (data->Criticality().present()) {
-		out = ConvertFromCDM::convert(data->Criticality().get());
+	if (data->getCriticality().present()) {
+		out = ConvertFromCDM::convert(data->getCriticality().get());
 		return true;
 	}
 	return false;
 }
 
 Criticality ClinicalInfo::getCriticality() const {
-	return ConvertFromCDM::convert(data->Criticality().get());
+	return ConvertFromCDM::convert(data->getCriticality().get());
 }
 
 bool ClinicalInfo::hasCriticality() const {
-	return data->Criticality().present();
+	return data->getCriticality().present();
 }
 
 ClinicalInfo & ClinicalInfo::addDescription(const LocalizedText & value) {
-	data->Description().push_back(ConvertToCDM::convert(value));
+	data->getDescription().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<LocalizedText> ClinicalInfo::getDescriptionList() const {
 	std::vector<LocalizedText> result;
-	result.reserve(data->Description().size());
-	for (const auto & value: data->Description()) {
+	result.reserve(data->getDescription().size());
+	for (const auto & value: data->getDescription()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void ClinicalInfo::clearDescriptionList() {
-	data->Description().clear();
+	data->getDescription().clear();
 }
 
 ClinicalInfo & ClinicalInfo::addRelatedMeasurement(const RelatedMeasurement & value) {
-	data->RelatedMeasurement().push_back(ConvertToCDM::convert(value));
+	data->getRelatedMeasurement().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<RelatedMeasurement> ClinicalInfo::getRelatedMeasurementList() const {
 	std::vector<RelatedMeasurement> result;
-	result.reserve(data->RelatedMeasurement().size());
-	for (const auto & value: data->RelatedMeasurement()) {
+	result.reserve(data->getRelatedMeasurement().size());
+	for (const auto & value: data->getRelatedMeasurement()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void ClinicalInfo::clearRelatedMeasurementList() {
-	data->RelatedMeasurement().clear();
+	data->getRelatedMeasurement().clear();
 }
 
 

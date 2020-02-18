@@ -31,6 +31,11 @@
 // in the accompanying FLOSSE file.
 //
 
+/**
+ * @file
+ * @brief Generated from wsdd-dpws-1.1-schema-os.xsd.
+ */
+
 #ifndef WSDD_DPWS_1_1_SCHEMA_OS_HXX
 #define WSDD_DPWS_1_1_SCHEMA_OS_HXX
 
@@ -67,153 +72,527 @@
 
 namespace WS
 {
+  /**
+   * @brief C++ namespace for the %http://docs.oasis-open.org/ws-dd/ns/dpws/2009/01
+   * schema namespace.
+   */
   namespace DPWS
   {
+    /**
+     * @brief Class corresponding to the %ThisModelType schema type.
+     *
+     * @nosubgrouping
+     */
     class ThisModelType: public ::xml_schema::Type
     {
       public:
-      // Manufacturer
-      //
+      /**
+       * @name Manufacturer
+       *
+       * @brief Accessor and modifier functions for the %Manufacturer
+       * sequence element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DPWS::LocalizedStringType ManufacturerType;
+
+      /**
+       * @brief Element sequence container type.
+       */
       typedef ::xsd::cxx::tree::sequence< ManufacturerType > ManufacturerSequence;
+
+      /**
+       * @brief Element iterator type.
+       */
       typedef ManufacturerSequence::iterator ManufacturerIterator;
+
+      /**
+       * @brief Element constant iterator type.
+       */
       typedef ManufacturerSequence::const_iterator ManufacturerConstIterator;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< ManufacturerType, char > ManufacturerTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * sequence.
+       *
+       * @return A constant reference to the sequence container.
+       */
       const ManufacturerSequence&
-      Manufacturer () const;
+      getManufacturer () const;
 
+      /**
+       * @brief Return a read-write reference to the element sequence.
+       *
+       * @return A reference to the sequence container.
+       */
       ManufacturerSequence&
-      Manufacturer ();
+      getManufacturer ();
 
+      /**
+       * @brief Copy elements from a given sequence.
+       *
+       * @param s A sequence to copy elements from.
+       *
+       * For each element in @a s this function makes a copy and adds it 
+       * to the sequence. Note that this operation completely changes the 
+       * sequence and all old elements will be lost.
+       */
       void
-      Manufacturer (const ManufacturerSequence& s);
+      setManufacturer (const ManufacturerSequence& s);
 
-      // ManufacturerUrl
-      //
+      //@}
+
+      /**
+       * @name ManufacturerUrl
+       *
+       * @brief Accessor and modifier functions for the %ManufacturerUrl
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::xml_schema::Uri ManufacturerUrlType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< ManufacturerUrlType > ManufacturerUrlOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< ManufacturerUrlType, char > ManufacturerUrlTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const ManufacturerUrlOptional&
-      ManufacturerUrl () const;
+      getManufacturerUrl () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       ManufacturerUrlOptional&
-      ManufacturerUrl ();
+      getManufacturerUrl ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      ManufacturerUrl (const ManufacturerUrlType& x);
+      setManufacturerUrl (const ManufacturerUrlType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      ManufacturerUrl (const ManufacturerUrlOptional& x);
+      setManufacturerUrl (const ManufacturerUrlOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      ManufacturerUrl (::std::unique_ptr< ManufacturerUrlType > p);
+      setManufacturerUrl (::std::unique_ptr< ManufacturerUrlType > p);
 
-      // ModelName
-      //
+      //@}
+
+      /**
+       * @name ModelName
+       *
+       * @brief Accessor and modifier functions for the %ModelName
+       * sequence element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DPWS::LocalizedStringType ModelNameType;
+
+      /**
+       * @brief Element sequence container type.
+       */
       typedef ::xsd::cxx::tree::sequence< ModelNameType > ModelNameSequence;
+
+      /**
+       * @brief Element iterator type.
+       */
       typedef ModelNameSequence::iterator ModelNameIterator;
+
+      /**
+       * @brief Element constant iterator type.
+       */
       typedef ModelNameSequence::const_iterator ModelNameConstIterator;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< ModelNameType, char > ModelNameTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * sequence.
+       *
+       * @return A constant reference to the sequence container.
+       */
       const ModelNameSequence&
-      ModelName () const;
+      getModelName () const;
 
+      /**
+       * @brief Return a read-write reference to the element sequence.
+       *
+       * @return A reference to the sequence container.
+       */
       ModelNameSequence&
-      ModelName ();
+      getModelName ();
 
+      /**
+       * @brief Copy elements from a given sequence.
+       *
+       * @param s A sequence to copy elements from.
+       *
+       * For each element in @a s this function makes a copy and adds it 
+       * to the sequence. Note that this operation completely changes the 
+       * sequence and all old elements will be lost.
+       */
       void
-      ModelName (const ModelNameSequence& s);
+      setModelName (const ModelNameSequence& s);
 
-      // ModelNumber
-      //
+      //@}
+
+      /**
+       * @name ModelNumber
+       *
+       * @brief Accessor and modifier functions for the %ModelNumber
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::xml_schema::String ModelNumberType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< ModelNumberType > ModelNumberOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< ModelNumberType, char > ModelNumberTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const ModelNumberOptional&
-      ModelNumber () const;
+      getModelNumber () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       ModelNumberOptional&
-      ModelNumber ();
+      getModelNumber ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      ModelNumber (const ModelNumberType& x);
+      setModelNumber (const ModelNumberType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      ModelNumber (const ModelNumberOptional& x);
+      setModelNumber (const ModelNumberOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      ModelNumber (::std::unique_ptr< ModelNumberType > p);
+      setModelNumber (::std::unique_ptr< ModelNumberType > p);
 
-      // ModelUrl
-      //
+      //@}
+
+      /**
+       * @name ModelUrl
+       *
+       * @brief Accessor and modifier functions for the %ModelUrl
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::xml_schema::Uri ModelUrlType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< ModelUrlType > ModelUrlOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< ModelUrlType, char > ModelUrlTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const ModelUrlOptional&
-      ModelUrl () const;
+      getModelUrl () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       ModelUrlOptional&
-      ModelUrl ();
+      getModelUrl ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      ModelUrl (const ModelUrlType& x);
+      setModelUrl (const ModelUrlType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      ModelUrl (const ModelUrlOptional& x);
+      setModelUrl (const ModelUrlOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      ModelUrl (::std::unique_ptr< ModelUrlType > p);
+      setModelUrl (::std::unique_ptr< ModelUrlType > p);
 
-      // PresentationUrl
-      //
+      //@}
+
+      /**
+       * @name PresentationUrl
+       *
+       * @brief Accessor and modifier functions for the %PresentationUrl
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::xml_schema::Uri PresentationUrlType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< PresentationUrlType > PresentationUrlOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< PresentationUrlType, char > PresentationUrlTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const PresentationUrlOptional&
-      PresentationUrl () const;
+      getPresentationUrl () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       PresentationUrlOptional&
-      PresentationUrl ();
+      getPresentationUrl ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      PresentationUrl (const PresentationUrlType& x);
+      setPresentationUrl (const PresentationUrlType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      PresentationUrl (const PresentationUrlOptional& x);
+      setPresentationUrl (const PresentationUrlOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      PresentationUrl (::std::unique_ptr< PresentationUrlType > p);
+      setPresentationUrl (::std::unique_ptr< PresentationUrlType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       ThisModelType ();
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       ThisModelType (const ::xercesc::DOMElement& e,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       ThisModelType (const ThisModelType& x,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual ThisModelType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       ThisModelType&
       operator= (const ThisModelType& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~ThisModelType ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -226,94 +605,309 @@ namespace WS
       ModelNumberOptional ModelNumber_;
       ModelUrlOptional ModelUrl_;
       PresentationUrlOptional PresentationUrl_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %ThisDeviceType schema type.
+     *
+     * @nosubgrouping
+     */
     class ThisDeviceType: public ::xml_schema::Type
     {
       public:
-      // FriendlyName
-      //
+      /**
+       * @name FriendlyName
+       *
+       * @brief Accessor and modifier functions for the %FriendlyName
+       * sequence element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DPWS::LocalizedStringType FriendlyNameType;
+
+      /**
+       * @brief Element sequence container type.
+       */
       typedef ::xsd::cxx::tree::sequence< FriendlyNameType > FriendlyNameSequence;
+
+      /**
+       * @brief Element iterator type.
+       */
       typedef FriendlyNameSequence::iterator FriendlyNameIterator;
+
+      /**
+       * @brief Element constant iterator type.
+       */
       typedef FriendlyNameSequence::const_iterator FriendlyNameConstIterator;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< FriendlyNameType, char > FriendlyNameTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * sequence.
+       *
+       * @return A constant reference to the sequence container.
+       */
       const FriendlyNameSequence&
-      FriendlyName () const;
+      getFriendlyName () const;
 
+      /**
+       * @brief Return a read-write reference to the element sequence.
+       *
+       * @return A reference to the sequence container.
+       */
       FriendlyNameSequence&
-      FriendlyName ();
+      getFriendlyName ();
 
+      /**
+       * @brief Copy elements from a given sequence.
+       *
+       * @param s A sequence to copy elements from.
+       *
+       * For each element in @a s this function makes a copy and adds it 
+       * to the sequence. Note that this operation completely changes the 
+       * sequence and all old elements will be lost.
+       */
       void
-      FriendlyName (const FriendlyNameSequence& s);
+      setFriendlyName (const FriendlyNameSequence& s);
 
-      // FirmwareVersion
-      //
+      //@}
+
+      /**
+       * @name FirmwareVersion
+       *
+       * @brief Accessor and modifier functions for the %FirmwareVersion
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::xml_schema::String FirmwareVersionType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< FirmwareVersionType > FirmwareVersionOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< FirmwareVersionType, char > FirmwareVersionTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const FirmwareVersionOptional&
-      FirmwareVersion () const;
+      getFirmwareVersion () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       FirmwareVersionOptional&
-      FirmwareVersion ();
+      getFirmwareVersion ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      FirmwareVersion (const FirmwareVersionType& x);
+      setFirmwareVersion (const FirmwareVersionType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      FirmwareVersion (const FirmwareVersionOptional& x);
+      setFirmwareVersion (const FirmwareVersionOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      FirmwareVersion (::std::unique_ptr< FirmwareVersionType > p);
+      setFirmwareVersion (::std::unique_ptr< FirmwareVersionType > p);
 
-      // SerialNumber
-      //
+      //@}
+
+      /**
+       * @name SerialNumber
+       *
+       * @brief Accessor and modifier functions for the %SerialNumber
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::xml_schema::String SerialNumberType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< SerialNumberType > SerialNumberOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< SerialNumberType, char > SerialNumberTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const SerialNumberOptional&
-      SerialNumber () const;
+      getSerialNumber () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       SerialNumberOptional&
-      SerialNumber ();
+      getSerialNumber ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      SerialNumber (const SerialNumberType& x);
+      setSerialNumber (const SerialNumberType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      SerialNumber (const SerialNumberOptional& x);
+      setSerialNumber (const SerialNumberOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      SerialNumber (::std::unique_ptr< SerialNumberType > p);
+      setSerialNumber (::std::unique_ptr< SerialNumberType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       ThisDeviceType ();
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       ThisDeviceType (const ::xercesc::DOMElement& e,
                       ::xml_schema::Flags f = 0,
                       ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       ThisDeviceType (const ThisDeviceType& x,
                       ::xml_schema::Flags f = 0,
                       ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual ThisDeviceType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       ThisDeviceType&
       operator= (const ThisDeviceType& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~ThisDeviceType ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -323,329 +917,1001 @@ namespace WS
       FriendlyNameSequence FriendlyName_;
       FirmwareVersionOptional FirmwareVersion_;
       SerialNumberOptional SerialNumber_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %LocalizedStringType schema type.
+     *
+     * @nosubgrouping
+     */
     class LocalizedStringType: public ::xml_schema::String
     {
       public:
-      // Constructors.
-      //
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from initializers for required 
+       * elements and attributes.
+       */
       LocalizedStringType ();
 
+      /**
+       * @brief Create an instance from a C string and initializers
+       * for required elements and attributes.
+       */
       LocalizedStringType (const char*);
 
+      /**
+       * @brief Create an instance from a string andinitializers
+       * for required elements and attributes.
+       */
       LocalizedStringType (const ::std::string&);
 
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       LocalizedStringType (const ::xml_schema::String&);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       LocalizedStringType (const ::xercesc::DOMElement& e,
                            ::xml_schema::Flags f = 0,
                            ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       LocalizedStringType (const LocalizedStringType& x,
                            ::xml_schema::Flags f = 0,
                            ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual LocalizedStringType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~LocalizedStringType ();
     };
 
+    /**
+     * @brief Union class corresponding to the %DeviceRelationshipTypes
+     * schema type.
+     *
+     * The mapping represents unions as strings.
+     */
     class DeviceRelationshipTypes: public ::xml_schema::String
     {
       public:
 
+      /**
+       * @brief Create an instance from a C string.
+       *
+       * @param v A string value.
+       */
       DeviceRelationshipTypes (const char* v);
 
+      /**
+       * @brief Create an instance from a string.
+       *
+       * @param v A string value.
+       */
       DeviceRelationshipTypes (const ::std::string& v);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DeviceRelationshipTypes (const ::xercesc::DOMElement& e,
                                ::xml_schema::Flags f = 0,
                                ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a DOM attribute.
+       *
+       * @param a A DOM attribute to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DeviceRelationshipTypes (const ::xercesc::DOMAttr& a,
                                ::xml_schema::Flags f = 0,
                                ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a string fragment.
+       *
+       * @param s A string fragment to extract the data from.
+       * @param e A pointer to DOM element containing the string fragment.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DeviceRelationshipTypes (const ::std::string& s,
                                const ::xercesc::DOMElement* e,
                                ::xml_schema::Flags f = 0,
                                ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       DeviceRelationshipTypes (const DeviceRelationshipTypes& x,
                                ::xml_schema::Flags f = 0,
                                ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual DeviceRelationshipTypes*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
     };
 
+    /**
+     * @brief Enumeration class corresponding to the %DeviceRelationshipTypeURIs
+     * schema type.
+     */
     class DeviceRelationshipTypeURIs: public ::xml_schema::Uri
     {
       public:
+      /**
+       * @brief Create an instance from the base value.
+       *
+       * @param v A base value.
+       */
       DeviceRelationshipTypeURIs (const ::xml_schema::Uri& v);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DeviceRelationshipTypeURIs (const ::xercesc::DOMElement& e,
                                   ::xml_schema::Flags f = 0,
                                   ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a DOM attribute.
+       *
+       * @param a A DOM attribute to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DeviceRelationshipTypeURIs (const ::xercesc::DOMAttr& a,
                                   ::xml_schema::Flags f = 0,
                                   ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a string fragment.
+       *
+       * @param s A string fragment to extract the data from.
+       * @param e A pointer to DOM element containing the string fragment.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DeviceRelationshipTypeURIs (const ::std::string& s,
                                   const ::xercesc::DOMElement* e,
                                   ::xml_schema::Flags f = 0,
                                   ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       DeviceRelationshipTypeURIs (const DeviceRelationshipTypeURIs& x,
                                   ::xml_schema::Flags f = 0,
                                   ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual DeviceRelationshipTypeURIs*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
     };
 
+    /**
+     * @brief Enumeration class corresponding to the %DeviceMetadataDialectURIs
+     * schema type.
+     */
     class DeviceMetadataDialectURIs: public ::xml_schema::Uri
     {
       public:
+      /**
+       * @brief Create an instance from the base value.
+       *
+       * @param v A base value.
+       */
       DeviceMetadataDialectURIs (const ::xml_schema::Uri& v);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DeviceMetadataDialectURIs (const ::xercesc::DOMElement& e,
                                  ::xml_schema::Flags f = 0,
                                  ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a DOM attribute.
+       *
+       * @param a A DOM attribute to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DeviceMetadataDialectURIs (const ::xercesc::DOMAttr& a,
                                  ::xml_schema::Flags f = 0,
                                  ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a string fragment.
+       *
+       * @param s A string fragment to extract the data from.
+       * @param e A pointer to DOM element containing the string fragment.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DeviceMetadataDialectURIs (const ::std::string& s,
                                  const ::xercesc::DOMElement* e,
                                  ::xml_schema::Flags f = 0,
                                  ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       DeviceMetadataDialectURIs (const DeviceMetadataDialectURIs& x,
                                  ::xml_schema::Flags f = 0,
                                  ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual DeviceMetadataDialectURIs*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
     };
 
+    /**
+     * @brief Union class corresponding to the %DeviceEventingFilterDialects
+     * schema type.
+     *
+     * The mapping represents unions as strings.
+     */
     class DeviceEventingFilterDialects: public ::xml_schema::String
     {
       public:
 
+      /**
+       * @brief Create an instance from a C string.
+       *
+       * @param v A string value.
+       */
       DeviceEventingFilterDialects (const char* v);
 
+      /**
+       * @brief Create an instance from a string.
+       *
+       * @param v A string value.
+       */
       DeviceEventingFilterDialects (const ::std::string& v);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DeviceEventingFilterDialects (const ::xercesc::DOMElement& e,
                                     ::xml_schema::Flags f = 0,
                                     ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a DOM attribute.
+       *
+       * @param a A DOM attribute to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DeviceEventingFilterDialects (const ::xercesc::DOMAttr& a,
                                     ::xml_schema::Flags f = 0,
                                     ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a string fragment.
+       *
+       * @param s A string fragment to extract the data from.
+       * @param e A pointer to DOM element containing the string fragment.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DeviceEventingFilterDialects (const ::std::string& s,
                                     const ::xercesc::DOMElement* e,
                                     ::xml_schema::Flags f = 0,
                                     ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       DeviceEventingFilterDialects (const DeviceEventingFilterDialects& x,
                                     ::xml_schema::Flags f = 0,
                                     ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual DeviceEventingFilterDialects*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
     };
 
+    /**
+     * @brief Enumeration class corresponding to the %DeviceEventingFilterDialectURIs
+     * schema type.
+     */
     class DeviceEventingFilterDialectURIs: public ::xml_schema::Uri
     {
       public:
+      /**
+       * @brief Create an instance from the base value.
+       *
+       * @param v A base value.
+       */
       DeviceEventingFilterDialectURIs (const ::xml_schema::Uri& v);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DeviceEventingFilterDialectURIs (const ::xercesc::DOMElement& e,
                                        ::xml_schema::Flags f = 0,
                                        ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a DOM attribute.
+       *
+       * @param a A DOM attribute to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DeviceEventingFilterDialectURIs (const ::xercesc::DOMAttr& a,
                                        ::xml_schema::Flags f = 0,
                                        ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a string fragment.
+       *
+       * @param s A string fragment to extract the data from.
+       * @param e A pointer to DOM element containing the string fragment.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DeviceEventingFilterDialectURIs (const ::std::string& s,
                                        const ::xercesc::DOMElement* e,
                                        ::xml_schema::Flags f = 0,
                                        ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       DeviceEventingFilterDialectURIs (const DeviceEventingFilterDialectURIs& x,
                                        ::xml_schema::Flags f = 0,
                                        ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual DeviceEventingFilterDialectURIs*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
     };
 
+    /**
+     * @brief Enumeration class corresponding to the %DeviceActionURIs
+     * schema type.
+     */
     class DeviceActionURIs: public ::xml_schema::Uri
     {
       public:
+      /**
+       * @brief Create an instance from the base value.
+       *
+       * @param v A base value.
+       */
       DeviceActionURIs (const ::xml_schema::Uri& v);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DeviceActionURIs (const ::xercesc::DOMElement& e,
                         ::xml_schema::Flags f = 0,
                         ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a DOM attribute.
+       *
+       * @param a A DOM attribute to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DeviceActionURIs (const ::xercesc::DOMAttr& a,
                         ::xml_schema::Flags f = 0,
                         ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a string fragment.
+       *
+       * @param s A string fragment to extract the data from.
+       * @param e A pointer to DOM element containing the string fragment.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DeviceActionURIs (const ::std::string& s,
                         const ::xercesc::DOMElement* e,
                         ::xml_schema::Flags f = 0,
                         ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       DeviceActionURIs (const DeviceActionURIs& x,
                         ::xml_schema::Flags f = 0,
                         ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual DeviceActionURIs*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
     };
 
+    /**
+     * @brief Union class corresponding to the %DeviceSoapFaultSubcodes
+     * schema type.
+     *
+     * The mapping represents unions as strings.
+     */
     class DeviceSoapFaultSubcodes: public ::xml_schema::String
     {
       public:
 
+      /**
+       * @brief Create an instance from a C string.
+       *
+       * @param v A string value.
+       */
       DeviceSoapFaultSubcodes (const char* v);
 
+      /**
+       * @brief Create an instance from a string.
+       *
+       * @param v A string value.
+       */
       DeviceSoapFaultSubcodes (const ::std::string& v);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DeviceSoapFaultSubcodes (const ::xercesc::DOMElement& e,
                                ::xml_schema::Flags f = 0,
                                ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a DOM attribute.
+       *
+       * @param a A DOM attribute to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DeviceSoapFaultSubcodes (const ::xercesc::DOMAttr& a,
                                ::xml_schema::Flags f = 0,
                                ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a string fragment.
+       *
+       * @param s A string fragment to extract the data from.
+       * @param e A pointer to DOM element containing the string fragment.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DeviceSoapFaultSubcodes (const ::std::string& s,
                                const ::xercesc::DOMElement* e,
                                ::xml_schema::Flags f = 0,
                                ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       DeviceSoapFaultSubcodes (const DeviceSoapFaultSubcodes& x,
                                ::xml_schema::Flags f = 0,
                                ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual DeviceSoapFaultSubcodes*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
     };
 
+    /**
+     * @brief Enumeration class corresponding to the %DeviceSoapFaultSubcodeQNames
+     * schema type.
+     */
     class DeviceSoapFaultSubcodeQNames: public ::xml_schema::Qname
     {
       public:
+      /**
+       * @brief Create an instance from the base value.
+       *
+       * @param v A base value.
+       */
       DeviceSoapFaultSubcodeQNames (const ::xml_schema::Qname& v);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DeviceSoapFaultSubcodeQNames (const ::xercesc::DOMElement& e,
                                     ::xml_schema::Flags f = 0,
                                     ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a DOM attribute.
+       *
+       * @param a A DOM attribute to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DeviceSoapFaultSubcodeQNames (const ::xercesc::DOMAttr& a,
                                     ::xml_schema::Flags f = 0,
                                     ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a string fragment.
+       *
+       * @param s A string fragment to extract the data from.
+       * @param e A pointer to DOM element containing the string fragment.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DeviceSoapFaultSubcodeQNames (const ::std::string& s,
                                     const ::xercesc::DOMElement* e,
                                     ::xml_schema::Flags f = 0,
                                     ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       DeviceSoapFaultSubcodeQNames (const DeviceSoapFaultSubcodeQNames& x,
                                     ::xml_schema::Flags f = 0,
                                     ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual DeviceSoapFaultSubcodeQNames*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
     };
 
+    /**
+     * @brief Class corresponding to the %HostServiceType schema type.
+     *
+     * @nosubgrouping
+     */
     class HostServiceType: public ::xml_schema::Type
     {
       public:
-      // EndpointReference
-      //
+      /**
+       * @name EndpointReference
+       *
+       * @brief Accessor and modifier functions for the %EndpointReference
+       * required element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::ADDRESSING::EndpointReferenceType EndpointReferenceType;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< EndpointReferenceType, char > EndpointReferenceTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element.
+       *
+       * @return A constant reference to the element.
+       */
       const EndpointReferenceType&
-      EndpointReference () const;
+      getEndpointReference () const;
 
+      /**
+       * @brief Return a read-write reference to the element.
+       *
+       * @return A reference to the element.
+       */
       EndpointReferenceType&
-      EndpointReference ();
+      getEndpointReference ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      EndpointReference (const EndpointReferenceType& x);
+      setEndpointReference (const EndpointReferenceType& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      EndpointReference (::std::unique_ptr< EndpointReferenceType > p);
+      setEndpointReference (::std::unique_ptr< EndpointReferenceType > p);
 
-      // Types
-      //
+      //@}
+
+      /**
+       * @name Types
+       *
+       * @brief Accessor and modifier functions for the %Types
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DPWS::QNameListType TypesType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< TypesType > TypesOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< TypesType, char > TypesTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const TypesOptional&
-      Types () const;
+      getTypes () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       TypesOptional&
-      Types ();
+      getTypes ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      Types (const TypesType& x);
+      setTypes (const TypesType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      Types (const TypesOptional& x);
+      setTypes (const TypesOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      Types (::std::unique_ptr< TypesType > p);
+      setTypes (::std::unique_ptr< TypesType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       HostServiceType (const EndpointReferenceType&);
 
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes
+       * (::std::unique_ptr version).
+       *
+       * This constructor will try to use the passed values directly
+       * instead of making copies.
+       */
       HostServiceType (::std::unique_ptr< EndpointReferenceType >);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       HostServiceType (const ::xercesc::DOMElement& e,
                        ::xml_schema::Flags f = 0,
                        ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       HostServiceType (const HostServiceType& x,
                        ::xml_schema::Flags f = 0,
                        ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual HostServiceType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       HostServiceType&
       operator= (const HostServiceType& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~HostServiceType ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -654,90 +1920,285 @@ namespace WS
       protected:
       ::xsd::cxx::tree::one< EndpointReferenceType > EndpointReference_;
       TypesOptional Types_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %HostedServiceType schema type.
+     *
+     * @nosubgrouping
+     */
     class HostedServiceType: public ::xml_schema::Type
     {
       public:
-      // EndpointReference
-      //
+      /**
+       * @name EndpointReference
+       *
+       * @brief Accessor and modifier functions for the %EndpointReference
+       * sequence element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::ADDRESSING::EndpointReferenceType EndpointReferenceType;
+
+      /**
+       * @brief Element sequence container type.
+       */
       typedef ::xsd::cxx::tree::sequence< EndpointReferenceType > EndpointReferenceSequence;
+
+      /**
+       * @brief Element iterator type.
+       */
       typedef EndpointReferenceSequence::iterator EndpointReferenceIterator;
+
+      /**
+       * @brief Element constant iterator type.
+       */
       typedef EndpointReferenceSequence::const_iterator EndpointReferenceConstIterator;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< EndpointReferenceType, char > EndpointReferenceTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * sequence.
+       *
+       * @return A constant reference to the sequence container.
+       */
       const EndpointReferenceSequence&
-      EndpointReference () const;
+      getEndpointReference () const;
 
+      /**
+       * @brief Return a read-write reference to the element sequence.
+       *
+       * @return A reference to the sequence container.
+       */
       EndpointReferenceSequence&
-      EndpointReference ();
+      getEndpointReference ();
 
+      /**
+       * @brief Copy elements from a given sequence.
+       *
+       * @param s A sequence to copy elements from.
+       *
+       * For each element in @a s this function makes a copy and adds it 
+       * to the sequence. Note that this operation completely changes the 
+       * sequence and all old elements will be lost.
+       */
       void
-      EndpointReference (const EndpointReferenceSequence& s);
+      setEndpointReference (const EndpointReferenceSequence& s);
 
-      // Types
-      //
+      //@}
+
+      /**
+       * @name Types
+       *
+       * @brief Accessor and modifier functions for the %Types
+       * required element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DPWS::QNameListType TypesType;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< TypesType, char > TypesTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element.
+       *
+       * @return A constant reference to the element.
+       */
       const TypesType&
-      Types () const;
+      getTypes () const;
 
+      /**
+       * @brief Return a read-write reference to the element.
+       *
+       * @return A reference to the element.
+       */
       TypesType&
-      Types ();
+      getTypes ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      Types (const TypesType& x);
+      setTypes (const TypesType& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      Types (::std::unique_ptr< TypesType > p);
+      setTypes (::std::unique_ptr< TypesType > p);
 
-      // ServiceId
-      //
+      //@}
+
+      /**
+       * @name ServiceId
+       *
+       * @brief Accessor and modifier functions for the %ServiceId
+       * required element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::xml_schema::Uri ServiceIdType;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< ServiceIdType, char > ServiceIdTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element.
+       *
+       * @return A constant reference to the element.
+       */
       const ServiceIdType&
-      ServiceId () const;
+      getServiceId () const;
 
+      /**
+       * @brief Return a read-write reference to the element.
+       *
+       * @return A reference to the element.
+       */
       ServiceIdType&
-      ServiceId ();
+      getServiceId ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      ServiceId (const ServiceIdType& x);
+      setServiceId (const ServiceIdType& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      ServiceId (::std::unique_ptr< ServiceIdType > p);
+      setServiceId (::std::unique_ptr< ServiceIdType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       HostedServiceType (const TypesType&,
                          const ServiceIdType&);
 
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes
+       * (::std::unique_ptr version).
+       *
+       * This constructor will try to use the passed values directly
+       * instead of making copies.
+       */
       HostedServiceType (::std::unique_ptr< TypesType >,
                          ::std::unique_ptr< ServiceIdType >);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       HostedServiceType (const ::xercesc::DOMElement& e,
                          ::xml_schema::Flags f = 0,
                          ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       HostedServiceType (const HostedServiceType& x,
                          ::xml_schema::Flags f = 0,
                          ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual HostedServiceType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       HostedServiceType&
       operator= (const HostedServiceType& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~HostedServiceType ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -747,181 +2208,556 @@ namespace WS
       EndpointReferenceSequence EndpointReference_;
       ::xsd::cxx::tree::one< TypesType > Types_;
       ::xsd::cxx::tree::one< ServiceIdType > ServiceId_;
+
+      //@endcond
     };
 
+    /**
+     * @brief List class corresponding to the %QNameListType
+     * schema type.
+     *
+     * This class has an interface of a standard C++ sequence (e.g.,
+     * std::vector).
+     */
     class QNameListType: public ::xml_schema::SimpleType,
       public ::xsd::cxx::tree::list< ::xml_schema::Qname, char >
     {
       public:
+      /**
+       * @brief Default constructor.
+       *
+       * Creates an empty list.
+       */
       QNameListType ();
 
+      /**
+       * @brief Create a list with copies of the specified element.
+       *
+       * @param n A number of elements to copy.
+       * @param x An element to copy.
+       *
+       * This constructor creates a list with @a n copies of @a x.
+       */
       QNameListType (size_type n, const ::xml_schema::Qname& x);
 
+      /**
+       * @brief Create a list from an iterator range.
+       *
+       * @param begin An iterator pointing to the first element.
+       * @param end An iterator pointing to the one past the last element.
+       *
+       * This constructor creates a list consisting of copies of the
+       * elements in the range [begin,end).
+       */
       template < typename I >
       QNameListType (const I& begin, const I& end)
       : ::xsd::cxx::tree::list< ::xml_schema::Qname, char > (begin, end, this)
       {
       }
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       QNameListType (const ::xercesc::DOMElement& e,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a DOM attribute.
+       *
+       * @param a A DOM attribute to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       QNameListType (const ::xercesc::DOMAttr& a,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a string fragment.
+       *
+       * @param s A string fragment to extract the data from.
+       * @param e A pointer to DOM element containing the string fragment.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       QNameListType (const ::std::string& s,
                      const ::xercesc::DOMElement* e,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       QNameListType (const QNameListType& x,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual QNameListType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~QNameListType ();
     };
 
+    /**
+     * @brief Enumeration class corresponding to the %DiscoveryTypeValues
+     * schema type.
+     */
     class DiscoveryTypeValues: public ::xml_schema::Qname
     {
       public:
+      /**
+       * @brief Create an instance from the base value.
+       *
+       * @param v A base value.
+       */
       DiscoveryTypeValues (const ::xml_schema::Qname& v);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DiscoveryTypeValues (const ::xercesc::DOMElement& e,
                            ::xml_schema::Flags f = 0,
                            ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a DOM attribute.
+       *
+       * @param a A DOM attribute to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DiscoveryTypeValues (const ::xercesc::DOMAttr& a,
                            ::xml_schema::Flags f = 0,
                            ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Create an instance from a string fragment.
+       *
+       * @param s A string fragment to extract the data from.
+       * @param e A pointer to DOM element containing the string fragment.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       DiscoveryTypeValues (const ::std::string& s,
                            const ::xercesc::DOMElement* e,
                            ::xml_schema::Flags f = 0,
                            ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       DiscoveryTypeValues (const DiscoveryTypeValues& x,
                            ::xml_schema::Flags f = 0,
                            ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual DiscoveryTypeValues*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
     };
 
+    /**
+     * @brief Class corresponding to the %AssertionType schema type.
+     *
+     * @nosubgrouping
+     */
     class AssertionType: public ::xml_schema::Type
     {
       public:
-      // Constructors.
-      //
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from initializers for required 
+       * elements and attributes.
+       */
       AssertionType ();
 
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       AssertionType (const ::xml_schema::Type&);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       AssertionType (const ::xercesc::DOMElement& e,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       AssertionType (const AssertionType& x,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual AssertionType*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~AssertionType ();
     };
 
+    /**
+     * @brief Class corresponding to the %Relationship schema type.
+     *
+     * @nosubgrouping
+     */
     class Relationship: public ::xml_schema::Type
     {
       public:
-      // Host
-      //
+      /**
+       * @name Host
+       *
+       * @brief Accessor and modifier functions for the %Host
+       * required element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DPWS::HostServiceType HostType;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< HostType, char > HostTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element.
+       *
+       * @return A constant reference to the element.
+       */
       const HostType&
-      Host () const;
+      getHost () const;
 
+      /**
+       * @brief Return a read-write reference to the element.
+       *
+       * @return A reference to the element.
+       */
       HostType&
-      Host ();
+      getHost ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      Host (const HostType& x);
+      setHost (const HostType& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      Host (::std::unique_ptr< HostType > p);
+      setHost (::std::unique_ptr< HostType > p);
 
-      // Hosted
-      //
+      //@}
+
+      /**
+       * @name Hosted
+       *
+       * @brief Accessor and modifier functions for the %Hosted
+       * sequence element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DPWS::HostedServiceType HostedType;
+
+      /**
+       * @brief Element sequence container type.
+       */
       typedef ::xsd::cxx::tree::sequence< HostedType > HostedSequence;
+
+      /**
+       * @brief Element iterator type.
+       */
       typedef HostedSequence::iterator HostedIterator;
+
+      /**
+       * @brief Element constant iterator type.
+       */
       typedef HostedSequence::const_iterator HostedConstIterator;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< HostedType, char > HostedTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * sequence.
+       *
+       * @return A constant reference to the sequence container.
+       */
       const HostedSequence&
-      Hosted () const;
+      getHosted () const;
 
+      /**
+       * @brief Return a read-write reference to the element sequence.
+       *
+       * @return A reference to the sequence container.
+       */
       HostedSequence&
-      Hosted ();
+      getHosted ();
 
+      /**
+       * @brief Copy elements from a given sequence.
+       *
+       * @param s A sequence to copy elements from.
+       *
+       * For each element in @a s this function makes a copy and adds it 
+       * to the sequence. Note that this operation completely changes the 
+       * sequence and all old elements will be lost.
+       */
       void
-      Hosted (const HostedSequence& s);
+      setHosted (const HostedSequence& s);
 
-      // Type
-      //
+      //@}
+
+      /**
+       * @name Type
+       *
+       * @brief Accessor and modifier functions for the %Type
+       * required attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::WS::DPWS::DeviceRelationshipTypes TypeType;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< TypeType, char > TypeTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute.
+       *
+       * @return A constant reference to the attribute.
+       */
       const TypeType&
-      Type () const;
+      getType () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute.
+       *
+       * @return A reference to the attribute.
+       */
       TypeType&
-      Type ();
+      getType ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      Type (const TypeType& x);
+      setType (const TypeType& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      Type (::std::unique_ptr< TypeType > p);
+      setType (::std::unique_ptr< TypeType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       Relationship (const HostType&,
                     const TypeType&);
 
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes
+       * (::std::unique_ptr version).
+       *
+       * This constructor will try to use the passed values directly
+       * instead of making copies.
+       */
       Relationship (::std::unique_ptr< HostType >,
                     const TypeType&);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       Relationship (const ::xercesc::DOMElement& e,
                     ::xml_schema::Flags f = 0,
                     ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       Relationship (const Relationship& x,
                     ::xml_schema::Flags f = 0,
                     ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual Relationship*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       Relationship&
       operator= (const Relationship& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~Relationship ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -931,6 +2767,8 @@ namespace WS
       ::xsd::cxx::tree::one< HostType > Host_;
       HostedSequence Hosted_;
       ::xsd::cxx::tree::one< TypeType > Type_;
+
+      //@endcond
     };
   }
 }
@@ -945,749 +2783,6 @@ namespace WS
 {
   namespace DPWS
   {
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::ThisModelType >
-    ThisModel (const ::std::string& uri,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::ThisModelType >
-    ThisModel (const ::std::string& uri,
-               ::xml_schema::ErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::ThisModelType >
-    ThisModel (const ::std::string& uri,
-               ::xercesc::DOMErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::ThisModelType >
-    ThisModel (::std::istream& is,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::ThisModelType >
-    ThisModel (::std::istream& is,
-               ::xml_schema::ErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::ThisModelType >
-    ThisModel (::std::istream& is,
-               ::xercesc::DOMErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::ThisModelType >
-    ThisModel (::std::istream& is,
-               const ::std::string& id,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::ThisModelType >
-    ThisModel (::std::istream& is,
-               const ::std::string& id,
-               ::xml_schema::ErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::ThisModelType >
-    ThisModel (::std::istream& is,
-               const ::std::string& id,
-               ::xercesc::DOMErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::ThisModelType >
-    ThisModel (::xercesc::InputSource& is,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::ThisModelType >
-    ThisModel (::xercesc::InputSource& is,
-               ::xml_schema::ErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::ThisModelType >
-    ThisModel (::xercesc::InputSource& is,
-               ::xercesc::DOMErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::ThisModelType >
-    ThisModel (const ::xercesc::DOMDocument& d,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::ThisModelType >
-    ThisModel (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::ThisDeviceType >
-    ThisDevice (const ::std::string& uri,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::ThisDeviceType >
-    ThisDevice (const ::std::string& uri,
-                ::xml_schema::ErrorHandler& eh,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::ThisDeviceType >
-    ThisDevice (const ::std::string& uri,
-                ::xercesc::DOMErrorHandler& eh,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::ThisDeviceType >
-    ThisDevice (::std::istream& is,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::ThisDeviceType >
-    ThisDevice (::std::istream& is,
-                ::xml_schema::ErrorHandler& eh,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::ThisDeviceType >
-    ThisDevice (::std::istream& is,
-                ::xercesc::DOMErrorHandler& eh,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::ThisDeviceType >
-    ThisDevice (::std::istream& is,
-                const ::std::string& id,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::ThisDeviceType >
-    ThisDevice (::std::istream& is,
-                const ::std::string& id,
-                ::xml_schema::ErrorHandler& eh,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::ThisDeviceType >
-    ThisDevice (::std::istream& is,
-                const ::std::string& id,
-                ::xercesc::DOMErrorHandler& eh,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::ThisDeviceType >
-    ThisDevice (::xercesc::InputSource& is,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::ThisDeviceType >
-    ThisDevice (::xercesc::InputSource& is,
-                ::xml_schema::ErrorHandler& eh,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::ThisDeviceType >
-    ThisDevice (::xercesc::InputSource& is,
-                ::xercesc::DOMErrorHandler& eh,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::ThisDeviceType >
-    ThisDevice (const ::xercesc::DOMDocument& d,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::ThisDeviceType >
-    ThisDevice (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::Relationship >
-    Relationship_ (const ::std::string& uri,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::Relationship >
-    Relationship_ (const ::std::string& uri,
-                   ::xml_schema::ErrorHandler& eh,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::Relationship >
-    Relationship_ (const ::std::string& uri,
-                   ::xercesc::DOMErrorHandler& eh,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::Relationship >
-    Relationship_ (::std::istream& is,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::Relationship >
-    Relationship_ (::std::istream& is,
-                   ::xml_schema::ErrorHandler& eh,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::Relationship >
-    Relationship_ (::std::istream& is,
-                   ::xercesc::DOMErrorHandler& eh,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::Relationship >
-    Relationship_ (::std::istream& is,
-                   const ::std::string& id,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::Relationship >
-    Relationship_ (::std::istream& is,
-                   const ::std::string& id,
-                   ::xml_schema::ErrorHandler& eh,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::Relationship >
-    Relationship_ (::std::istream& is,
-                   const ::std::string& id,
-                   ::xercesc::DOMErrorHandler& eh,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::Relationship >
-    Relationship_ (::xercesc::InputSource& is,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::Relationship >
-    Relationship_ (::xercesc::InputSource& is,
-                   ::xml_schema::ErrorHandler& eh,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::Relationship >
-    Relationship_ (::xercesc::InputSource& is,
-                   ::xercesc::DOMErrorHandler& eh,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::Relationship >
-    Relationship_ (const ::xercesc::DOMDocument& d,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::Relationship >
-    Relationship_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                   ::xml_schema::Flags f = 0,
-                   const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::HostServiceType >
-    Host (const ::std::string& uri,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::HostServiceType >
-    Host (const ::std::string& uri,
-          ::xml_schema::ErrorHandler& eh,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::HostServiceType >
-    Host (const ::std::string& uri,
-          ::xercesc::DOMErrorHandler& eh,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::HostServiceType >
-    Host (::std::istream& is,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::HostServiceType >
-    Host (::std::istream& is,
-          ::xml_schema::ErrorHandler& eh,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::HostServiceType >
-    Host (::std::istream& is,
-          ::xercesc::DOMErrorHandler& eh,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::HostServiceType >
-    Host (::std::istream& is,
-          const ::std::string& id,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::HostServiceType >
-    Host (::std::istream& is,
-          const ::std::string& id,
-          ::xml_schema::ErrorHandler& eh,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::HostServiceType >
-    Host (::std::istream& is,
-          const ::std::string& id,
-          ::xercesc::DOMErrorHandler& eh,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::HostServiceType >
-    Host (::xercesc::InputSource& is,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::HostServiceType >
-    Host (::xercesc::InputSource& is,
-          ::xml_schema::ErrorHandler& eh,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::HostServiceType >
-    Host (::xercesc::InputSource& is,
-          ::xercesc::DOMErrorHandler& eh,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::HostServiceType >
-    Host (const ::xercesc::DOMDocument& d,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::HostServiceType >
-    Host (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-          ::xml_schema::Flags f = 0,
-          const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::HostedServiceType >
-    Hosted (const ::std::string& uri,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::HostedServiceType >
-    Hosted (const ::std::string& uri,
-            ::xml_schema::ErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::HostedServiceType >
-    Hosted (const ::std::string& uri,
-            ::xercesc::DOMErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::HostedServiceType >
-    Hosted (::std::istream& is,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::HostedServiceType >
-    Hosted (::std::istream& is,
-            ::xml_schema::ErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::HostedServiceType >
-    Hosted (::std::istream& is,
-            ::xercesc::DOMErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::HostedServiceType >
-    Hosted (::std::istream& is,
-            const ::std::string& id,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::HostedServiceType >
-    Hosted (::std::istream& is,
-            const ::std::string& id,
-            ::xml_schema::ErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::HostedServiceType >
-    Hosted (::std::istream& is,
-            const ::std::string& id,
-            ::xercesc::DOMErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::HostedServiceType >
-    Hosted (::xercesc::InputSource& is,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::HostedServiceType >
-    Hosted (::xercesc::InputSource& is,
-            ::xml_schema::ErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::HostedServiceType >
-    Hosted (::xercesc::InputSource& is,
-            ::xercesc::DOMErrorHandler& eh,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::HostedServiceType >
-    Hosted (const ::xercesc::DOMDocument& d,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::HostedServiceType >
-    Hosted (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-            ::xml_schema::Flags f = 0,
-            const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    ServiceId (const ::std::string& uri,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    ServiceId (const ::std::string& uri,
-               ::xml_schema::ErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    ServiceId (const ::std::string& uri,
-               ::xercesc::DOMErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    ServiceId (::std::istream& is,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    ServiceId (::std::istream& is,
-               ::xml_schema::ErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    ServiceId (::std::istream& is,
-               ::xercesc::DOMErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    ServiceId (::std::istream& is,
-               const ::std::string& id,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    ServiceId (::std::istream& is,
-               const ::std::string& id,
-               ::xml_schema::ErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    ServiceId (::std::istream& is,
-               const ::std::string& id,
-               ::xercesc::DOMErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    ServiceId (::xercesc::InputSource& is,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    ServiceId (::xercesc::InputSource& is,
-               ::xml_schema::ErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    ServiceId (::xercesc::InputSource& is,
-               ::xercesc::DOMErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    ServiceId (const ::xercesc::DOMDocument& d,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    ServiceId (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::QNameListType >
-    Types (const ::std::string& uri,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::QNameListType >
-    Types (const ::std::string& uri,
-           ::xml_schema::ErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::QNameListType >
-    Types (const ::std::string& uri,
-           ::xercesc::DOMErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::QNameListType >
-    Types (::std::istream& is,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::QNameListType >
-    Types (::std::istream& is,
-           ::xml_schema::ErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::QNameListType >
-    Types (::std::istream& is,
-           ::xercesc::DOMErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::QNameListType >
-    Types (::std::istream& is,
-           const ::std::string& id,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::QNameListType >
-    Types (::std::istream& is,
-           const ::std::string& id,
-           ::xml_schema::ErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::QNameListType >
-    Types (::std::istream& is,
-           const ::std::string& id,
-           ::xercesc::DOMErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::QNameListType >
-    Types (::xercesc::InputSource& is,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::QNameListType >
-    Types (::xercesc::InputSource& is,
-           ::xml_schema::ErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::QNameListType >
-    Types (::xercesc::InputSource& is,
-           ::xercesc::DOMErrorHandler& eh,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::QNameListType >
-    Types (const ::xercesc::DOMDocument& d,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::QNameListType >
-    Types (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-           ::xml_schema::Flags f = 0,
-           const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::AssertionType >
-    Profile (const ::std::string& uri,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::AssertionType >
-    Profile (const ::std::string& uri,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::AssertionType >
-    Profile (const ::std::string& uri,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::AssertionType >
-    Profile (::std::istream& is,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::AssertionType >
-    Profile (::std::istream& is,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::AssertionType >
-    Profile (::std::istream& is,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::AssertionType >
-    Profile (::std::istream& is,
-             const ::std::string& id,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::AssertionType >
-    Profile (::std::istream& is,
-             const ::std::string& id,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::AssertionType >
-    Profile (::std::istream& is,
-             const ::std::string& id,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::AssertionType >
-    Profile (::xercesc::InputSource& is,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::AssertionType >
-    Profile (::xercesc::InputSource& is,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::AssertionType >
-    Profile (::xercesc::InputSource& is,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::WS::DPWS::AssertionType >
-    Profile (const ::xercesc::DOMDocument& d,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::DPWS::AssertionType >
-    Profile (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
   }
 }
 
@@ -1703,218 +2798,14 @@ namespace WS
 {
   namespace DPWS
   {
-    // Serialize to std::ostream.
-    //
-
-    void
-    ThisModel (::std::ostream& os,
-               const ::WS::DPWS::ThisModelType& x, 
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-    void
-    ThisModel (::std::ostream& os,
-               const ::WS::DPWS::ThisModelType& x, 
-               ::xml_schema::ErrorHandler& eh,
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-    void
-    ThisModel (::std::ostream& os,
-               const ::WS::DPWS::ThisModelType& x, 
-               ::xercesc::DOMErrorHandler& eh,
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
-    void
-    ThisModel (::xercesc::XMLFormatTarget& ft,
-               const ::WS::DPWS::ThisModelType& x, 
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-    void
-    ThisModel (::xercesc::XMLFormatTarget& ft,
-               const ::WS::DPWS::ThisModelType& x, 
-               ::xml_schema::ErrorHandler& eh,
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-    void
-    ThisModel (::xercesc::XMLFormatTarget& ft,
-               const ::WS::DPWS::ThisModelType& x, 
-               ::xercesc::DOMErrorHandler& eh,
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
-    void
-    ThisModel (::xercesc::DOMDocument& d,
-               const ::WS::DPWS::ThisModelType& x,
-               ::xml_schema::Flags f = 0);
-
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    ThisModel (const ::WS::DPWS::ThisModelType& x, 
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               ::xml_schema::Flags f = 0);
-
     void
     operator<< (::xercesc::DOMElement&, const ThisModelType&);
-
-    // Serialize to std::ostream.
-    //
-
-    void
-    ThisDevice (::std::ostream& os,
-                const ::WS::DPWS::ThisDeviceType& x, 
-                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                const ::std::string& e = "UTF-8",
-                ::xml_schema::Flags f = 0);
-
-    void
-    ThisDevice (::std::ostream& os,
-                const ::WS::DPWS::ThisDeviceType& x, 
-                ::xml_schema::ErrorHandler& eh,
-                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                const ::std::string& e = "UTF-8",
-                ::xml_schema::Flags f = 0);
-
-    void
-    ThisDevice (::std::ostream& os,
-                const ::WS::DPWS::ThisDeviceType& x, 
-                ::xercesc::DOMErrorHandler& eh,
-                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                const ::std::string& e = "UTF-8",
-                ::xml_schema::Flags f = 0);
-
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
-    void
-    ThisDevice (::xercesc::XMLFormatTarget& ft,
-                const ::WS::DPWS::ThisDeviceType& x, 
-                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                const ::std::string& e = "UTF-8",
-                ::xml_schema::Flags f = 0);
-
-    void
-    ThisDevice (::xercesc::XMLFormatTarget& ft,
-                const ::WS::DPWS::ThisDeviceType& x, 
-                ::xml_schema::ErrorHandler& eh,
-                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                const ::std::string& e = "UTF-8",
-                ::xml_schema::Flags f = 0);
-
-    void
-    ThisDevice (::xercesc::XMLFormatTarget& ft,
-                const ::WS::DPWS::ThisDeviceType& x, 
-                ::xercesc::DOMErrorHandler& eh,
-                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                const ::std::string& e = "UTF-8",
-                ::xml_schema::Flags f = 0);
-
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
-    void
-    ThisDevice (::xercesc::DOMDocument& d,
-                const ::WS::DPWS::ThisDeviceType& x,
-                ::xml_schema::Flags f = 0);
-
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    ThisDevice (const ::WS::DPWS::ThisDeviceType& x, 
-                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                ::xml_schema::Flags f = 0);
 
     void
     operator<< (::xercesc::DOMElement&, const ThisDeviceType&);
 
     void
     operator<< (::xercesc::DOMElement&, const LocalizedStringType&);
-
-    // Serialize to std::ostream.
-    //
-
-    void
-    Relationship_ (::std::ostream& os,
-                   const ::WS::DPWS::Relationship& x, 
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
-
-    void
-    Relationship_ (::std::ostream& os,
-                   const ::WS::DPWS::Relationship& x, 
-                   ::xml_schema::ErrorHandler& eh,
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
-
-    void
-    Relationship_ (::std::ostream& os,
-                   const ::WS::DPWS::Relationship& x, 
-                   ::xercesc::DOMErrorHandler& eh,
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
-
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
-    void
-    Relationship_ (::xercesc::XMLFormatTarget& ft,
-                   const ::WS::DPWS::Relationship& x, 
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
-
-    void
-    Relationship_ (::xercesc::XMLFormatTarget& ft,
-                   const ::WS::DPWS::Relationship& x, 
-                   ::xml_schema::ErrorHandler& eh,
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
-
-    void
-    Relationship_ (::xercesc::XMLFormatTarget& ft,
-                   const ::WS::DPWS::Relationship& x, 
-                   ::xercesc::DOMErrorHandler& eh,
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   const ::std::string& e = "UTF-8",
-                   ::xml_schema::Flags f = 0);
-
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
-    void
-    Relationship_ (::xercesc::DOMDocument& d,
-                   const ::WS::DPWS::Relationship& x,
-                   ::xml_schema::Flags f = 0);
-
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Relationship_ (const ::WS::DPWS::Relationship& x, 
-                   const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                   ::xml_schema::Flags f = 0);
 
     void
     operator<< (::xercesc::DOMElement&, const DeviceRelationshipTypes&);
@@ -1996,283 +2887,11 @@ namespace WS
     operator<< (::xml_schema::ListStream&,
                 const DeviceSoapFaultSubcodeQNames&);
 
-    // Serialize to std::ostream.
-    //
-
-    void
-    Host (::std::ostream& os,
-          const ::WS::DPWS::HostServiceType& x, 
-          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-          const ::std::string& e = "UTF-8",
-          ::xml_schema::Flags f = 0);
-
-    void
-    Host (::std::ostream& os,
-          const ::WS::DPWS::HostServiceType& x, 
-          ::xml_schema::ErrorHandler& eh,
-          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-          const ::std::string& e = "UTF-8",
-          ::xml_schema::Flags f = 0);
-
-    void
-    Host (::std::ostream& os,
-          const ::WS::DPWS::HostServiceType& x, 
-          ::xercesc::DOMErrorHandler& eh,
-          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-          const ::std::string& e = "UTF-8",
-          ::xml_schema::Flags f = 0);
-
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
-    void
-    Host (::xercesc::XMLFormatTarget& ft,
-          const ::WS::DPWS::HostServiceType& x, 
-          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-          const ::std::string& e = "UTF-8",
-          ::xml_schema::Flags f = 0);
-
-    void
-    Host (::xercesc::XMLFormatTarget& ft,
-          const ::WS::DPWS::HostServiceType& x, 
-          ::xml_schema::ErrorHandler& eh,
-          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-          const ::std::string& e = "UTF-8",
-          ::xml_schema::Flags f = 0);
-
-    void
-    Host (::xercesc::XMLFormatTarget& ft,
-          const ::WS::DPWS::HostServiceType& x, 
-          ::xercesc::DOMErrorHandler& eh,
-          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-          const ::std::string& e = "UTF-8",
-          ::xml_schema::Flags f = 0);
-
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
-    void
-    Host (::xercesc::DOMDocument& d,
-          const ::WS::DPWS::HostServiceType& x,
-          ::xml_schema::Flags f = 0);
-
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Host (const ::WS::DPWS::HostServiceType& x, 
-          const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-          ::xml_schema::Flags f = 0);
-
     void
     operator<< (::xercesc::DOMElement&, const HostServiceType&);
 
-    // Serialize to std::ostream.
-    //
-
-    void
-    Hosted (::std::ostream& os,
-            const ::WS::DPWS::HostedServiceType& x, 
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
-
-    void
-    Hosted (::std::ostream& os,
-            const ::WS::DPWS::HostedServiceType& x, 
-            ::xml_schema::ErrorHandler& eh,
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
-
-    void
-    Hosted (::std::ostream& os,
-            const ::WS::DPWS::HostedServiceType& x, 
-            ::xercesc::DOMErrorHandler& eh,
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
-
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
-    void
-    Hosted (::xercesc::XMLFormatTarget& ft,
-            const ::WS::DPWS::HostedServiceType& x, 
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
-
-    void
-    Hosted (::xercesc::XMLFormatTarget& ft,
-            const ::WS::DPWS::HostedServiceType& x, 
-            ::xml_schema::ErrorHandler& eh,
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
-
-    void
-    Hosted (::xercesc::XMLFormatTarget& ft,
-            const ::WS::DPWS::HostedServiceType& x, 
-            ::xercesc::DOMErrorHandler& eh,
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            const ::std::string& e = "UTF-8",
-            ::xml_schema::Flags f = 0);
-
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
-    void
-    Hosted (::xercesc::DOMDocument& d,
-            const ::WS::DPWS::HostedServiceType& x,
-            ::xml_schema::Flags f = 0);
-
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Hosted (const ::WS::DPWS::HostedServiceType& x, 
-            const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-            ::xml_schema::Flags f = 0);
-
     void
     operator<< (::xercesc::DOMElement&, const HostedServiceType&);
-
-    // Serialize to std::ostream.
-    //
-
-    void
-    ServiceId (::std::ostream& os,
-               const ::xml_schema::Uri& x, 
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-    void
-    ServiceId (::std::ostream& os,
-               const ::xml_schema::Uri& x, 
-               ::xml_schema::ErrorHandler& eh,
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-    void
-    ServiceId (::std::ostream& os,
-               const ::xml_schema::Uri& x, 
-               ::xercesc::DOMErrorHandler& eh,
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
-    void
-    ServiceId (::xercesc::XMLFormatTarget& ft,
-               const ::xml_schema::Uri& x, 
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-    void
-    ServiceId (::xercesc::XMLFormatTarget& ft,
-               const ::xml_schema::Uri& x, 
-               ::xml_schema::ErrorHandler& eh,
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-    void
-    ServiceId (::xercesc::XMLFormatTarget& ft,
-               const ::xml_schema::Uri& x, 
-               ::xercesc::DOMErrorHandler& eh,
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
-    void
-    ServiceId (::xercesc::DOMDocument& d,
-               const ::xml_schema::Uri& x,
-               ::xml_schema::Flags f = 0);
-
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    ServiceId (const ::xml_schema::Uri& x, 
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               ::xml_schema::Flags f = 0);
-
-    // Serialize to std::ostream.
-    //
-
-    void
-    Types (::std::ostream& os,
-           const ::WS::DPWS::QNameListType& x, 
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
-
-    void
-    Types (::std::ostream& os,
-           const ::WS::DPWS::QNameListType& x, 
-           ::xml_schema::ErrorHandler& eh,
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
-
-    void
-    Types (::std::ostream& os,
-           const ::WS::DPWS::QNameListType& x, 
-           ::xercesc::DOMErrorHandler& eh,
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
-
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
-    void
-    Types (::xercesc::XMLFormatTarget& ft,
-           const ::WS::DPWS::QNameListType& x, 
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
-
-    void
-    Types (::xercesc::XMLFormatTarget& ft,
-           const ::WS::DPWS::QNameListType& x, 
-           ::xml_schema::ErrorHandler& eh,
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
-
-    void
-    Types (::xercesc::XMLFormatTarget& ft,
-           const ::WS::DPWS::QNameListType& x, 
-           ::xercesc::DOMErrorHandler& eh,
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           const ::std::string& e = "UTF-8",
-           ::xml_schema::Flags f = 0);
-
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
-    void
-    Types (::xercesc::DOMDocument& d,
-           const ::WS::DPWS::QNameListType& x,
-           ::xml_schema::Flags f = 0);
-
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Types (const ::WS::DPWS::QNameListType& x, 
-           const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-           ::xml_schema::Flags f = 0);
 
     void
     operator<< (::xercesc::DOMElement&, const QNameListType&);
@@ -2293,74 +2912,6 @@ namespace WS
     void
     operator<< (::xml_schema::ListStream&,
                 const DiscoveryTypeValues&);
-
-    // Serialize to std::ostream.
-    //
-
-    void
-    Profile (::std::ostream& os,
-             const ::WS::DPWS::AssertionType& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-    void
-    Profile (::std::ostream& os,
-             const ::WS::DPWS::AssertionType& x, 
-             ::xml_schema::ErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-    void
-    Profile (::std::ostream& os,
-             const ::WS::DPWS::AssertionType& x, 
-             ::xercesc::DOMErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
-    void
-    Profile (::xercesc::XMLFormatTarget& ft,
-             const ::WS::DPWS::AssertionType& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-    void
-    Profile (::xercesc::XMLFormatTarget& ft,
-             const ::WS::DPWS::AssertionType& x, 
-             ::xml_schema::ErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-    void
-    Profile (::xercesc::XMLFormatTarget& ft,
-             const ::WS::DPWS::AssertionType& x, 
-             ::xercesc::DOMErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
-    void
-    Profile (::xercesc::DOMDocument& d,
-             const ::WS::DPWS::AssertionType& x,
-             ::xml_schema::Flags f = 0);
-
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Profile (const ::WS::DPWS::AssertionType& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             ::xml_schema::Flags f = 0);
 
     void
     operator<< (::xercesc::DOMElement&, const AssertionType&);

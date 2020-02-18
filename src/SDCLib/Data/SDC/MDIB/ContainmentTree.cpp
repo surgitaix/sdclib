@@ -45,50 +45,47 @@ namespace SDC {
 
 ContainmentTree::ContainmentTree(
 ) : data(Defaults::ContainmentTreeInit(
-)) {}
+))
+{}
 
 ContainmentTree::operator CDM::ContainmentTree() const {
 	return *data;
 }
 
-ContainmentTree::ContainmentTree(const CDM::ContainmentTree & object) : data(new CDM::ContainmentTree(object)) {
+ContainmentTree::ContainmentTree(const CDM::ContainmentTree & object)
+: data(new CDM::ContainmentTree(object))
+{ }
 
-}
-
-ContainmentTree::ContainmentTree(const ContainmentTree & object) : data(new CDM::ContainmentTree(*object.data)) {
-
-}
-
-ContainmentTree::~ContainmentTree() {
-
-}
+ContainmentTree::ContainmentTree(const ContainmentTree & object)
+: data(std::make_shared<CDM::ContainmentTree>(*object.data))
+{ }
 
 void ContainmentTree::copyFrom(const ContainmentTree & object) {
-	data = std::shared_ptr<CDM::ContainmentTree>( new CDM::ContainmentTree(*object.data));
+	data = std::make_shared<CDM::ContainmentTree>(*object.data);
 }
 
-ContainmentTree & ContainmentTree:: operator=(const ContainmentTree & object) {
+ContainmentTree & ContainmentTree:: operator=(const ContainmentTree& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 ContainmentTree & ContainmentTree::addEntry(const ContainmentTreeEntry & value) {
-	data->Entry().push_back(ConvertToCDM::convert(value));
+	data->getEntry().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<ContainmentTreeEntry> ContainmentTree::getEntryList() const {
 	std::vector<ContainmentTreeEntry> result;
-	result.reserve(data->Entry().size());
-	for (const auto & value: data->Entry()) {
+	result.reserve(data->getEntry().size());
+	for (const auto & value: data->getEntry()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void ContainmentTree::clearEntryList() {
-	data->Entry().clear();
+	data->getEntry().clear();
 }
 
 

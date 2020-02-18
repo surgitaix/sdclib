@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class CalibrationDocumentation {
+class CalibrationDocumentation
+{
 private:
 	CalibrationDocumentation(const CDM::CalibrationDocumentation & object);
 	operator CDM::CalibrationDocumentation() const;
@@ -53,11 +54,11 @@ private:
 public:
 	CalibrationDocumentation(
 	);
-	CalibrationDocumentation(const CalibrationDocumentation & object);
-	virtual ~CalibrationDocumentation();
+	CalibrationDocumentation(const CalibrationDocumentation& object);
+	virtual ~CalibrationDocumentation() = default;
 
-    void copyFrom(const CalibrationDocumentation & object);
-    CalibrationDocumentation & operator=(const CalibrationDocumentation & object);
+    void copyFrom(const CalibrationDocumentation& object);
+    CalibrationDocumentation & operator=(const CalibrationDocumentation& object);
 
     typedef CDM::CalibrationDocumentation WrappedType;
 
@@ -70,7 +71,7 @@ public:
 	void clearCalibrationResultList();
 
 private:
-	std::shared_ptr<CDM::CalibrationDocumentation> data;
+	std::shared_ptr<CDM::CalibrationDocumentation> data = nullptr;
 };
 
 } /* namespace SDC */

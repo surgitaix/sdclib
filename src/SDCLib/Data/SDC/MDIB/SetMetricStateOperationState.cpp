@@ -50,94 +50,91 @@ SetMetricStateOperationState::SetMetricStateOperationState(
 		descriptorhandle
 		,
 		operatingmode
-)) {}
+))
+{}
 
 SetMetricStateOperationState::operator CDM::SetMetricStateOperationState() const {
 	return *data;
 }
 
-SetMetricStateOperationState::SetMetricStateOperationState(const CDM::SetMetricStateOperationState & object) : data(new CDM::SetMetricStateOperationState(object)) {
+SetMetricStateOperationState::SetMetricStateOperationState(const CDM::SetMetricStateOperationState & object)
+: data(new CDM::SetMetricStateOperationState(object))
+{ }
 
-}
-
-SetMetricStateOperationState::SetMetricStateOperationState(const SetMetricStateOperationState & object) : data(new CDM::SetMetricStateOperationState(*object.data)) {
-
-}
-
-SetMetricStateOperationState::~SetMetricStateOperationState() {
-
-}
+SetMetricStateOperationState::SetMetricStateOperationState(const SetMetricStateOperationState & object)
+: data(std::make_shared<CDM::SetMetricStateOperationState>(*object.data))
+{ }
 
 void SetMetricStateOperationState::copyFrom(const SetMetricStateOperationState & object) {
-	data = std::shared_ptr<CDM::SetMetricStateOperationState>( new CDM::SetMetricStateOperationState(*object.data));
+	data = std::make_shared<CDM::SetMetricStateOperationState>(*object.data);
 }
 
-SetMetricStateOperationState & SetMetricStateOperationState:: operator=(const SetMetricStateOperationState & object) {
+SetMetricStateOperationState & SetMetricStateOperationState:: operator=(const SetMetricStateOperationState& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 SetMetricStateOperationState & SetMetricStateOperationState::setStateVersion(const VersionCounter & value) {
-	data->StateVersion(ConvertToCDM::convert(value));
+	data->setStateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetMetricStateOperationState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
+	if (data->getStateVersion().present()) {
+		out = ConvertFromCDM::convert(data->getStateVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter SetMetricStateOperationState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+	return ConvertFromCDM::convert(data->getStateVersion().get());
 }
 
 bool SetMetricStateOperationState::hasStateVersion() const {
-	return data->StateVersion().present();
+	return data->getStateVersion().present();
 }
 
 SetMetricStateOperationState & SetMetricStateOperationState::setDescriptorHandle(const HandleRef & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
+	data->setDescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 HandleRef SetMetricStateOperationState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
+	return ConvertFromCDM::convert(data->getDescriptorHandle());
 }
 
 SetMetricStateOperationState & SetMetricStateOperationState::setDescriptorVersion(const ReferencedVersion & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetMetricStateOperationState::getDescriptorVersion(ReferencedVersion & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 ReferencedVersion SetMetricStateOperationState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool SetMetricStateOperationState::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 SetMetricStateOperationState & SetMetricStateOperationState::setOperatingMode(const OperatingMode & value) {
-	data->OperatingMode(ConvertToCDM::convert(value));
+	data->setOperatingMode(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 OperatingMode SetMetricStateOperationState::getOperatingMode() const {
-	return ConvertFromCDM::convert(data->OperatingMode());
+	return ConvertFromCDM::convert(data->getOperatingMode());
 }
 
 

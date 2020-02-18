@@ -47,105 +47,102 @@ WorkflowContextDescriptor::WorkflowContextDescriptor(
 		Handle handle
 ) : data(Defaults::WorkflowContextDescriptorInit(
 		handle
-)) {}
+))
+{}
 
 WorkflowContextDescriptor::operator CDM::WorkflowContextDescriptor() const {
 	return *data;
 }
 
-WorkflowContextDescriptor::WorkflowContextDescriptor(const CDM::WorkflowContextDescriptor & object) : data(new CDM::WorkflowContextDescriptor(object)) {
+WorkflowContextDescriptor::WorkflowContextDescriptor(const CDM::WorkflowContextDescriptor & object)
+: data(new CDM::WorkflowContextDescriptor(object))
+{ }
 
-}
-
-WorkflowContextDescriptor::WorkflowContextDescriptor(const WorkflowContextDescriptor & object) : data(new CDM::WorkflowContextDescriptor(*object.data)) {
-
-}
-
-WorkflowContextDescriptor::~WorkflowContextDescriptor() {
-
-}
+WorkflowContextDescriptor::WorkflowContextDescriptor(const WorkflowContextDescriptor & object)
+: data(std::make_shared<CDM::WorkflowContextDescriptor>(*object.data))
+{ }
 
 void WorkflowContextDescriptor::copyFrom(const WorkflowContextDescriptor & object) {
-	data = std::shared_ptr<CDM::WorkflowContextDescriptor>( new CDM::WorkflowContextDescriptor(*object.data));
+	data = std::make_shared<CDM::WorkflowContextDescriptor>(*object.data);
 }
 
-WorkflowContextDescriptor & WorkflowContextDescriptor:: operator=(const WorkflowContextDescriptor & object) {
+WorkflowContextDescriptor & WorkflowContextDescriptor:: operator=(const WorkflowContextDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 WorkflowContextDescriptor & WorkflowContextDescriptor::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
+	data->setType(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool WorkflowContextDescriptor::getType(CodedValue & out) const {
-	if (data->Type().present()) {
-		out = ConvertFromCDM::convert(data->Type().get());
+	if (data->getType().present()) {
+		out = ConvertFromCDM::convert(data->getType().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue WorkflowContextDescriptor::getType() const {
-	return ConvertFromCDM::convert(data->Type().get());
+	return ConvertFromCDM::convert(data->getType().get());
 }
 
 bool WorkflowContextDescriptor::hasType() const {
-	return data->Type().present();
+	return data->getType().present();
 }
 
 WorkflowContextDescriptor & WorkflowContextDescriptor::setHandle(const Handle & value) {
-	data->Handle(ConvertToCDM::convert(value));
+	data->setHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 Handle WorkflowContextDescriptor::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle());
+	return ConvertFromCDM::convert(data->getHandle());
 }
 
 WorkflowContextDescriptor & WorkflowContextDescriptor::setDescriptorVersion(const VersionCounter & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool WorkflowContextDescriptor::getDescriptorVersion(VersionCounter & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter WorkflowContextDescriptor::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool WorkflowContextDescriptor::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 WorkflowContextDescriptor & WorkflowContextDescriptor::setSafetyClassification(const SafetyClassification & value) {
-	data->SafetyClassification(ConvertToCDM::convert(value));
+	data->setSafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool WorkflowContextDescriptor::getSafetyClassification(SafetyClassification & out) const {
-	if (data->SafetyClassification().present()) {
-		out = ConvertFromCDM::convert(data->SafetyClassification().get());
+	if (data->getSafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->getSafetyClassification().get());
 		return true;
 	}
 	return false;
 }
 
 SafetyClassification WorkflowContextDescriptor::getSafetyClassification() const {
-	return ConvertFromCDM::convert(data->SafetyClassification().get());
+	return ConvertFromCDM::convert(data->getSafetyClassification().get());
 }
 
 bool WorkflowContextDescriptor::hasSafetyClassification() const {
-	return data->SafetyClassification().present();
+	return data->getSafetyClassification().present();
 }
 
 

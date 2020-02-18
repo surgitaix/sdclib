@@ -31,6 +31,11 @@
 // in the accompanying FLOSSE file.
 //
 
+/**
+ * @file
+ * @brief Generated from MDPWS.xsd.
+ */
+
 #ifndef MDPWS_HXX
 #define MDPWS_HXX
 
@@ -63,130 +68,422 @@
 
 #include <xsd/cxx/xml/dom/parsing-header.hxx>
 
+/**
+ * @brief C++ namespace for the %http://standards.ieee.org/downloads/11073/11073-20702-2016
+ * schema namespace.
+ */
 namespace MDPWS
 {
+  /**
+   * @brief Class corresponding to the %StreamSourceType schema type.
+   *
+   * Defines a policy assertion to announce a stream source. The policy
+   * assertion has [Endpoint Policy Subject]. When present in a policy
+   * alternative, it indicates that the subject is a stream source
+  provider. *
+   * @nosubgrouping
+   */
   class StreamSourceType: public ::xml_schema::Type
   {
     public:
-    // Constructors.
-    //
+    /**
+     * @name Constructors
+     */
+    //@{
+
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes.
+     */
     StreamSourceType ();
 
+    /**
+     * @brief Create an instance from a DOM element.
+     *
+     * @param e A DOM element to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     StreamSourceType (const ::xercesc::DOMElement& e,
                       ::xml_schema::Flags f = 0,
                       ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy constructor.
+     *
+     * @param x An instance to make a copy of.
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     StreamSourceType (const StreamSourceType& x,
                       ::xml_schema::Flags f = 0,
                       ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy the instance polymorphically.
+     *
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     * @return A pointer to the dynamically allocated copy.
+     *
+     * This function ensures that the dynamic type of the instance is
+     * used for copying and should be used for polymorphic object
+     * models instead of the copy constructor.
+     */
     virtual StreamSourceType*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    //@}
+
+    /**
+     * @brief Destructor.
+     */
     virtual 
     ~StreamSourceType ();
 
     // Implementation.
     //
+
+    //@cond
+
     protected:
     void
     parse (::xsd::cxx::xml::dom::parser< char >&,
            ::xml_schema::Flags);
 
     protected:
+
+    //@endcond
   };
 
+  /**
+   * @brief Class corresponding to the %StreamTransmissionType schema type.
+   *
+   * Definition of the mechanisms that are utilized to transmit a stream.
+   *
+   * @nosubgrouping
+   */
   class StreamTransmissionType: public ::xml_schema::Type
   {
     public:
-    // StreamAddress
-    //
+    /**
+     * @name StreamAddress
+     *
+     * @brief Accessor and modifier functions for the %StreamAddress
+     * optional element.
+     *
+     * This element specifies the address for stream transmission. In case it
+     * contains a multicast address this address needs to be joined for
+     * receiving the multicast stream.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::xml_schema::Uri StreamAddressType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< StreamAddressType > StreamAddressOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< StreamAddressType, char > StreamAddressTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const StreamAddressOptional&
-    StreamAddress () const;
+    getStreamAddress () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     StreamAddressOptional&
-    StreamAddress ();
+    getStreamAddress ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    StreamAddress (const StreamAddressType& x);
+    setStreamAddress (const StreamAddressType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    StreamAddress (const StreamAddressOptional& x);
+    setStreamAddress (const StreamAddressOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    StreamAddress (::std::unique_ptr< StreamAddressType > p);
+    setStreamAddress (::std::unique_ptr< StreamAddressType > p);
 
-    // StreamPeriod
-    //
+    //@}
+
+    /**
+     * @name StreamPeriod
+     *
+     * @brief Accessor and modifier functions for the %StreamPeriod
+     * optional element.
+     *
+     * Contains the duration with a fractional second between two messages of
+     * the stream (e.g., if the stream source provider publishes data with 50
+     * Hz, it is PT0.02S).
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::xml_schema::Duration StreamPeriodType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< StreamPeriodType > StreamPeriodOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< StreamPeriodType, char > StreamPeriodTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const StreamPeriodOptional&
-    StreamPeriod () const;
+    getStreamPeriod () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     StreamPeriodOptional&
-    StreamPeriod ();
+    getStreamPeriod ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    StreamPeriod (const StreamPeriodType& x);
+    setStreamPeriod (const StreamPeriodType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    StreamPeriod (const StreamPeriodOptional& x);
+    setStreamPeriod (const StreamPeriodOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    StreamPeriod (::std::unique_ptr< StreamPeriodType > p);
+    setStreamPeriod (::std::unique_ptr< StreamPeriodType > p);
 
-    // Type
-    //
+    //@}
+
+    /**
+     * @name Type
+     *
+     * @brief Accessor and modifier functions for the %Type
+     * optional attribute.
+     *
+     * References the mechanism for stream transmission. If omitted the value
+     * /mdpws:StreamDescriptions/mdpws:StreamType@StreamType is implied
+     */
+    //@{
+
+    /**
+     * @brief Attribute type.
+     */
     typedef ::xml_schema::Uri TypeType;
+
+    /**
+     * @brief Attribute optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< TypeType > TypeOptional;
+
+    /**
+     * @brief Attribute traits type.
+     */
     typedef ::xsd::cxx::tree::traits< TypeType, char > TypeTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the attribute
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const TypeOptional&
-    Type () const;
+    getType () const;
 
+    /**
+     * @brief Return a read-write reference to the attribute container.
+     *
+     * @return A reference to the optional container.
+     */
     TypeOptional&
-    Type ();
+    getType ();
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
     void
-    Type (const TypeType& x);
+    setType (const TypeType& x);
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the attribute.
+     * Otherwise the attribute container is set the 'not present' state.
+     */
     void
-    Type (const TypeOptional& x);
+    setType (const TypeOptional& x);
 
+    /**
+     * @brief Set the attribute value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    Type (::std::unique_ptr< TypeType > p);
+    setType (::std::unique_ptr< TypeType > p);
 
-    // Constructors.
-    //
+    //@}
+
+    /**
+     * @name Constructors
+     */
+    //@{
+
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes.
+     */
     StreamTransmissionType ();
 
+    /**
+     * @brief Create an instance from a DOM element.
+     *
+     * @param e A DOM element to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     StreamTransmissionType (const ::xercesc::DOMElement& e,
                             ::xml_schema::Flags f = 0,
                             ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy constructor.
+     *
+     * @param x An instance to make a copy of.
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     StreamTransmissionType (const StreamTransmissionType& x,
                             ::xml_schema::Flags f = 0,
                             ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy the instance polymorphically.
+     *
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     * @return A pointer to the dynamically allocated copy.
+     *
+     * This function ensures that the dynamic type of the instance is
+     * used for copying and should be used for polymorphic object
+     * models instead of the copy constructor.
+     */
     virtual StreamTransmissionType*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    /**
+     * @brief Copy assignment operator.
+     *
+     * @param x An instance to make a copy of.
+     * @return A reference to itself.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     StreamTransmissionType&
     operator= (const StreamTransmissionType& x);
 
+    //@}
+
+    /**
+     * @brief Destructor.
+     */
     virtual 
     ~StreamTransmissionType ();
 
     // Implementation.
     //
+
+    //@cond
+
     protected:
     void
     parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -196,134 +493,453 @@ namespace MDPWS
     StreamAddressOptional StreamAddress_;
     StreamPeriodOptional StreamPeriod_;
     TypeOptional Type_;
+
+    //@endcond
   };
 
+  /**
+   * @brief Class corresponding to the %StreamTypeType schema type.
+   *
+   * Element to describes a specific stream type.
+   *
+   * @nosubgrouping
+   */
   class StreamTypeType: public ::xml_schema::Type
   {
     public:
-    // StreamTransmission
-    //
+    /**
+     * @name StreamTransmission
+     *
+     * @brief Accessor and modifier functions for the %StreamTransmission
+     * required element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDPWS::StreamTransmissionType StreamTransmissionType;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< StreamTransmissionType, char > StreamTransmissionTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element.
+     *
+     * @return A constant reference to the element.
+     */
     const StreamTransmissionType&
-    StreamTransmission () const;
+    getStreamTransmission () const;
 
+    /**
+     * @brief Return a read-write reference to the element.
+     *
+     * @return A reference to the element.
+     */
     StreamTransmissionType&
-    StreamTransmission ();
+    getStreamTransmission ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    StreamTransmission (const StreamTransmissionType& x);
+    setStreamTransmission (const StreamTransmissionType& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly
+     * instead of making a copy.
+     */
     void
-    StreamTransmission (::std::unique_ptr< StreamTransmissionType > p);
+    setStreamTransmission (::std::unique_ptr< StreamTransmissionType > p);
 
-    // Id
-    //
+    //@}
+
+    /**
+     * @name Id
+     *
+     * @brief Accessor and modifier functions for the %Id
+     * required attribute.
+     *
+     * Unique identifier amongst all StreamType elements.
+     */
+    //@{
+
+    /**
+     * @brief Attribute type.
+     */
     typedef ::xml_schema::Id IdType;
+
+    /**
+     * @brief Attribute traits type.
+     */
     typedef ::xsd::cxx::tree::traits< IdType, char > IdTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the attribute.
+     *
+     * @return A constant reference to the attribute.
+     */
     const IdType&
-    Id () const;
+    getId () const;
 
+    /**
+     * @brief Return a read-write reference to the attribute.
+     *
+     * @return A reference to the attribute.
+     */
     IdType&
-    Id ();
+    getId ();
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
     void
-    Id (const IdType& x);
+    setId (const IdType& x);
 
+    /**
+     * @brief Set the attribute value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly
+     * instead of making a copy.
+     */
     void
-    Id (::std::unique_ptr< IdType > p);
+    setId (::std::unique_ptr< IdType > p);
 
-    // StreamType
-    //
+    //@}
+
+    /**
+     * @name StreamType
+     *
+     * @brief Accessor and modifier functions for the %StreamType
+     * required attribute.
+     *
+     * Indicates that the stream follows the specifications of the provided
+     * type. This value should be compared directly, as a case-sensitive
+     * string, with no attempt to unescape or to otherwise canonicalize it.
+     */
+    //@{
+
+    /**
+     * @brief Attribute type.
+     */
     typedef ::xml_schema::Uri StreamTypeType1;
+
+    /**
+     * @brief Attribute traits type.
+     */
     typedef ::xsd::cxx::tree::traits< StreamTypeType1, char > StreamTypeTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the attribute.
+     *
+     * @return A constant reference to the attribute.
+     */
     const StreamTypeType1&
-    StreamType () const;
+    getStreamType () const;
 
+    /**
+     * @brief Return a read-write reference to the attribute.
+     *
+     * @return A reference to the attribute.
+     */
     StreamTypeType1&
-    StreamType ();
+    getStreamType ();
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
     void
-    StreamType (const StreamTypeType1& x);
+    setStreamType (const StreamTypeType1& x);
 
+    /**
+     * @brief Set the attribute value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly
+     * instead of making a copy.
+     */
     void
-    StreamType (::std::unique_ptr< StreamTypeType1 > p);
+    setStreamType (::std::unique_ptr< StreamTypeType1 > p);
 
-    // Element
-    //
+    //@}
+
+    /**
+     * @name Element
+     *
+     * @brief Accessor and modifier functions for the %Element
+     * optional attribute.
+     *
+     * Attribute that refers to a GED defined or imported in the
+     * /mdpws:StreamDescriptions/mdpws:Types element. The referenced GED
+     * serves as the definition of this Stream Type payload.
+     */
+    //@{
+
+    /**
+     * @brief Attribute type.
+     */
     typedef ::xml_schema::Uri ElementType;
+
+    /**
+     * @brief Attribute optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< ElementType > ElementOptional;
+
+    /**
+     * @brief Attribute traits type.
+     */
     typedef ::xsd::cxx::tree::traits< ElementType, char > ElementTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the attribute
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const ElementOptional&
-    Element () const;
+    getElement () const;
 
+    /**
+     * @brief Return a read-write reference to the attribute container.
+     *
+     * @return A reference to the optional container.
+     */
     ElementOptional&
-    Element ();
+    getElement ();
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
     void
-    Element (const ElementType& x);
+    setElement (const ElementType& x);
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the attribute.
+     * Otherwise the attribute container is set the 'not present' state.
+     */
     void
-    Element (const ElementOptional& x);
+    setElement (const ElementOptional& x);
 
+    /**
+     * @brief Set the attribute value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    Element (::std::unique_ptr< ElementType > p);
+    setElement (::std::unique_ptr< ElementType > p);
 
-    // ActionUri
-    //
+    //@}
+
+    /**
+     * @name ActionUri
+     *
+     * @brief Accessor and modifier functions for the %ActionUri
+     * optional attribute.
+     *
+     * Attribute that provides a value for the 'action' property used to
+     * transmit the Stream, serve as a potential aid to identify the
+     * semantics implied by the message. When not present the implied value
+     * of this attribute is the concatenation of the
+     * /mdpws:StreamDescriptions/@TargetNamespace attribute and the
+     * /mdpws:StreamDescriptions/mdpws:StreamType/@Id attribute separated by
+     * the '/' character.
+     */
+    //@{
+
+    /**
+     * @brief Attribute type.
+     */
     typedef ::xml_schema::Uri ActionUriType;
+
+    /**
+     * @brief Attribute optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< ActionUriType > ActionUriOptional;
+
+    /**
+     * @brief Attribute traits type.
+     */
     typedef ::xsd::cxx::tree::traits< ActionUriType, char > ActionUriTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the attribute
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const ActionUriOptional&
-    ActionUri () const;
+    getActionUri () const;
 
+    /**
+     * @brief Return a read-write reference to the attribute container.
+     *
+     * @return A reference to the optional container.
+     */
     ActionUriOptional&
-    ActionUri ();
+    getActionUri ();
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
     void
-    ActionUri (const ActionUriType& x);
+    setActionUri (const ActionUriType& x);
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the attribute.
+     * Otherwise the attribute container is set the 'not present' state.
+     */
     void
-    ActionUri (const ActionUriOptional& x);
+    setActionUri (const ActionUriOptional& x);
 
+    /**
+     * @brief Set the attribute value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    ActionUri (::std::unique_ptr< ActionUriType > p);
+    setActionUri (::std::unique_ptr< ActionUriType > p);
 
-    // Constructors.
-    //
+    //@}
+
+    /**
+     * @name Constructors
+     */
+    //@{
+
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes.
+     */
     StreamTypeType (const StreamTransmissionType&,
                     const IdType&,
                     const StreamTypeType1&);
 
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes
+     * (::std::unique_ptr version).
+     *
+     * This constructor will try to use the passed values directly
+     * instead of making copies.
+     */
     StreamTypeType (::std::unique_ptr< StreamTransmissionType >,
                     const IdType&,
                     const StreamTypeType1&);
 
+    /**
+     * @brief Create an instance from a DOM element.
+     *
+     * @param e A DOM element to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     StreamTypeType (const ::xercesc::DOMElement& e,
                     ::xml_schema::Flags f = 0,
                     ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy constructor.
+     *
+     * @param x An instance to make a copy of.
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     StreamTypeType (const StreamTypeType& x,
                     ::xml_schema::Flags f = 0,
                     ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy the instance polymorphically.
+     *
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     * @return A pointer to the dynamically allocated copy.
+     *
+     * This function ensures that the dynamic type of the instance is
+     * used for copying and should be used for polymorphic object
+     * models instead of the copy constructor.
+     */
     virtual StreamTypeType*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    /**
+     * @brief Copy assignment operator.
+     *
+     * @param x An instance to make a copy of.
+     * @return A reference to itself.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     StreamTypeType&
     operator= (const StreamTypeType& x);
 
+    //@}
+
+    /**
+     * @brief Destructor.
+     */
     virtual 
     ~StreamTypeType ();
 
     // Implementation.
     //
+
+    //@cond
+
     protected:
     void
     parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -335,90 +951,298 @@ namespace MDPWS
     ::xsd::cxx::tree::one< StreamTypeType1 > StreamType_;
     ElementOptional Element_;
     ActionUriOptional ActionUri_;
+
+    //@endcond
   };
 
+  /**
+   * @brief Class corresponding to the %StreamDescriptionsType schema type.
+   *
+   * This element contains the declarations of all the stream types that
+   * apply to a given context.
+   *
+   * @nosubgrouping
+   */
   class StreamDescriptionsType: public ::xml_schema::Type
   {
     public:
-    // Types
-    //
+    /**
+     * @name Types
+     *
+     * @brief Accessor and modifier functions for the %Types
+     * optional element.
+     *
+     * This optional element encloses data type definitions that are relevant
+     * to the declared StreamType elements. Usually, XML Schema declarations
+     * go here.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDPWS::Types TypesType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< TypesType > TypesOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< TypesType, char > TypesTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const TypesOptional&
-    Types () const;
+    getTypes () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     TypesOptional&
-    Types ();
+    getTypes ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    Types (const TypesType& x);
+    setTypes (const TypesType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    Types (const TypesOptional& x);
+    setTypes (const TypesOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    Types (::std::unique_ptr< TypesType > p);
+    setTypes (::std::unique_ptr< TypesType > p);
 
-    // StreamType
-    //
+    //@}
+
+    /**
+     * @name StreamType
+     *
+     * @brief Accessor and modifier functions for the %StreamType
+     * sequence element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDPWS::StreamTypeType StreamTypeType;
+
+    /**
+     * @brief Element sequence container type.
+     */
     typedef ::xsd::cxx::tree::sequence< StreamTypeType > StreamTypeSequence;
+
+    /**
+     * @brief Element iterator type.
+     */
     typedef StreamTypeSequence::iterator StreamTypeIterator;
+
+    /**
+     * @brief Element constant iterator type.
+     */
     typedef StreamTypeSequence::const_iterator StreamTypeConstIterator;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< StreamTypeType, char > StreamTypeTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * sequence.
+     *
+     * @return A constant reference to the sequence container.
+     */
     const StreamTypeSequence&
-    StreamType () const;
+    getStreamType () const;
 
+    /**
+     * @brief Return a read-write reference to the element sequence.
+     *
+     * @return A reference to the sequence container.
+     */
     StreamTypeSequence&
-    StreamType ();
+    getStreamType ();
 
+    /**
+     * @brief Copy elements from a given sequence.
+     *
+     * @param s A sequence to copy elements from.
+     *
+     * For each element in @a s this function makes a copy and adds it 
+     * to the sequence. Note that this operation completely changes the 
+     * sequence and all old elements will be lost.
+     */
     void
-    StreamType (const StreamTypeSequence& s);
+    setStreamType (const StreamTypeSequence& s);
 
-    // TargetNamespace
-    //
+    //@}
+
+    /**
+     * @name TargetNamespace
+     *
+     * @brief Accessor and modifier functions for the %TargetNamespace
+     * required attribute.
+     */
+    //@{
+
+    /**
+     * @brief Attribute type.
+     */
     typedef ::xml_schema::Uri TargetNamespaceType;
+
+    /**
+     * @brief Attribute traits type.
+     */
     typedef ::xsd::cxx::tree::traits< TargetNamespaceType, char > TargetNamespaceTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the attribute.
+     *
+     * @return A constant reference to the attribute.
+     */
     const TargetNamespaceType&
-    TargetNamespace () const;
+    getTargetNamespace () const;
 
+    /**
+     * @brief Return a read-write reference to the attribute.
+     *
+     * @return A reference to the attribute.
+     */
     TargetNamespaceType&
-    TargetNamespace ();
+    getTargetNamespace ();
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
     void
-    TargetNamespace (const TargetNamespaceType& x);
+    setTargetNamespace (const TargetNamespaceType& x);
 
+    /**
+     * @brief Set the attribute value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly
+     * instead of making a copy.
+     */
     void
-    TargetNamespace (::std::unique_ptr< TargetNamespaceType > p);
+    setTargetNamespace (::std::unique_ptr< TargetNamespaceType > p);
 
-    // Constructors.
-    //
+    //@}
+
+    /**
+     * @name Constructors
+     */
+    //@{
+
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes.
+     */
     StreamDescriptionsType (const TargetNamespaceType&);
 
+    /**
+     * @brief Create an instance from a DOM element.
+     *
+     * @param e A DOM element to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     StreamDescriptionsType (const ::xercesc::DOMElement& e,
                             ::xml_schema::Flags f = 0,
                             ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy constructor.
+     *
+     * @param x An instance to make a copy of.
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     StreamDescriptionsType (const StreamDescriptionsType& x,
                             ::xml_schema::Flags f = 0,
                             ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy the instance polymorphically.
+     *
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     * @return A pointer to the dynamically allocated copy.
+     *
+     * This function ensures that the dynamic type of the instance is
+     * used for copying and should be used for polymorphic object
+     * models instead of the copy constructor.
+     */
     virtual StreamDescriptionsType*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    /**
+     * @brief Copy assignment operator.
+     *
+     * @param x An instance to make a copy of.
+     * @return A reference to itself.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     StreamDescriptionsType&
     operator= (const StreamDescriptionsType& x);
 
+    //@}
+
+    /**
+     * @brief Destructor.
+     */
     virtual 
     ~StreamDescriptionsType ();
 
     // Implementation.
     //
+
+    //@cond
+
     protected:
     void
     parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -428,69 +1252,214 @@ namespace MDPWS
     TypesOptional Types_;
     StreamTypeSequence StreamType_;
     ::xsd::cxx::tree::one< TargetNamespaceType > TargetNamespace_;
+
+    //@endcond
   };
 
+  /**
+   * @brief Class corresponding to the %SafetyReqAssertionType schema type.
+   *
+   * Assertion has [Message Policy Subject] or [Operation Policy Subject]
+   * or [Endpoint Policy Subject]. When present in a policy alternative, it
+   * indicates that for the subject additional safety information need to
+   * be transmitted for the specified message elements.
+   *
+   * @nosubgrouping
+   */
   class SafetyReqAssertionType: public ::xml_schema::Type
   {
     public:
-    // TransmitDualChannel
-    //
+    /**
+     * @name TransmitDualChannel
+     *
+     * @brief Accessor and modifier functions for the %TransmitDualChannel
+     * optional attribute with a default value.
+     *
+     * Boolean attribute that indicates that dual channel transmission is
+     * required for the specified message elements.
+     */
+    //@{
+
+    /**
+     * @brief Attribute type.
+     */
     typedef ::xml_schema::Boolean TransmitDualChannelType;
+
+    /**
+     * @brief Attribute traits type.
+     */
     typedef ::xsd::cxx::tree::traits< TransmitDualChannelType, char > TransmitDualChannelTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the attribute.
+     *
+     * @return A constant reference to the attribute.
+     */
     const TransmitDualChannelType&
-    TransmitDualChannel () const;
+    getTransmitDualChannel () const;
 
+    /**
+     * @brief Return a read-write reference to the attribute.
+     *
+     * @return A reference to the attribute.
+     */
     TransmitDualChannelType&
-    TransmitDualChannel ();
+    getTransmitDualChannel ();
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
     void
-    TransmitDualChannel (const TransmitDualChannelType& x);
+    setTransmitDualChannel (const TransmitDualChannelType& x);
 
+    /**
+     * @brief Return the default value for the attribute.
+     *
+     * @return The attribute's default value.
+     */
     static TransmitDualChannelType
-    TransmitDualChannel_default_value ();
+    getTransmitDualChannelDefaultValue ();
 
-    // TransmitSafetyContext
-    //
+    //@}
+
+    /**
+     * @name TransmitSafetyContext
+     *
+     * @brief Accessor and modifier functions for the %TransmitSafetyContext
+     * optional attribute with a default value.
+     *
+     * Boolean attribute that indicates that specified safety context
+     * information is required to be transmitted for the subject.
+     */
+    //@{
+
+    /**
+     * @brief Attribute type.
+     */
     typedef ::xml_schema::Boolean TransmitSafetyContextType;
+
+    /**
+     * @brief Attribute traits type.
+     */
     typedef ::xsd::cxx::tree::traits< TransmitSafetyContextType, char > TransmitSafetyContextTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the attribute.
+     *
+     * @return A constant reference to the attribute.
+     */
     const TransmitSafetyContextType&
-    TransmitSafetyContext () const;
+    getTransmitSafetyContext () const;
 
+    /**
+     * @brief Return a read-write reference to the attribute.
+     *
+     * @return A reference to the attribute.
+     */
     TransmitSafetyContextType&
-    TransmitSafetyContext ();
+    getTransmitSafetyContext ();
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
     void
-    TransmitSafetyContext (const TransmitSafetyContextType& x);
+    setTransmitSafetyContext (const TransmitSafetyContextType& x);
 
+    /**
+     * @brief Return the default value for the attribute.
+     *
+     * @return The attribute's default value.
+     */
     static TransmitSafetyContextType
-    TransmitSafetyContext_default_value ();
+    getTransmitSafetyContextDefaultValue ();
 
-    // Constructors.
-    //
+    //@}
+
+    /**
+     * @name Constructors
+     */
+    //@{
+
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes.
+     */
     SafetyReqAssertionType ();
 
+    /**
+     * @brief Create an instance from a DOM element.
+     *
+     * @param e A DOM element to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     SafetyReqAssertionType (const ::xercesc::DOMElement& e,
                             ::xml_schema::Flags f = 0,
                             ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy constructor.
+     *
+     * @param x An instance to make a copy of.
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     SafetyReqAssertionType (const SafetyReqAssertionType& x,
                             ::xml_schema::Flags f = 0,
                             ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy the instance polymorphically.
+     *
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     * @return A pointer to the dynamically allocated copy.
+     *
+     * This function ensures that the dynamic type of the instance is
+     * used for copying and should be used for polymorphic object
+     * models instead of the copy constructor.
+     */
     virtual SafetyReqAssertionType*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    /**
+     * @brief Copy assignment operator.
+     *
+     * @param x An instance to make a copy of.
+     * @return A reference to itself.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     SafetyReqAssertionType&
     operator= (const SafetyReqAssertionType& x);
 
+    //@}
+
+    /**
+     * @brief Destructor.
+     */
     virtual 
     ~SafetyReqAssertionType ();
 
     // Implementation.
     //
+
+    //@cond
+
     protected:
     void
     parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -499,61 +1468,200 @@ namespace MDPWS
     protected:
     ::xsd::cxx::tree::one< TransmitDualChannelType > TransmitDualChannel_;
     ::xsd::cxx::tree::one< TransmitSafetyContextType > TransmitSafetyContext_;
+
+    //@endcond
   };
 
+  /**
+   * @brief Class corresponding to the %SelectorType schema type.
+   *
+   * XPath expression that points to a specific text value or attribute in
+   * an XML structure. The following rules SHALL apply:
+   * 
+   * 1. {Path} must be a valid XPath expression, as defined in XPath
+   * [http://www.w3.org/TR/1999/REC-xpath-19991116].
+   * 2. {Path} must conform to the following extended BNF:
+   * 
+   * [1] Path       ::=  ( '/' Step )* '/' ( '@' Name | 'text()' )
+   * [2] Step       ::=  Name ('[' Expr ']')*
+   * [3] Expr       ::=  '@' Name '=' ( Number | Literal | ConcatCall) |
+   * Number
+   * [4] Name       ::=  QName | NCName
+   * [5] Literal    ::=  '"' [^"]* '"' | "'" [^']* "'" 
+   * [6] ConcatCall ::=  concat '(' ( Literal ( ',' Literal )* )? ')'	
+   * [7] Number     ::=  Digits ( '.' Digits? )?
+   * [8] Digits     ::=  [0-9]+
+   * 
+   * where
+   * - QName is defined in: http://www.w3.org/TR/REC-xml-names/#NT-QName
+   * - NCName is defined in: http://www.w3.org/TR/REC-xml-names/#NT-NCName
+   * 
+   * Samples including allowed features:
+   * /ns:Foo[@FooAttr='sample']/Bar[21]/text()
+   * /Foo[@FooAttr="sample"]/ns:Bar/@BarAttr
+   *
+   * @nosubgrouping
+   */
   class SelectorType: public ::xml_schema::String
   {
     public:
-    // Id
-    //
+    /**
+     * @name Id
+     *
+     * @brief Accessor and modifier functions for the %Id
+     * required attribute.
+     *
+     * Sets a unique identifier over all SelectorType instances that can be
+     * used to address the XPath expression the selector defines.
+     */
+    //@{
+
+    /**
+     * @brief Attribute type.
+     */
     typedef ::xml_schema::String IdType;
+
+    /**
+     * @brief Attribute traits type.
+     */
     typedef ::xsd::cxx::tree::traits< IdType, char > IdTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the attribute.
+     *
+     * @return A constant reference to the attribute.
+     */
     const IdType&
-    Id () const;
+    getId () const;
 
+    /**
+     * @brief Return a read-write reference to the attribute.
+     *
+     * @return A reference to the attribute.
+     */
     IdType&
-    Id ();
+    getId ();
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
     void
-    Id (const IdType& x);
+    setId (const IdType& x);
 
+    /**
+     * @brief Set the attribute value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly
+     * instead of making a copy.
+     */
     void
-    Id (::std::unique_ptr< IdType > p);
+    setId (::std::unique_ptr< IdType > p);
 
-    // Constructors.
-    //
+    //@}
+
+    /**
+     * @name Constructors
+     */
+    //@{
+
+    /**
+     * @brief Create an instance from initializers for required 
+     * elements and attributes.
+     */
     SelectorType (const IdType&);
 
+    /**
+     * @brief Create an instance from a C string and initializers
+     * for required elements and attributes.
+     */
     SelectorType (const char*,
                   const IdType&);
 
+    /**
+     * @brief Create an instance from a string andinitializers
+     * for required elements and attributes.
+     */
     SelectorType (const ::std::string&,
                   const IdType&);
 
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes.
+     */
     SelectorType (const ::xml_schema::String&,
                   const IdType&);
 
+    /**
+     * @brief Create an instance from a DOM element.
+     *
+     * @param e A DOM element to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     SelectorType (const ::xercesc::DOMElement& e,
                   ::xml_schema::Flags f = 0,
                   ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy constructor.
+     *
+     * @param x An instance to make a copy of.
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     SelectorType (const SelectorType& x,
                   ::xml_schema::Flags f = 0,
                   ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy the instance polymorphically.
+     *
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     * @return A pointer to the dynamically allocated copy.
+     *
+     * This function ensures that the dynamic type of the instance is
+     * used for copying and should be used for polymorphic object
+     * models instead of the copy constructor.
+     */
     virtual SelectorType*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    /**
+     * @brief Copy assignment operator.
+     *
+     * @param x An instance to make a copy of.
+     * @return A reference to itself.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     SelectorType&
     operator= (const SelectorType& x);
 
+    //@}
+
+    /**
+     * @brief Destructor.
+     */
     virtual 
     ~SelectorType ();
 
     // Implementation.
     //
+
+    //@cond
+
     protected:
     void
     parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -561,77 +1669,248 @@ namespace MDPWS
 
     protected:
     ::xsd::cxx::tree::one< IdType > Id_;
+
+    //@endcond
   };
 
+  /**
+   * @brief Class corresponding to the %SafetyReqType schema type.
+   *
+   * Indicates that data is required that preserve patient safety during
+   * transmission.
+   *
+   * @nosubgrouping
+   */
   class SafetyReqType: public ::xml_schema::Type
   {
     public:
-    // DualChannelDef
-    //
+    /**
+     * @name DualChannelDef
+     *
+     * @brief Accessor and modifier functions for the %DualChannelDef
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDPWS::DualChannelDefType DualChannelDefType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< DualChannelDefType > DualChannelDefOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< DualChannelDefType, char > DualChannelDefTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const DualChannelDefOptional&
-    DualChannelDef () const;
+    getDualChannelDef () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     DualChannelDefOptional&
-    DualChannelDef ();
+    getDualChannelDef ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    DualChannelDef (const DualChannelDefType& x);
+    setDualChannelDef (const DualChannelDefType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    DualChannelDef (const DualChannelDefOptional& x);
+    setDualChannelDef (const DualChannelDefOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    DualChannelDef (::std::unique_ptr< DualChannelDefType > p);
+    setDualChannelDef (::std::unique_ptr< DualChannelDefType > p);
 
-    // SafetyContextDef
-    //
+    //@}
+
+    /**
+     * @name SafetyContextDef
+     *
+     * @brief Accessor and modifier functions for the %SafetyContextDef
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDPWS::SafetyContextDefType SafetyContextDefType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< SafetyContextDefType > SafetyContextDefOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< SafetyContextDefType, char > SafetyContextDefTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const SafetyContextDefOptional&
-    SafetyContextDef () const;
+    getSafetyContextDef () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     SafetyContextDefOptional&
-    SafetyContextDef ();
+    getSafetyContextDef ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    SafetyContextDef (const SafetyContextDefType& x);
+    setSafetyContextDef (const SafetyContextDefType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    SafetyContextDef (const SafetyContextDefOptional& x);
+    setSafetyContextDef (const SafetyContextDefOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    SafetyContextDef (::std::unique_ptr< SafetyContextDefType > p);
+    setSafetyContextDef (::std::unique_ptr< SafetyContextDefType > p);
 
-    // Constructors.
-    //
+    //@}
+
+    /**
+     * @name Constructors
+     */
+    //@{
+
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes.
+     */
     SafetyReqType ();
 
+    /**
+     * @brief Create an instance from a DOM element.
+     *
+     * @param e A DOM element to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     SafetyReqType (const ::xercesc::DOMElement& e,
                    ::xml_schema::Flags f = 0,
                    ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy constructor.
+     *
+     * @param x An instance to make a copy of.
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     SafetyReqType (const SafetyReqType& x,
                    ::xml_schema::Flags f = 0,
                    ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy the instance polymorphically.
+     *
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     * @return A pointer to the dynamically allocated copy.
+     *
+     * This function ensures that the dynamic type of the instance is
+     * used for copying and should be used for polymorphic object
+     * models instead of the copy constructor.
+     */
     virtual SafetyReqType*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    /**
+     * @brief Copy assignment operator.
+     *
+     * @param x An instance to make a copy of.
+     * @return A reference to itself.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     SafetyReqType&
     operator= (const SafetyReqType& x);
 
+    //@}
+
+    /**
+     * @brief Destructor.
+     */
     virtual 
     ~SafetyReqType ();
 
     // Implementation.
     //
+
+    //@cond
+
     protected:
     void
     parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -640,94 +1919,320 @@ namespace MDPWS
     protected:
     DualChannelDefOptional DualChannelDef_;
     SafetyContextDefOptional SafetyContextDef_;
+
+    //@endcond
   };
 
+  /**
+   * @brief Class corresponding to the %DualChannelDefType schema type.
+   *
+   * Defines a list of selectors that point to elements which are required
+   * to be protected by a dual-channel. The selector's root is SOAP
+   * message's body element.
+   *
+   * @nosubgrouping
+   */
   class DualChannelDefType: public ::xml_schema::Type
   {
     public:
-    // Selector
-    //
+    /**
+     * @name Selector
+     *
+     * @brief Accessor and modifier functions for the %Selector
+     * sequence element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDPWS::SelectorType SelectorType;
+
+    /**
+     * @brief Element sequence container type.
+     */
     typedef ::xsd::cxx::tree::sequence< SelectorType > SelectorSequence;
+
+    /**
+     * @brief Element iterator type.
+     */
     typedef SelectorSequence::iterator SelectorIterator;
+
+    /**
+     * @brief Element constant iterator type.
+     */
     typedef SelectorSequence::const_iterator SelectorConstIterator;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< SelectorType, char > SelectorTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * sequence.
+     *
+     * @return A constant reference to the sequence container.
+     */
     const SelectorSequence&
-    Selector () const;
+    getSelector () const;
 
+    /**
+     * @brief Return a read-write reference to the element sequence.
+     *
+     * @return A reference to the sequence container.
+     */
     SelectorSequence&
-    Selector ();
+    getSelector ();
 
+    /**
+     * @brief Copy elements from a given sequence.
+     *
+     * @param s A sequence to copy elements from.
+     *
+     * For each element in @a s this function makes a copy and adds it 
+     * to the sequence. Note that this operation completely changes the 
+     * sequence and all old elements will be lost.
+     */
     void
-    Selector (const SelectorSequence& s);
+    setSelector (const SelectorSequence& s);
 
-    // Algorithm
-    //
+    //@}
+
+    /**
+     * @name Algorithm
+     *
+     * @brief Accessor and modifier functions for the %Algorithm
+     * optional attribute.
+     *
+     * Qualified name of an algorithm that SHALL be applied on the
+     * transformed data in order to compute the value of the second channel
+     * representation. Default is /mdpws:Base64SHA1
+     */
+    //@{
+
+    /**
+     * @brief Attribute type.
+     */
     typedef ::xml_schema::Qname AlgorithmType;
+
+    /**
+     * @brief Attribute optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< AlgorithmType > AlgorithmOptional;
+
+    /**
+     * @brief Attribute traits type.
+     */
     typedef ::xsd::cxx::tree::traits< AlgorithmType, char > AlgorithmTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the attribute
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const AlgorithmOptional&
-    Algorithm () const;
+    getAlgorithm () const;
 
+    /**
+     * @brief Return a read-write reference to the attribute container.
+     *
+     * @return A reference to the optional container.
+     */
     AlgorithmOptional&
-    Algorithm ();
+    getAlgorithm ();
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
     void
-    Algorithm (const AlgorithmType& x);
+    setAlgorithm (const AlgorithmType& x);
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the attribute.
+     * Otherwise the attribute container is set the 'not present' state.
+     */
     void
-    Algorithm (const AlgorithmOptional& x);
+    setAlgorithm (const AlgorithmOptional& x);
 
+    /**
+     * @brief Set the attribute value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    Algorithm (::std::unique_ptr< AlgorithmType > p);
+    setAlgorithm (::std::unique_ptr< AlgorithmType > p);
 
-    // Transform
-    //
+    //@}
+
+    /**
+     * @name Transform
+     *
+     * @brief Accessor and modifier functions for the %Transform
+     * optional attribute.
+     *
+     * Qualified name of a transformation that should be applied on the data
+     * before an algorithm is applied. Default is /mdpws:xml-exc-c14n.
+     */
+    //@{
+
+    /**
+     * @brief Attribute type.
+     */
     typedef ::xml_schema::Qname TransformType;
+
+    /**
+     * @brief Attribute optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< TransformType > TransformOptional;
+
+    /**
+     * @brief Attribute traits type.
+     */
     typedef ::xsd::cxx::tree::traits< TransformType, char > TransformTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the attribute
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const TransformOptional&
-    Transform () const;
+    getTransform () const;
 
+    /**
+     * @brief Return a read-write reference to the attribute container.
+     *
+     * @return A reference to the optional container.
+     */
     TransformOptional&
-    Transform ();
+    getTransform ();
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
     void
-    Transform (const TransformType& x);
+    setTransform (const TransformType& x);
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the attribute.
+     * Otherwise the attribute container is set the 'not present' state.
+     */
     void
-    Transform (const TransformOptional& x);
+    setTransform (const TransformOptional& x);
 
+    /**
+     * @brief Set the attribute value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    Transform (::std::unique_ptr< TransformType > p);
+    setTransform (::std::unique_ptr< TransformType > p);
 
-    // Constructors.
-    //
+    //@}
+
+    /**
+     * @name Constructors
+     */
+    //@{
+
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes.
+     */
     DualChannelDefType ();
 
+    /**
+     * @brief Create an instance from a DOM element.
+     *
+     * @param e A DOM element to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     DualChannelDefType (const ::xercesc::DOMElement& e,
                         ::xml_schema::Flags f = 0,
                         ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy constructor.
+     *
+     * @param x An instance to make a copy of.
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     DualChannelDefType (const DualChannelDefType& x,
                         ::xml_schema::Flags f = 0,
                         ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy the instance polymorphically.
+     *
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     * @return A pointer to the dynamically allocated copy.
+     *
+     * This function ensures that the dynamic type of the instance is
+     * used for copying and should be used for polymorphic object
+     * models instead of the copy constructor.
+     */
     virtual DualChannelDefType*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    /**
+     * @brief Copy assignment operator.
+     *
+     * @param x An instance to make a copy of.
+     * @return A reference to itself.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     DualChannelDefType&
     operator= (const DualChannelDefType& x);
 
+    //@}
+
+    /**
+     * @brief Destructor.
+     */
     virtual 
     ~DualChannelDefType ();
 
     // Implementation.
     //
+
+    //@cond
+
     protected:
     void
     parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -737,52 +2242,161 @@ namespace MDPWS
     SelectorSequence Selector_;
     AlgorithmOptional Algorithm_;
     TransformOptional Transform_;
+
+    //@endcond
   };
 
+  /**
+   * @brief Class corresponding to the %SafetyContextDefType schema type.
+   *
+   * Defines a list of selectors that point to elements which are required
+   * to establish a safety context. The selector's root is an arbitrary
+   * element with type dom:Mdib.
+   *
+   * @nosubgrouping
+   */
   class SafetyContextDefType: public ::xml_schema::Type
   {
     public:
-    // Selector
-    //
+    /**
+     * @name Selector
+     *
+     * @brief Accessor and modifier functions for the %Selector
+     * sequence element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDPWS::SelectorType SelectorType;
+
+    /**
+     * @brief Element sequence container type.
+     */
     typedef ::xsd::cxx::tree::sequence< SelectorType > SelectorSequence;
+
+    /**
+     * @brief Element iterator type.
+     */
     typedef SelectorSequence::iterator SelectorIterator;
+
+    /**
+     * @brief Element constant iterator type.
+     */
     typedef SelectorSequence::const_iterator SelectorConstIterator;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< SelectorType, char > SelectorTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * sequence.
+     *
+     * @return A constant reference to the sequence container.
+     */
     const SelectorSequence&
-    Selector () const;
+    getSelector () const;
 
+    /**
+     * @brief Return a read-write reference to the element sequence.
+     *
+     * @return A reference to the sequence container.
+     */
     SelectorSequence&
-    Selector ();
+    getSelector ();
 
+    /**
+     * @brief Copy elements from a given sequence.
+     *
+     * @param s A sequence to copy elements from.
+     *
+     * For each element in @a s this function makes a copy and adds it 
+     * to the sequence. Note that this operation completely changes the 
+     * sequence and all old elements will be lost.
+     */
     void
-    Selector (const SelectorSequence& s);
+    setSelector (const SelectorSequence& s);
 
-    // Constructors.
-    //
+    //@}
+
+    /**
+     * @name Constructors
+     */
+    //@{
+
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes.
+     */
     SafetyContextDefType ();
 
+    /**
+     * @brief Create an instance from a DOM element.
+     *
+     * @param e A DOM element to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     SafetyContextDefType (const ::xercesc::DOMElement& e,
                           ::xml_schema::Flags f = 0,
                           ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy constructor.
+     *
+     * @param x An instance to make a copy of.
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     SafetyContextDefType (const SafetyContextDefType& x,
                           ::xml_schema::Flags f = 0,
                           ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy the instance polymorphically.
+     *
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     * @return A pointer to the dynamically allocated copy.
+     *
+     * This function ensures that the dynamic type of the instance is
+     * used for copying and should be used for polymorphic object
+     * models instead of the copy constructor.
+     */
     virtual SafetyContextDefType*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    /**
+     * @brief Copy assignment operator.
+     *
+     * @param x An instance to make a copy of.
+     * @return A reference to itself.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     SafetyContextDefType&
     operator= (const SafetyContextDefType& x);
 
+    //@}
+
+    /**
+     * @brief Destructor.
+     */
     virtual 
     ~SafetyContextDefType ();
 
     // Implementation.
     //
+
+    //@cond
+
     protected:
     void
     parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -790,77 +2404,248 @@ namespace MDPWS
 
     protected:
     SelectorSequence Selector_;
+
+    //@endcond
   };
 
+  /**
+   * @brief Class corresponding to the %SafetyInfoType schema type.
+   *
+   * Container element for embedding safety information in a SOAP message
+   * header.
+   *
+   * @nosubgrouping
+   */
   class SafetyInfoType: public ::xml_schema::Type
   {
     public:
-    // DualChannel
-    //
+    /**
+     * @name DualChannel
+     *
+     * @brief Accessor and modifier functions for the %DualChannel
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDPWS::DualChannelType DualChannelType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< DualChannelType > DualChannelOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< DualChannelType, char > DualChannelTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const DualChannelOptional&
-    DualChannel () const;
+    getDualChannel () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     DualChannelOptional&
-    DualChannel ();
+    getDualChannel ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    DualChannel (const DualChannelType& x);
+    setDualChannel (const DualChannelType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    DualChannel (const DualChannelOptional& x);
+    setDualChannel (const DualChannelOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    DualChannel (::std::unique_ptr< DualChannelType > p);
+    setDualChannel (::std::unique_ptr< DualChannelType > p);
 
-    // SafetyContext
-    //
+    //@}
+
+    /**
+     * @name SafetyContext
+     *
+     * @brief Accessor and modifier functions for the %SafetyContext
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDPWS::SafetyContextType SafetyContextType;
+
+    /**
+     * @brief Element optional container type.
+     */
     typedef ::xsd::cxx::tree::optional< SafetyContextType > SafetyContextOptional;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< SafetyContextType, char > SafetyContextTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
     const SafetyContextOptional&
-    SafetyContext () const;
+    getSafetyContext () const;
 
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
     SafetyContextOptional&
-    SafetyContext ();
+    getSafetyContext ();
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
     void
-    SafetyContext (const SafetyContextType& x);
+    setSafetyContext (const SafetyContextType& x);
 
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
     void
-    SafetyContext (const SafetyContextOptional& x);
+    setSafetyContext (const SafetyContextOptional& x);
 
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
     void
-    SafetyContext (::std::unique_ptr< SafetyContextType > p);
+    setSafetyContext (::std::unique_ptr< SafetyContextType > p);
 
-    // Constructors.
-    //
+    //@}
+
+    /**
+     * @name Constructors
+     */
+    //@{
+
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes.
+     */
     SafetyInfoType ();
 
+    /**
+     * @brief Create an instance from a DOM element.
+     *
+     * @param e A DOM element to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     SafetyInfoType (const ::xercesc::DOMElement& e,
                     ::xml_schema::Flags f = 0,
                     ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy constructor.
+     *
+     * @param x An instance to make a copy of.
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     SafetyInfoType (const SafetyInfoType& x,
                     ::xml_schema::Flags f = 0,
                     ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy the instance polymorphically.
+     *
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     * @return A pointer to the dynamically allocated copy.
+     *
+     * This function ensures that the dynamic type of the instance is
+     * used for copying and should be used for polymorphic object
+     * models instead of the copy constructor.
+     */
     virtual SafetyInfoType*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    /**
+     * @brief Copy assignment operator.
+     *
+     * @param x An instance to make a copy of.
+     * @return A reference to itself.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     SafetyInfoType&
     operator= (const SafetyInfoType& x);
 
+    //@}
+
+    /**
+     * @brief Destructor.
+     */
     virtual 
     ~SafetyInfoType ();
 
     // Implementation.
     //
+
+    //@cond
+
     protected:
     void
     parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -869,52 +2654,163 @@ namespace MDPWS
     protected:
     DualChannelOptional DualChannel_;
     SafetyContextOptional SafetyContext_;
+
+    //@endcond
   };
 
+  /**
+   * @brief Class corresponding to the %DualChannelType schema type.
+   *
+   * Dual-channel element that can be used to embed dual-channel
+   * information in a SOAP message header by providing a list of
+   * dual-channel values.
+   *
+   * @nosubgrouping
+   */
   class DualChannelType: public ::xml_schema::Type
   {
     public:
-    // DcValue
-    //
+    /**
+     * @name DcValue
+     *
+     * @brief Accessor and modifier functions for the %DcValue
+     * sequence element.
+     *
+     * List of dual-channel values.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDPWS::DcValueType DcValueType;
+
+    /**
+     * @brief Element sequence container type.
+     */
     typedef ::xsd::cxx::tree::sequence< DcValueType > DcValueSequence;
+
+    /**
+     * @brief Element iterator type.
+     */
     typedef DcValueSequence::iterator DcValueIterator;
+
+    /**
+     * @brief Element constant iterator type.
+     */
     typedef DcValueSequence::const_iterator DcValueConstIterator;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< DcValueType, char > DcValueTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * sequence.
+     *
+     * @return A constant reference to the sequence container.
+     */
     const DcValueSequence&
-    DcValue () const;
+    getDcValue () const;
 
+    /**
+     * @brief Return a read-write reference to the element sequence.
+     *
+     * @return A reference to the sequence container.
+     */
     DcValueSequence&
-    DcValue ();
+    getDcValue ();
 
+    /**
+     * @brief Copy elements from a given sequence.
+     *
+     * @param s A sequence to copy elements from.
+     *
+     * For each element in @a s this function makes a copy and adds it 
+     * to the sequence. Note that this operation completely changes the 
+     * sequence and all old elements will be lost.
+     */
     void
-    DcValue (const DcValueSequence& s);
+    setDcValue (const DcValueSequence& s);
 
-    // Constructors.
-    //
+    //@}
+
+    /**
+     * @name Constructors
+     */
+    //@{
+
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes.
+     */
     DualChannelType ();
 
+    /**
+     * @brief Create an instance from a DOM element.
+     *
+     * @param e A DOM element to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     DualChannelType (const ::xercesc::DOMElement& e,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy constructor.
+     *
+     * @param x An instance to make a copy of.
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     DualChannelType (const DualChannelType& x,
                      ::xml_schema::Flags f = 0,
                      ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy the instance polymorphically.
+     *
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     * @return A pointer to the dynamically allocated copy.
+     *
+     * This function ensures that the dynamic type of the instance is
+     * used for copying and should be used for polymorphic object
+     * models instead of the copy constructor.
+     */
     virtual DualChannelType*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    /**
+     * @brief Copy assignment operator.
+     *
+     * @param x An instance to make a copy of.
+     * @return A reference to itself.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     DualChannelType&
     operator= (const DualChannelType& x);
 
+    //@}
+
+    /**
+     * @brief Destructor.
+     */
     virtual 
     ~DualChannelType ();
 
     // Implementation.
     //
+
+    //@cond
+
     protected:
     void
     parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -922,52 +2818,162 @@ namespace MDPWS
 
     protected:
     DcValueSequence DcValue_;
+
+    //@endcond
   };
 
+  /**
+   * @brief Class corresponding to the %SafetyContextType schema type.
+   *
+   * Safety context element that can be used to embed safety context
+   * information in a SOAP message header.
+   *
+   * @nosubgrouping
+   */
   class SafetyContextType: public ::xml_schema::Type
   {
     public:
-    // CtxtValue
-    //
+    /**
+     * @name CtxtValue
+     *
+     * @brief Accessor and modifier functions for the %CtxtValue
+     * sequence element.
+     *
+     * List of safety context values.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
     typedef ::MDPWS::CtxtValueType CtxtValueType;
+
+    /**
+     * @brief Element sequence container type.
+     */
     typedef ::xsd::cxx::tree::sequence< CtxtValueType > CtxtValueSequence;
+
+    /**
+     * @brief Element iterator type.
+     */
     typedef CtxtValueSequence::iterator CtxtValueIterator;
+
+    /**
+     * @brief Element constant iterator type.
+     */
     typedef CtxtValueSequence::const_iterator CtxtValueConstIterator;
+
+    /**
+     * @brief Element traits type.
+     */
     typedef ::xsd::cxx::tree::traits< CtxtValueType, char > CtxtValueTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * sequence.
+     *
+     * @return A constant reference to the sequence container.
+     */
     const CtxtValueSequence&
-    CtxtValue () const;
+    getCtxtValue () const;
 
+    /**
+     * @brief Return a read-write reference to the element sequence.
+     *
+     * @return A reference to the sequence container.
+     */
     CtxtValueSequence&
-    CtxtValue ();
+    getCtxtValue ();
 
+    /**
+     * @brief Copy elements from a given sequence.
+     *
+     * @param s A sequence to copy elements from.
+     *
+     * For each element in @a s this function makes a copy and adds it 
+     * to the sequence. Note that this operation completely changes the 
+     * sequence and all old elements will be lost.
+     */
     void
-    CtxtValue (const CtxtValueSequence& s);
+    setCtxtValue (const CtxtValueSequence& s);
 
-    // Constructors.
-    //
+    //@}
+
+    /**
+     * @name Constructors
+     */
+    //@{
+
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes.
+     */
     SafetyContextType ();
 
+    /**
+     * @brief Create an instance from a DOM element.
+     *
+     * @param e A DOM element to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     SafetyContextType (const ::xercesc::DOMElement& e,
                        ::xml_schema::Flags f = 0,
                        ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy constructor.
+     *
+     * @param x An instance to make a copy of.
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     SafetyContextType (const SafetyContextType& x,
                        ::xml_schema::Flags f = 0,
                        ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy the instance polymorphically.
+     *
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     * @return A pointer to the dynamically allocated copy.
+     *
+     * This function ensures that the dynamic type of the instance is
+     * used for copying and should be used for polymorphic object
+     * models instead of the copy constructor.
+     */
     virtual SafetyContextType*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    /**
+     * @brief Copy assignment operator.
+     *
+     * @param x An instance to make a copy of.
+     * @return A reference to itself.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     SafetyContextType&
     operator= (const SafetyContextType& x);
 
+    //@}
+
+    /**
+     * @brief Destructor.
+     */
     virtual 
     ~SafetyContextType ();
 
     // Implementation.
     //
+
+    //@cond
+
     protected:
     void
     parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -975,55 +2981,162 @@ namespace MDPWS
 
     protected:
     CtxtValueSequence CtxtValue_;
+
+    //@endcond
   };
 
+  /**
+   * @brief Class corresponding to the %DcValueType schema type.
+   *
+   * A single dual-channel value.
+   *
+   * @nosubgrouping
+   */
   class DcValueType: public ::xml_schema::SimpleType
   {
     public:
-    // ReferencedSelector
-    //
+    /**
+     * @name ReferencedSelector
+     *
+     * @brief Accessor and modifier functions for the %ReferencedSelector
+     * required attribute.
+     *
+     * Name that points to a valid selector identifier (/mdpws:Selector/@Id)
+     */
+    //@{
+
+    /**
+     * @brief Attribute type.
+     */
     typedef ::xml_schema::String ReferencedSelectorType;
+
+    /**
+     * @brief Attribute traits type.
+     */
     typedef ::xsd::cxx::tree::traits< ReferencedSelectorType, char > ReferencedSelectorTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the attribute.
+     *
+     * @return A constant reference to the attribute.
+     */
     const ReferencedSelectorType&
-    ReferencedSelector () const;
+    getReferencedSelector () const;
 
+    /**
+     * @brief Return a read-write reference to the attribute.
+     *
+     * @return A reference to the attribute.
+     */
     ReferencedSelectorType&
-    ReferencedSelector ();
+    getReferencedSelector ();
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
     void
-    ReferencedSelector (const ReferencedSelectorType& x);
+    setReferencedSelector (const ReferencedSelectorType& x);
 
+    /**
+     * @brief Set the attribute value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly
+     * instead of making a copy.
+     */
     void
-    ReferencedSelector (::std::unique_ptr< ReferencedSelectorType > p);
+    setReferencedSelector (::std::unique_ptr< ReferencedSelectorType > p);
 
-    // Constructors.
-    //
+    //@}
+
+    /**
+     * @name Constructors
+     */
+    //@{
+
+    /**
+     * @brief Create an instance from initializers for required 
+     * elements and attributes.
+     */
     DcValueType (const ReferencedSelectorType&);
 
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes.
+     */
     DcValueType (const ::xml_schema::SimpleType&,
                  const ReferencedSelectorType&);
 
+    /**
+     * @brief Create an instance from a DOM element.
+     *
+     * @param e A DOM element to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     DcValueType (const ::xercesc::DOMElement& e,
                  ::xml_schema::Flags f = 0,
                  ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy constructor.
+     *
+     * @param x An instance to make a copy of.
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     DcValueType (const DcValueType& x,
                  ::xml_schema::Flags f = 0,
                  ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy the instance polymorphically.
+     *
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     * @return A pointer to the dynamically allocated copy.
+     *
+     * This function ensures that the dynamic type of the instance is
+     * used for copying and should be used for polymorphic object
+     * models instead of the copy constructor.
+     */
     virtual DcValueType*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    /**
+     * @brief Copy assignment operator.
+     *
+     * @param x An instance to make a copy of.
+     * @return A reference to itself.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     DcValueType&
     operator= (const DcValueType& x);
 
+    //@}
+
+    /**
+     * @brief Destructor.
+     */
     virtual 
     ~DcValueType ();
 
     // Implementation.
     //
+
+    //@cond
+
     protected:
     void
     parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -1031,55 +3144,162 @@ namespace MDPWS
 
     protected:
     ::xsd::cxx::tree::one< ReferencedSelectorType > ReferencedSelector_;
+
+    //@endcond
   };
 
+  /**
+   * @brief Class corresponding to the %CtxtValueType schema type.
+   *
+   * A single safety context value.
+   *
+   * @nosubgrouping
+   */
   class CtxtValueType: public ::xml_schema::SimpleType
   {
     public:
-    // ReferencedSelector
-    //
+    /**
+     * @name ReferencedSelector
+     *
+     * @brief Accessor and modifier functions for the %ReferencedSelector
+     * required attribute.
+     *
+     * Name that points to a valid selector identifier (/mdpws:Selector/@Id)
+     */
+    //@{
+
+    /**
+     * @brief Attribute type.
+     */
     typedef ::xml_schema::String ReferencedSelectorType;
+
+    /**
+     * @brief Attribute traits type.
+     */
     typedef ::xsd::cxx::tree::traits< ReferencedSelectorType, char > ReferencedSelectorTraits;
 
+    /**
+     * @brief Return a read-only (constant) reference to the attribute.
+     *
+     * @return A constant reference to the attribute.
+     */
     const ReferencedSelectorType&
-    ReferencedSelector () const;
+    getReferencedSelector () const;
 
+    /**
+     * @brief Return a read-write reference to the attribute.
+     *
+     * @return A reference to the attribute.
+     */
     ReferencedSelectorType&
-    ReferencedSelector ();
+    getReferencedSelector ();
 
+    /**
+     * @brief Set the attribute value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the attribute.
+     */
     void
-    ReferencedSelector (const ReferencedSelectorType& x);
+    setReferencedSelector (const ReferencedSelectorType& x);
 
+    /**
+     * @brief Set the attribute value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly
+     * instead of making a copy.
+     */
     void
-    ReferencedSelector (::std::unique_ptr< ReferencedSelectorType > p);
+    setReferencedSelector (::std::unique_ptr< ReferencedSelectorType > p);
 
-    // Constructors.
-    //
+    //@}
+
+    /**
+     * @name Constructors
+     */
+    //@{
+
+    /**
+     * @brief Create an instance from initializers for required 
+     * elements and attributes.
+     */
     CtxtValueType (const ReferencedSelectorType&);
 
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes.
+     */
     CtxtValueType (const ::xml_schema::SimpleType&,
                    const ReferencedSelectorType&);
 
+    /**
+     * @brief Create an instance from a DOM element.
+     *
+     * @param e A DOM element to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     CtxtValueType (const ::xercesc::DOMElement& e,
                    ::xml_schema::Flags f = 0,
                    ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy constructor.
+     *
+     * @param x An instance to make a copy of.
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     CtxtValueType (const CtxtValueType& x,
                    ::xml_schema::Flags f = 0,
                    ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy the instance polymorphically.
+     *
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     * @return A pointer to the dynamically allocated copy.
+     *
+     * This function ensures that the dynamic type of the instance is
+     * used for copying and should be used for polymorphic object
+     * models instead of the copy constructor.
+     */
     virtual CtxtValueType*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    /**
+     * @brief Copy assignment operator.
+     *
+     * @param x An instance to make a copy of.
+     * @return A reference to itself.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     CtxtValueType&
     operator= (const CtxtValueType& x);
 
+    //@}
+
+    /**
+     * @brief Destructor.
+     */
     virtual 
     ~CtxtValueType ();
 
     // Implementation.
     //
+
+    //@cond
+
     protected:
     void
     parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -1087,38 +3307,90 @@ namespace MDPWS
 
     protected:
     ::xsd::cxx::tree::one< ReferencedSelectorType > ReferencedSelector_;
+
+    //@endcond
   };
 
+  /**
+   * @brief Class corresponding to the %Types schema type.
+   *
+   * @nosubgrouping
+   */
   class Types: public ::xml_schema::Type
   {
     public:
-    // Constructors.
-    //
+    /**
+     * @name Constructors
+     */
+    //@{
+
+    /**
+     * @brief Create an instance from the ultimate base and
+     * initializers for required elements and attributes.
+     */
     Types ();
 
+    /**
+     * @brief Create an instance from a DOM element.
+     *
+     * @param e A DOM element to extract the data from.
+     * @param f Flags to create the new instance with.
+     * @param c A pointer to the object that will contain the new
+     * instance.
+     */
     Types (const ::xercesc::DOMElement& e,
            ::xml_schema::Flags f = 0,
            ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy constructor.
+     *
+     * @param x An instance to make a copy of.
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     *
+     * For polymorphic object models use the @c _clone function instead.
+     */
     Types (const Types& x,
            ::xml_schema::Flags f = 0,
            ::xml_schema::Container* c = 0);
 
+    /**
+     * @brief Copy the instance polymorphically.
+     *
+     * @param f Flags to create the copy with.
+     * @param c A pointer to the object that will contain the copy.
+     * @return A pointer to the dynamically allocated copy.
+     *
+     * This function ensures that the dynamic type of the instance is
+     * used for copying and should be used for polymorphic object
+     * models instead of the copy constructor.
+     */
     virtual Types*
     _clone (::xml_schema::Flags f = 0,
             ::xml_schema::Container* c = 0) const;
 
+    //@}
+
+    /**
+     * @brief Destructor.
+     */
     virtual 
     ~Types ();
 
     // Implementation.
     //
+
+    //@cond
+
     protected:
     void
     parse (::xsd::cxx::xml::dom::parser< char >&,
            ::xml_schema::Flags);
 
     protected:
+
+    //@endcond
   };
 }
 
@@ -1130,470 +3402,6 @@ namespace MDPWS
 
 namespace MDPWS
 {
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (const ::std::string& uri,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (const ::std::string& uri,
-                ::xml_schema::ErrorHandler& eh,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (const ::std::string& uri,
-                ::xercesc::DOMErrorHandler& eh,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (::std::istream& is,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (::std::istream& is,
-                ::xml_schema::ErrorHandler& eh,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (::std::istream& is,
-                ::xercesc::DOMErrorHandler& eh,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (::std::istream& is,
-                const ::std::string& id,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (::std::istream& is,
-                const ::std::string& id,
-                ::xml_schema::ErrorHandler& eh,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (::std::istream& is,
-                const ::std::string& id,
-                ::xercesc::DOMErrorHandler& eh,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (::xercesc::InputSource& is,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (::xercesc::InputSource& is,
-                ::xml_schema::ErrorHandler& eh,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (::xercesc::InputSource& is,
-                ::xercesc::DOMErrorHandler& eh,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (const ::xercesc::DOMDocument& d,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (const ::std::string& uri,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (const ::std::string& uri,
-                      ::xml_schema::ErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (const ::std::string& uri,
-                      ::xercesc::DOMErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (::std::istream& is,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (::std::istream& is,
-                      ::xml_schema::ErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (::std::istream& is,
-                      ::xercesc::DOMErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (::std::istream& is,
-                      const ::std::string& id,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (::std::istream& is,
-                      const ::std::string& id,
-                      ::xml_schema::ErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (::std::istream& is,
-                      const ::std::string& id,
-                      ::xercesc::DOMErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (::xercesc::InputSource& is,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (::xercesc::InputSource& is,
-                      ::xml_schema::ErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (::xercesc::InputSource& is,
-                      ::xercesc::DOMErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (const ::xercesc::DOMDocument& d,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (const ::std::string& uri,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (const ::std::string& uri,
-                      ::xml_schema::ErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (const ::std::string& uri,
-                      ::xercesc::DOMErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (::std::istream& is,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (::std::istream& is,
-                      ::xml_schema::ErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (::std::istream& is,
-                      ::xercesc::DOMErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (::std::istream& is,
-                      const ::std::string& id,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (::std::istream& is,
-                      const ::std::string& id,
-                      ::xml_schema::ErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (::std::istream& is,
-                      const ::std::string& id,
-                      ::xercesc::DOMErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (::xercesc::InputSource& is,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (::xercesc::InputSource& is,
-                      ::xml_schema::ErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (::xercesc::InputSource& is,
-                      ::xercesc::DOMErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (const ::xercesc::DOMDocument& d,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (const ::std::string& uri,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (const ::std::string& uri,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (const ::std::string& uri,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (::std::istream& is,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (::std::istream& is,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (::std::istream& is,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (::std::istream& is,
-             const ::std::string& id,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (::std::istream& is,
-             const ::std::string& id,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (::std::istream& is,
-             const ::std::string& id,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (::xercesc::InputSource& is,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (::xercesc::InputSource& is,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (::xercesc::InputSource& is,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (const ::xercesc::DOMDocument& d,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse a URI or a local file.
-  //
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (const ::std::string& uri,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (const ::std::string& uri,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (const ::std::string& uri,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse std::istream.
-  //
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (::std::istream& is,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (::std::istream& is,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (::std::istream& is,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (::std::istream& is,
-              const ::std::string& id,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (::std::istream& is,
-              const ::std::string& id,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (::std::istream& is,
-              const ::std::string& id,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::InputSource.
-  //
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (::xercesc::InputSource& is,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (::xercesc::InputSource& is,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (::xercesc::InputSource& is,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  // Parse xercesc::DOMDocument.
-  //
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (const ::xercesc::DOMDocument& d,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
 }
 
 #include <iosfwd>
@@ -1609,74 +3417,6 @@ namespace MDPWS
   void
   operator<< (::xercesc::DOMElement&, const StreamSourceType&);
 
-  // Serialize to std::ostream.
-  //
-
-  void
-  StreamSource (::std::ostream& os,
-                const ::MDPWS::StreamSourceType& x, 
-                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                const ::std::string& e = "UTF-8",
-                ::xml_schema::Flags f = 0);
-
-  void
-  StreamSource (::std::ostream& os,
-                const ::MDPWS::StreamSourceType& x, 
-                ::xml_schema::ErrorHandler& eh,
-                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                const ::std::string& e = "UTF-8",
-                ::xml_schema::Flags f = 0);
-
-  void
-  StreamSource (::std::ostream& os,
-                const ::MDPWS::StreamSourceType& x, 
-                ::xercesc::DOMErrorHandler& eh,
-                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                const ::std::string& e = "UTF-8",
-                ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  StreamSource (::xercesc::XMLFormatTarget& ft,
-                const ::MDPWS::StreamSourceType& x, 
-                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                const ::std::string& e = "UTF-8",
-                ::xml_schema::Flags f = 0);
-
-  void
-  StreamSource (::xercesc::XMLFormatTarget& ft,
-                const ::MDPWS::StreamSourceType& x, 
-                ::xml_schema::ErrorHandler& eh,
-                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                const ::std::string& e = "UTF-8",
-                ::xml_schema::Flags f = 0);
-
-  void
-  StreamSource (::xercesc::XMLFormatTarget& ft,
-                const ::MDPWS::StreamSourceType& x, 
-                ::xercesc::DOMErrorHandler& eh,
-                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                const ::std::string& e = "UTF-8",
-                ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  StreamSource (::xercesc::DOMDocument& d,
-                const ::MDPWS::StreamSourceType& x,
-                ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  StreamSource (const ::MDPWS::StreamSourceType& x, 
-                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                ::xml_schema::Flags f = 0);
-
   void
   operator<< (::xercesc::DOMElement&, const StreamTransmissionType&);
 
@@ -1686,218 +3426,14 @@ namespace MDPWS
   void
   operator<< (::xercesc::DOMElement&, const StreamDescriptionsType&);
 
-  // Serialize to std::ostream.
-  //
-
-  void
-  StreamDescriptions (::std::ostream& os,
-                      const ::MDPWS::StreamDescriptionsType& x, 
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  void
-  StreamDescriptions (::std::ostream& os,
-                      const ::MDPWS::StreamDescriptionsType& x, 
-                      ::xml_schema::ErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  void
-  StreamDescriptions (::std::ostream& os,
-                      const ::MDPWS::StreamDescriptionsType& x, 
-                      ::xercesc::DOMErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  StreamDescriptions (::xercesc::XMLFormatTarget& ft,
-                      const ::MDPWS::StreamDescriptionsType& x, 
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  void
-  StreamDescriptions (::xercesc::XMLFormatTarget& ft,
-                      const ::MDPWS::StreamDescriptionsType& x, 
-                      ::xml_schema::ErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  void
-  StreamDescriptions (::xercesc::XMLFormatTarget& ft,
-                      const ::MDPWS::StreamDescriptionsType& x, 
-                      ::xercesc::DOMErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  StreamDescriptions (::xercesc::DOMDocument& d,
-                      const ::MDPWS::StreamDescriptionsType& x,
-                      ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  StreamDescriptions (const ::MDPWS::StreamDescriptionsType& x, 
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      ::xml_schema::Flags f = 0);
-
   void
   operator<< (::xercesc::DOMElement&, const SafetyReqAssertionType&);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  SafetyReqAssertion (::std::ostream& os,
-                      const ::MDPWS::SafetyReqAssertionType& x, 
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  void
-  SafetyReqAssertion (::std::ostream& os,
-                      const ::MDPWS::SafetyReqAssertionType& x, 
-                      ::xml_schema::ErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  void
-  SafetyReqAssertion (::std::ostream& os,
-                      const ::MDPWS::SafetyReqAssertionType& x, 
-                      ::xercesc::DOMErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  SafetyReqAssertion (::xercesc::XMLFormatTarget& ft,
-                      const ::MDPWS::SafetyReqAssertionType& x, 
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  void
-  SafetyReqAssertion (::xercesc::XMLFormatTarget& ft,
-                      const ::MDPWS::SafetyReqAssertionType& x, 
-                      ::xml_schema::ErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  void
-  SafetyReqAssertion (::xercesc::XMLFormatTarget& ft,
-                      const ::MDPWS::SafetyReqAssertionType& x, 
-                      ::xercesc::DOMErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  SafetyReqAssertion (::xercesc::DOMDocument& d,
-                      const ::MDPWS::SafetyReqAssertionType& x,
-                      ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SafetyReqAssertion (const ::MDPWS::SafetyReqAssertionType& x, 
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      ::xml_schema::Flags f = 0);
 
   void
   operator<< (::xercesc::DOMElement&, const SelectorType&);
 
   void
   operator<< (::xercesc::DOMElement&, const SafetyReqType&);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  SafetyReq (::std::ostream& os,
-             const ::MDPWS::SafetyReqType& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  void
-  SafetyReq (::std::ostream& os,
-             const ::MDPWS::SafetyReqType& x, 
-             ::xml_schema::ErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  void
-  SafetyReq (::std::ostream& os,
-             const ::MDPWS::SafetyReqType& x, 
-             ::xercesc::DOMErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  SafetyReq (::xercesc::XMLFormatTarget& ft,
-             const ::MDPWS::SafetyReqType& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  void
-  SafetyReq (::xercesc::XMLFormatTarget& ft,
-             const ::MDPWS::SafetyReqType& x, 
-             ::xml_schema::ErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  void
-  SafetyReq (::xercesc::XMLFormatTarget& ft,
-             const ::MDPWS::SafetyReqType& x, 
-             ::xercesc::DOMErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  SafetyReq (::xercesc::DOMDocument& d,
-             const ::MDPWS::SafetyReqType& x,
-             ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SafetyReq (const ::MDPWS::SafetyReqType& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             ::xml_schema::Flags f = 0);
 
   void
   operator<< (::xercesc::DOMElement&, const DualChannelDefType&);
@@ -1907,74 +3443,6 @@ namespace MDPWS
 
   void
   operator<< (::xercesc::DOMElement&, const SafetyInfoType&);
-
-  // Serialize to std::ostream.
-  //
-
-  void
-  SafetyInfo (::std::ostream& os,
-              const ::MDPWS::SafetyInfoType& x, 
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-  void
-  SafetyInfo (::std::ostream& os,
-              const ::MDPWS::SafetyInfoType& x, 
-              ::xml_schema::ErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-  void
-  SafetyInfo (::std::ostream& os,
-              const ::MDPWS::SafetyInfoType& x, 
-              ::xercesc::DOMErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-  // Serialize to xercesc::XMLFormatTarget.
-  //
-
-  void
-  SafetyInfo (::xercesc::XMLFormatTarget& ft,
-              const ::MDPWS::SafetyInfoType& x, 
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-  void
-  SafetyInfo (::xercesc::XMLFormatTarget& ft,
-              const ::MDPWS::SafetyInfoType& x, 
-              ::xml_schema::ErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-  void
-  SafetyInfo (::xercesc::XMLFormatTarget& ft,
-              const ::MDPWS::SafetyInfoType& x, 
-              ::xercesc::DOMErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-  // Serialize to an existing xercesc::DOMDocument.
-  //
-
-  void
-  SafetyInfo (::xercesc::DOMDocument& d,
-              const ::MDPWS::SafetyInfoType& x,
-              ::xml_schema::Flags f = 0);
-
-  // Serialize to a new xercesc::DOMDocument.
-  //
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SafetyInfo (const ::MDPWS::SafetyInfoType& x, 
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              ::xml_schema::Flags f = 0);
 
   void
   operator<< (::xercesc::DOMElement&, const DualChannelType&);

@@ -48,55 +48,55 @@ namespace WS
     // 
 
     const DeliveryType::NotifyToType& DeliveryType::
-    NotifyTo () const
+    getNotifyTo () const
     {
       return this->NotifyTo_.get ();
     }
 
     DeliveryType::NotifyToType& DeliveryType::
-    NotifyTo ()
+    getNotifyTo ()
     {
       return this->NotifyTo_.get ();
     }
 
     void DeliveryType::
-    NotifyTo (const NotifyToType& x)
+    setNotifyTo (const NotifyToType& x)
     {
       this->NotifyTo_.set (x);
     }
 
     void DeliveryType::
-    NotifyTo (::std::unique_ptr< NotifyToType > x)
+    setNotifyTo (::std::unique_ptr< NotifyToType > x)
     {
       this->NotifyTo_.set (std::move (x));
     }
 
     const DeliveryType::ModeOptional& DeliveryType::
-    Mode () const
+    getMode () const
     {
       return this->Mode_;
     }
 
     DeliveryType::ModeOptional& DeliveryType::
-    Mode ()
+    getMode ()
     {
       return this->Mode_;
     }
 
     void DeliveryType::
-    Mode (const ModeType& x)
+    setMode (const ModeType& x)
     {
       this->Mode_.set (x);
     }
 
     void DeliveryType::
-    Mode (const ModeOptional& x)
+    setMode (const ModeOptional& x)
     {
       this->Mode_ = x;
     }
 
     void DeliveryType::
-    Mode (::std::unique_ptr< ModeType > x)
+    setMode (::std::unique_ptr< ModeType > x)
     {
       this->Mode_.set (std::move (x));
     }
@@ -157,31 +157,31 @@ namespace WS
     // 
 
     const FilterType::DialectType& FilterType::
-    Dialect () const
+    getDialect () const
     {
       return this->Dialect_.get ();
     }
 
     FilterType::DialectType& FilterType::
-    Dialect ()
+    getDialect ()
     {
       return this->Dialect_.get ();
     }
 
     void FilterType::
-    Dialect (const DialectType& x)
+    setDialect (const DialectType& x)
     {
       this->Dialect_.set (x);
     }
 
     void FilterType::
-    Dialect (::std::unique_ptr< DialectType > x)
+    setDialect (::std::unique_ptr< DialectType > x)
     {
       this->Dialect_.set (std::move (x));
     }
 
     const FilterType::DialectType& FilterType::
-    Dialect_default_value ()
+    getDialectDefaultValue ()
     {
       return Dialect_default_value_;
     }
@@ -191,31 +191,31 @@ namespace WS
     // 
 
     const LanguageSpecificStringType::LangOptional& LanguageSpecificStringType::
-    lang () const
+    getLang () const
     {
       return this->lang_;
     }
 
     LanguageSpecificStringType::LangOptional& LanguageSpecificStringType::
-    lang ()
+    getLang ()
     {
       return this->lang_;
     }
 
     void LanguageSpecificStringType::
-    lang (const LangType& x)
+    setLang (const LangType& x)
     {
       this->lang_.set (x);
     }
 
     void LanguageSpecificStringType::
-    lang (const LangOptional& x)
+    setLang (const LangOptional& x)
     {
       this->lang_ = x;
     }
 
     void LanguageSpecificStringType::
-    lang (::std::unique_ptr< LangType > x)
+    setLang (::std::unique_ptr< LangType > x)
     {
       this->lang_.set (std::move (x));
     }
@@ -266,115 +266,115 @@ namespace WS
     // 
 
     const Subscribe::EndToOptional& Subscribe::
-    EndTo () const
+    getEndTo () const
     {
       return this->EndTo_;
     }
 
     Subscribe::EndToOptional& Subscribe::
-    EndTo ()
+    getEndTo ()
     {
       return this->EndTo_;
     }
 
     void Subscribe::
-    EndTo (const EndToType& x)
+    setEndTo (const EndToType& x)
     {
       this->EndTo_.set (x);
     }
 
     void Subscribe::
-    EndTo (const EndToOptional& x)
+    setEndTo (const EndToOptional& x)
     {
       this->EndTo_ = x;
     }
 
     void Subscribe::
-    EndTo (::std::unique_ptr< EndToType > x)
+    setEndTo (::std::unique_ptr< EndToType > x)
     {
       this->EndTo_.set (std::move (x));
     }
 
     const Subscribe::DeliveryType& Subscribe::
-    Delivery () const
+    getDelivery () const
     {
       return this->Delivery_.get ();
     }
 
     Subscribe::DeliveryType& Subscribe::
-    Delivery ()
+    getDelivery ()
     {
       return this->Delivery_.get ();
     }
 
     void Subscribe::
-    Delivery (const DeliveryType& x)
+    setDelivery (const DeliveryType& x)
     {
       this->Delivery_.set (x);
     }
 
     void Subscribe::
-    Delivery (::std::unique_ptr< DeliveryType > x)
+    setDelivery (::std::unique_ptr< DeliveryType > x)
     {
       this->Delivery_.set (std::move (x));
     }
 
     const Subscribe::ExpiresOptional& Subscribe::
-    Expires () const
+    getExpires () const
     {
       return this->Expires_;
     }
 
     Subscribe::ExpiresOptional& Subscribe::
-    Expires ()
+    getExpires ()
     {
       return this->Expires_;
     }
 
     void Subscribe::
-    Expires (const ExpiresType& x)
+    setExpires (const ExpiresType& x)
     {
       this->Expires_.set (x);
     }
 
     void Subscribe::
-    Expires (const ExpiresOptional& x)
+    setExpires (const ExpiresOptional& x)
     {
       this->Expires_ = x;
     }
 
     void Subscribe::
-    Expires (::std::unique_ptr< ExpiresType > x)
+    setExpires (::std::unique_ptr< ExpiresType > x)
     {
       this->Expires_.set (std::move (x));
     }
 
     const Subscribe::FilterOptional& Subscribe::
-    Filter () const
+    getFilter () const
     {
       return this->Filter_;
     }
 
     Subscribe::FilterOptional& Subscribe::
-    Filter ()
+    getFilter ()
     {
       return this->Filter_;
     }
 
     void Subscribe::
-    Filter (const FilterType& x)
+    setFilter (const FilterType& x)
     {
       this->Filter_.set (x);
     }
 
     void Subscribe::
-    Filter (const FilterOptional& x)
+    setFilter (const FilterOptional& x)
     {
       this->Filter_ = x;
     }
 
     void Subscribe::
-    Filter (::std::unique_ptr< FilterType > x)
+    setFilter (::std::unique_ptr< FilterType > x)
     {
       this->Filter_.set (std::move (x));
     }
@@ -384,25 +384,25 @@ namespace WS
     // 
 
     const Identifier::IsReferenceParameterOptional& Identifier::
-    IsReferenceParameter () const
+    getIsReferenceParameter () const
     {
       return this->IsReferenceParameter_;
     }
 
     Identifier::IsReferenceParameterOptional& Identifier::
-    IsReferenceParameter ()
+    getIsReferenceParameter ()
     {
       return this->IsReferenceParameter_;
     }
 
     void Identifier::
-    IsReferenceParameter (const IsReferenceParameterType& x)
+    setIsReferenceParameter (const IsReferenceParameterType& x)
     {
       this->IsReferenceParameter_.set (x);
     }
 
     void Identifier::
-    IsReferenceParameter (const IsReferenceParameterOptional& x)
+    setIsReferenceParameter (const IsReferenceParameterOptional& x)
     {
       this->IsReferenceParameter_ = x;
     }
@@ -412,49 +412,49 @@ namespace WS
     // 
 
     const SubscribeResponse::SubscriptionManagerType& SubscribeResponse::
-    SubscriptionManager () const
+    getSubscriptionManager () const
     {
       return this->SubscriptionManager_.get ();
     }
 
     SubscribeResponse::SubscriptionManagerType& SubscribeResponse::
-    SubscriptionManager ()
+    getSubscriptionManager ()
     {
       return this->SubscriptionManager_.get ();
     }
 
     void SubscribeResponse::
-    SubscriptionManager (const SubscriptionManagerType& x)
+    setSubscriptionManager (const SubscriptionManagerType& x)
     {
       this->SubscriptionManager_.set (x);
     }
 
     void SubscribeResponse::
-    SubscriptionManager (::std::unique_ptr< SubscriptionManagerType > x)
+    setSubscriptionManager (::std::unique_ptr< SubscriptionManagerType > x)
     {
       this->SubscriptionManager_.set (std::move (x));
     }
 
     const SubscribeResponse::ExpiresType& SubscribeResponse::
-    Expires () const
+    getExpires () const
     {
       return this->Expires_.get ();
     }
 
     SubscribeResponse::ExpiresType& SubscribeResponse::
-    Expires ()
+    getExpires ()
     {
       return this->Expires_.get ();
     }
 
     void SubscribeResponse::
-    Expires (const ExpiresType& x)
+    setExpires (const ExpiresType& x)
     {
       this->Expires_.set (x);
     }
 
     void SubscribeResponse::
-    Expires (::std::unique_ptr< ExpiresType > x)
+    setExpires (::std::unique_ptr< ExpiresType > x)
     {
       this->Expires_.set (std::move (x));
     }
@@ -464,31 +464,31 @@ namespace WS
     // 
 
     const Renew::ExpiresOptional& Renew::
-    Expires () const
+    getExpires () const
     {
       return this->Expires_;
     }
 
     Renew::ExpiresOptional& Renew::
-    Expires ()
+    getExpires ()
     {
       return this->Expires_;
     }
 
     void Renew::
-    Expires (const ExpiresType& x)
+    setExpires (const ExpiresType& x)
     {
       this->Expires_.set (x);
     }
 
     void Renew::
-    Expires (const ExpiresOptional& x)
+    setExpires (const ExpiresOptional& x)
     {
       this->Expires_ = x;
     }
 
     void Renew::
-    Expires (::std::unique_ptr< ExpiresType > x)
+    setExpires (::std::unique_ptr< ExpiresType > x)
     {
       this->Expires_.set (std::move (x));
     }
@@ -498,31 +498,31 @@ namespace WS
     // 
 
     const RenewResponse::ExpiresOptional& RenewResponse::
-    Expires () const
+    getExpires () const
     {
       return this->Expires_;
     }
 
     RenewResponse::ExpiresOptional& RenewResponse::
-    Expires ()
+    getExpires ()
     {
       return this->Expires_;
     }
 
     void RenewResponse::
-    Expires (const ExpiresType& x)
+    setExpires (const ExpiresType& x)
     {
       this->Expires_.set (x);
     }
 
     void RenewResponse::
-    Expires (const ExpiresOptional& x)
+    setExpires (const ExpiresOptional& x)
     {
       this->Expires_ = x;
     }
 
     void RenewResponse::
-    Expires (::std::unique_ptr< ExpiresType > x)
+    setExpires (::std::unique_ptr< ExpiresType > x)
     {
       this->Expires_.set (std::move (x));
     }
@@ -536,31 +536,31 @@ namespace WS
     // 
 
     const GetStatusResponse::ExpiresOptional& GetStatusResponse::
-    Expires () const
+    getExpires () const
     {
       return this->Expires_;
     }
 
     GetStatusResponse::ExpiresOptional& GetStatusResponse::
-    Expires ()
+    getExpires ()
     {
       return this->Expires_;
     }
 
     void GetStatusResponse::
-    Expires (const ExpiresType& x)
+    setExpires (const ExpiresType& x)
     {
       this->Expires_.set (x);
     }
 
     void GetStatusResponse::
-    Expires (const ExpiresOptional& x)
+    setExpires (const ExpiresOptional& x)
     {
       this->Expires_ = x;
     }
 
     void GetStatusResponse::
-    Expires (::std::unique_ptr< ExpiresType > x)
+    setExpires (::std::unique_ptr< ExpiresType > x)
     {
       this->Expires_.set (std::move (x));
     }
@@ -574,67 +574,67 @@ namespace WS
     // 
 
     const SubscriptionEnd::SubscriptionManagerType& SubscriptionEnd::
-    SubscriptionManager () const
+    getSubscriptionManager () const
     {
       return this->SubscriptionManager_.get ();
     }
 
     SubscriptionEnd::SubscriptionManagerType& SubscriptionEnd::
-    SubscriptionManager ()
+    getSubscriptionManager ()
     {
       return this->SubscriptionManager_.get ();
     }
 
     void SubscriptionEnd::
-    SubscriptionManager (const SubscriptionManagerType& x)
+    setSubscriptionManager (const SubscriptionManagerType& x)
     {
       this->SubscriptionManager_.set (x);
     }
 
     void SubscriptionEnd::
-    SubscriptionManager (::std::unique_ptr< SubscriptionManagerType > x)
+    setSubscriptionManager (::std::unique_ptr< SubscriptionManagerType > x)
     {
       this->SubscriptionManager_.set (std::move (x));
     }
 
     const SubscriptionEnd::StatusType& SubscriptionEnd::
-    Status () const
+    getStatus () const
     {
       return this->Status_.get ();
     }
 
     SubscriptionEnd::StatusType& SubscriptionEnd::
-    Status ()
+    getStatus ()
     {
       return this->Status_.get ();
     }
 
     void SubscriptionEnd::
-    Status (const StatusType& x)
+    setStatus (const StatusType& x)
     {
       this->Status_.set (x);
     }
 
     void SubscriptionEnd::
-    Status (::std::unique_ptr< StatusType > x)
+    setStatus (::std::unique_ptr< StatusType > x)
     {
       this->Status_.set (std::move (x));
     }
 
     const SubscriptionEnd::ReasonSequence& SubscriptionEnd::
-    Reason () const
+    getReason () const
     {
       return this->Reason_;
     }
 
     SubscriptionEnd::ReasonSequence& SubscriptionEnd::
-    Reason ()
+    getReason ()
     {
       return this->Reason_;
     }
 
     void SubscriptionEnd::
-    Reason (const ReasonSequence& s)
+    setReason (const ReasonSequence& s)
     {
       this->Reason_ = s;
     }
@@ -952,14 +952,14 @@ namespace WS
     FilterType::
     FilterType ()
     : ::WS::EVENTING::ActionList (),
-      Dialect_ (Dialect_default_value (), this)
+      Dialect_ (getDialectDefaultValue (), this)
     {
     }
 
     FilterType::
     FilterType (const ::WS::EVENTING::ActionList& _xsd_ActionList_base)
     : ::WS::EVENTING::ActionList (_xsd_ActionList_base),
-      Dialect_ (Dialect_default_value (), this)
+      Dialect_ (getDialectDefaultValue (), this)
     {
     }
 
@@ -1005,7 +1005,7 @@ namespace WS
 
       if (!Dialect_.present ())
       {
-        this->Dialect_.set (Dialect_default_value ());
+        this->Dialect_.set (getDialectDefaultValue ());
       }
     }
 
@@ -2288,3266 +2288,6 @@ namespace WS
 {
   namespace EVENTING
   {
-    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    NotifyTo (const ::std::string& u,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::EVENTING::NotifyTo (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    NotifyTo (const ::std::string& u,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::EVENTING::NotifyTo (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    NotifyTo (const ::std::string& u,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::EVENTING::NotifyTo (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    NotifyTo (::std::istream& is,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::NotifyTo (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    NotifyTo (::std::istream& is,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::NotifyTo (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    NotifyTo (::std::istream& is,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::NotifyTo (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    NotifyTo (::std::istream& is,
-              const ::std::string& sid,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::NotifyTo (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    NotifyTo (::std::istream& is,
-              const ::std::string& sid,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::NotifyTo (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    NotifyTo (::std::istream& is,
-              const ::std::string& sid,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::NotifyTo (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    NotifyTo (::xercesc::InputSource& i,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::EVENTING::NotifyTo (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    NotifyTo (::xercesc::InputSource& i,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::EVENTING::NotifyTo (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    NotifyTo (::xercesc::InputSource& i,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-        ::WS::EVENTING::NotifyTo (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    NotifyTo (const ::xercesc::DOMDocument& doc,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > (
-          ::WS::EVENTING::NotifyTo (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "NotifyTo",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
-          &::xsd::cxx::tree::factory_impl< ::WS::ADDRESSING::EndpointReferenceType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-        ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > r (
-          dynamic_cast< ::WS::ADDRESSING::EndpointReferenceType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "NotifyTo",
-        "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-    }
-
-    ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType >
-    NotifyTo (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "NotifyTo",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
-          &::xsd::cxx::tree::factory_impl< ::WS::ADDRESSING::EndpointReferenceType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-
-        ::std::unique_ptr< ::WS::ADDRESSING::EndpointReferenceType > r (
-          dynamic_cast< ::WS::ADDRESSING::EndpointReferenceType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "NotifyTo",
-        "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
-    Subscribe_ (const ::std::string& u,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::Subscribe > (
-        ::WS::EVENTING::Subscribe_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
-    Subscribe_ (const ::std::string& u,
-                ::xml_schema::ErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::Subscribe > (
-        ::WS::EVENTING::Subscribe_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
-    Subscribe_ (const ::std::string& u,
-                ::xercesc::DOMErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::Subscribe > (
-        ::WS::EVENTING::Subscribe_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
-    Subscribe_ (::std::istream& is,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::Subscribe_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
-    Subscribe_ (::std::istream& is,
-                ::xml_schema::ErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::Subscribe_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
-    Subscribe_ (::std::istream& is,
-                ::xercesc::DOMErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::Subscribe_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
-    Subscribe_ (::std::istream& is,
-                const ::std::string& sid,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::Subscribe_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
-    Subscribe_ (::std::istream& is,
-                const ::std::string& sid,
-                ::xml_schema::ErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::Subscribe_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
-    Subscribe_ (::std::istream& is,
-                const ::std::string& sid,
-                ::xercesc::DOMErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::Subscribe_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
-    Subscribe_ (::xercesc::InputSource& i,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::Subscribe > (
-        ::WS::EVENTING::Subscribe_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
-    Subscribe_ (::xercesc::InputSource& i,
-                ::xml_schema::ErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::Subscribe > (
-        ::WS::EVENTING::Subscribe_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
-    Subscribe_ (::xercesc::InputSource& i,
-                ::xercesc::DOMErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::Subscribe > (
-        ::WS::EVENTING::Subscribe_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
-    Subscribe_ (const ::xercesc::DOMDocument& doc,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::EVENTING::Subscribe > (
-          ::WS::EVENTING::Subscribe_ (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "Subscribe" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        ::std::unique_ptr< ::WS::EVENTING::Subscribe > r (
-          ::xsd::cxx::tree::traits< ::WS::EVENTING::Subscribe, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Subscribe",
-        "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Subscribe >
-    Subscribe_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      if (n.name () == "Subscribe" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        ::std::unique_ptr< ::WS::EVENTING::Subscribe > r (
-          ::xsd::cxx::tree::traits< ::WS::EVENTING::Subscribe, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Subscribe",
-        "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Identifier >
-    Identifier_ (const ::std::string& u,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::Identifier > (
-        ::WS::EVENTING::Identifier_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Identifier >
-    Identifier_ (const ::std::string& u,
-                 ::xml_schema::ErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::Identifier > (
-        ::WS::EVENTING::Identifier_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Identifier >
-    Identifier_ (const ::std::string& u,
-                 ::xercesc::DOMErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::Identifier > (
-        ::WS::EVENTING::Identifier_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Identifier >
-    Identifier_ (::std::istream& is,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::Identifier_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Identifier >
-    Identifier_ (::std::istream& is,
-                 ::xml_schema::ErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::Identifier_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Identifier >
-    Identifier_ (::std::istream& is,
-                 ::xercesc::DOMErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::Identifier_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Identifier >
-    Identifier_ (::std::istream& is,
-                 const ::std::string& sid,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::Identifier_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Identifier >
-    Identifier_ (::std::istream& is,
-                 const ::std::string& sid,
-                 ::xml_schema::ErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::Identifier_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Identifier >
-    Identifier_ (::std::istream& is,
-                 const ::std::string& sid,
-                 ::xercesc::DOMErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::Identifier_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Identifier >
-    Identifier_ (::xercesc::InputSource& i,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::Identifier > (
-        ::WS::EVENTING::Identifier_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Identifier >
-    Identifier_ (::xercesc::InputSource& i,
-                 ::xml_schema::ErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::Identifier > (
-        ::WS::EVENTING::Identifier_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Identifier >
-    Identifier_ (::xercesc::InputSource& i,
-                 ::xercesc::DOMErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::Identifier > (
-        ::WS::EVENTING::Identifier_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Identifier >
-    Identifier_ (const ::xercesc::DOMDocument& doc,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::EVENTING::Identifier > (
-          ::WS::EVENTING::Identifier_ (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "Identifier" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        ::std::unique_ptr< ::WS::EVENTING::Identifier > r (
-          ::xsd::cxx::tree::traits< ::WS::EVENTING::Identifier, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Identifier",
-        "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Identifier >
-    Identifier_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      if (n.name () == "Identifier" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        ::std::unique_ptr< ::WS::EVENTING::Identifier > r (
-          ::xsd::cxx::tree::traits< ::WS::EVENTING::Identifier, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Identifier",
-        "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
-    SubscribeResponse_ (const ::std::string& u,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse > (
-        ::WS::EVENTING::SubscribeResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
-    SubscribeResponse_ (const ::std::string& u,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse > (
-        ::WS::EVENTING::SubscribeResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
-    SubscribeResponse_ (const ::std::string& u,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse > (
-        ::WS::EVENTING::SubscribeResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
-    SubscribeResponse_ (::std::istream& is,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::SubscribeResponse_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
-    SubscribeResponse_ (::std::istream& is,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::SubscribeResponse_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
-    SubscribeResponse_ (::std::istream& is,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::SubscribeResponse_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
-    SubscribeResponse_ (::std::istream& is,
-                        const ::std::string& sid,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::SubscribeResponse_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
-    SubscribeResponse_ (::std::istream& is,
-                        const ::std::string& sid,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::SubscribeResponse_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
-    SubscribeResponse_ (::std::istream& is,
-                        const ::std::string& sid,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::SubscribeResponse_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
-    SubscribeResponse_ (::xercesc::InputSource& i,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse > (
-        ::WS::EVENTING::SubscribeResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
-    SubscribeResponse_ (::xercesc::InputSource& i,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse > (
-        ::WS::EVENTING::SubscribeResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
-    SubscribeResponse_ (::xercesc::InputSource& i,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse > (
-        ::WS::EVENTING::SubscribeResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
-    SubscribeResponse_ (const ::xercesc::DOMDocument& doc,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse > (
-          ::WS::EVENTING::SubscribeResponse_ (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "SubscribeResponse" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse > r (
-          ::xsd::cxx::tree::traits< ::WS::EVENTING::SubscribeResponse, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "SubscribeResponse",
-        "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse >
-    SubscribeResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      if (n.name () == "SubscribeResponse" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        ::std::unique_ptr< ::WS::EVENTING::SubscribeResponse > r (
-          ::xsd::cxx::tree::traits< ::WS::EVENTING::SubscribeResponse, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "SubscribeResponse",
-        "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDialect (const ::std::string& u,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::EVENTING::SupportedDialect (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDialect (const ::std::string& u,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::EVENTING::SupportedDialect (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDialect (const ::std::string& u,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::EVENTING::SupportedDialect (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDialect (::std::istream& is,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::SupportedDialect (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDialect (::std::istream& is,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::SupportedDialect (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDialect (::std::istream& is,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::SupportedDialect (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDialect (::std::istream& is,
-                      const ::std::string& sid,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::SupportedDialect (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDialect (::std::istream& is,
-                      const ::std::string& sid,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::SupportedDialect (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDialect (::std::istream& is,
-                      const ::std::string& sid,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::SupportedDialect (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDialect (::xercesc::InputSource& i,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::EVENTING::SupportedDialect (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDialect (::xercesc::InputSource& i,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::EVENTING::SupportedDialect (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDialect (::xercesc::InputSource& i,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::EVENTING::SupportedDialect (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDialect (const ::xercesc::DOMDocument& doc,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::xml_schema::Uri > (
-          ::WS::EVENTING::SupportedDialect (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "SupportedDialect",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
-          &::xsd::cxx::tree::factory_impl< ::xml_schema::Uri >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-        ::std::unique_ptr< ::xml_schema::Uri > r (
-          dynamic_cast< ::xml_schema::Uri* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "SupportedDialect",
-        "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDialect (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "SupportedDialect",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
-          &::xsd::cxx::tree::factory_impl< ::xml_schema::Uri >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-
-        ::std::unique_ptr< ::xml_schema::Uri > r (
-          dynamic_cast< ::xml_schema::Uri* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "SupportedDialect",
-        "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDeliveryMode (const ::std::string& u,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::EVENTING::SupportedDeliveryMode (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDeliveryMode (const ::std::string& u,
-                           ::xml_schema::ErrorHandler& h,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::EVENTING::SupportedDeliveryMode (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDeliveryMode (const ::std::string& u,
-                           ::xercesc::DOMErrorHandler& h,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::EVENTING::SupportedDeliveryMode (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDeliveryMode (::std::istream& is,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::SupportedDeliveryMode (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDeliveryMode (::std::istream& is,
-                           ::xml_schema::ErrorHandler& h,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::SupportedDeliveryMode (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDeliveryMode (::std::istream& is,
-                           ::xercesc::DOMErrorHandler& h,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::SupportedDeliveryMode (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDeliveryMode (::std::istream& is,
-                           const ::std::string& sid,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::SupportedDeliveryMode (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDeliveryMode (::std::istream& is,
-                           const ::std::string& sid,
-                           ::xml_schema::ErrorHandler& h,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::SupportedDeliveryMode (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDeliveryMode (::std::istream& is,
-                           const ::std::string& sid,
-                           ::xercesc::DOMErrorHandler& h,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::SupportedDeliveryMode (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDeliveryMode (::xercesc::InputSource& i,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::EVENTING::SupportedDeliveryMode (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDeliveryMode (::xercesc::InputSource& i,
-                           ::xml_schema::ErrorHandler& h,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::EVENTING::SupportedDeliveryMode (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDeliveryMode (::xercesc::InputSource& i,
-                           ::xercesc::DOMErrorHandler& h,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::xml_schema::Uri > (
-        ::WS::EVENTING::SupportedDeliveryMode (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDeliveryMode (const ::xercesc::DOMDocument& doc,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::xml_schema::Uri > (
-          ::WS::EVENTING::SupportedDeliveryMode (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "SupportedDeliveryMode",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
-          &::xsd::cxx::tree::factory_impl< ::xml_schema::Uri >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-        ::std::unique_ptr< ::xml_schema::Uri > r (
-          dynamic_cast< ::xml_schema::Uri* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "SupportedDeliveryMode",
-        "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-    }
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    SupportedDeliveryMode (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                           ::xml_schema::Flags f,
-                           const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "SupportedDeliveryMode",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
-          &::xsd::cxx::tree::factory_impl< ::xml_schema::Uri >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-
-        ::std::unique_ptr< ::xml_schema::Uri > r (
-          dynamic_cast< ::xml_schema::Uri* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "SupportedDeliveryMode",
-        "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Renew >
-    Renew_ (const ::std::string& u,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::Renew > (
-        ::WS::EVENTING::Renew_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Renew >
-    Renew_ (const ::std::string& u,
-            ::xml_schema::ErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::Renew > (
-        ::WS::EVENTING::Renew_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Renew >
-    Renew_ (const ::std::string& u,
-            ::xercesc::DOMErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::Renew > (
-        ::WS::EVENTING::Renew_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Renew >
-    Renew_ (::std::istream& is,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::Renew_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Renew >
-    Renew_ (::std::istream& is,
-            ::xml_schema::ErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::Renew_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Renew >
-    Renew_ (::std::istream& is,
-            ::xercesc::DOMErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::Renew_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Renew >
-    Renew_ (::std::istream& is,
-            const ::std::string& sid,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::Renew_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Renew >
-    Renew_ (::std::istream& is,
-            const ::std::string& sid,
-            ::xml_schema::ErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::Renew_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Renew >
-    Renew_ (::std::istream& is,
-            const ::std::string& sid,
-            ::xercesc::DOMErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::Renew_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Renew >
-    Renew_ (::xercesc::InputSource& i,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::Renew > (
-        ::WS::EVENTING::Renew_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Renew >
-    Renew_ (::xercesc::InputSource& i,
-            ::xml_schema::ErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::Renew > (
-        ::WS::EVENTING::Renew_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Renew >
-    Renew_ (::xercesc::InputSource& i,
-            ::xercesc::DOMErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::Renew > (
-        ::WS::EVENTING::Renew_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Renew >
-    Renew_ (const ::xercesc::DOMDocument& doc,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::EVENTING::Renew > (
-          ::WS::EVENTING::Renew_ (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "Renew" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        ::std::unique_ptr< ::WS::EVENTING::Renew > r (
-          ::xsd::cxx::tree::traits< ::WS::EVENTING::Renew, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Renew",
-        "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Renew >
-    Renew_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      if (n.name () == "Renew" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        ::std::unique_ptr< ::WS::EVENTING::Renew > r (
-          ::xsd::cxx::tree::traits< ::WS::EVENTING::Renew, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Renew",
-        "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
-    RenewResponse_ (const ::std::string& u,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::RenewResponse > (
-        ::WS::EVENTING::RenewResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
-    RenewResponse_ (const ::std::string& u,
-                    ::xml_schema::ErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::RenewResponse > (
-        ::WS::EVENTING::RenewResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
-    RenewResponse_ (const ::std::string& u,
-                    ::xercesc::DOMErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::RenewResponse > (
-        ::WS::EVENTING::RenewResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
-    RenewResponse_ (::std::istream& is,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::RenewResponse_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
-    RenewResponse_ (::std::istream& is,
-                    ::xml_schema::ErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::RenewResponse_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
-    RenewResponse_ (::std::istream& is,
-                    ::xercesc::DOMErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::RenewResponse_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
-    RenewResponse_ (::std::istream& is,
-                    const ::std::string& sid,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::RenewResponse_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
-    RenewResponse_ (::std::istream& is,
-                    const ::std::string& sid,
-                    ::xml_schema::ErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::RenewResponse_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
-    RenewResponse_ (::std::istream& is,
-                    const ::std::string& sid,
-                    ::xercesc::DOMErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::RenewResponse_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
-    RenewResponse_ (::xercesc::InputSource& i,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::RenewResponse > (
-        ::WS::EVENTING::RenewResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
-    RenewResponse_ (::xercesc::InputSource& i,
-                    ::xml_schema::ErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::RenewResponse > (
-        ::WS::EVENTING::RenewResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
-    RenewResponse_ (::xercesc::InputSource& i,
-                    ::xercesc::DOMErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::RenewResponse > (
-        ::WS::EVENTING::RenewResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
-    RenewResponse_ (const ::xercesc::DOMDocument& doc,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::EVENTING::RenewResponse > (
-          ::WS::EVENTING::RenewResponse_ (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "RenewResponse" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        ::std::unique_ptr< ::WS::EVENTING::RenewResponse > r (
-          ::xsd::cxx::tree::traits< ::WS::EVENTING::RenewResponse, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "RenewResponse",
-        "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::RenewResponse >
-    RenewResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      if (n.name () == "RenewResponse" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        ::std::unique_ptr< ::WS::EVENTING::RenewResponse > r (
-          ::xsd::cxx::tree::traits< ::WS::EVENTING::RenewResponse, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "RenewResponse",
-        "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
-    GetStatus_ (const ::std::string& u,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::GetStatus > (
-        ::WS::EVENTING::GetStatus_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
-    GetStatus_ (const ::std::string& u,
-                ::xml_schema::ErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::GetStatus > (
-        ::WS::EVENTING::GetStatus_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
-    GetStatus_ (const ::std::string& u,
-                ::xercesc::DOMErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::GetStatus > (
-        ::WS::EVENTING::GetStatus_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
-    GetStatus_ (::std::istream& is,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::GetStatus_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
-    GetStatus_ (::std::istream& is,
-                ::xml_schema::ErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::GetStatus_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
-    GetStatus_ (::std::istream& is,
-                ::xercesc::DOMErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::GetStatus_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
-    GetStatus_ (::std::istream& is,
-                const ::std::string& sid,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::GetStatus_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
-    GetStatus_ (::std::istream& is,
-                const ::std::string& sid,
-                ::xml_schema::ErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::GetStatus_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
-    GetStatus_ (::std::istream& is,
-                const ::std::string& sid,
-                ::xercesc::DOMErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::GetStatus_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
-    GetStatus_ (::xercesc::InputSource& i,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::GetStatus > (
-        ::WS::EVENTING::GetStatus_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
-    GetStatus_ (::xercesc::InputSource& i,
-                ::xml_schema::ErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::GetStatus > (
-        ::WS::EVENTING::GetStatus_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
-    GetStatus_ (::xercesc::InputSource& i,
-                ::xercesc::DOMErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::GetStatus > (
-        ::WS::EVENTING::GetStatus_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
-    GetStatus_ (const ::xercesc::DOMDocument& doc,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::EVENTING::GetStatus > (
-          ::WS::EVENTING::GetStatus_ (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "GetStatus" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        ::std::unique_ptr< ::WS::EVENTING::GetStatus > r (
-          ::xsd::cxx::tree::traits< ::WS::EVENTING::GetStatus, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetStatus",
-        "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatus >
-    GetStatus_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      if (n.name () == "GetStatus" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        ::std::unique_ptr< ::WS::EVENTING::GetStatus > r (
-          ::xsd::cxx::tree::traits< ::WS::EVENTING::GetStatus, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetStatus",
-        "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
-    GetStatusResponse_ (const ::std::string& u,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse > (
-        ::WS::EVENTING::GetStatusResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
-    GetStatusResponse_ (const ::std::string& u,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse > (
-        ::WS::EVENTING::GetStatusResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
-    GetStatusResponse_ (const ::std::string& u,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse > (
-        ::WS::EVENTING::GetStatusResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
-    GetStatusResponse_ (::std::istream& is,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::GetStatusResponse_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
-    GetStatusResponse_ (::std::istream& is,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::GetStatusResponse_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
-    GetStatusResponse_ (::std::istream& is,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::GetStatusResponse_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
-    GetStatusResponse_ (::std::istream& is,
-                        const ::std::string& sid,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::GetStatusResponse_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
-    GetStatusResponse_ (::std::istream& is,
-                        const ::std::string& sid,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::GetStatusResponse_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
-    GetStatusResponse_ (::std::istream& is,
-                        const ::std::string& sid,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::GetStatusResponse_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
-    GetStatusResponse_ (::xercesc::InputSource& i,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse > (
-        ::WS::EVENTING::GetStatusResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
-    GetStatusResponse_ (::xercesc::InputSource& i,
-                        ::xml_schema::ErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse > (
-        ::WS::EVENTING::GetStatusResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
-    GetStatusResponse_ (::xercesc::InputSource& i,
-                        ::xercesc::DOMErrorHandler& h,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse > (
-        ::WS::EVENTING::GetStatusResponse_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
-    GetStatusResponse_ (const ::xercesc::DOMDocument& doc,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse > (
-          ::WS::EVENTING::GetStatusResponse_ (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "GetStatusResponse" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse > r (
-          ::xsd::cxx::tree::traits< ::WS::EVENTING::GetStatusResponse, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetStatusResponse",
-        "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse >
-    GetStatusResponse_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                        ::xml_schema::Flags f,
-                        const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      if (n.name () == "GetStatusResponse" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        ::std::unique_ptr< ::WS::EVENTING::GetStatusResponse > r (
-          ::xsd::cxx::tree::traits< ::WS::EVENTING::GetStatusResponse, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "GetStatusResponse",
-        "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
-    Unsubscribe_ (const ::std::string& u,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::Unsubscribe > (
-        ::WS::EVENTING::Unsubscribe_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
-    Unsubscribe_ (const ::std::string& u,
-                  ::xml_schema::ErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::Unsubscribe > (
-        ::WS::EVENTING::Unsubscribe_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
-    Unsubscribe_ (const ::std::string& u,
-                  ::xercesc::DOMErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::Unsubscribe > (
-        ::WS::EVENTING::Unsubscribe_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
-    Unsubscribe_ (::std::istream& is,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::Unsubscribe_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
-    Unsubscribe_ (::std::istream& is,
-                  ::xml_schema::ErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::Unsubscribe_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
-    Unsubscribe_ (::std::istream& is,
-                  ::xercesc::DOMErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::Unsubscribe_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
-    Unsubscribe_ (::std::istream& is,
-                  const ::std::string& sid,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::Unsubscribe_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
-    Unsubscribe_ (::std::istream& is,
-                  const ::std::string& sid,
-                  ::xml_schema::ErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::Unsubscribe_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
-    Unsubscribe_ (::std::istream& is,
-                  const ::std::string& sid,
-                  ::xercesc::DOMErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::Unsubscribe_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
-    Unsubscribe_ (::xercesc::InputSource& i,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::Unsubscribe > (
-        ::WS::EVENTING::Unsubscribe_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
-    Unsubscribe_ (::xercesc::InputSource& i,
-                  ::xml_schema::ErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::Unsubscribe > (
-        ::WS::EVENTING::Unsubscribe_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
-    Unsubscribe_ (::xercesc::InputSource& i,
-                  ::xercesc::DOMErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::Unsubscribe > (
-        ::WS::EVENTING::Unsubscribe_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
-    Unsubscribe_ (const ::xercesc::DOMDocument& doc,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::EVENTING::Unsubscribe > (
-          ::WS::EVENTING::Unsubscribe_ (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "Unsubscribe" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        ::std::unique_ptr< ::WS::EVENTING::Unsubscribe > r (
-          ::xsd::cxx::tree::traits< ::WS::EVENTING::Unsubscribe, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Unsubscribe",
-        "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::Unsubscribe >
-    Unsubscribe_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      if (n.name () == "Unsubscribe" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        ::std::unique_ptr< ::WS::EVENTING::Unsubscribe > r (
-          ::xsd::cxx::tree::traits< ::WS::EVENTING::Unsubscribe, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Unsubscribe",
-        "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
-    SubscriptionEnd_ (const ::std::string& u,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd > (
-        ::WS::EVENTING::SubscriptionEnd_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
-    SubscriptionEnd_ (const ::std::string& u,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd > (
-        ::WS::EVENTING::SubscriptionEnd_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
-    SubscriptionEnd_ (const ::std::string& u,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd > (
-        ::WS::EVENTING::SubscriptionEnd_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
-    SubscriptionEnd_ (::std::istream& is,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::SubscriptionEnd_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
-    SubscriptionEnd_ (::std::istream& is,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::SubscriptionEnd_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
-    SubscriptionEnd_ (::std::istream& is,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::EVENTING::SubscriptionEnd_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
-    SubscriptionEnd_ (::std::istream& is,
-                      const ::std::string& sid,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::SubscriptionEnd_ (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
-    SubscriptionEnd_ (::std::istream& is,
-                      const ::std::string& sid,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::SubscriptionEnd_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
-    SubscriptionEnd_ (::std::istream& is,
-                      const ::std::string& sid,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::EVENTING::SubscriptionEnd_ (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
-    SubscriptionEnd_ (::xercesc::InputSource& i,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd > (
-        ::WS::EVENTING::SubscriptionEnd_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
-    SubscriptionEnd_ (::xercesc::InputSource& i,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd > (
-        ::WS::EVENTING::SubscriptionEnd_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
-    SubscriptionEnd_ (::xercesc::InputSource& i,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd > (
-        ::WS::EVENTING::SubscriptionEnd_ (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
-    SubscriptionEnd_ (const ::xercesc::DOMDocument& doc,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd > (
-          ::WS::EVENTING::SubscriptionEnd_ (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "SubscriptionEnd" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd > r (
-          ::xsd::cxx::tree::traits< ::WS::EVENTING::SubscriptionEnd, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "SubscriptionEnd",
-        "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-    }
-
-    ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd >
-    SubscriptionEnd_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      if (n.name () == "SubscriptionEnd" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        ::std::unique_ptr< ::WS::EVENTING::SubscriptionEnd > r (
-          ::xsd::cxx::tree::traits< ::WS::EVENTING::SubscriptionEnd, char >::create (
-            e, f, 0));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "SubscriptionEnd",
-        "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-    }
   }
 }
 
@@ -5579,7 +2319,7 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        const DeliveryType::NotifyToType& x (i.NotifyTo ());
+        const DeliveryType::NotifyToType& x (i.getNotifyTo ());
         if (typeid (DeliveryType::NotifyToType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -5599,14 +2339,14 @@ namespace WS
 
       // Mode
       //
-      if (i.Mode ())
+      if (i.getMode ())
       {
         ::xercesc::DOMAttr& a (
           ::xsd::cxx::xml::dom::create_attribute (
             "Mode",
             e));
 
-        a << *i.Mode ();
+        a << *i.getMode ();
       }
     }
 
@@ -5616,175 +2356,6 @@ namespace WS
       "DeliveryType",
       "http://schemas.xmlsoap.org/ws/2004/08/eventing");
 
-
-    void
-    NotifyTo (::std::ostream& o,
-              const ::WS::ADDRESSING::EndpointReferenceType& s,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::NotifyTo (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    NotifyTo (::std::ostream& o,
-              const ::WS::ADDRESSING::EndpointReferenceType& s,
-              ::xml_schema::ErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::NotifyTo (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    NotifyTo (::std::ostream& o,
-              const ::WS::ADDRESSING::EndpointReferenceType& s,
-              ::xercesc::DOMErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::NotifyTo (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    NotifyTo (::xercesc::XMLFormatTarget& t,
-              const ::WS::ADDRESSING::EndpointReferenceType& s,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::NotifyTo (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    NotifyTo (::xercesc::XMLFormatTarget& t,
-              const ::WS::ADDRESSING::EndpointReferenceType& s,
-              ::xml_schema::ErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::NotifyTo (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    NotifyTo (::xercesc::XMLFormatTarget& t,
-              const ::WS::ADDRESSING::EndpointReferenceType& s,
-              ::xercesc::DOMErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::NotifyTo (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    NotifyTo (::xercesc::DOMDocument& d,
-              const ::WS::ADDRESSING::EndpointReferenceType& s,
-              ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (typeid (::WS::ADDRESSING::EndpointReferenceType) == typeid (s))
-      {
-        if (n.name () == "NotifyTo" &&
-            n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-        {
-          e << s;
-        }
-        else
-        {
-          throw ::xsd::cxx::tree::unexpected_element < char > (
-            n.name (),
-            n.namespace_ (),
-            "NotifyTo",
-            "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-        }
-      }
-      else
-      {
-        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "NotifyTo",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
-          e, n, s);
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    NotifyTo (const ::WS::ADDRESSING::EndpointReferenceType& s,
-              const ::xml_schema::NamespaceInfomap& m,
-              ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-      if (typeid (::WS::ADDRESSING::EndpointReferenceType) == typeid (s))
-      {
-        d = ::xsd::cxx::xml::dom::serialize< char > (
-          "NotifyTo",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
-          m, f);
-      }
-      else
-      {
-        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "NotifyTo",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
-          m, s, f);
-      }
-
-      ::WS::EVENTING::NotifyTo (*d, s, f);
-      return d;
-    }
 
     void
     operator<< (::xercesc::DOMElement& e, const NonNegativeDurationType& i)
@@ -5877,7 +2448,7 @@ namespace WS
             "Dialect",
             e));
 
-        a << i.Dialect ();
+        a << i.getDialect ();
       }
     }
 
@@ -5895,14 +2466,14 @@ namespace WS
 
       // lang
       //
-      if (i.lang ())
+      if (i.getLang ())
       {
         ::xercesc::DOMAttr& a (
           ::xsd::cxx::xml::dom::create_attribute (
             "lang",
             e));
 
-        a << *i.lang ();
+        a << *i.getLang ();
       }
     }
 
@@ -5912,1676 +2483,6 @@ namespace WS
       "LanguageSpecificStringType",
       "http://schemas.xmlsoap.org/ws/2004/08/eventing");
 
-
-    void
-    Subscribe_ (::std::ostream& o,
-                const ::WS::EVENTING::Subscribe& s,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::Subscribe_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Subscribe_ (::std::ostream& o,
-                const ::WS::EVENTING::Subscribe& s,
-                ::xml_schema::ErrorHandler& h,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::Subscribe_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Subscribe_ (::std::ostream& o,
-                const ::WS::EVENTING::Subscribe& s,
-                ::xercesc::DOMErrorHandler& h,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::Subscribe_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Subscribe_ (::xercesc::XMLFormatTarget& t,
-                const ::WS::EVENTING::Subscribe& s,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::Subscribe_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Subscribe_ (::xercesc::XMLFormatTarget& t,
-                const ::WS::EVENTING::Subscribe& s,
-                ::xml_schema::ErrorHandler& h,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::Subscribe_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Subscribe_ (::xercesc::XMLFormatTarget& t,
-                const ::WS::EVENTING::Subscribe& s,
-                ::xercesc::DOMErrorHandler& h,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::Subscribe_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Subscribe_ (::xercesc::DOMDocument& d,
-                const ::WS::EVENTING::Subscribe& s,
-                ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "Subscribe" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        e << s;
-      }
-      else
-      {
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "Subscribe",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Subscribe_ (const ::WS::EVENTING::Subscribe& s,
-                const ::xml_schema::NamespaceInfomap& m,
-                ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::serialize< char > (
-          "Subscribe",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
-          m, f));
-
-      ::WS::EVENTING::Subscribe_ (*d, s, f);
-      return d;
-    }
-
-    void
-    Identifier_ (::std::ostream& o,
-                 const ::WS::EVENTING::Identifier& s,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::Identifier_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Identifier_ (::std::ostream& o,
-                 const ::WS::EVENTING::Identifier& s,
-                 ::xml_schema::ErrorHandler& h,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::Identifier_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Identifier_ (::std::ostream& o,
-                 const ::WS::EVENTING::Identifier& s,
-                 ::xercesc::DOMErrorHandler& h,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::Identifier_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Identifier_ (::xercesc::XMLFormatTarget& t,
-                 const ::WS::EVENTING::Identifier& s,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::Identifier_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Identifier_ (::xercesc::XMLFormatTarget& t,
-                 const ::WS::EVENTING::Identifier& s,
-                 ::xml_schema::ErrorHandler& h,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::Identifier_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Identifier_ (::xercesc::XMLFormatTarget& t,
-                 const ::WS::EVENTING::Identifier& s,
-                 ::xercesc::DOMErrorHandler& h,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::Identifier_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Identifier_ (::xercesc::DOMDocument& d,
-                 const ::WS::EVENTING::Identifier& s,
-                 ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "Identifier" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        e << s;
-      }
-      else
-      {
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "Identifier",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Identifier_ (const ::WS::EVENTING::Identifier& s,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::serialize< char > (
-          "Identifier",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
-          m, f));
-
-      ::WS::EVENTING::Identifier_ (*d, s, f);
-      return d;
-    }
-
-    void
-    SubscribeResponse_ (::std::ostream& o,
-                        const ::WS::EVENTING::SubscribeResponse& s,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::SubscribeResponse_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    SubscribeResponse_ (::std::ostream& o,
-                        const ::WS::EVENTING::SubscribeResponse& s,
-                        ::xml_schema::ErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::SubscribeResponse_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    SubscribeResponse_ (::std::ostream& o,
-                        const ::WS::EVENTING::SubscribeResponse& s,
-                        ::xercesc::DOMErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::SubscribeResponse_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    SubscribeResponse_ (::xercesc::XMLFormatTarget& t,
-                        const ::WS::EVENTING::SubscribeResponse& s,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::SubscribeResponse_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    SubscribeResponse_ (::xercesc::XMLFormatTarget& t,
-                        const ::WS::EVENTING::SubscribeResponse& s,
-                        ::xml_schema::ErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::SubscribeResponse_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    SubscribeResponse_ (::xercesc::XMLFormatTarget& t,
-                        const ::WS::EVENTING::SubscribeResponse& s,
-                        ::xercesc::DOMErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::SubscribeResponse_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    SubscribeResponse_ (::xercesc::DOMDocument& d,
-                        const ::WS::EVENTING::SubscribeResponse& s,
-                        ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "SubscribeResponse" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        e << s;
-      }
-      else
-      {
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "SubscribeResponse",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    SubscribeResponse_ (const ::WS::EVENTING::SubscribeResponse& s,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::serialize< char > (
-          "SubscribeResponse",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
-          m, f));
-
-      ::WS::EVENTING::SubscribeResponse_ (*d, s, f);
-      return d;
-    }
-
-    void
-    SupportedDialect (::std::ostream& o,
-                      const ::xml_schema::Uri& s,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::SupportedDialect (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    SupportedDialect (::std::ostream& o,
-                      const ::xml_schema::Uri& s,
-                      ::xml_schema::ErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::SupportedDialect (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    SupportedDialect (::std::ostream& o,
-                      const ::xml_schema::Uri& s,
-                      ::xercesc::DOMErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::SupportedDialect (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    SupportedDialect (::xercesc::XMLFormatTarget& t,
-                      const ::xml_schema::Uri& s,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::SupportedDialect (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    SupportedDialect (::xercesc::XMLFormatTarget& t,
-                      const ::xml_schema::Uri& s,
-                      ::xml_schema::ErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::SupportedDialect (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    SupportedDialect (::xercesc::XMLFormatTarget& t,
-                      const ::xml_schema::Uri& s,
-                      ::xercesc::DOMErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::SupportedDialect (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    SupportedDialect (::xercesc::DOMDocument& d,
-                      const ::xml_schema::Uri& s,
-                      ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (typeid (::xml_schema::Uri) == typeid (s))
-      {
-        if (n.name () == "SupportedDialect" &&
-            n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-        {
-          e << s;
-        }
-        else
-        {
-          throw ::xsd::cxx::tree::unexpected_element < char > (
-            n.name (),
-            n.namespace_ (),
-            "SupportedDialect",
-            "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-        }
-      }
-      else
-      {
-        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "SupportedDialect",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
-          e, n, s);
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    SupportedDialect (const ::xml_schema::Uri& s,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-      if (typeid (::xml_schema::Uri) == typeid (s))
-      {
-        d = ::xsd::cxx::xml::dom::serialize< char > (
-          "SupportedDialect",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
-          m, f);
-      }
-      else
-      {
-        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "SupportedDialect",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
-          m, s, f);
-      }
-
-      ::WS::EVENTING::SupportedDialect (*d, s, f);
-      return d;
-    }
-
-    void
-    SupportedDeliveryMode (::std::ostream& o,
-                           const ::xml_schema::Uri& s,
-                           const ::xml_schema::NamespaceInfomap& m,
-                           const ::std::string& e,
-                           ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::SupportedDeliveryMode (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    SupportedDeliveryMode (::std::ostream& o,
-                           const ::xml_schema::Uri& s,
-                           ::xml_schema::ErrorHandler& h,
-                           const ::xml_schema::NamespaceInfomap& m,
-                           const ::std::string& e,
-                           ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::SupportedDeliveryMode (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    SupportedDeliveryMode (::std::ostream& o,
-                           const ::xml_schema::Uri& s,
-                           ::xercesc::DOMErrorHandler& h,
-                           const ::xml_schema::NamespaceInfomap& m,
-                           const ::std::string& e,
-                           ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::SupportedDeliveryMode (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    SupportedDeliveryMode (::xercesc::XMLFormatTarget& t,
-                           const ::xml_schema::Uri& s,
-                           const ::xml_schema::NamespaceInfomap& m,
-                           const ::std::string& e,
-                           ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::SupportedDeliveryMode (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    SupportedDeliveryMode (::xercesc::XMLFormatTarget& t,
-                           const ::xml_schema::Uri& s,
-                           ::xml_schema::ErrorHandler& h,
-                           const ::xml_schema::NamespaceInfomap& m,
-                           const ::std::string& e,
-                           ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::SupportedDeliveryMode (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    SupportedDeliveryMode (::xercesc::XMLFormatTarget& t,
-                           const ::xml_schema::Uri& s,
-                           ::xercesc::DOMErrorHandler& h,
-                           const ::xml_schema::NamespaceInfomap& m,
-                           const ::std::string& e,
-                           ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::SupportedDeliveryMode (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    SupportedDeliveryMode (::xercesc::DOMDocument& d,
-                           const ::xml_schema::Uri& s,
-                           ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (typeid (::xml_schema::Uri) == typeid (s))
-      {
-        if (n.name () == "SupportedDeliveryMode" &&
-            n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-        {
-          e << s;
-        }
-        else
-        {
-          throw ::xsd::cxx::tree::unexpected_element < char > (
-            n.name (),
-            n.namespace_ (),
-            "SupportedDeliveryMode",
-            "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-        }
-      }
-      else
-      {
-        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "SupportedDeliveryMode",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
-          e, n, s);
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    SupportedDeliveryMode (const ::xml_schema::Uri& s,
-                           const ::xml_schema::NamespaceInfomap& m,
-                           ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-      if (typeid (::xml_schema::Uri) == typeid (s))
-      {
-        d = ::xsd::cxx::xml::dom::serialize< char > (
-          "SupportedDeliveryMode",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
-          m, f);
-      }
-      else
-      {
-        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "SupportedDeliveryMode",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
-          m, s, f);
-      }
-
-      ::WS::EVENTING::SupportedDeliveryMode (*d, s, f);
-      return d;
-    }
-
-    void
-    Renew_ (::std::ostream& o,
-            const ::WS::EVENTING::Renew& s,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::Renew_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Renew_ (::std::ostream& o,
-            const ::WS::EVENTING::Renew& s,
-            ::xml_schema::ErrorHandler& h,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::Renew_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Renew_ (::std::ostream& o,
-            const ::WS::EVENTING::Renew& s,
-            ::xercesc::DOMErrorHandler& h,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::Renew_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Renew_ (::xercesc::XMLFormatTarget& t,
-            const ::WS::EVENTING::Renew& s,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::Renew_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Renew_ (::xercesc::XMLFormatTarget& t,
-            const ::WS::EVENTING::Renew& s,
-            ::xml_schema::ErrorHandler& h,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::Renew_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Renew_ (::xercesc::XMLFormatTarget& t,
-            const ::WS::EVENTING::Renew& s,
-            ::xercesc::DOMErrorHandler& h,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::Renew_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Renew_ (::xercesc::DOMDocument& d,
-            const ::WS::EVENTING::Renew& s,
-            ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "Renew" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        e << s;
-      }
-      else
-      {
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "Renew",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Renew_ (const ::WS::EVENTING::Renew& s,
-            const ::xml_schema::NamespaceInfomap& m,
-            ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::serialize< char > (
-          "Renew",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
-          m, f));
-
-      ::WS::EVENTING::Renew_ (*d, s, f);
-      return d;
-    }
-
-    void
-    RenewResponse_ (::std::ostream& o,
-                    const ::WS::EVENTING::RenewResponse& s,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    const ::std::string& e,
-                    ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::RenewResponse_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    RenewResponse_ (::std::ostream& o,
-                    const ::WS::EVENTING::RenewResponse& s,
-                    ::xml_schema::ErrorHandler& h,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    const ::std::string& e,
-                    ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::RenewResponse_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    RenewResponse_ (::std::ostream& o,
-                    const ::WS::EVENTING::RenewResponse& s,
-                    ::xercesc::DOMErrorHandler& h,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    const ::std::string& e,
-                    ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::RenewResponse_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    RenewResponse_ (::xercesc::XMLFormatTarget& t,
-                    const ::WS::EVENTING::RenewResponse& s,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    const ::std::string& e,
-                    ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::RenewResponse_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    RenewResponse_ (::xercesc::XMLFormatTarget& t,
-                    const ::WS::EVENTING::RenewResponse& s,
-                    ::xml_schema::ErrorHandler& h,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    const ::std::string& e,
-                    ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::RenewResponse_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    RenewResponse_ (::xercesc::XMLFormatTarget& t,
-                    const ::WS::EVENTING::RenewResponse& s,
-                    ::xercesc::DOMErrorHandler& h,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    const ::std::string& e,
-                    ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::RenewResponse_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    RenewResponse_ (::xercesc::DOMDocument& d,
-                    const ::WS::EVENTING::RenewResponse& s,
-                    ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "RenewResponse" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        e << s;
-      }
-      else
-      {
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "RenewResponse",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    RenewResponse_ (const ::WS::EVENTING::RenewResponse& s,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::serialize< char > (
-          "RenewResponse",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
-          m, f));
-
-      ::WS::EVENTING::RenewResponse_ (*d, s, f);
-      return d;
-    }
-
-    void
-    GetStatus_ (::std::ostream& o,
-                const ::WS::EVENTING::GetStatus& s,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::GetStatus_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    GetStatus_ (::std::ostream& o,
-                const ::WS::EVENTING::GetStatus& s,
-                ::xml_schema::ErrorHandler& h,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::GetStatus_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    GetStatus_ (::std::ostream& o,
-                const ::WS::EVENTING::GetStatus& s,
-                ::xercesc::DOMErrorHandler& h,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::GetStatus_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    GetStatus_ (::xercesc::XMLFormatTarget& t,
-                const ::WS::EVENTING::GetStatus& s,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::GetStatus_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    GetStatus_ (::xercesc::XMLFormatTarget& t,
-                const ::WS::EVENTING::GetStatus& s,
-                ::xml_schema::ErrorHandler& h,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::GetStatus_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    GetStatus_ (::xercesc::XMLFormatTarget& t,
-                const ::WS::EVENTING::GetStatus& s,
-                ::xercesc::DOMErrorHandler& h,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::GetStatus_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    GetStatus_ (::xercesc::DOMDocument& d,
-                const ::WS::EVENTING::GetStatus& s,
-                ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "GetStatus" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        e << s;
-      }
-      else
-      {
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "GetStatus",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    GetStatus_ (const ::WS::EVENTING::GetStatus& s,
-                const ::xml_schema::NamespaceInfomap& m,
-                ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::serialize< char > (
-          "GetStatus",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
-          m, f));
-
-      ::WS::EVENTING::GetStatus_ (*d, s, f);
-      return d;
-    }
-
-    void
-    GetStatusResponse_ (::std::ostream& o,
-                        const ::WS::EVENTING::GetStatusResponse& s,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::GetStatusResponse_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    GetStatusResponse_ (::std::ostream& o,
-                        const ::WS::EVENTING::GetStatusResponse& s,
-                        ::xml_schema::ErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::GetStatusResponse_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    GetStatusResponse_ (::std::ostream& o,
-                        const ::WS::EVENTING::GetStatusResponse& s,
-                        ::xercesc::DOMErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::GetStatusResponse_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    GetStatusResponse_ (::xercesc::XMLFormatTarget& t,
-                        const ::WS::EVENTING::GetStatusResponse& s,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::GetStatusResponse_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    GetStatusResponse_ (::xercesc::XMLFormatTarget& t,
-                        const ::WS::EVENTING::GetStatusResponse& s,
-                        ::xml_schema::ErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::GetStatusResponse_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    GetStatusResponse_ (::xercesc::XMLFormatTarget& t,
-                        const ::WS::EVENTING::GetStatusResponse& s,
-                        ::xercesc::DOMErrorHandler& h,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        const ::std::string& e,
-                        ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::GetStatusResponse_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    GetStatusResponse_ (::xercesc::DOMDocument& d,
-                        const ::WS::EVENTING::GetStatusResponse& s,
-                        ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "GetStatusResponse" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        e << s;
-      }
-      else
-      {
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "GetStatusResponse",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    GetStatusResponse_ (const ::WS::EVENTING::GetStatusResponse& s,
-                        const ::xml_schema::NamespaceInfomap& m,
-                        ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::serialize< char > (
-          "GetStatusResponse",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
-          m, f));
-
-      ::WS::EVENTING::GetStatusResponse_ (*d, s, f);
-      return d;
-    }
-
-    void
-    Unsubscribe_ (::std::ostream& o,
-                  const ::WS::EVENTING::Unsubscribe& s,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::Unsubscribe_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Unsubscribe_ (::std::ostream& o,
-                  const ::WS::EVENTING::Unsubscribe& s,
-                  ::xml_schema::ErrorHandler& h,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::Unsubscribe_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Unsubscribe_ (::std::ostream& o,
-                  const ::WS::EVENTING::Unsubscribe& s,
-                  ::xercesc::DOMErrorHandler& h,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::Unsubscribe_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Unsubscribe_ (::xercesc::XMLFormatTarget& t,
-                  const ::WS::EVENTING::Unsubscribe& s,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::Unsubscribe_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Unsubscribe_ (::xercesc::XMLFormatTarget& t,
-                  const ::WS::EVENTING::Unsubscribe& s,
-                  ::xml_schema::ErrorHandler& h,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::Unsubscribe_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Unsubscribe_ (::xercesc::XMLFormatTarget& t,
-                  const ::WS::EVENTING::Unsubscribe& s,
-                  ::xercesc::DOMErrorHandler& h,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::Unsubscribe_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Unsubscribe_ (::xercesc::DOMDocument& d,
-                  const ::WS::EVENTING::Unsubscribe& s,
-                  ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "Unsubscribe" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        e << s;
-      }
-      else
-      {
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "Unsubscribe",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Unsubscribe_ (const ::WS::EVENTING::Unsubscribe& s,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::serialize< char > (
-          "Unsubscribe",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
-          m, f));
-
-      ::WS::EVENTING::Unsubscribe_ (*d, s, f);
-      return d;
-    }
-
-    void
-    SubscriptionEnd_ (::std::ostream& o,
-                      const ::WS::EVENTING::SubscriptionEnd& s,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::SubscriptionEnd_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    SubscriptionEnd_ (::std::ostream& o,
-                      const ::WS::EVENTING::SubscriptionEnd& s,
-                      ::xml_schema::ErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::SubscriptionEnd_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    SubscriptionEnd_ (::std::ostream& o,
-                      const ::WS::EVENTING::SubscriptionEnd& s,
-                      ::xercesc::DOMErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::SubscriptionEnd_ (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    SubscriptionEnd_ (::xercesc::XMLFormatTarget& t,
-                      const ::WS::EVENTING::SubscriptionEnd& s,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::SubscriptionEnd_ (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    SubscriptionEnd_ (::xercesc::XMLFormatTarget& t,
-                      const ::WS::EVENTING::SubscriptionEnd& s,
-                      ::xml_schema::ErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::SubscriptionEnd_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    SubscriptionEnd_ (::xercesc::XMLFormatTarget& t,
-                      const ::WS::EVENTING::SubscriptionEnd& s,
-                      ::xercesc::DOMErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::EVENTING::SubscriptionEnd_ (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    SubscriptionEnd_ (::xercesc::DOMDocument& d,
-                      const ::WS::EVENTING::SubscriptionEnd& s,
-                      ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "SubscriptionEnd" &&
-          n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
-      {
-        e << s;
-      }
-      else
-      {
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "SubscriptionEnd",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing");
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    SubscriptionEnd_ (const ::WS::EVENTING::SubscriptionEnd& s,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::serialize< char > (
-          "SubscriptionEnd",
-          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
-          m, f));
-
-      ::WS::EVENTING::SubscriptionEnd_ (*d, s, f);
-      return d;
-    }
 
     void
     operator<< (::xercesc::DOMElement& e, const SubscriptionEndCodeType& i)
@@ -7646,9 +2547,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.EndTo ())
+        if (i.getEndTo ())
         {
-          const Subscribe::EndToType& x (*i.EndTo ());
+          const Subscribe::EndToType& x (*i.getEndTo ());
           if (typeid (Subscribe::EndToType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -7673,7 +2574,7 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        const Subscribe::DeliveryType& x (i.Delivery ());
+        const Subscribe::DeliveryType& x (i.getDelivery ());
         if (typeid (Subscribe::DeliveryType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -7697,9 +2598,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.Expires ())
+        if (i.getExpires ())
         {
-          const Subscribe::ExpiresType& x (*i.Expires ());
+          const Subscribe::ExpiresType& x (*i.getExpires ());
           if (typeid (Subscribe::ExpiresType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -7724,9 +2625,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.Filter ())
+        if (i.getFilter ())
         {
-          const Subscribe::FilterType& x (*i.Filter ());
+          const Subscribe::FilterType& x (*i.getFilter ());
           if (typeid (Subscribe::FilterType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -7753,7 +2654,7 @@ namespace WS
 
       // IsReferenceParameter
       //
-      if (i.IsReferenceParameter ())
+      if (i.getIsReferenceParameter ())
       {
         ::xercesc::DOMAttr& a (
           ::xsd::cxx::xml::dom::create_attribute (
@@ -7761,7 +2662,7 @@ namespace WS
             "http://www.w3.org/2005/08/addressing",
             e));
 
-        a << *i.IsReferenceParameter ();
+        a << *i.getIsReferenceParameter ();
       }
     }
 
@@ -7776,7 +2677,7 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        const SubscribeResponse::SubscriptionManagerType& x (i.SubscriptionManager ());
+        const SubscribeResponse::SubscriptionManagerType& x (i.getSubscriptionManager ());
         if (typeid (SubscribeResponse::SubscriptionManagerType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -7800,7 +2701,7 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        const SubscribeResponse::ExpiresType& x (i.Expires ());
+        const SubscribeResponse::ExpiresType& x (i.getExpires ());
         if (typeid (SubscribeResponse::ExpiresType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -7830,9 +2731,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.Expires ())
+        if (i.getExpires ())
         {
-          const Renew::ExpiresType& x (*i.Expires ());
+          const Renew::ExpiresType& x (*i.getExpires ());
           if (typeid (Renew::ExpiresType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -7863,9 +2764,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.Expires ())
+        if (i.getExpires ())
         {
-          const RenewResponse::ExpiresType& x (*i.Expires ());
+          const RenewResponse::ExpiresType& x (*i.getExpires ());
           if (typeid (RenewResponse::ExpiresType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -7902,9 +2803,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.Expires ())
+        if (i.getExpires ())
         {
-          const GetStatusResponse::ExpiresType& x (*i.Expires ());
+          const GetStatusResponse::ExpiresType& x (*i.getExpires ());
           if (typeid (GetStatusResponse::ExpiresType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -7941,7 +2842,7 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        const SubscriptionEnd::SubscriptionManagerType& x (i.SubscriptionManager ());
+        const SubscriptionEnd::SubscriptionManagerType& x (i.getSubscriptionManager ());
         if (typeid (SubscriptionEnd::SubscriptionManagerType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -7965,7 +2866,7 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        const SubscriptionEnd::StatusType& x (i.Status ());
+        const SubscriptionEnd::StatusType& x (i.getStatus ());
         if (typeid (SubscriptionEnd::StatusType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -7990,7 +2891,7 @@ namespace WS
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
         for (SubscriptionEnd::ReasonConstIterator
-             b (i.Reason ().begin ()), n (i.Reason ().end ());
+             b (i.getReason ().begin ()), n (i.getReason ().end ());
              b != n; ++b)
         {
           if (typeid (SubscriptionEnd::ReasonType) == typeid (*b))

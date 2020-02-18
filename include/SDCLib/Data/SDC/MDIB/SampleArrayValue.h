@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class SampleArrayValue {
+class SampleArrayValue
+{
 private:
 	SampleArrayValue(const CDM::SampleArrayValue & object);
 	operator CDM::SampleArrayValue() const;
@@ -57,11 +58,11 @@ public:
 private:
 	SampleArrayValue(){};
 public:
-	SampleArrayValue(const SampleArrayValue & object);
-	virtual ~SampleArrayValue();
+	SampleArrayValue(const SampleArrayValue& object);
+	virtual ~SampleArrayValue() = default;
 
-    void copyFrom(const SampleArrayValue & object);
-    SampleArrayValue & operator=(const SampleArrayValue & object);
+    void copyFrom(const SampleArrayValue& object);
+    SampleArrayValue & operator=(const SampleArrayValue& object);
 
     typedef CDM::SampleArrayValue WrappedType;
 
@@ -97,7 +98,7 @@ public:
 	void clearApplyAnnotationList();
 
 private:
-	std::shared_ptr<CDM::SampleArrayValue> data;
+	std::shared_ptr<CDM::SampleArrayValue> data = nullptr;
 };
 
 } /* namespace SDC */

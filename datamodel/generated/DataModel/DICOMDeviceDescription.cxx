@@ -91,67 +91,67 @@ namespace CDM
   // 
 
   const DicomTransferCapability::TransferSyntaxSequence& DicomTransferCapability::
-  TransferSyntax () const
+  getTransferSyntax () const
   {
     return this->TransferSyntax_;
   }
 
   DicomTransferCapability::TransferSyntaxSequence& DicomTransferCapability::
-  TransferSyntax ()
+  getTransferSyntax ()
   {
     return this->TransferSyntax_;
   }
 
   void DicomTransferCapability::
-  TransferSyntax (const TransferSyntaxSequence& s)
+  setTransferSyntax (const TransferSyntaxSequence& s)
   {
     this->TransferSyntax_ = s;
   }
 
   const DicomTransferCapability::SopClassType& DicomTransferCapability::
-  SopClass () const
+  getSopClass () const
   {
     return this->SopClass_.get ();
   }
 
   DicomTransferCapability::SopClassType& DicomTransferCapability::
-  SopClass ()
+  getSopClass ()
   {
     return this->SopClass_.get ();
   }
 
   void DicomTransferCapability::
-  SopClass (const SopClassType& x)
+  setSopClass (const SopClassType& x)
   {
     this->SopClass_.set (x);
   }
 
   void DicomTransferCapability::
-  SopClass (::std::unique_ptr< SopClassType > x)
+  setSopClass (::std::unique_ptr< SopClassType > x)
   {
     this->SopClass_.set (std::move (x));
   }
 
   const DicomTransferCapability::TransferRoleType& DicomTransferCapability::
-  TransferRole () const
+  getTransferRole () const
   {
     return this->TransferRole_.get ();
   }
 
   DicomTransferCapability::TransferRoleType& DicomTransferCapability::
-  TransferRole ()
+  getTransferRole ()
   {
     return this->TransferRole_.get ();
   }
 
   void DicomTransferCapability::
-  TransferRole (const TransferRoleType& x)
+  setTransferRole (const TransferRoleType& x)
   {
     this->TransferRole_.set (x);
   }
 
   void DicomTransferCapability::
-  TransferRole (::std::unique_ptr< TransferRoleType > x)
+  setTransferRole (::std::unique_ptr< TransferRoleType > x)
   {
     this->TransferRole_.set (std::move (x));
   }
@@ -161,157 +161,157 @@ namespace CDM
   // 
 
   const DicomNetworkAe::TransferCapabilitySequence& DicomNetworkAe::
-  TransferCapability () const
+  getTransferCapability () const
   {
     return this->TransferCapability_;
   }
 
   DicomNetworkAe::TransferCapabilitySequence& DicomNetworkAe::
-  TransferCapability ()
+  getTransferCapability ()
   {
     return this->TransferCapability_;
   }
 
   void DicomNetworkAe::
-  TransferCapability (const TransferCapabilitySequence& s)
+  setTransferCapability (const TransferCapabilitySequence& s)
   {
     this->TransferCapability_ = s;
   }
 
   const DicomNetworkAe::ApplicationClusterSequence& DicomNetworkAe::
-  ApplicationCluster () const
+  getApplicationCluster () const
   {
     return this->ApplicationCluster_;
   }
 
   DicomNetworkAe::ApplicationClusterSequence& DicomNetworkAe::
-  ApplicationCluster ()
+  getApplicationCluster ()
   {
     return this->ApplicationCluster_;
   }
 
   void DicomNetworkAe::
-  ApplicationCluster (const ApplicationClusterSequence& s)
+  setApplicationCluster (const ApplicationClusterSequence& s)
   {
     this->ApplicationCluster_ = s;
   }
 
   const DicomNetworkAe::SupportedCharacterSetSequence& DicomNetworkAe::
-  SupportedCharacterSet () const
+  getSupportedCharacterSet () const
   {
     return this->SupportedCharacterSet_;
   }
 
   DicomNetworkAe::SupportedCharacterSetSequence& DicomNetworkAe::
-  SupportedCharacterSet ()
+  getSupportedCharacterSet ()
   {
     return this->SupportedCharacterSet_;
   }
 
   void DicomNetworkAe::
-  SupportedCharacterSet (const SupportedCharacterSetSequence& s)
+  setSupportedCharacterSet (const SupportedCharacterSetSequence& s)
   {
     this->SupportedCharacterSet_ = s;
   }
 
   const DicomNetworkAe::DescriptionSequence& DicomNetworkAe::
-  Description () const
+  getDescription () const
   {
     return this->Description_;
   }
 
   DicomNetworkAe::DescriptionSequence& DicomNetworkAe::
-  Description ()
+  getDescription ()
   {
     return this->Description_;
   }
 
   void DicomNetworkAe::
-  Description (const DescriptionSequence& s)
+  setDescription (const DescriptionSequence& s)
   {
     this->Description_ = s;
   }
 
   const DicomNetworkAe::AeTitleType& DicomNetworkAe::
-  AeTitle () const
+  getAeTitle () const
   {
     return this->AeTitle_.get ();
   }
 
   DicomNetworkAe::AeTitleType& DicomNetworkAe::
-  AeTitle ()
+  getAeTitle ()
   {
     return this->AeTitle_.get ();
   }
 
   void DicomNetworkAe::
-  AeTitle (const AeTitleType& x)
+  setAeTitle (const AeTitleType& x)
   {
     this->AeTitle_.set (x);
   }
 
   void DicomNetworkAe::
-  AeTitle (::std::unique_ptr< AeTitleType > x)
+  setAeTitle (::std::unique_ptr< AeTitleType > x)
   {
     this->AeTitle_.set (std::move (x));
   }
 
   const DicomNetworkAe::NetworkConnectionReferenceType& DicomNetworkAe::
-  NetworkConnectionReference () const
+  getNetworkConnectionReference () const
   {
     return this->NetworkConnectionReference_.get ();
   }
 
   DicomNetworkAe::NetworkConnectionReferenceType& DicomNetworkAe::
-  NetworkConnectionReference ()
+  getNetworkConnectionReference ()
   {
     return this->NetworkConnectionReference_.get ();
   }
 
   void DicomNetworkAe::
-  NetworkConnectionReference (const NetworkConnectionReferenceType& x)
+  setNetworkConnectionReference (const NetworkConnectionReferenceType& x)
   {
     this->NetworkConnectionReference_.set (x);
   }
 
   void DicomNetworkAe::
-  NetworkConnectionReference (::std::unique_ptr< NetworkConnectionReferenceType > x)
+  setNetworkConnectionReference (::std::unique_ptr< NetworkConnectionReferenceType > x)
   {
     this->NetworkConnectionReference_.set (std::move (x));
   }
 
   const DicomNetworkAe::AssociationInitiatorType& DicomNetworkAe::
-  AssociationInitiator () const
+  getAssociationInitiator () const
   {
     return this->AssociationInitiator_.get ();
   }
 
   DicomNetworkAe::AssociationInitiatorType& DicomNetworkAe::
-  AssociationInitiator ()
+  getAssociationInitiator ()
   {
     return this->AssociationInitiator_.get ();
   }
 
   void DicomNetworkAe::
-  AssociationInitiator (const AssociationInitiatorType& x)
+  setAssociationInitiator (const AssociationInitiatorType& x)
   {
     this->AssociationInitiator_.set (x);
   }
 
   const DicomNetworkAe::AssociationAcceptorType& DicomNetworkAe::
-  AssociationAcceptor () const
+  getAssociationAcceptor () const
   {
     return this->AssociationAcceptor_.get ();
   }
 
   DicomNetworkAe::AssociationAcceptorType& DicomNetworkAe::
-  AssociationAcceptor ()
+  getAssociationAcceptor ()
   {
     return this->AssociationAcceptor_.get ();
   }
 
   void DicomNetworkAe::
-  AssociationAcceptor (const AssociationAcceptorType& x)
+  setAssociationAcceptor (const AssociationAcceptorType& x)
   {
     this->AssociationAcceptor_.set (x);
   }
@@ -321,91 +321,91 @@ namespace CDM
   // 
 
   const DicomNetworkConnection::TlsCipherSuiteSequence& DicomNetworkConnection::
-  TlsCipherSuite () const
+  getTlsCipherSuite () const
   {
     return this->TlsCipherSuite_;
   }
 
   DicomNetworkConnection::TlsCipherSuiteSequence& DicomNetworkConnection::
-  TlsCipherSuite ()
+  getTlsCipherSuite ()
   {
     return this->TlsCipherSuite_;
   }
 
   void DicomNetworkConnection::
-  TlsCipherSuite (const TlsCipherSuiteSequence& s)
+  setTlsCipherSuite (const TlsCipherSuiteSequence& s)
   {
     this->TlsCipherSuite_ = s;
   }
 
   const DicomNetworkConnection::IdType& DicomNetworkConnection::
-  id () const
+  getId () const
   {
-    return this->id_.get ();
+    return this->Id_.get ();
   }
 
   DicomNetworkConnection::IdType& DicomNetworkConnection::
-  id ()
+  getId ()
   {
-    return this->id_.get ();
+    return this->Id_.get ();
   }
 
   void DicomNetworkConnection::
-  id (const IdType& x)
+  setId (const IdType& x)
   {
-    this->id_.set (x);
+    this->Id_.set (x);
   }
 
   void DicomNetworkConnection::
-  id (::std::unique_ptr< IdType > x)
+  setId (::std::unique_ptr< IdType > x)
   {
-    this->id_.set (std::move (x));
+    this->Id_.set (std::move (x));
   }
 
   const DicomNetworkConnection::HostnameType& DicomNetworkConnection::
-  Hostname () const
+  getHostname () const
   {
     return this->Hostname_.get ();
   }
 
   DicomNetworkConnection::HostnameType& DicomNetworkConnection::
-  Hostname ()
+  getHostname ()
   {
     return this->Hostname_.get ();
   }
 
   void DicomNetworkConnection::
-  Hostname (const HostnameType& x)
+  setHostname (const HostnameType& x)
   {
     this->Hostname_.set (x);
   }
 
   void DicomNetworkConnection::
-  Hostname (::std::unique_ptr< HostnameType > x)
+  setHostname (::std::unique_ptr< HostnameType > x)
   {
     this->Hostname_.set (std::move (x));
   }
 
   const DicomNetworkConnection::PortOptional& DicomNetworkConnection::
-  Port () const
+  getPort () const
   {
     return this->Port_;
   }
 
   DicomNetworkConnection::PortOptional& DicomNetworkConnection::
-  Port ()
+  getPort ()
   {
     return this->Port_;
   }
 
   void DicomNetworkConnection::
-  Port (const PortType& x)
+  setPort (const PortType& x)
   {
     this->Port_.set (x);
   }
 
   void DicomNetworkConnection::
-  Port (const PortOptional& x)
+  setPort (const PortOptional& x)
   {
     this->Port_ = x;
   }
@@ -415,211 +415,211 @@ namespace CDM
   // 
 
   const DicomDeviceDescriptor::NetworkAeSequence& DicomDeviceDescriptor::
-  NetworkAe () const
+  getNetworkAe () const
   {
     return this->NetworkAe_;
   }
 
   DicomDeviceDescriptor::NetworkAeSequence& DicomDeviceDescriptor::
-  NetworkAe ()
+  getNetworkAe ()
   {
     return this->NetworkAe_;
   }
 
   void DicomDeviceDescriptor::
-  NetworkAe (const NetworkAeSequence& s)
+  setNetworkAe (const NetworkAeSequence& s)
   {
     this->NetworkAe_ = s;
   }
 
   const DicomDeviceDescriptor::NetworkConnectionSequence& DicomDeviceDescriptor::
-  NetworkConnection () const
+  getNetworkConnection () const
   {
     return this->NetworkConnection_;
   }
 
   DicomDeviceDescriptor::NetworkConnectionSequence& DicomDeviceDescriptor::
-  NetworkConnection ()
+  getNetworkConnection ()
   {
     return this->NetworkConnection_;
   }
 
   void DicomDeviceDescriptor::
-  NetworkConnection (const NetworkConnectionSequence& s)
+  setNetworkConnection (const NetworkConnectionSequence& s)
   {
     this->NetworkConnection_ = s;
   }
 
   const DicomDeviceDescriptor::SoftwareVersionSequence& DicomDeviceDescriptor::
-  SoftwareVersion () const
+  getSoftwareVersion () const
   {
     return this->SoftwareVersion_;
   }
 
   DicomDeviceDescriptor::SoftwareVersionSequence& DicomDeviceDescriptor::
-  SoftwareVersion ()
+  getSoftwareVersion ()
   {
     return this->SoftwareVersion_;
   }
 
   void DicomDeviceDescriptor::
-  SoftwareVersion (const SoftwareVersionSequence& s)
+  setSoftwareVersion (const SoftwareVersionSequence& s)
   {
     this->SoftwareVersion_ = s;
   }
 
   const DicomDeviceDescriptor::InstitutionNameSequence& DicomDeviceDescriptor::
-  InstitutionName () const
+  getInstitutionName () const
   {
     return this->InstitutionName_;
   }
 
   DicomDeviceDescriptor::InstitutionNameSequence& DicomDeviceDescriptor::
-  InstitutionName ()
+  getInstitutionName ()
   {
     return this->InstitutionName_;
   }
 
   void DicomDeviceDescriptor::
-  InstitutionName (const InstitutionNameSequence& s)
+  setInstitutionName (const InstitutionNameSequence& s)
   {
     this->InstitutionName_ = s;
   }
 
   const DicomDeviceDescriptor::InstitutionAddressSequence& DicomDeviceDescriptor::
-  InstitutionAddress () const
+  getInstitutionAddress () const
   {
     return this->InstitutionAddress_;
   }
 
   DicomDeviceDescriptor::InstitutionAddressSequence& DicomDeviceDescriptor::
-  InstitutionAddress ()
+  getInstitutionAddress ()
   {
     return this->InstitutionAddress_;
   }
 
   void DicomDeviceDescriptor::
-  InstitutionAddress (const InstitutionAddressSequence& s)
+  setInstitutionAddress (const InstitutionAddressSequence& s)
   {
     this->InstitutionAddress_ = s;
   }
 
   const DicomDeviceDescriptor::InstitutionalDepartmentNameSequence& DicomDeviceDescriptor::
-  InstitutionalDepartmentName () const
+  getInstitutionalDepartmentName () const
   {
     return this->InstitutionalDepartmentName_;
   }
 
   DicomDeviceDescriptor::InstitutionalDepartmentNameSequence& DicomDeviceDescriptor::
-  InstitutionalDepartmentName ()
+  getInstitutionalDepartmentName ()
   {
     return this->InstitutionalDepartmentName_;
   }
 
   void DicomDeviceDescriptor::
-  InstitutionalDepartmentName (const InstitutionalDepartmentNameSequence& s)
+  setInstitutionalDepartmentName (const InstitutionalDepartmentNameSequence& s)
   {
     this->InstitutionalDepartmentName_ = s;
   }
 
   const DicomDeviceDescriptor::PrimaryDeviceTypeSequence& DicomDeviceDescriptor::
-  PrimaryDeviceType () const
+  getPrimaryDeviceType () const
   {
     return this->PrimaryDeviceType_;
   }
 
   DicomDeviceDescriptor::PrimaryDeviceTypeSequence& DicomDeviceDescriptor::
-  PrimaryDeviceType ()
+  getPrimaryDeviceType ()
   {
     return this->PrimaryDeviceType_;
   }
 
   void DicomDeviceDescriptor::
-  PrimaryDeviceType (const PrimaryDeviceTypeSequence& s)
+  setPrimaryDeviceType (const PrimaryDeviceTypeSequence& s)
   {
     this->PrimaryDeviceType_ = s;
   }
 
   const DicomDeviceDescriptor::PublicCertificateSequence& DicomDeviceDescriptor::
-  PublicCertificate () const
+  getPublicCertificate () const
   {
     return this->PublicCertificate_;
   }
 
   DicomDeviceDescriptor::PublicCertificateSequence& DicomDeviceDescriptor::
-  PublicCertificate ()
+  getPublicCertificate ()
   {
     return this->PublicCertificate_;
   }
 
   void DicomDeviceDescriptor::
-  PublicCertificate (const PublicCertificateSequence& s)
+  setPublicCertificate (const PublicCertificateSequence& s)
   {
     this->PublicCertificate_ = s;
   }
 
   const DicomDeviceDescriptor::DescriptionSequence& DicomDeviceDescriptor::
-  Description () const
+  getDescription () const
   {
     return this->Description_;
   }
 
   DicomDeviceDescriptor::DescriptionSequence& DicomDeviceDescriptor::
-  Description ()
+  getDescription ()
   {
     return this->Description_;
   }
 
   void DicomDeviceDescriptor::
-  Description (const DescriptionSequence& s)
+  setDescription (const DescriptionSequence& s)
   {
     this->Description_ = s;
   }
 
   const DicomDeviceDescriptor::StationNameSequence& DicomDeviceDescriptor::
-  StationName () const
+  getStationName () const
   {
     return this->StationName_;
   }
 
   DicomDeviceDescriptor::StationNameSequence& DicomDeviceDescriptor::
-  StationName ()
+  getStationName ()
   {
     return this->StationName_;
   }
 
   void DicomDeviceDescriptor::
-  StationName (const StationNameSequence& s)
+  setStationName (const StationNameSequence& s)
   {
     this->StationName_ = s;
   }
 
   const DicomDeviceDescriptor::IssuerOfPatientIDOptional& DicomDeviceDescriptor::
-  IssuerOfPatientID () const
+  getIssuerOfPatientID () const
   {
     return this->IssuerOfPatientID_;
   }
 
   DicomDeviceDescriptor::IssuerOfPatientIDOptional& DicomDeviceDescriptor::
-  IssuerOfPatientID ()
+  getIssuerOfPatientID ()
   {
     return this->IssuerOfPatientID_;
   }
 
   void DicomDeviceDescriptor::
-  IssuerOfPatientID (const IssuerOfPatientIDType& x)
+  setIssuerOfPatientID (const IssuerOfPatientIDType& x)
   {
     this->IssuerOfPatientID_.set (x);
   }
 
   void DicomDeviceDescriptor::
-  IssuerOfPatientID (const IssuerOfPatientIDOptional& x)
+  setIssuerOfPatientID (const IssuerOfPatientIDOptional& x)
   {
     this->IssuerOfPatientID_ = x;
   }
 
   void DicomDeviceDescriptor::
-  IssuerOfPatientID (::std::unique_ptr< IssuerOfPatientIDType > x)
+  setIssuerOfPatientID (::std::unique_ptr< IssuerOfPatientIDType > x)
   {
     this->IssuerOfPatientID_.set (std::move (x));
   }
@@ -1129,11 +1129,11 @@ namespace CDM
   //
 
   DicomNetworkConnection::
-  DicomNetworkConnection (const IdType& id,
+  DicomNetworkConnection (const IdType& Id,
                           const HostnameType& Hostname)
   : ::xml_schema::Type (),
     TlsCipherSuite_ (this),
-    id_ (id, this),
+    Id_ (Id, this),
     Hostname_ (Hostname, this),
     Port_ (this)
   {
@@ -1145,7 +1145,7 @@ namespace CDM
                           ::xml_schema::Container* c)
   : ::xml_schema::Type (x, f, c),
     TlsCipherSuite_ (x.TlsCipherSuite_, f, this),
-    id_ (x.id_, f, this),
+    Id_ (x.Id_, f, this),
     Hostname_ (x.Hostname_, f, this),
     Port_ (x.Port_, f, this)
   {
@@ -1157,7 +1157,7 @@ namespace CDM
                           ::xml_schema::Container* c)
   : ::xml_schema::Type (e, f | ::xml_schema::Flags::base, c),
     TlsCipherSuite_ (this),
-    id_ (this),
+    Id_ (this),
     Hostname_ (this),
     Port_ (this)
   {
@@ -1212,9 +1212,9 @@ namespace CDM
       const ::xsd::cxx::xml::qualified_name< char > n (
         ::xsd::cxx::xml::dom::name< char > (i));
 
-      if (n.name () == "id" && n.namespace_ ().empty ())
+      if (n.name () == "Id" && n.namespace_ ().empty ())
       {
-        this->id_.set (IdTraits::create (i, f, this));
+        this->Id_.set (IdTraits::create (i, f, this));
         continue;
       }
 
@@ -1231,10 +1231,10 @@ namespace CDM
       }
     }
 
-    if (!id_.present ())
+    if (!Id_.present ())
     {
       throw ::xsd::cxx::tree::expected_attribute< char > (
-        "id",
+        "Id",
         "");
     }
 
@@ -1260,7 +1260,7 @@ namespace CDM
     {
       static_cast< ::xml_schema::Type& > (*this) = x;
       this->TlsCipherSuite_ = x.TlsCipherSuite_;
-      this->id_ = x.id_;
+      this->Id_ = x.Id_;
       this->Hostname_ = x.Hostname_;
       this->Port_ = x.Port_;
     }
@@ -1725,7 +1725,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (DicomTransferCapability::TransferSyntaxConstIterator
-           b (i.TransferSyntax ().begin ()), n (i.TransferSyntax ().end ());
+           b (i.getTransferSyntax ().begin ()), n (i.getTransferSyntax ().end ());
            b != n; ++b)
       {
         if (typeid (DicomTransferCapability::TransferSyntaxType) == typeid (*b))
@@ -1754,7 +1754,7 @@ namespace CDM
           "SopClass",
           e));
 
-      a << i.SopClass ();
+      a << i.getSopClass ();
     }
 
     // TransferRole
@@ -1765,7 +1765,7 @@ namespace CDM
           "TransferRole",
           e));
 
-      a << i.TransferRole ();
+      a << i.getTransferRole ();
     }
   }
 
@@ -1788,7 +1788,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (DicomNetworkAe::TransferCapabilityConstIterator
-           b (i.TransferCapability ().begin ()), n (i.TransferCapability ().end ());
+           b (i.getTransferCapability ().begin ()), n (i.getTransferCapability ().end ());
            b != n; ++b)
       {
         if (typeid (DicomNetworkAe::TransferCapabilityType) == typeid (*b))
@@ -1816,7 +1816,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (DicomNetworkAe::ApplicationClusterConstIterator
-           b (i.ApplicationCluster ().begin ()), n (i.ApplicationCluster ().end ());
+           b (i.getApplicationCluster ().begin ()), n (i.getApplicationCluster ().end ());
            b != n; ++b)
       {
         if (typeid (DicomNetworkAe::ApplicationClusterType) == typeid (*b))
@@ -1844,7 +1844,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (DicomNetworkAe::SupportedCharacterSetConstIterator
-           b (i.SupportedCharacterSet ().begin ()), n (i.SupportedCharacterSet ().end ());
+           b (i.getSupportedCharacterSet ().begin ()), n (i.getSupportedCharacterSet ().end ());
            b != n; ++b)
       {
         if (typeid (DicomNetworkAe::SupportedCharacterSetType) == typeid (*b))
@@ -1872,7 +1872,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (DicomNetworkAe::DescriptionConstIterator
-           b (i.Description ().begin ()), n (i.Description ().end ());
+           b (i.getDescription ().begin ()), n (i.getDescription ().end ());
            b != n; ++b)
       {
         if (typeid (DicomNetworkAe::DescriptionType) == typeid (*b))
@@ -1901,7 +1901,7 @@ namespace CDM
           "AeTitle",
           e));
 
-      a << i.AeTitle ();
+      a << i.getAeTitle ();
     }
 
     // NetworkConnectionReference
@@ -1912,7 +1912,7 @@ namespace CDM
           "NetworkConnectionReference",
           e));
 
-      a << i.NetworkConnectionReference ();
+      a << i.getNetworkConnectionReference ();
     }
 
     // AssociationInitiator
@@ -1923,7 +1923,7 @@ namespace CDM
           "AssociationInitiator",
           e));
 
-      a << i.AssociationInitiator ();
+      a << i.getAssociationInitiator ();
     }
 
     // AssociationAcceptor
@@ -1934,7 +1934,7 @@ namespace CDM
           "AssociationAcceptor",
           e));
 
-      a << i.AssociationAcceptor ();
+      a << i.getAssociationAcceptor ();
     }
   }
 
@@ -1957,7 +1957,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (DicomNetworkConnection::TlsCipherSuiteConstIterator
-           b (i.TlsCipherSuite ().begin ()), n (i.TlsCipherSuite ().end ());
+           b (i.getTlsCipherSuite ().begin ()), n (i.getTlsCipherSuite ().end ());
            b != n; ++b)
       {
         if (typeid (DicomNetworkConnection::TlsCipherSuiteType) == typeid (*b))
@@ -1978,15 +1978,15 @@ namespace CDM
       }
     }
 
-    // id
+    // Id
     //
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
-          "id",
+          "Id",
           e));
 
-      a << i.id ();
+      a << i.getId ();
     }
 
     // Hostname
@@ -1997,19 +1997,19 @@ namespace CDM
           "Hostname",
           e));
 
-      a << i.Hostname ();
+      a << i.getHostname ();
     }
 
     // Port
     //
-    if (i.Port ())
+    if (i.getPort ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Port",
           e));
 
-      a << *i.Port ();
+      a << *i.getPort ();
     }
   }
 
@@ -2032,7 +2032,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (DicomDeviceDescriptor::NetworkAeConstIterator
-           b (i.NetworkAe ().begin ()), n (i.NetworkAe ().end ());
+           b (i.getNetworkAe ().begin ()), n (i.getNetworkAe ().end ());
            b != n; ++b)
       {
         if (typeid (DicomDeviceDescriptor::NetworkAeType) == typeid (*b))
@@ -2060,7 +2060,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (DicomDeviceDescriptor::NetworkConnectionConstIterator
-           b (i.NetworkConnection ().begin ()), n (i.NetworkConnection ().end ());
+           b (i.getNetworkConnection ().begin ()), n (i.getNetworkConnection ().end ());
            b != n; ++b)
       {
         if (typeid (DicomDeviceDescriptor::NetworkConnectionType) == typeid (*b))
@@ -2088,7 +2088,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (DicomDeviceDescriptor::SoftwareVersionConstIterator
-           b (i.SoftwareVersion ().begin ()), n (i.SoftwareVersion ().end ());
+           b (i.getSoftwareVersion ().begin ()), n (i.getSoftwareVersion ().end ());
            b != n; ++b)
       {
         if (typeid (DicomDeviceDescriptor::SoftwareVersionType) == typeid (*b))
@@ -2116,7 +2116,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (DicomDeviceDescriptor::InstitutionNameConstIterator
-           b (i.InstitutionName ().begin ()), n (i.InstitutionName ().end ());
+           b (i.getInstitutionName ().begin ()), n (i.getInstitutionName ().end ());
            b != n; ++b)
       {
         if (typeid (DicomDeviceDescriptor::InstitutionNameType) == typeid (*b))
@@ -2144,7 +2144,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (DicomDeviceDescriptor::InstitutionAddressConstIterator
-           b (i.InstitutionAddress ().begin ()), n (i.InstitutionAddress ().end ());
+           b (i.getInstitutionAddress ().begin ()), n (i.getInstitutionAddress ().end ());
            b != n; ++b)
       {
         if (typeid (DicomDeviceDescriptor::InstitutionAddressType) == typeid (*b))
@@ -2172,7 +2172,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (DicomDeviceDescriptor::InstitutionalDepartmentNameConstIterator
-           b (i.InstitutionalDepartmentName ().begin ()), n (i.InstitutionalDepartmentName ().end ());
+           b (i.getInstitutionalDepartmentName ().begin ()), n (i.getInstitutionalDepartmentName ().end ());
            b != n; ++b)
       {
         if (typeid (DicomDeviceDescriptor::InstitutionalDepartmentNameType) == typeid (*b))
@@ -2200,7 +2200,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (DicomDeviceDescriptor::PrimaryDeviceTypeConstIterator
-           b (i.PrimaryDeviceType ().begin ()), n (i.PrimaryDeviceType ().end ());
+           b (i.getPrimaryDeviceType ().begin ()), n (i.getPrimaryDeviceType ().end ());
            b != n; ++b)
       {
         if (typeid (DicomDeviceDescriptor::PrimaryDeviceTypeType) == typeid (*b))
@@ -2228,7 +2228,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (DicomDeviceDescriptor::PublicCertificateConstIterator
-           b (i.PublicCertificate ().begin ()), n (i.PublicCertificate ().end ());
+           b (i.getPublicCertificate ().begin ()), n (i.getPublicCertificate ().end ());
            b != n; ++b)
       {
         if (typeid (DicomDeviceDescriptor::PublicCertificateType) == typeid (*b))
@@ -2256,7 +2256,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (DicomDeviceDescriptor::DescriptionConstIterator
-           b (i.Description ().begin ()), n (i.Description ().end ());
+           b (i.getDescription ().begin ()), n (i.getDescription ().end ());
            b != n; ++b)
       {
         if (typeid (DicomDeviceDescriptor::DescriptionType) == typeid (*b))
@@ -2284,7 +2284,7 @@ namespace CDM
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (DicomDeviceDescriptor::StationNameConstIterator
-           b (i.StationName ().begin ()), n (i.StationName ().end ());
+           b (i.getStationName ().begin ()), n (i.getStationName ().end ());
            b != n; ++b)
       {
         if (typeid (DicomDeviceDescriptor::StationNameType) == typeid (*b))
@@ -2307,14 +2307,14 @@ namespace CDM
 
     // IssuerOfPatientID
     //
-    if (i.IssuerOfPatientID ())
+    if (i.getIssuerOfPatientID ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "IssuerOfPatientID",
           e));
 
-      a << *i.IssuerOfPatientID ();
+      a << *i.getIssuerOfPatientID ();
     }
   }
 

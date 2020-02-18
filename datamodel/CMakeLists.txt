@@ -91,7 +91,7 @@ target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${GEN_DIR_ROOT} )
 # All Dependencies
 #target_link_libraries(${CURRENT_TARGET_NAME}        PUBLIC  ${SDCLib_DEPS_LIBRARIES})
 target_include_directories(${CURRENT_TARGET_NAME}   PUBLIC  ${SDCLib_DEPS_INCLUDE_DIRS})
-
+target_include_directories(${CURRENT_TARGET_NAME}   PUBLIC  ${XSD_INCLUDE_DIRS}) #FIXME SDCLib_DEPS_INCLUDE_DIRS empty here but XSD is required.
 
 # install
 install(DIRECTORY ${GEN_DIR}/ DESTINATION ${PATH_INSTALL_INCLUDE}/${CURRENT_TARGET_NAME}/

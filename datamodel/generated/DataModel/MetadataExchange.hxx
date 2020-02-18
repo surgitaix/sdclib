@@ -31,6 +31,11 @@
 // in the accompanying FLOSSE file.
 //
 
+/**
+ * @file
+ * @brief Generated from MetadataExchange.xsd.
+ */
+
 #ifndef METADATA_EXCHANGE_HXX
 #define METADATA_EXCHANGE_HXX
 
@@ -69,77 +74,247 @@
 
 namespace WS
 {
+  /**
+   * @brief C++ namespace for the %http://schemas.xmlsoap.org/ws/2004/09/mex
+   * schema namespace.
+   */
   namespace MEX
   {
+    /**
+     * @brief Class corresponding to the %GetMetadata schema type.
+     *
+     * @nosubgrouping
+     */
     class GetMetadata: public ::xml_schema::Type
     {
       public:
-      // Dialect
-      //
+      /**
+       * @name Dialect
+       *
+       * @brief Accessor and modifier functions for the %Dialect
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::xml_schema::Uri DialectType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< DialectType > DialectOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< DialectType, char > DialectTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const DialectOptional&
-      Dialect () const;
+      getDialect () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       DialectOptional&
-      Dialect ();
+      getDialect ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      Dialect (const DialectType& x);
+      setDialect (const DialectType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      Dialect (const DialectOptional& x);
+      setDialect (const DialectOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      Dialect (::std::unique_ptr< DialectType > p);
+      setDialect (::std::unique_ptr< DialectType > p);
 
-      // Identifier
-      //
+      //@}
+
+      /**
+       * @name Identifier
+       *
+       * @brief Accessor and modifier functions for the %Identifier
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::xml_schema::Uri IdentifierType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< IdentifierType > IdentifierOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< IdentifierType, char > IdentifierTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const IdentifierOptional&
-      Identifier () const;
+      getIdentifier () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       IdentifierOptional&
-      Identifier ();
+      getIdentifier ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      Identifier (const IdentifierType& x);
+      setIdentifier (const IdentifierType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      Identifier (const IdentifierOptional& x);
+      setIdentifier (const IdentifierOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      Identifier (::std::unique_ptr< IdentifierType > p);
+      setIdentifier (::std::unique_ptr< IdentifierType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       GetMetadata ();
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       GetMetadata (const ::xercesc::DOMElement& e,
                    ::xml_schema::Flags f = 0,
                    ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       GetMetadata (const GetMetadata& x,
                    ::xml_schema::Flags f = 0,
                    ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual GetMetadata*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       GetMetadata&
       operator= (const GetMetadata& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~GetMetadata ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -148,52 +323,157 @@ namespace WS
       protected:
       DialectOptional Dialect_;
       IdentifierOptional Identifier_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %Metadata schema type.
+     *
+     * @nosubgrouping
+     */
     class Metadata: public ::xml_schema::Type
     {
       public:
-      // MetadataSection
-      //
+      /**
+       * @name MetadataSection
+       *
+       * @brief Accessor and modifier functions for the %MetadataSection
+       * sequence element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::MEX::MetadataSection MetadataSectionType;
+
+      /**
+       * @brief Element sequence container type.
+       */
       typedef ::xsd::cxx::tree::sequence< MetadataSectionType > MetadataSectionSequence;
+
+      /**
+       * @brief Element iterator type.
+       */
       typedef MetadataSectionSequence::iterator MetadataSectionIterator;
+
+      /**
+       * @brief Element constant iterator type.
+       */
       typedef MetadataSectionSequence::const_iterator MetadataSectionConstIterator;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< MetadataSectionType, char > MetadataSectionTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * sequence.
+       *
+       * @return A constant reference to the sequence container.
+       */
       const MetadataSectionSequence&
-      MetadataSection () const;
+      getMetadataSection () const;
 
+      /**
+       * @brief Return a read-write reference to the element sequence.
+       *
+       * @return A reference to the sequence container.
+       */
       MetadataSectionSequence&
-      MetadataSection ();
+      getMetadataSection ();
 
+      /**
+       * @brief Copy elements from a given sequence.
+       *
+       * @param s A sequence to copy elements from.
+       *
+       * For each element in @a s this function makes a copy and adds it 
+       * to the sequence. Note that this operation completely changes the 
+       * sequence and all old elements will be lost.
+       */
       void
-      MetadataSection (const MetadataSectionSequence& s);
+      setMetadataSection (const MetadataSectionSequence& s);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       Metadata ();
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       Metadata (const ::xercesc::DOMElement& e,
                 ::xml_schema::Flags f = 0,
                 ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       Metadata (const Metadata& x,
                 ::xml_schema::Flags f = 0,
                 ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual Metadata*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       Metadata&
       operator= (const Metadata& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~Metadata ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -201,199 +481,683 @@ namespace WS
 
       protected:
       MetadataSectionSequence MetadataSection_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %MetadataSection schema type.
+     *
+     * @nosubgrouping
+     */
     class MetadataSection: public ::xml_schema::Type
     {
       public:
-      // MetadataReference
-      //
+      /**
+       * @name MetadataReference
+       *
+       * @brief Accessor and modifier functions for the %MetadataReference
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::MEX::MetadataReference MetadataReferenceType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< MetadataReferenceType > MetadataReferenceOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< MetadataReferenceType, char > MetadataReferenceTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const MetadataReferenceOptional&
-      MetadataReference () const;
+      getMetadataReference () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       MetadataReferenceOptional&
-      MetadataReference ();
+      getMetadataReference ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      MetadataReference (const MetadataReferenceType& x);
+      setMetadataReference (const MetadataReferenceType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      MetadataReference (const MetadataReferenceOptional& x);
+      setMetadataReference (const MetadataReferenceOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      MetadataReference (::std::unique_ptr< MetadataReferenceType > p);
+      setMetadataReference (::std::unique_ptr< MetadataReferenceType > p);
 
-      // Location
-      //
+      //@}
+
+      /**
+       * @name Location
+       *
+       * @brief Accessor and modifier functions for the %Location
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::xml_schema::Uri LocationType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< LocationType > LocationOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< LocationType, char > LocationTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const LocationOptional&
-      Location () const;
+      getLocation () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       LocationOptional&
-      Location ();
+      getLocation ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      Location (const LocationType& x);
+      setLocation (const LocationType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      Location (const LocationOptional& x);
+      setLocation (const LocationOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      Location (::std::unique_ptr< LocationType > p);
+      setLocation (::std::unique_ptr< LocationType > p);
 
-      // ThisModel
-      //
+      //@}
+
+      /**
+       * @name ThisModel
+       *
+       * @brief Accessor and modifier functions for the %ThisModel
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DPWS::ThisModelType ThisModelType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< ThisModelType > ThisModelOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< ThisModelType, char > ThisModelTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const ThisModelOptional&
-      ThisModel () const;
+      getThisModel () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       ThisModelOptional&
-      ThisModel ();
+      getThisModel ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      ThisModel (const ThisModelType& x);
+      setThisModel (const ThisModelType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      ThisModel (const ThisModelOptional& x);
+      setThisModel (const ThisModelOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      ThisModel (::std::unique_ptr< ThisModelType > p);
+      setThisModel (::std::unique_ptr< ThisModelType > p);
 
-      // ThisDevice
-      //
+      //@}
+
+      /**
+       * @name ThisDevice
+       *
+       * @brief Accessor and modifier functions for the %ThisDevice
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DPWS::ThisDeviceType ThisDeviceType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< ThisDeviceType > ThisDeviceOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< ThisDeviceType, char > ThisDeviceTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const ThisDeviceOptional&
-      ThisDevice () const;
+      getThisDevice () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       ThisDeviceOptional&
-      ThisDevice ();
+      getThisDevice ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      ThisDevice (const ThisDeviceType& x);
+      setThisDevice (const ThisDeviceType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      ThisDevice (const ThisDeviceOptional& x);
+      setThisDevice (const ThisDeviceOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      ThisDevice (::std::unique_ptr< ThisDeviceType > p);
+      setThisDevice (::std::unique_ptr< ThisDeviceType > p);
 
-      // Relationship
-      //
+      //@}
+
+      /**
+       * @name Relationship
+       *
+       * @brief Accessor and modifier functions for the %Relationship
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::WS::DPWS::Relationship RelationshipType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< RelationshipType > RelationshipOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< RelationshipType, char > RelationshipTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const RelationshipOptional&
-      Relationship () const;
+      getRelationship () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       RelationshipOptional&
-      Relationship ();
+      getRelationship ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      Relationship (const RelationshipType& x);
+      setRelationship (const RelationshipType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      Relationship (const RelationshipOptional& x);
+      setRelationship (const RelationshipOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      Relationship (::std::unique_ptr< RelationshipType > p);
+      setRelationship (::std::unique_ptr< RelationshipType > p);
 
-      // StreamDescriptions
-      //
+      //@}
+
+      /**
+       * @name StreamDescriptions
+       *
+       * @brief Accessor and modifier functions for the %StreamDescriptions
+       * optional element.
+       */
+      //@{
+
+      /**
+       * @brief Element type.
+       */
       typedef ::MDPWS::StreamDescriptionsType StreamDescriptionsType;
+
+      /**
+       * @brief Element optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< StreamDescriptionsType > StreamDescriptionsOptional;
+
+      /**
+       * @brief Element traits type.
+       */
       typedef ::xsd::cxx::tree::traits< StreamDescriptionsType, char > StreamDescriptionsTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the element
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const StreamDescriptionsOptional&
-      StreamDescriptions () const;
+      getStreamDescriptions () const;
 
+      /**
+       * @brief Return a read-write reference to the element container.
+       *
+       * @return A reference to the optional container.
+       */
       StreamDescriptionsOptional&
-      StreamDescriptions ();
+      getStreamDescriptions ();
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the element.
+       */
       void
-      StreamDescriptions (const StreamDescriptionsType& x);
+      setStreamDescriptions (const StreamDescriptionsType& x);
 
+      /**
+       * @brief Set the element value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the element.
+       * Otherwise the element container is set the 'not present' state.
+       */
       void
-      StreamDescriptions (const StreamDescriptionsOptional& x);
+      setStreamDescriptions (const StreamDescriptionsOptional& x);
 
+      /**
+       * @brief Set the element value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      StreamDescriptions (::std::unique_ptr< StreamDescriptionsType > p);
+      setStreamDescriptions (::std::unique_ptr< StreamDescriptionsType > p);
 
-      // Dialect
-      //
+      //@}
+
+      /**
+       * @name Dialect
+       *
+       * @brief Accessor and modifier functions for the %Dialect
+       * required attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Uri DialectType;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< DialectType, char > DialectTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute.
+       *
+       * @return A constant reference to the attribute.
+       */
       const DialectType&
-      Dialect () const;
+      getDialect () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute.
+       *
+       * @return A reference to the attribute.
+       */
       DialectType&
-      Dialect ();
+      getDialect ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      Dialect (const DialectType& x);
+      setDialect (const DialectType& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly
+       * instead of making a copy.
+       */
       void
-      Dialect (::std::unique_ptr< DialectType > p);
+      setDialect (::std::unique_ptr< DialectType > p);
 
-      // Identifier
-      //
+      //@}
+
+      /**
+       * @name Identifier
+       *
+       * @brief Accessor and modifier functions for the %Identifier
+       * optional attribute.
+       */
+      //@{
+
+      /**
+       * @brief Attribute type.
+       */
       typedef ::xml_schema::Uri IdentifierType;
+
+      /**
+       * @brief Attribute optional container type.
+       */
       typedef ::xsd::cxx::tree::optional< IdentifierType > IdentifierOptional;
+
+      /**
+       * @brief Attribute traits type.
+       */
       typedef ::xsd::cxx::tree::traits< IdentifierType, char > IdentifierTraits;
 
+      /**
+       * @brief Return a read-only (constant) reference to the attribute
+       * container.
+       *
+       * @return A constant reference to the optional container.
+       */
       const IdentifierOptional&
-      Identifier () const;
+      getIdentifier () const;
 
+      /**
+       * @brief Return a read-write reference to the attribute container.
+       *
+       * @return A reference to the optional container.
+       */
       IdentifierOptional&
-      Identifier ();
+      getIdentifier ();
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x A new value to set.
+       *
+       * This function makes a copy of its argument and sets it as
+       * the new value of the attribute.
+       */
       void
-      Identifier (const IdentifierType& x);
+      setIdentifier (const IdentifierType& x);
 
+      /**
+       * @brief Set the attribute value.
+       *
+       * @param x An optional container with the new value to set.
+       *
+       * If the value is present in @a x then this function makes a copy 
+       * of this value and sets it as the new value of the attribute.
+       * Otherwise the attribute container is set the 'not present' state.
+       */
       void
-      Identifier (const IdentifierOptional& x);
+      setIdentifier (const IdentifierOptional& x);
 
+      /**
+       * @brief Set the attribute value without copying.
+       *
+       * @param p A new value to use.
+       *
+       * This function will try to use the passed value directly instead
+       * of making a copy.
+       */
       void
-      Identifier (::std::unique_ptr< IdentifierType > p);
+      setIdentifier (::std::unique_ptr< IdentifierType > p);
 
-      // Constructors.
-      //
+      //@}
+
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       MetadataSection (const DialectType&);
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       MetadataSection (const ::xercesc::DOMElement& e,
                        ::xml_schema::Flags f = 0,
                        ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       MetadataSection (const MetadataSection& x,
                        ::xml_schema::Flags f = 0,
                        ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual MetadataSection*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      /**
+       * @brief Copy assignment operator.
+       *
+       * @param x An instance to make a copy of.
+       * @return A reference to itself.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       MetadataSection&
       operator= (const MetadataSection& x);
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~MetadataSection ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
@@ -408,38 +1172,90 @@ namespace WS
       StreamDescriptionsOptional StreamDescriptions_;
       ::xsd::cxx::tree::one< DialectType > Dialect_;
       IdentifierOptional Identifier_;
+
+      //@endcond
     };
 
+    /**
+     * @brief Class corresponding to the %MetadataReference schema type.
+     *
+     * @nosubgrouping
+     */
     class MetadataReference: public ::xml_schema::Type
     {
       public:
-      // Constructors.
-      //
+      /**
+       * @name Constructors
+       */
+      //@{
+
+      /**
+       * @brief Create an instance from the ultimate base and
+       * initializers for required elements and attributes.
+       */
       MetadataReference ();
 
+      /**
+       * @brief Create an instance from a DOM element.
+       *
+       * @param e A DOM element to extract the data from.
+       * @param f Flags to create the new instance with.
+       * @param c A pointer to the object that will contain the new
+       * instance.
+       */
       MetadataReference (const ::xercesc::DOMElement& e,
                          ::xml_schema::Flags f = 0,
                          ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy constructor.
+       *
+       * @param x An instance to make a copy of.
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       *
+       * For polymorphic object models use the @c _clone function instead.
+       */
       MetadataReference (const MetadataReference& x,
                          ::xml_schema::Flags f = 0,
                          ::xml_schema::Container* c = 0);
 
+      /**
+       * @brief Copy the instance polymorphically.
+       *
+       * @param f Flags to create the copy with.
+       * @param c A pointer to the object that will contain the copy.
+       * @return A pointer to the dynamically allocated copy.
+       *
+       * This function ensures that the dynamic type of the instance is
+       * used for copying and should be used for polymorphic object
+       * models instead of the copy constructor.
+       */
       virtual MetadataReference*
       _clone (::xml_schema::Flags f = 0,
               ::xml_schema::Container* c = 0) const;
 
+      //@}
+
+      /**
+       * @brief Destructor.
+       */
       virtual 
       ~MetadataReference ();
 
       // Implementation.
       //
+
+      //@cond
+
       protected:
       void
       parse (::xsd::cxx::xml::dom::parser< char >&,
              ::xml_schema::Flags);
 
       protected:
+
+      //@endcond
     };
   }
 }
@@ -454,656 +1270,6 @@ namespace WS
 {
   namespace MEX
   {
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (const ::std::string& uri,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (const ::std::string& uri,
-                  ::xml_schema::ErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (const ::std::string& uri,
-                  ::xercesc::DOMErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (::std::istream& is,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (::std::istream& is,
-                  ::xml_schema::ErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (::std::istream& is,
-                  ::xercesc::DOMErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (::std::istream& is,
-                  const ::std::string& id,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (::std::istream& is,
-                  const ::std::string& id,
-                  ::xml_schema::ErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (::std::istream& is,
-                  const ::std::string& id,
-                  ::xercesc::DOMErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (::xercesc::InputSource& is,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (::xercesc::InputSource& is,
-                  ::xml_schema::ErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (::xercesc::InputSource& is,
-                  ::xercesc::DOMErrorHandler& eh,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (const ::xercesc::DOMDocument& d,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::GetMetadata >
-    GetMetadata_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                  ::xml_schema::Flags f = 0,
-                  const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (const ::std::string& uri,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (const ::std::string& uri,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (const ::std::string& uri,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (::std::istream& is,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (::std::istream& is,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (::std::istream& is,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (::std::istream& is,
-             const ::std::string& id,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (::std::istream& is,
-             const ::std::string& id,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (::std::istream& is,
-             const ::std::string& id,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (::xercesc::InputSource& is,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (::xercesc::InputSource& is,
-             ::xml_schema::ErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (::xercesc::InputSource& is,
-             ::xercesc::DOMErrorHandler& eh,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (const ::xercesc::DOMDocument& d,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Dialect (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-             ::xml_schema::Flags f = 0,
-             const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (const ::std::string& uri,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (const ::std::string& uri,
-                ::xml_schema::ErrorHandler& eh,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (const ::std::string& uri,
-                ::xercesc::DOMErrorHandler& eh,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (::std::istream& is,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (::std::istream& is,
-                ::xml_schema::ErrorHandler& eh,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (::std::istream& is,
-                ::xercesc::DOMErrorHandler& eh,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (::std::istream& is,
-                const ::std::string& id,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (::std::istream& is,
-                const ::std::string& id,
-                ::xml_schema::ErrorHandler& eh,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (::std::istream& is,
-                const ::std::string& id,
-                ::xercesc::DOMErrorHandler& eh,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (::xercesc::InputSource& is,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (::xercesc::InputSource& is,
-                ::xml_schema::ErrorHandler& eh,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (::xercesc::InputSource& is,
-                ::xercesc::DOMErrorHandler& eh,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (const ::xercesc::DOMDocument& d,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Identifier (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                ::xml_schema::Flags f = 0,
-                const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (const ::std::string& uri,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (const ::std::string& uri,
-               ::xml_schema::ErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (const ::std::string& uri,
-               ::xercesc::DOMErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (::std::istream& is,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (::std::istream& is,
-               ::xml_schema::ErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (::std::istream& is,
-               ::xercesc::DOMErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (::std::istream& is,
-               const ::std::string& id,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (::std::istream& is,
-               const ::std::string& id,
-               ::xml_schema::ErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (::std::istream& is,
-               const ::std::string& id,
-               ::xercesc::DOMErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (::xercesc::InputSource& is,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (::xercesc::InputSource& is,
-               ::xml_schema::ErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (::xercesc::InputSource& is,
-               ::xercesc::DOMErrorHandler& eh,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (const ::xercesc::DOMDocument& d,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::Metadata >
-    Metadata_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-               ::xml_schema::Flags f = 0,
-               const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (const ::std::string& uri,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (const ::std::string& uri,
-                      ::xml_schema::ErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (const ::std::string& uri,
-                      ::xercesc::DOMErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (::std::istream& is,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (::std::istream& is,
-                      ::xml_schema::ErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (::std::istream& is,
-                      ::xercesc::DOMErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (::std::istream& is,
-                      const ::std::string& id,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (::std::istream& is,
-                      const ::std::string& id,
-                      ::xml_schema::ErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (::std::istream& is,
-                      const ::std::string& id,
-                      ::xercesc::DOMErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (::xercesc::InputSource& is,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (::xercesc::InputSource& is,
-                      ::xml_schema::ErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (::xercesc::InputSource& is,
-                      ::xercesc::DOMErrorHandler& eh,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (const ::xercesc::DOMDocument& d,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::MetadataSection >
-    MetadataSection_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                      ::xml_schema::Flags f = 0,
-                      const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (const ::std::string& uri,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (const ::std::string& uri,
-                        ::xml_schema::ErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (const ::std::string& uri,
-                        ::xercesc::DOMErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (::std::istream& is,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (::std::istream& is,
-                        ::xml_schema::ErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (::std::istream& is,
-                        ::xercesc::DOMErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (::std::istream& is,
-                        const ::std::string& id,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (::std::istream& is,
-                        const ::std::string& id,
-                        ::xml_schema::ErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (::std::istream& is,
-                        const ::std::string& id,
-                        ::xercesc::DOMErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (::xercesc::InputSource& is,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (::xercesc::InputSource& is,
-                        ::xml_schema::ErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (::xercesc::InputSource& is,
-                        ::xercesc::DOMErrorHandler& eh,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (const ::xercesc::DOMDocument& d,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::WS::MEX::MetadataReference >
-    MetadataReference_ (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                        ::xml_schema::Flags f = 0,
-                        const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse a URI or a local file.
-    //
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (const ::std::string& uri,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (const ::std::string& uri,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (const ::std::string& uri,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse std::istream.
-    //
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (::std::istream& is,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (::std::istream& is,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (::std::istream& is,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (::std::istream& is,
-              const ::std::string& id,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (::std::istream& is,
-              const ::std::string& id,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (::std::istream& is,
-              const ::std::string& id,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::InputSource.
-    //
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (::xercesc::InputSource& is,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (::xercesc::InputSource& is,
-              ::xml_schema::ErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (::xercesc::InputSource& is,
-              ::xercesc::DOMErrorHandler& eh,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    // Parse xercesc::DOMDocument.
-    //
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (const ::xercesc::DOMDocument& d,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
-
-    ::std::unique_ptr< ::xml_schema::Uri >
-    Location (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-              ::xml_schema::Flags f = 0,
-              const ::xml_schema::Properties& p = ::xml_schema::Properties ());
   }
 }
 
@@ -1119,482 +1285,6 @@ namespace WS
 {
   namespace MEX
   {
-    // Serialize to std::ostream.
-    //
-
-    void
-    GetMetadata_ (::std::ostream& os,
-                  const ::WS::MEX::GetMetadata& x, 
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  const ::std::string& e = "UTF-8",
-                  ::xml_schema::Flags f = 0);
-
-    void
-    GetMetadata_ (::std::ostream& os,
-                  const ::WS::MEX::GetMetadata& x, 
-                  ::xml_schema::ErrorHandler& eh,
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  const ::std::string& e = "UTF-8",
-                  ::xml_schema::Flags f = 0);
-
-    void
-    GetMetadata_ (::std::ostream& os,
-                  const ::WS::MEX::GetMetadata& x, 
-                  ::xercesc::DOMErrorHandler& eh,
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  const ::std::string& e = "UTF-8",
-                  ::xml_schema::Flags f = 0);
-
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
-    void
-    GetMetadata_ (::xercesc::XMLFormatTarget& ft,
-                  const ::WS::MEX::GetMetadata& x, 
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  const ::std::string& e = "UTF-8",
-                  ::xml_schema::Flags f = 0);
-
-    void
-    GetMetadata_ (::xercesc::XMLFormatTarget& ft,
-                  const ::WS::MEX::GetMetadata& x, 
-                  ::xml_schema::ErrorHandler& eh,
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  const ::std::string& e = "UTF-8",
-                  ::xml_schema::Flags f = 0);
-
-    void
-    GetMetadata_ (::xercesc::XMLFormatTarget& ft,
-                  const ::WS::MEX::GetMetadata& x, 
-                  ::xercesc::DOMErrorHandler& eh,
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  const ::std::string& e = "UTF-8",
-                  ::xml_schema::Flags f = 0);
-
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
-    void
-    GetMetadata_ (::xercesc::DOMDocument& d,
-                  const ::WS::MEX::GetMetadata& x,
-                  ::xml_schema::Flags f = 0);
-
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    GetMetadata_ (const ::WS::MEX::GetMetadata& x, 
-                  const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                  ::xml_schema::Flags f = 0);
-
-    // Serialize to std::ostream.
-    //
-
-    void
-    Dialect (::std::ostream& os,
-             const ::xml_schema::Uri& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-    void
-    Dialect (::std::ostream& os,
-             const ::xml_schema::Uri& x, 
-             ::xml_schema::ErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-    void
-    Dialect (::std::ostream& os,
-             const ::xml_schema::Uri& x, 
-             ::xercesc::DOMErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
-    void
-    Dialect (::xercesc::XMLFormatTarget& ft,
-             const ::xml_schema::Uri& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-    void
-    Dialect (::xercesc::XMLFormatTarget& ft,
-             const ::xml_schema::Uri& x, 
-             ::xml_schema::ErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-    void
-    Dialect (::xercesc::XMLFormatTarget& ft,
-             const ::xml_schema::Uri& x, 
-             ::xercesc::DOMErrorHandler& eh,
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             const ::std::string& e = "UTF-8",
-             ::xml_schema::Flags f = 0);
-
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
-    void
-    Dialect (::xercesc::DOMDocument& d,
-             const ::xml_schema::Uri& x,
-             ::xml_schema::Flags f = 0);
-
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Dialect (const ::xml_schema::Uri& x, 
-             const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-             ::xml_schema::Flags f = 0);
-
-    // Serialize to std::ostream.
-    //
-
-    void
-    Identifier (::std::ostream& os,
-                const ::xml_schema::Uri& x, 
-                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                const ::std::string& e = "UTF-8",
-                ::xml_schema::Flags f = 0);
-
-    void
-    Identifier (::std::ostream& os,
-                const ::xml_schema::Uri& x, 
-                ::xml_schema::ErrorHandler& eh,
-                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                const ::std::string& e = "UTF-8",
-                ::xml_schema::Flags f = 0);
-
-    void
-    Identifier (::std::ostream& os,
-                const ::xml_schema::Uri& x, 
-                ::xercesc::DOMErrorHandler& eh,
-                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                const ::std::string& e = "UTF-8",
-                ::xml_schema::Flags f = 0);
-
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
-    void
-    Identifier (::xercesc::XMLFormatTarget& ft,
-                const ::xml_schema::Uri& x, 
-                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                const ::std::string& e = "UTF-8",
-                ::xml_schema::Flags f = 0);
-
-    void
-    Identifier (::xercesc::XMLFormatTarget& ft,
-                const ::xml_schema::Uri& x, 
-                ::xml_schema::ErrorHandler& eh,
-                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                const ::std::string& e = "UTF-8",
-                ::xml_schema::Flags f = 0);
-
-    void
-    Identifier (::xercesc::XMLFormatTarget& ft,
-                const ::xml_schema::Uri& x, 
-                ::xercesc::DOMErrorHandler& eh,
-                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                const ::std::string& e = "UTF-8",
-                ::xml_schema::Flags f = 0);
-
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
-    void
-    Identifier (::xercesc::DOMDocument& d,
-                const ::xml_schema::Uri& x,
-                ::xml_schema::Flags f = 0);
-
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Identifier (const ::xml_schema::Uri& x, 
-                const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                ::xml_schema::Flags f = 0);
-
-    // Serialize to std::ostream.
-    //
-
-    void
-    Metadata_ (::std::ostream& os,
-               const ::WS::MEX::Metadata& x, 
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-    void
-    Metadata_ (::std::ostream& os,
-               const ::WS::MEX::Metadata& x, 
-               ::xml_schema::ErrorHandler& eh,
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-    void
-    Metadata_ (::std::ostream& os,
-               const ::WS::MEX::Metadata& x, 
-               ::xercesc::DOMErrorHandler& eh,
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
-    void
-    Metadata_ (::xercesc::XMLFormatTarget& ft,
-               const ::WS::MEX::Metadata& x, 
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-    void
-    Metadata_ (::xercesc::XMLFormatTarget& ft,
-               const ::WS::MEX::Metadata& x, 
-               ::xml_schema::ErrorHandler& eh,
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-    void
-    Metadata_ (::xercesc::XMLFormatTarget& ft,
-               const ::WS::MEX::Metadata& x, 
-               ::xercesc::DOMErrorHandler& eh,
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               const ::std::string& e = "UTF-8",
-               ::xml_schema::Flags f = 0);
-
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
-    void
-    Metadata_ (::xercesc::DOMDocument& d,
-               const ::WS::MEX::Metadata& x,
-               ::xml_schema::Flags f = 0);
-
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Metadata_ (const ::WS::MEX::Metadata& x, 
-               const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-               ::xml_schema::Flags f = 0);
-
-    // Serialize to std::ostream.
-    //
-
-    void
-    MetadataSection_ (::std::ostream& os,
-                      const ::WS::MEX::MetadataSection& x, 
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-    void
-    MetadataSection_ (::std::ostream& os,
-                      const ::WS::MEX::MetadataSection& x, 
-                      ::xml_schema::ErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-    void
-    MetadataSection_ (::std::ostream& os,
-                      const ::WS::MEX::MetadataSection& x, 
-                      ::xercesc::DOMErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
-    void
-    MetadataSection_ (::xercesc::XMLFormatTarget& ft,
-                      const ::WS::MEX::MetadataSection& x, 
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-    void
-    MetadataSection_ (::xercesc::XMLFormatTarget& ft,
-                      const ::WS::MEX::MetadataSection& x, 
-                      ::xml_schema::ErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-    void
-    MetadataSection_ (::xercesc::XMLFormatTarget& ft,
-                      const ::WS::MEX::MetadataSection& x, 
-                      ::xercesc::DOMErrorHandler& eh,
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      const ::std::string& e = "UTF-8",
-                      ::xml_schema::Flags f = 0);
-
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
-    void
-    MetadataSection_ (::xercesc::DOMDocument& d,
-                      const ::WS::MEX::MetadataSection& x,
-                      ::xml_schema::Flags f = 0);
-
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    MetadataSection_ (const ::WS::MEX::MetadataSection& x, 
-                      const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                      ::xml_schema::Flags f = 0);
-
-    // Serialize to std::ostream.
-    //
-
-    void
-    MetadataReference_ (::std::ostream& os,
-                        const ::WS::MEX::MetadataReference& x, 
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-    void
-    MetadataReference_ (::std::ostream& os,
-                        const ::WS::MEX::MetadataReference& x, 
-                        ::xml_schema::ErrorHandler& eh,
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-    void
-    MetadataReference_ (::std::ostream& os,
-                        const ::WS::MEX::MetadataReference& x, 
-                        ::xercesc::DOMErrorHandler& eh,
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
-    void
-    MetadataReference_ (::xercesc::XMLFormatTarget& ft,
-                        const ::WS::MEX::MetadataReference& x, 
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-    void
-    MetadataReference_ (::xercesc::XMLFormatTarget& ft,
-                        const ::WS::MEX::MetadataReference& x, 
-                        ::xml_schema::ErrorHandler& eh,
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-    void
-    MetadataReference_ (::xercesc::XMLFormatTarget& ft,
-                        const ::WS::MEX::MetadataReference& x, 
-                        ::xercesc::DOMErrorHandler& eh,
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        const ::std::string& e = "UTF-8",
-                        ::xml_schema::Flags f = 0);
-
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
-    void
-    MetadataReference_ (::xercesc::DOMDocument& d,
-                        const ::WS::MEX::MetadataReference& x,
-                        ::xml_schema::Flags f = 0);
-
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    MetadataReference_ (const ::WS::MEX::MetadataReference& x, 
-                        const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-                        ::xml_schema::Flags f = 0);
-
-    // Serialize to std::ostream.
-    //
-
-    void
-    Location (::std::ostream& os,
-              const ::xml_schema::Uri& x, 
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-    void
-    Location (::std::ostream& os,
-              const ::xml_schema::Uri& x, 
-              ::xml_schema::ErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-    void
-    Location (::std::ostream& os,
-              const ::xml_schema::Uri& x, 
-              ::xercesc::DOMErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-    // Serialize to xercesc::XMLFormatTarget.
-    //
-
-    void
-    Location (::xercesc::XMLFormatTarget& ft,
-              const ::xml_schema::Uri& x, 
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-    void
-    Location (::xercesc::XMLFormatTarget& ft,
-              const ::xml_schema::Uri& x, 
-              ::xml_schema::ErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-    void
-    Location (::xercesc::XMLFormatTarget& ft,
-              const ::xml_schema::Uri& x, 
-              ::xercesc::DOMErrorHandler& eh,
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              const ::std::string& e = "UTF-8",
-              ::xml_schema::Flags f = 0);
-
-    // Serialize to an existing xercesc::DOMDocument.
-    //
-
-    void
-    Location (::xercesc::DOMDocument& d,
-              const ::xml_schema::Uri& x,
-              ::xml_schema::Flags f = 0);
-
-    // Serialize to a new xercesc::DOMDocument.
-    //
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Location (const ::xml_schema::Uri& x, 
-              const ::xml_schema::NamespaceInfomap& m = ::xml_schema::NamespaceInfomap (),
-              ::xml_schema::Flags f = 0);
-
     void
     operator<< (::xercesc::DOMElement&, const GetMetadata&);
 

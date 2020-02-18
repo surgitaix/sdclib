@@ -49,186 +49,183 @@ BatteryDescriptor::BatteryDescriptor(
 		Handle handle
 ) : data(Defaults::BatteryDescriptorInit(
 		handle
-)) {}
+))
+{}
 
 BatteryDescriptor::operator CDM::BatteryDescriptor() const {
 	return *data;
 }
 
-BatteryDescriptor::BatteryDescriptor(const CDM::BatteryDescriptor & object) : data(new CDM::BatteryDescriptor(object)) {
+BatteryDescriptor::BatteryDescriptor(const CDM::BatteryDescriptor & object)
+: data(new CDM::BatteryDescriptor(object))
+{ }
 
-}
-
-BatteryDescriptor::BatteryDescriptor(const BatteryDescriptor & object) : data(new CDM::BatteryDescriptor(*object.data)) {
-
-}
-
-BatteryDescriptor::~BatteryDescriptor() {
-
-}
+BatteryDescriptor::BatteryDescriptor(const BatteryDescriptor & object)
+: data(std::make_shared<CDM::BatteryDescriptor>(*object.data))
+{ }
 
 void BatteryDescriptor::copyFrom(const BatteryDescriptor & object) {
-	data = std::shared_ptr<CDM::BatteryDescriptor>( new CDM::BatteryDescriptor(*object.data));
+	data = std::make_shared<CDM::BatteryDescriptor>(*object.data);
 }
 
-BatteryDescriptor & BatteryDescriptor:: operator=(const BatteryDescriptor & object) {
+BatteryDescriptor & BatteryDescriptor:: operator=(const BatteryDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 BatteryDescriptor & BatteryDescriptor::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
+	data->setType(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool BatteryDescriptor::getType(CodedValue & out) const {
-	if (data->Type().present()) {
-		out = ConvertFromCDM::convert(data->Type().get());
+	if (data->getType().present()) {
+		out = ConvertFromCDM::convert(data->getType().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue BatteryDescriptor::getType() const {
-	return ConvertFromCDM::convert(data->Type().get());
+	return ConvertFromCDM::convert(data->getType().get());
 }
 
 bool BatteryDescriptor::hasType() const {
-	return data->Type().present();
+	return data->getType().present();
 }
 
 BatteryDescriptor & BatteryDescriptor::setHandle(const Handle & value) {
-	data->Handle(ConvertToCDM::convert(value));
+	data->setHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 Handle BatteryDescriptor::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle());
+	return ConvertFromCDM::convert(data->getHandle());
 }
 
 BatteryDescriptor & BatteryDescriptor::setDescriptorVersion(const VersionCounter & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool BatteryDescriptor::getDescriptorVersion(VersionCounter & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter BatteryDescriptor::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool BatteryDescriptor::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 BatteryDescriptor & BatteryDescriptor::setSafetyClassification(const SafetyClassification & value) {
-	data->SafetyClassification(ConvertToCDM::convert(value));
+	data->setSafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool BatteryDescriptor::getSafetyClassification(SafetyClassification & out) const {
-	if (data->SafetyClassification().present()) {
-		out = ConvertFromCDM::convert(data->SafetyClassification().get());
+	if (data->getSafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->getSafetyClassification().get());
 		return true;
 	}
 	return false;
 }
 
 SafetyClassification BatteryDescriptor::getSafetyClassification() const {
-	return ConvertFromCDM::convert(data->SafetyClassification().get());
+	return ConvertFromCDM::convert(data->getSafetyClassification().get());
 }
 
 bool BatteryDescriptor::hasSafetyClassification() const {
-	return data->SafetyClassification().present();
+	return data->getSafetyClassification().present();
 }
 
 BatteryDescriptor & BatteryDescriptor::addProductionSpecification(const ProductionSpecification & value) {
-	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
+	data->getProductionSpecification().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<ProductionSpecification> BatteryDescriptor::getProductionSpecificationList() const {
 	std::vector<ProductionSpecification> result;
-	result.reserve(data->ProductionSpecification().size());
-	for (const auto & value: data->ProductionSpecification()) {
+	result.reserve(data->getProductionSpecification().size());
+	for (const auto & value: data->getProductionSpecification()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void BatteryDescriptor::clearProductionSpecificationList() {
-	data->ProductionSpecification().clear();
+	data->getProductionSpecification().clear();
 }
 
 BatteryDescriptor & BatteryDescriptor::setCapacityFullCharge(const Measurement & value) {
-	data->CapacityFullCharge(ConvertToCDM::convert(value));
+	data->setCapacityFullCharge(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool BatteryDescriptor::getCapacityFullCharge(Measurement & out) const {
-	if (data->CapacityFullCharge().present()) {
-		out = ConvertFromCDM::convert(data->CapacityFullCharge().get());
+	if (data->getCapacityFullCharge().present()) {
+		out = ConvertFromCDM::convert(data->getCapacityFullCharge().get());
 		return true;
 	}
 	return false;
 }
 
 Measurement BatteryDescriptor::getCapacityFullCharge() const {
-	return ConvertFromCDM::convert(data->CapacityFullCharge().get());
+	return ConvertFromCDM::convert(data->getCapacityFullCharge().get());
 }
 
 bool BatteryDescriptor::hasCapacityFullCharge() const {
-	return data->CapacityFullCharge().present();
+	return data->getCapacityFullCharge().present();
 }
 
 BatteryDescriptor & BatteryDescriptor::setCapacitySpecified(const Measurement & value) {
-	data->CapacitySpecified(ConvertToCDM::convert(value));
+	data->setCapacitySpecified(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool BatteryDescriptor::getCapacitySpecified(Measurement & out) const {
-	if (data->CapacitySpecified().present()) {
-		out = ConvertFromCDM::convert(data->CapacitySpecified().get());
+	if (data->getCapacitySpecified().present()) {
+		out = ConvertFromCDM::convert(data->getCapacitySpecified().get());
 		return true;
 	}
 	return false;
 }
 
 Measurement BatteryDescriptor::getCapacitySpecified() const {
-	return ConvertFromCDM::convert(data->CapacitySpecified().get());
+	return ConvertFromCDM::convert(data->getCapacitySpecified().get());
 }
 
 bool BatteryDescriptor::hasCapacitySpecified() const {
-	return data->CapacitySpecified().present();
+	return data->getCapacitySpecified().present();
 }
 
 BatteryDescriptor & BatteryDescriptor::setVoltageSpecified(const Measurement & value) {
-	data->VoltageSpecified(ConvertToCDM::convert(value));
+	data->setVoltageSpecified(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool BatteryDescriptor::getVoltageSpecified(Measurement & out) const {
-	if (data->VoltageSpecified().present()) {
-		out = ConvertFromCDM::convert(data->VoltageSpecified().get());
+	if (data->getVoltageSpecified().present()) {
+		out = ConvertFromCDM::convert(data->getVoltageSpecified().get());
 		return true;
 	}
 	return false;
 }
 
 Measurement BatteryDescriptor::getVoltageSpecified() const {
-	return ConvertFromCDM::convert(data->VoltageSpecified().get());
+	return ConvertFromCDM::convert(data->getVoltageSpecified().get());
 }
 
 bool BatteryDescriptor::hasVoltageSpecified() const {
-	return data->VoltageSpecified().present();
+	return data->getVoltageSpecified().present();
 }
 
 

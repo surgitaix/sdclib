@@ -35,7 +35,7 @@ void BICEPSServiceEventSinkHandler::handleRequestImpl(Poco::Net::HTTPServerReque
 	SOAP::CommonSoapPreprocessing t_soapHandling(m_grammarProvider);
 	t_soapHandling.parse(p_httpRequest.stream());
 
-	const auto t_soapAction(t_soapHandling.normalizedMessage->Header().Action().get());
+	const auto t_soapAction(t_soapHandling.normalizedMessage->getHeader().getAction().get());
 
 	std::unique_ptr<SOAP::Command> t_command(new SOAP::SoapFaultCommand(p_httpResponse));
 	

@@ -60,7 +60,7 @@ namespace OSELib
 				if(nullptr == t_responseMessage) {
 					return nullptr;
 				}
-				t_responseMessage->Header().Action().set(WS::ADDRESSING::AttributedURIType(TraitsType::ResponseAction()));
+				t_responseMessage->getHeader().getAction().set(WS::ADDRESSING::AttributedURIType(TraitsType::ResponseAction()));
 
 				insertResponseBodyIntoMessage(*t_responseMessage, std::move(t_responseBody));
 

@@ -20,7 +20,7 @@ GetActionCommand::GetActionCommand(std::unique_ptr<MESSAGEMODEL::Envelope> p_req
 std::unique_ptr<MESSAGEMODEL::Envelope> GetActionCommand::dispatch(const MESSAGEMODEL::Envelope & p_request)
 {
 	std::unique_ptr<MESSAGEMODEL::Envelope> t_response(createResponseMessageFromRequestMessage(p_request));
-	t_response->Header().Action().set(WS::ADDRESSING::AttributedURIType(DPWS::GetTraits::ResponseAction()));
+	t_response->getHeader().getAction().set(WS::ADDRESSING::AttributedURIType(DPWS::GetTraits::ResponseAction()));
 
 	NormalizedMessageAdapter<DPWS::GetTraits::Response> t_responseAdapter;
 	t_responseAdapter.set(*t_response, std::move(m_metadata));

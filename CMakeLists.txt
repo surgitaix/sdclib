@@ -39,8 +39,8 @@ project(${PROJECT_NAME} "CXX")
 # Version numbers -> Will be written to the config file
 set (SDCLibrary_VERSION_FIRST          4)
 set (SDCLibrary_VERSION_MIDDLE         4)
-set (SDCLibrary_VERSION_LAST           0)
-set (SDCLibrary_C_YEAR              2019)
+set (SDCLibrary_VERSION_LAST           3)
+set (SDCLibrary_C_YEAR              2020)
 set (SDCLibrary_SurgiTAIX "SurgiTAIX AG")
 
 
@@ -79,6 +79,10 @@ set_property(CACHE SDC_TESTS PROPERTY STRINGS "ON" "OFF")
 # Examples - Default to ON
 set (SDC_EXAMPLES   ON CACHE STRING "Enable Building Examples")
 set_property(CACHE SDC_EXAMPLES PROPERTY STRINGS "ON" "OFF")
+
+# Advanced Examples - Default to OFF
+set (SDC_ADVANCED_EXAMPLES OFF CACHE STRING "Enable Building Advance Example")
+set_property(CACHE SDC_ADVANCED_EXAMPLES PROPERTY STRINGS "ON" "OFF")
 
 # CPPCHECK - WIP (OFF for now)
 set (SDC_CPPCHECK   OFF CACHE STRING "Enable CPPCHECK (only available for CMAKE 3.10 or higher).")
@@ -151,7 +155,7 @@ mark_as_advanced(SDC_DEFAULT_PORT_RANGE)
 set(SDC_DISCOVERY_TIMEOUT_MS 5000 CACHE STRING "Time in milliseconds a Discovery until timeout." FORCE)
 mark_as_advanced(SDC_DISCOVERY_TIMEOUT_MS)
 
-set(SDC_CONNECTION_TIMEOUT_MS 4000 CACHE STRING "Time in milliseconds the SDCLib will check if the connection is lost." FORCE)
+set(SDC_CONNECTION_TIMEOUT_MS 2000 CACHE STRING "Time in milliseconds the SDCLib will check if the connection is lost." FORCE)
 mark_as_advanced(SDC_CONNECTION_TIMEOUT_MS)
 
 
@@ -212,7 +216,6 @@ message(STATUS "Adding Targets...")
 # datamodel
 add_subdirectory(${PATH_DATAMODEL_ROOT})
 
-set(SDCLib_SEARCH_DIRS ".")
 find_package(SDCLib)
 
 # src folder

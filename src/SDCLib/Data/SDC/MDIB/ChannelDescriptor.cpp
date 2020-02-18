@@ -48,123 +48,120 @@ ChannelDescriptor::ChannelDescriptor(
 		Handle handle
 ) : data(Defaults::ChannelDescriptorInit(
 		handle
-)) {}
+))
+{}
 
 ChannelDescriptor::operator CDM::ChannelDescriptor() const {
 	return *data;
 }
 
-ChannelDescriptor::ChannelDescriptor(const CDM::ChannelDescriptor & object) : data(new CDM::ChannelDescriptor(object)) {
+ChannelDescriptor::ChannelDescriptor(const CDM::ChannelDescriptor & object)
+: data(new CDM::ChannelDescriptor(object))
+{ }
 
-}
-
-ChannelDescriptor::ChannelDescriptor(const ChannelDescriptor & object) : data(new CDM::ChannelDescriptor(*object.data)) {
-
-}
-
-ChannelDescriptor::~ChannelDescriptor() {
-
-}
+ChannelDescriptor::ChannelDescriptor(const ChannelDescriptor & object)
+: data(std::make_shared<CDM::ChannelDescriptor>(*object.data))
+{ }
 
 void ChannelDescriptor::copyFrom(const ChannelDescriptor & object) {
-	data = std::shared_ptr<CDM::ChannelDescriptor>( new CDM::ChannelDescriptor(*object.data));
+	data = std::make_shared<CDM::ChannelDescriptor>(*object.data);
 }
 
-ChannelDescriptor & ChannelDescriptor:: operator=(const ChannelDescriptor & object) {
+ChannelDescriptor & ChannelDescriptor:: operator=(const ChannelDescriptor& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 ChannelDescriptor & ChannelDescriptor::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
+	data->setType(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ChannelDescriptor::getType(CodedValue & out) const {
-	if (data->Type().present()) {
-		out = ConvertFromCDM::convert(data->Type().get());
+	if (data->getType().present()) {
+		out = ConvertFromCDM::convert(data->getType().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue ChannelDescriptor::getType() const {
-	return ConvertFromCDM::convert(data->Type().get());
+	return ConvertFromCDM::convert(data->getType().get());
 }
 
 bool ChannelDescriptor::hasType() const {
-	return data->Type().present();
+	return data->getType().present();
 }
 
 ChannelDescriptor & ChannelDescriptor::setHandle(const Handle & value) {
-	data->Handle(ConvertToCDM::convert(value));
+	data->setHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 Handle ChannelDescriptor::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle());
+	return ConvertFromCDM::convert(data->getHandle());
 }
 
 ChannelDescriptor & ChannelDescriptor::setDescriptorVersion(const VersionCounter & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ChannelDescriptor::getDescriptorVersion(VersionCounter & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter ChannelDescriptor::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool ChannelDescriptor::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 ChannelDescriptor & ChannelDescriptor::setSafetyClassification(const SafetyClassification & value) {
-	data->SafetyClassification(ConvertToCDM::convert(value));
+	data->setSafetyClassification(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ChannelDescriptor::getSafetyClassification(SafetyClassification & out) const {
-	if (data->SafetyClassification().present()) {
-		out = ConvertFromCDM::convert(data->SafetyClassification().get());
+	if (data->getSafetyClassification().present()) {
+		out = ConvertFromCDM::convert(data->getSafetyClassification().get());
 		return true;
 	}
 	return false;
 }
 
 SafetyClassification ChannelDescriptor::getSafetyClassification() const {
-	return ConvertFromCDM::convert(data->SafetyClassification().get());
+	return ConvertFromCDM::convert(data->getSafetyClassification().get());
 }
 
 bool ChannelDescriptor::hasSafetyClassification() const {
-	return data->SafetyClassification().present();
+	return data->getSafetyClassification().present();
 }
 
 ChannelDescriptor & ChannelDescriptor::addProductionSpecification(const ProductionSpecification & value) {
-	data->ProductionSpecification().push_back(ConvertToCDM::convert(value));
+	data->getProductionSpecification().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<ProductionSpecification> ChannelDescriptor::getProductionSpecificationList() const {
 	std::vector<ProductionSpecification> result;
-	result.reserve(data->ProductionSpecification().size());
-	for (const auto & value: data->ProductionSpecification()) {
+	result.reserve(data->getProductionSpecification().size());
+	for (const auto & value: data->getProductionSpecification()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void ChannelDescriptor::clearProductionSpecificationList() {
-	data->ProductionSpecification().clear();
+	data->getProductionSpecification().clear();
 }
 
 

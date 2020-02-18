@@ -48,133 +48,133 @@ namespace WS
     // 
 
     const HelloType::EndpointReferenceType& HelloType::
-    EndpointReference () const
+    getEndpointReference () const
     {
       return this->EndpointReference_.get ();
     }
 
     HelloType::EndpointReferenceType& HelloType::
-    EndpointReference ()
+    getEndpointReference ()
     {
       return this->EndpointReference_.get ();
     }
 
     void HelloType::
-    EndpointReference (const EndpointReferenceType& x)
+    setEndpointReference (const EndpointReferenceType& x)
     {
       this->EndpointReference_.set (x);
     }
 
     void HelloType::
-    EndpointReference (::std::unique_ptr< EndpointReferenceType > x)
+    setEndpointReference (::std::unique_ptr< EndpointReferenceType > x)
     {
       this->EndpointReference_.set (std::move (x));
     }
 
     const HelloType::TypesOptional& HelloType::
-    Types () const
+    getTypes () const
     {
       return this->Types_;
     }
 
     HelloType::TypesOptional& HelloType::
-    Types ()
+    getTypes ()
     {
       return this->Types_;
     }
 
     void HelloType::
-    Types (const TypesType& x)
+    setTypes (const TypesType& x)
     {
       this->Types_.set (x);
     }
 
     void HelloType::
-    Types (const TypesOptional& x)
+    setTypes (const TypesOptional& x)
     {
       this->Types_ = x;
     }
 
     void HelloType::
-    Types (::std::unique_ptr< TypesType > x)
+    setTypes (::std::unique_ptr< TypesType > x)
     {
       this->Types_.set (std::move (x));
     }
 
     const HelloType::ScopesOptional& HelloType::
-    Scopes () const
+    getScopes () const
     {
       return this->Scopes_;
     }
 
     HelloType::ScopesOptional& HelloType::
-    Scopes ()
+    getScopes ()
     {
       return this->Scopes_;
     }
 
     void HelloType::
-    Scopes (const ScopesType& x)
+    setScopes (const ScopesType& x)
     {
       this->Scopes_.set (x);
     }
 
     void HelloType::
-    Scopes (const ScopesOptional& x)
+    setScopes (const ScopesOptional& x)
     {
       this->Scopes_ = x;
     }
 
     void HelloType::
-    Scopes (::std::unique_ptr< ScopesType > x)
+    setScopes (::std::unique_ptr< ScopesType > x)
     {
       this->Scopes_.set (std::move (x));
     }
 
     const HelloType::XAddrsOptional& HelloType::
-    XAddrs () const
+    getXAddrs () const
     {
       return this->XAddrs_;
     }
 
     HelloType::XAddrsOptional& HelloType::
-    XAddrs ()
+    getXAddrs ()
     {
       return this->XAddrs_;
     }
 
     void HelloType::
-    XAddrs (const XAddrsType& x)
+    setXAddrs (const XAddrsType& x)
     {
       this->XAddrs_.set (x);
     }
 
     void HelloType::
-    XAddrs (const XAddrsOptional& x)
+    setXAddrs (const XAddrsOptional& x)
     {
       this->XAddrs_ = x;
     }
 
     void HelloType::
-    XAddrs (::std::unique_ptr< XAddrsType > x)
+    setXAddrs (::std::unique_ptr< XAddrsType > x)
     {
       this->XAddrs_.set (std::move (x));
     }
 
     const HelloType::MetadataVersionType& HelloType::
-    MetadataVersion () const
+    getMetadataVersion () const
     {
       return this->MetadataVersion_.get ();
     }
 
     HelloType::MetadataVersionType& HelloType::
-    MetadataVersion ()
+    getMetadataVersion ()
     {
       return this->MetadataVersion_.get ();
     }
 
     void HelloType::
-    MetadataVersion (const MetadataVersionType& x)
+    setMetadataVersion (const MetadataVersionType& x)
     {
       this->MetadataVersion_.set (x);
     }
@@ -184,139 +184,139 @@ namespace WS
     // 
 
     const ByeType::EndpointReferenceType& ByeType::
-    EndpointReference () const
+    getEndpointReference () const
     {
       return this->EndpointReference_.get ();
     }
 
     ByeType::EndpointReferenceType& ByeType::
-    EndpointReference ()
+    getEndpointReference ()
     {
       return this->EndpointReference_.get ();
     }
 
     void ByeType::
-    EndpointReference (const EndpointReferenceType& x)
+    setEndpointReference (const EndpointReferenceType& x)
     {
       this->EndpointReference_.set (x);
     }
 
     void ByeType::
-    EndpointReference (::std::unique_ptr< EndpointReferenceType > x)
+    setEndpointReference (::std::unique_ptr< EndpointReferenceType > x)
     {
       this->EndpointReference_.set (std::move (x));
     }
 
     const ByeType::TypesOptional& ByeType::
-    Types () const
+    getTypes () const
     {
       return this->Types_;
     }
 
     ByeType::TypesOptional& ByeType::
-    Types ()
+    getTypes ()
     {
       return this->Types_;
     }
 
     void ByeType::
-    Types (const TypesType& x)
+    setTypes (const TypesType& x)
     {
       this->Types_.set (x);
     }
 
     void ByeType::
-    Types (const TypesOptional& x)
+    setTypes (const TypesOptional& x)
     {
       this->Types_ = x;
     }
 
     void ByeType::
-    Types (::std::unique_ptr< TypesType > x)
+    setTypes (::std::unique_ptr< TypesType > x)
     {
       this->Types_.set (std::move (x));
     }
 
     const ByeType::ScopesOptional& ByeType::
-    Scopes () const
+    getScopes () const
     {
       return this->Scopes_;
     }
 
     ByeType::ScopesOptional& ByeType::
-    Scopes ()
+    getScopes ()
     {
       return this->Scopes_;
     }
 
     void ByeType::
-    Scopes (const ScopesType& x)
+    setScopes (const ScopesType& x)
     {
       this->Scopes_.set (x);
     }
 
     void ByeType::
-    Scopes (const ScopesOptional& x)
+    setScopes (const ScopesOptional& x)
     {
       this->Scopes_ = x;
     }
 
     void ByeType::
-    Scopes (::std::unique_ptr< ScopesType > x)
+    setScopes (::std::unique_ptr< ScopesType > x)
     {
       this->Scopes_.set (std::move (x));
     }
 
     const ByeType::XAddrsOptional& ByeType::
-    XAddrs () const
+    getXAddrs () const
     {
       return this->XAddrs_;
     }
 
     ByeType::XAddrsOptional& ByeType::
-    XAddrs ()
+    getXAddrs ()
     {
       return this->XAddrs_;
     }
 
     void ByeType::
-    XAddrs (const XAddrsType& x)
+    setXAddrs (const XAddrsType& x)
     {
       this->XAddrs_.set (x);
     }
 
     void ByeType::
-    XAddrs (const XAddrsOptional& x)
+    setXAddrs (const XAddrsOptional& x)
     {
       this->XAddrs_ = x;
     }
 
     void ByeType::
-    XAddrs (::std::unique_ptr< XAddrsType > x)
+    setXAddrs (::std::unique_ptr< XAddrsType > x)
     {
       this->XAddrs_.set (std::move (x));
     }
 
     const ByeType::MetadataVersionOptional& ByeType::
-    MetadataVersion () const
+    getMetadataVersion () const
     {
       return this->MetadataVersion_;
     }
 
     ByeType::MetadataVersionOptional& ByeType::
-    MetadataVersion ()
+    getMetadataVersion ()
     {
       return this->MetadataVersion_;
     }
 
     void ByeType::
-    MetadataVersion (const MetadataVersionType& x)
+    setMetadataVersion (const MetadataVersionType& x)
     {
       this->MetadataVersion_.set (x);
     }
 
     void ByeType::
-    MetadataVersion (const MetadataVersionOptional& x)
+    setMetadataVersion (const MetadataVersionOptional& x)
     {
       this->MetadataVersion_ = x;
     }
@@ -326,61 +326,61 @@ namespace WS
     // 
 
     const ProbeType::TypesOptional& ProbeType::
-    Types () const
+    getTypes () const
     {
       return this->Types_;
     }
 
     ProbeType::TypesOptional& ProbeType::
-    Types ()
+    getTypes ()
     {
       return this->Types_;
     }
 
     void ProbeType::
-    Types (const TypesType& x)
+    setTypes (const TypesType& x)
     {
       this->Types_.set (x);
     }
 
     void ProbeType::
-    Types (const TypesOptional& x)
+    setTypes (const TypesOptional& x)
     {
       this->Types_ = x;
     }
 
     void ProbeType::
-    Types (::std::unique_ptr< TypesType > x)
+    setTypes (::std::unique_ptr< TypesType > x)
     {
       this->Types_.set (std::move (x));
     }
 
     const ProbeType::ScopesOptional& ProbeType::
-    Scopes () const
+    getScopes () const
     {
       return this->Scopes_;
     }
 
     ProbeType::ScopesOptional& ProbeType::
-    Scopes ()
+    getScopes ()
     {
       return this->Scopes_;
     }
 
     void ProbeType::
-    Scopes (const ScopesType& x)
+    setScopes (const ScopesType& x)
     {
       this->Scopes_.set (x);
     }
 
     void ProbeType::
-    Scopes (const ScopesOptional& x)
+    setScopes (const ScopesOptional& x)
     {
       this->Scopes_ = x;
     }
 
     void ProbeType::
-    Scopes (::std::unique_ptr< ScopesType > x)
+    setScopes (::std::unique_ptr< ScopesType > x)
     {
       this->Scopes_.set (std::move (x));
     }
@@ -390,19 +390,19 @@ namespace WS
     // 
 
     const ProbeMatchesType::ProbeMatchSequence& ProbeMatchesType::
-    ProbeMatch () const
+    getProbeMatch () const
     {
       return this->ProbeMatch_;
     }
 
     ProbeMatchesType::ProbeMatchSequence& ProbeMatchesType::
-    ProbeMatch ()
+    getProbeMatch ()
     {
       return this->ProbeMatch_;
     }
 
     void ProbeMatchesType::
-    ProbeMatch (const ProbeMatchSequence& s)
+    setProbeMatch (const ProbeMatchSequence& s)
     {
       this->ProbeMatch_ = s;
     }
@@ -412,133 +412,133 @@ namespace WS
     // 
 
     const ProbeMatchType::EndpointReferenceType& ProbeMatchType::
-    EndpointReference () const
+    getEndpointReference () const
     {
       return this->EndpointReference_.get ();
     }
 
     ProbeMatchType::EndpointReferenceType& ProbeMatchType::
-    EndpointReference ()
+    getEndpointReference ()
     {
       return this->EndpointReference_.get ();
     }
 
     void ProbeMatchType::
-    EndpointReference (const EndpointReferenceType& x)
+    setEndpointReference (const EndpointReferenceType& x)
     {
       this->EndpointReference_.set (x);
     }
 
     void ProbeMatchType::
-    EndpointReference (::std::unique_ptr< EndpointReferenceType > x)
+    setEndpointReference (::std::unique_ptr< EndpointReferenceType > x)
     {
       this->EndpointReference_.set (std::move (x));
     }
 
     const ProbeMatchType::TypesOptional& ProbeMatchType::
-    Types () const
+    getTypes () const
     {
       return this->Types_;
     }
 
     ProbeMatchType::TypesOptional& ProbeMatchType::
-    Types ()
+    getTypes ()
     {
       return this->Types_;
     }
 
     void ProbeMatchType::
-    Types (const TypesType& x)
+    setTypes (const TypesType& x)
     {
       this->Types_.set (x);
     }
 
     void ProbeMatchType::
-    Types (const TypesOptional& x)
+    setTypes (const TypesOptional& x)
     {
       this->Types_ = x;
     }
 
     void ProbeMatchType::
-    Types (::std::unique_ptr< TypesType > x)
+    setTypes (::std::unique_ptr< TypesType > x)
     {
       this->Types_.set (std::move (x));
     }
 
     const ProbeMatchType::ScopesOptional& ProbeMatchType::
-    Scopes () const
+    getScopes () const
     {
       return this->Scopes_;
     }
 
     ProbeMatchType::ScopesOptional& ProbeMatchType::
-    Scopes ()
+    getScopes ()
     {
       return this->Scopes_;
     }
 
     void ProbeMatchType::
-    Scopes (const ScopesType& x)
+    setScopes (const ScopesType& x)
     {
       this->Scopes_.set (x);
     }
 
     void ProbeMatchType::
-    Scopes (const ScopesOptional& x)
+    setScopes (const ScopesOptional& x)
     {
       this->Scopes_ = x;
     }
 
     void ProbeMatchType::
-    Scopes (::std::unique_ptr< ScopesType > x)
+    setScopes (::std::unique_ptr< ScopesType > x)
     {
       this->Scopes_.set (std::move (x));
     }
 
     const ProbeMatchType::XAddrsOptional& ProbeMatchType::
-    XAddrs () const
+    getXAddrs () const
     {
       return this->XAddrs_;
     }
 
     ProbeMatchType::XAddrsOptional& ProbeMatchType::
-    XAddrs ()
+    getXAddrs ()
     {
       return this->XAddrs_;
     }
 
     void ProbeMatchType::
-    XAddrs (const XAddrsType& x)
+    setXAddrs (const XAddrsType& x)
     {
       this->XAddrs_.set (x);
     }
 
     void ProbeMatchType::
-    XAddrs (const XAddrsOptional& x)
+    setXAddrs (const XAddrsOptional& x)
     {
       this->XAddrs_ = x;
     }
 
     void ProbeMatchType::
-    XAddrs (::std::unique_ptr< XAddrsType > x)
+    setXAddrs (::std::unique_ptr< XAddrsType > x)
     {
       this->XAddrs_.set (std::move (x));
     }
 
     const ProbeMatchType::MetadataVersionType& ProbeMatchType::
-    MetadataVersion () const
+    getMetadataVersion () const
     {
       return this->MetadataVersion_.get ();
     }
 
     ProbeMatchType::MetadataVersionType& ProbeMatchType::
-    MetadataVersion ()
+    getMetadataVersion ()
     {
       return this->MetadataVersion_.get ();
     }
 
     void ProbeMatchType::
-    MetadataVersion (const MetadataVersionType& x)
+    setMetadataVersion (const MetadataVersionType& x)
     {
       this->MetadataVersion_.set (x);
     }
@@ -548,25 +548,25 @@ namespace WS
     // 
 
     const ResolveType::EndpointReferenceType& ResolveType::
-    EndpointReference () const
+    getEndpointReference () const
     {
       return this->EndpointReference_.get ();
     }
 
     ResolveType::EndpointReferenceType& ResolveType::
-    EndpointReference ()
+    getEndpointReference ()
     {
       return this->EndpointReference_.get ();
     }
 
     void ResolveType::
-    EndpointReference (const EndpointReferenceType& x)
+    setEndpointReference (const EndpointReferenceType& x)
     {
       this->EndpointReference_.set (x);
     }
 
     void ResolveType::
-    EndpointReference (::std::unique_ptr< EndpointReferenceType > x)
+    setEndpointReference (::std::unique_ptr< EndpointReferenceType > x)
     {
       this->EndpointReference_.set (std::move (x));
     }
@@ -576,31 +576,31 @@ namespace WS
     // 
 
     const ResolveMatchesType::ResolveMatchOptional& ResolveMatchesType::
-    ResolveMatch () const
+    getResolveMatch () const
     {
       return this->ResolveMatch_;
     }
 
     ResolveMatchesType::ResolveMatchOptional& ResolveMatchesType::
-    ResolveMatch ()
+    getResolveMatch ()
     {
       return this->ResolveMatch_;
     }
 
     void ResolveMatchesType::
-    ResolveMatch (const ResolveMatchType& x)
+    setResolveMatch (const ResolveMatchType& x)
     {
       this->ResolveMatch_.set (x);
     }
 
     void ResolveMatchesType::
-    ResolveMatch (const ResolveMatchOptional& x)
+    setResolveMatch (const ResolveMatchOptional& x)
     {
       this->ResolveMatch_ = x;
     }
 
     void ResolveMatchesType::
-    ResolveMatch (::std::unique_ptr< ResolveMatchType > x)
+    setResolveMatch (::std::unique_ptr< ResolveMatchType > x)
     {
       this->ResolveMatch_.set (std::move (x));
     }
@@ -610,133 +610,133 @@ namespace WS
     // 
 
     const ResolveMatchType::EndpointReferenceType& ResolveMatchType::
-    EndpointReference () const
+    getEndpointReference () const
     {
       return this->EndpointReference_.get ();
     }
 
     ResolveMatchType::EndpointReferenceType& ResolveMatchType::
-    EndpointReference ()
+    getEndpointReference ()
     {
       return this->EndpointReference_.get ();
     }
 
     void ResolveMatchType::
-    EndpointReference (const EndpointReferenceType& x)
+    setEndpointReference (const EndpointReferenceType& x)
     {
       this->EndpointReference_.set (x);
     }
 
     void ResolveMatchType::
-    EndpointReference (::std::unique_ptr< EndpointReferenceType > x)
+    setEndpointReference (::std::unique_ptr< EndpointReferenceType > x)
     {
       this->EndpointReference_.set (std::move (x));
     }
 
     const ResolveMatchType::TypesOptional& ResolveMatchType::
-    Types () const
+    getTypes () const
     {
       return this->Types_;
     }
 
     ResolveMatchType::TypesOptional& ResolveMatchType::
-    Types ()
+    getTypes ()
     {
       return this->Types_;
     }
 
     void ResolveMatchType::
-    Types (const TypesType& x)
+    setTypes (const TypesType& x)
     {
       this->Types_.set (x);
     }
 
     void ResolveMatchType::
-    Types (const TypesOptional& x)
+    setTypes (const TypesOptional& x)
     {
       this->Types_ = x;
     }
 
     void ResolveMatchType::
-    Types (::std::unique_ptr< TypesType > x)
+    setTypes (::std::unique_ptr< TypesType > x)
     {
       this->Types_.set (std::move (x));
     }
 
     const ResolveMatchType::ScopesOptional& ResolveMatchType::
-    Scopes () const
+    getScopes () const
     {
       return this->Scopes_;
     }
 
     ResolveMatchType::ScopesOptional& ResolveMatchType::
-    Scopes ()
+    getScopes ()
     {
       return this->Scopes_;
     }
 
     void ResolveMatchType::
-    Scopes (const ScopesType& x)
+    setScopes (const ScopesType& x)
     {
       this->Scopes_.set (x);
     }
 
     void ResolveMatchType::
-    Scopes (const ScopesOptional& x)
+    setScopes (const ScopesOptional& x)
     {
       this->Scopes_ = x;
     }
 
     void ResolveMatchType::
-    Scopes (::std::unique_ptr< ScopesType > x)
+    setScopes (::std::unique_ptr< ScopesType > x)
     {
       this->Scopes_.set (std::move (x));
     }
 
     const ResolveMatchType::XAddrsOptional& ResolveMatchType::
-    XAddrs () const
+    getXAddrs () const
     {
       return this->XAddrs_;
     }
 
     ResolveMatchType::XAddrsOptional& ResolveMatchType::
-    XAddrs ()
+    getXAddrs ()
     {
       return this->XAddrs_;
     }
 
     void ResolveMatchType::
-    XAddrs (const XAddrsType& x)
+    setXAddrs (const XAddrsType& x)
     {
       this->XAddrs_.set (x);
     }
 
     void ResolveMatchType::
-    XAddrs (const XAddrsOptional& x)
+    setXAddrs (const XAddrsOptional& x)
     {
       this->XAddrs_ = x;
     }
 
     void ResolveMatchType::
-    XAddrs (::std::unique_ptr< XAddrsType > x)
+    setXAddrs (::std::unique_ptr< XAddrsType > x)
     {
       this->XAddrs_.set (std::move (x));
     }
 
     const ResolveMatchType::MetadataVersionType& ResolveMatchType::
-    MetadataVersion () const
+    getMetadataVersion () const
     {
       return this->MetadataVersion_.get ();
     }
 
     ResolveMatchType::MetadataVersionType& ResolveMatchType::
-    MetadataVersion ()
+    getMetadataVersion ()
     {
       return this->MetadataVersion_.get ();
     }
 
     void ResolveMatchType::
-    MetadataVersion (const MetadataVersionType& x)
+    setMetadataVersion (const MetadataVersionType& x)
     {
       this->MetadataVersion_.set (x);
     }
@@ -794,31 +794,31 @@ namespace WS
     // 
 
     const ScopesType::MatchByOptional& ScopesType::
-    MatchBy () const
+    getMatchBy () const
     {
       return this->MatchBy_;
     }
 
     ScopesType::MatchByOptional& ScopesType::
-    MatchBy ()
+    getMatchBy ()
     {
       return this->MatchBy_;
     }
 
     void ScopesType::
-    MatchBy (const MatchByType& x)
+    setMatchBy (const MatchByType& x)
     {
       this->MatchBy_.set (x);
     }
 
     void ScopesType::
-    MatchBy (const MatchByOptional& x)
+    setMatchBy (const MatchByOptional& x)
     {
       this->MatchBy_ = x;
     }
 
     void ScopesType::
-    MatchBy (::std::unique_ptr< MatchByType > x)
+    setMatchBy (::std::unique_ptr< MatchByType > x)
     {
       this->MatchBy_.set (std::move (x));
     }
@@ -869,31 +869,31 @@ namespace WS
     // 
 
     const SecurityType::SigOptional& SecurityType::
-    Sig () const
+    getSig () const
     {
       return this->Sig_;
     }
 
     SecurityType::SigOptional& SecurityType::
-    Sig ()
+    getSig ()
     {
       return this->Sig_;
     }
 
     void SecurityType::
-    Sig (const SigType& x)
+    setSig (const SigType& x)
     {
       this->Sig_.set (x);
     }
 
     void SecurityType::
-    Sig (const SigOptional& x)
+    setSig (const SigOptional& x)
     {
       this->Sig_ = x;
     }
 
     void SecurityType::
-    Sig (::std::unique_ptr< SigType > x)
+    setSig (::std::unique_ptr< SigType > x)
     {
       this->Sig_.set (std::move (x));
     }
@@ -903,103 +903,103 @@ namespace WS
     // 
 
     const SigType::SchemeType& SigType::
-    Scheme () const
+    getScheme () const
     {
       return this->Scheme_.get ();
     }
 
     SigType::SchemeType& SigType::
-    Scheme ()
+    getScheme ()
     {
       return this->Scheme_.get ();
     }
 
     void SigType::
-    Scheme (const SchemeType& x)
+    setScheme (const SchemeType& x)
     {
       this->Scheme_.set (x);
     }
 
     void SigType::
-    Scheme (::std::unique_ptr< SchemeType > x)
+    setScheme (::std::unique_ptr< SchemeType > x)
     {
       this->Scheme_.set (std::move (x));
     }
 
     const SigType::KeyIdOptional& SigType::
-    KeyId () const
+    getKeyId () const
     {
       return this->KeyId_;
     }
 
     SigType::KeyIdOptional& SigType::
-    KeyId ()
+    getKeyId ()
     {
       return this->KeyId_;
     }
 
     void SigType::
-    KeyId (const KeyIdType& x)
+    setKeyId (const KeyIdType& x)
     {
       this->KeyId_.set (x);
     }
 
     void SigType::
-    KeyId (const KeyIdOptional& x)
+    setKeyId (const KeyIdOptional& x)
     {
       this->KeyId_ = x;
     }
 
     void SigType::
-    KeyId (::std::unique_ptr< KeyIdType > x)
+    setKeyId (::std::unique_ptr< KeyIdType > x)
     {
       this->KeyId_.set (std::move (x));
     }
 
     const SigType::RefsType& SigType::
-    Refs () const
+    getRefs () const
     {
       return this->Refs_.get ();
     }
 
     SigType::RefsType& SigType::
-    Refs ()
+    getRefs ()
     {
       return this->Refs_.get ();
     }
 
     void SigType::
-    Refs (const RefsType& x)
+    setRefs (const RefsType& x)
     {
       this->Refs_.set (x);
     }
 
     void SigType::
-    Refs (::std::unique_ptr< RefsType > x)
+    setRefs (::std::unique_ptr< RefsType > x)
     {
       this->Refs_.set (std::move (x));
     }
 
     const SigType::SigType1& SigType::
-    Sig () const
+    getSig () const
     {
       return this->Sig_.get ();
     }
 
     SigType::SigType1& SigType::
-    Sig ()
+    getSig ()
     {
       return this->Sig_.get ();
     }
 
     void SigType::
-    Sig (const SigType1& x)
+    setSig (const SigType1& x)
     {
       this->Sig_.set (x);
     }
 
     void SigType::
-    Sig (::std::unique_ptr< SigType1 > x)
+    setSig (::std::unique_ptr< SigType1 > x)
     {
       this->Sig_.set (std::move (x));
     }
@@ -1009,67 +1009,67 @@ namespace WS
     // 
 
     const AppSequenceType::InstanceIdType& AppSequenceType::
-    InstanceId () const
+    getInstanceId () const
     {
       return this->InstanceId_.get ();
     }
 
     AppSequenceType::InstanceIdType& AppSequenceType::
-    InstanceId ()
+    getInstanceId ()
     {
       return this->InstanceId_.get ();
     }
 
     void AppSequenceType::
-    InstanceId (const InstanceIdType& x)
+    setInstanceId (const InstanceIdType& x)
     {
       this->InstanceId_.set (x);
     }
 
     const AppSequenceType::SequenceIdOptional& AppSequenceType::
-    SequenceId () const
+    getSequenceId () const
     {
       return this->SequenceId_;
     }
 
     AppSequenceType::SequenceIdOptional& AppSequenceType::
-    SequenceId ()
+    getSequenceId ()
     {
       return this->SequenceId_;
     }
 
     void AppSequenceType::
-    SequenceId (const SequenceIdType& x)
+    setSequenceId (const SequenceIdType& x)
     {
       this->SequenceId_.set (x);
     }
 
     void AppSequenceType::
-    SequenceId (const SequenceIdOptional& x)
+    setSequenceId (const SequenceIdOptional& x)
     {
       this->SequenceId_ = x;
     }
 
     void AppSequenceType::
-    SequenceId (::std::unique_ptr< SequenceIdType > x)
+    setSequenceId (::std::unique_ptr< SequenceIdType > x)
     {
       this->SequenceId_.set (std::move (x));
     }
 
     const AppSequenceType::MessageNumberType& AppSequenceType::
-    MessageNumber () const
+    getMessageNumber () const
     {
       return this->MessageNumber_.get ();
     }
 
     AppSequenceType::MessageNumberType& AppSequenceType::
-    MessageNumber ()
+    getMessageNumber ()
     {
       return this->MessageNumber_.get ();
     }
 
     void AppSequenceType::
-    MessageNumber (const MessageNumberType& x)
+    setMessageNumber (const MessageNumberType& x)
     {
       this->MessageNumber_.set (x);
     }
@@ -3170,4030 +3170,6 @@ namespace WS
 {
   namespace DISCOVERY
   {
-    ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (const ::std::string& u,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::HelloType > (
-        ::WS::DISCOVERY::Hello (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (const ::std::string& u,
-           ::xml_schema::ErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::HelloType > (
-        ::WS::DISCOVERY::Hello (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (const ::std::string& u,
-           ::xercesc::DOMErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::HelloType > (
-        ::WS::DISCOVERY::Hello (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (::std::istream& is,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::Hello (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (::std::istream& is,
-           ::xml_schema::ErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::Hello (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (::std::istream& is,
-           ::xercesc::DOMErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::Hello (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (::std::istream& is,
-           const ::std::string& sid,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::Hello (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (::std::istream& is,
-           const ::std::string& sid,
-           ::xml_schema::ErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::Hello (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (::std::istream& is,
-           const ::std::string& sid,
-           ::xercesc::DOMErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::Hello (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (::xercesc::InputSource& i,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::HelloType > (
-        ::WS::DISCOVERY::Hello (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (::xercesc::InputSource& i,
-           ::xml_schema::ErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::HelloType > (
-        ::WS::DISCOVERY::Hello (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (::xercesc::InputSource& i,
-           ::xercesc::DOMErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::HelloType > (
-        ::WS::DISCOVERY::Hello (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (const ::xercesc::DOMDocument& doc,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::DISCOVERY::HelloType > (
-          ::WS::DISCOVERY::Hello (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "Hello",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::HelloType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-        ::std::unique_ptr< ::WS::DISCOVERY::HelloType > r (
-          dynamic_cast< ::WS::DISCOVERY::HelloType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Hello",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::HelloType >
-    Hello (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "Hello",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::HelloType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-
-        ::std::unique_ptr< ::WS::DISCOVERY::HelloType > r (
-          dynamic_cast< ::WS::DISCOVERY::HelloType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Hello",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (const ::std::string& u,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ByeType > (
-        ::WS::DISCOVERY::Bye (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (const ::std::string& u,
-         ::xml_schema::ErrorHandler& h,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ByeType > (
-        ::WS::DISCOVERY::Bye (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (const ::std::string& u,
-         ::xercesc::DOMErrorHandler& h,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ByeType > (
-        ::WS::DISCOVERY::Bye (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (::std::istream& is,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::Bye (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (::std::istream& is,
-         ::xml_schema::ErrorHandler& h,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::Bye (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (::std::istream& is,
-         ::xercesc::DOMErrorHandler& h,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::Bye (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (::std::istream& is,
-         const ::std::string& sid,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::Bye (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (::std::istream& is,
-         const ::std::string& sid,
-         ::xml_schema::ErrorHandler& h,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::Bye (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (::std::istream& is,
-         const ::std::string& sid,
-         ::xercesc::DOMErrorHandler& h,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::Bye (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (::xercesc::InputSource& i,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ByeType > (
-        ::WS::DISCOVERY::Bye (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (::xercesc::InputSource& i,
-         ::xml_schema::ErrorHandler& h,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ByeType > (
-        ::WS::DISCOVERY::Bye (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (::xercesc::InputSource& i,
-         ::xercesc::DOMErrorHandler& h,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ByeType > (
-        ::WS::DISCOVERY::Bye (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (const ::xercesc::DOMDocument& doc,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::DISCOVERY::ByeType > (
-          ::WS::DISCOVERY::Bye (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "Bye",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::ByeType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-        ::std::unique_ptr< ::WS::DISCOVERY::ByeType > r (
-          dynamic_cast< ::WS::DISCOVERY::ByeType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Bye",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ByeType >
-    Bye (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "Bye",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::ByeType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-
-        ::std::unique_ptr< ::WS::DISCOVERY::ByeType > r (
-          dynamic_cast< ::WS::DISCOVERY::ByeType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Bye",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (const ::std::string& u,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ProbeType > (
-        ::WS::DISCOVERY::Probe (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (const ::std::string& u,
-           ::xml_schema::ErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ProbeType > (
-        ::WS::DISCOVERY::Probe (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (const ::std::string& u,
-           ::xercesc::DOMErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ProbeType > (
-        ::WS::DISCOVERY::Probe (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (::std::istream& is,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::Probe (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (::std::istream& is,
-           ::xml_schema::ErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::Probe (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (::std::istream& is,
-           ::xercesc::DOMErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::Probe (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (::std::istream& is,
-           const ::std::string& sid,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::Probe (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (::std::istream& is,
-           const ::std::string& sid,
-           ::xml_schema::ErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::Probe (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (::std::istream& is,
-           const ::std::string& sid,
-           ::xercesc::DOMErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::Probe (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (::xercesc::InputSource& i,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ProbeType > (
-        ::WS::DISCOVERY::Probe (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (::xercesc::InputSource& i,
-           ::xml_schema::ErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ProbeType > (
-        ::WS::DISCOVERY::Probe (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (::xercesc::InputSource& i,
-           ::xercesc::DOMErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ProbeType > (
-        ::WS::DISCOVERY::Probe (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (const ::xercesc::DOMDocument& doc,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::DISCOVERY::ProbeType > (
-          ::WS::DISCOVERY::Probe (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "Probe",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::ProbeType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-        ::std::unique_ptr< ::WS::DISCOVERY::ProbeType > r (
-          dynamic_cast< ::WS::DISCOVERY::ProbeType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Probe",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeType >
-    Probe (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "Probe",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::ProbeType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-
-        ::std::unique_ptr< ::WS::DISCOVERY::ProbeType > r (
-          dynamic_cast< ::WS::DISCOVERY::ProbeType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Probe",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (const ::std::string& u,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType > (
-        ::WS::DISCOVERY::ProbeMatches (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (const ::std::string& u,
-                  ::xml_schema::ErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType > (
-        ::WS::DISCOVERY::ProbeMatches (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (const ::std::string& u,
-                  ::xercesc::DOMErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType > (
-        ::WS::DISCOVERY::ProbeMatches (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (::std::istream& is,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::ProbeMatches (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (::std::istream& is,
-                  ::xml_schema::ErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::ProbeMatches (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (::std::istream& is,
-                  ::xercesc::DOMErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::ProbeMatches (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (::std::istream& is,
-                  const ::std::string& sid,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::ProbeMatches (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (::std::istream& is,
-                  const ::std::string& sid,
-                  ::xml_schema::ErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::ProbeMatches (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (::std::istream& is,
-                  const ::std::string& sid,
-                  ::xercesc::DOMErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::ProbeMatches (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (::xercesc::InputSource& i,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType > (
-        ::WS::DISCOVERY::ProbeMatches (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (::xercesc::InputSource& i,
-                  ::xml_schema::ErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType > (
-        ::WS::DISCOVERY::ProbeMatches (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (::xercesc::InputSource& i,
-                  ::xercesc::DOMErrorHandler& h,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType > (
-        ::WS::DISCOVERY::ProbeMatches (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (const ::xercesc::DOMDocument& doc,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType > (
-          ::WS::DISCOVERY::ProbeMatches (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "ProbeMatches",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::ProbeMatchesType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-        ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType > r (
-          dynamic_cast< ::WS::DISCOVERY::ProbeMatchesType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "ProbeMatches",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType >
-    ProbeMatches (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                  ::xml_schema::Flags f,
-                  const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "ProbeMatches",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::ProbeMatchesType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-
-        ::std::unique_ptr< ::WS::DISCOVERY::ProbeMatchesType > r (
-          dynamic_cast< ::WS::DISCOVERY::ProbeMatchesType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "ProbeMatches",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (const ::std::string& u,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ResolveType > (
-        ::WS::DISCOVERY::Resolve (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (const ::std::string& u,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ResolveType > (
-        ::WS::DISCOVERY::Resolve (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (const ::std::string& u,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ResolveType > (
-        ::WS::DISCOVERY::Resolve (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (::std::istream& is,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::Resolve (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (::std::istream& is,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::Resolve (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (::std::istream& is,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::Resolve (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (::std::istream& is,
-             const ::std::string& sid,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::Resolve (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (::std::istream& is,
-             const ::std::string& sid,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::Resolve (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (::std::istream& is,
-             const ::std::string& sid,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::Resolve (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (::xercesc::InputSource& i,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ResolveType > (
-        ::WS::DISCOVERY::Resolve (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (::xercesc::InputSource& i,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ResolveType > (
-        ::WS::DISCOVERY::Resolve (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (::xercesc::InputSource& i,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ResolveType > (
-        ::WS::DISCOVERY::Resolve (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (const ::xercesc::DOMDocument& doc,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::DISCOVERY::ResolveType > (
-          ::WS::DISCOVERY::Resolve (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "Resolve",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::ResolveType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-        ::std::unique_ptr< ::WS::DISCOVERY::ResolveType > r (
-          dynamic_cast< ::WS::DISCOVERY::ResolveType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Resolve",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveType >
-    Resolve (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "Resolve",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::ResolveType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-
-        ::std::unique_ptr< ::WS::DISCOVERY::ResolveType > r (
-          dynamic_cast< ::WS::DISCOVERY::ResolveType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Resolve",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (const ::std::string& u,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType > (
-        ::WS::DISCOVERY::ResolveMatches (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (const ::std::string& u,
-                    ::xml_schema::ErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType > (
-        ::WS::DISCOVERY::ResolveMatches (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (const ::std::string& u,
-                    ::xercesc::DOMErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType > (
-        ::WS::DISCOVERY::ResolveMatches (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (::std::istream& is,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::ResolveMatches (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (::std::istream& is,
-                    ::xml_schema::ErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::ResolveMatches (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (::std::istream& is,
-                    ::xercesc::DOMErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::ResolveMatches (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (::std::istream& is,
-                    const ::std::string& sid,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::ResolveMatches (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (::std::istream& is,
-                    const ::std::string& sid,
-                    ::xml_schema::ErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::ResolveMatches (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (::std::istream& is,
-                    const ::std::string& sid,
-                    ::xercesc::DOMErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::ResolveMatches (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (::xercesc::InputSource& i,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType > (
-        ::WS::DISCOVERY::ResolveMatches (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (::xercesc::InputSource& i,
-                    ::xml_schema::ErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType > (
-        ::WS::DISCOVERY::ResolveMatches (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (::xercesc::InputSource& i,
-                    ::xercesc::DOMErrorHandler& h,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType > (
-        ::WS::DISCOVERY::ResolveMatches (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (const ::xercesc::DOMDocument& doc,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType > (
-          ::WS::DISCOVERY::ResolveMatches (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "ResolveMatches",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::ResolveMatchesType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-        ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType > r (
-          dynamic_cast< ::WS::DISCOVERY::ResolveMatchesType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "ResolveMatches",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType >
-    ResolveMatches (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                    ::xml_schema::Flags f,
-                    const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "ResolveMatches",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::ResolveMatchesType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-
-        ::std::unique_ptr< ::WS::DISCOVERY::ResolveMatchesType > r (
-          dynamic_cast< ::WS::DISCOVERY::ResolveMatchesType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "ResolveMatches",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (const ::std::string& u,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::QNameListType > (
-        ::WS::DISCOVERY::Types (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (const ::std::string& u,
-           ::xml_schema::ErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::QNameListType > (
-        ::WS::DISCOVERY::Types (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (const ::std::string& u,
-           ::xercesc::DOMErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::QNameListType > (
-        ::WS::DISCOVERY::Types (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (::std::istream& is,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::Types (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (::std::istream& is,
-           ::xml_schema::ErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::Types (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (::std::istream& is,
-           ::xercesc::DOMErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::Types (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (::std::istream& is,
-           const ::std::string& sid,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::Types (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (::std::istream& is,
-           const ::std::string& sid,
-           ::xml_schema::ErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::Types (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (::std::istream& is,
-           const ::std::string& sid,
-           ::xercesc::DOMErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::Types (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (::xercesc::InputSource& i,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::QNameListType > (
-        ::WS::DISCOVERY::Types (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (::xercesc::InputSource& i,
-           ::xml_schema::ErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::QNameListType > (
-        ::WS::DISCOVERY::Types (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (::xercesc::InputSource& i,
-           ::xercesc::DOMErrorHandler& h,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::QNameListType > (
-        ::WS::DISCOVERY::Types (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (const ::xercesc::DOMDocument& doc,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::DISCOVERY::QNameListType > (
-          ::WS::DISCOVERY::Types (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "Types",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::QNameListType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-        ::std::unique_ptr< ::WS::DISCOVERY::QNameListType > r (
-          dynamic_cast< ::WS::DISCOVERY::QNameListType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Types",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::QNameListType >
-    Types (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-           ::xml_schema::Flags f,
-           const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "Types",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::QNameListType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-
-        ::std::unique_ptr< ::WS::DISCOVERY::QNameListType > r (
-          dynamic_cast< ::WS::DISCOVERY::QNameListType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Types",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (const ::std::string& u,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ScopesType > (
-        ::WS::DISCOVERY::Scopes (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (const ::std::string& u,
-            ::xml_schema::ErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ScopesType > (
-        ::WS::DISCOVERY::Scopes (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (const ::std::string& u,
-            ::xercesc::DOMErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ScopesType > (
-        ::WS::DISCOVERY::Scopes (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (::std::istream& is,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::Scopes (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (::std::istream& is,
-            ::xml_schema::ErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::Scopes (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (::std::istream& is,
-            ::xercesc::DOMErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::Scopes (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (::std::istream& is,
-            const ::std::string& sid,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::Scopes (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (::std::istream& is,
-            const ::std::string& sid,
-            ::xml_schema::ErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::Scopes (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (::std::istream& is,
-            const ::std::string& sid,
-            ::xercesc::DOMErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::Scopes (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (::xercesc::InputSource& i,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ScopesType > (
-        ::WS::DISCOVERY::Scopes (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (::xercesc::InputSource& i,
-            ::xml_schema::ErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ScopesType > (
-        ::WS::DISCOVERY::Scopes (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (::xercesc::InputSource& i,
-            ::xercesc::DOMErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::ScopesType > (
-        ::WS::DISCOVERY::Scopes (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (const ::xercesc::DOMDocument& doc,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::DISCOVERY::ScopesType > (
-          ::WS::DISCOVERY::Scopes (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "Scopes",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::ScopesType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-        ::std::unique_ptr< ::WS::DISCOVERY::ScopesType > r (
-          dynamic_cast< ::WS::DISCOVERY::ScopesType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Scopes",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::ScopesType >
-    Scopes (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "Scopes",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::ScopesType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-
-        ::std::unique_ptr< ::WS::DISCOVERY::ScopesType > r (
-          dynamic_cast< ::WS::DISCOVERY::ScopesType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Scopes",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (const ::std::string& u,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::UriListType > (
-        ::WS::DISCOVERY::XAddrs (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (const ::std::string& u,
-            ::xml_schema::ErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::UriListType > (
-        ::WS::DISCOVERY::XAddrs (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (const ::std::string& u,
-            ::xercesc::DOMErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::UriListType > (
-        ::WS::DISCOVERY::XAddrs (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (::std::istream& is,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::XAddrs (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (::std::istream& is,
-            ::xml_schema::ErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::XAddrs (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (::std::istream& is,
-            ::xercesc::DOMErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::XAddrs (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (::std::istream& is,
-            const ::std::string& sid,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::XAddrs (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (::std::istream& is,
-            const ::std::string& sid,
-            ::xml_schema::ErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::XAddrs (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (::std::istream& is,
-            const ::std::string& sid,
-            ::xercesc::DOMErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::XAddrs (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (::xercesc::InputSource& i,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::UriListType > (
-        ::WS::DISCOVERY::XAddrs (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (::xercesc::InputSource& i,
-            ::xml_schema::ErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::UriListType > (
-        ::WS::DISCOVERY::XAddrs (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (::xercesc::InputSource& i,
-            ::xercesc::DOMErrorHandler& h,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::UriListType > (
-        ::WS::DISCOVERY::XAddrs (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (const ::xercesc::DOMDocument& doc,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::DISCOVERY::UriListType > (
-          ::WS::DISCOVERY::XAddrs (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "XAddrs",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::UriListType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-        ::std::unique_ptr< ::WS::DISCOVERY::UriListType > r (
-          dynamic_cast< ::WS::DISCOVERY::UriListType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "XAddrs",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    XAddrs (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-            ::xml_schema::Flags f,
-            const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "XAddrs",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::UriListType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-
-        ::std::unique_ptr< ::WS::DISCOVERY::UriListType > r (
-          dynamic_cast< ::WS::DISCOVERY::UriListType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "XAddrs",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (const ::std::string& u,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::xml_schema::UnsignedInt > (
-        ::WS::DISCOVERY::MetadataVersion (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (const ::std::string& u,
-                     ::xml_schema::ErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::xml_schema::UnsignedInt > (
-        ::WS::DISCOVERY::MetadataVersion (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (const ::std::string& u,
-                     ::xercesc::DOMErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::xml_schema::UnsignedInt > (
-        ::WS::DISCOVERY::MetadataVersion (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (::std::istream& is,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::MetadataVersion (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (::std::istream& is,
-                     ::xml_schema::ErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::MetadataVersion (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (::std::istream& is,
-                     ::xercesc::DOMErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::MetadataVersion (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (::std::istream& is,
-                     const ::std::string& sid,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::MetadataVersion (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (::std::istream& is,
-                     const ::std::string& sid,
-                     ::xml_schema::ErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::MetadataVersion (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (::std::istream& is,
-                     const ::std::string& sid,
-                     ::xercesc::DOMErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::MetadataVersion (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (::xercesc::InputSource& i,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::xml_schema::UnsignedInt > (
-        ::WS::DISCOVERY::MetadataVersion (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (::xercesc::InputSource& i,
-                     ::xml_schema::ErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::xml_schema::UnsignedInt > (
-        ::WS::DISCOVERY::MetadataVersion (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (::xercesc::InputSource& i,
-                     ::xercesc::DOMErrorHandler& h,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::xml_schema::UnsignedInt > (
-        ::WS::DISCOVERY::MetadataVersion (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (const ::xercesc::DOMDocument& doc,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::xml_schema::UnsignedInt > (
-          ::WS::DISCOVERY::MetadataVersion (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "MetadataVersion" &&
-          n.namespace_ () == "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01")
-      {
-        ::std::unique_ptr< ::xml_schema::UnsignedInt > r (
-          new ::xml_schema::UnsignedInt (
-            ::xsd::cxx::tree::traits< ::xml_schema::UnsignedInt, char >::create (
-              e, f, 0)));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "MetadataVersion",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::xml_schema::UnsignedInt >
-    MetadataVersion (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                     ::xml_schema::Flags f,
-                     const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      if (n.name () == "MetadataVersion" &&
-          n.namespace_ () == "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01")
-      {
-        ::std::unique_ptr< ::xml_schema::UnsignedInt > r (
-          new ::xml_schema::UnsignedInt (
-            ::xsd::cxx::tree::traits< ::xml_schema::UnsignedInt, char >::create (
-              e, f, 0)));
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "MetadataVersion",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (const ::std::string& u,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::UriListType > (
-        ::WS::DISCOVERY::SupportedMatchingRules (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (const ::std::string& u,
-                            ::xml_schema::ErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::UriListType > (
-        ::WS::DISCOVERY::SupportedMatchingRules (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (const ::std::string& u,
-                            ::xercesc::DOMErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::UriListType > (
-        ::WS::DISCOVERY::SupportedMatchingRules (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (::std::istream& is,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::SupportedMatchingRules (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (::std::istream& is,
-                            ::xml_schema::ErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::SupportedMatchingRules (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (::std::istream& is,
-                            ::xercesc::DOMErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::SupportedMatchingRules (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (::std::istream& is,
-                            const ::std::string& sid,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::SupportedMatchingRules (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (::std::istream& is,
-                            const ::std::string& sid,
-                            ::xml_schema::ErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::SupportedMatchingRules (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (::std::istream& is,
-                            const ::std::string& sid,
-                            ::xercesc::DOMErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::SupportedMatchingRules (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (::xercesc::InputSource& i,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::UriListType > (
-        ::WS::DISCOVERY::SupportedMatchingRules (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (::xercesc::InputSource& i,
-                            ::xml_schema::ErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::UriListType > (
-        ::WS::DISCOVERY::SupportedMatchingRules (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (::xercesc::InputSource& i,
-                            ::xercesc::DOMErrorHandler& h,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::UriListType > (
-        ::WS::DISCOVERY::SupportedMatchingRules (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (const ::xercesc::DOMDocument& doc,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::DISCOVERY::UriListType > (
-          ::WS::DISCOVERY::SupportedMatchingRules (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "SupportedMatchingRules",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::UriListType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-        ::std::unique_ptr< ::WS::DISCOVERY::UriListType > r (
-          dynamic_cast< ::WS::DISCOVERY::UriListType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "SupportedMatchingRules",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::UriListType >
-    SupportedMatchingRules (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                            ::xml_schema::Flags f,
-                            const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "SupportedMatchingRules",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::UriListType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-
-        ::std::unique_ptr< ::WS::DISCOVERY::UriListType > r (
-          dynamic_cast< ::WS::DISCOVERY::UriListType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "SupportedMatchingRules",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (const ::std::string& u,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::SecurityType > (
-        ::WS::DISCOVERY::Security (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (const ::std::string& u,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::SecurityType > (
-        ::WS::DISCOVERY::Security (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (const ::std::string& u,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::SecurityType > (
-        ::WS::DISCOVERY::Security (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (::std::istream& is,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::Security (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (::std::istream& is,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::Security (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (::std::istream& is,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::Security (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (::std::istream& is,
-              const ::std::string& sid,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::Security (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (::std::istream& is,
-              const ::std::string& sid,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::Security (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (::std::istream& is,
-              const ::std::string& sid,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::Security (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (::xercesc::InputSource& i,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::SecurityType > (
-        ::WS::DISCOVERY::Security (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (::xercesc::InputSource& i,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::SecurityType > (
-        ::WS::DISCOVERY::Security (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (::xercesc::InputSource& i,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::SecurityType > (
-        ::WS::DISCOVERY::Security (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (const ::xercesc::DOMDocument& doc,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::DISCOVERY::SecurityType > (
-          ::WS::DISCOVERY::Security (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "Security",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::SecurityType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-        ::std::unique_ptr< ::WS::DISCOVERY::SecurityType > r (
-          dynamic_cast< ::WS::DISCOVERY::SecurityType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Security",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SecurityType >
-    Security (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "Security",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::SecurityType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-
-        ::std::unique_ptr< ::WS::DISCOVERY::SecurityType > r (
-          dynamic_cast< ::WS::DISCOVERY::SecurityType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Security",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (const ::std::string& u,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::SigType > (
-        ::WS::DISCOVERY::Sig (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (const ::std::string& u,
-         ::xml_schema::ErrorHandler& h,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::SigType > (
-        ::WS::DISCOVERY::Sig (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (const ::std::string& u,
-         ::xercesc::DOMErrorHandler& h,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::SigType > (
-        ::WS::DISCOVERY::Sig (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (::std::istream& is,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::Sig (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (::std::istream& is,
-         ::xml_schema::ErrorHandler& h,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::Sig (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (::std::istream& is,
-         ::xercesc::DOMErrorHandler& h,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::Sig (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (::std::istream& is,
-         const ::std::string& sid,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::Sig (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (::std::istream& is,
-         const ::std::string& sid,
-         ::xml_schema::ErrorHandler& h,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::Sig (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (::std::istream& is,
-         const ::std::string& sid,
-         ::xercesc::DOMErrorHandler& h,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::Sig (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (::xercesc::InputSource& i,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::SigType > (
-        ::WS::DISCOVERY::Sig (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (::xercesc::InputSource& i,
-         ::xml_schema::ErrorHandler& h,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::SigType > (
-        ::WS::DISCOVERY::Sig (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (::xercesc::InputSource& i,
-         ::xercesc::DOMErrorHandler& h,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::SigType > (
-        ::WS::DISCOVERY::Sig (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (const ::xercesc::DOMDocument& doc,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::DISCOVERY::SigType > (
-          ::WS::DISCOVERY::Sig (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "Sig",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::SigType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-        ::std::unique_ptr< ::WS::DISCOVERY::SigType > r (
-          dynamic_cast< ::WS::DISCOVERY::SigType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Sig",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::SigType >
-    Sig (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-         ::xml_schema::Flags f,
-         const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "Sig",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::SigType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-
-        ::std::unique_ptr< ::WS::DISCOVERY::SigType > r (
-          dynamic_cast< ::WS::DISCOVERY::SigType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "Sig",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (const ::std::string& u,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType > (
-        ::WS::DISCOVERY::AppSequence (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (const ::std::string& u,
-                 ::xml_schema::ErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType > (
-        ::WS::DISCOVERY::AppSequence (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (const ::std::string& u,
-                 ::xercesc::DOMErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          u, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType > (
-        ::WS::DISCOVERY::AppSequence (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (::std::istream& is,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::AppSequence (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (::std::istream& is,
-                 ::xml_schema::ErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::AppSequence (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (::std::istream& is,
-                 ::xercesc::DOMErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is);
-      return ::WS::DISCOVERY::AppSequence (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (::std::istream& is,
-                 const ::std::string& sid,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::AppSequence (isrc, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (::std::istream& is,
-                 const ::std::string& sid,
-                 ::xml_schema::ErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0,
-        (f & ::xml_schema::Flags::keep_dom) == 0);
-
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::AppSequence (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (::std::istream& is,
-                 const ::std::string& sid,
-                 ::xercesc::DOMErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-      return ::WS::DISCOVERY::AppSequence (isrc, h, f, p);
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (::xercesc::InputSource& i,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType > (
-        ::WS::DISCOVERY::AppSequence (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (::xercesc::InputSource& i,
-                 ::xml_schema::ErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType > (
-        ::WS::DISCOVERY::AppSequence (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (::xercesc::InputSource& i,
-                 ::xercesc::DOMErrorHandler& h,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::parse< char > (
-          i, h, p, f));
-
-      if (!d.get ())
-        throw ::xsd::cxx::tree::parsing< char > ();
-
-      return ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType > (
-        ::WS::DISCOVERY::AppSequence (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (const ::xercesc::DOMDocument& doc,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties& p)
-    {
-      if (f & ::xml_schema::Flags::keep_dom)
-      {
-        ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-          static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-        return ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType > (
-          ::WS::DISCOVERY::AppSequence (
-            std::move (d), f | ::xml_schema::Flags::own_dom, p));
-      }
-
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "AppSequence",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::AppSequenceType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-        ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType > r (
-          dynamic_cast< ::WS::DISCOVERY::AppSequenceType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "AppSequence",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
-
-    ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType >
-    AppSequence (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                 ::xml_schema::Flags f,
-                 const ::xml_schema::Properties&)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-        ((f & ::xml_schema::Flags::keep_dom) &&
-         !(f & ::xml_schema::Flags::own_dom))
-        ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-        : 0);
-
-      ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-      const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (f & ::xml_schema::Flags::keep_dom)
-        doc.setUserData (::xml_schema::dom::tree_node_key,
-                         (c.get () ? &c : &d),
-                         0);
-
-      ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-        ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-          "AppSequence",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          &::xsd::cxx::tree::factory_impl< ::WS::DISCOVERY::AppSequenceType >,
-          true, true, e, n, f, 0));
-
-      if (tmp.get () != 0)
-      {
-
-        ::std::unique_ptr< ::WS::DISCOVERY::AppSequenceType > r (
-          dynamic_cast< ::WS::DISCOVERY::AppSequenceType* > (tmp.get ()));
-
-        if (r.get ())
-          tmp.release ();
-        else
-          throw ::xsd::cxx::tree::not_derived< char > ();
-
-        return r;
-      }
-
-      throw ::xsd::cxx::tree::unexpected_element < char > (
-        n.name (),
-        n.namespace_ (),
-        "AppSequence",
-        "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-    }
   }
 }
 
@@ -7215,175 +3191,6 @@ namespace WS
   namespace DISCOVERY
   {
     void
-    Hello (::std::ostream& o,
-           const ::WS::DISCOVERY::HelloType& s,
-           const ::xml_schema::NamespaceInfomap& m,
-           const ::std::string& e,
-           ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Hello (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Hello (::std::ostream& o,
-           const ::WS::DISCOVERY::HelloType& s,
-           ::xml_schema::ErrorHandler& h,
-           const ::xml_schema::NamespaceInfomap& m,
-           const ::std::string& e,
-           ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Hello (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Hello (::std::ostream& o,
-           const ::WS::DISCOVERY::HelloType& s,
-           ::xercesc::DOMErrorHandler& h,
-           const ::xml_schema::NamespaceInfomap& m,
-           const ::std::string& e,
-           ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Hello (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Hello (::xercesc::XMLFormatTarget& t,
-           const ::WS::DISCOVERY::HelloType& s,
-           const ::xml_schema::NamespaceInfomap& m,
-           const ::std::string& e,
-           ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Hello (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Hello (::xercesc::XMLFormatTarget& t,
-           const ::WS::DISCOVERY::HelloType& s,
-           ::xml_schema::ErrorHandler& h,
-           const ::xml_schema::NamespaceInfomap& m,
-           const ::std::string& e,
-           ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Hello (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Hello (::xercesc::XMLFormatTarget& t,
-           const ::WS::DISCOVERY::HelloType& s,
-           ::xercesc::DOMErrorHandler& h,
-           const ::xml_schema::NamespaceInfomap& m,
-           const ::std::string& e,
-           ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Hello (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Hello (::xercesc::DOMDocument& d,
-           const ::WS::DISCOVERY::HelloType& s,
-           ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (typeid (::WS::DISCOVERY::HelloType) == typeid (s))
-      {
-        if (n.name () == "Hello" &&
-            n.namespace_ () == "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01")
-        {
-          e << s;
-        }
-        else
-        {
-          throw ::xsd::cxx::tree::unexpected_element < char > (
-            n.name (),
-            n.namespace_ (),
-            "Hello",
-            "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-        }
-      }
-      else
-      {
-        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "Hello",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          e, n, s);
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Hello (const ::WS::DISCOVERY::HelloType& s,
-           const ::xml_schema::NamespaceInfomap& m,
-           ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-      if (typeid (::WS::DISCOVERY::HelloType) == typeid (s))
-      {
-        d = ::xsd::cxx::xml::dom::serialize< char > (
-          "Hello",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, f);
-      }
-      else
-      {
-        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "Hello",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, s, f);
-      }
-
-      ::WS::DISCOVERY::Hello (*d, s, f);
-      return d;
-    }
-
-    void
     operator<< (::xercesc::DOMElement& e, const HelloType& i)
     {
       e << static_cast< const ::xml_schema::Type& > (i);
@@ -7394,7 +3201,7 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        const HelloType::EndpointReferenceType& x (i.EndpointReference ());
+        const HelloType::EndpointReferenceType& x (i.getEndpointReference ());
         if (typeid (HelloType::EndpointReferenceType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -7418,9 +3225,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.Types ())
+        if (i.getTypes ())
         {
-          const HelloType::TypesType& x (*i.Types ());
+          const HelloType::TypesType& x (*i.getTypes ());
           if (typeid (HelloType::TypesType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -7445,9 +3252,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.Scopes ())
+        if (i.getScopes ())
         {
-          const HelloType::ScopesType& x (*i.Scopes ());
+          const HelloType::ScopesType& x (*i.getScopes ());
           if (typeid (HelloType::ScopesType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -7472,9 +3279,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.XAddrs ())
+        if (i.getXAddrs ())
         {
-          const HelloType::XAddrsType& x (*i.XAddrs ());
+          const HelloType::XAddrsType& x (*i.getXAddrs ());
           if (typeid (HelloType::XAddrsType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -7502,7 +3309,7 @@ namespace WS
             "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
             e));
 
-        s << i.MetadataVersion ();
+        s << i.getMetadataVersion ();
       }
     }
 
@@ -7512,175 +3319,6 @@ namespace WS
       "HelloType",
       "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
 
-
-    void
-    Bye (::std::ostream& o,
-         const ::WS::DISCOVERY::ByeType& s,
-         const ::xml_schema::NamespaceInfomap& m,
-         const ::std::string& e,
-         ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Bye (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Bye (::std::ostream& o,
-         const ::WS::DISCOVERY::ByeType& s,
-         ::xml_schema::ErrorHandler& h,
-         const ::xml_schema::NamespaceInfomap& m,
-         const ::std::string& e,
-         ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Bye (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Bye (::std::ostream& o,
-         const ::WS::DISCOVERY::ByeType& s,
-         ::xercesc::DOMErrorHandler& h,
-         const ::xml_schema::NamespaceInfomap& m,
-         const ::std::string& e,
-         ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Bye (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Bye (::xercesc::XMLFormatTarget& t,
-         const ::WS::DISCOVERY::ByeType& s,
-         const ::xml_schema::NamespaceInfomap& m,
-         const ::std::string& e,
-         ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Bye (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Bye (::xercesc::XMLFormatTarget& t,
-         const ::WS::DISCOVERY::ByeType& s,
-         ::xml_schema::ErrorHandler& h,
-         const ::xml_schema::NamespaceInfomap& m,
-         const ::std::string& e,
-         ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Bye (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Bye (::xercesc::XMLFormatTarget& t,
-         const ::WS::DISCOVERY::ByeType& s,
-         ::xercesc::DOMErrorHandler& h,
-         const ::xml_schema::NamespaceInfomap& m,
-         const ::std::string& e,
-         ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Bye (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Bye (::xercesc::DOMDocument& d,
-         const ::WS::DISCOVERY::ByeType& s,
-         ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (typeid (::WS::DISCOVERY::ByeType) == typeid (s))
-      {
-        if (n.name () == "Bye" &&
-            n.namespace_ () == "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01")
-        {
-          e << s;
-        }
-        else
-        {
-          throw ::xsd::cxx::tree::unexpected_element < char > (
-            n.name (),
-            n.namespace_ (),
-            "Bye",
-            "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-        }
-      }
-      else
-      {
-        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "Bye",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          e, n, s);
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Bye (const ::WS::DISCOVERY::ByeType& s,
-         const ::xml_schema::NamespaceInfomap& m,
-         ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-      if (typeid (::WS::DISCOVERY::ByeType) == typeid (s))
-      {
-        d = ::xsd::cxx::xml::dom::serialize< char > (
-          "Bye",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, f);
-      }
-      else
-      {
-        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "Bye",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, s, f);
-      }
-
-      ::WS::DISCOVERY::Bye (*d, s, f);
-      return d;
-    }
 
     void
     operator<< (::xercesc::DOMElement& e, const ByeType& i)
@@ -7693,7 +3331,7 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        const ByeType::EndpointReferenceType& x (i.EndpointReference ());
+        const ByeType::EndpointReferenceType& x (i.getEndpointReference ());
         if (typeid (ByeType::EndpointReferenceType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -7717,9 +3355,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.Types ())
+        if (i.getTypes ())
         {
-          const ByeType::TypesType& x (*i.Types ());
+          const ByeType::TypesType& x (*i.getTypes ());
           if (typeid (ByeType::TypesType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -7744,9 +3382,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.Scopes ())
+        if (i.getScopes ())
         {
-          const ByeType::ScopesType& x (*i.Scopes ());
+          const ByeType::ScopesType& x (*i.getScopes ());
           if (typeid (ByeType::ScopesType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -7771,9 +3409,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.XAddrs ())
+        if (i.getXAddrs ())
         {
-          const ByeType::XAddrsType& x (*i.XAddrs ());
+          const ByeType::XAddrsType& x (*i.getXAddrs ());
           if (typeid (ByeType::XAddrsType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -7794,7 +3432,7 @@ namespace WS
 
       // MetadataVersion
       //
-      if (i.MetadataVersion ())
+      if (i.getMetadataVersion ())
       {
         ::xercesc::DOMElement& s (
           ::xsd::cxx::xml::dom::create_element (
@@ -7802,7 +3440,7 @@ namespace WS
             "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
             e));
 
-        s << *i.MetadataVersion ();
+        s << *i.getMetadataVersion ();
       }
     }
 
@@ -7812,175 +3450,6 @@ namespace WS
       "ByeType",
       "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
 
-
-    void
-    Probe (::std::ostream& o,
-           const ::WS::DISCOVERY::ProbeType& s,
-           const ::xml_schema::NamespaceInfomap& m,
-           const ::std::string& e,
-           ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Probe (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Probe (::std::ostream& o,
-           const ::WS::DISCOVERY::ProbeType& s,
-           ::xml_schema::ErrorHandler& h,
-           const ::xml_schema::NamespaceInfomap& m,
-           const ::std::string& e,
-           ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Probe (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Probe (::std::ostream& o,
-           const ::WS::DISCOVERY::ProbeType& s,
-           ::xercesc::DOMErrorHandler& h,
-           const ::xml_schema::NamespaceInfomap& m,
-           const ::std::string& e,
-           ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Probe (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Probe (::xercesc::XMLFormatTarget& t,
-           const ::WS::DISCOVERY::ProbeType& s,
-           const ::xml_schema::NamespaceInfomap& m,
-           const ::std::string& e,
-           ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Probe (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Probe (::xercesc::XMLFormatTarget& t,
-           const ::WS::DISCOVERY::ProbeType& s,
-           ::xml_schema::ErrorHandler& h,
-           const ::xml_schema::NamespaceInfomap& m,
-           const ::std::string& e,
-           ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Probe (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Probe (::xercesc::XMLFormatTarget& t,
-           const ::WS::DISCOVERY::ProbeType& s,
-           ::xercesc::DOMErrorHandler& h,
-           const ::xml_schema::NamespaceInfomap& m,
-           const ::std::string& e,
-           ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Probe (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Probe (::xercesc::DOMDocument& d,
-           const ::WS::DISCOVERY::ProbeType& s,
-           ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (typeid (::WS::DISCOVERY::ProbeType) == typeid (s))
-      {
-        if (n.name () == "Probe" &&
-            n.namespace_ () == "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01")
-        {
-          e << s;
-        }
-        else
-        {
-          throw ::xsd::cxx::tree::unexpected_element < char > (
-            n.name (),
-            n.namespace_ (),
-            "Probe",
-            "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-        }
-      }
-      else
-      {
-        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "Probe",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          e, n, s);
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Probe (const ::WS::DISCOVERY::ProbeType& s,
-           const ::xml_schema::NamespaceInfomap& m,
-           ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-      if (typeid (::WS::DISCOVERY::ProbeType) == typeid (s))
-      {
-        d = ::xsd::cxx::xml::dom::serialize< char > (
-          "Probe",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, f);
-      }
-      else
-      {
-        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "Probe",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, s, f);
-      }
-
-      ::WS::DISCOVERY::Probe (*d, s, f);
-      return d;
-    }
 
     void
     operator<< (::xercesc::DOMElement& e, const ProbeType& i)
@@ -7993,9 +3462,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.Types ())
+        if (i.getTypes ())
         {
-          const ProbeType::TypesType& x (*i.Types ());
+          const ProbeType::TypesType& x (*i.getTypes ());
           if (typeid (ProbeType::TypesType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -8020,9 +3489,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.Scopes ())
+        if (i.getScopes ())
         {
-          const ProbeType::ScopesType& x (*i.Scopes ());
+          const ProbeType::ScopesType& x (*i.getScopes ());
           if (typeid (ProbeType::ScopesType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -8050,175 +3519,6 @@ namespace WS
 
 
     void
-    ProbeMatches (::std::ostream& o,
-                  const ::WS::DISCOVERY::ProbeMatchesType& s,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::ProbeMatches (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    ProbeMatches (::std::ostream& o,
-                  const ::WS::DISCOVERY::ProbeMatchesType& s,
-                  ::xml_schema::ErrorHandler& h,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::ProbeMatches (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    ProbeMatches (::std::ostream& o,
-                  const ::WS::DISCOVERY::ProbeMatchesType& s,
-                  ::xercesc::DOMErrorHandler& h,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::ProbeMatches (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    ProbeMatches (::xercesc::XMLFormatTarget& t,
-                  const ::WS::DISCOVERY::ProbeMatchesType& s,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::ProbeMatches (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    ProbeMatches (::xercesc::XMLFormatTarget& t,
-                  const ::WS::DISCOVERY::ProbeMatchesType& s,
-                  ::xml_schema::ErrorHandler& h,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::ProbeMatches (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    ProbeMatches (::xercesc::XMLFormatTarget& t,
-                  const ::WS::DISCOVERY::ProbeMatchesType& s,
-                  ::xercesc::DOMErrorHandler& h,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  const ::std::string& e,
-                  ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::ProbeMatches (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    ProbeMatches (::xercesc::DOMDocument& d,
-                  const ::WS::DISCOVERY::ProbeMatchesType& s,
-                  ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (typeid (::WS::DISCOVERY::ProbeMatchesType) == typeid (s))
-      {
-        if (n.name () == "ProbeMatches" &&
-            n.namespace_ () == "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01")
-        {
-          e << s;
-        }
-        else
-        {
-          throw ::xsd::cxx::tree::unexpected_element < char > (
-            n.name (),
-            n.namespace_ (),
-            "ProbeMatches",
-            "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-        }
-      }
-      else
-      {
-        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "ProbeMatches",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          e, n, s);
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    ProbeMatches (const ::WS::DISCOVERY::ProbeMatchesType& s,
-                  const ::xml_schema::NamespaceInfomap& m,
-                  ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-      if (typeid (::WS::DISCOVERY::ProbeMatchesType) == typeid (s))
-      {
-        d = ::xsd::cxx::xml::dom::serialize< char > (
-          "ProbeMatches",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, f);
-      }
-      else
-      {
-        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "ProbeMatches",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, s, f);
-      }
-
-      ::WS::DISCOVERY::ProbeMatches (*d, s, f);
-      return d;
-    }
-
-    void
     operator<< (::xercesc::DOMElement& e, const ProbeMatchesType& i)
     {
       e << static_cast< const ::xml_schema::Type& > (i);
@@ -8230,7 +3530,7 @@ namespace WS
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
         for (ProbeMatchesType::ProbeMatchConstIterator
-             b (i.ProbeMatch ().begin ()), n (i.ProbeMatch ().end ());
+             b (i.getProbeMatch ().begin ()), n (i.getProbeMatch ().end ());
              b != n; ++b)
         {
           if (typeid (ProbeMatchesType::ProbeMatchType) == typeid (*b))
@@ -8270,7 +3570,7 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        const ProbeMatchType::EndpointReferenceType& x (i.EndpointReference ());
+        const ProbeMatchType::EndpointReferenceType& x (i.getEndpointReference ());
         if (typeid (ProbeMatchType::EndpointReferenceType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -8294,9 +3594,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.Types ())
+        if (i.getTypes ())
         {
-          const ProbeMatchType::TypesType& x (*i.Types ());
+          const ProbeMatchType::TypesType& x (*i.getTypes ());
           if (typeid (ProbeMatchType::TypesType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -8321,9 +3621,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.Scopes ())
+        if (i.getScopes ())
         {
-          const ProbeMatchType::ScopesType& x (*i.Scopes ());
+          const ProbeMatchType::ScopesType& x (*i.getScopes ());
           if (typeid (ProbeMatchType::ScopesType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -8348,9 +3648,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.XAddrs ())
+        if (i.getXAddrs ())
         {
-          const ProbeMatchType::XAddrsType& x (*i.XAddrs ());
+          const ProbeMatchType::XAddrsType& x (*i.getXAddrs ());
           if (typeid (ProbeMatchType::XAddrsType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -8378,7 +3678,7 @@ namespace WS
             "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
             e));
 
-        s << i.MetadataVersion ();
+        s << i.getMetadataVersion ();
       }
     }
 
@@ -8388,175 +3688,6 @@ namespace WS
       "ProbeMatchType",
       "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
 
-
-    void
-    Resolve (::std::ostream& o,
-             const ::WS::DISCOVERY::ResolveType& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Resolve (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Resolve (::std::ostream& o,
-             const ::WS::DISCOVERY::ResolveType& s,
-             ::xml_schema::ErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Resolve (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Resolve (::std::ostream& o,
-             const ::WS::DISCOVERY::ResolveType& s,
-             ::xercesc::DOMErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Resolve (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Resolve (::xercesc::XMLFormatTarget& t,
-             const ::WS::DISCOVERY::ResolveType& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Resolve (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Resolve (::xercesc::XMLFormatTarget& t,
-             const ::WS::DISCOVERY::ResolveType& s,
-             ::xml_schema::ErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Resolve (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Resolve (::xercesc::XMLFormatTarget& t,
-             const ::WS::DISCOVERY::ResolveType& s,
-             ::xercesc::DOMErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Resolve (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Resolve (::xercesc::DOMDocument& d,
-             const ::WS::DISCOVERY::ResolveType& s,
-             ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (typeid (::WS::DISCOVERY::ResolveType) == typeid (s))
-      {
-        if (n.name () == "Resolve" &&
-            n.namespace_ () == "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01")
-        {
-          e << s;
-        }
-        else
-        {
-          throw ::xsd::cxx::tree::unexpected_element < char > (
-            n.name (),
-            n.namespace_ (),
-            "Resolve",
-            "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-        }
-      }
-      else
-      {
-        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "Resolve",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          e, n, s);
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Resolve (const ::WS::DISCOVERY::ResolveType& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-      if (typeid (::WS::DISCOVERY::ResolveType) == typeid (s))
-      {
-        d = ::xsd::cxx::xml::dom::serialize< char > (
-          "Resolve",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, f);
-      }
-      else
-      {
-        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "Resolve",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, s, f);
-      }
-
-      ::WS::DISCOVERY::Resolve (*d, s, f);
-      return d;
-    }
 
     void
     operator<< (::xercesc::DOMElement& e, const ResolveType& i)
@@ -8569,7 +3700,7 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        const ResolveType::EndpointReferenceType& x (i.EndpointReference ());
+        const ResolveType::EndpointReferenceType& x (i.getEndpointReference ());
         if (typeid (ResolveType::EndpointReferenceType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -8596,175 +3727,6 @@ namespace WS
 
 
     void
-    ResolveMatches (::std::ostream& o,
-                    const ::WS::DISCOVERY::ResolveMatchesType& s,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    const ::std::string& e,
-                    ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::ResolveMatches (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    ResolveMatches (::std::ostream& o,
-                    const ::WS::DISCOVERY::ResolveMatchesType& s,
-                    ::xml_schema::ErrorHandler& h,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    const ::std::string& e,
-                    ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::ResolveMatches (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    ResolveMatches (::std::ostream& o,
-                    const ::WS::DISCOVERY::ResolveMatchesType& s,
-                    ::xercesc::DOMErrorHandler& h,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    const ::std::string& e,
-                    ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::ResolveMatches (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    ResolveMatches (::xercesc::XMLFormatTarget& t,
-                    const ::WS::DISCOVERY::ResolveMatchesType& s,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    const ::std::string& e,
-                    ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::ResolveMatches (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    ResolveMatches (::xercesc::XMLFormatTarget& t,
-                    const ::WS::DISCOVERY::ResolveMatchesType& s,
-                    ::xml_schema::ErrorHandler& h,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    const ::std::string& e,
-                    ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::ResolveMatches (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    ResolveMatches (::xercesc::XMLFormatTarget& t,
-                    const ::WS::DISCOVERY::ResolveMatchesType& s,
-                    ::xercesc::DOMErrorHandler& h,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    const ::std::string& e,
-                    ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::ResolveMatches (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    ResolveMatches (::xercesc::DOMDocument& d,
-                    const ::WS::DISCOVERY::ResolveMatchesType& s,
-                    ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (typeid (::WS::DISCOVERY::ResolveMatchesType) == typeid (s))
-      {
-        if (n.name () == "ResolveMatches" &&
-            n.namespace_ () == "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01")
-        {
-          e << s;
-        }
-        else
-        {
-          throw ::xsd::cxx::tree::unexpected_element < char > (
-            n.name (),
-            n.namespace_ (),
-            "ResolveMatches",
-            "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-        }
-      }
-      else
-      {
-        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "ResolveMatches",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          e, n, s);
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    ResolveMatches (const ::WS::DISCOVERY::ResolveMatchesType& s,
-                    const ::xml_schema::NamespaceInfomap& m,
-                    ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-      if (typeid (::WS::DISCOVERY::ResolveMatchesType) == typeid (s))
-      {
-        d = ::xsd::cxx::xml::dom::serialize< char > (
-          "ResolveMatches",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, f);
-      }
-      else
-      {
-        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "ResolveMatches",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, s, f);
-      }
-
-      ::WS::DISCOVERY::ResolveMatches (*d, s, f);
-      return d;
-    }
-
-    void
     operator<< (::xercesc::DOMElement& e, const ResolveMatchesType& i)
     {
       e << static_cast< const ::xml_schema::Type& > (i);
@@ -8775,9 +3737,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.ResolveMatch ())
+        if (i.getResolveMatch ())
         {
-          const ResolveMatchesType::ResolveMatchType& x (*i.ResolveMatch ());
+          const ResolveMatchesType::ResolveMatchType& x (*i.getResolveMatch ());
           if (typeid (ResolveMatchesType::ResolveMatchType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -8815,7 +3777,7 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        const ResolveMatchType::EndpointReferenceType& x (i.EndpointReference ());
+        const ResolveMatchType::EndpointReferenceType& x (i.getEndpointReference ());
         if (typeid (ResolveMatchType::EndpointReferenceType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -8839,9 +3801,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.Types ())
+        if (i.getTypes ())
         {
-          const ResolveMatchType::TypesType& x (*i.Types ());
+          const ResolveMatchType::TypesType& x (*i.getTypes ());
           if (typeid (ResolveMatchType::TypesType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -8866,9 +3828,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.Scopes ())
+        if (i.getScopes ())
         {
-          const ResolveMatchType::ScopesType& x (*i.Scopes ());
+          const ResolveMatchType::ScopesType& x (*i.getScopes ());
           if (typeid (ResolveMatchType::ScopesType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -8893,9 +3855,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.XAddrs ())
+        if (i.getXAddrs ())
         {
-          const ResolveMatchType::XAddrsType& x (*i.XAddrs ());
+          const ResolveMatchType::XAddrsType& x (*i.getXAddrs ());
           if (typeid (ResolveMatchType::XAddrsType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -8923,7 +3885,7 @@ namespace WS
             "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
             e));
 
-        s << i.MetadataVersion ();
+        s << i.getMetadataVersion ();
       }
     }
 
@@ -8933,175 +3895,6 @@ namespace WS
       "ResolveMatchType",
       "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
 
-
-    void
-    Types (::std::ostream& o,
-           const ::WS::DISCOVERY::QNameListType& s,
-           const ::xml_schema::NamespaceInfomap& m,
-           const ::std::string& e,
-           ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Types (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Types (::std::ostream& o,
-           const ::WS::DISCOVERY::QNameListType& s,
-           ::xml_schema::ErrorHandler& h,
-           const ::xml_schema::NamespaceInfomap& m,
-           const ::std::string& e,
-           ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Types (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Types (::std::ostream& o,
-           const ::WS::DISCOVERY::QNameListType& s,
-           ::xercesc::DOMErrorHandler& h,
-           const ::xml_schema::NamespaceInfomap& m,
-           const ::std::string& e,
-           ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Types (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Types (::xercesc::XMLFormatTarget& t,
-           const ::WS::DISCOVERY::QNameListType& s,
-           const ::xml_schema::NamespaceInfomap& m,
-           const ::std::string& e,
-           ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Types (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Types (::xercesc::XMLFormatTarget& t,
-           const ::WS::DISCOVERY::QNameListType& s,
-           ::xml_schema::ErrorHandler& h,
-           const ::xml_schema::NamespaceInfomap& m,
-           const ::std::string& e,
-           ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Types (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Types (::xercesc::XMLFormatTarget& t,
-           const ::WS::DISCOVERY::QNameListType& s,
-           ::xercesc::DOMErrorHandler& h,
-           const ::xml_schema::NamespaceInfomap& m,
-           const ::std::string& e,
-           ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Types (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Types (::xercesc::DOMDocument& d,
-           const ::WS::DISCOVERY::QNameListType& s,
-           ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (typeid (::WS::DISCOVERY::QNameListType) == typeid (s))
-      {
-        if (n.name () == "Types" &&
-            n.namespace_ () == "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01")
-        {
-          e << s;
-        }
-        else
-        {
-          throw ::xsd::cxx::tree::unexpected_element < char > (
-            n.name (),
-            n.namespace_ (),
-            "Types",
-            "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-        }
-      }
-      else
-      {
-        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "Types",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          e, n, s);
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Types (const ::WS::DISCOVERY::QNameListType& s,
-           const ::xml_schema::NamespaceInfomap& m,
-           ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-      if (typeid (::WS::DISCOVERY::QNameListType) == typeid (s))
-      {
-        d = ::xsd::cxx::xml::dom::serialize< char > (
-          "Types",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, f);
-      }
-      else
-      {
-        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "Types",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, s, f);
-      }
-
-      ::WS::DISCOVERY::Types (*d, s, f);
-      return d;
-    }
 
     void
     operator<< (::xercesc::DOMElement& e, const QNameListType& i)
@@ -9128,175 +3921,6 @@ namespace WS
       "QNameListType",
       "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
 
-
-    void
-    Scopes (::std::ostream& o,
-            const ::WS::DISCOVERY::ScopesType& s,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Scopes (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Scopes (::std::ostream& o,
-            const ::WS::DISCOVERY::ScopesType& s,
-            ::xml_schema::ErrorHandler& h,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Scopes (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Scopes (::std::ostream& o,
-            const ::WS::DISCOVERY::ScopesType& s,
-            ::xercesc::DOMErrorHandler& h,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Scopes (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Scopes (::xercesc::XMLFormatTarget& t,
-            const ::WS::DISCOVERY::ScopesType& s,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Scopes (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Scopes (::xercesc::XMLFormatTarget& t,
-            const ::WS::DISCOVERY::ScopesType& s,
-            ::xml_schema::ErrorHandler& h,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Scopes (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Scopes (::xercesc::XMLFormatTarget& t,
-            const ::WS::DISCOVERY::ScopesType& s,
-            ::xercesc::DOMErrorHandler& h,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Scopes (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Scopes (::xercesc::DOMDocument& d,
-            const ::WS::DISCOVERY::ScopesType& s,
-            ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (typeid (::WS::DISCOVERY::ScopesType) == typeid (s))
-      {
-        if (n.name () == "Scopes" &&
-            n.namespace_ () == "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01")
-        {
-          e << s;
-        }
-        else
-        {
-          throw ::xsd::cxx::tree::unexpected_element < char > (
-            n.name (),
-            n.namespace_ (),
-            "Scopes",
-            "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-        }
-      }
-      else
-      {
-        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "Scopes",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          e, n, s);
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Scopes (const ::WS::DISCOVERY::ScopesType& s,
-            const ::xml_schema::NamespaceInfomap& m,
-            ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-      if (typeid (::WS::DISCOVERY::ScopesType) == typeid (s))
-      {
-        d = ::xsd::cxx::xml::dom::serialize< char > (
-          "Scopes",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, f);
-      }
-      else
-      {
-        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "Scopes",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, s, f);
-      }
-
-      ::WS::DISCOVERY::Scopes (*d, s, f);
-      return d;
-    }
 
     void
     operator<< (::xercesc::DOMElement& e, const UriListType& i)
@@ -9331,14 +3955,14 @@ namespace WS
 
       // MatchBy
       //
-      if (i.MatchBy ())
+      if (i.getMatchBy ())
       {
         ::xercesc::DOMAttr& a (
           ::xsd::cxx::xml::dom::create_attribute (
             "MatchBy",
             e));
 
-        a << *i.MatchBy ();
+        a << *i.getMatchBy ();
       }
     }
 
@@ -9348,323 +3972,6 @@ namespace WS
       "ScopesType",
       "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
 
-
-    void
-    XAddrs (::std::ostream& o,
-            const ::WS::DISCOVERY::UriListType& s,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::XAddrs (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    XAddrs (::std::ostream& o,
-            const ::WS::DISCOVERY::UriListType& s,
-            ::xml_schema::ErrorHandler& h,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::XAddrs (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    XAddrs (::std::ostream& o,
-            const ::WS::DISCOVERY::UriListType& s,
-            ::xercesc::DOMErrorHandler& h,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::XAddrs (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    XAddrs (::xercesc::XMLFormatTarget& t,
-            const ::WS::DISCOVERY::UriListType& s,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::XAddrs (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    XAddrs (::xercesc::XMLFormatTarget& t,
-            const ::WS::DISCOVERY::UriListType& s,
-            ::xml_schema::ErrorHandler& h,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::XAddrs (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    XAddrs (::xercesc::XMLFormatTarget& t,
-            const ::WS::DISCOVERY::UriListType& s,
-            ::xercesc::DOMErrorHandler& h,
-            const ::xml_schema::NamespaceInfomap& m,
-            const ::std::string& e,
-            ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::XAddrs (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    XAddrs (::xercesc::DOMDocument& d,
-            const ::WS::DISCOVERY::UriListType& s,
-            ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (typeid (::WS::DISCOVERY::UriListType) == typeid (s))
-      {
-        if (n.name () == "XAddrs" &&
-            n.namespace_ () == "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01")
-        {
-          e << s;
-        }
-        else
-        {
-          throw ::xsd::cxx::tree::unexpected_element < char > (
-            n.name (),
-            n.namespace_ (),
-            "XAddrs",
-            "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-        }
-      }
-      else
-      {
-        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "XAddrs",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          e, n, s);
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    XAddrs (const ::WS::DISCOVERY::UriListType& s,
-            const ::xml_schema::NamespaceInfomap& m,
-            ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-      if (typeid (::WS::DISCOVERY::UriListType) == typeid (s))
-      {
-        d = ::xsd::cxx::xml::dom::serialize< char > (
-          "XAddrs",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, f);
-      }
-      else
-      {
-        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "XAddrs",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, s, f);
-      }
-
-      ::WS::DISCOVERY::XAddrs (*d, s, f);
-      return d;
-    }
-
-    void
-    MetadataVersion (::std::ostream& o,
-                     const ::xml_schema::UnsignedInt& s,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::MetadataVersion (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    MetadataVersion (::std::ostream& o,
-                     const ::xml_schema::UnsignedInt& s,
-                     ::xml_schema::ErrorHandler& h,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::MetadataVersion (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    MetadataVersion (::std::ostream& o,
-                     const ::xml_schema::UnsignedInt& s,
-                     ::xercesc::DOMErrorHandler& h,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::MetadataVersion (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    MetadataVersion (::xercesc::XMLFormatTarget& t,
-                     const ::xml_schema::UnsignedInt& s,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::MetadataVersion (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    MetadataVersion (::xercesc::XMLFormatTarget& t,
-                     const ::xml_schema::UnsignedInt& s,
-                     ::xml_schema::ErrorHandler& h,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::MetadataVersion (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    MetadataVersion (::xercesc::XMLFormatTarget& t,
-                     const ::xml_schema::UnsignedInt& s,
-                     ::xercesc::DOMErrorHandler& h,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     const ::std::string& e,
-                     ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::MetadataVersion (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    MetadataVersion (::xercesc::DOMDocument& d,
-                     const ::xml_schema::UnsignedInt& s,
-                     ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (n.name () == "MetadataVersion" &&
-          n.namespace_ () == "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01")
-      {
-        e << s;
-      }
-      else
-      {
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "MetadataVersion",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    MetadataVersion (const ::xml_schema::UnsignedInt& s,
-                     const ::xml_schema::NamespaceInfomap& m,
-                     ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::xsd::cxx::xml::dom::serialize< char > (
-          "MetadataVersion",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, f));
-
-      ::WS::DISCOVERY::MetadataVersion (*d, s, f);
-      return d;
-    }
 
     void
     operator<< (::xercesc::DOMElement& e, const FaultCodeType& i)
@@ -9719,344 +4026,6 @@ namespace WS
 
 
     void
-    SupportedMatchingRules (::std::ostream& o,
-                            const ::WS::DISCOVERY::UriListType& s,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            const ::std::string& e,
-                            ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::SupportedMatchingRules (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    SupportedMatchingRules (::std::ostream& o,
-                            const ::WS::DISCOVERY::UriListType& s,
-                            ::xml_schema::ErrorHandler& h,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            const ::std::string& e,
-                            ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::SupportedMatchingRules (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    SupportedMatchingRules (::std::ostream& o,
-                            const ::WS::DISCOVERY::UriListType& s,
-                            ::xercesc::DOMErrorHandler& h,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            const ::std::string& e,
-                            ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::SupportedMatchingRules (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    SupportedMatchingRules (::xercesc::XMLFormatTarget& t,
-                            const ::WS::DISCOVERY::UriListType& s,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            const ::std::string& e,
-                            ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::SupportedMatchingRules (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    SupportedMatchingRules (::xercesc::XMLFormatTarget& t,
-                            const ::WS::DISCOVERY::UriListType& s,
-                            ::xml_schema::ErrorHandler& h,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            const ::std::string& e,
-                            ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::SupportedMatchingRules (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    SupportedMatchingRules (::xercesc::XMLFormatTarget& t,
-                            const ::WS::DISCOVERY::UriListType& s,
-                            ::xercesc::DOMErrorHandler& h,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            const ::std::string& e,
-                            ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::SupportedMatchingRules (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    SupportedMatchingRules (::xercesc::DOMDocument& d,
-                            const ::WS::DISCOVERY::UriListType& s,
-                            ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (typeid (::WS::DISCOVERY::UriListType) == typeid (s))
-      {
-        if (n.name () == "SupportedMatchingRules" &&
-            n.namespace_ () == "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01")
-        {
-          e << s;
-        }
-        else
-        {
-          throw ::xsd::cxx::tree::unexpected_element < char > (
-            n.name (),
-            n.namespace_ (),
-            "SupportedMatchingRules",
-            "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-        }
-      }
-      else
-      {
-        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "SupportedMatchingRules",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          e, n, s);
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    SupportedMatchingRules (const ::WS::DISCOVERY::UriListType& s,
-                            const ::xml_schema::NamespaceInfomap& m,
-                            ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-      if (typeid (::WS::DISCOVERY::UriListType) == typeid (s))
-      {
-        d = ::xsd::cxx::xml::dom::serialize< char > (
-          "SupportedMatchingRules",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, f);
-      }
-      else
-      {
-        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "SupportedMatchingRules",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, s, f);
-      }
-
-      ::WS::DISCOVERY::SupportedMatchingRules (*d, s, f);
-      return d;
-    }
-
-    void
-    Security (::std::ostream& o,
-              const ::WS::DISCOVERY::SecurityType& s,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Security (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Security (::std::ostream& o,
-              const ::WS::DISCOVERY::SecurityType& s,
-              ::xml_schema::ErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Security (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Security (::std::ostream& o,
-              const ::WS::DISCOVERY::SecurityType& s,
-              ::xercesc::DOMErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Security (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Security (::xercesc::XMLFormatTarget& t,
-              const ::WS::DISCOVERY::SecurityType& s,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Security (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Security (::xercesc::XMLFormatTarget& t,
-              const ::WS::DISCOVERY::SecurityType& s,
-              ::xml_schema::ErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Security (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Security (::xercesc::XMLFormatTarget& t,
-              const ::WS::DISCOVERY::SecurityType& s,
-              ::xercesc::DOMErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Security (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Security (::xercesc::DOMDocument& d,
-              const ::WS::DISCOVERY::SecurityType& s,
-              ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (typeid (::WS::DISCOVERY::SecurityType) == typeid (s))
-      {
-        if (n.name () == "Security" &&
-            n.namespace_ () == "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01")
-        {
-          e << s;
-        }
-        else
-        {
-          throw ::xsd::cxx::tree::unexpected_element < char > (
-            n.name (),
-            n.namespace_ (),
-            "Security",
-            "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-        }
-      }
-      else
-      {
-        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "Security",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          e, n, s);
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Security (const ::WS::DISCOVERY::SecurityType& s,
-              const ::xml_schema::NamespaceInfomap& m,
-              ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-      if (typeid (::WS::DISCOVERY::SecurityType) == typeid (s))
-      {
-        d = ::xsd::cxx::xml::dom::serialize< char > (
-          "Security",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, f);
-      }
-      else
-      {
-        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "Security",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, s, f);
-      }
-
-      ::WS::DISCOVERY::Security (*d, s, f);
-      return d;
-    }
-
-    void
     operator<< (::xercesc::DOMElement& e, const SecurityType& i)
     {
       e << static_cast< const ::xml_schema::Type& > (i);
@@ -10067,9 +4036,9 @@ namespace WS
         ::xsd::cxx::tree::type_serializer_map< char >& tsm (
           ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-        if (i.Sig ())
+        if (i.getSig ())
         {
-          const SecurityType::SigType& x (*i.Sig ());
+          const SecurityType::SigType& x (*i.getSig ());
           if (typeid (SecurityType::SigType) == typeid (x))
           {
             ::xercesc::DOMElement& s (
@@ -10097,175 +4066,6 @@ namespace WS
 
 
     void
-    Sig (::std::ostream& o,
-         const ::WS::DISCOVERY::SigType& s,
-         const ::xml_schema::NamespaceInfomap& m,
-         const ::std::string& e,
-         ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Sig (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Sig (::std::ostream& o,
-         const ::WS::DISCOVERY::SigType& s,
-         ::xml_schema::ErrorHandler& h,
-         const ::xml_schema::NamespaceInfomap& m,
-         const ::std::string& e,
-         ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Sig (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Sig (::std::ostream& o,
-         const ::WS::DISCOVERY::SigType& s,
-         ::xercesc::DOMErrorHandler& h,
-         const ::xml_schema::NamespaceInfomap& m,
-         const ::std::string& e,
-         ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Sig (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Sig (::xercesc::XMLFormatTarget& t,
-         const ::WS::DISCOVERY::SigType& s,
-         const ::xml_schema::NamespaceInfomap& m,
-         const ::std::string& e,
-         ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Sig (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    Sig (::xercesc::XMLFormatTarget& t,
-         const ::WS::DISCOVERY::SigType& s,
-         ::xml_schema::ErrorHandler& h,
-         const ::xml_schema::NamespaceInfomap& m,
-         const ::std::string& e,
-         ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Sig (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Sig (::xercesc::XMLFormatTarget& t,
-         const ::WS::DISCOVERY::SigType& s,
-         ::xercesc::DOMErrorHandler& h,
-         const ::xml_schema::NamespaceInfomap& m,
-         const ::std::string& e,
-         ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::Sig (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    Sig (::xercesc::DOMDocument& d,
-         const ::WS::DISCOVERY::SigType& s,
-         ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (typeid (::WS::DISCOVERY::SigType) == typeid (s))
-      {
-        if (n.name () == "Sig" &&
-            n.namespace_ () == "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01")
-        {
-          e << s;
-        }
-        else
-        {
-          throw ::xsd::cxx::tree::unexpected_element < char > (
-            n.name (),
-            n.namespace_ (),
-            "Sig",
-            "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-        }
-      }
-      else
-      {
-        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "Sig",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          e, n, s);
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    Sig (const ::WS::DISCOVERY::SigType& s,
-         const ::xml_schema::NamespaceInfomap& m,
-         ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-      if (typeid (::WS::DISCOVERY::SigType) == typeid (s))
-      {
-        d = ::xsd::cxx::xml::dom::serialize< char > (
-          "Sig",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, f);
-      }
-      else
-      {
-        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "Sig",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, s, f);
-      }
-
-      ::WS::DISCOVERY::Sig (*d, s, f);
-      return d;
-    }
-
-    void
     operator<< (::xercesc::DOMElement& e, const SigType& i)
     {
       e << static_cast< const ::xml_schema::Type& > (i);
@@ -10278,19 +4078,19 @@ namespace WS
             "Scheme",
             e));
 
-        a << i.Scheme ();
+        a << i.getScheme ();
       }
 
       // KeyId
       //
-      if (i.KeyId ())
+      if (i.getKeyId ())
       {
         ::xercesc::DOMAttr& a (
           ::xsd::cxx::xml::dom::create_attribute (
             "KeyId",
             e));
 
-        a << *i.KeyId ();
+        a << *i.getKeyId ();
       }
 
       // Refs
@@ -10301,7 +4101,7 @@ namespace WS
             "Refs",
             e));
 
-        a << i.Refs ();
+        a << i.getRefs ();
       }
 
       // Sig
@@ -10312,7 +4112,7 @@ namespace WS
             "Sig",
             e));
 
-        a << i.Sig ();
+        a << i.getSig ();
       }
     }
 
@@ -10322,175 +4122,6 @@ namespace WS
       "SigType",
       "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
 
-
-    void
-    AppSequence (::std::ostream& o,
-                 const ::WS::DISCOVERY::AppSequenceType& s,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::AppSequence (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    AppSequence (::std::ostream& o,
-                 const ::WS::DISCOVERY::AppSequenceType& s,
-                 ::xml_schema::ErrorHandler& h,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
-    {
-      ::xsd::cxx::xml::auto_initializer i (
-        (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::AppSequence (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    AppSequence (::std::ostream& o,
-                 const ::WS::DISCOVERY::AppSequenceType& s,
-                 ::xercesc::DOMErrorHandler& h,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::AppSequence (s, m, f));
-      ::xsd::cxx::xml::dom::ostream_format_target t (o);
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    AppSequence (::xercesc::XMLFormatTarget& t,
-                 const ::WS::DISCOVERY::AppSequenceType& s,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::AppSequence (s, m, f));
-
-      ::xsd::cxx::tree::error_handler< char > h;
-
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-      }
-    }
-
-    void
-    AppSequence (::xercesc::XMLFormatTarget& t,
-                 const ::WS::DISCOVERY::AppSequenceType& s,
-                 ::xml_schema::ErrorHandler& h,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::AppSequence (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    AppSequence (::xercesc::XMLFormatTarget& t,
-                 const ::WS::DISCOVERY::AppSequenceType& s,
-                 ::xercesc::DOMErrorHandler& h,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 const ::std::string& e,
-                 ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        ::WS::DISCOVERY::AppSequence (s, m, f));
-      if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-      {
-        throw ::xsd::cxx::tree::serialization< char > ();
-      }
-    }
-
-    void
-    AppSequence (::xercesc::DOMDocument& d,
-                 const ::WS::DISCOVERY::AppSequenceType& s,
-                 ::xml_schema::Flags)
-    {
-      ::xercesc::DOMElement& e (*d.getDocumentElement ());
-      const ::xsd::cxx::xml::qualified_name< char > n (
-        ::xsd::cxx::xml::dom::name< char > (e));
-
-      if (typeid (::WS::DISCOVERY::AppSequenceType) == typeid (s))
-      {
-        if (n.name () == "AppSequence" &&
-            n.namespace_ () == "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01")
-        {
-          e << s;
-        }
-        else
-        {
-          throw ::xsd::cxx::tree::unexpected_element < char > (
-            n.name (),
-            n.namespace_ (),
-            "AppSequence",
-            "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01");
-        }
-      }
-      else
-      {
-        ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "AppSequence",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          e, n, s);
-      }
-    }
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-    AppSequence (const ::WS::DISCOVERY::AppSequenceType& s,
-                 const ::xml_schema::NamespaceInfomap& m,
-                 ::xml_schema::Flags f)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-      if (typeid (::WS::DISCOVERY::AppSequenceType) == typeid (s))
-      {
-        d = ::xsd::cxx::xml::dom::serialize< char > (
-          "AppSequence",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, f);
-      }
-      else
-      {
-        d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-          "AppSequence",
-          "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01",
-          m, s, f);
-      }
-
-      ::WS::DISCOVERY::AppSequence (*d, s, f);
-      return d;
-    }
 
     void
     operator<< (::xercesc::DOMElement& e, const AppSequenceType& i)
@@ -10505,19 +4136,19 @@ namespace WS
             "InstanceId",
             e));
 
-        a << i.InstanceId ();
+        a << i.getInstanceId ();
       }
 
       // SequenceId
       //
-      if (i.SequenceId ())
+      if (i.getSequenceId ())
       {
         ::xercesc::DOMAttr& a (
           ::xsd::cxx::xml::dom::create_attribute (
             "SequenceId",
             e));
 
-        a << *i.SequenceId ();
+        a << *i.getSequenceId ();
       }
 
       // MessageNumber
@@ -10528,7 +4159,7 @@ namespace WS
             "MessageNumber",
             e));
 
-        a << i.MessageNumber ();
+        a << i.getMessageNumber ();
       }
     }
 

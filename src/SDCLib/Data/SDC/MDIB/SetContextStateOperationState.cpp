@@ -50,94 +50,91 @@ SetContextStateOperationState::SetContextStateOperationState(
 		descriptorhandle
 		,
 		operatingmode
-)) {}
+))
+{}
 
 SetContextStateOperationState::operator CDM::SetContextStateOperationState() const {
 	return *data;
 }
 
-SetContextStateOperationState::SetContextStateOperationState(const CDM::SetContextStateOperationState & object) : data(new CDM::SetContextStateOperationState(object)) {
+SetContextStateOperationState::SetContextStateOperationState(const CDM::SetContextStateOperationState & object)
+: data(new CDM::SetContextStateOperationState(object))
+{ }
 
-}
-
-SetContextStateOperationState::SetContextStateOperationState(const SetContextStateOperationState & object) : data(new CDM::SetContextStateOperationState(*object.data)) {
-
-}
-
-SetContextStateOperationState::~SetContextStateOperationState() {
-
-}
+SetContextStateOperationState::SetContextStateOperationState(const SetContextStateOperationState & object)
+: data(std::make_shared<CDM::SetContextStateOperationState>(*object.data))
+{ }
 
 void SetContextStateOperationState::copyFrom(const SetContextStateOperationState & object) {
-	data = std::shared_ptr<CDM::SetContextStateOperationState>( new CDM::SetContextStateOperationState(*object.data));
+	data = std::make_shared<CDM::SetContextStateOperationState>(*object.data);
 }
 
-SetContextStateOperationState & SetContextStateOperationState:: operator=(const SetContextStateOperationState & object) {
+SetContextStateOperationState & SetContextStateOperationState:: operator=(const SetContextStateOperationState& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 SetContextStateOperationState & SetContextStateOperationState::setStateVersion(const VersionCounter & value) {
-	data->StateVersion(ConvertToCDM::convert(value));
+	data->setStateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetContextStateOperationState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
+	if (data->getStateVersion().present()) {
+		out = ConvertFromCDM::convert(data->getStateVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter SetContextStateOperationState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+	return ConvertFromCDM::convert(data->getStateVersion().get());
 }
 
 bool SetContextStateOperationState::hasStateVersion() const {
-	return data->StateVersion().present();
+	return data->getStateVersion().present();
 }
 
 SetContextStateOperationState & SetContextStateOperationState::setDescriptorHandle(const HandleRef & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
+	data->setDescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 HandleRef SetContextStateOperationState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
+	return ConvertFromCDM::convert(data->getDescriptorHandle());
 }
 
 SetContextStateOperationState & SetContextStateOperationState::setDescriptorVersion(const ReferencedVersion & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool SetContextStateOperationState::getDescriptorVersion(ReferencedVersion & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 ReferencedVersion SetContextStateOperationState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool SetContextStateOperationState::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 SetContextStateOperationState & SetContextStateOperationState::setOperatingMode(const OperatingMode & value) {
-	data->OperatingMode(ConvertToCDM::convert(value));
+	data->setOperatingMode(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 OperatingMode SetContextStateOperationState::getOperatingMode() const {
-	return ConvertFromCDM::convert(data->OperatingMode());
+	return ConvertFromCDM::convert(data->getOperatingMode());
 }
 
 

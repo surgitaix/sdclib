@@ -28,13 +28,13 @@ const MESSAGEMODEL::Envelope buildByeMessage(const ByeType & p_notification)
 {
 	MESSAGEMODEL::Envelope::HeaderType t_header;
 	{
-		t_header.Action(byeUri);
-		t_header.To(discoveryUri);
-		t_header.MessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
+		t_header.setAction(byeUri);
+		t_header.setTo(discoveryUri);
+		t_header.setMessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
 	}
 	MESSAGEMODEL::Envelope::BodyType t_body;
 	{
-		t_body.Bye(p_notification);
+		t_body.setBye(p_notification);
 	}
 	return MESSAGEMODEL::Envelope(t_header, t_body);
 }
@@ -43,13 +43,13 @@ const MESSAGEMODEL::Envelope buildHelloMessage(const HelloType & p_notification)
 {
 	MESSAGEMODEL::Envelope::HeaderType t_header;
 	{
-		t_header.Action(helloUri);
-		t_header.To(discoveryUri);
-		t_header.MessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
+		t_header.setAction(helloUri);
+		t_header.setTo(discoveryUri);
+		t_header.setMessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
 	}
 	MESSAGEMODEL::Envelope::BodyType t_body;
 	{
-		t_body.Hello(p_notification);
+		t_body.setHello(p_notification);
 	}
 
 	return MESSAGEMODEL::Envelope(t_header, t_body);
@@ -59,13 +59,13 @@ const MESSAGEMODEL::Envelope buildStreamMessage(const MDM::WaveformStream  & p_n
 {
 	MESSAGEMODEL::Envelope::HeaderType t_header;
 	{
-		t_header.Action(xml_schema::Uri(SDC::ACT_WAVEFORM_STREAM_REPORT));
-		t_header.MessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
-		t_header.From(p_epr);
+		t_header.setAction(xml_schema::Uri(SDC::ACT_WAVEFORM_STREAM_REPORT));
+		t_header.setMessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
+		t_header.setFrom(p_epr);
 	}
 	MESSAGEMODEL::Envelope::BodyType t_body;
 	{
-		t_body.WaveformStream(p_notification);
+		t_body.setWaveformStream(p_notification);
 	}
 	return MESSAGEMODEL::Envelope(t_header,t_body);
 }
@@ -75,24 +75,24 @@ const MESSAGEMODEL::Envelope buildProbeMatchMessage(const std::vector<ProbeMatch
 {
 	MESSAGEMODEL::Envelope::HeaderType t_header;
 	{
-		t_header.Action(probeMatchesUri);
-		if (p_request.Header().ReplyTo().present()) {
-			t_header.To(p_request.Header().ReplyTo().get().Address());
+		t_header.setAction(probeMatchesUri);
+		if (p_request.getHeader().getReplyTo().present()) {
+			t_header.setTo(p_request.getHeader().getReplyTo().get().getAddress());
 		} else {
-			t_header.To(addressingAnonymousUri);
+			t_header.setTo(addressingAnonymousUri);
 		}
-		if (p_request.Header().MessageID().present()) {
-			t_header.RelatesTo(p_request.Header().MessageID().get());
+		if (p_request.getHeader().getMessageID().present()) {
+			t_header.setRelatesTo(p_request.getHeader().getMessageID().get());
 		}
-		t_header.MessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
+		t_header.setMessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
 	}
 	MESSAGEMODEL::Envelope::BodyType t_body;
 	{
 		MESSAGEMODEL::Envelope::BodyType::ProbeMatchesType t_probeMatches;
 		for (const auto & t_match: pl_notifications) {
-			t_probeMatches.ProbeMatch().push_back(t_match);
+			t_probeMatches.getProbeMatch().push_back(t_match);
 		}
-		t_body.ProbeMatches(t_probeMatches);
+		t_body.setProbeMatches(t_probeMatches);
 	}
 
 	return MESSAGEMODEL::Envelope(t_header, t_body);
@@ -101,22 +101,22 @@ const MESSAGEMODEL::Envelope buildProbeMatchMessage(const std::vector<ProbeMatch
 const MESSAGEMODEL::Envelope buildResolveMatchMessage(const ResolveMatchType & p_notification, const MESSAGEMODEL::Envelope & p_request) {
 	MESSAGEMODEL::Envelope::HeaderType t_header;
 	{
-		t_header.Action(resolveMatchesUri);
-		if (p_request.Header().ReplyTo().present()) {
-			t_header.To(p_request.Header().ReplyTo().get().Address());
+		t_header.setAction(resolveMatchesUri);
+		if (p_request.getHeader().getReplyTo().present()) {
+			t_header.setTo(p_request.getHeader().getReplyTo().get().getAddress());
 		} else {
-			t_header.To(addressingAnonymousUri);
+			t_header.setTo(addressingAnonymousUri);
 		}
-		if (p_request.Header().MessageID().present()) {
-			t_header.RelatesTo(p_request.Header().MessageID().get());
+		if (p_request.getHeader().getMessageID().present()) {
+			t_header.setRelatesTo(p_request.getHeader().getMessageID().get());
 		}
-		t_header.MessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
+		t_header.setMessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
 	}
 	MESSAGEMODEL::Envelope::BodyType t_body;
 	{
 		MESSAGEMODEL::Envelope::BodyType::ResolveMatchesType resolveMatches;
-		resolveMatches.ResolveMatch(p_notification);
-		t_body.ResolveMatches(resolveMatches);
+		resolveMatches.setResolveMatch(p_notification);
+		t_body.setResolveMatches(resolveMatches);
 	}
 
 	return MESSAGEMODEL::Envelope(t_header, t_body);
@@ -310,9 +310,9 @@ void DPWSHostSocketImpl::sendBye(const ByeType & p_bye)
 {
 	MESSAGEMODEL::Envelope t_message(buildByeMessage(p_bye));
 	MESSAGEMODEL::Envelope::HeaderType::AppSequenceType t_appSequence(m_context.getInstanceId(), m_context.getNextMessageCounter());
-	t_message.Header().AppSequence(t_appSequence);
-	if (t_message.Header().MessageID().present()) {
-		m_context.registerMessageId(t_message.Header().MessageID().get());
+	t_message.getHeader().setAppSequence(t_appSequence);
+	if (t_message.getHeader().getMessageID().present()) {
+		m_context.registerMessageId(t_message.getHeader().getMessageID().get());
 	}
 	for (auto & t_socketQueue : ml_socketSendMessageQueue) {
 		t_socketQueue.second.enqueueNotification(new SendMulticastMessage(serializeMessage(t_message), m_ipv4DiscoveryMulticastAddress, m_ipv6DiscoveryMulticastAddress));
@@ -325,9 +325,9 @@ void DPWSHostSocketImpl::sendStream(const MDM::WaveformStream & p_stream, const 
 {
 	MESSAGEMODEL::Envelope t_message(buildStreamMessage(p_stream, p_epr));
 	MESSAGEMODEL::Envelope::HeaderType::AppSequenceType t_appSequence(m_context.getInstanceId(), m_context.getNextMessageCounter());
-	t_message.Header().AppSequence(t_appSequence);
-	if (t_message.Header().MessageID().present()) {
-		m_context.registerMessageId(t_message.Header().MessageID().get());
+	t_message.getHeader().setAppSequence(t_appSequence);
+	if (t_message.getHeader().getMessageID().present()) {
+		m_context.registerMessageId(t_message.getHeader().getMessageID().get());
 	}
 	for (auto & t_socketQueue : ml_socketSendMessageQueue) {
 		t_socketQueue.second.enqueueNotification(new SendMulticastMessage(serializeMessage(t_message), m_ipv4StreamMulticastAddress, m_ipv6StreamMulticastAddress));
@@ -341,9 +341,9 @@ void DPWSHostSocketImpl::sendHello(const HelloType & p_hello)
 	m_context.resetInstanceId();
 	MESSAGEMODEL::Envelope t_message(buildHelloMessage(p_hello));
 	MESSAGEMODEL::Envelope::HeaderType::AppSequenceType t_appSequence(m_context.getInstanceId(), m_context.getNextMessageCounter());
-	t_message.Header().AppSequence(t_appSequence);
-	if (t_message.Header().MessageID().present()) {
-		m_context.registerMessageId(t_message.Header().MessageID().get());
+	t_message.getHeader().setAppSequence(t_appSequence);
+	if (t_message.getHeader().getMessageID().present()) {
+		m_context.registerMessageId(t_message.getHeader().getMessageID().get());
 	}
 	for (auto & t_socketQueue : ml_socketSendMessageQueue) {
 		t_socketQueue.second.enqueueNotification(new SendMulticastMessage(serializeMessage(t_message), m_ipv4DiscoveryMulticastAddress, m_ipv6DiscoveryMulticastAddress));
@@ -364,31 +364,31 @@ void DPWSHostSocketImpl::onMulticastSocketReadable(Poco::Net::ReadableNotificati
 	Poco::Net::SocketAddress t_remoteAddr;
 	const int t_received(t_socket.receiveFrom(t_buf.begin(), t_available, t_remoteAddr, 0));
 	Helper::BufferAdapter t_adapter(t_buf, t_received);
-	auto t_requestMessage(parseMessage(t_adapter));
 
+	auto t_requestMessage(parseMessage(t_adapter));
 	if (nullptr == t_requestMessage) {
 		return;
 	}
-	if (t_requestMessage->Header().MessageID().present()) {
-		if(t_requestMessage->Header().MessageID().get().empty()) {
+	if (t_requestMessage->getHeader().getMessageID().present()) {
+		if(t_requestMessage->getHeader().getMessageID().get().empty()) {
 			log_debug([] { return "DPWSHostSocketImpl::onMulticastSocketReadable. <MessageID> EMPTY!"; });
 			return;
 		}
-		if (!m_context.registerMessageId(t_requestMessage->Header().MessageID().get())) {
+		if (!m_context.registerMessageId(t_requestMessage->getHeader().getMessageID().get())) {
 			log_debug([] { return "DPWSHostSocketImpl::onMulticastSocketReadable. registerMessageId failed!"; });
 			return;
 		}
 	}
-	if (t_requestMessage->Body().Probe().present()) {
-		const WS::DISCOVERY::ProbeType & t_probe(t_requestMessage->Body().Probe().get());
+	if (t_requestMessage->getBody().getProbe().present()) {
+		const WS::DISCOVERY::ProbeType & t_probe(t_requestMessage->getBody().getProbe().get());
 		auto tl_result(m_probeDispatcher.dispatch(t_probe));
 		if (tl_result.empty()) {
 			return;
 		}
 		const MESSAGEMODEL::Envelope t_responseMessage(buildProbeMatchMessage(tl_result, *t_requestMessage));
 		m_delayedMessages.enqueueNotification(new SendUnicastMessage(t_responseMessage, t_remoteAddr), createDelay());
-	} else if (t_requestMessage->Body().Resolve().present()) {
-		const WS::DISCOVERY::ResolveType & t_resolve(t_requestMessage->Body().Resolve().get());
+	} else if (t_requestMessage->getBody().getResolve().present()) {
+		const WS::DISCOVERY::ResolveType & t_resolve(t_requestMessage->getBody().getResolve().get());
 		auto t_result(m_resolveDispatcher.dispatch(t_resolve));
 		if (nullptr == t_result) {
 			return;
@@ -422,7 +422,7 @@ void DPWSHostSocketImpl::onDatagrammSocketWritable(Poco::Net::WritableNotificati
 		if (! t_message.isNull()) {
 			MESSAGEMODEL::Envelope t_messageEnvelope(t_message->m_content);
 			MESSAGEMODEL::Envelope::HeaderType::AppSequenceType t_appSequence(m_context.getInstanceId(), m_context.getNextMessageCounter());
-			t_messageEnvelope.Header().AppSequence(t_appSequence);
+			t_messageEnvelope.getHeader().setAppSequence(t_appSequence);
 			const std::string t_content(serializeMessage(t_messageEnvelope));
 			t_socket.sendTo(t_content.c_str(), t_content.size(), t_message->m_address, 0);
 		}

@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class DicomNetworkAe {
+class DicomNetworkAe
+{
 private:
 	DicomNetworkAe(const CDM::DicomNetworkAe & object);
 	operator CDM::DicomNetworkAe() const;
@@ -63,11 +64,11 @@ public:
 private:
 	DicomNetworkAe(){};
 public:
-	DicomNetworkAe(const DicomNetworkAe & object);
-	virtual ~DicomNetworkAe();
+	DicomNetworkAe(const DicomNetworkAe& object);
+	virtual ~DicomNetworkAe() = default;
 
-    void copyFrom(const DicomNetworkAe & object);
-    DicomNetworkAe & operator=(const DicomNetworkAe & object);
+    void copyFrom(const DicomNetworkAe& object);
+    DicomNetworkAe & operator=(const DicomNetworkAe& object);
 
     typedef CDM::DicomNetworkAe WrappedType;
 
@@ -92,7 +93,7 @@ public:
 	void clearDescriptionList();
 
 private:
-	std::shared_ptr<CDM::DicomNetworkAe> data;
+	std::shared_ptr<CDM::DicomNetworkAe> data = nullptr;
 };
 
 } /* namespace SDC */

@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class ScoState {
+class ScoState
+{
 private:
 	ScoState(const CDM::ScoState & object);
 	operator CDM::ScoState() const;
@@ -57,11 +58,11 @@ public:
 private:
 	ScoState(){};
 public:
-	ScoState(const ScoState & object);
-	virtual ~ScoState();
+	ScoState(const ScoState& object);
+	virtual ~ScoState() = default;
 
-    void copyFrom(const ScoState & object);
-    ScoState & operator=(const ScoState & object);
+    void copyFrom(const ScoState& object);
+    ScoState & operator=(const ScoState& object);
 
     typedef CDM::ScoState WrappedType;
 
@@ -123,7 +124,7 @@ public:
 	void clearOperationGroupList();
 
 private:
-	std::shared_ptr<CDM::ScoState> data;
+	std::shared_ptr<CDM::ScoState> data = nullptr;
 };
 
 } /* namespace SDC */

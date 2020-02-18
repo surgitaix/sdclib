@@ -44,50 +44,47 @@ namespace SDC {
 
 AllowedValues::AllowedValues(
 ) : data(Defaults::AllowedValuesInit(
-)) {}
+))
+{}
 
 AllowedValues::operator CDM::AllowedValues() const {
 	return *data;
 }
 
-AllowedValues::AllowedValues(const CDM::AllowedValues & object) : data(new CDM::AllowedValues(object)) {
+AllowedValues::AllowedValues(const CDM::AllowedValues & object)
+: data(new CDM::AllowedValues(object))
+{ }
 
-}
-
-AllowedValues::AllowedValues(const AllowedValues & object) : data(new CDM::AllowedValues(*object.data)) {
-
-}
-
-AllowedValues::~AllowedValues() {
-
-}
+AllowedValues::AllowedValues(const AllowedValues & object)
+: data(std::make_shared<CDM::AllowedValues>(*object.data))
+{ }
 
 void AllowedValues::copyFrom(const AllowedValues & object) {
-	data = std::shared_ptr<CDM::AllowedValues>( new CDM::AllowedValues(*object.data));
+	data = std::make_shared<CDM::AllowedValues>(*object.data);
 }
 
-AllowedValues & AllowedValues:: operator=(const AllowedValues & object) {
+AllowedValues & AllowedValues:: operator=(const AllowedValues& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 AllowedValues & AllowedValues::addValue(const std::string & value) {
-	data->Value().push_back(ConvertToCDM::convert(value));
+	data->getValue().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<std::string> AllowedValues::getValueList() const {
 	std::vector<std::string> result;
-	result.reserve(data->Value().size());
-	for (const auto & value: data->Value()) {
+	result.reserve(data->getValue().size());
+	for (const auto & value: data->getValue()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void AllowedValues::clearValueList() {
-	data->Value().clear();
+	data->getValue().clear();
 }
 
 

@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class VmdDescriptor {
+class VmdDescriptor
+{
 private:
 	VmdDescriptor(const CDM::VmdDescriptor & object);
 	operator CDM::VmdDescriptor() const;
@@ -57,11 +58,11 @@ public:
 private:
 	VmdDescriptor(){};
 public:
-	VmdDescriptor(const VmdDescriptor & object);
-	virtual ~VmdDescriptor();
+	VmdDescriptor(const VmdDescriptor& object);
+	virtual ~VmdDescriptor() = default;
 
-    void copyFrom(const VmdDescriptor & object);
-    VmdDescriptor & operator=(const VmdDescriptor & object);
+    void copyFrom(const VmdDescriptor& object);
+    VmdDescriptor & operator=(const VmdDescriptor& object);
 
     typedef CDM::VmdDescriptor WrappedType;
 
@@ -107,7 +108,7 @@ public:
 	void clearChannelList();
 
 private:
-	std::shared_ptr<CDM::VmdDescriptor> data;
+	std::shared_ptr<CDM::VmdDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

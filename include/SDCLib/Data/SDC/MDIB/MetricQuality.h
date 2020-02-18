@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class MetricQuality {
+class MetricQuality
+{
 private:
 	MetricQuality(const CDM::MetricQuality & object);
 	operator CDM::MetricQuality() const;
@@ -57,11 +58,11 @@ public:
 private:
 	MetricQuality(){};
 public:
-	MetricQuality(const MetricQuality & object);
-	virtual ~MetricQuality();
+	MetricQuality(const MetricQuality& object);
+	virtual ~MetricQuality() = default;
 
-    void copyFrom(const MetricQuality & object);
-    MetricQuality & operator=(const MetricQuality & object);
+    void copyFrom(const MetricQuality& object);
+    MetricQuality & operator=(const MetricQuality& object);
 
     typedef CDM::MetricQuality WrappedType;
 
@@ -79,7 +80,7 @@ public:
 	bool hasQi() const;
 
 private:
-	std::shared_ptr<CDM::MetricQuality> data;
+	std::shared_ptr<CDM::MetricQuality> data = nullptr;
 };
 
 } /* namespace SDC */

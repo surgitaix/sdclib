@@ -44,53 +44,50 @@ namespace SDC {
 
 MdState::MdState(
 ) : data(Defaults::MdStateInit(
-)) {}
+))
+{}
 
 MdState::operator CDM::MdState() const {
 	return *data;
 }
 
-MdState::MdState(const CDM::MdState & object) : data(new CDM::MdState(object)) {
+MdState::MdState(const CDM::MdState & object)
+: data(new CDM::MdState(object))
+{ }
 
-}
-
-MdState::MdState(const MdState & object) : data(new CDM::MdState(*object.data)) {
-
-}
-
-MdState::~MdState() {
-
-}
+MdState::MdState(const MdState & object)
+: data(std::make_shared<CDM::MdState>(*object.data))
+{ }
 
 void MdState::copyFrom(const MdState & object) {
-	data = std::shared_ptr<CDM::MdState>( new CDM::MdState(*object.data));
+	data = std::make_shared<CDM::MdState>(*object.data);
 }
 
-MdState & MdState:: operator=(const MdState & object) {
+MdState & MdState:: operator=(const MdState& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 MdState & MdState::setStateVersion(const VersionCounter & value) {
-	data->StateVersion(ConvertToCDM::convert(value));
+	data->setStateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool MdState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
+	if (data->getStateVersion().present()) {
+		out = ConvertFromCDM::convert(data->getStateVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter MdState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+	return ConvertFromCDM::convert(data->getStateVersion().get());
 }
 
 bool MdState::hasStateVersion() const {
-	return data->StateVersion().present();
+	return data->getStateVersion().present();
 }
 
 

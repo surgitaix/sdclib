@@ -47,128 +47,125 @@ namespace SDC {
 
 OrderDetail::OrderDetail(
 ) : data(Defaults::OrderDetailInit(
-)) {}
+))
+{}
 
 OrderDetail::operator CDM::OrderDetail() const {
 	return *data;
 }
 
-OrderDetail::OrderDetail(const CDM::OrderDetail & object) : data(new CDM::OrderDetail(object)) {
+OrderDetail::OrderDetail(const CDM::OrderDetail & object)
+: data(new CDM::OrderDetail(object))
+{ }
 
-}
-
-OrderDetail::OrderDetail(const OrderDetail & object) : data(new CDM::OrderDetail(*object.data)) {
-
-}
-
-OrderDetail::~OrderDetail() {
-
-}
+OrderDetail::OrderDetail(const OrderDetail & object)
+: data(std::make_shared<CDM::OrderDetail>(*object.data))
+{ }
 
 void OrderDetail::copyFrom(const OrderDetail & object) {
-	data = std::shared_ptr<CDM::OrderDetail>( new CDM::OrderDetail(*object.data));
+	data = std::make_shared<CDM::OrderDetail>(*object.data);
 }
 
-OrderDetail & OrderDetail:: operator=(const OrderDetail & object) {
+OrderDetail & OrderDetail:: operator=(const OrderDetail& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 OrderDetail & OrderDetail::setStart(const xml_schema::DateTime & value) {
-	data->Start(ConvertToCDM::convert(value));
+	data->setStart(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool OrderDetail::getStart(xml_schema::DateTime & out) const {
-	if (data->Start().present()) {
-		out = ConvertFromCDM::convert(data->Start().get());
+	if (data->getStart().present()) {
+		out = ConvertFromCDM::convert(data->getStart().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::DateTime OrderDetail::getStart() const {
-	return ConvertFromCDM::convert(data->Start().get());
+	return ConvertFromCDM::convert(data->getStart().get());
 }
 
 bool OrderDetail::hasStart() const {
-	return data->Start().present();
+	return data->getStart().present();
 }
 
 OrderDetail & OrderDetail::setEnd(const xml_schema::DateTime & value) {
-	data->End(ConvertToCDM::convert(value));
+	data->setEnd(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool OrderDetail::getEnd(xml_schema::DateTime & out) const {
-	if (data->End().present()) {
-		out = ConvertFromCDM::convert(data->End().get());
+	if (data->getEnd().present()) {
+		out = ConvertFromCDM::convert(data->getEnd().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::DateTime OrderDetail::getEnd() const {
-	return ConvertFromCDM::convert(data->End().get());
+	return ConvertFromCDM::convert(data->getEnd().get());
 }
 
 bool OrderDetail::hasEnd() const {
-	return data->End().present();
+	return data->getEnd().present();
 }
 
 OrderDetail & OrderDetail::addPerformer(const PersonParticipation & value) {
-	data->Performer().push_back(ConvertToCDM::convert(value));
+	data->getPerformer().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<PersonParticipation> OrderDetail::getPerformerList() const {
 	std::vector<PersonParticipation> result;
-	result.reserve(data->Performer().size());
-	for (const auto & value: data->Performer()) {
+	result.reserve(data->getPerformer().size());
+	for (const auto & value: data->getPerformer()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void OrderDetail::clearPerformerList() {
-	data->Performer().clear();
+	data->getPerformer().clear();
 }
 
 OrderDetail & OrderDetail::addService(const CodedValue & value) {
-	data->Service().push_back(ConvertToCDM::convert(value));
+	data->getService().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<CodedValue> OrderDetail::getServiceList() const {
 	std::vector<CodedValue> result;
-	result.reserve(data->Service().size());
-	for (const auto & value: data->Service()) {
+	result.reserve(data->getService().size());
+	for (const auto & value: data->getService()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void OrderDetail::clearServiceList() {
-	data->Service().clear();
+	data->getService().clear();
 }
 
 OrderDetail & OrderDetail::addImagingProcedure(const ImagingProcedure & value) {
-	data->ImagingProcedure().push_back(ConvertToCDM::convert(value));
+	data->getImagingProcedure().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<ImagingProcedure> OrderDetail::getImagingProcedureList() const {
 	std::vector<ImagingProcedure> result;
-	result.reserve(data->ImagingProcedure().size());
-	for (const auto & value: data->ImagingProcedure()) {
+	result.reserve(data->getImagingProcedure().size());
+	for (const auto & value: data->getImagingProcedure()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void OrderDetail::clearImagingProcedureList() {
-	data->ImagingProcedure().clear();
+	data->getImagingProcedure().clear();
 }
 
 

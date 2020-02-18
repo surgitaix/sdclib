@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class Udi {
+class Udi
+{
 private:
 	Udi(const CDM::Udi & object);
 	operator CDM::Udi() const;
@@ -61,11 +62,11 @@ public:
 private:
 	Udi(){};
 public:
-	Udi(const Udi & object);
-	virtual ~Udi();
+	Udi(const Udi& object);
+	virtual ~Udi() = default;
 
-    void copyFrom(const Udi & object);
-    Udi & operator=(const Udi & object);
+    void copyFrom(const Udi& object);
+    Udi & operator=(const Udi& object);
 
     typedef CDM::Udi WrappedType;
 
@@ -84,7 +85,7 @@ public:
 	bool hasJurisdiction() const;
 
 private:
-	std::shared_ptr<CDM::Udi> data;
+	std::shared_ptr<CDM::Udi> data = nullptr;
 };
 
 } /* namespace SDC */

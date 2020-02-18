@@ -74,7 +74,7 @@ namespace SDCLib
 				*
 				* @return The handle
 				*/
-				std::string getDescriptorHandle() { return descriptorHandle; }
+				std::string getDescriptorHandle() const { return descriptorHandle; }
 			};
 
 		}

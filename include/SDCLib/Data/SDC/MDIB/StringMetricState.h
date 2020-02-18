@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class StringMetricState {
+class StringMetricState
+{
 private:
 	StringMetricState(const CDM::StringMetricState & object);
 	operator CDM::StringMetricState() const;
@@ -57,11 +58,11 @@ public:
 private:
 	StringMetricState(){};
 public:
-	StringMetricState(const StringMetricState & object);
-	virtual ~StringMetricState();
+	StringMetricState(const StringMetricState& object);
+	virtual ~StringMetricState() = default;
 
-    void copyFrom(const StringMetricState & object);
-    StringMetricState & operator=(const StringMetricState & object);
+    void copyFrom(const StringMetricState& object);
+    StringMetricState & operator=(const StringMetricState& object);
 
     typedef CDM::StringMetricState WrappedType;
     typedef StringMetricDescriptor DescriptorType;
@@ -109,7 +110,7 @@ public:
 	bool hasMetricValue() const;
 
 private:
-	std::shared_ptr<CDM::StringMetricState> data;
+	std::shared_ptr<CDM::StringMetricState> data = nullptr;
 };
 
 } /* namespace SDC */

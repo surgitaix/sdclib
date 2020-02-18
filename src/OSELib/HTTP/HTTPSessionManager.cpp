@@ -73,15 +73,13 @@ public:
 					// SSL or not
 					if(m_context) {
 						Poco::Net::HTTPSClientSession t_session(m_destinationURI.getHost(), m_destinationURI.getPort(), m_context);
-						t_session.setTimeout(Poco::Timespan(5,0));
-						t_session.setKeepAlive(true);
+						t_session.setTimeout(Poco::Timespan(SDCLib::Config::SDC_CONNECTION_TIMEOUT_MS*1000)); // Convert to microseconds
 
 						t_exchanger.exchangeHttp(t_session, t_message->m_destination.getPath(), t_message->m_message);
 					}
 					else {
 						Poco::Net::HTTPClientSession t_session(m_destinationURI.getHost(), m_destinationURI.getPort());
-						t_session.setTimeout(Poco::Timespan(5,0));
-						t_session.setKeepAlive(true);
+						t_session.setTimeout(Poco::Timespan(SDCLib::Config::SDC_CONNECTION_TIMEOUT_MS*1000)); // Convert to microseconds
 
 						t_exchanger.exchangeHttp(t_session, t_message->m_destination.getPath(), t_message->m_message);
 					}
@@ -100,11 +98,11 @@ public:
 	}
 
 private:
-	std::atomic<bool> m_running = ATOMIC_VAR_INIT(false);
+	std::atomic<bool> m_running{false};
 	const Poco::URI m_destinationURI;
 	std::shared_ptr<Poco::NotificationQueue> m_queue;
 	DPWS::ActiveSubscriptions & m_subscriptions;
-	Poco::Net::Context::Ptr m_context = nullptr;
+	Poco::Net::Context::Ptr m_context{nullptr};
 };
 
 HTTPSessionManager::HTTPSessionManager(DPWS::ActiveSubscriptions & p_subscriptions, SDCLib::Config::SSLConfig_shared_ptr p_SSLConfig)

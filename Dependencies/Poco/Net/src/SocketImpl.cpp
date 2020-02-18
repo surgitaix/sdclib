@@ -19,9 +19,6 @@
 #include "Poco/Timestamp.h"
 #include <string.h> // FD_SET needs memset on some platforms, so we can't use <cstring>
 
-//MoVE HACK
-#include <iostream>
-//END
 
 
 #if defined(_WIN32) && _WIN32_WINNT >= 0x0600
@@ -379,9 +376,7 @@ int SocketImpl::sendTo(const void* buffer, int length, const SocketAddress& addr
 	}
 	while (_blocking && rc < 0 && lastError() == POCO_EINTR);
 	if (rc < 0) error();
-	//MoVE HACK
-	//else { std::cout << "SENT: " << reinterpret_cast<const char*>(buffer) << std::endl; }
-	//END
+
 	return rc;
 }
 
@@ -410,15 +405,6 @@ int SocketImpl::receiveFrom(void* buffer, int length, SocketAddress& address, in
 	if (rc >= 0)
 	{
 		address = SocketAddress(pSA, saLen);
-		//MoVE HACK
-		/*
-		char* myBuf = reinterpret_cast<char*>(buffer);
-		//myBuf[rc] = '\0';
-		std::string tmpStr(myBuf);
-		if(tmpStr.find("Report") != std::string::npos)
-			std::cout << "#################################### RECEIVE: " << tmpStr << std::endl;
-			*/
-		//END
 	}
 	else
 	{

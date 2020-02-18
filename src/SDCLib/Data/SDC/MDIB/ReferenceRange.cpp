@@ -48,63 +48,60 @@ ReferenceRange::ReferenceRange(
 		Range range
 ) : data(Defaults::ReferenceRangeInit(
 		range
-)) {}
+))
+{}
 
 ReferenceRange::operator CDM::ReferenceRange() const {
 	return *data;
 }
 
-ReferenceRange::ReferenceRange(const CDM::ReferenceRange & object) : data(new CDM::ReferenceRange(object)) {
+ReferenceRange::ReferenceRange(const CDM::ReferenceRange & object)
+: data(new CDM::ReferenceRange(object))
+{ }
 
-}
-
-ReferenceRange::ReferenceRange(const ReferenceRange & object) : data(new CDM::ReferenceRange(*object.data)) {
-
-}
-
-ReferenceRange::~ReferenceRange() {
-
-}
+ReferenceRange::ReferenceRange(const ReferenceRange & object)
+: data(std::make_shared<CDM::ReferenceRange>(*object.data))
+{ }
 
 void ReferenceRange::copyFrom(const ReferenceRange & object) {
-	data = std::shared_ptr<CDM::ReferenceRange>( new CDM::ReferenceRange(*object.data));
+	data = std::make_shared<CDM::ReferenceRange>(*object.data);
 }
 
-ReferenceRange & ReferenceRange:: operator=(const ReferenceRange & object) {
+ReferenceRange & ReferenceRange:: operator=(const ReferenceRange& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 ReferenceRange & ReferenceRange::setRange(const Range & value) {
-	data->Range(ConvertToCDM::convert(value));
+	data->setRange(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 Range ReferenceRange::getRange() const {
-	return ConvertFromCDM::convert(data->Range());
+	return ConvertFromCDM::convert(data->getRange());
 }
 
 ReferenceRange & ReferenceRange::setMeaning(const CodedValue & value) {
-	data->Meaning(ConvertToCDM::convert(value));
+	data->setMeaning(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ReferenceRange::getMeaning(CodedValue & out) const {
-	if (data->Meaning().present()) {
-		out = ConvertFromCDM::convert(data->Meaning().get());
+	if (data->getMeaning().present()) {
+		out = ConvertFromCDM::convert(data->getMeaning().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue ReferenceRange::getMeaning() const {
-	return ConvertFromCDM::convert(data->Meaning().get());
+	return ConvertFromCDM::convert(data->getMeaning().get());
 }
 
 bool ReferenceRange::hasMeaning() const {
-	return data->Meaning().present();
+	return data->getMeaning().present();
 }
 
 

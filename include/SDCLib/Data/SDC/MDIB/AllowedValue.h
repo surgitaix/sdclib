@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class AllowedValue {
+class AllowedValue
+{
 private:
 	AllowedValue(const CDM::AllowedValue & object);
 	operator CDM::AllowedValue() const;
@@ -57,11 +58,11 @@ public:
 private:
 	AllowedValue(){};
 public:
-	AllowedValue(const AllowedValue & object);
-	virtual ~AllowedValue();
+	AllowedValue(const AllowedValue& object);
+	virtual ~AllowedValue() = default;
 
-    void copyFrom(const AllowedValue & object);
-    AllowedValue & operator=(const AllowedValue & object);
+    void copyFrom(const AllowedValue& object);
+    AllowedValue & operator=(const AllowedValue& object);
 
     typedef CDM::AllowedValue WrappedType;
 
@@ -84,7 +85,7 @@ public:
 	bool hasCharacteristic() const;
 
 private:
-	std::shared_ptr<CDM::AllowedValue> data;
+	std::shared_ptr<CDM::AllowedValue> data = nullptr;
 };
 
 } /* namespace SDC */

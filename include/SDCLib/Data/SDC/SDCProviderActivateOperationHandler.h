@@ -13,30 +13,38 @@
 
 #include "SDCLib/Data/SDC/SDCProviderStateHandler.h"
 
-namespace SDCLib {
-namespace Data {
-namespace SDC {
+namespace SDCLib
+{
+	namespace Data
+	{
+		namespace SDC
+		{
 
-class SDCProviderActivateOperationHandler : public SDCProviderStateHandler {
-public:
-	SDCProviderActivateOperationHandler(std::string descriptorHandle) : SDCProviderStateHandler(descriptorHandle) {};
-	virtual ~SDCProviderActivateOperationHandler() = default;
+			class SDCProviderActivateOperationHandler : public SDCProviderStateHandler
+			{
+			public:
+				/**
+				* @brief The constructor gets a handle as an argument referencing the regarding descriptor of the state
+				*/
+				SDCProviderActivateOperationHandler(std::string p_descriptorHandle)
+				: SDCProviderStateHandler(p_descriptorHandle)
+				{ }
 
-    /**
-    * @brief Called on incoming consumer request for activation
-    *
-    * Notes:
-    * - The consumer will wait for this method to complete.
-    *
-    * @return invocation state
-    */
-	virtual InvocationState onActivateRequest(const OperationInvocationContext & oic) = 0;
+				virtual ~SDCProviderActivateOperationHandler() = default;
 
+				/**
+				* @brief Called on incoming consumer request for activation
+				*
+				* Notes:
+				* - The consumer will wait for this method to complete.
+				*
+				* @return invocation state
+				*/
+				virtual InvocationState onActivateRequest(const OperationInvocationContext & oic) = 0;
+			};
 
-};
+		}
+	}
+}
 
-} /* namespace SDC */
-} /* namespace Data */
-} /* namespace SDCLib */
-
-#endif /* SDCPROVIDERACTIVATETOPERATIONSTATEHANDLER_H_ */
+#endif

@@ -9,26 +9,47 @@
 
 #include "OSELib/DPWS/DeviceDescription.h"
 
+#include "config/config.h"
+
 #include <Poco/Net/StreamSocket.h>
+#include <Poco/Net/SecureStreamSocket.h>
+#include <Poco/Net/NetException.h>
+#include <Poco/Net/SSLException.h>
 
 using namespace OSELib;
 using namespace OSELib::DPWS;
 
-DeviceDescription::DeviceDescription()
+DeviceDescription::DeviceDescription(bool p_SSL)
 : Helper::WithLogger(Log::DISCOVERY)
+, m_SSL(p_SSL)
 {
 
 }
 
-bool DeviceDescription::checkURIsValidity(const Poco::URI & p_uri) const
+bool DeviceDescription::checkURIsValidity(const Poco::URI & p_uri, bool p_SSL) const
 {
 	// Checks if a given URI is valid by trying to establish a connection
-	try {
-		// FIXME: SSL ?
-		Poco::Net::StreamSocket t_connection;
-		t_connection.connect(Poco::Net::SocketAddress(p_uri.getHost(), p_uri.getPort()), Poco::Timespan(50000));
+	try
+	{
+		if(p_SSL) {
+			Poco::Net::SecureStreamSocket t_connection;
+			t_connection.connect(Poco::Net::SocketAddress(p_uri.getHost(), p_uri.getPort()), Poco::Timespan(SDCLib::Config::SDC_CONNECTION_TIMEOUT_MS*1000));
+		}
+		else {
+			Poco::Net::StreamSocket t_connection;
+			t_connection.connect(Poco::Net::SocketAddress(p_uri.getHost(), p_uri.getPort()), Poco::Timespan(SDCLib::Config::SDC_CONNECTION_TIMEOUT_MS*1000));
+		}
 		return true;
-	} catch (...) {
+	}
+	catch(Poco::Net::SSLException& e)
+	{
+		log_debug([&] { return "SSLException: Contacting xAddress failed: " + e.displayText(); });
+	}
+	catch(Poco::Net::NetException& e)
+	{
+		log_debug([&] { return "NetException: Contacting xAddress failed: " + e.displayText(); });
+	}
+	catch (...) {
 		log_debug([&] { return "Contacting xAddress failed: " + p_uri.toString(); });
 		return false;
 	}
@@ -72,7 +93,7 @@ Poco::URI DeviceDescription::getDeviceURI() const
 
 void DeviceDescription::addDeviceURI(const Poco::URI & p_uri)
 {
-	if (checkURIsValidity(p_uri)) {
+	if (checkURIsValidity(p_uri, m_SSL)) { // Todo: Only a temporary work around: Needs finer control over SSL vs No SSL
 		std::lock_guard<std::mutex> t_lock(m_mutex_URIs);
 		ml_deviceURIs.push_back(p_uri);
 	} else {
@@ -98,7 +119,7 @@ Poco::URI DeviceDescription::getContextServiceURI() const
 {
 	std::lock_guard<std::mutex> t_lock(m_mutex_URIs);
 	for (const auto t_iter : ml_contextServiceURIs) {
-		if (checkURIsValidity(t_iter)) {
+		if (checkURIsValidity(t_iter, m_SSL)) { // Todo: Only a temporary work around: Needs finer control over SSL vs No SSL
 			return t_iter;
 		}
 	}
@@ -115,7 +136,7 @@ Poco::URI DeviceDescription::getEventServiceURI() const
 {
 	std::lock_guard<std::mutex> t_lock(m_mutex_URIs);
 	for (const auto t_iter : ml_eventServiceURIs) {
-		if (checkURIsValidity(t_iter)) {
+		if (checkURIsValidity(t_iter, m_SSL)) { // Todo: Only a temporary work around: Needs finer control over SSL vs No SSL
 			return t_iter;
 		}
 	}
@@ -131,7 +152,7 @@ Poco::URI DeviceDescription::getGetServiceURI() const
 {
 	std::lock_guard<std::mutex> t_lock(m_mutex_URIs);
 	for (const auto t_iter : ml_getServiceURIs) {
-		if (checkURIsValidity(t_iter)) {
+		if (checkURIsValidity(t_iter, m_SSL)) { // Todo: Only a temporary work around: Needs finer control over SSL vs No SSL
 			return t_iter;
 		}
 	}
@@ -147,7 +168,7 @@ Poco::URI DeviceDescription::getSetServiceURI() const
 {
 	std::lock_guard<std::mutex> t_lock(m_mutex_URIs);
 	for (const auto t_iter : ml_setServiceURIs) {
-		if (checkURIsValidity(t_iter)) {
+		if (checkURIsValidity(t_iter, m_SSL)) { // Todo: Only a temporary work around: Needs finer control over SSL vs No SSL
 			return t_iter;
 		}
 	}
@@ -169,7 +190,7 @@ Poco::URI DeviceDescription::getWaveformEventReportURI() const
 {
 	std::lock_guard<std::mutex> t_lock(m_mutex_URIs);
 	for (const auto t_iter : ml_waveformEventReportURIs) {
-		if (checkURIsValidity(t_iter)) {
+		if (checkURIsValidity(t_iter, m_SSL)) { // Todo: Only a temporary work around: Needs finer control over SSL vs No SSL
 			return t_iter;
 		}
 	}

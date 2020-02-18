@@ -49,167 +49,164 @@ namespace SDC {
 
 PerformedOrderDetail::PerformedOrderDetail(
 ) : data(Defaults::PerformedOrderDetailInit(
-)) {}
+))
+{}
 
 PerformedOrderDetail::operator CDM::PerformedOrderDetail() const {
 	return *data;
 }
 
-PerformedOrderDetail::PerformedOrderDetail(const CDM::PerformedOrderDetail & object) : data(new CDM::PerformedOrderDetail(object)) {
+PerformedOrderDetail::PerformedOrderDetail(const CDM::PerformedOrderDetail & object)
+: data(new CDM::PerformedOrderDetail(object))
+{ }
 
-}
-
-PerformedOrderDetail::PerformedOrderDetail(const PerformedOrderDetail & object) : data(new CDM::PerformedOrderDetail(*object.data)) {
-
-}
-
-PerformedOrderDetail::~PerformedOrderDetail() {
-
-}
+PerformedOrderDetail::PerformedOrderDetail(const PerformedOrderDetail & object)
+: data(std::make_shared<CDM::PerformedOrderDetail>(*object.data))
+{ }
 
 void PerformedOrderDetail::copyFrom(const PerformedOrderDetail & object) {
-	data = std::shared_ptr<CDM::PerformedOrderDetail>( new CDM::PerformedOrderDetail(*object.data));
+	data = std::make_shared<CDM::PerformedOrderDetail>(*object.data);
 }
 
-PerformedOrderDetail & PerformedOrderDetail:: operator=(const PerformedOrderDetail & object) {
+PerformedOrderDetail & PerformedOrderDetail:: operator=(const PerformedOrderDetail& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 PerformedOrderDetail & PerformedOrderDetail::setStart(const xml_schema::DateTime & value) {
-	data->Start(ConvertToCDM::convert(value));
+	data->setStart(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool PerformedOrderDetail::getStart(xml_schema::DateTime & out) const {
-	if (data->Start().present()) {
-		out = ConvertFromCDM::convert(data->Start().get());
+	if (data->getStart().present()) {
+		out = ConvertFromCDM::convert(data->getStart().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::DateTime PerformedOrderDetail::getStart() const {
-	return ConvertFromCDM::convert(data->Start().get());
+	return ConvertFromCDM::convert(data->getStart().get());
 }
 
 bool PerformedOrderDetail::hasStart() const {
-	return data->Start().present();
+	return data->getStart().present();
 }
 
 PerformedOrderDetail & PerformedOrderDetail::setEnd(const xml_schema::DateTime & value) {
-	data->End(ConvertToCDM::convert(value));
+	data->setEnd(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool PerformedOrderDetail::getEnd(xml_schema::DateTime & out) const {
-	if (data->End().present()) {
-		out = ConvertFromCDM::convert(data->End().get());
+	if (data->getEnd().present()) {
+		out = ConvertFromCDM::convert(data->getEnd().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::DateTime PerformedOrderDetail::getEnd() const {
-	return ConvertFromCDM::convert(data->End().get());
+	return ConvertFromCDM::convert(data->getEnd().get());
 }
 
 bool PerformedOrderDetail::hasEnd() const {
-	return data->End().present();
+	return data->getEnd().present();
 }
 
 PerformedOrderDetail & PerformedOrderDetail::addPerformer(const PersonParticipation & value) {
-	data->Performer().push_back(ConvertToCDM::convert(value));
+	data->getPerformer().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<PersonParticipation> PerformedOrderDetail::getPerformerList() const {
 	std::vector<PersonParticipation> result;
-	result.reserve(data->Performer().size());
-	for (const auto & value: data->Performer()) {
+	result.reserve(data->getPerformer().size());
+	for (const auto & value: data->getPerformer()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void PerformedOrderDetail::clearPerformerList() {
-	data->Performer().clear();
+	data->getPerformer().clear();
 }
 
 PerformedOrderDetail & PerformedOrderDetail::addService(const CodedValue & value) {
-	data->Service().push_back(ConvertToCDM::convert(value));
+	data->getService().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<CodedValue> PerformedOrderDetail::getServiceList() const {
 	std::vector<CodedValue> result;
-	result.reserve(data->Service().size());
-	for (const auto & value: data->Service()) {
+	result.reserve(data->getService().size());
+	for (const auto & value: data->getService()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void PerformedOrderDetail::clearServiceList() {
-	data->Service().clear();
+	data->getService().clear();
 }
 
 PerformedOrderDetail & PerformedOrderDetail::addImagingProcedure(const ImagingProcedure & value) {
-	data->ImagingProcedure().push_back(ConvertToCDM::convert(value));
+	data->getImagingProcedure().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<ImagingProcedure> PerformedOrderDetail::getImagingProcedureList() const {
 	std::vector<ImagingProcedure> result;
-	result.reserve(data->ImagingProcedure().size());
-	for (const auto & value: data->ImagingProcedure()) {
+	result.reserve(data->getImagingProcedure().size());
+	for (const auto & value: data->getImagingProcedure()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void PerformedOrderDetail::clearImagingProcedureList() {
-	data->ImagingProcedure().clear();
+	data->getImagingProcedure().clear();
 }
 
 PerformedOrderDetail & PerformedOrderDetail::setFillerOrderNumber(const InstanceIdentifier & value) {
-	data->FillerOrderNumber(ConvertToCDM::convert(value));
+	data->setFillerOrderNumber(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool PerformedOrderDetail::getFillerOrderNumber(InstanceIdentifier & out) const {
-	if (data->FillerOrderNumber().present()) {
-		out = ConvertFromCDM::convert(data->FillerOrderNumber().get());
+	if (data->getFillerOrderNumber().present()) {
+		out = ConvertFromCDM::convert(data->getFillerOrderNumber().get());
 		return true;
 	}
 	return false;
 }
 
 InstanceIdentifier PerformedOrderDetail::getFillerOrderNumber() const {
-	return ConvertFromCDM::convert(data->FillerOrderNumber().get());
+	return ConvertFromCDM::convert(data->getFillerOrderNumber().get());
 }
 
 bool PerformedOrderDetail::hasFillerOrderNumber() const {
-	return data->FillerOrderNumber().present();
+	return data->getFillerOrderNumber().present();
 }
 
 PerformedOrderDetail & PerformedOrderDetail::addResultingClinicalInfo(const ClinicalInfo & value) {
-	data->ResultingClinicalInfo().push_back(ConvertToCDM::convert(value));
+	data->getResultingClinicalInfo().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<ClinicalInfo> PerformedOrderDetail::getResultingClinicalInfoList() const {
 	std::vector<ClinicalInfo> result;
-	result.reserve(data->ResultingClinicalInfo().size());
-	for (const auto & value: data->ResultingClinicalInfo()) {
+	result.reserve(data->getResultingClinicalInfo().size());
+	for (const auto & value: data->getResultingClinicalInfo()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void PerformedOrderDetail::clearResultingClinicalInfoList() {
-	data->ResultingClinicalInfo().clear();
+	data->getResultingClinicalInfo().clear();
 }
 
 

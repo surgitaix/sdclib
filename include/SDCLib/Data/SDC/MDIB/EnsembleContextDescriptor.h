@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class EnsembleContextDescriptor {
+class EnsembleContextDescriptor
+{
 private:
 	EnsembleContextDescriptor(const CDM::EnsembleContextDescriptor & object);
 	operator CDM::EnsembleContextDescriptor() const;
@@ -57,11 +58,11 @@ public:
 private:
 	EnsembleContextDescriptor(){};
 public:
-	EnsembleContextDescriptor(const EnsembleContextDescriptor & object);
-	virtual ~EnsembleContextDescriptor();
+	EnsembleContextDescriptor(const EnsembleContextDescriptor& object);
+	virtual ~EnsembleContextDescriptor() = default;
 
-    void copyFrom(const EnsembleContextDescriptor & object);
-    EnsembleContextDescriptor & operator=(const EnsembleContextDescriptor & object);
+    void copyFrom(const EnsembleContextDescriptor& object);
+    EnsembleContextDescriptor & operator=(const EnsembleContextDescriptor& object);
 
     typedef CDM::EnsembleContextDescriptor WrappedType;
     typedef EnsembleContextState StateType;
@@ -85,7 +86,7 @@ public:
 	bool hasSafetyClassification() const;
 
 private:
-	std::shared_ptr<CDM::EnsembleContextDescriptor> data;
+	std::shared_ptr<CDM::EnsembleContextDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

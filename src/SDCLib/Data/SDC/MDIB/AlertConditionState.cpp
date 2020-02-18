@@ -50,199 +50,196 @@ AlertConditionState::AlertConditionState(
 		descriptorhandle
 		,
 		activationstate
-)) {}
+))
+{}
 
 AlertConditionState::operator CDM::AlertConditionState() const {
 	return *data;
 }
 
-AlertConditionState::AlertConditionState(const CDM::AlertConditionState & object) : data(new CDM::AlertConditionState(object)) {
+AlertConditionState::AlertConditionState(const CDM::AlertConditionState & object)
+: data(new CDM::AlertConditionState(object))
+{ }
 
-}
-
-AlertConditionState::AlertConditionState(const AlertConditionState & object) : data(new CDM::AlertConditionState(*object.data)) {
-
-}
-
-AlertConditionState::~AlertConditionState() {
-
-}
+AlertConditionState::AlertConditionState(const AlertConditionState & object)
+: data(std::make_shared<CDM::AlertConditionState>(*object.data))
+{ }
 
 void AlertConditionState::copyFrom(const AlertConditionState & object) {
-	data = std::shared_ptr<CDM::AlertConditionState>( new CDM::AlertConditionState(*object.data));
+	data = std::make_shared<CDM::AlertConditionState>(*object.data);
 }
 
-AlertConditionState & AlertConditionState:: operator=(const AlertConditionState & object) {
+AlertConditionState & AlertConditionState:: operator=(const AlertConditionState& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 AlertConditionState & AlertConditionState::setStateVersion(const VersionCounter & value) {
-	data->StateVersion(ConvertToCDM::convert(value));
+	data->setStateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool AlertConditionState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
+	if (data->getStateVersion().present()) {
+		out = ConvertFromCDM::convert(data->getStateVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter AlertConditionState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+	return ConvertFromCDM::convert(data->getStateVersion().get());
 }
 
 bool AlertConditionState::hasStateVersion() const {
-	return data->StateVersion().present();
+	return data->getStateVersion().present();
 }
 
 AlertConditionState & AlertConditionState::setDescriptorHandle(const HandleRef & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
+	data->setDescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 HandleRef AlertConditionState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
+	return ConvertFromCDM::convert(data->getDescriptorHandle());
 }
 
 AlertConditionState & AlertConditionState::setDescriptorVersion(const ReferencedVersion & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool AlertConditionState::getDescriptorVersion(ReferencedVersion & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 ReferencedVersion AlertConditionState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool AlertConditionState::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 AlertConditionState & AlertConditionState::setActivationState(const AlertActivation & value) {
-	data->ActivationState(ConvertToCDM::convert(value));
+	data->setActivationState(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 AlertActivation AlertConditionState::getActivationState() const {
-	return ConvertFromCDM::convert(data->ActivationState());
+	return ConvertFromCDM::convert(data->getActivationState());
 }
 
 AlertConditionState & AlertConditionState::setActualConditionGenerationDelay(const xml_schema::Duration & value) {
-	data->ActualConditionGenerationDelay(ConvertToCDM::convert(value));
+	data->setActualConditionGenerationDelay(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool AlertConditionState::getActualConditionGenerationDelay(xml_schema::Duration & out) const {
-	if (data->ActualConditionGenerationDelay().present()) {
-		out = ConvertFromCDM::convert(data->ActualConditionGenerationDelay().get());
+	if (data->getActualConditionGenerationDelay().present()) {
+		out = ConvertFromCDM::convert(data->getActualConditionGenerationDelay().get());
 		return true;
 	}
 	return false;
 }
 
 xml_schema::Duration AlertConditionState::getActualConditionGenerationDelay() const {
-	return ConvertFromCDM::convert(data->ActualConditionGenerationDelay().get());
+	return ConvertFromCDM::convert(data->getActualConditionGenerationDelay().get());
 }
 
 bool AlertConditionState::hasActualConditionGenerationDelay() const {
-	return data->ActualConditionGenerationDelay().present();
+	return data->getActualConditionGenerationDelay().present();
 }
 
 AlertConditionState & AlertConditionState::setActualPriority(const AlertConditionPriority & value) {
-	data->ActualPriority(ConvertToCDM::convert(value));
+	data->setActualPriority(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool AlertConditionState::getActualPriority(AlertConditionPriority & out) const {
-	if (data->ActualPriority().present()) {
-		out = ConvertFromCDM::convert(data->ActualPriority().get());
+	if (data->getActualPriority().present()) {
+		out = ConvertFromCDM::convert(data->getActualPriority().get());
 		return true;
 	}
 	return false;
 }
 
 AlertConditionPriority AlertConditionState::getActualPriority() const {
-	return ConvertFromCDM::convert(data->ActualPriority().get());
+	return ConvertFromCDM::convert(data->getActualPriority().get());
 }
 
 bool AlertConditionState::hasActualPriority() const {
-	return data->ActualPriority().present();
+	return data->getActualPriority().present();
 }
 
 AlertConditionState & AlertConditionState::setRank(const int & value) {
-	data->Rank(ConvertToCDM::convert(value));
+	data->setRank(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool AlertConditionState::getRank(int & out) const {
-	if (data->Rank().present()) {
-		out = ConvertFromCDM::convert(data->Rank().get());
+	if (data->getRank().present()) {
+		out = ConvertFromCDM::convert(data->getRank().get());
 		return true;
 	}
 	return false;
 }
 
 int AlertConditionState::getRank() const {
-	return ConvertFromCDM::convert(data->Rank().get());
+	return ConvertFromCDM::convert(data->getRank().get());
 }
 
 bool AlertConditionState::hasRank() const {
-	return data->Rank().present();
+	return data->getRank().present();
 }
 
 AlertConditionState & AlertConditionState::setPresence(const bool & value) {
-	data->Presence(ConvertToCDM::convert(value));
+	data->setPresence(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool AlertConditionState::getPresence(bool & out) const {
-	if (data->Presence().present()) {
-		out = ConvertFromCDM::convert(data->Presence().get());
+	if (data->getPresence().present()) {
+		out = ConvertFromCDM::convert(data->getPresence().get());
 		return true;
 	}
 	return false;
 }
 
 bool AlertConditionState::getPresence() const {
-	return ConvertFromCDM::convert(data->Presence().get());
+	return ConvertFromCDM::convert(data->getPresence().get());
 }
 
 bool AlertConditionState::hasPresence() const {
-	return data->Presence().present();
+	return data->getPresence().present();
 }
 
 AlertConditionState & AlertConditionState::setDeterminationTime(const Timestamp & value) {
-	data->DeterminationTime(ConvertToCDM::convert(value));
+	data->setDeterminationTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool AlertConditionState::getDeterminationTime(Timestamp & out) const {
-	if (data->DeterminationTime().present()) {
-		out = ConvertFromCDM::convert(data->DeterminationTime().get());
+	if (data->getDeterminationTime().present()) {
+		out = ConvertFromCDM::convert(data->getDeterminationTime().get());
 		return true;
 	}
 	return false;
 }
 
 Timestamp AlertConditionState::getDeterminationTime() const {
-	return ConvertFromCDM::convert(data->DeterminationTime().get());
+	return ConvertFromCDM::convert(data->getDeterminationTime().get());
 }
 
 bool AlertConditionState::hasDeterminationTime() const {
-	return data->DeterminationTime().present();
+	return data->getDeterminationTime().present();
 }
 
 

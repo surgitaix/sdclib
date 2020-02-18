@@ -2,7 +2,7 @@
  * DPWSDiscoveryClientSocketImpl.cpp
  *
  *  Created on: 11.12.2015, matthias
- *  Modified on: 23.08.2019, baumeister
+ *  Modified on: 26.11.2019, baumeister
  *
  */
 
@@ -20,7 +20,6 @@
 #include <Poco/Net/SocketAddress.h>
 #include <Poco/Net/SocketNotification.h>
 
-
 using namespace OSELib;
 using namespace OSELib::DPWS;
 using namespace OSELib::DPWS::Impl;
@@ -35,13 +34,13 @@ const MESSAGEMODEL::Envelope buildProbeMessage(const OSELib::DPWS::ProbeType & p
 {
 	MESSAGEMODEL::Envelope::HeaderType t_header;
 	{
-		t_header.Action(probeUri);
-		t_header.To(discoveryUri);
-		t_header.MessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
+		t_header.setAction(probeUri);
+		t_header.setTo(discoveryUri);
+		t_header.setMessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
 	}
 	MESSAGEMODEL::Envelope::BodyType t_body;
 	{
-		t_body.Probe(p_filter);
+		t_body.setProbe(p_filter);
 	}
 
 	return MESSAGEMODEL::Envelope(t_header, t_body);
@@ -51,13 +50,13 @@ const MESSAGEMODEL::Envelope buildResolveMessage(const OSELib::DPWS::ResolveType
 {
 	MESSAGEMODEL::Envelope::HeaderType t_header;
 	{
-		t_header.Action(resolveUri);
-		t_header.To(discoveryUri);
-		t_header.MessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
+		t_header.setAction(resolveUri);
+		t_header.setTo(discoveryUri);
+		t_header.setMessageID(xml_schema::Uri(SDCLib::SDCInstance::calcMSGID()));
 	}
 	MESSAGEMODEL::Envelope::BodyType t_body;
 	{
-		t_body.Resolve(p_filter);
+		t_body.setResolve(p_filter);
 	}
 
 	return MESSAGEMODEL::Envelope(t_header, t_body);
@@ -87,7 +86,11 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
         // Add only interfaces bound to the SDCInstance
         if (m_networkConfig->isBound()) {
             // Bind DiscoverySocket
-            auto t_ipv4BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress::Family::IPv4, m_ipv4MulticastAddress.port());
+#ifndef WIN32
+            auto t_ipv4BindingAddress = Poco::Net::SocketAddress(m_ipv4MulticastAddress.host(), m_ipv4MulticastAddress.port());
+#else
+			auto t_ipv4BindingAddress = Poco::Net::SocketAddress();
+#endif
             m_ipv4DiscoverySocket.bind(t_ipv4BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             // Add all interfaces
             for (auto t_interface : m_networkConfig->getNetworkInterfaces()) {
@@ -111,7 +114,7 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
         }
         else {
             // Bind DiscoverySocket
-            auto t_ipv4BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv4), m_ipv4MulticastAddress.port());
+            auto t_ipv4BindingAddress = Poco::Net::SocketAddress(m_ipv4MulticastAddress.host(), m_ipv4MulticastAddress.port());
             m_ipv4DiscoverySocket.bind(t_ipv4BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             // Add all interfaces
             for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
@@ -149,7 +152,7 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
         // Add only interfaces bound to the SDCInstance
         if (m_networkConfig->isBound()) {
             // Bind DiscoverySocket
-            auto t_ipv6BindingAddress = Poco::Net::SocketAddress (Poco::Net::IPAddress::Family::IPv6, m_ipv6MulticastAddress.port());
+            auto t_ipv6BindingAddress = Poco::Net::SocketAddress(m_ipv6MulticastAddress.host(), m_ipv6MulticastAddress.port());
             m_ipv6DiscoverySocket.bind(t_ipv6BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             for (auto t_interface : m_networkConfig->getNetworkInterfaces()) {
                 try {
@@ -171,7 +174,7 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
         }
         else {
             // Bind DiscoverySocket
-            auto t_ipv6BindingAddress = Poco::Net::SocketAddress (Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv6), m_ipv6MulticastAddress.port());
+            auto t_ipv6BindingAddress = Poco::Net::SocketAddress(m_ipv6MulticastAddress.host(), m_ipv6MulticastAddress.port());
             m_ipv6DiscoverySocket.bind(t_ipv6BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             // Add all interfaces
             for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
@@ -235,8 +238,8 @@ DPWSDiscoveryClientSocketImpl::~DPWSDiscoveryClientSocketImpl()
 void DPWSDiscoveryClientSocketImpl::sendProbe(const ProbeType& p_filter)
 {
 	const MESSAGEMODEL::Envelope t_message(buildProbeMessage(p_filter));
-	if (t_message.Header().MessageID().present()) {
-		m_messagingContext.registerMessageId(t_message.Header().MessageID().get());
+	if (t_message.getHeader().getMessageID().present()) {
+		m_messagingContext.registerMessageId(t_message.getHeader().getMessageID().get());
 	}
 	for (auto & t_socketQueue : ml_socketSendMessageQueue) {
 		t_socketQueue.second.enqueueNotification(new SendMulticastMessage(serializeMessage(t_message)));
@@ -247,8 +250,8 @@ void DPWSDiscoveryClientSocketImpl::sendProbe(const ProbeType& p_filter)
 void DPWSDiscoveryClientSocketImpl::sendResolve(const ResolveType& p_filter)
 {
 	const MESSAGEMODEL::Envelope t_message(buildResolveMessage(p_filter));
-	if (t_message.Header().MessageID().present()) {
-		m_messagingContext.registerMessageId(t_message.Header().MessageID().get());
+	if (t_message.getHeader().getMessageID().present()) {
+		m_messagingContext.registerMessageId(t_message.getHeader().getMessageID().get());
 	}
 	for (auto & t_socketQueue : ml_socketSendMessageQueue) {
 		t_socketQueue.second.enqueueNotification(new SendMulticastMessage(serializeMessage(t_message)));
@@ -265,53 +268,39 @@ void DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable(Poco::Net::Readabl
 		return;
 	}
 
-    // Only read if this belongs to this Config! - Peek first
-    Poco::Net::SocketAddress t_sender;
-	//Windows is complaining if we use something less than available...
-#ifdef WIN32
-	int peek_buffer_length = t_available;
-#else
-	int peek_buffer_length = 1;
-#endif
-    Poco::Buffer<char> t_peekBuf(peek_buffer_length);
-    t_socket.receiveFrom(t_peekBuf.begin(), peek_buffer_length, t_sender, MSG_PEEK);
-    if (m_networkConfig->isBound() && !m_networkConfig->belongsTo(t_sender.host())) {
-		Poco::Thread::sleep(1);	//avoid high cpu consumption in certain cases...
-        return;
-    }
-
 	Poco::Buffer<char> t_buf(t_available);
 	Poco::Net::SocketAddress t_remoteAddr;
 	const int t_received(t_socket.receiveFrom(t_buf.begin(), t_available, t_remoteAddr, 0));
 	Helper::BufferAdapter t_adapter(t_buf, t_received);
-	auto t_message(parseMessage(t_adapter));
 
+	auto t_message(parseMessage(t_adapter));
 	if (nullptr == t_message) {
 		return;
 	}
-	if (! t_message->Header().MessageID().present()) {
+
+	if (! t_message->getHeader().getMessageID().present()) {
 		return;
 	}
-	if (! m_messagingContext.registerMessageId(t_message->Header().MessageID().get())) {
+	if (! m_messagingContext.registerMessageId(t_message->getHeader().getMessageID().get())) {
         log_debug([&] { return "DPWSDiscoveryClientSocketImpl::onMulticastSocketReadable. registerMessageId failed!"; });
 		return;
 	}
-	if (! t_message->Header().AppSequence().present()) {
+	if (! t_message->getHeader().getAppSequence().present()) {
 		return;
 	}
-	if (! m_messagingContext.registerAppSequence(t_message->Header().AppSequence().get())) {
+	if (! m_messagingContext.registerAppSequence(t_message->getHeader().getAppSequence().get())) {
 		return;
 	}
-	if (t_message->Body().Hello().present()) {
+	if (t_message->getBody().getHello().present()) {
 		if (! verifyHello(*t_message)) {
 			return;
 		}
-		m_helloDispatcher.dispatch(t_message->Body().Hello().get());
-	} else if (t_message->Body().Bye().present()) {
+		m_helloDispatcher.dispatch(t_message->getBody().getHello().get());
+	} else if (t_message->getBody().getBye().present()) {
 		if (! verifyBye(*t_message)) {
 			return;
 		}
-		m_byeDispatcher.dispatch(t_message->Body().Bye().get());
+		m_byeDispatcher.dispatch(t_message->getBody().getBye().get());
 	}
 }
 
@@ -334,21 +323,21 @@ void DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable(Poco::Net::Readabl
 	if (nullptr == t_message) {
 		return;
 	}
-	if (t_message->Header().MessageID().present()) {
-		if (!m_messagingContext.registerMessageId(t_message->Header().MessageID().get())) {
+	if (t_message->getHeader().getMessageID().present()) {
+		if (!m_messagingContext.registerMessageId(t_message->getHeader().getMessageID().get())) {
             log_debug([&] { return "DPWSDiscoveryClientSocketImpl::onDatagrammSocketReadable. registerMessageId failed!"; });
 			return;
 		}
 	}
-	if (t_message->Body().ProbeMatches().present()) {
-		const WS::DISCOVERY::ProbeMatchesType & probeMatches(t_message->Body().ProbeMatches().get());
-		for (const auto & probeMatch : probeMatches.ProbeMatch()) {
+	if (t_message->getBody().getProbeMatches().present()) {
+		const WS::DISCOVERY::ProbeMatchesType & probeMatches(t_message->getBody().getProbeMatches().get());
+		for (const auto & probeMatch : probeMatches.getProbeMatch()) {
 			m_probeMatchDispatcher.dispatch(probeMatch);
 		}
-	} else if (t_message->Body().ResolveMatches().present()) {
-		const WS::DISCOVERY::ResolveMatchesType & resolveMatches(t_message->Body().ResolveMatches().get());
-		if (resolveMatches.ResolveMatch().present()) {
-			m_resolveDispatcher.dispatch(resolveMatches.ResolveMatch().get());
+	} else if (t_message->getBody().getResolveMatches().present()) {
+		const WS::DISCOVERY::ResolveMatchesType & resolveMatches(t_message->getBody().getResolveMatches().get());
+		if (resolveMatches.getResolveMatch().present()) {
+			m_resolveDispatcher.dispatch(resolveMatches.getResolveMatch().get());
 		}
 	}
 }
@@ -360,7 +349,7 @@ void DPWSDiscoveryClientSocketImpl::onDatagrammSocketWritable(Poco::Net::Writabl
 	// Poco::Net::DatagramSocket socket(pNf->socket());
     Poco::Net::MulticastSocket t_socket(t_pNf->socket());
     t_socket.setTimeToLive(OSELib::UPD_MULTICAST_TIMETOLIVE);
-	
+
 	const Poco::AutoPtr<Poco::Notification> t_rawMessage(ml_socketSendMessageQueue[t_socket].dequeueNotification());
 	if (t_rawMessage.isNull()) {
 		p_notification->source().removeEventHandler(t_socket, Poco::Observer<DPWSDiscoveryClientSocketImpl, Poco::Net::WritableNotification>(*this, &DPWSDiscoveryClientSocketImpl::onDatagrammSocketWritable));
@@ -377,39 +366,39 @@ void DPWSDiscoveryClientSocketImpl::onDatagrammSocketWritable(Poco::Net::Writabl
 
 bool DPWSDiscoveryClientSocketImpl::verifyBye(const MESSAGEMODEL::Envelope & p_message)
 {
-	if (! p_message.Header().MessageID().present()) {
+	if (! p_message.getHeader().getMessageID().present()) {
 		log_error([&] { return "Bye message: Missing MessageID."; });
 		return false;
 	}
-	if (! p_message.Header().Action().present()) {
+	if (! p_message.getHeader().getAction().present()) {
 		log_error([&] { return "Bye message: Missing Action."; });
 		return false;
 	}
-	if (p_message.Header().Action().get() != byeUri) {
+	if (p_message.getHeader().getAction().get() != byeUri) {
 		log_error([&] { return "Bye message: Invalid Action."; });
 		return false;
 	}
-	if (! p_message.Header().To().present()) {
+	if (! p_message.getHeader().getTo().present()) {
 		log_error([&] { return "Bye message: Missing To."; });
 		return false;
 	}
-	if (p_message.Header().To().get() != discoveryUri) {
+	if (p_message.getHeader().getTo().get() != discoveryUri) {
 		log_error([&] { return "Bye message: Invalid value of To."; });
 		return false;
 	}
-	if (! p_message.Header().AppSequence().present()) {
+	if (! p_message.getHeader().getAppSequence().present()) {
 		log_error([&] { return "Bye message: Missing AppSequence."; });
 		return false;
 	}
-	if (! p_message.Body().Bye().present()) {
+	if (! p_message.getBody().getBye().present()) {
 		log_error([&] { return "Bye message: Missing Body."; });
 		return false;
 	}
-	if (p_message.Body().Bye().get().EndpointReference().Address() == "") {
+	if (p_message.getBody().getBye().get().getEndpointReference().getAddress() == "") {
 		log_error([&] { return "Bye message: Empty EndpointReference."; });
 		return false;
 	}
-	if (p_message.Header().RelatesTo().present()) {
+	if (p_message.getHeader().getRelatesTo().present()) {
 		log_error([&] { return "Bye message: RelatesTo field should not be present."; });
 		return false;
 	}
@@ -418,39 +407,39 @@ bool DPWSDiscoveryClientSocketImpl::verifyBye(const MESSAGEMODEL::Envelope & p_m
 
 bool DPWSDiscoveryClientSocketImpl::verifyHello(const MESSAGEMODEL::Envelope & p_message)
 {
-	if (! p_message.Header().MessageID().present()) {
+	if (! p_message.getHeader().getMessageID().present()) {
 		log_error([&] { return "Hello message: Missing MessageID."; });
 		return false;
 	}
-	if (! p_message.Header().Action().present()) {
+	if (! p_message.getHeader().getAction().present()) {
 		log_error([&] { return "Hello message: Missing Action."; });
 		return false;
 	}
-	if (p_message.Header().Action().get() != helloUri) {
+	if (p_message.getHeader().getAction().get() != helloUri) {
 		log_error([&] { return "Hello message: Invalid Action."; });
 		return false;
 	}
-	if (! p_message.Header().To().present()) {
+	if (! p_message.getHeader().getTo().present()) {
 		log_error([&] { return "Hello message: Missing To."; });
 		return false;
 	}
-	if (p_message.Header().To().get() != discoveryUri) {
+	if (p_message.getHeader().getTo().get() != discoveryUri) {
 		log_error([&] { return "Hello message: Invalid value of To."; });
 		return false;
 	}
-	if (! p_message.Header().AppSequence().present()) {
+	if (! p_message.getHeader().getAppSequence().present()) {
 		log_error([&] { return "Hello message: Missing AppSequence."; });
 		return false;
 	}
-	if (! p_message.Body().Hello().present()) {
+	if (! p_message.getBody().getHello().present()) {
 		log_error([&] { return "Hello message: Missing body."; });
 		return false;
 	}
-	if (p_message.Body().Hello().get().EndpointReference().Address() == "") {
+	if (p_message.getBody().getHello().get().getEndpointReference().getAddress() == "") {
 		log_error([&] { return "Hello message: Empty EndpointReference."; });
 		return false;
 	}
-	if (p_message.Header().RelatesTo().present()) {
+	if (p_message.getHeader().getRelatesTo().present()) {
 		log_error([&] { return "Hello message: RelatesTo field should not be present."; });
 		return false;
 	}

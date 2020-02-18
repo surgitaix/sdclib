@@ -29,9 +29,9 @@ std::unique_ptr<MESSAGEMODEL::Header> SoapInvoke::createHeader()
 {
 	std::unique_ptr<MESSAGEMODEL::Envelope::HeaderType> t_header(new MESSAGEMODEL::Envelope::HeaderType());
 	using MessageIDType = MESSAGEMODEL::Envelope::HeaderType::MessageIDType;
-	t_header->MessageID().set(MessageIDType(SDCLib::SDCInstance::calcMSGID()));
+	t_header->getMessageID().set(MessageIDType(SDCLib::SDCInstance::calcMSGID()));
 	using ToType = MESSAGEMODEL::Envelope::HeaderType::ToType;
-	t_header->To().set(ToType(m_requestURI.toString()));
+	t_header->getTo().set(ToType(m_requestURI.toString()));
 	return t_header;
 }
 
@@ -45,40 +45,41 @@ std::unique_ptr<MESSAGEMODEL::Envelope> SoapInvoke::createMessage() {
 
 std::unique_ptr<MESSAGEMODEL::Envelope> SoapInvoke::invoke(std::unique_ptr<MESSAGEMODEL::Envelope> p_invokeMessage) {
 
-	try {
+	try
+	{
 		OSELib::SOAP::NormalizedMessageSerializer t_serializer;
 		const auto t_request(t_serializer.serialize(*p_invokeMessage));
 
         HTTP::HTTPClientExchanger t_exchanger;
         log_trace([&] { return "Sending soap invoke: " + t_request; });
         Poco::Net::HTTPClientSession t_session(m_requestURI.getHost(), m_requestURI.getPort());
-		//MoVE HACK
-		//std::cout << "SENT (" << m_requestURI.getHost() << ":" << m_requestURI.getPort() << "): " << t_request << std::endl << std::endl;
-		//END
         const std::string t_responseContent = t_exchanger.exchangeHttp(t_session, m_requestURI.getPath(), t_request);
         log_trace([&] { return "Received soap response: " + t_request; });
 
         // Check the Response
-		if (t_responseContent.length() > 0) {
-			//MoVE HACK
-			//std::cout << "RECEIVE (" << m_requestURI.getHost() << ":" << m_requestURI.getPort() << "): " << t_responseContent << std::endl << std::endl;
-			//END
-			OSELib::SOAP::CommonSoapPreprocessing soapHandling(m_grammarProvider);
-			soapHandling.parse(t_responseContent);
-			return std::move(soapHandling.normalizedMessage);
+		if (t_responseContent.length() > 0)
+		{
+			OSELib::SOAP::CommonSoapPreprocessing t_soapHandling(m_grammarProvider);
+			t_soapHandling.parse(t_responseContent);
+			return std::move(t_soapHandling.normalizedMessage);
 		}
-	} catch (const std::exception& e) {
+	}
+	catch (const std::exception& e)
+	{
 		log_error([&] { return e.what(); });
-	} catch (...) {
+	}
+	catch (...)
+	{
 		// fixme add proper exception handling
 		log_error([] { return "Invoke caused exception. "; });
+		//FIXME: throw;
 	}
-
     return nullptr;
 }
 std::unique_ptr<MESSAGEMODEL::Envelope> SoapInvoke::invoke(std::unique_ptr<MESSAGEMODEL::Envelope> p_invokeMessage, Poco::Net::Context::Ptr p_context)
 {
-	try {
+	try
+	{
         OSELib::SOAP::NormalizedMessageSerializer t_serializer;
         const auto t_request(t_serializer.serialize(*p_invokeMessage));
 
@@ -90,19 +91,25 @@ std::unique_ptr<MESSAGEMODEL::Envelope> SoapInvoke::invoke(std::unique_ptr<MESSA
         log_trace([&] { return "Received soap response: " + t_request; });
 
         // Check the Response
-		if (t_responseContent.length() > 0) {
+		if (t_responseContent.length() > 0)
+		{
 			OSELib::SOAP::CommonSoapPreprocessing soapHandling(m_grammarProvider);
 			soapHandling.parse(t_responseContent);
 			return std::move(soapHandling.normalizedMessage);
 		}
-    } catch (const Poco::Net::SSLException& e) {
+    }
+	catch (const Poco::Net::SSLException& e)
+	{
         log_error([&] { return e.what(); });
-	} catch (const std::exception& e) {
+	}
+	catch (const std::exception& e)
+	{
 		log_error([&] { return e.what(); });
-    } catch (...) {
+    }
+	catch (...)
+	{
 		// fixme add proper exception handling
 		log_error([&] { return "Invoke caused exception. "; });
 	}
-
     return nullptr;
 }

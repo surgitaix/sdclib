@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class DicomNetworkConnection {
+class DicomNetworkConnection
+{
 private:
 	DicomNetworkConnection(const CDM::DicomNetworkConnection & object);
 	operator CDM::DicomNetworkConnection() const;
@@ -59,16 +60,16 @@ public:
 private:
 	DicomNetworkConnection(){};
 public:
-	DicomNetworkConnection(const DicomNetworkConnection & object);
-	virtual ~DicomNetworkConnection();
+	DicomNetworkConnection(const DicomNetworkConnection& object);
+	virtual ~DicomNetworkConnection() = default;
 
-    void copyFrom(const DicomNetworkConnection & object);
-    DicomNetworkConnection & operator=(const DicomNetworkConnection & object);
+    void copyFrom(const DicomNetworkConnection& object);
+    DicomNetworkConnection & operator=(const DicomNetworkConnection& object);
 
     typedef CDM::DicomNetworkConnection WrappedType;
 
-	DicomNetworkConnection & setid(const xml_schema::Id & value);
-	xml_schema::Id getid() const;
+	DicomNetworkConnection & setId(const xml_schema::Id & value);
+	xml_schema::Id getId() const;
 
 	DicomNetworkConnection & setHostname(const std::string & value);
 	std::string getHostname() const;
@@ -83,7 +84,7 @@ public:
 	void clearTlsCipherSuiteList();
 
 private:
-	std::shared_ptr<CDM::DicomNetworkConnection> data;
+	std::shared_ptr<CDM::DicomNetworkConnection> data = nullptr;
 };
 
 } /* namespace SDC */

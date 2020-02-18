@@ -50,52 +50,49 @@ SystemSignalActivation::SystemSignalActivation(
 		manifestation
 		,
 		state
-)) {}
+))
+{}
 
 SystemSignalActivation::operator CDM::SystemSignalActivation() const {
 	return *data;
 }
 
-SystemSignalActivation::SystemSignalActivation(const CDM::SystemSignalActivation & object) : data(new CDM::SystemSignalActivation(object)) {
+SystemSignalActivation::SystemSignalActivation(const CDM::SystemSignalActivation & object)
+: data(new CDM::SystemSignalActivation(object))
+{ }
 
-}
-
-SystemSignalActivation::SystemSignalActivation(const SystemSignalActivation & object) : data(new CDM::SystemSignalActivation(*object.data)) {
-
-}
-
-SystemSignalActivation::~SystemSignalActivation() {
-
-}
+SystemSignalActivation::SystemSignalActivation(const SystemSignalActivation & object)
+: data(std::make_shared<CDM::SystemSignalActivation>(*object.data))
+{ }
 
 void SystemSignalActivation::copyFrom(const SystemSignalActivation & object) {
-	data = std::shared_ptr<CDM::SystemSignalActivation>( new CDM::SystemSignalActivation(*object.data));
+	data = std::make_shared<CDM::SystemSignalActivation>(*object.data);
 }
 
-SystemSignalActivation & SystemSignalActivation:: operator=(const SystemSignalActivation & object) {
+SystemSignalActivation & SystemSignalActivation:: operator=(const SystemSignalActivation& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 SystemSignalActivation & SystemSignalActivation::setManifestation(const AlertSignalManifestation & value) {
-	data->Manifestation(ConvertToCDM::convert(value));
+	data->setManifestation(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 AlertSignalManifestation SystemSignalActivation::getManifestation() const {
-	return ConvertFromCDM::convert(data->Manifestation());
+	return ConvertFromCDM::convert(data->getManifestation());
 }
 
 SystemSignalActivation & SystemSignalActivation::setState(const AlertActivation & value) {
-	data->State(ConvertToCDM::convert(value));
+	data->setState(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 AlertActivation SystemSignalActivation::getState() const {
-	return ConvertFromCDM::convert(data->State());
+	return ConvertFromCDM::convert(data->getState());
 }
 
 

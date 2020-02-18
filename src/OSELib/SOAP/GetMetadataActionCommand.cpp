@@ -20,7 +20,7 @@ GetMetadataActionCommand::GetMetadataActionCommand(std::unique_ptr<MESSAGEMODEL:
 std::unique_ptr<MESSAGEMODEL::Envelope> GetMetadataActionCommand::dispatch(const MESSAGEMODEL::Envelope & p_request)
 {
 	std::unique_ptr<MESSAGEMODEL::Envelope> t_response(createResponseMessageFromRequestMessage(p_request));
-	t_response->Header().Action().set(WS::ADDRESSING::AttributedURIType(DPWS::GetMetadataTraits::ResponseAction()));
+	t_response->getHeader().getAction().set(WS::ADDRESSING::AttributedURIType(DPWS::GetMetadataTraits::ResponseAction()));
 
 	NormalizedMessageAdapter<DPWS::GetMetadataTraits::Response> t_responseAdapter;
 	t_responseAdapter.set(*t_response, std::move(m_metadata));

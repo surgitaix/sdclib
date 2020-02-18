@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class DistributionSampleArrayMetricDescriptor {
+class DistributionSampleArrayMetricDescriptor
+{
 private:
 	DistributionSampleArrayMetricDescriptor(const CDM::DistributionSampleArrayMetricDescriptor & object);
 	operator CDM::DistributionSampleArrayMetricDescriptor() const;
@@ -69,11 +70,11 @@ public:
 private:
 	DistributionSampleArrayMetricDescriptor(){};
 public:
-	DistributionSampleArrayMetricDescriptor(const DistributionSampleArrayMetricDescriptor & object);
-	virtual ~DistributionSampleArrayMetricDescriptor();
+	DistributionSampleArrayMetricDescriptor(const DistributionSampleArrayMetricDescriptor& object);
+	virtual ~DistributionSampleArrayMetricDescriptor() = default;
 
-    void copyFrom(const DistributionSampleArrayMetricDescriptor & object);
-    DistributionSampleArrayMetricDescriptor & operator=(const DistributionSampleArrayMetricDescriptor & object);
+    void copyFrom(const DistributionSampleArrayMetricDescriptor& object);
+    DistributionSampleArrayMetricDescriptor & operator=(const DistributionSampleArrayMetricDescriptor& object);
 
     typedef CDM::DistributionSampleArrayMetricDescriptor WrappedType;
 
@@ -156,7 +157,7 @@ public:
 	void clearTechnicalRangeList();
 
 private:
-	std::shared_ptr<CDM::DistributionSampleArrayMetricDescriptor> data;
+	std::shared_ptr<CDM::DistributionSampleArrayMetricDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

@@ -45,53 +45,50 @@ namespace SDC {
 
 ContainmentTreeEntry::ContainmentTreeEntry(
 ) : data(Defaults::ContainmentTreeEntryInit(
-)) {}
+))
+{}
 
 ContainmentTreeEntry::operator CDM::ContainmentTreeEntry() const {
 	return *data;
 }
 
-ContainmentTreeEntry::ContainmentTreeEntry(const CDM::ContainmentTreeEntry & object) : data(new CDM::ContainmentTreeEntry(object)) {
+ContainmentTreeEntry::ContainmentTreeEntry(const CDM::ContainmentTreeEntry & object)
+: data(new CDM::ContainmentTreeEntry(object))
+{ }
 
-}
-
-ContainmentTreeEntry::ContainmentTreeEntry(const ContainmentTreeEntry & object) : data(new CDM::ContainmentTreeEntry(*object.data)) {
-
-}
-
-ContainmentTreeEntry::~ContainmentTreeEntry() {
-
-}
+ContainmentTreeEntry::ContainmentTreeEntry(const ContainmentTreeEntry & object)
+: data(std::make_shared<CDM::ContainmentTreeEntry>(*object.data))
+{ }
 
 void ContainmentTreeEntry::copyFrom(const ContainmentTreeEntry & object) {
-	data = std::shared_ptr<CDM::ContainmentTreeEntry>( new CDM::ContainmentTreeEntry(*object.data));
+	data = std::make_shared<CDM::ContainmentTreeEntry>(*object.data);
 }
 
-ContainmentTreeEntry & ContainmentTreeEntry:: operator=(const ContainmentTreeEntry & object) {
+ContainmentTreeEntry & ContainmentTreeEntry:: operator=(const ContainmentTreeEntry& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 ContainmentTreeEntry & ContainmentTreeEntry::setType(const CodedValue & value) {
-	data->Type(ConvertToCDM::convert(value));
+	data->setType(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool ContainmentTreeEntry::getType(CodedValue & out) const {
-	if (data->Type().present()) {
-		out = ConvertFromCDM::convert(data->Type().get());
+	if (data->getType().present()) {
+		out = ConvertFromCDM::convert(data->getType().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue ContainmentTreeEntry::getType() const {
-	return ConvertFromCDM::convert(data->Type().get());
+	return ConvertFromCDM::convert(data->getType().get());
 }
 
 bool ContainmentTreeEntry::hasType() const {
-	return data->Type().present();
+	return data->getType().present();
 }
 
 

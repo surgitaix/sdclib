@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class SetMetricStateOperationDescriptor {
+class SetMetricStateOperationDescriptor
+{
 private:
 	SetMetricStateOperationDescriptor(const CDM::SetMetricStateOperationDescriptor & object);
 	operator CDM::SetMetricStateOperationDescriptor() const;
@@ -59,11 +60,11 @@ public:
 private:
 	SetMetricStateOperationDescriptor(){};
 public:
-	SetMetricStateOperationDescriptor(const SetMetricStateOperationDescriptor & object);
-	virtual ~SetMetricStateOperationDescriptor();
+	SetMetricStateOperationDescriptor(const SetMetricStateOperationDescriptor& object);
+	virtual ~SetMetricStateOperationDescriptor() = default;
 
-    void copyFrom(const SetMetricStateOperationDescriptor & object);
-    SetMetricStateOperationDescriptor & operator=(const SetMetricStateOperationDescriptor & object);
+    void copyFrom(const SetMetricStateOperationDescriptor& object);
+    SetMetricStateOperationDescriptor & operator=(const SetMetricStateOperationDescriptor& object);
 
     typedef CDM::SetMetricStateOperationDescriptor WrappedType;
 
@@ -113,7 +114,7 @@ public:
 	void clearModifiableDataList();
 
 private:
-	std::shared_ptr<CDM::SetMetricStateOperationDescriptor> data;
+	std::shared_ptr<CDM::SetMetricStateOperationDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

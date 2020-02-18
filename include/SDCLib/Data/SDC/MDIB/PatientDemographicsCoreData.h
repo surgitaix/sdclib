@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class PatientDemographicsCoreData {
+class PatientDemographicsCoreData
+{
 private:
 	PatientDemographicsCoreData(const CDM::PatientDemographicsCoreData & object);
 	operator CDM::PatientDemographicsCoreData() const;
@@ -53,11 +54,11 @@ private:
 public:
 	PatientDemographicsCoreData(
 	);
-	PatientDemographicsCoreData(const PatientDemographicsCoreData & object);
-	virtual ~PatientDemographicsCoreData();
+	PatientDemographicsCoreData(const PatientDemographicsCoreData& object);
+	virtual ~PatientDemographicsCoreData() = default;
 
-    void copyFrom(const PatientDemographicsCoreData & object);
-    PatientDemographicsCoreData & operator=(const PatientDemographicsCoreData & object);
+    void copyFrom(const PatientDemographicsCoreData& object);
+    PatientDemographicsCoreData & operator=(const PatientDemographicsCoreData& object);
 
     typedef CDM::PatientDemographicsCoreData WrappedType;
 
@@ -116,7 +117,7 @@ public:
 	bool hasRace() const;
 
 private:
-	std::shared_ptr<CDM::PatientDemographicsCoreData> data;
+	std::shared_ptr<CDM::PatientDemographicsCoreData> data = nullptr;
 };
 
 } /* namespace SDC */

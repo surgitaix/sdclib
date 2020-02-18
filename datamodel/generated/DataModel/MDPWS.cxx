@@ -50,91 +50,91 @@ namespace MDPWS
   // 
 
   const StreamTransmissionType::StreamAddressOptional& StreamTransmissionType::
-  StreamAddress () const
+  getStreamAddress () const
   {
     return this->StreamAddress_;
   }
 
   StreamTransmissionType::StreamAddressOptional& StreamTransmissionType::
-  StreamAddress ()
+  getStreamAddress ()
   {
     return this->StreamAddress_;
   }
 
   void StreamTransmissionType::
-  StreamAddress (const StreamAddressType& x)
+  setStreamAddress (const StreamAddressType& x)
   {
     this->StreamAddress_.set (x);
   }
 
   void StreamTransmissionType::
-  StreamAddress (const StreamAddressOptional& x)
+  setStreamAddress (const StreamAddressOptional& x)
   {
     this->StreamAddress_ = x;
   }
 
   void StreamTransmissionType::
-  StreamAddress (::std::unique_ptr< StreamAddressType > x)
+  setStreamAddress (::std::unique_ptr< StreamAddressType > x)
   {
     this->StreamAddress_.set (std::move (x));
   }
 
   const StreamTransmissionType::StreamPeriodOptional& StreamTransmissionType::
-  StreamPeriod () const
+  getStreamPeriod () const
   {
     return this->StreamPeriod_;
   }
 
   StreamTransmissionType::StreamPeriodOptional& StreamTransmissionType::
-  StreamPeriod ()
+  getStreamPeriod ()
   {
     return this->StreamPeriod_;
   }
 
   void StreamTransmissionType::
-  StreamPeriod (const StreamPeriodType& x)
+  setStreamPeriod (const StreamPeriodType& x)
   {
     this->StreamPeriod_.set (x);
   }
 
   void StreamTransmissionType::
-  StreamPeriod (const StreamPeriodOptional& x)
+  setStreamPeriod (const StreamPeriodOptional& x)
   {
     this->StreamPeriod_ = x;
   }
 
   void StreamTransmissionType::
-  StreamPeriod (::std::unique_ptr< StreamPeriodType > x)
+  setStreamPeriod (::std::unique_ptr< StreamPeriodType > x)
   {
     this->StreamPeriod_.set (std::move (x));
   }
 
   const StreamTransmissionType::TypeOptional& StreamTransmissionType::
-  Type () const
+  getType () const
   {
     return this->Type_;
   }
 
   StreamTransmissionType::TypeOptional& StreamTransmissionType::
-  Type ()
+  getType ()
   {
     return this->Type_;
   }
 
   void StreamTransmissionType::
-  Type (const TypeType& x)
+  setType (const TypeType& x)
   {
     this->Type_.set (x);
   }
 
   void StreamTransmissionType::
-  Type (const TypeOptional& x)
+  setType (const TypeOptional& x)
   {
     this->Type_ = x;
   }
 
   void StreamTransmissionType::
-  Type (::std::unique_ptr< TypeType > x)
+  setType (::std::unique_ptr< TypeType > x)
   {
     this->Type_.set (std::move (x));
   }
@@ -144,133 +144,133 @@ namespace MDPWS
   // 
 
   const StreamTypeType::StreamTransmissionType& StreamTypeType::
-  StreamTransmission () const
+  getStreamTransmission () const
   {
     return this->StreamTransmission_.get ();
   }
 
   StreamTypeType::StreamTransmissionType& StreamTypeType::
-  StreamTransmission ()
+  getStreamTransmission ()
   {
     return this->StreamTransmission_.get ();
   }
 
   void StreamTypeType::
-  StreamTransmission (const StreamTransmissionType& x)
+  setStreamTransmission (const StreamTransmissionType& x)
   {
     this->StreamTransmission_.set (x);
   }
 
   void StreamTypeType::
-  StreamTransmission (::std::unique_ptr< StreamTransmissionType > x)
+  setStreamTransmission (::std::unique_ptr< StreamTransmissionType > x)
   {
     this->StreamTransmission_.set (std::move (x));
   }
 
   const StreamTypeType::IdType& StreamTypeType::
-  Id () const
+  getId () const
   {
     return this->Id_.get ();
   }
 
   StreamTypeType::IdType& StreamTypeType::
-  Id ()
+  getId ()
   {
     return this->Id_.get ();
   }
 
   void StreamTypeType::
-  Id (const IdType& x)
+  setId (const IdType& x)
   {
     this->Id_.set (x);
   }
 
   void StreamTypeType::
-  Id (::std::unique_ptr< IdType > x)
+  setId (::std::unique_ptr< IdType > x)
   {
     this->Id_.set (std::move (x));
   }
 
   const StreamTypeType::StreamTypeType1& StreamTypeType::
-  StreamType () const
+  getStreamType () const
   {
     return this->StreamType_.get ();
   }
 
   StreamTypeType::StreamTypeType1& StreamTypeType::
-  StreamType ()
+  getStreamType ()
   {
     return this->StreamType_.get ();
   }
 
   void StreamTypeType::
-  StreamType (const StreamTypeType1& x)
+  setStreamType (const StreamTypeType1& x)
   {
     this->StreamType_.set (x);
   }
 
   void StreamTypeType::
-  StreamType (::std::unique_ptr< StreamTypeType1 > x)
+  setStreamType (::std::unique_ptr< StreamTypeType1 > x)
   {
     this->StreamType_.set (std::move (x));
   }
 
   const StreamTypeType::ElementOptional& StreamTypeType::
-  Element () const
+  getElement () const
   {
     return this->Element_;
   }
 
   StreamTypeType::ElementOptional& StreamTypeType::
-  Element ()
+  getElement ()
   {
     return this->Element_;
   }
 
   void StreamTypeType::
-  Element (const ElementType& x)
+  setElement (const ElementType& x)
   {
     this->Element_.set (x);
   }
 
   void StreamTypeType::
-  Element (const ElementOptional& x)
+  setElement (const ElementOptional& x)
   {
     this->Element_ = x;
   }
 
   void StreamTypeType::
-  Element (::std::unique_ptr< ElementType > x)
+  setElement (::std::unique_ptr< ElementType > x)
   {
     this->Element_.set (std::move (x));
   }
 
   const StreamTypeType::ActionUriOptional& StreamTypeType::
-  ActionUri () const
+  getActionUri () const
   {
     return this->ActionUri_;
   }
 
   StreamTypeType::ActionUriOptional& StreamTypeType::
-  ActionUri ()
+  getActionUri ()
   {
     return this->ActionUri_;
   }
 
   void StreamTypeType::
-  ActionUri (const ActionUriType& x)
+  setActionUri (const ActionUriType& x)
   {
     this->ActionUri_.set (x);
   }
 
   void StreamTypeType::
-  ActionUri (const ActionUriOptional& x)
+  setActionUri (const ActionUriOptional& x)
   {
     this->ActionUri_ = x;
   }
 
   void StreamTypeType::
-  ActionUri (::std::unique_ptr< ActionUriType > x)
+  setActionUri (::std::unique_ptr< ActionUriType > x)
   {
     this->ActionUri_.set (std::move (x));
   }
@@ -280,73 +280,73 @@ namespace MDPWS
   // 
 
   const StreamDescriptionsType::TypesOptional& StreamDescriptionsType::
-  Types () const
+  getTypes () const
   {
     return this->Types_;
   }
 
   StreamDescriptionsType::TypesOptional& StreamDescriptionsType::
-  Types ()
+  getTypes ()
   {
     return this->Types_;
   }
 
   void StreamDescriptionsType::
-  Types (const TypesType& x)
+  setTypes (const TypesType& x)
   {
     this->Types_.set (x);
   }
 
   void StreamDescriptionsType::
-  Types (const TypesOptional& x)
+  setTypes (const TypesOptional& x)
   {
     this->Types_ = x;
   }
 
   void StreamDescriptionsType::
-  Types (::std::unique_ptr< TypesType > x)
+  setTypes (::std::unique_ptr< TypesType > x)
   {
     this->Types_.set (std::move (x));
   }
 
   const StreamDescriptionsType::StreamTypeSequence& StreamDescriptionsType::
-  StreamType () const
+  getStreamType () const
   {
     return this->StreamType_;
   }
 
   StreamDescriptionsType::StreamTypeSequence& StreamDescriptionsType::
-  StreamType ()
+  getStreamType ()
   {
     return this->StreamType_;
   }
 
   void StreamDescriptionsType::
-  StreamType (const StreamTypeSequence& s)
+  setStreamType (const StreamTypeSequence& s)
   {
     this->StreamType_ = s;
   }
 
   const StreamDescriptionsType::TargetNamespaceType& StreamDescriptionsType::
-  TargetNamespace () const
+  getTargetNamespace () const
   {
     return this->TargetNamespace_.get ();
   }
 
   StreamDescriptionsType::TargetNamespaceType& StreamDescriptionsType::
-  TargetNamespace ()
+  getTargetNamespace ()
   {
     return this->TargetNamespace_.get ();
   }
 
   void StreamDescriptionsType::
-  TargetNamespace (const TargetNamespaceType& x)
+  setTargetNamespace (const TargetNamespaceType& x)
   {
     this->TargetNamespace_.set (x);
   }
 
   void StreamDescriptionsType::
-  TargetNamespace (::std::unique_ptr< TargetNamespaceType > x)
+  setTargetNamespace (::std::unique_ptr< TargetNamespaceType > x)
   {
     this->TargetNamespace_.set (std::move (x));
   }
@@ -356,49 +356,49 @@ namespace MDPWS
   // 
 
   const SafetyReqAssertionType::TransmitDualChannelType& SafetyReqAssertionType::
-  TransmitDualChannel () const
+  getTransmitDualChannel () const
   {
     return this->TransmitDualChannel_.get ();
   }
 
   SafetyReqAssertionType::TransmitDualChannelType& SafetyReqAssertionType::
-  TransmitDualChannel ()
+  getTransmitDualChannel ()
   {
     return this->TransmitDualChannel_.get ();
   }
 
   void SafetyReqAssertionType::
-  TransmitDualChannel (const TransmitDualChannelType& x)
+  setTransmitDualChannel (const TransmitDualChannelType& x)
   {
     this->TransmitDualChannel_.set (x);
   }
 
   SafetyReqAssertionType::TransmitDualChannelType SafetyReqAssertionType::
-  TransmitDualChannel_default_value ()
+  getTransmitDualChannelDefaultValue ()
   {
     return TransmitDualChannelType (true);
   }
 
   const SafetyReqAssertionType::TransmitSafetyContextType& SafetyReqAssertionType::
-  TransmitSafetyContext () const
+  getTransmitSafetyContext () const
   {
     return this->TransmitSafetyContext_.get ();
   }
 
   SafetyReqAssertionType::TransmitSafetyContextType& SafetyReqAssertionType::
-  TransmitSafetyContext ()
+  getTransmitSafetyContext ()
   {
     return this->TransmitSafetyContext_.get ();
   }
 
   void SafetyReqAssertionType::
-  TransmitSafetyContext (const TransmitSafetyContextType& x)
+  setTransmitSafetyContext (const TransmitSafetyContextType& x)
   {
     this->TransmitSafetyContext_.set (x);
   }
 
   SafetyReqAssertionType::TransmitSafetyContextType SafetyReqAssertionType::
-  TransmitSafetyContext_default_value ()
+  getTransmitSafetyContextDefaultValue ()
   {
     return TransmitSafetyContextType (true);
   }
@@ -408,25 +408,25 @@ namespace MDPWS
   // 
 
   const SelectorType::IdType& SelectorType::
-  Id () const
+  getId () const
   {
     return this->Id_.get ();
   }
 
   SelectorType::IdType& SelectorType::
-  Id ()
+  getId ()
   {
     return this->Id_.get ();
   }
 
   void SelectorType::
-  Id (const IdType& x)
+  setId (const IdType& x)
   {
     this->Id_.set (x);
   }
 
   void SelectorType::
-  Id (::std::unique_ptr< IdType > x)
+  setId (::std::unique_ptr< IdType > x)
   {
     this->Id_.set (std::move (x));
   }
@@ -436,61 +436,61 @@ namespace MDPWS
   // 
 
   const SafetyReqType::DualChannelDefOptional& SafetyReqType::
-  DualChannelDef () const
+  getDualChannelDef () const
   {
     return this->DualChannelDef_;
   }
 
   SafetyReqType::DualChannelDefOptional& SafetyReqType::
-  DualChannelDef ()
+  getDualChannelDef ()
   {
     return this->DualChannelDef_;
   }
 
   void SafetyReqType::
-  DualChannelDef (const DualChannelDefType& x)
+  setDualChannelDef (const DualChannelDefType& x)
   {
     this->DualChannelDef_.set (x);
   }
 
   void SafetyReqType::
-  DualChannelDef (const DualChannelDefOptional& x)
+  setDualChannelDef (const DualChannelDefOptional& x)
   {
     this->DualChannelDef_ = x;
   }
 
   void SafetyReqType::
-  DualChannelDef (::std::unique_ptr< DualChannelDefType > x)
+  setDualChannelDef (::std::unique_ptr< DualChannelDefType > x)
   {
     this->DualChannelDef_.set (std::move (x));
   }
 
   const SafetyReqType::SafetyContextDefOptional& SafetyReqType::
-  SafetyContextDef () const
+  getSafetyContextDef () const
   {
     return this->SafetyContextDef_;
   }
 
   SafetyReqType::SafetyContextDefOptional& SafetyReqType::
-  SafetyContextDef ()
+  getSafetyContextDef ()
   {
     return this->SafetyContextDef_;
   }
 
   void SafetyReqType::
-  SafetyContextDef (const SafetyContextDefType& x)
+  setSafetyContextDef (const SafetyContextDefType& x)
   {
     this->SafetyContextDef_.set (x);
   }
 
   void SafetyReqType::
-  SafetyContextDef (const SafetyContextDefOptional& x)
+  setSafetyContextDef (const SafetyContextDefOptional& x)
   {
     this->SafetyContextDef_ = x;
   }
 
   void SafetyReqType::
-  SafetyContextDef (::std::unique_ptr< SafetyContextDefType > x)
+  setSafetyContextDef (::std::unique_ptr< SafetyContextDefType > x)
   {
     this->SafetyContextDef_.set (std::move (x));
   }
@@ -500,79 +500,79 @@ namespace MDPWS
   // 
 
   const DualChannelDefType::SelectorSequence& DualChannelDefType::
-  Selector () const
+  getSelector () const
   {
     return this->Selector_;
   }
 
   DualChannelDefType::SelectorSequence& DualChannelDefType::
-  Selector ()
+  getSelector ()
   {
     return this->Selector_;
   }
 
   void DualChannelDefType::
-  Selector (const SelectorSequence& s)
+  setSelector (const SelectorSequence& s)
   {
     this->Selector_ = s;
   }
 
   const DualChannelDefType::AlgorithmOptional& DualChannelDefType::
-  Algorithm () const
+  getAlgorithm () const
   {
     return this->Algorithm_;
   }
 
   DualChannelDefType::AlgorithmOptional& DualChannelDefType::
-  Algorithm ()
+  getAlgorithm ()
   {
     return this->Algorithm_;
   }
 
   void DualChannelDefType::
-  Algorithm (const AlgorithmType& x)
+  setAlgorithm (const AlgorithmType& x)
   {
     this->Algorithm_.set (x);
   }
 
   void DualChannelDefType::
-  Algorithm (const AlgorithmOptional& x)
+  setAlgorithm (const AlgorithmOptional& x)
   {
     this->Algorithm_ = x;
   }
 
   void DualChannelDefType::
-  Algorithm (::std::unique_ptr< AlgorithmType > x)
+  setAlgorithm (::std::unique_ptr< AlgorithmType > x)
   {
     this->Algorithm_.set (std::move (x));
   }
 
   const DualChannelDefType::TransformOptional& DualChannelDefType::
-  Transform () const
+  getTransform () const
   {
     return this->Transform_;
   }
 
   DualChannelDefType::TransformOptional& DualChannelDefType::
-  Transform ()
+  getTransform ()
   {
     return this->Transform_;
   }
 
   void DualChannelDefType::
-  Transform (const TransformType& x)
+  setTransform (const TransformType& x)
   {
     this->Transform_.set (x);
   }
 
   void DualChannelDefType::
-  Transform (const TransformOptional& x)
+  setTransform (const TransformOptional& x)
   {
     this->Transform_ = x;
   }
 
   void DualChannelDefType::
-  Transform (::std::unique_ptr< TransformType > x)
+  setTransform (::std::unique_ptr< TransformType > x)
   {
     this->Transform_.set (std::move (x));
   }
@@ -582,19 +582,19 @@ namespace MDPWS
   // 
 
   const SafetyContextDefType::SelectorSequence& SafetyContextDefType::
-  Selector () const
+  getSelector () const
   {
     return this->Selector_;
   }
 
   SafetyContextDefType::SelectorSequence& SafetyContextDefType::
-  Selector ()
+  getSelector ()
   {
     return this->Selector_;
   }
 
   void SafetyContextDefType::
-  Selector (const SelectorSequence& s)
+  setSelector (const SelectorSequence& s)
   {
     this->Selector_ = s;
   }
@@ -604,61 +604,61 @@ namespace MDPWS
   // 
 
   const SafetyInfoType::DualChannelOptional& SafetyInfoType::
-  DualChannel () const
+  getDualChannel () const
   {
     return this->DualChannel_;
   }
 
   SafetyInfoType::DualChannelOptional& SafetyInfoType::
-  DualChannel ()
+  getDualChannel ()
   {
     return this->DualChannel_;
   }
 
   void SafetyInfoType::
-  DualChannel (const DualChannelType& x)
+  setDualChannel (const DualChannelType& x)
   {
     this->DualChannel_.set (x);
   }
 
   void SafetyInfoType::
-  DualChannel (const DualChannelOptional& x)
+  setDualChannel (const DualChannelOptional& x)
   {
     this->DualChannel_ = x;
   }
 
   void SafetyInfoType::
-  DualChannel (::std::unique_ptr< DualChannelType > x)
+  setDualChannel (::std::unique_ptr< DualChannelType > x)
   {
     this->DualChannel_.set (std::move (x));
   }
 
   const SafetyInfoType::SafetyContextOptional& SafetyInfoType::
-  SafetyContext () const
+  getSafetyContext () const
   {
     return this->SafetyContext_;
   }
 
   SafetyInfoType::SafetyContextOptional& SafetyInfoType::
-  SafetyContext ()
+  getSafetyContext ()
   {
     return this->SafetyContext_;
   }
 
   void SafetyInfoType::
-  SafetyContext (const SafetyContextType& x)
+  setSafetyContext (const SafetyContextType& x)
   {
     this->SafetyContext_.set (x);
   }
 
   void SafetyInfoType::
-  SafetyContext (const SafetyContextOptional& x)
+  setSafetyContext (const SafetyContextOptional& x)
   {
     this->SafetyContext_ = x;
   }
 
   void SafetyInfoType::
-  SafetyContext (::std::unique_ptr< SafetyContextType > x)
+  setSafetyContext (::std::unique_ptr< SafetyContextType > x)
   {
     this->SafetyContext_.set (std::move (x));
   }
@@ -668,19 +668,19 @@ namespace MDPWS
   // 
 
   const DualChannelType::DcValueSequence& DualChannelType::
-  DcValue () const
+  getDcValue () const
   {
     return this->DcValue_;
   }
 
   DualChannelType::DcValueSequence& DualChannelType::
-  DcValue ()
+  getDcValue ()
   {
     return this->DcValue_;
   }
 
   void DualChannelType::
-  DcValue (const DcValueSequence& s)
+  setDcValue (const DcValueSequence& s)
   {
     this->DcValue_ = s;
   }
@@ -690,19 +690,19 @@ namespace MDPWS
   // 
 
   const SafetyContextType::CtxtValueSequence& SafetyContextType::
-  CtxtValue () const
+  getCtxtValue () const
   {
     return this->CtxtValue_;
   }
 
   SafetyContextType::CtxtValueSequence& SafetyContextType::
-  CtxtValue ()
+  getCtxtValue ()
   {
     return this->CtxtValue_;
   }
 
   void SafetyContextType::
-  CtxtValue (const CtxtValueSequence& s)
+  setCtxtValue (const CtxtValueSequence& s)
   {
     this->CtxtValue_ = s;
   }
@@ -712,25 +712,25 @@ namespace MDPWS
   // 
 
   const DcValueType::ReferencedSelectorType& DcValueType::
-  ReferencedSelector () const
+  getReferencedSelector () const
   {
     return this->ReferencedSelector_.get ();
   }
 
   DcValueType::ReferencedSelectorType& DcValueType::
-  ReferencedSelector ()
+  getReferencedSelector ()
   {
     return this->ReferencedSelector_.get ();
   }
 
   void DcValueType::
-  ReferencedSelector (const ReferencedSelectorType& x)
+  setReferencedSelector (const ReferencedSelectorType& x)
   {
     this->ReferencedSelector_.set (x);
   }
 
   void DcValueType::
-  ReferencedSelector (::std::unique_ptr< ReferencedSelectorType > x)
+  setReferencedSelector (::std::unique_ptr< ReferencedSelectorType > x)
   {
     this->ReferencedSelector_.set (std::move (x));
   }
@@ -740,25 +740,25 @@ namespace MDPWS
   // 
 
   const CtxtValueType::ReferencedSelectorType& CtxtValueType::
-  ReferencedSelector () const
+  getReferencedSelector () const
   {
     return this->ReferencedSelector_.get ();
   }
 
   CtxtValueType::ReferencedSelectorType& CtxtValueType::
-  ReferencedSelector ()
+  getReferencedSelector ()
   {
     return this->ReferencedSelector_.get ();
   }
 
   void CtxtValueType::
-  ReferencedSelector (const ReferencedSelectorType& x)
+  setReferencedSelector (const ReferencedSelectorType& x)
   {
     this->ReferencedSelector_.set (x);
   }
 
   void CtxtValueType::
-  ReferencedSelector (::std::unique_ptr< ReferencedSelectorType > x)
+  setReferencedSelector (::std::unique_ptr< ReferencedSelectorType > x)
   {
     this->ReferencedSelector_.set (std::move (x));
   }
@@ -1335,8 +1335,8 @@ namespace MDPWS
   SafetyReqAssertionType::
   SafetyReqAssertionType ()
   : ::xml_schema::Type (),
-    TransmitDualChannel_ (TransmitDualChannel_default_value (), this),
-    TransmitSafetyContext_ (TransmitSafetyContext_default_value (), this)
+    TransmitDualChannel_ (getTransmitDualChannelDefaultValue (), this),
+    TransmitSafetyContext_ (getTransmitSafetyContextDefaultValue (), this)
   {
   }
 
@@ -1399,12 +1399,12 @@ namespace MDPWS
 
     if (!TransmitDualChannel_.present ())
     {
-      this->TransmitDualChannel_.set (TransmitDualChannel_default_value ());
+      this->TransmitDualChannel_.set (getTransmitDualChannelDefaultValue ());
     }
 
     if (!TransmitSafetyContext_.present ())
     {
-      this->TransmitSafetyContext_.set (TransmitSafetyContext_default_value ());
+      this->TransmitSafetyContext_.set (getTransmitSafetyContextDefaultValue ());
     }
   }
 
@@ -2515,1450 +2515,6 @@ namespace MDPWS
 
 namespace MDPWS
 {
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (const ::std::string& u,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDPWS::StreamSourceType > (
-      ::MDPWS::StreamSource (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (const ::std::string& u,
-                ::xml_schema::ErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDPWS::StreamSourceType > (
-      ::MDPWS::StreamSource (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (const ::std::string& u,
-                ::xercesc::DOMErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDPWS::StreamSourceType > (
-      ::MDPWS::StreamSource (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (::std::istream& is,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDPWS::StreamSource (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (::std::istream& is,
-                ::xml_schema::ErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDPWS::StreamSource (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (::std::istream& is,
-                ::xercesc::DOMErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDPWS::StreamSource (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (::std::istream& is,
-                const ::std::string& sid,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDPWS::StreamSource (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (::std::istream& is,
-                const ::std::string& sid,
-                ::xml_schema::ErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDPWS::StreamSource (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (::std::istream& is,
-                const ::std::string& sid,
-                ::xercesc::DOMErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDPWS::StreamSource (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (::xercesc::InputSource& i,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDPWS::StreamSourceType > (
-      ::MDPWS::StreamSource (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (::xercesc::InputSource& i,
-                ::xml_schema::ErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDPWS::StreamSourceType > (
-      ::MDPWS::StreamSource (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (::xercesc::InputSource& i,
-                ::xercesc::DOMErrorHandler& h,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDPWS::StreamSourceType > (
-      ::MDPWS::StreamSource (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (const ::xercesc::DOMDocument& doc,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDPWS::StreamSourceType > (
-        ::MDPWS::StreamSource (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-      ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-        "StreamSource",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        &::xsd::cxx::tree::factory_impl< ::MDPWS::StreamSourceType >,
-        true, true, e, n, f, 0));
-
-    if (tmp.get () != 0)
-    {
-      ::std::unique_ptr< ::MDPWS::StreamSourceType > r (
-        dynamic_cast< ::MDPWS::StreamSourceType* > (tmp.get ()));
-
-      if (r.get ())
-        tmp.release ();
-      else
-        throw ::xsd::cxx::tree::not_derived< char > ();
-
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "StreamSource",
-      "http://standards.ieee.org/downloads/11073/11073-20702-2016");
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamSourceType >
-  StreamSource (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                ::xml_schema::Flags f,
-                const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-      ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-        "StreamSource",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        &::xsd::cxx::tree::factory_impl< ::MDPWS::StreamSourceType >,
-        true, true, e, n, f, 0));
-
-    if (tmp.get () != 0)
-    {
-
-      ::std::unique_ptr< ::MDPWS::StreamSourceType > r (
-        dynamic_cast< ::MDPWS::StreamSourceType* > (tmp.get ()));
-
-      if (r.get ())
-        tmp.release ();
-      else
-        throw ::xsd::cxx::tree::not_derived< char > ();
-
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "StreamSource",
-      "http://standards.ieee.org/downloads/11073/11073-20702-2016");
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (const ::std::string& u,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDPWS::StreamDescriptionsType > (
-      ::MDPWS::StreamDescriptions (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (const ::std::string& u,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDPWS::StreamDescriptionsType > (
-      ::MDPWS::StreamDescriptions (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (const ::std::string& u,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDPWS::StreamDescriptionsType > (
-      ::MDPWS::StreamDescriptions (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (::std::istream& is,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDPWS::StreamDescriptions (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (::std::istream& is,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDPWS::StreamDescriptions (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (::std::istream& is,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDPWS::StreamDescriptions (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (::std::istream& is,
-                      const ::std::string& sid,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDPWS::StreamDescriptions (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (::std::istream& is,
-                      const ::std::string& sid,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDPWS::StreamDescriptions (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (::std::istream& is,
-                      const ::std::string& sid,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDPWS::StreamDescriptions (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (::xercesc::InputSource& i,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDPWS::StreamDescriptionsType > (
-      ::MDPWS::StreamDescriptions (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (::xercesc::InputSource& i,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDPWS::StreamDescriptionsType > (
-      ::MDPWS::StreamDescriptions (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (::xercesc::InputSource& i,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDPWS::StreamDescriptionsType > (
-      ::MDPWS::StreamDescriptions (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (const ::xercesc::DOMDocument& doc,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDPWS::StreamDescriptionsType > (
-        ::MDPWS::StreamDescriptions (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-      ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-        "StreamDescriptions",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        &::xsd::cxx::tree::factory_impl< ::MDPWS::StreamDescriptionsType >,
-        true, true, e, n, f, 0));
-
-    if (tmp.get () != 0)
-    {
-      ::std::unique_ptr< ::MDPWS::StreamDescriptionsType > r (
-        dynamic_cast< ::MDPWS::StreamDescriptionsType* > (tmp.get ()));
-
-      if (r.get ())
-        tmp.release ();
-      else
-        throw ::xsd::cxx::tree::not_derived< char > ();
-
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "StreamDescriptions",
-      "http://standards.ieee.org/downloads/11073/11073-20702-2016");
-  }
-
-  ::std::unique_ptr< ::MDPWS::StreamDescriptionsType >
-  StreamDescriptions (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-      ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-        "StreamDescriptions",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        &::xsd::cxx::tree::factory_impl< ::MDPWS::StreamDescriptionsType >,
-        true, true, e, n, f, 0));
-
-    if (tmp.get () != 0)
-    {
-
-      ::std::unique_ptr< ::MDPWS::StreamDescriptionsType > r (
-        dynamic_cast< ::MDPWS::StreamDescriptionsType* > (tmp.get ()));
-
-      if (r.get ())
-        tmp.release ();
-      else
-        throw ::xsd::cxx::tree::not_derived< char > ();
-
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "StreamDescriptions",
-      "http://standards.ieee.org/downloads/11073/11073-20702-2016");
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (const ::std::string& u,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType > (
-      ::MDPWS::SafetyReqAssertion (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (const ::std::string& u,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType > (
-      ::MDPWS::SafetyReqAssertion (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (const ::std::string& u,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType > (
-      ::MDPWS::SafetyReqAssertion (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (::std::istream& is,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDPWS::SafetyReqAssertion (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (::std::istream& is,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDPWS::SafetyReqAssertion (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (::std::istream& is,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDPWS::SafetyReqAssertion (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (::std::istream& is,
-                      const ::std::string& sid,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDPWS::SafetyReqAssertion (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (::std::istream& is,
-                      const ::std::string& sid,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDPWS::SafetyReqAssertion (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (::std::istream& is,
-                      const ::std::string& sid,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDPWS::SafetyReqAssertion (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (::xercesc::InputSource& i,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType > (
-      ::MDPWS::SafetyReqAssertion (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (::xercesc::InputSource& i,
-                      ::xml_schema::ErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType > (
-      ::MDPWS::SafetyReqAssertion (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (::xercesc::InputSource& i,
-                      ::xercesc::DOMErrorHandler& h,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType > (
-      ::MDPWS::SafetyReqAssertion (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (const ::xercesc::DOMDocument& doc,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType > (
-        ::MDPWS::SafetyReqAssertion (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-      ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-        "SafetyReqAssertion",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        &::xsd::cxx::tree::factory_impl< ::MDPWS::SafetyReqAssertionType >,
-        true, true, e, n, f, 0));
-
-    if (tmp.get () != 0)
-    {
-      ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType > r (
-        dynamic_cast< ::MDPWS::SafetyReqAssertionType* > (tmp.get ()));
-
-      if (r.get ())
-        tmp.release ();
-      else
-        throw ::xsd::cxx::tree::not_derived< char > ();
-
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SafetyReqAssertion",
-      "http://standards.ieee.org/downloads/11073/11073-20702-2016");
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType >
-  SafetyReqAssertion (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-                      ::xml_schema::Flags f,
-                      const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-      ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-        "SafetyReqAssertion",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        &::xsd::cxx::tree::factory_impl< ::MDPWS::SafetyReqAssertionType >,
-        true, true, e, n, f, 0));
-
-    if (tmp.get () != 0)
-    {
-
-      ::std::unique_ptr< ::MDPWS::SafetyReqAssertionType > r (
-        dynamic_cast< ::MDPWS::SafetyReqAssertionType* > (tmp.get ()));
-
-      if (r.get ())
-        tmp.release ();
-      else
-        throw ::xsd::cxx::tree::not_derived< char > ();
-
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SafetyReqAssertion",
-      "http://standards.ieee.org/downloads/11073/11073-20702-2016");
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (const ::std::string& u,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDPWS::SafetyReqType > (
-      ::MDPWS::SafetyReq (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (const ::std::string& u,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDPWS::SafetyReqType > (
-      ::MDPWS::SafetyReq (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (const ::std::string& u,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDPWS::SafetyReqType > (
-      ::MDPWS::SafetyReq (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (::std::istream& is,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDPWS::SafetyReq (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (::std::istream& is,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDPWS::SafetyReq (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (::std::istream& is,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDPWS::SafetyReq (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (::std::istream& is,
-             const ::std::string& sid,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDPWS::SafetyReq (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (::std::istream& is,
-             const ::std::string& sid,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDPWS::SafetyReq (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (::std::istream& is,
-             const ::std::string& sid,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDPWS::SafetyReq (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (::xercesc::InputSource& i,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDPWS::SafetyReqType > (
-      ::MDPWS::SafetyReq (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (::xercesc::InputSource& i,
-             ::xml_schema::ErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDPWS::SafetyReqType > (
-      ::MDPWS::SafetyReq (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (::xercesc::InputSource& i,
-             ::xercesc::DOMErrorHandler& h,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDPWS::SafetyReqType > (
-      ::MDPWS::SafetyReq (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (const ::xercesc::DOMDocument& doc,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDPWS::SafetyReqType > (
-        ::MDPWS::SafetyReq (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-      ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-        "SafetyReq",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        &::xsd::cxx::tree::factory_impl< ::MDPWS::SafetyReqType >,
-        true, true, e, n, f, 0));
-
-    if (tmp.get () != 0)
-    {
-      ::std::unique_ptr< ::MDPWS::SafetyReqType > r (
-        dynamic_cast< ::MDPWS::SafetyReqType* > (tmp.get ()));
-
-      if (r.get ())
-        tmp.release ();
-      else
-        throw ::xsd::cxx::tree::not_derived< char > ();
-
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SafetyReq",
-      "http://standards.ieee.org/downloads/11073/11073-20702-2016");
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyReqType >
-  SafetyReq (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-             ::xml_schema::Flags f,
-             const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-      ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-        "SafetyReq",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        &::xsd::cxx::tree::factory_impl< ::MDPWS::SafetyReqType >,
-        true, true, e, n, f, 0));
-
-    if (tmp.get () != 0)
-    {
-
-      ::std::unique_ptr< ::MDPWS::SafetyReqType > r (
-        dynamic_cast< ::MDPWS::SafetyReqType* > (tmp.get ()));
-
-      if (r.get ())
-        tmp.release ();
-      else
-        throw ::xsd::cxx::tree::not_derived< char > ();
-
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SafetyReq",
-      "http://standards.ieee.org/downloads/11073/11073-20702-2016");
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (const ::std::string& u,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDPWS::SafetyInfoType > (
-      ::MDPWS::SafetyInfo (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (const ::std::string& u,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDPWS::SafetyInfoType > (
-      ::MDPWS::SafetyInfo (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (const ::std::string& u,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        u, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDPWS::SafetyInfoType > (
-      ::MDPWS::SafetyInfo (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (::std::istream& is,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDPWS::SafetyInfo (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (::std::istream& is,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDPWS::SafetyInfo (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (::std::istream& is,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is);
-    return ::MDPWS::SafetyInfo (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (::std::istream& is,
-              const ::std::string& sid,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDPWS::SafetyInfo (isrc, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (::std::istream& is,
-              const ::std::string& sid,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0,
-      (f & ::xml_schema::Flags::keep_dom) == 0);
-
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDPWS::SafetyInfo (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (::std::istream& is,
-              const ::std::string& sid,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::xml::sax::std_input_source isrc (is, sid);
-    return ::MDPWS::SafetyInfo (isrc, h, f, p);
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (::xercesc::InputSource& i,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    h.throw_if_failed< ::xsd::cxx::tree::parsing< char > > ();
-
-    return ::std::unique_ptr< ::MDPWS::SafetyInfoType > (
-      ::MDPWS::SafetyInfo (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (::xercesc::InputSource& i,
-              ::xml_schema::ErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDPWS::SafetyInfoType > (
-      ::MDPWS::SafetyInfo (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (::xercesc::InputSource& i,
-              ::xercesc::DOMErrorHandler& h,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::xsd::cxx::xml::dom::parse< char > (
-        i, h, p, f));
-
-    if (!d.get ())
-      throw ::xsd::cxx::tree::parsing< char > ();
-
-    return ::std::unique_ptr< ::MDPWS::SafetyInfoType > (
-      ::MDPWS::SafetyInfo (
-        std::move (d), f | ::xml_schema::Flags::own_dom, p));
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (const ::xercesc::DOMDocument& doc,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties& p)
-  {
-    if (f & ::xml_schema::Flags::keep_dom)
-    {
-      ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-        static_cast< ::xercesc::DOMDocument* > (doc.cloneNode (true)));
-
-      return ::std::unique_ptr< ::MDPWS::SafetyInfoType > (
-        ::MDPWS::SafetyInfo (
-          std::move (d), f | ::xml_schema::Flags::own_dom, p));
-    }
-
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-      ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-        "SafetyInfo",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        &::xsd::cxx::tree::factory_impl< ::MDPWS::SafetyInfoType >,
-        true, true, e, n, f, 0));
-
-    if (tmp.get () != 0)
-    {
-      ::std::unique_ptr< ::MDPWS::SafetyInfoType > r (
-        dynamic_cast< ::MDPWS::SafetyInfoType* > (tmp.get ()));
-
-      if (r.get ())
-        tmp.release ();
-      else
-        throw ::xsd::cxx::tree::not_derived< char > ();
-
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SafetyInfo",
-      "http://standards.ieee.org/downloads/11073/11073-20702-2016");
-  }
-
-  ::std::unique_ptr< ::MDPWS::SafetyInfoType >
-  SafetyInfo (::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d,
-              ::xml_schema::Flags f,
-              const ::xml_schema::Properties&)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > c (
-      ((f & ::xml_schema::Flags::keep_dom) &&
-       !(f & ::xml_schema::Flags::own_dom))
-      ? static_cast< ::xercesc::DOMDocument* > (d->cloneNode (true))
-      : 0);
-
-    ::xercesc::DOMDocument& doc (c.get () ? *c : *d);
-    const ::xercesc::DOMElement& e (*doc.getDocumentElement ());
-
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (f & ::xml_schema::Flags::keep_dom)
-      doc.setUserData (::xml_schema::dom::tree_node_key,
-                       (c.get () ? &c : &d),
-                       0);
-
-    ::std::unique_ptr< ::xsd::cxx::tree::type > tmp (
-      ::xsd::cxx::tree::type_factory_map_instance< 0, char > ().create (
-        "SafetyInfo",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        &::xsd::cxx::tree::factory_impl< ::MDPWS::SafetyInfoType >,
-        true, true, e, n, f, 0));
-
-    if (tmp.get () != 0)
-    {
-
-      ::std::unique_ptr< ::MDPWS::SafetyInfoType > r (
-        dynamic_cast< ::MDPWS::SafetyInfoType* > (tmp.get ()));
-
-      if (r.get ())
-        tmp.release ();
-      else
-        throw ::xsd::cxx::tree::not_derived< char > ();
-
-      return r;
-    }
-
-    throw ::xsd::cxx::tree::unexpected_element < char > (
-      n.name (),
-      n.namespace_ (),
-      "SafetyInfo",
-      "http://standards.ieee.org/downloads/11073/11073-20702-2016");
-  }
 }
 
 #include <ostream>
@@ -3990,175 +2546,6 @@ namespace MDPWS
 
 
   void
-  StreamSource (::std::ostream& o,
-                const ::MDPWS::StreamSourceType& s,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::StreamSource (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  StreamSource (::std::ostream& o,
-                const ::MDPWS::StreamSourceType& s,
-                ::xml_schema::ErrorHandler& h,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::StreamSource (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  StreamSource (::std::ostream& o,
-                const ::MDPWS::StreamSourceType& s,
-                ::xercesc::DOMErrorHandler& h,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::StreamSource (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  StreamSource (::xercesc::XMLFormatTarget& t,
-                const ::MDPWS::StreamSourceType& s,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::StreamSource (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  StreamSource (::xercesc::XMLFormatTarget& t,
-                const ::MDPWS::StreamSourceType& s,
-                ::xml_schema::ErrorHandler& h,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::StreamSource (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  StreamSource (::xercesc::XMLFormatTarget& t,
-                const ::MDPWS::StreamSourceType& s,
-                ::xercesc::DOMErrorHandler& h,
-                const ::xml_schema::NamespaceInfomap& m,
-                const ::std::string& e,
-                ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::StreamSource (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  StreamSource (::xercesc::DOMDocument& d,
-                const ::MDPWS::StreamSourceType& s,
-                ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (typeid (::MDPWS::StreamSourceType) == typeid (s))
-    {
-      if (n.name () == "StreamSource" &&
-          n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-20702-2016")
-      {
-        e << s;
-      }
-      else
-      {
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "StreamSource",
-          "http://standards.ieee.org/downloads/11073/11073-20702-2016");
-      }
-    }
-    else
-    {
-      ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-        "StreamSource",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        e, n, s);
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  StreamSource (const ::MDPWS::StreamSourceType& s,
-                const ::xml_schema::NamespaceInfomap& m,
-                ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-    if (typeid (::MDPWS::StreamSourceType) == typeid (s))
-    {
-      d = ::xsd::cxx::xml::dom::serialize< char > (
-        "StreamSource",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        m, f);
-    }
-    else
-    {
-      d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-        "StreamSource",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        m, s, f);
-    }
-
-    ::MDPWS::StreamSource (*d, s, f);
-    return d;
-  }
-
-  void
   operator<< (::xercesc::DOMElement& e, const StreamTransmissionType& i)
   {
     e << static_cast< const ::xml_schema::Type& > (i);
@@ -4169,9 +2556,9 @@ namespace MDPWS
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.StreamAddress ())
+      if (i.getStreamAddress ())
       {
-        const StreamTransmissionType::StreamAddressType& x (*i.StreamAddress ());
+        const StreamTransmissionType::StreamAddressType& x (*i.getStreamAddress ());
         if (typeid (StreamTransmissionType::StreamAddressType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -4196,9 +2583,9 @@ namespace MDPWS
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.StreamPeriod ())
+      if (i.getStreamPeriod ())
       {
-        const StreamTransmissionType::StreamPeriodType& x (*i.StreamPeriod ());
+        const StreamTransmissionType::StreamPeriodType& x (*i.getStreamPeriod ());
         if (typeid (StreamTransmissionType::StreamPeriodType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -4219,14 +2606,14 @@ namespace MDPWS
 
     // Type
     //
-    if (i.Type ())
+    if (i.getType ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Type",
           e));
 
-      a << *i.Type ();
+      a << *i.getType ();
     }
   }
 
@@ -4248,7 +2635,7 @@ namespace MDPWS
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      const StreamTypeType::StreamTransmissionType& x (i.StreamTransmission ());
+      const StreamTypeType::StreamTransmissionType& x (i.getStreamTransmission ());
       if (typeid (StreamTypeType::StreamTransmissionType) == typeid (x))
       {
         ::xercesc::DOMElement& s (
@@ -4274,7 +2661,7 @@ namespace MDPWS
           "Id",
           e));
 
-      a << i.Id ();
+      a << i.getId ();
     }
 
     // StreamType
@@ -4285,31 +2672,31 @@ namespace MDPWS
           "StreamType",
           e));
 
-      a << i.StreamType ();
+      a << i.getStreamType ();
     }
 
     // Element
     //
-    if (i.Element ())
+    if (i.getElement ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Element",
           e));
 
-      a << *i.Element ();
+      a << *i.getElement ();
     }
 
     // ActionUri
     //
-    if (i.ActionUri ())
+    if (i.getActionUri ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "ActionUri",
           e));
 
-      a << *i.ActionUri ();
+      a << *i.getActionUri ();
     }
   }
 
@@ -4327,7 +2714,7 @@ namespace MDPWS
 
     // Types
     //
-    if (i.Types ())
+    if (i.getTypes ())
     {
       ::xercesc::DOMElement& s (
         ::xsd::cxx::xml::dom::create_element (
@@ -4335,7 +2722,7 @@ namespace MDPWS
           "http://standards.ieee.org/downloads/11073/11073-20702-2016",
           e));
 
-      s << *i.Types ();
+      s << *i.getTypes ();
     }
 
     // StreamType
@@ -4345,7 +2732,7 @@ namespace MDPWS
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (StreamDescriptionsType::StreamTypeConstIterator
-           b (i.StreamType ().begin ()), n (i.StreamType ().end ());
+           b (i.getStreamType ().begin ()), n (i.getStreamType ().end ());
            b != n; ++b)
       {
         if (typeid (StreamDescriptionsType::StreamTypeType) == typeid (*b))
@@ -4374,7 +2761,7 @@ namespace MDPWS
           "TargetNamespace",
           e));
 
-      a << i.TargetNamespace ();
+      a << i.getTargetNamespace ();
     }
   }
 
@@ -4384,175 +2771,6 @@ namespace MDPWS
     "StreamDescriptionsType",
     "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
-
-  void
-  StreamDescriptions (::std::ostream& o,
-                      const ::MDPWS::StreamDescriptionsType& s,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::StreamDescriptions (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  StreamDescriptions (::std::ostream& o,
-                      const ::MDPWS::StreamDescriptionsType& s,
-                      ::xml_schema::ErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::StreamDescriptions (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  StreamDescriptions (::std::ostream& o,
-                      const ::MDPWS::StreamDescriptionsType& s,
-                      ::xercesc::DOMErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::StreamDescriptions (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  StreamDescriptions (::xercesc::XMLFormatTarget& t,
-                      const ::MDPWS::StreamDescriptionsType& s,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::StreamDescriptions (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  StreamDescriptions (::xercesc::XMLFormatTarget& t,
-                      const ::MDPWS::StreamDescriptionsType& s,
-                      ::xml_schema::ErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::StreamDescriptions (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  StreamDescriptions (::xercesc::XMLFormatTarget& t,
-                      const ::MDPWS::StreamDescriptionsType& s,
-                      ::xercesc::DOMErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::StreamDescriptions (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  StreamDescriptions (::xercesc::DOMDocument& d,
-                      const ::MDPWS::StreamDescriptionsType& s,
-                      ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (typeid (::MDPWS::StreamDescriptionsType) == typeid (s))
-    {
-      if (n.name () == "StreamDescriptions" &&
-          n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-20702-2016")
-      {
-        e << s;
-      }
-      else
-      {
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "StreamDescriptions",
-          "http://standards.ieee.org/downloads/11073/11073-20702-2016");
-      }
-    }
-    else
-    {
-      ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-        "StreamDescriptions",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        e, n, s);
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  StreamDescriptions (const ::MDPWS::StreamDescriptionsType& s,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-    if (typeid (::MDPWS::StreamDescriptionsType) == typeid (s))
-    {
-      d = ::xsd::cxx::xml::dom::serialize< char > (
-        "StreamDescriptions",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        m, f);
-    }
-    else
-    {
-      d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-        "StreamDescriptions",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        m, s, f);
-    }
-
-    ::MDPWS::StreamDescriptions (*d, s, f);
-    return d;
-  }
 
   void
   operator<< (::xercesc::DOMElement& e, const SafetyReqAssertionType& i)
@@ -4567,7 +2785,7 @@ namespace MDPWS
           "TransmitDualChannel",
           e));
 
-      a << i.TransmitDualChannel ();
+      a << i.getTransmitDualChannel ();
     }
 
     // TransmitSafetyContext
@@ -4578,7 +2796,7 @@ namespace MDPWS
           "TransmitSafetyContext",
           e));
 
-      a << i.TransmitSafetyContext ();
+      a << i.getTransmitSafetyContext ();
     }
   }
 
@@ -4588,175 +2806,6 @@ namespace MDPWS
     "SafetyReqAssertionType",
     "http://standards.ieee.org/downloads/11073/11073-20702-2016");
 
-
-  void
-  SafetyReqAssertion (::std::ostream& o,
-                      const ::MDPWS::SafetyReqAssertionType& s,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::SafetyReqAssertion (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SafetyReqAssertion (::std::ostream& o,
-                      const ::MDPWS::SafetyReqAssertionType& s,
-                      ::xml_schema::ErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::SafetyReqAssertion (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SafetyReqAssertion (::std::ostream& o,
-                      const ::MDPWS::SafetyReqAssertionType& s,
-                      ::xercesc::DOMErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::SafetyReqAssertion (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SafetyReqAssertion (::xercesc::XMLFormatTarget& t,
-                      const ::MDPWS::SafetyReqAssertionType& s,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::SafetyReqAssertion (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SafetyReqAssertion (::xercesc::XMLFormatTarget& t,
-                      const ::MDPWS::SafetyReqAssertionType& s,
-                      ::xml_schema::ErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::SafetyReqAssertion (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SafetyReqAssertion (::xercesc::XMLFormatTarget& t,
-                      const ::MDPWS::SafetyReqAssertionType& s,
-                      ::xercesc::DOMErrorHandler& h,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      const ::std::string& e,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::SafetyReqAssertion (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SafetyReqAssertion (::xercesc::DOMDocument& d,
-                      const ::MDPWS::SafetyReqAssertionType& s,
-                      ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (typeid (::MDPWS::SafetyReqAssertionType) == typeid (s))
-    {
-      if (n.name () == "SafetyReqAssertion" &&
-          n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-20702-2016")
-      {
-        e << s;
-      }
-      else
-      {
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "SafetyReqAssertion",
-          "http://standards.ieee.org/downloads/11073/11073-20702-2016");
-      }
-    }
-    else
-    {
-      ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-        "SafetyReqAssertion",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        e, n, s);
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SafetyReqAssertion (const ::MDPWS::SafetyReqAssertionType& s,
-                      const ::xml_schema::NamespaceInfomap& m,
-                      ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-    if (typeid (::MDPWS::SafetyReqAssertionType) == typeid (s))
-    {
-      d = ::xsd::cxx::xml::dom::serialize< char > (
-        "SafetyReqAssertion",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        m, f);
-    }
-    else
-    {
-      d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-        "SafetyReqAssertion",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        m, s, f);
-    }
-
-    ::MDPWS::SafetyReqAssertion (*d, s, f);
-    return d;
-  }
 
   void
   operator<< (::xercesc::DOMElement& e, const SelectorType& i)
@@ -4771,7 +2820,7 @@ namespace MDPWS
           "Id",
           e));
 
-      a << i.Id ();
+      a << i.getId ();
     }
   }
 
@@ -4793,9 +2842,9 @@ namespace MDPWS
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.DualChannelDef ())
+      if (i.getDualChannelDef ())
       {
-        const SafetyReqType::DualChannelDefType& x (*i.DualChannelDef ());
+        const SafetyReqType::DualChannelDefType& x (*i.getDualChannelDef ());
         if (typeid (SafetyReqType::DualChannelDefType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -4820,9 +2869,9 @@ namespace MDPWS
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.SafetyContextDef ())
+      if (i.getSafetyContextDef ())
       {
-        const SafetyReqType::SafetyContextDefType& x (*i.SafetyContextDef ());
+        const SafetyReqType::SafetyContextDefType& x (*i.getSafetyContextDef ());
         if (typeid (SafetyReqType::SafetyContextDefType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -4850,175 +2899,6 @@ namespace MDPWS
 
 
   void
-  SafetyReq (::std::ostream& o,
-             const ::MDPWS::SafetyReqType& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::SafetyReq (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SafetyReq (::std::ostream& o,
-             const ::MDPWS::SafetyReqType& s,
-             ::xml_schema::ErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::SafetyReq (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SafetyReq (::std::ostream& o,
-             const ::MDPWS::SafetyReqType& s,
-             ::xercesc::DOMErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::SafetyReq (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SafetyReq (::xercesc::XMLFormatTarget& t,
-             const ::MDPWS::SafetyReqType& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::SafetyReq (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SafetyReq (::xercesc::XMLFormatTarget& t,
-             const ::MDPWS::SafetyReqType& s,
-             ::xml_schema::ErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::SafetyReq (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SafetyReq (::xercesc::XMLFormatTarget& t,
-             const ::MDPWS::SafetyReqType& s,
-             ::xercesc::DOMErrorHandler& h,
-             const ::xml_schema::NamespaceInfomap& m,
-             const ::std::string& e,
-             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::SafetyReq (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SafetyReq (::xercesc::DOMDocument& d,
-             const ::MDPWS::SafetyReqType& s,
-             ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (typeid (::MDPWS::SafetyReqType) == typeid (s))
-    {
-      if (n.name () == "SafetyReq" &&
-          n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-20702-2016")
-      {
-        e << s;
-      }
-      else
-      {
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "SafetyReq",
-          "http://standards.ieee.org/downloads/11073/11073-20702-2016");
-      }
-    }
-    else
-    {
-      ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-        "SafetyReq",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        e, n, s);
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SafetyReq (const ::MDPWS::SafetyReqType& s,
-             const ::xml_schema::NamespaceInfomap& m,
-             ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-    if (typeid (::MDPWS::SafetyReqType) == typeid (s))
-    {
-      d = ::xsd::cxx::xml::dom::serialize< char > (
-        "SafetyReq",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        m, f);
-    }
-    else
-    {
-      d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-        "SafetyReq",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        m, s, f);
-    }
-
-    ::MDPWS::SafetyReq (*d, s, f);
-    return d;
-  }
-
-  void
   operator<< (::xercesc::DOMElement& e, const DualChannelDefType& i)
   {
     e << static_cast< const ::xml_schema::Type& > (i);
@@ -5030,7 +2910,7 @@ namespace MDPWS
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (DualChannelDefType::SelectorConstIterator
-           b (i.Selector ().begin ()), n (i.Selector ().end ());
+           b (i.getSelector ().begin ()), n (i.getSelector ().end ());
            b != n; ++b)
       {
         if (typeid (DualChannelDefType::SelectorType) == typeid (*b))
@@ -5053,26 +2933,26 @@ namespace MDPWS
 
     // Algorithm
     //
-    if (i.Algorithm ())
+    if (i.getAlgorithm ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Algorithm",
           e));
 
-      a << *i.Algorithm ();
+      a << *i.getAlgorithm ();
     }
 
     // Transform
     //
-    if (i.Transform ())
+    if (i.getTransform ())
     {
       ::xercesc::DOMAttr& a (
         ::xsd::cxx::xml::dom::create_attribute (
           "Transform",
           e));
 
-      a << *i.Transform ();
+      a << *i.getTransform ();
     }
   }
 
@@ -5095,7 +2975,7 @@ namespace MDPWS
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (SafetyContextDefType::SelectorConstIterator
-           b (i.Selector ().begin ()), n (i.Selector ().end ());
+           b (i.getSelector ().begin ()), n (i.getSelector ().end ());
            b != n; ++b)
       {
         if (typeid (SafetyContextDefType::SelectorType) == typeid (*b))
@@ -5135,9 +3015,9 @@ namespace MDPWS
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.DualChannel ())
+      if (i.getDualChannel ())
       {
-        const SafetyInfoType::DualChannelType& x (*i.DualChannel ());
+        const SafetyInfoType::DualChannelType& x (*i.getDualChannel ());
         if (typeid (SafetyInfoType::DualChannelType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -5162,9 +3042,9 @@ namespace MDPWS
       ::xsd::cxx::tree::type_serializer_map< char >& tsm (
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
-      if (i.SafetyContext ())
+      if (i.getSafetyContext ())
       {
-        const SafetyInfoType::SafetyContextType& x (*i.SafetyContext ());
+        const SafetyInfoType::SafetyContextType& x (*i.getSafetyContext ());
         if (typeid (SafetyInfoType::SafetyContextType) == typeid (x))
         {
           ::xercesc::DOMElement& s (
@@ -5192,175 +3072,6 @@ namespace MDPWS
 
 
   void
-  SafetyInfo (::std::ostream& o,
-              const ::MDPWS::SafetyInfoType& s,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::SafetyInfo (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SafetyInfo (::std::ostream& o,
-              const ::MDPWS::SafetyInfoType& s,
-              ::xml_schema::ErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-  {
-    ::xsd::cxx::xml::auto_initializer i (
-      (f & ::xml_schema::Flags::dont_initialize) == 0);
-
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::SafetyInfo (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SafetyInfo (::std::ostream& o,
-              const ::MDPWS::SafetyInfoType& s,
-              ::xercesc::DOMErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::SafetyInfo (s, m, f));
-    ::xsd::cxx::xml::dom::ostream_format_target t (o);
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SafetyInfo (::xercesc::XMLFormatTarget& t,
-              const ::MDPWS::SafetyInfoType& s,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::SafetyInfo (s, m, f));
-
-    ::xsd::cxx::tree::error_handler< char > h;
-
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      h.throw_if_failed< ::xsd::cxx::tree::serialization< char > > ();
-    }
-  }
-
-  void
-  SafetyInfo (::xercesc::XMLFormatTarget& t,
-              const ::MDPWS::SafetyInfoType& s,
-              ::xml_schema::ErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::SafetyInfo (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SafetyInfo (::xercesc::XMLFormatTarget& t,
-              const ::MDPWS::SafetyInfoType& s,
-              ::xercesc::DOMErrorHandler& h,
-              const ::xml_schema::NamespaceInfomap& m,
-              const ::std::string& e,
-              ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d (
-      ::MDPWS::SafetyInfo (s, m, f));
-    if (!::xsd::cxx::xml::dom::serialize (t, *d, e, h, f))
-    {
-      throw ::xsd::cxx::tree::serialization< char > ();
-    }
-  }
-
-  void
-  SafetyInfo (::xercesc::DOMDocument& d,
-              const ::MDPWS::SafetyInfoType& s,
-              ::xml_schema::Flags)
-  {
-    ::xercesc::DOMElement& e (*d.getDocumentElement ());
-    const ::xsd::cxx::xml::qualified_name< char > n (
-      ::xsd::cxx::xml::dom::name< char > (e));
-
-    if (typeid (::MDPWS::SafetyInfoType) == typeid (s))
-    {
-      if (n.name () == "SafetyInfo" &&
-          n.namespace_ () == "http://standards.ieee.org/downloads/11073/11073-20702-2016")
-      {
-        e << s;
-      }
-      else
-      {
-        throw ::xsd::cxx::tree::unexpected_element < char > (
-          n.name (),
-          n.namespace_ (),
-          "SafetyInfo",
-          "http://standards.ieee.org/downloads/11073/11073-20702-2016");
-      }
-    }
-    else
-    {
-      ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-        "SafetyInfo",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        e, n, s);
-    }
-  }
-
-  ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument >
-  SafetyInfo (const ::MDPWS::SafetyInfoType& s,
-              const ::xml_schema::NamespaceInfomap& m,
-              ::xml_schema::Flags f)
-  {
-    ::xml_schema::dom::unique_ptr< ::xercesc::DOMDocument > d;
-
-    if (typeid (::MDPWS::SafetyInfoType) == typeid (s))
-    {
-      d = ::xsd::cxx::xml::dom::serialize< char > (
-        "SafetyInfo",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        m, f);
-    }
-    else
-    {
-      d = ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ().serialize (
-        "SafetyInfo",
-        "http://standards.ieee.org/downloads/11073/11073-20702-2016",
-        m, s, f);
-    }
-
-    ::MDPWS::SafetyInfo (*d, s, f);
-    return d;
-  }
-
-  void
   operator<< (::xercesc::DOMElement& e, const DualChannelType& i)
   {
     e << static_cast< const ::xml_schema::Type& > (i);
@@ -5372,7 +3083,7 @@ namespace MDPWS
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (DualChannelType::DcValueConstIterator
-           b (i.DcValue ().begin ()), n (i.DcValue ().end ());
+           b (i.getDcValue ().begin ()), n (i.getDcValue ().end ());
            b != n; ++b)
       {
         if (typeid (DualChannelType::DcValueType) == typeid (*b))
@@ -5413,7 +3124,7 @@ namespace MDPWS
         ::xsd::cxx::tree::type_serializer_map_instance< 0, char > ());
 
       for (SafetyContextType::CtxtValueConstIterator
-           b (i.CtxtValue ().begin ()), n (i.CtxtValue ().end ());
+           b (i.getCtxtValue ().begin ()), n (i.getCtxtValue ().end ());
            b != n; ++b)
       {
         if (typeid (SafetyContextType::CtxtValueType) == typeid (*b))
@@ -5455,7 +3166,7 @@ namespace MDPWS
           "ReferencedSelector",
           e));
 
-      a << i.ReferencedSelector ();
+      a << i.getReferencedSelector ();
     }
   }
 
@@ -5479,7 +3190,7 @@ namespace MDPWS
           "ReferencedSelector",
           e));
 
-      a << i.ReferencedSelector ();
+      a << i.getReferencedSelector ();
     }
   }
 

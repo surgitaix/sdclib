@@ -46,74 +46,71 @@ namespace SDC {
 
 Mdib::Mdib(
 ) : data(Defaults::MdibInit(
-)) {}
+))
+{}
 
 Mdib::operator CDM::Mdib() const {
 	return *data;
 }
 
-Mdib::Mdib(const CDM::Mdib & object) : data(new CDM::Mdib(object)) {
+Mdib::Mdib(const CDM::Mdib & object)
+: data(new CDM::Mdib(object))
+{ }
 
-}
-
-Mdib::Mdib(const Mdib & object) : data(new CDM::Mdib(*object.data)) {
-
-}
-
-Mdib::~Mdib() {
-
-}
+Mdib::Mdib(const Mdib & object)
+: data(std::make_shared<CDM::Mdib>(*object.data))
+{ }
 
 void Mdib::copyFrom(const Mdib & object) {
-	data = std::shared_ptr<CDM::Mdib>( new CDM::Mdib(*object.data));
+	data = std::make_shared<CDM::Mdib>(*object.data);
 }
 
-Mdib & Mdib:: operator=(const Mdib & object) {
+Mdib & Mdib:: operator=(const Mdib& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 Mdib & Mdib::setMdDescription(const MdDescription & value) {
-	data->MdDescription(ConvertToCDM::convert(value));
+	data->setMdDescription(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool Mdib::getMdDescription(MdDescription & out) const {
-	if (data->MdDescription().present()) {
-		out = ConvertFromCDM::convert(data->MdDescription().get());
+	if (data->getMdDescription().present()) {
+		out = ConvertFromCDM::convert(data->getMdDescription().get());
 		return true;
 	}
 	return false;
 }
 
 MdDescription Mdib::getMdDescription() const {
-	return ConvertFromCDM::convert(data->MdDescription().get());
+	return ConvertFromCDM::convert(data->getMdDescription().get());
 }
 
 bool Mdib::hasMdDescription() const {
-	return data->MdDescription().present();
+	return data->getMdDescription().present();
 }
 
 Mdib & Mdib::setMdState(const MdState & value) {
-	data->MdState(ConvertToCDM::convert(value));
+	data->setMdState(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool Mdib::getMdState(MdState & out) const {
-	if (data->MdState().present()) {
-		out = ConvertFromCDM::convert(data->MdState().get());
+	if (data->getMdState().present()) {
+		out = ConvertFromCDM::convert(data->getMdState().get());
 		return true;
 	}
 	return false;
 }
 
 MdState Mdib::getMdState() const {
-	return ConvertFromCDM::convert(data->MdState().get());
+	return ConvertFromCDM::convert(data->getMdState().get());
 }
 
 bool Mdib::hasMdState() const {
-	return data->MdState().present();
+	return data->getMdState().present();
 }
 
 

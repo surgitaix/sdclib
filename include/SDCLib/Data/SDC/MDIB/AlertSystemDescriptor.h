@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class AlertSystemDescriptor {
+class AlertSystemDescriptor
+{
 private:
 	AlertSystemDescriptor(const CDM::AlertSystemDescriptor & object);
 	operator CDM::AlertSystemDescriptor() const;
@@ -57,11 +58,11 @@ public:
 private:
 	AlertSystemDescriptor(){};
 public:
-	AlertSystemDescriptor(const AlertSystemDescriptor & object);
-	virtual ~AlertSystemDescriptor();
+	AlertSystemDescriptor(const AlertSystemDescriptor& object);
+	virtual ~AlertSystemDescriptor() = default;
 
-    void copyFrom(const AlertSystemDescriptor & object);
-    AlertSystemDescriptor & operator=(const AlertSystemDescriptor & object);
+    void copyFrom(const AlertSystemDescriptor& object);
+    AlertSystemDescriptor & operator=(const AlertSystemDescriptor& object);
 
     typedef CDM::AlertSystemDescriptor WrappedType;
 
@@ -110,7 +111,7 @@ public:
 	AlertSystemDescriptor & addLimitAlertCondition(const LimitAlertConditionDescriptor & source);
 	std::vector<LimitAlertConditionDescriptor> getLimitAlertConditionList() const;
 private:
-	std::shared_ptr<CDM::AlertSystemDescriptor> data;
+	std::shared_ptr<CDM::AlertSystemDescriptor> data = nullptr;
 };
 
 } /* namespace SDC */

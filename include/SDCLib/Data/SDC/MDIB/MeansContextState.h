@@ -40,7 +40,8 @@ namespace SDCLib {
 namespace Data {
 namespace SDC {
 
-class MeansContextState {
+class MeansContextState
+{
 private:
 	MeansContextState(const CDM::MeansContextState & object);
 	operator CDM::MeansContextState() const;
@@ -59,11 +60,11 @@ public:
 private:
 	MeansContextState(){};
 public:
-	MeansContextState(const MeansContextState & object);
-	virtual ~MeansContextState();
+	MeansContextState(const MeansContextState& object);
+	virtual ~MeansContextState() = default;
 
-    void copyFrom(const MeansContextState & object);
-    MeansContextState & operator=(const MeansContextState & object);
+    void copyFrom(const MeansContextState& object);
+    MeansContextState & operator=(const MeansContextState& object);
 
     typedef CDM::MeansContextState WrappedType;
 
@@ -122,7 +123,7 @@ public:
 	void clearIdentificationList();
 
 private:
-	std::shared_ptr<CDM::MeansContextState> data;
+	std::shared_ptr<CDM::MeansContextState> data = nullptr;
 };
 
 } /* namespace SDC */

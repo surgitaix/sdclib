@@ -41,7 +41,7 @@ std::unique_ptr<MESSAGEMODEL::Envelope> UnsubscribeActionCommand::dispatch(const
 	}
 
 	auto t_responseMessage(createResponseMessageFromRequestMessage(p_request));
-	t_responseMessage->Header().Action().set(WS::ADDRESSING::AttributedURIType(DPWS::UnsubscribeTraits::ResponseAction()));
+	t_responseMessage->getHeader().getAction().set(WS::ADDRESSING::AttributedURIType(DPWS::UnsubscribeTraits::ResponseAction()));
 	return t_responseMessage;
 }
 

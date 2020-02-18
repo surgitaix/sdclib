@@ -53,277 +53,274 @@ OperatorContextState::OperatorContextState(
 		descriptorhandle
 		,
 		handle
-)) {}
+))
+{}
 
 OperatorContextState::operator CDM::OperatorContextState() const {
 	return *data;
 }
 
-OperatorContextState::OperatorContextState(const CDM::OperatorContextState & object) : data(new CDM::OperatorContextState(object)) {
+OperatorContextState::OperatorContextState(const CDM::OperatorContextState & object)
+: data(new CDM::OperatorContextState(object))
+{ }
 
-}
-
-OperatorContextState::OperatorContextState(const OperatorContextState & object) : data(new CDM::OperatorContextState(*object.data)) {
-
-}
-
-OperatorContextState::~OperatorContextState() {
-
-}
+OperatorContextState::OperatorContextState(const OperatorContextState & object)
+: data(std::make_shared<CDM::OperatorContextState>(*object.data))
+{ }
 
 void OperatorContextState::copyFrom(const OperatorContextState & object) {
-	data = std::shared_ptr<CDM::OperatorContextState>( new CDM::OperatorContextState(*object.data));
+	data = std::make_shared<CDM::OperatorContextState>(*object.data);
 }
 
-OperatorContextState & OperatorContextState:: operator=(const OperatorContextState & object) {
+OperatorContextState & OperatorContextState:: operator=(const OperatorContextState& object) {
 	copyFrom(object);
 	return *this;
 }
 
 
 OperatorContextState & OperatorContextState::setStateVersion(const VersionCounter & value) {
-	data->StateVersion(ConvertToCDM::convert(value));
+	data->setStateVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool OperatorContextState::getStateVersion(VersionCounter & out) const {
-	if (data->StateVersion().present()) {
-		out = ConvertFromCDM::convert(data->StateVersion().get());
+	if (data->getStateVersion().present()) {
+		out = ConvertFromCDM::convert(data->getStateVersion().get());
 		return true;
 	}
 	return false;
 }
 
 VersionCounter OperatorContextState::getStateVersion() const {
-	return ConvertFromCDM::convert(data->StateVersion().get());
+	return ConvertFromCDM::convert(data->getStateVersion().get());
 }
 
 bool OperatorContextState::hasStateVersion() const {
-	return data->StateVersion().present();
+	return data->getStateVersion().present();
 }
 
 OperatorContextState & OperatorContextState::setDescriptorHandle(const HandleRef & value) {
-	data->DescriptorHandle(ConvertToCDM::convert(value));
+	data->setDescriptorHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 HandleRef OperatorContextState::getDescriptorHandle() const {
-	return ConvertFromCDM::convert(data->DescriptorHandle());
+	return ConvertFromCDM::convert(data->getDescriptorHandle());
 }
 
 OperatorContextState & OperatorContextState::setDescriptorVersion(const ReferencedVersion & value) {
-	data->DescriptorVersion(ConvertToCDM::convert(value));
+	data->setDescriptorVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool OperatorContextState::getDescriptorVersion(ReferencedVersion & out) const {
-	if (data->DescriptorVersion().present()) {
-		out = ConvertFromCDM::convert(data->DescriptorVersion().get());
+	if (data->getDescriptorVersion().present()) {
+		out = ConvertFromCDM::convert(data->getDescriptorVersion().get());
 		return true;
 	}
 	return false;
 }
 
 ReferencedVersion OperatorContextState::getDescriptorVersion() const {
-	return ConvertFromCDM::convert(data->DescriptorVersion().get());
+	return ConvertFromCDM::convert(data->getDescriptorVersion().get());
 }
 
 bool OperatorContextState::hasDescriptorVersion() const {
-	return data->DescriptorVersion().present();
+	return data->getDescriptorVersion().present();
 }
 
 OperatorContextState & OperatorContextState::setCategory(const CodedValue & value) {
-	data->Category(ConvertToCDM::convert(value));
+	data->setCategory(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool OperatorContextState::getCategory(CodedValue & out) const {
-	if (data->Category().present()) {
-		out = ConvertFromCDM::convert(data->Category().get());
+	if (data->getCategory().present()) {
+		out = ConvertFromCDM::convert(data->getCategory().get());
 		return true;
 	}
 	return false;
 }
 
 CodedValue OperatorContextState::getCategory() const {
-	return ConvertFromCDM::convert(data->Category().get());
+	return ConvertFromCDM::convert(data->getCategory().get());
 }
 
 bool OperatorContextState::hasCategory() const {
-	return data->Category().present();
+	return data->getCategory().present();
 }
 
 OperatorContextState & OperatorContextState::setHandle(const Handle & value) {
-	data->Handle(ConvertToCDM::convert(value));
+	data->setHandle(ConvertToCDM::convert(value));
 	return *this;
 }
 
 
 Handle OperatorContextState::getHandle() const {
-	return ConvertFromCDM::convert(data->Handle());
+	return ConvertFromCDM::convert(data->getHandle());
 }
 
 OperatorContextState & OperatorContextState::setContextAssociation(const ContextAssociation & value) {
-	data->ContextAssociation(ConvertToCDM::convert(value));
+	data->setContextAssociation(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool OperatorContextState::getContextAssociation(ContextAssociation & out) const {
-	if (data->ContextAssociation().present()) {
-		out = ConvertFromCDM::convert(data->ContextAssociation().get());
+	if (data->getContextAssociation().present()) {
+		out = ConvertFromCDM::convert(data->getContextAssociation().get());
 		return true;
 	}
 	return false;
 }
 
 ContextAssociation OperatorContextState::getContextAssociation() const {
-	return ConvertFromCDM::convert(data->ContextAssociation().get());
+	return ConvertFromCDM::convert(data->getContextAssociation().get());
 }
 
 bool OperatorContextState::hasContextAssociation() const {
-	return data->ContextAssociation().present();
+	return data->getContextAssociation().present();
 }
 
 OperatorContextState & OperatorContextState::setBindingMdibVersion(const ReferencedVersion & value) {
-	data->BindingMdibVersion(ConvertToCDM::convert(value));
+	data->setBindingMdibVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool OperatorContextState::getBindingMdibVersion(ReferencedVersion & out) const {
-	if (data->BindingMdibVersion().present()) {
-		out = ConvertFromCDM::convert(data->BindingMdibVersion().get());
+	if (data->getBindingMdibVersion().present()) {
+		out = ConvertFromCDM::convert(data->getBindingMdibVersion().get());
 		return true;
 	}
 	return false;
 }
 
 ReferencedVersion OperatorContextState::getBindingMdibVersion() const {
-	return ConvertFromCDM::convert(data->BindingMdibVersion().get());
+	return ConvertFromCDM::convert(data->getBindingMdibVersion().get());
 }
 
 bool OperatorContextState::hasBindingMdibVersion() const {
-	return data->BindingMdibVersion().present();
+	return data->getBindingMdibVersion().present();
 }
 
 OperatorContextState & OperatorContextState::setUnbindingMdibVersion(const ReferencedVersion & value) {
-	data->UnbindingMdibVersion(ConvertToCDM::convert(value));
+	data->setUnbindingMdibVersion(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool OperatorContextState::getUnbindingMdibVersion(ReferencedVersion & out) const {
-	if (data->UnbindingMdibVersion().present()) {
-		out = ConvertFromCDM::convert(data->UnbindingMdibVersion().get());
+	if (data->getUnbindingMdibVersion().present()) {
+		out = ConvertFromCDM::convert(data->getUnbindingMdibVersion().get());
 		return true;
 	}
 	return false;
 }
 
 ReferencedVersion OperatorContextState::getUnbindingMdibVersion() const {
-	return ConvertFromCDM::convert(data->UnbindingMdibVersion().get());
+	return ConvertFromCDM::convert(data->getUnbindingMdibVersion().get());
 }
 
 bool OperatorContextState::hasUnbindingMdibVersion() const {
-	return data->UnbindingMdibVersion().present();
+	return data->getUnbindingMdibVersion().present();
 }
 
 OperatorContextState & OperatorContextState::setBindingStartTime(const Timestamp & value) {
-	data->BindingStartTime(ConvertToCDM::convert(value));
+	data->setBindingStartTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool OperatorContextState::getBindingStartTime(Timestamp & out) const {
-	if (data->BindingStartTime().present()) {
-		out = ConvertFromCDM::convert(data->BindingStartTime().get());
+	if (data->getBindingStartTime().present()) {
+		out = ConvertFromCDM::convert(data->getBindingStartTime().get());
 		return true;
 	}
 	return false;
 }
 
 Timestamp OperatorContextState::getBindingStartTime() const {
-	return ConvertFromCDM::convert(data->BindingStartTime().get());
+	return ConvertFromCDM::convert(data->getBindingStartTime().get());
 }
 
 bool OperatorContextState::hasBindingStartTime() const {
-	return data->BindingStartTime().present();
+	return data->getBindingStartTime().present();
 }
 
 OperatorContextState & OperatorContextState::setBindingEndTime(const Timestamp & value) {
-	data->BindingEndTime(ConvertToCDM::convert(value));
+	data->setBindingEndTime(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool OperatorContextState::getBindingEndTime(Timestamp & out) const {
-	if (data->BindingEndTime().present()) {
-		out = ConvertFromCDM::convert(data->BindingEndTime().get());
+	if (data->getBindingEndTime().present()) {
+		out = ConvertFromCDM::convert(data->getBindingEndTime().get());
 		return true;
 	}
 	return false;
 }
 
 Timestamp OperatorContextState::getBindingEndTime() const {
-	return ConvertFromCDM::convert(data->BindingEndTime().get());
+	return ConvertFromCDM::convert(data->getBindingEndTime().get());
 }
 
 bool OperatorContextState::hasBindingEndTime() const {
-	return data->BindingEndTime().present();
+	return data->getBindingEndTime().present();
 }
 
 OperatorContextState & OperatorContextState::addValidator(const InstanceIdentifier & value) {
-	data->Validator().push_back(ConvertToCDM::convert(value));
+	data->getValidator().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<InstanceIdentifier> OperatorContextState::getValidatorList() const {
 	std::vector<InstanceIdentifier> result;
-	result.reserve(data->Validator().size());
-	for (const auto & value: data->Validator()) {
+	result.reserve(data->getValidator().size());
+	for (const auto & value: data->getValidator()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void OperatorContextState::clearValidatorList() {
-	data->Validator().clear();
+	data->getValidator().clear();
 }
 
 OperatorContextState & OperatorContextState::addIdentification(const InstanceIdentifier & value) {
-	data->Identification().push_back(ConvertToCDM::convert(value));
+	data->getIdentification().push_back(ConvertToCDM::convert(value));
 	return *this;
 }
 
 std::vector<InstanceIdentifier> OperatorContextState::getIdentificationList() const {
 	std::vector<InstanceIdentifier> result;
-	result.reserve(data->Identification().size());
-	for (const auto & value: data->Identification()) {
+	result.reserve(data->getIdentification().size());
+	for (const auto & value: data->getIdentification()) {
 		result.push_back(ConvertFromCDM::convert(value));
 	}
 	return result;
 }
 
 void OperatorContextState::clearIdentificationList() {
-	data->Identification().clear();
+	data->getIdentification().clear();
 }
 
 OperatorContextState & OperatorContextState::setOperatorDetails(const BaseDemographics & value) {
-	data->OperatorDetails(ConvertToCDM::convert(value));
+	data->setOperatorDetails(ConvertToCDM::convert(value));
 	return *this;
 }
 
 bool OperatorContextState::getOperatorDetails(BaseDemographics & out) const {
-	if (data->OperatorDetails().present()) {
-		out = ConvertFromCDM::convert(data->OperatorDetails().get());
+	if (data->getOperatorDetails().present()) {
+		out = ConvertFromCDM::convert(data->getOperatorDetails().get());
 		return true;
 	}
 	return false;
 }
 
 BaseDemographics OperatorContextState::getOperatorDetails() const {
-	return ConvertFromCDM::convert(data->OperatorDetails().get());
+	return ConvertFromCDM::convert(data->getOperatorDetails().get());
 }
 
 bool OperatorContextState::hasOperatorDetails() const {
-	return data->OperatorDetails().present();
+	return data->getOperatorDetails().present();
 }
 
 
