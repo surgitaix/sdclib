@@ -545,7 +545,7 @@ int main(int argc, char *argv[])
 
     // Load cached Mdib from file system
     // Mdib is specified in xml
-    std::ifstream t_mdibFilestream(FILE_CACHED_MDIB);
+    std::ifstream t_mdibFilestream{FILE_CACHED_MDIB};
     // Found?
     if(!t_mdibFilestream.is_open()) {
         DebugOut(DebugOut::Default, "ReferenceProvider") << "Could not open " << FILE_CACHED_MDIB << "\n";

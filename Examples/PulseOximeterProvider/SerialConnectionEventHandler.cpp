@@ -10,12 +10,8 @@
 
 namespace Serial {
 
-SerialConnectionEventHandler::SerialConnectionEventHandler(const std::string& port, unsigned int baud_rate)
-: SerialConnection(port, baud_rate),
-  spo2(0),
-  pulseRate(0),
-  dataPackage(0),
-  fingerOut(true)
+SerialConnectionEventHandler::SerialConnectionEventHandler(const std::string& p_port, unsigned int p_baud_rate)
+: SerialConnection(p_port, p_baud_rate)
 {
 
 
@@ -34,59 +30,58 @@ void SerialConnectionEventHandler::onDisconnected() {
 
 }
 
-void SerialConnectionEventHandler::onReceived(const void* data, size_t size)
+void SerialConnectionEventHandler::onReceived(const uint8_t* p_data, size_t)
 {
 
 //	Bit Representation of binaryData.
-	const uint8_t* binaryData = reinterpret_cast<const uint8_t*>(data);
-	if((binaryData[0]) == 0x01)
+	if((p_data[0]) == 0x01)
 	{
-		dataPackage = 0;
+		m_dataPackage = 0;
 	}
 
-	else if(dataPackage == 1)
+	else if(m_dataPackage == 1)
 	{
-		fingerOut = binaryData[0] & 0x01;
+		m_fingerOut = p_data[0] & 0x01;
 	}
 
-	else if(dataPackage == 5)
+	else if(m_dataPackage == 5)
 	{
-		pulseRate = binaryData[0] & 0x7F;
+		m_pulseRate = p_data[0] & 0x7F;
 	}
 
-	else if(dataPackage == 6)
+	else if(m_dataPackage == 6)
 	{
-		spo2 = binaryData[0] & 0x7F;
+		m_spo2 = p_data[0] & 0x7F;
 
 	}
 
-	dataPackage++;
+	m_dataPackage++;
 
 }
 
-void SerialConnectionEventHandler::onSent(const void* data, size_t size)
+void SerialConnectionEventHandler::onSent(const uint8_t* , size_t )
 {
 
 }
 
-void SerialConnectionEventHandler::onError(const std::string& category, const std::string& message)
+void SerialConnectionEventHandler::onError(const std::string& , const std::string& )
 {
 
 }
 
 int SerialConnectionEventHandler::getPulseRate()
 {
-	return pulseRate;
+	return m_pulseRate;
 }
 
 int SerialConnectionEventHandler::getSpo2()
 {
-	return spo2;
+	return m_spo2;
 }
 
 bool SerialConnectionEventHandler::fingerIsOut()
 {
-	return fingerOut;
+	return m_fingerOut;
 }
 
 } /* namespace Serial */

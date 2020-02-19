@@ -24,7 +24,7 @@ namespace Network {
         ContextWorker& operator=(const ContextWorker&) = delete;
         ContextWorker& operator=(ContextWorker&&) = delete;
 
-        virtual ~ContextWorker() = default;
+        ~ContextWorker() = default;
 
         /**
          * @brief workerThreadsCount
@@ -59,15 +59,15 @@ namespace Network {
          * @param contextWorker contextWorker to do the work.
          * @param context asio::io_context the work is polled from.
          */
-        static void serviceThread(std::shared_ptr<ContextWorker> contextWorker, std::shared_ptr<asio::io_context> context);
+        static void serviceThread(std::shared_ptr<ContextWorker> p_contextWorker, std::shared_ptr<asio::io_context> p_context);
 
-        void sendError(std::error_code ec);
+        void sendError(std::error_code p_ec);
 
     private:
-        std::shared_ptr<asio::io_context> _context;
-        std::vector<std::thread> _threads;
-        std::shared_ptr<asio::io_context::strand> _strand;
-        std::atomic<bool> _started;
+        std::shared_ptr<asio::io_context> m_context;
+        std::vector<std::thread> m_threads;
+        std::shared_ptr<asio::io_context::strand> m_strand;
+        std::atomic<bool> m_started;
     };
 
 

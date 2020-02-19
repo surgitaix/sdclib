@@ -23,12 +23,12 @@ using namespace SDCLib::Data::SDC;
 	//MdStateHandler for setting Upper Pulse Rate Alarm Limit
 	class PulseOximeterAlarmLimitPulseRateHandler : public SDCProviderAlertConditionStateHandler<LimitAlertConditionState>{
 	public:
-		PulseOximeterAlarmLimitPulseRateHandler(std::string descriptorHandle) : SDCProviderAlertConditionStateHandler(descriptorHandle) {
+		PulseOximeterAlarmLimitPulseRateHandler(std::string p_descriptorHandle) : SDCProviderAlertConditionStateHandler(p_descriptorHandle) {
 		}
 
 		//Changing the Limits
-		InvocationState onStateChangeRequest(const LimitAlertConditionState &state, const OperationInvocationContext &oic) override {
-			Range maxLimits = getParentProvider().getMdDescription().findDescriptor<LimitAlertConditionDescriptor>(state.getDescriptorHandle())->getMaxLimits();
+		InvocationState onStateChangeRequest(const LimitAlertConditionState &state, const OperationInvocationContext &) override {
+			auto maxLimits = getParentProvider().getMdDescription().findDescriptor<LimitAlertConditionDescriptor>(state.getDescriptorHandle())->getMaxLimits();
 			Range incomingLimits;
 			if(incomingLimits.getLower() >= maxLimits.getLower() &&
 			   incomingLimits.getUpper() <= maxLimits.getUpper() &&
@@ -41,19 +41,19 @@ using namespace SDCLib::Data::SDC;
 
 		}
 
-		void sourceHasChanged(const std::string & sourceHandle)
+		void sourceHasChanged(const std::string & p_sourceHandle)
 		{
-			std::unique_ptr<NumericMetricState> pSourceState(getParentProvider().getMdState().findState<NumericMetricState>(sourceHandle));
-			LimitAlertConditionState currentState(*getParentProvider().getMdState().findState<LimitAlertConditionState>(descriptorHandle));
-			Range currentLimits = currentState.getLimits();
-			double currentValue = pSourceState->getMetricValue().getValue();
+			auto sourceState{getParentProvider().getMdState().findState<NumericMetricState>(p_sourceHandle)};
+			auto currentState(*getParentProvider().getMdState().findState<LimitAlertConditionState>(descriptorHandle));
+			auto currentLimits = currentState.getLimits();
+			auto currentValue = sourceState->getMetricValue().getValue();
 			if(currentValue < currentLimits.getLower())
 			{
-				std::cout << "ALARM! " << sourceHandle << currentValue <<  std::endl;
+				std::cout << "ALARM! " << p_sourceHandle << currentValue <<  std::endl;
 			}
 			else if(currentValue > currentLimits.getUpper())
 			{
-				std::cout << "ALARM! " << sourceHandle << currentValue << std::endl;
+				std::cout << "ALARM! " << p_sourceHandle << currentValue << std::endl;
 			}
 		}
 
@@ -67,22 +67,22 @@ using namespace SDCLib::Data::SDC;
 			return LimitAlertCS;
 		}
 
-		void setLimitRange(Range limits)
+		void setLimitRange(Range p_limits)
 		{
-			LimitAlertConditionState currentState(*getParentProvider().getMdState().findState<LimitAlertConditionState>(descriptorHandle));
-			currentState.setLimits(limits);
+			auto currentState{*getParentProvider().getMdState().findState<LimitAlertConditionState>(descriptorHandle)};
+			currentState.setLimits(p_limits);
 		}
 
-		void setActivationState(AlertActivation activationState)
+		void setActivationState(AlertActivation p_activationState)
 		{
-			LimitAlertConditionState currentState(*getParentProvider().getMdState().findState<LimitAlertConditionState>(descriptorHandle));
-			currentState.setActivationState(activationState);
+			auto currentState{*getParentProvider().getMdState().findState<LimitAlertConditionState>(descriptorHandle)};
+			currentState.setActivationState(p_activationState);
 		}
 
 
 	private:
-		LimitAlertConditionState createState(AlertActivation activationState, Range limits) {
-			LimitAlertConditionState LimitAlertCS(descriptorHandle, activationState, limits, AlertConditionMonitoredLimits::All);
+		LimitAlertConditionState createState(AlertActivation p_activationState, Range p_limits) {
+			LimitAlertConditionState LimitAlertCS{descriptorHandle, p_activationState, p_limits, AlertConditionMonitoredLimits::All};
 			return LimitAlertCS;
 		}
 
@@ -91,12 +91,12 @@ using namespace SDCLib::Data::SDC;
 
 	class PulseOximeterAlarmLimitSatO2Handler : public SDCProviderAlertConditionStateHandler<LimitAlertConditionState>{
 	public:
-		PulseOximeterAlarmLimitSatO2Handler(std::string descriptorHandle) : SDCProviderAlertConditionStateHandler(descriptorHandle) {
+		PulseOximeterAlarmLimitSatO2Handler(std::string p_descriptorHandle) : SDCProviderAlertConditionStateHandler(p_descriptorHandle) {
 		}
 
 		//Changing the Limits
-		InvocationState onStateChangeRequest(const LimitAlertConditionState &state, const OperationInvocationContext &oic) override {
-			Range maxLimits = getParentProvider().getMdDescription().findDescriptor<LimitAlertConditionDescriptor>(state.getDescriptorHandle())->getMaxLimits();
+		InvocationState onStateChangeRequest(const LimitAlertConditionState &p_state, const OperationInvocationContext &) override {
+			auto maxLimits{getParentProvider().getMdDescription().findDescriptor<LimitAlertConditionDescriptor>(p_state.getDescriptorHandle())->getMaxLimits()};
 			Range incomingLimits;
 			if(incomingLimits.getLower() >= maxLimits.getLower() &&
 			   incomingLimits.getUpper() <= maxLimits.getUpper() &&
@@ -109,19 +109,19 @@ using namespace SDCLib::Data::SDC;
 
 		}
 
-		void sourceHasChanged(const std::string & sourceHandle)
+		void sourceHasChanged(const std::string & p_sourceHandle)
 		{
-			std::unique_ptr<NumericMetricState> pSourceState(getParentProvider().getMdState().findState<NumericMetricState>(sourceHandle));
-			LimitAlertConditionState currentState(*getParentProvider().getMdState().findState<LimitAlertConditionState>(descriptorHandle));
-			Range currentLimits = currentState.getLimits();
-			double currentValue = pSourceState->getMetricValue().getValue();
+			auto pSourceState{getParentProvider().getMdState().findState<NumericMetricState>(p_sourceHandle)};
+			auto currentState{*getParentProvider().getMdState().findState<LimitAlertConditionState>(descriptorHandle)};
+			auto currentLimits{currentState.getLimits()};
+			auto currentValue{pSourceState->getMetricValue().getValue()};
 			if(currentValue < currentLimits.getLower())
 			{
-				std::cout << "ALARM! " << sourceHandle << currentValue <<  std::endl;
+				std::cout << "ALARM! " << p_sourceHandle << currentValue <<  std::endl;
 			}
 			else if(currentValue > currentLimits.getUpper())
 			{
-				std::cout << "ALARM! " << sourceHandle << currentValue << std::endl;
+				std::cout << "ALARM! " << p_sourceHandle << currentValue << std::endl;
 			}
 		}
 
@@ -131,26 +131,26 @@ using namespace SDCLib::Data::SDC;
 			limits.setLower(DEFAULT_LOWER_SAT_O2_ALARM_LIMIT);
 			limits.setUpper(DEFAULT_UPPER_SAT_O2_ALARM_LIMIT);
 			limits.setAbsoluteAccuracy(DEFAULT_SAT_O2_ALARM_LIMIT_ABSOLUTE_ACCURACY);
-			LimitAlertConditionState LimitAlertCS = createState(AlertActivation::Off, limits);
+			auto LimitAlertCS = createState(AlertActivation::Off, limits);
 			return LimitAlertCS;
 		}
 
 		void setLimitRange(Range limits)
 		{
-			LimitAlertConditionState currentState(*getParentProvider().getMdState().findState<LimitAlertConditionState>(descriptorHandle));
+			auto currentState(*getParentProvider().getMdState().findState<LimitAlertConditionState>(descriptorHandle));
 			currentState.setLimits(limits);
 		}
 
 		void setActivationState(AlertActivation activationState)
 		{
-			LimitAlertConditionState currentState(*getParentProvider().getMdState().findState<LimitAlertConditionState>(descriptorHandle));
+			auto currentState(*getParentProvider().getMdState().findState<LimitAlertConditionState>(descriptorHandle));
 			currentState.setActivationState(activationState);
 		}
 
 	private:
 
-		LimitAlertConditionState createState(AlertActivation activationState, Range limits) {
-			LimitAlertConditionState LimitAlertCS(descriptorHandle, activationState, limits, AlertConditionMonitoredLimits::All);
+		LimitAlertConditionState createState(AlertActivation p_activationState, Range p_limits) {
+			LimitAlertConditionState LimitAlertCS(descriptorHandle, p_activationState, p_limits, AlertConditionMonitoredLimits::All);
 			return LimitAlertCS;
 		}
 
@@ -160,35 +160,35 @@ using namespace SDCLib::Data::SDC;
 
 	class PulseOximeterAlarmFingerOutHandler : public SDCProviderAlertConditionStateHandler<AlertConditionState>{
 		public:
-		PulseOximeterAlarmFingerOutHandler(std::string descriptorHandle) : SDCProviderAlertConditionStateHandler(descriptorHandle) {
+		PulseOximeterAlarmFingerOutHandler(std::string p_descriptorHandle) : SDCProviderAlertConditionStateHandler(p_descriptorHandle) {
 			}
 
 			//Changing the Limits
-			InvocationState onStateChangeRequest(const AlertConditionState &state, const OperationInvocationContext &oic) override {
+			InvocationState onStateChangeRequest(const AlertConditionState &, const OperationInvocationContext &) override {
 				return InvocationState::Fail;
 
 			}
 
-			void sourceHasChanged(const std::string & sourceHandle)
+			void sourceHasChanged(const std::string & )
 			{
 
 			}
 
 			AlertConditionState getInitialState() override{
-				AlertConditionState AlertCS = createState(AlertActivation::Off);
+				auto AlertCS{createState(AlertActivation::Off)};
 				return AlertCS;
 			}
 
-			void setActivationState(AlertActivation activationState)
+			void setActivationState(AlertActivation p_activationState)
 			{
-				AlertConditionState currentState(*getParentProvider().getMdState().findState<AlertConditionState>(descriptorHandle));
-				currentState.setActivationState(activationState);
+				auto currentState{*getParentProvider().getMdState().findState<AlertConditionState>(descriptorHandle)};
+				currentState.setActivationState(p_activationState);
 			}
 
 		private:
 
-			AlertConditionState createState(AlertActivation activationState) {
-				AlertConditionState AlertCS(descriptorHandle, activationState);
+			AlertConditionState createState(AlertActivation p_activationState) {
+				AlertConditionState AlertCS{descriptorHandle, p_activationState};
 				return AlertCS;
 			}
 

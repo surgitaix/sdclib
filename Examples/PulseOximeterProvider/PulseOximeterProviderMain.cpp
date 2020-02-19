@@ -33,13 +33,13 @@ int main(int argc, char* argv[])
         return -1;
     }
 
-    std::string t_port = "/dev/ttyUSB0";
+    std::string t_port{"/dev/ttyS0"};
     if(argc == 2)
     {
     	t_port = argv[1];
     }
 
-	PulseOximeterProvider provider(t_SDCInstance, t_port);
+	PulseOximeterProvider provider{t_SDCInstance, t_port};
 	provider.startMedicalDevice();
 	provider.startup();
 	provider.start();

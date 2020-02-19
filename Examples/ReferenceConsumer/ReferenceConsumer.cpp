@@ -26,6 +26,7 @@
  */
 
 #include <chrono>
+#include <atomic>
 
 #include "SDCLib/SDCLibrary.h"
 #include "SDCLib/Data/SDC/SDCConsumer.h"
@@ -75,8 +76,8 @@ const std::string HANDLE_STREAM{""};
 class NumericMetricEventHandler : public SDCConsumerMDStateHandler<NumericMetricState>
 {
 private:
-    double m_currentWeight{0};
-    int m_timesValueChanged{0};
+    std::atomic<double> m_currentWeight{0};
+    std::atomic<int> m_timesValueChanged{0};
 
 public:
     NumericMetricEventHandler(std::string p_descriptorHandle)
@@ -87,7 +88,10 @@ public:
     {
         auto t_newValue{p_changedState.getMetricValue().getValue()};
         DebugOut(DebugOut::Default, "ReferenceConsumer") << "Consumer: Received value changed of " << getDescriptorHandle() << ": " << t_newValue << std::endl;
-        m_currentWeight == t_newValue ? m_timesValueChanged : m_timesValueChanged++;
+        if(m_currentWeight != t_newValue)
+        {
+        	m_timesValueChanged++;
+        }
         m_currentWeight = t_newValue;
     }
 
@@ -121,10 +125,6 @@ public:
 		currentValue = p_changedState.getMetricValue().getValue();
 	}
 
-	void onOperationInvoked(const OperationInvocationContext& , InvocationState ) override
-	{
-
-	}
 	const std::string getCurrentString()
 	{
 		return currentValue;
@@ -136,7 +136,6 @@ public:
 class EnumerStringEventHandler : public SDCConsumerMDStateHandler<EnumStringMetricState>
 {
 public:
-	std::string currentValue{};
 	EnumerStringEventHandler(std::string p_descriptorHandle)
 	: SDCConsumerMDStateHandler(p_descriptorHandle)
 	{ }
@@ -145,14 +144,13 @@ public:
 	{
 		currentValue = p_changedState.getMetricValue().getValue();
 	}
-	void onOperationInvoked(const OperationInvocationContext& , InvocationState ) override
-	{
 
-	}
 	const std::string getCurrentString()
 	{
 		return currentValue;
 	}
+private:
+	std::string currentValue{};
 };
 
 
@@ -169,15 +167,14 @@ public:
 		if(p_changedState.hasPresence())
 		{
 			auto t_newValue = p_changedState.getPresence();
-			m_presence == t_newValue ? m_timesValueChanged : m_timesValueChanged++;
+			if(m_presence != t_newValue)
+			{
+				m_timesValueChanged++;
+			}
 			m_presence = t_newValue;
 		}
 	}
 
-	void onOperationInvoked(const OperationInvocationContext& , InvocationState ) override
-	{
-
-	}
 	int getTimesValueChanged() const
 	{
 		DebugOut(DebugOut::Default, "ReferenceConsumer") << getDescriptorHandle() << " " << m_timesValueChanged << "\n";
@@ -185,7 +182,7 @@ public:
 	}
 private:
 	bool m_presence{false};
-	int m_timesValueChanged{0};
+	std::atomic<int> m_timesValueChanged{0};
 
 };
 
@@ -203,14 +200,12 @@ public:
 			DebugOut(DebugOut::Default, "ReferenceConsumer") << getDescriptorHandle() << " alert presence changed to: " << EnumToString::convert(p_changedState.getPresence()) << "\n";
 		{
 			auto t_newValue = p_changedState.getPresence();
-			m_presence == t_newValue ? m_timesValueChanged : m_timesValueChanged++;
+			if(t_newValue != m_presence)
+			{
+				m_timesValueChanged++;
+			}
 			m_presence = t_newValue;
 		}
-	}
-
-	void onOperationInvoked(const OperationInvocationContext& , InvocationState ) override
-	{
-
 	}
 
 	int getTimesValueChanged() const
@@ -220,7 +215,7 @@ public:
 	}
 private:
 	AlertSignalPresence m_presence{AlertSignalPresence::Off};
-	int m_timesValueChanged{0};
+	std::atomic<int> m_timesValueChanged{0};
 };
 
 
@@ -270,9 +265,12 @@ private:
 };
 
 
-bool ends_with(std::string const & value, std::string const & ending)
+bool ends_with(const std::string & value, const std::string & ending)
 {
-    if (ending.size() > value.size()) return false;
+    if (ending.size() > value.size())
+	{
+    	return false;
+	}
     return std::equal(ending.rbegin(), ending.rend(), value.rbegin());
 }
 
