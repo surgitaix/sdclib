@@ -91,10 +91,6 @@ target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${GEN_DIR_ROOT} )
 # All Dependencies
 target_include_directories(${CURRENT_TARGET_NAME}   PUBLIC  ${SDCLib_DEPS_INCLUDE_DIRS})
 
-# XercesC - Imported Target (Todo: Move this into FindSDCLib)
-target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC XercesC::XercesC)
-
-
 # install
 install(DIRECTORY ${GEN_DIR}/ DESTINATION ${PATH_INSTALL_INCLUDE}/${CURRENT_TARGET_NAME}/
             FILES_MATCHING PATTERN "*.hxx")
