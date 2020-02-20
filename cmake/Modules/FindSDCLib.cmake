@@ -116,7 +116,7 @@ if (CMAKE_SYSTEM_NAME MATCHES "Linux")
 
 	if(SDCLib_DYNAMIC_LINKING)
 		set(FileExtension so)
-	endif            ()
+	endif()
 
     # Set the library based on build type
     if (CMAKE_BUILD_TYPE)
@@ -184,7 +184,7 @@ list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:MSVC>>:/O
 # (Debug)
 list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Debug>,$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>>:-O0>)
 list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Debug>,$<OR:$<CXX_COMPILER_ID:ARMCC>,$<CXX_COMPILER_ID:ARMClang>>>:-O0>)
-# list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Debug>,$<CXX_COMPILER_ID:MSVC>>:/O0>) ?
+list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Debug>,$<CXX_COMPILER_ID:MSVC>>:/Od>)
 ################################################################################
 
 
@@ -305,7 +305,7 @@ else ()
 
 	# Add to Deps
 	list(APPEND SDCLib_INCLUDE_DIRS ${OPENSSL_INCLUDE_DIR})
-	list(APPEND SDCLib_DEPS_LIBRARIES ${OPENSSL_LIBRARIES})
+	list(APPEND SDCLib_DEPS_LIBRARIES ${OPENSSL_SSL_LIBRARY})
 
 endif()
 ################################################################################
@@ -337,6 +337,8 @@ else ()
         list(APPEND SDCLib_DEPS_LIBRARIES ${XercesC_LIBRARY_DEBUG})
     endif()
 endif()
+
+
 ################################################################################
 #
 #
@@ -374,6 +376,7 @@ list(APPEND SDCLib_DEPS_DEFINITIONS ${POCO_COMPILE_DEFINITIONS})
 # XSD
 ################################################################################
 # Only Include Path needed under Windows
+message(STATUS "-Looking for XSD...")
 include(SDC_XSD)
 
 # Found it?

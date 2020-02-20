@@ -3,6 +3,10 @@ Dependencies/Poco/Foundation/Makefile
 Dependencies/Poco/Makefile
 Dependencies/Poco/Net/Makefile
 
+# ignore downloaded / built Dependencies
+Dependencies/xerces-c/xerces-c
+Dependencies/xsd/xsd-4.0.0-i686-windows
+
 # ignore python cache
 *.pyc
 

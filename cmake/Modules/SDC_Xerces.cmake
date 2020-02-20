@@ -1,12 +1,9 @@
 # -*- cmake -*-
 
-
-# NOTE: TEMPORARY WORK! WIP!
-
-# - Find Xerces (Note: Different from FindXercesC !)
-# Under Linux this module calls FindXercesC!
-# Under Windows a custom implementation is used!
-# Still using the FindXercesC variables
+# - SDC custom to find Xerces
+# Linux: Forward to FindXercesC!
+# Windows:  Set some variables to help tthe find script. Call the script to set
+#           all remaining variables.
 ################################################################################
 
 ################################################################################
@@ -17,52 +14,41 @@ endif()
 ################################################################################
 
 
+################################################################################
+# Linux
+################################################################################
 IF (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     # Call the default FindXercesC script
     find_package(XercesC REQUIRED)
-ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+ENDIF()
+################################################################################
 
-
+################################################################################
+# Windows
+#
+# Note: Make sure to build xerces-c first. See README inside Dependencies/xerces-c folder for further information.
+################################################################################
 IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows") 
 
-    # By default -> Use the Xerces version installed with XSD
-    # Searching for the corresponding files
+	set(Xerces_ROOT ${SDCLib_ROOT_DIR}\\Dependencies\\xerces-c\\xerces-c)
 
-    # Only if not already set! -> We dont want to override this
-    if(NOT XSD_ROOT)
-        set(XSD_ROOT "C:\\Program Files (x86)\\CodeSynthesis XSD 4.0" CACHE PATH "Path where CodeSynthesis XSD is installed.")
-    endif()
-
-    # INCLUDE
-    set(XercesC_DEFAULT_INCLUDE_DIR ${XSD_ROOT}\\include\\ CACHE PATH "Manual XercesC include dir. NOTE: Set it manually if autodetection does not work." FORCE)
-    if(NOT EXISTS "${XercesC_DEFAULT_INCLUDE_DIR}")
-        message(FATAL_ERROR "XercesC_DEFAULT_INCLUDE_DIR DOES NOT EXIST! Please set it manually and reconfigure!")
-    endif()
-    # ADD TO CMAKE SEARCH PATH
-    list(APPEND CMAKE_PREFIX_PATH ${XercesC_DEFAULT_LIB_DIR})
-
-
-    # LIB
-	set(BIN_DIR bin64)
-    set(LIB_DIR lib64)
-	if ("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Win32")
-		set(BIN_DIR bin)
-		set(LIB_DIR lib)
+	set(XercesC_DEFAULT_INCLUDE_DIR ${Xerces_ROOT}\\src\\ CACHE PATH "Manual XercesC include dir. NOTE: Set it manually if autodetection does not work." FORCE)
+	if(NOT EXISTS "${XercesC_DEFAULT_INCLUDE_DIR}")
+		message(FATAL_ERROR "XercesC_DEFAULT_INCLUDE_DIR (${XercesC_DEFAULT_INCLUDE_DIR})DOES NOT EXIST! Please set it manually and reconfigure!")
 	endif()
+	# ADD TO CMAKE SEARCH PATH
+	list(APPEND CMAKE_PREFIX_PATH ${XercesC_DEFAULT_INCLUDE_DIR})
 
-    ################################################################################
-    # NOTE: This is just a quick fix! Set it to current maximum for auto detection.
-    ################################################################################
-    set(DEFAULT_LIB_DIR "vc-12.0")
-    ################################################################################
-
-    set(XercesC_DEFAULT_LIB_DIR "${XSD_ROOT}\\${LIB_DIR}\\${DEFAULT_LIB_DIR}\\" CACHE PATH "Manual XercesC lib dir. NOTE: Set it manually if autodetection does not work." FORCE)
+	set(XercesC_DEFAULT_LIB_DIR "${XercesC_DEFAULT_INCLUDE_DIR}\\${CMAKE_BUILD_TYPE}\\" CACHE PATH "Manual XercesC lib dir. NOTE: Set it manually if autodetection does not work." FORCE)
     if(NOT EXISTS "${XercesC_DEFAULT_LIB_DIR}")
         message(FATAL_ERROR "XercesC_DEFAULT_LIB_DIR DOES NOT EXIST! Please set it manually and reconfigure!")
     endif()
+
     # ADD TO CMAKE SEARCH PATH
     list(APPEND CMAKE_PREFIX_PATH ${XercesC_DEFAULT_LIB_DIR})
 
     # Use the default script to set all necessary variables
     find_package(XercesC REQUIRED)
-ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+
+ENDIF()
+################################################################################

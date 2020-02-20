@@ -25,25 +25,23 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     # Not needed when installed under Linux.
     # Set FOUND - Flag
     set(XSD_FOUND TRUE)
-ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-
+ENDIF()
 
 IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows") 
 
-    # By default -> Use the Xerces version installed with XSD
-    # Searching for the corresponding files
-
-    # Only if not already set! -> We dont want to override this
-    if(NOT XSD_ROOT)
-        set(XSD_ROOT "C:\\Program Files (x86)\\CodeSynthesis XSD 4.0" CACHE PATH "Path where CodeSynthesis XSD is installed." FORCE)
-    endif()
+	set(XSD_ROOT ${SDCLib_ROOT_DIR}\\Dependencies\\xsd\\xsd-4.0.0-i686-windows)
+	if(NOT EXISTS "${XSD_ROOT}")
+		message(FATAL_ERROR "XSD_ROOT (${XSD_ROOT})DOES NOT EXIST! Please set it manually and reconfigure!")
+	endif()
 
     # INCLUDE
-    set(XSD_INCLUDE_DIRS ${XSD_ROOT}\\include\\ CACHE PATH "Manual XSD include dir. NOTE: Set it manually if autodetection does not work." FORCE)
+    set(XSD_INCLUDE_DIRS ${XSD_ROOT}\\libxsd CACHE PATH "Manual XSD include dir. NOTE: Set it manually if autodetection does not work." FORCE)
     if(NOT EXISTS "${XSD_INCLUDE_DIRS}")
-        message(FATAL_ERROR "XSD_ROOT DOES NOT EXIST! Please set it manually and reconfigure!")
+        message(FATAL_ERROR "XSD_INCLUDE_DIRS DOES NOT EXIST! Please set it manually and reconfigure!")
     endif()
 
+	message(STATUS "Found XSD: ${XSD_INCLUDE_DIRS}")
     # Set FOUND - Flag
     set(XSD_FOUND TRUE)
-ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+
+ENDIF()

@@ -91,7 +91,9 @@ set_property(CACHE SDC_CPPCHECK PROPERTY STRINGS "ON" "OFF")
 # STATIC OR DYNAMIC LINKING - Default to ON
 set(SDCLib_DYNAMIC_LINKING	ON CACHE STRING "Enable dynamic Linking")
 set_property(CACHE SDCLib_DYNAMIC_LINKING PROPERTY STRINGS "ON" "OFF")
-
+if (CMAKE_SYSTEM_NAME MATCHES "Windows")
+	set(SDCLib_DYNAMIC_LINKING	OFF CACHE STRING "Enable dynamic Linking (Disabled on windows by default)" FORCE)
+endif()
 
 ################################################################################
 
@@ -112,16 +114,27 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
     set (CMAKE_INSTALL_PREFIX ${PROJECT_BINARY_DIR}/install CACHE STRING "Where to install the binaries?" FORCE)
 endif()
 
-set(PATH_RUNTIME_OUTPUT ${PROJECT_BINARY_DIR}/bin)
-set(PATH_LIBRARY_OUTPUT ${PROJECT_BINARY_DIR}/bin)
-set(PATH_ARCHIVE_OUTPUT ${PROJECT_BINARY_DIR}/lib)
+# Note: https://cmake.org/cmake/help/latest/prop_tgt/LIBRARY_OUTPUT_DIRECTORY.html
+#		"Multi-configuration generators (VS, Xcode) append a per-configuration
+#		subdirectory to the specified directory unless a generator expression is used."
+#		-> Append empty generator expression.
+#
+#		Use the _ROOT Version for all processes during "configure" phase (like configure_file)
+#		Use the other Version for all processes during "generator" phase
+set(PATH_RUNTIME_OUTPUT_ROOT ${PROJECT_BINARY_DIR}/bin)
+set(PATH_LIBRARY_OUTPUT_ROOT ${PROJECT_BINARY_DIR}/bin)
+set(PATH_ARCHIVE_OUTPUT_ROOT ${PROJECT_BINARY_DIR}/lib)
+set(PATH_RUNTIME_OUTPUT ${PATH_RUNTIME_OUTPUT_ROOT}/$<0:>)
+set(PATH_LIBRARY_OUTPUT ${PATH_ARCHIVE_OUTPUT_ROOT}/$<0:>)
+set(PATH_ARCHIVE_OUTPUT ${PATH_ARCHIVE_OUTPUT_ROOT}/$<0:>)
+
 set(CMAKE_DEBUG_POSTFIX _d) # Force the Debug Postfix
 
 # by "default" take the install prefix
-set(PATH_INSTALL_RUNTIME bin)
-set(PATH_INSTALL_LIBRARY bin)
-set(PATH_INSTALL_ARCHIVE lib)
-set(PATH_INSTALL_INCLUDE include)
+set(PATH_INSTALL_RUNTIME bin/$<0:>)
+set(PATH_INSTALL_LIBRARY bin/$<0:>)
+set(PATH_INSTALL_ARCHIVE lib/$<0:>)
+set(PATH_INSTALL_INCLUDE include/$<0:>)
 ################################################################################
 
 
