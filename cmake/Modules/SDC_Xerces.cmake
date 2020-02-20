@@ -30,7 +30,14 @@ ENDIF()
 ################################################################################
 IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows") 
 
+	# Some variables...
+	set(XERCES_RELEASE_DLL_NAME 	xerces-c_3_2.dll) 	# NOTE: If version ever changes: CHANGE HERE!
+	set(XERCES_DEBUG_DLL_NAME 		xerces-c_3_2D.dll)  # NOTE: If version ever changes: CHANGE HERE!
 	set(Xerces_ROOT ${SDCLib_ROOT_DIR}\\Dependencies\\xerces-c\\xerces-c)
+
+	set(XERCES_RELEASE_DLL 	${XercesC_DEFAULT_INCLUDE_DIR}\\Release\\${XERCES_RELEASE_DLL_NAME})
+	set(XERCES_DEBUG_DLL 	${XercesC_DEFAULT_INCLUDE_DIR}\\Debug\\${XERCES_DEBUG_DLL_NAME})
+
 
 	set(XercesC_DEFAULT_INCLUDE_DIR ${Xerces_ROOT}\\src\\ CACHE PATH "Manual XercesC include dir. NOTE: Set it manually if autodetection does not work." FORCE)
 	if(NOT EXISTS "${XercesC_DEFAULT_INCLUDE_DIR}")
@@ -49,6 +56,20 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 
     # Use the default script to set all necessary variables
     find_package(XercesC REQUIRED)
+
+	# FOUND? -> Copy DLLS
+	if(XercesC_FOUND)
+		# Release
+		if(EXISTS ${XERCES_RELEASE_DLL})
+			message(STATUS "Copy XercesC Release DLL (${XERCES_RELEASE_DLL_NAME}) to bin folder...")
+			configure_file(${XERCES_RELEASE_DLL}	${PATH_RUNTIME_OUTPUT_ROOT}\\${XERCES_RELEASE_DLL_NAME} COPYONLY)
+		endif()
+		# Debug
+		if(EXISTS ${XERCES_DEBUG_DLL})
+			message(STATUS "Copy XercesC Debug DLL (${XERCES_DEBUG_DLL_NAME}) to bin folder...")
+			configure_file(${XERCES_DEBUG_DLL}		${PATH_RUNTIME_OUTPUT_ROOT}\\${XERCES_DEBUG_DLL_NAME} COPYONLY)
+		endif()
+	endif()
 
 ENDIF()
 ################################################################################

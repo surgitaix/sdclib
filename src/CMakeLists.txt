@@ -502,9 +502,9 @@ target_compile_definitions( ${CURRENT_TARGET_NAME} PUBLIC ${SDCLib_DEFINITIONS} 
 target_compile_options(${CURRENT_TARGET_NAME}      PUBLIC ${SDCLib_OPTIONS} )
 
 # All Dependencies
-target_link_libraries(${CURRENT_TARGET_NAME}        PUBLIC  ${SDCLib_DEPS_LIBRARIES})
-target_include_directories(${CURRENT_TARGET_NAME}   PUBLIC  ${SDCLib_DEPS_INCLUDE_DIRS})
-target_compile_definitions(${CURRENT_TARGET_NAME}   PUBLIC  ${SDCLib_DEPS_DEFINITIONS})
+target_link_libraries(${CURRENT_TARGET_NAME}        		PUBLIC  ${SDCLib_DEPS_LIBRARIES})
+target_include_directories(${CURRENT_TARGET_NAME}   SYSTEM 	PUBLIC  ${SDCLib_DEPS_INCLUDE_DIRS})
+target_compile_definitions(${CURRENT_TARGET_NAME}   		PUBLIC  ${SDCLib_DEPS_DEFINITIONS})
 
 
 # XercesC - Imported Target (Todo: Move this into FindSDCLib)
@@ -514,7 +514,7 @@ target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC XercesC::XercesC)
 # DataModel
 target_sources(${CURRENT_TARGET_NAME} PRIVATE $<TARGET_OBJECTS:DataModel>)
 # Note: 2nd line for cmake < 3.12
-target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC $<TARGET_PROPERTY:DataModel,INTERFACE_INCLUDE_DIRECTORIES>)
+target_include_directories( ${CURRENT_TARGET_NAME} SYSTEM PUBLIC $<TARGET_PROPERTY:DataModel,INTERFACE_INCLUDE_DIRECTORIES>)
 
 # build
 set_target_properties(  ${CURRENT_TARGET_NAME}

@@ -338,6 +338,8 @@ else ()
     endif()
 endif()
 
+list(APPEND SDCLib_DEPS_INCLUDE_DIRS ${XercesC_INCLUDE_DIR})
+
 
 ################################################################################
 #

@@ -27,7 +27,7 @@ Lirary
 
 in Debug / Release mode.
 
-NOTE: SDCLib Applications will need the built xerces DLL. Either copy them to your
-system folder or to the binary directory next to your executables.
+NOTE: SDCLib Applications will need the built xerces DLL.
+SDC_Xerces.cmake will copy them to bin folder during CMake configuration if already built.
 
 Proceeed to generate the SDCLib via cmake or cmake-gui (recommended).
