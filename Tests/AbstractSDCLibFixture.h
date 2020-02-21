@@ -39,7 +39,12 @@ public:
 
     SDCLib::SDCInstance_shared_ptr createSDCInstance()
     {
-        return SDCInstance::createSDCInstance();
+		auto t_SDCInstance = SDCInstance::createSDCInstance();
+
+		t_SDCInstance->setIP6enabled(false);
+		t_SDCInstance->setIP4enabled(true);
+
+        return t_SDCInstance;
     }
 
 private:
