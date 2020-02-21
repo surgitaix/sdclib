@@ -161,11 +161,11 @@ DPWSHostSocketImpl::DPWSHostSocketImpl(SDCLib::Config::NetworkConfig_shared_ptr 
     {
         // Create ListeningSocket
         m_ipv4MulticastListeningSocket = Poco::Net::MulticastSocket(Poco::Net::IPAddress::Family::IPv4);
-
         // Add only interfaces bound to this Config
         if (m_networkConfig->isBound()) {
             // Bind ListeningSocket
-            auto t_ipv4BindingAddress = m_ipv4DiscoveryMulticastAddress;
+			// TODO: Poco::Net::IPAddress() returns 0.0.0.0 which doesnt allow fitlering by adapter refactor!
+            auto t_ipv4BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress(), p_config->_getMulticastPortv4());
             m_ipv4MulticastListeningSocket.bind(t_ipv4BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             for (auto t_interface : m_networkConfig->getNetworkInterfaces()) {
                 try
@@ -187,7 +187,7 @@ DPWSHostSocketImpl::DPWSHostSocketImpl(SDCLib::Config::NetworkConfig_shared_ptr 
         }
         else {
             // Bind ListeningSocket
-            auto t_ipv4BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress::Family::IPv4, m_ipv4DiscoveryMulticastAddress.port());
+            auto t_ipv4BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress(), m_ipv4DiscoveryMulticastAddress.port());
             m_ipv4MulticastListeningSocket.bind(t_ipv4BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             // Add all interfaces
             for (const auto & t_nextIf : Poco::Net::NetworkInterface::list()) {
@@ -224,7 +224,7 @@ DPWSHostSocketImpl::DPWSHostSocketImpl(SDCLib::Config::NetworkConfig_shared_ptr 
         // Add only interfaces bound to this Config
         if (m_networkConfig->isBound()) {
             // Bind ListeningSocket
-            auto t_ipv6BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress::Family::IPv6, m_ipv6DiscoveryMulticastAddress.port());
+            auto t_ipv6BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress{ Poco::Net::IPAddress::Family::IPv6 }, m_ipv6DiscoveryMulticastAddress.port());
             m_ipv6MulticastListeningSocket.bind(t_ipv6BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             for (auto t_interface : m_networkConfig->getNetworkInterfaces()) {
                 try
@@ -247,7 +247,7 @@ DPWSHostSocketImpl::DPWSHostSocketImpl(SDCLib::Config::NetworkConfig_shared_ptr 
         }
         else {
             // Bind ListeningSocket
-            auto t_ipv6BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress(Poco::Net::IPAddress::Family::IPv6), m_ipv6DiscoveryMulticastAddress.port());
+            auto t_ipv6BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress{ Poco::Net::IPAddress::Family::IPv6 }, m_ipv6DiscoveryMulticastAddress.port());
             m_ipv6MulticastListeningSocket.bind(t_ipv6BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             // Add all interfaces
             for (const auto & t_nextIf : Poco::Net::NetworkInterface::list()) {

@@ -38,7 +38,7 @@ MDPWSStreamingAdapter::MDPWSStreamingAdapter(SDCLib::Config::NetworkConfig_share
         // Add only interfaces bound to this Config
         if (m_networkConfig->isBound()) {
             // Bind MulticastSocket
-            auto t_bindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress::Family::IPv4, m_ipv4MulticastAddress.port());
+            auto t_bindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress{ Poco::Net::IPAddress::Family::IPv4 }, m_ipv4MulticastAddress.port());
             m_ipv4MulticastSocket.bind(t_bindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             for (auto t_interface : m_networkConfig->getNetworkInterfaces()) {
                 try {
@@ -53,7 +53,7 @@ MDPWSStreamingAdapter::MDPWSStreamingAdapter(SDCLib::Config::NetworkConfig_share
         }
         else {
             // Bind MulticastSocket
-            const Poco::Net::SocketAddress t_bindingAddress(Poco::Net::IPAddress::Family::IPv4, m_ipv4MulticastAddress.port());
+            const Poco::Net::SocketAddress t_bindingAddress(Poco::Net::IPAddress{ Poco::Net::IPAddress::Family::IPv4 }, m_ipv4MulticastAddress.port());
             m_ipv4MulticastSocket.bind(m_ipv4MulticastAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             // Add all interfaces
             for (const auto & t_nextIf : Poco::Net::NetworkInterface::list()) {
@@ -83,7 +83,7 @@ MDPWSStreamingAdapter::MDPWSStreamingAdapter(SDCLib::Config::NetworkConfig_share
         // Add only interfaces bound to this Config
         if (m_networkConfig->isBound()) {
             // Bind MulticastSocket
-            auto t_bindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress::Family::IPv6, m_ipv6MulticastAddress.port());
+            auto t_bindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress{ Poco::Net::IPAddress::Family::IPv6 }, m_ipv6MulticastAddress.port());
             m_ipv6MulticastSocket.bind(t_bindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             for (auto t_interface : m_networkConfig->getNetworkInterfaces()) {
                 try
@@ -99,7 +99,7 @@ MDPWSStreamingAdapter::MDPWSStreamingAdapter(SDCLib::Config::NetworkConfig_share
         }
         else {
             // Bind MulticastSocket
-            const Poco::Net::SocketAddress t_bindingAddress(Poco::Net::IPAddress::Family::IPv6, m_ipv6MulticastAddress.port());
+            const Poco::Net::SocketAddress t_bindingAddress(Poco::Net::IPAddress{ Poco::Net::IPAddress::Family::IPv6 }, m_ipv6MulticastAddress.port());
             m_ipv6MulticastSocket.bind(m_ipv6MulticastAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             // Add all interfaces
             for (const auto & t_nextIf : Poco::Net::NetworkInterface::list()) {
