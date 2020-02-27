@@ -4,62 +4,63 @@
 namespace Network {
 
     ContextWorker::ContextWorker(int threads) :
-        _started(false)
+        m_started(false)
     {
          assert((threads >= 0) && "Working threads counter must not be negative!");
 
-         _context = std::make_shared<asio::io_context>();
+         m_context = std::make_shared<asio::io_context>();
          for (int thread = 0; thread < threads; ++thread)
          {
-             _threads.emplace_back(std::thread());
+             m_threads.emplace_back(std::thread());
          }
-          _strand = std::make_shared<asio::io_context::strand>(*_context);
+          m_strand = std::make_shared<asio::io_context::strand>(*m_context);
     }
 
     size_t ContextWorker::workerThreadsCount()
     {
-        return _threads.size();
+        return m_threads.size();
     }
 
     bool ContextWorker::start()
     {
-        if(_started)
+        if(m_started)
         {
                 return false;
         }
-        auto self(this->shared_from_this());
+        auto self{this->shared_from_this()};
         auto start_handler = [this, self]()
         {
-             if(_started)
+             if(m_started)
              {
                  return;
              }
-        _started = true;
+        m_started = true;
         };
 
-        _strand->post(start_handler);
+        m_strand->post(start_handler);
 
-        for(size_t thread = 0; thread < _threads.size(); ++thread)
+        for(size_t thread = 0; thread < m_threads.size(); ++thread)
         {
-            _threads[thread] = std::thread([this, self]() {serviceThread(self, _context);});
+            m_threads[thread] = std::thread([this, self]() {serviceThread(self, m_context);});
         }
         return true;
     }
 
-    void ContextWorker::serviceThread(std::shared_ptr<ContextWorker> contextWorker, std::shared_ptr<asio::io_context> context)
+    void ContextWorker::serviceThread(std::shared_ptr<ContextWorker> p_contextWorker, std::shared_ptr<asio::io_context> p_context)
     {
         try
         {
-            asio::io_context::work work(*context);
+            asio::io_context::work work{*p_context};
             do
             {
                 try
                 {
-                	// Update once every second to reduce the resource consumption of the program
-                	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+//                	// Update once every second to reduce the resource consumption of the program
+//                	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                	//get all current work
+                	// p_context->poll()
 
-                    //get all current work
-                    context->poll();
+                    p_context->run();
                 }
                 catch (const asio::system_error& ex)
                 {
@@ -73,11 +74,11 @@ namespace Network {
                     }
                     throw;
                 }
-            } while (contextWorker->isStarted());
+            } while (p_contextWorker->isStarted());
         }
         catch (const asio::system_error& ex)
         {
-            contextWorker->sendError(ex.code());
+        	p_contextWorker->sendError(ex.code());
         }
         catch (const std::exception& ex)
         {
@@ -91,13 +92,13 @@ namespace Network {
 
     std::shared_ptr<asio::io_context>& ContextWorker::getContext()
     {
-        return _context;
+        return m_context;
     }
 
 
     bool ContextWorker::isStarted()
     {
-        return _started;
+        return m_started;
     }
 
     bool ContextWorker::stop()
@@ -113,25 +114,25 @@ namespace Network {
     	            return;
 
     	        // Stop Asio services
-    	        _context->stop();
+    	        m_context->stop();
 
     	        // Update the started flag
-    	        _started = false;
+    	        m_started = false;
 
     	        // Call the service stopped handler
     	    };
-    	    _strand->post(stop_handler);
-    	    for (auto& thread : _threads)
+    	    m_strand->post(stop_handler);
+    	    for (auto& thread : m_threads)
     	    {
     	    	thread.join();
     	    }
     	    return true;
     }
 
-    void ContextWorker::sendError(std::error_code ec)
+    void ContextWorker::sendError(std::error_code p_ec)
     {
         //Skip end of file error
-        if(ec == asio::error::eof)
+        if(p_ec == asio::error::eof)
         {
             return;
         }

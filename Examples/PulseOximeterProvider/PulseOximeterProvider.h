@@ -32,35 +32,32 @@ class PulseOximeterAlarmLimitSatO2Handler;
 class PulseOximeterAlarmFingerOutHandler;
 
 
-using namespace SDCLib;
-using namespace SDCLib::Util;
-using namespace SDCLib::Data::SDC;
 
 class PulseOximeterProvider : public SDCLib::Util::Task{
 public:
-	PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance> p_SDCInstance, const std::string& port);
-	virtual ~PulseOximeterProvider();
+	PulseOximeterProvider(std::shared_ptr<SDCLib::SDCInstance> p_SDCInstance, const std::string& p_port);
+	~PulseOximeterProvider();
 
 	void setPort(int port);
 
-	void setEndPointReference(std::string endPointReference);
+	void setEndPointReference(std::string p_endPointReference);
 
 	void startMedicalDevice();
 
 	void startup();
 	void shutdown();
-	virtual void runImpl() override;
+	void runImpl() override;
 
-	MdibContainer getMdib();
-	MdDescription getMdDescription();
-	MdState getMdState();
+	SDCLib::Data::SDC::MdibContainer getMdib();
+	SDCLib::Data::SDC::MdDescription getMdDescription();
+	SDCLib::Data::SDC::MdState getMdState();
 
 private:
 
-	void addAlertSystem(VmdDescriptor &vmdDesc);
-	void addPulseRateLimitAlertCondition(AlertSystemDescriptor &alertSystemDesc);
-	void addSatO2LimitAlertCondition(AlertSystemDescriptor &alertSystemDesc);
-	void addFingerOutAlertCondition(AlertSystemDescriptor &alertSystemDesc);
+	void addAlertSystem(SDCLib::Data::SDC::VmdDescriptor &vmdDesc);
+	void addPulseRateLimitAlertCondition(SDCLib::Data::SDC::AlertSystemDescriptor &p_alertSystemDesc);
+	void addSatO2LimitAlertCondition(SDCLib::Data::SDC::AlertSystemDescriptor &p_alertSystemDesc);
+	void addFingerOutAlertCondition(SDCLib::Data::SDC::AlertSystemDescriptor &p_alertSystemDesc);
 
 	SDCLib::Data::SDC::SDCProvider sdcProvider;
 	const std::string COMport;
@@ -71,9 +68,9 @@ private:
 	std::shared_ptr<PulseOximeterAlarmLimitPulseRateHandler> pulseRateAlarmLimitHandler;
 	std::shared_ptr<PulseOximeterAlarmLimitSatO2Handler> satO2AlarmLimitHandler;
 	std::shared_ptr<PulseOximeterAlarmFingerOutHandler> fingerAlarmHandler;
-	NumericMetricDescriptor satO2Descriptor;
-	NumericMetricDescriptor pulseRateDescriptor;
-	AlertSystemDescriptor pulseOximeterAlertSystemDescriptor;
+	SDCLib::Data::SDC::NumericMetricDescriptor satO2Descriptor;
+	SDCLib::Data::SDC::NumericMetricDescriptor pulseRateDescriptor;
+	SDCLib::Data::SDC::AlertSystemDescriptor pulseOximeterAlertSystemDescriptor;
 
 
 	std::shared_ptr<Serial::SerialConnectionEventHandler> serial;

@@ -8,13 +8,15 @@
 #ifndef EXAMPLES_PULSEOXIMETERPROVIDER_SERIALCONNECTIONEVENTHANDLER_H_
 #define EXAMPLES_PULSEOXIMETERPROVIDER_SERIALCONNECTIONEVENTHANDLER_H_
 
+#include <atomic>
+
 #include "SerialConnection.h"
 
 namespace Serial {
 
 class SerialConnectionEventHandler : public SerialConnection{
 public:
-	SerialConnectionEventHandler(const std::string& port, unsigned baud_rate);
+	SerialConnectionEventHandler(const std::string& p_port, unsigned p_baud_rate);
 	virtual ~SerialConnectionEventHandler();
 
 	int getSpo2();
@@ -24,15 +26,15 @@ public:
 protected:
     void onConnected() override;
     void onDisconnected() override;
-    void onSent(const void* data, size_t size) override;
-    void onReceived(const void* data, size_t size) override;
-    void onError(const std::string& category, const std::string& message) override;
+    void onSent(const uint8_t* p_data, size_t p_size) override;
+    void onReceived(const uint8_t* p_data, size_t p_size) override;
+    void onError(const std::string& p_category, const std::string& p_message) override;
 
 private:
-    bool fingerOut;
-    int spo2;
-    int pulseRate;
-    int dataPackage;
+    bool m_fingerOut{false};
+    int m_spo2{0};
+    int m_pulseRate{0};
+    int m_dataPackage{0};
 
 };
 

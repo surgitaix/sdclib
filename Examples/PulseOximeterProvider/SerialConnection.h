@@ -8,7 +8,6 @@
 #ifndef EXAMPLES_PULSEOXIMETERPROVIDER_SERIALCONNECTION_H_
 #define EXAMPLES_PULSEOXIMETERPROVIDER_SERIALCONNECTION_H_
 
-#include <iostream>
 #include <chrono>
 #include <thread>
 
@@ -35,7 +34,7 @@ public:
 
 	void stop();
 
-	void send(const void* buffer, size_t size);
+	void send(const char* buffer, size_t size);
 
 	void writeString(std::string outString);
 
@@ -73,13 +72,13 @@ protected:
      * @brief onSent
      * Use this function to define the behavior when a data is send.
      */
-    virtual void onSent(const void*, size_t) {}
+    virtual void onSent(const uint8_t*, size_t) {}
 
     /**
      * @brief onReceived
      * Use this function to define the processing of the incoming data.
      */
-    virtual void onReceived(const void* , size_t ) { std::cout << "Test " << std::endl;}
+    virtual void onReceived(const uint8_t* , size_t ) {}
 
     /**
      * @brief onError
@@ -92,22 +91,22 @@ protected:
     }
 
 private:
-    bool _connected;
-    std::atomic<bool> _sending;
-    std::shared_ptr<Network::ContextWorker> _contextWorker;
-    std::shared_ptr<asio::io_context> _context;
-    asio::io_context::strand _strand;
-    asio::serial_port _serialPort;
-	std::vector<uint8_t> _receive_buffer;
-	std::vector<uint8_t> _send_buffer;
-	std::string _port;
+    bool m_connected{false};
+    std::atomic<bool> m_sending{false};
+    std::shared_ptr<Network::ContextWorker> m_contextWorker = std::make_shared<Network::ContextWorker>();
+    std::shared_ptr<asio::io_context> m_context;
+    asio::io_context::strand m_strand;
+    asio::serial_port m_serialPort;
+	std::vector<uint8_t> m_receive_buffer{};
+	std::vector<uint8_t> m_send_buffer{};
+	std::string m_port{};
 
 	// If no measurement takes place, the pulseoximeter will shutdown for energy saving.
 	// If it is restarted, no data can be read from it, due to the missing init sequence.
 	// This thread periodically checks, if the pulseoximeter is still connected and if not
 	// attempts to send the init sequence to the device.
 	std::chrono::time_point<std::chrono::steady_clock> m_lastReceive;
-	const int m_reconnectTimeInMS = 2000;
+	const int m_reconnectTimeInMS{2000};
 	std::thread m_reconnectThread;
 
 };
