@@ -34,12 +34,13 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 	set(XERCES_RELEASE_DLL_NAME 	xerces-c_3_2.dll) 	# NOTE: If version ever changes: CHANGE HERE!
 	set(XERCES_DEBUG_DLL_NAME 		xerces-c_3_2D.dll)  # NOTE: If version ever changes: CHANGE HERE!
 	set(Xerces_ROOT ${SDCLib_ROOT_DIR}\\Dependencies\\xerces-c\\xerces-c)
+	set(XercesC_DEFAULT_INCLUDE_DIR ${Xerces_ROOT}\\src\\ CACHE PATH "Manual XercesC include dir. NOTE: Set it manually if autodetection does not work." FORCE)
 
 	set(XERCES_RELEASE_DLL 	${XercesC_DEFAULT_INCLUDE_DIR}\\Release\\${XERCES_RELEASE_DLL_NAME})
 	set(XERCES_DEBUG_DLL 	${XercesC_DEFAULT_INCLUDE_DIR}\\Debug\\${XERCES_DEBUG_DLL_NAME})
 
 
-	set(XercesC_DEFAULT_INCLUDE_DIR ${Xerces_ROOT}\\src\\ CACHE PATH "Manual XercesC include dir. NOTE: Set it manually if autodetection does not work." FORCE)
+	# Check if exists and append to search path to let the XercesC script find the files
 	if(NOT EXISTS "${XercesC_DEFAULT_INCLUDE_DIR}")
 		message(FATAL_ERROR "XercesC_DEFAULT_INCLUDE_DIR (${XercesC_DEFAULT_INCLUDE_DIR})DOES NOT EXIST! Please set it manually and reconfigure!")
 	endif()

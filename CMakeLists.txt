@@ -142,7 +142,7 @@ set(PATH_INSTALL_INCLUDE include/$<0:>)
 # Targets
 # Overwrite
 ################################################################################
-set(CMAKE_CONFIGURATION_TYPES "Release;Debug" CACHE STRING "Config Types")
+set(CMAKE_CONFIGURATION_TYPES "Release;Debug" CACHE STRING "Config Types" FORCE)
 # None specified?
 if(NOT CMAKE_BUILD_TYPE)
     message(STATUS "No build type specified, setting to Debug.")
