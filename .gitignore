@@ -16,7 +16,7 @@ codegenerator/backup
 # Doxygen
 doc/Doxygen/doc
 
-# Visual Studio 2019 ignore
+# Visual Studio ignore
 .vs/
-out/
-CMakeSettings.json
+build/
+install/
