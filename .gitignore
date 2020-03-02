@@ -15,3 +15,8 @@ codegenerator/backup
 
 # Doxygen
 doc/Doxygen/doc
+
+# Visual Studio 2019 ignore
+.vs/
+out/
+CMakeSettings.json
