@@ -111,7 +111,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 ################################################################################
 if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
     message(STATUS "Default install prefix init to default, manually setting one...")
-    set (CMAKE_INSTALL_PREFIX ${PROJECT_BINARY_DIR}/install CACHE STRING "Where to install the binaries?" FORCE)
+    set (CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/install CACHE STRING "Where to install the binaries?" FORCE)
 endif()
 
 # Note: https://cmake.org/cmake/help/latest/prop_tgt/LIBRARY_OUTPUT_DIRECTORY.html
@@ -121,9 +121,9 @@ endif()
 #
 #		Use the _ROOT Version for all processes during "configure" phase (like configure_file)
 #		Use the other Version for all processes during "generator" phase
-set(PATH_RUNTIME_OUTPUT_ROOT ${PROJECT_BINARY_DIR}/bin)
-set(PATH_LIBRARY_OUTPUT_ROOT ${PROJECT_BINARY_DIR}/bin)
-set(PATH_ARCHIVE_OUTPUT_ROOT ${PROJECT_BINARY_DIR}/lib)
+set(PATH_RUNTIME_OUTPUT_ROOT ${CMAKE_BINARY_DIR}/bin)
+set(PATH_LIBRARY_OUTPUT_ROOT ${CMAKE_BINARY_DIR}/bin)
+set(PATH_ARCHIVE_OUTPUT_ROOT ${CMAKE_BINARY_DIR}/lib)
 set(PATH_RUNTIME_OUTPUT ${PATH_RUNTIME_OUTPUT_ROOT}/$<0:>)
 set(PATH_LIBRARY_OUTPUT ${PATH_LIBRARY_OUTPUT_ROOT}/$<0:>)
 set(PATH_ARCHIVE_OUTPUT ${PATH_ARCHIVE_OUTPUT_ROOT}/$<0:>)
