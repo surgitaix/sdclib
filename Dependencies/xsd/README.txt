@@ -18,9 +18,7 @@ pamac install xsd
 
 Download XSDCXX from official CodeSynthesis homepage:
 
-https://www.codesynthesis.com/products/xsd/download.xhtml
-
--> Download the .zip file (https://www.codesynthesis.com/download/xsd/4.0/windows/i686/xsd-4.0.0-i686-windows.zip)
+-> Download the .zip file https://www.codesynthesis.com/download/xsd/4.0/windows/i686/xsd-4.0.0-i686-windows.zip
 and extract it into this folder.
 
 It now should contain a folder called "xsd-4.0.0-i686-windows".
