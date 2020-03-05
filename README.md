@@ -23,57 +23,24 @@
 <br/>
 
 ## Build SDCLib using CMake
+####**++ Check the doc/ folder for additional information! ++**
 We recommend using CMake GUI to configure and generate the project.  
 - **sudo apt-get install cmake-gui**  
+For a quick start follow the instructions below to build in source.  
+
+### Generate and build in source
+- clone:
+    - **git clone** https://github.com/surgitaix/sdclib.git
+- navigate to the cloned folder and generate:
+	- **cmake .**
+- navigate to the build folder and build:
+	- **make -j4**  
   
-(Hint: Select the "Grouped" checkbox to group name related variables together in a tree view structure)
-
-### Steps to Generate the Project (in source) ###
-(*Note: We recommend using out of source build as described below!*)  
-- clone this project:  
-    - **git clone** https://github.com/surgitaix/sdclib.git  
-- navigate to the cloned folder and generate with:  
-    - **cmake .**
-
-### Steps to Generate the Project (out of source) ###
-##### Note: A graphical how-to of the following steps to generate the makefiles can also be found under doc/SDCLib_Eclipse.pdf. Just the used generator varies. Choose "Unix Makefiles" and proceed as described. #####
-(Steps with cmake-gui!)
-- clone this project:  
-    - **git clone** https://github.com/surgitaix/sdclib.git  
-- Open cmake gui.  
-- Browse Source... -> select the cloned folder (default should be this projects name: *sdclib*)  
-- Browse Build... -> select **another** folder (e.g. *sdclib_build*)  
-- Click Configure: If the build folder does not exist, CMake will ask if it should create it for you. Select yes.
-- In the next dialog you have to specify the *generator*. **Unix Makefiles** should be fine but if your preferred IDE has CMake support it will probably be listed in the drop down too. If you have the choice between *<IDE> Ninja* and a *<IDE> Unix Makefiles* variant, choose the Unix Makefile variant.
-- Stay with the option "Use default native compilers" unless you know what you are doing and click *Finish*.
-- During configuration you will most likely see a Warning (red text): It tells you that it could not find the sdclib (yet). For most users it is fine to proceed here.  
-- Configure and Generate again. The new variable will be highlighted by CMake.  
-NOTE: The Warning wont disappear unless you finally built the library.  
-- Your project should now be generated inside the selected build folder.
-
-
-### Further configuration ###
-#### BuildType ####
-The Buildtype is controlled by CMAKE_BUILD_TYPE and defaults to Debug. If you want to change it, you can either do this inside the gui before calling configure/generate or pass it via the command line e.g.:
-- cmake -DCMAKE_BUILD_TYPE=Release
-#### Examples and Tests ####
-Examples and Tests are built by default. If you dont want to built them, you can set the option to *OFF* before building.
-- SDC_EXAMPLES [*ON/OFF*]
-- SDC_TESTS [*ON/OFF*]  
+**Note**  
+On a Raspberry Pi you might have to lower the number of parallel jobs ( -j ) or just use ***make*** (without args).
   
-See the 'Examples' and 'Tests' folders for example implementations.  
-To run SDC related tests run './UnitTests'.
-
-### Building the Project ###
-To build the project navigate to the build folder and enter:  
-- **make**
-  
-You can specify the number of parallel **jobs** with **j** (The following command uses 4 parallel jobs):
-- **make -j4**  
-#### Note: On a Raspberry Pi you have to lower the number of parallel jobs ( -j ) or just use ***make*** without arguments. ####
-  
-## Installing the Library (Non CMake Projects) ##
-To get all the necessary Files to integrate the SDCLib into other projects (without CMake) follow the instructions above, but instead of **make** issue **make install** (with the optional -j parameter).
+## Building for non CMake Projects ##
+To get all the necessary files to integrate the SDCLib into other projects (without CMake) follow the instructions above, but instead of **make** issue **make install** (with the optional -j parameter).
 This will copy the executable files / SDCLibrary and the header files into the folder inside the CMake Variable *CMAKE_INSTALL_PREFIX*. By default this will be **<YOUR_BUILD_FOLDER\>/install**.
 
 ## Using the SDCLib inside your project ##
