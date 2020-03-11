@@ -8,10 +8,10 @@ Note that you need to install the *-dev version for most of the packages!
 - XSDCXX  
 - xerces-c  
 - OpenSSL  
-## Optional dependencies for MdibVisualizer
+### Optional dependencies for MdibVisualizer
 - graphviz, evince, pdfunite
   
-### Installing the dependecies: .
+### Installing dependecies:  
 
 - Examples for Debian / Ubuntu:  
     - **sudo apt-get install xsdcxx**  
