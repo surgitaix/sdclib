@@ -30,7 +30,8 @@ void HTTPServer::_cleanup()
 {
 	// stop?
 
-	if(m_httpServer) {
+	if(m_httpServer)
+	{
 		m_httpServer.reset();
 	}
 }
@@ -56,9 +57,8 @@ bool HTTPServer::init(HTTPRequestHandlerFactory_shared_ptr p_factory)
 
 	auto t_serverParams = new Poco::Net::HTTPServerParams;
 	auto t_timeout_us = SDCLib::Config::SDC_CONNECTION_TIMEOUT_MS*1000; // Convert to microseconds
-	t_serverParams->setTimeout(Poco::Timespan(t_timeout_us));
-	t_serverParams->setKeepAliveTimeout(Poco::Timespan(t_timeout_us * 2));
-
+	t_serverParams->setTimeout(Poco::Timespan{t_timeout_us});
+	t_serverParams->setKeepAliveTimeout(Poco::Timespan{t_timeout_us});
 
     bool USE_SSL = getSSLConfig()->isInit();
 	// Use SSL

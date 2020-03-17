@@ -47,20 +47,21 @@ std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPClientSession & p_s
     std::string t_responseContent;
     t_responseContent.reserve(16384);
     Poco::Net::HTTPResponse t_response;
-	try {
+	try
+    {
     	Poco::Net::HTTPRequest t_request(Poco::Net::HTTPRequest::HTTP_POST, p_path, Poco::Net::HTTPMessage::HTTP_1_1);
         t_request.setContentType("application/soap+xml");
         t_request.setContentLength(p_requestData.length());
         t_request.setKeepAlive(p_session.getKeepAlive());
 
+        // Change socket timeout (Must be called before sendRequest!)
+        auto t_timeout_us = SDCLib::Config::SDC_CONNECTION_TIMEOUT_MS * 1000;  // Convert to microseconds
+        p_session.setTimeout(Poco::Timespan{t_timeout_us});
+        p_session.setKeepAliveTimeout(Poco::Timespan{t_timeout_us});
+
         // Send
         std::ostream & t_ostr = p_session.sendRequest(t_request);
         t_ostr << p_requestData << std::flush;
-
-        // Change socket timeout
-		auto t_timeout_us = SDCLib::Config::SDC_CONNECTION_TIMEOUT_MS*1000;  // Convert to microseconds
-		p_session.setTimeout(Poco::Timespan(t_timeout_us));
-		p_session.setKeepAliveTimeout(Poco::Timespan(t_timeout_us));
 
         std::istream & t_is = p_session.receiveResponse(t_response);
         if (t_response.getStatus() != Poco::Net::HTTPResponse::HTTP_OK && t_response.getStatus() != Poco::Net::HTTPResponse::HTTP_ACCEPTED) {
@@ -87,20 +88,21 @@ std::string HTTPClientExchanger::exchangeHttp(Poco::Net::HTTPSClientSession & p_
 
     std::string t_responseContent;
     t_responseContent.reserve(16384);
-	try {
+	try
+    {
     	Poco::Net::HTTPRequest t_request(Poco::Net::HTTPRequest::HTTP_POST, p_path, Poco::Net::HTTPMessage::HTTP_1_1);
     	t_request.setContentType("application/soap+xml");
     	t_request.setContentLength(p_requestData.length());
     	t_request.setKeepAlive(p_session.getKeepAlive());
 
+        // Change socket timeout (Must be called before sendRequest!)
+        auto t_timeout_us = SDCLib::Config::SDC_CONNECTION_TIMEOUT_MS * 1000;  // Convert to microseconds
+        p_session.setTimeout(Poco::Timespan{t_timeout_us});
+        p_session.setKeepAliveTimeout(Poco::Timespan{t_timeout_us});
+
     	// Send
         std::ostream & t_ostr = p_session.sendRequest(t_request);
         t_ostr << p_requestData << std::flush;
-
-        // Change socket timeout
-		auto t_timeout_us = SDCLib::Config::SDC_CONNECTION_TIMEOUT_MS*1000;  // Convert to microseconds
-		p_session.setTimeout(Poco::Timespan(t_timeout_us));
-		p_session.setKeepAliveTimeout(Poco::Timespan(t_timeout_us));
 
         Poco::Net::HTTPResponse t_response;
         std::istream & t_is = p_session.receiveResponse(t_response);
