@@ -33,6 +33,9 @@
 #include "SDCLib/Data/SDC/MDIB/MdState.h"
 #include "SDCLib/Data/SDC/SDCConsumerAdapter.h"
 
+#include "OSELib/fwd.h"
+#include "OSELib/Helper/WithLogger.h"
+
 #include <atomic>
 #include <deque>
 #include <map>
@@ -40,8 +43,6 @@
 #include <string>
 #include <mutex>
 
-#include "OSELib/fwd.h"
-#include "OSELib/Helper/WithLogger.h"
 
 namespace SDCLib
 {

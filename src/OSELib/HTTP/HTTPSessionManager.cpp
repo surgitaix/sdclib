@@ -110,9 +110,7 @@ HTTPSessionManager::HTTPSessionManager(DPWS::ActiveSubscriptions & p_subscriptio
 , m_subscriptions(p_subscriptions)
 {
 	assert(p_SSLConfig != nullptr);
-	if(p_SSLConfig) {
-		m_context = p_SSLConfig->getClientContext();
-	}
+	m_context = p_SSLConfig->getClientContext();
 }
 
 HTTPSessionManager::~HTTPSessionManager()

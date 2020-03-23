@@ -51,6 +51,8 @@
 #include "SDCLib/Util/DebugOut.h"
 #include "SDCLib/Util/Task.h"
 
+#include <thread>
+
 
 using namespace SDCLib;
 using namespace SDCLib::Util;

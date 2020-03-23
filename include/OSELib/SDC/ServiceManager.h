@@ -14,6 +14,9 @@
 #include "OSELib/Helper/WithLogger.h"
 #include "SDCLib/Prerequisites.h"
 
+#include <future>
+#include <mutex>
+
 namespace OSELib
 {
 	namespace SDC

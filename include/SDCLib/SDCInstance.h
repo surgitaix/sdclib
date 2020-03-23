@@ -34,6 +34,9 @@
 
 #include "OSELib/DPWS/PingManager.h"
 
+#include <atomic>
+#include <mutex>
+
 namespace SDCLib
 {
 

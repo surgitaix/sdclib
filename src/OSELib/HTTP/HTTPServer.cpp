@@ -43,15 +43,16 @@ bool HTTPServer::init(HTTPRequestHandlerFactory_shared_ptr p_factory)
 	// Necessary Parameter
 	m_threadPool = std::unique_ptr<Poco::ThreadPool>(new Poco::ThreadPool());
 
-    auto t_interface = getNetworkConfig()->getMDPWSInterface();
-    if(!t_interface) {
+    auto t_interface = getNetworkConfig().getMDPWSInterface();
+    if(!t_interface)
+    {
     	OSELib::Helper::WithLogger(OSELib::Log::sdcProvider).log_error([] { return "Failed to init HTTPServer: Set MDPWSInterface first!";});
         return false;
     }
 
     // todo: right now only binding to one interface is possible -> implementation for more than one interface is needed!
     auto t_bindingAddress = t_interface->m_if.address();
-    auto t_port = getNetworkConfig()->getMDPWSPort();
+    auto t_port = getNetworkConfig().getMDPWSPort();
 
 	const Poco::Net::SocketAddress t_socketAddress(t_bindingAddress, t_port);
 
@@ -60,12 +61,12 @@ bool HTTPServer::init(HTTPRequestHandlerFactory_shared_ptr p_factory)
 	t_serverParams->setTimeout(Poco::Timespan{t_timeout_us});
 	t_serverParams->setKeepAliveTimeout(Poco::Timespan{t_timeout_us});
 
-    bool USE_SSL = getSSLConfig()->isInit();
+    bool USE_SSL = getSSLConfig().isInit();
 	// Use SSL
 	if(USE_SSL)
 	{
 		// SecureServerSocket
-		Poco::Net::SecureServerSocket t_sslSocket(getSSLConfig()->getServerContext());
+		Poco::Net::SecureServerSocket t_sslSocket(getSSLConfig().getServerContext());
 		t_sslSocket.bind(t_socketAddress);
 		t_sslSocket.listen();
 

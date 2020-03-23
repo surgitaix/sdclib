@@ -55,6 +55,7 @@
 #include "OSELib/SDC/ReportTraits.h"
 #include "OSELib/SOAP/GenericSoapInvoke.h"
 
+#include <thread>
 
 namespace OSELib
 {

@@ -1107,9 +1107,9 @@ void SDCProvider::setAlertConditionPresence(const std::string & p_alertCondition
 	// Search all alert signal descriptors with reference to the alert condition descriptor handle
 	const std::vector<AlertSignalDescriptor> tl_asds(getMdDescription().collectAllAlertSignalDescriptors());
 	std::map<std::string, AlertSignalDescriptor> tl_matchingDescriptors;
-	std::list<AlertSignalDescriptor> tl_listDescriptors;
 
-	for (const auto & t_descriptor : tl_asds) {
+	for (const auto & t_descriptor : tl_asds)
+	{
 		if (t_descriptor.getConditionSignaled() == p_alertConditionHandle) {
 			tl_matchingDescriptors.insert( std::map<std::string, AlertSignalDescriptor>::value_type ( t_descriptor.getHandle(), t_descriptor) );
 		}

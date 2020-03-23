@@ -3,9 +3,10 @@
 
 #include <Poco/Net/ServerSocket.h>
 
+#include <assert.h>
+
 using namespace SDCLib;
 using namespace SDCLib::Config;
-
 
 NetworkConfig::NetworkConfig()
 : OSELib::Helper::WithLogger(OSELib::Log::BASE)

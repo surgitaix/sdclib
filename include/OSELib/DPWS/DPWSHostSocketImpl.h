@@ -16,9 +16,6 @@
 
 #include "DataModel/NormalizedMessageModel-fwd.hxx"
 
-#include <map>
-#include <random>
-
 #include <Poco/NotificationQueue.h>
 #include <Poco/TimedNotificationQueue.h>
 #include <Poco/Thread.h>
@@ -26,6 +23,8 @@
 #include <Poco/Net/SocketNotification.h>
 #include <Poco/Net/SocketReactor.h>
 
+#include <map>
+#include <random>
 
 namespace OSELib
 {

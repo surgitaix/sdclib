@@ -12,14 +12,13 @@
 #ifndef OSELIB_DPWS_DEVICEDESCRIPTION_H_
 #define OSELIB_DPWS_DEVICEDESCRIPTION_H_
 
-#include <mutex>
-#include <string>
-
 #include <Poco/URI.h>
 #include <Poco/Net/IPAddress.h>
 
 #include "OSELib/Helper/WithLogger.h"
 
+#include <mutex>
+#include <string>
 
 namespace OSELib
 {

@@ -18,7 +18,7 @@ namespace OSELib
     {
         class GetStatusActionCommand : public SoapActionCommand
         {
-        protected:
+        private:
         	DPWS::GetStatusTraits::Dispatcher & m_dispatcher;
 
         public:

@@ -28,7 +28,7 @@ const std::chrono::seconds DEFAULT_DURATION_S = std::chrono::seconds(60);
 SubscriptionManager::SubscriptionManager(const std::vector<xml_schema::Uri> & pl_allowedEventActions, SDCLib::Config::SSLConfig_shared_ptr p_SSLConfig)
 : OSELib::Helper::WithLogger(Log::EVENTSOURCE)
 , ml_allowedEventActions(pl_allowedEventActions)
-, m_sessionManager(new HTTP::HTTPSessionManager(this->m_subscriptions, p_SSLConfig))
+, m_sessionManager(new HTTP::HTTPSessionManager(this->m_subscriptions, std::move(p_SSLConfig)))
 { }
 
 std::unique_ptr<SubscribeTraits::Response> SubscriptionManager::dispatch(const SubscribeTraits::Request & p_request)

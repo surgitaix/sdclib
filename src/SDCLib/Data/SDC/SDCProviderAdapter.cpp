@@ -37,6 +37,8 @@
 
 #include <Poco/Net/NetException.h>
 
+#include <thread>
+
 namespace OSELib {
 
 using GetServiceController = SDC::SDCServiceController<SDC::IGetService, SDC::GetServiceHandler>;

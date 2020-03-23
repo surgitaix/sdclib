@@ -342,10 +342,6 @@ namespace SDCLib
 				void updateState(const WorkflowContextState & p_object);
 				void updateState(const DistributionSampleArrayMetricState & p_object);
 
-
-				SDCInstance_shared_ptr getSDCInstance() const {return m_SDCInstance; }
-
-
 			protected:
 
 				/**

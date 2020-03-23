@@ -9,9 +9,6 @@
 #ifndef OSELIB_DPWS_ACTIVESUBSCRIPTIONS_H_
 #define OSELIB_DPWS_ACTIVESUBSCRIPTIONS_H_
 
-#include <mutex>
-#include <chrono>
-
 #include <Poco/Thread.h>
 #include <Poco/RunnableAdapter.h>
 
@@ -20,6 +17,9 @@
 
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
+
+#include <mutex>
+#include <chrono>
 
 namespace OSELib
 {

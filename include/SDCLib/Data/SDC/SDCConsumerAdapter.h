@@ -24,6 +24,9 @@
 
 #include <Poco/Net/Context.h>
 
+#include <mutex>
+
+
 // Declare in cpp defined
 namespace OSELib
 {

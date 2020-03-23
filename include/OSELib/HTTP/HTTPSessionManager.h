@@ -9,9 +9,6 @@
 #ifndef OSELIB_DPWS_HTTPSESSIONMANAGER_H_
 #define OSELIB_DPWS_HTTPSESSIONMANAGER_H_
 
-#include <memory>
-#include <mutex>
-
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
 #include "SDCLib/Prerequisites.h"
@@ -19,6 +16,8 @@
 #include <Poco/ThreadPool.h>
 #include <Poco/Net/Context.h>
 
+#include <memory>
+#include <mutex>
 
 namespace OSELib
 {
