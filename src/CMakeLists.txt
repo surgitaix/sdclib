@@ -89,7 +89,6 @@ set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             ${INCLUDE_DIR}/OSELib/SDC/ISetService.h
                             ${INCLUDE_DIR}/OSELib/SDC/IBICEPSService.h
                             ${INCLUDE_DIR}/OSELib/SDC/IBICEPSServiceEventSink.h
-                            ${INCLUDE_DIR}/OSELib/SDC/ReportTraits.h
                             ${INCLUDE_DIR}/OSELib/SDC/IWaveformService.h
                             ${INCLUDE_DIR}/OSELib/SDC/SetServiceEventSinkHandler.h
                             ${INCLUDE_DIR}/OSELib/HTTP/Service.h
@@ -460,7 +459,6 @@ target_sources(${CURRENT_TARGET_NAME}
         ${SRC_DIR}/OSELib/SDC/DefaultSDCSchemaGrammarProvider.cpp
         ${SRC_DIR}/OSELib/SDC/GetServiceHandler.cpp
         ${SRC_DIR}/OSELib/SDC/OperationTraits.cpp
-        ${SRC_DIR}/OSELib/SDC/ReportTraits.cpp
         ${SRC_DIR}/OSELib/SDC/ServiceManager.cpp
         ${SRC_DIR}/OSELib/SDC/SetServiceHandler.cpp
         ${SRC_DIR}/OSELib/SDC/SetServiceEventSinkHandler.cpp

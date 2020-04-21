@@ -325,34 +325,6 @@ void SDCProvider::SetValue(const MDM::SetValue & p_request, const OperationInvoc
 	}
 }
 
-MDM::ActivateResponse SDCProvider::OnActivateAsync(const MDM::Activate & p_request)
-{
-	const OperationInvocationContext t_oic(p_request.getOperationHandleRef(), incrementAndGetTransactionId());
-	notifyOperationInvoked(t_oic, InvocationState::Wait);
-	enqueueInvokeNotification(p_request, t_oic);
-
-	MDM::ActivateResponse t_ar(MDM::InvocationInfo(t_oic.transactionId,MDM::InvocationState(ConvertToCDM::convert(InvocationState::Wait))),xml_schema::Uri("0"));
-	t_ar.setMdibVersion(getMdibVersion());
-
-	return t_ar;
-}
-
-
-void SDCProvider::OnActivate(const OperationInvocationContext & p_oic)
-{
-	auto t_iter = ml_stateHandlers.find(p_oic.operationHandle);
-    if (t_iter != ml_stateHandlers.end())
-    {
-        if (SDCProviderActivateOperationHandler * t_handler = dynamic_cast<SDCProviderActivateOperationHandler *>(t_iter->second))
-        {
-            const InvocationState t_isVal(t_handler->onActivateRequest(p_oic));
-            notifyOperationInvoked(p_oic, t_isVal);
-            return;
-        }
-    }
-    notifyOperationInvoked(p_oic, InvocationState::Fail);
-}
-
 MDM::SetStringResponse SDCProvider::SetStringAsync(const MDM::SetString & p_request)
 {
     const OperationInvocationContext t_oic(p_request.getOperationHandleRef(), incrementAndGetTransactionId());
@@ -482,6 +454,34 @@ void SDCProvider::SetString(const MDM::SetString & p_request, const OperationInv
 	}
 
 	notifyOperationInvoked(p_oic, InvocationState::Fail);
+}
+
+MDM::ActivateResponse SDCProvider::OnActivateAsync(const MDM::Activate & p_request)
+{
+	const OperationInvocationContext t_oic(p_request.getOperationHandleRef(), incrementAndGetTransactionId());
+	notifyOperationInvoked(t_oic, InvocationState::Wait);
+	enqueueInvokeNotification(p_request, t_oic);
+
+	MDM::ActivateResponse t_ar(MDM::InvocationInfo(t_oic.transactionId,MDM::InvocationState(ConvertToCDM::convert(InvocationState::Wait))),xml_schema::Uri("0"));
+	t_ar.setMdibVersion(getMdibVersion());
+
+	return t_ar;
+}
+
+
+void SDCProvider::OnActivate(const OperationInvocationContext & p_oic)
+{
+	auto t_iter = ml_stateHandlers.find(p_oic.operationHandle);
+    if (t_iter != ml_stateHandlers.end())
+    {
+        if (SDCProviderActivateOperationHandler * t_handler = dynamic_cast<SDCProviderActivateOperationHandler *>(t_iter->second))
+        {
+            const InvocationState t_isVal(t_handler->onActivateRequest(p_oic));
+            notifyOperationInvoked(p_oic, t_isVal);
+            return;
+        }
+    }
+    notifyOperationInvoked(p_oic, InvocationState::Fail);
 }
 
 

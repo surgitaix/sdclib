@@ -10,7 +10,7 @@
 #define OSELIB_SDC_ISTATEEVENTSERVICEREPORTEVENTSINK_H_
 
 #include "OSELib/DPWS/IEventSink.h"
-#include "OSELib/SDC/ReportTraits.h"
+#include "OSELib/SDC/OperationTraits.h"
 
 namespace OSELib
 {

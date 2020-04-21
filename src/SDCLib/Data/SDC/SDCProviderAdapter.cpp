@@ -27,7 +27,6 @@
 #include "OSELib/SDC/OperationTraits.h"
 #include "OSELib/SDC/SDCConstants.h"
 #include "OSELib/SDC/SDCServiceController.h"
-#include "OSELib/SDC/ReportTraits.h"
 #include "OSELib/SDC/SetServiceHandler.h"
 #include "OSELib/SDC/IBICEPSService.h"
 #include "OSELib/SDC/BICEPSServiceHandler.h"
@@ -142,24 +141,28 @@ public:
 		return m_metadata.createSetServiceMetadata(p_serverAddress, p_SSL);
 	}
 
-	std::unique_ptr<SDC::ActivateTraits::Response> dispatch(const SDC::ActivateTraits::Request & p_request) override {
-		std::lock_guard<std::mutex> t_lock{m_provider.getMutex()}; // FIXME: Mutex should not be used outside of the class!
-		return std::unique_ptr<SDC::ActivateTraits::Response>(new SDC::ActivateTraits::Response(m_provider.OnActivateAsync(p_request)));
-	}
 
-	std::unique_ptr<SDC::SetAlertStateTraits::Response> dispatch(const SDC::SetAlertStateTraits::Request & p_request) override {
+	std::unique_ptr<SDC::SetValueTraits::Response> dispatch(const SDC::SetValueTraits::Request & p_request) override {
 		std::lock_guard<std::mutex> t_lock{m_provider.getMutex()}; // FIXME: Mutex should not be used outside of the class!
-		return std::unique_ptr<SDC::SetAlertStateTraits::Response>(new SDC::SetAlertStateTraits::Response(m_provider.SetAlertStateAsync(p_request)));
+		return std::unique_ptr<SDC::SetValueTraits::Response>(new SDC::SetValueTraits::Response(m_provider.SetValueAsync(p_request)));
 	}
 
 	std::unique_ptr<SDC::SetStringTraits::Response> dispatch(const SDC::SetStringTraits::Request & p_request) override {
 		std::lock_guard<std::mutex> t_lock{m_provider.getMutex()}; // FIXME: Mutex should not be used outside of the class!
 		return std::unique_ptr<SDC::SetStringTraits::Response>(new SDC::SetStringTraits::Response(m_provider.SetStringAsync(p_request)));
 	}
-
-	std::unique_ptr<SDC::SetValueTraits::Response> dispatch(const SDC::SetValueTraits::Request & p_request) override {
+	std::unique_ptr<SDC::ActivateTraits::Response> dispatch(const SDC::ActivateTraits::Request & p_request) override {
 		std::lock_guard<std::mutex> t_lock{m_provider.getMutex()}; // FIXME: Mutex should not be used outside of the class!
-		return std::unique_ptr<SDC::SetValueTraits::Response>(new SDC::SetValueTraits::Response(m_provider.SetValueAsync(p_request)));
+		return std::unique_ptr<SDC::ActivateTraits::Response>(new SDC::ActivateTraits::Response(m_provider.OnActivateAsync(p_request)));
+	}
+	std::unique_ptr<SDC::SetAlertStateTraits::Response> dispatch(const SDC::SetAlertStateTraits::Request & p_request) override {
+		std::lock_guard<std::mutex> t_lock{m_provider.getMutex()}; // FIXME: Mutex should not be used outside of the class!
+		return std::unique_ptr<SDC::SetAlertStateTraits::Response>(new SDC::SetAlertStateTraits::Response(m_provider.SetAlertStateAsync(p_request)));
+	}
+	std::unique_ptr<SDC::SetComponentStateTraits::Response> dispatch(const SDC::SetComponentStateTraits::Request & p_request) override {
+		//std::lock_guard<std::mutex> t_lock{m_provider.getMutex()}; // FIXME: Mutex should not be used outside of the class!
+		//return std::unique_ptr<SDC::SetComponentStateTraits::Response>(new SDC::SetComponentStateTraits::Response(m_provider.SetComponentStateAsync(p_request)));
+		return nullptr;
 	}
 
 	std::unique_ptr<DPWS::SubscribeTraits::Response> dispatch(const DPWS::SubscribeTraits::Request & p_request) override {

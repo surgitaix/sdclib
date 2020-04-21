@@ -8,7 +8,6 @@
 
 #include "OSELib/SDC/SetServiceEventSinkHandler.h"
 #include "OSELib/DPWS/OperationTraits.h"
-#include "OSELib/SDC/ReportTraits.h"
 #include "OSELib/SOAP/Command.h"
 #include "OSELib/SOAP/CommonSoapPreprocessing.h"
 #include "OSELib/SOAP/GenericSoapEventCommand.h"

@@ -30,10 +30,12 @@ namespace OSELib
 			ISetService& operator=(ISetService&& p_obj) = delete;
 			virtual ~ISetService() = default;
 
+			virtual std::unique_ptr<SetValueTraits::Response> dispatch(const SetValueTraits::Request & request) = 0;
+			virtual std::unique_ptr<SetStringTraits::Response> dispatch(const SetStringTraits::Request & request) = 0;
 			virtual std::unique_ptr<ActivateTraits::Response> dispatch(const ActivateTraits::Request & request) = 0;
 			virtual std::unique_ptr<SetAlertStateTraits::Response> dispatch(const SetAlertStateTraits::Request & request) = 0;
-			virtual std::unique_ptr<SetStringTraits::Response> dispatch(const SetStringTraits::Request & request) = 0;
-			virtual std::unique_ptr<SetValueTraits::Response> dispatch(const SetValueTraits::Request & request) = 0;
+			virtual std::unique_ptr<SetComponentStateTraits::Response> dispatch(const SetComponentStateTraits::Request & request) = 0;
+
 		};
 	}
 }

@@ -11,7 +11,7 @@
 
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/IEventSink.h"
-#include "OSELib/SDC/ReportTraits.h"
+#include "OSELib/SDC/OperationTraits.h"
 
 namespace OSELib
 {

@@ -11,7 +11,6 @@
 #include "OSELib/fwd.h"
 #include "OSELib/DPWS/OperationTraits.h"
 #include "OSELib/SDC/OperationTraits.h"
-#include "OSELib/SDC/ReportTraits.h"
 
 #include "DataModel/NormalizedMessageModel.hxx"
 

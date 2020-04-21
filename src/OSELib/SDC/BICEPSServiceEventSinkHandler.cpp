@@ -6,7 +6,7 @@
  */
 
 #include "OSELib/SDC/BICEPSServiceEventSinkHandler.h"
-#include "OSELib/SDC/ReportTraits.h"
+#include "OSELib/SDC/OperationTraits.h"
 #include "OSELib/SOAP/Command.h"
 #include "OSELib/SOAP/CommonSoapPreprocessing.h"
 #include "OSELib/SOAP/GenericSoapEventCommand.h"

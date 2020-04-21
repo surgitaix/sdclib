@@ -9,7 +9,7 @@
 #define OSELIB_SDC_IDESCRIPTIONEVENTSERVICEEVENTSINK_H_
 
 #include "OSELib/DPWS/IEventSink.h"
-#include "OSELib/SDC/ReportTraits.h"
+#include "OSELib/SDC/OperationTraits.h"
 
 namespace OSELib
 {
@@ -26,7 +26,7 @@ namespace OSELib
 			IDescriptionEventServiceEventSink& operator=(IDescriptionEventServiceEventSink&& p_obj) = delete;
 			virtual ~IDescriptionEventServiceEventSink() = default;
 
-			virtual void dispatch(const DescriptionModificationReportTraits::ReportType& p_request) = 0;
+			virtual void dispatch(const OSELib::SDC::DescriptionModificationReportTraits::ReportType&) = 0;
 		};
 	}
 }
