@@ -24,7 +24,7 @@ target_sources(${CURRENT_TARGET_NAME}
         #...
 )
 
-get_filename_component(PATH_ASIO_ROOT ${CMAKE_SOURCE_DIR}/Dependencies/asio/asio/include REALPATH)
+get_filename_component(PATH_ASIO_ROOT ${CMAKE_SOURCE_DIR}/Dependencies/asio/include REALPATH)
 target_include_directories(${CURRENT_TARGET_NAME} PUBLIC ${PATH_ASIO_ROOT})
 target_compile_definitions(${CURRENT_TARGET_NAME} PUBLIC ASIO_STANDALONE)
 
