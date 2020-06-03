@@ -47,6 +47,9 @@
 #include "SDCLib/Data/SDC/MDIB/EnumStringMetricState.h"
 #include "SDCLib/Data/SDC/FutureInvocationState.h"
 #include "SDCLib/Util/DebugOut.h"
+#include "SDCLib/Data/SDC/MDIB/ScoDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/VmdDescriptor.h"
+#include "SDCLib/Data/SDC/MDIB/SetStringOperationDescriptor.h"
 
 #include "OSELib/SDC/ServiceManager.h"
 
@@ -133,10 +136,10 @@ public:
 };
 
 
-class EnumerStringEventHandler : public SDCConsumerMDStateHandler<EnumStringMetricState>
+class EnumStringEventHandler : public SDCConsumerMDStateHandler<EnumStringMetricState>
 {
 public:
-	EnumerStringEventHandler(std::string p_descriptorHandle)
+	EnumStringEventHandler(std::string p_descriptorHandle)
 	: SDCConsumerMDStateHandler(p_descriptorHandle)
 	{ }
 
@@ -393,9 +396,7 @@ int main(int argc, char *argv[])
 
 			// Create StateEventHandler to "Consume" Events from Provider
 			auto numeric_dynamic_get = std::make_shared<NumericMetricEventHandler>(HANDLE_DYNAMIC_GET_NM);
-			auto numeric_set = std::make_shared<NumericMetricEventHandler>(HANDLE_SET_NM);
-			auto string_set = std::make_shared<StringMetricEventHandler>(HANDLE_SET_STRM);
-			auto enum_dynamic_get = std::make_shared<EnumerStringEventHandler>(HANDLE_DYNAMIC_GET_ESTRM);
+			auto enum_dynamic_get = std::make_shared<EnumStringEventHandler>(HANDLE_DYNAMIC_GET_ESTRM);
 			auto alert_condition_mds = std::make_shared<AlertConditionEventHandler>(HANDLE_ALERTCONDITION_MDS);
 			auto alert_condition_vmd = std::make_shared<AlertConditionEventHandler>(HANDLE_ALERTCONDITION_VMD);
 			auto alert_signal_vmd = std::make_shared<AlertSignalEventHandler>(HANDLE_ALERTSIGNAL_VMD);
@@ -493,6 +494,35 @@ int main(int argc, char *argv[])
 				t_consumer->commitState(*t_setMetricState, fis);
 				// Now wait for "InvocationState::Fin" (=> Success)
 				Util::DebugOut(Util::DebugOut::Default, "ReferenceConsumer") << "Commit result metric state: " << fis.waitReceived(InvocationState::Fin, 2000);
+			}
+
+			auto t_setEnumMetricState{t_consumer->requestState<EnumStringMetricState>(HANDLE_SET_ESTRM)};
+			if (t_setEnumMetricState)
+			{
+				// If found check if settable
+				for (const auto& vmd : t_consumer->getMdib().getMdDescription().collectAllVmdDescriptors())
+				{
+					if (vmd.hasSco())
+					{
+						const auto& setOperations = vmd.getSco().collectAllSetStringOperationDescriptors();
+						for(const auto& operation : setOperations)
+						{
+							if(operation.getOperationTarget() == HANDLE_SET_ESTRM)
+							{
+								//t_newValue has to be in AllowedValues of the enum
+								std::string t_newValue{"ON"};
+								// Use the returned state, set the value and "commit" it
+								t_setEnumMetricState->setMetricValue(StringMetricValue{MetricQuality{MeasurementValidity::Vld}}.setValue(t_newValue));
+								// Now
+								FutureInvocationState fis;
+								t_consumer->commitState(*t_setEnumMetricState, fis);
+								// Now wait for "InvocationState::Fin" (=> Success)
+								Util::DebugOut(Util::DebugOut::Default, "ReferenceConsumer") << "Commit result metric state: " << fis.waitReceived(InvocationState::Fin, 2000) << "\n";
+								break;
+							}
+						}
+					}
+				}
 			}
 
 			FutureInvocationState fis;
