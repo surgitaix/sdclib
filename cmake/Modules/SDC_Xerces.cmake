@@ -22,6 +22,11 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     find_package(XercesC REQUIRED)
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
+IF (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    find_package(XercesC REQUIRED)
+ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+
+
 
 IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows") 
 

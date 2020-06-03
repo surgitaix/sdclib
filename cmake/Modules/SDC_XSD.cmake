@@ -27,6 +27,12 @@ IF (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     set(XSD_FOUND TRUE)
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
+IF (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    # Not needed when installed under MacOS.
+    # Set FOUND - Flag
+    set(XSD_FOUND TRUE)
+ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+
 
 IF (${CMAKE_SYSTEM_NAME} MATCHES "Windows") 
 

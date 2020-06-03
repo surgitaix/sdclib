@@ -25,7 +25,7 @@ set(CMAKE_INSTALL_RPATH ".")
 # C++ standard
 ################################################################################
 message(STATUS "Setting CXX_STANDARD...")
-set(CMAKE_CXX_STANDARD 11 CACHE STRING "C++ Standard" FORCE)
+set(CMAKE_CXX_STANDARD 14 CACHE STRING "C++ Standard" FORCE)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #set(CMAKE_CXX_EXTENSIONS OFF)
 ################################################################################
@@ -60,12 +60,20 @@ elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
     if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 18.0)
         message(FATAL_ERROR "MSVC version must be at least 18.0!")
     endif()
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang")
+    if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 11.0)
+        message(FATAL_ERROR "MSVC version must be at least 11.0!")
+    endif()
 else()
-    message(FATAL_ERROR "No supported Compiler detected. Checked for GCC(4.8.1+), Clang(3.3+) or MSVC(18.0+).")
+    message(FATAL_ERROR "No supported Compiler detected. Checked for GCC(4.8.1+), Clang(3.3+), AppleClang(11.0) or MSVC(18.0+).")
 endif()
 ################################################################################
 
-
+# Fix linking on 10.14+. See https://stackoverflow.com/questions/54068035
+IF(APPLE)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I/usr/local/include -I/usr/local/opt/openssl@1.1/include")
+    set(LDFLAGS "${LDFLAGS} -L/usr/local/lib/ -L/usr/local/opt/openssl@1.1/lib")
+ENDIF()
 
 
 ################################################################################
@@ -168,6 +176,8 @@ mark_as_advanced(SDC_IP_V4_ENABLED)
 mark_as_advanced(SDC_IP_V6_ENABLED)
 ################################################################################
 
+
+
 ################################################################################
 # OpenSSL - Version Check
 # Note: Must be placed here in order to be added to the config file. Patch 
@@ -189,6 +199,10 @@ set (SDCLibrary_Minimal_OpenSSL_Version_Minor          0)
 set (SDCLibrary_Minimal_OpenSSL_Version_Fix            1)
 set (SDCLibrary_Minimal_OpenSSL_Version_Patch          3)
 set (SDCLibrary_Minimal_OpenSSL_Version_Patch_Char     "b")
+
+# MacOS X OpenSSL Path
+set(OPENSSL_ROOT_DIR "/usr/local/opt/openssl")
+set(OPENSSL_LIBRARIES "/usr/local/opt/openssl/lib")
 
 # Check, if package exists (normally done by POCO)
 find_package(OpenSSL REQUIRED)
@@ -296,6 +310,6 @@ if(SDC_EXAMPLES)
 endif()
 # Tests
 if(SDC_TESTS)
-    add_subdirectory(${PATH_TESTS_ROOT})
+    add_subdirectory(${f})
 ENDIF()
 #...

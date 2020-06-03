@@ -117,6 +117,21 @@ if (CMAKE_SYSTEM_NAME MATCHES "Linux")
     endif()
 endif()
 
+# FIXME: Check if files are really there!
+if (CMAKE_SYSTEM_NAME MATCHES "Darwin")
+    # Set the library based on build type
+    if (CMAKE_BUILD_TYPE)
+        if (CMAKE_BUILD_TYPE STREQUAL "Release")
+            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/libSDCLib${CMAKE_RELEASE_POSTFIX}.so)
+        else()
+            set(SDCLib_LIBRARIES ${SDCLib_SEARCH_LIB}/libSDCLib${CMAKE_DEBUG_POSTFIX}.so)
+        endif()
+    else()
+        message(SEND_ERROR "Trying to determine SDCLib type, but no build type specified yet. Specify one first, before calling findSDCLib!")
+        RETURN()
+    endif()
+endif()
+
 # FIXME: Check if files are there!
 if (CMAKE_SYSTEM_NAME MATCHES "Windows")
     # Set the library based on build type
@@ -188,8 +203,10 @@ endif()
 # Note: This script will also gather SDCLib dependencies inside the given
 #       variables for better handling.
 ################################################################################
-# explicitly link atomic -> Needed to build on ARM
-list(APPEND SDCLib_DEPS_LIBRARIES atomic)
+# explicitly link atomic -> Needed to build on ARM but not on mac!
+if (NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    list(APPEND SDCLib_DEPS_LIBRARIES atomic)
+endif()
 ################################################################################
 
 ################################################################################
