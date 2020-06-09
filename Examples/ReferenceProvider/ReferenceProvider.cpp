@@ -25,6 +25,7 @@
 #include "SDCLib/Data/SDC/MDIB/ChannelDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/CodedValue.h"
 #include "SDCLib/Data/SDC/MDIB/EnumStringMetricState.h"
+#include "SDCLib/Data/SDC/MDIB/EnumStringMetricDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/SimpleTypesMapping.h"
 #include "SDCLib/Data/SDC/MDIB/LocalizedText.h"
 #include "SDCLib/Data/SDC/MDIB/LocationContextDescriptor.h"
@@ -37,6 +38,7 @@
 #include "SDCLib/Data/SDC/MDIB/NumericMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/NumericMetricValue.h"
 #include "SDCLib/Data/SDC/MDIB/PatientContextState.h"
+#include "SDCLib/Data/SDC/MDIB/AllowedValue.h"
 #include "SDCLib/Data/SDC/MDIB/Range.h"
 #include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricDescriptor.h"
 #include "SDCLib/Data/SDC/MDIB/RealTimeSampleArrayMetricState.h"
@@ -115,7 +117,7 @@ public:
 		return t_newState;
 	}
 
-	// define how to react on a request for a state change. This handler should not be set, thus always return Fail.
+	// define how to react on a request for a state change.
 	InvocationState onStateChangeRequest(const NumericMetricState& p_state, const OperationInvocationContext& p_oic) override
 	{
 		if(!m_settable)
@@ -235,17 +237,28 @@ public:
 
 	InvocationState onStateChangeRequest(const EnumStringMetricState& p_changedState, const OperationInvocationContext& p_oic) override
 	{
-		notifyOperationInvoked(p_oic, InvocationState::Start);
-		// Do something if a state change is requested
-		DebugOut(DebugOut::Default, "ReferenceProvider") << "String state of provider state changed to " << p_changedState.getMetricValue().getValue() << std::endl;
-		// return Finished if successful
-		return InvocationState::Fin;
+		DebugOut(DebugOut::Default, "ReferenceProvider") << "Operation invoked. Handle: " << p_oic.operationHandle << std::endl;
+		if(!m_settable)
+		{
+			// extract information from the incoming operation
+			DebugOut(DebugOut::Default, "ReferenceProvider") << "Operation invoked. Handle: " << p_oic.operationHandle << std::endl;
+			return InvocationState::Fail;
+		}
+		else
+		{
+			notifyOperationInvoked(p_oic, InvocationState::Start);
+			// Do something if a state change is requested
+			DebugOut(DebugOut::Default, "ReferenceProvider") << "String state of provider state changed to " << p_changedState.getMetricValue().getValue() << std::endl;
+			// return Finished if successful
+			return InvocationState::Fin;
+		}
 	}
 
 	//Helper Method
 	EnumStringMetricState getInitialState()
 	{
 		EnumStringMetricState t_newState{getDescriptorHandle()};
+		t_newState.setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue("OFF"));
 	    return t_newState;
 	}
 
