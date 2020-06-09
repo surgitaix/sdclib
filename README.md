@@ -24,5 +24,8 @@
 - 5555 UDP: streaming  
 - Random (free system assigned) TCP: Unicast traffic  
 
+### Optional dependencies for Advanced Examples
+- asio (included as git submodule: see [doc](doc/) folder for further information).
+
 ### Optional dependencies for MdibVisualizer
 - graphviz, evince, pdfunite

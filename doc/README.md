@@ -1,5 +1,13 @@
 # SDCLib - Doc
 
+## Advanced Examples
+Advanced Examples (SDC_ADVANCED_EXAMPLES) need asio.  
+Navigate to the cloned sdclib folder and execute:
+  
+- git submodule init  
+- git submoldule update  
+
+
 ## Linux
 We recommend building / using the SDCLib under a Debian or Debian-based distribution (f.e. Ubuntu and flavors). The required dependencies can easily
 be installed from the packet repositories.
