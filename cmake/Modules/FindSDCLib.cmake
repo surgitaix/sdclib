@@ -185,6 +185,10 @@ list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:MSVC>>:/O
 list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Debug>,$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>>:-O0>)
 list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Debug>,$<OR:$<CXX_COMPILER_ID:ARMCC>,$<CXX_COMPILER_ID:ARMClang>>>:-O0>)
 list(APPEND SDCLib_OPTIONS $<$<AND:$<CONFIG:Debug>,$<CXX_COMPILER_ID:MSVC>>:/Od>)
+
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+    add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
+endif()
 ################################################################################
 
 
