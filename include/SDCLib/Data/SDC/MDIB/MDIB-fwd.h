@@ -22,6 +22,10 @@ namespace SDC {
 	class OperationInvocationContext;
 
 	// classes, that are generated
+	class DicomTransferCapability;
+	class DicomNetworkAe;
+	class DicomNetworkConnection;
+	class DicomDeviceDescriptor;
 	class Mdib;
 	class MdDescription;
 	class MdState;
@@ -146,10 +150,6 @@ namespace SDC {
 	class EnsembleContextState;
 	class ContainmentTree;
 	class ContainmentTreeEntry;
-	class DicomTransferCapability;
-	class DicomNetworkAe;
-	class DicomNetworkConnection;
-	class DicomDeviceDescriptor;
 
 
 }

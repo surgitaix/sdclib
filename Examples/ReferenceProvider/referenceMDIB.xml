@@ -6,7 +6,7 @@
             </pm:Type>
             <pm:AlertSystem Handle="asy.mds0" DescriptorVersion="0" SafetyClassification="MedA" SelfCheckPeriod="P0Y0M0DT0H0M5.0S" xsi:type="pm:AlertSystemDescriptor">
               <pm:AlertCondition Handle="ac0.mds0" DescriptorVersion="0" SafetyClassification="MedA" Kind="Phy" Priority="Me" xsi:type="pm:AlertConditionDescriptor">
-                <pm:Type Code="262108‬">
+                <pm:Type Code="262108">
                   <pm:ConceptDescription Lang="en-US">dummy condition</pm:ConceptDescription>
                 </pm:Type>
                 <pm:Source>mds0</pm:Source>
@@ -70,7 +70,7 @@
               </pm:Type>
               <pm:AlertSystem Handle="asy.vmd0" DescriptorVersion="0" SafetyClassification="MedA" SelfCheckPeriod="P0Y0M0DT0H0M5.0S" xsi:type="pm:AlertSystemDescriptor">
                 <pm:AlertCondition Handle="ac0.vmd0.mds0" DescriptorVersion="0" SafetyClassification="MedA" Kind="Phy" Priority="Me" xsi:type="pm:AlertConditionDescriptor">
-                  <pm:Type Code="262108‬">
+                  <pm:Type Code="262108">
                     <pm:ConceptDescription Lang="en-US">dummy condition</pm:ConceptDescription>
                   </pm:Type>
                   <pm:Source>mds0</pm:Source>

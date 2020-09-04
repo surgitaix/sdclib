@@ -18,33 +18,42 @@
 
 namespace OSELib
 {
-	namespace DPWS
-	{
-		class SubscriptionManager : public ISubscriptionManager, public OSELib::Helper::WithLogger
-		{
-		private:
-			ActiveSubscriptions m_subscriptions;
-			const std::vector<xml_schema::Uri> ml_allowedEventActions;
-			std::unique_ptr<HTTP::HTTPSessionManager> m_sessionManager = nullptr;
+    namespace DPWS
+    {
+        class SubscriptionManager : public ISubscriptionManager, public OSELib::Helper::WithLogger
+        {
+        private:
+            ActiveSubscriptions m_subscriptions;
+            const std::vector<xml_schema::Uri> m_allowedEventActions;
+            std::unique_ptr<HTTP::HTTPSessionManager> m_sessionManager{nullptr};
 
-		public:
-			SubscriptionManager(const std::vector<xml_schema::Uri> & pl_allowedEventActions, SDCLib::Config::SSLConfig_shared_ptr p_SSLConfig);
-			// Special Member Functions
-			SubscriptionManager(const SubscriptionManager& p_obj) = default;
-			SubscriptionManager(SubscriptionManager&& p_obj) = default;
-			SubscriptionManager& operator=(const SubscriptionManager& p_obj) = default;
-			SubscriptionManager& operator=(SubscriptionManager&& p_obj) = default;
-			~SubscriptionManager() = default;
+            Poco::RunnableAdapter<SubscriptionManager> m_runnableAdapter;
+            Poco::Thread m_thread;
 
-			template <class TraitsType>
-			void fireEvent(const typename TraitsType::ReportType & p_report);
+        public:
+            SubscriptionManager(const std::vector<xml_schema::Uri>&, SDCLib::Config::SSLConfig_shared_ptr);
+            SubscriptionManager(const SubscriptionManager&) = default;
+            SubscriptionManager(SubscriptionManager&&) = default;
+            SubscriptionManager& operator=(const SubscriptionManager&) = default;
+            SubscriptionManager& operator=(SubscriptionManager&&) = default;
+            ~SubscriptionManager();
 
-			std::unique_ptr<SubscribeTraits::Response> dispatch(const SubscribeTraits::Request & p_request) override;
-			std::unique_ptr<UnsubscribeTraits::Response> dispatch(const UnsubscribeTraits::Request & p_request, const UnsubscribeTraits::RequestIdentifier & p_identifier) override;
-			std::unique_ptr<RenewTraits::Response> dispatch(const RenewTraits::Request & p_request, const RenewTraits::RequestIdentifier & p_identifier) override;
-			std::unique_ptr<GetStatusTraits::Response> dispatch(const GetStatusTraits::Request & p_request, const GetStatusTraits::RequestIdentifier & p_identifier) override;
-		};
-	}
-}
+            template<class TraitsType> void fireEvent(const typename TraitsType::ReportType&);
+
+            std::unique_ptr<SubscribeTraits::Response> dispatch(const SubscribeTraits::Request&) override;
+            std::unique_ptr<RenewTraits::Response> dispatch(const RenewTraits::Request&, const RenewTraits::RequestIdentifier&) override;
+            std::unique_ptr<GetStatusTraits::Response> dispatch(const GetStatusTraits::Request&,
+                                                                const GetStatusTraits::RequestIdentifier&) override;
+            std::unique_ptr<UnsubscribeTraits::Response> dispatch(const UnsubscribeTraits::Request&,
+                                                                  const UnsubscribeTraits::RequestIdentifier&) override;
+
+            void endSubscription(const SubscriptionEndTraits::RequestIdentifier&);
+
+        private:
+            void houseKeeping();
+            void run();
+        };
+    } // namespace DPWS
+} // namespace OSELib
 
 #endif

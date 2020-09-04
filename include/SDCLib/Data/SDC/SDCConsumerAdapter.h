@@ -3,7 +3,7 @@
  *
  *  Created on: 10.12.2015
  *      Author: matthias, buerger
- *  Modified on: 26.09.2019, baumeister
+ *  Modified on: 04.09.2020, baumeister
  *
  */
 
@@ -30,75 +30,74 @@
 // Declare in cpp defined
 namespace OSELib
 {
-	class SetServiceEventSink;
-	class BICEPSServiceEventSink;
-}
+    class SetServiceEventSink;
+    class BICEPSServiceEventSink;
+} // namespace OSELib
 
 namespace SDCLib
 {
-	namespace Data
-	{
-		namespace SDC
-		{
-			class SDCConsumerAdapter : public OSELib::DPWS::StreamNotificationDispatcher, public OSELib::Helper::WithLogger
-			{
-			private:
-				SDCConsumer & m_consumer;
+    namespace Data
+    {
+        namespace SDC
+        {
+            class SDCConsumerAdapter : public OSELib::DPWS::StreamNotificationDispatcher, public OSELib::Helper::WithLogger
+            {
+            private:
+                SDCConsumer& m_consumer;
 
-				mutable std::mutex m_mutex;
+                mutable std::mutex m_mutex;
 
-				OSELib::DPWS::DeviceDescription_shared_ptr m_deviceDescription = nullptr;
-				OSELib::SDC::DefaultSDCSchemaGrammarProvider m_grammarProvider;
-				std::unique_ptr<OSELib::HTTP::HTTPServer> m_httpServer = nullptr;
-			//	std::unique_ptr<OSELib::DPWS::Impl::DPWSStreamingClientSocketImpl> _streamClientSocketImpl;
-				OSELib::DPWS::Impl::MDPWSStreamingAdapter m_streamClientSocketImpl;
-				std::unique_ptr<OSELib::DPWS::SubscriptionClient> m_subscriptionClient = nullptr;
-				std::unique_ptr<OSELib::DPWS::PingManager> m_pingManager = nullptr;
+                OSELib::DPWS::DeviceDescription_shared_ptr m_deviceDescription{nullptr};
+                OSELib::SDC::DefaultSDCSchemaGrammarProvider m_grammarProvider;
+                std::unique_ptr<OSELib::HTTP::HTTPServer> m_httpServer{nullptr};
+                //	std::unique_ptr<OSELib::DPWS::Impl::DPWSStreamingClientSocketImpl> _streamClientSocketImpl;
+                OSELib::DPWS::Impl::MDPWSStreamingAdapter m_streamClientSocketImpl;
+                std::unique_ptr<OSELib::DPWS::SubscriptionClient> m_subscriptionClient{nullptr};
+                std::unique_ptr<OSELib::DPWS::PingManager> m_pingManager{nullptr};
 
-			public:
-				SDCConsumerAdapter(SDCConsumer & p_consumer, OSELib::DPWS::DeviceDescription_shared_ptr p_deviceDescription);
-				// Special Member Functions
-				SDCConsumerAdapter() = delete;
-				SDCConsumerAdapter(const SDCConsumerAdapter& p_obj) = delete;
-				SDCConsumerAdapter(SDCConsumerAdapter&& p_obj) = delete;
-				SDCConsumerAdapter& operator=(const SDCConsumerAdapter& p_obj) = delete;
-				SDCConsumerAdapter& operator=(SDCConsumerAdapter&& p_obj) = delete;
-				~SDCConsumerAdapter();
+            public:
+                SDCConsumerAdapter(SDCConsumer&, OSELib::DPWS::DeviceDescription_shared_ptr);
+                // Special Member Functions
+                SDCConsumerAdapter() = delete;
+                SDCConsumerAdapter(const SDCConsumerAdapter&) = delete;
+                SDCConsumerAdapter(SDCConsumerAdapter&&) = delete;
+                SDCConsumerAdapter& operator=(const SDCConsumerAdapter&) = delete;
+                SDCConsumerAdapter& operator=(SDCConsumerAdapter&&) = delete;
+                ~SDCConsumerAdapter();
 
-				bool start();
+                bool start();
 
-				std::unique_ptr<MDM::GetMdDescriptionResponse> invoke(const MDM::GetMdDescription & p_request, Poco::Net::Context::Ptr p_context);
-				std::unique_ptr<MDM::GetMdibResponse> invoke(const MDM::GetMdib & p_request, Poco::Net::Context::Ptr p_context);
-				std::unique_ptr<MDM::GetMdStateResponse> invoke(const MDM::GetMdState & p_request, Poco::Net::Context::Ptr p_context);
+                std::unique_ptr<MDM::GetMdDescriptionResponse> invoke(const MDM::GetMdDescription&, Poco::Net::Context::Ptr);
+                std::unique_ptr<MDM::GetMdibResponse> invoke(const MDM::GetMdib&, Poco::Net::Context::Ptr);
+                std::unique_ptr<MDM::GetMdStateResponse> invoke(const MDM::GetMdState&, Poco::Net::Context::Ptr);
 
-				std::unique_ptr<MDM::ActivateResponse> invoke(const MDM::Activate & p_request, Poco::Net::Context::Ptr p_context);
-				std::unique_ptr<MDM::SetAlertStateResponse> invoke(const MDM::SetAlertState & p_request, Poco::Net::Context::Ptr p_context);
-				std::unique_ptr<MDM::SetValueResponse> invoke(const MDM::SetValue & p_request, Poco::Net::Context::Ptr p_context);
-				std::unique_ptr<MDM::SetStringResponse> invoke(const MDM::SetString & p_request, Poco::Net::Context::Ptr p_context);
+                std::unique_ptr<MDM::ActivateResponse> invoke(const MDM::Activate&, Poco::Net::Context::Ptr);
+                std::unique_ptr<MDM::SetAlertStateResponse> invoke(const MDM::SetAlertState&, Poco::Net::Context::Ptr);
+                std::unique_ptr<MDM::SetValueResponse> invoke(const MDM::SetValue&, Poco::Net::Context::Ptr);
+                std::unique_ptr<MDM::SetStringResponse> invoke(const MDM::SetString&, Poco::Net::Context::Ptr);
 
-				std::unique_ptr<MDM::SetContextStateResponse> invoke(const MDM::SetContextState & p_request, Poco::Net::Context::Ptr p_context);
+                std::unique_ptr<MDM::SetContextStateResponse> invoke(const MDM::SetContextState&, Poco::Net::Context::Ptr);
 
-				void subscribeEvents();
-				void unsubscribeEvents();
+                void subscribeEvents();
+                void unsubscribeEvents();
 
-			private:
+            private:
+                // callback from _streamClientSocketImpl
+                void dispatch(const OSELib::DPWS::WaveformStreamType&) override;
 
-				// callback from _streamClientSocketImpl
-				void dispatch(const OSELib::DPWS::WaveformStreamType & p_notification) override;
+                // Variables
+                template<class TraitsType>
+                std::unique_ptr<typename TraitsType::Response>
+                    invokeImpl(const typename TraitsType::Request&, const Poco::URI&, Poco::Net::Context::Ptr);
 
-				// Variables
-				template<class TraitsType>
-				std::unique_ptr<typename TraitsType::Response> invokeImpl(const typename TraitsType::Request & p_request, const Poco::URI & p_requestURI, Poco::Net::Context::Ptr p_context);
+                template<class TraitsType>
+                std::unique_ptr<typename TraitsType::Response>
+                    invokeImplWithEventSubscription(const typename TraitsType::Request&, const Poco::URI&, Poco::Net::Context::Ptr);
 
-				template<class TraitsType>
-				std::unique_ptr<typename TraitsType::Response> invokeImplWithEventSubscription(const typename TraitsType::Request & p_request, const Poco::URI & p_requestURI, Poco::Net::Context::Ptr p_context);
-
-				template<class RequestType>
-				Poco::URI getRequestURIFromDeviceDescription(const RequestType & p_request) const;
-
-			};
-		}
-	}
-}
+                template<class RequestType> Poco::URI getRequestURIFromDeviceDescription(const RequestType&) const;
+            };
+        } // namespace SDC
+    }     // namespace Data
+} // namespace SDCLib
 
 #endif

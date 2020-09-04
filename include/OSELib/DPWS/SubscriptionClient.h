@@ -21,53 +21,88 @@
 
 namespace OSELib
 {
-	namespace DPWS
-	{
-		class SubscriptionClient : public OSELib::Helper::WithLogger
-		{
-		public:
+    namespace DPWS
+    {
+        class SubscriptionClient : public OSELib::Helper::WithLogger
+        {
+        public:
+            class SubscriptionInformation
+            {
+            public:
+                SubscriptionInformation(const Poco::URI& p_sinkURI, const Poco::URI& p_sourceURI, const WS::EVENTING::FilterType& p_actions)
+                    : m_sinkURI(p_sinkURI)
+                    , m_sourceURI(p_sourceURI)
+                    , m_actions(p_actions)
+                {
+                }
 
-			struct SubscriptionInformation
-			{
-				SubscriptionInformation(const Poco::URI & p_sinkURI, const Poco::URI & p_sourceURI, const WS::EVENTING::FilterType & p_actions)
-				: m_sinkURI(p_sinkURI)
-				, m_sourceURI(p_sourceURI)
-				, m_actions(p_actions)
-				{ }
+                SubscriptionInformation(const SubscriptionInformation& p_source)
+                    : m_sinkURI(p_source.m_sinkURI)
+                    , m_sourceURI(p_source.m_sourceURI)
+                    , m_actions(p_source.m_actions)
+                {
+                }
 
-				SubscriptionInformation(const SubscriptionInformation & p_source)
-				: m_sinkURI(p_source.m_sinkURI)
-				, m_sourceURI(p_source.m_sourceURI)
-				, m_actions(p_source.m_actions)
-				{ }
 
-				const Poco::URI m_sinkURI;
-				const Poco::URI m_sourceURI;
-				const WS::EVENTING::FilterType m_actions;
-			};
+                Poco::URI getSinkURI() const
+                {
+                    return m_sinkURI;
+                }
+                Poco::URI getSourceURI() const
+                {
+                    return m_sourceURI;
+                }
+                WS::EVENTING::FilterType getActions() const
+                {
+                    return m_actions;
+                }
 
-		private:
-			Poco::Thread m_thread;
-			Poco::RunnableAdapter<SubscriptionClient> m_runnableAdapter;
-			std::map<std::string, WS::EVENTING::Identifier> m_subscriptionIdentifiers;
-			std::map<std::string, SubscriptionInformation> m_subscriptions;
-			Poco::Net::Context::Ptr m_SSLContext = nullptr; // != nullptr -> SSL Active!
+                void setIdentifier(WS::EVENTING::Identifier p_newIdentifier)
+                {
+                    m_identifier = p_newIdentifier;
+                }
+                WS::EVENTING::Identifier getIdentifier() const
+                {
+                    return m_identifier;
+                }
 
-		public:
 
-			SubscriptionClient(const std::vector<SubscriptionInformation> & p_subscriptions, Poco::Net::Context::Ptr p_context);
-			// Special Member Functions
-			SubscriptionClient(const SubscriptionClient& p_obj) = delete;
-			SubscriptionClient(SubscriptionClient&& p_obj) = delete;
-			SubscriptionClient& operator=(const SubscriptionClient& p_obj) = delete;
-			SubscriptionClient& operator=(SubscriptionClient&& p_obj) = delete;
-			virtual ~SubscriptionClient();
+            private:
+                const Poco::URI m_sinkURI;
+                const Poco::URI m_sourceURI;
+                const WS::EVENTING::FilterType m_actions;
 
-		private:
+                WS::EVENTING::Identifier m_identifier{""};
+            };
 
-			void run();
-		};
-	}
-}
+        private:
+            std::map<std::string, SubscriptionInformation> m_subscriptions;
+
+            Poco::RunnableAdapter<SubscriptionClient> m_runnableAdapter;
+            Poco::Thread m_thread;
+
+            Poco::Net::Context::Ptr m_SSLContext{nullptr}; // != nullptr -> SSL Active!
+
+        public:
+            SubscriptionClient(const std::vector<SubscriptionInformation>&, Poco::Net::Context::Ptr);
+            // Special Member Functions
+            SubscriptionClient(const SubscriptionClient&) = delete;
+            SubscriptionClient(SubscriptionClient&&) = delete;
+            SubscriptionClient& operator=(const SubscriptionClient&) = delete;
+            SubscriptionClient& operator=(SubscriptionClient&&) = delete;
+            virtual ~SubscriptionClient();
+
+        private:
+            void run();
+
+            std::pair<bool, WS::EVENTING::Identifier>
+                invokeSubscribe(SubscriptionInformation, const WS::EVENTING::ExpirationType, SDC::DefaultSDCSchemaGrammarProvider&);
+            bool invokeUnsubscribe(SubscriptionInformation, SDC::DefaultSDCSchemaGrammarProvider&);
+
+            void subscribeAll(const WS::EVENTING::ExpirationType, SDC::DefaultSDCSchemaGrammarProvider&);
+            void unsubscribeAll(SDC::DefaultSDCSchemaGrammarProvider&);
+        };
+    } // namespace DPWS
+} // namespace OSELib
 
 #endif
