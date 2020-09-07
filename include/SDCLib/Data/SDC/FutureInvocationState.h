@@ -36,44 +36,40 @@
 
 namespace SDCLib
 {
-	namespace Data
-	{
-		namespace SDC
-		{
-			class SDCConsumer;
+    namespace Data
+    {
+        namespace SDC
+        {
+            class SDCConsumer;
 
-			class FutureInvocationState
-			{
-				friend class SDCConsumer;
-			private:
+            class FutureInvocationState
+            {
+                friend class SDCConsumer;
 
-				std::atomic<int> m_transactionId{-1};
-				SDCConsumer* m_consumer{nullptr};
-				std::mutex m_mutex;
+            private:
+                std::atomic<int> m_transactionId{-1};
+                SDCConsumer* m_consumer{nullptr};
 
-				std::map<InvocationState, std::shared_ptr<Poco::Event>> ml_invocationEvents;
+                std::map<InvocationState, std::shared_ptr<Poco::Event>> ml_invocationEvents;
 
-			public:
+            public:
+                // Special Member Functions
+                FutureInvocationState();
+                FutureInvocationState(const FutureInvocationState&) = delete;
+                FutureInvocationState(FutureInvocationState&&) = delete;
+                FutureInvocationState& operator=(const FutureInvocationState&) = delete;
+                FutureInvocationState& operator=(FutureInvocationState&&) = delete;
+                virtual ~FutureInvocationState();
 
-				// Special Member Functions
-				FutureInvocationState();
-				FutureInvocationState(const FutureInvocationState& p_obj) = delete;
-				FutureInvocationState(FutureInvocationState&& p_obj) = delete;
-				FutureInvocationState& operator=(const FutureInvocationState& p_obj) = delete;
-				FutureInvocationState& operator=(FutureInvocationState&& p_obj) = delete;
-				virtual ~FutureInvocationState();
+                bool waitReceived(InvocationState, int);
 
-				bool waitReceived(InvocationState p_expected, int p_timeout);
+                int getTransactionId() const;
 
-				int getTransactionId() const;
-
-			private:
-
-				void setEvent(InvocationState p_actual);
-
-			};
-		}
-	}
-}
+            private:
+                void setEvent(InvocationState);
+            };
+        } // namespace SDC
+    }     // namespace Data
+} // namespace SDCLib
 
 #endif

@@ -24,8 +24,6 @@
 
 #include <Poco/Net/Context.h>
 
-#include <mutex>
-
 
 // Declare in cpp defined
 namespace OSELib
@@ -44,8 +42,6 @@ namespace SDCLib
             {
             private:
                 SDCConsumer& m_consumer;
-
-                mutable std::mutex m_mutex;
 
                 OSELib::DPWS::DeviceDescription_shared_ptr m_deviceDescription{nullptr};
                 OSELib::SDC::DefaultSDCSchemaGrammarProvider m_grammarProvider;

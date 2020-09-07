@@ -98,7 +98,7 @@ namespace OSELib
 
         std::string getWSDL() override
         {
-            OSELib::WSDL::WSDLLoader t_wsdlLoader;  // FIXME: Always create a new Loader?
+            OSELib::WSDL::WSDLLoader t_wsdlLoader; // FIXME: Always create a new Loader?
             return t_wsdlLoader.getGetServiceWSDL();
         }
 
@@ -109,18 +109,18 @@ namespace OSELib
 
         std::unique_ptr<SDC::GetMDDescriptionTraits::Response> dispatch(const SDC::GetMDDescriptionTraits::Request& p_request) override
         {
-            std::lock_guard<std::mutex> t_lock{m_provider.getMutex()};  // FIXME: Mutex should not be used outside of the class!
+            std::lock_guard<std::mutex> t_lock{m_provider.getMutex()}; // FIXME: Mutex should not be used outside of the class!
             return std::unique_ptr<SDC::GetMDDescriptionTraits::Response>(
                 new SDC::GetMDDescriptionTraits::Response(m_provider.GetMdDescription(p_request)));
         }
         std::unique_ptr<SDC::GetMDIBTraits::Response> dispatch(const SDC::GetMDIBTraits::Request& p_request) override
         {
-            std::lock_guard<std::mutex> t_lock{m_provider.getMutex()};  // FIXME: Mutex should not be used outside of the class!
+            std::lock_guard<std::mutex> t_lock{m_provider.getMutex()}; // FIXME: Mutex should not be used outside of the class!
             return std::unique_ptr<SDC::GetMDIBTraits::Response>(new SDC::GetMDIBTraits::Response(m_provider.GetMdib(p_request)));
         }
         std::unique_ptr<SDC::GetMdStateTraits::Response> dispatch(const SDC::GetMdStateTraits::Request& p_request) override
         {
-            std::lock_guard<std::mutex> t_lock{m_provider.getMutex()};  // FIXME: Mutex should not be used outside of the class!
+            std::lock_guard<std::mutex> t_lock{m_provider.getMutex()}; // FIXME: Mutex should not be used outside of the class!
             return std::unique_ptr<SDC::GetMdStateTraits::Response>(new SDC::GetMdStateTraits::Response(m_provider.GetMdState(p_request)));
         }
     };
@@ -150,7 +150,7 @@ namespace OSELib
 
         std::string getWSDL() override
         {
-            OSELib::WSDL::WSDLLoader t_wsdlLoader;  // FIXME: Always create a new Loader?
+            OSELib::WSDL::WSDLLoader t_wsdlLoader; // FIXME: Always create a new Loader?
             return t_wsdlLoader.getSetServiceWSDL();
         }
 
@@ -162,24 +162,24 @@ namespace OSELib
 
         std::unique_ptr<SDC::SetValueTraits::Response> dispatch(const SDC::SetValueTraits::Request& p_request) override
         {
-            std::lock_guard<std::mutex> t_lock{m_provider.getMutex()};  // FIXME: Mutex should not be used outside of the class!
+            std::lock_guard<std::mutex> t_lock{m_provider.getMutex()}; // FIXME: Mutex should not be used outside of the class!
             return std::unique_ptr<SDC::SetValueTraits::Response>(new SDC::SetValueTraits::Response(m_provider.SetValueAsync(p_request)));
         }
 
         std::unique_ptr<SDC::SetStringTraits::Response> dispatch(const SDC::SetStringTraits::Request& p_request) override
         {
-            std::lock_guard<std::mutex> t_lock{m_provider.getMutex()};  // FIXME: Mutex should not be used outside of the class!
+            std::lock_guard<std::mutex> t_lock{m_provider.getMutex()}; // FIXME: Mutex should not be used outside of the class!
             return std::unique_ptr<SDC::SetStringTraits::Response>(
                 new SDC::SetStringTraits::Response(m_provider.SetStringAsync(p_request)));
         }
         std::unique_ptr<SDC::ActivateTraits::Response> dispatch(const SDC::ActivateTraits::Request& p_request) override
         {
-            std::lock_guard<std::mutex> t_lock{m_provider.getMutex()};  // FIXME: Mutex should not be used outside of the class!
+            std::lock_guard<std::mutex> t_lock{m_provider.getMutex()}; // FIXME: Mutex should not be used outside of the class!
             return std::unique_ptr<SDC::ActivateTraits::Response>(new SDC::ActivateTraits::Response(m_provider.OnActivateAsync(p_request)));
         }
         std::unique_ptr<SDC::SetAlertStateTraits::Response> dispatch(const SDC::SetAlertStateTraits::Request& p_request) override
         {
-            std::lock_guard<std::mutex> t_lock{m_provider.getMutex()};  // FIXME: Mutex should not be used outside of the class!
+            std::lock_guard<std::mutex> t_lock{m_provider.getMutex()}; // FIXME: Mutex should not be used outside of the class!
             return std::unique_ptr<SDC::SetAlertStateTraits::Response>(
                 new SDC::SetAlertStateTraits::Response(m_provider.SetAlertStateAsync(p_request)));
         }
@@ -235,7 +235,7 @@ namespace OSELib
 
         std::string getWSDL() override
         {
-            OSELib::WSDL::WSDLLoader t_wsdlLoader;  // FIXME: Always create a new Loader?
+            OSELib::WSDL::WSDLLoader t_wsdlLoader; // FIXME: Always create a new Loader?
             return t_wsdlLoader.getBICEPSServiceWSDL();
         }
 
@@ -266,20 +266,20 @@ namespace OSELib
 
         std::unique_ptr<SDC::GetContextStatesTraits::Response> dispatch(const SDC::GetContextStatesTraits::Request& p_request) override
         {
-            std::lock_guard<std::mutex> t_lock{m_provider.getMutex()};  // FIXME: Mutex should not be used outside of the class!
+            std::lock_guard<std::mutex> t_lock{m_provider.getMutex()}; // FIXME: Mutex should not be used outside of the class!
             return std::unique_ptr<SDC::GetContextStatesTraits::Response>(
                 new SDC::GetContextStatesTraits::Response(m_provider.GetContextStates(p_request)));
         }
         std::unique_ptr<SDC::SetContextStateTraits::Response> dispatch(const SDC::SetContextStateTraits::Request& p_request) override
         {
-            std::lock_guard<std::mutex> t_lock{m_provider.getMutex()};  // FIXME: Mutex should not be used outside of the class!
+            std::lock_guard<std::mutex> t_lock{m_provider.getMutex()}; // FIXME: Mutex should not be used outside of the class!
             return std::unique_ptr<SDC::SetContextStateTraits::Response>(
                 new SDC::SetContextStateTraits::Response(m_provider.SetContextStateAsync(p_request)));
         }
     };
 
 
-}  // namespace OSELib
+} // namespace OSELib
 
 namespace SDCLib
 {
@@ -323,248 +323,248 @@ namespace SDCLib
                     m_frontController.setSSL(p_SSL);
                 }
             };
+        } // namespace SDC
+    }     // namespace Data
+} // namespace SDCLib
 
-            SDCProviderAdapter::SDCProviderAdapter(SDCProvider& p_provider)
-                : m_provider(p_provider)
-            {
-            }
+using namespace SDCLib;
+using namespace SDCLib::Data;
+using namespace SDCLib::Data::SDC;
 
-            SDCProviderAdapter::~SDCProviderAdapter()
-            {
-                std::lock_guard<std::mutex> t_lock{m_mutex};
+SDCProviderAdapter::SDCProviderAdapter(SDCProvider& p_provider)
+    : m_provider(p_provider)
+{
+}
 
-                if(m_dpwsHost)
-                {
-                    m_dpwsHost->stop();
-                }
+SDCProviderAdapter::~SDCProviderAdapter()
+{
+    std::lock_guard<std::mutex> t_lock{m_mutex};
 
-                if(m_httpServer)
-                {
-                    m_httpServer->stopAll(false);
-                    while(m_httpServer->currentConnections() != 0)
-                    {
-                        std::this_thread::sleep_for(std::chrono::milliseconds(100));
-                    }
-                }
+    if(m_dpwsHost)
+    {
+        m_dpwsHost->stop();
+    }
 
-                m_httpServer.reset();
-                m_dpwsHost.reset();
-                m_subscriptionManager.reset();
-            }
+    if(m_httpServer)
+    {
+        m_httpServer->stopAll(false);
+        while(m_httpServer->currentConnections() != 0)
+        {
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        }
+    }
 
-
-            bool SDCProviderAdapter::start()
-            {
-                std::lock_guard<std::mutex> t_lock{m_mutex};
-                if(m_dpwsHost || m_subscriptionManager || m_httpServer)
-                {
-                    throw std::runtime_error("Service is already running..");
-                }
-
-                OSELib::DPWS::MetadataProvider t_metadata(m_provider.getDeviceCharacteristics());
+    m_httpServer.reset();
+    m_dpwsHost.reset();
+    m_subscriptionManager.reset();
+}
 
 
-                auto t_networkConfig = m_provider.getSDCInstance()->getNetworkConfig();
-                auto t_SSLConfig = m_provider.getSDCInstance()->getSSLConfig();
-                assert(t_networkConfig != nullptr);
-                assert(t_SSLConfig != nullptr);
+bool SDCProviderAdapter::start()
+{
+    std::lock_guard<std::mutex> t_lock{m_mutex};
+    if(m_dpwsHost || m_subscriptionManager || m_httpServer)
+    {
+        throw std::runtime_error("Service is already running..");
+    }
 
-                auto t_interface = t_networkConfig->getMDPWSInterface();
-                if(!t_interface)
-                {
-                    OSELib::Helper::WithLogger(OSELib::Log::sdcProvider).log_error([] {
-                        return "Failed to start SDCProviderAdapter: Set MDPWSInterface first!";
-                    });
-                    return false;
-                }
-
-                // todo: right now only binding to one interface is possible -> implementation for more than one interface is needed!
-                auto t_bindingAddress = t_interface->m_if.address();
-                auto t_port = t_networkConfig->getMDPWSPort();
-
-                // Use SSL - HTTP'S'
-                std::string t_PROTOCOL = "http";
-                if(m_provider.getSDCInstance()->getSSLConfig()->isInit())
-                {
-                    t_PROTOCOL.append("s");
-                }
-
-                // add address to to DPWS xAddresses so that searching devices know on which address to connect to device
-                OSELib::DPWS::XAddressesType t_xAddresses;
-                t_xAddresses.push_back(OSELib::DPWS::AddressType(t_PROTOCOL + "://" + t_bindingAddress.toString() + ":"
-                                                                 + std::to_string(t_port) + t_metadata.getDeviceServicePath()));
-
-                OSELib::DPWS::TypesType t_types;
-                t_types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_DPWS, "Device"));
-                t_types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_MDPWS, "MedicalDevice"));
-
-                try
-                {
-                    m_dpwsHost = std::unique_ptr<OSELib::DPWS::MDPWSHostAdapter>(
-                        new OSELib::DPWS::MDPWSHostAdapter(m_provider.getSDCInstance()->getNetworkConfig(),
-                                                           OSELib::DPWS::AddressType(m_provider.getEndpointReference()),
-                                                           OSELib::DPWS::ScopesType(),
-                                                           t_types,
-                                                           t_xAddresses));
-                }
-                catch(const Poco::Net::NetException& e)
-                {
-                    OSELib::Helper::WithLogger(OSELib::Log::sdcProvider).log_error([&] {
-                        return "Net Exception: " + std::string(e.what()) + " Socket unable to be opened. Provider startup aborted.";
-                    });
-                    return false;
-                }
-                catch(...)
-                {
-                    throw;
-                }
-
-                const std::vector<xml_schema::Uri>
-                    tl_allowedSubscriptionEventActions{OSELib::SDC::DescriptionModificationReportTraits::Action(),
-                                                       OSELib::SDC::EpisodicAlertReportTraits::Action(),
-                                                       OSELib::SDC::EpisodicComponentReportTraits::Action(),
-                                                       OSELib::SDC::EpisodicContextReportTraits::Action(),
-                                                       OSELib::SDC::EpisodicMetricReportTraits::Action(),
-                                                       OSELib::SDC::EpisodicOperationalStateReportTraits::Action(),
-                                                       OSELib::SDC::OperationInvokedReportTraits::Action(),
-                                                       OSELib::SDC::PeriodicAlertReportTraits::Action(),
-                                                       OSELib::SDC::PeriodicContextReportTraits::Action(),
-                                                       OSELib::SDC::WaveformStreamTraits::Action(),
-                                                       OSELib::SDC::PeriodicMetricReportTraits::Action()};
-
-                m_subscriptionManager = std::unique_ptr<OSELib::DPWS::SubscriptionManager>(
-                    new OSELib::DPWS::SubscriptionManager(tl_allowedSubscriptionEventActions, m_provider.getSDCInstance()->getSSLConfig()));
+    OSELib::DPWS::MetadataProvider t_metadata(m_provider.getDeviceCharacteristics());
 
 
-                // HTTP Server
-                m_httpServer = std::unique_ptr<OSELib::HTTP::HTTPServer>(new OSELib::HTTP::HTTPServer(t_networkConfig, t_SSLConfig));
+    auto t_networkConfig = m_provider.getSDCInstance()->getNetworkConfig();
+    auto t_SSLConfig = m_provider.getSDCInstance()->getSSLConfig();
+    assert(t_networkConfig != nullptr);
+    assert(t_SSLConfig != nullptr);
 
-                // Init
-                auto t_factory = new ProviderFactory(m_provider,
-                                                     t_metadata,
-                                                     *m_dpwsHost,
-                                                     *m_subscriptionManager,
-                                                     /*ml_streamingPorts,*/ m_provider.getSDCInstance()->getSSLConfig()->isInit());
-                if(!m_httpServer->init(std::make_shared<OSELib::HTTP::HTTPRequestHandlerFactory>(t_factory)))
-                {
-                    OSELib::Helper::WithLogger(OSELib::Log::sdcProvider).log_error([] {
-                        return "SDCProviderAdapter: Failed to init HTTPServer!";
-                    });
-                    return false;
-                }
+    auto t_interface = t_networkConfig->getMDPWSInterface();
+    if(!t_interface)
+    {
+        OSELib::Helper::WithLogger(OSELib::Log::sdcProvider).log_error([] {
+            return "Failed to start SDCProviderAdapter: Set MDPWSInterface first!";
+        });
+        return false;
+    }
 
-                // Start all components
-                m_httpServer->start();
-                m_dpwsHost->start();
-                return true;
-            }
+    // todo: right now only binding to one interface is possible -> implementation for more than one interface is needed!
+    auto t_bindingAddress = t_interface->m_if.address();
+    auto t_port = t_networkConfig->getMDPWSPort();
 
-            void SDCProviderAdapter::notifyEvent(const MDM::DescriptionModificationReport& p_report)
-            {
-                std::lock_guard<std::mutex> t_lock{m_mutex};
-                if(m_subscriptionManager)
-                {
-                    m_subscriptionManager->fireEvent<OSELib::SDC::DescriptionModificationReportTraits>(p_report);
-                }
-            }
+    // Use SSL - HTTP'S'
+    std::string t_PROTOCOL = "http";
+    if(m_provider.getSDCInstance()->getSSLConfig()->isInit())
+    {
+        t_PROTOCOL.append("s");
+    }
 
-            void SDCProviderAdapter::notifyEvent(const MDM::EpisodicAlertReport& p_report)
-            {
-                std::lock_guard<std::mutex> t_lock{m_mutex};
-                if(m_subscriptionManager)
-                {
-                    m_subscriptionManager->fireEvent<OSELib::SDC::EpisodicAlertReportTraits>(p_report);
-                }
-            }
-            void SDCProviderAdapter::notifyEvent(const MDM::EpisodicComponentReport& p_report)
-            {
-                std::lock_guard<std::mutex> t_lock{m_mutex};
-                if(m_subscriptionManager)
-                {
-                    m_subscriptionManager->fireEvent<OSELib::SDC::EpisodicComponentReportTraits>(p_report);
-                }
-            }
+    // add address to to DPWS xAddresses so that searching devices know on which address to connect to device
+    OSELib::DPWS::XAddressesType t_xAddresses;
+    t_xAddresses.push_back(OSELib::DPWS::AddressType(t_PROTOCOL + "://" + t_bindingAddress.toString() + ":" + std::to_string(t_port)
+                                                     + t_metadata.getDeviceServicePath()));
 
-            void SDCProviderAdapter::notifyEvent(const MDM::EpisodicContextReport& p_report)
-            {
-                std::lock_guard<std::mutex> t_lock{m_mutex};
-                if(m_subscriptionManager)
-                {
-                    m_subscriptionManager->fireEvent<OSELib::SDC::EpisodicContextReportTraits>(p_report);
-                }
-            }
+    OSELib::DPWS::TypesType t_types;
+    t_types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_DPWS, "Device"));
+    t_types.push_back(OSELib::DPWS::QName(OSELib::SDC::NS_MDPWS, "MedicalDevice"));
 
-            void SDCProviderAdapter::notifyEvent(const MDM::EpisodicMetricReport& p_report)
-            {
-                std::lock_guard<std::mutex> t_lock{m_mutex};
-                if(m_subscriptionManager)
-                {
-                    m_subscriptionManager->fireEvent<OSELib::SDC::EpisodicMetricReportTraits>(p_report);
-                }
-            }
+    try
+    {
+        m_dpwsHost = std::unique_ptr<OSELib::DPWS::MDPWSHostAdapter>(
+            new OSELib::DPWS::MDPWSHostAdapter(m_provider.getSDCInstance()->getNetworkConfig(),
+                                               OSELib::DPWS::AddressType(m_provider.getEndpointReference()),
+                                               OSELib::DPWS::ScopesType(),
+                                               t_types,
+                                               t_xAddresses));
+    }
+    catch(const Poco::Net::NetException& e)
+    {
+        OSELib::Helper::WithLogger(OSELib::Log::sdcProvider).log_error([&] {
+            return "Net Exception: " + std::string(e.what()) + " Socket unable to be opened. Provider startup aborted.";
+        });
+        return false;
+    }
+    catch(...)
+    {
+        throw;
+    }
 
-            void SDCProviderAdapter::notifyEvent(const MDM::EpisodicOperationalStateReport& p_report)
-            {
-                std::lock_guard<std::mutex> t_lock{m_mutex};
-                if(m_subscriptionManager)
-                {
-                    m_subscriptionManager->fireEvent<OSELib::SDC::EpisodicOperationalStateReportTraits>(p_report);
-                }
-            }
+    const std::vector<xml_schema::Uri> tl_allowedSubscriptionEventActions{OSELib::SDC::DescriptionModificationReportTraits::Action(),
+                                                                          OSELib::SDC::EpisodicAlertReportTraits::Action(),
+                                                                          OSELib::SDC::EpisodicComponentReportTraits::Action(),
+                                                                          OSELib::SDC::EpisodicContextReportTraits::Action(),
+                                                                          OSELib::SDC::EpisodicMetricReportTraits::Action(),
+                                                                          OSELib::SDC::EpisodicOperationalStateReportTraits::Action(),
+                                                                          OSELib::SDC::OperationInvokedReportTraits::Action(),
+                                                                          OSELib::SDC::PeriodicAlertReportTraits::Action(),
+                                                                          OSELib::SDC::PeriodicContextReportTraits::Action(),
+                                                                          OSELib::SDC::WaveformStreamTraits::Action(),
+                                                                          OSELib::SDC::PeriodicMetricReportTraits::Action()};
 
-            // WaveformStream uses UDP multicast, thus no subscription management is needed
-            void SDCProviderAdapter::notifyEvent(const MDM::WaveformStream& p_stream)
-            {
-                m_dpwsHost->sendStream(p_stream);
-            }
+    m_subscriptionManager = std::unique_ptr<OSELib::DPWS::SubscriptionManager>(
+        new OSELib::DPWS::SubscriptionManager(tl_allowedSubscriptionEventActions, m_provider.getSDCInstance()->getSSLConfig()));
 
 
-            void SDCProviderAdapter::notifyEvent(const MDM::PeriodicAlertReport& p_report)
-            {
-                std::lock_guard<std::mutex> t_lock{m_mutex};
-                if(m_subscriptionManager)
-                {
-                    m_subscriptionManager->fireEvent<OSELib::SDC::PeriodicAlertReportTraits>(p_report);
-                }
-            }
+    // HTTP Server
+    m_httpServer = std::unique_ptr<OSELib::HTTP::HTTPServer>(new OSELib::HTTP::HTTPServer(t_networkConfig, t_SSLConfig));
 
-            void SDCProviderAdapter::notifyEvent(const MDM::PeriodicContextReport& report)
-            {
-                std::lock_guard<std::mutex> lock{m_mutex};
-                if(m_subscriptionManager)
-                {
-                    m_subscriptionManager->fireEvent<OSELib::SDC::PeriodicContextReportTraits>(report);
-                }
-            }
+    // Init
+    auto t_factory = new ProviderFactory(m_provider,
+                                         t_metadata,
+                                         *m_dpwsHost,
+                                         *m_subscriptionManager,
+                                         /*ml_streamingPorts,*/ m_provider.getSDCInstance()->getSSLConfig()->isInit());
+    if(!m_httpServer->init(std::make_shared<OSELib::HTTP::HTTPRequestHandlerFactory>(t_factory)))
+    {
+        OSELib::Helper::WithLogger(OSELib::Log::sdcProvider).log_error([] { return "SDCProviderAdapter: Failed to init HTTPServer!"; });
+        return false;
+    }
 
-            void SDCProviderAdapter::notifyEvent(const MDM::PeriodicMetricReport& p_report)
-            {
-                std::lock_guard<std::mutex> t_lock{m_mutex};
-                if(m_subscriptionManager)
-                {
-                    m_subscriptionManager->fireEvent<OSELib::SDC::PeriodicMetricReportTraits>(p_report);
-                }
-            }
+    // Start all components
+    m_httpServer->start();
+    m_dpwsHost->start();
+    return true;
+}
 
-            void SDCProviderAdapter::notifyEvent(const MDM::OperationInvokedReport& p_report)
-            {
-                std::lock_guard<std::mutex> t_lock{m_mutex};
-                if(m_subscriptionManager)
-                {
-                    m_subscriptionManager->fireEvent<OSELib::SDC::OperationInvokedReportTraits>(p_report);
-                }
-            }
+void SDCProviderAdapter::notifyEvent(const MDM::DescriptionModificationReport& p_report)
+{
+    std::lock_guard<std::mutex> t_lock{m_mutex};
+    if(m_subscriptionManager)
+    {
+        m_subscriptionManager->fireEvent<OSELib::SDC::DescriptionModificationReportTraits>(p_report);
+    }
+}
 
-            void SDCProviderAdapter::addStreamingPort(const int port)
-            {
-                ml_streamingPorts.insert(port);
-            }
+void SDCProviderAdapter::notifyEvent(const MDM::EpisodicAlertReport& p_report)
+{
+    std::lock_guard<std::mutex> t_lock{m_mutex};
+    if(m_subscriptionManager)
+    {
+        m_subscriptionManager->fireEvent<OSELib::SDC::EpisodicAlertReportTraits>(p_report);
+    }
+}
+void SDCProviderAdapter::notifyEvent(const MDM::EpisodicComponentReport& p_report)
+{
+    std::lock_guard<std::mutex> t_lock{m_mutex};
+    if(m_subscriptionManager)
+    {
+        m_subscriptionManager->fireEvent<OSELib::SDC::EpisodicComponentReportTraits>(p_report);
+    }
+}
 
-            void SDCProviderAdapter::removeStreamingPort(const int port)
-            {
-                ml_streamingPorts.erase(port);
-            }
+void SDCProviderAdapter::notifyEvent(const MDM::EpisodicContextReport& p_report)
+{
+    std::lock_guard<std::mutex> t_lock{m_mutex};
+    if(m_subscriptionManager)
+    {
+        m_subscriptionManager->fireEvent<OSELib::SDC::EpisodicContextReportTraits>(p_report);
+    }
+}
 
-        }  // namespace SDC
-    }      // namespace Data
-}  // namespace SDCLib
+void SDCProviderAdapter::notifyEvent(const MDM::EpisodicMetricReport& p_report)
+{
+    std::lock_guard<std::mutex> t_lock{m_mutex};
+    if(m_subscriptionManager)
+    {
+        m_subscriptionManager->fireEvent<OSELib::SDC::EpisodicMetricReportTraits>(p_report);
+    }
+}
+
+void SDCProviderAdapter::notifyEvent(const MDM::EpisodicOperationalStateReport& p_report)
+{
+    std::lock_guard<std::mutex> t_lock{m_mutex};
+    if(m_subscriptionManager)
+    {
+        m_subscriptionManager->fireEvent<OSELib::SDC::EpisodicOperationalStateReportTraits>(p_report);
+    }
+}
+
+// WaveformStream uses UDP multicast, thus no subscription management is needed
+void SDCProviderAdapter::notifyEvent(const MDM::WaveformStream& p_stream)
+{
+    m_dpwsHost->sendStream(p_stream);
+}
+
+
+void SDCProviderAdapter::notifyEvent(const MDM::PeriodicAlertReport& p_report)
+{
+    std::lock_guard<std::mutex> t_lock{m_mutex};
+    if(m_subscriptionManager)
+    {
+        m_subscriptionManager->fireEvent<OSELib::SDC::PeriodicAlertReportTraits>(p_report);
+    }
+}
+
+void SDCProviderAdapter::notifyEvent(const MDM::PeriodicContextReport& report)
+{
+    std::lock_guard<std::mutex> lock{m_mutex};
+    if(m_subscriptionManager)
+    {
+        m_subscriptionManager->fireEvent<OSELib::SDC::PeriodicContextReportTraits>(report);
+    }
+}
+
+void SDCProviderAdapter::notifyEvent(const MDM::PeriodicMetricReport& p_report)
+{
+    std::lock_guard<std::mutex> t_lock{m_mutex};
+    if(m_subscriptionManager)
+    {
+        m_subscriptionManager->fireEvent<OSELib::SDC::PeriodicMetricReportTraits>(p_report);
+    }
+}
+
+void SDCProviderAdapter::notifyEvent(const MDM::OperationInvokedReport& p_report)
+{
+    std::lock_guard<std::mutex> t_lock{m_mutex};
+    if(m_subscriptionManager)
+    {
+        m_subscriptionManager->fireEvent<OSELib::SDC::OperationInvokedReportTraits>(p_report);
+    }
+}
+
+void SDCProviderAdapter::addStreamingPort(const int port)
+{
+    ml_streamingPorts.insert(port);
+}
+
+void SDCProviderAdapter::removeStreamingPort(const int port)
+{
+    ml_streamingPorts.erase(port);
+}

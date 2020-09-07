@@ -502,8 +502,6 @@ SDCConsumerAdapter::SDCConsumerAdapter(SDCConsumer& p_consumer, OSELib::DPWS::De
 }
 SDCConsumerAdapter::~SDCConsumerAdapter()
 {
-    std::lock_guard<std::mutex> t_lock(m_mutex);
-
     // No more listening to events
     unsubscribeEvents();
 
@@ -527,7 +525,6 @@ SDCConsumerAdapter::~SDCConsumerAdapter()
 
 bool SDCConsumerAdapter::start()
 {
-    std::lock_guard<std::mutex> t_lock(m_mutex);
     if(m_httpServer)
     {
         return false;

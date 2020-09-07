@@ -147,7 +147,6 @@ HTTPSessionManager::HTTPSessionManager(DPWS::SubscriptionManager* p_subscription
 
 HTTPSessionManager::~HTTPSessionManager()
 {
-    std::lock_guard<std::mutex> t_lock(m_mutex);
     for(const auto& t_item : m_queues)
     {
         t_item.second->enqueueUrgentNotification(new Poco::Net::ShutdownNotification(nullptr));
