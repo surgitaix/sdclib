@@ -2,7 +2,7 @@
  * SubscriptionClient.cpp
  *
  *  Created on: 14.12.2015, matthias
- *  Modified on: 22.08.2019, baumeister
+ *  Modified on: 21.09.2020, baumeister
  *
  */
 
@@ -16,8 +16,8 @@
 #include "DataModel/eventing.hxx"
 
 // Note: Configure these values later?
-const std::size_t RENEW_THRESHOLD = 60; // Time in sec a renew will be needed
-const double RENEW_FACTOR = 2.0;        // Multiplied with the RENEW_THRESHOLD = EXPIRATION_TIME for the subscription
+const std::size_t RENEW_THRESHOLD = 60;  // Time in sec a renew will be needed
+const double RENEW_FACTOR = 2.0;         // Multiplied with the RENEW_THRESHOLD = EXPIRATION_TIME for the subscription
 
 using namespace OSELib;
 using namespace OSELib::DPWS;
@@ -58,9 +58,9 @@ public:
     {
     }
 
-    virtual std::unique_ptr<MESSAGEMODEL::Header> createHeader() override
+    std::unique_ptr<MESSAGEMODEL::Header> createHeader() override
     {
-        auto header(OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::GetStatusTraits>::createHeader());
+        auto header{OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::GetStatusTraits>::createHeader()};
         header->setIdentifier(m_identifier);
         return header;
     }
@@ -80,9 +80,9 @@ public:
     {
     }
 
-    virtual std::unique_ptr<MESSAGEMODEL::Header> createHeader() override
+    std::unique_ptr<MESSAGEMODEL::Header> createHeader() override
     {
-        auto header(OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::UnsubscribeTraits>::createHeader());
+        auto header{OSELib::SOAP::GenericSoapInvoke<OSELib::DPWS::UnsubscribeTraits>::createHeader()};
         header->setIdentifier(m_identifier);
         return header;
     }
@@ -118,13 +118,20 @@ void SubscriptionClient::run()
     SDC::DefaultSDCSchemaGrammarProvider defaultSchemaGrammarProvider;
 
     auto renewThreshold = std::chrono::seconds{RENEW_THRESHOLD};
-    auto expireString = "PT" + std::to_string(renewThreshold.count() * RENEW_FACTOR) + "S"; // Note: Factor on the renew threshold
+    auto expireString = "PT" + std::to_string(renewThreshold.count() * RENEW_FACTOR) + "S";  // Note: Factor on the renew threshold
+
+    // Quickfix to multi-locale double std::to_string conversion
+    auto startTime = std::chrono::high_resolution_clock::now();
+    if((m_lconv->decimal_point != nullptr) && (*m_lconv->decimal_point != '.'))
+    {
+        std::replace(std::begin(expireString), std::end(expireString), ',', '.');
+    }
+
     const ExpirationType defaultExpireTime{expireString};
 
     subscribeAll(defaultExpireTime, defaultSchemaGrammarProvider);
 
-
-    std::size_t sleepQueryGetStatus_ms = 2000; // TODO: MAGIC NUMBER
+    std::size_t sleepQueryGetStatus_ms = 2000;  // TODO: MAGIC NUMBER
     while(Poco::Thread::trySleep(sleepQueryGetStatus_ms))
     {
         std::vector<std::string> recentlyExpiredSubscriptions;
@@ -150,7 +157,6 @@ void SubscriptionClient::run()
                 log_fatal([] { return "GetStatus failed."; });
                 // Init with 0 Duration - This will trigger a renew
                 expireDuration = OSELib::Helper::DurationWrapper{std::chrono::seconds{0}};
-                // FIXME: This might trigger many renews if GetStatus is not supported / anything goes wrong here
             }
 
             // Renew when under a threshold or duration convert error
@@ -252,7 +258,7 @@ bool SubscriptionClient::invokeUnsubscribe(SubscriptionInformation p_subscriptio
     UnsubscribeInvoke unsubscribeInvoke(p_subscription.getSourceURI(), p_subscription.getIdentifier(), p_defaultSchemaGrammarProvider);
 
     DPWS::UnsubscribeTraits::Request unsubscribeRequest;
-    auto unsubscribeResponse(unsubscribeInvoke.invoke(unsubscribeRequest, m_SSLContext));
+    auto unsubscribeResponse{unsubscribeInvoke.invoke(unsubscribeRequest, m_SSLContext)};
 
     return (nullptr != unsubscribeResponse);
 }

@@ -2,7 +2,7 @@
  * SubscriptionClient.h
  *
  *  Created on: 14.12.2015, matthias
- *  Modified on: 22.08.2019, baumeister
+ *  Modified on: 21.09.2020, baumeister
  *
  */
 
@@ -73,6 +73,8 @@ namespace OSELib
                 const WS::EVENTING::FilterType m_actions;
 
                 WS::EVENTING::Identifier m_identifier{""};
+
+                std::lconv* m_lconv{std::localeconv()};
             };
 
         private:
@@ -81,11 +83,10 @@ namespace OSELib
             Poco::RunnableAdapter<SubscriptionClient> m_runnableAdapter;
             Poco::Thread m_thread;
 
-            Poco::Net::Context::Ptr m_SSLContext{nullptr}; // != nullptr -> SSL Active!
+            Poco::Net::Context::Ptr m_SSLContext{nullptr};  // != nullptr -> SSL Active!
 
         public:
             SubscriptionClient(const std::vector<SubscriptionInformation>&, Poco::Net::Context::Ptr);
-            // Special Member Functions
             SubscriptionClient(const SubscriptionClient&) = delete;
             SubscriptionClient(SubscriptionClient&&) = delete;
             SubscriptionClient& operator=(const SubscriptionClient&) = delete;
@@ -102,7 +103,7 @@ namespace OSELib
             void subscribeAll(const WS::EVENTING::ExpirationType, SDC::DefaultSDCSchemaGrammarProvider&);
             void unsubscribeAll(SDC::DefaultSDCSchemaGrammarProvider&);
         };
-    } // namespace DPWS
-} // namespace OSELib
+    }  // namespace DPWS
+}  // namespace OSELib
 
 #endif
