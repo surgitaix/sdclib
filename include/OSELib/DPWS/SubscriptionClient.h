@@ -19,6 +19,8 @@
 
 #include "DataModel/eventing.hxx"
 
+#include <clocale>
+
 namespace OSELib
 {
     namespace DPWS
@@ -73,8 +75,6 @@ namespace OSELib
                 const WS::EVENTING::FilterType m_actions;
 
                 WS::EVENTING::Identifier m_identifier{""};
-
-                std::lconv* m_lconv{std::localeconv()};
             };
 
         private:
@@ -83,7 +83,9 @@ namespace OSELib
             Poco::RunnableAdapter<SubscriptionClient> m_runnableAdapter;
             Poco::Thread m_thread;
 
-            Poco::Net::Context::Ptr m_SSLContext{nullptr};  // != nullptr -> SSL Active!
+            Poco::Net::Context::Ptr m_SSLContext{nullptr}; // != nullptr -> SSL Active!
+
+            std::lconv* m_lconv{std::localeconv()};
 
         public:
             SubscriptionClient(const std::vector<SubscriptionInformation>&, Poco::Net::Context::Ptr);
@@ -103,7 +105,7 @@ namespace OSELib
             void subscribeAll(const WS::EVENTING::ExpirationType, SDC::DefaultSDCSchemaGrammarProvider&);
             void unsubscribeAll(SDC::DefaultSDCSchemaGrammarProvider&);
         };
-    }  // namespace DPWS
-}  // namespace OSELib
+    } // namespace DPWS
+} // namespace OSELib
 
 #endif
