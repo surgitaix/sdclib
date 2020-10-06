@@ -1,3 +1,11 @@
+Update to 4.5.1
+- Minor Refactoring on Subscription Management
+
+Update to 4.5.0
+- Enhanced Windows support
+- Bugfixes to reported issues
+- Some Cleanup and Refactoring
+
 Update to 4.4.3
 - Activates and Alarms can now be part of the MDS and VMD
 - Referenze implementation for compability tests added as ReferenceProvider and ReferenceConsumer. (Console parameter -tls enables TlS -epr
