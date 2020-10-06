@@ -799,6 +799,36 @@ namespace MESSAGEMODEL
     this->GetStatusResponse_.set (std::move (x));
   }
 
+  const Body::SubscriptionEndOptional& Body::
+  getSubscriptionEnd () const
+  {
+    return this->SubscriptionEnd_;
+  }
+
+  Body::SubscriptionEndOptional& Body::
+  getSubscriptionEnd ()
+  {
+    return this->SubscriptionEnd_;
+  }
+
+  void Body::
+  setSubscriptionEnd (const SubscriptionEndType& x)
+  {
+    this->SubscriptionEnd_.set (x);
+  }
+
+  void Body::
+  setSubscriptionEnd (const SubscriptionEndOptional& x)
+  {
+    this->SubscriptionEnd_ = x;
+  }
+
+  void Body::
+  setSubscriptionEnd (::std::unique_ptr< SubscriptionEndType > x)
+  {
+    this->SubscriptionEnd_.set (std::move (x));
+  }
+
   const Body::DescriptionModificationReportOptional& Body::
   getDescriptionModificationReport () const
   {
@@ -2129,6 +2159,7 @@ namespace MESSAGEMODEL
     RenewResponse_ (this),
     GetStatus_ (this),
     GetStatusResponse_ (this),
+    SubscriptionEnd_ (this),
     DescriptionModificationReport_ (this),
     GetContextStates_ (this),
     GetContextStatesResponse_ (this),
@@ -2181,6 +2212,7 @@ namespace MESSAGEMODEL
     RenewResponse_ (x.RenewResponse_, f, this),
     GetStatus_ (x.GetStatus_, f, this),
     GetStatusResponse_ (x.GetStatusResponse_, f, this),
+    SubscriptionEnd_ (x.SubscriptionEnd_, f, this),
     DescriptionModificationReport_ (x.DescriptionModificationReport_, f, this),
     GetContextStates_ (x.GetContextStates_, f, this),
     GetContextStatesResponse_ (x.GetContextStatesResponse_, f, this),
@@ -2233,6 +2265,7 @@ namespace MESSAGEMODEL
     RenewResponse_ (this),
     GetStatus_ (this),
     GetStatusResponse_ (this),
+    SubscriptionEnd_ (this),
     DescriptionModificationReport_ (this),
     GetContextStates_ (this),
     GetContextStatesResponse_ (this),
@@ -2570,6 +2603,20 @@ namespace MESSAGEMODEL
         if (!this->GetStatusResponse_)
         {
           this->GetStatusResponse_.set (::std::move (r));
+          continue;
+        }
+      }
+
+      // SubscriptionEnd
+      //
+      if (n.name () == "SubscriptionEnd" && n.namespace_ () == "http://schemas.xmlsoap.org/ws/2004/08/eventing")
+      {
+        ::std::unique_ptr< SubscriptionEndType > r (
+          SubscriptionEndTraits::create (i, f, this));
+
+        if (!this->SubscriptionEnd_)
+        {
+          this->SubscriptionEnd_.set (::std::move (r));
           continue;
         }
       }
@@ -3012,6 +3059,7 @@ namespace MESSAGEMODEL
       this->RenewResponse_ = x.RenewResponse_;
       this->GetStatus_ = x.GetStatus_;
       this->GetStatusResponse_ = x.GetStatusResponse_;
+      this->SubscriptionEnd_ = x.SubscriptionEnd_;
       this->DescriptionModificationReport_ = x.DescriptionModificationReport_;
       this->GetContextStates_ = x.GetContextStates_;
       this->GetContextStatesResponse_ = x.GetContextStatesResponse_;
@@ -4159,6 +4207,19 @@ namespace MESSAGEMODEL
           e));
 
       s << *i.getGetStatusResponse ();
+    }
+
+    // SubscriptionEnd
+    //
+    if (i.getSubscriptionEnd ())
+    {
+      ::xercesc::DOMElement& s (
+        ::xsd::cxx::xml::dom::create_element (
+          "SubscriptionEnd",
+          "http://schemas.xmlsoap.org/ws/2004/08/eventing",
+          e));
+
+      s << *i.getSubscriptionEnd ();
     }
 
     // DescriptionModificationReport

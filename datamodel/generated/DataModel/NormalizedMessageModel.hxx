@@ -2098,6 +2098,82 @@ namespace MESSAGEMODEL
     //@}
 
     /**
+     * @name SubscriptionEnd
+     *
+     * @brief Accessor and modifier functions for the %SubscriptionEnd
+     * optional element.
+     */
+    //@{
+
+    /**
+     * @brief Element type.
+     */
+    typedef ::WS::EVENTING::SubscriptionEnd SubscriptionEndType;
+
+    /**
+     * @brief Element optional container type.
+     */
+    typedef ::xsd::cxx::tree::optional< SubscriptionEndType > SubscriptionEndOptional;
+
+    /**
+     * @brief Element traits type.
+     */
+    typedef ::xsd::cxx::tree::traits< SubscriptionEndType, char > SubscriptionEndTraits;
+
+    /**
+     * @brief Return a read-only (constant) reference to the element
+     * container.
+     *
+     * @return A constant reference to the optional container.
+     */
+    const SubscriptionEndOptional&
+    getSubscriptionEnd () const;
+
+    /**
+     * @brief Return a read-write reference to the element container.
+     *
+     * @return A reference to the optional container.
+     */
+    SubscriptionEndOptional&
+    getSubscriptionEnd ();
+
+    /**
+     * @brief Set the element value.
+     *
+     * @param x A new value to set.
+     *
+     * This function makes a copy of its argument and sets it as
+     * the new value of the element.
+     */
+    void
+    setSubscriptionEnd (const SubscriptionEndType& x);
+
+    /**
+     * @brief Set the element value.
+     *
+     * @param x An optional container with the new value to set.
+     *
+     * If the value is present in @a x then this function makes a copy 
+     * of this value and sets it as the new value of the element.
+     * Otherwise the element container is set the 'not present' state.
+     */
+    void
+    setSubscriptionEnd (const SubscriptionEndOptional& x);
+
+    /**
+     * @brief Set the element value without copying.
+     *
+     * @param p A new value to use.
+     *
+     * This function will try to use the passed value directly instead
+     * of making a copy.
+     */
+    void
+    setSubscriptionEnd (::std::unique_ptr< SubscriptionEndType > p);
+
+    //@}
+
+    /**
      * @name DescriptionModificationReport
      *
      * @brief Accessor and modifier functions for the %DescriptionModificationReport
@@ -4517,6 +4593,7 @@ namespace MESSAGEMODEL
     RenewResponseOptional RenewResponse_;
     GetStatusOptional GetStatus_;
     GetStatusResponseOptional GetStatusResponse_;
+    SubscriptionEndOptional SubscriptionEnd_;
     DescriptionModificationReportOptional DescriptionModificationReport_;
     GetContextStatesOptional GetContextStates_;
     GetContextStatesResponseOptional GetContextStatesResponse_;

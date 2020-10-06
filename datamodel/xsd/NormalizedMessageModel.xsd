@@ -58,6 +58,7 @@
 				<xs:element ref="wse:RenewResponse" />
 				<xs:element ref="wse:GetStatus" />
 				<xs:element ref="wse:GetStatusResponse" />
+				<xs:element ref="wse:SubscriptionEnd" />
 				
 				<!-- DescriptionEventService -->
 				<xs:element ref="mm:DescriptionModificationReport" />
