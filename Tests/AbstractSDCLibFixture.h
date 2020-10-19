@@ -11,6 +11,7 @@
 #include <string>
 
 #include "SDCLib/SDCLibrary.h"
+#include "SDCLib/SDCInstance.h"
 
 #include "OSELib/Helper/WithLogger.h"
 
@@ -20,17 +21,17 @@ namespace Tests {
 struct AbstractSDCLibFixture : public OSELib::Helper::WithLogger
 {
 public:
-	AbstractSDCLibFixture(const std::string & p_testname, OSELib::LogLevel debuglevel) :
-		OSELib::Helper::WithLogger(OSELib::Log::BASE),
-		testname(p_testname)
+	AbstractSDCLibFixture(const std::string & p_testname, OSELib::LogLevel debuglevel)
+	: OSELib::Helper::WithLogger(OSELib::Log::BASE),
+	  testname(p_testname)
 	{
 		log_notice([&]{ return std::string(testname + ":  Startup."); });
 		SDCLibrary::getInstance().startup(debuglevel);
 
 	}
 
-	virtual ~AbstractSDCLibFixture() {
-		SDCLibrary::getInstance().shutdown();
+	virtual ~AbstractSDCLibFixture()
+	{
 		log_notice([&]{ return  std::string(testname + ":  Shutdown."); });
 	}
 
@@ -38,7 +39,12 @@ public:
 
     SDCLib::SDCInstance_shared_ptr createSDCInstance()
     {
-        return SDCInstance::createSDCInstance();
+		auto t_SDCInstance = SDCInstance::createSDCInstance();
+
+		t_SDCInstance->setIP6enabled(false);
+		t_SDCInstance->setIP4enabled(true);
+
+        return t_SDCInstance;
     }
 
 private:

@@ -19,7 +19,23 @@ The ReferenceProvider and ReferenceConsumer have matching SSL certificates if yo
 
 ### Logging
 By default the logging of the ReferenceConsumer and ReferenceProvider are turned off. If you wish to see more information change:  
-* SDCLibrary::getInstance().startup(OSELib::LogLevel::None);  
-* DebugOut::DEBUG_LEVEL = DebugOut::Silent; 
+```
+SDCLibrary::getInstance().startup(OSELib::LogLevel::None);  
+DebugOut::DEBUG_LEVEL = DebugOut::Silent; 
+```
 
 to your desired LogLevel
+
+### CMake Integration
+To integrate the SDCLib into your own CMake project you can use the following code:  
+```
+set(SDCLib_SEARCH_DIRS ${CMAKE_CURRENT_LIST_DIR}/sdclib)
+add_subdirectory(sdclib)
+```
+where sdclib/ is the cloned project folder.
+After that you can link the SDCLib target to your projects targets with
+```
+add_executable(MyApplication main.cpp)
+# ...
+target_link_libraries(MyApplication PRIVATE SDCLib)
+```

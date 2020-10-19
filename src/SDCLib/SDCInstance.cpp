@@ -20,49 +20,46 @@ using namespace SDCLib;
 std::atomic_uint SDCInstance::s_IDcounter{0};
 
 SDCInstance::SDCInstance(bool p_init)
- : m_SDCConfig([]() { return std::make_shared<Config::SDCConfig>(); } ())
+    : m_SDCConfig(std::make_shared<Config::SDCConfig>())
 {
-    if(p_init) {
+    if(p_init)
+    {
         init();
     }
 }
 SDCInstance::SDCInstance(Config::SDCConfig_shared_ptr p_config, bool p_init)
- : m_SDCConfig(p_config)
+    : m_SDCConfig(p_config)
 {
-    if(p_init) {
+    if(p_init)
+    {
         init();
     }
 }
 
 SDCInstance::~SDCInstance()
 {
-    _cleanup();
-}
-
-void SDCInstance::_cleanup()
-{
     // Nothing to cleanup
-    if (!isInit()) {
+    if(!isInit())
+    {
         return;
     }
-    // Lock
-    std::lock_guard<std::mutex> t_lock(m_mutex);
 
     // ...Cleanup....
 
     m_latestPingManager.reset();
     // ....
-
 }
 
 bool SDCInstance::init()
 {
-    if (isInit()) {
+    if(isInit())
+    {
         return false;
     }
 
     // Startup if not done yet
-    if (!SDCLibrary::getInstance().isInitialized()) {
+    if(!SDCLibrary::getInstance().isInitialized())
+    {
         SDCLibrary::getInstance().startup();
     }
 
@@ -101,7 +98,8 @@ bool SDCInstance::initSSL(const Poco::Net::Context::VerificationMode p_modeClien
 
 bool SDCInstance::bindToDefaultNetworkInterface(bool p_useAsMDPWS)
 {
-    if (!isInit()) {
+    if(!isInit())
+    {
         return false;
     }
     assert(m_SDCConfig != nullptr);
@@ -109,7 +107,8 @@ bool SDCInstance::bindToDefaultNetworkInterface(bool p_useAsMDPWS)
 }
 bool SDCInstance::bindToInterface(const std::string& ps_networkInterfaceName, bool p_useAsMDPWS)
 {
-    if (!isInit()) {
+    if(!isInit())
+    {
         return false;
     }
     assert(m_SDCConfig != nullptr);
@@ -117,7 +116,8 @@ bool SDCInstance::bindToInterface(const std::string& ps_networkInterfaceName, bo
 }
 bool SDCInstance::_networkInterfaceBoundTo(std::string ps_adapterName) const
 {
-    if (!isInit()) {
+    if(!isInit())
+    {
         return false;
     }
     assert(m_SDCConfig != nullptr);
@@ -126,7 +126,6 @@ bool SDCInstance::_networkInterfaceBoundTo(std::string ps_adapterName) const
 
 void SDCInstance::dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> p_pingManager)
 {
-    std::lock_guard<std::mutex> t_lock(m_mutex);
     m_latestPingManager = std::move(p_pingManager);
 }
 
@@ -154,7 +153,8 @@ void SDCInstance::setIP6enabled(bool p_set)
 bool SDCInstance::setDiscoveryTime(std::chrono::milliseconds p_time)
 {
     // Dont change after it was Initialized
-    if (isInit()) {
+    if(isInit())
+    {
         return false;
     }
     assert(m_SDCConfig->getNetworkConfig() != nullptr);
@@ -170,33 +170,33 @@ std::chrono::milliseconds SDCInstance::getDiscoveryTime() const
 
 bool SDCInstance::isUUID(const std::string& p_UUID)
 {
-	// NOTE: Maybe this needs to be revised?
+    // NOTE: Maybe this needs to be revised?
 
-	Poco::UUID t_UUID;
-	return t_UUID.tryParse(p_UUID);
+    Poco::UUID t_UUID;
+    return t_UUID.tryParse(p_UUID);
 }
 
 std::string SDCInstance::calcUUID()
 {
-	Poco::SHA1Engine t_engineSHA1;
-	auto t_UUID = Poco::UUIDGenerator::defaultGenerator().create();
-	return std::string(t_UUID.toString());
+    Poco::SHA1Engine t_engineSHA1;
+    auto t_UUID = Poco::UUIDGenerator::defaultGenerator().create();
+    return std::string(t_UUID.toString());
 }
 std::string SDCInstance::calcUUIDv5(std::string p_name, bool p_prefix)
 {
-	assert(!p_name.empty());
+    assert(!p_name.empty());
 
-	Poco::SHA1Engine t_engineSHA1;
-	auto t_UUIDv5 = Poco::UUIDGenerator::defaultGenerator().createFromName(Poco::UUID(OSELib::SDC::UUID_SDC_BASE_NAMESPACE),
-																			p_name,
-																			t_engineSHA1,
-																			Poco::UUID::Version::UUID_NAME_BASED_SHA1);
-	return std::string((p_prefix) ? OSELib::SDC::UUID_SDC_PREFIX : std::string("")) + t_UUIDv5.toString();
+    Poco::SHA1Engine t_engineSHA1;
+    auto t_UUIDv5 = Poco::UUIDGenerator::defaultGenerator().createFromName(Poco::UUID(OSELib::SDC::UUID_SDC_BASE_NAMESPACE),
+                                                                           p_name,
+                                                                           t_engineSHA1,
+                                                                           Poco::UUID::Version::UUID_NAME_BASED_SHA1);
+    return std::string((p_prefix) ? OSELib::SDC::UUID_SDC_PREFIX : std::string("")) + t_UUIDv5.toString();
 }
 
 std::string SDCInstance::calcMSGID()
 {
-	return std::string(OSELib::SDC::UUID_SDC_PREFIX + SDCInstance::calcUUID());
+    return std::string(OSELib::SDC::UUID_SDC_PREFIX + SDCInstance::calcUUID());
 }
 
 SDCLib::SDCInstance_shared_ptr SDCInstance::createSDCInstance(std::string p_networkInterface)
@@ -206,26 +206,32 @@ SDCLib::SDCInstance_shared_ptr SDCInstance::createSDCInstance(std::string p_netw
     auto t_SDCInstance = std::make_shared<SDCInstance>(false);
 
     // Init
-    if(!t_SDCInstance->init()) {
-    	OSELib::Helper::WithLogger(OSELib::Log::BASE).log_error([]{ return "Failed to init SDCInstance"; });
+    if(!t_SDCInstance->init())
+    {
+        OSELib::Helper::WithLogger(OSELib::Log::BASE).log_error([] { return "Failed to init SDCInstance"; });
         return nullptr;
     }
 
     // Bind to network interface if specified
-    if(!p_networkInterface.empty()) {
-    	if(t_SDCInstance->bindToInterface(p_networkInterface, true)) {
-    		return t_SDCInstance;
-    	}
-    	OSELib::Helper::WithLogger(OSELib::Log::BASE).log_error([&]{ return "Failed to bind SDCInstance to " + p_networkInterface + "!"; });
-    	return nullptr;
+    if(!p_networkInterface.empty())
+    {
+        if(t_SDCInstance->bindToInterface(p_networkInterface, true))
+        {
+            return t_SDCInstance;
+        }
+        OSELib::Helper::WithLogger(OSELib::Log::BASE).log_error([&] {
+            return "Failed to bind SDCInstance to " + p_networkInterface + "!";
+        });
+        return nullptr;
     }
 
-	// Bind it to interface that matches the internal criteria (usually the first enumerated)
-	if(t_SDCInstance->bindToDefaultNetworkInterface()) {
-		return t_SDCInstance;
-	}
+    // Bind it to interface that matches the internal criteria (usually the first enumerated)
+    if(t_SDCInstance->bindToDefaultNetworkInterface())
+    {
+        return t_SDCInstance;
+    }
 
-	// In any other case
-	OSELib::Helper::WithLogger(OSELib::Log::BASE).log_error([]{ return "Failed to bind SDCInstance to default network interface!"; });
+    // In any other case
+    OSELib::Helper::WithLogger(OSELib::Log::BASE).log_error([] { return "Failed to bind SDCInstance to default network interface!"; });
     return nullptr;
 }

@@ -34,6 +34,10 @@
 #include <Poco/Net/NetworkInterface.h>
 #include <Poco/Net/SocketDefs.h>
 
+#include <atomic>
+#include <mutex>
+
+
 namespace SDCLib
 {
     namespace Config

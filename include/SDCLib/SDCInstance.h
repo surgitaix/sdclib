@@ -17,7 +17,7 @@
 /**
  *  @file SDCInstance.h
  *  @project SDCLib
- *  @date 14.02.2019
+ *  @date 07.09.2020
  *  @author baumeister
  *  @copyright (c) SurgiTAIX AG
  *
@@ -34,19 +34,17 @@
 
 #include "OSELib/DPWS/PingManager.h"
 
+#include <atomic>
+
 namespace SDCLib
 {
-
     using SDCInstanceID = std::string;
 
     class SDCInstance
     {
     private:
-
         static std::atomic_uint s_IDcounter;
         SDCInstanceID m_ID = "INVALID_ID";
-
-        mutable std::mutex m_mutex;
 
         std::atomic<bool> m_init{false};
 
@@ -55,21 +53,24 @@ namespace SDCLib
         std::unique_ptr<OSELib::DPWS::PingManager> m_latestPingManager{nullptr};
 
     public:
-
         explicit SDCInstance(bool p_init = true);
         explicit SDCInstance(Config::SDCConfig_shared_ptr p_config, bool p_init = true);
-
-        // Special Member Functions
-        SDCInstance(const SDCInstance& p_obj) = delete;
-        SDCInstance(SDCInstance&& p_obj) = delete;
-        SDCInstance& operator=(const SDCInstance& p_obj) = delete;
-        SDCInstance& operator=(SDCInstance&& p_obj) = delete;
+        SDCInstance(const SDCInstance&) = delete;
+        SDCInstance(SDCInstance&&) = delete;
+        SDCInstance& operator=(const SDCInstance&) = delete;
+        SDCInstance& operator=(SDCInstance&&) = delete;
         ~SDCInstance();
 
-        SDCInstanceID getID() const { return m_ID; }
+        SDCInstanceID getID() const
+        {
+            return m_ID;
+        }
 
         bool init();
-        bool isInit() const { return m_init; }
+        bool isInit() const
+        {
+            return m_init;
+        }
 
         // Convenience Helper to get Config and Subconfig parts
         Config::SDCConfig_shared_ptr getSDCConfig() const;
@@ -79,26 +80,27 @@ namespace SDCLib
 
         bool bindToDefaultNetworkInterface(bool p_useAsMDPWS = true);
         bool bindToInterface(const std::string& ps_networkInterfaceName, bool p_useAsMDPWS = false);
-        bool _networkInterfaceBoundTo(std::string ps_adapterName) const;
+        bool _networkInterfaceBoundTo(std::string) const;
 
         // Configure own Params
-        bool setDiscoveryConfigV4(std::string ps_IP_MC, SDCPort p_portMC, std::string ps_IP_Streaming, SDCPort p_portStreaming);
-        bool setDiscoveryConfigV6(std::string ps_IP_MC, SDCPort p_portMC, std::string ps_IP_Streaming, SDCPort p_portStreaming);
+        bool setDiscoveryConfigV4(std::string, SDCPort, std::string, SDCPort);
+        bool setDiscoveryConfigV6(std::string, SDCPort, std::string, SDCPort);
 
 
         // SSL (optional) WIP!
-        bool initSSL(Poco::Net::Context::VerificationMode p_modeClient = Poco::Net::Context::VERIFY_RELAXED, Poco::Net::Context::VerificationMode p_modeServer = Poco::Net::Context::VERIFY_RELAXED);
+        bool initSSL(Poco::Net::Context::VerificationMode p_modeClient = Poco::Net::Context::VERIFY_RELAXED,
+                     Poco::Net::Context::VerificationMode p_modeServer = Poco::Net::Context::VERIFY_RELAXED);
 
         // IP4 / IP6 - Forward to the Config
         bool getIP4enabled() const;
         bool getIP6enabled() const;
         void setIP4enabled(bool p_set);
         void setIP6enabled(bool p_set);
-        bool setDiscoveryTime(std::chrono::milliseconds p_time);
+        bool setDiscoveryTime(std::chrono::milliseconds);
         std::chrono::milliseconds getDiscoveryTime() const;
 
 
-        void dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager> p_pingManager);
+        void dumpPingManager(std::unique_ptr<OSELib::DPWS::PingManager>);
 
 
         /**
@@ -108,18 +110,18 @@ namespace SDCLib
          * @return Matching the UUID requirements or not.
          *
          */
-        static bool isUUID(const std::string& p_UUID);
+        static bool isUUID(const std::string&);
 
         /**
 		 * @brief Generates a time based UUID and prefixes it with "urn:uuid:"
 		 *
 		 */
-		static std::string calcMSGID();
+        static std::string calcMSGID();
         /**
 		 * @brief Generates a time based UUID (MAC Address seeded)
 		 *
 		 */
-		static std::string calcUUID();
+        static std::string calcUUID();
         /**
 		 * @brief Generates a new UUIDv5 (SDC Namespace UUID seed)
 		 *
@@ -127,20 +129,18 @@ namespace SDCLib
 		 * @param p_prefix If specified the UUID will be prefixed with "urn:uuid:" . (Default for Endpoint References)
 		 *
 		 */
-		static std::string calcUUIDv5(std::string p_name, bool p_prefix);
+        static std::string calcUUIDv5(std::string p_name, bool);
 
 
-
-		/**
+        /**
 		 * @brief Creates a new SDCInstance and binds it to the default network adapter.
 		 * @param p_networkInterface If empty binds to the default interface (matching the internal search criteria). Sufficient for most use cases.
 		 *
 		 * @return Shared Pointer to the SDCInstance or nullptr if anything went wrong.
 		 */
-		static SDCLib::SDCInstance_shared_ptr createSDCInstance(std::string p_networkInterface = "");
+        static SDCLib::SDCInstance_shared_ptr createSDCInstance(std::string p_networkInterface = "");
 
     private:
-
         /**
          * @brief Get a free network port to listen.
          *
@@ -149,8 +149,7 @@ namespace SDCLib
         std::pair<bool, SDCPort> findFreePort() const;
 
         void _cleanup();
-
     };
-}
+} // namespace SDCLib
 
 #endif

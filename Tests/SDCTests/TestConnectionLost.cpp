@@ -116,34 +116,42 @@ struct FixtureConnectionLostSDC : Tests::AbstractSDCLibFixture
 	{ }
 };
 
+class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler
+{
+public:
+    MyConnectionLostHandler(Data::SDC::SDCConsumer& p_consumer)
+        : m_consumer(p_consumer)
+    {
+        // Set this as the current ConnectionLostHandler
+        m_consumer.setConnectionLostHandler(this);
+    }
+    ~MyConnectionLostHandler()
+    {
+        // Unset the Handler
+        m_consumer.setConnectionLostHandler(nullptr);
+    }
+
+    void onConnectionLost() override
+    {
+        DebugOut logoutput(DebugOut::Default, std::cout, "ConnectionLost");
+        logoutput << "Connection lost, disconnecting... ";
+        m_consumer.disconnect();
+        logoutput << "disconnected." << std::endl;
+        m_handlerVisited = true;
+    }
+
+    std::atomic<bool> m_handlerVisited{ false };
+
+private:
+    Data::SDC::SDCConsumer& m_consumer;
+};
+
 SUITE(SDC)
 {
 TEST_FIXTURE(FixtureConnectionLostSDC, ConnectionLost)
 {
 	try
 	{
-	    class MyConnectionLostHandler : public Data::SDC::SDCConsumerConnectionLostHandler
-		{
-	    public:
-	    	MyConnectionLostHandler(Data::SDC::SDCConsumer& p_consumer)
-            : m_consumer(p_consumer)
-            { }
-
-	    	void onConnectionLost() override
-	    	{
-	    		DebugOut logoutput(DebugOut::Default, std::cout, "ConnectionLost");
-	    		logoutput << "Connection lost, disconnecting... ";
-	    		m_consumer.disconnect();
-	    		logoutput << "disconnected." << std::endl;
-	    		m_handlerVisited = true;
-	    	}
-
-            std::atomic<bool> m_handlerVisited{false};
-
-	    private:
-	    	Data::SDC::SDCConsumer& m_consumer;
-	    };
-
 	    DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting for the Providers to startup...";
 
 		const auto t_providerCount{10};
@@ -194,8 +202,7 @@ TEST_FIXTURE(FixtureConnectionLostSDC, ConnectionLost)
         		// not our own provider => skip
         		continue;
         	}
-            auto myHandler = std::make_shared<MyConnectionLostHandler>(*t_nextConsumer.get());
-        	t_nextConsumer->setConnectionLostHandler(myHandler.get());
+            auto myHandler = std::make_shared<MyConnectionLostHandler>(*t_nextConsumer);
         	t_connectionLostHanders.push_back(myHandler);
         }
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Shutting down all Providers...\n";
@@ -204,7 +211,7 @@ TEST_FIXTURE(FixtureConnectionLostSDC, ConnectionLost)
         // Wait long enough for all to get a call...
 
         // Long enough that all ConnectionLost Handlers have the time to get triggered...
-        auto t_waitTime{SDCLib::Config::SDC_CONNECTION_TIMEOUT_MS * 1.2};
+        const auto t_waitTime{SDCLib::Config::SDC_CONNECTION_TIMEOUT_MS * 2};
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Waiting " << t_waitTime << " ms for connectionLostHanders...\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<std::size_t>(t_waitTime)));
 
@@ -213,8 +220,8 @@ TEST_FIXTURE(FixtureConnectionLostSDC, ConnectionLost)
         for (auto& t_handler : t_connectionLostHanders)
         {
             CHECK_EQUAL(true, t_handler->m_handlerVisited);
-            t_handler.reset();
         }
+        t_connectionLostHanders.clear();
 	}
 	catch (...)
 	{

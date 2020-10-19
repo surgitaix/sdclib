@@ -33,9 +33,9 @@ namespace SDCLib
     {
         // Will be replaced by CMake
         const int SDCLIBRARY_VERSION_FIRST = 4;
-        const int SDCLIBRARY_VERSION_MIDDLE = 4;
-        const int SDCLIBRARY_VERSION_LAST = 3;
-        const std::string CURRENT_LIB_VERSION("4.4.3");
+        const int SDCLIBRARY_VERSION_MIDDLE = 5;
+        const int SDCLIBRARY_VERSION_LAST = 1;
+        const std::string CURRENT_LIB_VERSION("4.5.1");
 
         const std::string CURRENT_C_YEAR("2020"); // Copyright year
 
@@ -54,12 +54,7 @@ namespace SDCLib
         const bool SDC_IP_V6_ENABLED = false;
 
         const unsigned int SDC_MAX_KNOWN_MESSAGE_IDS = 200;
-        
-        // OpenSSL minimal verion check 
-        const unsigned int SDC_MINIMAL_OPENSSL_VERSION_MAJOR = 1;
-        const unsigned int SDC_MINIMAL_OPENSSL_VERSION_MINOR = 0;
-        const unsigned int SDC_MINIMAL_OPENSSL_VERSION_FIX = 1;
-        const unsigned int SDC_MINIMAL_OPENSSL_VERSION_PATCH = 3;
+
      }
 }
 

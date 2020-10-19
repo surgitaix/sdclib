@@ -2,15 +2,12 @@
  * HTTPSessionManager.h
  *
  *  Created on: 15.12.2015, matthias
- *  Modified on: 20.08.2019, baumeister
+ *  Modified on: 02.09.2020, baumeister
  *
  */
 
 #ifndef OSELIB_DPWS_HTTPSESSIONMANAGER_H_
 #define OSELIB_DPWS_HTTPSESSIONMANAGER_H_
-
-#include <memory>
-#include <mutex>
 
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
@@ -19,40 +16,39 @@
 #include <Poco/ThreadPool.h>
 #include <Poco/Net/Context.h>
 
+#include <memory>
+#include <mutex>
 
 namespace OSELib
 {
-	namespace HTTP
-	{
-		class SendWorker;
-		// todo maybe generalize and also use for other client connections in the SDCConsumerAdapter.
+    namespace HTTP
+    {
+        // todo maybe generalize and also use for other client connections in the SDCConsumerAdapter.
 
-		class HTTPSessionManager : public OSELib::Helper::WithLogger
-		{
-		private:
+        class HTTPSessionManager : public OSELib::Helper::WithLogger
+        {
+        private:
+            DPWS::SubscriptionManager* m_subscriptionManager{nullptr};
+            Poco::Net::Context::Ptr m_context{nullptr};
+            Poco::ThreadPool m_threadpool;
 
-			DPWS::ActiveSubscriptions & m_subscriptions;
-			Poco::Net::Context::Ptr m_context = nullptr;
-			Poco::ThreadPool m_threadpool;
+            std::mutex m_mutex;
+            std::map<std::string, std::shared_ptr<Poco::NotificationQueue>> m_queues;
+            std::map<std::string, std::unique_ptr<Poco::Runnable>> m_workers;
 
-			std::mutex m_mutex;
-			std::map<std::string, std::shared_ptr<Poco::NotificationQueue>> ml_queues;
-			std::map<std::string, std::unique_ptr<Poco::Runnable>> ml_workers;
-		public:
+        public:
+            HTTPSessionManager(DPWS::SubscriptionManager*, SDCLib::Config::SSLConfig_shared_ptr);
+            // Special Member Functions
+            HTTPSessionManager(const HTTPSessionManager&) = delete;
+            HTTPSessionManager(HTTPSessionManager&&) = delete;
+            HTTPSessionManager& operator=(const HTTPSessionManager&) = delete;
+            HTTPSessionManager& operator=(HTTPSessionManager&&) = delete;
+            ~HTTPSessionManager();
 
-			HTTPSessionManager(DPWS::ActiveSubscriptions & p_subscriptions, SDCLib::Config::SSLConfig_shared_ptr p_SSLConfig);
-			// Special Member Functions
-			HTTPSessionManager(const HTTPSessionManager& p_obj) = delete;
-			HTTPSessionManager(HTTPSessionManager&& p_obj) = delete;
-			HTTPSessionManager& operator=(const HTTPSessionManager& p_obj) = delete;
-			HTTPSessionManager& operator=(HTTPSessionManager&& p_obj) = delete;
-			~HTTPSessionManager();
+            void enqueMessage(const Poco::URI&, const std::string&, const xml_schema::Uri&);
+        };
 
-			void enqueMessage(const Poco::URI & p_destinationURI, const std::string & p_content, const xml_schema::Uri & p_myID);
-
-		};
-
-	}
-}
+    } // namespace HTTP
+} // namespace OSELib
 
 #endif

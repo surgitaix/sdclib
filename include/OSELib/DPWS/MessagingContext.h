@@ -9,13 +9,14 @@
 #ifndef OSELIB_DPWS_IMPL_MESSAGINGCONTEXT_H_
 #define OSELIB_DPWS_IMPL_MESSAGINGCONTEXT_H_
 
+
+#include "DataModel/wsdd-discovery-1.1-schema-os-fwd.hxx"
+
 #include <deque>
 #include <string>
 #include <mutex>
 #include <map>
 #include <atomic>
-
-#include "DataModel/wsdd-discovery-1.1-schema-os-fwd.hxx"
 
 namespace OSELib
 {

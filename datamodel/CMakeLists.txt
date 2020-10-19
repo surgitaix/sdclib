@@ -86,11 +86,10 @@ target_sources(${CURRENT_TARGET_NAME}
 )
 
 # Some includes
-target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC ${GEN_DIR_ROOT} )
+target_include_directories(${CURRENT_TARGET_NAME} SYSTEM PUBLIC ${GEN_DIR_ROOT})
 
-# All Dependencies
-target_include_directories(${CURRENT_TARGET_NAME}   PUBLIC  ${SDCLib_DEPS_INCLUDE_DIRS})
-
+# All other Dependencies
+target_include_directories(${CURRENT_TARGET_NAME} SYSTEM PUBLIC ${SDCLib_DEPS_INCLUDE_DIRS})
 
 # install
 install(DIRECTORY ${GEN_DIR}/ DESTINATION ${PATH_INSTALL_INCLUDE}/${CURRENT_TARGET_NAME}/

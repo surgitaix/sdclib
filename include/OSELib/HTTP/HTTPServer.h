@@ -14,6 +14,7 @@
 
 #include <Poco/Net/HTTPServer.h>
 #include <Poco/ThreadPool.h>
+#include <atomic>
 
 namespace OSELib
 {
@@ -55,8 +56,8 @@ namespace OSELib
 			
 			void _cleanup();
 
-			SDCLib::Config::NetworkConfig_shared_ptr getNetworkConfig() { return m_networkConfig; }
-			SDCLib::Config::SSLConfig_shared_ptr getSSLConfig() { return m_SSLConfig; }
+			SDCLib::Config::NetworkConfig& getNetworkConfig() { return *m_networkConfig; }
+			SDCLib::Config::SSLConfig& getSSLConfig() { return *m_SSLConfig; }
 		};
 	}
 }

@@ -22,10 +22,10 @@ namespace OSELib
 		{
 		private:
 
-			SDCLib::Dev::DeviceCharacteristics m_deviceCharacteristics;
+			const SDCLib::Dev::DeviceCharacteristics m_deviceCharacteristics;
 
 		public:
-			MetadataProvider(SDCLib::Dev::DeviceCharacteristics p_deviceCharacteristics);
+			MetadataProvider(const SDCLib::Dev::DeviceCharacteristics p_deviceCharacteristics);
 			// Special Member Functions
 			MetadataProvider(const MetadataProvider& p_obj) = default;
 			MetadataProvider(MetadataProvider&& p_obj) = default;

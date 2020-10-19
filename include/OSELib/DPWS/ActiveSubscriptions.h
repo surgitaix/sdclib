@@ -9,9 +9,6 @@
 #ifndef OSELIB_DPWS_ACTIVESUBSCRIPTIONS_H_
 #define OSELIB_DPWS_ACTIVESUBSCRIPTIONS_H_
 
-#include <mutex>
-#include <chrono>
-
 #include <Poco/Thread.h>
 #include <Poco/RunnableAdapter.h>
 
@@ -21,66 +18,61 @@
 #include "OSELib/fwd.h"
 #include "OSELib/Helper/WithLogger.h"
 
+#include <mutex>
+#include <chrono>
+
 namespace OSELib
 {
-	namespace DPWS
-	{
-		class ActiveSubscriptions : public Helper::WithLogger
-		{
-		public:
+    namespace DPWS
+    {
+        class ActiveSubscriptions : public Helper::WithLogger
+        {
+        public:
+            struct SubscriptionInformation
+            {
+                explicit SubscriptionInformation(WS::ADDRESSING::EndpointReferenceType p_notifyTo,
+                                                 std::chrono::system_clock::time_point p_expirationTime,
+                                                 WS::EVENTING::FilterType p_actions)
+                    : m_notifyTo(p_notifyTo)
+                    , m_expirationTime(p_expirationTime)
+                    , m_actions(p_actions)
+                {
+                }
+                const WS::ADDRESSING::EndpointReferenceType m_notifyTo;
+                std::chrono::system_clock::time_point m_expirationTime;
+                const WS::EVENTING::FilterType m_actions;
+            };
 
-			struct SubscriptionInformation
-			{
-				explicit SubscriptionInformation(
-						WS::ADDRESSING::EndpointReferenceType p_notifyTo,
-						std::chrono::system_clock::time_point p_expirationTime,
-						WS::EVENTING::FilterType p_actions) :
-					m_notifyTo(p_notifyTo),
-					m_expirationTime(p_expirationTime),
-					m_actions(p_actions)
-				{ }
-				const WS::ADDRESSING::EndpointReferenceType m_notifyTo;
-				std::chrono::system_clock::time_point m_expirationTime;
-				const WS::EVENTING::FilterType m_actions;
-			};
+            using GetStatusResult = std::pair<bool, SubscriptionInformation>;
 
-			using GetStatusResult = std::pair <bool, SubscriptionInformation>;
+        private:
+            std::mutex m_mutex_houseKeeping;
+            mutable std::mutex m_mutex;
+            std::map<xml_schema::Uri, SubscriptionInformation> m_subscriptions;
 
-		private:
+        public:
+            ActiveSubscriptions();
+            // Special Member Functions
+            ActiveSubscriptions(const ActiveSubscriptions&) = delete;
+            ActiveSubscriptions(ActiveSubscriptions&&) = delete;
+            ActiveSubscriptions& operator=(const ActiveSubscriptions&) = delete;
+            ActiveSubscriptions& operator=(ActiveSubscriptions&&) = delete;
+            ~ActiveSubscriptions() = default;
 
-			mutable std::mutex m_mutex;
-			std::mutex m_mutex_houseKeeping;
+            void printSubscriptions() const;
 
-			Poco::RunnableAdapter<ActiveSubscriptions> m_runnableAdapter;
-			std::map<xml_schema::Uri, SubscriptionInformation> ml_subscriptions;
-			Poco::Thread m_thread;
+            std::string addSubscription(const SubscriptionInformation&);
+            bool renewSubscription(const WS::EVENTING::Identifier&, std::chrono::system_clock::time_point);
+            GetStatusResult getSubscriptionStatus(const WS::EVENTING::Identifier&) const;
+            void removeSubscription(const WS::EVENTING::Identifier&);
 
-		public:
-			ActiveSubscriptions();
-			// Special Member Functions
-			ActiveSubscriptions(const ActiveSubscriptions& p_obj) = delete;
-			ActiveSubscriptions(ActiveSubscriptions&& p_obj) = delete;
-			ActiveSubscriptions& operator=(const ActiveSubscriptions& p_obj) = delete;
-			ActiveSubscriptions& operator=(ActiveSubscriptions&& p_obj) = delete;
-			~ActiveSubscriptions();
+            std::map<xml_schema::Uri, ActiveSubscriptions::SubscriptionInformation> getAllSubscriptions() const;
+            std::map<xml_schema::Uri, WS::ADDRESSING::EndpointReferenceType> getSubscriptionsForAction(const std::string&);
 
-			void printSubscriptions() const;
+            std::vector<WS::EVENTING::Identifier> collectExpiredSubscriptions();
+        };
 
-			void unsubscribe(const WS::EVENTING::Identifier & p_identifier);
-			std::string subscribe(const SubscriptionInformation & p_subscription);
-			bool renew(const WS::EVENTING::Identifier & p_identifier, std::chrono::system_clock::time_point p_timestamp);
-
-			GetStatusResult getStatus(const WS::EVENTING::Identifier & p_identifier) const;
-
-			std::map<xml_schema::Uri, WS::ADDRESSING::EndpointReferenceType> getSubscriptions(const std::string & p_action);
-
-		private:
-
-			void houseKeeping();
-			void run();
-		};
-
-	}
-}
+    } // namespace DPWS
+} // namespace OSELib
 
 #endif

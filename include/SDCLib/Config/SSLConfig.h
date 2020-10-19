@@ -30,6 +30,10 @@
 
 #include <Poco/Net/Context.h>
 
+#include <atomic>
+#include <mutex>
+
+
 namespace SDCLib
 {
     namespace Config

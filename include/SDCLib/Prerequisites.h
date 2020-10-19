@@ -10,26 +10,10 @@
 // Config
 #include "config/config.h"
 
-// Just throw in all the standard headers
+// Just some stdandard header
 #include <memory>
-#include <utility>
-#include <future>
 #include <vector>
-#include <map>
-#include <unordered_map>
-#include <thread>
-#include <string>
 #include <chrono>
-#include <algorithm>
-#include <functional>
-#include <fstream>
-#include <assert.h>
-#include <mutex>
-#include <deque>
-#include <atomic>
-#include <list>
-#include <tuple>
-
 
 // Some using "shortcuts"
 // Note: Define these to have some cleaner code, easier handling with smart pointers, predeclaration of classes etc.

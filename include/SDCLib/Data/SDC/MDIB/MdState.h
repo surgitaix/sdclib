@@ -115,6 +115,7 @@ public:
 	MdState & addState(const SetStringOperationState & source);
 	MdState & addState(const SetValueOperationState & source);
 
+
 private:
     // these classes are for internal finding states in the MDIB
     // the initialize objects which reference is processed

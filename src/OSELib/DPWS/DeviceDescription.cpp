@@ -34,10 +34,14 @@ bool DeviceDescription::checkURIsValidity(const Poco::URI & p_uri, bool p_SSL) c
 		if(p_SSL) {
 			Poco::Net::SecureStreamSocket t_connection;
 			t_connection.connect(Poco::Net::SocketAddress(p_uri.getHost(), p_uri.getPort()), Poco::Timespan(SDCLib::Config::SDC_CONNECTION_TIMEOUT_MS*1000));
+			t_connection.shutdown();
+			t_connection.close();
 		}
 		else {
 			Poco::Net::StreamSocket t_connection;
 			t_connection.connect(Poco::Net::SocketAddress(p_uri.getHost(), p_uri.getPort()), Poco::Timespan(SDCLib::Config::SDC_CONNECTION_TIMEOUT_MS*1000));
+			t_connection.shutdown();
+			t_connection.close();
 		}
 		return true;
 	}

@@ -14,7 +14,7 @@
 #define OSELIB_SDC_ISETSERVICEEVENTSINK_H_
 
 #include "OSELib/DPWS/IEventSink.h"
-#include "OSELib/SDC/ReportTraits.h"
+#include "OSELib/SDC/OperationTraits.h"
 
 namespace OSELib
 {

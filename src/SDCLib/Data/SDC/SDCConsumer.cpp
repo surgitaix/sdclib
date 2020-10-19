@@ -89,9 +89,10 @@
 #include <Poco/Net/NetException.h>
 
 
-namespace SDCLib {
-namespace Data {
-namespace SDC {
+using namespace SDCLib;
+using namespace SDCLib::Data;
+using namespace SDCLib::Data::SDC;
+
 
 MDM::SetAlertState createRequestMessage(const AlertConditionState & p_state, const std::string & p_operationHandle) {
 	return MDM::SetAlertState(p_operationHandle, ConvertToCDM::convert(p_state));
@@ -311,7 +312,6 @@ bool SDCConsumer::registerStateEventHandler(SDCConsumerOperationInvokedHandler *
 	}
 	return true;
 }
-
 bool SDCConsumer::unregisterStateEventHandler(SDCConsumerOperationInvokedHandler * p_handler)
 {
 	if(nullptr == m_adapter) {
@@ -377,6 +377,19 @@ std::string SDCConsumer::requestRawMdib()
 }
 
 // TODO: delete commitStateImpl() use one template class, use traits for Metrices: https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Member_Detector
+
+InvocationState SDCConsumer::commitState(const AlertSystemState & p_state, FutureInvocationState & p_fis) {
+	return commitStateImpl<OSELib::SDC::SetAlertStateTraits>(p_state, p_fis);
+}
+InvocationState SDCConsumer::commitState(const AlertSignalState & p_state, FutureInvocationState & p_fis) {
+	return commitStateImpl<OSELib::SDC::SetAlertStateTraits>(p_state, p_fis);
+}
+InvocationState SDCConsumer::commitState(const AlertConditionState & state, FutureInvocationState & p_fis) {
+	return commitStateImpl<OSELib::SDC::SetAlertStateTraits>(state, p_fis);
+}
+InvocationState SDCConsumer::commitState(const LimitAlertConditionState & p_state, FutureInvocationState & p_fis) {
+	return commitStateImpl<OSELib::SDC::SetAlertStateTraits>(p_state, p_fis);
+}
 InvocationState SDCConsumer::commitState(const EnumStringMetricState & p_state, FutureInvocationState & p_fis)
 {
 	if (!p_state.hasMetricValue()) {
@@ -387,7 +400,6 @@ InvocationState SDCConsumer::commitState(const EnumStringMetricState & p_state, 
 	}
 	return commitStateImpl<OSELib::SDC::SetStringTraits>(p_state, p_fis);
 }
-
 InvocationState SDCConsumer::commitState(const NumericMetricState & p_state, FutureInvocationState & p_fis)
 {
 	if (!p_state.hasMetricValue()) {
@@ -398,7 +410,6 @@ InvocationState SDCConsumer::commitState(const NumericMetricState & p_state, Fut
 	}
 	return commitStateImpl<OSELib::SDC::SetValueTraits>(p_state, p_fis);
 }
-
 InvocationState SDCConsumer::commitState(const StringMetricState & p_state, FutureInvocationState & p_fis)
 {
 	if (!p_state.hasMetricValue()) {
@@ -409,98 +420,67 @@ InvocationState SDCConsumer::commitState(const StringMetricState & p_state, Futu
 	}
 	return commitStateImpl<OSELib::SDC::SetStringTraits>(p_state, p_fis);
 }
-
 InvocationState SDCConsumer::commitState(const LocationContextState & p_state, FutureInvocationState & p_fis) {
 	return commitStateImpl<OSELib::SDC::SetContextStateTraits>(p_state, p_fis);
 }
-
 InvocationState SDCConsumer::commitState(const EnsembleContextState & p_state, FutureInvocationState & p_fis) {
 	return commitStateImpl<OSELib::SDC::SetContextStateTraits>(p_state, p_fis);
 }
-
 InvocationState SDCConsumer::commitState(const OperatorContextState & p_state, FutureInvocationState & p_fis) {
 	return commitStateImpl<OSELib::SDC::SetContextStateTraits>(p_state, p_fis);
 }
-
 InvocationState SDCConsumer::commitState(const PatientContextState & p_state, FutureInvocationState & p_fis) {
 	return commitStateImpl<OSELib::SDC::SetContextStateTraits>(p_state, p_fis);
 }
-
 InvocationState SDCConsumer::commitState(const WorkflowContextState & p_state, FutureInvocationState & p_fis) {
 	return commitStateImpl<OSELib::SDC::SetContextStateTraits>(p_state, p_fis);
 }
 
-InvocationState SDCConsumer::commitState(const AlertSystemState & p_state, FutureInvocationState & p_fis) {
-	return commitStateImpl<OSELib::SDC::SetAlertStateTraits>(p_state, p_fis);
-}
-
-InvocationState SDCConsumer::commitState(const AlertSignalState & p_state, FutureInvocationState & p_fis) {
-	return commitStateImpl<OSELib::SDC::SetAlertStateTraits>(p_state, p_fis);
-}
-
-InvocationState SDCConsumer::commitState(const AlertConditionState & state, FutureInvocationState & p_fis) {
-	return commitStateImpl<OSELib::SDC::SetAlertStateTraits>(state, p_fis);
-}
-
-InvocationState SDCConsumer::commitState(const LimitAlertConditionState & p_state, FutureInvocationState & p_fis) {
-	return commitStateImpl<OSELib::SDC::SetAlertStateTraits>(p_state, p_fis);
-}
 
 InvocationState SDCConsumer::commitState(const AlertSystemState & p_state) {
 	FutureInvocationState t_dummy;
 	return commitState(p_state, t_dummy);
 }
-
 InvocationState SDCConsumer::commitState(const AlertSignalState & p_state) {
 	FutureInvocationState t_dummy;
 	return commitState(p_state, t_dummy);
 }
-
 InvocationState SDCConsumer::commitState(const AlertConditionState & p_state) {
 	FutureInvocationState t_dummy;
 	return commitState(p_state, t_dummy);
 }
-
 InvocationState SDCConsumer::commitState(const LimitAlertConditionState & p_state) {
 	FutureInvocationState t_dummy;
 	return commitState(p_state, t_dummy);
 }
-
 InvocationState SDCConsumer::commitState(const EnumStringMetricState & p_state) {
 	FutureInvocationState t_dummy;
 	return commitState(p_state, t_dummy);
 }
-
 InvocationState SDCConsumer::commitState(const NumericMetricState & p_state) {
 	FutureInvocationState t_dummy;
 	return commitState(p_state, t_dummy);
 }
-
 InvocationState SDCConsumer::commitState(const StringMetricState & p_state) {
 	FutureInvocationState t_dummy;
 	return commitState(p_state, t_dummy);
 }
-
 InvocationState SDCConsumer::commitState(const LocationContextState & p_state) {
 	FutureInvocationState t_dummy;
 	return commitState(p_state, t_dummy);
 }
-
 InvocationState SDCConsumer::commitState(const EnsembleContextState & p_state) {
 	FutureInvocationState t_dummy;
 	return commitState(p_state, t_dummy);
 }
-
 InvocationState SDCConsumer::commitState(const OperatorContextState & p_state) {
 	FutureInvocationState t_dummy;
 	return commitState(p_state, t_dummy);
 }
-
 InvocationState SDCConsumer::commitState(const PatientContextState & p_state) {
 	FutureInvocationState t_dummy;
 	return commitState(p_state, t_dummy);
 }
-
 InvocationState SDCConsumer::commitState(const WorkflowContextState & p_state) {
 	FutureInvocationState t_dummy;
 	return commitState(p_state, t_dummy);
@@ -530,7 +510,7 @@ InvocationState SDCConsumer::commitStateImpl(const StateType & p_state, FutureIn
 
 	// Check for operation that targets the descriptor for this state.
 	// FIXME: Type needs to be considered here!
-	auto t_operationHandle(t_mddescription.getFirstOperationHandleForOperationTarget(p_state.getDescriptorHandle()));
+	auto t_operationHandle{t_mddescription.getFirstOperationHandleForOperationTarget(p_state.getDescriptorHandle())};
 	if (t_operationHandle.empty()) {
 		// No operation targeting this state was found.
 		// check for operation that targets state
@@ -723,7 +703,8 @@ void SDCConsumer::onOperationInvoked(const OperationInvocationContext & p_oic, I
 		if (!t_mds_uniquePtr->getSco().present()) {
 			continue;
 		}
-		for (const auto & t_operation : t_mds_uniquePtr->getSco().get().getOperation()) {
+		for (const auto & t_operation : t_mds_uniquePtr->getSco().get().getOperation()) // TODO: Check on temporary return value in chaining
+		{
 			if (t_operation.getHandle() == p_oic.operationHandle && dynamic_cast<const CDM::ActivateOperationDescriptor *>(&t_operation) != nullptr) {
 				t_targetHandle = p_oic.operationHandle;
 				break;
@@ -766,8 +747,4 @@ void SDCConsumer::updateLastKnownMdibVersion(unsigned long long int p_newVersion
 		m_lastKnownMDIBVersion = p_newVersion;
 	}
 	// FIXME: No return value?
-}
-
-}
-}
 }

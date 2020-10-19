@@ -3,9 +3,10 @@
 
 #include <Poco/Net/ServerSocket.h>
 
+#include <assert.h>
+
 using namespace SDCLib;
 using namespace SDCLib::Config;
-
 
 NetworkConfig::NetworkConfig()
 : OSELib::Helper::WithLogger(OSELib::Log::BASE)
@@ -45,7 +46,8 @@ bool NetworkConfig::bindToDefaultNetworkInterface(bool p_useAsMDPWS)
     // NOTE: Temporary Hack qnd
     // Bind to the first that is not the loopback device and matches our criteria
     auto tl_interfaces = Poco::Net::NetworkInterface::list(true, true);
-    for (auto t_interface : tl_interfaces) {
+    for (auto t_interface : tl_interfaces)
+    {
         if (t_interface.isLoopback()) { continue; }
         if (!t_interface.address().isUnicast()) { continue; }
 
@@ -53,7 +55,9 @@ bool NetworkConfig::bindToDefaultNetworkInterface(bool p_useAsMDPWS)
         if (!t_interface.supportsIPv4() && !t_interface.supportsIPv6()) { continue; }
 
         // Matching the criteria?
-        if((getIP4enabled() && t_interface.supportsIPv4()) || (getIP6enabled() && t_interface.supportsIPv6())) {
+        if((getIP4enabled() && t_interface.supportsIPv4()) || (getIP6enabled() && t_interface.supportsIPv6()))
+        {
+
             // Try to bind (else try the next one)
             if(bindToInterface(t_interface.adapterName(), p_useAsMDPWS)) {
                 return true;
@@ -66,70 +70,94 @@ bool NetworkConfig::bindToInterface(const std::string& ps_networkInterfaceName, 
 {
     assert(!ps_networkInterfaceName.empty());
 
+    // Already bound to it?
+    if (_networkInterfaceBoundTo(ps_networkInterfaceName))
+    {
+        return false;
+    }
+
     // Is there an Interface with the given name running?
     // Qnd for now...
     auto tl_interfaces = Poco::Net::NetworkInterface::list(true, true);
-    for (const auto & t_interface : tl_interfaces) {
-
+    for (const auto & t_interface : tl_interfaces)
+    {
         // We got a match! - qnd: just take the first one
-        if (t_interface.adapterName() == ps_networkInterfaceName) {
-
-            // Already bound to it?
-            if (_networkInterfaceBoundTo(ps_networkInterfaceName)) {
-                return false;
-            }
-
+        if (t_interface.adapterName() == ps_networkInterfaceName)
+        {
             // Must at least support one of the following
-            if (!t_interface.supportsIPv4() && !t_interface.supportsIPv6()) {
-                return false;
+            if (!t_interface.supportsIPv4() && !t_interface.supportsIPv6())
+            {
+                continue;
             }
+
             // Lock
             std::lock_guard<std::mutex> t_lock(m_mutex);
+            auto t_validIP = false;
 
             // Create the struct
             auto t_if = std::make_shared<NetInterface>(t_interface);
 
             // Grab the address
-
-            // IPv4? Else disable!
-            if (t_interface.supportsIPv4()) {
+            // IPv4?
+            if (t_interface.supportsIPv4() && getIP4enabled())
+            {
                 IPAddress t_IPv4;
-                try {
+                try
+                {
                     t_interface.firstAddress(t_IPv4, Poco::Net::IPAddress::IPv4);
                     t_if->m_IPv4 = t_IPv4;
+                    t_validIP = true;
                 }
                 catch (...) { }
             }
-            else {
-            	// This is the only interface (so far) -> Disable
-            	if(ml_networkInterfaces.size() == 0) {
-            		setIP4enabled(false);
-            	}
-            }
 
-
-            // IPv6? Else disable!
-            if (t_interface.supportsIPv6()) {
+            // IPv6?
+            if (t_interface.supportsIPv6() && getIP6enabled())
+            {
                 IPAddress t_IPv6;
-                try {
+                try
+                {
                     t_interface.firstAddress(t_IPv6, Poco::Net::IPAddress::IPv6);
                     t_if->m_IPv6 = t_IPv6;
+                    t_validIP = true;
                 }
-                catch (...) { }
+                catch (...)
+                {
+                    // Could not get a valid address -> try next interface
+                    continue;
+                }
             }
-            else {
-            	// This is the only interface (so far) -> Disable
-				if(ml_networkInterfaces.size() == 0) {
-					setIP6enabled(false);
-				}
+
+            // Do we have a valid Interface (at least one valid IP)
+            if (!t_validIP)
+            {
+                continue;
             }
 
             // Add
             ml_networkInterfaces.push_back(t_if);
-            // This is the primary MDPWS Interface (only if none has been set yet!)
-            if(p_useAsMDPWS && (m_MDPWSInterface == nullptr)) {
 
+            // This is the primary MDPWS Interface (only if none has been set yet!)
+            if(p_useAsMDPWS && (m_MDPWSInterface == nullptr))
+            {
                 m_MDPWSInterface = t_if;
+
+                // This is the only interface so far -> Disable IPv4 / IPv6
+                if (ml_networkInterfaces.size() == 1)
+                {
+                    // IPv4
+                    if ((getIP4enabled()) && (!m_MDPWSInterface->m_if.supportsIPv4()))
+                    {
+                        log_notice([]() { return "MDPWSInterface does not support IPv4. Disabling..."; });
+                        setIP4enabled(false);
+                    }
+                    // IPv6
+                    if ((getIP6enabled()) && (!m_MDPWSInterface->m_if.supportsIPv6()))
+                    {
+                        log_notice([]() { return "MDPWSInterface does not support IPv6. Disabling..."; });
+                        setIP6enabled(false);
+                    }
+                }
 
                 // Check on the port
                 auto t_result = findFreePort();
@@ -141,9 +169,9 @@ bool NetworkConfig::bindToInterface(const std::string& ps_networkInterfaceName, 
                 }
 
                 log_notice([&] { return "SDCInstance bound to: " +  m_MDPWSInterface->m_name +  " ("
-                		+ (m_MDPWSInterface->m_if.supportsIPv4() ? "IPv4: " + m_MDPWSInterface->m_IPv4.toString() : "")
-						+ ((m_MDPWSInterface->m_if.supportsIPv4() && m_MDPWSInterface->m_if.supportsIPv6()) ? "|" : "")
-						+ (m_MDPWSInterface->m_if.supportsIPv6() ? "IPv6: "+  m_MDPWSInterface->m_IPv6.toString() : "")
+                        + (getIP4enabled() ? "IPv4: " + m_MDPWSInterface->m_IPv4.toString() : "")
+						+ ((getIP4enabled() && getIP6enabled()) ? "|" : "")
+						+ (getIP6enabled() ? "IPv6: "+  m_MDPWSInterface->m_IPv6.toString() : "")
                 		+ ").\n";
                 });
             }

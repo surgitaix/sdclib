@@ -53,12 +53,12 @@ endif()
 ################################################################################
 if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
     message(STATUS "Default install prefix init to default, manually setting one...")
-    set (CMAKE_INSTALL_PREFIX ${PROJECT_BINARY_DIR}/install CACHE STRING "Where to install the binaries?" FORCE)
+    set (CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/install CACHE STRING "Where to install the binaries?" FORCE)
 endif()
 
-set(PATH_RUNTIME_OUTPUT ${PROJECT_BINARY_DIR}/bin)
-set(PATH_LIBRARY_OUTPUT ${PROJECT_BINARY_DIR}/bin)
-set(PATH_ARCHIVE_OUTPUT ${PROJECT_BINARY_DIR}/lib)
+set(PATH_RUNTIME_OUTPUT ${CMAKE_BINARY_DIR}/bin)
+set(PATH_LIBRARY_OUTPUT ${CMAKE_BINARY_DIR}/bin)
+set(PATH_ARCHIVE_OUTPUT ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_DEBUG_POSTFIX _d) # Force the Debug Postfix
 
 # by "default" take the install prefix

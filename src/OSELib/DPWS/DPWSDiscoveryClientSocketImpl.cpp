@@ -86,7 +86,9 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
         // Add only interfaces bound to the SDCInstance
         if (m_networkConfig->isBound()) {
             // Bind DiscoverySocket
-            auto t_ipv4BindingAddress = Poco::Net::SocketAddress(m_ipv4MulticastAddress.host(), m_ipv4MulticastAddress.port());
+
+			// TODO: Poco::Net::IPAddress() returns 0.0.0.0 which doesnt allow fitlering by adapter refactor!
+            auto t_ipv4BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress(), m_ipv4MulticastAddress.port());
             m_ipv4DiscoverySocket.bind(t_ipv4BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             // Add all interfaces
             for (auto t_interface : m_networkConfig->getNetworkInterfaces()) {
@@ -110,7 +112,7 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
         }
         else {
             // Bind DiscoverySocket
-            auto t_ipv4BindingAddress = Poco::Net::SocketAddress(m_ipv4MulticastAddress.host(), m_ipv4MulticastAddress.port());
+            auto t_ipv4BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress(), m_ipv4MulticastAddress.port());
             m_ipv4DiscoverySocket.bind(t_ipv4BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             // Add all interfaces
             for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {
@@ -148,7 +150,7 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
         // Add only interfaces bound to the SDCInstance
         if (m_networkConfig->isBound()) {
             // Bind DiscoverySocket
-            auto t_ipv6BindingAddress = Poco::Net::SocketAddress(m_ipv6MulticastAddress.host(), m_ipv6MulticastAddress.port());
+            auto t_ipv6BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress{ Poco::Net::IPAddress::Family::IPv6 }, m_ipv6MulticastAddress.port());
             m_ipv6DiscoverySocket.bind(t_ipv6BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             for (auto t_interface : m_networkConfig->getNetworkInterfaces()) {
                 try {
@@ -170,7 +172,7 @@ DPWSDiscoveryClientSocketImpl::DPWSDiscoveryClientSocketImpl(
         }
         else {
             // Bind DiscoverySocket
-            auto t_ipv6BindingAddress = Poco::Net::SocketAddress(m_ipv6MulticastAddress.host(), m_ipv6MulticastAddress.port());
+			auto t_ipv6BindingAddress = Poco::Net::SocketAddress(Poco::Net::IPAddress{ Poco::Net::IPAddress::Family::IPv6 }, m_ipv6MulticastAddress.port());
             m_ipv6DiscoverySocket.bind(t_ipv6BindingAddress, m_SO_REUSEADDR_FLAG, m_SO_REUSEPORT_FLAG);
             // Add all interfaces
             for (const auto & nextIf : Poco::Net::NetworkInterface::list()) {

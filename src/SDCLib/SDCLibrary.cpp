@@ -25,7 +25,7 @@
 
 #include "SDCLib/SDCLibrary.h"
 
-
+#include "SDCLib/SDCInstance.h"
 #include "OSELib/DPWS/PingManager.h"
 
 #include <Poco/ConsoleChannel.h>
@@ -63,7 +63,7 @@ SDCLibrary::~SDCLibrary()
     shutdown();
 }
 
-SDCLibrary & SDCLibrary::getInstance() {
+SDCLibrary& SDCLibrary::getInstance() {
 	static Poco::SingletonHolder<SDCLibrary> s_singletonHolder;
 	return *s_singletonHolder.get();
 }
@@ -78,13 +78,4 @@ void SDCLibrary::startup(OSELib::LogLevel p_debugLevel)
 	} else {
 		log_error([]{ return "SDCLib already initialized!"; });
 	}
-}
-
-void SDCLibrary::shutdown()
-{
-	// ?
-}
-
-bool SDCLibrary::isInitialized() {
-	return m_initialized;
 }

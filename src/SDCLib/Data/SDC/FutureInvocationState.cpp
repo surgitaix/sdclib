@@ -19,7 +19,7 @@
  *
  *  @Copyright (C) 2015, SurgiTAIX AG
  *  Author: besting, röhser
- *  Modified on: 29.11.2019, baumeister
+ *  Modified on: 07.09.2020, baumeister
  *
  */
 
@@ -32,46 +32,40 @@ using namespace SDCLib::Data::SDC;
 
 FutureInvocationState::FutureInvocationState()
 {
-	ml_invocationEvents[InvocationState::Cnclld] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
-	ml_invocationEvents[InvocationState::CnclldMan] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
-	ml_invocationEvents[InvocationState::Fail] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
-	ml_invocationEvents[InvocationState::Fin] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
-	ml_invocationEvents[InvocationState::FinMod] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
-	ml_invocationEvents[InvocationState::Start] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
-	ml_invocationEvents[InvocationState::Wait] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
+    ml_invocationEvents[InvocationState::Cnclld] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
+    ml_invocationEvents[InvocationState::CnclldMan] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
+    ml_invocationEvents[InvocationState::Fail] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
+    ml_invocationEvents[InvocationState::Fin] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
+    ml_invocationEvents[InvocationState::FinMod] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
+    ml_invocationEvents[InvocationState::Start] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
+    ml_invocationEvents[InvocationState::Wait] = std::shared_ptr<Poco::Event>(new Poco::Event(false));
 }
 
 FutureInvocationState::~FutureInvocationState()
 {
-	if (nullptr != m_consumer)
-	{
-		m_consumer->unregisterFutureInvocationListener(m_transactionId);
-	}
+    if(nullptr != m_consumer)
+    {
+        m_consumer->unregisterFutureInvocationListener(m_transactionId);
+    }
 }
 
 
 bool FutureInvocationState::waitReceived(InvocationState p_expected, int p_timeout)
 {
-	std::shared_ptr<Poco::Event> t_event{nullptr};
-	{ // LOCK
-		std::lock_guard<std::mutex> t_lock{m_mutex};
-		t_event = ml_invocationEvents[p_expected];
-	} // UNLOCK
-
-	if(nullptr == t_event)
-	{
-		return false;
-	}
-	return t_event->tryWait(p_timeout);
+    auto t_event = ml_invocationEvents[p_expected];
+    if(nullptr == t_event)
+    {
+        return false;
+    }
+    return t_event->tryWait(p_timeout);
 }
 
 int FutureInvocationState::getTransactionId() const
 {
-	return m_transactionId;
+    return m_transactionId;
 }
 
 void FutureInvocationState::setEvent(InvocationState p_actual)
 {
-	std::lock_guard<std::mutex> t_lock{m_mutex}; // FIXME: Check if already there?
-	ml_invocationEvents[p_actual]->set();
+    ml_invocationEvents[p_actual]->set();
 }

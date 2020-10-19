@@ -9,13 +9,13 @@
 #ifndef OSELIB_HTTP_FRONTCONTROLLER_H_
 #define OSELIB_HTTP_FRONTCONTROLLER_H_
 
+#include "OSELib/fwd.h"
+#include "OSELib/Helper/WithLogger.h"
+
 #include <functional>
 #include <map>
 #include <string>
 #include <mutex>
-
-#include "OSELib/fwd.h"
-#include "OSELib/Helper/WithLogger.h"
 
 namespace OSELib
 {

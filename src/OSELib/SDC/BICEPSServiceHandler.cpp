@@ -8,7 +8,6 @@
 #include "OSELib/SDC/BICEPSServiceHandler.h"
 #include "OSELib/SDC/IBICEPSService.h"
 #include "OSELib/SDC/OperationTraits.h"
-#include "OSELib/SDC/ReportTraits.h"
 
 #include "OSELib/SOAP/Command.h"
 #include "OSELib/SOAP/CommonSoapPreprocessing.h"

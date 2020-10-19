@@ -1196,25 +1196,39 @@ std::string buildDotGraph(CDM::Mdib& mdib) {
 					handleToNodeMap[operation.getHandle()] = ++lastNode;
 					result << "n" << handleToNodeMap[sco.getHandle()] << " -> n" << handleToNodeMap[operation.getHandle()] << "[weight=10000;];" << std::endl;
 
-					if (auto casted = dynamic_cast<const CDM::SetStringOperationDescriptor *>(&operation)) {
-						nodeToDescriptionMap[handleToNodeMap[operation.getHandle()]] = makeDescription(*casted);
-					} else if (auto casted = dynamic_cast<const CDM::SetValueOperationDescriptor *>(&operation)) {
-						nodeToDescriptionMap[handleToNodeMap[operation.getHandle()]] = makeDescription(*casted);
-					} else if (auto casted = dynamic_cast<const CDM::SetContextStateOperationDescriptor*>(&operation)) {
-						nodeToDescriptionMap[handleToNodeMap[operation.getHandle()]] = makeDescription(*casted);
-					} else if (auto casted = dynamic_cast<const CDM::SetAlertStateOperationDescriptor *>(&operation)) {
-						nodeToDescriptionMap[handleToNodeMap[operation.getHandle()]] = makeDescription(*casted);
-					} else if (auto casted = dynamic_cast<const CDM::ActivateOperationDescriptor *>(&operation)) {
-						nodeToDescriptionMap[handleToNodeMap[operation.getHandle()]] = makeDescription(*casted);
-					} else if (auto casted = dynamic_cast<const CDM::SetComponentStateOperationDescriptor *>(&operation)) {
-						nodeToDescriptionMap[handleToNodeMap[operation.getHandle()]] = makeDescription(*casted);
-					} else if (auto casted = dynamic_cast<const CDM::SetMetricStateOperationDescriptor *>(&operation)) {
-						nodeToDescriptionMap[handleToNodeMap[operation.getHandle()]] = makeDescription(*casted);
+					if (const auto t_desc_String = dynamic_cast<const CDM::SetStringOperationDescriptor *>(std::addressof(operation)))
+					{
+						nodeToDescriptionMap[handleToNodeMap[operation.getHandle()]] = makeDescription(*t_desc_String);
+					}
+					else if (const auto t_desc_Value = dynamic_cast<const CDM::SetValueOperationDescriptor *>(std::addressof(operation)))
+					{
+						nodeToDescriptionMap[handleToNodeMap[operation.getHandle()]] = makeDescription(*t_desc_Value);
+					}
+					else if (const auto t_desc_Context = dynamic_cast<const CDM::SetContextStateOperationDescriptor*>(std::addressof(operation)))
+					{
+						nodeToDescriptionMap[handleToNodeMap[operation.getHandle()]] = makeDescription(*t_desc_Context);
+					}
+					else if (const auto t_desc_Alert = dynamic_cast<const CDM::SetAlertStateOperationDescriptor *>(std::addressof(operation)))
+					{
+						nodeToDescriptionMap[handleToNodeMap[operation.getHandle()]] = makeDescription(*t_desc_Alert);
+					}
+					else if (const auto t_desc_Activate = dynamic_cast<const CDM::ActivateOperationDescriptor *>(&operation))
+					{
+						nodeToDescriptionMap[handleToNodeMap[operation.getHandle()]] = makeDescription(*t_desc_Activate);
+					}
+					else if (const auto t_desc_Component = dynamic_cast<const CDM::SetComponentStateOperationDescriptor *>(std::addressof(operation)))
+					{
+						nodeToDescriptionMap[handleToNodeMap[operation.getHandle()]] = makeDescription(*t_desc_Component);
+					}
+					else if (const auto t_desc_Metric = dynamic_cast<const CDM::SetMetricStateOperationDescriptor *>(std::addressof(operation)))
+					{
+						nodeToDescriptionMap[handleToNodeMap[operation.getHandle()]] = makeDescription(*t_desc_Metric);
 					}
 				}
 			}
 
-			if (mds.getSystemContext().present()) {
+			if (mds.getSystemContext().present())
+			{
 				const CDM::SystemContextDescriptor & systemContext(mds.getSystemContext().get());
 				handleToNodeMap[systemContext.getHandle()] = ++lastNode;
 				result << "n" << handleToNodeMap[mds.getHandle()] << " -> n" << handleToNodeMap[systemContext.getHandle()] << "[];" << std::endl;
@@ -1282,21 +1296,30 @@ std::string buildDotGraph(CDM::Mdib& mdib) {
 						handleToNodeMap[metricDescriptor.getHandle()] = ++lastNode;
 						result << "n" << handleToNodeMap[channelDescriptor.getHandle()] << " -> n" << handleToNodeMap[metricDescriptor.getHandle()] << "[weight=100;];" << std::endl;
 
-						if (auto casted = dynamic_cast<const CDM::NumericMetricDescriptor *>(&metricDescriptor)) {
-							nodeToDescriptionMap[handleToNodeMap[metricDescriptor.getHandle()]] = makeDescription(*casted);
-							result << makeFormat(*casted, handleToNodeMap[casted->getHandle()]);
-						} else if (auto casted = dynamic_cast<const CDM::EnumStringMetricDescriptor *>(&metricDescriptor)) {
-							nodeToDescriptionMap[handleToNodeMap[metricDescriptor.getHandle()]] = makeDescription(*casted);
-							result << makeFormat(*casted, handleToNodeMap[casted->getHandle()]);
-						} else if (auto casted = dynamic_cast<const CDM::StringMetricDescriptor *>(&metricDescriptor)) {
-							nodeToDescriptionMap[handleToNodeMap[metricDescriptor.getHandle()]] = makeDescription(*casted);
-							result << makeFormat(*casted, handleToNodeMap[casted->getHandle()]);
-						} else if (auto casted = dynamic_cast<const CDM::RealTimeSampleArrayMetricDescriptor *>(&metricDescriptor)) {
-							nodeToDescriptionMap[handleToNodeMap[metricDescriptor.getHandle()]] = makeDescription(*casted);
-							result << makeFormat(*casted, handleToNodeMap[casted->getHandle()]);
-						} else if (auto casted = dynamic_cast<const CDM::DistributionSampleArrayMetricDescriptor *>(&metricDescriptor)) {
-							nodeToDescriptionMap[handleToNodeMap[metricDescriptor.getHandle()]] = makeDescription(*casted);
-							result << makeFormat(*casted, handleToNodeMap[casted->getHandle()]);
+						if (const auto t_desc_numeric = dynamic_cast<const CDM::NumericMetricDescriptor *>(&metricDescriptor))
+						{
+							nodeToDescriptionMap[handleToNodeMap[metricDescriptor.getHandle()]] = makeDescription(*t_desc_numeric);
+							result << makeFormat(*t_desc_numeric, handleToNodeMap[t_desc_numeric->getHandle()]);
+						}
+						else if (const auto t_desc_enumString = dynamic_cast<const CDM::EnumStringMetricDescriptor *>(&metricDescriptor))
+						{
+							nodeToDescriptionMap[handleToNodeMap[metricDescriptor.getHandle()]] = makeDescription(*t_desc_enumString);
+							result << makeFormat(*t_desc_enumString, handleToNodeMap[t_desc_enumString->getHandle()]);
+						}
+						else if (const auto t_desc_string = dynamic_cast<const CDM::StringMetricDescriptor *>(&metricDescriptor))
+						{
+							nodeToDescriptionMap[handleToNodeMap[metricDescriptor.getHandle()]] = makeDescription(*t_desc_string);
+							result << makeFormat(*t_desc_string, handleToNodeMap[t_desc_string->getHandle()]);
+						}
+						else if (const auto t_desc_rtsa = dynamic_cast<const CDM::RealTimeSampleArrayMetricDescriptor *>(&metricDescriptor))
+						{
+							nodeToDescriptionMap[handleToNodeMap[metricDescriptor.getHandle()]] = makeDescription(*t_desc_rtsa);
+							result << makeFormat(*t_desc_rtsa, handleToNodeMap[t_desc_rtsa->getHandle()]);
+						}
+						else if (const auto t_desc_dsam = dynamic_cast<const CDM::DistributionSampleArrayMetricDescriptor *>(&metricDescriptor))
+						{
+							nodeToDescriptionMap[handleToNodeMap[metricDescriptor.getHandle()]] = makeDescription(*t_desc_dsam);
+							result << makeFormat(*t_desc_dsam, handleToNodeMap[t_desc_dsam->getHandle()]);
 						}
 					}
 				}
@@ -1304,9 +1327,12 @@ std::string buildDotGraph(CDM::Mdib& mdib) {
 		}
 
 		// second pass for operation targets
-		for (const auto & mds : mddescription.getMds()) {
-			if (mds.getSco().present()) {
-				for (const auto & operation : mds.getSco().get().getOperation()) {
+		for (const auto & mds : mddescription.getMds())
+		{
+			if (mds.getSco().present())
+			{
+				for (const auto & operation : mds.getSco().get().getOperation())
+				{
 					if (handleToNodeMap.find(operation.getOperationTarget()) != handleToNodeMap.end()) {
 						result << "n" << handleToNodeMap[operation.getOperationTarget()] << "[shape=octagon];" << std::endl;
 					} else {
@@ -1328,76 +1354,115 @@ std::string buildDotGraph(CDM::Mdib& mdib) {
 					result << "n" << currentNode << " -> unassigned;" << std::endl;
 				}
 
-				if (auto casted = dynamic_cast<const CDM::LimitAlertConditionState *>(&state)) {
-					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
-					result << makeFormat(*casted, currentNode);
-				} else if (auto casted = dynamic_cast<const CDM::AlertConditionState *>(&state)) {
-					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
-					result << makeFormat(*casted, currentNode);
-				} else if (auto casted = dynamic_cast<const CDM::AlertSignalState*>(&state)) {
-					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
-					result << makeFormat(*casted, currentNode);
-				} else if (auto casted = dynamic_cast<const CDM::AlertSystemState *>(&state)) {
-					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
-					result << makeFormat(*casted, currentNode);
+				if (const auto& t_state_limitAlertCondition = dynamic_cast<const CDM::LimitAlertConditionState *>(&state))
+				{
+					nodeToDescriptionMap[currentNode] = makeDescription(*t_state_limitAlertCondition);
+					result << makeFormat(*t_state_limitAlertCondition, currentNode);
+				}
+				else if (const auto& t_state_alertCondition = dynamic_cast<const CDM::AlertConditionState *>(&state))
+				{
+					nodeToDescriptionMap[currentNode] = makeDescription(*t_state_alertCondition);
+					result << makeFormat(*t_state_alertCondition, currentNode);
+				}
+				else if (const auto& t_state_alertSignal = dynamic_cast<const CDM::AlertSignalState*>(&state))
+				{
+					nodeToDescriptionMap[currentNode] = makeDescription(*t_state_alertSignal);
+					result << makeFormat(*t_state_alertSignal, currentNode);
+				}
+				else if (const auto& t_state_alertSystem = dynamic_cast<const CDM::AlertSystemState *>(&state))
+				{
+					nodeToDescriptionMap[currentNode] = makeDescription(*t_state_alertSystem);
+					result << makeFormat(*t_state_alertSystem, currentNode);
 					// force alert system states next to alert system
 					if (handleToNodeMap.find(state.getDescriptorHandle()) != handleToNodeMap.end()) {
 						result << " { rank = same; " ;
 						result << "n" << handleToNodeMap[state.getDescriptorHandle()] << "; n" << currentNode << ";";
 						result << "} " << std::endl ;
 					}
-				} else if (auto casted = dynamic_cast<const CDM::EnsembleContextState *>(&state)) {
-					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
-					result << makeFormat(*casted, currentNode);
-				} else if (auto casted = dynamic_cast<const CDM::LocationContextState *>(&state)) {
-					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
-					result << makeFormat(*casted, currentNode);
-				} else if (auto casted = dynamic_cast<const CDM::OperatorContextState *>(&state)) {
-					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
-					result << makeFormat(*casted, currentNode);
-				} else if (auto casted = dynamic_cast<const CDM::PatientContextState *>(&state)) {
-					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
-					result << makeFormat(*casted, currentNode);
-				} else if (auto casted = dynamic_cast<const CDM::WorkflowContextState *>(&state)) {
-					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
-					result << makeFormat(*casted, currentNode);
-				} else if (auto casted = dynamic_cast<const CDM::NumericMetricState *>(&state)) {
+				}
+				else if (const auto& t_state_ensembleContext = dynamic_cast<const CDM::EnsembleContextState *>(std::addressof(state)))
+				{
+					nodeToDescriptionMap[currentNode] = makeDescription(*t_state_ensembleContext);
+					result << makeFormat(*t_state_ensembleContext, currentNode);
+				}
+				else if (const auto& t_state_locationContext = dynamic_cast<const CDM::LocationContextState *>(std::addressof(state)))
+				{
+					nodeToDescriptionMap[currentNode] = makeDescription(*t_state_locationContext);
+					result << makeFormat(*t_state_locationContext, currentNode);
+				}
+				else if (const auto& t_state_operatorContext = dynamic_cast<const CDM::OperatorContextState *>(std::addressof(state)))
+				{
+					nodeToDescriptionMap[currentNode] = makeDescription(*t_state_operatorContext);
+					result << makeFormat(*t_state_operatorContext, currentNode);
+				}
+				else if (const auto& t_state_patientContext = dynamic_cast<const CDM::PatientContextState *>(std::addressof(state)))
+				{
+					nodeToDescriptionMap[currentNode] = makeDescription(*t_state_patientContext);
+					result << makeFormat(*t_state_patientContext, currentNode);
+				}
+				else if (const auto& t_state_workflowContext = dynamic_cast<const CDM::WorkflowContextState *>(std::addressof(state)))
+				{
+					nodeToDescriptionMap[currentNode] = makeDescription(*t_state_workflowContext);
+					result << makeFormat(*t_state_workflowContext, currentNode);
+				}
+				else if (const auto& t_state_numericMetricState = dynamic_cast<const CDM::NumericMetricState *>(std::addressof(state)))
+				{
 					metricStateNodes.push_back(currentNode);
-					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
-					result << makeFormat(*casted, currentNode);
-				} else if (auto casted = dynamic_cast<const CDM::RealTimeSampleArrayMetricState *>(&state)) {
+					nodeToDescriptionMap[currentNode] = makeDescription(*t_state_numericMetricState);
+					result << makeFormat(*t_state_numericMetricState, currentNode);
+				}
+				else if (const auto& t_state_rtsa = dynamic_cast<const CDM::RealTimeSampleArrayMetricState *>(std::addressof(state)))
+				{
 					metricStateNodes.push_back(currentNode);
-					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
-					result << makeFormat(*casted, currentNode);
-				} else if (auto casted = dynamic_cast<const CDM::StringMetricState *>(&state)) {
+					nodeToDescriptionMap[currentNode] = makeDescription(*t_state_rtsa);
+					result << makeFormat(*t_state_rtsa, currentNode);
+				}
+				else if (const auto& t_state_stringMetricState = dynamic_cast<const CDM::StringMetricState *>(std::addressof(state)))
+				{
 					metricStateNodes.push_back(currentNode);
-					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
-					result << makeFormat(*casted, currentNode);
-				} else if (auto casted = dynamic_cast<const CDM::DistributionSampleArrayMetricState *>(&state)) {
+					nodeToDescriptionMap[currentNode] = makeDescription(*t_state_stringMetricState);
+					result << makeFormat(*t_state_stringMetricState, currentNode);
+				}
+				else if (const auto& t_state_dsam = dynamic_cast<const CDM::DistributionSampleArrayMetricState *>(std::addressof(state)))
+				{
 					metricStateNodes.push_back(currentNode);
-					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
-					result << makeFormat(*casted, currentNode);
-				} else if (auto casted = dynamic_cast<const CDM::SetValueOperationState *>(&state)) {
-					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
-					result << makeFormat(*casted, currentNode);
-				} else if (auto casted = dynamic_cast<const CDM::SetStringOperationState *>(&state)) {
-					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
-					result << makeFormat(*casted, currentNode);
-				} else if (auto casted = dynamic_cast<const CDM::SetContextStateOperationState *>(&state)) {
-					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
-					result << makeFormat(*casted, currentNode);
-				} else if (auto casted = dynamic_cast<const CDM::SetAlertStateOperationState *>(&state)) {
-					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
-					result << makeFormat(*casted, currentNode);
-				} else if (auto casted = dynamic_cast<const CDM::ActivateOperationState *>(&state)) {
-					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
-					result << makeFormat(*casted, currentNode);
-				} else if (auto casted = dynamic_cast<const CDM::SetComponentStateOperationState *>(&state)) {
-					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
-					result << makeFormat(*casted, currentNode);
-				} else if (auto casted = dynamic_cast<const CDM::SetMetricStateOperationState *>(&state)) {
-					nodeToDescriptionMap[currentNode] = makeDescription(*casted);
-					result << makeFormat(*casted, currentNode);
+					nodeToDescriptionMap[currentNode] = makeDescription(*t_state_dsam);
+					result << makeFormat(*t_state_dsam, currentNode);
+				}
+				else if (const auto& t_state_setValueOperation = dynamic_cast<const CDM::SetValueOperationState *>(std::addressof(state)))
+				{
+					nodeToDescriptionMap[currentNode] = makeDescription(*t_state_setValueOperation);
+					result << makeFormat(*t_state_setValueOperation, currentNode);
+				}
+				else if (const auto& t_state_setStringOperation = dynamic_cast<const CDM::SetStringOperationState *>(std::addressof(state)))
+				{
+					nodeToDescriptionMap[currentNode] = makeDescription(*t_state_setStringOperation);
+					result << makeFormat(*t_state_setStringOperation, currentNode);
+				}
+				else if (const auto& t_state_setContextStateOperation = dynamic_cast<const CDM::SetContextStateOperationState *>(std::addressof(state)))
+				{
+					nodeToDescriptionMap[currentNode] = makeDescription(*t_state_setContextStateOperation);
+					result << makeFormat(*t_state_setContextStateOperation, currentNode);
+				}
+				else if (auto t_state_setAlertStateOperation = dynamic_cast<const CDM::SetAlertStateOperationState *>(std::addressof(state)))
+				{
+					nodeToDescriptionMap[currentNode] = makeDescription(*t_state_setAlertStateOperation);
+					result << makeFormat(*t_state_setAlertStateOperation, currentNode);
+				}
+				else if (const auto& t_state_activateOperation = dynamic_cast<const CDM::ActivateOperationState *>(std::addressof(state)))
+				{
+					nodeToDescriptionMap[currentNode] = makeDescription(*t_state_activateOperation);
+					result << makeFormat(*t_state_activateOperation, currentNode);
+				}
+				else if (const auto& t_state_setComponentStateOperation = dynamic_cast<const CDM::SetComponentStateOperationState *>(std::addressof(state)))
+				{
+					nodeToDescriptionMap[currentNode] = makeDescription(*t_state_setComponentStateOperation);
+					result << makeFormat(*t_state_setComponentStateOperation, currentNode);
+				}
+				else if (const auto& t_state_setMetricStateOperation = dynamic_cast<const CDM::SetMetricStateOperationState *>(std::addressof(state)))
+				{
+					nodeToDescriptionMap[currentNode] = makeDescription(*t_state_setMetricStateOperation);
+					result << makeFormat(*t_state_setMetricStateOperation, currentNode);
 				}
 			}
 		}

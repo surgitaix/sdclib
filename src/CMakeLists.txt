@@ -4,10 +4,10 @@ set( CURRENT_TARGET_NAME SDCLib )
 project(${CURRENT_TARGET_NAME} "CXX")
 
 # Add an empty target first - FIXME: Why distinguish here. Does PIC flag solve it?
-if(WIN32)
-	add_library(${CURRENT_TARGET_NAME} STATIC "")
-else()
+if(SDCLib_DYNAMIC_LINKING)
 	add_library(${CURRENT_TARGET_NAME} SHARED "")
+else()
+	add_library(${CURRENT_TARGET_NAME} STATIC "")
 endif()
 
 message(STATUS "Adding Target ${CURRENT_TARGET_NAME}...")
@@ -89,7 +89,6 @@ set(TARGET_PUBLIC_HEADERS   ${INCLUDE_DIR}/SDCLib/SDCInstance.h
                             ${INCLUDE_DIR}/OSELib/SDC/ISetService.h
                             ${INCLUDE_DIR}/OSELib/SDC/IBICEPSService.h
                             ${INCLUDE_DIR}/OSELib/SDC/IBICEPSServiceEventSink.h
-                            ${INCLUDE_DIR}/OSELib/SDC/ReportTraits.h
                             ${INCLUDE_DIR}/OSELib/SDC/IWaveformService.h
                             ${INCLUDE_DIR}/OSELib/SDC/SetServiceEventSinkHandler.h
                             ${INCLUDE_DIR}/OSELib/HTTP/Service.h
@@ -460,7 +459,6 @@ target_sources(${CURRENT_TARGET_NAME}
         ${SRC_DIR}/OSELib/SDC/DefaultSDCSchemaGrammarProvider.cpp
         ${SRC_DIR}/OSELib/SDC/GetServiceHandler.cpp
         ${SRC_DIR}/OSELib/SDC/OperationTraits.cpp
-        ${SRC_DIR}/OSELib/SDC/ReportTraits.cpp
         ${SRC_DIR}/OSELib/SDC/ServiceManager.cpp
         ${SRC_DIR}/OSELib/SDC/SetServiceHandler.cpp
         ${SRC_DIR}/OSELib/SDC/SetServiceEventSinkHandler.cpp
@@ -502,9 +500,9 @@ target_compile_definitions( ${CURRENT_TARGET_NAME} PUBLIC ${SDCLib_DEFINITIONS} 
 target_compile_options(${CURRENT_TARGET_NAME}      PUBLIC ${SDCLib_OPTIONS} )
 
 # All Dependencies
-target_link_libraries(${CURRENT_TARGET_NAME}        PUBLIC  ${SDCLib_DEPS_LIBRARIES})
-target_include_directories(${CURRENT_TARGET_NAME}   PUBLIC  ${SDCLib_DEPS_INCLUDE_DIRS})
-target_compile_definitions(${CURRENT_TARGET_NAME}   PUBLIC  ${SDCLib_DEPS_DEFINITIONS})
+target_link_libraries(${CURRENT_TARGET_NAME}        		PUBLIC  ${SDCLib_DEPS_LIBRARIES})
+target_include_directories(${CURRENT_TARGET_NAME}   SYSTEM 	PUBLIC  ${SDCLib_DEPS_INCLUDE_DIRS})
+target_compile_definitions(${CURRENT_TARGET_NAME}   		PUBLIC  ${SDCLib_DEPS_DEFINITIONS})
 
 
 # XercesC - Imported Target (Todo: Move this into FindSDCLib)
@@ -514,7 +512,7 @@ target_link_libraries(${CURRENT_TARGET_NAME} PUBLIC XercesC::XercesC)
 # DataModel
 target_sources(${CURRENT_TARGET_NAME} PRIVATE $<TARGET_OBJECTS:DataModel>)
 # Note: 2nd line for cmake < 3.12
-target_include_directories( ${CURRENT_TARGET_NAME} PUBLIC $<TARGET_PROPERTY:DataModel,INTERFACE_INCLUDE_DIRECTORIES>)
+target_include_directories( ${CURRENT_TARGET_NAME} SYSTEM PUBLIC $<TARGET_PROPERTY:DataModel,INTERFACE_INCLUDE_DIRECTORIES>)
 
 # build
 set_target_properties(  ${CURRENT_TARGET_NAME}

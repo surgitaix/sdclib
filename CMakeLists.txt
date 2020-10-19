@@ -38,8 +38,8 @@ project(${PROJECT_NAME} "CXX")
 
 # Version numbers -> Will be written to the config file
 set (SDCLibrary_VERSION_FIRST          4)
-set (SDCLibrary_VERSION_MIDDLE         4)
-set (SDCLibrary_VERSION_LAST           3)
+set (SDCLibrary_VERSION_MIDDLE         5)
+set (SDCLibrary_VERSION_LAST           1)
 set (SDCLibrary_C_YEAR              2020)
 set (SDCLibrary_SurgiTAIX "SurgiTAIX AG")
 
@@ -96,6 +96,13 @@ set_property(CACHE SDC_ADVANCED_EXAMPLES PROPERTY STRINGS "ON" "OFF")
 set (SDC_CPPCHECK   OFF CACHE STRING "Enable CPPCHECK (only available for CMAKE 3.10 or higher).")
 set_property(CACHE SDC_CPPCHECK PROPERTY STRINGS "ON" "OFF")
 
+# STATIC OR DYNAMIC LINKING - Default to ON
+set(SDCLib_DYNAMIC_LINKING ON CACHE STRING "Enable dynamic Linking")
+set_property(CACHE SDCLib_DYNAMIC_LINKING PROPERTY STRINGS "ON" "OFF")
+if (CMAKE_SYSTEM_NAME MATCHES "Windows")
+	set(SDCLib_DYNAMIC_LINKING	OFF CACHE STRING "Enable dynamic Linking (Disabled on windows by default)" FORCE)
+endif()
+
 ################################################################################
 
 
@@ -112,19 +119,30 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 ################################################################################
 if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
     message(STATUS "Default install prefix init to default, manually setting one...")
-    set (CMAKE_INSTALL_PREFIX ${PROJECT_BINARY_DIR}/install CACHE STRING "Where to install the binaries?" FORCE)
+    set (CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/install CACHE STRING "Where to install the binaries?" FORCE)
 endif()
 
-set(PATH_RUNTIME_OUTPUT ${PROJECT_BINARY_DIR}/bin)
-set(PATH_LIBRARY_OUTPUT ${PROJECT_BINARY_DIR}/bin)
-set(PATH_ARCHIVE_OUTPUT ${PROJECT_BINARY_DIR}/lib)
+# Note: https://cmake.org/cmake/help/latest/prop_tgt/LIBRARY_OUTPUT_DIRECTORY.html
+#		"Multi-configuration generators (VS, Xcode) append a per-configuration
+#		subdirectory to the specified directory unless a generator expression is used."
+#		-> Append empty generator expression.
+#
+#		Use the _ROOT Version for all processes during "configure" phase (like configure_file)
+#		Use the other Version for all processes during "generator" phase
+set(PATH_RUNTIME_OUTPUT_ROOT ${CMAKE_BINARY_DIR}/bin)
+set(PATH_LIBRARY_OUTPUT_ROOT ${CMAKE_BINARY_DIR}/bin)
+set(PATH_ARCHIVE_OUTPUT_ROOT ${CMAKE_BINARY_DIR}/lib)
+set(PATH_RUNTIME_OUTPUT ${PATH_RUNTIME_OUTPUT_ROOT}/$<0:>)
+set(PATH_LIBRARY_OUTPUT ${PATH_LIBRARY_OUTPUT_ROOT}/$<0:>)
+set(PATH_ARCHIVE_OUTPUT ${PATH_ARCHIVE_OUTPUT_ROOT}/$<0:>)
+
 set(CMAKE_DEBUG_POSTFIX _d) # Force the Debug Postfix
 
 # by "default" take the install prefix
-set(PATH_INSTALL_RUNTIME bin)
-set(PATH_INSTALL_LIBRARY bin)
-set(PATH_INSTALL_ARCHIVE lib)
-set(PATH_INSTALL_INCLUDE include)
+set(PATH_INSTALL_RUNTIME bin/$<0:>)
+set(PATH_INSTALL_LIBRARY bin/$<0:>)
+set(PATH_INSTALL_ARCHIVE lib/$<0:>)
+set(PATH_INSTALL_INCLUDE include/$<0:>)
 ################################################################################
 
 
@@ -132,7 +150,7 @@ set(PATH_INSTALL_INCLUDE include)
 # Targets
 # Overwrite
 ################################################################################
-set(CMAKE_CONFIGURATION_TYPES "Release;Debug" CACHE STRING "Config Types")
+set(CMAKE_CONFIGURATION_TYPES "Release;Debug" CACHE STRING "Config Types" FORCE)
 # None specified?
 if(NOT CMAKE_BUILD_TYPE)
     message(STATUS "No build type specified, setting to Debug.")
@@ -175,83 +193,6 @@ set(SDC_IP_V6_ENABLED false CACHE STRING "Enable IPv6 by default or not." FORCE)
 mark_as_advanced(SDC_IP_V4_ENABLED)
 mark_as_advanced(SDC_IP_V6_ENABLED)
 ################################################################################
-
-
-
-################################################################################
-# OpenSSL - Version Check
-# Note: Must be placed here in order to be added to the config file. Patch 
-# version is set to a number, where (1 = a, 2 = b, ...) 
-# In the following, the variables for the supported OpenSSL minimal version are
-# defined. The OpenSSL version is defined by major version, minor, fix, patch
-# and a status (release / development, ...) 
-################################################################################
-
-# Enable static build of OpenSSL
-# Taken from https://cmake.org/cmake/help/v3.4/module/FindOpenSSL.html#hints
-# TODO: Required here? Or should it be moved to POCO inclusion of OpenSSL? SDCLib
-# does not include OpenSSL directly
-set (OPENSSL_USE_STATIC_LIBS TRUE)
-
-# Define minimal version
-set (SDCLibrary_Minimal_OpenSSL_Version_Major          1)
-set (SDCLibrary_Minimal_OpenSSL_Version_Minor          0)
-set (SDCLibrary_Minimal_OpenSSL_Version_Fix            1)
-set (SDCLibrary_Minimal_OpenSSL_Version_Patch          3)
-set (SDCLibrary_Minimal_OpenSSL_Version_Patch_Char     "b")
-
-# MacOS X OpenSSL Path
-set(OPENSSL_ROOT_DIR "/usr/local/opt/openssl")
-set(OPENSSL_LIBRARIES "/usr/local/opt/openssl/lib")
-
-# Check, if package exists (normally done by POCO)
-find_package(OpenSSL REQUIRED)
-if(NOT OPENSSL_FOUND)
-    message(FATAL_ERROR "OpenSSL not found!")
-else ()
-    
-    message(STATUS "Found OpenSSL version ${OPENSSL_VERSION}")
-
-    # Build substrings containing the version level information
-    string(SUBSTRING ${OPENSSL_VERSION} 0 1 MAJOR_VERSION)
-    string(SUBSTRING ${OPENSSL_VERSION} 2 1 MINOR_VERSION)
-    string(SUBSTRING ${OPENSSL_VERSION} 4 1 FIX_VERSION)
-    string(SUBSTRING ${OPENSSL_VERSION} 5 1 PATCH_VERSION)
-  
-    # Version check. If major release is smaller than allowed, leave the build. If version is 
-    # equal to the minimal, proceed to check of minor version. Continue for the other levels
-    # accordingly
-    string(COMPARE LESS "${MAJOR_VERSION}" "${SDCLibrary_Minimal_OpenSSL_Version_Major}" MAJOR_TOO_LOW)
-    if(${MAJOR_TOO_LOW})
-        message (FATAL_ERROR "OpenSSL is too old. Expected version ${SDCLibrary_Minimal_OpenSSL_Version_Major}.${SDCLibrary_Minimal_OpenSSL_Version_Minor}.${SDCLibrary_Minimal_OpenSSL_Version_Fix}${SDCLibrary_Minimal_OpenSSL_Version_Patch_Char}. Aborting") 
-    endif()
-    string(COMPARE EQUAL "${MAJOR_VERSION}" "${SDCLibrary_Minimal_OpenSSL_Version_Major}" MAJOR_EQUAL)
-
-    if(${MAJOR_EQUAL})
-        # Check minor 
-        string(COMPARE LESS "${MAJOR_VERSION}" "${SDCLibrary_Minimal_OpenSSL_Version_Minor}" MINOR_TOO_LOW)
-        if(${MINOR_TOO_LOW})
-            message (FATAL_ERROR "OpenSSL is too old. Expected version ${SDCLibrary_Minimal_OpenSSL_Version_Major}.${SDCLibrary_Minimal_OpenSSL_Version_Minor}.${SDCLibrary_Minimal_OpenSSL_Version_Fix}${SDCLibrary_Minimal_OpenSSL_Version_Patch_Char}. Aborting")
-        endif()
-        string(COMPARE EQUAL "${MINOR_VERSION}" "${SDCLibrary_Minimal_OpenSSL_Version_Minor}" MINOR_EQUAL)            
-        if(${MINOR_EQUAL})
-            # Check Fix
-            string(COMPARE LESS "${FIX_VERSION}" "${SDCLibrary_Minimal_OpenSSL_Version_Fix}" FIX_TOO_LOW)
-            if(${MAJOR_TOO_LOW})
-                message (FATAL_ERROR "OpenSSL is too old. Expected version ${SDCLibrary_Minimal_OpenSSL_Version_Major}.${SDCLibrary_Minimal_OpenSSL_Version_Minor}.${SDCLibrary_Minimal_OpenSSL_Version_Fix}${SDCLibrary_Minimal_OpenSSL_Version_Patch_Char}. Aborting")
-            endif()
-            string(COMPARE EQUAL "${FIX_VERSION}" "${SDCLibrary_Minimal_OpenSSL_Version_Fix}" FIX_EQUAL)
-            if(${FIX_EQUAL})
-                string(COMPARE LESS "${PATCH_VERSION}" "${SDCLibrary_Minimal_OpenSSL_Version_Patch_Char}" PATCH_TOO_LOW)
-                if(${PATCH_TOO_LOW}) 
-                    message (FATAL_ERROR "OpenSSL is too old. Expected version ${SDCLibrary_Minimal_OpenSSL_Version_Major}.${SDCLibrary_Minimal_OpenSSL_Version_Minor}.${SDCLibrary_Minimal_OpenSSL_Version_Fix}${SDCLibrary_Minimal_OpenSSL_Version_Patch_Char}. Aborting")
-                endif()
-            endif() 
-        endif()
-    endif()   
-endif()
-
-
 
 ################################################################################
 # Some more paths - cleaned from symlinks
@@ -296,10 +237,10 @@ configure_file(${SDC_PATH_DOXYGEN}/Mainpage.h.in ${SDC_PATH_DOXYGEN}/Mainpage.h)
 message(STATUS "Adding Targets...")
 ################################################################################
 
+find_package(SDCLib)
+
 # datamodel
 add_subdirectory(${PATH_DATAMODEL_ROOT})
-
-find_package(SDCLib)
 
 # src folder
 add_subdirectory(${PATH_SRC_ROOT})

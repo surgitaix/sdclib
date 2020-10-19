@@ -35,126 +35,156 @@ using namespace SDCLib::Util;
  * 1: errors
  * 2: errors and messages
  */
-DebugOut::LogLevel DebugOut::DEBUG_LEVEL = DebugOut::Info;
-std::ofstream * DebugOut::fileOut = nullptr;
-std::mutex DebugOut::globalOutputLock;
+DebugOut::LogLevel DebugOut::DEBUG_LEVEL = DebugOut::LogLevel::Info;
+std::ofstream* DebugOut::m_fileOut = nullptr;
+std::mutex DebugOut::m_globalOutputLock;
 
-DebugOut::DebugOut(LogLevel logLevel, std::ostream & s, const std::string & prefix) :
-		stream(s),
-		level(logLevel),
-		prefix(prefix),
-		showMessage(level <= DEBUG_LEVEL)
+DebugOut::DebugOut(LogLevel logLevel, std::ostream& s, const std::string& prefix)
+: m_stream(s),
+ m_level(logLevel),
+ m_prefix(prefix),
+ m_showMessage(logLevel <= DEBUG_LEVEL)
 {
 	outputOnCreate();
 }
 
-DebugOut::DebugOut(LogLevel logLevel, const std::string & prefix) :
-		stream(logLevel != Error ? std::cout : std::cerr),
-		level(logLevel),
-		prefix(prefix),
-		showMessage(level <= DEBUG_LEVEL)
+DebugOut::DebugOut(LogLevel logLevel, const std::string& prefix)
+:	m_stream(logLevel != LogLevel::Error ? std::cout : std::cerr),
+	m_level(logLevel),
+	m_prefix(prefix),
+	m_showMessage(logLevel <= DEBUG_LEVEL)
 {
 	outputOnCreate();
 }
 
-DebugOut::DebugOut(std::ostream & s, const std::string & prefix) :
-		stream(s),
-		level(Info),
-		prefix(prefix),
-		showMessage(level <= DEBUG_LEVEL)
+DebugOut::DebugOut(std::ostream& s, const std::string& prefix)
+:	m_stream(s),
+	m_level(LogLevel::Info),
+	m_prefix(prefix),
+	m_showMessage(m_level <= DEBUG_LEVEL) // TODO: CAREFUL: showMessage must be placed AFTER level in header! -> Design!
 {
 	outputOnCreate();
 }
 
-DebugOut::~DebugOut() {
+DebugOut::~DebugOut()
+{
 	outputOnDestroy();
 	flush();
+	// closeLogFile(); // TODO: RAII ?
 }
 
-void DebugOut::flush() {
-	if (!showMessage) {
-		logBuffer.clear();
+void DebugOut::flush()
+{
+	if (!m_showMessage)
+	{
+		m_logBuffer.clear();
 		return;
 	}
 
-	std::lock_guard<std::mutex> t_lock(globalOutputLock);
+	std::lock_guard<std::mutex> t_globalLock{m_globalOutputLock};
 
-	const std::string output(logBuffer.str());
-	{
-		static std::mutex mutex;
-		std::lock_guard<std::mutex> t_lock(mutex);
+	const std::string t_output{m_logBuffer.str()};
 
-		if (showMessage) {
-			stream << output << std::flush;
+	{ // LOCK
+		static std::mutex mutex; // TODO: What is going on her? static std::mutex in non static member function?
+		std::lock_guard<std::mutex> t_lock{mutex};
+
+		if (m_showMessage)
+		{
+			m_stream << t_output << std::flush;
 		}
 
-		if (showMessage && isLogFileGood()) {
-			(*fileOut) << output << std::flush;
+		if (m_showMessage && isLogFileGood())
+		{
+			(*m_fileOut) << t_output << std::flush;
 		}
-	}
-	logBuffer.clear();
+	} // UNLOCK
+
+	m_logBuffer.clear();
 }
 
-bool DebugOut::openLogFile(const std::string & filename, bool truncateFile) {
-	std::lock_guard<std::mutex> t_lock(globalOutputLock);
-	if (DebugOut::fileOut == nullptr) {
-		fileOut = new std::ofstream();
+bool DebugOut::openLogFile(const std::string& filename, bool truncateFile)
+{
+	std::lock_guard<std::mutex> t_lock(m_globalOutputLock);
+	if (nullptr == m_fileOut)
+	{
+		m_fileOut = new std::ofstream();
 	}
 
-	try {
-		if (truncateFile) {
-			fileOut->open(filename.c_str(), fileOut->trunc);
-		} else {
-			fileOut->open(filename.c_str(), fileOut->app);
+	try
+	{
+		if (truncateFile)
+		{
+			m_fileOut->open(filename.c_str(), m_fileOut->trunc);
+		}
+		else
+		{
+			m_fileOut->open(filename.c_str(), m_fileOut->app);
 		}
 	}
-	catch (...) {
+	catch (...)
+	{
 		return false;
 	}
 	return isLogFileGood();
 }
 
-void DebugOut::closeLogFile() {
-    std::lock_guard<std::mutex> t_lock(globalOutputLock);
-	if (DebugOut::fileOut != nullptr) {
-		DebugOut::fileOut->close();
-		delete fileOut;
-		fileOut = nullptr;
+void DebugOut::closeLogFile()
+{
+    std::lock_guard<std::mutex> t_lock(m_globalOutputLock);
+
+	if (m_fileOut != nullptr)
+	{
+		m_fileOut->close();
+		delete m_fileOut;
+		m_fileOut = nullptr;
 	}
 }
 
-DebugOut & DebugOut::operator<<(std::ostream & (*pf)(std::ostream&)) {
-	if (showMessage)
-		logBuffer << pf;
+DebugOut& DebugOut::operator<<(std::ostream& (*pf)(std::ostream&))
+{
+	if (m_showMessage)
+	{
+		m_logBuffer << pf;
+	}
 
 	return *this;
 }
 
-void DebugOut::outputOnCreate() {
-	std::string outString("\n");
-	switch(level) {
-		case DebugOut::Default: break;
-		case DebugOut::Error: outString += "ERR  "; break;
-		case DebugOut::Full: outString += "FULL "; break;
-		case DebugOut::Info: outString += "INF  "; break;
-		case DebugOut::Silent: break;
-		case DebugOut::Verbose: break;
+void DebugOut::outputOnCreate()
+{
+	std::string outString{"\n"};
+	switch(m_level)
+	{
+		case DebugOut::LogLevel::Default: break; // TODO: WHAT TO OUTPUT HERE?
+		case DebugOut::LogLevel::Error: outString += "ERR  "; break;
+		case DebugOut::LogLevel::Full: 	outString += "FULL "; break;
+		case DebugOut::LogLevel::Info: 	outString += "INF  "; break;
+		case DebugOut::LogLevel::Silent: break;
+		case DebugOut::LogLevel::Verbose: break;
+		default:
+			// "SHOULD" NEVER HAPPEN -> IMPLEMENTATION ERROR -> How to handle that?
+			break;
 	}
-	if (prefix.size() > 0) {
-		outString += prefix;
+
+	if (m_prefix.size() > 0)
+	{
+		outString += m_prefix;
 		outString += ": ";
 	}
 	operator <<(outString);
 }
 
-void DebugOut::outputOnDestroy() {
+void DebugOut::outputOnDestroy()
+{
 	operator <<(std::flush);
 }
 
-bool DebugOut::isLogFileGood() {
-   	if (DebugOut::fileOut != nullptr) {
-   		return DebugOut::fileOut->is_open();
+bool DebugOut::isLogFileGood()
+{
+   	if (m_fileOut != nullptr)
+   	{
+   		return m_fileOut->is_open();
    	}
-
    	return false;
 }
