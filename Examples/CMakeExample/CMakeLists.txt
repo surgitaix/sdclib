@@ -129,6 +129,13 @@ message(STATUS "Adding ${PROJECT_CMAKE_MODULES} to Modules Path...")
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_CMAKE_MODULES})
 
 # Search for SDCLib Package
+
+# Note: Change this based on what config you built
+set(SDCLib_DYNAMIC_LINKING ON)
+if (CMAKE_SYSTEM_NAME MATCHES "Windows")
+	set(SDCLib_DYNAMIC_LINKING OFF)
+endif()
+
 find_package(SDCLib)
 if(NOT SDCLib_FOUND)
     message(FATAL_ERROR "SDC not found, build it first or specify correct path!")
