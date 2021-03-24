@@ -548,7 +548,7 @@ int main(int argc, char *argv[])
 
 			// From here on the registered StateEventHandlers (SDCLib Threads / background) will provide information
 			// on "state changes" until the user enters a key ("waitForUserInput") or exception is thrown.
-			//waitForUserInput();
+			waitForUserInput();
 			// Unregister and disconnect
 			t_consumer->unregisterStateEventHandler(numeric_dynamic_get.get());
 			t_consumer->unregisterStateEventHandler(enum_dynamic_get.get());
