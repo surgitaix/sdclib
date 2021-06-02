@@ -20,30 +20,6 @@
                   <pm:ConceptDescription Lang="en-US">dummy activate operation</pm:ConceptDescription>
                 </pm:Type>
               </pm:Operation>
-              <pm:Operation Handle="AP__ON" DescriptorVersion="0" OperationTarget="mds0" xsi:type="pm:ActivateOperationDescriptor">
-                <ext:Extension/>
-                <pm:Type Code="193820"/>
-              </pm:Operation>
-              <pm:Operation Handle="AP__CANCEL" DescriptorVersion="0" OperationTarget="mds0" xsi:type="pm:ActivateOperationDescriptor">
-                <ext:Extension/>
-                <pm:Type Code="193821"/>
-              </pm:Operation>
-              <pm:Operation Handle="DN_SET" DescriptorVersion="0" OperationTarget="DN_METRIC" xsi:type="pm:SetStringOperationDescriptor">
-                <ext:Extension/>
-                <pm:Type Code="DN_SET" CodingSystem="urn:oid:1.3.6.1.4.1.3592.2.1.1.0">
-                </pm:Type>
-              </pm:Operation>
-              <pm:Operation Handle="SET_NTP_SRV_mds0" DescriptorVersion="0" OperationTarget="CL.mds0" xsi:type="pm:SetStringOperationDescriptor">
-                <ext:Extension/>
-                <pm:Type Code="194041"/>
-              </pm:Operation>
-              <pm:Operation Handle="SET_TZONE_mds0" DescriptorVersion="0" OperationTarget="CL.mds0" xsi:type="pm:SetStringOperationDescriptor">
-                <ext:Extension/>
-                <pm:Type Code="194040"/>
-              </pm:Operation>
-              <pm:Operation Handle="opSetPatCtx" DescriptorVersion="0" OperationTarget="PC.mds0" xsi:type="pm:SetContextStateOperationDescriptor">
-                <ext:Extension/>
-              </pm:Operation>
             </pm:Sco>
             <pm:MetaData/>
             <pm:SystemContext Handle="SC.mds0" DescriptorVersion="0" xsi:type="pm:SystemContextDescriptor">

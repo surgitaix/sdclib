@@ -30,7 +30,8 @@ namespace OSELib
 			const xml_schema::Flags xercesFlags(xml_schema::Flags::dont_pretty_print | xml_schema::Flags::dont_validate
 				| xml_schema::Flags::dont_initialize);
 
-			MESSAGEMODEL::serializeEnvelope(t_result, p_message, t_map, "UTF-8", xercesFlags);
+			//MESSAGEMODEL::serializeEnvelope(t_result, p_message, t_map, "UTF-8", xercesFlags);
+			MESSAGEMODEL::serializeEnvelope(t_result, p_message, t_map, "UTF-8");
 			return t_result.str();
 		}
 

@@ -887,16 +887,16 @@ void printHelp()
 
 	std::cout << "-h\tPrint this help text." << std::endl;
 }
-int main(int argc, char* argv[])
+int main(/*int argc, char* argv[]*/)
 {
 	DebugOut::DEBUG_LEVEL = DebugOut::Info;
 
 	bool useTLS{ false };
-	std::string targetEndpoint;
+	std::string targetEndpoint{ "urn:uuid:9eb4fd10-a6b0-4659-b31b-934505bffc7b" };
 	std::string bindToInterface;
 	bool compareEPREndingOnly{ false };
 
-
+	/*
 	for (int i = 0; i < argc; i++)
 	{
 		if (std::string{ argv[i] } == "-tls")
@@ -940,6 +940,7 @@ int main(int argc, char* argv[])
 			return 0;
 		}
 	}
+	*/
 
 	if (targetEndpoint.empty())
 	{
