@@ -1515,7 +1515,7 @@ int main() {
 		DebugOut(DebugOut::Default, "MDIBVisualizer") << "Refreshing ..." << std::flush;
 		//const std::string deviceEPR("UDI-1234567890");
 		//std::shared_ptr<SDCConsumer> consumer(t_serviceManager.discoverEndpointReference(deviceEPR));
-		std::vector<std::unique_ptr<SDCLib::Data::SDC::SDCConsumer>> results(t_serviceManager.discover());
+		std::vector<std::unique_ptr<SDCLib::Data::SDC::SDCConsumer>> results(t_serviceManager.discoverAndConnect());
 
 		DebugOut(DebugOut::Default, "MDIBVisualizer") << "Found devices with these EPRs: " << std::endl;
 

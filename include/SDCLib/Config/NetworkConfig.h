@@ -50,7 +50,7 @@ namespace SDCLib
         using IPAddressList = std::vector<IPAddress>;
 
         class NetInterface
-		{
+        {
         public:
             std::string m_name;
             IPAddress m_IPv4;
@@ -61,10 +61,10 @@ namespace SDCLib
             bool SO_REUSEPORT_FLAG = false;
 
 
-            NetInterface (const Poco::Net::NetworkInterface& p_if)
-            : m_if(p_if) {
+            NetInterface(const Poco::Net::NetworkInterface& p_if)
+                : m_if(p_if)
+            {
                 m_name = m_if.adapterName();
-
             }
         };
 
@@ -77,10 +77,9 @@ namespace SDCLib
             friend SDCConfig;
 
         private:
-
             mutable std::mutex m_mutex;
 
-            NI_List ml_networkInterfaces;
+            NI_List m_networkInterfaces;
             NetInterface_shared_ptr m_MDPWSInterface = nullptr;
             SDCPort m_MDPWSPort = 0;
 
@@ -104,41 +103,85 @@ namespace SDCLib
             // TODO: PortList
 
         public:
-
             // Special Member Functions
             NetworkConfig();
-            NetworkConfig(const NetworkConfig& p_obj);
-            NetworkConfig(NetworkConfig&& p_obj) = delete;
-            NetworkConfig& operator=(const NetworkConfig& p_obj) = delete;
-            NetworkConfig& operator=(NetworkConfig&& p_obj) = delete;
+            NetworkConfig(const NetworkConfig&);
+            NetworkConfig(NetworkConfig&&) = delete;
+            NetworkConfig& operator=(const NetworkConfig&) = delete;
+            NetworkConfig& operator=(NetworkConfig&&) = delete;
             ~NetworkConfig() = default;
 
             // IP4 / IP6
-            bool getIP4enabled() const { return m_IP4enabled; }
-            bool getIP6enabled() const { return m_IP6enabled; }
-            void setIP4enabled(bool p_set) { m_IP4enabled = p_set; }
-            void setIP6enabled(bool p_set) { m_IP6enabled = p_set; }
+            bool getIP4enabled() const noexcept
+            {
+                return m_IP4enabled;
+            }
+            bool getIP6enabled() const noexcept
+            {
+                return m_IP6enabled;
+            }
+            void setIP4enabled(const bool p_set) noexcept
+            {
+                m_IP4enabled = p_set;
+            }
+            void setIP6enabled(const bool p_set) noexcept
+            {
+                m_IP6enabled = p_set;
+            }
 
             bool bindToDefaultNetworkInterface(bool p_useAsMDPWS = true);
-            bool bindToInterface(const std::string& ps_networkInterfaceName, bool p_useAsMDPWS = false);
-            NI_List getNetworkInterfaces() const { return ml_networkInterfaces; }
+            bool bindToInterface(const std::string& p_networkInterfaceName, bool p_useAsMDPWS = false);
+            NI_List getNetworkInterfaces() const
+            {
+                return m_networkInterfaces;
+            }
             bool _networkInterfaceBoundTo(std::string ps_adapterName) const;
             bool isBound() const;
 
             // Note: Can be nullptr!
-            NetInterface_shared_ptr getMDPWSInterface() { return m_MDPWSInterface; }
+            NetInterface_shared_ptr getMDPWSInterface()
+            {
+                return m_MDPWSInterface;
+            }
             // Listening Port of the HTTP Server
-            SDCPort getMDPWSPort() { return m_MDPWSPort; }
+            SDCPort getMDPWSPort()
+            {
+                return m_MDPWSPort;
+            }
 
             // Internal usage
-            std::string _getMulticastIPv4() const { return m_MULTICAST_IPv4; }
-            std::string _getMulticastIPv6() const { return m_MULTICAST_IPv6; }
-            std::string _getStreamingIPv4() const { return m_STREAMING_IPv4; }
-            std::string _getStreamingIPv6() const { return m_STREAMING_IPv6; }
-            SDCPort _getMulticastPortv4() const { return m_PORT_MULTICASTv4; }
-            SDCPort _getMulticastPortv6() const { return m_PORT_MULTICASTv6; }
-            SDCPort _getStreamingPortv4() const { return m_PORT_STREAMINGv4; }
-            SDCPort _getStreamingPortv6() const { return m_PORT_STREAMINGv6; }
+            std::string _getMulticastIPv4() const
+            {
+                return m_MULTICAST_IPv4;
+            }
+            std::string _getMulticastIPv6() const
+            {
+                return m_MULTICAST_IPv6;
+            }
+            std::string _getStreamingIPv4() const
+            {
+                return m_STREAMING_IPv4;
+            }
+            std::string _getStreamingIPv6() const
+            {
+                return m_STREAMING_IPv6;
+            }
+            SDCPort _getMulticastPortv4() const
+            {
+                return m_PORT_MULTICASTv4;
+            }
+            SDCPort _getMulticastPortv6() const
+            {
+                return m_PORT_MULTICASTv6;
+            }
+            SDCPort _getStreamingPortv4() const
+            {
+                return m_PORT_STREAMINGv4;
+            }
+            SDCPort _getStreamingPortv6() const
+            {
+                return m_PORT_STREAMINGv6;
+            }
 
 
             // Discovery Time
@@ -156,7 +199,6 @@ namespace SDCLib
             std::chrono::milliseconds getDiscoveryTime() const;
 
         private:
-
             // Internal usage by friend class only
             bool _shuffleMDPWSPort();
 
@@ -168,9 +210,8 @@ namespace SDCLib
             std::pair<bool, SDCPort> findFreePort() const;
 
             void _cleanup();
-
         };
-    }
-}
+    }  // namespace Config
+}  // namespace SDCLib
 
 #endif

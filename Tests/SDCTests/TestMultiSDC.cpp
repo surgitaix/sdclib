@@ -129,7 +129,7 @@ TEST_FIXTURE(FixtureMultiSDC, MultiSDC)
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Starting discovery test...";
 
         OSELib::SDC::ServiceManager sm{createSDCInstance()};
-        auto t_discoveredConsumers{sm.discover()};
+        auto t_discoveredConsumers{sm.discoverAndConnect()};
 
         // Search for Providers by EPR
         bool t_allFound{true};
