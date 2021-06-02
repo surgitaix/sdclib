@@ -4,6 +4,7 @@
 #include <Poco/Net/ServerSocket.h>
 
 #include <assert.h>
+#include <iostream>
 
 using namespace SDCLib;
 using namespace SDCLib::Config;

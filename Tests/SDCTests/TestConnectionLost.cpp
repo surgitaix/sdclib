@@ -170,7 +170,7 @@ TEST_FIXTURE(FixtureConnectionLostSDC, ConnectionLost)
         DebugOut(DebugOut::Default, std::cout, m_details.testName) << "Starting discovery test [Timeout: " << SDCLib::Config::SDC_DISCOVERY_TIMEOUT_MS << " ms] ...";
 
         OSELib::SDC::ServiceManager sm{createSDCInstance()};
-        auto t_discoverdConsumers = sm.discover();
+        auto t_discoverdConsumers = sm.discoverAndConnect();
 
         // Found all the providers?
         bool t_allFound{true};
