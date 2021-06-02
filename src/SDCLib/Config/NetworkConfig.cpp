@@ -59,8 +59,7 @@ bool NetworkConfig::bindToDefaultNetworkInterface(bool p_useAsMDPWS)
 		{
 
 			// Try to bind (else try the next one)
-			//if(bindToInterface(t_interface.adapterName(), p_useAsMDPWS)) {
-			if (bindToInterface("{5576B12E-A7F6-4BB0-9B85-3A2CFE11F53E}", p_useAsMDPWS)) {
+			if (bindToInterface(t_interface.adapterName(), p_useAsMDPWS)) {
 				return true;
 			}
 		}

@@ -26,10 +26,10 @@ namespace OSELib
 			HelloReceivedHandler() = default;
 			virtual ~HelloReceivedHandler() = default;
 
-			virtual void helloReceived(const std::string & epr);
+			virtual void helloReceived(const std::string& epr);
 		};
 
-		class ServiceManager final: public OSELib::Helper::WithLogger
+		class ServiceManager final : public OSELib::Helper::WithLogger
 		{
 
 		private:
@@ -57,7 +57,7 @@ namespace OSELib
 			*
 			* @param handler The handler
 			*/
-			void setHelloReceivedHandler(HelloReceivedHandler * p_handler);
+			void setHelloReceivedHandler(HelloReceivedHandler* p_handler);
 
 			/**
 			* @brief Create a consumer and connect to Xaddr.
@@ -65,7 +65,7 @@ namespace OSELib
 			* @param p_xaddr The address
 			* @return The consumer or nullptr
 			*/
-			std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> connect(const std::string & p_xaddr);
+			std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> connect(const std::string& p_xaddr);
 
 			/**
 			* @brief Create a consumer and try to discover provider using endpointreference (EPR).
@@ -73,14 +73,20 @@ namespace OSELib
 			* @param p_epr The endpointreference
 			* @return The consumer or null
 			*/
-			std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> discoverEndpointReference(const std::string & p_epr);
+			std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> resolveEndpointReference(const std::string& p_epr);
 
 			/**
 			* @brief Discover all SDC providers currently available
 			*
 			* @return List of all providers
 			*/
-			using DiscoverResults = std::vector<std::unique_ptr<SDCLib::Data::SDC::SDCConsumer>>;
+			struct DiscoverResult
+			{
+				SDCLib::StringVector xAddresses;
+				std::string endpointAddress;
+			};
+
+			using DiscoverResults = std::vector<DiscoverResult>;
 			DiscoverResults discover();
 
 			/**
@@ -93,8 +99,8 @@ namespace OSELib
 
 		private:
 
-			std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> connectXAddress(const SDCLib::StringVector& pl_xAddresses, const std::string & p_epr);
-			bool resolveServiceURIsFromMetadata(const WS::MEX::MetadataSection & p_metadata, OSELib::DPWS::DeviceDescription & p_deviceDescription);
+			std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> connectXAddress(const SDCLib::StringVector& pl_xAddresses, const std::string& p_epr);
+			bool resolveServiceURIsFromMetadata(const WS::MEX::MetadataSection& p_metadata, OSELib::DPWS::DeviceDescription& p_deviceDescription);
 		};
 
 	}

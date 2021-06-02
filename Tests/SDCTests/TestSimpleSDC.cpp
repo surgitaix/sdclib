@@ -1101,7 +1101,7 @@ TEST_FIXTURE(FixtureSimpleSDC, SimpleSDC)
 
         // Consumer
         OSELib::SDC::ServiceManager t_serviceManager{t_SDCInstance};
-        auto t_consumer{t_serviceManager.discoverEndpointReference(SDCLib::SDCInstance::calcUUIDv5(Tests::SimpleSDC::DEVICE_ENDPOINT_REFERENCE, true))};
+        auto t_consumer{t_serviceManager.resolveEndpointReference(SDCLib::SDCInstance::calcUUIDv5(Tests::SimpleSDC::DEVICE_ENDPOINT_REFERENCE, true))};
 
         // create state handlers
         Tests::SimpleSDC::ExampleConsumerNumericHandler eces1{Tests::SimpleSDC::NUMERIC_METRIC_CURRENT_HANDLE};
