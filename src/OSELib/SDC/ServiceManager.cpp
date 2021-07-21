@@ -26,420 +26,496 @@
 #include <Poco/Net/StreamSocket.h>
 #include <Poco/Net/SecureStreamSocket.h>
 
-
 using namespace OSELib;
 using namespace OSELib::SDC;
 
-void HelloReceivedHandler::helloReceived(const std::string & ) {
-	OSELib::Helper::WithLogger(Log::BASE).log_error([] { return "Method 'helloReceived' must be overridden!"; });
+void HelloReceivedHandler::helloReceived(const std::string&)
+{
+    OSELib::Helper::WithLogger(Log::BASE).log_error([] { return "Method 'helloReceived' must be overridden!"; });
+}
+void ByeReceivedHandler::byeReceived(const std::string&)
+{
+    OSELib::Helper::WithLogger(Log::BASE).log_error([] { return "Method 'byeReceived' must be overridden!"; });
 }
 
-ServiceManager::ServiceManager(SDCLib::SDCInstance_shared_ptr p_SDCInstance)
- : OSELib::Helper::WithLogger(Log::SERVICEMANAGER)
- , m_SDCInstance(p_SDCInstance)
- , m_dpwsClient(new DPWS::MDPWSDiscoveryClientAdapter(m_SDCInstance->getNetworkConfig()))
-{ }
+ServiceManager::ServiceManager(std::shared_ptr<SDCLib::SDCInstance> p_SDCInstance)
+    : OSELib::Helper::WithLogger(Log::SERVICEMANAGER)
+    , m_SDCInstance(p_SDCInstance)
+    , m_dpwsClient(new DPWS::MDPWSDiscoveryClientAdapter(m_SDCInstance->getNetworkConfig()))
+{
+}
 
 
 ServiceManager::~ServiceManager()
 {
-	std::lock_guard<std::mutex> t_lock(m_mutex);
-	if (m_helloCallback) {
-		m_dpwsClient->removeHelloEventHandler(*m_helloCallback);
-		m_helloCallback.reset();
-	}
-}
-
-void ServiceManager::setHelloReceivedHandler(HelloReceivedHandler * p_handler)
-{
-	struct HelloCallback : public DPWS::HelloCallback {
-		HelloCallback(HelloReceivedHandler * p_handler) : m_handler(p_handler) {}
-		virtual ~HelloCallback() = default;
-
-		virtual void hello(const DPWS::HelloType & n) override {
-			m_handler->helloReceived(n.getEndpointReference().getAddress());
-		}
-
-		HelloReceivedHandler * m_handler = nullptr;
-	};
-
-	std::lock_guard<std::mutex> t_lock(m_mutex);
-
-	if (m_helloCallback) {
-		m_dpwsClient->removeHelloEventHandler(*m_helloCallback);
-		m_helloCallback.reset();
-	}
-
-	m_helloCallback = std::unique_ptr<HelloCallback>(new HelloCallback(p_handler));
-	// Add the new Callback
-	m_dpwsClient->addHelloEventHandler(*m_helloCallback);
-}
-
-std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connect(const std::string & p_xaddr)
-{
-	SDCLib::StringVector tl_xAddresses;
-	tl_xAddresses.emplace_back(p_xaddr);
-	return connectXAddress(tl_xAddresses, "Unknown");
-}
-
-std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpointReference(const std::string & p_epr)
-{
-	assert(!p_epr.empty());
-
-	struct ResolveMatchCallback : public DPWS::ResolveMatchCallback
-	{
-		ResolveMatchCallback(Poco::Event & p_matchEvent)
-		: m_matchEvent(p_matchEvent)
-		{ }
-		virtual ~ResolveMatchCallback() = default;
-
-		virtual void resolveMatch(const DPWS::ResolveMatchType & n) override
-		{
-			m_result = std::unique_ptr<DPWS::ResolveMatchType>(new DPWS::ResolveMatchType(n));
-			m_matchEvent.set();
-		}
-		Poco::Event & m_matchEvent;
-		std::unique_ptr<DPWS::ResolveMatchType> m_result = nullptr;
-	};
-
-	Poco::Event t_matchEvent;
-	ResolveMatchCallback t_resolveCb(t_matchEvent);
-
-	DPWS::ResolveType resolveFilter{{WS::ADDRESSING::EndpointReferenceType{WS::ADDRESSING::AttributedURIType{p_epr}}}};
-	m_dpwsClient->addResolveMatchEventHandler(resolveFilter, t_resolveCb);
-
-	try
-	{
-		// FIXME: CRASH HERE (???)... MUTEX ISSUE? WAKEUP (UNLOCK) FROM DIFFERENT THREAD NOT ALLOWED? OWNER PROBLEM?
-		// NOTE: STILL AN ISSUE IN IN POCO 1.9.2 ?
-		bool t_result = t_matchEvent.tryWait(m_SDCInstance->getDiscoveryTime().count());
-		if (!t_result) {
-			log_debug([] { return "ServiceManager: discoverEndpointReference::TIMEOUT."; });
-		}
-		if(nullptr != t_resolveCb.m_result)
-		{
-			log_debug([&] { return "Received ResolveMatch for: " + t_resolveCb.m_result->getEndpointReference().getAddress(); });
-		}
-	}
-	catch (...)
-	{
-		// TODO:
-		log_debug([] { return "ServiceManager: discoverEndpointReference::CATCH..."; });
-	}
-
-	m_dpwsClient->removeResolveMatchEventHandler(t_resolveCb);
-
-	if(nullptr == t_resolveCb.m_result)
-	{
-		return nullptr;
-	}
-    if (!t_resolveCb.m_result->getXAddrs().present())
+    if(m_helloCallback)
     {
-    	return nullptr;
+        m_dpwsClient->removeHelloEventHandler(*m_helloCallback);
+        m_helloCallback.reset();
+    }
+    if(m_byeCallback)
+    {
+        m_dpwsClient->removeByeEventHandler(*m_byeCallback);
+        m_byeCallback.reset();
+    }
+}
+
+void ServiceManager::setHelloReceivedHandler(HelloReceivedHandler* p_handler)
+{
+    struct HelloCallback : public DPWS::HelloCallback
+    {
+        HelloReceivedHandler* m_handler{nullptr};
+
+        HelloCallback(HelloReceivedHandler* p_handler)
+            : m_handler(p_handler)
+        {
+        }
+
+        void hello(const DPWS::HelloType& n) override
+        {
+            m_handler->helloReceived(n.getEndpointReference().getAddress());
+        }
+    };
+
+    std::lock_guard<std::mutex> t_lock(m_mutex);
+
+    if(m_helloCallback)
+    {
+        m_dpwsClient->removeHelloEventHandler(*m_helloCallback);
+        m_helloCallback.reset();
     }
 
-	SDCLib::StringVector tl_xAddresses;
-	for (const auto& t_xaddr : t_resolveCb.m_result->getXAddrs().get()) // TODO: Check on temporary return value in chaining
-	{
-		tl_xAddresses.emplace_back(t_xaddr);
-	}
-	auto t_result{connectXAddress(tl_xAddresses, t_resolveCb.m_result->getEndpointReference().getAddress())};
-	if (t_result)
-	{
-		return t_result;
-	}
+    m_helloCallback = std::unique_ptr<HelloCallback>(new HelloCallback(p_handler));
+    // Add the new Callback
+    m_dpwsClient->addHelloEventHandler(*m_helloCallback);
+}
+void ServiceManager::setByeReceivedHandler(ByeReceivedHandler* p_handler)
+{
+    struct ByeCallback : public DPWS::ByeCallback
+    {
+        ByeReceivedHandler* m_handler{nullptr};
 
-	return nullptr;
+        ByeCallback(ByeReceivedHandler* p_handler)
+            : m_handler(p_handler)
+        {
+        }
+        void bye(const DPWS::ByeType& n) override
+        {
+            m_handler->byeReceived(n.getEndpointReference().getAddress());
+        }
+    };
+
+    {
+        std::lock_guard<std::mutex> lock{m_mutex};
+        if(m_byeCallback)
+        {
+            m_dpwsClient->removeByeEventHandler(*m_byeCallback);
+            m_byeCallback.reset();
+        }
+
+        m_byeCallback = std::unique_ptr<ByeCallback>(new ByeCallback(p_handler));
+        m_dpwsClient->addByeEventHandler(*m_byeCallback);
+    }
+}
+
+std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connect(const std::string& p_xaddr)
+{
+    SDCLib::StringVector xAddresses;
+    xAddresses.emplace_back(p_xaddr);
+    return connectXAddress(xAddresses, "Unknown");
+}
+
+std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::discoverEndpointReference(const std::string& p_epr)
+{
+    assert(!p_epr.empty());
+
+    struct ResolveMatchCallback : public DPWS::ResolveMatchCallback
+    {
+        ResolveMatchCallback(Poco::Event& p_matchEvent)
+            : m_matchEvent(p_matchEvent)
+        {
+        }
+        virtual ~ResolveMatchCallback() = default;
+
+        virtual void resolveMatch(const DPWS::ResolveMatchType& n) override
+        {
+            m_result = std::unique_ptr<DPWS::ResolveMatchType>(new DPWS::ResolveMatchType(n));
+            m_matchEvent.set();
+        }
+        Poco::Event& m_matchEvent;
+        std::unique_ptr<DPWS::ResolveMatchType> m_result = nullptr;
+    };
+
+    Poco::Event matchEvent;
+    ResolveMatchCallback resolveCb(matchEvent);
+
+    DPWS::ResolveType resolveFilter{{WS::ADDRESSING::EndpointReferenceType{WS::ADDRESSING::AttributedURIType{p_epr}}}};
+    m_dpwsClient->addResolveMatchEventHandler(resolveFilter, resolveCb);
+
+    try
+    {
+        // FIXME: CRASH HERE (???)... MUTEX ISSUE? WAKEUP (UNLOCK) FROM DIFFERENT THREAD NOT ALLOWED? OWNER PROBLEM?
+        // NOTE: STILL AN ISSUE IN IN POCO 1.9.2 ?
+        const bool waitResult = matchEvent.tryWait(m_SDCInstance->getDiscoveryTime().count());
+        if(!waitResult)
+        {
+            log_debug([] { return "ServiceManager: discoverEndpointReference::TIMEOUT."; });
+        }
+        if(nullptr != resolveCb.m_result)
+        {
+            log_debug([&] { return "Received ResolveMatch for: " + resolveCb.m_result->getEndpointReference().getAddress(); });
+        }
+    }
+    catch(...)
+    {
+        // TODO:
+        log_debug([] { return "ServiceManager: discoverEndpointReference::CATCH..."; });
+    }
+
+    m_dpwsClient->removeResolveMatchEventHandler(resolveCb);
+
+    if(nullptr == resolveCb.m_result)
+    {
+        return nullptr;
+    }
+    if(!resolveCb.m_result->getXAddrs().present())
+    {
+        return nullptr;
+    }
+
+    SDCLib::StringVector xAddresses;
+    for(const auto& xaddr : resolveCb.m_result->getXAddrs().get())
+    {
+        xAddresses.emplace_back(xaddr);
+    }
+
+    auto result{connectXAddress(xAddresses, resolveCb.m_result->getEndpointReference().getAddress())};
+    if(result)
+    {
+        return result;
+    }
+
+    return nullptr;
 }
 
 ServiceManager::AsyncDiscoverResults ServiceManager::async_discover()
 {
-    auto t_invoke = [](OSELib::SDC::ServiceManager* p_serviceManager) {
-        return p_serviceManager->discover();
-    };
-    return std::async(std::launch::async, t_invoke, this);
+    auto invoke = [](OSELib::SDC::ServiceManager* p_serviceManager) { return p_serviceManager->discover(); };
+    return std::async(std::launch::async, invoke, this);
 }
 
 ServiceManager::DiscoverResults ServiceManager::discover()
 {
     // Note: Replaces discoverOSCP
-	struct ProbeMatchCallback : public DPWS::ProbeMatchCallback  {
-		ProbeMatchCallback() {}
-		virtual ~ProbeMatchCallback() = default;
+    struct ProbeMatchCallback : public DPWS::ProbeMatchCallback
+    {
+        std::vector<DPWS::ProbeMatchType> m_results;
 
-		virtual void probeMatch(const DPWS::ProbeMatchType & p_type) override {
-			ml_results.emplace_back(p_type);
-		}
+        virtual ~ProbeMatchCallback() = default;
 
-		std::vector<DPWS::ProbeMatchType> ml_results;
-	};
+        virtual void probeMatch(const DPWS::ProbeMatchType& p_type) override
+        {
+            m_results.emplace_back(p_type);
+        }
+    };
 
-	DPWS::TypesType t_types;
-	t_types.push_back(xml_schema::Qname(SDC::NS_MDPWS, "MedicalDevice"));
+    DPWS::TypesType types;
+    types.push_back(xml_schema::Qname(SDC::NS_MDPWS, "MedicalDevice"));
 
-	DPWS::ProbeType t_probeFilter;
-	t_probeFilter.getTypes().set(t_types);
+    DPWS::ProbeType probeFilter;
+    probeFilter.getTypes().set(types);
 
-	ProbeMatchCallback t_probeCb;
-	m_dpwsClient->addProbeMatchEventHandler(t_probeFilter, t_probeCb);
-	// BLOCKING THE WHOLE THREAD?...
-	Poco::Thread::sleep(m_SDCInstance->getDiscoveryTime().count());
-	m_dpwsClient->removeProbeMatchEventHandler(t_probeCb);
-	log_debug([&] { return "Probing done. Got responses: " + std::to_string(t_probeCb.ml_results.size()); });
+    ProbeMatchCallback probeCb;
+    m_dpwsClient->addProbeMatchEventHandler(probeFilter, probeCb);
+    // BLOCKING THE WHOLE THREAD?...
+    Poco::Thread::sleep(m_SDCInstance->getDiscoveryTime().count());
+    m_dpwsClient->removeProbeMatchEventHandler(probeCb);
+    log_debug([&] { return "Probing done. Got responses: " + std::to_string(probeCb.m_results.size()); });
 
-	ServiceManager::DiscoverResults t_results;
-	SDCLib::StringVector tl_xAddresses;
+    ServiceManager::DiscoverResults results;
+    SDCLib::StringVector xAddresses;
 
-	// probeCb._results contains the exact number of unique EPR in the network
-	for (const auto & t_probeResult : t_probeCb.ml_results) {
-		if (!t_probeResult.getXAddrs().present()) {
-			log_debug([&] { return "No xAddresses in response for epr: " + t_probeResult.getEndpointReference().getAddress(); });
-			continue;
-		}
+    // probeCb._results contains the exact number of unique EPR in the network
+    for(const auto& probeResult : probeCb.m_results)
+    {
+        if(!probeResult.getXAddrs().present())
+        {
+            log_debug([&] { return "No xAddresses in response for epr: " + probeResult.getEndpointReference().getAddress(); });
+            continue;
+        }
 
-		// one EPR may be connected via multiple network interfaces
-		for (const auto & t_xaddr : t_probeResult.getXAddrs().get()) // TODO: Check on temporary return value in chaining
-		{
-			log_notice([&] { return "Trying xAddress: " + t_xaddr; });
-			tl_xAddresses.emplace_back(t_xaddr);
-		}
-		auto result(connectXAddress(tl_xAddresses, t_probeResult.getEndpointReference().getAddress()));
-		if (result) {
-			t_results.emplace_back(std::move(result));
-		}
-		tl_xAddresses.clear();
-	}
-	return t_results;
+        // one EPR may be connected via multiple network interfaces
+        for(const auto& xaddr : probeResult.getXAddrs().get())  // TODO: Check on temporary return value in chaining
+        {
+            log_notice([&] { return "Trying xAddress: " + xaddr; });
+            xAddresses.emplace_back(xaddr);
+        }
+        auto result(connectXAddress(xAddresses, probeResult.getEndpointReference().getAddress()));
+        if(result)
+        {
+            results.emplace_back(std::move(result));
+        }
+        xAddresses.clear();
+    }
+    return results;
 }
 
 
-bool ServiceManager::resolveServiceURIsFromMetadata(const WS::MEX::MetadataSection & p_metadata, DPWS::DeviceDescription & p_deviceDescription)
+bool ServiceManager::resolveServiceURIsFromMetadata(const WS::MEX::MetadataSection& p_metadata,
+                                                    DPWS::DeviceDescription& p_deviceDescription)
 {
-	// TODO: Is there a better way than so many nested for loops?
+    // TODO: Refactor!
 
-	bool t_getServiceFound = false;
+    bool t_getServiceFound = false;
 
-	for (const auto & t_hosted : p_metadata.getRelationship().get().getHosted()) // TODO: Check on temporary return value in chaining
-	{
+    for(const auto& t_hosted : p_metadata.getRelationship().get().getHosted())  // TODO: Check on temporary return value in chaining
+    {
+        // NOTE: GetService is MANDATORY!
 
-		// NOTE: GetService is MANDATORY!
+        for(auto t_hosted_type : t_hosted.getTypes())
+        {
+            if(t_hosted_type.name() == QNAME_GETSERVICE_PORTTYPE)
+            {
+                log_debug([] { return QNAME_GETSERVICE_PORTTYPE + " found"; });
+                for(const auto& t_iter : t_hosted.getEndpointReference())
+                {
+                    p_deviceDescription.addGetServiceURI(Poco::URI(t_iter.getAddress()));
+                    t_getServiceFound = true;
+                }
+            }
+        }
 
-		for (auto t_hosted_type : t_hosted.getTypes()) {
-			if (t_hosted_type.name() == QNAME_GETSERVICE_PORTTYPE) {
-				log_debug([]{return QNAME_GETSERVICE_PORTTYPE + " found";});
-				for (const auto & t_iter : t_hosted.getEndpointReference()) {
-					p_deviceDescription.addGetServiceURI(Poco::URI(t_iter.getAddress()));
-					t_getServiceFound = true;
-				}
-			}
-		}
+        for(auto t_hosted_type : t_hosted.getTypes())
+        {
+            if(t_hosted_type.name() == QNAME_CONTEXTSERVICE_PORTTYPE)
+            {
+                log_debug([&] { return QNAME_CONTEXTSERVICE_PORTTYPE + " found"; });
+                for(const auto& t_iter : t_hosted.getEndpointReference())
+                {
+                    p_deviceDescription.addContextServiceURI(Poco::URI(t_iter.getAddress()));
+                }
+            }
+        }
+        for(auto t_hosted_type : t_hosted.getTypes())
+        {
+            if(t_hosted_type.name() == QNAME_STATEEVENTSERVICE_PORTTYPE)
+            {
+                log_debug([&] { return QNAME_STATEEVENTSERVICE_PORTTYPE + " found"; });
+                for(const auto& t_iter : t_hosted.getEndpointReference())
+                {
+                    p_deviceDescription.addStateEventReportServiceURI(Poco::URI(t_iter.getAddress()));
+                }
+            }
+        }
+        for(auto t_hosted_type : t_hosted.getTypes())
+        {
+            if(t_hosted_type.name() == QNAME_SETSERVICE_PORTTYPE)
+            {
+                log_debug([] { return QNAME_SETSERVICE_PORTTYPE + " found"; });
+                for(const auto& t_iter : t_hosted.getEndpointReference())
+                {
+                    p_deviceDescription.addSetServiceURI(Poco::URI(t_iter.getAddress()));
+                }
+            }
+        }
+        for(auto t_hosted_type : t_hosted.getTypes())
+        {
+            if(t_hosted_type.name() == QNAME_WAVEFORMSERVICE_PORTTYPE)
+            {
+                log_debug([] { return QNAME_WAVEFORMSERVICE_PORTTYPE + " found"; });
+                for(const auto& t_iter : t_hosted.getEndpointReference())
+                {
+                    p_deviceDescription.addWaveformServiceURI(Poco::URI(t_iter.getAddress()));
+                }
+            }
+        }
+    }
 
-		for (auto t_hosted_type : t_hosted.getTypes()) {
-			if (t_hosted_type.name() == QNAME_CONTEXTSERVICE_PORTTYPE) {
-				log_debug([&]{return QNAME_CONTEXTSERVICE_PORTTYPE + " found";});
-				for (const auto & t_iter : t_hosted.getEndpointReference()) {
-					p_deviceDescription.addContextServiceURI(Poco::URI(t_iter.getAddress()));
-				}
-			}
-		}
-		for (auto t_hosted_type : t_hosted.getTypes()) {
-			if (t_hosted_type.name() == QNAME_STATEEVENTSERVICE_PORTTYPE) {
-				log_debug([&]{return QNAME_STATEEVENTSERVICE_PORTTYPE + " found";});
-				for (const auto & t_iter : t_hosted.getEndpointReference()) {
-					p_deviceDescription.addStateEventReportServiceURI(Poco::URI(t_iter.getAddress()));
-				}
-			}
-		}
-		for (auto t_hosted_type : t_hosted.getTypes()) {
-			if (t_hosted_type.name() == QNAME_SETSERVICE_PORTTYPE) {
-				log_debug([]{return QNAME_SETSERVICE_PORTTYPE + " found";});
-				for (const auto & t_iter : t_hosted.getEndpointReference()) {
-					p_deviceDescription.addSetServiceURI(Poco::URI(t_iter.getAddress()));
-				}
-			}
-		}
-		for (auto t_hosted_type : t_hosted.getTypes()) {
-			if (t_hosted_type.name() == QNAME_WAVEFORMSERVICE_PORTTYPE) {
-				log_debug([]{return QNAME_WAVEFORMSERVICE_PORTTYPE + " found";});
-				for (const auto & t_iter : t_hosted.getEndpointReference()) {
-					p_deviceDescription.addWaveformServiceURI(Poco::URI(t_iter.getAddress()));
-				}
-			}
-		}
-	}
+    // Mandatory GetService was not found! -> FAIL!
+    if(!t_getServiceFound)
+    {
+        return false;
+    }
 
-	// Mandatory GetService was not found! -> FAIL!
-	if(!t_getServiceFound) {
-		return false;
-	}
-
-	return true;
+    return true;
 }
 
 
-std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(const SDCLib::StringVector& pl_xAddresses, const std::string & p_epr)
+std::unique_ptr<SDCLib::Data::SDC::SDCConsumer> ServiceManager::connectXAddress(const SDCLib::StringVector& pl_xAddresses,
+                                                                                const std::string& p_epr)
 {
-	if(pl_xAddresses.empty())
-	{
-		return nullptr;
-	}
-	if(p_epr.empty())
-	{
-		return nullptr;
-	}
+    if(pl_xAddresses.empty())
+    {
+        return nullptr;
+    }
+    if(p_epr.empty())
+    {
+        return nullptr;
+    }
 
-	auto SSL_INIT = m_SDCInstance->getSSLConfig()->isInit();
-	auto t_deviceDescription = std::make_shared<DPWS::DeviceDescription>(SSL_INIT);
+    auto SSL_INIT = m_SDCInstance->getSSLConfig()->isInit();
+    auto t_deviceDescription = std::make_shared<DPWS::DeviceDescription>(SSL_INIT);
 
-	bool t_connectionPossible_flag = false;
-	for (const auto t_xaddress : pl_xAddresses)
-	{
-		try
-		{
-			t_deviceDescription->addDeviceURI(Poco::URI(t_xaddress));
-			log_debug([&] { return "XAddress reachable: " + t_xaddress; });
-			t_connectionPossible_flag = true;
-		}
-		catch (...)
-		{
-			log_debug([&] { return "XAddress not reachable: " + t_xaddress; });
-		}
-	}
+    bool t_connectionPossible_flag = false;
+    for(const auto t_xaddress : pl_xAddresses)
+    {
+        try
+        {
+            t_deviceDescription->addDeviceURI(Poco::URI(t_xaddress));
+            log_debug([&] { return "XAddress reachable: " + t_xaddress; });
+            t_connectionPossible_flag = true;
+        }
+        catch(...)
+        {
+            log_debug([&] { return "XAddress not reachable: " + t_xaddress; });
+        }
+    }
 
-	if (t_connectionPossible_flag)
-	{
-		t_deviceDescription->setEPR(p_epr);
-	}
-	else
-	{
-		return nullptr;
-	}
+    if(t_connectionPossible_flag)
+    {
+        t_deviceDescription->setEPR(p_epr);
+    }
+    else
+    {
+        return nullptr;
+    }
 
-	try
-	{
-		const Poco::URI t_remoteURI(t_deviceDescription->getDeviceURI());
-		if(SSL_INIT)
-		{
-			Poco::Net::SecureStreamSocket t_connection;
-			t_connection.connect(Poco::Net::SocketAddress(t_remoteURI.getHost(), t_remoteURI.getPort()), Poco::Timespan(1, 0));
-			t_deviceDescription->setLocalIP(t_connection.address().host());
-			t_connection.shutdown();
-			t_connection.close();
-		}
-		else
-		{
-			Poco::Net::StreamSocket t_connection;
-			t_connection.connect(Poco::Net::SocketAddress(t_remoteURI.getHost(), t_remoteURI.getPort()), Poco::Timespan(1, 0));
-			t_deviceDescription->setLocalIP(t_connection.address().host());
-			t_connection.shutdown();
-			t_connection.close();
-		}
-	}
-	catch (...)
-	{
-		log_debug([&] { return "Contacting xAddress failed: " + t_deviceDescription->getDeviceURI().toString(); });
-		return nullptr;
-	}
+    try
+    {
+        const Poco::URI t_remoteURI(t_deviceDescription->getDeviceURI());
+        if(SSL_INIT)
+        {
+            Poco::Net::SecureStreamSocket t_connection;
+            t_connection.connect(Poco::Net::SocketAddress(t_remoteURI.getHost(), t_remoteURI.getPort()), Poco::Timespan(1, 0));
+            t_deviceDescription->setLocalIP(t_connection.address().host());
+            t_connection.shutdown();
+            t_connection.close();
+        }
+        else
+        {
+            Poco::Net::StreamSocket t_connection;
+            t_connection.connect(Poco::Net::SocketAddress(t_remoteURI.getHost(), t_remoteURI.getPort()), Poco::Timespan(1, 0));
+            t_deviceDescription->setLocalIP(t_connection.address().host());
+            t_connection.shutdown();
+            t_connection.close();
+        }
+    }
+    catch(...)
+    {
+        log_debug([&] { return "Contacting xAddress failed: " + t_deviceDescription->getDeviceURI().toString(); });
+        return nullptr;
+    }
 
-	try
-	{
-		// get metadata for services
-		const DPWS::GetTraits::Request t_request;
-		using Invoker = OSELib::SOAP::GenericSoapInvoke<DPWS::GetTraits>;
-		// todo use real grammar for validation
-		Helper::XercesGrammarPoolProvider t_grammarPool;
-		std::unique_ptr<Invoker> t_invoker(new Invoker(t_deviceDescription->getDeviceURI(), t_grammarPool));
+    try
+    {
+        // get metadata for services
+        const DPWS::GetTraits::Request t_request;
+        using Invoker = OSELib::SOAP::GenericSoapInvoke<DPWS::GetTraits>;
+        // todo use real grammar for validation
+        Helper::XercesGrammarPoolProvider t_grammarPool;
+        std::unique_ptr<Invoker> t_invoker(new Invoker(t_deviceDescription->getDeviceURI(), t_grammarPool));
 
-		auto t_response(t_invoker->invoke(t_request, m_SDCInstance->getSSLConfig()->getClientContext()));
+        auto t_response(t_invoker->invoke(t_request, m_SDCInstance->getSSLConfig()->getClientContext()));
 
-		bool t_metadataFound = false;
-		if (t_response != nullptr)
-		{
-			for (const auto & t_metadata : t_response->getMetadataSection())
-			{
-				if(t_metadata.getDialect() != OSELib::WS_MEX_DIALECT_REL) {
-					continue;
-				}
-				else {
-					t_metadataFound = true;
-				}
+        bool t_metadataFound = false;
+        if(t_response != nullptr)
+        {
+            for(const auto& t_metadata : t_response->getMetadataSection())
+            {
+                if(t_metadata.getDialect() != OSELib::WS_MEX_DIALECT_REL)
+                {
+                    continue;
+                }
+                else
+                {
+                    t_metadataFound = true;
+                }
 
-				if(!t_metadata.getRelationship().present()) {
-					continue;
-				}
-				if(t_metadata.getRelationship()->getHosted().empty()) {
-					log_error([&] { return "Metadata Relationship part does not contain any hosted services!"; });
-					continue;
-				}
+                if(!t_metadata.getRelationship().present())
+                {
+                    continue;
+                }
+                if(t_metadata.getRelationship()->getHosted().empty())
+                {
+                    log_error([&] { return "Metadata Relationship part does not contain any hosted services!"; });
+                    continue;
+                }
 
-				// Try to resolve (at least all mandatory services)
-				if(!resolveServiceURIsFromMetadata(t_metadata, *t_deviceDescription)) {
-					return nullptr;
-				}
-			}
-		}
+                // Try to resolve (at least all mandatory services)
+                if(!resolveServiceURIsFromMetadata(t_metadata, *t_deviceDescription))
+                {
+                    return nullptr;
+                }
+            }
+        }
 
-		// No metadata -> violating R5020 of DPWS 1.1
-		if(!t_metadataFound)
-		{
-			log_error([&] { return "## No Metadata found. Violating R5020 of DPWS 1.1. !"; }); // Todo: Is that fully correct?
-			return nullptr;
-		}
+        // No metadata -> violating R5020 of DPWS 1.1
+        if(!t_metadataFound)
+        {
+            log_error([&] { return "## No Metadata found. Violating R5020 of DPWS 1.1. !"; });  // Todo: Is that fully correct?
+            return nullptr;
+        }
 
 
-		// get metadata for streaming
-		const DPWS::GetMetadataTraits::Request t_request_metadata;
-		using Invoker_metadata = OSELib::SOAP::GenericSoapInvoke<DPWS::GetMetadataTraits>;
-		std::unique_ptr<Invoker_metadata> t_invoker_metadata(new Invoker_metadata(t_deviceDescription->getWaveformEventReportURI(), t_grammarPool));
+        // get metadata for streaming
+        const DPWS::GetMetadataTraits::Request t_request_metadata;
+        using Invoker_metadata = OSELib::SOAP::GenericSoapInvoke<DPWS::GetMetadataTraits>;
+        std::unique_ptr<Invoker_metadata> t_invoker_metadata(
+            new Invoker_metadata(t_deviceDescription->getWaveformEventReportURI(), t_grammarPool));
 
-		auto t_response_metadata(t_invoker_metadata->invoke(t_request_metadata, m_SDCInstance->getSSLConfig()->getClientContext()));
+        auto t_response_metadata(t_invoker_metadata->invoke(t_request_metadata, m_SDCInstance->getSSLConfig()->getClientContext()));
 
-		if (t_response_metadata != nullptr)
-		{
-			for (const auto & t_metadata_iter : t_response_metadata->getMetadataSection())
-			{
-				if (t_metadata_iter.getDialect() != SDC::WS_MEX_DIALECT_STREAM
-					|| !t_metadata_iter.getStreamDescriptions().present()
-					|| t_metadata_iter.getStreamDescriptions()->getStreamType().empty()
-					|| !t_metadata_iter.getStreamDescriptions()->getStreamType().front().getStreamTransmission().getStreamAddress().present())
-				{
-					continue;
-				}
-				t_deviceDescription->addStreamMulticastAddressURI(Poco::URI(t_metadata_iter.getStreamDescriptions()->getStreamType().front().getStreamTransmission().getStreamAddress().get()));
-			}
-		}
-	}
-	catch (...)
-	{
-		log_debug([&] { return "Retrieving Device Metadata failed: " + t_deviceDescription->getDeviceURI().toString(); });
-		return nullptr;
-	}
+        if(t_response_metadata != nullptr)
+        {
+            for(const auto& t_metadata_iter : t_response_metadata->getMetadataSection())
+            {
+                if(t_metadata_iter.getDialect() != SDC::WS_MEX_DIALECT_STREAM || !t_metadata_iter.getStreamDescriptions().present()
+                   || t_metadata_iter.getStreamDescriptions()->getStreamType().empty()
+                   || !t_metadata_iter.getStreamDescriptions()->getStreamType().front().getStreamTransmission().getStreamAddress().present())
+                {
+                    continue;
+                }
+                t_deviceDescription->addStreamMulticastAddressURI(Poco::URI(
+                    t_metadata_iter.getStreamDescriptions()->getStreamType().front().getStreamTransmission().getStreamAddress().get()));
+            }
+        }
+    }
+    catch(...)
+    {
+        log_debug([&] { return "Retrieving Device Metadata failed: " + t_deviceDescription->getDeviceURI().toString(); });
+        return nullptr;
+    }
 
-	// GetService is the only mandatory service
-	if (t_deviceDescription->getDeviceURI().empty() || t_deviceDescription->getGetServiceURI().empty())
-	{
-		log_error([&] { return "Missing get-service uri! Discovery incomplete for device with uri: " + t_deviceDescription->getDeviceURI().toString(); });
-		return nullptr;
-	}
+    // GetService is the only mandatory service
+    if(t_deviceDescription->getDeviceURI().empty() || t_deviceDescription->getGetServiceURI().empty())
+    {
+        log_error([&] {
+            return "Missing get-service uri! Discovery incomplete for device with uri: " + t_deviceDescription->getDeviceURI().toString();
+        });
+        return nullptr;
+    }
 
-	log_debug([&] { return "Discovery complete for device with uri: " + t_deviceDescription->getDeviceURI().toString(); });
+    log_debug([&] { return "Discovery complete for device with uri: " + t_deviceDescription->getDeviceURI().toString(); });
 
     // Create new SDCInstance with a NEW SDCConfiguration !
     auto t_config = SDCLib::Config::SDCConfig::randomMDPWSConfig(m_SDCInstance->getSDCConfig());
-    if(!t_config) {
+    if(!t_config)
+    {
         return nullptr;
     }
     auto t_SDCInstance = std::make_shared<SDCLib::SDCInstance>(t_config);
-	SDCLib::Data::SDC::SDCConsumer_unique_ptr t_consumer(new SDCLib::Data::SDC::SDCConsumer(t_SDCInstance, t_deviceDescription));
+    SDCLib::Data::SDC::SDCConsumer_unique_ptr t_consumer(new SDCLib::Data::SDC::SDCConsumer(t_SDCInstance, t_deviceDescription));
 
-	if (!t_consumer->isConnected()) {
-		t_consumer->disconnect();
-		return nullptr;
-	}
+    if(!t_consumer->isConnected())
+    {
+        t_consumer->disconnect();
+        return nullptr;
+    }
 
-	if (!t_consumer->requestMdib()) {
-		t_consumer->disconnect();
-		return nullptr;
-	}
-	return t_consumer;
+    if(!t_consumer->requestMdib())
+    {
+        t_consumer->disconnect();
+        return nullptr;
+    }
+    return t_consumer;
 }

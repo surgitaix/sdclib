@@ -61,6 +61,7 @@ namespace OSELib
         class SubscriptionManager;
 
         struct HelloCallback;
+        struct ByeCallback;
 
         namespace Impl
         {
