@@ -10,120 +10,139 @@
 
 #include "DataModel/NormalizedMessageModel.hxx"
 
-namespace OSELib {
-namespace DPWS {
+using namespace OSELib;
+using namespace OSELib::DPWS;
 
 MDPWSDiscoveryClientAdapter::MDPWSDiscoveryClientAdapter(SDCLib::Config::NetworkConfig_shared_ptr p_config)
-: m_impl(new Impl::DPWSDiscoveryClientSocketImpl(p_config, *this, *this, *this, *this))
-{ }
-
-void MDPWSDiscoveryClientAdapter::addProbeMatchEventHandler(const ProbeType p_filter, ProbeMatchCallback & p_callback)
+    : m_impl(new Impl::DPWSDiscoveryClientSocketImpl(p_config, *this, *this, *this, *this))
 {
-	std::lock_guard<std::mutex> t_lock(m_mutex);
-	ml_probeMatchHandlers.push_back(ProbeMatchHandler(p_filter, &p_callback));
-	m_impl->sendProbe(p_filter);
 }
+MDPWSDiscoveryClientAdapter::~MDPWSDiscoveryClientAdapter() = default;
 
-void MDPWSDiscoveryClientAdapter::removeProbeMatchEventHandler(ProbeMatchCallback & p_callback)
+void MDPWSDiscoveryClientAdapter::addProbeMatchEventHandler(const ProbeType p_filter, ProbeMatchCallback& p_callback)
 {
-	std::lock_guard<std::mutex> t_lock(m_mutex);
-	auto t_iterator = std::find_if(ml_probeMatchHandlers.begin(), ml_probeMatchHandlers.end(), [&](const ProbeMatchHandler & p_handler) { return std::get<1>(p_handler) == &p_callback; } );
-	if (t_iterator != ml_probeMatchHandlers.end()) {
-		ml_probeMatchHandlers.erase(t_iterator);
-	}
+    std::lock_guard<std::mutex> lock(m_mutex_probe);
+    m_probeMatchHandlers.push_back(ProbeMatchHandler(p_filter, &p_callback));
+    m_impl->sendProbe(p_filter);
 }
 
-void MDPWSDiscoveryClientAdapter::addResolveMatchEventHandler(const ResolveType p_filter, ResolveMatchCallback & p_callback)
+void MDPWSDiscoveryClientAdapter::removeProbeMatchEventHandler(ProbeMatchCallback& p_callback)
 {
-	std::lock_guard<std::mutex> t_lock(m_mutex);
-	ml_resolveMatchHandlers.push_back(ResolveMatchHandler(p_filter, &p_callback));
-	m_impl->sendResolve(p_filter);
+    std::lock_guard<std::mutex> lock(m_mutex_probe);
+    auto iterator = std::find_if(m_probeMatchHandlers.begin(), m_probeMatchHandlers.end(), [&](const ProbeMatchHandler& p_handler) {
+        return std::get<1>(p_handler) == &p_callback;
+    });
+    if(iterator != m_probeMatchHandlers.end())
+    {
+        m_probeMatchHandlers.erase(iterator);
+    }
 }
 
-void MDPWSDiscoveryClientAdapter::removeResolveMatchEventHandler(ResolveMatchCallback & p_callback)
+void MDPWSDiscoveryClientAdapter::addResolveMatchEventHandler(const ResolveType p_filter, ResolveMatchCallback& p_callback)
 {
-	std::lock_guard<std::mutex> t_lock(m_mutex);
-	auto t_iterator = std::find_if(ml_resolveMatchHandlers.begin(), ml_resolveMatchHandlers.end(), [&](const ResolveMatchHandler & p_handler) { return std::get<1>(p_handler) == &p_callback; } );
-	if (t_iterator != ml_resolveMatchHandlers.end()) {
-		ml_resolveMatchHandlers.erase(t_iterator);
-	}
+    std::lock_guard<std::mutex> lock(m_mutex_resolve);
+    m_resolveMatchHandlers.push_back(ResolveMatchHandler(p_filter, &p_callback));
+    m_impl->sendResolve(p_filter);
 }
 
-void MDPWSDiscoveryClientAdapter::addHelloEventHandler(HelloCallback & p_callback)
+void MDPWSDiscoveryClientAdapter::removeResolveMatchEventHandler(ResolveMatchCallback& p_callback)
 {
-	std::lock_guard<std::mutex> t_lock(m_mutex);
-	// FIXME: No check if double entries exist needed here?
-	ml_helloHandlers.push_back(&p_callback);
+    std::lock_guard<std::mutex> lock(m_mutex_resolve);
+    auto iterator = std::find_if(m_resolveMatchHandlers.begin(), m_resolveMatchHandlers.end(), [&](const ResolveMatchHandler& p_handler) {
+        return std::get<1>(p_handler) == &p_callback;
+    });
+    if(iterator != m_resolveMatchHandlers.end())
+    {
+        m_resolveMatchHandlers.erase(iterator);
+    }
 }
 
-void MDPWSDiscoveryClientAdapter::removeHelloEventHandler(HelloCallback & p_callback)
+void MDPWSDiscoveryClientAdapter::addHelloEventHandler(HelloCallback& p_callback)
 {
-	std::lock_guard<std::mutex> t_lock(m_mutex);
-	auto t_iterator = std::find(ml_helloHandlers.begin(), ml_helloHandlers.end(), &p_callback);
-	if (t_iterator != ml_helloHandlers.end()) {
-		ml_helloHandlers.erase(t_iterator);
-	}
+    std::lock_guard<std::mutex> lock(m_mutex_hello);
+    // FIXME: No check if double entries exist needed here?
+    m_helloHandlers.push_back(&p_callback);
 }
 
-void MDPWSDiscoveryClientAdapter::addByeEventHandler(ByeCallback & p_callback)
+void MDPWSDiscoveryClientAdapter::removeHelloEventHandler(HelloCallback& p_callback)
 {
-	std::lock_guard<std::mutex> t_lock(m_mutex);
-	// FIXME: No check if double entries exist needed here?
-	ml_byeHandlers.push_back(&p_callback);
+    std::lock_guard<std::mutex> lock(m_mutex_hello);
+    auto iterator = std::find(m_helloHandlers.begin(), m_helloHandlers.end(), &p_callback);
+    if(iterator != m_helloHandlers.end())
+    {
+        m_helloHandlers.erase(iterator);
+    }
 }
 
-void MDPWSDiscoveryClientAdapter::removeByeEventHandler(ByeCallback & p_callback)
+void MDPWSDiscoveryClientAdapter::addByeEventHandler(ByeCallback& p_callback)
 {
-	std::lock_guard<std::mutex> t_lock(m_mutex);
-	auto t_iterator = std::find(ml_byeHandlers.begin(), ml_byeHandlers.end(), &p_callback);
-	if (t_iterator != ml_byeHandlers.end()) {
-		ml_byeHandlers.erase(t_iterator);
-	}
+    std::lock_guard<std::mutex> lock(m_mutex_bye);
+    // FIXME: No check if double entries exist needed here?
+    m_byeHandlers.push_back(&p_callback);
 }
 
-void MDPWSDiscoveryClientAdapter::dispatch(const ProbeMatchType & p_notification)
+void MDPWSDiscoveryClientAdapter::removeByeEventHandler(ByeCallback& p_callback)
 {
-	std::lock_guard<std::mutex> t_lock(m_mutex);
-	std::vector<ProbeMatchHandler> t_matchingHandlers;
-	for (const auto & t_handler : ml_probeMatchHandlers) {
-		if (Impl::compare(std::get<0>(t_handler), p_notification)) {
-			t_matchingHandlers.push_back(t_handler);
-		}
-	};
-	for (const auto & t_handler : t_matchingHandlers) {
-		std::get<1>(t_handler)->probeMatch(p_notification);
-	}
+    std::lock_guard<std::mutex> lock(m_mutex_bye);
+    auto iterator = std::find(m_byeHandlers.begin(), m_byeHandlers.end(), &p_callback);
+    if(iterator != m_byeHandlers.end())
+    {
+        m_byeHandlers.erase(iterator);
+    }
 }
 
-void MDPWSDiscoveryClientAdapter::dispatch(const ResolveMatchType & p_notification)
+void MDPWSDiscoveryClientAdapter::dispatch(const ProbeMatchType& p_notification)
 {
-	std::lock_guard<std::mutex> t_lock(m_mutex);
-	std::vector<ResolveMatchHandler> t_matchingHandlers;
-	for (const auto & t_handler : ml_resolveMatchHandlers) {
-		if (Impl::compare(std::get<0>(t_handler), p_notification)) {
-			t_matchingHandlers.push_back(t_handler);
-		}
-	}
-	for (const auto & t_handler : t_matchingHandlers) {
-		std::get<1>(t_handler)->resolveMatch(p_notification);
-	}
+    std::vector<ProbeMatchHandler> matchingHandlers;
+    {  // LOCK
+        std::lock_guard<std::mutex> lock(m_mutex_probe);
+        for(const auto& handler : m_probeMatchHandlers)
+        {
+            if(Impl::compare(std::get<0>(handler), p_notification))
+            {
+                matchingHandlers.push_back(handler);
+            }
+        };
+    }  // UNLOCK
+    for(const auto& handler : matchingHandlers)
+    {
+        std::get<1>(handler)->probeMatch(p_notification);
+    }
 }
 
-void MDPWSDiscoveryClientAdapter::dispatch(const ByeType & p_notification)
+void MDPWSDiscoveryClientAdapter::dispatch(const ResolveMatchType& p_notification)
 {
-	std::lock_guard<std::mutex> t_lock(m_mutex);
-	for (auto & t_callback : ml_byeHandlers) {
-		t_callback->bye(p_notification);
-	}
+    std::vector<ResolveMatchHandler> matchingHandlers;
+    {  // LOCK
+        std::lock_guard<std::mutex> lock(m_mutex_resolve);
+        for(const auto& handler : m_resolveMatchHandlers)
+        {
+            if(Impl::compare(std::get<0>(handler), p_notification))
+            {
+                matchingHandlers.push_back(handler);
+            }
+        }
+    }  // UNLOCK
+    for(const auto& handler : matchingHandlers)
+    {
+        std::get<1>(handler)->resolveMatch(p_notification);
+    }
 }
 
-void MDPWSDiscoveryClientAdapter::dispatch(const HelloType & p_notification)
+void MDPWSDiscoveryClientAdapter::dispatch(const ByeType& p_notification)
 {
-	std::lock_guard<std::mutex> t_lock(m_mutex);
-	for (auto & t_callback : ml_helloHandlers) {
-		t_callback->hello(p_notification);
-	}
+    std::lock_guard<std::mutex> lock(m_mutex_bye);
+    for(auto& callback : m_byeHandlers)
+    {
+        callback->bye(p_notification);
+    }
 }
 
-}
+void MDPWSDiscoveryClientAdapter::dispatch(const HelloType& p_notification)
+{
+    std::lock_guard<std::mutex> lock(m_mutex_hello);
+    for(auto& callback : m_helloHandlers)
+    {
+        callback->hello(p_notification);
+    }
 }
