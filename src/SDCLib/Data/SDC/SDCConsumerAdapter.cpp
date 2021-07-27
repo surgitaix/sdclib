@@ -644,7 +644,7 @@ std::unique_ptr<typename TraitsType::Response> SDCConsumerAdapter::invokeImpl(co
     using Invoker = OSELib::SOAP::GenericSoapInvoke<TraitsType>;
     std::unique_ptr<Invoker> t_invoker(new Invoker(p_requestURI, m_grammarProvider));
 
-    auto t_response{t_invoker->invoke(p_request, p_context)};
+    auto t_response(t_invoker->invoke(p_request, p_context));
     if(t_response != nullptr)
     {
         if(t_response->getMdibVersion().present())
