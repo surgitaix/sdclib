@@ -47,6 +47,7 @@
 #include "SDCLib/Data/SDC/MDIB/StringMetricValue.h"
 #include "SDCLib/Data/SDC/MDIB/SystemContextState.h"
 #include "SDCLib/Data/SDC/MDIB/PatientDemographicsCoreData.h"
+#include "SDCLib/Data/SDC/MDIB/InstanceIdentifier.h"
 
 #include "SDCLib/Data/SDC/MDIB/custom/OperationInvocationContext.h"
 
@@ -287,8 +288,21 @@ public:
 
     LocationContextState getInitialState()
     {
-        LocationContextState t_newState{getDescriptorHandle(), getDescriptorHandle()};
-        return t_newState;
+        LocationContextState initialState{getDescriptorHandle(), getDescriptorHandle()};
+
+        // Provide some Detail to work with
+        initialState.addValidator(SDCLib::Data::SDC::InstanceIdentifier{}.setRoot({"urn:uuid:ROOT1"}).setExtension({"EXT1"}));
+        initialState.addValidator(SDCLib::Data::SDC::InstanceIdentifier{}.setRoot({"urn:uuid:ROOT2"}).setExtension({"EXT2"}));
+        initialState.addIdentification(SDCLib::Data::SDC::InstanceIdentifier{}.setRoot({"urn:uuid:Ident42"}).setExtension({"EXT3"}));
+
+        auto locationDetail{SDCLib::Data::SDC::LocationDetail{}};
+        locationDetail.setPoC("PoC");
+        locationDetail.setBuilding("Building42");
+        locationDetail.setFloor("FloorX");
+        locationDetail.setBed("Bed1");
+        initialState.setLocationDetail(locationDetail);
+
+        return initialState;
     }
 
 private:
@@ -334,11 +348,17 @@ public:
 
     PatientContextState getInitialState()
     {
-        PatientContextState t_newState{getDescriptorHandle(), getDescriptorHandle()};
+        PatientContextState initialState{getDescriptorHandle(), getDescriptorHandle()};
+
+        // Provide some Detail to work with
+        initialState.addValidator(SDCLib::Data::SDC::InstanceIdentifier{}.setRoot({"urn:uuid:ROOT1.123"}).setExtension({"EXT3"}));
+        initialState.addValidator(SDCLib::Data::SDC::InstanceIdentifier{}.setRoot({"urn:uuid:ROOT2.123"}).setExtension({"EXT3"}));
+        initialState.addIdentification(SDCLib::Data::SDC::InstanceIdentifier{}.setRoot({"urn:uuid:Ident42.42"}).setExtension({"EXT3"}));
+
         PatientDemographicsCoreData coreData;
         coreData.setGivenname("Günther").setFamilyname("Barsch").setBirthname("Willbald").setPatientType(PatientType::Inf).setTitle("Dr.");
-        t_newState.setCoreData(coreData);
-        return t_newState;
+        initialState.setCoreData(coreData);
+        return initialState;
     }
 };
 
