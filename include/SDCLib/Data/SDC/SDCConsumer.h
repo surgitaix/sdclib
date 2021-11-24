@@ -266,6 +266,9 @@ namespace SDCLib
 				*/
                 std::string getEndpointReference() const;
 
+
+                std::shared_ptr<const OSELib::DPWS::DeviceDescription> getDeviceDescription() const;
+
                 /**
 				* @brief Get last known Mdib version.
 				*

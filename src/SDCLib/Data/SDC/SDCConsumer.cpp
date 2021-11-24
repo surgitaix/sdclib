@@ -735,6 +735,9 @@ void SDCConsumer::onOperationInvoked(const OperationInvocationContext & p_oic, I
 std::string SDCConsumer::getEndpointReference() const {
 	return m_deviceDescription->getEPR();
 }
+std::shared_ptr<const OSELib::DPWS::DeviceDescription>  SDCConsumer::getDeviceDescription() const {
+	return m_deviceDescription;
+}
 
 unsigned long long int SDCConsumer::getLastKnownMdibVersion() {
 	std::lock_guard<std::mutex> t_lock(m_mdibVersionMutex);
