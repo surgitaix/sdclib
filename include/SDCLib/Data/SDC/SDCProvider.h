@@ -37,6 +37,8 @@
 
 #include <Poco/NotificationQueue.h>
 
+#include <map>
+
 namespace SDCLib
 {
 	namespace Data
@@ -67,7 +69,7 @@ namespace SDCLib
 
 				std::atomic_ullong mdibVersion{0};
 
-				std::map<std::string, SDCProviderStateHandler *> ml_stateHandlers;
+				std::map<std::string, SDCProviderStateHandler *> m_stateHandlers;
 				mutable std::mutex m_mutex_MdStateHandler;
 
 				std::unique_ptr<MdDescription> m_MdDescription;

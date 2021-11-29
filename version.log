@@ -1,3 +1,7 @@
+Update to 4.6.0
+- Multistate support via SDCProviderMultiStateHandler
+-- All Context States now need to interhit from this class instead of the SDCProviderMDStateHandler
+
 Update to 4.5.1
 - Minor Refactoring on Subscription Management
 

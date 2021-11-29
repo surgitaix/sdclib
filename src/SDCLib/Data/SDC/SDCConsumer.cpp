@@ -620,7 +620,7 @@ std::unique_ptr<TStateType> SDCConsumer::requestState(const std::string & p_hand
 	try {
 		const typename TStateType::WrappedType & t_resultState(dynamic_cast<const typename TStateType::WrappedType &>(t_resultStates.front()));
 		std::unique_ptr<TStateType> t_returnState(new TStateType(ConvertFromCDM::convert(t_resultState)));
-		return std::move(t_returnState);
+		return t_returnState;
 	} catch (...) {
 		log_error([&] { return "requestState failed: Types mismatch of returned object for handle " + p_handle; });
 		return nullptr;

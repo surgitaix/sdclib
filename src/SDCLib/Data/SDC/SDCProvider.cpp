@@ -120,7 +120,8 @@ namespace SDCLib
     {
         namespace SDC
         {
-            template<class T> class SetNotification : public Poco::Notification
+            template<class T>
+            class SetNotification : public Poco::Notification
             {
             public:
                 SetNotification(const T& p_request, const OperationInvocationContext& p_oic)
@@ -140,7 +141,7 @@ namespace SDCLib
             private:
                 SDCProvider& m_provider;
                 Poco::NotificationQueue&
-                    m_queue; // FIXME: Non const ref to notification queue! -> Who is the "owner" and syncs the read/write access?
+                    m_queue;  // FIXME: Non const ref to notification queue! -> Who is the "owner" and syncs the read/write access?
 
             public:
                 AsyncProviderInvoker(SDCProvider& p_provider, Poco::NotificationQueue& p_queue)
@@ -200,7 +201,7 @@ namespace SDCLib
                     if(m_provider.getPeriodicEventInterval() < (std::chrono::system_clock::now() - m_provider.getLastPeriodicEvent()))
                     {
                         m_provider.firePeriodicReportImpl();
-                        m_provider.setLastPeriodicEvent(m_provider.getLastPeriodicEvent()); // FIXME: Correct impl?
+                        m_provider.setLastPeriodicEvent(m_provider.getLastPeriodicEvent());  // FIXME: Correct impl?
                     }
                 }
             };
@@ -208,7 +209,8 @@ namespace SDCLib
             //template SDCProviderStateHandler<NumericMetricState>;
 
 
-            template<class StateType> bool SDCProvider::isMetricChangeAllowed(const StateType& p_state, SDCProvider& p_provider)
+            template<class StateType>
+            bool SDCProvider::isMetricChangeAllowed(const StateType& p_state, SDCProvider& p_provider)
             {
                 if(!isStarted())
                 {
@@ -217,15 +219,15 @@ namespace SDCLib
 
                 typename StateType::DescriptorType t_descriptor;
                 if(!p_provider.getMdDescription().findDescriptor(p_state.getDescriptorHandle(),
-                                                                 t_descriptor)) // FIXME: Put this logic somewhere else!
+                                                                 t_descriptor))  // FIXME: Put this logic somewhere else!
                 {
                     return false;
                 }
-                if(t_descriptor.getMetricCategory() == MetricCategory::Msrmt) // FIXME: Put this logic somewhere else!
+                if(t_descriptor.getMetricCategory() == MetricCategory::Msrmt)  // FIXME: Put this logic somewhere else!
                 {
                     return false;
                 }
-                if(p_state.hasActivationState()) // FIXME: Put this logic somewhere else!
+                if(p_state.hasActivationState())  // FIXME: Put this logic somewhere else!
                 {
                     return (p_state.getActivationState() == ComponentActivation::On);
                 }
@@ -233,9 +235,9 @@ namespace SDCLib
                 return true;
             }
 
-        } // namespace SDC
-    }     // namespace Data
-} // namespace SDCLib
+        }  // namespace SDC
+    }      // namespace Data
+}  // namespace SDCLib
 
 
 using namespace SDCLib;
@@ -276,7 +278,8 @@ unsigned int SDCProvider::incrementAndGetTransactionId()
     return (++atomicTransactionId);
 }
 
-template<class T> void SDCProvider::enqueueInvokeNotification(const T& p_request, const OperationInvocationContext& p_oic)
+template<class T>
+void SDCProvider::enqueueInvokeNotification(const T& p_request, const OperationInvocationContext& p_oic)
 {
     std::lock_guard<std::mutex> t_lock{m_mutex_invokeQueue};
     m_invokeQueue.enqueueNotification(new SetNotification<T>(p_request, p_oic));
@@ -355,7 +358,7 @@ MDM::SetStringResponse SDCProvider::SetStringAsync(const MDM::SetString& p_reque
         return t_ssr;
     };
 
-    { // TODO: Why { }? Is there a lock somewhere?
+    {  // TODO: Why { }? Is there a lock somewhere?
         StringMetricState t_sms;
         if(t_mdsc.findState(t_metricHandle, t_sms))
         {
@@ -367,7 +370,7 @@ MDM::SetStringResponse SDCProvider::SetStringAsync(const MDM::SetString& p_reque
             return genResponse(InvocationState::Wait);
         }
     }
-    { // TODO: Why { }? Is there a lock somewhere?
+    {  // TODO: Why { }? Is there a lock somewhere?
         EnumStringMetricState t_state;
         if(t_mdsc.findState(t_metricHandle, t_state))
         {
@@ -402,7 +405,8 @@ MDM::SetStringResponse SDCProvider::SetStringAsync(const MDM::SetString& p_reque
     return genResponse(InvocationState::Fail);
 }
 
-template<class T> void SDCProvider::SetStringImpl(const T& p_state, const OperationInvocationContext& p_oic)
+template<class T>
+void SDCProvider::SetStringImpl(const T& p_state, const OperationInvocationContext& p_oic)
 {
     const InvocationState t_outState(onStateChangeRequest(p_state, p_oic));
     notifyOperationInvoked(p_oic, t_outState);
@@ -423,7 +427,7 @@ void SDCProvider::SetString(const MDM::SetString& p_request, const OperationInvo
 
     const auto t_metricHandle(t_mdd.getOperationTargetForOperationHandle(p_oic.operationHandle));
 
-    { // TODO: Why { }? Is there a lock somewhere?
+    {  // TODO: Why { }? Is there a lock somewhere?
         StringMetricState t_sms;
         if(t_mdsc.findState(t_metricHandle, t_sms))
         {
@@ -433,7 +437,7 @@ void SDCProvider::SetString(const MDM::SetString& p_request, const OperationInvo
         }
     }
 
-    { // TODO: Why { }? Is there a lock somewhere?
+    {  // TODO: Why { }? Is there a lock somewhere?
         EnumStringMetricState t_state;
         if(t_mdsc.findState(t_metricHandle, t_state))
         {
@@ -486,8 +490,8 @@ MDM::ActivateResponse SDCProvider::OnActivateAsync(const MDM::Activate& p_reques
 
 void SDCProvider::OnActivate(const OperationInvocationContext& p_oic)
 {
-    auto t_iter = ml_stateHandlers.find(p_oic.operationHandle);
-    if(t_iter != ml_stateHandlers.end())
+    auto t_iter = m_stateHandlers.find(p_oic.operationHandle);
+    if(t_iter != m_stateHandlers.end())
     {
         if(SDCProviderActivateOperationHandler* t_handler = dynamic_cast<SDCProviderActivateOperationHandler*>(t_iter->second))
         {
@@ -500,7 +504,8 @@ void SDCProvider::OnActivate(const OperationInvocationContext& p_oic)
 }
 
 
-template<typename StateType> void SDCProvider::SetAlertStateImpl(const StateType& state, const OperationInvocationContext& oic)
+template<typename StateType>
+void SDCProvider::SetAlertStateImpl(const StateType& state, const OperationInvocationContext& oic)
 {
     const MdDescription mdd(getMdDescription());
 
@@ -646,26 +651,26 @@ MDM::GetContextStatesResponse SDCProvider::GetContextStates(const MDM::GetContex
     MDM::GetContextStatesResponse t_contextStates(xml_schema::Uri("0"));
     for(const auto& t_state : t_states->getState())
     {
-        if(const auto t_state_EnsembleContextState = dynamic_cast<const CDM::EnsembleContextState*>(&t_state)) // FIXME: std::addressof?
+        if(const auto t_state_EnsembleContextState = dynamic_cast<const CDM::EnsembleContextState*>(&t_state))  // FIXME: std::addressof?
         {
             t_contextStates.getContextState().push_back(*t_state_EnsembleContextState);
         }
         else if(const auto t_state_LocationContextState = dynamic_cast<const CDM::LocationContextState*>(
-                    &t_state)) // FIXME: std::addressof?
+                    &t_state))  // FIXME: std::addressof?
         {
             t_contextStates.getContextState().push_back(*t_state_LocationContextState);
         }
         else if(const auto t_state_OperatorContextState = dynamic_cast<const CDM::OperatorContextState*>(
-                    &t_state)) // FIXME: std::addressof?
+                    &t_state))  // FIXME: std::addressof?
         {
             t_contextStates.getContextState().push_back(*t_state_OperatorContextState);
         }
-        else if(const auto t_state_PatientContextState = dynamic_cast<const CDM::PatientContextState*>(&t_state)) // FIXME: std::addressof?
+        else if(const auto t_state_PatientContextState = dynamic_cast<const CDM::PatientContextState*>(&t_state))  // FIXME: std::addressof?
         {
             t_contextStates.getContextState().push_back(*t_state_PatientContextState);
         }
         else if(const auto t_state_WorkflowContextState = dynamic_cast<const CDM::WorkflowContextState*>(
-                    &t_state)) // FIXME: std::addressof?
+                    &t_state))  // FIXME: std::addressof?
         {
             t_contextStates.getContextState().push_back(*t_state_WorkflowContextState);
         }
@@ -727,7 +732,8 @@ MDM::SetContextStateResponse SDCProvider::SetContextStateAsync(const MDM::SetCon
 }
 
 
-template<class TState> void SDCProvider::SetContextStateImpl(const TState& p_state, const OperationInvocationContext& p_oic)
+template<class TState>
+void SDCProvider::SetContextStateImpl(const TState& p_state, const OperationInvocationContext& p_oic)
 {
     // FIXME: check if writing to context state is allowed! = SCO exists
     const InvocationState t_outState(onStateChangeRequest(p_state, p_oic));
@@ -744,31 +750,32 @@ void SDCProvider::SetContextState(const MDM::SetContextState& p_request, const O
     // FIXME: for-loop + dynamic_cast: Refactor(?)
     for(const auto& t_nextState : p_request.getProposedContextState())
     {
-        if(const auto t_state_PatientContextState = dynamic_cast<const CDM::PatientContextState*>(&t_nextState)) // FIXME: std::addressof ?
+        if(const auto t_state_PatientContextState = dynamic_cast<const CDM::PatientContextState*>(&t_nextState))  // FIXME: std::addressof ?
         {
             SetContextStateImpl(ConvertFromCDM::convert(*t_state_PatientContextState), p_oic);
         }
         else if(const auto t_state_LocationContextState = dynamic_cast<const CDM::LocationContextState*>(
-                    &t_nextState)) // FIXME: std::addressof ?
+                    &t_nextState))  // FIXME: std::addressof ?
         {
             SetContextStateImpl(ConvertFromCDM::convert(*t_state_LocationContextState), p_oic);
         }
         else if(const auto t_state_EnsembleContextState = dynamic_cast<const CDM::EnsembleContextState*>(
-                    &t_nextState)) // FIXME: std::addressof ?
+                    &t_nextState))  // FIXME: std::addressof ?
         {
             SetContextStateImpl(ConvertFromCDM::convert(*t_state_EnsembleContextState), p_oic);
         }
         else if(const auto t_state_OperatorContextState = dynamic_cast<const CDM::OperatorContextState*>(
-                    &t_nextState)) // FIXME: std::addressof ?
+                    &t_nextState))  // FIXME: std::addressof ?
         {
             SetContextStateImpl(ConvertFromCDM::convert(*t_state_OperatorContextState), p_oic);
         }
         else if(const auto t_state_WorkflowContextState = dynamic_cast<const CDM::WorkflowContextState*>(
-                    &t_nextState)) // FIXME: std::addressof ?
+                    &t_nextState))  // FIXME: std::addressof ?
         {
             SetContextStateImpl(ConvertFromCDM::convert(*t_state_WorkflowContextState), p_oic);
         }
-        else if(const auto t_state_MeansContextState = dynamic_cast<const CDM::MeansContextState*>(&t_nextState)) // FIXME: std::addressof ?
+        else if(const auto t_state_MeansContextState = dynamic_cast<const CDM::MeansContextState*>(
+                    &t_nextState))  // FIXME: std::addressof ?
         {
             SetContextStateImpl(ConvertFromCDM::convert(*t_state_MeansContextState), p_oic);
         }
@@ -776,7 +783,7 @@ void SDCProvider::SetContextState(const MDM::SetContextState& p_request, const O
 }
 
 
-MDM::GetMdibResponse SDCProvider::GetMdib(const MDM::GetMdib&) // FIXME: Signature?
+MDM::GetMdibResponse SDCProvider::GetMdib(const MDM::GetMdib&)  // FIXME: Signature?
 {
     // TODO: 0 = replace with real sequence ID
     MDM::GetMdibResponse t_mdib(xml_schema::Uri("0"), ConvertToCDM::convert(getMdib()));
@@ -912,16 +919,18 @@ void SDCProvider::updateState(const OperatorContextState& p_object)
     notifyContextEventImpl(p_object);
 }
 
-template<class T> void SDCProvider::updateMDIB(const T& p_object)
+template<class T>
+void SDCProvider::updateMDIB(const T& p_object)
 {
     //Changing the MDIB -> MDIB Version gets increased.
     incrementMDIBVersion();
     replaceState(p_object);
 }
 
-template<class T> void SDCProvider::notifyAlertEventImpl(const T& p_object)
+template<class T>
+void SDCProvider::notifyAlertEventImpl(const T& p_object)
 {
-    if(nullptr == m_adapter) // FIXME: Should not be necessary: Fix Provider thread handling on shutdown!
+    if(nullptr == m_adapter)  // FIXME: Should not be necessary: Fix Provider thread handling on shutdown!
     {
         return;
     }
@@ -943,9 +952,10 @@ template<class T> void SDCProvider::notifyAlertEventImpl(const T& p_object)
     m_adapter->notifyEvent(t_report);
 }
 
-template<class T> void SDCProvider::notifyContextEventImpl(const T& p_object)
+template<class T>
+void SDCProvider::notifyContextEventImpl(const T& p_object)
 {
-    if(nullptr == m_adapter) // FIXME: Should not be necessary: Fix Provider thread handling on shutdown!
+    if(nullptr == m_adapter)  // FIXME: Should not be necessary: Fix Provider thread handling on shutdown!
     {
         return;
     }
@@ -966,9 +976,10 @@ template<class T> void SDCProvider::notifyContextEventImpl(const T& p_object)
     m_adapter->notifyEvent(t_report);
 }
 
-template<class T> void SDCProvider::notifyEpisodicMetricImpl(const T& p_object)
+template<class T>
+void SDCProvider::notifyEpisodicMetricImpl(const T& p_object)
 {
-    if(nullptr == m_adapter) // FIXME: Should not be necessary: Fix Provider thread handling on shutdown!
+    if(nullptr == m_adapter)  // FIXME: Should not be necessary: Fix Provider thread handling on shutdown!
     {
         return;
     }
@@ -990,9 +1001,10 @@ template<class T> void SDCProvider::notifyEpisodicMetricImpl(const T& p_object)
     m_adapter->notifyEvent(t_report);
 }
 
-template<class T> void SDCProvider::notifyEpisodicOperationalStateImpl(const T& p_object)
+template<class T>
+void SDCProvider::notifyEpisodicOperationalStateImpl(const T& p_object)
 {
-    if(nullptr == m_adapter) // FIXME: Should not be necessary: Fix Provider thread handling on shutdown!
+    if(nullptr == m_adapter)  // FIXME: Should not be necessary: Fix Provider thread handling on shutdown!
     {
         return;
     }
@@ -1014,9 +1026,10 @@ template<class T> void SDCProvider::notifyEpisodicOperationalStateImpl(const T& 
     m_adapter->notifyEvent(t_report);
 }
 
-template<class T> void SDCProvider::notifyStreamMetricImpl(const T& p_object)
+template<class T>
+void SDCProvider::notifyStreamMetricImpl(const T& p_object)
 {
-    if(nullptr == m_adapter) // FIXME: Should not be necessary: Fix Provider thread handling on shutdown!
+    if(nullptr == m_adapter)  // FIXME: Should not be necessary: Fix Provider thread handling on shutdown!
     {
         return;
     }
@@ -1040,7 +1053,7 @@ template<class T> void SDCProvider::notifyStreamMetricImpl(const T& p_object)
 
 void SDCProvider::firePeriodicReportImpl()
 {
-    if(nullptr == m_adapter) // FIXME: Should not be necessary: Fix Provider thread handling on shutdown!
+    if(nullptr == m_adapter)  // FIXME: Should not be necessary: Fix Provider thread handling on shutdown!
     {
         return;
     }
@@ -1066,15 +1079,15 @@ void SDCProvider::firePeriodicReportImpl()
            != ml_handlesForPeriodicUpdates.end())
         {
             if(auto t_castedState = dynamic_cast<const CDM::AbstractAlertState*>(&t_state))
-            { // FIXME: std::addressof?
+            {  // FIXME: std::addressof?
                 t_periodicAlertReportPart.getAlertState().push_back(*t_castedState);
             }
             if(auto t_castedState = dynamic_cast<const CDM::AbstractContextState*>(&t_state))
-            { // FIXME: std::addressof?
+            {  // FIXME: std::addressof?
                 t_periodicContextChangedReportPart.getContextState().push_back(*t_castedState);
             }
             if(auto t_castedState = dynamic_cast<const CDM::AbstractMetricState*>(&t_state))
-            { // FIXME: std::addressof?
+            {  // FIXME: std::addressof?
                 t_periodicMetricReportPart.getMetricState().push_back(*t_castedState);
             }
         }
@@ -1219,16 +1232,14 @@ void SDCProvider::evaluateAlertConditions(const std::string& p_source) const
 
     using AlertCondition_ptr = SDCProviderAlertConditionStateHandler<AlertConditionState>*;
     std::vector<AlertCondition_ptr> tl_states;
-    { // LOCK
+    {  // LOCK
         std::lock_guard<std::mutex> t_lock{m_mutex_MdStateHandler};
-        for(const auto& t_handler : ml_stateHandlers)
+        for(const auto& t_handler : m_stateHandlers)
         {
             if(auto t_handler_AlertConditionState = dynamic_cast<SDCProviderAlertConditionStateHandler<AlertConditionState>*>(
                    t_handler.second))
             {
-                if(std::find(tl_relevantDescriptors.begin(),
-                             tl_relevantDescriptors.end(),
-                             t_handler_AlertConditionState->getDescriptorHandle())
+                if(std::find(tl_relevantDescriptors.begin(), tl_relevantDescriptors.end(), t_handler_AlertConditionState->getHandle())
                    != tl_relevantDescriptors.end())
                 {
                     tl_states.push_back(static_cast<AlertCondition_ptr>(t_handler.second));
@@ -1237,16 +1248,14 @@ void SDCProvider::evaluateAlertConditions(const std::string& p_source) const
             else if(auto t_handler_LimitAlertConditionState = dynamic_cast<SDCProviderAlertConditionStateHandler<LimitAlertConditionState>*>(
                         t_handler.second))
             {
-                if(std::find(tl_relevantDescriptors.begin(),
-                             tl_relevantDescriptors.end(),
-                             t_handler_LimitAlertConditionState->getDescriptorHandle())
+                if(std::find(tl_relevantDescriptors.begin(), tl_relevantDescriptors.end(), t_handler_LimitAlertConditionState->getHandle())
                    != tl_relevantDescriptors.end())
                 {
                     tl_states.push_back(static_cast<AlertCondition_ptr>(t_handler.second));
                 }
             }
         }
-    } // UNLOCK
+    }  // UNLOCK
 
     // Update
     for(const auto& t_handler : tl_states)
@@ -1261,14 +1270,14 @@ void SDCProvider::reevaluateAlertConditions(const std::string& p_alertConditionD
 
     using AlertCondition_ptr = SDCProviderAlertConditionStateHandler<AlertConditionState>*;
     std::vector<AlertCondition_ptr> tl_states;
-    { //LOCK
+    {  //LOCK
         std::lock_guard<std::mutex> t_lock{m_mutex_MdStateHandler};
-        for(const auto& t_handler : ml_stateHandlers)
+        for(const auto& t_handler : m_stateHandlers)
         {
             if(auto t_handler_AlertConditionState = dynamic_cast<SDCProviderAlertConditionStateHandler<AlertConditionState>*>(
                    t_handler.second))
             {
-                if(t_handler_AlertConditionState->getDescriptorHandle() == p_alertConditionDescriptor)
+                if(t_handler_AlertConditionState->getHandle() == p_alertConditionDescriptor)
                 {
                     tl_states.push_back(static_cast<AlertCondition_ptr>(t_handler.second));
                 }
@@ -1276,13 +1285,13 @@ void SDCProvider::reevaluateAlertConditions(const std::string& p_alertConditionD
             else if(auto t_handler_LimitAlertConditionState = dynamic_cast<SDCProviderAlertConditionStateHandler<LimitAlertConditionState>*>(
                         t_handler.second))
             {
-                if(t_handler_LimitAlertConditionState->getDescriptorHandle() == p_alertConditionDescriptor)
+                if(t_handler_LimitAlertConditionState->getHandle() == p_alertConditionDescriptor)
                 {
                     tl_states.push_back(static_cast<AlertCondition_ptr>(t_handler.second));
                 }
             }
         }
-    } // UNLOCK
+    }  // UNLOCK
 
     // Update
     for(const auto& t_state : tl_states)
@@ -1331,11 +1340,11 @@ bool SDCProvider::startup()
     }
 
     // Grab all states (start with all operation states and add states from user handlers)
-    { // LOCK MdState(/Handler)
+    {  // LOCK MdState(/Handler)
         std::lock_guard<std::mutex> t_lockMdStates{m_mutex_MdState};
         std::lock_guard<std::mutex> t_lockMdStateHandler{m_mutex_MdStateHandler};
         m_MdState = MdState(m_operationStates);
-        for(const auto& t_handler : ml_stateHandlers)
+        for(const auto& t_handler : m_stateHandlers)
         {
             if(auto t_casted_AlertConditionState = dynamic_cast<SDCProviderAlertConditionStateHandler<AlertConditionState>*>(
                    t_handler.second))
@@ -1441,37 +1450,37 @@ bool SDCProvider::startup()
                 _initAbstractStateDefaults(t_state);
                 m_MdState.addState(t_state);
             }
-            else if(auto t_casted_LocationContextState = dynamic_cast<SDCProviderMDStateHandler<LocationContextState>*>(t_handler.second))
+            else if(auto t_casted_LocationContextState = dynamic_cast<SDCProviderMultiStateHandler<LocationContextState>*>(t_handler.second))
             {
                 auto t_state = t_casted_LocationContextState->getInitialState();
                 _initAbstractStateDefaults(t_state);
                 m_MdState.addState(t_state);
             }
-            else if(auto t_casted_PatientContextState = dynamic_cast<SDCProviderMDStateHandler<PatientContextState>*>(t_handler.second))
+            else if(auto t_casted_PatientContextState = dynamic_cast<SDCProviderMultiStateHandler<PatientContextState>*>(t_handler.second))
             {
                 auto t_state = t_casted_PatientContextState->getInitialState();
                 _initAbstractStateDefaults(t_state);
                 m_MdState.addState(t_state);
             }
-            else if(auto t_casted_MeansContextState = dynamic_cast<SDCProviderMDStateHandler<MeansContextState>*>(t_handler.second))
+            else if(auto t_casted_MeansContextState = dynamic_cast<SDCProviderMultiStateHandler<MeansContextState>*>(t_handler.second))
             {
                 auto t_state = t_casted_MeansContextState->getInitialState();
                 _initAbstractStateDefaults(t_state);
                 m_MdState.addState(t_state);
             }
-            else if(auto t_casted_WorkflowContextState = dynamic_cast<SDCProviderMDStateHandler<WorkflowContextState>*>(t_handler.second))
+            else if(auto t_casted_WorkflowContextState = dynamic_cast<SDCProviderMultiStateHandler<WorkflowContextState>*>(t_handler.second))
             {
                 auto t_state = t_casted_WorkflowContextState->getInitialState();
                 _initAbstractStateDefaults(t_state);
                 m_MdState.addState(t_state);
             }
-            else if(auto t_casted_OperatorContextState = dynamic_cast<SDCProviderMDStateHandler<OperatorContextState>*>(t_handler.second))
+            else if(auto t_casted_OperatorContextState = dynamic_cast<SDCProviderMultiStateHandler<OperatorContextState>*>(t_handler.second))
             {
                 auto t_state = t_casted_OperatorContextState->getInitialState();
                 _initAbstractStateDefaults(t_state);
                 m_MdState.addState(t_state);
             }
-            else if(auto t_casted_EnsembleContextState = dynamic_cast<SDCProviderMDStateHandler<EnsembleContextState>*>(t_handler.second))
+            else if(auto t_casted_EnsembleContextState = dynamic_cast<SDCProviderMultiStateHandler<EnsembleContextState>*>(t_handler.second))
             {
                 auto t_state = t_casted_EnsembleContextState->getInitialState();
                 _initAbstractStateDefaults(t_state);
@@ -1479,16 +1488,16 @@ bool SDCProvider::startup()
             }
             else
             {
-                log_fatal([] { return "Unknown handler type! This is an implementation error in the SDCLib!"; });
+                log_fatal([] { return "Unknown handler type! This is an implementation error in the SDCLib! Consider SDCProviderMultiStateHandler for Context States instead of MDState Handler!"; });
                 return false;
             }
         }
-    } // UNLOCK
+    }  // UNLOCK
 
     // Iterate over MdDescription and Add States for all Descriptors not added yet -> TODO REWORK!
     auto t_description = getMdDescription();
 
-    { // LOCK
+    {  // LOCK
         std::lock_guard<std::mutex> t_lockMdState{m_mutex_MdState};
 
         // Mds
@@ -1692,7 +1701,7 @@ bool SDCProvider::startup()
                 }
             }
         }
-    } // UNLOCK
+    }  // UNLOCK
 
 
     // Validation
@@ -1735,43 +1744,44 @@ void SDCProvider::shutdown()
     });
 }
 
-template<class T> void SDCProvider::replaceState(T p_object) // FIXME: return value (bool)?
+template<class T>
+void SDCProvider::replaceState(T p_object)  // FIXME: return value (bool)?
 {
-    { // LOCK
-        std::lock_guard<std::mutex> t_lock{m_mutex_MdState};
+    {  // LOCK
+        std::lock_guard<std::mutex> lock{m_mutex_MdState};
         // Check for existing state
-        std::unique_ptr<CDM::MdState> t_cachedStates(ConvertToCDM::convert(m_MdState));
-        CDM::MdState t_target;
-        for(const auto& t_state : t_cachedStates->getState())
+        std::unique_ptr<CDM::MdState> cachedStates(ConvertToCDM::convert(m_MdState));
+        CDM::MdState target;
+        for(const auto& state : cachedStates->getState())
         {
-            if(t_state.getDescriptorHandle() == p_object.getDescriptorHandle())
+            if(state.getDescriptorHandle() == p_object.getDescriptorHandle())
             {
                 // Increment StateVersion
                 if(!p_object.hasStateVersion())
-                { // No state version -> Set the initial one + 1
+                {
                     p_object.setStateVersion(VersionCounter(INITIAL_STATE_VERSION + 1));
                 }
                 else
-                { // Increment
+                {
                     p_object.setStateVersion(p_object.getStateVersion() + 1);
                 }
                 // Found, add parameter instead of current
-                t_target.getState().push_back(*ConvertToCDM::convert(p_object));
+                target.getState().push_back(*ConvertToCDM::convert(p_object));
 
                 continue;
             }
-            // Copy
-            t_target.getState().push_back(t_state);
+
+            target.getState().push_back(state);  // Copy
         }
-        m_MdState = ConvertFromCDM::convert(t_target);
-    } // UNLOCK
+        m_MdState = ConvertFromCDM::convert(target);
+    }  // UNLOCK
 
     // Increment StateVersion
     _incrementMdStateVersion();
 }
 
 
-void SDCProvider::addMdStateHandler(SDCProviderStateHandler* p_handler) // FIXME: return value (bool)?
+void SDCProvider::addMdStateHandler(SDCProviderStateHandler* p_handler)  // FIXME: return value (bool)?
 {
     assert(p_handler != nullptr);
 
@@ -1788,11 +1798,12 @@ void SDCProvider::addMdStateHandler(SDCProviderStateHandler* p_handler) // FIXME
     // TODO: Multistates implementation.. regarding to the SDC standard it should be possible to define states with the same descriptor handle!
     // this is only possible for context states. maybe do a type check.
     // but before implementing -> check the whole frameworks mechanics
-    if(ml_stateHandlers.find(p_handler->getDescriptorHandle()) != ml_stateHandlers.end())
+
+    // WIP: replace getDescriptorHandle with getHandle
+
+    if(m_stateHandlers.find(p_handler->getHandle()) != m_stateHandlers.end())
     {
-        log_error([&] {
-            return "A SDCProvider handler for handle " + p_handler->getDescriptorHandle() + " already exists. It will be overridden.";
-        });
+        log_error([&] { return "A SDCProvider handler for handle " + p_handler->getHandle() + " already exists. It will be overridden."; });
     }
 
     // ToDo: Behold! check with simpleSDC if this really works°! TODO
@@ -1810,10 +1821,10 @@ void SDCProvider::addMdStateHandler(SDCProviderStateHandler* p_handler) // FIXME
             const auto t_sco(ConvertToCDM::convert(t_mds.getSco()));
             for(const auto& t_operation : t_sco->getOperation())
             {
-                if(t_operation.getHandle() == t_activate_handler->getDescriptorHandle()
+                if(t_operation.getHandle() == t_activate_handler->getHandle()
                    && nullptr != dynamic_cast<const CDM::ActivateOperationDescriptor*>(&t_operation))
-                { // FIXME: std::addressof?
-                    ml_stateHandlers[p_handler->getDescriptorHandle()] = p_handler;
+                {  // FIXME: std::addressof?
+                    m_stateHandlers[p_handler->getHandle()] = p_handler;
                     return;
                 }
             }
@@ -1824,12 +1835,12 @@ void SDCProvider::addMdStateHandler(SDCProviderStateHandler* p_handler) // FIXME
                     continue;
                 }
                 const auto t_scoVdm(ConvertToCDM::convert(t_vdm.getSco()));
-                for(const auto& t_operationVdm : t_scoVdm->getOperation())
+                for(const auto& operationVdm : t_scoVdm->getOperation())
                 {
-                    if(t_operationVdm.getHandle() == t_activate_handler->getDescriptorHandle()
-                       && nullptr != dynamic_cast<const CDM::ActivateOperationDescriptor*>(&t_operationVdm))
-                    { // FIXME: std::addressof?
-                        ml_stateHandlers[p_handler->getDescriptorHandle()] = p_handler;
+                    if(operationVdm.getHandle() == t_activate_handler->getHandle()
+                       && nullptr != dynamic_cast<const CDM::ActivateOperationDescriptor*>(&operationVdm))
+                    {  // FIXME: std::addressof?
+                        m_stateHandlers[p_handler->getHandle()] = p_handler;
                         return;
                     }
                 }
@@ -1846,11 +1857,11 @@ void SDCProvider::addMdStateHandler(SDCProviderStateHandler* p_handler) // FIXME
         // FIXME: delete after testing that streaming works on more than one address!
         // FIXME: MAGIC NUMBERS...!!!!
         //m_adapter->addStreamingPort(OSELib::SDC::MDPWS_MCAST_PORT);
-        ml_stateHandlers[p_handler->getDescriptorHandle()] = p_handler;
+        m_stateHandlers[p_handler->getHandle()] = p_handler;
     }
     else
     {
-        ml_stateHandlers[p_handler->getDescriptorHandle()] = p_handler;
+        m_stateHandlers[p_handler->getHandle()] = p_handler;
     }
 }
 
@@ -1859,7 +1870,7 @@ void SDCProvider::removeMDStateHandler(SDCProviderStateHandler* p_handler)
 {
     assert(p_handler != nullptr);
     std::lock_guard<std::mutex> t_lock{m_mutex_MdStateHandler};
-    ml_stateHandlers.erase(p_handler->getDescriptorHandle());
+    m_stateHandlers.erase(p_handler->getHandle());
 }
 
 
@@ -1867,7 +1878,7 @@ bool SDCProvider::setMdDescription(const MdDescription& p_MdDescription)
 {
     std::lock_guard<std::mutex> t_lock{m_mutex_MdDescription};
     m_MdDescription = std::unique_ptr<MdDescription>(new MdDescription(p_MdDescription));
-    return true; // Interface consistency with std::string (parsing) version
+    return true;  // Interface consistency with std::string (parsing) version
 }
 
 bool SDCProvider::setMdDescription(std::string p_xml)
@@ -1900,11 +1911,11 @@ bool SDCProvider::setMdDescription(std::string p_xml)
 MdDescription SDCProvider::getMdDescription() const
 {
     std::lock_guard<std::mutex> t_lock{m_mutex_MdDescription};
-    return *m_MdDescription; // FIXME: What if nullptr?
+    return *m_MdDescription;  // FIXME: What if nullptr?
 }
 
 
-void SDCProvider::setEndpointReference(const std::string& p_epr) // FIXME: return value (bool)?
+void SDCProvider::setEndpointReference(const std::string& p_epr)  // FIXME: return value (bool)?
 {
     if(p_epr.empty())
     {
@@ -1914,7 +1925,7 @@ void SDCProvider::setEndpointReference(const std::string& p_epr) // FIXME: retur
     std::lock_guard<std::mutex> t_lock{m_mutex_EPR};
     m_endpointReference = p_epr;
 }
-void SDCProvider::setEndpointReferenceByName(const std::string& p_name) // FIXME: return value (bool)?
+void SDCProvider::setEndpointReferenceByName(const std::string& p_name)  // FIXME: return value (bool)?
 {
     if(p_name.empty())
     {
@@ -1932,18 +1943,19 @@ std::string SDCProvider::getEndpointReference() const
     return std::string(m_endpointReference);
 }
 
-template<typename T> InvocationState SDCProvider::onStateChangeRequest(const T& p_state, const OperationInvocationContext& p_oic)
+template<typename T>
+InvocationState SDCProvider::onStateChangeRequest(const T& p_state, const OperationInvocationContext& p_oic)
 {
     // Try to find the StateHandler
-    std::map<std::string, SDCProviderStateHandler*>::const_iterator t_iter = ml_stateHandlers.end();
-    { // LOCK
+    std::map<std::string, SDCProviderStateHandler*>::const_iterator t_iter = m_stateHandlers.end();
+    {  // LOCK
         std::lock_guard<std::mutex> t_lock{m_mutex_MdStateHandler};
-        t_iter = ml_stateHandlers.find(p_state.getDescriptorHandle());
-        if(t_iter == ml_stateHandlers.end())
+        t_iter = m_stateHandlers.find(p_state.getDescriptorHandle());
+        if(t_iter == m_stateHandlers.end())
         {
             return InvocationState::Fail;
         }
-    } // UNLOCK
+    }  // UNLOCK
 
     // Send the StateChangeRequest
     if(auto t_handler = dynamic_cast<SDCProviderMDStateHandler<T>*>(t_iter->second))
@@ -1955,7 +1967,7 @@ template<typename T> InvocationState SDCProvider::onStateChangeRequest(const T& 
 
 void SDCProvider::notifyOperationInvoked(const OperationInvocationContext& p_oic, Data::SDC::InvocationState p_is)
 {
-    if(nullptr == m_adapter) // FIXME: Should not be necessary: Fix Provider thread handling on shutdown!
+    if(nullptr == m_adapter)  // FIXME: Should not be necessary: Fix Provider thread handling on shutdown!
     {
         return;
     }
@@ -1977,7 +1989,8 @@ void SDCProvider::notifyOperationInvoked(const OperationInvocationContext& p_oic
     m_adapter->notifyEvent(t_oir);
 }
 
-template<class T> bool SDCProvider::addSetOperationToSCOObjectImpl(const T& p_source, MdsDescriptor& p_ownerMDS)
+template<class T>
+bool SDCProvider::addSetOperationToSCOObjectImpl(const T& p_source, MdsDescriptor& p_ownerMDS)
 {
     // get sco object or create new
     std::unique_ptr<CDM::ScoDescriptor> t_scoDescriptor(Defaults::ScoDescriptorInit(xml_schema::Uri("")));
@@ -2015,43 +2028,43 @@ template<class T> bool SDCProvider::addSetOperationToSCOObjectImpl(const T& p_so
     {
         auto t_operationState = CDM::SetValueOperationState(p_source.getHandle(), CDM::OperatingMode::En);
         tl_cachedOperationStates->getState().push_back(t_operationState);
-        notifyEpisodicOperationalStateImpl(SetValueOperationState(t_operationState)); // Emit an event!
+        notifyEpisodicOperationalStateImpl(SetValueOperationState(t_operationState));  // Emit an event!
     }
     else if(dynamic_cast<const CDM::SetStringOperationDescriptor*>(std::addressof(p_source)))
     {
         auto t_operationState = CDM::SetStringOperationState(p_source.getHandle(), CDM::OperatingMode::En);
         tl_cachedOperationStates->getState().push_back(t_operationState);
-        notifyEpisodicOperationalStateImpl(SetStringOperationState(t_operationState)); // Emit an event!
+        notifyEpisodicOperationalStateImpl(SetStringOperationState(t_operationState));  // Emit an event!
     }
     else if(dynamic_cast<const CDM::SetAlertStateOperationDescriptor*>(std::addressof(p_source)))
     {
         auto t_operationState = CDM::SetAlertStateOperationState(p_source.getHandle(), CDM::OperatingMode::En);
         tl_cachedOperationStates->getState().push_back(t_operationState);
-        notifyEpisodicOperationalStateImpl(SetAlertStateOperationState(t_operationState)); // Emit an event!
+        notifyEpisodicOperationalStateImpl(SetAlertStateOperationState(t_operationState));  // Emit an event!
     }
     else if(dynamic_cast<const CDM::SetComponentStateOperationDescriptor*>(std::addressof(p_source)))
     {
         auto t_operationState = CDM::SetComponentStateOperationState(p_source.getHandle(), CDM::OperatingMode::En);
         tl_cachedOperationStates->getState().push_back(t_operationState);
-        notifyEpisodicOperationalStateImpl(SetComponentStateOperationState(t_operationState)); // Emit an event!
+        notifyEpisodicOperationalStateImpl(SetComponentStateOperationState(t_operationState));  // Emit an event!
     }
     else if(dynamic_cast<const CDM::SetContextStateOperationDescriptor*>(std::addressof(p_source)))
     {
         auto t_operationState = CDM::SetContextStateOperationState(p_source.getHandle(), CDM::OperatingMode::En);
         tl_cachedOperationStates->getState().push_back(t_operationState);
-        notifyEpisodicOperationalStateImpl(SetContextStateOperationState(t_operationState)); // Emit an event!
+        notifyEpisodicOperationalStateImpl(SetContextStateOperationState(t_operationState));  // Emit an event!
     }
     else if(dynamic_cast<const CDM::SetMetricStateOperationDescriptor*>(std::addressof(p_source)))
     {
         auto t_operationState = CDM::SetMetricStateOperationState(p_source.getHandle(), CDM::OperatingMode::En);
         tl_cachedOperationStates->getState().push_back(t_operationState);
-        notifyEpisodicOperationalStateImpl(SetMetricStateOperationState(t_operationState)); // Emit an event!
+        notifyEpisodicOperationalStateImpl(SetMetricStateOperationState(t_operationState));  // Emit an event!
     }
     else if(dynamic_cast<const CDM::ActivateOperationDescriptor*>(std::addressof(p_source)))
     {
         auto t_operationState = CDM::ActivateOperationState(p_source.getHandle(), CDM::OperatingMode::En);
         tl_cachedOperationStates->getState().push_back(t_operationState);
-        notifyEpisodicOperationalStateImpl(ActivateOperationState(t_operationState)); // Emit an event!
+        notifyEpisodicOperationalStateImpl(ActivateOperationState(t_operationState));  // Emit an event!
     }
     else
     {
@@ -2110,7 +2123,8 @@ void SDCProvider::createSetOperationForDescriptor(const StringMetricDescriptor& 
     addSetOperationToSCOObjectImpl(t_setOperation, p_ownerMDS);
 }
 
-template<class T> void SDCProvider::createSetOperationForContextDescriptor(const T& p_descriptor, MdsDescriptor& p_ownerMDS)
+template<class T>
+void SDCProvider::createSetOperationForContextDescriptor(const T& p_descriptor, MdsDescriptor& p_ownerMDS)
 {
     const CDM::SetContextStateOperationDescriptor t_setOperation(p_descriptor.getHandle() + "_sco", p_descriptor.getHandle());
     addSetOperationToSCOObjectImpl(t_setOperation, p_ownerMDS);
@@ -2240,7 +2254,8 @@ TimePoint SDCProvider::getLastPeriodicEvent() const
     return m_lastPeriodicEvent;
 }
 
-template<class T> void SDCProvider::_initAbstractStateDefaults(T& p_state)
+template<class T>
+void SDCProvider::_initAbstractStateDefaults(T& p_state)
 {
     if(!p_state.hasStateVersion())
     {
@@ -2248,7 +2263,8 @@ template<class T> void SDCProvider::_initAbstractStateDefaults(T& p_state)
     }
 }
 
-template<class T> void SDCProvider::_initComponentStateDefaults(T& p_state)
+template<class T>
+void SDCProvider::_initComponentStateDefaults(T& p_state)
 {
     if(!p_state.hasActivationState())
     {
@@ -2256,7 +2272,8 @@ template<class T> void SDCProvider::_initComponentStateDefaults(T& p_state)
     }
 }
 
-template<class T> void SDCProvider::_initStateMetricValueDefaults(T& p_state)
+template<class T>
+void SDCProvider::_initStateMetricValueDefaults(T& p_state)
 {
     if(!p_state.hasMetricValue())
     {

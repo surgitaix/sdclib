@@ -33,49 +33,48 @@
 
 namespace SDCLib
 {
-	namespace Data
-	{
-		namespace SDC
-		{
-			class SDCProviderStateHandler : public OSELib::Helper::WithLogger
-			{
-				friend class SDCProvider;
-			protected:
-				const std::string descriptorHandle;
-				SDCProvider* parentProvider = nullptr;
+    namespace Data
+    {
+        namespace SDC
+        {
+            class SDCProviderStateHandler : public OSELib::Helper::WithLogger
+            {
+                friend class SDCProvider;
 
-			public:
-				SDCProviderStateHandler(std::string p_desriptorHandle);
-				// Special Member Functions
-				SDCProviderStateHandler(const SDCProviderStateHandler& p_obj) = delete;
-				SDCProviderStateHandler(SDCProviderStateHandler&& p_obj) = delete;
-				SDCProviderStateHandler& operator=(const SDCProviderStateHandler& p_obj) = delete;
-				SDCProviderStateHandler& operator=(SDCProviderStateHandler&& p_obj) = delete;
-				virtual ~SDCProviderStateHandler() = default;
+            protected:
+                const HandleRef descriptorHandle;
+                const Handle m_handle;
 
-				/**
+                SDCProvider* parentProvider = nullptr;
+
+            public:
+                SDCProviderStateHandler(const HandleRef&, const Handle&);
+                SDCProviderStateHandler(const SDCProviderStateHandler& p_obj) = delete;
+                SDCProviderStateHandler(SDCProviderStateHandler&& p_obj) = delete;
+                SDCProviderStateHandler& operator=(const SDCProviderStateHandler& p_obj) = delete;
+                SDCProviderStateHandler& operator=(SDCProviderStateHandler&& p_obj) = delete;
+                virtual ~SDCProviderStateHandler() = default;
+
+                /**
 				* @brief updates the state in the library and informs all consumers about that change
 				*
 				* @param The state (templated) that is to be updated. The state must be defined properly
 				*/
-				template<class TState>
-				void updateState(const TState & p_state);
+                template<class TState>
+                void updateState(const TState& p_state);
 
-				/**
-				* @brief Return the handle state this handler is referencing
-				*
-				* @return The handle
-				*/
-				std::string getDescriptorHandle() const;
 
-				/**
+                Handle getHandle() const;
+                HandleRef getDescriptorHandle() const;
+
+                /**
 				* @brief Notify all registered consumers about an operation changed event
 				*
 				* @param object The MDIB object
 				*/
-				void notifyOperationInvoked(const OperationInvocationContext & p_oic, InvocationState p_is);
+                void notifyOperationInvoked(const OperationInvocationContext& p_oic, InvocationState p_is);
 
-				/**
+                /**
 				* @brief Trigger an alert condition using a flag to indicate the condition's presence.
 				*
 				* Calling this method will handle all alert signals which reference this condition automatically.
@@ -92,22 +91,23 @@ namespace SDCLib
 				* @param conditionPresence True, if the condition has been detected.
 				* @param oic operation invocation context
 				*/
-				void setAlertConditionPresence(const std::string p_alertConditionHandle, bool p_conditionPresence, const OperationInvocationContext & p_oic);
+                void setAlertConditionPresence(const std::string p_alertConditionHandle,
+                                               bool p_conditionPresence,
+                                               const OperationInvocationContext& p_oic);
 
-				/**
+                /**
 				* @brief All state handlers need an access point to their parent provider. Can be used i.e. to search for information saved in the descriptor via:
 				* sdcProvider.getMdDescription().findDescriptor<T>(handle)
 				*
 				* @return a reference to the provider.
 				*/
-				SDCProvider & getParentProvider();
+                SDCProvider& getParentProvider();
 
-			protected:
-				//void notifyMDIBObjectChangedImpl(const TState & object);
-
-			};
-		}
-	}
-}
+            protected:
+                //void notifyMDIBObjectChangedImpl(const TState & object);
+            };
+        }  // namespace SDC
+    }      // namespace Data
+}  // namespace SDCLib
 
 #endif

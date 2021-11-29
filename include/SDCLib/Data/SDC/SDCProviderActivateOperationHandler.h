@@ -15,24 +15,24 @@
 
 namespace SDCLib
 {
-	namespace Data
-	{
-		namespace SDC
-		{
-
-			class SDCProviderActivateOperationHandler : public SDCProviderStateHandler
-			{
-			public:
-				/**
+    namespace Data
+    {
+        namespace SDC
+        {
+            class SDCProviderActivateOperationHandler : public SDCProviderStateHandler
+            {
+            public:
+                /**
 				* @brief The constructor gets a handle as an argument referencing the regarding descriptor of the state
 				*/
-				SDCProviderActivateOperationHandler(std::string p_descriptorHandle)
-				: SDCProviderStateHandler(p_descriptorHandle)
-				{ }
+                explicit SDCProviderActivateOperationHandler(const HandleRef& p_descriptorHandle)
+                    : SDCProviderStateHandler(p_descriptorHandle, p_descriptorHandle)
+                {
+                }
 
-				virtual ~SDCProviderActivateOperationHandler() = default;
+                virtual ~SDCProviderActivateOperationHandler() = default;
 
-				/**
+                /**
 				* @brief Called on incoming consumer request for activation
 				*
 				* Notes:
@@ -40,11 +40,11 @@ namespace SDCLib
 				*
 				* @return invocation state
 				*/
-				virtual InvocationState onActivateRequest(const OperationInvocationContext & oic) = 0;
-			};
+                virtual InvocationState onActivateRequest(const OperationInvocationContext&) = 0;
+            };
 
-		}
-	}
-}
+        }  // namespace SDC
+    }      // namespace Data
+}  // namespace SDCLib
 
 #endif

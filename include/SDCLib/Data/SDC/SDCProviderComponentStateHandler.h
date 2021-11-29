@@ -14,28 +14,29 @@
 
 namespace SDCLib
 {
-	namespace Data
-	{
-		namespace SDC
-		{
-			template <class TState>
-			class SDCProviderComponentStateHandler : public SDCProviderStateHandler
-			{
-			public:
-				SDCProviderComponentStateHandler(std::string p_descriptorHandle)
-				: SDCProviderStateHandler(p_descriptorHandle)
-				{ }
-				virtual ~SDCProviderComponentStateHandler() = default;
+    namespace Data
+    {
+        namespace SDC
+        {
+            template<class TState>
+            class SDCProviderComponentStateHandler : public SDCProviderStateHandler
+            {
+            public:
+                explicit SDCProviderComponentStateHandler(const HandleRef p_descriptorHandle)
+                    : SDCProviderStateHandler(p_descriptorHandle, p_descriptorHandle)
+                {
+                }
+                virtual ~SDCProviderComponentStateHandler() = default;
 
-				/**
+                /**
 				* @brief the initial state has to be defined. It is needed to be called from within the framework.
 				*
 				* @return The initial state
 				*/
-				virtual TState getInitialState() = 0;
-			};
-		}
-	}
-}
+                virtual TState getInitialState() = 0;
+            };
+        }  // namespace SDC
+    }      // namespace Data
+}  // namespace SDCLib
 
 #endif

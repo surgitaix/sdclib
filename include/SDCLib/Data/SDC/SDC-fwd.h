@@ -41,6 +41,7 @@ namespace SDCLib
 			template<class T> class SDCProviderAlertConditionStateHandler;
 			template<class T> class SDCProviderComponentStateHandler;
 			template<class T> class SDCProviderMDStateHandler;
+			template<class T> class SDCProviderMultiStateHandler;
 			class SDCProviderStateHandler;
 		}
 	}

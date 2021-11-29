@@ -41,35 +41,51 @@
 #include "SDCLib/Data/SDC/MDIB/StringMetricState.h"
 #include "SDCLib/Data/SDC/MDIB/WorkflowContextState.h"
 
-namespace SDCLib {
-namespace Data {
-namespace SDC {
+using namespace SDCLib;
+using namespace SDCLib::Data;
+using namespace SDCLib::Data::SDC;
 
-SDCProviderStateHandler::SDCProviderStateHandler(std::string p_desriptorHandle)
-: OSELib::Helper::WithLogger(OSELib::Log::sdcProvider)
-, descriptorHandle(p_desriptorHandle)
-{ }
+
+SDCProviderStateHandler::SDCProviderStateHandler(const HandleRef& p_descriptorHandle, const Handle& p_handle)
+    : OSELib::Helper::WithLogger(OSELib::Log::sdcProvider)
+    , descriptorHandle(p_descriptorHandle)
+    , m_handle(p_handle)
+{
+}
 
 void SDCProviderStateHandler::notifyOperationInvoked(const OperationInvocationContext& p_oic, InvocationState p_is)
 {
-    if (parentProvider == nullptr) {
-    	log_error([] { return "Handler is used without calling SDCProvider::addMDStateHandler!"; });
-    } else {
-    	parentProvider->notifyOperationInvoked(p_oic, p_is);
+    if(parentProvider == nullptr)
+    {
+        log_error([] { return "Handler is used without calling SDCProvider::addMDStateHandler!"; });
+    }
+    else
+    {
+        parentProvider->notifyOperationInvoked(p_oic, p_is);
     }
 }
 
-void SDCProviderStateHandler::setAlertConditionPresence(const std::string p_alertConditionHandle, bool p_conditionPresence, const OperationInvocationContext& p_oic) {
-    if (parentProvider == nullptr) {
-    	log_error([&] { return "Handler is used without calling SDCProvider::addMDStateHandler!"; });
-    } else {
-    	parentProvider->setAlertConditionPresence(p_alertConditionHandle, p_conditionPresence, p_oic);
-    }
-}
-
-std::string SDCProviderStateHandler::getDescriptorHandle() const
+void SDCProviderStateHandler::setAlertConditionPresence(const std::string p_alertConditionHandle,
+                                                        bool p_conditionPresence,
+                                                        const OperationInvocationContext& p_oic)
 {
-	return descriptorHandle;
+    if(parentProvider == nullptr)
+    {
+        log_error([&] { return "Handler is used without calling SDCProvider::addMDStateHandler!"; });
+    }
+    else
+    {
+        parentProvider->setAlertConditionPresence(p_alertConditionHandle, p_conditionPresence, p_oic);
+    }
+}
+
+Handle SDCProviderStateHandler::getHandle() const
+{
+    return m_handle;
+}
+HandleRef SDCProviderStateHandler::getDescriptorHandle() const
+{
+    return descriptorHandle;
 }
 
 
@@ -91,22 +107,18 @@ template void SDCProviderStateHandler::updateState(const DistributionSampleArray
 template<class TState>
 void SDCProviderStateHandler::updateState(const TState& p_object)
 {
-    if (parentProvider == nullptr)
+    if(parentProvider == nullptr)
     {
-    	log_error([&] { return "Handler is used without calling SDCProvider::addMdStateHandler!"; });
+        log_error([&] { return "Handler is used without calling SDCProvider::addMdStateHandler!"; });
     }
     else
     {
-    	parentProvider->updateState(p_object);
+        parentProvider->updateState(p_object);
     }
 }
 
 SDCProvider& SDCProviderStateHandler::getParentProvider()
 {
-	assert(nullptr != parentProvider && "Handler is used without calling SDCProvider::addMdStateHandler!");
-	return *parentProvider; // FIXME: Check on nullptr?!
-}
-
-}
-}
+    assert(nullptr != parentProvider && "Handler is used without calling SDCProvider::addMdStateHandler!");
+    return *parentProvider;  // FIXME: Check on nullptr?!
 }

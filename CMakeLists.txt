@@ -33,14 +33,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 ################################################################################
 # Main Project
 ################################################################################
-set( PROJECT_NAME "SDCLibrary") # in case you need it in a config file
-project(${PROJECT_NAME} "CXX")
+project("SDCLibrary" "CXX")
 
 # Version numbers -> Will be written to the config file
 set (SDCLibrary_VERSION_FIRST          4)
-set (SDCLibrary_VERSION_MIDDLE         5)
-set (SDCLibrary_VERSION_LAST           1)
-set (SDCLibrary_C_YEAR              2020)
+set (SDCLibrary_VERSION_MIDDLE         6)
+set (SDCLibrary_VERSION_LAST           0)
+set (SDCLibrary_C_YEAR              2021)
 set (SDCLibrary_SurgiTAIX "SurgiTAIX AG")
 
 
