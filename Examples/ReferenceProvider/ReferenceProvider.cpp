@@ -263,21 +263,20 @@ public:
     //Helper Method
     EnumStringMetricState getInitialState()
     {
-        EnumStringMetricState t_newState{getDescriptorHandle()};
-        t_newState.setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue("OFF"));
-        return t_newState;
+        EnumStringMetricState newState{getDescriptorHandle()};
+        newState.setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue("OFF"));
+        return newState;
     }
 
 private:
     bool m_settable{false};
 };
 
-class LocationContextStateHandler : public SDCProviderMDStateHandler<LocationContextState>
+class LocationContextStateHandler : public SDCProviderMultiStateHandler<LocationContextState>
 {
 public:
-    LocationContextStateHandler(const std::string p_descriptorHandle, bool settable = false)
-        : SDCProviderMDStateHandler(p_descriptorHandle)
-        , m_settable{settable}
+    LocationContextStateHandler(const std::string p_descriptorHandle)
+        : SDCProviderMultiStateHandler(p_descriptorHandle, p_descriptorHandle)
     {
     }
 
@@ -304,17 +303,13 @@ public:
 
         return initialState;
     }
-
-private:
-    bool m_settable{false};
 };
 
 class SystemContextStateHandler : public SDCProviderMDStateHandler<SystemContextState>
 {
 public:
-    SystemContextStateHandler(const std::string p_descriptorHandle, bool settable = false)
+    SystemContextStateHandler(const std::string p_descriptorHandle)
         : SDCProviderMDStateHandler(p_descriptorHandle)
-        , m_settable{settable}
     {
     }
 
@@ -325,19 +320,16 @@ public:
 
     SystemContextState getInitialState()
     {
-        SystemContextState t_newState{getDescriptorHandle()};
-        return t_newState;
+        SystemContextState newState{getDescriptorHandle()};
+        return newState;
     }
-
-private:
-    bool m_settable{false};
 };
 
-class PatientContextStateHandler : public SDCProviderMDStateHandler<PatientContextState>
+class PatientContextStateHandler : public SDCProviderMultiStateHandler<PatientContextState>
 {
 public:
     PatientContextStateHandler(const std::string p_descriptorHandle)
-        : SDCProviderMDStateHandler(p_descriptorHandle)
+        : SDCProviderMultiStateHandler(p_descriptorHandle, p_descriptorHandle)
     {
     }
 
