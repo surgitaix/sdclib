@@ -16,8 +16,8 @@
 #include "DataModel/eventing.hxx"
 
 // Note: Configure these values later?
-const std::size_t RENEW_THRESHOLD = 60; // Time in sec a renew will be needed
-const double RENEW_FACTOR = 2.0;        // Multiplied with the RENEW_THRESHOLD = EXPIRATION_TIME for the subscription
+const std::size_t RENEW_THRESHOLD = 60;  // Time in sec a renew will be needed
+const double RENEW_FACTOR = 2.0;         // Multiplied with the RENEW_THRESHOLD = EXPIRATION_TIME for the subscription
 
 using namespace OSELib;
 using namespace OSELib::DPWS;
@@ -118,7 +118,7 @@ void SubscriptionClient::run()
     SDC::DefaultSDCSchemaGrammarProvider defaultSchemaGrammarProvider;
 
     auto renewThreshold = std::chrono::seconds{RENEW_THRESHOLD};
-    auto expireString = "PT" + std::to_string(renewThreshold.count() * RENEW_FACTOR) + "S"; // Note: Factor on the renew threshold
+    auto expireString = "PT" + std::to_string(renewThreshold.count() * RENEW_FACTOR) + "S";  // Note: Factor on the renew threshold
 
     // Quickfix to multi-locale double std::to_string conversion
     if((m_lconv->decimal_point != nullptr) && (*m_lconv->decimal_point != '.'))
@@ -130,7 +130,7 @@ void SubscriptionClient::run()
 
     subscribeAll(defaultExpireTime, defaultSchemaGrammarProvider);
 
-    std::size_t sleepQueryGetStatus_ms = 2000; // TODO: MAGIC NUMBER
+    std::size_t sleepQueryGetStatus_ms = 2000;  // TODO: MAGIC NUMBER
     while(Poco::Thread::trySleep(sleepQueryGetStatus_ms))
     {
         std::vector<std::string> recentlyExpiredSubscriptions;
@@ -185,8 +185,8 @@ void SubscriptionClient::run()
             auto foundIterator = m_subscriptions.find(expiredSubscription);
             if(m_subscriptions.end() != foundIterator)
             {
-                m_subscriptions.erase(foundIterator);
                 invokeUnsubscribe(foundIterator->second, defaultSchemaGrammarProvider);
+                m_subscriptions.erase(foundIterator);
             }
         }
     }

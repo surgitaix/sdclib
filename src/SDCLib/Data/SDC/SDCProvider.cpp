@@ -1450,7 +1450,8 @@ bool SDCProvider::startup()
                 _initAbstractStateDefaults(t_state);
                 m_MdState.addState(t_state);
             }
-            else if(auto t_casted_LocationContextState = dynamic_cast<SDCProviderMultiStateHandler<LocationContextState>*>(t_handler.second))
+            else if(auto t_casted_LocationContextState = dynamic_cast<SDCProviderMultiStateHandler<LocationContextState>*>(
+                        t_handler.second))
             {
                 auto t_state = t_casted_LocationContextState->getInitialState();
                 _initAbstractStateDefaults(t_state);
@@ -1468,19 +1469,22 @@ bool SDCProvider::startup()
                 _initAbstractStateDefaults(t_state);
                 m_MdState.addState(t_state);
             }
-            else if(auto t_casted_WorkflowContextState = dynamic_cast<SDCProviderMultiStateHandler<WorkflowContextState>*>(t_handler.second))
+            else if(auto t_casted_WorkflowContextState = dynamic_cast<SDCProviderMultiStateHandler<WorkflowContextState>*>(
+                        t_handler.second))
             {
                 auto t_state = t_casted_WorkflowContextState->getInitialState();
                 _initAbstractStateDefaults(t_state);
                 m_MdState.addState(t_state);
             }
-            else if(auto t_casted_OperatorContextState = dynamic_cast<SDCProviderMultiStateHandler<OperatorContextState>*>(t_handler.second))
+            else if(auto t_casted_OperatorContextState = dynamic_cast<SDCProviderMultiStateHandler<OperatorContextState>*>(
+                        t_handler.second))
             {
                 auto t_state = t_casted_OperatorContextState->getInitialState();
                 _initAbstractStateDefaults(t_state);
                 m_MdState.addState(t_state);
             }
-            else if(auto t_casted_EnsembleContextState = dynamic_cast<SDCProviderMultiStateHandler<EnsembleContextState>*>(t_handler.second))
+            else if(auto t_casted_EnsembleContextState = dynamic_cast<SDCProviderMultiStateHandler<EnsembleContextState>*>(
+                        t_handler.second))
             {
                 auto t_state = t_casted_EnsembleContextState->getInitialState();
                 _initAbstractStateDefaults(t_state);
@@ -1488,7 +1492,9 @@ bool SDCProvider::startup()
             }
             else
             {
-                log_fatal([] { return "Unknown handler type! This is an implementation error in the SDCLib! Consider SDCProviderMultiStateHandler for Context States instead of MDState Handler!"; });
+                log_fatal([] {
+                    return "Unknown handler type! This is an implementation error in the SDCLib! Consider SDCProviderMultiStateHandler for Context States instead of MDState Handler!";
+                });
                 return false;
             }
         }
@@ -1779,6 +1785,8 @@ void SDCProvider::replaceState(T p_object)  // FIXME: return value (bool)?
     // Increment StateVersion
     _incrementMdStateVersion();
 }
+
+
 
 
 void SDCProvider::addMdStateHandler(SDCProviderStateHandler* p_handler)  // FIXME: return value (bool)?
@@ -2123,6 +2131,11 @@ void SDCProvider::createSetOperationForDescriptor(const StringMetricDescriptor& 
     addSetOperationToSCOObjectImpl(t_setOperation, p_ownerMDS);
 }
 
+void SDCProvider::createSetOperationForMultiState(const SDCLib::Data::SDC::Handle& p_handle, MdsDescriptor& p_ownerMDS)
+{
+    const auto setOperation = CDM::SetContextStateOperationDescriptor{p_handle + "_sco", p_handle};
+    addSetOperationToSCOObjectImpl(setOperation, p_ownerMDS);
+}
 template<class T>
 void SDCProvider::createSetOperationForContextDescriptor(const T& p_descriptor, MdsDescriptor& p_ownerMDS)
 {

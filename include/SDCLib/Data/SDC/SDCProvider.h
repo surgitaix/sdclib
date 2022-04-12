@@ -183,6 +183,7 @@ namespace SDCLib
 				void createSetOperationForDescriptor(const EnsembleContextDescriptor & p_descriptor, MdsDescriptor & p_ownerMDS);
 				void createSetOperationForDescriptor(const OperatorContextDescriptor & p_descriptor, MdsDescriptor & p_ownerMDS);
 				void createSetOperationForDescriptor(const WorkflowContextDescriptor & p_descriptor, MdsDescriptor & p_ownerMDS);
+				void createSetOperationForMultiState(const SDCLib::Data::SDC::Handle&, MdsDescriptor&);
 
 				/**
 				* @brief Trigger an alert condition using a flag to indicate the condition's presence.
