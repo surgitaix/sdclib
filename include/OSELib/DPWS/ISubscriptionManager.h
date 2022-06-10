@@ -19,7 +19,6 @@ namespace OSELib
         class ISubscriptionManager
         {
         public:
-            // Special Member Functions
             ISubscriptionManager() = default;
             ISubscriptionManager(const ISubscriptionManager&) = delete;
             ISubscriptionManager(ISubscriptionManager&&) = delete;

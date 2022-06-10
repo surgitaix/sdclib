@@ -1,7 +1,7 @@
 /*
  * IBICEPSServiceEventSink.h
  *
- *  Created on: 26.09.2019, baumeister
+ *  Created on: 10.06.2022, baumeister
  *
  */
 
@@ -14,20 +14,17 @@
 
 namespace OSELib
 {
-	namespace SDC
-	{
-		class IBICEPSServiceEventSink : public IDescriptionEventServiceEventSink, public IStateEventServiceEventSink, public IContextServiceEventSink
-		{
-		public:
-			// Special Member Functions
-			IBICEPSServiceEventSink() = default;
-			IBICEPSServiceEventSink(const IBICEPSServiceEventSink& p_obj) = default;
-			IBICEPSServiceEventSink(IBICEPSServiceEventSink&& p_obj) = default;
-			IBICEPSServiceEventSink& operator=(const IBICEPSServiceEventSink& p_obj) = default;
-			IBICEPSServiceEventSink& operator=(IBICEPSServiceEventSink&& p_obj) = default;
-			virtual ~IBICEPSServiceEventSink() = default;
-		};
-	}
-}
+    namespace SDC
+    {
+        class IBICEPSServiceEventSink : public IDescriptionEventServiceEventSink,
+                                        public IStateEventServiceEventSink,
+                                        public IContextServiceEventSink
+        {
+        public:
+            IBICEPSServiceEventSink() = default;
+            virtual ~IBICEPSServiceEventSink() = default;
+        };
+    }  // namespace SDC
+}  // namespace OSELib
 
 #endif

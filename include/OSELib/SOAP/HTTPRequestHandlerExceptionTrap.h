@@ -20,11 +20,6 @@ namespace OSELib
 		{
 		public:
 			HTTPRequestHandlerExceptionTrap();
-			// Special Member Functions
-			HTTPRequestHandlerExceptionTrap(const HTTPRequestHandlerExceptionTrap& p_obj) = default;
-			HTTPRequestHandlerExceptionTrap(HTTPRequestHandlerExceptionTrap&& p_obj) = default;
-			HTTPRequestHandlerExceptionTrap& operator=(const HTTPRequestHandlerExceptionTrap& p_obj) = default;
-			HTTPRequestHandlerExceptionTrap& operator=(HTTPRequestHandlerExceptionTrap&& p_obj) = default;
 			virtual ~HTTPRequestHandlerExceptionTrap() = default;
 
 			void handleRequest(Poco::Net::HTTPServerRequest & p_httpRequest, Poco::Net::HTTPServerResponse & p_httpResponse) override;

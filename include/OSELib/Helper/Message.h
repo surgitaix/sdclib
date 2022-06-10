@@ -2,7 +2,7 @@
  * Message.h
  *
  *  Created on: 07.12.2015, matthias
- *  Modified on: 21.08.2019, baumeister
+ *  Modified on: 10.06.2022, baumeister
  *
  */
 
@@ -14,31 +14,25 @@
 
 namespace OSELib
 {
-	namespace Helper
-	{
-			class Message
-			{
-			private:
-				const std::string m_content;
+    namespace Helper
+    {
+        class Message
+        {
+        private:
+            const std::string m_content;
 
-			public:
-				// Special Member Functions
-				Message() = delete; // Note: Private Constructor via static create member function
-				Message(const Message& p_obj) = default;
-				Message(Message&& p_obj) = default;
-				Message& operator=(const Message& p_obj) = default;
-				Message& operator=(Message&& p_obj) = default;
+        public:
+            Message() = delete;  // Note: Private Constructor via static create member function
 
-				static std::unique_ptr<Message> create(const std::string & p_content);
-				static std::unique_ptr<Message> create(std::istream & p_stream);
+            static std::unique_ptr<Message> create(const std::string&);
+            static std::unique_ptr<Message> create(std::istream&);
 
-				const std::string & getContent() const;
+            const std::string& getContent() const;
 
-			private:
-
-				Message(const std::string & p_content);
-			};
-	}
-}
+        private:
+            Message(const std::string& p_content);
+        };
+    }  // namespace Helper
+}  // namespace OSELib
 
 #endif

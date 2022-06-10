@@ -32,13 +32,10 @@ namespace OSELib
 
         public:
             SubscriptionManager(const std::vector<xml_schema::Uri>&, SDCLib::Config::SSLConfig_shared_ptr);
-            SubscriptionManager(const SubscriptionManager&) = default;
-            SubscriptionManager(SubscriptionManager&&) = default;
-            SubscriptionManager& operator=(const SubscriptionManager&) = default;
-            SubscriptionManager& operator=(SubscriptionManager&&) = default;
             ~SubscriptionManager();
 
-            template<class TraitsType> void fireEvent(const typename TraitsType::ReportType&);
+            template<class TraitsType>
+            void fireEvent(const typename TraitsType::ReportType&);
 
             std::unique_ptr<SubscribeTraits::Response> dispatch(const SubscribeTraits::Request&) override;
             std::unique_ptr<RenewTraits::Response> dispatch(const RenewTraits::Request&, const RenewTraits::RequestIdentifier&) override;
@@ -53,7 +50,7 @@ namespace OSELib
             void houseKeeping();
             void run();
         };
-    } // namespace DPWS
-} // namespace OSELib
+    }  // namespace DPWS
+}  // namespace OSELib
 
 #endif

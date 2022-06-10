@@ -25,11 +25,6 @@ namespace OSELib
 
 		public:
 			Service(FrontController & controller, const std::vector<std::string> & uris);
-			// Special Member Functions
-			Service(const Service& p_obj) = default;
-			Service(Service&& p_obj) = default;
-			Service& operator=(const Service& p_obj) = default;
-			Service& operator=(Service&& p_obj) = default;
 			virtual ~Service() = default;
 
 			virtual Poco::Net::HTTPRequestHandler * createRequestHandler(const Poco::Net::HTTPServerRequest & request, bool p_SSL) = 0;

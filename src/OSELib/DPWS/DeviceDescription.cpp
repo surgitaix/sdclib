@@ -122,7 +122,7 @@ Poco::URI DeviceDescription::getBICEPSServiceURI() const
 Poco::URI DeviceDescription::getContextServiceURI() const
 {
 	std::lock_guard<std::mutex> t_lock(m_mutex_URIs);
-	for (const auto t_iter : ml_contextServiceURIs) {
+	for (const auto& t_iter : ml_contextServiceURIs) {
 		if (checkURIsValidity(t_iter, m_SSL)) { // Todo: Only a temporary work around: Needs finer control over SSL vs No SSL
 			return t_iter;
 		}
@@ -139,7 +139,7 @@ void DeviceDescription::addContextServiceURI(const Poco::URI & p_uri)
 Poco::URI DeviceDescription::getEventServiceURI() const
 {
 	std::lock_guard<std::mutex> t_lock(m_mutex_URIs);
-	for (const auto t_iter : ml_eventServiceURIs) {
+	for (const auto& t_iter : ml_eventServiceURIs) {
 		if (checkURIsValidity(t_iter, m_SSL)) { // Todo: Only a temporary work around: Needs finer control over SSL vs No SSL
 			return t_iter;
 		}
@@ -155,7 +155,7 @@ void DeviceDescription::addStateEventReportServiceURI(const Poco::URI & p_uri)
 Poco::URI DeviceDescription::getGetServiceURI() const
 {
 	std::lock_guard<std::mutex> t_lock(m_mutex_URIs);
-	for (const auto t_iter : ml_getServiceURIs) {
+	for (const auto& t_iter : ml_getServiceURIs) {
 		if (checkURIsValidity(t_iter, m_SSL)) { // Todo: Only a temporary work around: Needs finer control over SSL vs No SSL
 			return t_iter;
 		}
@@ -171,7 +171,7 @@ void DeviceDescription::addGetServiceURI(const Poco::URI & p_uri)
 Poco::URI DeviceDescription::getSetServiceURI() const
 {
 	std::lock_guard<std::mutex> t_lock(m_mutex_URIs);
-	for (const auto t_iter : ml_setServiceURIs) {
+	for (const auto& t_iter : ml_setServiceURIs) {
 		if (checkURIsValidity(t_iter, m_SSL)) { // Todo: Only a temporary work around: Needs finer control over SSL vs No SSL
 			return t_iter;
 		}
@@ -193,7 +193,7 @@ void DeviceDescription::addWaveformServiceURI(const Poco::URI & p_uri)
 Poco::URI DeviceDescription::getWaveformEventReportURI() const
 {
 	std::lock_guard<std::mutex> t_lock(m_mutex_URIs);
-	for (const auto t_iter : ml_waveformEventReportURIs) {
+	for (const auto& t_iter : ml_waveformEventReportURIs) {
 		if (checkURIsValidity(t_iter, m_SSL)) { // Todo: Only a temporary work around: Needs finer control over SSL vs No SSL
 			return t_iter;
 		}

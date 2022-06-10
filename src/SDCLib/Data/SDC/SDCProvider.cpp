@@ -387,7 +387,7 @@ MDM::SetStringResponse SDCProvider::SetStringAsync(const MDM::SetString& p_reque
 
             const auto& t_requestedStringVal(p_request.getRequestedStringValue());
             std::vector<std::string> tl_allowedValuesString;
-            for(const auto t_allowedValue : tl_allowedValues)
+            for(const auto& t_allowedValue : tl_allowedValues)
             {
                 tl_allowedValuesString.push_back(t_allowedValue.getValue());
             }
@@ -885,46 +885,54 @@ void SDCProvider::updateState(const RealTimeSampleArrayMetricState& p_object)
 // context states
 void SDCProvider::updateState(const EnsembleContextState& p_object)
 {
-    updateMDIB(p_object);
+    updateMDIBMultiState(p_object);
     notifyContextEventImpl(p_object);
 }
 
 void SDCProvider::updateState(const MeansContextState& p_object)
 {
-    updateMDIB(p_object);
+    updateMDIBMultiState(p_object);
     notifyContextEventImpl(p_object);
 }
 
 void SDCProvider::updateState(const LocationContextState& p_object)
 {
-    updateMDIB(p_object);
+    updateMDIBMultiState(p_object);
     notifyContextEventImpl(p_object);
 }
 
 void SDCProvider::updateState(const WorkflowContextState& p_object)
 {
-    updateMDIB(p_object);
+    updateMDIBMultiState(p_object);
     notifyContextEventImpl(p_object);
 }
 
 void SDCProvider::updateState(const PatientContextState& p_object)
 {
-    updateMDIB(p_object);
+    updateMDIBMultiState(p_object);
     notifyContextEventImpl(p_object);
 }
 
 void SDCProvider::updateState(const OperatorContextState& p_object)
 {
-    updateMDIB(p_object);
+    updateMDIBMultiState(p_object);
     notifyContextEventImpl(p_object);
 }
 
-template<class T>
-void SDCProvider::updateMDIB(const T& p_object)
+template<class StateType>
+void SDCProvider::updateMDIB(const StateType& p_object)
 {
     //Changing the MDIB -> MDIB Version gets increased.
     incrementMDIBVersion();
     replaceState(p_object);
+}
+
+template<class MultiStateType>
+void SDCProvider::updateMDIBMultiState(const MultiStateType& p_multiState)
+{
+    //Changing the MDIB -> MDIB Version gets increased.
+    incrementMDIBVersion();
+    replaceMultiState(p_multiState);
 }
 
 template<class T>
@@ -1786,7 +1794,46 @@ void SDCProvider::replaceState(T p_object)  // FIXME: return value (bool)?
     _incrementMdStateVersion();
 }
 
+template<class MultiStateType>
+void SDCProvider::replaceMultiState(MultiStateType p_multiState)
+{
+    {  // LOCK
+        std::lock_guard<std::mutex> lock{m_mutex_MdState};
+        // Check for existing state
+        std::unique_ptr<CDM::MdState> cachedStates(ConvertToCDM::convert(m_MdState));
+        CDM::MdState target;
 
+
+        for(const auto& state : cachedStates->getState())
+        {
+            if(auto castedMultiState = dynamic_cast<const CDM::AbstractMultiState*>(&state))
+            {
+                if(castedMultiState->getHandle() == p_multiState.getHandle())  // <<------ Handle instead of DescriptorHandle
+                {
+                    // Increment StateVersion
+                    if(!p_multiState.hasStateVersion())
+                    {
+                        p_multiState.setStateVersion(VersionCounter(INITIAL_STATE_VERSION + 1));
+                    }
+                    else
+                    {
+                        p_multiState.setStateVersion(p_multiState.getStateVersion() + 1);
+                    }
+                    // Found, add parameter instead of current
+                    target.getState().push_back(*ConvertToCDM::convert(p_multiState));
+
+                    continue;
+                }
+
+                target.getState().push_back(state);  // Copy
+            }
+        }
+        m_MdState = ConvertFromCDM::convert(target);
+    }  // UNLOCK
+
+    // Increment StateVersion
+    _incrementMdStateVersion();
+}
 
 
 void SDCProvider::addMdStateHandler(SDCProviderStateHandler* p_handler)  // FIXME: return value (bool)?

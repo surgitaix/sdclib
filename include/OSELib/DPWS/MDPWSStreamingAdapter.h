@@ -53,11 +53,6 @@ namespace OSELib
 			public:
 
 				MDPWSStreamingAdapter(SDCLib::Config::NetworkConfig_shared_ptr p_config, StreamNotificationDispatcher & streamNotificationDispatcher, DeviceDescription_shared_ptr p_deviceDescription);
-				// Special Member Functions
-				MDPWSStreamingAdapter(const MDPWSStreamingAdapter& p_obj) = default;
-				MDPWSStreamingAdapter(MDPWSStreamingAdapter&& p_obj) = default;
-				MDPWSStreamingAdapter& operator=(const MDPWSStreamingAdapter& p_obj) = default;
-				MDPWSStreamingAdapter& operator=(MDPWSStreamingAdapter&& p_obj) = default;
 				~MDPWSStreamingAdapter();
 
 			private:

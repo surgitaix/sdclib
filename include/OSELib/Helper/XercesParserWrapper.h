@@ -26,11 +26,6 @@ namespace OSELib
 
 		public:
 			XercesParserWrapper(const XercesGrammarPoolProvider & p_grammarPoolProvider);
-			// Special Member Functions
-			XercesParserWrapper(const XercesParserWrapper& p_obj) = default;
-			XercesParserWrapper(XercesParserWrapper&& p_obj) = default;
-			XercesParserWrapper& operator=(const XercesParserWrapper& p_obj) = default;
-			XercesParserWrapper& operator=(XercesParserWrapper&& p_obj) = default;
             ~XercesParserWrapper() = default;
 
 			xercesc::DOMLSParser * getParser();

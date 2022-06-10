@@ -14,28 +14,23 @@
 
 namespace OSELib
 {
-	namespace DPWS
-	{
-		class DeviceHandler : public SOAP::HTTPRequestHandlerExceptionTrap
-		{
-		private:
-			IDevice & m_service;
-			const bool m_SSL = true;
+    namespace DPWS
+    {
+        class DeviceHandler : public SOAP::HTTPRequestHandlerExceptionTrap
+        {
+        private:
+            IDevice& m_service;
+            const bool m_SSL{true};
 
-		public:
-			DeviceHandler(IDevice & p_service, bool p_SSL);
-			// Special Member Functions
-			DeviceHandler(const DeviceHandler& p_obj) = default;
-			DeviceHandler(DeviceHandler&& p_obj) = default;
-			DeviceHandler& operator=(const DeviceHandler& p_obj) = default;
-			DeviceHandler& operator=(DeviceHandler&& p_obj) = default;
-			~DeviceHandler() = default;
+        public:
+            DeviceHandler(IDevice& p_service, bool p_SSL);
+            ~DeviceHandler() = default;
 
-		private:
-			virtual void handleRequestImpl(Poco::Net::HTTPServerRequest & p_httpRequest, Poco::Net::HTTPServerResponse & p_httpResponse);
-		};
+        private:
+            virtual void handleRequestImpl(Poco::Net::HTTPServerRequest&, Poco::Net::HTTPServerResponse&);
+        };
 
-	}
-}
+    }  // namespace DPWS
+}  // namespace OSELib
 
 #endif

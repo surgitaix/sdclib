@@ -13,26 +13,20 @@
 
 namespace OSELib
 {
-	namespace HTTP
-	{
+    namespace HTTP
+    {
+        class StaticContentController : public Service
+        {
+        private:
+            const std::string m_content;
 
-		class StaticContentController : public Service
-		{
-		private:
-			const std::string m_content;
-		public:
-			StaticContentController(FrontController & p_controller, const std::string & p_uri, const std::string & p_content);
-			// Special Member Functions
-			StaticContentController(const StaticContentController& p_obj) = default;
-			StaticContentController(StaticContentController&& p_obj) = default;
-			StaticContentController& operator=(const StaticContentController& p_obj) = default;
-			StaticContentController& operator=(StaticContentController&& p_obj) = default;
-			~StaticContentController() = default;
+        public:
+            StaticContentController(FrontController& p_controller, const std::string& p_uri, const std::string& p_content);
+            ~StaticContentController() = default;
 
-			Poco::Net::HTTPRequestHandler * createRequestHandler(const Poco::Net::HTTPServerRequest & p_httpRequest, bool p_SSL) override;
-
-		};
-	}
-}
+            Poco::Net::HTTPRequestHandler* createRequestHandler(const Poco::Net::HTTPServerRequest& p_httpRequest, bool p_SSL) override;
+        };
+    }  // namespace HTTP
+}  // namespace OSELib
 
 #endif

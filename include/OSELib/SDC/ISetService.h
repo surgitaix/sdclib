@@ -21,14 +21,14 @@ namespace OSELib
 		class ISetService : public DPWS::IService, public DPWS::ISubscriptionManager
 		{
 		public:
-
-			// Special Member Functions
 			ISetService() = default;
 			ISetService(const ISetService& p_obj) = delete;
 			ISetService(ISetService&& p_obj) = delete;
 			ISetService& operator=(const ISetService& p_obj) = delete;
 			ISetService& operator=(ISetService&& p_obj) = delete;
 			virtual ~ISetService() = default;
+
+			using ISubscriptionManager::dispatch;
 
 			virtual std::unique_ptr<SetValueTraits::Response> dispatch(const SetValueTraits::Request & request) = 0;
 			virtual std::unique_ptr<SetStringTraits::Response> dispatch(const SetStringTraits::Request & request) = 0;
