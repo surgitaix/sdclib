@@ -212,6 +212,26 @@ public:
             << "String state of provider state changed to " << p_changedState.getMetricValue().getValue() << std::endl;
         // return Finished if successful
         return InvocationState::Fin;
+
+        if(!m_settable)
+        {
+            // extract information from the incoming operation
+            DebugOut(DebugOut::Default, "ReferenceProvider") << "Operation invoked. Handle: " << p_oic.operationHandle << std::endl;
+            return InvocationState::Fail;
+        }
+
+        else
+        {
+            // Invocation has been fired as WAITING when entering this method
+            notifyOperationInvoked(p_oic, InvocationState::Start);
+            // Do stuff
+            DebugOut(DebugOut::Default, "ReferenceProvider")
+                << "String state of provider state changed to " << p_changedState.getMetricValue().getValue() << std::endl;
+            // extract information from the incoming operation
+            DebugOut(DebugOut::Default, "ReferenceProvider") << "Operation invoked. Handle: " << p_oic.operationHandle << std::endl;
+            // if success return Finished
+            return InvocationState::Fin;  // Framework will update internal MDIB with the state's value and increase MDIB version
+        }
     }
 
     // Helper method
@@ -261,7 +281,7 @@ public:
     }
 
     //Helper Method
-    EnumStringMetricState getInitialState()
+    EnumStringMetricState getInitialState() override
     {
         EnumStringMetricState newState{getDescriptorHandle()};
         newState.setMetricValue(StringMetricValue(MetricQuality(MeasurementValidity::Vld)).setValue("OFF"));
@@ -285,7 +305,7 @@ public:
         return InvocationState::Fin;
     }
 
-    LocationContextState getInitialState()
+    LocationContextState getInitialState() override
     {
         LocationContextState initialState{getDescriptorHandle(), getDescriptorHandle()};
 
@@ -318,7 +338,7 @@ public:
         return InvocationState::Fin;
     }
 
-    SystemContextState getInitialState()
+    SystemContextState getInitialState() override
     {
         SystemContextState newState{getDescriptorHandle()};
         return newState;
@@ -338,7 +358,7 @@ public:
         return InvocationState::Fin;
     }
 
-    PatientContextState getInitialState()
+    PatientContextState getInitialState() override
     {
         PatientContextState initialState{getDescriptorHandle(), getDescriptorHandle()};
 
@@ -367,7 +387,7 @@ public:
         return InvocationState::Fin;
     }
 
-    AlertConditionState getInitialState()
+    AlertConditionState getInitialState() override
     {
         AlertConditionState t_newState{getDescriptorHandle(), AlertActivation::Off};
         return t_newState;
@@ -394,9 +414,8 @@ private:
 class AlertSignalStateHandler : public SDCProviderMDStateHandler<AlertSignalState>
 {
 public:
-    AlertSignalStateHandler(const std::string& p_descriptorHandle, bool settable = false)
+    AlertSignalStateHandler(const std::string& p_descriptorHandle)
         : SDCProviderMDStateHandler(p_descriptorHandle)
-        , m_settable{settable}
     {
     }
 
@@ -413,23 +432,21 @@ public:
         updateState(t_newState);
     }
 
-    AlertSignalState getInitialState()
+    AlertSignalState getInitialState() override
     {
         AlertSignalState t_newState{getDescriptorHandle(), AlertActivation::Off};
         return t_newState;
     }
 
 private:
-    bool m_settable{false};
     bool m_presence{false};
 };
 
 class AlertSystemStateHandler : public SDCProviderMDStateHandler<AlertSystemState>
 {
 public:
-    AlertSystemStateHandler(const std::string& p_descriptorHandle, bool settable = false)
+    AlertSystemStateHandler(const std::string& p_descriptorHandle)
         : SDCProviderMDStateHandler(p_descriptorHandle)
-        , m_settable{settable}
     {
     }
 
@@ -437,14 +454,11 @@ public:
     {
         return InvocationState::Fin;
     }
-    AlertSystemState getInitialState()
+    AlertSystemState getInitialState() override
     {
         AlertSystemState t_newState{getDescriptorHandle(), AlertActivation::Off};
         return t_newState;
     }
-
-private:
-    bool m_settable{false};
 };
 
 

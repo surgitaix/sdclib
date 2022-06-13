@@ -78,7 +78,7 @@ namespace SDCLib
 				*
 				* @return The initial state
 				*/
-                virtual InvocationState onStateChangeRequest(const TState& state, const OperationInvocationContext& oic) = 0;
+                virtual InvocationState onStateChangeRequest(const TState&, const OperationInvocationContext&) = 0;
 
                 /**
 				* @brief the initial state has to be defined. It is needed to be called from within the framework.

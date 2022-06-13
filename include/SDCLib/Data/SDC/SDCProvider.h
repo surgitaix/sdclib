@@ -331,8 +331,11 @@ namespace SDCLib
 				* @return invocation state
 				*/
 
-                template<typename T>
-                InvocationState onStateChangeRequest(const T& p_state, const OperationInvocationContext& p_oic);
+                template<typename StateType>
+                InvocationState onStateChangeRequest(const StateType&, const OperationInvocationContext&);
+
+                template<typename MultiStateType>
+                InvocationState onMultiStateChangeRequest(const MultiStateType&, const OperationInvocationContext&);
 
 
                 /**

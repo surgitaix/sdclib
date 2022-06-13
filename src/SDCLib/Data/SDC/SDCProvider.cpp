@@ -736,9 +736,9 @@ template<class TState>
 void SDCProvider::SetContextStateImpl(const TState& p_state, const OperationInvocationContext& p_oic)
 {
     // FIXME: check if writing to context state is allowed! = SCO exists
-    const InvocationState t_outState(onStateChangeRequest(p_state, p_oic));
-    notifyOperationInvoked(p_oic, t_outState);
-    if(InvocationState::Fin == t_outState)
+    const InvocationState outState(onMultiStateChangeRequest(p_state, p_oic));
+    notifyOperationInvoked(p_oic, outState);
+    if(InvocationState::Fin == outState)
     {
         // Success
         updateState(p_state);
@@ -1998,8 +1998,8 @@ std::string SDCProvider::getEndpointReference() const
     return std::string(m_endpointReference);
 }
 
-template<typename T>
-InvocationState SDCProvider::onStateChangeRequest(const T& p_state, const OperationInvocationContext& p_oic)
+template<typename StateType>
+InvocationState SDCProvider::onStateChangeRequest(const StateType& p_state, const OperationInvocationContext& p_oic)
 {
     // Try to find the StateHandler
     std::map<std::string, SDCProviderStateHandler*>::const_iterator t_iter = m_stateHandlers.end();
@@ -2013,10 +2013,27 @@ InvocationState SDCProvider::onStateChangeRequest(const T& p_state, const Operat
     }  // UNLOCK
 
     // Send the StateChangeRequest
-    if(auto t_handler = dynamic_cast<SDCProviderMDStateHandler<T>*>(t_iter->second))
+    if(auto* handler = dynamic_cast<SDCProviderMDStateHandler<StateType>*>(t_iter->second))
     {
-        return t_handler->onStateChangeRequest(p_state, p_oic);
+        return handler->onStateChangeRequest(p_state, p_oic);
     }
+    return InvocationState::Fail;
+}
+
+template<typename MultiStateType>
+InvocationState SDCProvider::onMultiStateChangeRequest(const MultiStateType& p_state, const OperationInvocationContext& p_oic)
+{
+    std::lock_guard<std::mutex> t_lock{m_mutex_MdStateHandler};
+    auto findResult = m_stateHandlers.find(p_state.getHandle());  // <---- Handle instead of DescriptorHandle
+    if(findResult != m_stateHandlers.end())
+    {
+        // Send the StateChangeRequest to the MULTI(!)-StateHandler
+        if(auto* handler = dynamic_cast<SDCProviderMultiStateHandler<MultiStateType>*>(findResult->second))
+        {
+            return handler->onStateChangeRequest(p_state, p_oic);
+        }
+    }
+
     return InvocationState::Fail;
 }
 
