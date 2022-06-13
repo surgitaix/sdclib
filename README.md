@@ -25,3 +25,6 @@
 
 ### Optional dependencies for MdibVisualizer
 - graphviz, evince, pdfunite
+
+## Commercial version
+The SDCLib/C is an outcome of several research projects. If you are looking for a commercial IEEE 11073 SDC implementation please contact us for our closed source stack. More information: https://surgitaix.com/wp/services-2/#/integrationservices
