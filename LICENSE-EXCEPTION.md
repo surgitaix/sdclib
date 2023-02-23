@@ -28,6 +28,7 @@ If you would like to contribute to this project, you may fork it and re-publish 
 If you publish modified versions of this library, you may or may not remove this exception from your version of the library.
 
 **Transfer of copyright**
+
 By creating a pull request to the original project you agree to assign the copyright of the changes to the original project, to be licensed under the same terms as the original source-code.
 
 ### Contact
